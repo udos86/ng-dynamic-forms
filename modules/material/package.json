@@ -1,0 +1,19 @@
+{
+  "name": "@ng2-dynamic-forms/material",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
+  },
+  "author": "Udo Schöfer <developer@udos86.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
+  },
+  "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme"
+}

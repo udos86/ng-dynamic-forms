@@ -1,0 +1,8 @@
+.idea/
+
+node_modules/
+
+modules/**/node_modules/
+modules/**/*.js
+modules/**/*.d.ts
+
