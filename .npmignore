@@ -1,1 +1,2 @@
 modules/**/*.ts
+modules/**/*.js.map
