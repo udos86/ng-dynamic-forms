@@ -7,3 +7,4 @@ modules/**/*.js
 modules/**/*.js.map
 modules/**/*.d.ts
 
+typings/

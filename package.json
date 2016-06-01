@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "typings": "typings install"
+    "typings": "typings"
   },
   "repository": {
     "type": "git",
