@@ -1,2 +1,4 @@
+example/
+
 modules/**/*.ts
 modules/**/*.js.map
