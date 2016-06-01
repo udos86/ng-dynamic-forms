@@ -1,5 +1,5 @@
 {
-  "name": "@ng2-dynamic-forms/material",
+  "name": "@ng2-dynamic-forms/ui-material",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -16,4 +16,7 @@
     "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme"
+  "dependencies": {
+    "@ng2-dynamic-forms/core": "0.0.1"
+  }
 }
