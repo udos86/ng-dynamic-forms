@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "karma": "karma",
     "typings": "typings"
   },
   "repository": {
@@ -11,9 +12,9 @@
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
   },
   "author": {
-    "name" : "Udo Schöfer",
-    "email" : "developer@udos86.de",
-    "url" : "http://www.udos86.de"
+    "name": "Udo Schöfer",
+    "email": "contact@udos86.de",
+    "url": "http://www.udos86.de"
   },
   "license": "ISC",
   "bugs": {
@@ -29,6 +30,11 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.7",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
   }
