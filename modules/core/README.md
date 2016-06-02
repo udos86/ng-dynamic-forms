@@ -1,0 +1,1 @@
+ng2-dynamic-forms core module
