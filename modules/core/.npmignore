@@ -2,6 +2,7 @@ index.ts
 
 src/*.ts
 src/*.spec.js
+!src/*.d.ts
 
 src/checkbox/*.ts
 src/checkbox/*.spec.js
