@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ng2-dynamics-form example app</title>
+
+
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+
+    <script src="systemjs.config.js"></script>
+
+    <script>
+
+        System.import("example").catch(function(err){ console.error(err);  });
+
+    </script>
+
+</head>
+
+<base href="/">
+
+<body>
+
+<app></app>
+
+</body>
+
+</html>
