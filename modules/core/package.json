@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
   },
-  "author": "Udo Schöfer <developer@udos86.de>",
+  "author": {
+    "name" : "Udo Schöfer",
+    "email" : "developer@udos86.de",
+    "url" : "http://www.udos86.de"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
