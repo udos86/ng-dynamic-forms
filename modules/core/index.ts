@@ -6,8 +6,8 @@ export * from "./src/dynamic-form.service";
 export * from "./src/dynamic-form-control.component";
 
 export * from "./src/checkbox/dynamic-form-checkbox.model";
-export * from "./src/input/number/dynamic-form-number-input.model";
-export * from "./src/input/text/dynamic-form-text-input.model";
+export * from "./src/input/dynamic-form-number-input.model";
+export * from "./src/input/dynamic-form-text-input.model";
 export * from "./src/radio/dynamic-form-radio.model";
 export * from "./src/select/dynamic-form-select.model";
 export * from "./src/textarea/dynamic-form-textarea.model";

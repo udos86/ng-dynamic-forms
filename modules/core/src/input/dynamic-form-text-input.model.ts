@@ -1,4 +1,4 @@
-import {DynamicFormInputControlModel} from "../../dynamic-form-input-control.model";
+import {DynamicFormInputControlModel} from "../dynamic-form-input-control.model";
 
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_EMAIL = "email";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_PASSWORD = "password";

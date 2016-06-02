@@ -1,4 +1,22 @@
 index.ts
 
-src/**/*.ts
-src/**/*.spec.js
+src/*.ts
+src/*.spec.js
+
+src/checkbox/*.ts
+src/checkbox/*.spec.js
+
+src/input/*.ts
+src/input/*.spec.js
+
+src/radio/*.ts
+src/radio/*.spec.js
+
+src/select/*.ts
+src/select/*.spec.js
+
+src/textarea/*.ts
+src/textarea/*.spec.js
+
+
+
