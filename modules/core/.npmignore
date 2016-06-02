@@ -1,6 +1,4 @@
 index.ts
-index.js.map
 
 src/**/*.ts
-src/**/*.js.map
 src/**/*.spec.js
