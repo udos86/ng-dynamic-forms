@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Material UI for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {

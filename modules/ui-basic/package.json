@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-basic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Basic native HTML5 UI for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
