@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A library for creating dynamic forms in Angular 2",
   "main": "index.js",
   "scripts": {

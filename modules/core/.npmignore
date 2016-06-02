@@ -5,18 +5,22 @@ src/*.spec.js
 
 src/checkbox/*.ts
 src/checkbox/*.spec.js
+!src/checkbox/*.d.ts
 
 src/input/*.ts
 src/input/*.spec.js
+!src/input/*.d.ts
 
 src/radio/*.ts
 src/radio/*.spec.js
+!src/radio/*.d.ts
 
 src/select/*.ts
 src/select/*.spec.js
+!src/select/*.d.ts
 
 src/textarea/*.ts
 src/textarea/*.spec.js
-
+!src/textarea/*.d.ts
 
 
