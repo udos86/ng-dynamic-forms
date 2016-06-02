@@ -3,8 +3,8 @@ import {ControlGroup} from "@angular/common";
 import {MdCheckbox} from "@angular2-material/checkbox";
 import {MdInput} from "@angular2-material/input";
 import {MdRadioButton, MdRadioGroup, MdRadioDispatcher} from "@angular2-material/radio";
-import {DynamicFormControlModel} from "@ng2-dynamic-forms/dynamic-form-control.model";
-import {DynamicFormControlComponent} from "@ng2-dynamic-forms/dynamic-form-control.component";
+import {DynamicFormControlModel} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 
 @Component({
 
