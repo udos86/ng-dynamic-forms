@@ -1,0 +1,64 @@
+<div [ngFormModel]="form" [ngSwitch]="model.type">
+
+    <label [attr.for]="model.id"
+           [hidden]="model.hideLabel">{{model.label}}</label>
+
+    <md-checkbox *ngSwitchWhen="'checkbox'"
+                 [align]="model.align"
+                 [disabled]="model.disabled"
+                 [id]="model.id"
+                 [indeterminate]="model.indeterminate"
+                 [name]="model.name"
+                 [value]="model.value"
+                 [ngControl]="model.id"
+                 [(ngModel)]="model.value"
+                 (blur)="onBlur($event)"
+                 (focus)="onFocus($event)">
+
+        {{model.text}}
+
+    </md-checkbox>
+
+    <md-input *ngSwitchWhen="'input'"
+              [autofocus]="model.autoFocus"
+              [disabled]="model.disabled"
+              [id]="model.id"
+              [max]="model.max"
+              [maxLength]="model.maxLength"
+              [min]="model.min"
+              [name]="model.name"
+              [placeholder]="model.placeholder"
+              [step]="model.step"
+              [type]="model.inputType"
+              [ngControl]="model.id"
+              [(ngModel)]="model.value"
+              (blur)="onBlur($event)"
+              (focus)="onFocus($event)">
+
+        <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
+        <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
+
+        <md-hint *ngIf="model.showLength" align="end">
+            {{characterCount}} / {{model.maxLength}}
+        </md-hint>
+
+    </md-input>
+
+    <md-radio-group *ngSwitchWhen="'radio'"
+                    [name]="model.name"
+                    [id]="model.id"
+                    [ngControl]="model.id"
+                    [(ngModel)]="model.value"
+                    (blur)="onBlur($event)"
+                    (focus)="onFocus($event)">
+
+        <md-radio-button *ngFor="let option of model.options"
+                         [checked]="!!option.selected"
+                         [disabled]="!!option.disabled"
+                         [name]="model.name"
+                         [value]="option.value">{{option.text}}
+        </md-radio-button>
+
+    </md-radio-group>
+
+</div>
