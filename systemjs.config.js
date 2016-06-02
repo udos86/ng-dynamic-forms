@@ -7,7 +7,8 @@
         "rxjs": "node_modules/rxjs",
         "angular2-in-memory-web-api": "node_modules/angular2-in-memory-web-api",
         "@angular": "node_modules/@angular",
-        "@angular2-material": "node_modules/@angular2-material"
+        "@angular2-material": "node_modules/@angular2-material",
+        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
     };
 
     // packages tells the System loader how to load when no filename and/or no extension is indicated
@@ -15,10 +16,6 @@
 
         "example": {
             main: "main.js",
-            defaultExtension: "js"
-        },
-        "app/shared": {
-            main: "index.js",
             defaultExtension: "js"
         },
         "rxjs": {
@@ -50,9 +47,9 @@
     ];
 
     var ng2DynamicFormsPackageNames = [
-        "core",
-        "ui-basic",
-        "ui-material"
+        "@ng2-dynamic-forms/core",
+        "@ng2-dynamic-forms/ui-basic",
+        "@ng2-dynamic-forms/ui-material"
     ];
 
     angularPackageNames.forEach(function (packageName) {
