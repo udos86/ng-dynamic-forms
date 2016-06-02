@@ -30,6 +30,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "@ng2-dynamic-forms/core": "0.0.1",
     "codelyzer": "0.0.19",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",

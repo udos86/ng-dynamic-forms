@@ -1,7 +1,0 @@
-example/
-
-modules/**/*.ts
-modules/**/*.js.map
-modules/**/*.spec.js
-
-typings/
