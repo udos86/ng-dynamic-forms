@@ -5,8 +5,7 @@ import {
     DynamicFormRadioModel
 } from "@ng2-dynamic-forms/core";
 
-
-export const DYNAMIC_FORM_UI_BASIC_MODEL = new DynamicFormModel([
+export const DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
     new DynamicFormRadioModel<string>({
 
@@ -14,18 +13,18 @@ export const DYNAMIC_FORM_UI_BASIC_MODEL = new DynamicFormModel([
         label: "Subject",
         options: [
             {
-                text: "Biology",
-                value: "biology",
+                text: "Option 1",
+                value: "option-1",
             },
             {
                 disabled: true,
-                text: "German",
-                value: "german"
+                text: "Option 2",
+                value: "option-2"
             },
             {
                 selected: true,
-                text: "Math",
-                value: "math"
+                text: "Option 3",
+                value: "option-3"
             }
         ]
     }),

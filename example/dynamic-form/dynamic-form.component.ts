@@ -1,24 +1,25 @@
 import {Component, OnInit} from "@angular/core";
 import {FORM_DIRECTIVES} from "@angular/common";
 import {Control, ControlGroup} from "@angular/common";
-import {DYNAMIC_FORM_UI_BASIC_MODEL} from "./dynamic-form-ui-basic.model";
+import {DYNAMIC_FORM_MODEL} from "./dynamic-form.model";
 import {
     DynamicFormService,
     DynamicFormControlModel,
     DynamicFormModel
 } from "@ng2-dynamic-forms/core";
 import {DynamicFormNativeControlComponent} from "@ng2-dynamic-forms/ui-basic";
+import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-material";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormNativeControlComponent],
+    directives: [FORM_DIRECTIVES, DynamicFormNativeControlComponent, DynamicFormMaterialControlComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
-    selector: "dynamic-form-ui-basic",
-    templateUrl: "./dynamic-form-ui-basic.component.html",
+    selector: "dynamic-form",
+    templateUrl: "./dynamic-form.component.html",
 })
 
-export class DynamicFormUIBasicComponent implements OnInit {
+export class DynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel;
     dynamicFormService: DynamicFormService;
@@ -30,7 +31,7 @@ export class DynamicFormUIBasicComponent implements OnInit {
 
     constructor(dynamicFormService: DynamicFormService) {
 
-        this.dynamicFormModel = DYNAMIC_FORM_UI_BASIC_MODEL;
+        this.dynamicFormModel = DYNAMIC_FORM_MODEL;
         this.dynamicFormService = dynamicFormService;
     }
 

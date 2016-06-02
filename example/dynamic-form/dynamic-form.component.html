@@ -1,0 +1,38 @@
+<h2>Basic UI</h2>
+
+<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.items" class="form-row">
+
+        <dynamic-form-native-control [model]="dynamicFormControlModel"
+                                       [form]="form"
+                                       #dynamicFormControl></dynamic-form-native-control>
+
+    </div>
+
+    <button type="button"(click)="test()">Test</button>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+
+<h2>Material UI</h2>
+
+<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.items" class="form-row">
+
+        <dynamic-form-material-control [model]="dynamicFormControlModel"
+                                     [form]="form"
+                                     #dynamicFormControl></dynamic-form-material-control>
+
+    </div>
+
+    <button type="button"(click)="test()">Test</button>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+
