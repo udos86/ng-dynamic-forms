@@ -1,1 +1,3 @@
-ng2-dynamic-forms core module
+# ng2 Dynamic Forms
+
+Core Module
