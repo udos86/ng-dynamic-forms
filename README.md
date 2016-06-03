@@ -19,26 +19,26 @@ npm install @ng2-dynamic-forms/ui-material --save
 ```
 **When using SystemJS, update your configuration file:**
 ```
-    var map = {
+var map = {
 
-        // ...here goes all the rest
+    // ...here goes all the rest
 
-        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
+    "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
+};
+
+var ng2DynamicFormsPackageNames = [
+
+    "@ng2-dynamic-forms/core",
+    "@ng2-dynamic-forms/ui-material"
+];
+
+ng2DynamicFormsPackageNames.forEach(function (packageName) {
+
+    packages[packageName] = {
+        main: "index.js",
+        defaultExtension: "js"
     };
-
-    var ng2DynamicFormsPackageNames = [
-
-        "@ng2-dynamic-forms/core",
-        "@ng2-dynamic-forms/ui-material"
-    ];
-
-    ng2DynamicFormsPackageNames.forEach(function (packageName) {
-
-        packages[packageName] = {
-            main: "index.js",
-            defaultExtension: "js"
-        };
-    });
+});
 ```
 **`systemjs.config.js`**
 
