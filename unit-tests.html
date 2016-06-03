@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ng2 Dynamic Forms Unit Tests</title>
+
+    <link rel="stylesheet" href="node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
+
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
+
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+
+    <script>
+
+        var map = {
+
+            "modules": "modules",
+            "rxjs": "node_modules/rxjs",
+            "angular2-in-memory-web-api": "node_modules/angular2-in-memory-web-api",
+            "@angular": "node_modules/@angular",
+            "@angular2-material": "node_modules/@angular2-material"
+        };
+
+        var packages = {
+
+            "modules": {
+                defaultExtension: "js"
+            },
+            "rxjs": {
+                defaultExtension: "js"
+            },
+            "angular2-in-memory-web-api": {
+                defaultExtension: "js"
+            }
+        };
+
+        var angularPackageNames = [
+            "@angular/common",
+            "@angular/core"
+        ];
+
+        var angularMaterialPackageNames = [
+            "checkbox",
+            "core",
+            "input",
+            "radio"
+        ];
+
+        angularPackageNames.forEach(function (packageName) {
+
+            packages[packageName] = {
+                main: "index.js",
+                defaultExtension: "js"
+            };
+        });
+
+        angularMaterialPackageNames.forEach(function (packageName) {
+
+            packages["@angular2-material/" +packageName] = {
+                format: "cjs",
+                main: packageName +".js",
+                defaultExtension: "js"
+            };
+        });
+
+        System.config({
+
+            map: map,
+            packages: packages
+        });
+
+    </script>
+
+    <script>
+
+        Promise.all([
+
+            System.import("modules/core/src/input/dynamic-form-text-input.model.spec")
+
+        ]).then(window.onload).catch(console.error.bind(console));
+
+    </script>
+
+</head>
+
+<body></body>
+
+</html>
