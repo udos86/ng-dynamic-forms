@@ -7,11 +7,11 @@ import {DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 @Component({
     
     moduleId: module.id,
-    selector: "dynamic-form-native-control",
-    templateUrl: "./dynamic-form-native-control.component.html"
+    selector: "dynamic-form-basic-control",
+    templateUrl: "./dynamic-form-basic-control.component.html"
 })
 
-export class DynamicFormNativeControlComponent extends DynamicFormControlComponent {
+export class DynamicFormBasicControlComponent extends DynamicFormControlComponent {
 
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: ControlGroup;
