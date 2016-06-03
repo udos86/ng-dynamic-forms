@@ -16,13 +16,13 @@ export class DynamicFormService {
 
         let controlGroup = {};
 
-        dynamicFormModel.items.sort((a, b) => a.order - b.order);
-        dynamicFormModel.items.forEach(dynamicFormControlModel => {
+        dynamicFormModel.model.sort((a, b) => a.order - b.order);
+        dynamicFormModel.model.forEach(controlModel => {
 
-            controlGroup[dynamicFormControlModel.id] = [
-                dynamicFormControlModel.value || null,
-                Validators.compose(dynamicFormControlModel.validators),
-                Validators.composeAsync(dynamicFormControlModel.validatorsAsync)];
+            controlGroup[controlModel.id] = [
+                controlModel.value || null,
+                Validators.compose(controlModel.validators),
+                Validators.composeAsync(controlModel.validatorsAsync)];
         });
 
         return this.formBuilder.group(controlGroup);
