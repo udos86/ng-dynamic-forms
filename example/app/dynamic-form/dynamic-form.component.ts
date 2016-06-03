@@ -26,8 +26,8 @@ export class DynamicFormComponent implements OnInit {
 
     form: ControlGroup;
 
-    agreementControl: Control;
-    agreementModel: DynamicFormControlModel<boolean>;
+    exampleCheckboxControl: Control;
+    exampleCheckboxModel: DynamicFormControlModel<boolean>;
 
     constructor(dynamicFormService: DynamicFormService) {
 
@@ -39,14 +39,14 @@ export class DynamicFormComponent implements OnInit {
 
         this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
 
-        this.agreementControl = <Control> this.form.controls["agreement"]; // Type assertion for having updateValue method available
-        this.agreementModel = this.dynamicFormModel.findById("agreement");
+        this.exampleCheckboxControl = <Control> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
+        this.exampleCheckboxModel = this.dynamicFormModel.findById("exampleCheckbox");
 
-        //this.agreementControl.valueChanges.subscribe((value: string) => console.log("agreement field changed to: ", value, typeof value));
+        //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
     }
 
     test() {
-        this.agreementModel.disabled = !this.agreementModel.disabled;
+        this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
         this.dynamicFormModel.items[1].value = "42";
     }
 }

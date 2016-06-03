@@ -1,10 +1,9 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "karma": "karma",
-    "lite-server": "lite-server",
     "typings": "typings"
   },
   "repository": {

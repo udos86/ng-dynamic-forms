@@ -9,8 +9,8 @@ export const DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
     new DynamicFormRadioModel<string>({
 
-        id: "subject",
-        label: "Subject",
+        id: "exampleOption",
+        label: "Example Option",
         options: [
             {
                 text: "Option 1",
@@ -32,16 +32,16 @@ export const DYNAMIC_FORM_MODEL = new DynamicFormModel([
     new DynamicFormTextInputModel({
 
         hideLabel: true,
-        id: "grade",
-        label: "Grade",
+        id: "exampleInput",
+        label: "Example Input",
         maxLength: 51,
-        placeholder: "Grade",
+        placeholder: "example input",
     }),
 
     new DynamicFormCheckboxModel({
 
         hideLabel: true,
-        id: "agreement",
+        id: "exampleCheckbox",
         label: "I do agree",
         text: "I do agree"
     })
