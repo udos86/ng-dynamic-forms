@@ -8,8 +8,12 @@ export abstract class DynamicFormControlComponent implements OnInit {
     form: ControlGroup;
     hasFocus: boolean;
     model: DynamicFormControlModel<any>;
+
+    incompatibilities: Array<string> = [];
     
     constructor() {
+
+        this.checkCompatibility();
     }
 
     ngOnInit() {
@@ -34,5 +38,12 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
         this.hasFocus = true;
         console.log(this.model.id + " field is focused");
+    }
+
+    checkCompatibility() {
+
+        if (this.incompatibilities.indexOf(this.model.type) > -1) {
+            console.warn(`control type with id ${this.model.id} is not supported by this ui library`);
+        }
     }
 }

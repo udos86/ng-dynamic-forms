@@ -10,7 +10,9 @@ src/checkbox/*.spec.js
 
 src/input/*.ts
 src/input/*.spec.js
+src/input/*.spec.js.map
 !src/input/*.d.ts
+src/input/*spec.d.ts
 
 src/radio/*.ts
 src/radio/*.spec.js
