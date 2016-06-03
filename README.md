@@ -1,7 +1,7 @@
 # ng2 Dynamic Forms (alpha)
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
-[dynamic form cookbook](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
+[**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 It simplifies all the hard, troublesome work of implementing handcrafted forms by building
 upon a layer of non-redundant object models.
 Moreover it provides a flexible system of dynamic ui components with out of the box support for
@@ -46,5 +46,15 @@ Define your dynamic form model:
 ```
 Plug in your ui component:
 ```
-// TODO
+<form [ngFormModel]="form">
+
+    <div *ngFor="let controlModel of dynamicFormModel.items">
+
+        <dynamic-form-native-control [model]="controlModel" [form]="form"></dynamic-form-native-control>
+
+    </div>
+
+    ...
+
+</form>
 ```
