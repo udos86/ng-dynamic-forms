@@ -1,1 +1,1 @@
-export * from "./src/dynamic-form-native-control.component";
+export * from "./src/dynamic-form-basic-control.component";
