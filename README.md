@@ -44,13 +44,13 @@ Define your dynamic form model:
 ```
 // TODO
 ```
-Plug in your ui component:
+**Plug in your ui component:**
 ```
 <form [ngFormModel]="form">
 
     <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-native-control [model]="controlModel" [form]="form"></dynamic-form-native-control>
+        <dynamic-form-material-control [model]="controlModel" [form]="form"></dynamic-form-material-control>
 
     </div>
 
