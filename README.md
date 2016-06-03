@@ -8,15 +8,15 @@ Moreover it offers a flexible system of dynamic ui components with out of the bo
 
 ##Getting Started
 
-1. Install the **core** package:
+Install the **core** package:
 ```
 npm install @ng2-dynamic-forms/core --save
 ```
-2. Choose your ui library, e.g. Angular 2 Material, and install the corresponding package:
+Choose your ui library, e.g. Angular 2 Material, and install the corresponding package:
 ```
 npm install @ng2-dynamic-forms/ui-material --save
 ```
-3. When using **SystemJS**, update your configuration file:
+When using **SystemJS**, update your configuration file:
 ```
     var map = {
 
@@ -40,11 +40,11 @@ npm install @ng2-dynamic-forms/ui-material --save
         };
     });
 ```
-4. Define your dynamic form model:
+Define your dynamic form model:
 ```
 // TODO
 ```
-5. Plug in your ui component:
+Plug in your ui component:
 ```
 // TODO
 ```
