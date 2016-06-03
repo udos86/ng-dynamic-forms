@@ -13,8 +13,7 @@
 
   "exclude": [
     "node_modules",
-    "modules/core/node_modules",
-    "modules/material/node_modules",
+    "example/node_modules",
     "typings/main",
     "typings/main.d.ts"
   ],
