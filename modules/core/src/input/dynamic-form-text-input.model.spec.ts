@@ -34,6 +34,7 @@ describe("DynamicFormInputModel test suite", () => {
             expect(defaultObject.suffix).toBeDefined();
             expect(defaultObject.prefix).toBeNull();
         });
+        
     });
 
 });

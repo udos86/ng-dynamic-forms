@@ -86,7 +86,11 @@
 
         Promise.all([
 
-            System.import("modules/core/src/input/dynamic-form-text-input.model.spec")
+            System.import("modules/core/src/checkbox/dynamic-form-checkbox.model.spec"),
+            System.import("modules/core/src/input/dynamic-form-text-input.model.spec"),
+            System.import("modules/core/src/radio/dynamic-form-radio.model.spec"),
+            System.import("modules/core/src/select/dynamic-form-select.model.spec"),
+            System.import("modules/core/src/textarea/dynamic-form-textarea.model.spec")
 
         ]).then(window.onload).catch(console.error.bind(console));
 
