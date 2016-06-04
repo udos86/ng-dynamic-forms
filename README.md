@@ -89,7 +89,7 @@ export class DynamicFormComponent implements OnInit {
 }
 ```
 
-**Add the ui component to your template:**
+**Add the UI component to your template:**
 ```
 <form [ngFormModel]="form">
 
