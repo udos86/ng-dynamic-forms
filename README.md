@@ -62,7 +62,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     })
 ]);
 ```
-**Provide `DynamicFormService` and plugin the UI directive:**
+**Provide `DynamicFormService` and plug in the UI component:**
 
 ```
 @Component({
