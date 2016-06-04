@@ -7,7 +7,6 @@ example/app/**/*.js
 example/app/**/*.js.map
 example/app/**/*.d.ts
 
-modules/app-test/
 modules/**/node_modules/
 modules/**/*.js
 modules/**/*.js.map

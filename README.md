@@ -17,7 +17,7 @@ npm install @ng2-dynamic-forms/core --save
 ```
 npm install @ng2-dynamic-forms/ui-material --save
 ```
-**When using SystemJS, update your configuration file:**
+When using SystemJS, update your configuration file:
 ```
 var map = {
 
@@ -40,19 +40,66 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
     };
 });
 ```
-**`systemjs.config.js`**
 
 **Define your dynamic form model:**
 ```
-// TODO
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+
+    new DynamicFormTextInputModel({
+
+        id: "exampleInput",
+        label: "Example Input",
+        maxLength: 42,
+        placeholder: "example input",
+    }),
+
+    new DynamicFormCheckboxModel({
+
+        hideLabel: true,
+        id: "exampleCheckbox",
+        label: "I do agree",
+        text: "I do agree"
+    })
+]);
 ```
-**Plug in your ui component:**
+**Create the form and plug in your ui component:**
 
+```
+import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-material";
 
+@Component({
+
+    directives: [FORM_DIRECTIVES, DynamicFormMaterialControlComponent],
+    moduleId: module.id,
+    providers: [DynamicFormService],
+    selector: "dynamic-form",
+    templateUrl: "./dynamic-form.component.html",
+})
+
+export class DynamicFormComponent implements OnInit {
+
+    dynamicFormModel: DynamicFormModel;
+    dynamicFormService: DynamicFormService;
+
+    form: ControlGroup;
+
+    constructor(dynamicFormService: DynamicFormService) {
+
+        this.dynamicFormModel = MY_DYNAMIC_FORM_MODEL;
+        this.dynamicFormService = dynamicFormService;
+    }
+
+    ngOnInit() {
+        this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
+    }
+}
+```
+
+**Add the ui component to your template**
 ```
 <form [ngFormModel]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.items">
+    <div *ngFor="let controlModel of dynamicFormModel.model">
 
         <dynamic-form-material-control [model]="controlModel" [form]="form"></dynamic-form-material-control>
 
@@ -62,4 +109,3 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 
 </form>
 ```
-**`dynamic-form.component.html`**
