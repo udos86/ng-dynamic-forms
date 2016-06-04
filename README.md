@@ -21,7 +21,7 @@ When using **SystemJS**, update your configuration file:
 ```
 var map = {
 
-    // ...here goes all the rest
+    // ...here goes all the rest (Angular 2, Material, RxJS, etc.)
 
     "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
 };
