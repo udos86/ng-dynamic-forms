@@ -4,7 +4,7 @@ ng2 Dynamic Forms is a rapid form development library based on the official Angu
 [**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 It simplifies all the hard, troublesome work of implementing handcrafted forms by building
 upon a layer of non-redundant object models.
-Moreover it provides a flexible system of dynamic ui components with out of the box support for
+It also provides a flexible system of dynamic ui components with out of the box support for
 **Angular 2 Material** and **Bootstrap**.
 
 ##Getting Started
