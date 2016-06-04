@@ -7,17 +7,17 @@ upon a layer of non-redundant object models.
 It also provides a flexible system of dynamic ui components with out of the box support for
 **Angular 2 Material** and **Bootstrap**.
 
-##Getting Started
+## Getting Started
 
-**Install the core package:**
+Install the core package:
 ```
 npm install @ng2-dynamic-forms/core --save
 ```
-**Choose your ui library**, e.g. Angular 2 Material, **and install the corresponding package:**
+Choose your ui library, e.g. Angular 2 Material, and install the corresponding package:
 ```
 npm install @ng2-dynamic-forms/ui-material --save
 ```
-**When using SystemJS, update your configuration file**:
+When using **SystemJS**, update your configuration file:
 ```
 var map = {
 
@@ -41,7 +41,7 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 });
 ```
 
-**Define your dynamic form model:**
+Define your dynamic form model:
 ```
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
@@ -62,7 +62,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     })
 ]);
 ```
-**Create the form and plug in your ui component:**
+Create the form and plug in your ui component:
 
 ```
 @Component({
@@ -87,7 +87,7 @@ export class DynamicFormComponent implements OnInit {
 }
 ```
 
-**Add the ui component to your template:**
+Add the ui component to your template:
 ```
 <form [ngFormModel]="form">
 
