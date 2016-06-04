@@ -70,7 +70,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     directives: [FORM_DIRECTIVES, DynamicFormMaterialControlComponent],
     providers: [DynamicFormService],
 
-    // ... all the res
+    // ... all the rest (selector, templateUrl, etc.)
 })
 ```
 
