@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-basic",
-  "version": "0.0.4",
+  "version": "1.0.0-alpha.1",
   "description": "Basic native HTML5 UI for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,6 @@
   "peerDependencies": {
     "@angular/common": "^2.0.0-rc.1",
     "@angular/core": "^2.0.0-rc.1",
-    "@ng2-dynamic-forms/core": "0.0.7"
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.1"
   }
 }
