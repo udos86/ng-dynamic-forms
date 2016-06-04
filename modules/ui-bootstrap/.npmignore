@@ -1,0 +1,5 @@
+index.ts
+
+src/*.ts
+src/*.spec.js
+!src/*.d.ts

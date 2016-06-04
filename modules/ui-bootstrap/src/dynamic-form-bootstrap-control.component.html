@@ -1,0 +1,58 @@
+<div [ngFormModel]="form" [ngSwitch]="model.type">
+
+    <input *ngSwitchWhen="'checkbox'"
+           type="checkbox"
+           [id]="model.id"
+           [name]="model.name"
+           [value]="model.value"
+           [ngControl]="model.id"
+           [(ngModel)]="model.value"
+           (blur)="onBlur($event)"
+           (focus)="onFocus($event)"/>
+
+    <label [attr.for]="model.id"
+           [hidden]="model.hideLabel">{{model.label}}
+    </label>
+
+    <input *ngSwitchWhen="'input'"
+           [autofocus]="model.autoFocus"
+           [disabled]="model.disabled"
+           [id]="model.id"
+           [max]="model.max"
+           [maxLength]="model.maxLength"
+           [min]="model.min"
+           [name]="model.name"
+           [placeholder]="model.placeholder"
+           [step]="model.step"
+           [type]="model.inputType"
+           [ngControl]="model.id"
+           [(ngModel)]="model.value"/>
+
+    <select *ngSwitchWhen="'select'"
+            [id]="model.id"
+            [name]="model.name"
+            [ngControl]="model.id"
+            [(ngModel)]="model.value"
+            (blur)="onBlur($event)"
+            (focus)="onFocus($event)">
+
+        <option *ngFor="let option of model.options"
+                [disabled]="!!option.disabled"
+                [attr.name]="model.name"
+                [selected]="!!option.selected"
+                [ngValue]="option.value">{{option.text}}
+        </option>
+
+    </select>
+
+    <textarea *ngSwitchWhen="'textarea'"
+              [disabled]="model.disabled"
+              [id]="model.id"
+              [name]="model.name"
+              [placeholder]="model.placeholder"
+              [ngControl]="model.id"
+              [(ngModel)]="model.value">
+
+    </textarea>
+
+</div>

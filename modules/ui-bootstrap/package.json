@@ -1,0 +1,26 @@
+{
+  "name": "@ng2-dynamic-forms/ui-bootstrap",
+  "version": "1.0.0-alpha.1",
+  "description": "Bootstrap UI for ng2-dynamic-forms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
+  },
+  "author": {
+    "name" : "Udo Schöfer",
+    "email": "contact@udos86.de",
+    "url" : "http://www.udos86.de"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
+  },
+  "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
+  "peerDependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

@@ -13,6 +13,7 @@ gulp.task("copy:example", ["clean:example"], function () {
     return gulp.src([
             "modules/core/**/*",
             "modules/ui-basic/**/*",
+            "modules/ui-bootstrap/**/*",
             "modules/ui-material/**/*"
         ],
         {base: "modules"})
