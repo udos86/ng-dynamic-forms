@@ -68,10 +68,9 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 @Component({
 
     directives: [FORM_DIRECTIVES, DynamicFormMaterialControlComponent],
-    moduleId: module.id,
     providers: [DynamicFormService],
-    selector: "dynamic-form",
-    templateUrl: "./dynamic-form.component.html",
+
+    // ... all the rest
 })
 ```
 
@@ -101,8 +100,6 @@ export class DynamicFormComponent implements OnInit {
         </dynamic-form-material-control>
 
     </div>
-
-    ...
 
 </form>
 ```
