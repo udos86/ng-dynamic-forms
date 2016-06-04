@@ -62,7 +62,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     })
 ]);
 ```
-**Create the form and plug in your ui component:**
+**Provide `DynamicFormServe` the UI component:**
 
 ```
 @Component({
@@ -73,7 +73,10 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     selector: "dynamic-form",
     templateUrl: "./dynamic-form.component.html",
 })
+```
 
+**Create the form `ControlGroup`:**
+```
 export class DynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
