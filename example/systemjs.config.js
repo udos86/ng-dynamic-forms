@@ -49,6 +49,7 @@
     var ng2DynamicFormsPackageNames = [
         "@ng2-dynamic-forms/core",
         "@ng2-dynamic-forms/ui-basic",
+        "@ng2-dynamic-forms/ui-bootstrap",
         "@ng2-dynamic-forms/ui-material"
     ];
 

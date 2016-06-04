@@ -4,9 +4,9 @@
 
     <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
 
-        <dynamic-form-basic-control [model]="dynamicFormControlModel"
+        <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
                                     [form]="form"
-                                    #dynamicFormControl></dynamic-form-basic-control>
+                                    #dynamicFormControl></dynamic-form-bootstrap-control>
 
     </div>
 
@@ -16,7 +16,7 @@
 
 </form>
 
-
+<!--
 <h2>Material UI</h2>
 
 <form [ngFormModel]="form" (ngSubmit)="onSubmit()">
@@ -34,5 +34,5 @@
     <button type="submit">Submit</button>
 
 </form>
-
+-->
 

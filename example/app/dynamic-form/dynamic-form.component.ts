@@ -8,11 +8,13 @@ import {
     DynamicFormModel
 } from "@ng2-dynamic-forms/core";
 import {DynamicFormBasicControlComponent} from "@ng2-dynamic-forms/ui-basic";
+import {DynamicFormBootstrapControlComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-material";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBasicControlComponent, DynamicFormMaterialControlComponent],
+    directives: [FORM_DIRECTIVES, DynamicFormBasicControlComponent, DynamicFormBootstrapControlComponent,
+        DynamicFormMaterialControlComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
     selector: "dynamic-form",

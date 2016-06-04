@@ -2,9 +2,7 @@
 
     <div *ngSwitchWhen="'checkbox'" class="form-group">
 
-        <label class="sr-only"
-               [attr.for]="model.id"
-               [hidden]="model.hideLabel">
+        <label [attr.for]="model.id">
 
             <input type="checkbox"
                    [id]="model.id"
