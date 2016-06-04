@@ -13,7 +13,7 @@ It also provides a flexible system of dynamic ui components with out of the box 
 ```
 npm install @ng2-dynamic-forms/core --save
 ```
-**Choose your ui library** (e.g. Angular 2 Material) **and install the corresponding package:**
+**Choose your UI library** (e.g. Angular 2 Material) **and install the corresponding package:**
 ```
 npm install @ng2-dynamic-forms/ui-material --save
 ```
