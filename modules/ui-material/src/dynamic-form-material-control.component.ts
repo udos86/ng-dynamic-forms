@@ -4,7 +4,9 @@ import {MdCheckbox} from "@angular2-material/checkbox";
 import {MdInput} from "@angular2-material/input";
 import {MdRadioButton, MdRadioGroup, MdRadioDispatcher} from "@angular2-material/radio";
 import {DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlComponent, DYNAMIC_FORM_CONTROL_TYPE_SELECT} from "@ng2-dynamic-forms/core";
+
+export const DYNAMIC_FORM_UI_MATERIAL = "Material";
 
 @Component({
 
@@ -23,6 +25,9 @@ export class DynamicFormMaterialControlComponent extends DynamicFormControlCompo
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
     @ViewChild(MdInput) mdInput: MdInput;
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
+
+    incompatibilities: Array<string> = [DYNAMIC_FORM_CONTROL_TYPE_SELECT];
+    type: string = DYNAMIC_FORM_UI_MATERIAL;
     
     constructor() {
         super();

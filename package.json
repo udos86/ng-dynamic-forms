@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "gulp": "gulp",
     "karma": "karma",
     "typings": "typings",
     "unit-tests": "live-server --open=unit-tests.html"
@@ -30,7 +31,9 @@
     "@angular2-material/radio": "^2.0.0-alpha.5-2",
     "@ng2-dynamic-forms/core": "0.0.7",
     "codelyzer": "0.0.19",
+    "del": "^2.2.0",
     "es6-shim": "^0.35.1",
+    "gulp": "^3.9.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-jasmine": "^1.0.2",

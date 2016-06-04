@@ -8,16 +8,16 @@ export abstract class DynamicFormControlComponent implements OnInit {
     form: ControlGroup;
     hasFocus: boolean;
     model: DynamicFormControlModel<any>;
-
+    type: string; // must be defined by sublcass
+    
     incompatibilities: Array<string> = [];
     
-    constructor() {
-
-        this.checkCompatibility();
-    }
+    constructor() {}
 
     ngOnInit() {
 
+        this.checkCompatibility();
+        
         this.control = <Control> this.form.controls[this.model.id];
         this.control.valueChanges.subscribe((value: string) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.form.valid);
@@ -41,9 +41,9 @@ export abstract class DynamicFormControlComponent implements OnInit {
     }
 
     checkCompatibility() {
-
+        
         if (this.incompatibilities.indexOf(this.model.type) > -1) {
-            console.warn(`control type with id ${this.model.id} is not supported by this ui library`);
+            console.warn(`Control type ${this.model.type} with id ${this.model.id} is not supported by library ${this.type} and therefore omitted.`);
         }
     }
 }

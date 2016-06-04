@@ -7,12 +7,12 @@ import {
     DynamicFormControlModel,
     DynamicFormModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormNativeControlComponent} from "@ng2-dynamic-forms/ui-basic";
+import {DynamicFormBasicControlComponent} from "@ng2-dynamic-forms/ui-basic";
 import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-material";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormNativeControlComponent, DynamicFormMaterialControlComponent],
+    directives: [FORM_DIRECTIVES, DynamicFormBasicControlComponent, DynamicFormMaterialControlComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
     selector: "dynamic-form",
@@ -47,6 +47,6 @@ export class DynamicFormComponent implements OnInit {
 
     test() {
         this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        this.dynamicFormModel.items[1].value = "42";
+        this.dynamicFormModel.model[1].value = "42";
     }
 }

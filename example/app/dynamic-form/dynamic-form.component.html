@@ -2,15 +2,15 @@
 
 <form [ngFormModel]="form" (ngSubmit)="onSubmit()">
 
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.items" class="form-row">
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
 
-        <dynamic-form-native-control [model]="dynamicFormControlModel"
-                                       [form]="form"
-                                       #dynamicFormControl></dynamic-form-native-control>
+        <dynamic-form-basic-control [model]="dynamicFormControlModel"
+                                    [form]="form"
+                                    #dynamicFormControl></dynamic-form-basic-control>
 
     </div>
 
-    <button type="button"(click)="test()">Test</button>
+    <button type="button" (click)="test()">Test</button>
 
     <button type="submit">Submit</button>
 
@@ -21,15 +21,15 @@
 
 <form [ngFormModel]="form" (ngSubmit)="onSubmit()">
 
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.items" class="form-row">
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
 
         <dynamic-form-material-control [model]="dynamicFormControlModel"
-                                     [form]="form"
-                                     #dynamicFormControl></dynamic-form-material-control>
+                                       [form]="form"
+                                       #dynamicFormControl></dynamic-form-material-control>
 
     </div>
 
-    <button type="button"(click)="test()">Test</button>
+    <button type="button" (click)="test()">Test</button>
 
     <button type="submit">Submit</button>
 
