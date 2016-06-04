@@ -93,7 +93,7 @@ export class DynamicFormComponent implements OnInit {
 ```
 <form [ngFormModel]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model" class="form-row">
+    <div *ngFor="let controlModel of dynamicFormModel.model">
 
         <dynamic-form-material-control [model]="controlModel"
                                        [form]="form">
