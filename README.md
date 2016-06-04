@@ -17,7 +17,7 @@ npm install @ng2-dynamic-forms/core --save
 ```
 npm install @ng2-dynamic-forms/ui-material --save
 ```
-When using SystemJS, update your configuration file:
+**When using SystemJS, update your configuration file**:
 ```
 var map = {
 
@@ -65,8 +65,6 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 **Create the form and plug in your ui component:**
 
 ```
-import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-material";
-
 @Component({
 
     directives: [FORM_DIRECTIVES, DynamicFormMaterialControlComponent],
@@ -78,13 +76,10 @@ import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-materia
 
 export class DynamicFormComponent implements OnInit {
 
-    dynamicFormModel: DynamicFormModel;
+    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
     form: ControlGroup;
 
-    constructor(private dynamicFormService: DynamicFormService) {
-
-        this.dynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-    }
+    constructor(private dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
         this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
