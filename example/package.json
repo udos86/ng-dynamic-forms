@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms-example",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.2",
   "description": "",
   "scripts": {
     "lite-server": "lite-server"

@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Material UI for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
