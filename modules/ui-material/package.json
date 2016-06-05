@@ -27,6 +27,6 @@
     "@angular2-material/core": "^2.0.0-alpha.5",
     "@angular2-material/input": "^2.0.0-alpha.5",
     "@angular2-material/radio": "^2.0.0-alpha.5",
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.1"
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.2"
   }
 }

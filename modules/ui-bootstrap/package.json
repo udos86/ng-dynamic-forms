@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.2",
     "bootstrap": "^3.3.6"
   }
 }
