@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (alpha.1)
+# ng2 Dynamic Forms (alpha.2)
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
