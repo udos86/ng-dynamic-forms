@@ -4,7 +4,7 @@ import {Control, ControlGroup} from "@angular/common";
 import {DYNAMIC_FORM_MODEL} from "./dynamic-form.model";
 import {
     DynamicFormService,
-    DynamicFormControlModel,
+    DynamicCheckboxModel,
     DynamicFormModel
 } from "@ng2-dynamic-forms/core";
 import {DynamicFormBasicControlComponent} from "@ng2-dynamic-forms/ui-basic";
@@ -29,7 +29,7 @@ export class DynamicFormComponent implements OnInit {
     form: ControlGroup;
 
     exampleCheckboxControl: Control;
-    exampleCheckboxModel: DynamicFormControlModel<boolean>;
+    exampleCheckboxModel: DynamicCheckboxModel;
 
     constructor(dynamicFormService: DynamicFormService) {
 
@@ -42,7 +42,7 @@ export class DynamicFormComponent implements OnInit {
         this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
 
         this.exampleCheckboxControl = <Control> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.exampleCheckboxModel = this.dynamicFormModel.findById("exampleCheckbox");
+        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
 
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
     }
