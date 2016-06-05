@@ -2,12 +2,14 @@ import {
     DynamicFormModel,
     DynamicCheckboxModel,
     DynamicTextInputModel,
-    DynamicRadioModel
+    DynamicRadioModel,
+    DynamicSelectModel,
+    DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
 
-    new DynamicRadioModel<string>({
+    new DynamicSelectModel<string>({
 
         id: "exampleOption",
         label: "Example Option",
@@ -31,11 +33,18 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
     
     new DynamicTextInputModel({
 
-        hideLabel: true,
         id: "exampleInput",
         label: "Example Input",
         maxLength: 51,
         placeholder: "example input",
+    }),
+
+    new DynamicTextAreaModel({
+
+        id: "exampleTextArea",
+        label: "Example Textarea",
+        rows: 5,
+        placeholder: "example Textarea",
     }),
 
     new DynamicCheckboxModel({

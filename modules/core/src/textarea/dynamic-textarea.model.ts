@@ -2,15 +2,24 @@ import {DynamicFormInputControlModel} from "../dynamic-form-input-control.model"
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "textarea";
 
+export const DYNAMIC_FORM_TEXTAREA_WRAP_HARD = "hard";
+export const DYNAMIC_FORM_TEXTAREA_WRAP_SOFT = "soft";
+
 export class DynamicTextAreaModel extends DynamicFormInputControlModel<string> {
 
-    editor: boolean;
+    cols: number;
+    //editor: boolean;
+    rows: number;
+    wrap: string;
 
     constructor(configObject: {} = {}) {
 
         super(configObject);
 
-        this.editor = configObject["editor"] || false;
+        this.cols = configObject["cols"] || 20;
+        //this.editor = configObject["editor"] || false;
+        this.rows = configObject["rows"] || 2;
         this.type = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
+        this.wrap = configObject["wrap"] || DYNAMIC_FORM_TEXTAREA_WRAP_SOFT;
     }
 }

@@ -2,6 +2,7 @@
 
     <input *ngSwitchWhen="'checkbox'"
            type="checkbox"
+           [disabled]="model.disabled"
            [id]="model.id"
            [name]="model.name"
            [value]="model.value"
@@ -46,10 +47,13 @@
     </select>
 
     <textarea *ngSwitchWhen="'textarea'"
+              [cols]="model.cols"
               [disabled]="model.disabled"
               [id]="model.id"
               [name]="model.name"
               [placeholder]="model.placeholder"
+              [rows]="model.rows"
+              [wrap]="model.wrap"
               [ngControl]="model.id"
               [(ngModel)]="model.value">
 

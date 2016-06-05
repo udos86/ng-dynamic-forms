@@ -5,6 +5,7 @@
         <label [attr.for]="model.id">
 
             <input type="checkbox"
+                   [disabled]="model.disabled"
                    [id]="model.id"
                    [name]="model.name"
                    [value]="model.value"
@@ -22,8 +23,7 @@
 
     <div *ngSwitchWhen="'input'" class="form-group">
 
-        <label class="sr-only"
-               [attr.for]="model.id"
+        <label [attr.for]="model.id"
                [hidden]="model.hideLabel">{{model.label}}</label>
 
         <input class="form-control"
@@ -41,6 +41,10 @@
                [(ngModel)]="model.value"/>
     </div>
 
+
+    <label *ngSwitchWhen="'select'"
+           [attr.for]="model.id"
+           [hidden]="model.hideLabel">{{model.label}}</label>
 
     <select *ngSwitchWhen="'select'"
             class="form-control"
@@ -61,12 +65,19 @@
     </select>
 
 
+    <label *ngSwitchWhen="'textarea'"
+           [attr.for]="model.id"
+           [hidden]="model.hideLabel">{{model.label}}</label>
+
     <textarea *ngSwitchWhen="'textarea'"
               class="form-control"
+              [cols]="model.cols"
               [disabled]="model.disabled"
               [id]="model.id"
               [name]="model.name"
               [placeholder]="model.placeholder"
+              [rows]="model.rows"
+              [wrap]="model.wrap"
               [ngControl]="model.id"
               [(ngModel)]="model.value">
     </textarea>
