@@ -1,13 +1,13 @@
 import {
     DynamicFormModel,
-    DynamicFormCheckboxModel,
-    DynamicFormTextInputModel,
-    DynamicFormRadioModel
+    DynamicCheckboxModel,
+    DynamicTextInputModel,
+    DynamicRadioModel
 } from "@ng2-dynamic-forms/core";
 
-export const DYNAMIC_FORM_MODEL = new DynamicFormModel([
+export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
 
-    new DynamicFormRadioModel<string>({
+    new DynamicRadioModel<string>({
 
         id: "exampleOption",
         label: "Example Option",
@@ -29,7 +29,7 @@ export const DYNAMIC_FORM_MODEL = new DynamicFormModel([
         ]
     }),
     
-    new DynamicFormTextInputModel({
+    new DynamicTextInputModel({
 
         hideLabel: true,
         id: "exampleInput",
@@ -38,7 +38,7 @@ export const DYNAMIC_FORM_MODEL = new DynamicFormModel([
         placeholder: "example input",
     }),
 
-    new DynamicFormCheckboxModel({
+    new DynamicCheckboxModel({
 
         hideLabel: true,
         id: "exampleCheckbox",

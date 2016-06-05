@@ -2,7 +2,7 @@ import {DynamicFormControlModel} from "../dynamic-form-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "checkbox";
 
-export class DynamicFormCheckboxModel extends DynamicFormControlModel<boolean> {
+export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
 
     align: string;
     //checked: boolean; // actually makes no sense since type of value is boolean

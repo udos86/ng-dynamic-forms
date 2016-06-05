@@ -1,13 +1,13 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicFormCheckboxModel} from "./dynamic-form-checkbox.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel} from "./dynamic-checkbox.model";
 
-describe("DynamicFormCheckboxModel test suite", () => {
+describe("DynamicCheckboxModel test suite", () => {
 
     describe("default object test suite", () => {
 
-        let defaultObject: DynamicFormCheckboxModel;
+        let defaultObject: DynamicCheckboxModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormCheckboxModel({});
+            defaultObject = new DynamicCheckboxModel({});
         });
         
         it("tests if correct default type property is set", () => {

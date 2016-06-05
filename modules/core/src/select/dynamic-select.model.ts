@@ -2,7 +2,7 @@ import {DynamicFormOptionControlModel} from "../dynamic-form-option-control.mode
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "select";
 
-export class DynamicFormSelectModel<T> extends DynamicFormOptionControlModel<T> {
+export class DynamicSelectModel<T> extends DynamicFormOptionControlModel<T> {
 
     constructor(configObject: {} = {}) {
 

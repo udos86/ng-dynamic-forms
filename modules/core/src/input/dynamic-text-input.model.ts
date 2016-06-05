@@ -6,7 +6,7 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_SEARCH = "search";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT = "text";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 
-export class DynamicFormTextInputModel extends DynamicFormInputControlModel<string> {
+export class DynamicTextInputModel extends DynamicFormInputControlModel<string> {
     
     constructor(configObject: {} = {}) {
 

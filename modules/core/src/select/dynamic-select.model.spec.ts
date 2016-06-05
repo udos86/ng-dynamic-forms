@@ -1,13 +1,13 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicFormSelectModel} from "./dynamic-form-select.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "./dynamic-select.model";
 
-describe("DynamicFormSelectModel test suite", () => {
+describe("DynamicSelectModel test suite", () => {
 
     describe("default object test suite", () => {
 
-        let defaultObject: DynamicFormSelectModel<any>;
+        let defaultObject: DynamicSelectModel<any>;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormSelectModel({});
+            defaultObject = new DynamicSelectModel({});
         });
 
         it("tests if correct default type property is set", () => {

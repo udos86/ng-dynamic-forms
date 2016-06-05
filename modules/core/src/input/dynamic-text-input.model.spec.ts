@@ -1,14 +1,14 @@
-import {DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicFormTextInputModel} from "./dynamic-form-text-input.model";
+import {DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicTextInputModel} from "./dynamic-text-input.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_INPUT} from "../dynamic-form-input-control.model";
 
-describe("DynamicFormInputModel test suite", () => {
+describe("DynamicTextInputModel test suite", () => {
 
     describe("default object test suite", () => {
 
-        let defaultObject: DynamicFormTextInputModel;
+        let defaultObject: DynamicTextInputModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormTextInputModel({});
+            defaultObject = new DynamicTextInputModel({});
         });
         
         it("tests if correct default type property is set", () => {

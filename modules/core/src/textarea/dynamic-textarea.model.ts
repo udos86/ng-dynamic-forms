@@ -2,7 +2,7 @@ import {DynamicFormInputControlModel} from "../dynamic-form-input-control.model"
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "textarea";
 
-export class DynamicFormTextAreaModel extends DynamicFormInputControlModel<string> {
+export class DynamicTextAreaModel extends DynamicFormInputControlModel<string> {
 
     editor: boolean;
 

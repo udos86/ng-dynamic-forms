@@ -2,7 +2,7 @@ import {DynamicFormOptionControlModel} from "../dynamic-form-option-control.mode
 
 export const DYNAMIC_FORM_CONTROL_TYPE_RADIO = "radio";
 
-export class DynamicFormRadioModel<T> extends DynamicFormOptionControlModel<T> {
+export class DynamicRadioModel<T> extends DynamicFormOptionControlModel<T> {
 
     constructor(configObject: {} = {}) {
 

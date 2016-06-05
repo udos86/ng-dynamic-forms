@@ -1,13 +1,13 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicFormTextAreaModel} from "./dynamic-form-textarea.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "./dynamic-textarea.model";
 
-describe("DynamicFormTextAreaModel test suite", () => {
+describe("DynamicTextAreaModel test suite", () => {
 
     describe("default object test suite", () => {
 
-        let defaultObject: DynamicFormTextAreaModel;
+        let defaultObject: DynamicTextAreaModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormTextAreaModel({});
+            defaultObject = new DynamicTextAreaModel({});
         });
 
         it("tests if correct default type property is set", () => {

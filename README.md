@@ -45,7 +45,7 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 ```
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
-    new DynamicFormTextInputModel({
+    new DynamicTextInputModel({
 
         id: "exampleInput",
         label: "Example Input",
@@ -53,7 +53,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
         placeholder: "example input",
     }),
 
-    new DynamicFormCheckboxModel({
+    new DynamicCheckboxModel({
 
         hideLabel: true,
         id: "exampleCheckbox",

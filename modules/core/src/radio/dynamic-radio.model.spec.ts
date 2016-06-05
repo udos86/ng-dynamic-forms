@@ -1,13 +1,13 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_RADIO, DynamicFormRadioModel} from "./dynamic-form-radio.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_RADIO, DynamicRadioModel} from "./dynamic-radio.model";
 
-describe("DynamicFormRadioModel test suite", () => {
+describe("DynamicRadioModel test suite", () => {
 
     describe("default object test suite", () => {
 
-        let defaultObject: DynamicFormRadioModel<any>;
+        let defaultObject: DynamicRadioModel<any>;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormRadioModel({});
+            defaultObject = new DynamicRadioModel({});
         });
 
         it("tests if correct default type property is set", () => {
