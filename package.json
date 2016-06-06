@@ -34,6 +34,7 @@
     "del": "^2.2.0",
     "es6-shim": "^0.35.1",
     "gulp": "^3.9.1",
+    "gulp-replace": "^0.5.4",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-jasmine": "^1.0.2",
