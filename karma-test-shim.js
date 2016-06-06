@@ -4,6 +4,12 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 __karma__.loaded = function () {
 };
 
+function isSpecFile(filePath) {
+    return filePath.slice(-8) === ".spec.js";
+}
+
+var specFiles = Object.keys(__karma__.files).filter(isSpecFile);
+
 System.config({
 
     baseURL: './base/',
@@ -58,13 +64,10 @@ Promise.all([
 
 }).then(function () {
 
-    return Promise.all([
-
-        System.import("modules/core/src/checkbox/dynamic-checkbox.model.spec"),
-        System.import("modules/core/src/input/dynamic-text-input.model.spec"),
-        System.import("modules/core/src/radio/dynamic-radio.model.spec"),
-        System.import("modules/core/src/select/dynamic-select.model.spec"),
-        System.import("modules/core/src/textarea/dynamic-textarea.model.spec")
-    ]);
+    return Promise.all(
+        specFiles.map(function (module) {
+            return System.import(module);
+        })
+    );
 
 }).then(__karma__.start, __karma__.error);
