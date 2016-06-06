@@ -1,24 +1,29 @@
 Error.stackTraceLimit = Infinity;
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
-__karma__.loaded = function () {
-};
+var karma = window.__karma__,
+    specFiles;
 
 function isSpecFile(filePath) {
     return filePath.slice(-8) === ".spec.js";
 }
 
-var specFiles = Object.keys(__karma__.files).filter(isSpecFile);
+function toImportPromise(moduleFilePath) {
+    return System.import(moduleFilePath);
+}
+
+karma.loaded = function () {};
 
 System.config({
 
-    baseURL: './base/',
+    baseURL: "./base/",
 
     map: {
         '@angular': 'node_modules/@angular',
         "modules": "modules",
         'rxjs': 'node_modules/rxjs'
     },
+    
     packages: {
         '@angular/core': {
             main: 'index.js',
@@ -51,8 +56,8 @@ System.config({
 
 Promise.all([
 
-    System.import('@angular/core/testing'),
-    System.import('@angular/platform-browser-dynamic/testing')
+    System.import("@angular/core/testing"),
+    System.import("@angular/platform-browser-dynamic/testing")
 
 ]).then(function (providers) {
 
@@ -65,9 +70,10 @@ Promise.all([
 }).then(function () {
 
     return Promise.all(
-        specFiles.map(function (module) {
-            return System.import(module);
-        })
+        
+        Object.keys(karma.files)
+            .filter(isSpecFile)
+            .map(toImportPromise)
     );
 
-}).then(__karma__.start, __karma__.error);
+}).then(karma.start, karma.error);
