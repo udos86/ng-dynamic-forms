@@ -1,18 +1,29 @@
 Error.stackTraceLimit = Infinity;
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
-__karma__.loaded = function () {
+var karma = window.__karma__;
+
+function isSpecFile(filePath) {
+    return filePath.slice(-8) === ".spec.js";
+}
+
+function toImportPromise(moduleFilePath) {
+    return System.import(moduleFilePath);
+}
+
+karma.loaded = function () {
 };
 
 System.config({
 
-    baseURL: './base/',
+    baseURL: "./base/",
 
     map: {
         '@angular': 'node_modules/@angular',
         "modules": "modules",
         'rxjs': 'node_modules/rxjs'
     },
+
     packages: {
         '@angular/core': {
             main: 'index.js',
@@ -45,8 +56,8 @@ System.config({
 
 Promise.all([
 
-    System.import('@angular/core/testing'),
-    System.import('@angular/platform-browser-dynamic/testing')
+    System.import("@angular/core/testing"),
+    System.import("@angular/platform-browser-dynamic/testing")
 
 ]).then(function (providers) {
 
@@ -58,13 +69,10 @@ Promise.all([
 
 }).then(function () {
 
-    return Promise.all([
+    return Promise.all(
+        Object.keys(karma.files)
+            .filter(isSpecFile)
+            .map(toImportPromise)
+    );
 
-        System.import("modules/core/src/checkbox/dynamic-checkbox.model.spec"),
-        System.import("modules/core/src/input/dynamic-text-input.model.spec"),
-        System.import("modules/core/src/radio/dynamic-radio.model.spec"),
-        System.import("modules/core/src/select/dynamic-select.model.spec"),
-        System.import("modules/core/src/textarea/dynamic-textarea.model.spec")
-    ]);
-
-}).then(__karma__.start, __karma__.error);
+}).then(karma.start, karma.error);
