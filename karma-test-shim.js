@@ -1,6 +1,3 @@
-Error.stackTraceLimit = Infinity;
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
-
 var karma = window.__karma__;
 
 function isSpecFile(filePath) {
@@ -11,8 +8,10 @@ function toImportPromise(moduleFilePath) {
     return System.import(moduleFilePath);
 }
 
-karma.loaded = function () {
-};
+Error.stackTraceLimit = Infinity;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+
+karma.loaded = function () {};
 
 System.config({
 
