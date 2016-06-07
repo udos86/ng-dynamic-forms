@@ -20,9 +20,11 @@ export class DynamicFormService {
         dynamicFormModel.model.forEach(controlModel => {
 
             controlGroup[controlModel.id] = [
+                
                 controlModel.value || null,
                 Validators.compose(controlModel.validators),
-                Validators.composeAsync(controlModel.validatorsAsync)];
+                Validators.composeAsync(controlModel.validatorsAsync)
+            ];
         });
 
         return this.formBuilder.group(controlGroup);
