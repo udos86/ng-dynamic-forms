@@ -1,9 +1,9 @@
-import {DynamicFormInputControlModel} from "../dynamic-form-input-control.model";
+import {DynamicInputControlModel} from "../dynamic-input-control.model";
 
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER = "number";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_RANGE = "range";
 
-export class DynamicNumberInputModel extends DynamicFormInputControlModel<number> {
+export class DynamicNumberInputModel extends DynamicInputControlModel<number> {
 
     max: number;
     min: number;
