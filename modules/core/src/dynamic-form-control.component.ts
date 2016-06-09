@@ -8,7 +8,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     form: ControlGroup;
     hasFocus: boolean;
     model: DynamicFormControlModel<any>;
-    type: string; // must be defined by sublcass
+    name: string; // must be defined by sublcass
     
     incompatibilities: Array<string> = [];
     

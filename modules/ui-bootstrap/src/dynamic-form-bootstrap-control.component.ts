@@ -19,7 +19,7 @@ export class DynamicFormBootstrapControlComponent extends DynamicFormControlComp
     @Input() form: ControlGroup;
 
     incompatibilities: Array<string> = [DYNAMIC_FORM_CONTROL_TYPE_RADIO];
-    type: string = DYNAMIC_FORM_UI_BOOTSTRAP;
+    name: string = DYNAMIC_FORM_UI_BOOTSTRAP;
 
     constructor() {
         super();

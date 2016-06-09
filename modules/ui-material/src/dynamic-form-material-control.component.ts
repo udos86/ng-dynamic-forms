@@ -27,7 +27,7 @@ export class DynamicFormMaterialControlComponent extends DynamicFormControlCompo
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
 
     incompatibilities: Array<string> = [DYNAMIC_FORM_CONTROL_TYPE_SELECT];
-    type: string = DYNAMIC_FORM_UI_MATERIAL;
+    name: string = DYNAMIC_FORM_UI_MATERIAL;
     
     constructor() {
         super();
