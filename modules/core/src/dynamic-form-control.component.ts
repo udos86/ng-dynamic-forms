@@ -43,7 +43,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     checkCompatibility() {
         
         if (this.incompatibilities.indexOf(this.model.type) > -1) {
-            console.warn(`Control type ${this.model.type} with id ${this.model.id} is not supported by library ${this.type} and therefore omitted.`);
+            console.warn(`Control type ${this.model.type} with id ${this.model.id} is not supported by library ${this.name} and therefore omitted.`);
         }
     }
 }
