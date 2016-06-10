@@ -19,6 +19,8 @@ System.config({
 
     map: {
         '@angular': 'node_modules/@angular',
+        "@angular2-material": "node_modules/@angular2-material",
+        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
         "modules": "modules",
         'rxjs': 'node_modules/rxjs'
     },
@@ -43,6 +45,22 @@ System.config({
         '@angular/platform-browser-dynamic': {
             main: 'index.js',
             defaultExtension: 'js'
+        },
+        "@ng2-dynamic-forms/core": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "@ng2-dynamic-forms/ui-basic": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "@ng2-dynamic-forms/ui-bootstrap": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "@ng2-dynamic-forms/ui-material": {
+            main: "index.js",
+            defaultExtension: "js"
         },
         'modules': {
             defaultExtension: 'js'
