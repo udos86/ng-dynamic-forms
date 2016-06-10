@@ -4,12 +4,12 @@ function isSpecFile(filePath) {
     return filePath.slice(-8) === ".spec.js";
 }
 
-function toImportPromise(moduleFilePath) {
-    return System.import(moduleFilePath);
+function toImportPromise(module) {
+    return System.import(module);
 }
 
-Error.stackTraceLimit = Infinity;
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+window.Error.stackTraceLimit = Infinity;
+window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
 karma.loaded = function () {};
 
