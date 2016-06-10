@@ -1,4 +1,6 @@
-<div [ngFormModel]="form" [ngSwitch]="model.type">
+<div [hidden]="!isCompatible"
+     [ngFormModel]="form"
+     [ngSwitch]="model.type">
 
     <label [attr.for]="model.id"
            [hidden]="model.hideLabel">{{model.label}}</label>
