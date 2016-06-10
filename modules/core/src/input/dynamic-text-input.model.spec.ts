@@ -1,5 +1,5 @@
 import {DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicTextInputModel} from "./dynamic-text-input.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_INPUT} from "../dynamic-form-input-control.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_INPUT} from "../dynamic-input-control.model";
 
 describe("DynamicTextInputModel test suite", () => {
 

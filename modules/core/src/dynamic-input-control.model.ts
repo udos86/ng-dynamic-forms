@@ -2,7 +2,7 @@ import {DynamicFormControlModel} from "./dynamic-form-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "input";
 
-export abstract class DynamicFormInputControlModel<T> extends DynamicFormControlModel<T> {
+export abstract class DynamicInputControlModel<T> extends DynamicFormControlModel<T> {
 
     autoComplete: boolean;
     autoFocus: boolean;

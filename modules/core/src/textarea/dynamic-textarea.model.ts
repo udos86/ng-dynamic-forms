@@ -1,11 +1,11 @@
-import {DynamicFormInputControlModel} from "../dynamic-form-input-control.model";
+import {DynamicInputControlModel} from "../dynamic-input-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "textarea";
 
 export const DYNAMIC_FORM_TEXTAREA_WRAP_HARD = "hard";
 export const DYNAMIC_FORM_TEXTAREA_WRAP_SOFT = "soft";
 
-export class DynamicTextAreaModel extends DynamicFormInputControlModel<string> {
+export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
     cols: number;
     //editor: boolean;

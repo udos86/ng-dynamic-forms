@@ -8,7 +8,7 @@ export interface DynamicFormOption<T> {
     selected?: boolean;
 }
 
-export abstract class DynamicFormOptionControlModel<T> extends DynamicFormControlModel<T> {
+export abstract class DynamicOptionControlModel<T> extends DynamicFormControlModel<T> {
 
     options: Array<DynamicFormOption<T>>;
 
