@@ -1,6 +1,6 @@
 import {DynamicFormControlModel} from "../dynamic-form-control.model";
 
-export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "checkbox";
+export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 
 export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
 

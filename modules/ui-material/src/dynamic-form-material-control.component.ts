@@ -10,7 +10,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
 
-export const DYNAMIC_FORM_UI_MATERIAL = "Material";
+export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
 @Component({
 

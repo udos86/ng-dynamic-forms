@@ -2,7 +2,7 @@
      [ngFormModel]="form"
      [ngSwitch]="model.type">
 
-    <input *ngSwitchWhen="'checkbox'"
+    <input *ngSwitchWhen="'CHECKBOX'"
            type="checkbox"
            [disabled]="model.disabled"
            [id]="model.id"
@@ -17,7 +17,7 @@
            [hidden]="model.hideLabel">{{model.label}}
     </label>
 
-    <input *ngSwitchWhen="'input'"
+    <input *ngSwitchWhen="'INPUT'"
            [autofocus]="model.autoFocus"
            [disabled]="model.disabled"
            [id]="model.id"
@@ -31,7 +31,7 @@
            [ngControl]="model.id"
            [(ngModel)]="model.value"/>
 
-    <select *ngSwitchWhen="'select'"
+    <select *ngSwitchWhen="'SELECT'"
             [id]="model.id"
             [name]="model.name"
             [ngControl]="model.id"
@@ -48,7 +48,7 @@
 
     </select>
 
-    <textarea *ngSwitchWhen="'textarea'"
+    <textarea *ngSwitchWhen="'TEXTAREA'"
               [cols]="model.cols"
               [disabled]="model.disabled"
               [id]="model.id"
