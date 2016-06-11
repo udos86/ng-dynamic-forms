@@ -1,7 +1,7 @@
 {
   "name": "@ng2-dynamic-forms/ui-bootstrap",
   "version": "1.0.0-alpha.2",
-  "description": "Bootstrap UI for ng2-dynamic-forms",
+  "description": "Bootstrap UI library for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

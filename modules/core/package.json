@@ -1,7 +1,7 @@
 {
   "name": "@ng2-dynamic-forms/core",
   "version": "1.0.0-alpha.2",
-  "description": "A library for creating dynamic forms in Angular 2",
+  "description": "A rapid form development library for Angular 2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

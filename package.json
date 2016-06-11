@@ -1,7 +1,7 @@
 {
   "name": "ng2-dynamic-forms",
   "version": "1.0.0-alpha.2",
-  "description": "",
+  "description": "A rapid form development library for Angular 2",
   "scripts": {
     "gulp": "gulp",
     "karma": "karma",
