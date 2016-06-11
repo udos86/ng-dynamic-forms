@@ -44,6 +44,8 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 });
 ```
 
+## Usage
+
 **Define your dynamic form model:**
 ```
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
