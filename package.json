@@ -6,7 +6,7 @@
     "gulp": "gulp",
     "karma": "karma",
     "typings": "typings",
-    "unit-tests": "live-server --open=unit-tests.html"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
