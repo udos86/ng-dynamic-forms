@@ -1,7 +1,7 @@
 var karma = window.__karma__;
 
 function isSpecFile(filePath) {
-    return filePath.slice(-8) === ".spec.js";
+    return filePath.startsWith("/base/modules/") && filePath.slice(-8) === ".spec.js";
 }
 
 function toImportPromise(module) {
