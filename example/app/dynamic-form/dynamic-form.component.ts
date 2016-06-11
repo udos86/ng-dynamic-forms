@@ -7,14 +7,13 @@ import {
     DynamicCheckboxModel,
     DynamicFormModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormBasicControlComponent} from "@ng2-dynamic-forms/ui-basic";
-import {DynamicFormBootstrapControlComponent} from "@ng2-dynamic-forms/ui-bootstrap";
-import {DynamicFormMaterialControlComponent} from "@ng2-dynamic-forms/ui-material";
+import {DynamicFormBasicComponent} from "@ng2-dynamic-forms/ui-basic";
+import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
+import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBasicControlComponent, DynamicFormBootstrapControlComponent,
-        DynamicFormMaterialControlComponent],
+    directives: [FORM_DIRECTIVES, DynamicFormBasicComponent, DynamicFormBootstrapComponent, DynamicFormMaterialComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
     selector: "dynamic-form",

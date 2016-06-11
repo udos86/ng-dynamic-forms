@@ -10,10 +10,10 @@ export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
     
     moduleId: module.id,
     selector: "dynamic-form-bootstrap-control",
-    templateUrl: "./dynamic-form-bootstrap-control.component.html"
+    templateUrl: "./dynamic-form-bootstrap.component.html"
 })
 
-export class DynamicFormBootstrapControlComponent extends DynamicFormControlComponent {
+export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
 
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: ControlGroup;

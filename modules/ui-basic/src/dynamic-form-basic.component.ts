@@ -10,10 +10,10 @@ export const DYNAMIC_FORM_UI_BASIC = "BASIC";
     
     moduleId: module.id,
     selector: "dynamic-form-basic-control",
-    templateUrl: "./dynamic-form-basic-control.component.html"
+    templateUrl: "./dynamic-form-basic.component.html"
 })
 
-export class DynamicFormBasicControlComponent extends DynamicFormControlComponent {
+export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: ControlGroup;
