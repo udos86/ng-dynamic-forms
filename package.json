@@ -5,7 +5,7 @@
   "scripts": {
     "gulp": "gulp",
     "karma": "karma",
-    "tsc": "tsc -p modules",
+    "tsc": "tsc",
     "typings": "typings",
     "test": "karma start"
   },
