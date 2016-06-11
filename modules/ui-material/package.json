@@ -1,7 +1,7 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
   "version": "1.0.0-alpha.2",
-  "description": "Material UI for ng2-dynamic-forms",
+  "description": "Material UI library for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
