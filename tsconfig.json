@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "moduleResolution": "node",
+    "moduleResolution": "classic",
     "sourceMap": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
@@ -10,7 +10,6 @@
     "removeComments": false,
     "noImplicitAny": false
   },
-
   "exclude": [
     "node_modules",
     "example/node_modules",
