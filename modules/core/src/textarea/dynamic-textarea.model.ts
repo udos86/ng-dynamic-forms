@@ -1,6 +1,6 @@
 import {DynamicInputControlModel} from "../dynamic-input-control.model";
 
-export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "textarea";
+export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "TEXTAREA";
 
 export const DYNAMIC_FORM_TEXTAREA_WRAP_HARD = "hard";
 export const DYNAMIC_FORM_TEXTAREA_WRAP_SOFT = "soft";

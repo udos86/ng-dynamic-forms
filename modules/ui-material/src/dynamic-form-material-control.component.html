@@ -5,7 +5,7 @@
     <label [attr.for]="model.id"
            [hidden]="model.hideLabel">{{model.label}}</label>
 
-    <md-checkbox *ngSwitchWhen="'checkbox'"
+    <md-checkbox *ngSwitchWhen="'CHECKBOX'"
                  [align]="model.align"
                  [disabled]="model.disabled"
                  [id]="model.id"
@@ -21,7 +21,7 @@
 
     </md-checkbox>
 
-    <md-input *ngSwitchWhen="'input'"
+    <md-input *ngSwitchWhen="'INPUT'"
               [autofocus]="model.autoFocus"
               [disabled]="model.disabled"
               [id]="model.id"
@@ -46,7 +46,7 @@
 
     </md-input>
 
-    <md-radio-group *ngSwitchWhen="'radio'"
+    <md-radio-group *ngSwitchWhen="'RADIO'"
                     [name]="model.name"
                     [id]="model.id"
                     [ngControl]="model.id"
