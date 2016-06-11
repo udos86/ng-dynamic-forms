@@ -5,9 +5,9 @@
   "scripts": {
     "gulp": "gulp",
     "karma": "karma",
-    "tsc": "tsc",
+    "tsc": "tsc && echo ok || echo not ok",
     "typings": "typings",
-    "test": "karma start"
+    "test": "karma start --single-run"
   },
   "repository": {
     "type": "git",

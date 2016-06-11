@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "moduleResolution": "classic",
+    "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
