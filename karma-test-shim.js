@@ -46,6 +46,22 @@ System.config({
             main: 'index.js',
             defaultExtension: 'js'
         },
+        '@angular2-material/core': {
+            main: 'core.js',
+            defaultExtension: 'js'
+        },
+        '@angular2-material/checkbox': {
+            main: 'checkbox.js',
+            defaultExtension: 'js'
+        },
+        '@angular2-material/input': {
+            main: 'input.js',
+            defaultExtension: 'js'
+        },
+        '@angular2-material/radio': {
+            main: 'radio.js',
+            defaultExtension: 'js'
+        },
         "@ng2-dynamic-forms/core": {
             main: "index.js",
             defaultExtension: "js"

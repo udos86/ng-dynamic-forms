@@ -25,9 +25,9 @@ gulp.task("copy:example", ["clean:example"], function () {
         .pipe(gulp.dest("example/node_modules/@ng2-dynamic-forms/"));
 });
 
-gulp.task("update:version", function () {
+gulp.task("increment:version", function () {
 
-    var versionNumber = (Number(pkg.version.substr(pkg.version.length - 1))),
+    var versionNumber = Number(pkg.version.substr(pkg.version.length - 1)),
         versionString = /(\d\.\d\.\d-[a-z]+\.)\d/,
         newVersionString = pkg.version.replace(versionString, "$1" + (versionNumber + 1)),
         versionField = /("version":\s)"\d\.\d\.\d-[a-z]+\.\d"/,
@@ -45,4 +45,4 @@ gulp.task("update:version", function () {
 
 gulp.task("build:example", ["clean:example", "copy:example"]);
 
-gulp.task("publish", ["update:version"]);
+gulp.task("publish", ["increment:version"]);
