@@ -75,7 +75,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     directives: [FORM_DIRECTIVES, DynamicFormMaterialControlComponent],
     providers: [DynamicFormService],
 
-    // ... all the rest (selector, templateUrl, etc.)
+    // ... all mandatory properties (selector, templateUrl, etc.)
 })
 ```
 
@@ -114,7 +114,7 @@ export class DynamicFormComponent implements OnInit {
 ng2 Dynamic Forms is built to provide support for a variety of common ui libraries. You can instantly plug in your favorite controls
 by installing the appropriate package and it's peer dependencies from npm:
 ```
-npm install @ng2-dynamic-forms/ui-<library-name> --save`
+npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
 Every ui module comes with a `DynamicFormControlComponent` that can easily be added to your component `directives` and `template`.
@@ -135,7 +135,7 @@ To get it running just bind it directly to an arbitrary `DynamicFormModel`:
     <div *ngFor="let controlModel of dynamicFormModel.model">
 
         <dynamic-form-bootstrap-control [model]="controlModel"
-                                       [form]="form">
+                                        [form]="form">
         </dynamic-form-bootstrap-control>
 
     </div>
