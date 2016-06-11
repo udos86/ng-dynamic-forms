@@ -1,6 +1,7 @@
 # ng2 Dynamic Forms (alpha.3)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
+[![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
