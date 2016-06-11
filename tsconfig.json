@@ -10,15 +10,10 @@
     "removeComments": false,
     "noImplicitAny": false
   },
-
   "exclude": [
     "node_modules",
     "example/node_modules",
     "typings/main",
     "typings/main.d.ts"
-  ],
-
-  "filesGlob": [
-    "modules/**/*.ts"
   ]
 }

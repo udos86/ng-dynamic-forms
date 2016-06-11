@@ -22,7 +22,8 @@ System.config({
         "@angular2-material": "node_modules/@angular2-material",
         "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
         "modules": "modules",
-        'rxjs': 'node_modules/rxjs'
+        'rxjs': 'node_modules/rxjs',
+        'symbol-observable': 'node_modules/symbol-observable'
     },
 
     packages: {
@@ -82,6 +83,10 @@ System.config({
             defaultExtension: 'js'
         },
         'rxjs': {
+            defaultExtension: 'js'
+        },
+        'symbol-observable': {
+            main: "index.js",
             defaultExtension: 'js'
         }
     }
