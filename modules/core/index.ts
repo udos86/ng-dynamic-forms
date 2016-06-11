@@ -1,7 +1,7 @@
 export * from "./src/dynamic-form.model";
 export * from "./src/dynamic-form-control.model";
-export * from "./src/dynamic-form-input-control.model";
-export * from "./src/dynamic-form-option-control.model";
+export * from "./src/dynamic-input-control.model";
+export * from "./src/dynamic-option-control.model";
 export * from "./src/dynamic-form.service";
 export * from "./src/dynamic-form-control.component";
 

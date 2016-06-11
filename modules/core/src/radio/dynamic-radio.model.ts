@@ -1,8 +1,8 @@
-import {DynamicFormOptionControlModel} from "../dynamic-form-option-control.model";
+import {DynamicOptionControlModel} from "../dynamic-option-control.model";
 
-export const DYNAMIC_FORM_CONTROL_TYPE_RADIO = "radio";
+export const DYNAMIC_FORM_CONTROL_TYPE_RADIO = "RADIO";
 
-export class DynamicRadioModel<T> extends DynamicFormOptionControlModel<T> {
+export class DynamicRadioModel<T> extends DynamicOptionControlModel<T> {
 
     constructor(configObject: {} = {}) {
 

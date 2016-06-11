@@ -5,7 +5,7 @@ export class DynamicFormModel {
     model: Array<DynamicFormControlModel<any>>;
 
     constructor(model: Array<DynamicFormControlModel<any>>) {
-        this.model = model;
+        this.model = model || [];
     }
 
     findById(id: string) {

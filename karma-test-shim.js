@@ -1,15 +1,15 @@
 var karma = window.__karma__;
 
 function isSpecFile(filePath) {
-    return filePath.slice(-8) === ".spec.js";
+    return filePath.startsWith("/base/modules/") && filePath.slice(-8) === ".spec.js";
 }
 
-function toImportPromise(moduleFilePath) {
-    return System.import(moduleFilePath);
+function toImportPromise(module) {
+    return System.import(module);
 }
 
-Error.stackTraceLimit = Infinity;
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+window.Error.stackTraceLimit = Infinity;
+window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
 karma.loaded = function () {};
 
@@ -19,6 +19,8 @@ System.config({
 
     map: {
         '@angular': 'node_modules/@angular',
+        "@angular2-material": "node_modules/@angular2-material",
+        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
         "modules": "modules",
         'rxjs': 'node_modules/rxjs'
     },
@@ -43,6 +45,38 @@ System.config({
         '@angular/platform-browser-dynamic': {
             main: 'index.js',
             defaultExtension: 'js'
+        },
+        '@angular2-material/core': {
+            main: 'core.js',
+            defaultExtension: 'js'
+        },
+        '@angular2-material/checkbox': {
+            main: 'checkbox.js',
+            defaultExtension: 'js'
+        },
+        '@angular2-material/input': {
+            main: 'input.js',
+            defaultExtension: 'js'
+        },
+        '@angular2-material/radio': {
+            main: 'radio.js',
+            defaultExtension: 'js'
+        },
+        "@ng2-dynamic-forms/core": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "@ng2-dynamic-forms/ui-basic": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "@ng2-dynamic-forms/ui-bootstrap": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "@ng2-dynamic-forms/ui-material": {
+            main: "index.js",
+            defaultExtension: "js"
         },
         'modules': {
             defaultExtension: 'js'
