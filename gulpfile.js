@@ -35,7 +35,8 @@ gulp.task("increment:version", function () {
 
     return gulp.src([
             "./package.json",
-            "**/package.json"
+            "example/package.json",
+            "modules/**/package.json"
         ],
         {base: "./modules"})
         .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
