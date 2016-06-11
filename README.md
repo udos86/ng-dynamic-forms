@@ -108,3 +108,44 @@ export class DynamicFormComponent implements OnInit {
 
 </form>
 ```
+
+UI Libraries
+
+ng2 Dynamic Forms is built to support a variety of common ui libraries. You can instantly plug in your favorite controls
+by installing the appropriate package and it's peer dependencies from npm:`npm install @ng2-dynamic-forms/ui-<library-name> --save`
+
+Every ui module comes with a `DynamicFormControlComponent` that can easily be added to your component `directives` and markup.
+To get it running just bind it directly to an arbitrary `DynamicFormModel`:
+
+```
+@Component({
+
+    directives: [FORM_DIRECTIVES, DynamicFormBootstrapControlComponent],
+
+    // ... all mandatory properties (selector, templateUrl, etc.)
+})
+```
+
+```
+<form [ngFormModel]="form">
+
+    <div *ngFor="let controlModel of dynamicFormModel.model">
+
+        <dynamic-form-bootstrap-control [model]="controlModel"
+                                       [form]="form">
+        </dynamic-form-bootstrap-control>
+
+    </div>
+
+</form>
+```
+
+Due to known issues in Angular 2 RC ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
+in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) there is no full support for all major form controls at the moment. See the following table:
+
+|              | Checkbox | Input | Radio | Select | Textarea |
+|--------------|:--------:|:-----:|:-----:|:------:|:--------:|
+| ui-basic     |     ✓    |   ✓   |   ✗   |    ✓   |     ✓    |
+| ui-bootstrap |     ✓    |   ✓   |   ✗   |    ✓   |     ✓    |
+| ui-material  |     ✓    |   ✓   |   ✓   |    ✗   |     ✗    |
+
