@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (alpha.2)
+# ng2 Dynamic Forms (alpha.3)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 
@@ -72,7 +72,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ```
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormMaterialControlComponent],
+    directives: [FORM_DIRECTIVES, DynamicFormMaterialComponent],
     providers: [DynamicFormService],
 
     // ... all mandatory properties (selector, templateUrl, etc.)
@@ -81,7 +81,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
 **Create the form `ControlGroup`:**
 ```
-export class DynamicFormComponent implements OnInit {
+export class MyDynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
     form: ControlGroup;
@@ -123,7 +123,7 @@ To get it running just bind it directly to an arbitrary `DynamicFormModel`:
 ```
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBootstrapControlComponent],
+    directives: [FORM_DIRECTIVES, DynamicFormBootstrapComponent],
 
     // ... all mandatory properties (selector, templateUrl, etc.)
 })

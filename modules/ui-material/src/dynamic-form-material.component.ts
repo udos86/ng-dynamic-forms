@@ -18,10 +18,10 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
     moduleId: module.id,
     providers: [MdRadioDispatcher],
     selector: "dynamic-form-material-control",
-    templateUrl: "./dynamic-form-material-control.component.html"
+    templateUrl: "./dynamic-form-material.component.html"
 })
 
-export class DynamicFormMaterialControlComponent extends DynamicFormControlComponent implements AfterViewInit {
+export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements AfterViewInit {
 
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: ControlGroup;

@@ -1,1 +1,1 @@
-export * from "./src/dynamic-form-material-control.component";
+export * from "./src/dynamic-form-material.component";

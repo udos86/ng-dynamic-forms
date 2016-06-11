@@ -1,1 +1,1 @@
-export * from "./src/dynamic-form-bootstrap-control.component";
+export * from "./src/dynamic-form-bootstrap.component";
