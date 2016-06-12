@@ -1,11 +1,17 @@
 import {Validators} from "@angular/common";
 
+export interface DynamicFormControlLabel {
+
+    cls?: string;
+    hidden?: boolean;
+    text?: string;
+}
+
 export abstract class DynamicFormControlModel<T> {
 
-    disabled: boolean;
-    hideLabel: boolean;
     id: string;
-    label: string;
+    label: DynamicFormControlLabel = {cls: null, hidden: false, text: ""};
+    disabled: boolean;
     name: string;
     order: number;
     required: boolean;
@@ -13,16 +19,12 @@ export abstract class DynamicFormControlModel<T> {
     validators: Array<any>;
     validatorsAsync: Array<any>;
     value: T;
-    
-    clsLabel: string;
 
     constructor(configObject: {
 
-        clsLabel?: string,
         disabled?: boolean,
-        hideLabel?: boolean,
         id?: string,
-        label?: string,
+        label?: DynamicFormControlLabel,
         name?: string,
         order?: number,
         required?: boolean,
@@ -32,11 +34,9 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}) {
 
-        this.clsLabel = configObject.clsLabel === undefined ? null : configObject.clsLabel;
         this.disabled = configObject.disabled === undefined ? false : configObject.disabled;
-        this.hideLabel = configObject.hideLabel === undefined ? false : configObject.hideLabel;
         this.id = configObject.id || null;
-        this.label = configObject.label || "";
+        this.label = configObject.label === undefined ? this.label : Object.assign(this.label, configObject.label);
         this.name = configObject.name || configObject.id || "";
         this.order = configObject.order === undefined ? 1 : configObject.order;
         this.required = configObject.required === undefined ? false : configObject.required;

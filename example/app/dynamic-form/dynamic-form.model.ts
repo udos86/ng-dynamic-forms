@@ -12,7 +12,9 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicSelectModel<string>({
 
         id: "exampleOption",
-        label: "Example Option",
+        label: {
+            text: "Example Option"
+        },
         options: [
             {
                 text: "Option 1",
@@ -34,7 +36,9 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicInputModel({
 
         id: "exampleInput",
-        label: "Example Input",
+        label: {
+            text: "Example Input"
+        },
         maxLength: 51,
         placeholder: "example input"
     }),
@@ -42,16 +46,20 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicTextAreaModel({
 
         id: "exampleTextArea",
-        label: "Example Textarea",
+        label: {
+            hidden: true,
+            text: "Example Textarea"
+        },
         rows: 5,
         placeholder: "example Textarea",
     }),
 
     new DynamicCheckboxModel({
-
-        hideLabel: true,
+        
         id: "exampleCheckbox",
-        label: "I do agree",
+        label: {
+            text:  "I do agree",
+        },
         text: "I do agree"
     })
 ]);

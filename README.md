@@ -54,16 +54,20 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     new DynamicInputModel({
 
         id: "exampleInput",
-        label: "Example Input",
+        label: {
+            text: "Example Input"
+        },
         maxLength: 42,
         placeholder: "example input",
     }),
 
     new DynamicCheckboxModel({
 
-        hideLabel: true,
         id: "exampleCheckbox",
-        label: "I do agree",
+        label: {
+            hidden: true,
+            text: "I do agree"
+        },
         text: "I do agree"
     })
 ]);

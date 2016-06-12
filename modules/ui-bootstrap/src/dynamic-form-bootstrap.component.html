@@ -6,7 +6,7 @@
          class="form-group">
 
         <label [attr.for]="model.id"
-               [ngClass]="model.clsLabel">
+               [ngClass]="model.label.cls">
 
             <input type="checkbox"
                    [disabled]="model.disabled"
@@ -18,7 +18,7 @@
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
 
-            {{model.label}}
+            {{model.label.text}}
 
         </label>
 
@@ -29,8 +29,8 @@
          class="form-group">
 
         <label [attr.for]="model.id"
-               [hidden]="model.hideLabel"
-               [ngClass]="model.clsLabel">{{model.label}}</label>
+               [hidden]="model.label.hidden"
+               [ngClass]="model.label.cls">{{model.label.text}}</label>
 
         <input class="form-control"
                [attr.autoComplete]="model.autoComplete"
@@ -53,8 +53,8 @@
 
     <label *ngSwitchWhen="'SELECT'"
            [attr.for]="model.id"
-           [hidden]="model.hideLabel"
-           [ngClass]="model.clsLabel">{{model.label}}</label>
+           [hidden]="model.label.hidden"
+           [ngClass]="model.label.cls">{{model.label.text}}</label>
 
     <select *ngSwitchWhen="'SELECT'"
             class="form-control"
@@ -77,8 +77,8 @@
 
     <label *ngSwitchWhen="'TEXTAREA'"
            [attr.for]="model.id"
-           [hidden]="model.hideLabel"
-           [ngClass]="model.clsLabel">{{model.label}}</label>
+           [hidden]="model.label.hidden"
+           [ngClass]="model.label.cls">{{model.label.text}}</label>
 
     <textarea *ngSwitchWhen="'TEXTAREA'"
               class="form-control"
