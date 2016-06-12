@@ -51,7 +51,7 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 ```
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
-    new DynamicTextInputModel({
+    new DynamicInputModel({
 
         id: "exampleInput",
         label: "Example Input",
