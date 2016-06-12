@@ -1,14 +1,14 @@
-export function getConfigValue (configObject: any, propertyKey: string, defaultValue: any) {
+export function getValue (object: any, property: string, defaultValue: any) {
 
-    let configValue = configObject[propertyKey];
+    let value = object[property];
 
-    if (configValue === undefined && defaultValue !== undefined) {
+    if (value === undefined && defaultValue !== undefined) {
         return defaultValue;
     }
 
-    if (typeof configValue === "object" && typeof configValue === "object") {
-        return Object.assign(defaultValue, configValue);
+    if (typeof value === "object" && typeof value === "object") {
+        return Object.assign(defaultValue, value);
     }
 
-    return configValue;
+    return value;
 }

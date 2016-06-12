@@ -1,4 +1,5 @@
 import {DynamicFormControlModel} from "../dynamic-form-control.model";
+import {getValue} from "../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 
@@ -13,10 +14,10 @@ export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
 
         super(configObject);
 
-        this.align = configObject["align"] || "start";
-        //this.checked = configObject["checked"] === undefined ? false : configObject["checked"];
-        this.indeterminate = configObject["indeterminate"] === undefined ? false : configObject["indeterminate"];
-        this.text = configObject["text"] || "";
+        this.align = getValue(configObject, "align", "start");
+        //this.checked = getValue(configObject, "checked", false);
+        this.indeterminate = getValue(configObject, "indeterminate", false);
+        this.text = getValue(configObject, "text", "");
         this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 }

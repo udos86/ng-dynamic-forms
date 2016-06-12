@@ -2,7 +2,7 @@ import * as utils from "./utils";
 
 describe("Utils test suite", () => {
 
-    describe("getConfigValue test suite", () => {
+    describe("getValue test suite", () => {
         
         let configObject: any; 
 
@@ -18,16 +18,16 @@ describe("Utils test suite", () => {
             };
         });
 
-        it("tests if getConfigValue is working correctly", () => {
+        it("tests if getValue is working correctly", () => {
             
-            let valueA = utils.getConfigValue(configObject, "a", 4);
-            let valueB = utils.getConfigValue(configObject, "b", false);
-            let valueC = utils.getConfigValue(configObject, "c", null);
-            let valueD1 = utils.getConfigValue(configObject, "d", {prop1: 1});
-            let valueD2= utils.getConfigValue(configObject, "d", {prop2: 3});
+            let valueA = utils.getValue(configObject, "a", 4);
+            let valueB = utils.getValue(configObject, "b", false);
+            let valueC = utils.getValue(configObject, "c", null);
+            let valueD1 = utils.getValue(configObject, "d", {prop1: 1});
+            let valueD2= utils.getValue(configObject, "d", {prop2: 3});
             
-            let valueY = utils.getConfigValue(configObject, "y", false);
-            let valueZ = utils.getConfigValue(configObject, "z", null);
+            let valueY = utils.getValue(configObject, "y", false);
+            let valueZ = utils.getValue(configObject, "z", null);
             
             expect(valueA).toBe(5);
             expect(valueB).toBe(true);

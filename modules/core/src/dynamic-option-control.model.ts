@@ -1,4 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {getValue} from "./utils";
 
 export interface DynamicFormOption<T> {
 
@@ -16,6 +17,6 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormControlMod
 
         super(configObject);
         
-        this.options = configObject["options"] || [];
+        this.options = getValue(configObject, "options", []);
     }
 }
