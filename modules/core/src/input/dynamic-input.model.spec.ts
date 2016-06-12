@@ -1,5 +1,5 @@
-import {DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicInputModel} from "./dynamic-input.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF} from "../dynamic-input-control.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicInputModel} from "./dynamic-input.model";
+import {DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF} from "../dynamic-input-control.model";
 
 describe("DynamicInputModel test suite", () => {
 
@@ -33,6 +33,14 @@ describe("DynamicInputModel test suite", () => {
 
             expect(defaultObject.autoFocus).toBeDefined();
             expect(defaultObject.autoFocus).toBe(false);
+        });
+
+        it("tests if correct default label properties aree set", () => {
+
+            expect(defaultObject.label).toBeDefined();
+            expect(defaultObject.label.cls).toBeNull();
+            expect(defaultObject.label.hidden).toBe(false);
+            expect(defaultObject.label.text).toEqual("");
         });
 
         it("tests if correct default max property is set", () => {

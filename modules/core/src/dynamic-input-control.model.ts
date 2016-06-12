@@ -1,7 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
 
-export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
-
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF = "off";
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_ON = "on";
 
@@ -9,7 +7,6 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
 
     autoComplete: boolean;
     autoFocus: boolean;
-    inputType: string; // must be defined by child class
     maxLength: number;
     placeholder: string;
     prefix: string;
@@ -27,6 +24,5 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
         this.prefix = configObject["prefix"] || null;
         this.showLength = configObject["showLength"] === undefined ? false : configObject["showLength"];
         this.suffix = configObject["suffix"] || null;
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
     }
 }
