@@ -3,11 +3,12 @@
   "version": "1.0.0-alpha.3",
   "description": "A rapid form development library for Angular 2",
   "scripts": {
+    "ci-test": "karma start --single-run",
+    "ci-tsc": "tsc && echo ok || echo not ok",
     "gulp": "gulp",
     "karma": "karma",
-    "tsc": "tsc && echo ok || echo not ok",
-    "typings": "typings",
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "typings": "typings"
   },
   "repository": {
     "type": "git",
