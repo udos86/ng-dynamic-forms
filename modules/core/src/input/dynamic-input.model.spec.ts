@@ -1,0 +1,90 @@
+import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicInputModel} from "./dynamic-input.model";
+import {DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF} from "../dynamic-input-control.model";
+
+describe("DynamicInputModel test suite", () => {
+
+    describe("default object test suite", () => {
+
+        let defaultObject: DynamicInputModel;
+
+        beforeEach(() => {
+            defaultObject = new DynamicInputModel({});
+        });
+        
+        it("tests if correct default type property is set", () => {
+
+            expect(defaultObject.type).toBeDefined();
+            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
+        });
+
+        it("tests if correct default input type property is set", () => {
+
+            expect(defaultObject.inputType).toBeDefined();
+            expect(defaultObject.inputType).toEqual(DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
+        });
+
+        it("tests if correct default autoComplete property is set", () => {
+
+            expect(defaultObject.autoComplete).toBeDefined();
+            expect(defaultObject.autoComplete).toEqual(DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
+        });
+
+        it("tests if correct default autoFocus property is set", () => {
+
+            expect(defaultObject.autoFocus).toBeDefined();
+            expect(defaultObject.autoFocus).toBe(false);
+        });
+
+        it("tests if correct default label properties aree set", () => {
+
+            expect(defaultObject.label).toBeDefined();
+            expect(defaultObject.label.cls).toBeNull();
+            expect(defaultObject.label.hidden).toBe(false);
+            expect(defaultObject.label.text).toEqual("");
+        });
+
+        it("tests if correct default max property is set", () => {
+
+            expect(defaultObject.max).toBeDefined();
+            expect(defaultObject.max).toBeNull();
+        });
+
+        it("tests if correct default maxLength property is set", () => {
+
+            expect(defaultObject.maxLength).toBeDefined();
+            expect(defaultObject.maxLength).toBe(100);
+        });
+        
+        it("tests if correct default min property is set", () => {
+
+            expect(defaultObject.min).toBeDefined();
+            expect(defaultObject.min).toBeNull();
+        });
+
+        it("tests if correct default placeholder property is set", () => {
+
+            expect(defaultObject.placeholder).toBeDefined();
+            expect(defaultObject.placeholder).toEqual("");
+        });
+        
+        it("tests if correct default step property is set", () => {
+
+            expect(defaultObject.step).toBeDefined();
+            expect(defaultObject.step).toBeNull();
+        });
+        
+        it("tests if correct default prefix property is set", () => {
+
+            expect(defaultObject.prefix).toBeDefined();
+            expect(defaultObject.prefix).toBeNull();
+        });
+
+        it("tests if correct default suffix property is set", () => {
+
+            expect(defaultObject.suffix).toBeDefined();
+            expect(defaultObject.prefix).toBeNull();
+        });
+        
+    });
+
+});

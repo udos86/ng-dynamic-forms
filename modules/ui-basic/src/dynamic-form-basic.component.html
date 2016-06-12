@@ -8,32 +8,39 @@
            [id]="model.id"
            [name]="model.name"
            [value]="model.value"
+           [ngClass]="model.cls"
            [ngControl]="model.id"
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
     <label [attr.for]="model.id"
-           [hidden]="model.hideLabel">{{model.label}}
+           [hidden]="model.label.hidden"
+           [ngClass]="model.label.cls">{{model.label.text}}
     </label>
 
     <input *ngSwitchWhen="'INPUT'"
+           [attr.autoComplete]="model.autoComplete"
+           [attr.max]="model.max"
+           [attr.min]="model.min"
+           [attr.step]="model.step"
            [autofocus]="model.autoFocus"
            [disabled]="model.disabled"
            [id]="model.id"
-           [max]="model.max"
            [maxLength]="model.maxLength"
-           [min]="model.min"
            [name]="model.name"
            [placeholder]="model.placeholder"
-           [step]="model.step"
            [type]="model.inputType"
+           [ngClass]="model.cls"
            [ngControl]="model.id"
-           [(ngModel)]="model.value"/>
+           [(ngModel)]="model.value"
+           (blur)="onBlur($event)"
+           (focus)="onFocus($event)"/>
 
     <select *ngSwitchWhen="'SELECT'"
             [id]="model.id"
             [name]="model.name"
+            [ngClass]="model.cls"
             [ngControl]="model.id"
             [(ngModel)]="model.value"
             (blur)="onBlur($event)"
@@ -56,8 +63,11 @@
               [placeholder]="model.placeholder"
               [rows]="model.rows"
               [wrap]="model.wrap"
+              [ngClass]="model.cls"
               [ngControl]="model.id"
-              [(ngModel)]="model.value">
+              [(ngModel)]="model.value"
+              (blur)="onBlur($event)"
+              (focus)="onFocus($event)">
 
     </textarea>
 

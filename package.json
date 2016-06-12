@@ -1,13 +1,14 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "A rapid form development library for Angular 2",
   "scripts": {
+    "ci-test": "karma start --single-run",
+    "ci-tsc": "tsc && echo ok || echo not ok",
     "gulp": "gulp",
     "karma": "karma",
-    "tsc": "tsc && echo ok || echo not ok",
-    "typings": "typings",
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "typings": "typings"
   },
   "repository": {
     "type": "git",
@@ -33,10 +34,10 @@
     "@angular2-material/core": "^2.0.0-alpha.5-2",
     "@angular2-material/input": "^2.0.0-alpha.5-2",
     "@angular2-material/radio": "^2.0.0-alpha.5-2",
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.3",
-    "@ng2-dynamic-forms/ui-basic": "1.0.0-alpha.3",
-    "@ng2-dynamic-forms/ui-bootstrap": "1.0.0-alpha.3",
-    "@ng2-dynamic-forms/ui-material": "1.0.0-alpha.3",
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.4",
+    "@ng2-dynamic-forms/ui-basic": "1.0.0-alpha.4",
+    "@ng2-dynamic-forms/ui-bootstrap": "1.0.0-alpha.4",
+    "@ng2-dynamic-forms/ui-material": "1.0.0-alpha.4",
     "codelyzer": "0.0.19",
     "del": "^2.2.0",
     "es6-shim": "^0.35.1",

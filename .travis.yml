@@ -3,5 +3,5 @@ sudo: false
 node_js:
   - "node"
 script:
-  - npm run tsc
-  - npm test
+  - npm run ci-tsc
+  - npm run ci-test

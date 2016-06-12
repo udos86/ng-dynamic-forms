@@ -1,11 +1,18 @@
 import {Validators} from "@angular/common";
 
+export interface DynamicFormControlLabel {
+
+    cls?: string;
+    hidden?: boolean;
+    text?: string;
+}
+
 export abstract class DynamicFormControlModel<T> {
 
+    cls: string;
     disabled: boolean;
-    hideLabel: boolean;
     id: string;
-    label: string;
+    label: DynamicFormControlLabel = {cls: null, hidden: false, text: ""};
     name: string;
     order: number;
     required: boolean;
@@ -16,10 +23,10 @@ export abstract class DynamicFormControlModel<T> {
 
     constructor(configObject: {
 
+        cls?: string,
         disabled?: boolean,
-        hideLabel?: boolean,
         id?: string,
-        label?: string,
+        label?: DynamicFormControlLabel,
         name?: string,
         order?: number,
         required?: boolean,
@@ -29,10 +36,10 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}) {
 
+        this.cls = configObject.cls === undefined ? null : configObject.cls;
         this.disabled = configObject.disabled === undefined ? false : configObject.disabled;
-        this.hideLabel = configObject.hideLabel === undefined ? false : configObject.hideLabel;
         this.id = configObject.id || null;
-        this.label = configObject.label || "";
+        this.label = configObject.label === undefined ? this.label : Object.assign(this.label, configObject.label);
         this.name = configObject.name || configObject.id || "";
         this.order = configObject.order === undefined ? 1 : configObject.order;
         this.required = configObject.required === undefined ? false : configObject.required;

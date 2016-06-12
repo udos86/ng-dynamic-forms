@@ -15,6 +15,12 @@ describe("DynamicSelectModel test suite", () => {
             expect(defaultObject.type).toBeDefined();
             expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
         });
+
+        it("tests if correct default options property is set", () => {
+
+            expect(defaultObject.options).toBeDefined();
+            expect(defaultObject.options).toEqual([]);
+        });
         
     });
 

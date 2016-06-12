@@ -5,19 +5,21 @@
     <div *ngSwitchWhen="'CHECKBOX'"
          class="form-group">
 
-        <label [attr.for]="model.id">
+        <label [attr.for]="model.id"
+               [ngClass]="model.label.cls">
 
             <input type="checkbox"
                    [disabled]="model.disabled"
                    [id]="model.id"
                    [name]="model.name"
                    [value]="model.value"
+                   [ngClass]="model.cls"
                    [ngControl]="model.id"
                    [(ngModel)]="model.value"
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
 
-            {{model.label}}
+            {{model.label.text}}
 
         </label>
 
@@ -28,32 +30,39 @@
          class="form-group">
 
         <label [attr.for]="model.id"
-               [hidden]="model.hideLabel">{{model.label}}</label>
+               [hidden]="model.label.hidden"
+               [ngClass]="model.label.cls">{{model.label.text}}</label>
 
         <input class="form-control"
+               [attr.autoComplete]="model.autoComplete"
+               [attr.max]="model.max"
+               [attr.min]="model.min"
+               [attr.step]="model.step"
                [autofocus]="model.autoFocus"
                [disabled]="model.disabled"
                [id]="model.id"
-               [max]="model.max"
                [maxLength]="model.maxLength"
-               [min]="model.min"
                [name]="model.name"
                [placeholder]="model.placeholder"
-               [step]="model.step"
                [type]="model.inputType"
+               [ngClass]="model.cls"
                [ngControl]="model.id"
-               [(ngModel)]="model.value"/>
+               [(ngModel)]="model.value"
+               (blur)="onBlur($event)"
+               (focus)="onFocus($event)"/>
     </div>
 
 
     <label *ngSwitchWhen="'SELECT'"
            [attr.for]="model.id"
-           [hidden]="model.hideLabel">{{model.label}}</label>
+           [hidden]="model.label.hidden"
+           [ngClass]="model.label.cls">{{model.label.text}}</label>
 
     <select *ngSwitchWhen="'SELECT'"
             class="form-control"
             [id]="model.id"
             [name]="model.name"
+            [ngClass]="model.cls"
             [ngControl]="model.id"
             [(ngModel)]="model.value"
             (blur)="onBlur($event)"
@@ -71,7 +80,8 @@
 
     <label *ngSwitchWhen="'TEXTAREA'"
            [attr.for]="model.id"
-           [hidden]="model.hideLabel">{{model.label}}</label>
+           [hidden]="model.label.hidden"
+           [ngClass]="model.label.cls">{{model.label.text}}</label>
 
     <textarea *ngSwitchWhen="'TEXTAREA'"
               class="form-control"
@@ -82,8 +92,11 @@
               [placeholder]="model.placeholder"
               [rows]="model.rows"
               [wrap]="model.wrap"
+              [ngClass]="model.cls"
               [ngControl]="model.id"
-              [(ngModel)]="model.value">
+              [(ngModel)]="model.value"
+              (blur)="onBlur($event)"
+              (focus)="onFocus($event)">
     </textarea>
 
 </div>

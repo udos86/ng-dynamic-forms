@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms-example",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "",
   "scripts": {
     "lite-server": "lite-server"
@@ -24,9 +24,9 @@
     "@angular2-material/core": "^2.0.0-alpha.5-2",
     "@angular2-material/input": "^2.0.0-alpha.5-2",
     "@angular2-material/radio": "^2.0.0-alpha.5-2",
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.3",
-    "@ng2-dynamic-forms/ui-basic": "1.0.0-alpha.3",
-    "@ng2-dynamic-forms/ui-material": "1.0.0-alpha.3",
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.4",
+    "@ng2-dynamic-forms/ui-basic": "1.0.0-alpha.4",
+    "@ng2-dynamic-forms/ui-material": "1.0.0-alpha.4",
     "angular2-in-memory-web-api": "0.0.11",
     "bootstrap": "^3.3.6",
     "es6-shim": "^0.35.1",
