@@ -20,9 +20,9 @@
 
 <h2>Bootstrap UI</h2>
 
-<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" style="width:70%; margin: 0 auto;" [ngFormModel]="form" (ngSubmit)="onSubmit()">
 
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
 
         <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
                                        [form]="form"

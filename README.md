@@ -116,7 +116,7 @@ export class MyDynamicFormComponent implements OnInit {
 
 ## UI Libraries
 
-ng2 Dynamic Forms is built to provide support for a variety of common ui libraries. You can instantly plug in your favorite controls
+ng2 Dynamic Forms is built to provide solid yet unobtrusive support for a variety of common ui libraries. You can instantly plug in your favorite controls
 by installing the appropriate package and it's peer dependencies from npm:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
