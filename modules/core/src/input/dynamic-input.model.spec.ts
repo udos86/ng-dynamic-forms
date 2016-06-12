@@ -29,6 +29,42 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultObject.autoComplete).toEqual(DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
         });
 
+        it("tests if correct default autoFocus property is set", () => {
+
+            expect(defaultObject.autoFocus).toBeDefined();
+            expect(defaultObject.autoFocus).toBe(false);
+        });
+
+        it("tests if correct default max property is set", () => {
+
+            expect(defaultObject.max).toBeDefined();
+            expect(defaultObject.max).toBeNull();
+        });
+
+        it("tests if correct default maxLength property is set", () => {
+
+            expect(defaultObject.maxLength).toBeDefined();
+            expect(defaultObject.maxLength).toBe(100);
+        });
+        
+        it("tests if correct default min property is set", () => {
+
+            expect(defaultObject.min).toBeDefined();
+            expect(defaultObject.min).toBeNull();
+        });
+
+        it("tests if correct default placeholder property is set", () => {
+
+            expect(defaultObject.placeholder).toBeDefined();
+            expect(defaultObject.placeholder).toEqual("");
+        });
+        
+        it("tests if correct default step property is set", () => {
+
+            expect(defaultObject.step).toBeDefined();
+            expect(defaultObject.step).toBeNull();
+        });
+        
         it("tests if correct default prefix property is set", () => {
 
             expect(defaultObject.prefix).toBeDefined();
