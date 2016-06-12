@@ -31,18 +31,21 @@
                [hidden]="model.hideLabel">{{model.label}}</label>
 
         <input class="form-control"
+               [attr.autoComplete]="model.autoComplete"
+               [attr.max]="model.max"
+               [attr.min]="model.min"
+               [attr.step]="model.step"
                [autofocus]="model.autoFocus"
                [disabled]="model.disabled"
                [id]="model.id"
-               [max]="model.max"
                [maxLength]="model.maxLength"
-               [min]="model.min"
                [name]="model.name"
                [placeholder]="model.placeholder"
-               [step]="model.step"
                [type]="model.inputType"
                [ngControl]="model.id"
-               [(ngModel)]="model.value"/>
+               [(ngModel)]="model.value"
+               (blur)="onBlur($event)"
+               (focus)="onFocus($event)"/>
     </div>
 
 
@@ -83,7 +86,9 @@
               [rows]="model.rows"
               [wrap]="model.wrap"
               [ngControl]="model.id"
-              [(ngModel)]="model.value">
+              [(ngModel)]="model.value"
+              (blur)="onBlur($event)"
+              (focus)="onFocus($event)">
     </textarea>
 
 </div>

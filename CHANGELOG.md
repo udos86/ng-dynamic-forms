@@ -3,5 +3,5 @@
 ### **Breaking Changes**
 
 * DynamicTextInputModel and DynamicNumberInputModel condensed to DynamicInputModel
-* onBlur and onFocus event listeners added for input and textarea controls
-* max, min, step attributes now working correctly
+* onBlur and onFocus event listeners added for input and textarea controls in ui-basic and ui-bootstrap
+* max, min, step attributes now working correctly in ui-basic and ui-bootstrap
