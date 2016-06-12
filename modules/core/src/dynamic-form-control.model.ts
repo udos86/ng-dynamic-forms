@@ -9,9 +9,10 @@ export interface DynamicFormControlLabel {
 
 export abstract class DynamicFormControlModel<T> {
 
+    cls: string;
+    disabled: boolean;
     id: string;
     label: DynamicFormControlLabel = {cls: null, hidden: false, text: ""};
-    disabled: boolean;
     name: string;
     order: number;
     required: boolean;
@@ -22,6 +23,7 @@ export abstract class DynamicFormControlModel<T> {
 
     constructor(configObject: {
 
+        cls?: string,
         disabled?: boolean,
         id?: string,
         label?: DynamicFormControlLabel,
@@ -34,6 +36,7 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}) {
 
+        this.cls = configObject.cls === undefined ? null : configObject.cls;
         this.disabled = configObject.disabled === undefined ? false : configObject.disabled;
         this.id = configObject.id || null;
         this.label = configObject.label === undefined ? this.label : Object.assign(this.label, configObject.label);
