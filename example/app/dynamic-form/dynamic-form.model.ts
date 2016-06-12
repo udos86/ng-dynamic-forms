@@ -1,7 +1,7 @@
 import {
     DynamicFormModel,
     DynamicCheckboxModel,
-    DynamicTextInputModel,
+    DynamicInputModel,
     DynamicRadioModel,
     DynamicSelectModel,
     DynamicTextAreaModel,
@@ -31,12 +31,12 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
         ]
     }),
     
-    new DynamicTextInputModel({
+    new DynamicInputModel({
 
         id: "exampleInput",
         label: "Example Input",
         maxLength: 51,
-        placeholder: "example input",
+        placeholder: "example input"
     }),
 
     new DynamicTextAreaModel({
