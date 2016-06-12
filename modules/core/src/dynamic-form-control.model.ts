@@ -13,9 +13,12 @@ export abstract class DynamicFormControlModel<T> {
     validators: Array<any>;
     validatorsAsync: Array<any>;
     value: T;
+    
+    clsLabel: string;
 
     constructor(configObject: {
 
+        clsLabel?: string,
         disabled?: boolean,
         hideLabel?: boolean,
         id?: string,
@@ -29,6 +32,7 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}) {
 
+        this.clsLabel = configObject.clsLabel === undefined ? null : configObject.clsLabel;
         this.disabled = configObject.disabled === undefined ? false : configObject.disabled;
         this.hideLabel = configObject.hideLabel === undefined ? false : configObject.hideLabel;
         this.id = configObject.id || null;

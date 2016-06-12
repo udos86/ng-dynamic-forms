@@ -5,3 +5,4 @@
 * DynamicTextInputModel and DynamicNumberInputModel condensed to DynamicInputModel
 * onBlur and onFocus event listeners added for input and textarea controls in ui-basic and ui-bootstrap
 * max, min, step attributes now working correctly in ui-basic and ui-bootstrap
+* added new attribute clsLabel to DynamicFormControlModel for manually setting `<label>` css classes

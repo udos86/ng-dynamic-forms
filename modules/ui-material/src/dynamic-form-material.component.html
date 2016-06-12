@@ -3,7 +3,8 @@
      [ngSwitch]="model.type">
 
     <label [attr.for]="model.id"
-           [hidden]="model.hideLabel">{{model.label}}</label>
+           [hidden]="model.hideLabel"
+           [ngClass]="model.clsLabel">{{model.label}}</label>
 
     <md-checkbox *ngSwitchWhen="'CHECKBOX'"
                  [align]="model.align"
