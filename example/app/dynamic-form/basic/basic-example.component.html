@@ -1,0 +1,13 @@
+<h2>Basic UI</h2>
+
+<form [ngFormModel]="form" style="width:70%; margin: 0 auto;" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
+
+        <dynamic-form-basic-control [model]="dynamicFormControlModel"
+                                    [form]="form"
+                                    #dynamicFormControl></dynamic-form-basic-control>
+
+    </div>
+
+</form>

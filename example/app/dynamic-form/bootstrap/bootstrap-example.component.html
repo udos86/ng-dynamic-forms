@@ -1,0 +1,13 @@
+<h2>Bootstrap UI</h2>
+
+<form class="form-horizontal" style="width:70%" [ngFormModel]="form" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
+
+        <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
+                                        [form]="form"
+                                        #dynamicFormControl></dynamic-form-bootstrap-control>
+
+    </div>
+
+</form>

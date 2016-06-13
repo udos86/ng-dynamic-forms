@@ -2,19 +2,18 @@ import {
     DynamicFormModel,
     DynamicCheckboxModel,
     DynamicInputModel,
-    DynamicRadioModel,
     DynamicSelectModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 
-export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
+export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicSelectModel<string>({
 
-        cls: "col-sm-10",
+        cls: "col-sm-9",
         id: "exampleOption",
         label: {
-            cls: "control-label col-sm-2",
+            cls: "control-label col-sm-3",
             text: "Example Option"
         },
         options: [
@@ -28,19 +27,23 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
                 value: "option-2"
             },
             {
-                selected: true,
                 text: "Option 3",
                 value: "option-3"
+            },
+            {
+                text: "Option 4",
+                value: "option-4"
             }
-        ]
+        ],
+        value: "option-3"
     }),
     
     new DynamicInputModel({
 
-        cls: "col-sm-10",
+        cls: "col-sm-9",
         id: "exampleInput",
         label: {
-            cls: "control-label col-sm-2",
+            cls: "control-label col-sm-3",
             text: "Example Input"
         },
         maxLength: 51,
@@ -49,10 +52,10 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicTextAreaModel({
 
-        cls: "col-sm-10",
+        cls: "col-sm-9",
         id: "exampleTextArea",
         label: {
-            cls: "control-label col-sm-2",
+            cls: "control-label col-sm-3",
             text: "Example Textarea"
         },
         rows: 5,
@@ -61,7 +64,7 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicCheckboxModel({
         
-        cls: "col-sm-offset-2 col-sm-10",
+        cls: "col-sm-offset-3 col-sm-9",
         id: "exampleCheckbox",
         label: {
             text:  "I do agree"

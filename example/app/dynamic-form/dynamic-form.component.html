@@ -1,58 +1,9 @@
-<!--
-<h2>Basic UI</h2>
+<dynamic-form-basic-example></dynamic-form-basic-example>
 
-<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+<hr>
 
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
+<dynamic-form-bootstrap-example></dynamic-form-bootstrap-example>
 
-        <dynamic-form-basic-control [model]="dynamicFormControlModel"
-                                    [form]="form"
-                                    #dynamicFormControl></dynamic-form-basic-control>
+<hr>
 
-    </div>
-
-    <button type="button" (click)="test()">Test</button>
-
-    <button type="submit">Submit</button>
-
-</form>
--->
-
-<h2>Bootstrap UI</h2>
-
-<form class="form-horizontal" style="width:70%; margin: 0 auto;" [ngFormModel]="form" (ngSubmit)="onSubmit()">
-
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
-
-        <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
-                                       [form]="form"
-                                       #dynamicFormControl></dynamic-form-bootstrap-control>
-
-    </div>
-
-    <button type="button" (click)="test()">Test</button>
-
-    <button type="submit">Submit</button>
-
-</form>
-
-<!--
-<h2>Material UI</h2>
-
-<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
-
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
-
-        <dynamic-form-material-control [model]="dynamicFormControlModel"
-                                       [form]="form"
-                                       #dynamicFormControl></dynamic-form-material-control>
-
-    </div>
-
-    <button type="button" (click)="test()">Test</button>
-
-    <button type="submit">Submit</button>
-
-</form>
--->
-
+<dynamic-form-material-example></dynamic-form-material-example>

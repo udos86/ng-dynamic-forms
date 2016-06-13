@@ -69,7 +69,6 @@
             <option *ngFor="let option of model.options"
                     [disabled]="!!option.disabled"
                     [attr.name]="model.name"
-                    [selected]="!!option.selected"
                     [ngValue]="option.value">{{option.text}}
             </option>
 
