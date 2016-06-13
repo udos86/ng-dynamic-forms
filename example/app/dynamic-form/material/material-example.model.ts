@@ -7,8 +7,18 @@ import {
 
 export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
-    new DynamicRadioModel<string>({
+    new DynamicInputModel({
         
+        id: "exampleInput",
+        label: {
+            text: "Example Input"
+        },
+        maxLength: 51,
+        placeholder: "example input"
+    }),
+
+    new DynamicRadioModel<string>({
+
         id: "exampleOption",
         label: {
             text: "Example Option"
@@ -34,17 +44,6 @@ export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         ],
         value: "option-3"
     }),
-    
-    new DynamicInputModel({
-        
-        id: "exampleInput",
-        label: {
-            text: "Example Input"
-        },
-        maxLength: 51,
-        placeholder: "example input"
-    }),
-    
 
     new DynamicCheckboxModel({
         

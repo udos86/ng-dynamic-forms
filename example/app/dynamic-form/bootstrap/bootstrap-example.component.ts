@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {FORM_DIRECTIVES} from "@angular/common";
 import {Control, ControlGroup} from "@angular/common";
 import {
@@ -17,6 +17,7 @@ import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
     selector: "dynamic-form-bootstrap-example",
     styleUrls: ["../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
     templateUrl: "./bootstrap-example.component.html",
+    encapsulation: ViewEncapsulation.None
 })
 
 export class BootstrapExampleComponent implements OnInit {
