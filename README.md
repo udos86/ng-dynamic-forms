@@ -13,15 +13,16 @@ It also provides a flexible system of dynamic ui components with out of the box 
 
 ## Getting Started
 
-**Install the core package:**
+1. **Install the core package:**
 ```
 npm install @ng2-dynamic-forms/core --save
 ```
-**Choose your UI library** (e.g. Angular 2 Material) **and install the corresponding package:**
+2. **Choose your UI library** (e.g. Angular 2 Material) **and install the corresponding package:**
 ```
 npm install @ng2-dynamic-forms/ui-material --save
 ```
-When using **SystemJS**, update your configuration file:
+
+3. When using **SystemJS**, update your configuration file:
 ```ts
 var map = {
 
@@ -47,7 +48,7 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 
 ## Usage
 
-**Define your dynamic form model:**
+1. **Define your dynamic form model:**
 ```ts
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
@@ -72,7 +73,8 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     })
 ]);
 ```
-**Provide `DynamicFormService` and plug in the UI component:**
+
+2. **Provide** `DynamicFormService` **and plug in the UI component:**
 ```ts
 @Component({
 
@@ -83,7 +85,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 })
 ```
 
-**Create the form `ControlGroup`:**
+3. **Create the form** `ControlGroup`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
@@ -98,7 +100,7 @@ export class MyDynamicFormComponent implements OnInit {
 }
 ```
 
-**Add the UI component to your template:**
+4. **Add the UI component to your template:**
 ```ts
 <form [ngFormModel]="form">
 
@@ -113,16 +115,18 @@ export class MyDynamicFormComponent implements OnInit {
 </form>
 ```
 
-## UI Libraries
+## UI Components
 
-ng2 Dynamic Forms is built to provide solid yet unobtrusive support for a variety of common ui libraries. You can instantly plug in your favorite controls
-by installing the appropriate package and it's peer dependencies from npm:
+ng2 Dynamic Forms is built to provide solid yet unobtrusive support for a variety of common ui libraries.
+
+You can instantly plug in your favorite controls by **installing the appropriate
+package and it's peer dependencies**:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
-Every ui module comes with a `DynamicFormControlComponent` that can easily be added to
-your component `directives` and `template`:
+Every UI package comes with a `DynamicFormControlComponent` that **can easily be added to
+your component** `directives` and `template`:
 ```ts
 @Component({
 
@@ -132,7 +136,7 @@ your component `directives` and `template`:
 })
 ```
 
-To get it running just bind it directly to an arbitrary `DynamicFormModel`:
+To get it running **just bind it directly** to an arbitrary `DynamicFormModel`:
 ```ts
 <form [ngFormModel]="form">
 
@@ -147,8 +151,9 @@ To get it running just bind it directly to an arbitrary `DynamicFormModel`:
 </form>
 ```
 
-Due to known issues in Angular 2 RC ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
-in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) there is no full support for all major form controls at the moment. See the following table:
+Due to **known issues in Angular 2 RC.1** ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
+in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full support for all major form controls can
+ not be provided at the moment. See the following compatibility table:
 
 |              | Checkbox | Input | Radio Group | Select | Textarea |
 |--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
