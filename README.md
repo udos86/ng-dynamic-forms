@@ -150,9 +150,9 @@ To get it running just bind it directly to an arbitrary `DynamicFormModel`:
 Due to known issues in Angular 2 RC ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
 in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) there is no full support for all major form controls at the moment. See the following table:
 
-|              | Checkbox | Input | Radio | Select | Textarea |
-|--------------|:--------:|:-----:|:-----:|:------:|:--------:|
-| ui-basic     |     ✓    |   ✓   |   ✗   |    ✓   |     ✓    |
-| ui-bootstrap |     ✓    |   ✓   |   ✗   |    ✓   |     ✓    |
-| ui-material  |     ✓    |   ✓   |   ✓   |    ✗   |     ✗    |
+|              | Checkbox | Input | Radio Group | Select | Textarea |
+|--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
+| ui-basic     |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
+| ui-bootstrap |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
+| ui-material  |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 

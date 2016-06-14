@@ -6,7 +6,7 @@ export interface DynamicFormOption<T> {
     text: string;
     value: T;
     disabled?: boolean;
-    selected?: boolean;
+    //selected?: boolean;
 }
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormControlModel<T> {
