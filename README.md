@@ -22,7 +22,7 @@ npm install @ng2-dynamic-forms/core --save
 npm install @ng2-dynamic-forms/ui-material --save
 ```
 When using **SystemJS**, update your configuration file:
-```
+```ts
 var map = {
 
     // ...here goes all the rest (Angular 2, Material, RxJS, etc.)
@@ -48,7 +48,7 @@ ng2DynamicFormsPackageNames.forEach(function (packageName) {
 ## Usage
 
 **Define your dynamic form model:**
-```
+```ts
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
     new DynamicInputModel({
@@ -73,8 +73,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 **Provide `DynamicFormService` and plug in the UI component:**
-
-```
+```ts
 @Component({
 
     directives: [FORM_DIRECTIVES, DynamicFormMaterialComponent],
@@ -85,7 +84,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ```
 
 **Create the form `ControlGroup`:**
-```
+```ts
 export class MyDynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
@@ -122,19 +121,19 @@ by installing the appropriate package and it's peer dependencies from npm:
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
-Every ui module comes with a `DynamicFormControlComponent` that can easily be added to your component `directives` and `template`.
-To get it running just bind it directly to an arbitrary `DynamicFormModel`:
-
-```
+Every ui module comes with a `DynamicFormControlComponent` that can easily be added to
+your component `directives` and `template`:
+```ts
 @Component({
 
     directives: [FORM_DIRECTIVES, DynamicFormBootstrapComponent],
 
-    // ... all mandatory properties (selector, templateUrl, etc.)
+    // ... all mandatory component properties (selector, templateUrl, etc.)
 })
 ```
 
-```
+To get it running just bind it directly to an arbitrary `DynamicFormModel`:
+```ts
 <form [ngFormModel]="form">
 
     <div *ngFor="let controlModel of dynamicFormModel.model">
