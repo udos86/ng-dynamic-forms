@@ -141,7 +141,7 @@ your component** `directives` and `template`:
 })
 ```
 
-To get it running **just bind it directly** to an arbitrary `DynamicFormModel`:
+To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 ```ts
 <form [ngFormModel]="form">
 
