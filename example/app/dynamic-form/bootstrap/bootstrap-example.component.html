@@ -1,0 +1,13 @@
+<h2 style="background-color: #6f5499; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Bootstrap UI</h2>
+
+<form class="form-horizontal" [ngFormModel]="form" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
+
+        <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
+                                        [form]="form"
+                                        #dynamicFormControl></dynamic-form-bootstrap-control>
+
+    </div>
+
+</form>

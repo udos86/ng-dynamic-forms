@@ -1,6 +1,7 @@
 import {OnInit} from "@angular/core";
 import {Control, ControlGroup} from "@angular/common";
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "./checkbox/dynamic-checkbox.model";
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
@@ -27,6 +28,10 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
     get isValid() {
         return this.control.valid;
+    }
+
+    get isCheckbox () {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
     onBlur($event) {

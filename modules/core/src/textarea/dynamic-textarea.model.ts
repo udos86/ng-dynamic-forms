@@ -1,4 +1,5 @@
 import {DynamicInputControlModel} from "../dynamic-input-control.model";
+import {getValue} from "../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "TEXTAREA";
 
@@ -8,7 +9,6 @@ export const DYNAMIC_FORM_TEXTAREA_WRAP_SOFT = "soft";
 export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
     cols: number;
-    //editor: boolean;
     rows: number;
     wrap: string;
 
@@ -16,10 +16,9 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
         super(configObject);
 
-        this.cols = configObject["cols"] || 20;
-        //this.editor = configObject["editor"] || false;
-        this.rows = configObject["rows"] || 2;
+        this.cols = getValue(configObject, "cols", 20);
+        this.rows = getValue(configObject, "rows", 2);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
-        this.wrap = configObject["wrap"] || DYNAMIC_FORM_TEXTAREA_WRAP_SOFT;
+        this.wrap = getValue(configObject, "wrap", DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
     }
 }

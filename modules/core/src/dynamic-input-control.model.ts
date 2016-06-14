@@ -1,4 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {getValue} from "./utils";
 
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF = "off";
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_ON = "on";
@@ -12,17 +13,17 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     prefix: string;
     showLength: boolean;
     suffix: string;
-    
+
     constructor(configObject: {} = {}) {
 
         super(configObject);
 
-        this.autoComplete = configObject["autoComplete"] === undefined ? DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF : configObject["autoComplete"];
-        this.autoFocus = configObject["autoFocus"] === undefined ? false : configObject["autoFocus"];
-        this.maxLength = configObject["maxLength"] || 100;
-        this.placeholder = configObject["placeholder"] || "";
-        this.prefix = configObject["prefix"] || null;
-        this.showLength = configObject["showLength"] === undefined ? false : configObject["showLength"];
-        this.suffix = configObject["suffix"] || null;
+        this.autoComplete = getValue(configObject, "autoComplete", DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
+        this.autoFocus = getValue(configObject, "autoFocus", false);
+        this.maxLength = getValue(configObject, "maxLength", 100);
+        this.placeholder = getValue(configObject, "placeholder", "");
+        this.prefix = getValue(configObject, "prefix", null);
+        this.showLength = getValue(configObject, "showLength", false);
+        this.suffix = getValue(configObject, "suffix", null);
     }
 }

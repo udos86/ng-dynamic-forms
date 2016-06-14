@@ -7,7 +7,7 @@ import {
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 
-export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
+export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicSelectModel<string>({
 
@@ -26,11 +26,11 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
                 value: "option-2"
             },
             {
-                selected: true,
                 text: "Option 3",
                 value: "option-3"
             }
-        ]
+        ],
+        value: "option-3"
     }),
     
     new DynamicInputModel({
@@ -47,7 +47,6 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
 
         id: "exampleTextArea",
         label: {
-            hidden: true,
             text: "Example Textarea"
         },
         rows: 5,
@@ -55,11 +54,10 @@ export const DYNAMIC_FORM_MODEL: DynamicFormModel = new DynamicFormModel([
     }),
 
     new DynamicCheckboxModel({
-        
+
         id: "exampleCheckbox",
         label: {
-            text:  "I do agree",
-        },
-        text: "I do agree"
+            text:  "I do agree"
+        }
     })
 ]);

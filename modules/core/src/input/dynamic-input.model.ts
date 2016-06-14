@@ -1,4 +1,5 @@
 import {DynamicInputControlModel} from "../dynamic-input-control.model";
+import {getValue} from "../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -21,10 +22,10 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
 
         super(configObject);
 
-        this.inputType = configObject["inputType"] || DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;
-        this.max = configObject["max"] === undefined ? null : configObject["max"];
-        this.min = configObject["min"] === undefined ? null : configObject["min"];
-        this.step = configObject["step"] === undefined ? null : configObject["step"];
+        this.inputType = getValue(configObject, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
+        this.max = getValue(configObject, "max", null);
+        this.min = getValue(configObject, "min", null);
+        this.step = getValue(configObject, "step", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
     }
 }

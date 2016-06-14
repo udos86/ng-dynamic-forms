@@ -1,4 +1,5 @@
 import {Validators} from "@angular/common";
+import {getValue} from "./utils";
 
 export interface DynamicFormControlLabel {
 
@@ -12,7 +13,7 @@ export abstract class DynamicFormControlModel<T> {
     cls: string;
     disabled: boolean;
     id: string;
-    label: DynamicFormControlLabel = {cls: null, hidden: false, text: ""};
+    label: DynamicFormControlLabel;
     name: string;
     order: number;
     required: boolean;
@@ -36,16 +37,16 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}) {
 
-        this.cls = configObject.cls === undefined ? null : configObject.cls;
-        this.disabled = configObject.disabled === undefined ? false : configObject.disabled;
-        this.id = configObject.id || null;
-        this.label = configObject.label === undefined ? this.label : Object.assign(this.label, configObject.label);
-        this.name = configObject.name || configObject.id || "";
-        this.order = configObject.order === undefined ? 1 : configObject.order;
-        this.required = configObject.required === undefined ? false : configObject.required;
-        this.validators = configObject.validators || [];
-        this.validatorsAsync = configObject.validatorsAsync || [];
-        this.value = configObject.value === undefined ? null : configObject.value;
+        this.cls = getValue(configObject, "cls", null);
+        this.disabled = getValue(configObject, "disabled", false);
+        this.id = getValue(configObject, "id", null);
+        this.label = getValue(configObject, "label", {cls: null, hidden: false, text: ""});
+        this.name = getValue(configObject, "name", this.id || "");
+        this.order = getValue(configObject, "order", 1);
+        this.required = getValue(configObject, "required", false);
+        this.validators = getValue(configObject, "validators", []);
+        this.validatorsAsync = getValue(configObject, "validatorsAsync", []);
+        this.value = getValue(configObject, "value", null);
         
         if (this.required) {
             this.validators.push(Validators.required);

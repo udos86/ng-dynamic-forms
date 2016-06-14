@@ -1,0 +1,13 @@
+<h2 style="background-color: #009688; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Material UI</h2>
+
+<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
+
+        <dynamic-form-material-control [model]="dynamicFormControlModel"
+                                       [form]="form"
+                                       #dynamicFormControl></dynamic-form-material-control>
+
+    </div>
+
+</form>

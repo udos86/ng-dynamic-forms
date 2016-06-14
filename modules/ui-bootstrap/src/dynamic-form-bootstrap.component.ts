@@ -1,8 +1,11 @@
 import {Component} from "@angular/core";
 import {Input} from "@angular/core";
 import {ControlGroup} from "@angular/common";
-import {DynamicFormControlModel, DYNAMIC_FORM_CONTROL_TYPE_RADIO} from "@ng2-dynamic-forms/core";
-import {DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
+import {
+    DynamicFormControlComponent,
+    DynamicFormControlModel,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO,
+} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
 
