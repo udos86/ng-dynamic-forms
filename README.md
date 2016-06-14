@@ -138,7 +138,7 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 Every UI package comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `directives` and `template`:
 ```ts
-import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-material";
+import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 @Component({
 
