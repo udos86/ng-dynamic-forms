@@ -57,6 +57,8 @@ System.config({
 
 **1. Define your dynamic form model**:
 ```ts
+import {DynamicFormModel, DynamicCheckboxModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
+
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
     new DynamicInputModel({
@@ -81,6 +83,9 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
 **2. Provide** `DynamicFormService` **and plug in the UI component**:
 ```ts
+import {DynamicFormService} from "@ng2-dynamic-forms/core";
+import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
+
 @Component({
 
     directives: [FORM_DIRECTIVES, DynamicFormMaterialComponent],
@@ -133,6 +138,8 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 Every UI package comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `directives` and `template`:
 ```ts
+import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-material";
+
 @Component({
 
     directives: [FORM_DIRECTIVES, DynamicFormBootstrapComponent],
