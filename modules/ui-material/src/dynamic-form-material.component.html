@@ -3,7 +3,7 @@
      [ngSwitch]="model.type">
 
     <label [attr.for]="model.id"
-           [hidden]="model.label.hidden"
+           [hidden]="model.label.hidden || isCheckbox"
            [ngClass]="model.label.cls">{{model.label.text}}</label>
 
     <md-checkbox *ngSwitchWhen="'CHECKBOX'"
@@ -19,7 +19,7 @@
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">
 
-        {{model.text}}
+        {{model.label.text}}
 
     </md-checkbox>
 

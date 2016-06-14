@@ -68,10 +68,8 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
         id: "exampleCheckbox",
         label: {
-            hidden: true,
             text: "I do agree"
-        },
-        text: "I do agree"
+        }
     })
 ]);
 ```
