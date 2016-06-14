@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-bootstrap",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Bootstrap UI library for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.4",
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.5",
     "bootstrap": "^3.3.6"
   }
 }
