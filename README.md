@@ -28,7 +28,7 @@ npm install @ng2-dynamic-forms/ui-material --save
 ```ts
 System.config({
 
-    //...all the rest (baseURL, etc.)
+    // ...all the rest (baseURL, etc.)
 
     map: {
 
