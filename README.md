@@ -99,7 +99,7 @@ export class MyDynamicFormComponent implements OnInit {
 ```
 
 **Add the UI component to your template:**
-```
+```ts
 <form [ngFormModel]="form">
 
     <div *ngFor="let controlModel of dynamicFormModel.model">
