@@ -13,43 +13,44 @@ It also provides a flexible system of dynamic ui components with out of the box 
 
 ## Getting Started
 
-1. **Install the core package**:
-    
-    ```
-    npm install @ng2-dynamic-forms/core --save
-    ```
-2. **Choose your UI library** (e.g. Angular 2 Material) **and install the corresponding package**:
-    ```
-    npm install @ng2-dynamic-forms/ui-material --save
-    ```
+**1. Install the core package**:
+```
+npm install @ng2-dynamic-forms/core --save
+```
+  
+**2. Choose your UI library** (e.g. Angular 2 Material) and **install the corresponding package**:
+```
+npm install @ng2-dynamic-forms/ui-material --save
+```
 
-3. When using **SystemJS**, update your configuration file:
-    ```ts
-    var map = {
+**3.** When using **SystemJS**, update your configuration file:
+
+```ts
+var map = {
+
+    // ...here goes all the rest (Angular 2, Material, RxJS, etc.)
+
+    "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
+};
     
-        // ...here goes all the rest (Angular 2, Material, RxJS, etc.)
+var ng2DynamicFormsPackageNames = [
     
-        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
+    "@ng2-dynamic-forms/core",
+    "@ng2-dynamic-forms/ui-material"
+];
+    
+ng2DynamicFormsPackageNames.forEach(function (packageName) {
+    
+    packages[packageName] = {
+        main: "index.js",
+        defaultExtension: "js"
     };
-    
-    var ng2DynamicFormsPackageNames = [
-    
-        "@ng2-dynamic-forms/core",
-        "@ng2-dynamic-forms/ui-material"
-    ];
-    
-    ng2DynamicFormsPackageNames.forEach(function (packageName) {
-    
-        packages[packageName] = {
-            main: "index.js",
-            defaultExtension: "js"
-        };
-    });
-    ```
+});
+```
 
 ## Usage
 
-1. **Define your dynamic form model:**
+**1. Define your dynamic form model**:
 ```ts
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
@@ -75,7 +76,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 
-2. **Provide** `DynamicFormService` **and plug in the UI component:**
+**2. Provide** `DynamicFormService` **and plug in the UI component**:
 ```ts
 @Component({
 
@@ -86,7 +87,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 })
 ```
 
-3. **Create the form** `ControlGroup`:
+**3. Create the form** `ControlGroup`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
@@ -101,7 +102,7 @@ export class MyDynamicFormComponent implements OnInit {
 }
 ```
 
-4. **Add the UI component to your template:**
+**4. Add the UI component to your template**:
 ```ts
 <form [ngFormModel]="form">
 
