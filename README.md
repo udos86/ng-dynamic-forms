@@ -13,38 +13,39 @@ It also provides a flexible system of dynamic ui components with out of the box 
 
 ## Getting Started
 
-1. **Install the core package:**
-```
-npm install @ng2-dynamic-forms/core --save
-```
-2. **Choose your UI library** (e.g. Angular 2 Material) **and install the corresponding package:**
-```
-npm install @ng2-dynamic-forms/ui-material --save
-```
+1. **Install the core package**:
+    
+    ```
+    npm install @ng2-dynamic-forms/core --save
+    ```
+2. **Choose your UI library** (e.g. Angular 2 Material) **and install the corresponding package**:
+    ```
+    npm install @ng2-dynamic-forms/ui-material --save
+    ```
 
 3. When using **SystemJS**, update your configuration file:
-```ts
-var map = {
-
-    // ...here goes all the rest (Angular 2, Material, RxJS, etc.)
-
-    "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
-};
-
-var ng2DynamicFormsPackageNames = [
-
-    "@ng2-dynamic-forms/core",
-    "@ng2-dynamic-forms/ui-material"
-];
-
-ng2DynamicFormsPackageNames.forEach(function (packageName) {
-
-    packages[packageName] = {
-        main: "index.js",
-        defaultExtension: "js"
+    ```ts
+    var map = {
+    
+        // ...here goes all the rest (Angular 2, Material, RxJS, etc.)
+    
+        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
     };
-});
-```
+    
+    var ng2DynamicFormsPackageNames = [
+    
+        "@ng2-dynamic-forms/core",
+        "@ng2-dynamic-forms/ui-material"
+    ];
+    
+    ng2DynamicFormsPackageNames.forEach(function (packageName) {
+    
+        packages[packageName] = {
+            main: "index.js",
+            defaultExtension: "js"
+        };
+    });
+    ```
 
 ## Usage
 
