@@ -11,7 +11,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicSelectModel<string>({
 
-        id: "exampleOption",
+        id: "basicSelect",
         label: {
             text: "Example Option"
         },
@@ -35,7 +35,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     
     new DynamicInputModel({
 
-        id: "exampleInput",
+        id: "basicInput",
         label: {
             text: "Example Input"
         },
@@ -45,7 +45,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicTextAreaModel({
 
-        id: "exampleTextArea",
+        id: "basicTextArea",
         label: {
             text: "Example Textarea"
         },
@@ -55,7 +55,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicCheckboxModel({
 
-        id: "exampleCheckbox",
+        id: "basicCheckbox",
         label: {
             text:  "I do agree"
         }

@@ -42,8 +42,20 @@ export class BootstrapExampleComponent implements OnInit {
 
         this.exampleCheckboxControl = <Control> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
-
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+    }
+
+    set modelEdit(value: string) {
+        try {
+            this.dynamicFormModel.model = JSON.parse(value);
+
+        } catch (e) {
+            // Just do nothing
+        }
+    }
+
+    get modelEdit() {
+        return JSON.stringify(this.dynamicFormModel.model, null, 2);
     }
 
     test() {
