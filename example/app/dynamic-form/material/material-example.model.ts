@@ -48,6 +48,8 @@ export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxModel({
         
         id: "exampleCheckbox",
-        text: "I do agree"
+        label:  {
+            text: "I do agree"
+        }
     })
 ]);

@@ -8,7 +8,6 @@ export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
     align: string;
     //checked: boolean; // actually makes no sense since type of value is boolean
     indeterminate: boolean;
-    text: string;
 
     constructor(configObject: {} = {}) {
 
@@ -17,7 +16,6 @@ export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
         this.align = getValue(configObject, "align", "start");
         //this.checked = getValue(configObject, "checked", false);
         this.indeterminate = getValue(configObject, "indeterminate", false);
-        this.text = getValue(configObject, "text", "");
         this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 }

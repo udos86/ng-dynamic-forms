@@ -1,3 +1,12 @@
+# alpha.5
+
+### **Breaking Changes**
+
+* Major improvements and bug fixes for ui-bootstrap template
+* Major improvements for example app
+* `text` property removed from `DynamicCheckboxModel` due to redundancy (use
+`text` property of `label` object instead)
+
 # alpha.4
 
 ### **Breaking Changes**

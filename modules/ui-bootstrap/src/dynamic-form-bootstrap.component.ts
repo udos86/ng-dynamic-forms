@@ -5,7 +5,6 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX
 } from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
@@ -27,9 +26,5 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
 
     constructor() {
         super();
-    }
-    
-    get isCheckbox () {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 }
