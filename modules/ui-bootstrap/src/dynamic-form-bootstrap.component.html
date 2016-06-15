@@ -36,23 +36,35 @@
     <div *ngIf="!isCheckbox"
          [ngClass]="model.cls">
 
-        <input *ngSwitchWhen="'INPUT'"
-               class="form-control"
-               [attr.autoComplete]="model.autoComplete"
-               [attr.max]="model.max"
-               [attr.min]="model.min"
-               [attr.step]="model.step"
-               [autofocus]="model.autoFocus"
-               [disabled]="model.disabled"
-               [id]="model.id"
-               [maxLength]="model.maxLength"
-               [name]="model.name"
-               [placeholder]="model.placeholder"
-               [type]="model.inputType"
-               [ngControl]="model.id"
-               [(ngModel)]="model.value"
-               (blur)="onBlur($event)"
-               (focus)="onFocus($event)"/>
+        <div *ngSwitchWhen="'INPUT'"
+             [class.input-group]="model.prefix || model.suffix">
+
+            <div *ngIf="model.prefix"
+                 class="input-group-addon">{{model.prefix}}
+            </div>
+
+            <input class="form-control"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.max]="model.max"
+                   [attr.min]="model.min"
+                   [attr.step]="model.step"
+                   [autofocus]="model.autoFocus"
+                   [disabled]="model.disabled"
+                   [id]="model.id"
+                   [maxLength]="model.maxLength"
+                   [name]="model.name"
+                   [placeholder]="model.placeholder"
+                   [type]="model.inputType"
+                   [ngControl]="model.id"
+                   [(ngModel)]="model.value"
+                   (blur)="onBlur($event)"
+                   (focus)="onFocus($event)"/>
+
+            <div *ngIf="model.suffix"
+                 class="input-group-addon">{{model.suffix}}
+            </div>
+
+        </div>
 
 
         <select *ngSwitchWhen="'SELECT'"
