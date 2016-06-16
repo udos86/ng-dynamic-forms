@@ -1,15 +1,15 @@
 <div [hidden]="!isCompatible"
-     [ngFormModel]="form"
+     [formGroup]="form"
      [ngSwitch]="model.type">
 
     <input *ngSwitchCase="'CHECKBOX'"
            type="checkbox"
+           formControlName="model.id"
            [disabled]="model.disabled"
            [id]="model.id"
            [name]="model.name"
            [value]="model.value"
            [ngClass]="model.cls"
-           [ngControl]="model.id"
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
@@ -20,6 +20,7 @@
     </label>
 
     <input *ngSwitchCase="'INPUT'"
+           formControlName="model.id"
            [attr.autoComplete]="model.autoComplete"
            [attr.max]="model.max"
            [attr.min]="model.min"
@@ -32,16 +33,15 @@
            [placeholder]="model.placeholder"
            [type]="model.inputType"
            [ngClass]="model.cls"
-           [ngControl]="model.id"
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
     <select *ngSwitchCase="'SELECT'"
+            formControlName="model.id"
             [id]="model.id"
             [name]="model.name"
             [ngClass]="model.cls"
-            [ngControl]="model.id"
             [(ngModel)]="model.value"
             (blur)="onBlur($event)"
             (focus)="onFocus($event)">
@@ -55,6 +55,7 @@
     </select>
 
     <textarea *ngSwitchCase="'TEXTAREA'"
+              formControlName="model.id"
               [cols]="model.cols"
               [disabled]="model.disabled"
               [id]="model.id"
@@ -63,7 +64,6 @@
               [rows]="model.rows"
               [wrap]="model.wrap"
               [ngClass]="model.cls"
-              [ngControl]="model.id"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">

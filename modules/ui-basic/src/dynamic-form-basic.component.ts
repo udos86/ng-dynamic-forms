@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Input} from "@angular/core";
-import {ControlGroup} from "@angular/common";
+import {FormGroup} from "@angular/forms";
 import {DynamicFormControlModel, DYNAMIC_FORM_CONTROL_TYPE_RADIO} from "@ng2-dynamic-forms/core";
 import {DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 
@@ -16,7 +16,7 @@ export const DYNAMIC_FORM_UI_BASIC = "BASIC";
 export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     @Input() model: DynamicFormControlModel<any>;
-    @Input() form: ControlGroup;
+    @Input() form: FormGroup;
 
     incompatibilities: Array<string> = [DYNAMIC_FORM_CONTROL_TYPE_RADIO];
     type: string = DYNAMIC_FORM_UI_BASIC;
