@@ -9,7 +9,7 @@
            [ngClass]="model.label.cls">{{model.label.text}}
     </label>
 
-    <div *ngSwitchWhen="'CHECKBOX'"
+    <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls">
 
         <div class="checkbox"
@@ -36,7 +36,7 @@
     <div *ngIf="!isCheckbox"
          [ngClass]="model.cls">
 
-        <div *ngSwitchWhen="'INPUT'"
+        <div *ngSwitchCase="'INPUT'"
              [class.input-group]="model.prefix || model.suffix">
 
             <div *ngIf="model.prefix"
@@ -67,7 +67,7 @@
         </div>
 
 
-        <select *ngSwitchWhen="'SELECT'"
+        <select *ngSwitchCase="'SELECT'"
                 class="form-control"
                 [id]="model.id"
                 [name]="model.name"
@@ -85,7 +85,7 @@
         </select>
 
 
-        <textarea *ngSwitchWhen="'TEXTAREA'"
+        <textarea *ngSwitchCase="'TEXTAREA'"
                   class="form-control"
                   [cols]="model.cols"
                   [disabled]="model.disabled"

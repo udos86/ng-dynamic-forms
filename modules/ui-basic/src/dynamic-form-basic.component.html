@@ -2,7 +2,7 @@
      [ngFormModel]="form"
      [ngSwitch]="model.type">
 
-    <input *ngSwitchWhen="'CHECKBOX'"
+    <input *ngSwitchCase="'CHECKBOX'"
            type="checkbox"
            [disabled]="model.disabled"
            [id]="model.id"
@@ -19,7 +19,7 @@
            [ngClass]="model.label.cls">{{model.label.text}}
     </label>
 
-    <input *ngSwitchWhen="'INPUT'"
+    <input *ngSwitchCase="'INPUT'"
            [attr.autoComplete]="model.autoComplete"
            [attr.max]="model.max"
            [attr.min]="model.min"
@@ -37,7 +37,7 @@
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
-    <select *ngSwitchWhen="'SELECT'"
+    <select *ngSwitchCase="'SELECT'"
             [id]="model.id"
             [name]="model.name"
             [ngClass]="model.cls"
@@ -54,7 +54,7 @@
 
     </select>
 
-    <textarea *ngSwitchWhen="'TEXTAREA'"
+    <textarea *ngSwitchCase="'TEXTAREA'"
               [cols]="model.cols"
               [disabled]="model.disabled"
               [id]="model.id"

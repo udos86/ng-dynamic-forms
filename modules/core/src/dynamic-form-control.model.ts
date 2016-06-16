@@ -15,7 +15,6 @@ export abstract class DynamicFormControlModel<T> {
     id: string;
     label: DynamicFormControlLabel;
     name: string;
-    order: number;
     required: boolean;
     type: string = null; // must be defined by child class
     validators: Array<any>;
@@ -29,7 +28,6 @@ export abstract class DynamicFormControlModel<T> {
         id?: string,
         label?: DynamicFormControlLabel,
         name?: string,
-        order?: number,
         required?: boolean,
         validators?: Array<any>;
         validatorsAsync?: Array<any>,
@@ -42,7 +40,6 @@ export abstract class DynamicFormControlModel<T> {
         this.id = getValue(configObject, "id", null);
         this.label = getValue(configObject, "label", {cls: null, hidden: false, text: ""});
         this.name = getValue(configObject, "name", this.id || "");
-        this.order = getValue(configObject, "order", 1);
         this.required = getValue(configObject, "required", false);
         this.validators = getValue(configObject, "validators", []);
         this.validatorsAsync = getValue(configObject, "validatorsAsync", []);
