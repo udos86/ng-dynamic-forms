@@ -1,11 +1,11 @@
-<div [hidden]="!isCompatible"
-     [formGroup]="form"
+<div [formGroup]="form"
+     [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
     <input *ngSwitchCase="'CHECKBOX'"
            type="checkbox"
-           formControlName="model.id"
            [disabled]="model.disabled"
+           [formControlName]="model.id"
            [id]="model.id"
            [name]="model.name"
            [value]="model.value"
@@ -20,13 +20,13 @@
     </label>
 
     <input *ngSwitchCase="'INPUT'"
-           formControlName="model.id"
            [attr.autoComplete]="model.autoComplete"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.step]="model.step"
            [autofocus]="model.autoFocus"
            [disabled]="model.disabled"
+           [formControlName]="model.id"
            [id]="model.id"
            [maxLength]="model.maxLength"
            [name]="model.name"
@@ -38,7 +38,7 @@
            (focus)="onFocus($event)"/>
 
     <select *ngSwitchCase="'SELECT'"
-            formControlName="model.id"
+            [formControlName]="model.id"
             [id]="model.id"
             [name]="model.name"
             [ngClass]="model.cls"
@@ -55,9 +55,9 @@
     </select>
 
     <textarea *ngSwitchCase="'TEXTAREA'"
-              formControlName="model.id"
               [cols]="model.cols"
               [disabled]="model.disabled"
+              [formControlName]="model.id"
               [id]="model.id"
               [name]="model.name"
               [placeholder]="model.placeholder"
