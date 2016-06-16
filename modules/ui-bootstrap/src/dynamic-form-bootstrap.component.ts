@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Input} from "@angular/core";
-import {FormGroup} from "@angular/forms";
+import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -10,7 +10,8 @@ import {
 export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
 
 @Component({
-    
+
+    directives: [REACTIVE_FORM_DIRECTIVES],
     moduleId: module.id,
     selector: "dynamic-form-bootstrap-control",
     templateUrl: "./dynamic-form-bootstrap.component.html"

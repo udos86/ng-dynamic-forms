@@ -66,6 +66,22 @@
 
         </div>
 
+        <!--
+        <div *ngSwitchCase="'RADIO'">
+
+            <div *ngFor="let option of model.options" class="radio">
+                <label>
+                    <input type="radio"
+                           [name]="model.name"
+                           [disabled]="!!option.disabled"
+                           [value]="option.value"
+                           [(ngModel)]="model.value">
+                    {{option.text}}
+                </label>
+            </div>
+
+        </div>
+        -->
 
         <select *ngSwitchCase="'SELECT'"
                 class="form-control"
