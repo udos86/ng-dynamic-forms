@@ -5,7 +5,7 @@ import {BasicExampleComponent} from "./basic/basic-example.component";
 
 @Component({
 
-    directives: [BasicExampleComponent, BootstrapExampleComponent/*, MaterialExampleComponent*/],
+    directives: [BasicExampleComponent, BootstrapExampleComponent, MaterialExampleComponent],
     moduleId: module.id,
     selector: "dynamic-form",
     templateUrl: "./dynamic-form.component.html",

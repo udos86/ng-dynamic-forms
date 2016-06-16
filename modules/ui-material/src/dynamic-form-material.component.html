@@ -1,5 +1,5 @@
-<div [hidden]="!isCompatible"
-     [ngFormModel]="form"
+<div [formGroup]="form"
+     [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
     <label [attr.for]="model.id"
@@ -9,12 +9,12 @@
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [disabled]="model.disabled"
+                 [formControlName]="model.id"
                  [id]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
                  [ngClass]="model.cls"
-                 [ngControl]="model.id"
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">
@@ -26,6 +26,7 @@
     <md-input *ngSwitchCase="'INPUT'"
               [autofocus]="model.autoFocus"
               [disabled]="model.disabled"
+              [formControlName]="model.id"
               [id]="model.id"
               [max]="model.max"
               [maxLength]="model.maxLength"
@@ -35,7 +36,6 @@
               [step]="model.step"
               [type]="model.inputType"
               [ngClass]="model.cls"
-              [ngControl]="model.id"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
@@ -50,10 +50,10 @@
     </md-input>
 
     <md-radio-group *ngSwitchCase="'RADIO'"
-                    [name]="model.name"
+                    [formControlName]="model.id"
                     [id]="model.id"
+                    [name]="model.name"
                     [ngClass]="model.cls"
-                    [ngControl]="model.id"
                     [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
                     (focus)="onFocus($event)">
