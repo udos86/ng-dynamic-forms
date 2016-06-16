@@ -1,11 +1,8 @@
-/** @module DynamicFormService */
-
 import {Injectable} from "@angular/core";
-import {FormBuilder, Validators} from "@angular/common";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {DynamicFormModel} from "./dynamic-form.model";
 
 @Injectable()
-/** Class representing a DynamicFormService. */
 export class DynamicFormService {
 
     formBuilder: FormBuilder;
@@ -15,20 +12,20 @@ export class DynamicFormService {
         this.formBuilder = formBuilder;
     }
     
-    createControlGroup(dynamicFormModel: DynamicFormModel) {
+    createFormGroup(dynamicFormModel: DynamicFormModel) {
 
-        let controlGroup = {};
+        let formGroup = {};
         
-        dynamicFormModel.model.forEach(controlModel => {
+        dynamicFormModel.model.forEach(formControlModel => {
 
-            controlGroup[controlModel.id] = [
+            formGroup[formControlModel.id] = new FormControl(
                 
-                controlModel.value || null,
-                Validators.compose(controlModel.validators),
-                Validators.composeAsync(controlModel.validatorsAsync)
-            ];
+                formControlModel.value || null,
+                Validators.compose(formControlModel.validators),
+                Validators.composeAsync(formControlModel.validatorsAsync)
+            );
         });
 
-        return this.formBuilder.group(controlGroup);
+        return this.formBuilder.group(formGroup);
     }
 }
