@@ -2,7 +2,7 @@ import {
     DynamicFormModel,
     DynamicCheckboxModel,
     DynamicInputModel,
-    DynamicRadioModel,
+    DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";

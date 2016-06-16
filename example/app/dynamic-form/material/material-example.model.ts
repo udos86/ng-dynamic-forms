@@ -2,7 +2,7 @@ import {
     DynamicFormModel,
     DynamicCheckboxModel,
     DynamicInputModel,
-    DynamicRadioModel,
+    DynamicRadioGroupModel,
 } from "@ng2-dynamic-forms/core";
 
 export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
@@ -17,7 +17,7 @@ export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         placeholder: "example input"
     }),
 
-    new DynamicRadioModel<string>({
+    new DynamicRadioGroupModel<string>({
 
         id: "materialRadioGroup",
         label: {
