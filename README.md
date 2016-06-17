@@ -53,7 +53,7 @@ System.config({
 });
 ```
 
-## Usage
+## Basic Usage
 
 **1. Define your dynamic form model**:
 ```ts
@@ -127,7 +127,13 @@ export class MyDynamicFormComponent implements OnInit {
 
 ## UI Components
 
-ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common ui libraries.
+ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common ui libraries:
+
+* **Basic** (pure, native HTML5)
+* **[Bootstrap](http://getbootstrap.com)**
+* **[Material](https://github.com/angular/material2)**
+* *Foundation (coming soon)*
+* *Kendo UI (coming soon)*
 
 You can instantly plug in your favorite controls by **installing the appropriate
 package and it's peer dependencies**:
