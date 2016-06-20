@@ -116,6 +116,9 @@
                   (focus)="onFocus($event)">
         </textarea>
 
+        <span *ngIf="model.help"
+              class="help-block">{{model.help}}</span>
+
     </div>
 
 </div>

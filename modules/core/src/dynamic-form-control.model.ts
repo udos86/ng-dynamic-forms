@@ -12,6 +12,7 @@ export abstract class DynamicFormControlModel<T> {
 
     cls: string;
     disabled: boolean;
+    help: string;
     id: string;
     label: DynamicFormControlLabel;
     name: string;
@@ -25,6 +26,7 @@ export abstract class DynamicFormControlModel<T> {
 
         cls?: string,
         disabled?: boolean,
+        help?: string,
         id?: string,
         label?: DynamicFormControlLabel,
         name?: string,
@@ -37,6 +39,7 @@ export abstract class DynamicFormControlModel<T> {
 
         this.cls = getValue(configObject, "cls", null);
         this.disabled = getValue(configObject, "disabled", false);
+        this.help = getValue(configObject, "help", false);
         this.id = getValue(configObject, "id", null);
         this.label = getValue(configObject, "label", {cls: null, hidden: false, text: ""});
         this.name = getValue(configObject, "name", this.id || "");

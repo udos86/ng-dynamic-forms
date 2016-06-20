@@ -42,6 +42,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicInputModel({
 
         cls: "col-sm-9",
+        help: "Just a sample help text",
         id: "bootstrapInput",
         label: {
             cls: "control-label col-sm-3",
@@ -68,6 +69,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxModel({
         
         cls: "col-sm-offset-3 col-sm-9",
+        help:"test-help",
         id: "bootstrapCheckbox",
         label: {
             text:  "I do agree"
