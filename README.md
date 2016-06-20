@@ -100,7 +100,7 @@ import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
 export class MyDynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-    form: formGroup;
+    form: FormGroup;
 
     constructor(private dynamicFormService: DynamicFormService) {}
 
@@ -110,7 +110,7 @@ export class MyDynamicFormComponent implements OnInit {
 }
 ```
 
-**4. Add the UI component to your template**:
+**4. Add the** `DynamicFormControlComponent` **to your template**:
 ```ts
 <form [ngFormModel]="form">
 
