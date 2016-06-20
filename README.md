@@ -118,7 +118,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
     <div *ngFor="let controlModel of dynamicFormModel.items">
 
         <dynamic-form-bootstrap-control [form]="form"
-                                       [model]="controlModel">
+                                        [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
     </div>
