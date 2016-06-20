@@ -1,13 +1,27 @@
-<h2 style="background-color: #6f5499; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Bootstrap UI</h2>
+<div class="overflow-hidden">
 
-<form class="form-horizontal" [ngFormModel]="form" (ngSubmit)="onSubmit()">
+    <h2 style="background-color: #6f5499; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Bootstrap UI</h2>
 
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
+    <div class="float-left content-margin" style="width: 55%;">
 
-        <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
-                                        [form]="form"
-                                        #dynamicFormControl></dynamic-form-bootstrap-control>
+        <form class="form-horizontal" [formGroup]="form">
+
+            <div *ngFor="let controlModel of dynamicFormModel.items">
+
+                <dynamic-form-bootstrap-control [form]="form"
+                                                [model]="controlModel"></dynamic-form-bootstrap-control>
+
+            </div>
+
+        </form>
 
     </div>
 
-</form>
+    <div class="float-left content-margin text-center" style="width: 45%;">
+
+        <textarea rows="18" cols="46" class="live-edit" [(ngModel)]="modelEdit"></textarea>
+
+        <p class="font-bold">Live edit the underlying Dynamic Form Model</p>
+    </div>
+
+</div>

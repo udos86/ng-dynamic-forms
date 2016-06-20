@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (alpha.5)
+# ng2 Dynamic Forms (alpha.6)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -53,9 +53,9 @@ System.config({
 });
 ```
 
-## Usage
+## Basic Usage
 
-**1. Define your dynamic form model**:
+**1. Define your** `DynamicFormModel`:
 ```ts
 import {DynamicFormModel, DynamicCheckboxModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
 
@@ -81,43 +81,44 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 
-**2. Provide** `DynamicFormService` **and plug in the UI component**:
+**2. Provide** `DynamicFormService` **and plug in the** `DynamicFormControlComponent`:
 ```ts
 import {DynamicFormService} from "@ng2-dynamic-forms/core";
 import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormMaterialComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormMaterialComponent],
     providers: [DynamicFormService],
 
     // ... all mandatory properties (selector, templateUrl, etc.)
 })
 ```
 
-**3. Create the form** `ControlGroup`:
+**3. Create the** `FormGroup`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-    form: ControlGroup;
+    form: FormGroup;
 
     constructor(private dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
-        this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
     }
 }
 ```
 
-**4. Add the UI component to your template**:
+**4. Add the** `DynamicFormControlComponent` **to your template
+and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```ts
-<form [ngFormModel]="form">
+<form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model">
+    <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-material-control [model]="controlModel"
-                                       [form]="form">
+        <dynamic-form-material-control [form]="form"
+                                       [model]="controlModel">
         </dynamic-form-material-control>
 
     </div>
@@ -127,7 +128,13 @@ export class MyDynamicFormComponent implements OnInit {
 
 ## UI Components
 
-ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common ui libraries.
+ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common ui libraries:
+
+* **Basic** (pure, native HTML5)
+* **[Bootstrap](http://getbootstrap.com)**
+* **[Material](https://github.com/angular/material2)**
+* *Foundation (coming soon)*
+* *Kendo UI (coming soon)*
 
 You can instantly plug in your favorite controls by **installing the appropriate
 package and it's peer dependencies**:
@@ -142,7 +149,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBootstrapComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
 
     // ... all mandatory component properties (selector, templateUrl, etc.)
 })
@@ -150,12 +157,12 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 ```ts
-<form [ngFormModel]="form">
+<form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model">
+    <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-bootstrap-control [model]="controlModel"
-                                        [form]="form">
+        <dynamic-form-bootstrap-control [form]="form"
+                                        [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
     </div>

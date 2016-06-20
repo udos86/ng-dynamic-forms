@@ -3,6 +3,7 @@ import {
     DynamicCheckboxModel,
     DynamicInputModel,
     DynamicSelectModel,
+    DynamicRadioGroupModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 
@@ -11,7 +12,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicSelectModel<string>({
 
         cls: "col-sm-9",
-        id: "exampleOption",
+        id: "bootstrapSelect",
         label: {
             cls: "control-label col-sm-3",
             text: "Example Option"
@@ -41,19 +42,21 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicInputModel({
 
         cls: "col-sm-9",
-        id: "exampleInput",
+        id: "bootstrapInput",
         label: {
             cls: "control-label col-sm-3",
             text: "Example Input"
         },
         maxLength: 51,
-        placeholder: "example input"
+        placeholder: "example input",
+        prefix: "Prefix",
+        suffix: "Suffix"
     }),
 
     new DynamicTextAreaModel({
 
         cls: "col-sm-9",
-        id: "exampleTextArea",
+        id: "bootstrapTextArea",
         label: {
             cls: "control-label col-sm-3",
             text: "Example Textarea"
@@ -65,7 +68,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxModel({
         
         cls: "col-sm-offset-3 col-sm-9",
-        id: "exampleCheckbox",
+        id: "bootstrapCheckbox",
         label: {
             text:  "I do agree"
         }

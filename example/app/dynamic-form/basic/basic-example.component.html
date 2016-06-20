@@ -1,13 +1,20 @@
-<h2 style="background-color: darkgrey; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Basic UI</h2>
+<div class="overflow-hidden">
 
-<form [ngFormModel]="form" (ngSubmit)="onSubmit()">
+    <h2 style="background-color: darkgrey; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Basic UI</h2>
 
-    <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model" class="form-row">
+    <div class="float-left content-margin content-padding" style="width: 55%;">
 
-        <dynamic-form-basic-control [model]="dynamicFormControlModel"
-                                    [form]="form"
-                                    #dynamicFormControl></dynamic-form-basic-control>
+        <form [formGroup]="form">
+
+            <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
+
+                <dynamic-form-basic-control [form]="form"
+                                            [model]="controlModel"></dynamic-form-basic-control>
+
+            </div>
+
+        </form>
 
     </div>
 
-</form>
+</div>

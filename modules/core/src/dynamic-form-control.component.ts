@@ -1,12 +1,12 @@
 import {OnInit} from "@angular/core";
-import {Control, ControlGroup} from "@angular/common";
+import {FormControl, FormGroup} from "@angular/forms";
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "./checkbox/dynamic-checkbox.model";
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
-    control: Control;
-    form: ControlGroup;
+    control: FormControl;
+    form: FormGroup;
     hasFocus: boolean;
     model: DynamicFormControlModel<any>;
     type: string; // must be defined by sublcass
@@ -20,7 +20,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     ngOnInit() {
 
         this.isCompatible = this.checkCompatibility();
-        this.control = <Control> this.form.controls[this.model.id];
+        this.control = <FormControl> this.form.controls[this.model.id];
         this.control.valueChanges.subscribe((value: string) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.form.valid);
         });

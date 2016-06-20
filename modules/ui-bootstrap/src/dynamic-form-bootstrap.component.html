@@ -1,6 +1,6 @@
 <div class="form-group"
+     [formGroup]="form"
      [hidden]="!isCompatible"
-     [ngFormModel]="form"
      [ngSwitch]="model.type">
 
     <label *ngIf="!isCheckbox"
@@ -9,7 +9,7 @@
            [ngClass]="model.label.cls">{{model.label.text}}
     </label>
 
-    <div *ngSwitchWhen="'CHECKBOX'"
+    <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls">
 
         <div class="checkbox"
@@ -20,10 +20,10 @@
 
                 <input type="checkbox"
                        [disabled]="model.disabled"
+                       [formControlName]="model.id"
                        [id]="model.id"
                        [name]="model.name"
                        [value]="model.value"
-                       [ngControl]="model.id"
                        [(ngModel)]="model.value"
                        (blur)="onBlur($event)"
                        (focus)="onFocus($event)"/>{{model.label.text}}
@@ -36,30 +36,58 @@
     <div *ngIf="!isCheckbox"
          [ngClass]="model.cls">
 
-        <input *ngSwitchWhen="'INPUT'"
-               class="form-control"
-               [attr.autoComplete]="model.autoComplete"
-               [attr.max]="model.max"
-               [attr.min]="model.min"
-               [attr.step]="model.step"
-               [autofocus]="model.autoFocus"
-               [disabled]="model.disabled"
-               [id]="model.id"
-               [maxLength]="model.maxLength"
-               [name]="model.name"
-               [placeholder]="model.placeholder"
-               [type]="model.inputType"
-               [ngControl]="model.id"
-               [(ngModel)]="model.value"
-               (blur)="onBlur($event)"
-               (focus)="onFocus($event)"/>
+        <div *ngSwitchCase="'INPUT'"
+             [class.input-group]="model.prefix || model.suffix">
 
+            <div *ngIf="model.prefix"
+                 class="input-group-addon">{{model.prefix}}
+            </div>
 
-        <select *ngSwitchWhen="'SELECT'"
+            <input class="form-control"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.max]="model.max"
+                   [attr.min]="model.min"
+                   [attr.step]="model.step"
+                   [autofocus]="model.autoFocus"
+                   [disabled]="model.disabled"
+                   [formControlName]="model.id"
+                   [id]="model.id"
+                   [maxLength]="model.maxLength"
+                   [name]="model.name"
+                   [placeholder]="model.placeholder"
+                   [type]="model.inputType"
+                   [(ngModel)]="model.value"
+                   (blur)="onBlur($event)"
+                   (focus)="onFocus($event)"/>
+
+            <div *ngIf="model.suffix"
+                 class="input-group-addon">{{model.suffix}}
+            </div>
+
+        </div>
+
+        <!--
+        <div *ngSwitchCase="'RADIO'">
+
+            <div *ngFor="let option of model.options" class="radio">
+                <label>
+                    <input type="radio"
+                           [name]="model.name"
+                           [disabled]="!!option.disabled"
+                           [value]="option.value"
+                           [(ngModel)]="model.value">
+                    {{option.text}}
+                </label>
+            </div>
+
+        </div>
+        -->
+
+        <select *ngSwitchCase="'SELECT'"
                 class="form-control"
+                [formControlName]="model.id"
                 [id]="model.id"
                 [name]="model.name"
-                [ngControl]="model.id"
                 [(ngModel)]="model.value"
                 (blur)="onBlur($event)"
                 (focus)="onFocus($event)">
@@ -73,16 +101,16 @@
         </select>
 
 
-        <textarea *ngSwitchWhen="'TEXTAREA'"
+        <textarea *ngSwitchCase="'TEXTAREA'"
                   class="form-control"
                   [cols]="model.cols"
                   [disabled]="model.disabled"
+                  [formControlName]="model.id"
                   [id]="model.id"
                   [name]="model.name"
                   [placeholder]="model.placeholder"
                   [rows]="model.rows"
                   [wrap]="model.wrap"
-                  [ngControl]="model.id"
                   [(ngModel)]="model.value"
                   (blur)="onBlur($event)"
                   (focus)="onFocus($event)">

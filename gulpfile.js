@@ -1,6 +1,7 @@
 var pkg = require("./package.json");
 var gulp = require("gulp");
 var del = require("del");
+var typedoc = require('gulp-typedoc');
 var replace = require("gulp-replace");
 
 gulp.task("clean:example", function () {
@@ -42,6 +43,20 @@ gulp.task("increment:version", function () {
         .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
         .pipe(replace(dependencyField, "$1" + '"' + newVersionString + '"'))
         .pipe(gulp.dest("./modules"));
+});
+
+gulp.task("build:documentation", function () {
+
+    return gulp.src(["./modules/*/src/**/*.ts"], {read: false})
+        .pipe(typedoc({
+            exclude: "./modules/**/*.spec.ts",
+            module: "commonjs",
+            target: "es5",
+            out: "docs/",
+            name: "ng2 Dynamic Forms",
+            includeDeclarations: true,
+            ignoreCompilerErrors: true
+        }));
 });
 
 gulp.task("build:example", ["clean:example", "copy:example"]);

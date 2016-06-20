@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild, AfterViewInit} from "@angular/core";
-import {ControlGroup} from "@angular/common";
+import {FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 import {MdCheckbox} from "@angular2-material/checkbox";
 import {MdInput} from "@angular2-material/input";
 import {MdRadioButton, MdRadioGroup, MdRadioDispatcher} from "@angular2-material/radio";
@@ -14,7 +14,7 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
 @Component({
 
-    directives: [MdCheckbox, MdInput, MdRadioButton, MdRadioGroup],
+    directives: [REACTIVE_FORM_DIRECTIVES, MdCheckbox, MdInput, MdRadioButton, MdRadioGroup],
     moduleId: module.id,
     providers: [MdRadioDispatcher],
     selector: "dynamic-form-material-control",
@@ -24,7 +24,7 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements AfterViewInit {
 
     @Input() model: DynamicFormControlModel<any>;
-    @Input() form: ControlGroup;
+    @Input() form: FormGroup;
 
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
     @ViewChild(MdInput) mdInput: MdInput;
