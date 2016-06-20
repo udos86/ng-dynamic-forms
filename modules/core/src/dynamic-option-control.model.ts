@@ -9,9 +9,16 @@ export interface DynamicFormOption<T> {
     //selected?: boolean;
 }
 
+export interface DynamicFormOptionGroup<T> {
+
+    label: string;
+    options: Array<DynamicFormOption<T>>;
+}
+
 export abstract class DynamicOptionControlModel<T> extends DynamicFormControlModel<T> {
 
     options: Array<DynamicFormOption<T>>;
+    optionGroups: Array<DynamicFormOptionGroup<T>>;
 
     constructor(configObject: {} = {}) {
 

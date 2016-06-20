@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FORM_DIRECTIVES} from "@angular/common";
-import {Control, ControlGroup} from "@angular/common";
+import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormService,
     DynamicCheckboxModel,
@@ -11,7 +10,7 @@ import {BASIC_EXAMPLE_MODEL} from "./basic-example.model";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBasicComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBasicComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
     selector: "dynamic-form-basic-example",
@@ -23,9 +22,9 @@ export class BasicExampleComponent implements OnInit {
     dynamicFormModel: DynamicFormModel;
     dynamicFormService: DynamicFormService;
 
-    form: ControlGroup;
+    form: FormGroup;
 
-    exampleCheckboxControl: Control;
+    exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
     constructor(dynamicFormService: DynamicFormService) {
@@ -36,12 +35,25 @@ export class BasicExampleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
 
-        this.exampleCheckboxControl = <Control> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
+        this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
 
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+    }
+
+    set modelEdit(value: string) {
+        try {
+            this.dynamicFormModel.model = JSON.parse(value);
+
+        } catch (e) {
+            // Just do nothing
+        }
+    }
+
+    get modelEdit() {
+        return JSON.stringify(this.dynamicFormModel.model, null, 2);
     }
 
     test() {

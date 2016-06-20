@@ -1,20 +1,20 @@
-<div [hidden]="!isCompatible"
-     [ngFormModel]="form"
+<div [formGroup]="form"
+     [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
     <label [attr.for]="model.id"
            [hidden]="model.label.hidden || isCheckbox"
            [ngClass]="model.label.cls">{{model.label.text}}</label>
 
-    <md-checkbox *ngSwitchWhen="'CHECKBOX'"
+    <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [disabled]="model.disabled"
+                 [formControlName]="model.id"
                  [id]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
                  [ngClass]="model.cls"
-                 [ngControl]="model.id"
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">
@@ -23,9 +23,10 @@
 
     </md-checkbox>
 
-    <md-input *ngSwitchWhen="'INPUT'"
+    <md-input *ngSwitchCase="'INPUT'"
               [autofocus]="model.autoFocus"
               [disabled]="model.disabled"
+              [formControlName]="model.id"
               [id]="model.id"
               [max]="model.max"
               [maxLength]="model.maxLength"
@@ -35,7 +36,6 @@
               [step]="model.step"
               [type]="model.inputType"
               [ngClass]="model.cls"
-              [ngControl]="model.id"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
@@ -49,11 +49,11 @@
 
     </md-input>
 
-    <md-radio-group *ngSwitchWhen="'RADIO'"
-                    [name]="model.name"
+    <md-radio-group *ngSwitchCase="'RADIO'"
+                    [formControlName]="model.id"
                     [id]="model.id"
+                    [name]="model.name"
                     [ngClass]="model.cls"
-                    [ngControl]="model.id"
                     [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
                     (focus)="onFocus($event)">

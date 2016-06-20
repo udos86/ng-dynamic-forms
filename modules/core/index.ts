@@ -8,6 +8,6 @@ export * from "./src/utils";
 
 export * from "./src/checkbox/dynamic-checkbox.model";
 export * from "./src/input/dynamic-input.model";
-export * from "./src/radio/dynamic-radio.model";
+export * from "./src/radio/dynamic-radio-group.model";
 export * from "./src/select/dynamic-select.model";
 export * from "./src/textarea/dynamic-textarea.model";

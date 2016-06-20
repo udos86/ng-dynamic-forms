@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {FormBuilder, Validators} from "@angular/common";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {DynamicFormModel} from "./dynamic-form.model";
 
 @Injectable()
@@ -11,22 +11,21 @@ export class DynamicFormService {
 
         this.formBuilder = formBuilder;
     }
+    
+    createFormGroup(dynamicFormModel: DynamicFormModel) {
 
-    createControlGroup(dynamicFormModel: DynamicFormModel) {
+        let formGroup = {};
+        
+        dynamicFormModel.model.forEach(formControlModel => {
 
-        let controlGroup = {};
-
-        dynamicFormModel.model.sort((a, b) => a.order - b.order);
-        dynamicFormModel.model.forEach(controlModel => {
-
-            controlGroup[controlModel.id] = [
+            formGroup[formControlModel.id] = new FormControl(
                 
-                controlModel.value || null,
-                Validators.compose(controlModel.validators),
-                Validators.composeAsync(controlModel.validatorsAsync)
-            ];
+                formControlModel.value || null,
+                Validators.compose(formControlModel.validators),
+                Validators.composeAsync(formControlModel.validatorsAsync)
+            );
         });
 
-        return this.formBuilder.group(controlGroup);
+        return this.formBuilder.group(formGroup);
     }
 }
