@@ -55,7 +55,7 @@ System.config({
 
 ## Basic Usage
 
-**1. Define your dynamic form model**:
+**1. Define your `DynamicFormModel`**:
 ```ts
 import {DynamicFormModel, DynamicCheckboxModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
 
