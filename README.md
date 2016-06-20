@@ -84,11 +84,11 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 **2. Provide** `DynamicFormService` **and plug in the** `DynamicFormControlComponent`:
 ```ts
 import {DynamicFormService} from "@ng2-dynamic-forms/core";
-import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
+import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormMaterialComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
     providers: [DynamicFormService],
 
     // ... all mandatory properties (selector, templateUrl, etc.)
@@ -117,9 +117,9 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
     <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-material-control [form]="form"
+        <dynamic-form-bootstrap-control [form]="form"
                                        [model]="controlModel">
-        </dynamic-form-material-control>
+        </dynamic-form-bootstrap-control>
 
     </div>
 
@@ -171,8 +171,7 @@ To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 ```
 
 Due to **known issues in Angular 2 RC.1** ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
-in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full support for all major form controls can
- not be provided at the moment. See the following compatibility table:
+in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
 |              | Checkbox | Input | Radio Group | Select | Textarea |
 |--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
