@@ -55,7 +55,7 @@ System.config({
 
 ## Basic Usage
 
-**1. Define your `DynamicFormModel`**:
+**1. Define your** `DynamicFormModel`:
 ```ts
 import {DynamicFormModel, DynamicCheckboxModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
 
@@ -81,7 +81,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 
-**2. Provide** `DynamicFormService` **and plug in the UI component**:
+**2. Provide** `DynamicFormService` **and plug in the** `DynamicFormControlComponent`:
 ```ts
 import {DynamicFormService} from "@ng2-dynamic-forms/core";
 import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
@@ -95,17 +95,17 @@ import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
 })
 ```
 
-**3. Create the form** `ControlGroup`:
+**3. Create the** `FormGroup`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-    form: ControlGroup;
+    form: formGroup;
 
     constructor(private dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
-        this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
     }
 }
 ```
