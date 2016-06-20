@@ -20,7 +20,7 @@ npm install @ng2-dynamic-forms/core --save
   
 **2. Choose your UI library** (e.g. Angular 2 Material) and **install the corresponding package**:
 ```
-npm install @ng2-dynamic-forms/ui-material --save
+npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
 
 **3.** When using **SystemJS**, update your configuration file:
