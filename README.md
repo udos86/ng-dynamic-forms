@@ -88,7 +88,7 @@ import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormMaterialComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormMaterialComponent],
     providers: [DynamicFormService],
 
     // ... all mandatory properties (selector, templateUrl, etc.)
@@ -110,14 +110,15 @@ export class MyDynamicFormComponent implements OnInit {
 }
 ```
 
-**4. Add the** `DynamicFormControlComponent` **to your template**:
+**4. Add the** `DynamicFormControlComponent` **to your template
+and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```ts
-<form [ngFormModel]="form">
+<form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model">
+    <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-material-control [model]="controlModel"
-                                       [form]="form">
+        <dynamic-form-material-control [form]="form"
+                                       [model]="controlModel">
         </dynamic-form-material-control>
 
     </div>
@@ -148,7 +149,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBootstrapComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
 
     // ... all mandatory component properties (selector, templateUrl, etc.)
 })
@@ -156,12 +157,12 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 ```ts
-<form [ngFormModel]="form">
+<form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model">
+    <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-bootstrap-control [model]="controlModel"
-                                        [form]="form">
+        <dynamic-form-bootstrap-control [form]="form"
+                                        [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
     </div>

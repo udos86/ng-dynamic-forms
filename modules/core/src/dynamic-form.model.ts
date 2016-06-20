@@ -2,13 +2,13 @@ import {DynamicFormControlModel} from "./dynamic-form-control.model";
 
 export class DynamicFormModel {
 
-    model: Array<DynamicFormControlModel<any>>;
+    items: Array<DynamicFormControlModel<any>>;
 
-    constructor(model: Array<DynamicFormControlModel<any>>) {
-        this.model = model || [];
+    constructor(items: Array<DynamicFormControlModel<any>>) {
+        this.items = items || [];
     }
 
     findById(id: string) {
-        return this.model.find(controlModel => controlModel.id === id);
+        return this.items.find(controlModel => controlModel.id === id);
     }
 }

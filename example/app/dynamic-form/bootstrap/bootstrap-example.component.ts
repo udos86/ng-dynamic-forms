@@ -46,7 +46,7 @@ export class BootstrapExampleComponent implements OnInit {
 
     set modelEdit(value: string) {
         try {
-            this.dynamicFormModel.model = JSON.parse(value);
+            this.dynamicFormModel.items = JSON.parse(value);
 
         } catch (e) {
             // Just do nothing
@@ -54,11 +54,11 @@ export class BootstrapExampleComponent implements OnInit {
     }
 
     get modelEdit() {
-        return JSON.stringify(this.dynamicFormModel.model, null, 2);
+        return JSON.stringify(this.dynamicFormModel.items, null, 2);
     }
 
     test() {
         this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        this.dynamicFormModel.model[1].value = "42";
+        this.dynamicFormModel.items[1].value = "42";
     }
 }
