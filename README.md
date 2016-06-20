@@ -32,20 +32,20 @@ System.config({
 
     map: {
 
-        // ...all the rest (Angular 2, RxJS, Material, etc.)
+        // ...all the rest (Angular 2, RxJS, etc.)
 
         "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
     },
 
     packages: {
 
-        // ...all the rest (Angular 2, Material, RxJS, etc.)
+        // ...all the rest (Angular 2, RxJS, etc.)
 
         "@ng2-dynamic-forms/core": {
             main: "index.js",
             defaultExtension: "js"
         },
-        "@ng2-dynamic-forms/ui-material": {
+        "@ng2-dynamic-forms/ui-bootstrap": {
             main: "index.js",
             defaultExtension: "js"
         }
