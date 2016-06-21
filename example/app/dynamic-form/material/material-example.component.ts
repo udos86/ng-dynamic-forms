@@ -45,6 +45,6 @@ export class MaterialExampleComponent implements OnInit {
 
     test() {
         this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        this.dynamicFormModel.model[1].value = "42";
+        this.dynamicFormModel.items[1].value = "42";
     }
 }

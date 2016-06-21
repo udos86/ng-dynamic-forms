@@ -4,7 +4,8 @@
 
 * Updated everything to [@angular/forms](https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub)
 * `order` property removed from `DynamicFormControlModel`
-* `DynamicRadioModel` renamed to `DynamicRadioGRoupMpdel`
+* `DynamicRadioModel` renamed to `DynamicRadioGroupModel`
+* `model` property of `DynamicFormModel` renamed to `items`
 
 # alpha.5
 

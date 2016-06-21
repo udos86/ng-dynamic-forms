@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (alpha.5)
+# ng2 Dynamic Forms (alpha.6)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -20,7 +20,7 @@ npm install @ng2-dynamic-forms/core --save
   
 **2. Choose your UI library** (e.g. Angular 2 Material) and **install the corresponding package**:
 ```
-npm install @ng2-dynamic-forms/ui-material --save
+npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
 
 **3.** When using **SystemJS**, update your configuration file:
@@ -32,20 +32,20 @@ System.config({
 
     map: {
 
-        // ...all the rest (Angular 2, RxJS, Material, etc.)
+        // ...all the rest (Angular 2, RxJS, etc.)
 
         "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
     },
 
     packages: {
 
-        // ...all the rest (Angular 2, Material, RxJS, etc.)
+        // ...all the rest (Angular 2, RxJS, etc.)
 
         "@ng2-dynamic-forms/core": {
             main: "index.js",
             defaultExtension: "js"
         },
-        "@ng2-dynamic-forms/ui-material": {
+        "@ng2-dynamic-forms/ui-bootstrap": {
             main: "index.js",
             defaultExtension: "js"
         }
@@ -55,7 +55,7 @@ System.config({
 
 ## Basic Usage
 
-**1. Define your dynamic form model**:
+**1. Define your** `DynamicFormModel`:
 ```ts
 import {DynamicFormModel, DynamicCheckboxModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
 
@@ -81,44 +81,45 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 
-**2. Provide** `DynamicFormService` **and plug in the UI component**:
+**2. Provide** `DynamicFormService` **and plug in the** `DynamicFormControlComponent`:
 ```ts
 import {DynamicFormService} from "@ng2-dynamic-forms/core";
-import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
+import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormMaterialComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
     providers: [DynamicFormService],
 
     // ... all mandatory properties (selector, templateUrl, etc.)
 })
 ```
 
-**3. Create the form** `ControlGroup`:
+**3. Create the** `FormGroup`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-    form: ControlGroup;
+    form: FormGroup;
 
     constructor(private dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
-        this.form = this.dynamicFormService.createControlGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
     }
 }
 ```
 
-**4. Add the UI component to your template**:
+**4. Add the** `DynamicFormControlComponent` **to your template
+and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```ts
-<form [ngFormModel]="form">
+<form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model">
+    <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-material-control [model]="controlModel"
-                                       [form]="form">
-        </dynamic-form-material-control>
+        <dynamic-form-bootstrap-control [form]="form"
+                                       [model]="controlModel">
+        </dynamic-form-bootstrap-control>
 
     </div>
 
@@ -148,7 +149,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 @Component({
 
-    directives: [FORM_DIRECTIVES, DynamicFormBootstrapComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
 
     // ... all mandatory component properties (selector, templateUrl, etc.)
 })
@@ -156,12 +157,12 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 ```ts
-<form [ngFormModel]="form">
+<form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.model">
+    <div *ngFor="let controlModel of dynamicFormModel.items">
 
-        <dynamic-form-bootstrap-control [model]="controlModel"
-                                        [form]="form">
+        <dynamic-form-bootstrap-control [form]="form"
+                                        [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
     </div>
@@ -170,8 +171,7 @@ To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 ```
 
 Due to **known issues in Angular 2 RC.1** ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
-in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full support for all major form controls can
- not be provided at the moment. See the following compatibility table:
+in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
 |              | Checkbox | Input | Radio Group | Select | Textarea |
 |--------------|:--------:|:-----:|:-----------:|:------:|:--------:|

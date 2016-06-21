@@ -6,11 +6,10 @@
 
         <form class="form-horizontal" [formGroup]="form">
 
-            <div *ngFor="let dynamicFormControlModel of dynamicFormModel.model">
+            <div *ngFor="let controlModel of dynamicFormModel.items">
 
-                <dynamic-form-bootstrap-control [model]="dynamicFormControlModel"
-                                                [form]="form"
-                                                #dynamicFormControl></dynamic-form-bootstrap-control>
+                <dynamic-form-bootstrap-control [form]="form"
+                                                [model]="controlModel"></dynamic-form-bootstrap-control>
 
             </div>
 

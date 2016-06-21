@@ -12,8 +12,8 @@ describe("DynamicTextAreaModel test suite", () => {
 
         it("tests if correct default model property is set", () => {
 
-            expect(defaultObject.model).toBeDefined();
-            expect(defaultObject.model).toEqual([]);
+            expect(defaultObject.items).toBeDefined();
+            expect(defaultObject.items).toEqual([]);
         });
         
     });

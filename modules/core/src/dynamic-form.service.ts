@@ -16,13 +16,13 @@ export class DynamicFormService {
 
         let formGroup = {};
         
-        dynamicFormModel.model.forEach(formControlModel => {
+        dynamicFormModel.items.forEach(controlModel => {
 
-            formGroup[formControlModel.id] = new FormControl(
+            formGroup[controlModel.id] = new FormControl(
                 
-                formControlModel.value || null,
-                Validators.compose(formControlModel.validators),
-                Validators.composeAsync(formControlModel.validatorsAsync)
+                controlModel.value || null,
+                Validators.compose(controlModel.validators),
+                Validators.composeAsync(controlModel.validatorsAsync)
             );
         });
 
