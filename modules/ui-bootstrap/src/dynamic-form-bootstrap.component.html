@@ -6,17 +6,17 @@
     <label *ngIf="!isCheckbox"
            [attr.for]="model.id"
            [hidden]="model.label.hidden"
-           [ngClass]="model.label.cls">{{model.label.text}}
+           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}
     </label>
 
     <div *ngSwitchCase="'CHECKBOX'"
-         [ngClass]="model.cls">
+         [ngClass]="model.cls.grid.control">
 
         <div class="checkbox"
              [class.disabled]="model.disabled">
 
             <label [attr.for]="model.id"
-                   [ngClass]="model.label.cls">
+                   [ngClass]="model.cls.label">
 
                 <input type="checkbox"
                        [disabled]="model.disabled"
@@ -24,6 +24,7 @@
                        [id]="model.id"
                        [name]="model.name"
                        [value]="model.value"
+                       [ngClass]="model.cls.control"
                        [(ngModel)]="model.value"
                        (blur)="onBlur($event)"
                        (focus)="onFocus($event)"/>{{model.label.text}}
@@ -34,7 +35,7 @@
     </div>
 
     <div *ngIf="!isCheckbox"
-         [ngClass]="model.cls">
+         [ngClass]="model.cls.grid.control">
 
         <div *ngSwitchCase="'INPUT'"
              [class.input-group]="model.prefix || model.suffix">
@@ -56,6 +57,7 @@
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [type]="model.inputType"
+                   [ngClass]="model.cls.control"
                    [(ngModel)]="model.value"
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
@@ -88,6 +90,7 @@
                 [formControlName]="model.id"
                 [id]="model.id"
                 [name]="model.name"
+                [ngClass]="model.cls.control"
                 [(ngModel)]="model.value"
                 (blur)="onBlur($event)"
                 (focus)="onFocus($event)">
@@ -111,13 +114,14 @@
                   [placeholder]="model.placeholder"
                   [rows]="model.rows"
                   [wrap]="model.wrap"
+                  [ngClass]="model.cls.control"
                   [(ngModel)]="model.value"
                   (blur)="onBlur($event)"
                   (focus)="onFocus($event)">
         </textarea>
 
-        <span *ngIf="model.help"
-              class="help-block">{{model.help}}</span>
+        <span *ngIf="model.label.help"
+              class="help-block">{{model.label.help}}</span>
 
     </div>
 

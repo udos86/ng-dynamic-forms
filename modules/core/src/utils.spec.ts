@@ -14,6 +14,12 @@ describe("Utils test suite", () => {
                 c: "test",
                 d: {
                     prop1: 2
+                },
+                e: {
+                    prop1: 1,
+                    prop2: {
+                        nested1: 42
+                    }
                 }
             };
         });
@@ -39,6 +45,29 @@ describe("Utils test suite", () => {
             
             expect(valueY).toBe(false);
             expect(valueZ).toBeNull();
+        });
+
+        it("tests if getValue recursion is working correctly", () => {
+
+            let valueE = utils.getValue(configObject, "e", {
+                prop1: 10, 
+                prop2: {
+                    nested1: 21, 
+                    nested2: 84
+                },
+                prop3: 100
+            });
+
+            expect(valueE.prop1).toBe(1);
+            
+            expect(valueE.prop2).toBeDefined();
+            expect(valueE.prop2.nested1).toBe(42);
+            
+            expect(valueE.prop2.nested2).toBeDefined();
+            expect(valueE.prop2.nested2).toBe(84);
+
+            expect(valueE.prop3).toBeDefined();
+            expect(valueE.prop3).toBe(100);
         });
         
     });

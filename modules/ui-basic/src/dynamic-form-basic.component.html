@@ -9,7 +9,7 @@
            [id]="model.id"
            [name]="model.name"
            [value]="model.value"
-           [ngClass]="model.cls"
+           [ngClass]="model.cls.control"
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
@@ -32,7 +32,7 @@
            [name]="model.name"
            [placeholder]="model.placeholder"
            [type]="model.inputType"
-           [ngClass]="model.cls"
+           [ngClass]="model.cls.control"
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
@@ -41,7 +41,7 @@
             [formControlName]="model.id"
             [id]="model.id"
             [name]="model.name"
-            [ngClass]="model.cls"
+            [ngClass]="model.cls.control"
             [(ngModel)]="model.value"
             (blur)="onBlur($event)"
             (focus)="onFocus($event)">
@@ -63,7 +63,7 @@
               [placeholder]="model.placeholder"
               [rows]="model.rows"
               [wrap]="model.wrap"
-              [ngClass]="model.cls"
+              [ngClass]="model.cls.control"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
