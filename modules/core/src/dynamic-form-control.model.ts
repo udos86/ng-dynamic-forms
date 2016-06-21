@@ -10,14 +10,12 @@ export interface DynamicFormControlLabel {
 
 export interface DynamicFormControlGridCls {
     
-    container?: string;
     control?: string;
     label?: string;
 }
 
 export interface DynamicFormControlCls {
     
-    container?: string;
     control?: string;
     grid?: DynamicFormControlGridCls;
     invalid?: string;
@@ -54,10 +52,8 @@ export abstract class DynamicFormControlModel<T> {
 
         this.cls = getValue(configObject, "cls", {
             
-            container: "",
             control: "",
             grid: {
-                container: "",
                 control: "",
                 label: ""
             },
@@ -70,6 +66,7 @@ export abstract class DynamicFormControlModel<T> {
         this.id = getValue(configObject, "id", null);
         
         this.label = getValue(configObject, "label", {
+            
             help: null, 
             hidden: false, 
             text: ""
