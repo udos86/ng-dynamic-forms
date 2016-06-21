@@ -179,3 +179,53 @@ in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full s
 | ui-bootstrap |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
 | ui-material  |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 
+
+## Layouting the Form
+
+When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS Library
+(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`.
+That's the **solid** part.
+
+does not make any presumption about the layout and leave it up to you
+
+ng2 Dynamic Forms allows you to do so by providing the `cls` and it's nested `grid` configuration object to
+define additional CSS classes for every `DynamicFormControlModel`.
+
+So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
+
+At first we have to append the mandatory Bootstrap CSS class `form-inline` to the `<form>` element in our template:
+
+
+```ts
+<form class="form-horizontal" [formGroup]="form">
+
+    <div *ngFor="let controlModel of dynamicFormModel.items">
+
+        <dynamic-form-bootstrap-control [form]="form"
+                                        [model]="controlModel"></dynamic-form-bootstrap-control>
+
+    </div>
+
+</form>
+```
+
+Now all we need to do is position the `<label>` and the `form-control` in the Bootstrap [grid system](http://getbootstrap.com/css/#grid).
+This is can be easily achieved by appending the corresponding CSS classes to the `DynamicFormControlModel`:
+
+```ts
+new DynamicInputModel({
+
+    cls: {
+
+        grid: {
+
+            control: "col-sm-9",
+            label: "col-sm-3"
+        },
+        label: "control-label"
+    },
+
+
+    //... all the rest
+})
+```

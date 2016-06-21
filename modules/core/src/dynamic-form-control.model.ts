@@ -10,6 +10,7 @@ export interface DynamicFormControlLabel {
 
 export interface DynamicFormControlGridCls {
     
+    container?: string;
     control?: string;
     label?: string;
 }
@@ -54,6 +55,7 @@ export abstract class DynamicFormControlModel<T> {
             
             control: "",
             grid: {
+                container: "",
                 control: "",
                 label: ""
             },
