@@ -18,7 +18,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 npm install @ng2-dynamic-forms/core --save
 ```
   
-**2. Choose your UI library** (e.g. Angular 2 Material) and **install the corresponding package**:
+**2. Choose your UI library** (e.g. Bootstrap) and **install the corresponding package**:
 ```
 npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
@@ -183,13 +183,13 @@ in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full s
 ## Layouting the Form
 
 When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS Library
-(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`. Apart from that ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
+(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`. 
+
+Apart from that ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
 So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
 
 At first we have to append the mandatory Bootstrap CSS class `form-inline` to the `<form>` element in our template:
-
-
 ```ts
 <form class="form-horizontal" [formGroup]="form">
 
@@ -203,7 +203,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-inline` to th
 </form>
 ```
 
-Now we need to position the `<label>` and the `form-control` within the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly append those necessary CSS classes to markup. 
+Now we need to position the `<label>` and the `form-control` within the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic of the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly append those necessary CSS classes to markup. 
 
 Don't worry!
 
