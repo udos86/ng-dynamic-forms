@@ -64,7 +64,12 @@ System.config({
 
 **1. Define your** `DynamicFormModel`:
 ```ts
-import {DynamicFormModel, DynamicCheckboxModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
+import {
+    DynamicFormModel,
+    DynamicCheckboxModel,
+    DynamicInputModel,
+    DynamicRadioGroupModel
+} from "@ng2-dynamic-forms/core";
 
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
