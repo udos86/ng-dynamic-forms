@@ -5,7 +5,7 @@
 * Upgraded to RC.3
 * `cls` property of `DynamicFormControlModel` refactored for advanced form layouts
 * Radio groups finally working in ui-basic and ui-bootstrap
-* New Chapter "Form Layouts" added in README.md
+* New chapter "Form Layouts" added in README.md
 
 ### **Please note:**
 
