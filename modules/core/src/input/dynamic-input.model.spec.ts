@@ -38,7 +38,7 @@ describe("DynamicInputModel test suite", () => {
         it("tests if correct default label properties aree set", () => {
 
             expect(defaultObject.label).toBeDefined();
-            expect(defaultObject.label.cls).toBeNull();
+            expect(defaultObject.label.help).toBeNull();
             expect(defaultObject.label.hidden).toBe(false);
             expect(defaultObject.label.text).toEqual("");
         });

@@ -13,7 +13,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
         id: "basicSelect",
         label: {
-            text: "Example Option"
+            text: "Example Select"
         },
         options: [
             {
@@ -41,6 +41,41 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         },
         maxLength: 51,
         placeholder: "example input"
+    }),
+
+    new DynamicRadioGroupModel<string>({
+
+        cls: {
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            },
+            label: "control-label"
+        },
+        id: "basicRadioGroup",
+        label: {
+            text: "Example Radio Group"
+        },
+        options: [
+            {
+                text: "Option 1",
+                value: "option-1",
+            },
+            {
+                disabled: true,
+                text: "Option 2",
+                value: "option-2"
+            },
+            {
+                text: "Option 3",
+                value: "option-3"
+            },
+            {
+                text: "Option 4",
+                value: "option-4"
+            }
+        ],
+        value: "option-3"
     }),
 
     new DynamicTextAreaModel({

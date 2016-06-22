@@ -3,14 +3,30 @@ import {getValue} from "./utils";
 
 export interface DynamicFormControlLabel {
 
-    cls?: string;
+    help?: string;
     hidden?: boolean;
     text?: string;
 }
 
+export interface DynamicFormControlGridCls {
+    
+    container?: string;
+    control?: string;
+    label?: string;
+}
+
+export interface DynamicFormControlCls {
+    
+    control?: string;
+    grid?: DynamicFormControlGridCls;
+    invalid?: string;
+    label?: string;
+    valid?: string;
+}
+
 export abstract class DynamicFormControlModel<T> {
 
-    cls: string;
+    cls: DynamicFormControlCls;
     disabled: boolean;
     id: string;
     label: DynamicFormControlLabel;
@@ -23,7 +39,7 @@ export abstract class DynamicFormControlModel<T> {
 
     constructor(configObject: {
 
-        cls?: string,
+        cls?: DynamicFormControlCls,
         disabled?: boolean,
         id?: string,
         label?: DynamicFormControlLabel,
@@ -35,10 +51,29 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}) {
 
-        this.cls = getValue(configObject, "cls", null);
+        this.cls = getValue(configObject, "cls", {
+            
+            control: "",
+            grid: {
+                container: "",
+                control: "",
+                label: ""
+            },
+            invalid: "",
+            label: "",
+            valid: ""
+        });
+        
         this.disabled = getValue(configObject, "disabled", false);
         this.id = getValue(configObject, "id", null);
-        this.label = getValue(configObject, "label", {cls: null, hidden: false, text: ""});
+        
+        this.label = getValue(configObject, "label", {
+            
+            help: null, 
+            hidden: false, 
+            text: ""
+        });
+        
         this.name = getValue(configObject, "name", this.id || "");
         this.required = getValue(configObject, "required", false);
         this.validators = getValue(configObject, "validators", []);

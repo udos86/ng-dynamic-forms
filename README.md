@@ -11,6 +11,13 @@ upon a layer of descriptive object models.
 It also provides a flexible system of dynamic UI components with out of the box support for
 **Angular 2 Material** and **Bootstrap**.
 
+##Table of Contents
+
+- [Getting Started](#getting-started)
+- [Basic Usage](#basic-usage)
+- [UI Components](#ui-components)
+- [Form Layouts](#form-layouts)
+
 ## Getting Started
 
 **1. Install the core package**:
@@ -18,7 +25,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 npm install @ng2-dynamic-forms/core --save
 ```
   
-**2. Choose your UI library** (e.g. Angular 2 Material) and **install the corresponding package**:
+**2. Choose your UI library** (e.g. Bootstrap) and **install the corresponding package**:
 ```
 npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
@@ -95,7 +102,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 })
 ```
 
-**3. Create the** `FormGroup`:
+**3. Create the** `FormGroup` **via the** `DynamicFormService`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
@@ -118,7 +125,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
     <div *ngFor="let controlModel of dynamicFormModel.items">
 
         <dynamic-form-bootstrap-control [form]="form"
-                                       [model]="controlModel">
+                                        [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
     </div>
@@ -175,7 +182,50 @@ in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full s
 
 |              | Checkbox | Input | Radio Group | Select | Textarea |
 |--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
-| ui-basic     |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
-| ui-bootstrap |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
+| ui-basic     |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
+| ui-bootstrap |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
 | ui-material  |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 
+
+## Form Layouts
+
+When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS Library
+(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`. 
+
+Apart from that ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
+
+So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
+
+At first we have to append the mandatory Bootstrap CSS class `form-inline` to the `<form>` element in our template:
+```ts
+<form class="form-horizontal" [formGroup]="form">
+
+    <div *ngFor="let controlModel of dynamicFormModel.items">
+
+        <dynamic-form-bootstrap-control [form]="form"
+                                        [model]="controlModel"></dynamic-form-bootstrap-control>
+
+    </div>
+
+</form>
+```
+
+Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
+
+Don't worry!
+
+By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows you to manuallay define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template:
+```ts
+new DynamicInputModel({
+
+    cls: {
+        grid: {
+            control: "col-sm-9",
+            label: "col-sm-3"
+        },
+        label: "control-label"
+    },
+
+    //... all the rest
+})
+```

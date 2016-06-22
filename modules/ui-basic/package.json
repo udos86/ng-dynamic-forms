@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-basic",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "Basic HTML5 ui library for ng2-dynamic-forms",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.1",
-    "@angular/forms": "^0.1.0",
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.6"
+    "@angular/core": "^2.0.0-rc.3",
+    "@angular/forms": "^0.1.1",
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.7"
   }
 }
