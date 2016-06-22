@@ -68,22 +68,28 @@
 
         </div>
 
-        <!--
-        <div *ngSwitchCase="'RADIO'">
+
+        <div *ngSwitchCase="'RADIO_GROUP'"
+             [ngClass]="model.cls.grid.control">
 
             <div *ngFor="let option of model.options" class="radio">
+
                 <label>
+
                     <input type="radio"
                            [name]="model.name"
                            [disabled]="!!option.disabled"
                            [value]="option.value"
+                           [ngClass]="model.cls.control"
                            [(ngModel)]="model.value">
                     {{option.text}}
+
                 </label>
+
             </div>
 
         </div>
-        -->
+
 
         <select *ngSwitchCase="'SELECT'"
                 class="form-control"

@@ -182,8 +182,8 @@ in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full s
 
 |              | Checkbox | Input | Radio Group | Select | Textarea |
 |--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
-| ui-basic     |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
-| ui-bootstrap |     ✓    |   ✓   |      ✗      |    ✓   |     ✓    |
+| ui-basic     |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
+| ui-bootstrap |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
 | ui-material  |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 
 
