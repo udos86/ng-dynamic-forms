@@ -210,11 +210,11 @@ At first we have to append the mandatory Bootstrap CSS class `form-inline` to th
 </form>
 ```
 
-Now we need to position the `<label>` and the `form-control` within the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic of the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly append those necessary CSS classes to markup. 
+Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
 
 Don't worry!
 
-By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows you to define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently handled in the template:
+By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows you to manuallay define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template:
 ```ts
 new DynamicInputModel({
 
