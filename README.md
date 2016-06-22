@@ -11,6 +11,13 @@ upon a layer of descriptive object models.
 It also provides a flexible system of dynamic UI components with out of the box support for
 **Angular 2 Material** and **Bootstrap**.
 
+##Table of Contents
+
+- [Getting Started](#getting-started)
+- [Basic Usage](#basic-usage)
+- [UI Components](#ui-components)
+- [Layouting the Form](#form-layouts)
+
 ## Getting Started
 
 **1. Install the core package**:
@@ -180,7 +187,7 @@ in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full s
 | ui-material  |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 
 
-## Layouting the Form
+## Form Layouts
 
 When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS Library
 (like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`. 
