@@ -9,6 +9,7 @@
            [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}
     </label>
 
+
     <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls.grid.control">
 
@@ -70,8 +71,11 @@
         </div>
 
 
-        <div *ngSwitchCase="'RADIO_GROUP'"
-             [ngClass]="model.cls.grid.control">
+        <fieldset *ngSwitchCase="'RADIO_GROUP'"
+                  role="radiogroup"
+                  [id]="model.id">
+
+            <legend *ngIf="model.legend">{{model.legend}}</legend>
 
             <div *ngFor="let option of model.options"
                  class="radio"
@@ -84,14 +88,13 @@
                            [disabled]="!!option.disabled"
                            [value]="option.value"
                            [ngClass]="model.cls.control"
-                           [(ngModel)]="model.value">
-                    {{option.text}}
+                           [(ngModel)]="model.value">{{option.text}}
 
                 </label>
 
             </div>
 
-        </div>
+        </fieldset>
 
 
         <select *ngSwitchCase="'SELECT'"
