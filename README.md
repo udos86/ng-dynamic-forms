@@ -102,7 +102,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 })
 ```
 
-**3. Create the** `FormGroup` via the `DynamicFormService`:
+**3. Create the** `FormGroup` **via the** `DynamicFormService`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
