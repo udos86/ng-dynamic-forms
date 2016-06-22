@@ -16,7 +16,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
 - [UI Components](#ui-components)
-- [Layouting the Form](#form-layouts)
+- [Form Layouts](#form-layouts)
 
 ## Getting Started
 
