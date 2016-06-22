@@ -72,7 +72,9 @@
         <div *ngSwitchCase="'RADIO_GROUP'"
              [ngClass]="model.cls.grid.control">
 
-            <div *ngFor="let option of model.options" class="radio">
+            <div *ngFor="let option of model.options"
+                 class="radio"
+                 [class.disabled]="option.disabled">
 
                 <label>
 

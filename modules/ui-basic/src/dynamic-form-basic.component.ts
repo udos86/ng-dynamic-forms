@@ -19,7 +19,7 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent {
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: FormGroup;
 
-    incompatibilities: Array<string> = [DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP];
+    incompatibilities: Array<string> = [/*DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP*/];
     type: string = DYNAMIC_FORM_UI_BASIC;
 
     constructor() {
