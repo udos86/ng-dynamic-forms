@@ -3,6 +3,7 @@
 ### **Breaking Changes**
 
 * `cls` bugs in template files fixed
+* `readonly` property introduced for `DynamicFormInputModel`
 
 
 # alpha.7
