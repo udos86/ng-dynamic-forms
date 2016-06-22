@@ -1,5 +1,5 @@
 import {Validators} from "@angular/forms";
-import {getValue} from "./utils";
+import {getValue} from "../utils";
 
 export interface DynamicFormControlLabel {
 

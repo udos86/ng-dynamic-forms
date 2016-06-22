@@ -1,5 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
-import {getValue} from "./utils";
+import {getValue} from "../utils";
 
 export interface DynamicFormOption<T> {
 

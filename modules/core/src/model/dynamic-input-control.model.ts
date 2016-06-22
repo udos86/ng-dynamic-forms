@@ -1,5 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
-import {getValue} from "./utils";
+import {getValue} from "../utils";
 
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF = "off";
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_ON = "on";

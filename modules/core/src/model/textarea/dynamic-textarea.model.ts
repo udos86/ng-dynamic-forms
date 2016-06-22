@@ -1,5 +1,5 @@
 import {DynamicInputControlModel} from "../dynamic-input-control.model";
-import {getValue} from "../utils";
+import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "TEXTAREA";
 
