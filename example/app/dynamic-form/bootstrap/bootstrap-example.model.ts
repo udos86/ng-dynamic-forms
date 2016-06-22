@@ -53,9 +53,9 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             },
             label: "control-label"
         },
+        help: "Just a sample help text",
         id: "bootstrapInput",
         label: {
-            help: "Just a sample help text",
             text: "Example Input"
         },
         maxLength: 51,
