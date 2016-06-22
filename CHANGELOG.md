@@ -7,6 +7,10 @@
 * Radio Groups now working in ui-basic and ui-bootstrap`
 * `New Chapter "Form Layouts" added in README.md
 
+### **Please note:**
+
+ui-material is currently broken due to Angular 2 Material not having upgraded to @angular/forms yet
+
 # alpha.6
 
 ### **Breaking Changes**
