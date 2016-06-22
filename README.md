@@ -183,13 +183,7 @@ in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full s
 ## Layouting the Form
 
 When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS Library
-(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`.
-That's the **solid** part.
-
-does not make any presumption about the layout and leave it up to you
-
-ng2 Dynamic Forms allows you to do so by providing the `cls` and it's nested `grid` configuration object to
-define additional CSS classes for every `DynamicFormControlModel`.
+(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`. Apart from that ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
 So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
 
@@ -209,22 +203,21 @@ At first we have to append the mandatory Bootstrap CSS class `form-inline` to th
 </form>
 ```
 
-Now all we need to do is position the `<label>` and the `form-control` in the Bootstrap [grid system](http://getbootstrap.com/css/#grid).
-This is can be easily achieved by appending the corresponding CSS classes to the `DynamicFormControlModel`:
+Now we need to position the `<label>` and the `form-control` within the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly append those necessary CSS classes to markup. 
 
+Don't worry!
+
+By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows you to define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently handled in the template:
 ```ts
 new DynamicInputModel({
 
     cls: {
-
         grid: {
-
             control: "col-sm-9",
             label: "col-sm-3"
         },
         label: "control-label"
     },
-
 
     //... all the rest
 })
