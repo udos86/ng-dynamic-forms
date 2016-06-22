@@ -78,6 +78,30 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
         placeholder: "example input",
     }),
 
+    new DynamicRadioGroupModel<string>({
+
+        id: "exampleRadioGroup",
+        label: {
+            text: "Example Radio Group"
+        },
+        options: [
+            {
+                text: "Option 1",
+                value: "option-1",
+            },
+            {
+                disabled: true,
+                text: "Option 2",
+                value: "option-2"
+            },
+            {
+                text: "Option 3",
+                value: "option-3"
+            }
+        ],
+        value: "option-3"
+    }),
+
     new DynamicCheckboxModel({
 
         id: "exampleCheckbox",
@@ -177,8 +201,8 @@ To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 </form>
 ```
 
-Due to **known issues in Angular 2 RC.1** ([#7642](https://github.com/angular/angular/issues/7642)) and Angular 2 Material still being
-in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md) full support for all major form controls cannot be provided at the moment. See the following compatibility table:
+Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
+full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
 |              | Checkbox | Input | Radio Group | Select | Textarea |
 |--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
