@@ -20,7 +20,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         },
         id: "bootstrapSelect",
         label: {
-            text: "Example Option"
+            text: "Example Select"
         },
         options: [
             {
@@ -43,7 +43,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         ],
         value: "option-3"
     }),
-    
+
     new DynamicInputModel({
 
         cls: {
@@ -53,15 +53,50 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             },
             label: "control-label"
         },
+        help: "Just a sample help text",
         id: "bootstrapInput",
         label: {
-            help: "Just a sample help text",
             text: "Example Input"
         },
         maxLength: 51,
         placeholder: "example input",
         prefix: "Prefix",
         suffix: "Suffix"
+    }),
+
+    new DynamicRadioGroupModel<string>({
+
+        cls: {
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            },
+            label: "control-label"
+        },
+        id: "bootstrapRadioGroup",
+        label: {
+            text: "Example Radio Group"
+        },
+        options: [
+            {
+                text: "Option 1",
+                value: "option-1",
+            },
+            {
+                disabled: true,
+                text: "Option 2",
+                value: "option-2"
+            },
+            {
+                text: "Option 3",
+                value: "option-3"
+            },
+            {
+                text: "Option 4",
+                value: "option-4"
+            }
+        ],
+        value: "option-3"
     }),
 
     new DynamicTextAreaModel({

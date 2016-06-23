@@ -4,7 +4,7 @@
 
     <label [attr.for]="model.id"
            [hidden]="model.label.hidden || isCheckbox"
-           [ngClass]="model.label.cls">{{model.label.text}}</label>
+           [ngClass]="model.cls.label">{{model.label.text}}</label>
 
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
@@ -14,7 +14,7 @@
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
-                 [ngClass]="model.cls"
+                 [ngClass]="model.cls.control"
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">
@@ -35,7 +35,7 @@
               [placeholder]="model.placeholder"
               [step]="model.step"
               [type]="model.inputType"
-              [ngClass]="model.cls"
+              [ngClass]="model.cls.control"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
@@ -53,7 +53,7 @@
                     [formControlName]="model.id"
                     [id]="model.id"
                     [name]="model.name"
-                    [ngClass]="model.cls"
+                    [ngClass]="model.cls.control"
                     [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
                     (focus)="onFocus($event)">

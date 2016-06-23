@@ -16,8 +16,9 @@
 
     <label [attr.for]="model.id"
            [hidden]="model.label.hidden"
-           [ngClass]="model.label.cls">{{model.label.text}}
+           [ngClass]="model.cls.label">{{model.label.text}}
     </label>
+
 
     <input *ngSwitchCase="'INPUT'"
            [attr.autoComplete]="model.autoComplete"
@@ -37,6 +38,24 @@
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
+
+    <span *ngSwitchCase="'RADIO_GROUP'">
+
+        <label *ngFor="let option of model.options">
+
+            <input type="radio"
+                   [name]="model.name"
+                   [disabled]="!!option.disabled"
+                   [value]="option.value"
+                   [ngClass]="model.cls.control"
+                   [(ngModel)]="model.value">
+            {{option.text}}
+
+        </label>
+
+    </span>
+
+
     <select *ngSwitchCase="'SELECT'"
             [formControlName]="model.id"
             [id]="model.id"
@@ -53,6 +72,7 @@
         </option>
 
     </select>
+
 
     <textarea *ngSwitchCase="'TEXTAREA'"
               [cols]="model.cols"

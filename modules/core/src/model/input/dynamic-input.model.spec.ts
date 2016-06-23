@@ -35,10 +35,15 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultObject.autoFocus).toBe(false);
         });
 
+        it("tests if correct default help property is set", () => {
+
+            expect(defaultObject.help).toBeDefined();
+            expect(defaultObject.help).toBeNull();
+        });
+
         it("tests if correct default label properties aree set", () => {
 
             expect(defaultObject.label).toBeDefined();
-            expect(defaultObject.label.cls).toBeNull();
             expect(defaultObject.label.hidden).toBe(false);
             expect(defaultObject.label.text).toEqual("");
         });
@@ -65,6 +70,12 @@ describe("DynamicInputModel test suite", () => {
 
             expect(defaultObject.placeholder).toBeDefined();
             expect(defaultObject.placeholder).toEqual("");
+        });
+
+        it("tests if correct default readonly property is set", () => {
+
+            expect(defaultObject.readonly).toBeDefined();
+            expect(defaultObject.readonly).toBe(false);
         });
         
         it("tests if correct default step property is set", () => {

@@ -1,5 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
-import {getValue} from "./utils";
+import {getValue} from "../utils";
 
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF = "off";
 export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_ON = "on";
@@ -11,6 +11,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     maxLength: number;
     placeholder: string;
     prefix: string;
+    readonly: boolean;
     showLength: boolean;
     suffix: string;
 
@@ -23,6 +24,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
         this.maxLength = getValue(configObject, "maxLength", 100);
         this.placeholder = getValue(configObject, "placeholder", "");
         this.prefix = getValue(configObject, "prefix", null);
+        this.readonly = getValue(configObject, "readonly", false);
         this.showLength = getValue(configObject, "showLength", false);
         this.suffix = getValue(configObject, "suffix", null);
     }

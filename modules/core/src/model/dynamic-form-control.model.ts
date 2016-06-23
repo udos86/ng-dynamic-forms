@@ -1,9 +1,8 @@
 import {Validators} from "@angular/forms";
-import {getValue} from "./utils";
+import {getValue} from "../utils";
 
 export interface DynamicFormControlLabel {
-
-    help?: string;
+    
     hidden?: boolean;
     text?: string;
 }
@@ -28,6 +27,7 @@ export abstract class DynamicFormControlModel<T> {
 
     cls: DynamicFormControlCls;
     disabled: boolean;
+    help: string;
     id: string;
     label: DynamicFormControlLabel;
     name: string;
@@ -41,6 +41,7 @@ export abstract class DynamicFormControlModel<T> {
 
         cls?: DynamicFormControlCls,
         disabled?: boolean,
+        help?: string,
         id?: string,
         label?: DynamicFormControlLabel,
         name?: string,
@@ -65,15 +66,9 @@ export abstract class DynamicFormControlModel<T> {
         });
         
         this.disabled = getValue(configObject, "disabled", false);
+        this.help = getValue(configObject, "help", null);
         this.id = getValue(configObject, "id", null);
-        
-        this.label = getValue(configObject, "label", {
-            
-            help: null, 
-            hidden: false, 
-            text: ""
-        });
-        
+        this.label = getValue(configObject, "label", {hidden: false, text: ""});
         this.name = getValue(configObject, "name", this.id || "");
         this.required = getValue(configObject, "required", false);
         this.validators = getValue(configObject, "validators", []);
