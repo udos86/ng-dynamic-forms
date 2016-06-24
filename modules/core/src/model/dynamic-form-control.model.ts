@@ -35,6 +35,7 @@ export abstract class DynamicFormControlModel<T> {
 
     } = {}, clsConfig: {
 
+        container?: string
         control?: string,
         grid?: {
             container?: string,
@@ -57,7 +58,8 @@ export abstract class DynamicFormControlModel<T> {
         this.validators = getValue(modelConfig, "validators", []);
         this.validatorsAsync = getValue(modelConfig, "validatorsAsync", []);
         this.value = getValue(modelConfig, "value", null);
-        
+
+        this.cls.container = getValue(clsConfig, "container", "");
         this.cls.control = getValue(clsConfig, "control", "");
         this.cls.grid = getValue(clsConfig, "grid", {container: "", control: "", label: ""});
         this.cls.label = getValue(clsConfig, "label", "");

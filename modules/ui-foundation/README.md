@@ -1,1 +1,1 @@
-ng2-dynamic-forms bootstrap ui module
+#ng2 Dynamic Forms Foundation UI

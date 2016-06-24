@@ -1,7 +1,7 @@
 {
   "name": "@ng2-dynamic-forms/ui-basic",
   "version": "1.0.0-alpha.8",
-  "description": "Basic HTML5 ui library for ng2-dynamic-forms",
+  "description": "Basic UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

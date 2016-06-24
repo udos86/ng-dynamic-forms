@@ -1,5 +1,6 @@
 <div [formGroup]="form"
      [hidden]="!isCompatible"
+     [ngClass]="model.cls.container"
      [ngSwitch]="model.type">
 
     <div [ngClass]="model.cls.grid.container">
