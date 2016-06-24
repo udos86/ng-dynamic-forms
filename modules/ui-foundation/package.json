@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-bootstrap",
+  "name": "@ng2-dynamic-forms/ui-foundation",
   "version": "1.0.0-alpha.8",
-  "description": "Bootstrap UI library for ng2-dynamic-forms",
+  "description": "Foundation UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
