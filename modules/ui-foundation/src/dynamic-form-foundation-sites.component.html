@@ -1,7 +1,34 @@
-<div class="form-group"
-     [formGroup]="form"
+<div [formGroup]="form"
      [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
+    <div [ngClass]="model.cls.grid.container">
+
+        <label [attr.for]="model.id"
+               [hidden]="model.label.hidden"
+               [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}</label>
+
+        <input *ngSwitchCase="'INPUT'"
+               [attr.autoComplete]="model.autoComplete"
+               [attr.max]="model.max"
+               [attr.min]="model.min"
+               [attr.step]="model.step"
+               [autofocus]="model.autoFocus"
+               [disabled]="model.disabled"
+               [formControlName]="model.id"
+               [id]="model.id"
+               [maxLength]="model.maxLength"
+               [name]="model.name"
+               [placeholder]="model.placeholder"
+               [readonly]="model.readonly"
+               [type]="model.inputType"
+               [ngClass]="model.cls.control"
+               [(ngModel)]="model.value"
+               (blur)="onBlur($event)"
+               (focus)="onFocus($event)"/>
+
+        <p *ngIf="model.help" class="help-text">{{model.help}}</p>
+
+    </div>
 
 </div>
