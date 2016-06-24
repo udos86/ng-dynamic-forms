@@ -37,11 +37,7 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             value: "option-3"
         },
         {
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            },
-            label: "control-label"
+
         }
     ),
 
@@ -58,11 +54,7 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             suffix: "Suffix"
         },
         {
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            },
-            label: "control-label"
+
         }
     ),
 
@@ -94,11 +86,7 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             value: "option-3"
         },
         {
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            },
-            label: "control-label"
+
         }
     ),
 
@@ -128,9 +116,7 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             }
         },
         {
-            grid: {
-                control: "col-sm-offset-3 col-sm-9"
-            }
+
         }
     )
 ]);

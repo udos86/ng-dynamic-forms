@@ -4,66 +4,109 @@
 
     <div [ngClass]="model.cls.grid.container">
 
-        <label [attr.for]="model.id"
-               [hidden]="model.label.hidden"
-               [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}</label>
+        <div *ngIf="!isCheckbox"
+             [ngClass]="model.cls.grid.label">
 
-        <input *ngSwitchCase="'INPUT'"
-               [attr.autoComplete]="model.autoComplete"
-               [attr.max]="model.max"
-               [attr.min]="model.min"
-               [attr.step]="model.step"
-               [autofocus]="model.autoFocus"
-               [disabled]="model.disabled"
-               [formControlName]="model.id"
-               [id]="model.id"
-               [maxLength]="model.maxLength"
-               [name]="model.name"
-               [placeholder]="model.placeholder"
-               [readonly]="model.readonly"
-               [type]="model.inputType"
-               [ngClass]="model.cls.control"
-               [(ngModel)]="model.value"
-               (blur)="onBlur($event)"
-               (focus)="onFocus($event)"/>
+            <label [attr.for]="model.id"
+                   [hidden]="model.label.hidden"
+                   [ngClass]="model.cls.label">{{model.label.text}}</label>
+        </div>
 
+        <div [ngClass]="model.cls.grid.control">
 
-        <select *ngSwitchCase="'SELECT'"
-                [formControlName]="model.id"
-                [id]="model.id"
-                [name]="model.name"
-                [ngClass]="model.cls.control"
-                [(ngModel)]="model.value"
-                (blur)="onBlur($event)"
-                (focus)="onFocus($event)">
+            <label *ngSwitchCase="'CHECKBOX'"
+                   [attr.for]="model.id"
+                   [ngClass]="model.cls.label">
 
-            <option *ngFor="let option of model.options"
-                    [disabled]="!!option.disabled"
-                    [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.text}}
-            </option>
-
-        </select>
+                <input type="checkbox"
+                       [disabled]="model.disabled"
+                       [formControlName]="model.id"
+                       [id]="model.id"
+                       [name]="model.name"
+                       [value]="model.value"
+                       [ngClass]="model.cls.control"
+                       [(ngModel)]="model.value"
+                       (blur)="onBlur($event)"
+                       (focus)="onFocus($event)"/>{{model.label.text}}</label>
 
 
-        <textarea *ngSwitchCase="'TEXTAREA'"
-                  [cols]="model.cols"
-                  [disabled]="model.disabled"
-                  [formControlName]="model.id"
-                  [id]="model.id"
-                  [name]="model.name"
-                  [placeholder]="model.placeholder"
-                  [readonly]="model.readonly"
-                  [rows]="model.rows"
-                  [wrap]="model.wrap"
-                  [ngClass]="model.cls.control"
-                  [(ngModel)]="model.value"
-                  (blur)="onBlur($event)"
-                  (focus)="onFocus($event)">
-        </textarea>
+            <input *ngSwitchCase="'INPUT'"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.max]="model.max"
+                   [attr.min]="model.min"
+                   [attr.step]="model.step"
+                   [autofocus]="model.autoFocus"
+                   [disabled]="model.disabled"
+                   [formControlName]="model.id"
+                   [id]="model.id"
+                   [maxLength]="model.maxLength"
+                   [name]="model.name"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readonly"
+                   [type]="model.inputType"
+                   [ngClass]="model.cls.control"
+                   [(ngModel)]="model.value"
+                   (blur)="onBlur($event)"
+                   (focus)="onFocus($event)"/>
 
 
-        <p *ngIf="model.help" class="help-text">{{model.help}}</p>
+            <fieldset *ngSwitchCase="'RADIO_GROUP'"
+                      role="radiogroup"
+                      [id]="model.id">
+
+                <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+                <label *ngFor="let option of model.options"
+                       [class.disabled]="option.disabled">
+
+                    <input type="radio"
+                           [name]="model.name"
+                           [disabled]="!!option.disabled"
+                           [value]="option.value"
+                           [ngClass]="model.cls.control"
+                           [(ngModel)]="model.value">{{option.text}}</label>
+
+            </fieldset>
+
+
+            <select *ngSwitchCase="'SELECT'"
+                    [formControlName]="model.id"
+                    [id]="model.id"
+                    [name]="model.name"
+                    [ngClass]="model.cls.control"
+                    [(ngModel)]="model.value"
+                    (blur)="onBlur($event)"
+                    (focus)="onFocus($event)">
+
+                <option *ngFor="let option of model.options"
+                        [disabled]="!!option.disabled"
+                        [attr.name]="model.name"
+                        [ngValue]="option.value">{{option.text}}
+                </option>
+
+            </select>
+
+
+            <textarea *ngSwitchCase="'TEXTAREA'"
+                      [cols]="model.cols"
+                      [disabled]="model.disabled"
+                      [formControlName]="model.id"
+                      [id]="model.id"
+                      [name]="model.name"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readonly"
+                      [rows]="model.rows"
+                      [wrap]="model.wrap"
+                      [ngClass]="model.cls.control"
+                      [(ngModel)]="model.value"
+                      (blur)="onBlur($event)"
+                      (focus)="onFocus($event)">
+            </textarea>
+
+
+            <p *ngIf="model.help" class="help-text">{{model.help}}</p>
+
+        </div>
 
     </div>
 
