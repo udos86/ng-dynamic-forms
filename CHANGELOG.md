@@ -2,6 +2,7 @@
 
 ### **Breaking Changes**
 
+* `ui-foundation` has arrived
 * `cls` configuration object is now a separate constructor parameter (the second) of `DynamicFormControlModel` in order
 to uncouple pure model configuration from style configuration
 * `cls` bugs in template files fixed
