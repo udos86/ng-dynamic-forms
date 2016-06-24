@@ -31,24 +31,33 @@
                        (focus)="onFocus($event)"/>{{model.label.text}}</label>
 
 
-            <input *ngSwitchCase="'INPUT'"
-                   [attr.autoComplete]="model.autoComplete"
-                   [attr.max]="model.max"
-                   [attr.min]="model.min"
-                   [attr.step]="model.step"
-                   [autofocus]="model.autoFocus"
-                   [disabled]="model.disabled"
-                   [formControlName]="model.id"
-                   [id]="model.id"
-                   [maxLength]="model.maxLength"
-                   [name]="model.name"
-                   [placeholder]="model.placeholder"
-                   [readonly]="model.readonly"
-                   [type]="model.inputType"
-                   [ngClass]="model.cls.control"
-                   [(ngModel)]="model.value"
-                   (blur)="onBlur($event)"
-                   (focus)="onFocus($event)"/>
+            <div *ngSwitchCase="'INPUT'"
+                 class="input-group">
+
+                <span *ngIf="model.prefix" class="input-group-label">{{model.prefix}}</span>
+
+                <input class="input-group-field"
+                       [attr.autoComplete]="model.autoComplete"
+                       [attr.max]="model.max"
+                       [attr.min]="model.min"
+                       [attr.step]="model.step"
+                       [autofocus]="model.autoFocus"
+                       [disabled]="model.disabled"
+                       [formControlName]="model.id"
+                       [id]="model.id"
+                       [maxLength]="model.maxLength"
+                       [name]="model.name"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readonly"
+                       [type]="model.inputType"
+                       [ngClass]="model.cls.control"
+                       [(ngModel)]="model.value"
+                       (blur)="onBlur($event)"
+                       (focus)="onFocus($event)"/>
+
+                <span *ngIf="model.suffix" class="input-group-label">{{model.suffix}}</span>
+
+            </div>
 
 
             <fieldset *ngSwitchCase="'RADIO_GROUP'"
