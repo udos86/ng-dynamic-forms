@@ -1,0 +1,7 @@
+index.ts
+
+src/*.ts
+src/*.spec.js
+src/*.spec.js.map
+!src/*.d.ts
+src/*.spec.d.ts

@@ -9,7 +9,7 @@ It simplifies all the hard, troublesome work of implementing handcrafted forms b
 upon a layer of descriptive object models.
 
 It also provides a flexible system of dynamic UI components with out of the box support for
-**Angular 2 Material** and **Bootstrap**.
+**Angular 2 Material**, **Bootstrap** and **Foundation**.
 
 ##Table of Contents
 
@@ -168,8 +168,8 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 
 * **Basic** (pure, native HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
+* **[Foundation](http://foundation.zurb.com/)**
 * **[Material](https://github.com/angular/material2)**
-* *Foundation (coming soon)*
 * *Kendo UI (coming soon)*
 
 You can instantly plug in your favorite controls by **installing the appropriate
@@ -209,11 +209,12 @@ To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
 full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
-|              | Checkbox | Input | Radio Group | Select | Textarea |
-|--------------|:--------:|:-----:|:-----------:|:------:|:--------:|
-| ui-basic     |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-bootstrap |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-material  |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
+|               | Checkbox | Input | Radio Group | Select | Textarea |
+|-------------- |:--------:|:-----:|:-----------:|:------:|:--------:|
+| ui-basic      |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
+| ui-bootstrap  |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
+| ui-foundation |     ✓    |   ✓   |      ✓      |    ✓   |     ✓    |
+| ui-material   |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 
 
 ## Form Layouts

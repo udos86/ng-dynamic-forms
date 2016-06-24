@@ -1,1 +1,1 @@
-ng2-dynamic-forms basic native html5 ui module
+#ng2 Dynamic Forms Basic UI

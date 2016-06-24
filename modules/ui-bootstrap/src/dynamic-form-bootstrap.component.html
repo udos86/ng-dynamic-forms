@@ -6,8 +6,7 @@
     <label *ngIf="!isCheckbox"
            [attr.for]="model.id"
            [hidden]="model.label.hidden"
-           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}
-    </label>
+           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}</label>
 
 
     <div *ngSwitchCase="'CHECKBOX'"
@@ -134,8 +133,7 @@
                   (focus)="onFocus($event)">
         </textarea>
 
-        <span *ngIf="model.help"
-              class="help-block">{{model.help}}</span>
+        <span *ngIf="model.help" class="help-block">{{model.help}}</span>
 
     </div>
 
