@@ -24,6 +24,6 @@
     "@angular/core": "^2.0.0-rc.3",
     "@angular/forms": "^0.1.1",
     "@ng2-dynamic-forms/core": "1.0.0-alpha.8",
-    "bootstrap": "^3.3.6"
+    "foundation-sites": "^6.2.3"
   }
 }
