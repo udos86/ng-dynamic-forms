@@ -27,6 +27,42 @@
                (blur)="onBlur($event)"
                (focus)="onFocus($event)"/>
 
+
+        <select *ngSwitchCase="'SELECT'"
+                [formControlName]="model.id"
+                [id]="model.id"
+                [name]="model.name"
+                [ngClass]="model.cls.control"
+                [(ngModel)]="model.value"
+                (blur)="onBlur($event)"
+                (focus)="onFocus($event)">
+
+            <option *ngFor="let option of model.options"
+                    [disabled]="!!option.disabled"
+                    [attr.name]="model.name"
+                    [ngValue]="option.value">{{option.text}}
+            </option>
+
+        </select>
+
+
+        <textarea *ngSwitchCase="'TEXTAREA'"
+                  [cols]="model.cols"
+                  [disabled]="model.disabled"
+                  [formControlName]="model.id"
+                  [id]="model.id"
+                  [name]="model.name"
+                  [placeholder]="model.placeholder"
+                  [readonly]="model.readonly"
+                  [rows]="model.rows"
+                  [wrap]="model.wrap"
+                  [ngClass]="model.cls.control"
+                  [(ngModel)]="model.value"
+                  (blur)="onBlur($event)"
+                  (focus)="onFocus($event)">
+        </textarea>
+
+
         <p *ngIf="model.help" class="help-text">{{model.help}}</p>
 
     </div>
