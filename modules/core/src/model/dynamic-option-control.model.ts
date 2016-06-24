@@ -20,10 +20,10 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormControlMod
     options: Array<DynamicFormOption<T>>;
     optionGroups: Array<DynamicFormOptionGroup<T>>;
 
-    constructor(configObject: {} = {}) {
+    constructor(modelConfig: {} = {}, clsConfig: {} = {}) {
 
-        super(configObject);
+        super(modelConfig, clsConfig);
         
-        this.options = getValue(configObject, "options", []);
+        this.options = getValue(modelConfig, "options", []);
     }
 }

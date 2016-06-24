@@ -4,9 +4,9 @@ export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
-    constructor(configObject: {} = {}) {
+    constructor(modelConfig: {} = {}, clsConfig: {} = {}) {
 
-        super(configObject);
+        super(modelConfig, clsConfig);
 
         this.type = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
     }

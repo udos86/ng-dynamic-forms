@@ -243,18 +243,20 @@ Now we need to position the `<label>` and the `form-control` using the Bootstrap
 
 Don't worry!
 
-By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows you to manuallay define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template:
-```ts
-new DynamicInputModel({
+By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
 
-    cls: {
+We can just pass it as a second constructor parameter of every `DynamicFormControlModel`, i.e. separation of model and style information remains intact:
+```ts
+new DynamicInputModel(
+    {
+        // ... all model configuration properties
+    },
+    {
         grid: {
             control: "col-sm-9",
             label: "col-sm-3"
         },
         label: "control-label"
-    },
-
-    //... all the rest
-})
+    }
+)
 ```

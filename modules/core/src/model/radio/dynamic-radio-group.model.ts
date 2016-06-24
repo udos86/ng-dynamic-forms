@@ -7,11 +7,11 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> {
     
     legend: string;
 
-    constructor(configObject: {} = {}) {
+    constructor(modelConfig: {} = {}, clsConfig: {} = {}) {
 
-        super(configObject);
+        super(modelConfig, clsConfig);
 
-        this.legend = getValue(configObject, "legend", null);
+        this.legend = getValue(modelConfig, "legend", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
 }

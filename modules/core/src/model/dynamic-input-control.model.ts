@@ -15,17 +15,17 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     showLength: boolean;
     suffix: string;
 
-    constructor(configObject: {} = {}) {
+    constructor(modelConfig: {} = {}, clsConfig: {} = {}) {
 
-        super(configObject);
+        super(modelConfig, clsConfig);
 
-        this.autoComplete = getValue(configObject, "autoComplete", DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
-        this.autoFocus = getValue(configObject, "autoFocus", false);
-        this.maxLength = getValue(configObject, "maxLength", 100);
-        this.placeholder = getValue(configObject, "placeholder", "");
-        this.prefix = getValue(configObject, "prefix", null);
-        this.readonly = getValue(configObject, "readonly", false);
-        this.showLength = getValue(configObject, "showLength", false);
-        this.suffix = getValue(configObject, "suffix", null);
+        this.autoComplete = getValue(modelConfig, "autoComplete", DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
+        this.autoFocus = getValue(modelConfig, "autoFocus", false);
+        this.maxLength = getValue(modelConfig, "maxLength", 100);
+        this.placeholder = getValue(modelConfig, "placeholder", "");
+        this.prefix = getValue(modelConfig, "prefix", null);
+        this.readonly = getValue(modelConfig, "readonly", false);
+        this.showLength = getValue(modelConfig, "showLength", false);
+        this.suffix = getValue(modelConfig, "suffix", null);
     }
 }
