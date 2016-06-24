@@ -2,28 +2,54 @@ index.ts
 
 src/*.ts
 src/*.spec.js
+src/*.spec.js.map
 !src/*.d.ts
+src/*.spec.d.ts
 
-src/checkbox/*.ts
-src/checkbox/*.spec.js
-!src/checkbox/*.d.ts
+src/component/*.ts
+src/component/*.spec.js
+src/component/*.spec.js.map
+!src/component/*.d.ts
+src/component/*.spec.d.ts
 
-src/input/*.ts
-src/input/*.spec.js
-src/input/*.spec.js.map
-!src/input/*.d.ts
-src/input/*spec.d.ts
+src/model/*.ts
+src/model/*.spec.js
+src/model/*.spec.js.map
+!src/model/*.d.ts
+src/model/*.spec.d.ts
 
-src/radio/*.ts
-src/radio/*.spec.js
-!src/radio/*.d.ts
+src/service/*.ts
+src/service/*.spec.js
+src/service/*.spec.js.map
+!src/service/*.d.ts
+src/service/*.spec.d.ts
 
-src/select/*.ts
-src/select/*.spec.js
-!src/select/*.d.ts
+src/model/checkbox/*.ts
+src/model/checkbox/*.spec.js
+src/model/checkbox/*.spec.js.map
+!src/model/checkbox/*.d.ts
+src/model/checkbox/*.spec.d.ts
 
-src/textarea/*.ts
-src/textarea/*.spec.js
-!src/textarea/*.d.ts
+src/model/input/*.ts
+src/model/input/*.spec.js
+src/model/input/*.spec.js.map
+!src/model/input/*.d.ts
+src/model/input/*spec.d.ts
 
+src/model/radio/*.ts
+src/model/radio/*.spec.js
+src/model/radio/*.spec.js.map
+!src/model/radio/*.d.ts
+src/model/radio/*.spec.d.ts
 
+src/model/select/*.ts
+src/model/select/*.spec.js
+src/model/select/*.spec.js.map
+!src/model/select/*.d.ts
+src/model/select/*.spec.d.ts
+
+src/model/textarea/*.ts
+src/model/textarea/*.spec.js
+src/model/textarea/*.spec.js.map
+!src/model/textarea/*.d.ts
+src/model/textarea/*.spec.d.ts

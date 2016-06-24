@@ -16,7 +16,7 @@
 
     <label [attr.for]="model.id"
            [hidden]="model.label.hidden"
-           [ngClass]="model.label.cls">{{model.label.text}}
+           [ngClass]="model.cls.label">{{model.label.text}}
     </label>
 
 
@@ -32,6 +32,7 @@
            [maxLength]="model.maxLength"
            [name]="model.name"
            [placeholder]="model.placeholder"
+           [readonly]="model.readonly"
            [type]="model.inputType"
            [ngClass]="model.cls.control"
            [(ngModel)]="model.value"
@@ -81,6 +82,7 @@
               [id]="model.id"
               [name]="model.name"
               [placeholder]="model.placeholder"
+              [readonly]="model.readonly"
               [rows]="model.rows"
               [wrap]="model.wrap"
               [ngClass]="model.cls.control"

@@ -9,6 +9,7 @@
            [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}
     </label>
 
+
     <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls.grid.control">
 
@@ -57,6 +58,7 @@
                    [maxLength]="model.maxLength"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
+                   [readonly]="model.readonly"
                    [type]="model.inputType"
                    [ngClass]="model.cls.control"
                    [(ngModel)]="model.value"
@@ -70,8 +72,11 @@
         </div>
 
 
-        <div *ngSwitchCase="'RADIO_GROUP'"
-             [ngClass]="model.cls.grid.control">
+        <fieldset *ngSwitchCase="'RADIO_GROUP'"
+                  role="radiogroup"
+                  [id]="model.id">
+
+            <legend *ngIf="model.legend">{{model.legend}}</legend>
 
             <div *ngFor="let option of model.options"
                  class="radio"
@@ -84,14 +89,13 @@
                            [disabled]="!!option.disabled"
                            [value]="option.value"
                            [ngClass]="model.cls.control"
-                           [(ngModel)]="model.value">
-                    {{option.text}}
+                           [(ngModel)]="model.value">{{option.text}}
 
                 </label>
 
             </div>
 
-        </div>
+        </fieldset>
 
 
         <select *ngSwitchCase="'SELECT'"
@@ -121,6 +125,7 @@
                   [id]="model.id"
                   [name]="model.name"
                   [placeholder]="model.placeholder"
+                  [readonly]="model.readonly"
                   [rows]="model.rows"
                   [wrap]="model.wrap"
                   [ngClass]="model.cls.control"
@@ -129,8 +134,8 @@
                   (focus)="onFocus($event)">
         </textarea>
 
-        <span *ngIf="model.label.help"
-              class="help-block">{{model.label.help}}</span>
+        <span *ngIf="model.help"
+              class="help-block">{{model.help}}</span>
 
     </div>
 

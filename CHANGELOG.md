@@ -1,3 +1,13 @@
+# alpha.8
+
+### **Breaking Changes**
+
+* `cls` configuration object is now a separate constructor parameter (the second) of `DynamicFormControlModel` in order
+to uncouple pure model configuration from style configuration
+* `cls` bugs in template files fixed
+* `readonly` property introduced for `DynamicFormInputModel`
+
+
 # alpha.7
 
 ### **Breaking Changes**
@@ -11,6 +21,7 @@
 
 ui-material is currently broken due to Angular 2 Material not having upgraded to @angular/forms yet
 
+
 # alpha.6
 
 ### **Breaking Changes**
@@ -20,6 +31,7 @@ ui-material is currently broken due to Angular 2 Material not having upgraded to
 * `DynamicRadioModel` renamed to `DynamicRadioGroupModel`
 * `model` property of `DynamicFormModel` renamed to `items`
 
+
 # alpha.5
 
 ### **Breaking Changes**
@@ -28,6 +40,7 @@ ui-material is currently broken due to Angular 2 Material not having upgraded to
 * Major improvements for example app
 * `text` property removed from `DynamicCheckboxModel` due to redundancy (use
 `text` property of `label` object instead)
+
 
 # alpha.4
 

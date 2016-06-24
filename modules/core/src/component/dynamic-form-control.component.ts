@@ -1,7 +1,7 @@
 import {OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "./checkbox/dynamic-checkbox.model";
+import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 
 export abstract class DynamicFormControlComponent implements OnInit {
 

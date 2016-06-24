@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {DynamicFormModel} from "./dynamic-form.model";
+import {DynamicFormModel} from "../model/dynamic-form.model";
 
 @Injectable()
 export class DynamicFormService {

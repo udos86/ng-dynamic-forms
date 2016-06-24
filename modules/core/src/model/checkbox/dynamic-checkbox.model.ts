@@ -1,5 +1,5 @@
 import {DynamicFormControlModel} from "../dynamic-form-control.model";
-import {getValue} from "../utils";
+import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 
@@ -9,13 +9,13 @@ export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
     //checked: boolean; // actually makes no sense since type of value is boolean
     indeterminate: boolean;
 
-    constructor(configObject: {} = {}) {
+    constructor(modelConfig: {} = {}, clsConfig: {} = {}) {
 
-        super(configObject);
+        super(modelConfig, clsConfig);
 
-        this.align = getValue(configObject, "align", "start");
-        //this.checked = getValue(configObject, "checked", false);
-        this.indeterminate = getValue(configObject, "indeterminate", false);
+        this.align = getValue(modelConfig, "align", "start");
+        //this.checked = getValue(modelConfig, "checked", false);
+        this.indeterminate = getValue(modelConfig, "indeterminate", false);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 }

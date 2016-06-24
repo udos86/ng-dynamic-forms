@@ -8,7 +8,7 @@ describe("DynamicInputModel test suite", () => {
         let defaultObject: DynamicInputModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicInputModel({});
+            defaultObject = new DynamicInputModel();
         });
         
         it("tests if correct default type property is set", () => {
@@ -35,10 +35,27 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultObject.autoFocus).toBe(false);
         });
 
+        it("tests if correct default cls properties aree set", () => {
+
+            expect(defaultObject.cls).toBeDefined();
+            expect(defaultObject.cls.control).toEqual("");
+            expect(defaultObject.cls.grid.container).toEqual("");
+            expect(defaultObject.cls.grid.control).toEqual("");
+            expect(defaultObject.cls.grid.label).toEqual("");
+            expect(defaultObject.cls.label).toEqual("");
+            expect(defaultObject.cls.validation.invalid).toEqual("");
+            expect(defaultObject.cls.validation.valid).toEqual("");
+        });
+
+        it("tests if correct default help property is set", () => {
+
+            expect(defaultObject.help).toBeDefined();
+            expect(defaultObject.help).toBeNull();
+        });
+
         it("tests if correct default label properties aree set", () => {
 
             expect(defaultObject.label).toBeDefined();
-            expect(defaultObject.label.help).toBeNull();
             expect(defaultObject.label.hidden).toBe(false);
             expect(defaultObject.label.text).toEqual("");
         });
@@ -65,6 +82,12 @@ describe("DynamicInputModel test suite", () => {
 
             expect(defaultObject.placeholder).toBeDefined();
             expect(defaultObject.placeholder).toEqual("");
+        });
+
+        it("tests if correct default readonly property is set", () => {
+
+            expect(defaultObject.readonly).toBeDefined();
+            expect(defaultObject.readonly).toBe(false);
         });
         
         it("tests if correct default step property is set", () => {

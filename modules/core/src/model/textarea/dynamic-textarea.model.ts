@@ -1,5 +1,5 @@
 import {DynamicInputControlModel} from "../dynamic-input-control.model";
-import {getValue} from "../utils";
+import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "TEXTAREA";
 
@@ -12,13 +12,13 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
     rows: number;
     wrap: string;
 
-    constructor(configObject: {} = {}) {
+    constructor(modelConfig: {} = {}, clsConfig: {} = {}) {
 
-        super(configObject);
+        super(modelConfig, clsConfig);
 
-        this.cols = getValue(configObject, "cols", 20);
-        this.rows = getValue(configObject, "rows", 2);
+        this.cols = getValue(modelConfig, "cols", 20);
+        this.rows = getValue(modelConfig, "rows", 2);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
-        this.wrap = getValue(configObject, "wrap", DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
+        this.wrap = getValue(modelConfig, "wrap", DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
     }
 }
