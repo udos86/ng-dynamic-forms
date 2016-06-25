@@ -8,7 +8,7 @@ describe("DynamicInputModel test suite", () => {
         let defaultObject: DynamicInputModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicInputModel();
+            defaultObject = new DynamicInputModel({id: "default"}, {});
         });
         
         it("tests if correct default type property is set", () => {

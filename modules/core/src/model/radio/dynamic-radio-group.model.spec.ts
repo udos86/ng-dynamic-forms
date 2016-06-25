@@ -7,7 +7,7 @@ describe("DynamicRadioModel test suite", () => {
         let defaultObject: DynamicRadioGroupModel<any>;
 
         beforeEach(() => {
-            defaultObject = new DynamicRadioGroupModel();
+            defaultObject = new DynamicRadioGroupModel({id: "default"});
         });
 
         it("tests if correct default type property is set", () => {

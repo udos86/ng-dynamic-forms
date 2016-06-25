@@ -11,7 +11,7 @@ describe("DynamicTextAreaModel test suite", () => {
         let defaultObject: DynamicTextAreaModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicTextAreaModel();
+            defaultObject = new DynamicTextAreaModel({id: "default"});
         });
 
         it("tests if correct default type property is set", () => {

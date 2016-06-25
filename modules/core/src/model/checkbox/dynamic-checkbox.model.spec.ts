@@ -7,7 +7,7 @@ describe("DynamicCheckboxModel test suite", () => {
         let defaultObject: DynamicCheckboxModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicCheckboxModel();
+            defaultObject = new DynamicCheckboxModel({id: "default"});
         });
         
         it("tests if correct default type property is set", () => {
