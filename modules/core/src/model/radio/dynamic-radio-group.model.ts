@@ -7,7 +7,7 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> {
     
     legend: string;
 
-    constructor(config: {id: string}, cls?: {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
 

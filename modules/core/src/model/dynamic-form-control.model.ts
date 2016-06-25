@@ -1,7 +1,7 @@
 import {Validators} from "@angular/forms";
 import {getValue} from "../utils";
 
-export interface DynamicFormControlLabel {
+interface Label {
 
     hidden?: boolean;
     text?: string;
@@ -13,7 +13,7 @@ export abstract class DynamicFormControlModel<T> {
     disabled: boolean;
     help: string;
     id: string;
-    label: DynamicFormControlLabel;
+    label: Label;
     name: string;
     required: boolean;
     type: string = null; // must be defined by child class
@@ -25,8 +25,8 @@ export abstract class DynamicFormControlModel<T> {
 
         disabled?: boolean,
         help?: string,
-        id: string,
-        label?: DynamicFormControlLabel,
+        id?: string,
+        label?: Label,
         name?: string,
         required?: boolean,
         validators?: Array<any>;

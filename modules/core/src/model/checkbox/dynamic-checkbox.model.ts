@@ -9,7 +9,7 @@ export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
     //checked: boolean; // actually makes no sense since type of value is boolean
     indeterminate: boolean;
 
-    constructor(config: {id: string}, cls?: {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
 

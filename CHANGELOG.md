@@ -3,7 +3,7 @@
 ### **Breaking Changes**
 
 * `cls` is now a true optional declared constructor parameter
-* `id` is now a true mandatory declared configuration property
+* check included for mandatory `id` configuration property
 
 
 # alpha.8

@@ -18,7 +18,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
     min: number;
     step: number;
     
-    constructor(config: {id: string}, cls?: {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
 

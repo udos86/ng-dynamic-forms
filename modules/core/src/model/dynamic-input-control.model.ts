@@ -15,7 +15,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     showLength: boolean;
     suffix: string;
 
-    constructor(config: {id: string}, cls?: {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
 
