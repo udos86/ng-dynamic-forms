@@ -41,9 +41,7 @@
         <div *ngSwitchCase="'INPUT'"
              [class.input-group]="model.prefix || model.suffix">
 
-            <div *ngIf="model.prefix"
-                 class="input-group-addon">{{model.prefix}}
-            </div>
+            <div *ngIf="model.prefix" class="input-group-addon">{{model.prefix}}</div>
 
             <input class="form-control"
                    [attr.autoComplete]="model.autoComplete"
@@ -64,9 +62,7 @@
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
 
-            <div *ngIf="model.suffix"
-                 class="input-group-addon">{{model.suffix}}
-            </div>
+            <div *ngIf="model.suffix" class="input-group-addon">{{model.suffix}}</div>
 
         </div>
 

@@ -1,25 +1,21 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
-import {
-    DynamicFormService,
-    DynamicCheckboxModel,
-    DynamicFormModel
-} from "@ng2-dynamic-forms/core";
-import {DynamicFormFoundationSitesComponent} from "@ng2-dynamic-forms/ui-foundation";
-import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
+import {DynamicFormService, DynamicCheckboxModel, DynamicFormModel} from "@ng2-dynamic-forms/core";
+import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
+import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormFoundationSitesComponent],
+    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
-    selector: "dynamic-form-foundation-example",
-    styleUrls: ["../../../node_modules/foundation-sites/dist/foundation.min.css"],
-    templateUrl: "./foundation-example.component.html",
+    selector: "dynamic-form-bootstrap-example",
+    styleUrls: ["../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
+    templateUrl: "./bootstrap-example.component.html",
     encapsulation: ViewEncapsulation.None
 })
 
-export class FoundationExampleComponent implements OnInit {
+export class BootstrapExampleComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel;
     dynamicFormService: DynamicFormService;
@@ -31,7 +27,7 @@ export class FoundationExampleComponent implements OnInit {
 
     constructor(dynamicFormService: DynamicFormService) {
 
-        this.dynamicFormModel = FOUNDATION_EXAMPLE_MODEL;
+        this.dynamicFormModel = BOOTSTRAP_EXAMPLE_MODEL;
         this.dynamicFormService = dynamicFormService;
     }
 
