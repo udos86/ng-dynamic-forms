@@ -49,9 +49,14 @@ export abstract class DynamicFormControlModel<T> {
         }
     }) {
 
+        if (config.id) {
+            this.id = config.id
+        } else {
+            throw("id must be specified for DynamicFormControlModel");
+        }
+
         this.disabled = getValue(config, "disabled", false);
         this.help = getValue(config, "help", null);
-        this.id = config.id; // mandatory!
         this.label = getValue(config, "label", {hidden: false, text: ""});
         this.name = getValue(config, "name", this.id || "");
         this.required = getValue(config, "required", false);
@@ -62,14 +67,11 @@ export abstract class DynamicFormControlModel<T> {
         if (this.required) {
             this.validators.push(Validators.required);
         }
-        
-        if (typeof cls === "object") {
-            
-            this.cls.container = getValue(cls, "container", "");
-            this.cls.control = getValue(cls, "control", "");
-            this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
-            this.cls.label = getValue(cls, "label", "");
-            this.cls.validation = getValue(cls, "validation", {invalid: "", valid: ""});  
-        }
+
+        this.cls.container = getValue(cls, "container", "");
+        this.cls.control = getValue(cls, "control", "");
+        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
+        this.cls.label = getValue(cls, "label", "");
+        this.cls.validation = getValue(cls, "validation", {invalid: "", valid: ""});
     }
 }
