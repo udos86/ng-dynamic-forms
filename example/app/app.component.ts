@@ -1,11 +1,9 @@
 import {Component} from "@angular/core";
-import {RouteConfig} from "@angular/router-deprecated";
-import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
-import {DynamicFormComponent} from "./dynamic-form/dynamic-form.component";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
 
-    directives: [ROUTER_DIRECTIVES, DynamicFormComponent],
+    directives: [ROUTER_DIRECTIVES],
     moduleId: module.id,
     selector: "app",
     templateUrl: "./app.component.html"
