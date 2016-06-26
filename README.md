@@ -253,7 +253,7 @@ Just obtain a reference to the `FormControl` and use it's `valueChanges` observa
 ngOnInit() {
 
   this.control = <FormControl> this.form.controls[this.exampleInputModel.id];
-  this.control.valueChanges.subscribe((value: string) => console.log("input field changed to: ", this.form.valid));
+  this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
 ```
 
