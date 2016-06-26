@@ -219,17 +219,17 @@ full support for all major form controls cannot be provided at the moment. See t
 
 ## Bindings and References
 
-One of the benefits of using ng2 Dynamic Forms is that interacting with your form becomes pretty easy.
+One of the benefits of using ng2 Dynamic Forms is that interacting with your form programmatically becomes pretty easy.
 Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular 2 core mechanisms,
 changing one of it's properties will immediately trigger a UI update.
 
 So what if we actually want to update the value of an arbitrary form control at runtime?
 
 At first we need to get a reference to it's `DynamicFormControlModel` representation. This can easily be achieved either by
-a simple index-based array lookup or through the `findById` method of `DynamicFormModel`:
+a simple index-based `items` array lookup or through the `findById` method of `DynamicFormModel`:
 
 ```ts
-this.exampleInputModel =  this.dynamicFormModel[2];
+this.exampleInputModel =  this.dynamicFormModel.items[2];
 ```
 ```ts
 this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exampleInput");
