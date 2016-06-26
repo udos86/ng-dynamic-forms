@@ -220,7 +220,7 @@ full support for all major form controls cannot be provided at the moment. See t
 ## Bindings and References
 
 One of the benefits of using ng2 Dynamic Forms is that interacting with your form becomes pretty easy.
-Since a `DynamicFormControlModel` is bound directly to a `DOM element via Angular 2 core mechanisms,
+Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular 2 core mechanisms,
 changing one of it's properties will immediately trigger a UI update.
 
 So what if we actually want to update the value of an arbitrary form control at runtime?
@@ -235,7 +235,7 @@ this.exampleInputModel =  this.dynamicFormModel[2];
 this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exampleInput");
 ```
 
-Due to the `value` property being already two-way-bound via `[(ngModel)] under the hood, assigning a new value to it will just do the job:
+Due to the `value` property being already two-way-bound via `[(ngModel)]` under the hood, assigning a new value to it will just do the job:
 ```ts
 updateControlValue() {
     this.exampleInputModel.value = "testValue";
