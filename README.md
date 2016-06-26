@@ -237,9 +237,7 @@ this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exa
 
 Due to the `value` property being already two-way-bound via `[(ngModel)]` under the hood, assigning a new value to it will just do the job:
 ```ts
-updateControlValue() {
-    this.exampleInputModel.value = "testValue";
-}
+this.exampleInputModel.value = "testValue";
 ```
 
 
