@@ -1,7 +1,7 @@
 import {Validators} from "@angular/forms";
 import {getValue} from "../utils";
 
-interface Label {
+export interface Label {
 
     hidden?: boolean;
     text?: string;
