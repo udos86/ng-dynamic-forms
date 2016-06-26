@@ -15,6 +15,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
 - [UI Components](#ui-components)
+- [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
 
 ## Getting Started
@@ -163,13 +164,13 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
 ## UI Components
 
-ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common ui libraries:
+ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **Basic** (pure, native HTML5)
+* **Basic** (unstyled native HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
 * **[Foundation](http://foundation.zurb.com/)**
 * **[Material](https://github.com/angular/material2)**
-* *Kendo UI (coming soon)*
+* *Kendo UI (coming Q3/Q4)*
 
 You can instantly plug in your favorite controls by **installing the appropriate
 package and it's peer dependencies**:
@@ -216,16 +217,57 @@ full support for all major form controls cannot be provided at the moment. See t
 | ui-material   |     ✓    |   ✓   |      ✓      |    ✗   |     ✗    |
 
 
+## Bindings and References
+
+One of the benefits of using ng2 Dynamic Forms is that interacting with your form programmatically becomes pretty easy.
+Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular 2 core mechanisms,
+changing one of it's properties will immediately trigger a UI update.
+
+So what if we actually want to update the value of an arbitrary form control at runtime?
+
+At first we need to get a reference to it's `DynamicFormControlModel` representation. This can easily be achieved either by
+a simple index-based `items` array lookup or through the `findById` method of `DynamicFormModel`:
+
+```ts
+this.exampleInputModel = this.dynamicFormModel.items[2];
+```
+```ts
+this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exampleInput");
+```
+
+Due to the `value` property being already two-way-bound via `[(ngModel)]` under the hood, assigning a new value to it will just do the job:
+```ts
+this.exampleInputModel.value = "my new value";
+```
+At the same time this also means that you can safely read the most recent user input from `value` at any time:
+```ts
+onSubmit() {
+  let currentValue = this.exampleInputModel.value;
+}
+```
+
+In many cases you may want to step a bit further and keep tracking value changes over time. That's where Angular 2 itself and RxJS come to rescue! 
+
+Just obtain a reference to the `FormControl` and use it's `valueChanges` observable.
+```ts
+ngOnInit() {
+
+  this.control = <FormControl> this.form.controls[this.exampleInputModel.id];
+  this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
+}
+```
+
+
 ## Form Layouts
 
-When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS Library
-(like `form-group` or `form-control`) are automatically put in place for you in the corresponding `DynamicFormControlComponent`. 
+When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS library
+(like `form-group` or `form-control`) are automatically put in place for you in the template of the corresponding `DynamicFormControlComponent`.
 
-Apart from that ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
+Apart from that, ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
 So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
 
-At first we have to append the mandatory Bootstrap CSS class `form-inline` to the `<form>` element in our template:
+At first we have to append the mandatory Bootstrap CSS class `form-horizontal` to the `<form>` element in our template:
 ```ts
 <form class="form-horizontal" [formGroup]="form">
 

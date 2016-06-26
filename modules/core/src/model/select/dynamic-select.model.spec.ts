@@ -7,7 +7,7 @@ describe("DynamicSelectModel test suite", () => {
         let defaultObject: DynamicSelectModel<any>;
 
         beforeEach(() => {
-            defaultObject = new DynamicSelectModel();
+            defaultObject = new DynamicSelectModel({id: "default"});
         });
 
         it("tests if correct default type property is set", () => {
