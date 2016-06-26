@@ -164,7 +164,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
 ## UI Components
 
-ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common ui libraries:
+ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
 * **Basic** (unstyled native HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
@@ -229,7 +229,7 @@ At first we need to get a reference to it's `DynamicFormControlModel` representa
 a simple index-based `items` array lookup or through the `findById` method of `DynamicFormModel`:
 
 ```ts
-this.exampleInputModel =  this.dynamicFormModel.items[2];
+this.exampleInputModel = this.dynamicFormModel.items[2];
 ```
 ```ts
 this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exampleInput");
@@ -238,6 +238,23 @@ this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exa
 Due to the `value` property being already two-way-bound via `[(ngModel)]` under the hood, assigning a new value to it will just do the job:
 ```ts
 this.exampleInputModel.value = "my new value";
+```
+At the same time this also means that you can safely read the most recent user input from `value` at any time:
+```ts
+onSubmit() {
+  let currentValue = this.exampleInputModel.value;
+}
+```
+
+In many cases you may want to step a bit further and keep tracking value changes over time. That's where Angular 2 itself and RxJS come to rescue! 
+
+Just obtain a reference to the `FormControl` and use it's `valueChanges` observable.
+```ts
+ngOnInit() {
+
+  this.control = <FormControl> this.form.controls[this.exampleInputModel.id];
+  this.control.valueChanges.subscribe((value: string) => console.log("input field changed to: ", this.form.valid));
+}
 ```
 
 
