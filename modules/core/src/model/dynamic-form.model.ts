@@ -1,6 +1,10 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
 
-export class DynamicFormModel {
+export interface IDynamicFormModel {
+    items: Array<DynamicFormControlModel<any>>;
+}
+
+export class DynamicFormModel implements IDynamicFormModel{
 
     items: Array<DynamicFormControlModel<any>>;
 
