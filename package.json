@@ -38,6 +38,7 @@
     "@ng2-dynamic-forms/core": "1.0.0-alpha.9",
     "@ng2-dynamic-forms/ui-basic": "1.0.0-alpha.9",
     "@ng2-dynamic-forms/ui-bootstrap": "1.0.0-alpha.9",
+    "@ng2-dynamic-forms/ui-foundation": "^1.0.0-alpha.9",
     "@ng2-dynamic-forms/ui-material": "1.0.0-alpha.9",
     "bootstrap": "^3.3.6",
     "codelyzer": "0.0.19",
