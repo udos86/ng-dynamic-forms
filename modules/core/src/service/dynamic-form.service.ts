@@ -12,7 +12,7 @@ export class DynamicFormService {
         this.formBuilder = formBuilder;
     }
     
-    createFormGroup(dynamicFormModel: DynamicFormModel) {
+    createFormGroup(dynamicFormModel: DynamicFormModel): FormGroup {
 
         let formGroup = {};
         
