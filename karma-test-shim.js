@@ -79,6 +79,10 @@ System.config({
             main: "index.js",
             defaultExtension: "js"
         },
+        "@ng2-dynamic-forms/ui-foundation": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
         "@ng2-dynamic-forms/ui-material": {
             main: "index.js",
             defaultExtension: "js"

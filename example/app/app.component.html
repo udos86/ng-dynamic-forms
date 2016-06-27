@@ -1,12 +1,17 @@
 <header>
 
-    <h1 class="text-center">ng2 Dynamic Forms</h1>
-    <h2 class="text-center">Examples</h2>
+    <h1 class="text-center">ng2 Dynamic Forms Samples</h1>
+
+    <nav class="text-center">
+        <a [routerLink]="['/example-basic']">Basic UI</a>
+        <a [routerLink]="['/example-bootstrap']">Bootstrap UI</a>
+        <a [routerLink]="['/example-foundation']">Foundation UI</a>
+    </nav>
 
 </header>
 
 <main>
 
-    <dynamic-form></dynamic-form>
+    <router-outlet></router-outlet>
 
 </main>

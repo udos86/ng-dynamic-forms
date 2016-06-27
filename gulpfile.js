@@ -18,6 +18,7 @@ gulp.task("copy:example", ["clean:example"], function () {
             "modules/core/**/*",
             "modules/ui-basic/**/*",
             "modules/ui-bootstrap/**/*",
+            "modules/ui-foundation/**/*",
             "modules/ui-material/**/*",
             "!modules/**/*.spec.*"
         ],

@@ -1,35 +1,19 @@
 import {Validators} from "@angular/forms";
 import {getValue} from "../utils";
 
-export interface DynamicFormControlLabel {
-    
+export interface Label {
+
     hidden?: boolean;
     text?: string;
 }
 
-export interface DynamicFormControlGridCls {
-    
-    container?: string;
-    control?: string;
-    label?: string;
-}
-
-export interface DynamicFormControlCls {
-    
-    control?: string;
-    grid?: DynamicFormControlGridCls;
-    invalid?: string;
-    label?: string;
-    valid?: string;
-}
-
 export abstract class DynamicFormControlModel<T> {
 
-    cls: DynamicFormControlCls;
+    cls: any = {};
     disabled: boolean;
     help: string;
     id: string;
-    label: DynamicFormControlLabel;
+    label: Label;
     name: string;
     required: boolean;
     type: string = null; // must be defined by child class
@@ -37,46 +21,57 @@ export abstract class DynamicFormControlModel<T> {
     validatorsAsync: Array<any>;
     value: T;
 
-    constructor(configObject: {
+    constructor(config: {
 
-        cls?: DynamicFormControlCls,
         disabled?: boolean,
         help?: string,
         id?: string,
-        label?: DynamicFormControlLabel,
+        label?: Label,
         name?: string,
         required?: boolean,
         validators?: Array<any>;
         validatorsAsync?: Array<any>,
         value?: T
 
-    } = {}) {
+    }, cls?: {
 
-        this.cls = getValue(configObject, "cls", {
-            
-            control: "",
-            grid: {
-                container: "",
-                control: "",
-                label: ""
-            },
-            invalid: "",
-            label: "",
-            valid: ""
-        });
-        
-        this.disabled = getValue(configObject, "disabled", false);
-        this.help = getValue(configObject, "help", null);
-        this.id = getValue(configObject, "id", null);
-        this.label = getValue(configObject, "label", {hidden: false, text: ""});
-        this.name = getValue(configObject, "name", this.id || "");
-        this.required = getValue(configObject, "required", false);
-        this.validators = getValue(configObject, "validators", []);
-        this.validatorsAsync = getValue(configObject, "validatorsAsync", []);
-        this.value = getValue(configObject, "value", null);
-        
+        container?: string
+        control?: string,
+        grid?: {
+            container?: string,
+            control?: string,
+            label?: string
+        },
+        label?: string,
+        validation?: {
+            invalid?: string,
+            valid?: string
+        }
+    }) {
+
+        if (config.id) {
+            this.id = config.id
+        } else {
+            throw("id must be specified for DynamicFormControlModel");
+        }
+
+        this.disabled = getValue(config, "disabled", false);
+        this.help = getValue(config, "help", null);
+        this.label = getValue(config, "label", {hidden: false, text: ""});
+        this.name = getValue(config, "name", this.id || "");
+        this.required = getValue(config, "required", false);
+        this.validators = getValue(config, "validators", []);
+        this.validatorsAsync = getValue(config, "validatorsAsync", []);
+        this.value = getValue(config, "value", null);
+
         if (this.required) {
             this.validators.push(Validators.required);
         }
+
+        this.cls.container = getValue(cls, "container", "");
+        this.cls.control = getValue(cls, "control", "");
+        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
+        this.cls.label = getValue(cls, "label", "");
+        this.cls.validation = getValue(cls, "validation", {invalid: "", valid: ""});
     }
 }

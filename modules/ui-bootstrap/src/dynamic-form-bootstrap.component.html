@@ -6,8 +6,7 @@
     <label *ngIf="!isCheckbox"
            [attr.for]="model.id"
            [hidden]="model.label.hidden"
-           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}
-    </label>
+           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}</label>
 
 
     <div *ngSwitchCase="'CHECKBOX'"
@@ -42,9 +41,7 @@
         <div *ngSwitchCase="'INPUT'"
              [class.input-group]="model.prefix || model.suffix">
 
-            <div *ngIf="model.prefix"
-                 class="input-group-addon">{{model.prefix}}
-            </div>
+            <div *ngIf="model.prefix" class="input-group-addon">{{model.prefix}}</div>
 
             <input class="form-control"
                    [attr.autoComplete]="model.autoComplete"
@@ -65,9 +62,7 @@
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
 
-            <div *ngIf="model.suffix"
-                 class="input-group-addon">{{model.suffix}}
-            </div>
+            <div *ngIf="model.suffix" class="input-group-addon">{{model.suffix}}</div>
 
         </div>
 
@@ -125,6 +120,7 @@
                   [id]="model.id"
                   [name]="model.name"
                   [placeholder]="model.placeholder"
+                  [readonly]="model.readonly"
                   [rows]="model.rows"
                   [wrap]="model.wrap"
                   [ngClass]="model.cls.control"
@@ -133,8 +129,7 @@
                   (focus)="onFocus($event)">
         </textarea>
 
-        <span *ngIf="model.help"
-              class="help-block">{{model.help}}</span>
+        <span *ngIf="model.help" class="help-block">{{model.help}}</span>
 
     </div>
 

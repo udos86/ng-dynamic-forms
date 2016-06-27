@@ -18,12 +18,12 @@ export interface DynamicFormOptionGroup<T> {
 export abstract class DynamicOptionControlModel<T> extends DynamicFormControlModel<T> {
 
     options: Array<DynamicFormOption<T>>;
-    optionGroups: Array<DynamicFormOptionGroup<T>>;
+    //optionGroups: Array<DynamicFormOptionGroup<T>>;
 
-    constructor(configObject: {} = {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
-        super(configObject);
+        super(config, cls);
         
-        this.options = getValue(configObject, "options", []);
+        this.options = getValue(config, "options", []);
     }
 }

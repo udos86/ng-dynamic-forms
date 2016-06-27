@@ -8,7 +8,7 @@ describe("DynamicInputModel test suite", () => {
         let defaultObject: DynamicInputModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicInputModel({});
+            defaultObject = new DynamicInputModel({id: "default"});
         });
         
         it("tests if correct default type property is set", () => {
@@ -33,6 +33,18 @@ describe("DynamicInputModel test suite", () => {
 
             expect(defaultObject.autoFocus).toBeDefined();
             expect(defaultObject.autoFocus).toBe(false);
+        });
+
+        it("tests if correct default cls properties aree set", () => {
+
+            expect(defaultObject.cls).toBeDefined();
+            expect(defaultObject.cls.control).toEqual("");
+            expect(defaultObject.cls.grid.container).toEqual("");
+            expect(defaultObject.cls.grid.control).toEqual("");
+            expect(defaultObject.cls.grid.label).toEqual("");
+            expect(defaultObject.cls.label).toEqual("");
+            expect(defaultObject.cls.validation.invalid).toEqual("");
+            expect(defaultObject.cls.validation.valid).toEqual("");
         });
 
         it("tests if correct default help property is set", () => {

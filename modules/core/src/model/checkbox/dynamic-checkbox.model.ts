@@ -9,13 +9,13 @@ export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
     //checked: boolean; // actually makes no sense since type of value is boolean
     indeterminate: boolean;
 
-    constructor(configObject: {} = {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
-        super(configObject);
+        super(config, cls);
 
-        this.align = getValue(configObject, "align", "start");
-        //this.checked = getValue(configObject, "checked", false);
-        this.indeterminate = getValue(configObject, "indeterminate", false);
+        this.align = getValue(config, "align", "start");
+        //this.checked = getValue(config, "checked", false);
+        this.indeterminate = getValue(config, "indeterminate", false);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 }

@@ -45,6 +45,7 @@ module.exports = function (config) {
             {pattern: 'modules/core/src/**/*.js', included: false, watched: true},
             {pattern: 'modules/ui-basic/src/**/*.js', included: false, watched: true},
             {pattern: 'modules/ui-bootstrap/src/**/*.js', included: false, watched: true},
+            {pattern: 'modules/ui-foundation/src/**/*.js', included: false, watched: true},
             {pattern: 'modules/ui-material/src/**/*.js', included: false, watched: true}
         ],
 

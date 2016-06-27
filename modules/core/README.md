@@ -1,1 +1,1 @@
-# ng2 Dynamic Forms Core Module
+#ng2 Dynamic Forms Core

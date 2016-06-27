@@ -25,8 +25,12 @@ if (typeof Object.assign != 'function') {
 
 export function getValue(object: any, key: string, defaultValue: any) {
 
+    if (object === undefined || object === null) {
+        return defaultValue;
+    }
+    
     let value = object[key];
-
+    
     if (value === undefined && defaultValue !== undefined) {
         return defaultValue;
     }
@@ -46,4 +50,3 @@ export function getValue(object: any, key: string, defaultValue: any) {
 
     return value;
 }
-

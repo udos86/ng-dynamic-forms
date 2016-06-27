@@ -12,13 +12,13 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
     rows: number;
     wrap: string;
 
-    constructor(configObject: {} = {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
-        super(configObject);
+        super(config, cls);
 
-        this.cols = getValue(configObject, "cols", 20);
-        this.rows = getValue(configObject, "rows", 2);
+        this.cols = getValue(config, "cols", 20);
+        this.rows = getValue(config, "rows", 2);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
-        this.wrap = getValue(configObject, "wrap", DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
+        this.wrap = getValue(config, "wrap", DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
     }
 }

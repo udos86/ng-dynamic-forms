@@ -18,14 +18,14 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
     min: number;
     step: number;
     
-    constructor(configObject: {} = {}) {
+    constructor(config: {} = {}, cls?: {}) {
 
-        super(configObject);
+        super(config, cls);
 
-        this.inputType = getValue(configObject, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
-        this.max = getValue(configObject, "max", null);
-        this.min = getValue(configObject, "min", null);
-        this.step = getValue(configObject, "step", null);
+        this.inputType = getValue(config, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
+        this.max = getValue(config, "max", null);
+        this.min = getValue(config, "min", null);
+        this.step = getValue(config, "step", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
     }
 }

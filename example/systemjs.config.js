@@ -34,7 +34,7 @@
         "@angular/http",
         "@angular/platform-browser",
         "@angular/platform-browser-dynamic",
-        "@angular/router-deprecated",
+        "@angular/router",
         "@angular/testing",
         "@angular/upgrade"
     ];
@@ -51,6 +51,7 @@
         "@ng2-dynamic-forms/core",
         "@ng2-dynamic-forms/ui-basic",
         "@ng2-dynamic-forms/ui-bootstrap",
+        "@ng2-dynamic-forms/ui-foundation",
         "@ng2-dynamic-forms/ui-material"
     ];
 
