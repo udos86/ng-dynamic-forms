@@ -16,8 +16,7 @@
 
     <label [attr.for]="model.id"
            [hidden]="model.label.hidden"
-           [ngClass]="model.cls.label">{{model.label.text}}
-    </label>
+           [ngClass]="model.cls.label">{{model.label.text}}</label>
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
@@ -113,7 +112,6 @@
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
-
     </textarea>
 
 </div>
