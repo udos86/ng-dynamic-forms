@@ -1,6 +1,7 @@
 import {
     DynamicFormModel,
     DynamicCheckboxModel,
+    DynamicCheckboxGroupModel
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
@@ -42,6 +43,31 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         maxLength: 51,
         placeholder: "example input"
     }),
+
+    new DynamicCheckboxGroupModel(
+        {
+            id: "basixCheckboxGroup",
+            items: [
+                new DynamicCheckboxModel({
+
+                    id: "checkboxGroup1",
+                    label: {
+                        text: "Checkbox 1"
+                    }
+                }),
+                new DynamicCheckboxModel({
+
+                    id: "checkboxGroup2",
+                    label: {
+                        text: "Checkbox 2"
+                    }
+                })
+            ],
+            label: {
+                text: "Example Checkbox Group"
+            }
+        }
+    ),
 
     new DynamicRadioGroupModel<string>({
 
