@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {DynamicFormModel} from "../model/dynamic-form.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
+import {IDynamicFormModel} from "../model/dynamic-form.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP, DynamicCheckboxGroupModel} from "../model/checkbox/dynamic-checkbox-group.model";
 
 @Injectable()
 export class DynamicFormService {
@@ -13,7 +13,7 @@ export class DynamicFormService {
         this.formBuilder = formBuilder;
     }
     
-    createFormGroup(dynamicFormModel: DynamicFormModel): FormGroup {
+    createFormGroup(dynamicFormModel: IDynamicFormModel): FormGroup {
 
         let formGroup = {};
         
@@ -27,8 +27,9 @@ export class DynamicFormService {
                     Validators.compose(controlModel.validators),
                     Validators.composeAsync(controlModel.validatorsAsync)
                 );
+                
             } else {
-                // TODO
+                formGroup[controlModel.id] = this.createFormGroup(<DynamicCheckboxGroupModel> controlModel);
             }
         });
 
