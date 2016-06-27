@@ -1,6 +1,7 @@
 import {
     DynamicFormModel,
     DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
@@ -11,7 +12,7 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicSelectModel<string>(
         {
-            id: "bootstrapSelect",
+            id: "foundationSelect",
             label: {
                 text: "Example Select"
             },
@@ -46,31 +47,9 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         }
     ),
 
-    new DynamicInputModel(
-        {
-            help: "Just a sample help text",
-            id: "bootstrapInput",
-            label: {
-                text: "Example Input"
-            },
-            maxLength: 51,
-            placeholder: "example input",
-            prefix: "Prefix",
-            suffix: "Suffix"
-        },
-        {
-            container: "row",
-            grid: {
-                label: "small-3 columns",
-                control: "small-9 columns"
-            },
-            label: "text-right middle"
-        }
-    ),
-
     new DynamicRadioGroupModel<string>(
         {
-            id: "bootstrapRadioGroup",
+            id: "foundationRadioGroup",
             label: {
                 text: "Example Radio Group"
             },
@@ -105,9 +84,64 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         }
     ),
 
+    new DynamicInputModel(
+        {
+            help: "Just a sample help text",
+            id: "foundationInput",
+            label: {
+                text: "Example Input"
+            },
+            maxLength: 51,
+            placeholder: "example input",
+            prefix: "Prefix",
+            suffix: "Suffix"
+        },
+        {
+            container: "row",
+            grid: {
+                label: "small-3 columns",
+                control: "small-9 columns"
+            },
+            label: "text-right middle"
+        }
+    ),
+
+    new DynamicCheckboxGroupModel(
+        {
+            id: "foundationCheckboxGroup",
+            items: [
+                new DynamicCheckboxModel({
+
+                    id: "foundationCheckbox1",
+                    label: {
+                        text: "Test 1"
+                    }
+                }),
+                new DynamicCheckboxModel({
+
+                    id: "foundationCheckbox2",
+                    label: {
+                        text: "Test 2"
+                    }
+                })
+            ],
+            label: {
+                text: "Example Checkbox Group"
+            }
+        },
+        {
+            container: "row",
+            grid: {
+                label: "small-3 columns",
+                control: "small-9 columns"
+            },
+            label: "text-right"
+        }
+    ),
+
     new DynamicTextAreaModel(
         {
-            id: "bootstrapTextArea",
+            id: "foundationTextArea",
             label: {
                 text: "Example Textarea"
             },
@@ -126,7 +160,7 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicCheckboxModel(
         {
-            id: "bootstrapCheckbox",
+            id: "foundationCheckbox",
             label: {
                 text: "I do agree"
             }

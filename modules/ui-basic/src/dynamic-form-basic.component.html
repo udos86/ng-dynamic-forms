@@ -40,7 +40,11 @@
            (focus)="onFocus($event)"/>
 
 
-    <span *ngSwitchCase="'RADIO_GROUP'">
+    <fieldset *ngSwitchCase="'RADIO_GROUP'"
+              role="radiogroup"
+              [id]="model.id">
+
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
 
         <label *ngFor="let option of model.options">
 
@@ -49,12 +53,9 @@
                    [disabled]="!!option.disabled"
                    [value]="option.value"
                    [ngClass]="model.cls.control"
-                   [(ngModel)]="model.value">
-            {{option.text}}
+                   [(ngModel)]="model.value">{{option.text}}</label>
 
-        </label>
-
-    </span>
+    </fieldset>
 
 
     <select *ngSwitchCase="'SELECT'"

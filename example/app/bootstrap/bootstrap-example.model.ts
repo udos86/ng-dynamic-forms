@@ -1,6 +1,7 @@
 import {
     DynamicFormModel,
     DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
@@ -65,6 +66,39 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "control-label"
         }
     ),
+
+    new DynamicCheckboxGroupModel(
+        {
+            id: "bootstrapCheckboxGroup",
+            items: [
+                new DynamicCheckboxModel({
+
+                    id: "checkboxGroup1",
+                    label: {
+                        text: "Checkbox 1"
+                    }
+                }),
+                new DynamicCheckboxModel({
+
+                    id: "checkboxGroup2",
+                    label: {
+                        text: "Checkbox 2"
+                    }
+                })
+            ],
+            label: {
+                text: "Example Checkbox Group"
+            }
+        },
+        {
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            },
+            label: "control-label"
+        }
+    ),
+
 
     new DynamicRadioGroupModel<string>(
         {
