@@ -30,7 +30,7 @@ export function getValue(object: any, key: string, defaultValue: any) {
     }
     
     let value = object[key];
-
+    
     if (value === undefined && defaultValue !== undefined) {
         return defaultValue;
     }
@@ -50,4 +50,3 @@ export function getValue(object: any, key: string, defaultValue: any) {
 
     return value;
 }
-
