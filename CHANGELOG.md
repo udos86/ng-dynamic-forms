@@ -4,6 +4,7 @@
 
 * `cls` is now a true optional declared constructor parameter
 * check included for mandatory `id` configuration property
+* \#37 fixed
 
 
 # alpha.8
