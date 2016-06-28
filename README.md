@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (alpha.9)
+# ng2 Dynamic Forms (alpha.10)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -76,9 +76,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     new DynamicInputModel({
 
         id: "exampleInput",
-        label: {
-            text: "Example Input"
-        },
+        label: "Example Input",
         maxLength: 42,
         placeholder: "example input",
     }),
@@ -86,9 +84,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     new DynamicRadioGroupModel<string>({
 
         id: "exampleRadioGroup",
-        label: {
-            text: "Example Radio Group"
-        },
+        label: "Example Radio Group",
         options: [
             {
                 text: "Option 1",
@@ -110,9 +106,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
     new DynamicCheckboxModel({
 
         id: "exampleCheckbox",
-        label: {
-            text: "I do agree"
-        }
+        label: "I do agree"
     })
 ]);
 ```

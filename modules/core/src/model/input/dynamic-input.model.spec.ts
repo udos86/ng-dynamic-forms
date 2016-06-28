@@ -56,8 +56,7 @@ describe("DynamicInputModel test suite", () => {
         it("tests if correct default label properties aree set", () => {
 
             expect(defaultObject.label).toBeDefined();
-            expect(defaultObject.label.hidden).toBe(false);
-            expect(defaultObject.label.text).toEqual("");
+            expect(defaultObject.label).toBeNull();
         });
 
         it("tests if correct default max property is set", () => {

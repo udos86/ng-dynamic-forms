@@ -14,9 +14,9 @@
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
-    <label [attr.for]="model.id"
-           [hidden]="model.label.hidden"
-           [ngClass]="model.cls.label">{{model.label.text}}</label>
+    <label *ngIf="model.label"
+           [attr.for]="model.id"
+           [ngClass]="model.cls.label">{{model.label}}</label>
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"

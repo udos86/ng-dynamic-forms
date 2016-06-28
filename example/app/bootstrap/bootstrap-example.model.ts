@@ -13,9 +13,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicSelectModel<string>(
         {
             id: "bootstrapSelect",
-            label: {
-                text: "Example Select"
-            },
+            label: "Example Select",
             options: [
                 {
                     text: "Option 1",
@@ -50,9 +48,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         {
             help: "Just a sample help text",
             id: "bootstrapInput",
-            label: {
-                text: "Example Input"
-            },
+            label: "Example Input",
             maxLength: 51,
             placeholder: "example input",
             prefix: "Prefix",
@@ -74,21 +70,15 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
                 new DynamicCheckboxModel({
 
                     id: "checkboxGroup1",
-                    label: {
-                        text: "Checkbox 1"
-                    }
+                    label: "Checkbox 1"
                 }),
                 new DynamicCheckboxModel({
 
                     id: "checkboxGroup2",
-                    label: {
-                        text: "Checkbox 2"
-                    }
+                    label: "Checkbox 2"
                 })
             ],
-            label: {
-                text: "Example Checkbox Group"
-            }
+            label: "Example Checkbox Group"
         },
         {
             grid: {
@@ -103,9 +93,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicRadioGroupModel<string>(
         {
             id: "bootstrapRadioGroup",
-            label: {
-                text: "Example Radio Group"
-            },
+            label: "Example Radio Group",
             options: [
                 {
                     text: "Option 1",
@@ -139,9 +127,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicTextAreaModel(
         {
             id: "bootstrapTextArea",
-            label: {
-                text: "Example Textarea"
-            },
+            label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
         },
@@ -157,9 +143,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxModel(
         {
             id: "bootstrapCheckbox",
-            label: {
-                text: "I do agree"
-            }
+            label: "I do agree"
         },
         {
             grid: {

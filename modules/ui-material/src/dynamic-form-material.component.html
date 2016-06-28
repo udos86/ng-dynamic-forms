@@ -2,9 +2,9 @@
      [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
-    <label [attr.for]="model.id"
-           [hidden]="model.label.hidden || isCheckbox"
-           [ngClass]="model.cls.label">{{model.label.text}}</label>
+    <label *ngIf="!isCheckbox && model.label"
+           [attr.for]="model.id"
+           [ngClass]="model.cls.label">{{model.label}}</label>
 
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
@@ -17,11 +17,8 @@
                  [ngClass]="model.cls.control"
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
-                 (focus)="onFocus($event)">
+                 (focus)="onFocus($event)">{{model.label}}</md-checkbox>
 
-        {{model.label.text}}
-
-    </md-checkbox>
 
     <md-input *ngSwitchCase="'INPUT'"
               [autofocus]="model.autoFocus"

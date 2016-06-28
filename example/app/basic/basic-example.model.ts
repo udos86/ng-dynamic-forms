@@ -1,7 +1,7 @@
 import {
     DynamicFormModel,
     DynamicCheckboxModel,
-    DynamicCheckboxGroupModel
+    DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
@@ -13,9 +13,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicSelectModel<string>({
 
         id: "basicSelect",
-        label: {
-            text: "Example Select"
-        },
+        label: "Example Select",
         options: [
             {
                 text: "Option 1",
@@ -33,13 +31,11 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         ],
         value: "option-3"
     }),
-    
+
     new DynamicInputModel({
 
         id: "basicInput",
-        label: {
-            text: "Example Input"
-        },
+        label: "Example Input",
         maxLength: 51,
         placeholder: "example input"
     }),
@@ -51,37 +47,22 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
                 new DynamicCheckboxModel({
 
                     id: "checkboxGroup1",
-                    label: {
-                        text: "Checkbox 1"
-                    }
+                    label: "Checkbox 1"
                 }),
                 new DynamicCheckboxModel({
 
                     id: "checkboxGroup2",
-                    label: {
-                        text: "Checkbox 2"
-                    }
+                    label: "Checkbox 2"
                 })
             ],
-            label: {
-                text: "Example Checkbox Group"
-            }
+            label: "Example Checkbox Group"
         }
     ),
 
     new DynamicRadioGroupModel<string>({
 
-        cls: {
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            },
-            label: "control-label"
-        },
         id: "basicRadioGroup",
-        label: {
-            text: "Example Radio Group"
-        },
+        label: "Example Radio Group",
         options: [
             {
                 text: "Option 1",
@@ -107,9 +88,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicTextAreaModel({
 
         id: "basicTextArea",
-        label: {
-            text: "Example Textarea"
-        },
+        label: "Example Textarea",
         rows: 5,
         placeholder: "example Textarea",
     }),
@@ -117,8 +96,6 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxModel({
 
         id: "basicCheckbox",
-        label: {
-            text:  "I do agree"
-        }
+        label: "I do agree"
     })
 ]);

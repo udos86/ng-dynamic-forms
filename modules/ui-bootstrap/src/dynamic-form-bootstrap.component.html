@@ -3,10 +3,9 @@
      [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
-    <label *ngIf="!isCheckbox"
+    <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
-           [hidden]="model.label.hidden"
-           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}</label>
+           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label}}</label>
 
 
     <div *ngSwitchCase="'CHECKBOX'"
@@ -27,7 +26,7 @@
                        [ngClass]="model.cls.control"
                        [(ngModel)]="model.value"
                        (blur)="onBlur($event)"
-                       (focus)="onFocus($event)"/>{{model.label.text}}
+                       (focus)="onFocus($event)"/>{{model.label}}
             </label>
 
         </div>
@@ -60,7 +59,7 @@
                            [ngClass]="item.cls.control"
                            [(ngModel)]="item.value"
                            (blur)="onBlur($event)"
-                           (focus)="onFocus($event)"/>{{model.label.text}}
+                           (focus)="onFocus($event)"/>{{model.label}}
                 </label>
 
             </div>
@@ -108,14 +107,12 @@
                  [class.disabled]="option.disabled">
 
                 <label>
-
                     <input type="radio"
                            [name]="model.name"
                            [disabled]="!!option.disabled"
                            [value]="option.value"
                            [ngClass]="model.cls.control"
                            [(ngModel)]="model.value">{{option.text}}
-
                 </label>
 
             </div>

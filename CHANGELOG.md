@@ -1,3 +1,12 @@
+# alpha.10
+
+### **Breaking Changes**
+
+* `label` property of `DynamicFormControlModel` is now just a plain `string` instead of object
+ (`hidden` property is removed)
+
+
+
 # alpha.9
 
 ### **Breaking Changes**
