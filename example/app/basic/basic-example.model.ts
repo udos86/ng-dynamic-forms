@@ -47,17 +47,18 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             id: "basixCheckboxGroup",
             label: "Example Checkbox Group",
             items: [
-
-                new DynamicCheckboxModel({
-
-                    id: "checkboxGroup1",
-                    label: "Checkbox 1"
-                }),
-                new DynamicCheckboxModel({
-
-                    id: "checkboxGroup2",
-                    label: "Checkbox 2"
-                })
+                new DynamicCheckboxModel(
+                    {
+                        id: "checkboxGroup1",
+                        label: "Checkbox 1"
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "checkboxGroup2",
+                        label: "Checkbox 2"
+                    }
+                )
             ]
         }
     ),
