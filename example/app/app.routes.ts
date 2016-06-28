@@ -5,7 +5,7 @@ import {FoundationExampleComponent} from "./foundation/foundation-example.compon
 import {MaterialExampleComponent} from "./material/material-example.component";
 
 export const routes: RouterConfig = [
-    {path: "", redirectTo: "/example-bootstrap", terminal: true},
+    {path: "", redirectTo: "/example-basic", terminal: true},
     {path: "example-basic", component: BasicExampleComponent},
     {path: "example-bootstrap", component: BootstrapExampleComponent},
     {path: "example-foundation", component: FoundationExampleComponent},

@@ -3,10 +3,9 @@
      [hidden]="!isCompatible"
      [ngSwitch]="model.type">
 
-    <label *ngIf="!isCheckbox"
+    <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
-           [hidden]="model.label.hidden"
-           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label.text}}</label>
+           [ngClass]="[model.cls.label, model.cls.grid.label]">{{model.label}}</label>
 
 
     <div *ngSwitchCase="'CHECKBOX'"
@@ -27,7 +26,7 @@
                        [ngClass]="model.cls.control"
                        [(ngModel)]="model.value"
                        (blur)="onBlur($event)"
-                       (focus)="onFocus($event)"/>{{model.label.text}}
+                       (focus)="onFocus($event)"/>{{model.label}}
             </label>
 
         </div>
@@ -37,6 +36,36 @@
 
     <div *ngIf="!isCheckbox"
          [ngClass]="model.cls.grid.control">
+
+        <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+                  [formGroupName]="model.id"
+                  [id]="model.id">
+
+            <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+            <div *ngFor="let item of model.items"
+                 class="checkbox"
+                 [class.disabled]="item.disabled">
+
+                <label [attr.for]="item.id"
+                       [ngClass]="item.cls.label">
+
+                    <input type="checkbox"
+                           [disabled]="item.disabled"
+                           [formControlName]="item.id"
+                           [id]="item.id"
+                           [name]="item.name"
+                           [value]="item.value"
+                           [ngClass]="item.cls.control"
+                           [(ngModel)]="item.value"
+                           (blur)="onBlur($event)"
+                           (focus)="onFocus($event)"/>{{model.label}}
+                </label>
+
+            </div>
+
+        </fieldset>
+
 
         <div *ngSwitchCase="'INPUT'"
              [class.input-group]="model.prefix || model.suffix">
@@ -78,14 +107,12 @@
                  [class.disabled]="option.disabled">
 
                 <label>
-
                     <input type="radio"
                            [name]="model.name"
                            [disabled]="!!option.disabled"
                            [value]="option.value"
                            [ngClass]="model.cls.control"
                            [(ngModel)]="model.value">{{option.text}}
-
                 </label>
 
             </div>

@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "description": "Material UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "scripts": {
@@ -23,10 +23,10 @@
   "peerDependencies": {
     "@angular/core": "^2.0.0-rc.3",
     "@angular/forms": "^0.1.1",
-    "@angular2-material/checkbox": "^2.0.0-alpha.5",
-    "@angular2-material/core": "^2.0.0-alpha.5",
-    "@angular2-material/input": "^2.0.0-alpha.5",
-    "@angular2-material/radio": "^2.0.0-alpha.5",
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.9"
+    "@angular2-material/checkbox": "^2.0.0-alpha.5-2",
+    "@angular2-material/core": "^2.0.0-alpha.5-2",
+    "@angular2-material/input": "^2.0.0-alpha.5-2",
+    "@angular2-material/radio": "^2.0.0-alpha.5-2",
+    "@ng2-dynamic-forms/core": "1.0.0-alpha.10"
   }
 }
