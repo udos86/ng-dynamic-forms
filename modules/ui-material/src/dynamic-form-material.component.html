@@ -6,6 +6,7 @@
            [attr.for]="model.id"
            [ngClass]="model.cls.label">{{model.label}}</label>
 
+
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [disabled]="model.disabled"
@@ -18,6 +19,26 @@
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">{{model.label}}</md-checkbox>
+
+
+    <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [formGroupName]="model.id"
+              [id]="model.id">
+
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+        <md-checkbox [align]="model.align"
+                     [disabled]="model.disabled"
+                     [formControlName]="model.id"
+                     [id]="model.id"
+                     [indeterminate]="model.indeterminate"
+                     [name]="model.name"
+                     [value]="model.value"
+                     [ngClass]="model.cls.control"
+                     [(ngModel)]="model.value"
+                     (blur)="onBlur($event)"
+                     (focus)="onFocus($event)">{{model.label}}</md-checkbox>
+    </fieldset>
 
 
     <md-input *ngSwitchCase="'INPUT'"
@@ -46,6 +67,7 @@
 
     </md-input>
 
+
     <md-radio-group *ngSwitchCase="'RADIO'"
                     [formControlName]="model.id"
                     [id]="model.id"
@@ -59,9 +81,7 @@
                          [checked]="!!option.selected"
                          [disabled]="!!option.disabled"
                          [name]="model.name"
-                         [value]="option.value">{{option.text}}
-        </md-radio-button>
-
+                         [value]="option.value">{{option.text}}</md-radio-button>
     </md-radio-group>
 
 </div>
