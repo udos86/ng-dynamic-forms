@@ -5,6 +5,8 @@
 * `label` property of `DynamicFormControlModel` is now just a plain `string` instead of object
  (`hidden` property is removed)
 
+### **Features**
+* `DynamicCheckboxGroupModel` has arrived (closes #32)
 
 
 # alpha.9

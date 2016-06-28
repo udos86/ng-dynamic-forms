@@ -66,19 +66,22 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxGroupModel(
         {
             id: "bootstrapCheckboxGroup",
+            label: "Example Checkbox Group",
             items: [
+
                 new DynamicCheckboxModel({
 
                     id: "checkboxGroup1",
-                    label: "Checkbox 1"
+                    label: "Checkbox 1",
+                    value: true
                 }),
                 new DynamicCheckboxModel({
 
                     id: "checkboxGroup2",
-                    label: "Checkbox 2"
+                    label: "Checkbox 2",
+                    value: true
                 })
-            ],
-            label: "Example Checkbox Group"
+            ]
         },
         {
             grid: {
@@ -88,7 +91,6 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "control-label"
         }
     ),
-
 
     new DynamicRadioGroupModel<string>(
         {
