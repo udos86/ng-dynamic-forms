@@ -12,7 +12,6 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     placeholder: string;
     prefix: string;
     readonly: boolean;
-    showLength: boolean;
     suffix: string;
 
     constructor(config: {} = {}, cls?: {}) {
@@ -25,7 +24,6 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
         this.placeholder = getValue(config, "placeholder", "");
         this.prefix = getValue(config, "prefix", null);
         this.readonly = getValue(config, "readonly", false);
-        this.showLength = getValue(config, "showLength", false);
         this.suffix = getValue(config, "suffix", null);
     }
 }

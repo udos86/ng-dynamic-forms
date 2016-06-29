@@ -60,11 +60,11 @@
 
         <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
         <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
-
+        <!--
         <md-hint *ngIf="model.showLength" align="end">
             {{characterCount}} / {{model.maxLength}}
         </md-hint>
-
+        -->
     </md-input>
 
 
@@ -83,5 +83,7 @@
                          [name]="model.name"
                          [value]="option.value">{{option.text}}</md-radio-button>
     </md-radio-group>
+
+    <ng-content></ng-content>
 
 </div>
