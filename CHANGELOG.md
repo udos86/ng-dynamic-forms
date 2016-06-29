@@ -1,3 +1,13 @@
+# alpha.11
+
+### **Breaking Changes**
+
+* none
+
+### **Features**
+* datalists now supported by `DynamicInputControlModel` (`list` property)
+
+
 # alpha.10
 
 ### **Breaking Changes**

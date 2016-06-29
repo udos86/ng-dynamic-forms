@@ -14,18 +14,26 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export class DynamicInputModel extends DynamicInputControlModel<any> {
 
     inputType: string;
+    list: Array<string>;
     max: number;
     min: number;
     step: number;
-    
+
+    private listId: string = null;
+
     constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
 
         this.inputType = getValue(config, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
+        this.list = getValue(config, "list", null);
         this.max = getValue(config, "max", null);
         this.min = getValue(config, "min", null);
         this.step = getValue(config, "step", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
+
+        if (this.list) {
+            this.listId = `${this.id}List`;
+        }
     }
 }

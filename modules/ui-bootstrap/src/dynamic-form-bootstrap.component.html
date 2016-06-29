@@ -74,6 +74,7 @@
 
             <input class="form-control"
                    [attr.autoComplete]="model.autoComplete"
+                   [attr.list]="model.listId"
                    [attr.max]="model.max"
                    [attr.min]="model.min"
                    [attr.step]="model.step"
@@ -92,6 +93,12 @@
                    (focus)="onFocus($event)"/>
 
             <div *ngIf="model.suffix" class="input-group-addon">{{model.suffix}}</div>
+
+            <datalist *ngIf="model.list" [id]="model.listId">
+
+                <option *ngFor="let option of model.list" [value]="option">
+
+            </datalist>
 
         </div>
 

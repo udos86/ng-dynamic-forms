@@ -26,14 +26,14 @@ export abstract class DynamicFormControlComponent implements OnInit {
         });
     }
 
-    get isValid() {
-        return this.control.valid;
-    }
-
     get isCheckbox () {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
+    get isValid() {
+        return this.control.valid;
+    }
+    
     onBlur($event) {
 
         this.hasFocus = false;

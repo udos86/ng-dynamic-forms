@@ -44,6 +44,7 @@
 
     <input *ngSwitchCase="'INPUT'"
            [attr.autoComplete]="model.autoComplete"
+           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.step]="model.step"
@@ -60,6 +61,12 @@
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
+
+    <datalist *ngIf="model.list" [id]="model.listId">
+
+        <option *ngFor="let option of model.list" [value]="option">
+
+    </datalist>
 
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'"
