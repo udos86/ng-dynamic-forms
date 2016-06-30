@@ -2,9 +2,10 @@
 
 ### **Breaking Changes**
 
-* none
+* `DynamicFormControlComponent` now throws when being bound to non-supported type of `DynamicFormControlModel
 
-### **Features**
+### **Features**`
+
 * [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
 
 

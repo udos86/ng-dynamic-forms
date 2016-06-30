@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (alpha.10)
+# ng2 Dynamic Forms (alpha.11)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -279,7 +279,7 @@ Now we need to position the `<label>` and the `form-control` using the Bootstrap
 
 Don't worry!
 
-By providing the `cls` and it's nested `grid` configuration object, ng2 Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
+By providing the `cls` and it's nested `grid` and `element` configuration objects, ng2 Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
 
 We can just pass it as a second constructor parameter of every `DynamicFormControlModel`, i.e. separation of model and style information remains intact:
 ```ts
@@ -288,11 +288,13 @@ new DynamicInputModel(
         // ... all model configuration properties
     },
     {
+        element: {
+            label: "control-label"
+        },
         grid: {
             control: "col-sm-9",
             label: "col-sm-3"
-        },
-        label: "control-label"
+        }
     }
 )
 ```
