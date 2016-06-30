@@ -7,7 +7,6 @@
            [attr.for]="model.id"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]">{{model.label}}</label>
 
-
     <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls.grid.control">
 
@@ -119,9 +118,7 @@
                            [disabled]="!!option.disabled"
                            [value]="option.value"
                            [ngClass]="model.cls.element.control"
-                           [(ngModel)]="model.value">{{option.text}}
-                </label>
-
+                           [(ngModel)]="model.value">{{option.text}}</label>
             </div>
 
         </fieldset>
