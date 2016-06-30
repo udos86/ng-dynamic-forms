@@ -5,7 +5,7 @@
 * none
 
 ### **Features**
-* datalists now supported by `DynamicInputControlModel` (`list` property)
+* [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
 
 
 # alpha.10
@@ -16,7 +16,7 @@
  (`hidden` property is removed)
 
 ### **Features**
-* `DynamicCheckboxGroupModel` has arrived (closes #32)
+* `DynamicCheckboxGroupModel` has arrived (closes [\#32](https://github.com/udos86/ng2-dynamic-forms/issues/32))
 
 
 # alpha.9
@@ -25,7 +25,7 @@
 
 * `cls` is now a true optional declared constructor parameter
 * check included for mandatory `id` configuration property
-* \#37 fixed
+* [\#37](https://github.com/udos86/ng2-dynamic-forms/issues/37) fixed
 
 
 # alpha.8
