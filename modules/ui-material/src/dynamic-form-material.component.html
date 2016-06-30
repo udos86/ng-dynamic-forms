@@ -4,7 +4,7 @@
 
     <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
-           [ngClass]="model.cls.label">{{model.label}}</label>
+           [ngClass]="model.cls.element.label">{{model.label}}</label>
 
 
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
@@ -15,7 +15,7 @@
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
-                 [ngClass]="model.cls.control"
+                 [ngClass]="model.cls.element.control"
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">{{model.label}}</md-checkbox>
@@ -34,7 +34,7 @@
                      [indeterminate]="model.indeterminate"
                      [name]="model.name"
                      [value]="model.value"
-                     [ngClass]="model.cls.control"
+                     [ngClass]="model.cls.element.control"
                      [(ngModel)]="model.value"
                      (blur)="onBlur($event)"
                      (focus)="onFocus($event)">{{model.label}}</md-checkbox>
@@ -53,7 +53,7 @@
               [placeholder]="model.placeholder"
               [step]="model.step"
               [type]="model.inputType"
-              [ngClass]="model.cls.control"
+              [ngClass]="model.cls.element.control"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
@@ -72,7 +72,7 @@
                     [formControlName]="model.id"
                     [id]="model.id"
                     [name]="model.name"
-                    [ngClass]="model.cls.control"
+                    [ngClass]="model.cls.element.control"
                     [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
                     (focus)="onFocus($event)">
