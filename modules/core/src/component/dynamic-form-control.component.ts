@@ -12,14 +12,16 @@ export abstract class DynamicFormControlComponent implements OnInit {
     type: string; // must be defined by sublcass
 
     incompatibilities: Array<string> = [];
-    isCompatible: boolean;
 
     constructor() {
+
+        if (this.incompatibilities.indexOf(this.model.type) > -1) {
+            throw(`Control ${this.model.id} of type ${this.model.type} is not supported by UI ${this.type}.`);
+        }
     }
 
     ngOnInit() {
 
-        this.isCompatible = this.checkCompatibility();
         this.control = <FormControl> this.form.controls[this.model.id];
         this.control.valueChanges.subscribe((value: string) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.form.valid);
@@ -44,16 +46,5 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
         this.hasFocus = true;
         console.log(this.model.id + " field is focused");
-    }
-
-    checkCompatibility() {
-
-        if (this.incompatibilities.indexOf(this.model.type) > -1) {
-
-            console.warn(`Control ${this.model.id} of type ${this.model.type} is not supported by UI ${this.type} and therefore is hidden from the DOM.`);
-            return false;
-        }
-
-        return true;
     }
 }
