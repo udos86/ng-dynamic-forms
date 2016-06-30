@@ -40,7 +40,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
         this.list = getValue(config, "list", null);
         this.max = getValue(config, "max", null);
         this.min = getValue(config, "min", null);
-        this.multiple = getValue(config, "multiple", false);
+        this.multiple = getValue(config, "multiple", null);
         this.step = getValue(config, "step", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
