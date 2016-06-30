@@ -1,4 +1,5 @@
 <div [formGroup]="form"
+     [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
     <label *ngIf="!isCheckbox && model.label"
