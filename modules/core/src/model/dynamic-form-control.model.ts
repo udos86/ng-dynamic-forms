@@ -51,7 +51,7 @@ export abstract class DynamicFormControlModel<T> {
         this.help = getValue(config, "help", null);
         this.id = config.id;
         this.label = getValue(config, "label", null);
-        this.name = this.id; // TODO remove any time soon
+        this.name = this.id; // TODO remove any time soon due to redundancy
         this.required = getValue(config, "required", false);
         this.validators = getValue(config, "validators", []);
         this.validatorsAsync = getValue(config, "validatorsAsync", []);
