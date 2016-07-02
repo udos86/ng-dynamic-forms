@@ -19,7 +19,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     ngOnInit() {
 
         if (this.incompatibilities.indexOf(this.model.type) > -1) {
-            throw(`Control ${this.model.id} of type ${this.model.type} is not supported by UI ${this.type}.`);
+            throw new Error(`Control ${this.model.id} of type ${this.model.type} is not supported by ${this.type} UI package.`);
         }
 
         this.control = <FormControl> this.form.controls[this.model.id];

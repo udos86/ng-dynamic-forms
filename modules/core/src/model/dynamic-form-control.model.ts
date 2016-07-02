@@ -1,5 +1,5 @@
 import {Validators} from "@angular/forms";
-import {getValue} from "../utils";
+import {getValue, isEmptyString} from "../utils";
 
 export interface Cls {
 
@@ -40,8 +40,8 @@ export abstract class DynamicFormControlModel<T> {
         grid?: Cls,
     }) {
 
-        if (!config.id) {
-            throw("id must be specified for DynamicFormControlModel");
+        if (isEmptyString(config.id)) {
+            throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
         this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
@@ -51,7 +51,7 @@ export abstract class DynamicFormControlModel<T> {
         this.help = getValue(config, "help", null);
         this.id = config.id;
         this.label = getValue(config, "label", null);
-        this.name = getValue(config, "name", this.id || "");
+        this.name = this.id; // TODO remove any time soon
         this.required = getValue(config, "required", false);
         this.validators = getValue(config, "validators", []);
         this.validatorsAsync = getValue(config, "validatorsAsync", []);

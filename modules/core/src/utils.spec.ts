@@ -72,4 +72,17 @@ describe("Utils test suite", () => {
         
     });
 
+    describe("isEmptyString test suite", () =>{
+
+        it("tests if isEmptyString is working correctly", () => {
+
+            let testString1 =  "";
+            let testString2 = "test string";
+
+            expect(utils.isEmptyString(testString1)).toBe(true);
+            expect(utils.isEmptyString(testString2)).toBe(false);
+        });
+
+    });
+
 });
