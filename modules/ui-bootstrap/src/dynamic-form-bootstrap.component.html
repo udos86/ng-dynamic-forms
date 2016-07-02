@@ -116,8 +116,9 @@
 
                 <label>
                     <input type="radio"
-                           [name]="model.name"
                            [disabled]="!!option.disabled"
+                           [formControlName]="model.id"
+                           [name]="model.name"
                            [value]="option.value"
                            [ngClass]="model.cls.element.control"
                            [(ngModel)]="model.value">{{option.text}}</label>

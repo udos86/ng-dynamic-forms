@@ -61,7 +61,7 @@
            [type]="model.inputType"
            [ngClass]="model.cls.element.control"
            [(ngModel)]="model.value"
-           (blur)="onBlur($event)"
+           (blur)="onBlur($event)"  
            (focus)="onFocus($event)"/>
 
     <datalist *ngIf="model.list" [id]="model.listId">
@@ -80,8 +80,9 @@
         <label *ngFor="let option of model.options">
 
             <input type="radio"
-                   [name]="model.name"
                    [disabled]="!!option.disabled"
+                   [formControlName]="model.id"
+                   [name]="model.name"
                    [value]="option.value"
                    [ngClass]="model.cls.element.control"
                    [(ngModel)]="model.value">{{option.text}}</label>

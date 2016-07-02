@@ -98,12 +98,12 @@
                    [class.disabled]="option.disabled">
 
                 <input type="radio"
-                       [name]="model.name"
                        [disabled]="!!option.disabled"
+                       [formControlName]="model.id"                                              
+                       [name]="model.name"                       
                        [value]="option.value"
                        [ngClass]="model.cls.element.control"
                        [(ngModel)]="model.value">{{option.text}}</label>
-
         </fieldset>
 
 
@@ -144,7 +144,6 @@
         <p *ngIf="model.help" class="help-text">{{model.help}}</p>
 
     </div>
-
 
     <ng-content></ng-content>
 
