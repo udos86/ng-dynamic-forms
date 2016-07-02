@@ -78,7 +78,6 @@
                     (focus)="onFocus($event)">
 
         <md-radio-button *ngFor="let option of model.options"
-                         [checked]="!!option.selected"
                          [disabled]="!!option.disabled"
                          [name]="model.name"
                          [value]="option.value">{{option.text}}</md-radio-button>

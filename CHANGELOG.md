@@ -2,12 +2,13 @@
 
 ### **Breaking Changes**
 
+* `cls` configuration refactored (has now nested `grid` and `element` configuration objects)
 * `DynamicFormControlComponent` now throws when being bound to non-supported type of `DynamicFormControlModel
 
 ### **Features**`
 
+* `ui-material` finally working again after upgrading to new Angular 2 Material alpha.6 (closes #)
 * [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
-
 
 # alpha.10
 
