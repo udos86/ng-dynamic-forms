@@ -44,6 +44,9 @@ export abstract class DynamicFormControlModel<T> {
             throw("id must be specified for DynamicFormControlModel");
         }
 
+        this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
+        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
+
         this.disabled = getValue(config, "disabled", false);
         this.help = getValue(config, "help", null);
         this.id = config.id;
@@ -57,8 +60,5 @@ export abstract class DynamicFormControlModel<T> {
         if (this.required) {
             this.validators.push(Validators.required);
         }
-        
-        this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
-        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
     }
 }
