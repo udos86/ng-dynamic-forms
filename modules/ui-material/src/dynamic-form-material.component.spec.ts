@@ -3,13 +3,13 @@ import {
     DynamicFormMaterialComponent,
     DYNAMIC_FORM_UI_MATERIAL
 } from "./dynamic-form-material.component";
-import {MdRadioDispatcher} from "@angular2-material/radio";
+import {MdUniqueSelectionDispatcher} from "@angular2-material/core";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
-    beforeEachProviders(() => [DynamicFormMaterialComponent, MdRadioDispatcher]);
+    beforeEachProviders(() => [DynamicFormMaterialComponent, MdUniqueSelectionDispatcher]);
 
-    it("tests if component initializes correctly", inject([DynamicFormMaterialComponent, MdRadioDispatcher],
+    it("tests if component initializes correctly", inject([DynamicFormMaterialComponent, MdUniqueSelectionDispatcher],
         (component) => {
 
             expect(component).toBeDefined();
