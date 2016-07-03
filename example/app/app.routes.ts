@@ -9,6 +9,7 @@ export const routes: RouterConfig = [
     {path: "example-basic", component: BasicExampleComponent},
     {path: "example-bootstrap", component: BootstrapExampleComponent},
     {path: "example-foundation", component: FoundationExampleComponent},
+    {path: "example-material", component: MaterialExampleComponent}
 ];
 
 export const APP_ROUTER_PROVIDERS = [

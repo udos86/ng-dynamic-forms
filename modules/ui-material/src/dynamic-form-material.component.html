@@ -1,10 +1,10 @@
 <div [formGroup]="form"
-     [hidden]="!isCompatible"
+     [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
     <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
-           [ngClass]="model.cls.label">{{model.label}}</label>
+           [ngClass]="model.cls.element.label">{{model.label}}</label>
 
 
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
@@ -15,7 +15,7 @@
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
-                 [ngClass]="model.cls.control"
+                 [ngClass]="model.cls.element.control"
                  [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
                  (focus)="onFocus($event)">{{model.label}}</md-checkbox>
@@ -34,7 +34,7 @@
                      [indeterminate]="model.indeterminate"
                      [name]="model.name"
                      [value]="model.value"
-                     [ngClass]="model.cls.control"
+                     [ngClass]="model.cls.element.control"
                      [(ngModel)]="model.value"
                      (blur)="onBlur($event)"
                      (focus)="onFocus($event)">{{model.label}}</md-checkbox>
@@ -53,35 +53,36 @@
               [placeholder]="model.placeholder"
               [step]="model.step"
               [type]="model.inputType"
-              [ngClass]="model.cls.control"
+              [ngClass]="model.cls.element.control"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
 
         <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
         <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
-
+        <!--
         <md-hint *ngIf="model.showLength" align="end">
             {{characterCount}} / {{model.maxLength}}
         </md-hint>
-
+        -->
     </md-input>
 
 
-    <md-radio-group *ngSwitchCase="'RADIO'"
+    <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
                     [formControlName]="model.id"
                     [id]="model.id"
                     [name]="model.name"
-                    [ngClass]="model.cls.control"
+                    [ngClass]="model.cls.element.control"
                     [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
                     (focus)="onFocus($event)">
 
         <md-radio-button *ngFor="let option of model.options"
-                         [checked]="!!option.selected"
                          [disabled]="!!option.disabled"
                          [name]="model.name"
                          [value]="option.value">{{option.text}}</md-radio-button>
     </md-radio-group>
+
+    <ng-content></ng-content>
 
 </div>

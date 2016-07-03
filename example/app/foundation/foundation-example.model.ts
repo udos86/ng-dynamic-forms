@@ -36,12 +36,14 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             value: "option-3"
         },
         {
-            container: "row",
-            grid: {
-                label: "small-3 columns",
-                control: "small-9 columns"
+            element: {
+                container: "row",
+                label: "text-right middle"
             },
-            label: "text-right middle"
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
+            }
         }
     ),
 
@@ -71,12 +73,14 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             value: "option-3"
         },
         {
-            container: "row",
-            grid: {
-                label: "small-3 columns",
-                control: "small-9 columns"
+            element: {
+                container: "row",
+                label: "text-right"
             },
-            label: "text-right"
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
+            }
         }
     ),
 
@@ -91,12 +95,14 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             suffix: "Suffix"
         },
         {
-            container: "row",
-            grid: {
-                label: "small-3 columns",
-                control: "small-9 columns"
+            element: {
+                container: "row",
+                label: "text-right middle"
             },
-            label: "text-right middle"
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
+            }
         }
     ),
 
@@ -120,12 +126,14 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "Example Checkbox Group"
         },
         {
-            container: "row",
-            grid: {
-                label: "small-3 columns",
-                control: "small-9 columns"
+            element: {
+                container: "row",
+                label: "text-right"
             },
-            label: "text-right"
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
+            }
         }
     ),
 
@@ -137,12 +145,14 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             placeholder: "example Textarea",
         },
         {
-            container: "row",
-            grid: {
-                label: "small-3 columns",
-                control: "small-9 columns"
+            element: {
+                container: "row",
+                label: "text-right"
             },
-            label: "text-right"
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
+            }
         }
     ),
 
@@ -152,7 +162,9 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "I do agree"
         },
         {
-            container: "row",
+            element: {
+                container: "row"
+            },
             grid: {
                 control: "small-offset-3 small-9 columns"
             }

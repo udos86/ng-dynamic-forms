@@ -1,5 +1,5 @@
 <div [formGroup]="form"
-     [hidden]="!isCompatible"
+     [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
     <input *ngSwitchCase="'CHECKBOX'"
@@ -9,14 +9,14 @@
            [id]="model.id"
            [name]="model.name"
            [value]="model.value"
-           [ngClass]="model.cls.control"
+           [ngClass]="model.cls.element.control"
            [(ngModel)]="model.value"
            (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
     <label *ngIf="model.label"
            [attr.for]="model.id"
-           [ngClass]="model.cls.label">{{model.label}}</label>
+           [ngClass]="model.cls.element.label">{{model.label}}</label>
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
@@ -27,7 +27,7 @@
 
         <label *ngFor="let item of model.items"
                [attr.for]="item.id"
-               [ngClass]="item.cls.label">
+               [ngClass]="item.cls.element.label">
 
             <input type="checkbox"
                    [disabled]="item.disabled"
@@ -35,7 +35,7 @@
                    [id]="item.id"
                    [name]="item.name"
                    [value]="item.value"
-                   [ngClass]="item.cls.control"
+                   [ngClass]="item.cls.element.control"
                    [(ngModel)]="item.value"
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>{{item.label.text}}</label>
@@ -43,9 +43,12 @@
 
 
     <input *ngSwitchCase="'INPUT'"
+           [attr.accept]="model.accept"
            [attr.autoComplete]="model.autoComplete"
+           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
+           [attr.multiple]="model.multiple"
            [attr.step]="model.step"
            [autofocus]="model.autoFocus"
            [disabled]="model.disabled"
@@ -56,10 +59,16 @@
            [placeholder]="model.placeholder"
            [readonly]="model.readonly"
            [type]="model.inputType"
-           [ngClass]="model.cls.control"
+           [ngClass]="model.cls.element.control"
            [(ngModel)]="model.value"
-           (blur)="onBlur($event)"
+           (blur)="onBlur($event)"  
            (focus)="onFocus($event)"/>
+
+    <datalist *ngIf="model.list" [id]="model.listId">
+
+        <option *ngFor="let option of model.list" [value]="option">
+
+    </datalist>
 
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'"
@@ -71,10 +80,11 @@
         <label *ngFor="let option of model.options">
 
             <input type="radio"
-                   [name]="model.name"
                    [disabled]="!!option.disabled"
+                   [formControlName]="model.id"
+                   [name]="model.name"
                    [value]="option.value"
-                   [ngClass]="model.cls.control"
+                   [ngClass]="model.cls.element.control"
                    [(ngModel)]="model.value">{{option.text}}</label>
     </fieldset>
 
@@ -83,7 +93,7 @@
             [formControlName]="model.id"
             [id]="model.id"
             [name]="model.name"
-            [ngClass]="model.cls.control"
+            [ngClass]="model.cls.element.control"
             [(ngModel)]="model.value"
             (blur)="onBlur($event)"
             (focus)="onFocus($event)">
@@ -107,10 +117,12 @@
               [readonly]="model.readonly"
               [rows]="model.rows"
               [wrap]="model.wrap"
-              [ngClass]="model.cls.control"
+              [ngClass]="model.cls.element.control"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
               (focus)="onFocus($event)">
     </textarea>
+
+    <ng-content></ng-content>
 
 </div>

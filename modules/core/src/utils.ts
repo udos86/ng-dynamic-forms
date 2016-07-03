@@ -23,7 +23,11 @@ if (typeof Object.assign != 'function') {
     })();
 }
 
-export function getValue(object: any, key: string, defaultValue: any) {
+export function isEmptyString (_string: string): boolean {
+    return typeof _string === "string" && _string.length === 0;
+}
+
+export function getValue(object: any, key: string, defaultValue: any): any {
 
     if (object === undefined || object === null) {
         return defaultValue;
@@ -41,11 +45,11 @@ export function getValue(object: any, key: string, defaultValue: any) {
 
             if (value.hasOwnProperty(property) && typeof value[property] === "object") {
                 
-                value[property] = getValue(value, property, defaultValue[property]);
+                value[property] = getValue(value, property, defaultValue ? defaultValue[property] : null);
             }
         }
 
-        return Object.assign(defaultValue, value);
+        return defaultValue ? Object.assign(defaultValue, value) : value;
     }
 
     return value;

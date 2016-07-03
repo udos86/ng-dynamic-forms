@@ -36,11 +36,13 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             value: "option-3"
         },
         {
+            element: {
+                label: "control-label"
+            },
             grid: {
                 control: "col-sm-9",
                 label: "col-sm-3"
-            },
-            label: "control-label"
+            }
         }
     ),
 
@@ -55,11 +57,13 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             suffix: "Suffix"
         },
         {
+            element: {
+                label: "control-label"
+            },
             grid: {
                 control: "col-sm-9",
                 label: "col-sm-3"
-            },
-            label: "control-label"
+            }
         }
     ),
 
@@ -85,11 +89,13 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             ]
         },
         {
+            element: {
+                label: "control-label"
+            },
             grid: {
                 control: "col-sm-9",
                 label: "col-sm-3"
-            },
-            label: "control-label"
+            }
         }
     ),
 
@@ -119,11 +125,13 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             value: "option-3"
         },
         {
+            element: {
+                label: "control-label"
+            },
             grid: {
                 control: "col-sm-9",
                 label: "col-sm-3"
-            },
-            label: "control-label"
+            }
         }
     ),
 
@@ -135,11 +143,13 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             placeholder: "example Textarea",
         },
         {
+            element: {
+                label: "control-label"
+            },
             grid: {
                 control: "col-sm-9",
                 label: "col-sm-3"
-            },
-            label: "control-label"
+            }
         }
     ),
 

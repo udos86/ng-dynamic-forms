@@ -38,13 +38,12 @@ describe("DynamicInputModel test suite", () => {
         it("tests if correct default cls properties aree set", () => {
 
             expect(defaultObject.cls).toBeDefined();
-            expect(defaultObject.cls.control).toEqual("");
+            expect(defaultObject.cls.element.container).toEqual("");
+            expect(defaultObject.cls.element.control).toEqual("");
+            expect(defaultObject.cls.element.label).toEqual("");
             expect(defaultObject.cls.grid.container).toEqual("");
             expect(defaultObject.cls.grid.control).toEqual("");
             expect(defaultObject.cls.grid.label).toEqual("");
-            expect(defaultObject.cls.label).toEqual("");
-            expect(defaultObject.cls.validation.invalid).toEqual("");
-            expect(defaultObject.cls.validation.valid).toEqual("");
         });
 
         it("tests if correct default help property is set", () => {

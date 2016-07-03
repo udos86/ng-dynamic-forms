@@ -29,6 +29,7 @@ export class DynamicFormService {
                 );
                 
             } else {
+                
                 formGroup[controlModel.id] = this.createFormGroup(<DynamicCheckboxGroupModel> controlModel);
             }
         });

@@ -1,3 +1,20 @@
+# beta.1
+
+### **Breaking Changes**
+
+* `cls` configuration object has now nested `element` configuration object to set css classes for certain elements (see [example](https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/bootstrap/bootstrap-example.model.ts))
+* `name` property of `DynamicFormControlModel` cannot be set anymore by configuration (automatically mapped to `id`)
+* `DynamicFormControlComponent` now throws when being bound to non-supported type of `DynamicFormControlModel`
+
+### **Bugfixes**
+
+* `ui-material` finally working again after upgrading to new Angular 2 Material alpha.6 (closes [#29](https://github.com/udos86/ng2-dynamic-forms/issues/29))
+* `value` of `DynamicCheckboxModel`is now always initizialized with `false` instead of `null` when not explicitly set to `true
+
+### **Features**
+
+* [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
+
 # alpha.10
 
 ### **Breaking Changes**
@@ -6,7 +23,7 @@
  (`hidden` property is removed)
 
 ### **Features**
-* `DynamicCheckboxGroupModel` has arrived (closes #32)
+* `DynamicCheckboxGroupModel` has arrived (closes [\#32](https://github.com/udos86/ng2-dynamic-forms/issues/32))
 
 
 # alpha.9
@@ -15,7 +32,7 @@
 
 * `cls` is now a true optional declared constructor parameter
 * check included for mandatory `id` configuration property
-* \#37 fixed
+* [\#37](https://github.com/udos86/ng2-dynamic-forms/issues/37) fixed
 
 
 # alpha.8

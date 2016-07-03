@@ -15,6 +15,12 @@ describe("DynamicCheckboxModel test suite", () => {
             expect(defaultObject.type).toBeDefined();
             expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
         });
+
+        it("tests if correct default value property is set", () => {
+
+            expect(defaultObject.value).toBeDefined();
+            expect(defaultObject.value).toBe(false);
+        });
         
     });
 

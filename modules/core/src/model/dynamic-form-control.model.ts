@@ -1,5 +1,12 @@
 import {Validators} from "@angular/forms";
-import {getValue} from "../utils";
+import {getValue, isEmptyString} from "../utils";
+
+export interface Cls {
+
+    container: string;
+    control: string;
+    label: string
+}
 
 export abstract class DynamicFormControlModel<T> {
 
@@ -21,7 +28,6 @@ export abstract class DynamicFormControlModel<T> {
         help?: string,
         id?: string,
         label?: string,
-        name?: string,
         required?: boolean,
         validators?: Array<any>;
         validatorsAsync?: Array<any>,
@@ -29,30 +35,22 @@ export abstract class DynamicFormControlModel<T> {
 
     }, cls?: {
 
-        container?: string
-        control?: string,
-        grid?: {
-            container?: string,
-            control?: string,
-            label?: string
-        },
-        label?: string,
-        validation?: {
-            invalid?: string,
-            valid?: string
-        }
+        element?: Cls
+        grid?: Cls,
     }) {
 
-        if (config.id) {
-            this.id = config.id
-        } else {
-            throw("id must be specified for DynamicFormControlModel");
+        if (isEmptyString(config.id)) {
+            throw new Error("string id must be specified for DynamicFormControlModel");
         }
+
+        this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
+        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
 
         this.disabled = getValue(config, "disabled", false);
         this.help = getValue(config, "help", null);
+        this.id = config.id;
         this.label = getValue(config, "label", null);
-        this.name = getValue(config, "name", this.id || "");
+        this.name = this.id; // TODO remove any time soon due to redundancy
         this.required = getValue(config, "required", false);
         this.validators = getValue(config, "validators", []);
         this.validatorsAsync = getValue(config, "validatorsAsync", []);
@@ -61,11 +59,5 @@ export abstract class DynamicFormControlModel<T> {
         if (this.required) {
             this.validators.push(Validators.required);
         }
-
-        this.cls.container = getValue(cls, "container", "");
-        this.cls.control = getValue(cls, "control", "");
-        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
-        this.cls.label = getValue(cls, "label", "");
-        this.cls.validation = getValue(cls, "validation", {invalid: "", valid: ""});
     }
 }
