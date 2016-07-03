@@ -1,4 +1,4 @@
-import {describe, expect, inject, it, beforeEachProviders} from "@angular/core/testing";
+import {describe, expect, inject, it, beforeEach, addProviders} from "@angular/core/testing";
 import {
     DynamicFormFoundationSitesComponent,
     DYNAMIC_FORM_UI_FOUNDATION_SITES
@@ -6,7 +6,9 @@ import {
 
 describe("DynamicFormFoundationSitesComponent test suite", () => {
 
-    beforeEachProviders(() => [DynamicFormFoundationSitesComponent]);
+    beforeEach(() => {
+        addProviders([DynamicFormFoundationSitesComponent]);
+    });
 
     it("tests if component initializes correctly", inject([DynamicFormFoundationSitesComponent],
         (component) => {

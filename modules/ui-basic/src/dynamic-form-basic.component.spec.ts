@@ -1,9 +1,11 @@
-import {describe, expect, inject, it, beforeEachProviders} from "@angular/core/testing";
+import {describe, expect, inject, it, beforeEach, addProviders} from "@angular/core/testing";
 import {DynamicFormBasicComponent, DYNAMIC_FORM_UI_BASIC} from "./dynamic-form-basic.component";
 
 describe("DynamicFormBasicComponent test suite", () => {
 
-    beforeEachProviders(() => [DynamicFormBasicComponent]);
+    beforeEach(() => {
+        addProviders([DynamicFormBasicComponent]);
+    });
 
     it("tests if component initializes correctly", inject([DynamicFormBasicComponent],
         (component) => {
