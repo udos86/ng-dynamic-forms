@@ -1,7 +1,7 @@
 {
   "name": "ng2-dynamic-forms-example",
-  "version": "1.0.0-alpha.10",
-  "description": "Sample Application for ng2 Dynamic Forms",
+  "version": "1.0.0-beta.1",
+  "description": "Sample application for ng2 Dynamic Forms",
   "scripts": {
     "lite-server": "lite-server"
   },

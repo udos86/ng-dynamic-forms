@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-beta.1",
   "description": "Material UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "@angular2-material/core": "^2.0.0-alpha.6",
     "@angular2-material/input": "^2.0.0-alpha.6",
     "@angular2-material/radio": "^2.0.0-alpha.6",
-    "@ng2-dynamic-forms/core": "1.0.0-alpha.10"
+    "@ng2-dynamic-forms/core": "1.0.0-beta.1"
   }
 }

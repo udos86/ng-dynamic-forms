@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-beta.1",
   "description": "A rapid form development library for Angular 2",
   "scripts": {
     "ci-test": "karma start --single-run",
