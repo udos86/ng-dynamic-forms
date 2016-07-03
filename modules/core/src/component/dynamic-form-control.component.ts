@@ -23,9 +23,11 @@ export abstract class DynamicFormControlComponent implements OnInit {
         }
 
         this.control = <FormControl> this.form.controls[this.model.id];
+        /*
         this.control.valueChanges.subscribe((value: string) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.form.valid);
         });
+        */
     }
 
     get isCheckbox() {
@@ -39,12 +41,12 @@ export abstract class DynamicFormControlComponent implements OnInit {
     onBlur($event) {
 
         this.hasFocus = false;
-        console.log(this.model.id + " field is blurred");
+        //console.log(this.model.id + " field is blurred");
     }
 
     onFocus($event) {
 
         this.hasFocus = true;
-        console.log(this.model.id + " field is focused");
+        //console.log(this.model.id + " field is focused");
     }
 }
