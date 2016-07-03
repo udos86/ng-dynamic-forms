@@ -48,6 +48,7 @@
     "es6-shim": "^0.35.1",
     "foundation-sites": "^6.2.3",
     "gulp": "^3.9.1",
+    "gulp-preprocess": "^2.0.0",
     "gulp-replace": "^0.5.4",
     "gulp-typedoc": "^2.0.0",
     "jasmine-core": "^2.4.1",

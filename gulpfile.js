@@ -1,34 +1,36 @@
 var pkg = require("./package.json");
 var gulp = require("gulp");
 var del = require("del");
+var preprocess = require('gulp-preprocess');
 var replace = require("gulp-replace");
 var typedoc = require('gulp-typedoc');
 
-gulp.task("clean:example", function () {
+gulp.task("clean", function () {
 
     return del([
+        "dist/**/*",
         "node_modules/@ng2-dynamic-forms/**/*",
         "example/node_modules/@ng2-dynamic-forms/**/*"
     ]);
 });
 
-gulp.task("copy:example", ["clean:example"], function () {
+gulp.task("build:modules", ["clean"], function () {
 
     return gulp.src([
-            "modules/core/**/*",
-            "modules/ui-basic/**/*",
-            "modules/ui-bootstrap/**/*",
-            "modules/ui-foundation/**/*",
-            "modules/ui-material/**/*",
+            "modules/**/*.json",
+            "modules/**/*.html",
+            "modules/**/*.css",
+            "modules/**/*.js",
+            "modules/**/*.js.map",
+            "modules/**/*.d.ts",
             "!modules/**/*.spec.*"
         ],
         {base: "modules"})
         .pipe(gulp.dest("node_modules/@ng2-dynamic-forms/"))
-        .pipe(gulp.dest("example/node_modules/@ng2-dynamic-forms/"));
+        .pipe(gulp.dest("example/node_modules/@ng2-dynamic-forms/"))
+        .pipe(preprocess())
+        .pipe(gulp.dest("dist/"))
 });
-
-gulp.task("update:example", ["clean:example", "copy:example"]);
-
 
 gulp.task("build:documentation", function () {
 
@@ -63,4 +65,4 @@ gulp.task("increment:version", function () {
         .pipe(gulp.dest("./modules"));
 });
 
-gulp.task("publish", ["increment:version"]);
+gulp.task("build", ["build:modules"]);
