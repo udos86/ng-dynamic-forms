@@ -28,7 +28,6 @@ export abstract class DynamicFormControlModel<T> {
         help?: string,
         id?: string,
         label?: string,
-        name?: string,
         required?: boolean,
         validators?: Array<any>;
         validatorsAsync?: Array<any>,
