@@ -7,6 +7,7 @@
     "ci-tsc": "tsc && echo ok || echo not ok",
     "gulp": "gulp",
     "karma": "karma",
+    "lint": "tslint -c ./tslint.json",
     "test": "karma start --single-run",
     "tsc": "tsc -watch",
     "typings": "typings"

@@ -1,8 +1,5 @@
 import {describe, expect, inject, it, beforeEachProviders} from "@angular/core/testing";
-import {
-    DynamicFormMaterialComponent,
-    DYNAMIC_FORM_UI_MATERIAL
-} from "./dynamic-form-material.component";
+import {DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL} from "./dynamic-form-material.component";
 import {MdUniqueSelectionDispatcher} from "@angular2-material/core";
 
 describe("DynamicFormMaterialComponent test suite", () => {

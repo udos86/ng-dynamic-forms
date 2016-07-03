@@ -1,15 +1,11 @@
-import {Component, Input, ViewChild, AfterViewInit} from "@angular/core";
+import {Component, Input, ViewChild} from "@angular/core";
 import {FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 import {MdUniqueSelectionDispatcher} from "@angular2-material/core";
 import {MdCheckbox} from "@angular2-material/checkbox";
 import {MdInput} from "@angular2-material/input";
 import {MdRadioButton, MdRadioGroup} from "@angular2-material/radio";
 import {DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {
-    DynamicFormControlComponent,
-    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
-} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlComponent, DYNAMIC_FORM_CONTROL_TYPE_SELECT, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
@@ -22,7 +18,7 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
     templateUrl: "./dynamic-form-material.component.html"
 })
 
-export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements AfterViewInit {
+export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: FormGroup;
@@ -37,11 +33,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
     constructor() {
         super();
     }
-
-    ngAfterViewInit() {
-        console.log(this.mdCheckbox, this.mdInput, this.mdRadioGroup);
-    }
-
+    
     get characterCount() {
         return this.mdInput ? this.mdInput.characterCount : 0;
     }
