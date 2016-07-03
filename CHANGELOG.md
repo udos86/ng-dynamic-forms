@@ -2,12 +2,13 @@
 
 ### **Breaking Changes**
 
-* `cls` configuration refactored (has now nested `grid` and `element` configuration objects)
-* `DynamicFormControlComponent` now throws when being bound to non-supported type of `DynamicFormControlModel
+* `cls` configuration object has now nested `element` configuration object to set css classes for certain elements (see [example](https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/bootstrap/bootstrap-example.model.ts))
+* `name` property of `DynamicFormControlModel` cannot be set anymore by configuration (automatically mapped to `id`)
+* `DynamicFormControlComponent` now throws when being bound to non-supported type of `DynamicFormControlModel`
 
-### **Features**`
+### **Features**
 
-* `ui-material` finally working again after upgrading to new Angular 2 Material alpha.6 (closes #)
+* `ui-material` finally working again after upgrading to new Angular 2 Material alpha.6 (closes [#29](https://github.com/udos86/ng2-dynamic-forms/issues/29))
 * [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
 
 # alpha.10
