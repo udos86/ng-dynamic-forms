@@ -6,9 +6,13 @@
 * `name` property of `DynamicFormControlModel` cannot be set anymore by configuration (automatically mapped to `id`)
 * `DynamicFormControlComponent` now throws when being bound to non-supported type of `DynamicFormControlModel`
 
-### **Features**
+### **Bugfixes**
 
 * `ui-material` finally working again after upgrading to new Angular 2 Material alpha.6 (closes [#29](https://github.com/udos86/ng2-dynamic-forms/issues/29))
+* `value` of `DynamicCheckboxModel`is now always initizialized with `false` instead of `null` when not explicitly set to `true
+
+### **Features**
+
 * [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
 
 # alpha.10
