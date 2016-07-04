@@ -1,3 +1,13 @@
+# beta.2
+
+### **Breaking Changes**
+
+
+### **Bugfixes**
+
+* `maxlength` attribute is now bound correctly (closes [#43](https://github.com/udos86/ng2-dynamic-forms/issues/43))
+
+
 # beta.1
 
 ### **Breaking Changes**
@@ -9,11 +19,12 @@
 ### **Bugfixes**
 
 * `ui-material` finally working again after upgrading to new Angular 2 Material alpha.6 (closes [#29](https://github.com/udos86/ng2-dynamic-forms/issues/29))
-* `value` of `DynamicCheckboxModel`is now always initizialized with `false` instead of `null` when not explicitly set to `true
+* `value` of `DynamicCheckboxModel`is now always initizialized with `false` instead of `null` when not explicitly set to `true`
 
 ### **Features**
 
 * [datalists](http://www.w3schools.com/tags/tag_datalist.asp) now supported by `DynamicInputControlModel` (`list` property)
+
 
 # alpha.10
 
