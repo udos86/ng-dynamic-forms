@@ -76,6 +76,7 @@
                    [attr.autoComplete]="model.autoComplete"
                    [attr.list]="model.listId"
                    [attr.max]="model.max"
+                   [attr.maxlength]="model.maxLength"
                    [attr.min]="model.min"
                    [attr.multiple]="model.multiple"
                    [attr.step]="model.step"
@@ -83,7 +84,6 @@
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
                    [id]="model.id"
-                   [maxLength]="model.maxLength"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readonly"
@@ -148,6 +148,7 @@
 
         <textarea *ngSwitchCase="'TEXTAREA'"
                   class="form-control"
+                  [attr.maxlength]="model.maxLength"
                   [cols]="model.cols"
                   [disabled]="model.disabled"
                   [formControlName]="model.id"

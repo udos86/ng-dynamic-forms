@@ -34,7 +34,10 @@ gulp.task("build:modules", ["clean"], function () {
 
 gulp.task("build:documentation", function () {
 
-    return gulp.src(["./modules/*/src/**/*.ts"], {read: false})
+    return gulp.src([
+            "./modules/*/src/**/*.ts"
+        ],
+        {read: false})
         .pipe(typedoc({
             exclude: "./modules/**/*.spec.ts",
             module: "commonjs",
