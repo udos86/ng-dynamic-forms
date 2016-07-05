@@ -23,7 +23,8 @@
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
               [formGroupName]="model.id"
-              [id]="model.id">
+              [id]="model.id"
+              [name]="model.name">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
