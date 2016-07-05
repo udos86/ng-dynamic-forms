@@ -28,6 +28,7 @@
 
 
         <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+                  [disabled]="model.disabled"
                   [formGroupName]="model.id"
                   [id]="model.id"
                   [name]="model.name">
@@ -91,6 +92,7 @@
 
         <fieldset *ngSwitchCase="'RADIO_GROUP'"
                   role="radiogroup"
+                  [disabled]="model.disabled"
                   [id]="model.id"
                   [name]="model.name">
 
@@ -110,6 +112,7 @@
 
 
         <select *ngSwitchCase="'SELECT'"
+                [disabled]="model.disabled"
                 [formControlName]="model.id"
                 [id]="model.id"
                 [name]="model.name"

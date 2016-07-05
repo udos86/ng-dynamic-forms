@@ -20,9 +20,9 @@
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [disabled]="model.disabled"
               [formGroupName]="model.id"
-              [id]="model.id"
-              [name]="model.name">
+              [id]="model.id">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -48,7 +48,7 @@
            [attr.autoComplete]="model.autoComplete"
            [attr.list]="model.listId"
            [attr.max]="model.max"
-
+           [attr.maxlength]="model.maxLength"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
            [attr.step]="model.step"
@@ -74,8 +74,8 @@
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'"
               role="radiogroup"
-              [id]="model.id"
-              [name]="model.name">
+              [disabled]="model.disabled"
+              [id]="model.id">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -92,6 +92,7 @@
 
 
     <select *ngSwitchCase="'SELECT'"
+            [disabled]="model.disabled"
             [formControlName]="model.id"
             [id]="model.id"
             [name]="model.name"
