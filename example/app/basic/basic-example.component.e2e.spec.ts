@@ -28,7 +28,7 @@ describe("BasicExampleComponent", () => {
         browser.get("./example-basic");
 
         elements.checkbox = element(by.id("basicCheckbox"));
-        elements.checkboxGroup = element(by.id("basicCheckboxGroup"));
+        elements.checkboxGroup = element(by.id("basixCheckboxGroup"));
         elements.input = element(by.id("basicInput"));
         elements.radioGroup = element(by.id("basicRadioGroup"));
         elements.select = element(by.id("basicSelect"));
@@ -48,9 +48,9 @@ describe("BasicExampleComponent", () => {
     it("tests if all form controls have correct name attribute", () => {
         
         elements.checkbox.getAttribute("name").then(name => expect(name).toEqual(models.checkbox.name));
-        //elements.checkboxGroup.getAttribute("name").then(name => expect(name).toEqual(models.checkboxGroup.name));
+        elements.checkboxGroup.getAttribute("name").then(name => expect(name).toEqual(name));
         elements.input.getAttribute("name").then(name => expect(name).toEqual(models.input.name));
-        //elements.radioGroup.getAttribute("name").then(name => expect(name).toEqual(models.radioGroup.name));
+        elements.radioGroup.getAttribute("name").then(name => expect(name).toEqual(models.radioGroup.name));
         elements.select.getAttribute("name").then(name => expect(name).toEqual(models.select.name));
         elements.textarea.getAttribute("name").then(name => expect(name).toEqual(models.textarea.name));
     });
