@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.1)
+# ng2 Dynamic Forms (beta.2)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -166,7 +166,7 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[Material](https://github.com/angular/material2)**
 * *Kendo UI (coming Q3/Q4)*
 
-You can instantly plug in your favorite controls by **installing the appropriate
+You can instantly plug in your favorite form controls by **installing the appropriate
 package and it's peer dependencies**:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
@@ -185,7 +185,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 })
 ```
 
-To get it all running **just directly bind an arbitrary** `DynamicFormModel`:
+To get it all running **just bind an arbitrary** `DynamicFormModel`:
 ```ts
 <form [formGroup]="form">
 
@@ -250,7 +250,6 @@ ngOnInit() {
   this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
 ```
-
 
 ## Form Layouts
 

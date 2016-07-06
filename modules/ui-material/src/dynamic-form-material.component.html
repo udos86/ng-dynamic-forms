@@ -22,8 +22,10 @@
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [disabled]="model.disabled"
               [formGroupName]="model.id"
-              [id]="model.id">
+              [id]="model.id"
+              [name]="model.name">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -47,7 +49,6 @@
               [formControlName]="model.id"
               [id]="model.id"
               [max]="model.max"
-              [maxLength]="model.maxLength"
               [min]="model.min"
               [name]="model.name"
               [placeholder]="model.placeholder"

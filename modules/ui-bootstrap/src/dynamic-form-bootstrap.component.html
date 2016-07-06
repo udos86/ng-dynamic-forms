@@ -37,8 +37,10 @@
          [ngClass]="model.cls.grid.control">
 
         <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+                  [disabled]="model.disabled"
                   [formGroupName]="model.id"
-                  [id]="model.id">
+                  [id]="model.id"
+                  [name]="model.name">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -76,6 +78,7 @@
                    [attr.autoComplete]="model.autoComplete"
                    [attr.list]="model.listId"
                    [attr.max]="model.max"
+                   [attr.maxlength]="model.maxLength"
                    [attr.min]="model.min"
                    [attr.multiple]="model.multiple"
                    [attr.step]="model.step"
@@ -83,7 +86,6 @@
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
                    [id]="model.id"
-                   [maxLength]="model.maxLength"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readonly"
@@ -106,7 +108,9 @@
 
         <fieldset *ngSwitchCase="'RADIO_GROUP'"
                   role="radiogroup"
-                  [id]="model.id">
+                  [disabled]="model.disabled"
+                  [id]="model.id"
+                  [name]="model.name">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -129,6 +133,7 @@
 
         <select *ngSwitchCase="'SELECT'"
                 class="form-control"
+                [disabled]="model.disabled"
                 [formControlName]="model.id"
                 [id]="model.id"
                 [name]="model.name"
@@ -148,6 +153,7 @@
 
         <textarea *ngSwitchCase="'TEXTAREA'"
                   class="form-control"
+                  [attr.maxlength]="model.maxLength"
                   [cols]="model.cols"
                   [disabled]="model.disabled"
                   [formControlName]="model.id"

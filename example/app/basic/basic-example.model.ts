@@ -45,8 +45,8 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicCheckboxGroupModel(
         {
-            id: "basixCheckboxGroup",
-            label: "Example Checkbox Group",
+            id: "basicCheckboxGroup",
+            legend: "Example Checkbox Group",
             items: [
                 new DynamicCheckboxModel(
                     {
@@ -67,7 +67,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicRadioGroupModel<string>(
         {
             id: "basicRadioGroup",
-            label: "Example Radio Group",
+            legend: "Example Radio Group",
             options: [
                 {
                     text: "Option 1",
