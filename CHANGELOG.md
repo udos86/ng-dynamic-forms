@@ -1,8 +1,5 @@
 # beta.2
 
-### **Breaking Changes**
-
-
 ### **Bugfixes**
 
 * `maxlength` attribute is now bound correctly (closes [#43](https://github.com/udos86/ng2-dynamic-forms/issues/43))
