@@ -7,6 +7,8 @@
 
 * `maxlength` attribute is now bound correctly (closes [#43](https://github.com/udos86/ng2-dynamic-forms/issues/43))
 * labels of `DynamicCheckboxGroup` items do render now in `ui-basic` (closes [#44](https://github.com/udos86/ng2-dynamic-forms/issues/44))
+* `name` attribute now added to `<fieldset>` (closes [#45](https://github.com/udos86/ng2-dynamic-forms/issues/45))
+* `disabled` attribute now added to all form controls
 
 # beta.1
 
