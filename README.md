@@ -8,7 +8,8 @@ ng2 Dynamic Forms is a rapid form development library based on the official Angu
 It simplifies all the hard, troublesome work of implementing handcrafted forms by building
 upon a layer of descriptive object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for **Bootstrap**, **Foundation** and **Angular 2 Material**.
+It also provides a flexible system of dynamic UI components with out of the box support for **Bootstrap**, **Foundation**,
+**Angular 2 Material** and more.
 
 ##Table of Contents
 
@@ -160,10 +161,11 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **Basic** (unstyled native HTML5)
+* **Basic** (unstyled HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
 * **[Foundation](http://foundation.zurb.com/)**
 * **[Material](https://github.com/angular/material2)**
+* **[PrimeNG](http://www.primefaces.org/primeng/#/)**
 * *Kendo UI (coming Q3/Q4)*
 
 You can instantly plug in your favorite form controls by **installing the appropriate
