@@ -39,6 +39,9 @@ module.exports = function (config) {
             {pattern: 'node_modules/@angular2-material/**/*.js', included: false, watched: true},
             {pattern: 'node_modules/@angular2-material/**/*.js.map', included: false, watched: true},
 
+            {pattern: 'node_modules/primeng/**/*.js', included: false, watched: true},
+            {pattern: 'node_modules/primeng/**/*.js.map', included: false, watched: true},
+            
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js', included: false, watched: true},
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js.map', included: false, watched: true},
 
@@ -46,7 +49,8 @@ module.exports = function (config) {
             {pattern: 'modules/ui-basic/src/**/*.js', included: false, watched: true},
             {pattern: 'modules/ui-bootstrap/src/**/*.js', included: false, watched: true},
             {pattern: 'modules/ui-foundation/src/**/*.js', included: false, watched: true},
-            {pattern: 'modules/ui-material/src/**/*.js', included: false, watched: true}
+            {pattern: 'modules/ui-material/src/**/*.js', included: false, watched: true},
+            {pattern: 'modules/ui-primeng/src/**/*.js', included: false, watched: true}
         ],
 
 
