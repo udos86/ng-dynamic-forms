@@ -1,5 +1,5 @@
 import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicInputModel} from "./dynamic-input.model";
-import {DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF} from "../dynamic-input-control.model";
+import {AUTOCOMPLETE_ON} from "../dynamic-input-control.model";
 
 describe("DynamicInputModel test suite", () => {
 
@@ -26,7 +26,7 @@ describe("DynamicInputModel test suite", () => {
         it("tests if correct default autoComplete property is set", () => {
 
             expect(defaultObject.autoComplete).toBeDefined();
-            expect(defaultObject.autoComplete).toEqual(DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
+            expect(defaultObject.autoComplete).toEqual(AUTOCOMPLETE_ON);
         });
 
         it("tests if correct default autoFocus property is set", () => {

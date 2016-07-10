@@ -1,8 +1,6 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {AUTOCOMPLETE_ON} from "./dynamic-form-autofill.const";
 import {getValue} from "../utils";
-
-export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF = "off";
-export const DYNAMIC_FORM_INPUT_AUTOCOMPLETE_ON = "on";
 
 export abstract class DynamicInputControlModel<T> extends DynamicFormControlModel<T> {
 
@@ -18,7 +16,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
 
         super(config, cls);
 
-        this.autoComplete = getValue(config, "autoComplete", DYNAMIC_FORM_INPUT_AUTOCOMPLETE_OFF);
+        this.autoComplete = getValue(config, "autoComplete", AUTOCOMPLETE_ON);
         this.autoFocus = getValue(config, "autoFocus", false);
         this.maxLength = getValue(config, "maxLength", 100);
         this.placeholder = getValue(config, "placeholder", "");
