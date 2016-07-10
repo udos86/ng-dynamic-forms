@@ -13,8 +13,8 @@ import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
     directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormPrimeNGComponent],
     moduleId: module.id,
     providers: [DynamicFormService],
-    selector: "dynamic-form-basic-example",
-    templateUrl: "./basic-example.component.html",
+    selector: "dynamic-form-primeng-example",
+    templateUrl: "./primeng-example.component.html",
 })
 
 export class PrimeNGExampleComponent implements OnInit {
