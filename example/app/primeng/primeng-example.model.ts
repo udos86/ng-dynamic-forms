@@ -40,6 +40,17 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
             placeholder: "example input"
+        },
+        {
+            element: {
+                container: "ui-grid ui-grid-responsive",
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
         }
     ),
 
@@ -88,6 +99,15 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
                 }
             ],
             value: "option-3"
+        },
+        {
+            element: {
+                container: "ui-grid ui-grid-responsive",
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row"
+            }
         }
     ),
 
@@ -97,6 +117,17 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
+        },
+        {
+            element: {
+                container: "ui-grid ui-grid-responsive",
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
         }
     ),
 
@@ -104,6 +135,15 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         {
             id: "basicCheckbox",
             label: "I do agree"
+        },
+        {
+            element: {
+                container: "ui-grid ui-grid-responsive",
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row"
+            }
         }
     )
 ]);

@@ -1,5 +1,5 @@
 import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicInputModel} from "./dynamic-input.model";
-import {AUTOCOMPLETE_ON} from "../dynamic-input-control.model";
+import {AUTOCOMPLETE_ON} from "../dynamic-form-autofill.const";
 
 describe("DynamicInputModel test suite", () => {
 

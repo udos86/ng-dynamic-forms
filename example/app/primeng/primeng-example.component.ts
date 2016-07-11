@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormService,
@@ -14,7 +14,9 @@ import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
     moduleId: module.id,
     providers: [DynamicFormService],
     selector: "dynamic-form-primeng-example",
+    styleUrls: ["../../node_modules/primeui/themes/omega/theme.css", "../../node_modules/primeui/primeui-ng-all.min.css"],
     templateUrl: "./primeng-example.component.html",
+    encapsulation: ViewEncapsulation.None
 })
 
 export class PrimeNGExampleComponent implements OnInit {

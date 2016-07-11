@@ -1,63 +1,55 @@
 <div [formGroup]="form"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
+     [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
-    <div *ngIf="!isCheckbox && model.label"
-         [ngClass]="model.cls.grid.label">
+    <fieldset *ngSwitchCase="'RADIO_GROUP'"
+              role="radiogroup"
+              [disabled]="model.disabled"
+              [id]="model.id">
 
-        <label [attr.for]="model.id"
-               [ngClass]="model.cls.element.label">{{model.label}}</label>
-    </div>
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-    <div [ngClass]="model.cls.grid.control">
+        <div *ngFor="let option of model.options" [ngClass]="model.cls.grid.container">
 
-        <label *ngSwitchCase="'CHECKBOX'"
-               [attr.for]="model.id"
-               [ngClass]="model.cls.element.label">
+            <div [ngClass]="model.cls.grid.control">
 
-            <input type="checkbox"
-                   [disabled]="model.disabled"
-                   [formControlName]="model.id"
-                   [id]="model.id"
-                   [name]="model.name"
-                   [value]="model.value"
-                   [ngClass]="model.cls.element.control"
-                   [(ngModel)]="model.value"
-                   (blur)="onBlur($event)"
-                   (focus)="onFocus($event)"/>{{model.label}}</label>
+                <p-radioButton [disabled]="!!option.disabled"
+                               [formControlName]="model.id"
+                               [name]="model.name"
+                               [value]="option.value"
+                               [(ngModel)]="model.value"></p-radioButton>
+            </div>
 
+            <div [ngClass]="model.cls.grid.label">
+                <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{option.text}}</label>
+            </div>
 
-        <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-                  [disabled]="model.disabled"
-                  [formGroupName]="model.id"
-                  [id]="model.id"
-                  [name]="model.name">
+        </div>
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
-
-            <label *ngFor="let item of model.items"
-                   [attr.for]="item.id"
-                   [ngClass]="item.cls.element.label">
-
-                <input type="checkbox"
-                       [disabled]="item.disabled"
-                       [formControlName]="item.id"
-                       [id]="item.id"
-                       [name]="item.name"
-                       [value]="item.value"
-                       [ngClass]="item.cls.element.control"
-                       [(ngModel)]="item.value"
-                       (blur)="onBlur($event)"
-                       (focus)="onFocus($event)"/>{{item.label}}</label>
-        </fieldset>
+    </fieldset>
 
 
-        <div *ngSwitchCase="'INPUT'"
-             class="input-group">
+    <div *ngIf="!isRadioGroup" [ngClass]="model.cls.grid.container">
 
-            <span *ngIf="model.prefix" class="input-group-label">{{model.prefix}}</span>
+        <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
 
-            <input class="input-group-field"
+            <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{model.label}}</label>
+
+        </div>
+
+
+        <div [ngClass]="model.cls.grid.control">
+
+            <p-checkbox *ngSwitchCase="'CHECKBOX'"
+                        [disabled]="model.disabled"
+                        [formControlName]="model.id"
+                        [id]="model.id"
+                        [value]="model.value"
+                        [ngClass]="model.cls.element.control"
+                        [(ngModel)]="model.value"></p-checkbox>
+
+
+            <input *ngSwitchCase="'INPUT'" pInputText
                    [attr.accept]="model.accept"
                    [attr.autoComplete]="model.autoComplete"
                    [attr.list]="model.listId"
@@ -79,78 +71,32 @@
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
 
-            <span *ngIf="model.suffix" class="input-group-label">{{model.suffix}}</span>
 
-            <datalist *ngIf="model.list" [id]="model.listId">
-
-                <option *ngFor="let option of model.list" [value]="option">
-
-            </datalist>
+            <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
+                      [attr.maxlength]="model.maxLength"
+                      [cols]="model.cols"
+                      [disabled]="model.disabled"
+                      [formControlName]="model.id"
+                      [id]="model.id"
+                      [name]="model.name"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readonly"
+                      [rows]="model.rows"
+                      [wrap]="model.wrap"
+                      [ngClass]="model.cls.element.control"
+                      [(ngModel)]="model.value"
+                      (blur)="onBlur($event)"
+                      (focus)="onFocus($event)"></textarea>
 
         </div>
 
 
-        <fieldset *ngSwitchCase="'RADIO_GROUP'"
-                  role="radiogroup"
-                  [disabled]="model.disabled"
-                  [id]="model.id"
-                  [name]="model.name">
+        <div *ngIf="isCheckbox" [ngClass]="model.cls.grid.label">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
+            <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{model.label}}</label>
 
-            <label *ngFor="let option of model.options"
-                   [class.disabled]="option.disabled">
-
-                <input type="radio"
-                       [disabled]="!!option.disabled"
-                       [formControlName]="model.id"                                              
-                       [name]="model.name"                       
-                       [value]="option.value"
-                       [ngClass]="model.cls.element.control"
-                       [(ngModel)]="model.value">{{option.text}}</label>
-        </fieldset>
-
-
-        <select *ngSwitchCase="'SELECT'"
-                [disabled]="model.disabled"
-                [formControlName]="model.id"
-                [id]="model.id"
-                [name]="model.name"
-                [ngClass]="model.cls.element.control"
-                [(ngModel)]="model.value"
-                (blur)="onBlur($event)"
-                (focus)="onFocus($event)">
-
-            <option *ngFor="let option of model.options"
-                    [disabled]="!!option.disabled"
-                    [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.text}}
-            </option>
-
-        </select>
-
-
-        <textarea *ngSwitchCase="'TEXTAREA'"
-                  [attr.maxlength]="model.maxLength"
-                  [cols]="model.cols"
-                  [disabled]="model.disabled"
-                  [formControlName]="model.id"
-                  [id]="model.id"
-                  [name]="model.name"
-                  [placeholder]="model.placeholder"
-                  [readonly]="model.readonly"
-                  [rows]="model.rows"
-                  [wrap]="model.wrap"
-                  [ngClass]="model.cls.element.control"
-                  [(ngModel)]="model.value"
-                  (blur)="onBlur($event)"
-                  (focus)="onFocus($event)">
-        </textarea>
-
-        <p *ngIf="model.help" class="help-text">{{model.help}}</p>
+        </div>
 
     </div>
-
-    <ng-content></ng-content>
 
 </div>

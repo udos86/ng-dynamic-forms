@@ -56,7 +56,8 @@
         "@ng2-dynamic-forms/ui-basic",
         "@ng2-dynamic-forms/ui-bootstrap",
         "@ng2-dynamic-forms/ui-foundation",
-        "@ng2-dynamic-forms/ui-material"
+        "@ng2-dynamic-forms/ui-material",
+        "@ng2-dynamic-forms/ui-primeng"
     ];
 
     angularPackageNames.forEach(function (packageName) {
