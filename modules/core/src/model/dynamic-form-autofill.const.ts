@@ -9,6 +9,11 @@ export const AUTOFILL_TOKEN_PAGER = "pager";
 export const AUTOFILL_TOKEN_SHIPPING = "shipping";
 export const AUTOFILL_TOKEN_WORK = "work";
 
+export const AUTOFILL_OPTIONAL_TOKENS_ORDER = [AUTOFILL_TOKEN_BILLING, AUTOFILL_TOKEN_SHIPPING];
+export const AUTOFILL_OPTIONAL_TOKENS_COMMUNICATION = [
+    AUTOFILL_TOKEN_FAX, AUTOFILL_TOKEN_HOME, AUTOFILL_TOKEN_MOBILE, AUTOFILL_TOKEN_PAGER, AUTOFILL_TOKEN_WORK
+];
+
 export const AUTOFILL_FIELD_STREET_ADDRESS = "street-address";
 export const AUTOFILL_FIELD_ADDRESS_LINE_1 = "address-line1";
 export const AUTOFILL_FIELD_ADDRESS_LINE_2 = "address-line2";
@@ -76,3 +81,15 @@ export const AUTOFILL_FIELD_TEL_LOCAL_EXTENSION = "tel-extension";
 export const AUTOFILL_FIELD_EMAIL = "email";
 
 export const AUTOFILL_FIELD_IMPP = "impp";
+
+export const AUTOFILL_FIELD_NAMES = [];
+
+export function validateAutofill(...tokens: Array<string>): string {
+
+    if (tokens.length > 4) {
+        throw new Error("autocomplete attribute cannot contain more than 4 tokens");
+    }
+
+
+    return null;
+}
