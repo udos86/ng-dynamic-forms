@@ -1,5 +1,5 @@
 export * from "./src/model/dynamic-form.model";
-export * from "./src/model/dynamic-form-autofill.const";
+export * from "./src/model/dynamic-form-autofill";
 export * from "./src/model/dynamic-form-control.model";
 export * from "./src/model/dynamic-input-control.model";
 export * from "./src/model/dynamic-option-control.model";

@@ -1,5 +1,5 @@
 import {DynamicFormControlModel} from "./dynamic-form-control.model";
-import {AUTOCOMPLETE_ON} from "./dynamic-form-autofill.const";
+import {AUTOCOMPLETE_ON} from "./dynamic-form-autofill";
 import {getValue} from "../utils";
 
 export abstract class DynamicInputControlModel<T> extends DynamicFormControlModel<T> {
