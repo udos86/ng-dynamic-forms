@@ -1,3 +1,14 @@
+# beta.3
+
+### **Breaking Changes**
+
+* default value for `autocomplete` property of `DynamicFormControlModel` is now `on` instead of `off`
+
+### **Features**
+
+* constants and validator added for new HTML5 [autofill detail tokens](https://html.spec.whatwg.org/multipage/forms.html#autofill)
+
+
 # beta.2
 
 ### **Bugfixes**
@@ -6,6 +17,7 @@
 * labels of `DynamicCheckboxGroup` items do render now in `ui-basic` (closes [#44](https://github.com/udos86/ng2-dynamic-forms/issues/44))
 * `name` attribute now added to `<fieldset>` (closes [#45](https://github.com/udos86/ng2-dynamic-forms/issues/45))
 * `disabled` attribute now added to all form controls
+
 
 # beta.1
 
