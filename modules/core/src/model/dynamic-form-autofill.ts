@@ -144,13 +144,22 @@ export function validateAutofill(autofill: string): boolean {
 
     for (let i = tokens.length - 1; i > -1; i -= 1) {
 
-        let token = tokens[i];
+        let token = tokens[i],
+            _isField = isFieldName(token),
+            _isContactField = isContactFieldName(token),
+            _isContactToken = isContactToken(token),
+            _isCheckoutToken = isCheckoutToken(token),
+            _isSectionToken = isSectionToken(token);
+
+        if (!_isField && !_isContactField && !_isContactToken && !_isCheckoutToken && !_isSectionToken) {
+            return false;
+        }
 
         if (i === tokens.length - 1) {
 
-            if (!isFieldName(token)) {
+            if (!_isField) {
 
-                if (isContactFieldName(token)) {
+                if (_isContactField) {
                     hasContactField = true;
 
                 } else {
@@ -161,24 +170,22 @@ export function validateAutofill(autofill: string): boolean {
 
         if (i === tokens.length - 2) {
 
-            let hasContactToken = isContactToken(token);
-
-            if (hasContactField && !hasContactToken) {
+            if (hasContactField && !_isContactToken) {
                 return false;
             }
 
-            if (!hasContactField && hasContactToken) {
+            if (!hasContactField && _isContactToken) {
                 return false;
             }
         }
 
         if (i < tokens.length - 1) {
 
-            if (isFieldName(token) || isContactFieldName(token)) {
+            if (_isField || _isContactField) {
                 return false;
             }
 
-            if (isCheckoutToken(token)) {
+            if (_isCheckoutToken) {
 
                 if (hasCheckoutToken) {
                     return false;
@@ -189,7 +196,14 @@ export function validateAutofill(autofill: string): boolean {
             }
         }
 
-        if (i > 0 && isSectionToken(token)) {
+        if (i < tokens.length - 2) {
+
+            if (_isContactToken) {
+                return false;
+            }
+        }
+
+        if (i > 0 && _isSectionToken) {
             return false;
         }
     }

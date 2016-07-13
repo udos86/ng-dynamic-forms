@@ -16,6 +16,8 @@ describe("Autofill test suite", () => {
         let testAutofill10 = "billing country name";
         let testAutofill11 = "billing shipping name";
         let testAutofill12 = "section-test1 section-test2 shipping name";
+        let testAutofill13 = "section-test1 blabla name";
+        let testAutofill14 = "section-test1 blabla mobile tel";
 
         expect(autofill.validateAutofill(testAutofill1)).toBe(true);
         expect(autofill.validateAutofill(testAutofill2)).toBe(false);
@@ -29,6 +31,8 @@ describe("Autofill test suite", () => {
         expect(autofill.validateAutofill(testAutofill10)).toBe(false);
         expect(autofill.validateAutofill(testAutofill11)).toBe(false);
         expect(autofill.validateAutofill(testAutofill12)).toBe(false);
+        expect(autofill.validateAutofill(testAutofill13)).toBe(false);
+        expect(autofill.validateAutofill(testAutofill14)).toBe(false);
     });
 
 });
