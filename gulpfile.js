@@ -6,7 +6,7 @@ var replace = require("gulp-replace");
 var tslint = require("gulp-tslint");
 var typedoc = require('gulp-typedoc');
 
-gulp.task("clean", function () {
+gulp.task("clean:modules", function () {
 
     return del([
         "dist/**/*",
@@ -18,14 +18,13 @@ gulp.task("clean", function () {
 
 gulp.task("lint:modules", function () {
 
-        return gulp.src(["modules/**/*.ts"], {base: "modules"})
-            .pipe(tslint({configuration: "./tslint.json"}))
-            .pipe(tslint.report());
-    }
-);
+    return gulp.src(["modules/**/*.ts"], {base: "modules"})
+        .pipe(tslint({configuration: "./tslint.json"}))
+        .pipe(tslint.report());
+});
 
 
-gulp.task("build:modules", ["clean", "lint:modules"], function () {
+gulp.task("build:modules", ["clean:modules", "lint:modules"], function () {
 
     return gulp.src([
             "modules/**/*.json",

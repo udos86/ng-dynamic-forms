@@ -5,7 +5,7 @@ export interface Cls {
 
     container: string;
     control: string;
-    label: string
+    label: string;
 }
 
 export abstract class DynamicFormControlModel<T> {
