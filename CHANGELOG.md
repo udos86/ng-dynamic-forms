@@ -3,6 +3,7 @@
 ### **Breaking Changes**
 
 * default value for `autocomplete` property of `DynamicFormControlModel` is now `on` instead of `off`
+* `text` property of `DynamicFormOption` renamed to `label`
 
 ### **Features**
 
