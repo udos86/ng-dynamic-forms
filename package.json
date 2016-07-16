@@ -54,6 +54,7 @@
     "gulp": "^3.9.1",
     "gulp-preprocess": "^2.0.0",
     "gulp-replace": "^0.5.4",
+    "gulp-tslint": "^6.0.1",
     "gulp-typedoc": "^2.0.0",
     "jasmine-core": "^2.4.1",
     "jasmine-spec-reporter": "^2.5.0",

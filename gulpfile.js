@@ -3,6 +3,7 @@ var gulp = require("gulp");
 var del = require("del");
 var preprocess = require('gulp-preprocess');
 var replace = require("gulp-replace");
+var tslint = require("gulp-tslint");
 var typedoc = require('gulp-typedoc');
 
 gulp.task("clean", function () {
@@ -14,7 +15,17 @@ gulp.task("clean", function () {
     ]);
 });
 
-gulp.task("build:modules", ["clean"], function () {
+
+gulp.task("lint:modules", function () {
+
+        return gulp.src(["modules/**/*.ts"], {base: "modules"})
+            .pipe(tslint({configuration: "./tslint.json"}))
+            .pipe(tslint.report());
+    }
+);
+
+
+gulp.task("build:modules", ["clean", "lint:modules"], function () {
 
     return gulp.src([
             "modules/**/*.json",
@@ -32,6 +43,7 @@ gulp.task("build:modules", ["clean"], function () {
         .pipe(gulp.dest("dist/"))
 });
 
+
 gulp.task("build:documentation", function () {
 
     return gulp.src([
@@ -48,6 +60,7 @@ gulp.task("build:documentation", function () {
             ignoreCompilerErrors: true
         }));
 });
+
 
 gulp.task("increment:version", function () {
 
@@ -67,5 +80,6 @@ gulp.task("increment:version", function () {
         .pipe(replace(dependencyField, "$1" + '"' + newVersionString + '"'))
         .pipe(gulp.dest("./modules"));
 });
+
 
 gulp.task("build", ["build:modules"]);
