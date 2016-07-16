@@ -81,7 +81,7 @@
         <md-radio-button *ngFor="let option of model.options"
                          [disabled]="!!option.disabled"
                          [name]="model.name"
-                         [value]="option.value">{{option.text}}</md-radio-button>
+                         [value]="option.value">{{option.label}}</md-radio-button>
     </md-radio-group>
 
     <ng-content></ng-content>
