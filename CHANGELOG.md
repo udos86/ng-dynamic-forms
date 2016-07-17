@@ -7,7 +7,7 @@
 
 ### **Features**
 
-* constants and validator added for new HTML5 [autofill detail tokens](https://html.spec.whatwg.org/multipage/forms.html#autofill)
+* `DynamicFormAutoFillService` added for importing and validating new HTML5 [autofill detail tokens](https://html.spec.whatwg.org/multipage/forms.html#autofill)
 
 
 # beta.2
