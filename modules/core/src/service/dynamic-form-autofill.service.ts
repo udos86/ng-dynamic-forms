@@ -6,7 +6,7 @@ export const AUTOCOMPLETE_ON = "on";
 export const AUTOFILL_TOKEN_BILLING = "billing";
 export const AUTOFILL_TOKEN_SHIPPING = "shipping";
 
-export const AUTOFILL_TOKENS_CHECKOUT = [AUTOFILL_TOKEN_BILLING, AUTOFILL_TOKEN_SHIPPING];
+export const AUTOFILL_TOKENS_ADDRESS = [AUTOFILL_TOKEN_BILLING, AUTOFILL_TOKEN_SHIPPING];
 
 export const AUTOFILL_TOKEN_HOME = "home";
 export const AUTOFILL_TOKEN_WORK = "work";
@@ -111,12 +111,12 @@ export class DynamicFormAutoFillService {
 
     constructor () {}
 
-    isSectionToken(token: string) {
-        return token.startsWith("section-");
+    isAddressToken(token: string) {
+        return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
     }
 
-    isCheckoutToken(token: string) {
-        return AUTOFILL_TOKENS_CHECKOUT.indexOf(token) > -1;
+    isContactField(token: string) {
+        return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
     }
 
     isContactToken(token: string) {
@@ -127,8 +127,8 @@ export class DynamicFormAutoFillService {
         return AUTOFILL_FIELDS.indexOf(token) > -1;
     }
 
-    isContactField(token: string) {
-        return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
+    isSectionToken(token: string) {
+        return token.startsWith("section-");
     }
 
     validate(value: string): boolean {
@@ -143,19 +143,19 @@ export class DynamicFormAutoFillService {
             return false;
         }
 
+        let hasAddressToken = false;
         let hasContactField = false;
-        let hasCheckoutToken = false;
 
         for (let i = tokens.length - 1; i > -1; i -= 1) {
 
             let token = tokens[i],
                 _isField = this.isField(token),
+                _isAddressToken = this.isAddressToken(token),
                 _isContactField = this.isContactField(token),
                 _isContactToken = this.isContactToken(token),
-                _isCheckoutToken = this.isCheckoutToken(token),
                 _isSectionToken = this.isSectionToken(token);
 
-            if (!_isField && !_isContactField && !_isContactToken && !_isCheckoutToken && !_isSectionToken) {
+            if (!_isField && !_isContactField && !_isContactToken && !_isAddressToken && !_isSectionToken) {
                 return false;
             }
 
@@ -189,13 +189,13 @@ export class DynamicFormAutoFillService {
                     return false;
                 }
 
-                if (_isCheckoutToken) {
+                if (_isAddressToken) {
 
-                    if (hasCheckoutToken) {
+                    if (hasAddressToken) {
                         return false;
 
                     } else {
-                        hasCheckoutToken = true;
+                        hasAddressToken = true;
                     }
                 }
             }
