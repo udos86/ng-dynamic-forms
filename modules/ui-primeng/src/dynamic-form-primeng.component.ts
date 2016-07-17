@@ -1,8 +1,8 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Input} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
 import {DynamicFormControlComponent, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {Checkbox, Dropdown, InputText, InputTextarea, RadioButton, Spinner} from "primeng/primeng";
+import {Checkbox, Dropdown, InputText, InputTextarea, RadioButton, SelectItem, Spinner} from "primeng/primeng";
 
 export const DYNAMIC_FORM_UI_PRIME_NG = "PRIME_NG";
 
@@ -14,14 +14,23 @@ export const DYNAMIC_FORM_UI_PRIME_NG = "PRIME_NG";
     templateUrl: "./dynamic-form-primeng.component.html"
 })
 
-export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
+export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent implements OnInit{
 
     @Input() model: DynamicFormControlModel<any>;
     @Input() form: FormGroup;
-    
+
+    options: SelectItem[];
     type: string = DYNAMIC_FORM_UI_PRIME_NG;
 
     constructor() {
         super();
+    }
+
+    ngOnInit () {
+
+        if (this.model["options"]) {
+            this.options = [...this.model["options"]];
+            console.log(this.options);
+        }
     }
 }

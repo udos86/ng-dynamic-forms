@@ -12,30 +12,39 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicSelectModel<string>(
         {
-            id: "basicSelect",
+            id: "primeSelect",
             label: "Example Select",
             options: [
                 {
-                    text: "Option 1",
+                    label: "Option 1",
                     value: "option-1",
                 },
                 {
-                    disabled: true,
-                    text: "Option 2",
+                    label: "Option 2",
                     value: "option-2"
                 },
                 {
-                    text: "Option 3",
+                    label: "Option 3",
                     value: "option-3"
                 }
             ],
             value: "option-3"
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
         }
     ),
 
     new DynamicInputModel(
         {
-            id: "basicInput",
+            id: "primeInput",
             label: "Example Input",
             list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
@@ -43,7 +52,6 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         },
         {
             element: {
-                container: "ui-grid ui-grid-responsive",
                 label: "ui-widget"
             },
             grid: {
@@ -56,7 +64,7 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicCheckboxGroupModel(
         {
-            id: "basicCheckboxGroup",
+            id: "primeCheckboxGroup",
             legend: "Example Checkbox Group",
             items: [
                 new DynamicCheckboxModel(
@@ -77,7 +85,7 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicRadioGroupModel<string>(
         {
-            id: "basicRadioGroup",
+            id: "primeRadioGroup",
             legend: "Example Radio Group",
             options: [
                 {
@@ -102,7 +110,6 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         },
         {
             element: {
-                container: "ui-grid ui-grid-responsive",
                 label: "ui-widget"
             },
             grid: {
@@ -113,14 +120,13 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicTextAreaModel(
         {
-            id: "basicTextArea",
+            id: "primeTextArea",
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
         },
         {
             element: {
-                container: "ui-grid ui-grid-responsive",
                 label: "ui-widget"
             },
             grid: {
@@ -133,12 +139,11 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicCheckboxModel(
         {
-            id: "basicCheckbox",
+            id: "primeCheckbox",
             label: "I do agree"
         },
         {
             element: {
-                container: "ui-grid ui-grid-responsive",
                 label: "ui-widget"
             },
             grid: {

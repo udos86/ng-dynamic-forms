@@ -40,15 +40,6 @@
 
         <div [ngClass]="model.cls.grid.control">
 
-            <p-checkbox *ngSwitchCase="'CHECKBOX'"
-                        [disabled]="model.disabled"
-                        [formControlName]="model.id"
-                        [id]="model.id"
-                        [value]="model.value"
-                        [ngClass]="model.cls.element.control"
-                        [(ngModel)]="model.value"></p-checkbox>
-
-
             <input *ngSwitchCase="'INPUT'" pInputText
                    [attr.accept]="model.accept"
                    [attr.autoComplete]="model.autoComplete"
@@ -70,6 +61,21 @@
                    [(ngModel)]="model.value"
                    (blur)="onBlur($event)"
                    (focus)="onFocus($event)"/>
+
+
+            <p-checkbox *ngSwitchCase="'CHECKBOX'"
+                        [disabled]="model.disabled"
+                        [formControlName]="model.id"
+                        [id]="model.id"
+                        [value]="model.value"
+                        [ngClass]="model.cls.element.control"
+                        [(ngModel)]="model.value"></p-checkbox>
+
+
+            <p-dropdown *ngSwitchCase="'SELECT'"
+                        [formControlName]="model.id"
+                        [options]="model.options"
+                        [(ngModel)]="model.value"></p-dropdown>
 
 
             <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
