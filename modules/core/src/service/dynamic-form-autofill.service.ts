@@ -107,106 +107,111 @@ export const AUTOFILL_FIELDS_CONTACT = [
     AUTOFILL_FIELD_TEL_LOCAL_EXTENSION, AUTOFILL_FIELD_EMAIL, AUTOFILL_FIELD_IMPP
 ];
 
-export function isSectionToken(token: string) {
-    return token.startsWith("section-");
-}
+export class DynamicFormAutoFillService {
 
-export function isCheckoutToken(token: string) {
-    return AUTOFILL_TOKENS_CHECKOUT.indexOf(token) > -1;
-}
+    constructor () {}
 
-export function isContactToken(token: string) {
-    return AUTOFILL_TOKENS_CONTACT.indexOf(token) > -1;
-}
-
-export function isFieldName(token: string) {
-    return AUTOFILL_FIELDS.indexOf(token) > -1;
-}
-
-export function isContactFieldName(token: string) {
-    return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
-}
-
-export function validateAutofill(autofill: string): boolean {
-
-    if (isEmptyString(autofill)) {
-        return false;
+    isSectionToken(token: string) {
+        return token.startsWith("section-");
     }
 
-    let tokens = autofill.split(" ");
-
-    if (tokens.length > 4) {
-        return false;
+    isCheckoutToken(token: string) {
+        return AUTOFILL_TOKENS_CHECKOUT.indexOf(token) > -1;
     }
 
-    let hasContactField = false;
-    let hasCheckoutToken = false;
+    isContactToken(token: string) {
+        return AUTOFILL_TOKENS_CONTACT.indexOf(token) > -1;
+    }
 
-    for (let i = tokens.length - 1; i > -1; i -= 1) {
+    isField(token: string) {
+        return AUTOFILL_FIELDS.indexOf(token) > -1;
+    }
 
-        let token = tokens[i],
-            _isField = isFieldName(token),
-            _isContactField = isContactFieldName(token),
-            _isContactToken = isContactToken(token),
-            _isCheckoutToken = isCheckoutToken(token),
-            _isSectionToken = isSectionToken(token);
+    isContactField(token: string) {
+        return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
+    }
 
-        if (!_isField && !_isContactField && !_isContactToken && !_isCheckoutToken && !_isSectionToken) {
+    validate(value: string): boolean {
+
+        if (isEmptyString(value)) {
             return false;
         }
 
-        if (i === tokens.length - 1) {
+        let tokens = value.split(" ");
 
-            if (!_isField) {
-
-                if (_isContactField) {
-                    hasContactField = true;
-
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        if (i === tokens.length - 2) {
-
-            if (hasContactField && !_isContactToken) {
-                return false;
-            }
-
-            if (!hasContactField && _isContactToken) {
-                return false;
-            }
-        }
-
-        if (i < tokens.length - 1) {
-
-            if (_isField || _isContactField) {
-                return false;
-            }
-
-            if (_isCheckoutToken) {
-
-                if (hasCheckoutToken) {
-                    return false;
-
-                } else {
-                    hasCheckoutToken = true;
-                }
-            }
-        }
-
-        if (i < tokens.length - 2) {
-
-            if (_isContactToken) {
-                return false;
-            }
-        }
-
-        if (i > 0 && _isSectionToken) {
+        if (tokens.length > 4) {
             return false;
         }
-    }
 
-    return true;
+        let hasContactField = false;
+        let hasCheckoutToken = false;
+
+        for (let i = tokens.length - 1; i > -1; i -= 1) {
+
+            let token = tokens[i],
+                _isField = this.isField(token),
+                _isContactField = this.isContactField(token),
+                _isContactToken = this.isContactToken(token),
+                _isCheckoutToken = this.isCheckoutToken(token),
+                _isSectionToken = this.isSectionToken(token);
+
+            if (!_isField && !_isContactField && !_isContactToken && !_isCheckoutToken && !_isSectionToken) {
+                return false;
+            }
+
+            if (i === tokens.length - 1) {
+
+                if (!_isField) {
+
+                    if (_isContactField) {
+                        hasContactField = true;
+
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            if (i === tokens.length - 2) {
+
+                if (hasContactField && !_isContactToken) {
+                    return false;
+                }
+
+                if (!hasContactField && _isContactToken) {
+                    return false;
+                }
+            }
+
+            if (i < tokens.length - 1) {
+
+                if (_isField || _isContactField) {
+                    return false;
+                }
+
+                if (_isCheckoutToken) {
+
+                    if (hasCheckoutToken) {
+                        return false;
+
+                    } else {
+                        hasCheckoutToken = true;
+                    }
+                }
+            }
+
+            if (i < tokens.length - 2) {
+
+                if (_isContactToken) {
+                    return false;
+                }
+            }
+
+            if (i > 0 && _isSectionToken) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
