@@ -69,14 +69,31 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             items: [
                 new DynamicCheckboxModel(
                     {
-                        id: "checkboxGroup1",
+                        id: "primeCheckboxGroup1",
                         label: "Checkbox 1"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            container: "ui-grid-row"
+                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "checkboxGroup2",
-                        label: "Checkbox 2"
+                        id: "primeCheckboxGroup2",
+                        label: "Checkbox 2",
+                        value: true
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            container: "ui-grid-row"
+                        }
                     }
                 )
             ]

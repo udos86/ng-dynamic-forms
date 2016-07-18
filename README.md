@@ -206,13 +206,13 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
 full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
-|               | Checkbox | Checkbox Group | Input | Radio Group | Select | Textarea |
-|---------------|:--------:|:--------------:|:-----:|:-----------:|:------:|:--------:|
-| ui-basic      |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-bootstrap  |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-foundation |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-material   |     ✓    |        ✓       |   ✓   |      ✓      |    ✗   |     ✗    |
-
+|               	| Checkbox 	| Checkbox Group 	| Input 	| Radio Group 	| Select 	| Textarea 	|
+|---------------	|:--------:	|:--------------:	|:-----:	|:-----------:	|:------:	|:--------:	|
+| ui-basic      	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+| ui-bootstrap  	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+| ui-foundation 	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|
+| ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
 
 ## Bindings and References
 
