@@ -18,7 +18,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [UI Components](#ui-components)
 - [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
-- [Validation Messages](#validation-messages)
+- [Validation Messaging](#validation-messaging)
 
 ## Getting Started
 
@@ -301,15 +301,15 @@ new DynamicInputModel(
 )
 ```
 
-## Validation Messages
+## Validation Messaging
 
-Delievering meaningful validation information to the user is an essential part of good form design. 
+Delivering meaningful validation information to the user is an essential part of good form design. 
 Yet ng2 Dynamic Forms was intentionally designed without any kind of internal
 validation message system because it would make the library unnecessarily complex.
 
-Instead there's a way better approach to this.
+Instead there's a way better approach to this:
  
- **1. Create your own custom validation component and make it accept an `FormControl` input**:
+ **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
  ```ts 
  import {Component, Input} from "angular2/core";
  import {FormControl} from "angular2/forms";
@@ -329,20 +329,21 @@ Instead there's a way better approach to this.
  }
  ```
  
- **2. Create the template file your custom validation component and implement it's logic**:
+ **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
  ```ts
  <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
  <span *ngIf="control && control.hasError('invalidCharacters') && control.touched">Field has invalid characters</span>
  ```
  
- **3. Add your custom validation component right after the `DynamicFormControlComponent` in your custom form template 
- and bind the internal `FormControl` reference through a local template variable**:
+ **3. Add your custom validation component right after the** `DynamicFormControlComponent` in your custom form template 
+ and **bind the internal `FormControl` reference through a local template variable**:
  ```ts
  <form [formGroup]="form">
  
     <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
     
-        <dynamic-form-basic-control [form]="form" [model]="controlModel" #componentRef></dynamic-form-basic-control>
+        <dynamic-form-basic-control [form]="form" 
+                                    [model]="controlModel" #componentRef></dynamic-form-basic-control>
         
         <validation-message [control]="componentRef.control"></validation-message>
     
