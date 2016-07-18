@@ -18,6 +18,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [UI Components](#ui-components)
 - [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
+- [Validation Messages](#validation-messages)
 
 ## Getting Started
 
@@ -299,3 +300,53 @@ new DynamicInputModel(
     }
 )
 ```
+
+## Validation Messages
+
+Delievering meaningful validation information to the user is an essential part of good form design. 
+Yet ng2 Dynamic Forms was intentionally designed without any kind of internal
+validation message system because it would make the library unnecessarily complex.
+
+Instead there's a way better approach to this.
+ 
+ **1. Create your own custom validation component and make it accept an `FormControl` input**:
+ ```ts 
+ import {Component, Input} from "angular2/core";
+ import {FormControl} from "angular2/forms";
+ 
+ @Component({
+    
+    moduleId: module.id,
+    selector: "validation-message",
+    templateUrl: "./validation-message.html"
+ })
+ 
+ export class ValidationMessage {
+ 
+    @Input() control: FormControl;
+     
+    constructor () {}
+ }
+ ```
+ 
+ **2. Create the template file your custom validation component and implement it's logic**:
+ ```ts
+ <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
+ <span *ngIf="control && control.hasError('invalidCharacters') && control.touched">Field has invalid characters</span>
+ ```
+ 
+ **3. Add your custom validation component right after the `DynamicFormControlComponent` in your custom form template 
+ and bind the internal `FormControl` reference through a local template variable**:
+ ```ts
+ <form [formGroup]="form">
+ 
+    <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
+    
+        <dynamic-form-basic-control [form]="form" [model]="controlModel" #componentRef></dynamic-form-basic-control>
+        
+        <validation-message [control]="componentRef.control"></validation-message>
+    
+    </div>
+    
+</form>
+ ```
