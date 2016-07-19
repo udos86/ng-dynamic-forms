@@ -309,7 +309,7 @@ would bloat the scope of the library and make it unnecessarily complex.
 
 As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
  
- > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concering Angular 2 validation mechanisms and it's native HTML5 counterpart! 
+ > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concerning Angular 2 validation mechanisms and it's native HTML5 counterpart! 
  
  **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
  ```ts 
@@ -343,12 +343,12 @@ new DynamicInputModel({
   id: "exampleInput",
   label: "Example Input",
   placeholder: "example input",
-  validators: [Validators.pattern("/^[a-zA-Z]*$/")]
+  validators: [Validators.required]
 }),
 ```
 
-**4. Add your validation component aside from the** `DynamicFormControlComponent` in your custom form template 
-and **bind the internal** `FormControl` **reference through a local template variable**:
+**4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
+and **bind the internal** `FormControl` **reference via local template variables**:
  ```ts
  <form [formGroup]="form">
  
