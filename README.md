@@ -304,10 +304,10 @@ new DynamicInputModel(
 ## Validation Messaging
 
 Delivering meaningful validation information to the user is an essential part of good form design. 
-Yet ng2 Dynamic Forms was intentionally designed without any kind of internal
-validation message system because it would make the library unnecessarily complex.
+Yet ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
+would bloat the scope of the library and make it unnecessarily complex.
 
-Instead there's a way better approach to this:
+As with form layouting, implementing validation messages should be entirely up to you. There is a recommended approach to this:
  
  **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
  ```ts 
@@ -334,8 +334,19 @@ Instead there's a way better approach to this:
  <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
  ```
  
- **3. Add your custom validation component aside from the** `DynamicFormControlComponent` in your custom form template 
- and **bind the internal** `FormControl` **reference through a local template variable**:
+**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
+```ts
+new DynamicInputModel({
+  
+  id: "exampleInput",
+  label: "Example Input",
+  placeholder: "example input",
+  validators: [Validators.pattern("/^[a-zA-Z]*$/")]
+}),
+```
+
+**4. Add your custom validation component aside from the** `DynamicFormControlComponent` in your custom form template 
+and **bind the internal** `FormControl` **reference through a local template variable**:
  ```ts
  <form [formGroup]="form">
  
@@ -351,4 +362,7 @@ Instead there's a way better approach to this:
 </form>
  ```
  
+ > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976)) concering Angular 2 validation mechanisms and it's native HTML5 counterpart!
+
+
 ## Autocompletion
