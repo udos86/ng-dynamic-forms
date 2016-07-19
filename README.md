@@ -334,8 +334,8 @@ Instead there's a way better approach to this:
  <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
  ```
  
- **3. Add your custom validation component right after the** `DynamicFormControlComponent` in your custom form template 
- and **bind the internal `FormControl` reference through a local template variable**:
+ **3. Add your custom validation component aside from the** `DynamicFormControlComponent` in your custom form template 
+ and **bind the internal** `FormControl` **reference through a local template variable**:
  ```ts
  <form [formGroup]="form">
  
@@ -351,4 +351,4 @@ Instead there's a way better approach to this:
 </form>
  ```
  
- ## Autocompletion
+## Autocompletion
