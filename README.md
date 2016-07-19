@@ -8,17 +8,17 @@ ng2 Dynamic Forms is a rapid form development library based on the official Angu
 It simplifies all the hard, troublesome work of implementing handcrafted forms by building
 upon a layer of descriptive object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for **Bootstrap**, **Foundation**,
-**Angular 2 Material** and more.
+It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
 
 ##Table of Contents
 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
-- [UI Components](#ui-components)
+- [Form UI Components](#form-ui-components)
 - [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
+- [Autocompletion](#autocompletion)
 
 ## Getting Started
 
@@ -158,7 +158,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 </form>
 ```
 
-## UI Components
+## Form UI Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -332,7 +332,6 @@ Instead there's a way better approach to this:
  **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
  ```ts
  <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
- <span *ngIf="control && control.hasError('invalidCharacters') && control.touched">Field has invalid characters</span>
  ```
  
  **3. Add your custom validation component right after the** `DynamicFormControlComponent` in your custom form template 
@@ -351,3 +350,5 @@ Instead there's a way better approach to this:
     
 </form>
  ```
+ 
+ ## Autocompletion
