@@ -307,7 +307,9 @@ Delivering meaningful validation information to the user is an essential part of
 Yet ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
 would bloat the scope of the library and make it unnecessarily complex.
 
-As with form layouting, implementing validation messages should be entirely up to you. There is a recommended approach to this:
+As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
+ 
+ > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concering Angular 2 validation mechanisms and it's native HTML5 counterpart! 
  
  **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
  ```ts 
@@ -362,7 +364,4 @@ and **bind the internal** `FormControl` **reference through a local template var
 </form>
  ```
  
- > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concering Angular 2 validation mechanisms and it's native HTML5 counterpart!
-
-
 ## Autocompletion
