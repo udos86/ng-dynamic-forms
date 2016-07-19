@@ -317,11 +317,11 @@ As with form layouting, implementing validation messages should be entirely up t
  @Component({
     
     moduleId: module.id,
-    selector: "validation-message",
-    templateUrl: "./validation-message.html"
+    selector: "my-validation-message",
+    templateUrl: "./my-validation-message.html"
  })
  
- export class ValidationMessage {
+ export class MyValidationMessage {
  
     @Input() control: FormControl;
      
@@ -345,7 +345,7 @@ new DynamicInputModel({
 }),
 ```
 
-**4. Add your custom validation component aside from the** `DynamicFormControlComponent` in your custom form template 
+**4. Add your validation component aside from the** `DynamicFormControlComponent` in your custom form template 
 and **bind the internal** `FormControl` **reference through a local template variable**:
  ```ts
  <form [formGroup]="form">
@@ -355,14 +355,14 @@ and **bind the internal** `FormControl` **reference through a local template var
         <dynamic-form-basic-control [form]="form" 
                                     [model]="controlModel" #componentRef></dynamic-form-basic-control>
         
-        <validation-message [control]="componentRef.control"></validation-message>
+        <my-validation-message [control]="componentRef.control"></my-validation-message>
     
     </div>
     
 </form>
  ```
  
- > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976)) concering Angular 2 validation mechanisms and it's native HTML5 counterpart!
+ > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concering Angular 2 validation mechanisms and it's native HTML5 counterpart!
 
 
 ## Autocompletion
