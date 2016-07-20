@@ -8,17 +8,17 @@ ng2 Dynamic Forms is a rapid form development library based on the official Angu
 It simplifies all the hard, troublesome work of implementing handcrafted forms by building
 upon a layer of descriptive object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for **Bootstrap**, **Foundation**,
-**Angular 2 Material** and more.
+It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
 
 ##Table of Contents
 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
-- [UI Components](#ui-components)
+- [Form UI Components](#form-ui-components)
 - [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
+- [Autocompletion](#autocompletion)
 
 ## Getting Started
 
@@ -158,7 +158,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 </form>
 ```
 
-## UI Components
+## Form UI Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -304,10 +304,12 @@ new DynamicInputModel(
 ## Validation Messaging
 
 Delivering meaningful validation information to the user is an essential part of good form design. 
-Yet ng2 Dynamic Forms was intentionally designed without any kind of internal
-validation message system because it would make the library unnecessarily complex.
+Yet ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
+would bloat the scope of the library and make it unnecessarily complex.
 
-Instead there's a way better approach to this:
+As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
+ 
+ > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concerning Angular 2 validation mechanisms and it's native HTML5 counterpart! 
  
  **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
  ```ts 
@@ -317,11 +319,11 @@ Instead there's a way better approach to this:
  @Component({
     
     moduleId: module.id,
-    selector: "validation-message",
-    templateUrl: "./validation-message.html"
+    selector: "my-validation-message",
+    templateUrl: "./my-validation-message.html"
  })
  
- export class ValidationMessage {
+ export class MyValidationMessage {
  
     @Input() control: FormControl;
      
@@ -332,11 +334,21 @@ Instead there's a way better approach to this:
  **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
  ```ts
  <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
- <span *ngIf="control && control.hasError('invalidCharacters') && control.touched">Field has invalid characters</span>
  ```
  
- **3. Add your custom validation component right after the** `DynamicFormControlComponent` in your custom form template 
- and **bind the internal `FormControl` reference through a local template variable**:
+**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
+```ts
+new DynamicInputModel({
+  
+  id: "exampleInput",
+  label: "Example Input",
+  placeholder: "example input",
+  validators: [Validators.required]
+}),
+```
+
+**4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
+and **bind the internal** `FormControl` **reference via local template variables**:
  ```ts
  <form [formGroup]="form">
  
@@ -345,9 +357,11 @@ Instead there's a way better approach to this:
         <dynamic-form-basic-control [form]="form" 
                                     [model]="controlModel" #componentRef></dynamic-form-basic-control>
         
-        <validation-message [control]="componentRef.control"></validation-message>
+        <my-validation-message [control]="componentRef.control"></my-validation-message>
     
     </div>
     
 </form>
  ```
+ 
+## Autocompletion
