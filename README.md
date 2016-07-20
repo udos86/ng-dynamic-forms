@@ -344,7 +344,7 @@ new DynamicInputModel({
   label: "Example Input",
   placeholder: "example input",
   validators: [Validators.required]
-}),
+})
 ```
 
 **4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
@@ -365,3 +365,40 @@ and **bind the internal** `FormControl` **reference via local template variables
  ```
  
 ## Autocompletion
+
+Adding automatic completion features can be key factor to good user experience (especially on mobile devices) and should always 
+be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well:
+
+Following HTML5 standard behavior, the `autocomplete` attribute is always set to `on` for any `DynamicTextInputControl` by default. 
+
+Nevertheless you can deactivate autocomplete altogether simply by switching the corresponding property to `off`:
+```ts
+import {AUTOCOMPLETE_OFF} from "@ng2-dynamic-forms/core";
+
+new DynamicInputModel({
+  
+    autoComplete: AUTOCOMPLETE_OFF
+    
+    //...all the remaining properties
+})
+```
+
+Further on ng2 Dynamic Forms also supports brand new HTML5 
+[autofill detail tokens](https://html.spec.whatwg.org/multipage/forms.html#autofill), 
+A complete set of `AUTOFILL_<TOKEN | FIELD>` string constants and `DynamicFormAutoFillService` 
+may help you constructing and validating an appropriate expression: 
+```ts
+import {AUTOFILL_TOKEN_BILLING, AUTOFILL_FIELD_NAME, AUTOCOMPLETE_ON} from "@ng2-dynamic-forms/core";
+
+constructor(private autoFillService: DynamicFormAutoFillServer) {
+
+    let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+
+    new DynamicInputModel({
+      
+        autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+        
+        //...all the remaining properties
+    })
+}
+```
