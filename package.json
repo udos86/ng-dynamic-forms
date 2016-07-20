@@ -46,6 +46,7 @@
     "@ng2-dynamic-forms/ui-bootstrap": "1.0.0-beta.2",
     "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.2",
     "@ng2-dynamic-forms/ui-material": "1.0.0-beta.2",
+    "@ng2-dynamic-forms/ui-primeng": "1.0.0-beta.2",
     "bootstrap": "^3.3.6",
     "codelyzer": "0.0.24",
     "del": "^2.2.1",

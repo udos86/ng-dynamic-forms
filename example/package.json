@@ -30,6 +30,7 @@
     "@ng2-dynamic-forms/ui-bootstrap": "1.0.0-beta.2",
     "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.2",
     "@ng2-dynamic-forms/ui-material": "1.0.0-beta.2",
+    "@ng2-dynamic-forms/ui-primeng": "1.0.0-beta.2",
     "angular2-in-memory-web-api": "0.0.14",
     "bootstrap": "^3.3.6",
     "es6-shim": "^0.35.1",

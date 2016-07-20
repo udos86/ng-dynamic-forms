@@ -7,8 +7,10 @@
 
 ### **Features**
 
+* Bundling with **Webpack** is now supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/47))
 * `DynamicFormAutoFillService` added for importing and validating new HTML5 [autofill detail tokens](https://html.spec.whatwg.org/multipage/forms.html#autofill)
-* `ui-primeng` has arrived!
+* `ui-primeng` has arrived
+
 
 # beta.2
 
