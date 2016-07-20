@@ -1,45 +1,77 @@
 var pkg = require("./package.json");
 var gulp = require("gulp");
 var del = require("del");
-var preprocess = require('gulp-preprocess');
+var htmlMinifier = require('html-minifier');
+var inlineTemplate = require("gulp-inline-ng2-template");
+var preprocess = require("gulp-preprocess");
 var replace = require("gulp-replace");
 var tslint = require("gulp-tslint");
-var typedoc = require('gulp-typedoc');
+var typedoc = require("gulp-typedoc");
 
 gulp.task("clean:modules", function () {
 
     return del([
-        "dist/**/*",
-        "node_modules/@ng2-dynamic-forms/**/*",
-        "example/node_modules/@ng2-dynamic-forms/**/*"
+        "./dist/**/*",
+        "./node_modules/@ng2-dynamic-forms/**/*",
+        "./example/node_modules/@ng2-dynamic-forms/**/*"
     ]);
 });
 
 
 gulp.task("lint:modules", function () {
 
-    return gulp.src(["modules/**/*.ts"], {base: "modules"})
+    return gulp.src(["./modules/**/*.ts"], {base: "modules"})
         .pipe(tslint({configuration: "./tslint.json"}))
         .pipe(tslint.report());
 });
 
 
-gulp.task("build:modules", ["clean:modules", "lint:modules"], function () {
+gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
 
     return gulp.src([
-            "modules/**/*.json",
-            "modules/**/*.html",
-            "modules/**/*.css",
-            "modules/**/*.js",
-            "modules/**/*.js.map",
-            "modules/**/*.d.ts",
-            "!modules/**/*.spec.*"
+            "./modules/**/*.json",
+            "./modules/**/*.html",
+            "./modules/**/*.css",
+            "./modules/**/*.js",
+            "./modules/**/*.js.map",
+            "./modules/**/*.d.ts",
+            "!./modules/**/*.spec.*"
         ],
         {base: "modules"})
-        .pipe(gulp.dest("node_modules/@ng2-dynamic-forms/"))
-        .pipe(gulp.dest("example/node_modules/@ng2-dynamic-forms/"))
+        .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
+        .pipe(gulp.dest("./example/node_modules/@ng2-dynamic-forms/"))
         .pipe(preprocess())
-        .pipe(gulp.dest("dist/"))
+        .pipe(gulp.dest("./dist/"));
+});
+
+
+gulp.task("inline:templates", ["preprocess:modules"], function () {
+
+    function minify(ext, file, callback) {
+        try {
+            var minifiedFile = htmlMinifier.minify(file, {
+                collapseWhitespace: true,
+                caseSensitive: true,
+                removeComments: true,
+                removeRedundantAttributes: true
+            });
+
+            callback(null, minifiedFile);
+        }
+        catch (err) {
+            callback(err);
+        }
+    }
+
+    return gulp.src(["./dist/**/*.js"], {base: "dist"})
+        .pipe(inlineTemplate({
+            base: "dist",
+            removeLineBreaks: true,
+            target: "es5",
+            templateProcessor: minify,
+            useRelativePaths: true
+        }))
+        .pipe(gulp.dest("./dist"));
 });
 
 
@@ -53,7 +85,7 @@ gulp.task("build:documentation", function () {
             exclude: "./modules/**/*.spec.ts",
             module: "commonjs",
             target: "es5",
-            out: "docs/",
+            out: "./docs/",
             name: "ng2 Dynamic Forms",
             includeDeclarations: true,
             ignoreCompilerErrors: true
@@ -71,8 +103,8 @@ gulp.task("increment:version", function () {
 
     return gulp.src([
             "./package.json",
-            "example/package.json",
-            "modules/**/package.json"
+            "./example/package.json",
+            "./modules/**/package.json"
         ],
         {base: "./modules"})
         .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
@@ -81,4 +113,4 @@ gulp.task("increment:version", function () {
 });
 
 
-gulp.task("build", ["build:modules"]);
+gulp.task("build:modules", ["clean:modules", "lint:modules", "preprocess:modules", "inline:templates"]);
