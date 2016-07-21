@@ -18,7 +18,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
-- [Autocompletion](#autocompletion)
+- [Input Autocompletion](#input-autocompletion)
 
 ## Getting Started
 
@@ -309,7 +309,7 @@ would bloat the scope of the library and make it unnecessarily complex.
 
 As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
  
- > **Note**: There are still some [unsolved flaws](https://github.com/angular/angular/issues/5976) concerning Angular 2 validation mechanisms and it's native HTML5 counterpart! 
+ > **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 [counterpart](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)! 
  
  **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
  ```ts 
@@ -364,7 +364,7 @@ and **bind the internal** `FormControl` **reference via local template variables
 </form>
  ```
  
-## Autocomplete
+## Input Autocompletion
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
@@ -374,16 +374,19 @@ Nevertheless you can completely disable this feature by explicitly setting the c
 ```ts
 import {AUTOCOMPLETE_OFF} from "@ng2-dynamic-forms/core";
 
-new DynamicInputModel({
+let model = new DynamicInputModel({
   
-    autoComplete: AUTOCOMPLETE_OFF
+  autoComplete: AUTOCOMPLETE_OFF
     
-    //...all the remaining properties
-})
+  //...all the remaining properties
+});
 ```
 
 Further on ng2 Dynamic Forms embraces the brand new HTML5 
-[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing `AUTOFILL_<TOKEN | FIELD>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression: 
+[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
+
+> **Note:** Jason Grigsby - ["Autofill: What web devs should know, but don’t"](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
+
 ```ts
 import {
   DynamicFormAutoFillService,
@@ -396,14 +399,14 @@ export class MyAutoFillExample {
 
   constructor(private autoFillService: DynamicFormAutoFillService) {
   
-      let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+    let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
   
-      let model = new DynamicInputModel({
+    let model = new DynamicInputModel({
         
-          autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+        autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
           
-          //...all the remaining properties
-      });
+        //...all the remaining properties
+    });
   }
 }
 ```
