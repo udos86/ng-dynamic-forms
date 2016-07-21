@@ -364,13 +364,13 @@ and **bind the internal** `FormControl` **reference via local template variables
 </form>
  ```
  
-## Autocompletion
+## Autocomplete
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
 
-Following HTML5 [standard behavior](http://www.w3schools.com/tags/att_form_autocomplete.asp), the `autocomplete` attribute is always set to `on` for any `DynamicTextInputControl` by default. 
-Nevertheless you can completely disable this feature by simply switching the corresponding property `off`:
+Following HTML5 [standard behavior](http://www.w3schools.com/tags/att_form_autocomplete.asp), the `autocomplete` attribute is always bound to `on` for any `DynamicFormTextInputControl` form element by default. 
+Nevertheless you can completely disable this feature by explicitly setting the corresponding model property to `off`:
 ```ts
 import {AUTOCOMPLETE_OFF} from "@ng2-dynamic-forms/core";
 
@@ -382,22 +382,28 @@ new DynamicInputModel({
 })
 ```
 
-Further on ng2 Dynamic Forms also supports brand new HTML5 
-[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill), 
-A set of `AUTOFILL_<TOKEN | FIELD>` string constants and `DynamicFormAutoFillService` 
-may help you putting together a valid expression: 
+Further on ng2 Dynamic Forms embraces the brand new HTML5 
+[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing `AUTOFILL_<TOKEN | FIELD>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression: 
 ```ts
-import {AUTOFILL_TOKEN_BILLING, AUTOFILL_FIELD_NAME, AUTOCOMPLETE_ON} from "@ng2-dynamic-forms/core";
+import {
+  DynamicFormAutoFillService,
+  AUTOFILL_TOKEN_BILLING, 
+  AUTOFILL_FIELD_NAME, 
+  AUTOCOMPLETE_ON
+} from "@ng2-dynamic-forms/core";
 
-constructor(private autoFillService: DynamicFormAutoFillServer) {
+export class MyAutoFillExample {
 
-    let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
-
-    new DynamicInputModel({
-      
-        autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+  constructor(private autoFillService: DynamicFormAutoFillService) {
+  
+      let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+  
+      let model = new DynamicInputModel({
         
-        //...all the remaining properties
-    })
+          autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+          
+          //...all the remaining properties
+      });
+  }
 }
 ```
