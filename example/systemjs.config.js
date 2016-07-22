@@ -8,12 +8,16 @@
         "angular2-in-memory-web-api": "node_modules/angular2-in-memory-web-api",
         "@angular": "node_modules/@angular",
         "@angular2-material": "node_modules/@angular2-material",
-        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms"
+        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
+        "primeng": "node_modules/primeng"
     };
 
     // packages tells the System loader how to load when no filename and/or no extension is indicated
     var packages = {
 
+        "angular2-in-memory-web-api": {
+            defaultExtension: "js"
+        },
         "app": {
             main: "main.js",
             defaultExtension: "js"
@@ -21,7 +25,7 @@
         "rxjs": {
             defaultExtension: "js"
         },
-        "angular2-in-memory-web-api": {
+        "primeng": {
             defaultExtension: "js"
         }
     };
@@ -52,7 +56,8 @@
         "@ng2-dynamic-forms/ui-basic",
         "@ng2-dynamic-forms/ui-bootstrap",
         "@ng2-dynamic-forms/ui-foundation",
-        "@ng2-dynamic-forms/ui-material"
+        "@ng2-dynamic-forms/ui-material",
+        "@ng2-dynamic-forms/ui-primeng"
     ];
 
     angularPackageNames.forEach(function (packageName) {

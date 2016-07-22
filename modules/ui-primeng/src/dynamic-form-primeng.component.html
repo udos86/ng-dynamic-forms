@@ -1,0 +1,142 @@
+<div [formGroup]="form"
+     [ngClass]="model.cls.element.container"
+     [ngSwitch]="model.type">
+
+    <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [disabled]="model.disabled"
+              [formGroupName]="model.id"
+              [id]="model.id">
+
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+        <div *ngFor="let item of model.items" [ngClass]="item.cls.grid.container">
+
+            <div [ngClass]="item.cls.grid.control">
+
+                <p-checkbox [disabled]="item.disabled"
+                            [formControlName]="item.id"
+                            [id]="item.id"
+                            [value]="item.value"
+                            [ngClass]="item.cls.element.control"
+                            [(ngModel)]="item.value"></p-checkbox>
+            </div>
+
+            <div [ngClass]="item.cls.grid.label">
+                <label [attr.for]="item.id" [ngClass]="item.cls.element.label">{{item.label}}</label>
+            </div>
+
+        </div>
+
+    </fieldset>
+
+
+    <fieldset *ngSwitchCase="'RADIO_GROUP'"
+              role="radiogroup"
+              [disabled]="model.disabled"
+              [id]="model.id">
+
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+        <div *ngFor="let option of model.options" [ngClass]="model.cls.grid.container">
+
+            <div [ngClass]="model.cls.grid.control">
+
+                <p-radioButton [disabled]="!!option.disabled"
+                               [formControlName]="model.id"
+                               [name]="model.name"
+                               [value]="option.value"
+                               [(ngModel)]="model.value"></p-radioButton>
+            </div>
+
+            <div [ngClass]="model.cls.grid.label">
+                <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{option.label}}</label>
+            </div>
+
+        </div>
+
+    </fieldset>
+
+
+    <div *ngIf="!isRadioGroup && !isCheckboxGroup" [ngClass]="model.cls.grid.container">
+
+        <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
+
+            <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{model.label}}</label>
+
+        </div>
+
+
+        <div [ngClass]="model.cls.grid.control">
+
+            <input *ngSwitchCase="'INPUT'" pInputText
+                   [attr.accept]="model.accept"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.list]="model.listId"
+                   [attr.max]="model.max"
+                   [attr.maxlength]="model.maxLength"
+                   [attr.min]="model.min"
+                   [attr.multiple]="model.multiple"
+                   [attr.step]="model.step"
+                   [autofocus]="model.autoFocus"
+                   [disabled]="model.disabled"
+                   [formControlName]="model.id"
+                   [id]="model.id"
+                   [name]="model.name"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readonly"
+                   [type]="model.inputType"
+                   [ngClass]="model.cls.element.control"
+                   [(ngModel)]="model.value"
+                   (blur)="onBlur($event)"
+                   (focus)="onFocus($event)"/>
+
+            <datalist *ngIf="model.list" [id]="model.listId">
+
+                <option *ngFor="let option of model.list" [value]="option">
+
+            </datalist>
+
+
+            <p-checkbox *ngSwitchCase="'CHECKBOX'"
+                        [disabled]="model.disabled"
+                        [formControlName]="model.id"
+                        [id]="model.id"
+                        [value]="model.value"
+                        [ngClass]="model.cls.element.control"
+                        [(ngModel)]="model.value"></p-checkbox>
+
+
+            <p-dropdown *ngSwitchCase="'SELECT'"
+                        [formControlName]="model.id"
+                        [options]="model.options"
+                        [(ngModel)]="model.value"></p-dropdown>
+
+
+            <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
+                      [attr.maxlength]="model.maxLength"
+                      [cols]="model.cols"
+                      [disabled]="model.disabled"
+                      [formControlName]="model.id"
+                      [id]="model.id"
+                      [name]="model.name"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readonly"
+                      [rows]="model.rows"
+                      [wrap]="model.wrap"
+                      [ngClass]="model.cls.element.control"
+                      [(ngModel)]="model.value"
+                      (blur)="onBlur($event)"
+                      (focus)="onFocus($event)"></textarea>
+
+        </div>
+
+
+        <div *ngIf="isCheckbox" [ngClass]="model.cls.grid.label">
+
+            <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{model.label}}</label>
+
+        </div>
+
+    </div>
+
+</div>

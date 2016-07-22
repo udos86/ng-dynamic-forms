@@ -22,6 +22,7 @@ System.config({
         "@angular2-material": "node_modules/@angular2-material",
         "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
         "modules": "modules",
+        "primeng": "node_modules/primeng",
         'rxjs': 'node_modules/rxjs',
         'symbol-observable': 'node_modules/symbol-observable'
     },
@@ -48,6 +49,10 @@ System.config({
             defaultExtension: 'js'
         },
         '@angular/platform-browser-dynamic': {
+            main: 'index.js',
+            defaultExtension: 'js'
+        },
+        '@angular/router': {
             main: 'index.js',
             defaultExtension: 'js'
         },
@@ -88,6 +93,9 @@ System.config({
             defaultExtension: "js"
         },
         'modules': {
+            defaultExtension: 'js'
+        },
+        'primeng': {
             defaultExtension: 'js'
         },
         'rxjs': {

@@ -2,6 +2,8 @@ import {OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
@@ -32,6 +34,14 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
     get isCheckbox() {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
+    }
+
+    get isCheckboxGroup() {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
+    }
+
+    get isRadioGroup() {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
 
     get isValid() {

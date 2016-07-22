@@ -16,20 +16,20 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "Example Select",
             options: [
                 {
-                    text: "Option 1",
+                    label: "Option 1",
                     value: "option-1",
                 },
                 {
                     disabled: true,
-                    text: "Option 2",
+                    label: "Option 2",
                     value: "option-2"
                 },
                 {
-                    text: "Option 3",
+                    label: "Option 3",
                     value: "option-3"
                 },
                 {
-                    text: "Option 4",
+                    label: "Option 4",
                     value: "option-4"
                 }
             ],
@@ -53,20 +53,20 @@ export const FOUNDATION_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "Example Radio Group",
             options: [
                 {
-                    text: "Option 1",
+                    label: "Option 1",
                     value: "option-1",
                 },
                 {
                     disabled: true,
-                    text: "Option 2",
+                    label: "Option 2",
                     value: "option-2"
                 },
                 {
-                    text: "Option 3",
+                    label: "Option 3",
                     value: "option-3"
                 },
                 {
-                    text: "Option 4",
+                    label: "Option 4",
                     value: "option-4"
                 }
             ],

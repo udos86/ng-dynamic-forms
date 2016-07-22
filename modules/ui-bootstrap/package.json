@@ -1,11 +1,8 @@
 {
   "name": "@ng2-dynamic-forms/ui-bootstrap",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Bootstrap UI package for ng2 Dynamic Forms",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
@@ -23,7 +20,7 @@
   "peerDependencies": {
     "@angular/core": "^2.0.0-rc.4",
     "@angular/forms": "^0.2.0",
-    "@ng2-dynamic-forms/core": "1.0.0-beta.2",
+    "@ng2-dynamic-forms/core": "1.0.0-beta.3",
     "bootstrap": "^3.3.6"
   }
 }

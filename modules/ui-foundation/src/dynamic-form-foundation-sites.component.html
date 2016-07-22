@@ -107,7 +107,7 @@
                        [name]="model.name"                       
                        [value]="option.value"
                        [ngClass]="model.cls.element.control"
-                       [(ngModel)]="model.value">{{option.text}}</label>
+                       [(ngModel)]="model.value">{{option.label}}</label>
         </fieldset>
 
 
@@ -124,7 +124,7 @@
             <option *ngFor="let option of model.options"
                     [disabled]="!!option.disabled"
                     [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.text}}
+                    [ngValue]="option.value">{{option.label}}
             </option>
 
         </select>

@@ -4,7 +4,7 @@ import {getValue} from "../utils";
 export interface DynamicFormOption<T> {
 
     disabled?: boolean;
-    text?: string;
+    label?: string;
     value: T;
     //selected?: boolean;
 }

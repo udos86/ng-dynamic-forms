@@ -3,16 +3,16 @@ import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicInputModel,
-    DynamicSelectModel,
     DynamicRadioGroupModel,
+    DynamicSelectModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 
-export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
+export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
 
     new DynamicSelectModel<string>(
         {
-            id: "bootstrapSelect",
+            id: "primeSelect",
             label: "Example Select",
             options: [
                 {
@@ -20,89 +20,90 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
                     value: "option-1",
                 },
                 {
-                    disabled: true,
                     label: "Option 2",
                     value: "option-2"
                 },
                 {
                     label: "Option 3",
                     value: "option-3"
-                },
-                {
-                    label: "Option 4",
-                    value: "option-4"
                 }
             ],
             value: "option-3"
         },
         {
             element: {
-                label: "control-label"
+                label: "ui-widget"
             },
             grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
             }
         }
     ),
 
     new DynamicInputModel(
         {
-            help: "Just a sample help text",
-            id: "bootstrapInput",
+            id: "primeInput",
             label: "Example Input",
+            list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
-            placeholder: "example input",
-            prefix: "Prefix",
-            suffix: "Suffix"
+            placeholder: "example input"
         },
         {
             element: {
-                label: "control-label"
+                label: "ui-widget"
             },
             grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
             }
         }
     ),
 
     new DynamicCheckboxGroupModel(
         {
-            id: "bootstrapCheckboxGroup",
-            label: "Example Checkbox Group",
+            id: "primeCheckboxGroup",
+            legend: "Example Checkbox Group",
             items: [
                 new DynamicCheckboxModel(
                     {
-                        id: "checkboxGroup1",
-                        label: "Checkbox 1",
-                        value: true
+                        id: "primeCheckboxGroup1",
+                        label: "Checkbox 1"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            container: "ui-grid-row"
+                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "checkboxGroup2",
+                        id: "primeCheckboxGroup2",
                         label: "Checkbox 2",
                         value: true
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            container: "ui-grid-row"
+                        }
                     }
                 )
             ]
-        },
-        {
-            element: {
-                label: "control-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            }
         }
     ),
 
     new DynamicRadioGroupModel<string>(
         {
-            id: "bootstrapRadioGroup",
-            label: "Example Radio Group",
+            id: "primeRadioGroup",
+            legend: "Example Radio Group",
             options: [
                 {
                     label: "Option 1",
@@ -126,41 +127,44 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         },
         {
             element: {
-                label: "control-label"
+                label: "ui-widget"
             },
             grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+                container: "ui-grid-row"
             }
         }
     ),
 
     new DynamicTextAreaModel(
         {
-            id: "bootstrapTextArea",
+            id: "primeTextArea",
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
         },
         {
             element: {
-                label: "control-label"
+                label: "ui-widget"
             },
             grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
             }
         }
     ),
 
     new DynamicCheckboxModel(
         {
-            id: "bootstrapCheckbox",
+            id: "primeCheckbox",
             label: "I do agree"
         },
         {
+            element: {
+                label: "ui-widget"
+            },
             grid: {
-                control: "col-sm-offset-3 col-sm-9"
+                container: "ui-grid-row"
             }
         }
     )

@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.2)
+# ng2 Dynamic Forms (beta.3)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -8,15 +8,17 @@ ng2 Dynamic Forms is a rapid form development library based on the official Angu
 It simplifies all the hard, troublesome work of implementing handcrafted forms by building
 upon a layer of descriptive object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for **Bootstrap**, **Foundation** and **Angular 2 Material**.
+It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
 
 ##Table of Contents
 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
-- [UI Components](#ui-components)
+- [Form UI Components](#form-ui-components)
 - [Bindings and References](#bindings-and-references)
 - [Form Layouts](#form-layouts)
+- [Validation Messaging](#validation-messaging)
+- [Input Autocompletion](#input-autocompletion)
 
 ## Getting Started
 
@@ -87,16 +89,16 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
         label: "Example Radio Group",
         options: [
             {
-                text: "Option 1",
+                label: "Option 1",
                 value: "option-1",
             },
             {
                 disabled: true,
-                text: "Option 2",
+                label: "Option 2",
                 value: "option-2"
             },
             {
-                text: "Option 3",
+                label: "Option 3",
                 value: "option-3"
             }
         ],
@@ -156,14 +158,15 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 </form>
 ```
 
-## UI Components
+## Form UI Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **Basic** (unstyled native HTML5)
+* **Basic** (unstyled HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
 * **[Foundation](http://foundation.zurb.com/)**
 * **[Material](https://github.com/angular/material2)**
+* **[PrimeNG](http://www.primefaces.org/primeng/#/)**
 * *Kendo UI (coming Q3/Q4)*
 
 You can instantly plug in your favorite form controls by **installing the appropriate
@@ -203,13 +206,13 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
 full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
-|               | Checkbox | Checkbox Group | Input | Radio Group | Select | Textarea |
-|---------------|:--------:|:--------------:|:-----:|:-----------:|:------:|:--------:|
-| ui-basic      |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-bootstrap  |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-foundation |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |     ✓    |
-| ui-material   |     ✓    |        ✓       |   ✓   |      ✓      |    ✗   |     ✗    |
-
+|               	| Checkbox 	| Checkbox Group 	| Input 	| Radio Group 	| Select 	| Textarea 	|
+|---------------	|:--------:	|:--------------:	|:-----:	|:-----------:	|:------:	|:--------:	|
+| ui-basic      	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+| ui-bootstrap  	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+| ui-foundation 	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|
+| ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
 
 ## Bindings and References
 
@@ -296,4 +299,114 @@ new DynamicInputModel(
         }
     }
 )
+```
+
+## Validation Messaging
+
+Delivering meaningful validation information to the user is an essential part of good form design. 
+Yet ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
+would bloat the scope of the library and make it unnecessarily complex.
+
+As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
+ 
+ > **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 [counterpart](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)! 
+ 
+ **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
+ ```ts 
+ import {Component, Input} from "angular2/core";
+ import {FormControl} from "angular2/forms";
+ 
+ @Component({
+    
+    moduleId: module.id,
+    selector: "my-validation-message",
+    templateUrl: "./my-validation-message.html"
+ })
+ 
+ export class MyValidationMessage {
+ 
+    @Input() control: FormControl;
+     
+    constructor () {}
+ }
+ ```
+ 
+ **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
+ ```ts
+ <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
+ ```
+ 
+**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
+```ts
+new DynamicInputModel({
+  
+  id: "exampleInput",
+  label: "Example Input",
+  placeholder: "example input",
+  validators: [Validators.required]
+})
+```
+
+**4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
+and **bind the internal** `FormControl` **reference via local template variables**:
+ ```ts
+ <form [formGroup]="form">
+ 
+    <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
+    
+        <dynamic-form-basic-control [form]="form" 
+                                    [model]="controlModel" #componentRef></dynamic-form-basic-control>
+        
+        <my-validation-message [control]="componentRef.control"></my-validation-message>
+    
+    </div>
+    
+</form>
+ ```
+ 
+## Input Autocompletion
+
+Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
+be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
+
+Following HTML5 [standard behavior](http://www.w3schools.com/tags/att_form_autocomplete.asp), the `autocomplete` attribute is always bound to `on` for any `DynamicFormTextInputControl` form element by default. 
+Nevertheless you can completely disable this feature by explicitly setting the corresponding model property to `off`:
+```ts
+import {AUTOCOMPLETE_OFF} from "@ng2-dynamic-forms/core";
+
+let model = new DynamicInputModel({
+  
+  autoComplete: AUTOCOMPLETE_OFF
+    
+  //...all the remaining properties
+});
+```
+
+Further on ng2 Dynamic Forms embraces the brand new HTML5 
+[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
+
+> **Note:** Jason Grigsby - ["Autofill: What web devs should know, but don’t"](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
+
+```ts
+import {
+  DynamicFormAutoFillService,
+  AUTOFILL_TOKEN_BILLING, 
+  AUTOFILL_FIELD_NAME, 
+  AUTOCOMPLETE_ON
+} from "@ng2-dynamic-forms/core";
+
+export class MyAutoFillExample {
+
+  constructor(private autoFillService: DynamicFormAutoFillService) {
+  
+    let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+  
+    let model = new DynamicInputModel({
+        
+        autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+          
+        //...all the remaining properties
+    });
+  }
+}
 ```

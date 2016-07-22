@@ -21,12 +21,20 @@
     ],
     "directive-selector-prefix": [
       true,
-      "sg"
+      "dynamic-form"
     ],
     "component-selector-prefix": [
       true,
-      "sg"
+      "dynamic-form"
     ],
+    "quotemark": [
+      true,
+      "double"
+    ],
+    "semicolon": true,
+    "trailing-comma": true,
+    "triple-equals": true,
+    "variable-name": false,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -39,7 +47,7 @@
     "pipe-naming": [
       true,
       "camelCase",
-      "sg"
+      "dynamic-form"
     ],
     "component-class-suffix": true,
     "directive-class-suffix": true
