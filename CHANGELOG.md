@@ -5,6 +5,10 @@
 * default value for `autocomplete` property of `DynamicFormControlModel` is now `on` instead of `off`
 * `text` property of `DynamicFormOption` renamed to `label`
 
+### **Bugfixes**
+
+* `DynamicCheckboxGroup` now working correctly in `ui-material
+
 ### **Features**
 
 * **Webpack** bundling now supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/47))
