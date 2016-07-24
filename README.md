@@ -113,7 +113,7 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 
-**2. Provide** `DynamicFormService` **and plug in the** `DynamicFormControlComponent`:
+**2. Provide the** `DynamicFormService` **and plug in a** `DynamicFormControlComponent`:
 ```ts
 import {DynamicFormService} from "@ng2-dynamic-forms/core";
 import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
@@ -127,7 +127,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 })
 ```
 
-**3. Create the** `FormGroup` **via the** `DynamicFormService`:
+**3. Create a** `FormGroup` **via the** `DynamicFormService`:
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
@@ -303,15 +303,19 @@ new DynamicInputModel(
 
 ## Validation Messaging
 
-Delivering meaningful validation information to the user is an essential part of good form design. 
-Yet ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
-would bloat the scope of the library and make it unnecessarily complex.
+Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 
+with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
+you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
+to gain much more control over validation logic and it's corresponding message output.
+
+> **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 counterpart!
+
+g2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
+would be off the original subject and result in a library too opinionated.
 
 As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
- 
- > **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 [counterpart](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)! 
- 
- **1. Create your own custom validation message component and make it accept an** `FormControl` **input**:
+
+ **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
  ```ts 
  import {Component, Input} from "angular2/core";
  import {FormControl} from "angular2/forms";
@@ -378,12 +382,13 @@ let model = new DynamicInputModel({
   
   autoComplete: AUTOCOMPLETE_OFF
     
-  //...all the remaining properties
+  //...all remaining properties
 });
 ```
 
 Further on ng2 Dynamic Forms embraces the brand new HTML5 
-[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
+[**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
+`AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
 
 > **Note:** Jason Grigsby - ["Autofill: What web devs should know, but don’t"](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
 
@@ -405,8 +410,21 @@ export class MyAutoFillExample {
         
         autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
           
-        //...all the remaining properties
+        //...all remaining properties
     });
   }
 }
+```
+
+Moreover you can make user input more comfortable, providing HTMl5 [datalists](http://www.w3schools.com/tags/tag_datalist.asp)
+by setting the `list` property of `DynamicInputControlModel`: 
+```ts
+new DynamicInputModel(
+    {
+        id: "basicInput",
+        label: "Example Input",
+        list: ["One", "Two", "Three", "Four", "Five"],
+        placeholder: "example input"
+    }
+),
 ```

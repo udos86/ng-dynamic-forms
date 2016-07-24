@@ -7,7 +7,7 @@
 
 ### **Bugfixes**
 
-* `DynamicCheckboxGroup` now working correctly in `ui-material
+* `DynamicCheckboxGroup` now working correctly in `ui-material`
 
 ### **Features**
 
