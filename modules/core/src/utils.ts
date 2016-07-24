@@ -24,7 +24,7 @@ if (typeof Object.assign !== "function") {
 }
 
 export function isEmptyString (_string: string): boolean {
-    return typeof _string === "string" && _string.length === 0;
+    return typeof _string !== "string" || _string.length === 0;
 }
 
 export function getValue(object: any, key: string, defaultValue: any): any {
