@@ -55,9 +55,5 @@ export abstract class DynamicFormControlModel<T> {
         this.validators = getValue(config, "validators", []);
         this.validatorsAsync = getValue(config, "validatorsAsync", []);
         this.value = getValue(config, "value", null);
-
-        if (this.required) {
-            this.validators.push(Validators.required);
-        }
     }
 }
