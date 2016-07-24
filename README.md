@@ -15,10 +15,10 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
 - [Form UI Components](#form-ui-components)
-- [Bindings and References](#bindings-and-references)
+- [Model Bindings and Control References](#model-bindings-and-control-references)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
-- [Input Autocompletion](#input-autocompletion)
+- [Form Autocompletion](#form-autocompletion)
 
 ## Getting Started
 
@@ -214,7 +214,7 @@ full support for all major form controls cannot be provided at the moment. See t
 | ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|
 | ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
 
-## Bindings and References
+## Model Bindings and Control References
 
 One of the benefits of using ng2 Dynamic Forms is that interacting with your form programmatically becomes pretty easy.
 Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular 2 core mechanisms,
@@ -310,7 +310,7 @@ to gain much more control over validation logic and it's corresponding message o
 
 > **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 counterpart!
 
-g2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
+ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
 would be off the original subject and result in a library too opinionated.
 
 As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
@@ -368,7 +368,7 @@ and **bind the internal** `FormControl` **reference via local template variables
 </form>
  ```
  
-## Input Autocompletion
+## Form Autocompletion
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
@@ -416,7 +416,7 @@ export class MyAutoFillExample {
 }
 ```
 
-Moreover you can make user input more comfortable, providing HTMl5 [datalists](http://www.w3schools.com/tags/tag_datalist.asp)
+Besides you can make user input more comfortable, providing HTMl5 [datalists](http://www.w3schools.com/tags/tag_datalist.asp)
 by setting the `list` property of `DynamicInputControlModel`: 
 ```ts
 new DynamicInputModel(
