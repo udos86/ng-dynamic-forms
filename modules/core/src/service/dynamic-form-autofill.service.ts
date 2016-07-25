@@ -109,7 +109,8 @@ export const AUTOFILL_FIELDS_CONTACT = [
 
 export class DynamicFormAutoFillService {
 
-    constructor () {}
+    constructor() {
+    }
 
     isAddressToken(token: string) {
         return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
@@ -137,9 +138,9 @@ export class DynamicFormAutoFillService {
             return total + "|" + currentValue;
         }
 
-        console.log(AUTOFILL_TOKENS_ADDRESS.reduce(toRegEx));
+        let regex = new RegExp(`^(section-\w+\s{1})?(${AUTOFILL_TOKENS_ADDRESS.reduce(toRegEx)}\s{1}){1}((${AUTOFILL_FIELDS.reduce(toRegEx)}){1}|((${AUTOFILL_TOKENS_CONTACT.reduce(toRegEx)}\s{1}){1}(${AUTOFILL_FIELDS_CONTACT.reduce(toRegEx)}){1}))$`);
 
-        let regex = new RegExp("^(section-\w+\s{1})?(billing|shipping\s{1}){1}$");
+        console.log(regex.toString());
 
         if (isEmptyString(value)) {
             return false;
