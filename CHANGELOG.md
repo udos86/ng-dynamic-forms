@@ -1,3 +1,14 @@
+# beta.4
+
+### **Breaking Changes**
+
+* `required` property of `DynamicFormControlModel` is now bound via `[required]` and does not manually apply `Validators.required`
+under the hood any more
+
+### **Features**
+
+* boolean `spellCheck` property added to `DynamicInputControlModel`
+
 # beta.3
 
 ### **Breaking Changes**
