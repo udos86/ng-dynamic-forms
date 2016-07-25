@@ -133,6 +133,14 @@ export class DynamicFormAutoFillService {
 
     validate(value: string): boolean {
 
+        function toRegEx(total, currentValue) {
+            return total + "|" + currentValue;
+        }
+
+        console.log(AUTOFILL_TOKENS_ADDRESS.reduce(toRegEx));
+
+        let regex = new RegExp("^(section-\w+\s{1})?(billing|shipping\s{1}){1}$");
+
         if (isEmptyString(value)) {
             return false;
         }
