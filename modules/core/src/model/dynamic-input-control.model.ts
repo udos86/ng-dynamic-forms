@@ -9,7 +9,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     maxLength: number;
     placeholder: string;
     prefix: string;
-    readonly: boolean;
+    readOnly: boolean;
     spellCheck: boolean;
     suffix: string;
 
@@ -22,7 +22,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
         this.maxLength = getValue(config, "maxLength", 100);
         this.placeholder = getValue(config, "placeholder", "");
         this.prefix = getValue(config, "prefix", null);
-        this.readonly = getValue(config, "readonly", false);
+        this.readOnly = getValue(config, "readOnly", false);
         this.spellCheck = getValue(config, "spellCheck", false);
         this.suffix = getValue(config, "suffix", null);
     }

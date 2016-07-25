@@ -4,6 +4,7 @@
 
 * `required` property of `DynamicFormControlModel` is now bound via `[required]` and does not manually apply `Validators.required`
 under the hood any more
+* `readonly` property of `DynamicInputControlModel` renamed to `readOnly`
 
 ### **Features**
 
