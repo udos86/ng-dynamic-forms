@@ -84,8 +84,20 @@ describe("DynamicInputModel test suite", () => {
 
         it("tests if correct default readonly property is set", () => {
 
-            expect(defaultObject.readonly).toBeDefined();
-            expect(defaultObject.readonly).toBe(false);
+            expect(defaultObject.readOnly).toBeDefined();
+            expect(defaultObject.readOnly).toBe(false);
+        });
+
+        it("tests if correct default required property is set", () => {
+
+            expect(defaultObject.required).toBeDefined();
+            expect(defaultObject.required).toBe(false);
+        });
+
+        it("tests if correct default spellcheck property is set", () => {
+
+            expect(defaultObject.spellCheck).toBeDefined();
+            expect(defaultObject.spellCheck).toBe(false);
         });
         
         it("tests if correct default step property is set", () => {

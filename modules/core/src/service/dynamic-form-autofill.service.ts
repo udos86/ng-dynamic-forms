@@ -109,7 +109,8 @@ export const AUTOFILL_FIELDS_CONTACT = [
 
 export class DynamicFormAutoFillService {
 
-    constructor () {}
+    constructor() {
+    }
 
     isAddressToken(token: string) {
         return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
@@ -131,87 +132,19 @@ export class DynamicFormAutoFillService {
         return token.startsWith("section-");
     }
 
-    validate(value: string): boolean {
+    validate(tokens: string): boolean {
 
-        if (isEmptyString(value)) {
-            return false;
+        function toExpression(total, currentValue) {
+            return total + "|" + currentValue;
         }
 
-        let tokens = value.split(" ");
+        let tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression);
+        let tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression);
+        let fields = AUTOFILL_FIELDS.reduce(toExpression);
+        let fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression);
 
-        if (tokens.length > 4) {
-            return false;
-        }
+        let regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
 
-        let hasAddressToken = false;
-        let hasContactField = false;
-
-        for (let i = tokens.length - 1; i > -1; i -= 1) {
-
-            let token = tokens[i],
-                _isField = this.isField(token),
-                _isAddressToken = this.isAddressToken(token),
-                _isContactField = this.isContactField(token),
-                _isContactToken = this.isContactToken(token),
-                _isSectionToken = this.isSectionToken(token);
-
-            if (!_isField && !_isContactField && !_isContactToken && !_isAddressToken && !_isSectionToken) {
-                return false;
-            }
-
-            if (i === tokens.length - 1) {
-
-                if (!_isField) {
-
-                    if (_isContactField) {
-                        hasContactField = true;
-
-                    } else {
-                        return false;
-                    }
-                }
-            }
-
-            if (i === tokens.length - 2) {
-
-                if (hasContactField && !_isContactToken) {
-                    return false;
-                }
-
-                if (!hasContactField && _isContactToken) {
-                    return false;
-                }
-            }
-
-            if (i < tokens.length - 1) {
-
-                if (_isField || _isContactField) {
-                    return false;
-                }
-
-                if (_isAddressToken) {
-
-                    if (hasAddressToken) {
-                        return false;
-
-                    } else {
-                        hasAddressToken = true;
-                    }
-                }
-            }
-
-            if (i < tokens.length - 2) {
-
-                if (_isContactToken) {
-                    return false;
-                }
-            }
-
-            if (i > 0 && _isSectionToken) {
-                return false;
-            }
-        }
-
-        return true;
+        return regex.test(tokens);
     }
 }

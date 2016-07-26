@@ -21,6 +21,7 @@
                        [formControlName]="model.id"
                        [id]="model.id"
                        [name]="model.name"
+                       [required]="model.required"
                        [value]="model.value"
                        [ngClass]="model.cls.element.control"
                        [(ngModel)]="model.value"
@@ -56,6 +57,7 @@
                            [formControlName]="item.id"
                            [id]="item.id"
                            [name]="item.name"
+                           [required]="model.required"
                            [value]="item.value"
                            [ngClass]="item.cls.element.control"
                            [(ngModel)]="item.value"
@@ -88,7 +90,9 @@
                    [id]="model.id"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
-                   [readonly]="model.readonly"
+                   [readonly]="model.readOnly"
+                   [required]="model.required"
+                   [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    [ngClass]="model.cls.element.control"
                    [(ngModel)]="model.value"
@@ -137,6 +141,7 @@
                 [formControlName]="model.id"
                 [id]="model.id"
                 [name]="model.name"
+                [required]="model.required"
                 [ngClass]="model.cls.element.control"
                 [(ngModel)]="model.value"
                 (blur)="onBlur($event)"
@@ -160,14 +165,15 @@
                   [id]="model.id"
                   [name]="model.name"
                   [placeholder]="model.placeholder"
-                  [readonly]="model.readonly"
+                  [readonly]="model.readOnly"
+                  [required]="model.required"
                   [rows]="model.rows"
+                  [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
                   [ngClass]="model.cls.element.control"
                   [(ngModel)]="model.value"
                   (blur)="onBlur($event)"
-                  (focus)="onFocus($event)">
-        </textarea>
+                  (focus)="onFocus($event)"></textarea>
 
         <span *ngIf="model.help" class="help-block">{{model.help}}</span>
 

@@ -83,7 +83,9 @@
                    [id]="model.id"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
-                   [readonly]="model.readonly"
+                   [readonly]="model.readOnly"
+                   [required]="model.required"
+                   [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    [ngClass]="model.cls.element.control"
                    [(ngModel)]="model.value"
@@ -109,6 +111,7 @@
             <p-dropdown *ngSwitchCase="'SELECT'"
                         [formControlName]="model.id"
                         [options]="model.options"
+                        [required]="model.required"
                         [(ngModel)]="model.value"></p-dropdown>
 
 
@@ -120,8 +123,10 @@
                       [id]="model.id"
                       [name]="model.name"
                       [placeholder]="model.placeholder"
-                      [readonly]="model.readonly"
+                      [readonly]="model.readOnly"
+                      [required]="model.required"
                       [rows]="model.rows"
+                      [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
                       [ngClass]="model.cls.element.control"
                       [(ngModel)]="model.value"

@@ -39,7 +39,9 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "Example Input",
             list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
-            placeholder: "example input"
+            placeholder: "example input",
+            spellCheck: false,
+            required: false
         }
     ),
 

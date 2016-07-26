@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.3)
+# ng2 Dynamic Forms (beta.4)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -201,6 +201,11 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
     </div>
 
 </form>
+```
+
+**Also don't forget to refer the library stylesheet**:
+```ts
+<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> 
 ```
 
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
@@ -423,8 +428,7 @@ new DynamicInputModel(
     {
         id: "basicInput",
         label: "Example Input",
-        list: ["One", "Two", "Three", "Four", "Five"],
-        placeholder: "example input"
+        list: ["One", "Two", "Three", "Four", "Five"]
     }
 ),
 ```
