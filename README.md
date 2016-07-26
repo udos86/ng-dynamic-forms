@@ -203,6 +203,11 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 </form>
 ```
 
+**Also don't forget to refer the library stylesheet**:
+```ts
+<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> 
+```
+
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
 full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
@@ -423,8 +428,7 @@ new DynamicInputModel(
     {
         id: "basicInput",
         label: "Example Input",
-        list: ["One", "Two", "Three", "Four", "Five"],
-        placeholder: "example input"
+        list: ["One", "Two", "Three", "Four", "Five"]
     }
 ),
 ```
