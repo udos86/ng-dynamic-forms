@@ -67,7 +67,7 @@
            [type]="model.inputType"
            [ngClass]="model.cls.element.control"
            [(ngModel)]="model.value"
-           (blur)="onBlur($event)"  
+           (blur)="onBlur($event)"
            (focus)="onFocus($event)"/>
 
     <datalist *ngIf="model.list" [id]="model.listId">
@@ -133,8 +133,7 @@
               [ngClass]="model.cls.element.control"
               [(ngModel)]="model.value"
               (blur)="onBlur($event)"
-              (focus)="onFocus($event)">
-    </textarea>
+              (focus)="onFocus($event)"></textarea>
 
     <ng-content></ng-content>
 

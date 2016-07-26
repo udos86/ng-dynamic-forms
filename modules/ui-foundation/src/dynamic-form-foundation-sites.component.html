@@ -107,8 +107,8 @@
 
                 <input type="radio"
                        [disabled]="!!option.disabled"
-                       [formControlName]="model.id"                                              
-                       [name]="model.name"                       
+                       [formControlName]="model.id"
+                       [name]="model.name"
                        [value]="option.value"
                        [ngClass]="model.cls.element.control"
                        [(ngModel)]="model.value">{{option.label}}</label>
@@ -151,8 +151,7 @@
                   [ngClass]="model.cls.element.control"
                   [(ngModel)]="model.value"
                   (blur)="onBlur($event)"
-                  (focus)="onFocus($event)">
-        </textarea>
+                  (focus)="onFocus($event)"></textarea>
 
         <p *ngIf="model.help" class="help-text">{{model.help}}</p>
 
