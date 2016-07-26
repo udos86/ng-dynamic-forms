@@ -9,7 +9,8 @@
         "@angular": "node_modules/@angular",
         "@angular2-material": "node_modules/@angular2-material",
         "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
-        "primeng": "node_modules/primeng"
+        "primeng": "node_modules/primeng",
+        "symbol-observable": "node_modules/symbol-observable"
     };
 
     // packages tells the System loader how to load when no filename and/or no extension is indicated
@@ -26,6 +27,10 @@
             defaultExtension: "js"
         },
         "primeng": {
+            defaultExtension: "js"
+        },
+        "symbol-observable": {
+            main: "index.js",
             defaultExtension: "js"
         }
     };
