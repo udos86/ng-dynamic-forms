@@ -1,20 +1,18 @@
-import {DynamicCheckboxModel} from "./dynamic-checkbox.model";
-import {DynamicFormControlModel} from "../dynamic-form-control.model";
-import {IDynamicFormModel} from "../dynamic-form.model";
 import {getValue} from "../../utils";
+import {DynamicFormArrayModel} from "../dynamic-form-array-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
 
-export class DynamicCheckboxGroupModel extends DynamicFormControlModel<boolean> implements IDynamicFormModel {
+export class DynamicCheckboxGroupModel extends DynamicFormArrayModel {
 
-    items: Array<DynamicCheckboxModel>;
+    label: string;
     legend: string;
     
     constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
 
-        this.items = getValue(config, "items", []);
+        this.label = getValue(config, "label", null);
         this.legend = getValue(config, "legend", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
     }

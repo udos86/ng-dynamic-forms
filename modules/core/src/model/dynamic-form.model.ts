@@ -1,14 +1,14 @@
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {DynamicFormAbstractControlModel} from "./dynamic-form-abstract-control.model";
 
 export interface IDynamicFormModel {
-    items: Array<DynamicFormControlModel<any>>;
+    items: Array<DynamicFormAbstractControlModel>;
 }
 
 export class DynamicFormModel implements IDynamicFormModel{
 
-    items: Array<DynamicFormControlModel<any>>;
+    items: Array<DynamicFormAbstractControlModel>;
 
-    constructor(items: Array<DynamicFormControlModel<any>>) {
+    constructor(items: Array<DynamicFormAbstractControlModel>) {
         this.items = items || [];
     }
 
