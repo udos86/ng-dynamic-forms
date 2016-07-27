@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
 import {IDynamicFormModel} from "../model/dynamic-form.model";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/dynamic-form-array-control.model";
+import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/dynamic-form-array.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DynamicCheckboxGroupModel
@@ -26,7 +26,7 @@ export class DynamicFormService {
 
             if (item.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
 
-                // TODO
+                formGroup[item.id] = this.createFormArray(<DynamicFormArrayModel> item);
 
             } else if (item.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
@@ -45,5 +45,10 @@ export class DynamicFormService {
         });
 
         return this.formBuilder.group(formGroup);
+    }
+
+    createFormArray(dynamicFormArrayModel: DynamicFormArrayModel): FormArray {
+
+        return this.formBuilder.array([this.createFormGroup(dynamicFormArrayModel)]);
     }
 }

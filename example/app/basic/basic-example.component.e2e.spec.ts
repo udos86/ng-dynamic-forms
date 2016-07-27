@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import {BASIC_EXAMPLE_MODEL} from "./basic-example.model";
-import {DynamicTextAreaModel} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlModel, DynamicTextAreaModel} from "@ng2-dynamic-forms/core";
 
 describe("BasicExampleComponent", () => {
 
@@ -36,7 +36,7 @@ describe("BasicExampleComponent", () => {
 
             label.getAttribute("for").then(attr => {
 
-                let model = BASIC_EXAMPLE_MODEL.findById(attr);
+                let model = <DynamicFormControlModel<any>> BASIC_EXAMPLE_MODEL.findById(attr);
 
                 if (model) {
                     label.getText().then(text => expect(text).toBe(model.label));

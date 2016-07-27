@@ -1,5 +1,5 @@
 import {getValue} from "../../utils";
-import {DynamicFormArrayModel} from "../dynamic-form-array-control.model";
+import {DynamicFormArrayModel} from "../dynamic-form-array.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
 

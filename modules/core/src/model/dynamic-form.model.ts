@@ -12,7 +12,7 @@ export class DynamicFormModel implements IDynamicFormModel{
         this.items = items || [];
     }
 
-    findById(id: string) {
+    findById(id: string): DynamicFormAbstractControlModel {
         return this.items.find(controlModel => controlModel.id === id);
     }
 }

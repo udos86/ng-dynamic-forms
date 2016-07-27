@@ -59,7 +59,7 @@ export class PrimeNGExampleComponent implements OnInit {
     }
 
     test() {
-        this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        this.dynamicFormModel.items[1].value = "42";
+        //this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
+        //this.dynamicFormModel.items[1].value = "42";
     }
 }
