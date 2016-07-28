@@ -36,7 +36,7 @@
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-            <label *ngFor="let item of model.items"
+            <label *ngFor="let item of model.group"
                    [attr.for]="item.id"
                    [ngClass]="item.cls.element.label">
 

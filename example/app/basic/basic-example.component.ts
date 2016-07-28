@@ -45,7 +45,7 @@ export class BasicExampleComponent implements OnInit {
 
     set modelEdit(value: string) {
         try {
-            this.dynamicFormModel.items = JSON.parse(value);
+            this.dynamicFormModel.group = JSON.parse(value);
 
         } catch (e) {
             // Just do nothing
@@ -53,7 +53,7 @@ export class BasicExampleComponent implements OnInit {
     }
 
     get modelEdit() {
-        return JSON.stringify(this.dynamicFormModel.items, null, 2);
+        return JSON.stringify(this.dynamicFormModel.group, null, 2);
     }
 
     test() {

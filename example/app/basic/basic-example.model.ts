@@ -49,7 +49,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         {
             id: "basicCheckboxGroup",
             legend: "Example Checkbox Group",
-            items: [
+            group: [
                 new DynamicCheckboxModel(
                     {
                         id: "checkboxGroup1",

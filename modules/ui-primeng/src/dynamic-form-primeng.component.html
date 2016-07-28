@@ -9,7 +9,7 @@
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-        <div *ngFor="let item of model.items" [ngClass]="item.cls.grid.container">
+        <div *ngFor="let item of model.group" [ngClass]="item.cls.grid.container">
 
             <div [ngClass]="item.cls.grid.control">
 

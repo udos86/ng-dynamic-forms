@@ -11,7 +11,7 @@ describe("BasicExampleComponent", () => {
 
     it("tests if all form controls are rendered correctly", () => {
 
-        BASIC_EXAMPLE_MODEL.items.forEach(model => {
+        BASIC_EXAMPLE_MODEL.group.forEach(model => {
 
             let elm = element(by.id(model.id));
 

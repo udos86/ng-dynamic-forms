@@ -30,7 +30,7 @@
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-        <md-checkbox *ngFor="let item of model.items"
+        <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
                      [disabled]="item.disabled"
                      [formControlName]="item.id"

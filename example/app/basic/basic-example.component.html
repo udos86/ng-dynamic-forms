@@ -6,7 +6,7 @@
 
         <form [formGroup]="form">
 
-            <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
+            <div *ngFor="let controlModel of dynamicFormModel.group" class="form-row">
 
                 <dynamic-form-basic-control [form]="form"
                                             [model]="controlModel"></dynamic-form-basic-control>

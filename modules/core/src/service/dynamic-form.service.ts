@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
-import {IFormGroupModel} from "../model/dynamic-form.model";
+import {IDynamicFormGroupModel} from "../model/dynamic-form.model";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/dynamic-form-array.model";
 import {
@@ -29,25 +29,25 @@ export class DynamicFormService {
         return this.formBuilder.array(formArray);
     }
 
-    createFormGroup(formGroupModel: IFormGroupModel): FormGroup {
+    createFormGroup(formGroupModel: IDynamicFormGroupModel): FormGroup {
 
         let formGroup = {};
 
-        formGroupModel.items.forEach(item => {
+        formGroupModel.group.forEach(model => {
 
-            if (item.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
+            if (model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
 
-                let arrayModel = <DynamicFormArrayModel> item;
+                let arrayModel = <DynamicFormArrayModel> model;
 
-                formGroup[item.id] = this.createFormArray(arrayModel, arrayModel.initialCount);
+                formGroup[model.id] = this.createFormArray(arrayModel, arrayModel.initialCount);
 
-            } else if (item.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
+            } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
-                formGroup[item.id] = this.createFormGroup(<DynamicCheckboxGroupModel> item);
+                formGroup[model.id] = this.createFormGroup(<DynamicCheckboxGroupModel> model);
 
             } else {
 
-                let controlModel = <DynamicFormControlModel<any>> item;
+                let controlModel = <DynamicFormControlModel<any>> model;
 
                 formGroup[controlModel.id] = new FormControl(
                     controlModel.value || null,

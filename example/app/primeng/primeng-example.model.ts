@@ -66,7 +66,7 @@ export const PRIMENG_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         {
             id: "primeCheckboxGroup",
             legend: "Example Checkbox Group",
-            items: [
+            group: [
                 new DynamicCheckboxModel(
                     {
                         id: "primeCheckboxGroup1",
