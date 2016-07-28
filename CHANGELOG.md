@@ -1,3 +1,14 @@
+# beta.5
+
+### **Breaking Changes**
+
+* **!!! IMPORTANT !!!** `items` property of `DynamicFormControlModel` and `DynamicCheckboxGroup` has been renamed to `group`
+
+### **Features**
+
+* **FormArrays** are now supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/53))
+
+
 # beta.4
 
 ### **Breaking Changes**
@@ -9,6 +20,7 @@ under the hood any more
 ### **Features**
 
 * boolean `spellCheck` property added to `DynamicInputControlModel`
+
 
 # beta.3
 

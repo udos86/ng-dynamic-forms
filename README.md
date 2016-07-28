@@ -147,7 +147,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```ts
 <form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.items">
+    <div *ngFor="let controlModel of dynamicFormModel.group">
 
         <dynamic-form-bootstrap-control [form]="form"
                                         [model]="controlModel">
