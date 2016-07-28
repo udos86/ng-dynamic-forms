@@ -1,10 +1,10 @@
 import {DynamicFormAbstractControlModel} from "./dynamic-form-abstract-control.model";
 
-export interface IDynamicFormModel {
+export interface IFormGroupModel {
     items: Array<DynamicFormAbstractControlModel>;
 }
 
-export class DynamicFormModel implements IDynamicFormModel{
+export class DynamicFormModel implements IFormGroupModel{
 
     items: Array<DynamicFormAbstractControlModel>;
 
