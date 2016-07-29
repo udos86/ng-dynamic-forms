@@ -33,7 +33,7 @@ export class BootstrapExampleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
 
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");

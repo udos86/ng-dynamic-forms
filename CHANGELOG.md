@@ -1,8 +1,10 @@
 # beta.5
 
-### **Breaking Changes**
+### **Breaking Changes** 
+**Please see updated examples in README.md!**
 
 * **!!! IMPORTANT !!!** `items` property of `DynamicFormControlModel` and `DynamicCheckboxGroup` has been renamed to `group`
+* **!!! IMPORTANT !!!** `DynamicFormService.createFormGroup` now expects `Array<DynamicFormControlModel<any>>` instead of `DynamicFormModel`
 
 ### **Features**
 
