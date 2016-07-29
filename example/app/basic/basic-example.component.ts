@@ -6,7 +6,7 @@ import {
     DynamicFormModel, DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 import {DynamicFormBasicComponent} from "@ng2-dynamic-forms/ui-basic";
-import {BASIC_EXAMPLE_MODEL_ARRAY} from "./basic-example.model";
+import {BASIC_EXAMPLE_MODEL, BASIC_EXAMPLE_MODEL_ARRAY} from "./basic-example.model";
 
 @Component({
 
@@ -19,10 +19,11 @@ import {BASIC_EXAMPLE_MODEL_ARRAY} from "./basic-example.model";
 
 export class BasicExampleComponent implements OnInit {
 
-    dynamicFormModel: DynamicFormModel;
-    dynamicFormService: DynamicFormService;
+    dynamicFormModel1: DynamicFormModel;
+    dynamicFormModel2: DynamicFormModel;
 
-    form: FormGroup;
+    form1: FormGroup;
+    form2: FormGroup;
 
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
@@ -30,36 +31,24 @@ export class BasicExampleComponent implements OnInit {
     basicArrayControl: FormArray;
     basicArrayModel: DynamicFormArrayModel;
 
-    constructor(dynamicFormService: DynamicFormService) {
+    constructor(private dynamicFormService: DynamicFormService) {
 
-        this.dynamicFormModel = BASIC_EXAMPLE_MODEL_ARRAY;
-        this.dynamicFormService = dynamicFormService;
+        this.dynamicFormModel1 = BASIC_EXAMPLE_MODEL;
+        this.dynamicFormModel2 = BASIC_EXAMPLE_MODEL_ARRAY;
     }
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
+        this.form1 = this.dynamicFormService.createFormGroup(this.dynamicFormModel1.group);
+        this.form2 = this.dynamicFormService.createFormGroup(this.dynamicFormModel2.group);
 
-        //this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        //this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
+        this.exampleCheckboxControl = <FormControl> this.form1.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
+        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel1.findById("exampleCheckbox");
 
-        this.basicArrayControl = <FormArray> this.form.controls["basicArray"]; // Type assertion for having updateValue method available
-        this.basicArrayModel = <DynamicFormArrayModel> this.dynamicFormModel.findById("basicArray");
+        this.basicArrayControl = <FormArray> this.form2.controls["basicArray"]; // Type assertion for having updateValue method available
+        this.basicArrayModel = <DynamicFormArrayModel> this.dynamicFormModel2.findById("basicArray");
 
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
-    }
-
-    set modelEdit(value: string) {
-        try {
-            this.dynamicFormModel.group = JSON.parse(value);
-
-        } catch (e) {
-            // Just do nothing
-        }
-    }
-
-    get modelEdit() {
-        return JSON.stringify(this.dynamicFormModel.group, null, 2);
     }
 
     add() {
@@ -67,9 +56,6 @@ export class BasicExampleComponent implements OnInit {
         let newGroup = this.dynamicFormService.createFormArrayGroup(this.basicArrayModel);
 
         this.basicArrayControl.push(newGroup);
-
-        //this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        //this.dynamicFormModel.group[1].value = "42";
     }
 
     remove(index: number) {

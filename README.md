@@ -137,7 +137,7 @@ export class MyDynamicFormComponent implements OnInit {
     constructor(private dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
     }
 }
 ```
@@ -192,7 +192,7 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 ```ts
 <form [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.items">
+    <div *ngFor="let controlModel of dynamicFormModel.group">
 
         <dynamic-form-bootstrap-control [form]="form"
                                         [model]="controlModel">
@@ -272,7 +272,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 ```ts
 <form class="form-horizontal" [formGroup]="form">
 
-    <div *ngFor="let controlModel of dynamicFormModel.items">
+    <div *ngFor="let controlModel of dynamicFormModel.group">
 
         <dynamic-form-bootstrap-control [form]="form"
                                         [model]="controlModel"></dynamic-form-bootstrap-control>
@@ -361,7 +361,7 @@ and **bind the internal** `FormControl` **reference via local template variables
  ```ts
  <form [formGroup]="form">
  
-    <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
+    <div *ngFor="let controlModel of dynamicFormModel.group">
     
         <dynamic-form-basic-control [form]="form" 
                                     [model]="controlModel" #componentRef></dynamic-form-basic-control>

@@ -4,28 +4,32 @@
 
     <div class="float-left content-margin content-padding" style="width: 55%;">
 
-        <form [formGroup]="form">
-            <!--
-            <div *ngFor="let controlModel of dynamicFormModel.group" class="form-row">
+        <form [formGroup]="form1">
 
-                <dynamic-form-basic-control [form]="form"
+            <div *ngFor="let controlModel of dynamicFormModel1.group" class="form-row">
+
+                <dynamic-form-basic-control [form]="form1"
                                             [model]="controlModel"></dynamic-form-basic-control>
 
             </div>
-            -->
+
+        </form>
+
+
+        <form [formGroup]="form2">
 
             <div formArrayName="basicArray">
 
-                <div *ngFor="let idx = index; let group of dynamicFormModel.findById('basicArray').groups">
+                <div *ngFor="let idx = index; let group of dynamicFormModel2.findById('basicArray').groups">
 
                     <div [formGroupName]="idx">
 
                         <div *ngFor="let controlModel of group" class="form-row">
 
-                            <dynamic-form-basic-control [form]="form.controls['basicArray'].controls[idx]"
-                                                        [model]="controlModel"></dynamic-form-basic-control>
+                            <dynamic-form-basic-control [form]="form2.controls['basicArray'].controls[idx]"
+                                                        [model]="controlModel" style="display: inline-block;"></dynamic-form-basic-control>
 
-                            <button type="button" (click)="remove(idx)">Remove Group</button>
+                            <button type="button" (click)="remove(idx)">Remove</button>
 
                         </div>
 
