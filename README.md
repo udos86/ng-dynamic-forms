@@ -17,10 +17,10 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form UI Components](#form-ui-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
 - [Form Caching](#form-caching)
+- [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
-- [Form Arrays](#form-arrays)
 
 ## Getting Started
 
@@ -309,8 +309,8 @@ new DynamicInputModel(
 ```
 ## Form Caching
 
-One of the best things about ng2 Dynamic Forms you won't recognize at first sight is, that you get form
-caching across routes for free. All you need to is separate the initialization of your `DynamicFormModel` from your 
+One of the best things about ng2 Dynamic Forms you won't recognize at first sight is that you get **form
+caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
 component code by exporting it on it's own:
 ```ts
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
@@ -319,8 +319,20 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]) 
 ```
 
-While the component is destroyed when navigating away from it, the `DynamicFormModel` will remain in memory and 
-automatically be reused!
+```ts
+
+import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
+
+export class MyDynamicFormComponent implements OnInit {
+
+    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
+
+    // ...
+}
+```
+
+While the component is entirely destroyed when navigating away from it, the `DynamicFormModel` **will remain in memory and 
+automatically be reused** when navigating back!
  
 ## Validation Messaging
 
