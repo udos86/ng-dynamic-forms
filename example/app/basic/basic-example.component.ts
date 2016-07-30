@@ -52,15 +52,10 @@ export class BasicExampleComponent implements OnInit {
     }
 
     add() {
-
-        let newGroup = this.dynamicFormService.createFormArrayGroup(this.basicArrayModel);
-
-        this.basicArrayControl.push(newGroup);
+        this.dynamicFormService.addFormArrayGroup(this.basicArrayControl, this.basicArrayModel);
     }
 
     remove(index: number) {
-
-        this.basicArrayControl.removeAt(index);
-        this.basicArrayModel.removeGroup(index);
+        this.dynamicFormService.removeFormArrayGroup(index, this.basicArrayControl, this.basicArrayModel);
     }
 }

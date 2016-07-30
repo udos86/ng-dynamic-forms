@@ -32,6 +32,15 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
         return group;
     }
 
+    insertGroup(index: number): Array<DynamicFormControlModel<any>>  {
+
+        let group = this.createGroup();
+
+        this.groups.splice(index, 0, group);
+
+        return group;
+    }
+
     removeGroup(index: number): void {
         this.groups.splice(index, 1);
     }
