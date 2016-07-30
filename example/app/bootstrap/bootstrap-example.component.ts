@@ -18,17 +18,14 @@ import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 export class BootstrapExampleComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel;
-    dynamicFormService: DynamicFormService;
-
     form: FormGroup;
     
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
-    constructor(dynamicFormService: DynamicFormService) {
+    constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = BOOTSTRAP_EXAMPLE_MODEL;
-        this.dynamicFormService = dynamicFormService;
     }
 
     ngOnInit() {
@@ -51,10 +48,5 @@ export class BootstrapExampleComponent implements OnInit {
 
     get modelEdit() {
         return JSON.stringify(this.dynamicFormModel.group, null, 2);
-    }
-
-    test() {
-        //this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        //this.dynamicFormModel.items[1].value = "42";
     }
 }

@@ -22,17 +22,14 @@ import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 export class FoundationExampleComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel;
-    dynamicFormService: DynamicFormService;
-
     form: FormGroup;
     
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
-    constructor(dynamicFormService: DynamicFormService) {
+    constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = FOUNDATION_EXAMPLE_MODEL;
-        this.dynamicFormService = dynamicFormService;
     }
 
     ngOnInit() {
@@ -42,23 +39,5 @@ export class FoundationExampleComponent implements OnInit {
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
-    }
-
-    set modelEdit(value: string) {
-        try {
-            this.dynamicFormModel.group = JSON.parse(value);
-
-        } catch (e) {
-            // Just do nothing
-        }
-    }
-
-    get modelEdit() {
-        return JSON.stringify(this.dynamicFormModel.group, null, 2);
-    }
-
-    test() {
-        //this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        //this.dynamicFormModel.items[1].value = "42";
     }
 }

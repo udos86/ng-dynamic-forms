@@ -121,9 +121,9 @@ export const BASIC_EXAMPLE_MODEL_ARRAY: DynamicFormModel = new DynamicFormModel(
             return [
                 new DynamicInputModel(
                     {
-                        id: "basicArrayInput",
-                        label: "Example Array Input",
-                        placeholder: "example array input"
+                        id: "basicArrayGroupInput",
+                        label: "Example Array Group Input",
+                        placeholder: "example array group input"
                     }
                 )
             ];

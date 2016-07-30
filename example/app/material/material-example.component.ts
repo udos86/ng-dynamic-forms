@@ -20,17 +20,14 @@ import {MATERIAL_EXAMPLE_MODEL} from "./material-example.model";
 export class MaterialExampleComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel;
-    dynamicFormService: DynamicFormService;
-
     form: FormGroup;
 
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
-    constructor(dynamicFormService: DynamicFormService) {
+    constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = MATERIAL_EXAMPLE_MODEL;
-        this.dynamicFormService = dynamicFormService;
     }
 
     ngOnInit() {
