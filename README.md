@@ -311,13 +311,16 @@ new DynamicInputModel(
 
 One of the best things about ng2 Dynamic Forms you won't recognize at first sight is, that you get form
 caching across routes for free. All you need to is separate the initialization of your `DynamicFormModel` from your 
-component code. 
+component code by exporting it on it's own:
 ```ts
-export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel() 
- 
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+
+    // ...all control models
+]) 
 ```
-While the component is destroyed when navigating away from it, the `DynamicFormModel` will remain in memory and will 
-automatically be reused
+
+While the component is destroyed when navigating away from it, the `DynamicFormModel` will remain in memory and 
+automatically be reused!
  
 ## Validation Messaging
 
