@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.4)
+# ng2 Dynamic Forms (beta.5)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -149,7 +149,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
     <div *ngFor="let controlModel of dynamicFormModel.group">
 
-        <dynamic-form-bootstrap-control [form]="form"
+        <dynamic-form-bootstrap-control [controlGroup]="form"
                                         [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
@@ -194,7 +194,7 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 
     <div *ngFor="let controlModel of dynamicFormModel.group">
 
-        <dynamic-form-bootstrap-control [form]="form"
+        <dynamic-form-bootstrap-control [controlGroup]="form"
                                         [model]="controlModel">
         </dynamic-form-bootstrap-control>
 
@@ -274,7 +274,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 
     <div *ngFor="let controlModel of dynamicFormModel.group">
 
-        <dynamic-form-bootstrap-control [form]="form"
+        <dynamic-form-bootstrap-control [controlGroup]="form"
                                         [model]="controlModel"></dynamic-form-bootstrap-control>
 
     </div>
@@ -363,7 +363,7 @@ and **bind the internal** `FormControl` **reference via local template variables
  
     <div *ngFor="let controlModel of dynamicFormModel.group">
     
-        <dynamic-form-basic-control [form]="form" 
+        <dynamic-form-basic-control [controlGroup]="form" 
                                     [model]="controlModel" #componentRef></dynamic-form-basic-control>
         
         <my-validation-message [control]="componentRef.control"></my-validation-message>

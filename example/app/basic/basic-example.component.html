@@ -8,7 +8,7 @@
 
             <div *ngFor="let controlModel of dynamicFormModel1.group" class="form-row">
 
-                <dynamic-form-basic-control [form]="form1"
+                <dynamic-form-basic-control [controlGroup]="form1"
                                             [model]="controlModel"></dynamic-form-basic-control>
 
             </div>
@@ -26,7 +26,7 @@
 
                         <div *ngFor="let controlModel of group" class="form-row">
 
-                            <dynamic-form-basic-control [form]="form2.controls['basicArray'].controls[idx]"
+                            <dynamic-form-basic-control [controlGroup]="form2.controls['basicArray'].controls[idx]"
                                                         [model]="controlModel" style="display: inline-block;"></dynamic-form-basic-control>
 
                             <button type="button" (click)="remove(idx)">Remove</button>

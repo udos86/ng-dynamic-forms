@@ -15,8 +15,8 @@ export const DYNAMIC_FORM_UI_FOUNDATION_SITES = "FOUNDATION_SITES";
 
 export class DynamicFormFoundationSitesComponent extends DynamicFormControlComponent {
 
+    @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel<any>;
-    @Input() form: FormGroup;
     
     type: string = DYNAMIC_FORM_UI_FOUNDATION_SITES;
 

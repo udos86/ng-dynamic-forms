@@ -8,8 +8,8 @@
 
             <div *ngFor="let controlModel of dynamicFormModel.group" class="form-row">
 
-                <dynamic-form-primeng-control [form]="form"
-                                            [model]="controlModel"></dynamic-form-primeng-control>
+                <dynamic-form-primeng-control [controlGroup]="form"
+                                              [model]="controlModel"></dynamic-form-primeng-control>
 
             </div>
 

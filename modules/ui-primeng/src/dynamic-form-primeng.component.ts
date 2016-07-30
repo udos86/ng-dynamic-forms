@@ -16,8 +16,8 @@ export const DYNAMIC_FORM_UI_PRIME_NG = "PRIME_NG";
 
 export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
+    @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel<any>;
-    @Input() form: FormGroup;
 
     type: string = DYNAMIC_FORM_UI_PRIME_NG;
 
