@@ -60,7 +60,6 @@ export class BasicExampleComponent implements OnInit {
     }
 
     clear() {
-        console.log(this.basicArrayControl);
         this.dynamicFormService.clearFormArray(this.basicArrayControl, this.basicArrayModel);
     }
 }
