@@ -115,7 +115,7 @@ export const BASIC_EXAMPLE_MODEL_ARRAY: DynamicFormModel = new DynamicFormModel(
 
     new DynamicFormArrayModel ({
 
-        id: "basicArray",
+        id: "basicFormArray",
         initialCount: 5,
         createGroup: () => {
             return [
