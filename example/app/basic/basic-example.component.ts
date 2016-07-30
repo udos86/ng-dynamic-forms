@@ -6,7 +6,7 @@ import {
     DynamicFormModel, DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 import {DynamicFormBasicComponent} from "@ng2-dynamic-forms/ui-basic";
-import {BASIC_EXAMPLE_MODEL, BASIC_EXAMPLE_MODEL_ARRAY} from "./basic-example.model";
+import {BASIC_EXAMPLE_MODEL, FactoryBasicArrayModel} from "./basic-example.model";
 
 @Component({
 
@@ -34,7 +34,7 @@ export class BasicExampleComponent implements OnInit {
     constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel1 = BASIC_EXAMPLE_MODEL;
-        this.dynamicFormModel2 = BASIC_EXAMPLE_MODEL_ARRAY;
+        this.dynamicFormModel2 = FactoryBasicArrayModel();
 
         this.form1 = this.dynamicFormService.createFormGroup(this.dynamicFormModel1.group);
         this.form2 = this.dynamicFormService.createFormGroup(this.dynamicFormModel2.group);

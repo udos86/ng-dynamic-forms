@@ -19,6 +19,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
+- [Form Arrays](#form-arrays)
 
 ## Getting Started
 
