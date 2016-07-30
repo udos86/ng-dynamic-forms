@@ -18,13 +18,11 @@ export class DynamicFormService {
         this.formBuilder = formBuilder;
     }
 
-    createFormArray(dynamicFormArrayModel: DynamicFormArrayModel, count: number): FormArray {
+    createFormArray(groups: Array<Array<DynamicFormControlModel<any>>>): FormArray {
 
         let formArray = [];
 
-        for (let i = 0; i < count; i += 1) {
-            formArray.push(this.createFormArrayGroup(dynamicFormArrayModel));
-        }
+        groups.forEach(group => formArray.push(this.createFormGroup(group)));
 
         return this.formBuilder.array(formArray);
     }
@@ -39,7 +37,7 @@ export class DynamicFormService {
 
                 let arrayModel = <DynamicFormArrayModel> model;
 
-                formGroup[model.id] = this.createFormArray(arrayModel, arrayModel.initialCount);
+                formGroup[model.id] = this.createFormArray(arrayModel.groups);
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
@@ -84,7 +82,7 @@ export class DynamicFormService {
         dynamicFormArrayModel.removeGroup(index);
     }
 
-    clearFormArray(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel) {
+    clearFormArray(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
 
         while (formArray.length > 0) {
             this.removeFormArrayGroup(0, formArray, dynamicFormArrayModel);

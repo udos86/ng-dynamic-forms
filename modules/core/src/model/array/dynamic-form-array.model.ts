@@ -21,6 +21,10 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
         this.createGroup = config["createGroup"];
         this.initialCount = getValue(config, "initialCount", 1);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
+
+        for (let i = 0; i < this.initialCount; i +=1) {
+            this.addGroup();
+        }
     }
 
     addGroup(): Array<DynamicFormControlModel<any>> {

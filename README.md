@@ -16,6 +16,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Basic Usage](#basic-usage)
 - [Form UI Components](#form-ui-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
+- [Form Caching](#form-caching)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
@@ -306,7 +307,18 @@ new DynamicInputModel(
     }
 )
 ```
+## Form Caching
 
+One of the best things about ng2 Dynamic Forms you won't recognize at first sight is, that you get form
+caching across routes for free. All you need to is separate the initialization of your `DynamicFormModel` from your 
+component code. 
+```ts
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel() 
+ 
+```
+While the component is destroyed when navigating away from it, the `DynamicFormModel` will remain in memory and will 
+automatically be reused
+ 
 ## Validation Messaging
 
 Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 

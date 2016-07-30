@@ -111,25 +111,22 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     )
 ]);
 
-export function FactoryBasicArrayModel() {
+export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
 
-    return new DynamicFormModel([
+    new DynamicFormArrayModel({
 
-        new DynamicFormArrayModel({
-
-            id: "basicFormArray",
-            initialCount: 5,
-            createGroup: () => {
-                return [
-                    new DynamicInputModel(
-                        {
-                            id: "basicArrayGroupInput",
-                            label: "Example Array Group Input",
-                            placeholder: "example array group input"
-                        }
-                    )
-                ];
-            }
-        })
-    ])
-}
+        id: "basicFormArray",
+        initialCount: 5,
+        createGroup: () => {
+            return [
+                new DynamicInputModel(
+                    {
+                        id: "basicArrayGroupInput",
+                        label: "Example Array Group Input",
+                        placeholder: "example array group input"
+                    }
+                )
+            ];
+        }
+    })
+]);
