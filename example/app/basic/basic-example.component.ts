@@ -58,4 +58,9 @@ export class BasicExampleComponent implements OnInit {
     remove(index: number) {
         this.dynamicFormService.removeFormArrayGroup(index, this.basicArrayControl, this.basicArrayModel);
     }
+
+    clear() {
+        console.log(this.basicArrayControl);
+        this.dynamicFormService.clearFormArray(this.basicArrayControl, this.basicArrayModel);
+    }
 }

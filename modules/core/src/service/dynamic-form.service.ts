@@ -83,4 +83,11 @@ export class DynamicFormService {
         formArray.removeAt(index);
         dynamicFormArrayModel.removeGroup(index);
     }
+
+    clearFormArray(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel) {
+
+        while (formArray.length > 0) {
+            this.removeFormArrayGroup(0, formArray, dynamicFormArrayModel);
+        }
+    }
 }

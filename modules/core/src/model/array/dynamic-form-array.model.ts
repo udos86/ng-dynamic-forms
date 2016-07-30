@@ -9,7 +9,7 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
     initialCount: number;
     groups: Array<Array<DynamicFormControlModel<any>>> = [];
     createGroup: () => Array<DynamicFormControlModel<any>>;
-    
+
     constructor(config: {} = {}, cls?: {}) {
 
         super(config, cls);
@@ -32,7 +32,7 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
         return group;
     }
 
-    insertGroup(index: number): Array<DynamicFormControlModel<any>>  {
+    insertGroup(index: number): Array<DynamicFormControlModel<any>> {
 
         let group = this.createGroup();
 
