@@ -4,13 +4,9 @@
 
     <form class="text-center" [formGroup]="form">
 
-        <div *ngFor="let controlModel of dynamicFormModel.group">
-
-            <dynamic-form-material-control [controlGroup]="form"
-                                           [model]="controlModel"></dynamic-form-material-control>
-
-        </div>
-
+        <dynamic-form-material-control *ngFor="let controlModel of dynamicFormModel.group"
+                                       [controlGroup]="form"
+                                       [model]="controlModel"></dynamic-form-material-control>
     </form>
 
 </div>
