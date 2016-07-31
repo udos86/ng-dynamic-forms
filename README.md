@@ -10,6 +10,7 @@ upon a layer of descriptive object models.
 
 It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
 
+
 ##Table of Contents
 
 - [Getting Started](#getting-started)
@@ -21,6 +22,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
+
 
 ## Getting Started
 
@@ -63,6 +65,7 @@ System.config({
     }
 });
 ```
+
 
 ## Basic Usage
 
@@ -160,6 +163,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 </form>
 ```
 
+
 ## Form UI Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
@@ -221,6 +225,7 @@ full support for all major form controls cannot be provided at the moment. See t
 | ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|
 | ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
 
+
 ## Model Bindings and Control References
 
 One of the benefits of using ng2 Dynamic Forms is that interacting with your form programmatically becomes pretty easy.
@@ -260,6 +265,104 @@ ngOnInit() {
   this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
 ```
+
+
+## Form Caching
+
+One of the best things about ng2 Dynamic Forms you won't recognize at first sight is that you get **form
+caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
+component code by exporting it on it's own:
+```ts
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+
+    // ...all control models
+]) 
+```
+
+```ts
+
+import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
+
+export class MyDynamicFormComponent implements OnInit {
+
+    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
+
+    // ...
+}
+```
+
+While the component is entirely destroyed when navigating away from it, the `DynamicFormModel` **will remain in memory and 
+automatically be reused** when navigating back!
+
+
+## Form Arrays
+
+Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. Addresses, Products and so on.
+Particularly for this reason Angular 2 provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
+
+Although it's a bit more tricky, ng2 Dynamic Forms is capable of managing such nested form structures:  
+
+**1. Add a** `DynamicFormArrayModel` **to your**`DynamicFormModel` 
+```ts
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+
+    new DynamicFormArrayModel({
+        id: "myFormArrayModel"
+    })
+]);
+```
+
+**2. Add the** `createGroup` **property** to the `DynamicFormArrayModel` **and assign a function** to it which returns
+the shape of the form array item:
+```ts
+new DynamicFormArrayModel({
+
+    id: "myFormArray",
+    initialCount: 5,
+    createGroup: () => {
+        return [
+            new DynamicInputModel(
+                {
+                    id: "formArrayInput",
+                    label: "Form Array Input"
+                }
+            )
+        ];
+    }
+})
+```
+
+**3. template**
+```ts
+<form [formGroup]="myForm">
+
+    <div formArrayName="myFormArray">
+
+        <div *ngFor="let idx = index; let group of myDynamicFormModel.findById('myFormArray').groups">
+
+            <div [formGroupName]="idx">
+
+                <div *ngFor="let controlModel of group">
+
+                    <dynamic-form-basic-control [controlGroup]="myForm.controls['myFormArray'].controls[idx]"
+                                                [model]="controlModel"></dynamic-form-basic-control>
+
+                    <button type="button" (click)="remove(idx)">Remove Item</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button type="button" (click)="addItem()">Add Item</button>
+        <button type="button" (click)="clear()">Remove All</button>
+
+    </div>
+
+</form>
+```
+
 
 ## Form Layouts
 
@@ -307,33 +410,8 @@ new DynamicInputModel(
     }
 )
 ```
-## Form Caching
 
-One of the best things about ng2 Dynamic Forms you won't recognize at first sight is that you get **form
-caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
-component code by exporting it on it's own:
-```ts
-export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
-    // ...all control models
-]) 
-```
-
-```ts
-
-import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
-
-export class MyDynamicFormComponent implements OnInit {
-
-    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-
-    // ...
-}
-```
-
-While the component is entirely destroyed when navigating away from it, the `DynamicFormModel` **will remain in memory and 
-automatically be reused** when navigating back!
- 
 ## Validation Messaging
 
 Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 
@@ -400,6 +478,7 @@ and **bind the internal** `FormControl` **reference via local template variables
     
 </form>
  ```
+ 
  
 ## Form Autocompletion
 
