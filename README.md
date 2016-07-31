@@ -338,27 +338,21 @@ new DynamicFormArrayModel({
 
     <div formArrayName="myFormArray">
 
-        <div *ngFor="let idx = index; let group of myDynamicFormModel.findById('myFormArray').groups">
+        <div *ngFor="let idx = index; let group of myDynamicFormModel[0].groups"
+                     [formGroupName]="idx">
 
-            <div [formGroupName]="idx">
+            <dynamic-form-basic-control *ngFor="let controlModel of group"
+                                        [controlGroup]="myForm.controls['myformArray'].controls[idx]"
+                                        [model]="controlModel"></dynamic-form-basic-control>
 
-                <div *ngFor="let controlModel of group">
-
-                    <dynamic-form-basic-control [controlGroup]="myForm.controls['myFormArray'].controls[idx]"
-                                                [model]="controlModel"></dynamic-form-basic-control>
-
-                    <button type="button" (click)="remove(idx)">Remove Item</button>
-
-                </div>
-
-            </div>
+            <button type="button" (click)="remove(idx)">Remove Item</button>
 
         </div>
 
-        <button type="button" (click)="addItem()">Add Item</button>
-        <button type="button" (click)="clear()">Remove All</button>
-
     </div>
+
+    <button type="button" (click)="add()">Add Item</button>
+    <button type="button" (click)="clear()">Remove All</button>
 
 </form>
 ```
