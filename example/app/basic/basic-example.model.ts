@@ -117,6 +117,7 @@ export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
 
         id: "basicFormArray",
         initialCount: 5,
+        label: "Example Array Model",
         createGroup: () => {
             return [
                 new DynamicInputModel(

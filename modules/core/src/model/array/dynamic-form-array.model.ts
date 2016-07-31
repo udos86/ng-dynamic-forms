@@ -6,9 +6,10 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
 export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
 
-    initialCount: number;
-    groups: Array<Array<DynamicFormControlModel<any>>> = [];
     createGroup: () => Array<DynamicFormControlModel<any>>;
+    groups: Array<Array<DynamicFormControlModel<any>>> = [];
+    initialCount: number;
+    label: string;
 
     constructor(config: {} = {}, cls?: {}) {
 
@@ -20,6 +21,7 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
 
         this.createGroup = config["createGroup"];
         this.initialCount = getValue(config, "initialCount", 1);
+        this.label = getValue(config, "label", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
         for (let i = 0; i < this.initialCount; i +=1) {

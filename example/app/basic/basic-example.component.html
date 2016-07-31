@@ -14,20 +14,18 @@
 
         <form [formGroup]="form2">
 
-            <div *ngFor="let controlModel of dynamicFormModel2.group" class="form-row">
+            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2.group" class="form-row"
+                                        [controlGroup]="form2"
+                                        [model]="controlModel">
 
-                <dynamic-form-basic-control [controlGroup]="form2" [model]="controlModel">
+                <template>
+                    <button type="button" (click)="remove(idx)">Remove Item</button>
+                </template>
 
-                    <template>
-                        <button type="button" (click)="remove(idx)">Remove Item</button>
-                    </template>
+            </dynamic-form-basic-control>
 
-                </dynamic-form-basic-control>
-
-                <button type="button" (click)="add()">Add Group</button>
-                <button type="button" (click)="clear()">Remove All</button>
-
-            </div>
+            <button type="button" (click)="add()">Add Item</button>
+            <button type="button" (click)="clear()">Remove All</button>
 
         </form>
 
