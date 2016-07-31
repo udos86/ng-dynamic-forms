@@ -1,7 +1,7 @@
 <div [formGroup]="controlGroup"
      [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
-    <!--
+
     <div *ngSwitchCase="'ARRAY'"
          [formArrayName]="model.id">
 
@@ -11,10 +11,13 @@
             <dynamic-form-basic-control *ngFor="let controlModel of group"
                                         [controlGroup]="controlGroup.controls[model.id].controls[idx]"
                                         [model]="controlModel"></dynamic-form-basic-control>
+
+            <template [ngTemplateOutlet]="contentTemplate"></template>
+
         </div>
 
     </div>
-    -->
+
 
     <input *ngSwitchCase="'CHECKBOX'"
            type="checkbox"

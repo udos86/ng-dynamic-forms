@@ -7,6 +7,23 @@
            [attr.for]="model.id"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]">{{model.label}}</label>
 
+    <div *ngSwitchCase="'ARRAY'"
+         [formArrayName]="model.id">
+
+        <div *ngFor="let idx = index; let group of model.groups"
+             [formGroupName]="idx">
+
+            <dynamic-form-basic-control *ngFor="let controlModel of group"
+                                        [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                        [model]="controlModel"></dynamic-form-basic-control>
+
+            <template [ngTemplateOutlet]="contentTemplate"></template>
+
+        </div>
+
+    </div>
+
+
     <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls.grid.control">
 

@@ -1,5 +1,4 @@
-import {Component} from "@angular/core";
-import {Input} from "@angular/core";
+import {Component, Input, ContentChild, TemplateRef} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
 import {DynamicFormControlComponent, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 
@@ -17,7 +16,9 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
 
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel<any>;
-    
+
+    @ContentChild(TemplateRef) contentTemplate;
+
     type: string = DYNAMIC_FORM_UI_FOUNDATION_SITES;
 
     constructor() {

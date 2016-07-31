@@ -14,15 +14,16 @@
 
         </form>
 
-        <!--
+
         <form [formGroup]="form2">
 
             <div *ngFor="let controlModel of dynamicFormModel2.group" class="form-row">
 
-                <dynamic-form-basic-control [controlGroup]="form2"
-                                            [model]="controlModel">
+                <dynamic-form-basic-control [controlGroup]="form2" [model]="controlModel">
 
-                    <p class="test">Hallo</p>
+                    <template>
+                        <button type="button" (click)="remove(idx)">Remove Item</button>
+                    </template>
 
                 </dynamic-form-basic-control>
 
@@ -32,9 +33,9 @@
             </div>
 
         </form>
-        -->
 
 
+        <!--
         <form [formGroup]="form2">
 
             <div formArrayName="basicFormArray">
@@ -57,7 +58,7 @@
             <button type="button" (click)="clear()">Remove All</button>
 
         </form>
-
+        -->
     </div>
 
 </div>

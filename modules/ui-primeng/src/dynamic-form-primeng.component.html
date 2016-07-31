@@ -68,6 +68,23 @@
 
         <div [ngClass]="model.cls.grid.control">
 
+            <div *ngSwitchCase="'ARRAY'"
+                 [formArrayName]="model.id">
+
+                <div *ngFor="let idx = index; let group of model.groups"
+                     [formGroupName]="idx">
+
+                    <dynamic-form-basic-control *ngFor="let controlModel of group"
+                                                [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                                [model]="controlModel"></dynamic-form-basic-control>
+
+                    <template [ngTemplateOutlet]="contentTemplate"></template>
+
+                </div>
+
+            </div>
+
+
             <input *ngSwitchCase="'INPUT'" pInputText
                    [attr.accept]="model.accept"
                    [attr.autoComplete]="model.autoComplete"

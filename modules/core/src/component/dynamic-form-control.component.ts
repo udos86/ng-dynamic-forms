@@ -1,4 +1,4 @@
-import {OnInit} from "@angular/core";
+import {OnInit, TemplateRef} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
@@ -7,6 +7,7 @@ import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radi
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
+    contentTemplate: TemplateRef<any>;
     control: FormControl;
     controlGroup: FormGroup;
     hasFocus: boolean;

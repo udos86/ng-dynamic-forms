@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from "@angular/core";
+import {Component, Input, ViewChild, ContentChild, TemplateRef} from "@angular/core";
 import {FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 import {MdUniqueSelectionDispatcher} from "@angular2-material/core";
 import {MdCheckbox} from "@angular2-material/checkbox";
@@ -22,6 +22,8 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel<any>;
+
+    @ContentChild(TemplateRef) contentTemplate;
 
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
     @ViewChild(MdInput) mdInput: MdInput;

@@ -312,8 +312,8 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 ]);
 ```
 
-**2. Add the** `createGroup` **property** to the `DynamicFormArrayModel` **and assign a function** to it which returns
-the shape of the form array item:
+**2. Add the** `createGroup` **property** to the `DynamicFormArrayModel` **and assign a function** to it which **returns
+the structure** of a single form array item:
 ```ts
 new DynamicFormArrayModel({
 
@@ -332,29 +332,41 @@ new DynamicFormArrayModel({
 })
 ```
 
-**3. template**
+**3. As usual, create a** `FormGroup` **via** `DynamicFormService` **and bind it to your component template**
 ```ts
 <form [formGroup]="myForm">
 
-    <div formArrayName="myFormArray">
+    <dynamic-form-basic-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                [controlGroup]="myForm" 
+                                [model]="controlModel"></dynamic-form-basic-control>
 
-        <div *ngFor="let idx = index; let group of myDynamicFormModel[0].groups"
-                     [formGroupName]="idx">
-
-            <dynamic-form-basic-control *ngFor="let controlModel of group"
-                                        [controlGroup]="myForm.controls['myformArray'].controls[idx]"
-                                        [model]="controlModel"></dynamic-form-basic-control>
-
-            <button type="button" (click)="remove(idx)">Remove Item</button>
-
-        </div>
-
-    </div>
-
-    <button type="button" (click)="add()">Add Item</button>
-    <button type="button" (click)="clear()">Remove All</button>
+    <button type="button" (click)="addItem()">Add item</button>
+    <button type="button" (click)="clear()">Remove all items</button>
 
 </form>
+```
+
+Alright, works like a charm! 
+
+But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array item ?**
+
+No Problemo! By adding a `<template>` you can declare some custom content:
+
+```ts
+<form [formGroup]="myForm">
+
+    <dynamic-form-basic-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                [controlGroup]="myForm" 
+                                [model]="controlModel">
+    
+        <template><button type="button" (click)="remove(idx)">Remove Item</button></template>
+                                
+    </dynamic-form-basic-control>
+
+    <button type="button" (click)="addItem()">Add item</button>
+    <button type="button" (click)="clear()">Remove all items</button>
+
+</form>       
 ```
 
 
