@@ -7,10 +7,10 @@
 * **!!! IMPORTANT !!!** `DynamicFormService.createFormGroup` now expects `Array<DynamicFormControlModel<any>>` instead of `DynamicFormModel`
 * **!!! IMPORTANT !!!** `@Input()` `form` of `DynamicFormControlComponent` has been renamed to `controlGroup`
 
-
 ### **Features**
 
-* [**FormArrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2) are now fully supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/53))
+* [**FormArrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2) are now fully 
+supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/53))
 
 
 # beta.4

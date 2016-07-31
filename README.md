@@ -136,13 +136,13 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 ```ts
 export class MyDynamicFormComponent implements OnInit {
 
-    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-    form: FormGroup;
+    myDynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
+    myForm: FormGroup;
 
     constructor(private dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
+        this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.group);
     }
 }
 ```
@@ -150,15 +150,12 @@ export class MyDynamicFormComponent implements OnInit {
 **4. Add the** `DynamicFormControlComponent` **to your template
 and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```ts
-<form [formGroup]="form">
+<form [formGroup]="myForm">
 
-    <div *ngFor="let controlModel of dynamicFormModel.group">
-
-        <dynamic-form-bootstrap-control [controlGroup]="form"
-                                        [model]="controlModel">
-        </dynamic-form-bootstrap-control>
-
-    </div>
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+    </dynamic-form-bootstrap-control>
 
 </form>
 ```
@@ -196,15 +193,12 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 To get it all running **just bind an arbitrary** `DynamicFormModel`:
 ```ts
-<form [formGroup]="form">
+<form [formGroup]="myForm">
 
-    <div *ngFor="let controlModel of dynamicFormModel.group">
-
-        <dynamic-form-bootstrap-control [controlGroup]="form"
-                                        [model]="controlModel">
-        </dynamic-form-bootstrap-control>
-
-    </div>
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+    </dynamic-form-bootstrap-control>
 
 </form>
 ```
@@ -238,10 +232,10 @@ At first we need to get a reference to it's `DynamicFormControlModel` representa
 a simple index-based `items` array lookup or through the `findById` method of `DynamicFormModel`:
 
 ```ts
-this.exampleInputModel = this.dynamicFormModel.items[2];
+this.exampleInputModel = this.myDynamicFormModel.items[2];
 ```
 ```ts
-this.exampleInputModel = <DynamicInputModel> this.dynamicFormModel.findById("exampleInput");
+this.exampleInputModel = <DynamicInputModel> this.myDynamicFormModel.findById("exampleInput");
 ```
 
 Due to the `value` property being already two-way-bound via `[(ngModel)]` under the hood, assigning a new value to it will just do the job:
@@ -261,7 +255,7 @@ Just obtain a reference to the `FormControl` and use it's `valueChanges` observa
 ```ts
 ngOnInit() {
 
-  this.control = <FormControl> this.form.controls[this.exampleInputModel.id];
+  this.control = <FormControl> this.myForm.controls[this.exampleInputModel.id];
   this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
 ```
@@ -332,7 +326,7 @@ new DynamicFormArrayModel({
 })
 ```
 
-**3. As usual, create a** `FormGroup` **via** `DynamicFormService` **and bind it to your component template**
+**3. As usual, create a** `FormGroup` **via** `DynamicFormService` **and bind it to your component template**:
 ```ts
 <form [formGroup]="myForm">
 
@@ -348,7 +342,7 @@ new DynamicFormArrayModel({
 
 Alright, works like a charm! 
 
-But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array item ?**
+But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array item**?
 
 No Problemo! By adding a `<template>` you can declare some custom content:
 
@@ -381,14 +375,12 @@ So let's say we want to implement a beautifully aligned Bootstrap [horizonal for
 
 At first we have to append the mandatory Bootstrap CSS class `form-horizontal` to the `<form>` element in our template:
 ```ts
-<form class="form-horizontal" [formGroup]="form">
+<form class="form-horizontal" [formGroup]="myForm">
 
-    <div *ngFor="let controlModel of dynamicFormModel.group">
-
-        <dynamic-form-bootstrap-control [controlGroup]="form"
-                                        [model]="controlModel"></dynamic-form-bootstrap-control>
-
-    </div>
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+    </dynamic-form-bootstrap-control>
 
 </form>
 ```
@@ -471,11 +463,11 @@ new DynamicInputModel({
 **4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
 and **bind the internal** `FormControl` **reference via local template variables**:
  ```ts
- <form [formGroup]="form">
+ <form [formGroup]="myForm">
  
-    <div *ngFor="let controlModel of dynamicFormModel.group">
+    <div *ngFor="let controlModel of myDynamicFormModel.group">
     
-        <dynamic-form-basic-control [controlGroup]="form" 
+        <dynamic-form-basic-control [controlGroup]="myForm" 
                                     [model]="controlModel" #componentRef></dynamic-form-basic-control>
         
         <my-validation-message [control]="componentRef.control"></my-validation-message>
