@@ -12,6 +12,7 @@ export abstract class DynamicFormAbstractControlModel {
     cls: any = {};
     disabled: boolean;
     id: string;
+    label: string;
     name: string;
     type: string = null; // must be defined by child class
 
@@ -26,6 +27,7 @@ export abstract class DynamicFormAbstractControlModel {
 
         this.disabled = getValue(config, "disabled", false);
         this.id = config.id;
+        this.label = getValue(config, "label", null);
         this.name = this.id; // TODO remove any time soon due to redundancy
     }
 }

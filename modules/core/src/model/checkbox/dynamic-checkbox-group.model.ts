@@ -8,7 +8,6 @@ export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
 export class DynamicCheckboxGroupModel extends DynamicFormAbstractControlModel implements IDynamicFormGroupModel {
 
     group: Array<DynamicCheckboxModel>;
-    label: string;
     legend: string;
     
     constructor(config: {} = {}, cls?: {}) {
@@ -16,7 +15,6 @@ export class DynamicCheckboxGroupModel extends DynamicFormAbstractControlModel i
         super(config, cls);
 
         this.group = getValue(config, "group", []);
-        this.label = getValue(config, "label", null);
         this.legend = getValue(config, "legend", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
     }

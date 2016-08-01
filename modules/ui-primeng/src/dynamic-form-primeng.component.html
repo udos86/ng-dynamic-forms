@@ -5,7 +5,9 @@
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
               [disabled]="model.disabled"
               [formGroupName]="model.id"
-              [id]="model.id">
+              [id]="model.id"
+              [name]="model.name"
+              [ngClass]="model.cls.element.control">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -69,10 +71,11 @@
         <div [ngClass]="model.cls.grid.control">
 
             <div *ngSwitchCase="'ARRAY'"
-                 [formArrayName]="model.id">
+                 [formArrayName]="model.id"
+                 [ngClass]="model.cls.element.control">
 
-                <div *ngFor="let idx = index; let group of model.groups"
-                     [formGroupName]="idx">
+                <fieldset *ngFor="let idx = index; let group of model.groups"
+                          [formGroupName]="idx">
 
                     <dynamic-form-basic-control *ngFor="let controlModel of group"
                                                 [controlGroup]="controlGroup.controls[model.id].controls[idx]"
@@ -80,7 +83,7 @@
 
                     <template [ngTemplateOutlet]="contentTemplate"></template>
 
-                </div>
+                </fieldset>
 
             </div>
 
