@@ -17,9 +17,9 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Basic Usage](#basic-usage)
 - [Form UI Components](#form-ui-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
-- [Form Caching](#form-caching)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Form Caching](#form-caching)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
 
@@ -251,7 +251,7 @@ onSubmit() {
 
 In many cases you may want to step a bit further and keep tracking value changes over time. That's where Angular 2 itself and RxJS come to rescue! 
 
-Just obtain a reference to the `FormControl` and use it's `valueChanges` observable.
+Just obtain a reference to the `FormControl` and use it's `valueChanges` observable:
 ```ts
 ngOnInit() {
 
@@ -261,42 +261,14 @@ ngOnInit() {
 ```
 
 
-## Form Caching
-
-One of the best things about ng2 Dynamic Forms you won't recognize at first sight is that you get **form
-caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
-component code by exporting it on it's own:
-```ts
-export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
-
-    // ...all control models
-]) 
-```
-
-```ts
-
-import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
-
-export class MyDynamicFormComponent implements OnInit {
-
-    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
-
-    // ...
-}
-```
-
-While the component is entirely destroyed when navigating away from it, the `DynamicFormModel` **will remain in memory and 
-automatically be reused** when navigating back!
-
-
 ## Form Arrays
 
-Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. Addresses, Products and so on.
+Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. addresses, products and so on.
 Particularly for this reason Angular 2 provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
 
-Although it's a bit more tricky, ng2 Dynamic Forms is capable of managing such nested form structures:  
+Although it's a bit more tricky, ng2 Dynamic Forms is capable of managing such nested form structures!  
 
-**1. Add a** `DynamicFormArrayModel` **to your**`DynamicFormModel` 
+**1. Add a** `DynamicFormArrayModel` **to your**`DynamicFormModel`: 
 ```ts
 export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
 
@@ -327,6 +299,10 @@ new DynamicFormArrayModel({
 ```
 
 **3. As usual, create a** `FormGroup` **via** `DynamicFormService` **and bind it to your component template**:
+```ts
+this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.group);
+```
+
 ```ts
 <form [formGroup]="myForm">
 
@@ -408,6 +384,33 @@ new DynamicInputModel(
     }
 )
 ```
+
+
+## Form Caching
+
+One of the best things about ng2 Dynamic Forms, you won't recognize at first sight, is that you get **form
+caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
+component code by exporting it on it's own:
+```ts
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+
+    // ...all dynamic control models
+]); 
+```
+
+```ts
+import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
+
+export class MyDynamicFormComponent {
+
+    dynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
+
+    // ...
+}
+```
+
+While the component is entirely destroyed when navigating away from it, the `DynamicFormModel` **will remain in memory and 
+automatically be reused** when navigating back!
 
 
 ## Validation Messaging
@@ -526,7 +529,7 @@ export class MyAutoFillExample {
 }
 ```
 
-Besides you can make user input more comfortable, providing HTMl5 [datalists](http://www.w3schools.com/tags/tag_datalist.asp)
+Besides you can make user input more comfortable, providing HTML5 [datalists](http://www.w3schools.com/tags/tag_datalist.asp)
 by setting the `list` property of `DynamicInputControlModel`: 
 ```ts
 new DynamicInputModel(
