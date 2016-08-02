@@ -16,7 +16,6 @@ describe("BasicExampleComponent", () => {
             let elm = element(by.id(model.id));
 
             expect(elm).toBeDefined();
-            elm.getAttribute("id").then(id => expect(id).toEqual(model.id));
             //elm.getAttribute("name").then(name => expect(name).toEqual(model.name));
             elm.getAttribute("disabled").then(attr => {
 
