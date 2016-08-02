@@ -37,7 +37,6 @@
                 <input type="checkbox"
                        [disabled]="model.disabled"
                        [formControlName]="model.id"
-                       [id]="model.id"
                        [name]="model.name"
                        [required]="model.required"
                        [value]="model.value"
@@ -58,7 +57,6 @@
         <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
                   [disabled]="model.disabled"
                   [formGroupName]="model.id"
-                  [id]="model.id"
                   [name]="model.name">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
@@ -73,7 +71,6 @@
                     <input type="checkbox"
                            [disabled]="item.disabled"
                            [formControlName]="item.id"
-                           [id]="item.id"
                            [name]="item.name"
                            [required]="model.required"
                            [value]="item.value"
@@ -105,7 +102,6 @@
                    [autofocus]="model.autoFocus"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
-                   [id]="model.id"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -131,7 +127,6 @@
         <fieldset *ngSwitchCase="'RADIO_GROUP'"
                   role="radiogroup"
                   [disabled]="model.disabled"
-                  [id]="model.id"
                   [name]="model.name">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
@@ -157,7 +152,6 @@
                 class="form-control"
                 [disabled]="model.disabled"
                 [formControlName]="model.id"
-                [id]="model.id"
                 [name]="model.name"
                 [required]="model.required"
                 [ngClass]="model.cls.element.control"
@@ -180,7 +174,6 @@
                   [cols]="model.cols"
                   [disabled]="model.disabled"
                   [formControlName]="model.id"
-                  [id]="model.id"
                   [name]="model.name"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"

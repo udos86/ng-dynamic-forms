@@ -5,7 +5,6 @@
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
               [disabled]="model.disabled"
               [formGroupName]="model.id"
-              [id]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
 
@@ -17,7 +16,6 @@
 
                 <p-checkbox [disabled]="item.disabled"
                             [formControlName]="item.id"
-                            [id]="item.id"
                             [value]="item.value"
                             [ngClass]="item.cls.element.control"
                             [(ngModel)]="item.value"></p-checkbox>
@@ -34,8 +32,7 @@
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'"
               role="radiogroup"
-              [disabled]="model.disabled"
-              [id]="model.id">
+              [disabled]="model.disabled">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -100,7 +97,6 @@
                    [autofocus]="model.autoFocus"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
-                   [id]="model.id"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -122,7 +118,6 @@
             <p-checkbox *ngSwitchCase="'CHECKBOX'"
                         [disabled]="model.disabled"
                         [formControlName]="model.id"
-                        [id]="model.id"
                         [value]="model.value"
                         [ngClass]="model.cls.element.control"
                         [(ngModel)]="model.value"></p-checkbox>
@@ -140,7 +135,6 @@
                       [cols]="model.cols"
                       [disabled]="model.disabled"
                       [formControlName]="model.id"
-                      [id]="model.id"
                       [name]="model.name"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"

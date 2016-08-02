@@ -29,7 +29,6 @@
                  [align]="model.align"
                  [disabled]="model.disabled"
                  [formControlName]="model.id"
-                 [id]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
@@ -43,7 +42,6 @@
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
               [disabled]="model.disabled"
               [formGroupName]="model.id"
-              [id]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
 
@@ -53,7 +51,6 @@
                      [align]="item.align"
                      [disabled]="item.disabled"
                      [formControlName]="item.id"
-                     [id]="item.id"
                      [indeterminate]="item.indeterminate"
                      [name]="item.name"
                      [value]="item.value"
@@ -70,7 +67,6 @@
               [autofocus]="model.autoFocus"
               [disabled]="model.disabled"
               [formControlName]="model.id"
-              [id]="model.id"
               [max]="model.max"
               [min]="model.min"
               [name]="model.name"
@@ -94,7 +90,6 @@
 
     <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
                     [formControlName]="model.id"
-                    [id]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [(ngModel)]="model.value"
