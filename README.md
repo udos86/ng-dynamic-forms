@@ -316,6 +316,27 @@ this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.gr
 </form>
 ```
 
+**4. You can now easily add and remove form array items with `DynamicFormService`**
+```ts
+ngOnInit() {
+
+    this.myArrayControl = <FormArray> this.myForm.controls["myFormArray"]; 
+    this.myArrayModel = <DynamicFormArrayModel> this.myDynamicFormModel.findById("myFormArray");
+}
+
+addItem() {
+    this.dynamicFormService.addFormArrayGroup(this.myArrayControl, this.myArrayModel);
+}
+
+removeItem(index: number) {
+    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
+}
+
+clear() {
+    this.dynamicFormService.clearFormArray(this.myArrayControl, this.myArrayModel);
+}
+```
+
 Alright, works like a charm! 
 
 But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array item**?
