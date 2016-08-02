@@ -27,6 +27,10 @@ export function isEmptyString (_string: string): boolean {
     return typeof _string !== "string" || _string.length === 0;
 }
 
+export function isFunction (object: any): boolean {
+    return typeof object === "function";
+}
+
 export function getValue(object: any, key: string, defaultValue: any): any {
 
     if (object === undefined || object === null) {

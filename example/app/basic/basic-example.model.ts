@@ -6,6 +6,7 @@ import {
     DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicTextAreaModel,
+    DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 
 export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
@@ -49,7 +50,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         {
             id: "basicCheckboxGroup",
             legend: "Example Checkbox Group",
-            items: [
+            group: [
                 new DynamicCheckboxModel(
                     {
                         id: "checkboxGroup1",
@@ -108,4 +109,25 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "I do agree"
         }
     )
+]);
+
+export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
+
+    new DynamicFormArrayModel({
+
+        id: "basicFormArray",
+        initialCount: 5,
+        label: "Example Array Model",
+        createGroup: () => {
+            return [
+                new DynamicInputModel(
+                    {
+                        id: "basicArrayGroupInput",
+                        label: "Example Array Group Input",
+                        placeholder: "example array group input"
+                    }
+                )
+            ];
+        }
+    })
 ]);

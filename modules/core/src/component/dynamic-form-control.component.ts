@@ -1,4 +1,4 @@
-import {OnInit} from "@angular/core";
+import {OnInit, TemplateRef} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
@@ -7,8 +7,9 @@ import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radi
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
+    contentTemplate: TemplateRef<any>;
     control: FormControl;
-    form: FormGroup;
+    controlGroup: FormGroup;
     hasFocus: boolean;
     model: DynamicFormControlModel<any>;
     type: string; // must be defined by sublcass
@@ -24,10 +25,10 @@ export abstract class DynamicFormControlComponent implements OnInit {
             throw new Error(`Control ${this.model.id} of type ${this.model.type} is not supported by ${this.type} UI package.`);
         }
 
-        this.control = <FormControl> this.form.controls[this.model.id];
+        this.control = <FormControl> this.controlGroup.controls[this.model.id];
         //@exclude
         this.control.valueChanges.subscribe((value: string) => {
-            console.log(this.model.id + " field changed to: ", value, typeof value, this.form.valid);
+            console.log(this.model.id + " field changed to: ", value, typeof value, this.controlGroup.valid);
         });
         //@endexclude
     }

@@ -71,7 +71,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         {
             id: "bootstrapCheckboxGroup",
             label: "Example Checkbox Group",
-            items: [
+            group: [
                 new DynamicCheckboxModel(
                     {
                         id: "checkboxGroup1",

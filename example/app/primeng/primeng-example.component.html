@@ -6,13 +6,9 @@
 
         <form [formGroup]="form" class="ui-grid ui-grid-responsive">
 
-            <div *ngFor="let controlModel of dynamicFormModel.items" class="form-row">
-
-                <dynamic-form-primeng-control [form]="form"
-                                            [model]="controlModel"></dynamic-form-primeng-control>
-
-            </div>
-
+            <dynamic-form-primeng-control *ngFor="let controlModel of dynamicFormModel.group" class="form-row"
+                                          [controlGroup]="form"
+                                          [model]="controlModel"></dynamic-form-primeng-control>
         </form>
 
     </div>

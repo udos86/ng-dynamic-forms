@@ -19,7 +19,7 @@ export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
     new DynamicCheckboxGroupModel(
         {
             id: "materialCheckboxGroup",
-            items: [
+            group: [
                 new DynamicCheckboxModel(
                     {
                         id: "materialCheckbox1",

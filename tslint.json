@@ -21,7 +21,7 @@
     ],
     "directive-selector-prefix": [
       true,
-      "dynamic-form"
+      "df"
     ],
     "component-selector-prefix": [
       true,
@@ -41,7 +41,7 @@
     "no-attribute-parameter-decorator": true,
     "no-input-rename": true,
     "no-output-rename": true,
-    "no-forward-ref": true,
+    //"no-forward-ref": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "pipe-naming": [

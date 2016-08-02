@@ -20,22 +20,19 @@ import {MATERIAL_EXAMPLE_MODEL} from "./material-example.model";
 export class MaterialExampleComponent implements OnInit {
 
     dynamicFormModel: DynamicFormModel;
-    dynamicFormService: DynamicFormService;
-
     form: FormGroup;
 
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
-    constructor(dynamicFormService: DynamicFormService) {
+    constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = MATERIAL_EXAMPLE_MODEL;
-        this.dynamicFormService = dynamicFormService;
     }
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
 
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
@@ -44,7 +41,7 @@ export class MaterialExampleComponent implements OnInit {
     }
 
     test() {
-        this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
-        this.dynamicFormModel.items[1].value = "42";
+        //this.exampleCheckboxModel.disabled = !this.exampleCheckboxModel.disabled;
+        //this.dynamicFormModel.items[1].value = "42";
     }
 }

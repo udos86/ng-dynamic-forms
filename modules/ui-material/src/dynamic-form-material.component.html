@@ -1,4 +1,4 @@
-<div [formGroup]="form"
+<div [formGroup]="controlGroup"
      [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
@@ -7,11 +7,28 @@
            [ngClass]="model.cls.element.label">{{model.label}}</label>
 
 
+    <div *ngSwitchCase="'ARRAY'"
+         [formArrayName]="model.id"
+         [ngClass]="model.cls.element.control">
+
+        <fieldset *ngFor="let idx = index; let group of model.groups"
+                  [formGroupName]="idx">
+
+            <dynamic-form-basic-control *ngFor="let controlModel of group"
+                                        [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                        [model]="controlModel"></dynamic-form-basic-control>
+
+            <template [ngTemplateOutlet]="contentTemplate"></template>
+
+        </fieldset>
+
+    </div>
+
+
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [disabled]="model.disabled"
                  [formControlName]="model.id"
-                 [id]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [value]="model.value"
@@ -25,16 +42,15 @@
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
               [disabled]="model.disabled"
               [formGroupName]="model.id"
-              [id]="model.id"
-              [name]="model.name">
+              [name]="model.name"
+              [ngClass]="model.cls.element.control">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-        <md-checkbox *ngFor="let item of model.items"
+        <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
                      [disabled]="item.disabled"
                      [formControlName]="item.id"
-                     [id]="item.id"
                      [indeterminate]="item.indeterminate"
                      [name]="item.name"
                      [value]="item.value"
@@ -51,7 +67,6 @@
               [autofocus]="model.autoFocus"
               [disabled]="model.disabled"
               [formControlName]="model.id"
-              [id]="model.id"
               [max]="model.max"
               [min]="model.min"
               [name]="model.name"
@@ -75,7 +90,6 @@
 
     <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
                     [formControlName]="model.id"
-                    [id]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [(ngModel)]="model.value"

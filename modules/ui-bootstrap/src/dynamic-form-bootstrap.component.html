@@ -1,11 +1,29 @@
 <div class="form-group"
-     [formGroup]="form"
+     [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]"
      [ngSwitch]="model.type">
 
     <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]">{{model.label}}</label>
+
+    <div *ngSwitchCase="'ARRAY'"
+         [formArrayName]="model.id"
+         [ngClass]="model.cls.element.control">
+
+        <fieldset *ngFor="let idx = index; let group of model.groups"
+                  [formGroupName]="idx">
+
+            <dynamic-form-basic-control *ngFor="let controlModel of group"
+                                        [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                        [model]="controlModel"></dynamic-form-basic-control>
+
+            <template [ngTemplateOutlet]="contentTemplate"></template>
+
+        </fieldset>
+
+    </div>
+
 
     <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls.grid.control">
@@ -19,7 +37,6 @@
                 <input type="checkbox"
                        [disabled]="model.disabled"
                        [formControlName]="model.id"
-                       [id]="model.id"
                        [name]="model.name"
                        [required]="model.required"
                        [value]="model.value"
@@ -40,12 +57,11 @@
         <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
                   [disabled]="model.disabled"
                   [formGroupName]="model.id"
-                  [id]="model.id"
                   [name]="model.name">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-            <div *ngFor="let item of model.items"
+            <div *ngFor="let item of model.group"
                  class="checkbox"
                  [class.disabled]="item.disabled">
 
@@ -55,7 +71,6 @@
                     <input type="checkbox"
                            [disabled]="item.disabled"
                            [formControlName]="item.id"
-                           [id]="item.id"
                            [name]="item.name"
                            [required]="model.required"
                            [value]="item.value"
@@ -87,7 +102,6 @@
                    [autofocus]="model.autoFocus"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
-                   [id]="model.id"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -113,7 +127,6 @@
         <fieldset *ngSwitchCase="'RADIO_GROUP'"
                   role="radiogroup"
                   [disabled]="model.disabled"
-                  [id]="model.id"
                   [name]="model.name">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
@@ -139,7 +152,6 @@
                 class="form-control"
                 [disabled]="model.disabled"
                 [formControlName]="model.id"
-                [id]="model.id"
                 [name]="model.name"
                 [required]="model.required"
                 [ngClass]="model.cls.element.control"
@@ -162,7 +174,6 @@
                   [cols]="model.cols"
                   [disabled]="model.disabled"
                   [formControlName]="model.id"
-                  [id]="model.id"
                   [name]="model.name"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"

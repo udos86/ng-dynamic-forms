@@ -1,18 +1,19 @@
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {DynamicFormAbstractControlModel} from "./dynamic-form-abstract-control.model";
 
-export interface IDynamicFormModel {
-    items: Array<DynamicFormControlModel<any>>;
+export interface IDynamicFormGroupModel {
+
+    group: Array<DynamicFormAbstractControlModel>;
 }
 
-export class DynamicFormModel implements IDynamicFormModel{
+export class DynamicFormModel implements IDynamicFormGroupModel {
 
-    items: Array<DynamicFormControlModel<any>>;
+    group: Array<DynamicFormAbstractControlModel>;
 
-    constructor(items: Array<DynamicFormControlModel<any>>) {
-        this.items = items || [];
+    constructor(group: Array<DynamicFormAbstractControlModel>) {
+        this.group = group || [];
     }
 
-    findById(id: string) {
-        return this.items.find(controlModel => controlModel.id === id);
+    findById(id: string): DynamicFormAbstractControlModel {
+        return this.group.find(controlModel => controlModel.id === id);
     }
 }

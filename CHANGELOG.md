@@ -1,3 +1,19 @@
+# beta.5
+
+### **Breaking Changes** 
+>**Please checkout updated README and examples!**
+
+* **!!! IMPORTANT !!!** `items` property of `DynamicFormControlModel` and `DynamicCheckboxGroup` has been renamed to `group`
+* **!!! IMPORTANT !!!** `DynamicFormService.createFormGroup` now expects `Array<DynamicFormControlModel<any>>` instead of `DynamicFormModel`
+* **!!! IMPORTANT !!!** `@Input()` `form` of `DynamicFormControlComponent` has been renamed to `controlGroup`
+* **!!! IMPORTANT !!!** `id` property binding of `DynamicFormControlModel` has been removed
+
+### **Features**
+
+* [**FormArrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2) are now fully 
+supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/53))
+
+
 # beta.4
 
 ### **Breaking Changes**
@@ -9,6 +25,7 @@ under the hood any more
 ### **Features**
 
 * boolean `spellCheck` property added to `DynamicInputControlModel`
+
 
 # beta.3
 
