@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-primeng",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "PrimeNG UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "repository": {
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@ng2-dynamic-forms/core": "1.0.0-beta.4",
+    "@ng2-dynamic-forms/core": "1.0.0-beta.5",
     "primeng": "^1.0.0-beta.11",
     "primeui": "^4.1.14"
   }
