@@ -134,6 +134,8 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 **3. Create a** `FormGroup` **via the** `DynamicFormService`:
 ```ts
+import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
+
 export class MyDynamicFormComponent implements OnInit {
 
     myDynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
@@ -316,7 +318,7 @@ this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.gr
 </form>
 ```
 
-**4. You can now easily add and remove form array items with `DynamicFormService`**
+**4. You can now easily add and remove form array items with** `DynamicFormService`:
 ```ts
 ngOnInit() {
 
