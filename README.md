@@ -134,6 +134,8 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 
 **3. Create a** `FormGroup` **via the** `DynamicFormService`:
 ```ts
+import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
+
 export class MyDynamicFormComponent implements OnInit {
 
     myDynamicFormModel: DynamicFormModel = MY_DYNAMIC_FORM_MODEL;
@@ -314,6 +316,27 @@ this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.gr
     <button type="button" (click)="clear()">Remove all items</button>
 
 </form>
+```
+
+**4. You can now easily add and remove form array items with** `DynamicFormService`:
+```ts
+ngOnInit() {
+
+    this.myArrayControl = <FormArray> this.myForm.controls["myFormArray"]; 
+    this.myArrayModel = <DynamicFormArrayModel> this.myDynamicFormModel.findById("myFormArray");
+}
+
+addItem() {
+    this.dynamicFormService.addFormArrayGroup(this.myArrayControl, this.myArrayModel);
+}
+
+removeItem(index: number) {
+    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
+}
+
+clear() {
+    this.dynamicFormService.clearFormArray(this.myArrayControl, this.myArrayModel);
+}
 ```
 
 Alright, works like a charm! 
