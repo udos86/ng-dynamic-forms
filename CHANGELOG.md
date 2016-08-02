@@ -6,6 +6,7 @@
 * **!!! IMPORTANT !!!** `items` property of `DynamicFormControlModel` and `DynamicCheckboxGroup` has been renamed to `group`
 * **!!! IMPORTANT !!!** `DynamicFormService.createFormGroup` now expects `Array<DynamicFormControlModel<any>>` instead of `DynamicFormModel`
 * **!!! IMPORTANT !!!** `@Input()` `form` of `DynamicFormControlComponent` has been renamed to `controlGroup`
+* **!!! IMPORTANT !!!** `id` property binding of `DynamicFormControlModel` has been removed
 
 ### **Features**
 
