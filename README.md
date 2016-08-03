@@ -5,7 +5,7 @@
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
-It simplifies all the hard, troublesome work of implementing handcrafted forms by building
+It simplifies all the hard work of implementing handcrafted Angular 2 forms by building
 upon a layer of descriptive object models.
 
 It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
@@ -132,7 +132,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 })
 ```
 
-**3. Create a** `FormGroup` **via the** `DynamicFormService`:
+**3. Create a** `FormGroup` **via** `DynamicFormService`:
 ```ts
 import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
 
@@ -156,9 +156,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
                                     [controlGroup]="myForm"
-                                    [model]="controlModel">
-    </dynamic-form-bootstrap-control>
-
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
 
@@ -199,9 +197,7 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
                                     [controlGroup]="myForm"
-                                    [model]="controlModel">
-    </dynamic-form-bootstrap-control>
-
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
 
@@ -244,6 +240,7 @@ Due to the `value` property being already two-way-bound via `[(ngModel)]` under 
 ```ts
 this.exampleInputModel.value = "my new value";
 ```
+
 At the same time this also means that you can safely read the most recent user input from `value` at any time:
 ```ts
 onSubmit() {
@@ -318,7 +315,7 @@ this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.gr
 </form>
 ```
 
-**4. You can now easily add and remove form array items with** `DynamicFormService`:
+**4. You can now easily modify your form array with** `DynamicFormService`:
 ```ts
 ngOnInit() {
 
@@ -330,10 +327,6 @@ addItem() {
     this.dynamicFormService.addFormArrayGroup(this.myArrayControl, this.myArrayModel);
 }
 
-removeItem(index: number) {
-    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
-}
-
 clear() {
     this.dynamicFormService.clearFormArray(this.myArrayControl, this.myArrayModel);
 }
@@ -341,9 +334,9 @@ clear() {
 
 Alright, works like a charm! 
 
-But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array item**?
+But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array group**?
 
-No Problemo! By adding a `<template>` you can declare some custom content:
+No Problemo! **By adding a** `<template>` **you can declare some custom content**:
 
 ```ts
 <form [formGroup]="myForm">
@@ -362,6 +355,12 @@ No Problemo! By adding a `<template>` you can declare some custom content:
 </form>       
 ```
 
+```ts
+removeItem(index: number) {
+    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
+}
+```
+
 
 ## Form Layouts
 
@@ -378,9 +377,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
                                     [controlGroup]="myForm"
-                                    [model]="controlModel">
-    </dynamic-form-bootstrap-control>
-
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
 
