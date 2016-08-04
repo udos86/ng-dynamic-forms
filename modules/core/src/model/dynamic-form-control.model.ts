@@ -4,7 +4,6 @@ import {DynamicFormAbstractControlModel} from "./dynamic-form-abstract-control.m
 export abstract class DynamicFormControlModel<T> extends DynamicFormAbstractControlModel {
 
     help: string;
-    label: string;
     required: boolean;
     validators: Array<any>;
     validatorsAsync: Array<any>;
@@ -15,7 +14,6 @@ export abstract class DynamicFormControlModel<T> extends DynamicFormAbstractCont
         super(config, cls);
 
         this.help = getValue(config, "help", null);
-        this.label = getValue(config, "label", null);
         this.required = getValue(config, "required", false);
         this.validators = getValue(config, "validators", []);
         this.validatorsAsync = getValue(config, "validatorsAsync", []);

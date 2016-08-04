@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
 import {DynamicFormAbstractControlModel} from "../model/dynamic-form-abstract-control.model";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/array/dynamic-form-array.model";
+import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DynamicCheckboxGroupModel
