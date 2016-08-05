@@ -1,5 +1,6 @@
 export * from "./src/model/dynamic-form.model";
 export * from "./src/model/dynamic-form-abstract-control.model";
+export * from "./src/model/form-group/dynamic-form-group.model";
 export * from "./src/model/form-array/dynamic-form-array.model";
 export * from "./src/model/dynamic-form-control.model";
 export * from "./src/model/dynamic-input-control.model";

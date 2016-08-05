@@ -3,10 +3,8 @@ import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angul
 import {DynamicFormAbstractControlModel} from "../model/dynamic-form-abstract-control.model";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
-    DynamicCheckboxGroupModel
-} from "../model/checkbox/dynamic-checkbox-group.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 
 @Injectable()
 export class DynamicFormService {
@@ -39,11 +37,11 @@ export class DynamicFormService {
 
                 formGroup[model.id] = this.createFormArray(arrayModel.groups);
 
-            } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
+            } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
-                let checkboxGroupModel = <DynamicCheckboxGroupModel> model;
+                let groupModel = <DynamicFormGroupModel> model;
 
-                formGroup[model.id] = this.createFormGroup(checkboxGroupModel.group);
+                formGroup[model.id] = this.createFormGroup(groupModel.group);
 
             } else {
 
