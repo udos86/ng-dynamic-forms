@@ -1,5 +1,14 @@
 import {getValue} from "../utils";
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
+
+export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
+
+    help?: string;
+    required?: boolean;
+    validators?: Array<any>;
+    validatorsAsync?: Array<any>;
+    value?: any;
+}
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
@@ -9,7 +18,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     validatorsAsync: Array<any>;
     value: T;
 
-    constructor(config: {} = {}, cls?: {}) {
+    constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

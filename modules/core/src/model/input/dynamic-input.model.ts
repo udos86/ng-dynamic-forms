@@ -1,4 +1,5 @@
-import {DynamicInputControlModel} from "../dynamic-input-control.model";
+import {ClsConfig} from "../dynamic-form-control.model";
+import {DynamicInputControlModel, DynamicInputControlModelConfig} from "../dynamic-input-control.model";
 import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
@@ -19,6 +20,17 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_TIME = "time";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_WEEK = "week";
 
+export interface InputModelConfig extends DynamicInputControlModelConfig {
+
+    accept?: string;
+    inputType?: string;
+    list?: Array<string>;
+    max?: number;
+    min?: number;
+    multiple?: boolean;
+    step?: number;
+}
+
 export class DynamicInputModel extends DynamicInputControlModel<any> {
 
     accept: string;
@@ -31,7 +43,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
 
     private listId: string = null;
 
-    constructor(config: {} = {}, cls?: {}) {
+    constructor(config: InputModelConfig = {}, cls?: ClsConfig) {
 
         super(config, cls);
 

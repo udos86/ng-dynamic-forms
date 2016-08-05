@@ -1,4 +1,4 @@
-import {DynamicFormControlModel} from "../dynamic-form-control.model";
+import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {getValue} from "../../utils";
 
 export interface IDynamicFieldset {
@@ -7,12 +7,18 @@ export interface IDynamicFieldset {
 
 export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
+export interface FormGroupModelConfig extends DynamicFormControlModelConfig {
+
+    group?: Array<DynamicFormControlModel>;
+    legend?: string;
+}
+
 export class DynamicFormGroupModel extends DynamicFormControlModel implements IDynamicFieldset {
 
     group: Array<DynamicFormControlModel> = [];
     legend: string;
 
-    constructor(config: {} = {}, cls?: {}) {
+    constructor(config: FormGroupModelConfig = {}, cls?: ClsConfig) {
 
         super(config, cls);
 

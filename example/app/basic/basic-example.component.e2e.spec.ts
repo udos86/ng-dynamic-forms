@@ -35,7 +35,7 @@ describe("BasicExampleComponent", () => {
 
             label.getAttribute("for").then(attr => {
 
-                let model = <DynamicFormControlModel<any>> BASIC_EXAMPLE_MODEL.findById(attr);
+                let model = <DynamicFormControlModel> BASIC_EXAMPLE_MODEL.findById(attr);
 
                 if (model) {
                     label.getText().then(text => expect(text).toBe(model.label));

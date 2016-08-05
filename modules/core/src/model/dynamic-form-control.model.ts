@@ -2,9 +2,22 @@ import {getValue, isEmptyString} from "../utils";
 
 export interface Cls {
 
-    container: string;
-    control: string;
-    label: string;
+    container?: string;
+    control?: string;
+    label?: string;
+}
+
+export interface ClsConfig {
+
+    element?: Cls;
+    grid?: Cls;
+}
+
+export interface DynamicFormControlModelConfig {
+
+    disabled?: boolean;
+    id?: string;
+    label?: string;
 }
 
 export abstract class DynamicFormControlModel {
@@ -16,7 +29,7 @@ export abstract class DynamicFormControlModel {
     name: string;
     type: string = null; // must be defined by child class
 
-    constructor(config: {id?: string}, cls?: {element?: Cls, grid?: Cls}) {
+    constructor(config: DynamicFormControlModelConfig, cls?: ClsConfig) {
 
         if (isEmptyString(config.id)) {
             throw new Error("string id must be specified for DynamicFormControlModel");

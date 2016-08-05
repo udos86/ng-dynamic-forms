@@ -100,7 +100,7 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             id: "basicTextArea",
             label: "Example Textarea",
             rows: 5,
-            placeholder: "example Textarea",
+            placeholder: "example Textarea"
         }
     ),
 

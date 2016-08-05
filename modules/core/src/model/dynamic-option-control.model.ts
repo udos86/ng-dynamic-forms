@@ -1,5 +1,7 @@
-import {DynamicFormValueControlModel} from "./dynamic-form-value-control.model";
+import {ClsConfig} from "./dynamic-form-control.model";
+import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
 import {getValue} from "../utils";
+import {} from "./dynamic-form-value-control.model";
 
 export interface DynamicFormOption<T> {
 
@@ -9,11 +11,16 @@ export interface DynamicFormOption<T> {
     //selected?: boolean;
 }
 
+export interface DynamicOptionControlModelConfig extends DynamicFormValueControlModelConfig {
+
+    options?: Array<DynamicFormOption<any>>;
+}
+
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
 
     options: Array<DynamicFormOption<T>>;
 
-    constructor(config: {} = {}, cls?: {}) {
+    constructor(config: DynamicOptionControlModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
         
