@@ -1,6 +1,6 @@
 import {OnInit, TemplateRef} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
+import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
@@ -11,7 +11,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     control: FormControl;
     controlGroup: FormGroup;
     hasFocus: boolean;
-    model: DynamicFormControlModel<any>;
+    model: DynamicFormValueControlModel<any>;
     type: string; // must be defined by sublcass
 
     incompatibilities: Array<string> = [];
@@ -27,8 +27,8 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
         this.control = <FormControl> this.controlGroup.controls[this.model.id];
         //@exclude
-        this.control.valueChanges.subscribe((value: string) => {
-            console.log(this.model.id + " field changed to: ", value, typeof value, this.controlGroup.valid);
+        this.control.valueChanges.subscribe((value: any) => {
+            console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid);
         });
         //@endexclude
     }

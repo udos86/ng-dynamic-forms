@@ -1,13 +1,13 @@
-import {DynamicFormAbstractControlModel} from "../dynamic-form-abstract-control.model";
 import {DynamicFormControlModel} from "../dynamic-form-control.model";
+import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
 import {getValue, isFunction} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
-export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
+export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    createGroup: () => Array<DynamicFormControlModel<any>>;
-    groups: Array<Array<DynamicFormControlModel<any>>> = [];
+    createGroup: () => Array<DynamicFormValueControlModel<any>>;
+    groups: Array<Array<DynamicFormValueControlModel<any>>> = [];
     initialCount: number;
 
     constructor(config: {} = {}, cls?: {}) {
@@ -27,7 +27,7 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
         }
     }
 
-    addGroup(): Array<DynamicFormControlModel<any>> {
+    addGroup(): Array<DynamicFormValueControlModel<any>> {
 
         let group = this.createGroup();
 
@@ -36,7 +36,7 @@ export class DynamicFormArrayModel extends DynamicFormAbstractControlModel {
         return group;
     }
 
-    insertGroup(index: number): Array<DynamicFormControlModel<any>> {
+    insertGroup(index: number): Array<DynamicFormValueControlModel<any>> {
 
         let group = this.createGroup();
 

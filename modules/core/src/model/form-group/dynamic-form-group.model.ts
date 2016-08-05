@@ -1,17 +1,15 @@
-import {DynamicFormAbstractControlModel} from "../dynamic-form-abstract-control.model";
+import {DynamicFormControlModel} from "../dynamic-form-control.model";
 import {getValue} from "../../utils";
-import {IDynamicFormGroupModel} from "../dynamic-form.model";
 
-export interface IDynamicFieldSet {
-
+export interface IDynamicFieldset {
     legend: string;
 }
 
 export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
-export class DynamicFormGroupModel extends DynamicFormAbstractControlModel implements IDynamicFormGroupModel, IDynamicFieldSet {
+export class DynamicFormGroupModel extends DynamicFormControlModel implements IDynamicFieldset {
 
-    group: Array<DynamicFormAbstractControlModel> = [];
+    group: Array<DynamicFormControlModel> = [];
     legend: string;
 
     constructor(config: {} = {}, cls?: {}) {
@@ -25,5 +23,9 @@ export class DynamicFormGroupModel extends DynamicFormAbstractControlModel imple
         this.group = getValue(config, "group", []);
         this.legend = getValue(config, "legend", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
+    }
+
+    findById(id: string): DynamicFormControlModel {
+        return this.group.find(controlModel => controlModel.id === id);
     }
 }

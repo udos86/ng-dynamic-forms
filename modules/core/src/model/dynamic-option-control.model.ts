@@ -1,4 +1,4 @@
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {DynamicFormValueControlModel} from "./dynamic-form-value-control.model";
 import {getValue} from "../utils";
 
 export interface DynamicFormOption<T> {
@@ -9,7 +9,7 @@ export interface DynamicFormOption<T> {
     //selected?: boolean;
 }
 
-export abstract class DynamicOptionControlModel<T> extends DynamicFormControlModel<T> {
+export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
 
     options: Array<DynamicFormOption<T>>;
 

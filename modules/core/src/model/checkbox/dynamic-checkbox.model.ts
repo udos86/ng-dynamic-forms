@@ -1,9 +1,9 @@
-import {DynamicFormControlModel} from "../dynamic-form-control.model";
+import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
 import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 
-export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
+export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> {
 
     align: string;
     indeterminate: boolean;

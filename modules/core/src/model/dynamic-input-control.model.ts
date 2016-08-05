@@ -1,8 +1,8 @@
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {DynamicFormValueControlModel} from "./dynamic-form-value-control.model";
 import {AUTOCOMPLETE_ON} from "../service/dynamic-form-autofill.service";
 import {getValue} from "../utils";
 
-export abstract class DynamicInputControlModel<T> extends DynamicFormControlModel<T> {
+export abstract class DynamicInputControlModel<T> extends DynamicFormValueControlModel<T> {
 
     autoComplete: boolean;
     autoFocus: boolean;
