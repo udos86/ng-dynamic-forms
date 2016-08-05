@@ -1,17 +1,17 @@
 import {OnInit, TemplateRef} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
+import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
-    contentTemplate: TemplateRef<any>;
     control: FormControl;
     controlGroup: FormGroup;
+    customTemplate: TemplateRef<any>;
     hasFocus: boolean;
-    model: DynamicFormValueControlModel<any>;
+    model: DynamicFormControlModel;
     type: string; // must be defined by sublcass
 
     incompatibilities: Array<string> = [];

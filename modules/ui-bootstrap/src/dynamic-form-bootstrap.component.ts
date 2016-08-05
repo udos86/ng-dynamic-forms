@@ -15,9 +15,9 @@ export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
 export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
 
     @Input() controlGroup: FormGroup;
-    @Input() model: DynamicFormControlModel<any>;
+    @Input() model: DynamicFormControlModel;
 
-    @ContentChild(TemplateRef) contentTemplate;
+    @ContentChild(TemplateRef) customTemplate;
     
     type: string = DYNAMIC_FORM_UI_BOOTSTRAP;
 
