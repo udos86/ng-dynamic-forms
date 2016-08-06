@@ -104,21 +104,10 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         }
     ),
 
-    new DynamicCheckboxModel(
-        {
-            id: "basicCheckbox",
-            label: "I do agree"
-        }
-    )
-]);
-
-
-export const BASIC_EXAMPLE_GROUP_MODEL = new DynamicFormModel([
-
     new DynamicFormGroupModel({
 
         id: "basicFormGroup1",
-        legend: "Form Group 1",
+        legend: "Nested Form Group 1",
         group: [
             new DynamicInputModel(
                 {
@@ -135,10 +124,11 @@ export const BASIC_EXAMPLE_GROUP_MODEL = new DynamicFormModel([
                 }
             )]
     }),
+
     new DynamicFormGroupModel({
 
         id: "basicFormGroup2",
-        legend: "Form Group 2",
+        legend: "Nested Form Group 2",
         group: [
             new DynamicInputModel(
                 {
@@ -154,7 +144,14 @@ export const BASIC_EXAMPLE_GROUP_MODEL = new DynamicFormModel([
                     value: "Test 2-2"
                 }
             )]
-    })
+    }),
+
+    new DynamicCheckboxModel(
+        {
+            id: "basicCheckbox",
+            label: "I do agree"
+        }
+    )
 ]);
 
 export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([

@@ -16,6 +16,14 @@
 
             <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2.group" class="form-row"
                                         [controlGroup]="form2"
+                                        [model]="controlModel"></dynamic-form-basic-control>
+        </form>
+
+
+        <form [formGroup]="form2">
+
+            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2.group" class="form-row"
+                                        [controlGroup]="form2"
                                         [model]="controlModel">
 
                 <template>
