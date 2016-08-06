@@ -5,6 +5,7 @@
   "scripts": {
     "ci-test": "karma start --single-run",
     "ci-tsc": "tsc && echo ok || echo not ok",
+    "ci-typings": "typings install",
     "e2e": "protractor",
     "gulp": "gulp",
     "karma": "karma",
