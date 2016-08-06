@@ -7,7 +7,7 @@ describe("DynamicCheckboxGroupModel test suite", () => {
         let defaultObject: DynamicCheckboxGroupModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicCheckboxGroupModel({id: "default"});
+            defaultObject = new DynamicCheckboxGroupModel({id: "default", group: []});
         });
         
         it("tests if correct default type property is set", () => {

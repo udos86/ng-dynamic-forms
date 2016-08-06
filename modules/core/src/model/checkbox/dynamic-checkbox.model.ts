@@ -1,14 +1,21 @@
-import {DynamicFormControlModel} from "../dynamic-form-control.model";
+import {ClsConfig} from "../dynamic-form-control.model";
+import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "../dynamic-form-value-control.model";
 import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 
-export class DynamicCheckboxModel extends DynamicFormControlModel<boolean> {
+export interface CheckboxModelConfig extends DynamicFormValueControlModelConfig {
+
+    align?: string;
+    indeterminate?: boolean;
+}
+
+export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> {
 
     align: string;
     indeterminate: boolean;
 
-    constructor(config: {} = {}, cls?: {}) {
+    constructor(config: CheckboxModelConfig = {}, cls?: ClsConfig) {
 
         super(config, cls);
 

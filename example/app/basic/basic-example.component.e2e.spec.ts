@@ -16,7 +16,6 @@ describe("BasicExampleComponent", () => {
             let elm = element(by.id(model.id));
 
             expect(elm).toBeDefined();
-            elm.getAttribute("id").then(id => expect(id).toEqual(model.id));
             //elm.getAttribute("name").then(name => expect(name).toEqual(model.name));
             elm.getAttribute("disabled").then(attr => {
 
@@ -36,7 +35,7 @@ describe("BasicExampleComponent", () => {
 
             label.getAttribute("for").then(attr => {
 
-                let model = <DynamicFormControlModel<any>> BASIC_EXAMPLE_MODEL.findById(attr);
+                let model = <DynamicFormControlModel> BASIC_EXAMPLE_MODEL.findById(attr);
 
                 if (model) {
                     label.getText().then(text => expect(text).toBe(model.label));

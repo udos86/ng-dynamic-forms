@@ -16,9 +16,9 @@ export const DYNAMIC_FORM_UI_BASIC = "BASIC";
 export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     @Input() controlGroup: FormGroup;
-    @Input() model: DynamicFormControlModel<any>;
+    @Input() model: DynamicFormControlModel;
 
-    @ContentChild(TemplateRef) contentTemplate;
+    @ContentChild(TemplateRef) customTemplate;
 
     type: string = DYNAMIC_FORM_UI_BASIC;
 

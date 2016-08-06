@@ -1,11 +1,11 @@
-# ng2 Dynamic Forms (beta.5)
+# ng2 Dynamic Forms (beta.6)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
-It simplifies all the hard, troublesome work of implementing handcrafted forms by building
+It simplifies all the hard work of implementing handcrafted Angular 2 forms by building
 upon a layer of descriptive object models.
 
 It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
@@ -17,6 +17,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Basic Usage](#basic-usage)
 - [Form UI Components](#form-ui-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
+- [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Form Caching](#form-caching)
@@ -132,7 +133,7 @@ import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 })
 ```
 
-**3. Create a** `FormGroup` **via the** `DynamicFormService`:
+**3. Create a** `FormGroup` **via** `DynamicFormService`:
 ```ts
 import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
 
@@ -156,9 +157,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
                                     [controlGroup]="myForm"
-                                    [model]="controlModel">
-    </dynamic-form-bootstrap-control>
-
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
 
@@ -199,9 +198,7 @@ To get it all running **just bind an arbitrary** `DynamicFormModel`:
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
                                     [controlGroup]="myForm"
-                                    [model]="controlModel">
-    </dynamic-form-bootstrap-control>
-
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
 
@@ -244,6 +241,7 @@ Due to the `value` property being already two-way-bound via `[(ngModel)]` under 
 ```ts
 this.exampleInputModel.value = "my new value";
 ```
+
 At the same time this also means that you can safely read the most recent user input from `value` at any time:
 ```ts
 onSubmit() {
@@ -260,6 +258,76 @@ ngOnInit() {
   this.control = <FormControl> this.myForm.controls[this.exampleInputModel.id];
   this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
+```
+
+
+## Form Groups
+
+In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
+Luckily ng2 Dynamic Forms supports nesting of form groups out of the box!
+ 
+**1. Just create a** `DynamicFormGroupModel` **within your** `DynamicFormModel` **and add it's models to the** `group` **array**:
+ ```ts
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+ 
+    new DynamicFormGroupModel({
+ 
+        id: "basicFormGroup1",
+        legend: "Form Group 1",
+        group: [
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput1-1",
+                    label: "Example Group Input 1-1",
+                    value: "Test 1-1"
+                }
+            ),
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput1-2",
+                    label: "Example Group Input 1-2",
+                    value: "Test 1-2"
+                }
+            )]
+    }),
+    new DynamicFormGroupModel({
+ 
+        id: "basicFormGroup2",
+        legend: "Form Group 2",
+        group: [
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput2-1",
+                    label: "Example Group Input 2-1",
+                    value: "Test 2-1"
+                }
+            ),
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput2-2",
+                    label: "Example Group Input 2-2",
+                    value: "Test 2-2"
+                }
+            )
+        ]
+    })
+]);  
+ ```
+
+**2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent` **as always**:
+```ts
+ngOnInit() {
+    this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.group);
+}
+```
+
+```ts
+<form [formGroup]="myForm">
+
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+</form>
 ```
 
 
@@ -318,7 +386,7 @@ this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.gr
 </form>
 ```
 
-**4. You can now easily add and remove form array items with** `DynamicFormService`:
+**4. You can now easily modify your form array with** `DynamicFormService`:
 ```ts
 ngOnInit() {
 
@@ -330,10 +398,6 @@ addItem() {
     this.dynamicFormService.addFormArrayGroup(this.myArrayControl, this.myArrayModel);
 }
 
-removeItem(index: number) {
-    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
-}
-
 clear() {
     this.dynamicFormService.clearFormArray(this.myArrayControl, this.myArrayModel);
 }
@@ -341,9 +405,9 @@ clear() {
 
 Alright, works like a charm! 
 
-But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array item**?
+But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array group**?
 
-No Problemo! By adding a `<template>` you can declare some custom content:
+No Problemo! **By adding a** `<template>` **you can declare some custom content**:
 
 ```ts
 <form [formGroup]="myForm">
@@ -362,6 +426,12 @@ No Problemo! By adding a `<template>` you can declare some custom content:
 </form>       
 ```
 
+```ts
+removeItem(index: number) {
+    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
+}
+```
+
 
 ## Form Layouts
 
@@ -378,9 +448,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
                                     [controlGroup]="myForm"
-                                    [model]="controlModel">
-    </dynamic-form-bootstrap-control>
-
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
 
@@ -450,47 +518,47 @@ would be off the original subject and result in a library too opinionated.
 
 As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
 
- **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
- ```ts 
- import {Component, Input} from "angular2/core";
- import {FormControl} from "angular2/forms";
+**1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
+```ts 
+import {Component, Input} from "angular2/core";
+import {FormControl} from "angular2/forms";
  
- @Component({
-    
+@Component({
+
     moduleId: module.id,
     selector: "my-validation-message",
     templateUrl: "./my-validation-message.html"
- })
+})
  
- export class MyValidationMessage {
- 
+export class MyValidationMessage {
+
     @Input() control: FormControl;
-     
+
     constructor () {}
- }
- ```
+}
+```
  
- **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
- ```ts
- <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
- ```
- 
+**2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
+```ts
+<span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
+```
+
 **3. Define some** `Validators` **for your** `DynamicFormControlModel`:
 ```ts
 new DynamicInputModel({
-  
-  id: "exampleInput",
-  label: "Example Input",
-  placeholder: "example input",
-  validators: [Validators.required]
+    
+    id: "exampleInput",
+    label: "Example Input",
+    placeholder: "example input",
+    validators: [Validators.required]
 })
 ```
 
 **4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
 and **bind the internal** `FormControl` **reference via local template variables**:
- ```ts
- <form [formGroup]="myForm">
- 
+```ts
+<form [formGroup]="myForm">
+
     <div *ngFor="let controlModel of myDynamicFormModel.group">
     
         <dynamic-form-basic-control [controlGroup]="myForm" 
@@ -515,8 +583,8 @@ Nevertheless you can completely disable this feature by explicitly setting the c
 import {AUTOCOMPLETE_OFF} from "@ng2-dynamic-forms/core";
 
 let model = new DynamicInputModel({
-  
-  autoComplete: AUTOCOMPLETE_OFF
+    
+    autoComplete: AUTOCOMPLETE_OFF
     
   //...all remaining properties
 });
@@ -530,25 +598,25 @@ Further on ng2 Dynamic Forms embraces the brand new HTML5
 
 ```ts
 import {
-  DynamicFormAutoFillService,
-  AUTOFILL_TOKEN_BILLING, 
-  AUTOFILL_FIELD_NAME, 
-  AUTOCOMPLETE_ON
+    DynamicFormAutoFillService,
+    AUTOFILL_TOKEN_BILLING, 
+    AUTOFILL_FIELD_NAME, 
+    AUTOCOMPLETE_ON
 } from "@ng2-dynamic-forms/core";
 
 export class MyAutoFillExample {
 
-  constructor(private autoFillService: DynamicFormAutoFillService) {
-  
-    let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
-  
-    let model = new DynamicInputModel({
+    constructor(private autoFillService: DynamicFormAutoFillService) {
+    
+        let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+
+        let model = new DynamicInputModel({
         
-        autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+            autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
           
-        //...all remaining properties
-    });
-  }
+            //...all remaining properties
+        });
+    }
 }
 ```
 

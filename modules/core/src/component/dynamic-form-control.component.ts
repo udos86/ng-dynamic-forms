@@ -7,11 +7,11 @@ import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radi
 
 export abstract class DynamicFormControlComponent implements OnInit {
 
-    contentTemplate: TemplateRef<any>;
     control: FormControl;
     controlGroup: FormGroup;
+    customTemplate: TemplateRef<any>;
     hasFocus: boolean;
-    model: DynamicFormControlModel<any>;
+    model: DynamicFormControlModel;
     type: string; // must be defined by sublcass
 
     incompatibilities: Array<string> = [];
@@ -27,8 +27,8 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
         this.control = <FormControl> this.controlGroup.controls[this.model.id];
         //@exclude
-        this.control.valueChanges.subscribe((value: string) => {
-            console.log(this.model.id + " field changed to: ", value, typeof value, this.controlGroup.valid);
+        this.control.valueChanges.subscribe((value: any) => {
+            console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid);
         });
         //@endexclude
     }

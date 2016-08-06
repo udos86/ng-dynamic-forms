@@ -21,9 +21,9 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @Input() controlGroup: FormGroup;
-    @Input() model: DynamicFormControlModel<any>;
+    @Input() model: DynamicFormControlModel;
 
-    @ContentChild(TemplateRef) contentTemplate;
+    @ContentChild(TemplateRef) customTemplate;
 
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
     @ViewChild(MdInput) mdInput: MdInput;

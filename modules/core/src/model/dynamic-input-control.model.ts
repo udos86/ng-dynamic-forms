@@ -1,8 +1,21 @@
-import {DynamicFormControlModel} from "./dynamic-form-control.model";
+import {ClsConfig} from "./dynamic-form-control.model";
+import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
 import {AUTOCOMPLETE_ON} from "../service/dynamic-form-autofill.service";
 import {getValue} from "../utils";
 
-export abstract class DynamicInputControlModel<T> extends DynamicFormControlModel<T> {
+export interface DynamicInputControlModelConfig extends DynamicFormValueControlModelConfig {
+
+    autoComplete?: boolean;
+    autoFocus?: boolean;
+    maxLength?: number;
+    placeholder?: string;
+    prefix?: string;
+    readOnly?: boolean;
+    spellCheck?: boolean;
+    suffix?: string;
+}
+
+export abstract class DynamicInputControlModel<T> extends DynamicFormValueControlModel<T> {
 
     autoComplete: boolean;
     autoFocus: boolean;
@@ -13,7 +26,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormControlMode
     spellCheck: boolean;
     suffix: string;
 
-    constructor(config: {} = {}, cls?: {}) {
+    constructor(config: DynamicInputControlModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
