@@ -30,8 +30,4 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements ID
         this.legend = getValue(config, "legend", null);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
     }
-
-    findById(id: string): DynamicFormControlModel {
-        return this.group.find(controlModel => controlModel.id === id);
-    }
 }

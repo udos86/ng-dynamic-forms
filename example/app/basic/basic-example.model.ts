@@ -1,5 +1,4 @@
 import {
-    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicInputModel,
@@ -10,7 +9,7 @@ import {
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
 
-export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
+export const BASIC_EXAMPLE_MODEL = [
 
     new DynamicSelectModel<string>(
         {
@@ -152,9 +151,9 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             label: "I do agree"
         }
     )
-]);
+];
 
-export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
+export const BASIC_EXAMPLE_ARRAY_MODEL = [
 
     new DynamicFormArrayModel({
 
@@ -173,4 +172,4 @@ export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
             ];
         }
     })
-]);
+];

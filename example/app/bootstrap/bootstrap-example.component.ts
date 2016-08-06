@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
-import {DynamicFormService, DynamicCheckboxModel, DynamicFormModel} from "@ng2-dynamic-forms/core";
+import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
@@ -17,7 +17,7 @@ import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
 export class BootstrapExampleComponent implements OnInit {
 
-    dynamicFormModel: DynamicFormModel;
+    dynamicFormModel: Array<DynamicFormControlModel>;
     form: FormGroup;
     
     exampleCheckboxControl: FormControl;
@@ -30,16 +30,16 @@ export class BootstrapExampleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
 
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
+        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
     }
 
     set modelEdit(value: string) {
         try {
-            this.dynamicFormModel.group = JSON.parse(value);
+            this.dynamicFormModel = JSON.parse(value);
 
         } catch (e) {
             // Just do nothing
@@ -47,6 +47,6 @@ export class BootstrapExampleComponent implements OnInit {
     }
 
     get modelEdit() {
-        return JSON.stringify(this.dynamicFormModel.group, null, 2);
+        return JSON.stringify(this.dynamicFormModel, null, 2);
     }
 }

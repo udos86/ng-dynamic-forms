@@ -1,12 +1,11 @@
 import {
-    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
 } from "@ng2-dynamic-forms/core";
 
-export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
+export const MATERIAL_EXAMPLE_MODEL = [
 
     new DynamicInputModel({
 
@@ -68,4 +67,4 @@ export const MATERIAL_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
         id: "materialCheckbox",
         label: "I do agree"
     })
-]);
+];
