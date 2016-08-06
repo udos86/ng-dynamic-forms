@@ -17,6 +17,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Basic Usage](#basic-usage)
 - [Form UI Components](#form-ui-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
+- [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Form Caching](#form-caching)
@@ -260,6 +261,75 @@ ngOnInit() {
 ```
 
 
+## Form Groups
+
+In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
+Luckily ng2 Dynamic Forms supports nesting of form groups out of the box!
+ 
+**1. Just create a** `DynamicFormGroupModel` **within your** `DynamicFormModel` **and add it's models to the** `group` **array**:
+ ```ts
+export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
+ 
+    new DynamicFormGroupModel({
+ 
+        id: "basicFormGroup1",
+        legend: "Form Group 1",
+        group: [
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput1-1",
+                    label: "Example Group Input 1-1",
+                    value: "Test 1-1"
+                }
+            ),
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput1-2",
+                    label: "Example Group Input 1-2",
+                    value: "Test 1-2"
+                }
+            )]
+    }),
+    new DynamicFormGroupModel({
+ 
+        id: "basicFormGroup2",
+        legend: "Form Group 2",
+        group: [
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput2-1",
+                    label: "Example Group Input 2-1",
+                    value: "Test 2-1"
+                }
+            ),
+            new DynamicInputModel(
+                {
+                    id: "basicGroupInput2-2",
+                    label: "Example Group Input 2-2",
+                    value: "Test 2-2"
+                }
+            )]
+    })
+]);  
+ ```
+
+**2. Create a `FormGroup` and apply a** `DynamicFormControlComponent` **as always**:
+```ts
+ngOnInit() {
+    this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.group);
+}
+```
+
+```ts
+<form [formGroup]="myForm">
+
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel.group" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+</form>
+```
+
+
 ## Form Arrays
 
 Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. addresses, products and so on.
@@ -447,47 +517,47 @@ would be off the original subject and result in a library too opinionated.
 
 As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
 
- **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
- ```ts 
- import {Component, Input} from "angular2/core";
- import {FormControl} from "angular2/forms";
+**1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
+```ts 
+import {Component, Input} from "angular2/core";
+import {FormControl} from "angular2/forms";
  
- @Component({
-    
+@Component({
+
     moduleId: module.id,
     selector: "my-validation-message",
     templateUrl: "./my-validation-message.html"
- })
+})
  
- export class MyValidationMessage {
- 
+export class MyValidationMessage {
+
     @Input() control: FormControl;
-     
+
     constructor () {}
- }
- ```
+}
+```
  
- **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
- ```ts
- <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
- ```
- 
+**2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
+```ts
+<span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
+```
+
 **3. Define some** `Validators` **for your** `DynamicFormControlModel`:
 ```ts
 new DynamicInputModel({
-  
-  id: "exampleInput",
-  label: "Example Input",
-  placeholder: "example input",
-  validators: [Validators.required]
+    
+    id: "exampleInput",
+    label: "Example Input",
+    placeholder: "example input",
+    validators: [Validators.required]
 })
 ```
 
 **4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
 and **bind the internal** `FormControl` **reference via local template variables**:
- ```ts
- <form [formGroup]="myForm">
- 
+```ts
+<form [formGroup]="myForm">
+
     <div *ngFor="let controlModel of myDynamicFormModel.group">
     
         <dynamic-form-basic-control [controlGroup]="myForm" 
@@ -512,8 +582,8 @@ Nevertheless you can completely disable this feature by explicitly setting the c
 import {AUTOCOMPLETE_OFF} from "@ng2-dynamic-forms/core";
 
 let model = new DynamicInputModel({
-  
-  autoComplete: AUTOCOMPLETE_OFF
+    
+    autoComplete: AUTOCOMPLETE_OFF
     
   //...all remaining properties
 });
@@ -527,25 +597,25 @@ Further on ng2 Dynamic Forms embraces the brand new HTML5
 
 ```ts
 import {
-  DynamicFormAutoFillService,
-  AUTOFILL_TOKEN_BILLING, 
-  AUTOFILL_FIELD_NAME, 
-  AUTOCOMPLETE_ON
+    DynamicFormAutoFillService,
+    AUTOFILL_TOKEN_BILLING, 
+    AUTOFILL_FIELD_NAME, 
+    AUTOCOMPLETE_ON
 } from "@ng2-dynamic-forms/core";
 
 export class MyAutoFillExample {
 
-  constructor(private autoFillService: DynamicFormAutoFillService) {
-  
-    let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
-  
-    let model = new DynamicInputModel({
+    constructor(private autoFillService: DynamicFormAutoFillService) {
+    
+        let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+
+        let model = new DynamicInputModel({
         
-        autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+            autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
           
-        //...all remaining properties
-    });
-  }
+            //...all remaining properties
+        });
+    }
 }
 ```
 
