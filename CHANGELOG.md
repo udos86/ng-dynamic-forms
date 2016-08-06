@@ -1,3 +1,21 @@
+# beta.6
+
+### **Major Breaking Changes** 
+
+* none
+
+### **Minor Breaking Changes** 
+
+* `DynamicFormControlModel` renamed to `DynamicFormValueControlModel`
+* `DynamicFormAbstractControlModel` renamed to `DynamicFormControlModel`
+
+
+### **Features**
+
+* **Nested form groups** are now supported (closes [#57](https://github.com/udos86/ng2-dynamic-forms/issues/57))
+* **Type safety** for `DynamicFormControlModel` coniguration objects added 
+
+
 # beta.5
 
 ### **Breaking Changes** 
@@ -11,7 +29,7 @@
 ### **Features**
 
 * [**FormArrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2) are now fully 
-supported (closes [#47](https://github.com/udos86/ng2-dynamic-forms/issues/53))
+supported (closes [#53](https://github.com/udos86/ng2-dynamic-forms/issues/53))
 
 
 # beta.4

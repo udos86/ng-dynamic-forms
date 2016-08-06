@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.5)
+# ng2 Dynamic Forms (beta.6)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -308,12 +308,13 @@ export const MY_DYNAMIC_FORM_MODEL = new DynamicFormModel([
                     label: "Example Group Input 2-2",
                     value: "Test 2-2"
                 }
-            )]
+            )
+        ]
     })
 ]);  
  ```
 
-**2. Create a `FormGroup` and apply a** `DynamicFormControlComponent` **as always**:
+**2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent` **as always**:
 ```ts
 ngOnInit() {
     this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel.group);
