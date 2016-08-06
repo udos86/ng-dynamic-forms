@@ -20,10 +20,10 @@
   "peerDependencies": {
     "@angular/core": "^2.0.0-rc.4",
     "@angular/forms": "^0.2.0",
-    "@angular2-material/checkbox": "^2.0.0-alpha.6",
-    "@angular2-material/core": "^2.0.0-alpha.6",
-    "@angular2-material/input": "^2.0.0-alpha.6",
-    "@angular2-material/radio": "^2.0.0-alpha.6",
+    "@angular2-material/checkbox": "2.0.0-alpha.6-2",
+    "@angular2-material/core": "2.0.0-alpha.6-2",
+    "@angular2-material/input": "2.0.0-alpha.6-2",
+    "@angular2-material/radio": "2.0.0-alpha.6-2",
     "@ng2-dynamic-forms/core": "1.0.0-beta.5"
   }
 }
