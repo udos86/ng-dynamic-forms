@@ -43,7 +43,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
 
     private listId: string = null;
 
-    constructor(config: InputModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: InputModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

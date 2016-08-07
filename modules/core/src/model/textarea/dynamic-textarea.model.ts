@@ -20,7 +20,7 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
     rows: number;
     wrap: string;
 
-    constructor(config: TextAreaModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: TextAreaModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

@@ -19,7 +19,7 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
     group: Array<DynamicFormControlModel> = [];
     legend: string;
 
-    constructor(config: FormGroupModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: FormGroupModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

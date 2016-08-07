@@ -18,7 +18,7 @@ export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> 
     align: string;
     indeterminate: boolean;
 
-    constructor(config: CheckboxModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: CheckboxModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

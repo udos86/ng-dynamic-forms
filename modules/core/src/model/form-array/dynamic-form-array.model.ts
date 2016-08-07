@@ -17,7 +17,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     groups: Array<Array<DynamicFormValueControlModel<any>>> = [];
     initialCount: number;
 
-    constructor(config: FormArrayModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: FormArrayModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

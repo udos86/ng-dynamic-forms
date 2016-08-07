@@ -14,7 +14,7 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> impl
 
     legend: string;
 
-    constructor(config: RadioGroupModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: RadioGroupModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
