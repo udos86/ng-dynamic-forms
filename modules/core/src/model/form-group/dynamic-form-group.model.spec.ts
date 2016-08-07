@@ -2,23 +2,29 @@ import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "./dynamic-
 
 describe("DynamicFormArrayModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicFormGroupModel;
+        let config = {id: "default", group: []};
+        let defaultModel: DynamicFormGroupModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormGroupModel({id: "default", group: []});
+            defaultModel = new DynamicFormGroupModel(config);
         });
         
-        it("tests if correct default type property is set", () => {
+        it("tests if default object is correctly initialized", () => {
 
-            expect(defaultObject.id).toEqual("default");
-            expect(defaultObject.group).toBeDefined();
-            expect(defaultObject.group.length).toBe(0);
-            expect(defaultObject.legend).toBeDefined();
-            expect(defaultObject.legend).toBeNull();
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
+
+            expect(defaultModel.group).toBeDefined();
+            expect(defaultModel.group).toEqual(config.group);
+            expect(defaultModel.group.length).toBe(0);
+
+            expect(defaultModel.legend).toBeDefined();
+            expect(defaultModel.legend).toBeNull();
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
         });
         
     });

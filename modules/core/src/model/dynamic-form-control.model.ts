@@ -41,6 +41,6 @@ export abstract class DynamicFormControlModel {
         this.disabled = getValue(config, "disabled", false);
         this.id = config.id;
         this.label = getValue(config, "label", null);
-        this.name = this.id; // TODO remove any time soon due to redundancy
+        this.name = this.id;
     }
 }

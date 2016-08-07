@@ -47,7 +47,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
 
         super(config, cls);
 
-        this.accept = getValue(config, "accept", "test");
+        this.accept = getValue(config, "accept", null);
         this.inputType = getValue(config, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
         this.list = getValue(config, "list", null);
         this.max = getValue(config, "max", null);

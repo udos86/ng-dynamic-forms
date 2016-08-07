@@ -3,7 +3,7 @@
 ### **Major Breaking Changes** 
 
 * **!!! IMPORTANT !!!** `DynamicFormModel` **has been completely removed** --> use a simple `Array<DynamicFormControlModel>` instead
-* **!!! IMPORTANT !!!** `findById` function of `DynamicFormModel` **has been moved to** `DynamicFormService`
+* **!!! IMPORTANT !!!** `findById()` function of `DynamicFormModel` **has been moved to** `DynamicFormService`
 
 
 ### **Minor Breaking Changes** 

@@ -2,18 +2,29 @@ import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP, DynamicCheckboxGroupModel} fro
 
 describe("DynamicCheckboxGroupModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicCheckboxGroupModel;
+        let config = {id: "default", group: []};
+        let defaultModel: DynamicCheckboxGroupModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicCheckboxGroupModel({id: "default", group: []});
+            defaultModel = new DynamicCheckboxGroupModel(config);
         });
         
-        it("tests if correct default type property is set", () => {
+        it("tests if default model is correctly initialized", () => {
 
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
+
+            expect(defaultModel.group).toBeDefined();
+            expect(defaultModel.group).toEqual(config.group);
+            expect(defaultModel.group.length).toBe(0);
+
+            expect(defaultModel.legend).toBeDefined();
+            expect(defaultModel.legend).toBeNull();
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
         });
         
     });

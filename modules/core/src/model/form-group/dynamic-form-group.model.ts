@@ -1,7 +1,8 @@
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {getValue} from "../../utils";
 
-export interface IDynamicFieldset {
+export interface DynamicFieldSet {
+
     legend: string;
 }
 
@@ -13,7 +14,7 @@ export interface FormGroupModelConfig extends DynamicFormControlModelConfig {
     legend?: string;
 }
 
-export class DynamicFormGroupModel extends DynamicFormControlModel implements IDynamicFieldset {
+export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
     group: Array<DynamicFormControlModel> = [];
     legend: string;

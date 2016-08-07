@@ -6,38 +6,45 @@ import {
 
 describe("DynamicTextAreaModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicTextAreaModel;
+        let config = {id: "default"};
+        let defaultModel: DynamicTextAreaModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicTextAreaModel({id: "default"});
+            defaultModel = new DynamicTextAreaModel(config);
         });
 
-        it("tests if correct default type property is set", () => {
+        it("tests if default model is correctly initialized", () => {
 
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA);
+            expect(defaultModel.cols).toBeDefined();
+            expect(defaultModel.cols).toBe(20);
+
+            expect(defaultModel.disabled).toBeDefined();
+            expect(defaultModel.disabled).toBe(false);
+
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
+
+            expect(defaultModel.label).toBeDefined();
+            expect(defaultModel.label).toBeNull();
+
+            expect(defaultModel.name).toBeDefined();
+            expect(defaultModel.name).toEqual(defaultModel.id);
+
+            expect(defaultModel.rows).toBeDefined();
+            expect(defaultModel.rows).toBe(2);
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA);
+
+            expect(defaultModel.value).toBeDefined();
+            expect(defaultModel.value).toBeNull();
+
+            expect(defaultModel.wrap).toBeDefined();
+            expect(defaultModel.wrap).toEqual(DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
         });
 
-        it("tests if correct default cols property is set", () => {
-
-            expect(defaultObject.cols).toBeDefined();
-            expect(defaultObject.cols).toBe(20);
-        });
-
-        it("tests if correct default rows property is set", () => {
-
-            expect(defaultObject.rows).toBeDefined();
-            expect(defaultObject.rows).toBe(2);
-        });
-
-        it("tests if correct default wrap property is set", () => {
-
-            expect(defaultObject.wrap).toBeDefined();
-            expect(defaultObject.wrap).toEqual(DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
-        });
-        
     });
 
 });

@@ -618,7 +618,7 @@ export class MyAutoFillExample {
 }
 ```
 
-Besides you can make user input more comfortable, providing HTML5 [datalists](http://www.w3schools.com/tags/tag_datalist.asp)
+Besides you can make user input more comfortable, providing HTML5 [**datalists**](http://www.w3schools.com/tags/tag_datalist.asp)
 by setting the `list` property of `DynamicInputControlModel`: 
 ```ts
 new DynamicInputModel({
