@@ -1,5 +1,4 @@
 import {
-    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicInputModel,
@@ -8,7 +7,7 @@ import {
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 
-export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
+export const BOOTSTRAP_EXAMPLE_MODEL = [
 
     new DynamicSelectModel<string>(
         {
@@ -164,4 +163,4 @@ export const BOOTSTRAP_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             }
         }
     )
-]);
+];

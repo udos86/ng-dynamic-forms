@@ -1,10 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
-import {
-    DynamicFormService,
-    DynamicCheckboxModel,
-    DynamicFormModel
-} from "@ng2-dynamic-forms/core";
+import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 import {DynamicFormPrimeNGComponent} from "@ng2-dynamic-forms/ui-primeng";
 import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
 
@@ -21,7 +17,7 @@ import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
 
 export class PrimeNGExampleComponent implements OnInit {
 
-    dynamicFormModel: DynamicFormModel;
+    dynamicFormModel: Array<DynamicFormControlModel>;
     form: FormGroup;
 
     exampleCheckboxControl: FormControl;
@@ -34,10 +30,10 @@ export class PrimeNGExampleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel.group);
+        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
 
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormModel.findById("exampleCheckbox");
+        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
 
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
     }

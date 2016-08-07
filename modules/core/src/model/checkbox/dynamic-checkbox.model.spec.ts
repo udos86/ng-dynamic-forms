@@ -1,25 +1,45 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel} from "./dynamic-checkbox.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START,
+    DynamicCheckboxModel
+} from "./dynamic-checkbox.model";
 
 describe("DynamicCheckboxModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicCheckboxModel;
+        let config = {id: "default"};
+        let defaultModel: DynamicCheckboxModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicCheckboxModel({id: "default"});
+            defaultModel = new DynamicCheckboxModel(config);
         });
         
-        it("tests if correct default type property is set", () => {
+        it("tests if default model is correctly initialized", () => {
 
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
-        });
+            expect(defaultModel.align).toBeDefined();
+            expect(defaultModel.align).toEqual(DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
 
-        it("tests if correct default value property is set", () => {
+            expect(defaultModel.disabled).toBeDefined();
+            expect(defaultModel.disabled).toBe(false);
 
-            expect(defaultObject.value).toBeDefined();
-            expect(defaultObject.value).toBe(false);
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
+
+            expect(defaultModel.indeterminate).toBeDefined();
+            expect(defaultModel.indeterminate).toBe(false);
+
+            expect(defaultModel.label).toBeDefined();
+            expect(defaultModel.label).toBeNull();
+
+            expect(defaultModel.name).toBeDefined();
+            expect(defaultModel.name).toEqual(defaultModel.id);
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
+
+            expect(defaultModel.value).toBeDefined();
+            expect(defaultModel.value).toBe(false);
         });
         
     });

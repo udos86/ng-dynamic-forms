@@ -14,8 +14,10 @@
 
             <div [ngClass]="item.cls.grid.control">
 
-                <p-checkbox [disabled]="item.disabled"
+                <p-checkbox binary="true"
+                            [disabled]="item.disabled"
                             [formControlName]="item.id"
+                            [name]="model.name"
                             [value]="item.value"
                             [ngClass]="item.cls.element.control"
                             [(ngModel)]="item.value"></p-checkbox>
@@ -130,8 +132,10 @@
 
 
             <p-checkbox *ngSwitchCase="'CHECKBOX'"
+                        binary="true"
                         [disabled]="model.disabled"
                         [formControlName]="model.id"
+                        [name]="model.name"
                         [value]="model.value"
                         [ngClass]="model.cls.element.control"
                         [(ngModel)]="model.value"></p-checkbox>

@@ -2,24 +2,40 @@ import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "./d
 
 describe("DynamicRadioModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicRadioGroupModel<any>;
+        let config = {id: "default"};
+        let defaultModel: DynamicRadioGroupModel<any>;
 
         beforeEach(() => {
-            defaultObject = new DynamicRadioGroupModel({id: "default"});
+            defaultModel = new DynamicRadioGroupModel(config);
         });
 
-        it("tests if correct default type property is set", () => {
+        it("tests if default model is correctly initialized", () => {
 
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
-        });
+            expect(defaultModel.disabled).toBeDefined();
+            expect(defaultModel.disabled).toBe(false);
 
-        it("tests if correct default type legend is set", () => {
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
 
-            expect(defaultObject.legend).toBeDefined();
-            expect(defaultObject.legend).toBeNull();
+            expect(defaultModel.label).toBeDefined();
+            expect(defaultModel.label).toBeNull();
+
+            expect(defaultModel.legend).toBeDefined();
+            expect(defaultModel.legend).toBeNull();
+
+            expect(defaultModel.name).toBeDefined();
+            expect(defaultModel.name).toEqual(defaultModel.id);
+
+            expect(defaultModel.options).toBeDefined();
+            expect(defaultModel.options).toEqual([]);
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
+
+            expect(defaultModel.value).toBeDefined();
+            expect(defaultModel.value).toBeNull();
         });
         
     });

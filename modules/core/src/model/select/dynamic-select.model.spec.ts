@@ -2,26 +2,39 @@ import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "./dynamic-se
 
 describe("DynamicSelectModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicSelectModel<any>;
+        let config = {id: "default"};
+        let defaultModel: DynamicSelectModel<any>;
 
         beforeEach(() => {
-            defaultObject = new DynamicSelectModel({id: "default"});
+            defaultModel = new DynamicSelectModel(config);
         });
 
-        it("tests if correct default type property is set", () => {
+        it("tests if default model is correctly initialized", () => {
 
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
+            expect(defaultModel.disabled).toBeDefined();
+            expect(defaultModel.disabled).toBe(false);
+
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
+
+            expect(defaultModel.label).toBeDefined();
+            expect(defaultModel.label).toBeNull();
+
+            expect(defaultModel.name).toBeDefined();
+            expect(defaultModel.name).toEqual(defaultModel.id);
+
+            expect(defaultModel.options).toBeDefined();
+            expect(defaultModel.options).toEqual([]);
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
+
+            expect(defaultModel.value).toBeDefined();
+            expect(defaultModel.value).toBeNull();
         });
 
-        it("tests if correct default options property is set", () => {
-
-            expect(defaultObject.options).toBeDefined();
-            expect(defaultObject.options).toEqual([]);
-        });
-        
     });
 
 });

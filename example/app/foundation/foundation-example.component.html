@@ -6,7 +6,7 @@
 
         <form class="form-horizontal" [formGroup]="form">
 
-            <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel.group"
+            <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel"
                                                    [controlGroup]="form"
                                                    [model]="controlModel"></dynamic-form-foundation-sites-control>
         </form>

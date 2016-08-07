@@ -1,3 +1,20 @@
+# beta.7
+
+### **Major Breaking Changes** 
+
+* **!!! IMPORTANT !!!** `DynamicFormModel` **has been completely removed** --> use a simple `Array<DynamicFormControlModel>` instead
+* **!!! IMPORTANT !!!** `findById()` function of `DynamicFormModel` **has been moved to** `DynamicFormService`
+
+
+### **Minor Breaking Changes** 
+
+* none
+
+### **Bugfixes**
+
+* `DynamicCheckboxModel` now working correctly again in `ui-primeng`
+
+
 # beta.6
 
 ### **Major Breaking Changes** 

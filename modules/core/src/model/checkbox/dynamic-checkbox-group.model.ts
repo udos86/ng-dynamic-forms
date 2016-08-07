@@ -8,7 +8,7 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
 
     group: Array<DynamicCheckboxModel>;
 
-    constructor(config: FormGroupModelConfig = {}, cls?: ClsConfig) {
+    constructor(config: FormGroupModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

@@ -2,25 +2,35 @@ import {DYNAMIC_FORM_CONTROL_TYPE_ARRAY, DynamicFormArrayModel} from "./dynamic-
 
 describe("DynamicFormArrayModel test suite", () => {
 
-    describe("default object test suite", () => {
+    describe("default model test suite", () => {
 
-        let defaultObject: DynamicFormArrayModel;
+        let config = {id: "default", createGroup: () => []};
+        let defaultModel: DynamicFormArrayModel;
 
         beforeEach(() => {
-            defaultObject = new DynamicFormArrayModel({id: "default", createGroup: () => []});
+            defaultModel = new DynamicFormArrayModel(config);
         });
         
-        it("tests if correct default type property is set", () => {
+        it("tests if default model is correctly initialized", () => {
 
-            expect(defaultObject.groups).toBeDefined();
-            expect(defaultObject.initialCount).toBe(1);
-            expect(defaultObject.groups.length).toBe(defaultObject.initialCount);
-            expect(defaultObject.id).toEqual("default");
-            expect(defaultObject.type).toBeDefined();
-            expect(defaultObject.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
-            expect(defaultObject.createGroup).toBeDefined();
-            expect(defaultObject.addGroup).toBeDefined();
-            expect(defaultObject.removeGroup).toBeDefined();
+            expect(defaultModel.initialCount).toBeDefined();
+            expect(defaultModel.initialCount).toBe(1);
+
+            expect(defaultModel.groups).toBeDefined();
+            expect(defaultModel.groups).toEqual([[]]);
+            expect(defaultModel.groups.length).toBe(defaultModel.initialCount);
+
+            expect(defaultModel.id).toBeDefined();
+            expect(defaultModel.id).toEqual(config.id);
+
+            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
+
+            expect(defaultModel.createGroup).toBeDefined();
+            expect(defaultModel.createGroup()).toEqual([]);
+
+            expect(defaultModel.addGroup).toBeDefined();
+            expect(defaultModel.removeGroup).toBeDefined();
         });
         
     });

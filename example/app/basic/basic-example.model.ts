@@ -1,5 +1,4 @@
 import {
-    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicInputModel,
@@ -10,99 +9,94 @@ import {
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
 
-export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
+export const BASIC_EXAMPLE_MODEL = [
 
-    new DynamicSelectModel<string>(
-        {
-            id: "basicSelect",
-            label: "Example Select",
-            options: [
+    new DynamicSelectModel<string>({
+
+        id: "basicSelect",
+        label: "Example Select",
+        options: [
+            {
+                label: "Option 1",
+                value: "option-1",
+            },
+            {
+                disabled: true,
+                label: "Option 2",
+                value: "option-2"
+            },
+            {
+                label: "Option 3",
+                value: "option-3"
+            }
+        ],
+        value: "option-3"
+    }),
+
+    new DynamicInputModel({
+
+        id: "basicInput",
+        label: "Example Input",
+        list: ["One", "Two", "Three", "Four", "Five"],
+        maxLength: 51,
+        placeholder: "example input",
+        spellCheck: false,
+        required: false
+    }),
+
+    new DynamicCheckboxGroupModel({
+
+        id: "basicCheckboxGroup",
+        legend: "Example Checkbox Group",
+        group: [
+            new DynamicCheckboxModel(
                 {
-                    label: "Option 1",
-                    value: "option-1",
-                },
-                {
-                    disabled: true,
-                    label: "Option 2",
-                    value: "option-2"
-                },
-                {
-                    label: "Option 3",
-                    value: "option-3"
+                    id: "checkboxGroup1",
+                    label: "Checkbox 1"
                 }
-            ],
-            value: "option-3"
-        }
-    ),
-
-    new DynamicInputModel(
-        {
-            id: "basicInput",
-            label: "Example Input",
-            list: ["One", "Two", "Three", "Four", "Five"],
-            maxLength: 51,
-            placeholder: "example input",
-            spellCheck: false,
-            required: false
-        }
-    ),
-
-    new DynamicCheckboxGroupModel(
-        {
-            id: "basicCheckboxGroup",
-            legend: "Example Checkbox Group",
-            group: [
-                new DynamicCheckboxModel(
-                    {
-                        id: "checkboxGroup1",
-                        label: "Checkbox 1"
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "checkboxGroup2",
-                        label: "Checkbox 2"
-                    }
-                )
-            ]
-        }
-    ),
-
-    new DynamicRadioGroupModel<string>(
-        {
-            id: "basicRadioGroup",
-            legend: "Example Radio Group",
-            options: [
+            ),
+            new DynamicCheckboxModel(
                 {
-                    label: "Option 1",
-                    value: "option-1",
-                },
-                {
-                    disabled: true,
-                    label: "Option 2",
-                    value: "option-2"
-                },
-                {
-                    label: "Option 3",
-                    value: "option-3"
-                },
-                {
-                    label: "Option 4",
-                    value: "option-4"
+                    id: "checkboxGroup2",
+                    label: "Checkbox 2"
                 }
-            ],
-            value: "option-3"
-        }
-    ),
+            )
+        ]
+    }),
 
-    new DynamicTextAreaModel(
-        {
-            id: "basicTextArea",
-            label: "Example Textarea",
-            rows: 5,
-            placeholder: "example Textarea"
-        }
-    ),
+    new DynamicRadioGroupModel<string>({
+
+        id: "basicRadioGroup",
+        legend: "Example Radio Group",
+        options: [
+            {
+                label: "Option 1",
+                value: "option-1",
+            },
+            {
+                disabled: true,
+                label: "Option 2",
+                value: "option-2"
+            },
+            {
+                label: "Option 3",
+                value: "option-3"
+            },
+            {
+                label: "Option 4",
+                value: "option-4"
+            }
+        ],
+        value: "option-3"
+    }),
+
+    new DynamicTextAreaModel({
+
+        id: "basicTextArea",
+        label: "Example Textarea",
+        rows: 5,
+        placeholder: "example Textarea"
+    }),
 
     new DynamicFormGroupModel({
 
@@ -146,15 +140,14 @@ export const BASIC_EXAMPLE_MODEL: DynamicFormModel = new DynamicFormModel([
             )]
     }),
 
-    new DynamicCheckboxModel(
-        {
-            id: "basicCheckbox",
-            label: "I do agree"
-        }
-    )
-]);
+    new DynamicCheckboxModel({
 
-export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
+        id: "basicCheckbox",
+        label: "I do agree"
+    })
+];
+
+export const BASIC_EXAMPLE_ARRAY_MODEL = [
 
     new DynamicFormArrayModel({
 
@@ -173,4 +166,4 @@ export const BASIC_EXAMPLE_ARRAY_MODEL = new DynamicFormModel([
             ];
         }
     })
-]);
+];

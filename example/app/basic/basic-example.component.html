@@ -6,7 +6,7 @@
 
         <form [formGroup]="form1">
 
-            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel1.group" class="form-row"
+            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel1" class="form-row"
                                         [controlGroup]="form1"
                                         [model]="controlModel"></dynamic-form-basic-control>
         </form>
@@ -14,7 +14,7 @@
 
         <form [formGroup]="form2">
 
-            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2.group" class="form-row"
+            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2" class="form-row"
                                         [controlGroup]="form2"
                                         [model]="controlModel">
 

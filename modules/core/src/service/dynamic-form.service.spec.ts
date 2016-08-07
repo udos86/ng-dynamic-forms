@@ -8,10 +8,9 @@ describe("DynamicFormService test suite", () => {
         addProviders([FormBuilder, DynamicFormService]);
     });
 
-    it("tests if service works correctly", inject([FormBuilder, DynamicFormService],
-        (dynamicFormService) => {
+    it("tests if service works correctly", inject([DynamicFormService], service => {
 
-            expect(dynamicFormService).toBeDefined();
-        }));
+        expect(service).toBeDefined();
+    }));
 
 });

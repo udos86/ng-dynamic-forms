@@ -86,4 +86,8 @@ export class DynamicFormService {
             this.removeFormArrayGroup(0, formArray, dynamicFormArrayModel);
         }
     }
+
+    findById(id: string, group: Array<DynamicFormControlModel>): DynamicFormControlModel {
+        return group.find(controlModel => controlModel.id === id);
+    }
 }

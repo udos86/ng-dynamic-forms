@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import {BASIC_EXAMPLE_MODEL} from "./basic-example.model";
-import {DynamicFormControlModel, DynamicTextAreaModel} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlModel, DynamicTextAreaModel, DynamicFormService} from "@ng2-dynamic-forms/core";
 
 describe("BasicExampleComponent", () => {
 
@@ -11,9 +11,9 @@ describe("BasicExampleComponent", () => {
 
     it("tests if all form controls are rendered correctly", () => {
 
-        BASIC_EXAMPLE_MODEL.group.forEach(model => {
+        BASIC_EXAMPLE_MODEL.forEach(model => {
 
-            let elm = element(by.id(model.id));
+            let elm = element(by.name(model.id));
 
             expect(elm).toBeDefined();
             //elm.getAttribute("name").then(name => expect(name).toEqual(model.name));
@@ -35,7 +35,7 @@ describe("BasicExampleComponent", () => {
 
             label.getAttribute("for").then(attr => {
 
-                let model = <DynamicFormControlModel> BASIC_EXAMPLE_MODEL.findById(attr);
+                let model = <DynamicFormControlModel> new DynamicFormService(null).findById(attr, BASIC_EXAMPLE_MODEL);
 
                 if (model) {
                     label.getText().then(text => expect(text).toBe(model.label));
@@ -46,8 +46,8 @@ describe("BasicExampleComponent", () => {
 
     it("test if textarea form control is rendered correctly", () => {
 
-        let textarea = element(by.id("basicTextArea"));
-        let model = <DynamicTextAreaModel> BASIC_EXAMPLE_MODEL.findById("basicTextArea");
+        let textarea = element(by.name("basicTextArea"));
+        let model = <DynamicTextAreaModel> new DynamicFormService(null).findById("basicTextArea", BASIC_EXAMPLE_MODEL);
 
         textarea.getAttribute("cols").then(cols => expect(parseInt(cols)).toEqual(model.cols));
         textarea.getAttribute("placeholder").then(placeholder => expect(placeholder).toEqual(model.placeholder));
