@@ -10,9 +10,9 @@
 
 * none
 
-### **Features**
+### **Bugfixes**
 
-* none
+* `DynamicCheckboxModel` now working correctly again in `ui-primeng`
 
 
 # beta.6

@@ -74,7 +74,6 @@ System.config({
 ```ts
 import {
     DynamicFormControlModel
-    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicInputModel,
     DynamicRadioGroupModel
@@ -284,6 +283,7 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
                 value: "Test 1-1"
             }),
             new DynamicInputModel({
+                
                 id: "basicGroupInput1-2",
                 label: "Example Group Input 1-2",
                 value: "Test 1-2"
