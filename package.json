@@ -12,7 +12,8 @@
     "lint": "tslint -c ./tslint.json",
     "test": "karma start --single-run",
     "tsc": "tsc -watch",
-    "typings": "typings",
+    "typings-i": "typings install --global --save",
+    "typings-u": "typings uninstall --global --save",
     "webdriver-start": "webdriver-manager start",
     "webdriver-update": "webdriver-manager update"
   },
