@@ -1,3 +1,18 @@
+# beta.8
+
+### **Major Breaking Changes** 
+
+* none
+
+### **Minor Breaking Changes** 
+
+* none
+
+### **Bugfixes**
+
+* `DynamicFormArrayModel` and `DynamicFormGroupModel` now working in all UI packages 
+
+
 # beta.7
 
 ### **Major Breaking Changes** 

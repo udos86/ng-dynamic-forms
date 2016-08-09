@@ -10,20 +10,6 @@
     </div>
 
 
-    <fieldset *ngSwitchCase="'GROUP'"
-              [disabled]="model.disabled"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
-
-        <dynamic-form-basic-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="controlGroup.controls[model.id]"
-                                    [model]="controlModel"></dynamic-form-basic-control>
-    </fieldset>
-
-
     <div [ngClass]="model.cls.grid.control">
 
         <div *ngSwitchCase="'ARRAY'"
@@ -33,15 +19,29 @@
             <fieldset *ngFor="let idx = index; let group of model.groups"
                       [formGroupName]="idx">
 
-                <dynamic-form-basic-control *ngFor="let controlModel of group"
+                <dynamic-form-foundation-sites-control *ngFor="let controlModel of group"
                                             [controlGroup]="controlGroup.controls[model.id].controls[idx]"
-                                            [model]="controlModel"></dynamic-form-basic-control>
+                                            [model]="controlModel"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate"></template>
 
             </fieldset>
 
         </div>
+
+
+        <fieldset *ngSwitchCase="'GROUP'"
+                  [disabled]="model.disabled"
+                  [formGroupName]="model.id"
+                  [name]="model.name"
+                  [ngClass]="model.cls.element.control">
+
+            <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+            <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
+                                        [controlGroup]="controlGroup.controls[model.id]"
+                                        [model]="controlModel"></dynamic-form-foundation-sites-control>
+        </fieldset>
 
 
         <label *ngSwitchCase="'CHECKBOX'"

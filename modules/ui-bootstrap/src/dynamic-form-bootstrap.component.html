@@ -8,38 +8,6 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]">{{model.label}}</label>
 
 
-    <fieldset *ngSwitchCase="'GROUP'"
-              [disabled]="model.disabled"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
-
-        <dynamic-form-basic-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="controlGroup.controls[model.id]"
-                                    [model]="controlModel"></dynamic-form-basic-control>
-    </fieldset>
-
-
-    <div *ngSwitchCase="'ARRAY'"
-         [formArrayName]="model.id"
-         [ngClass]="model.cls.element.control">
-
-        <fieldset *ngFor="let idx = index; let group of model.groups"
-                  [formGroupName]="idx">
-
-            <dynamic-form-basic-control *ngFor="let controlModel of group"
-                                        [controlGroup]="controlGroup.controls[model.id].controls[idx]"
-                                        [model]="controlModel"></dynamic-form-basic-control>
-
-            <template [ngTemplateOutlet]="customTemplate"></template>
-
-        </fieldset>
-
-    </div>
-
-
     <div *ngSwitchCase="'CHECKBOX'"
          [ngClass]="model.cls.grid.control">
 
@@ -66,13 +34,45 @@
     </div>
 
 
-    <div *ngIf="!isCheckbox"
-         [ngClass]="model.cls.grid.control">
+    <div *ngIf="!isCheckbox" [ngClass]="model.cls.grid.control">
+
+        <div *ngSwitchCase="'ARRAY'"
+             [formArrayName]="model.id"
+             [ngClass]="model.cls.element.control">
+
+            <fieldset *ngFor="let idx = index; let group of model.groups"
+                      [formGroupName]="idx">
+
+                <dynamic-form-bootstrap-control *ngFor="let controlModel of group"
+                                            [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                            [model]="controlModel"></dynamic-form-bootstrap-control>
+
+                <template [ngTemplateOutlet]="customTemplate"></template>
+
+            </fieldset>
+
+        </div>
+
+
+        <fieldset *ngSwitchCase="'GROUP'"
+                  [disabled]="model.disabled"
+                  [formGroupName]="model.id"
+                  [name]="model.name"
+                  [ngClass]="model.cls.element.control">
+
+            <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+            <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
+                                        [controlGroup]="controlGroup.controls[model.id]"
+                                        [model]="controlModel"></dynamic-form-bootstrap-control>
+        </fieldset>
+
 
         <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
                   [disabled]="model.disabled"
                   [formGroupName]="model.id"
-                  [name]="model.name">
+                  [name]="model.name"
+                  [ngClass]="model.cls.element.control">
 
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 

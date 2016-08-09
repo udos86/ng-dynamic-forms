@@ -77,9 +77,9 @@
 
                 <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-                <dynamic-form-basic-control *ngFor="let controlModel of model.group"
+                <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
                                             [controlGroup]="controlGroup.controls[model.id]"
-                                            [model]="controlModel"></dynamic-form-basic-control>
+                                            [model]="controlModel"></dynamic-form-primeng-control>
             </fieldset>
 
 
@@ -90,9 +90,9 @@
                 <fieldset *ngFor="let idx = index; let group of model.groups"
                           [formGroupName]="idx">
 
-                    <dynamic-form-basic-control *ngFor="let controlModel of group"
+                    <dynamic-form-primeng-control *ngFor="let controlModel of group"
                                                 [controlGroup]="controlGroup.controls[model.id].controls[idx]"
-                                                [model]="controlModel"></dynamic-form-basic-control>
+                                                [model]="controlModel"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate"></template>
 

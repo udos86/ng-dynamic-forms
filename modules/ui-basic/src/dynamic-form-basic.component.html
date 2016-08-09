@@ -20,20 +20,6 @@
            [ngClass]="model.cls.element.label">{{model.label}}</label>
 
 
-    <fieldset *ngSwitchCase="'GROUP'"
-              [disabled]="model.disabled"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
-
-        <dynamic-form-basic-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="controlGroup.controls[model.id]"
-                                    [model]="controlModel"></dynamic-form-basic-control>
-    </fieldset>
-
-
     <div *ngSwitchCase="'ARRAY'"
          [formArrayName]="model.id"
          [ngClass]="model.cls.element.control">
@@ -50,6 +36,20 @@
         </fieldset>
 
     </div>
+
+
+    <fieldset *ngSwitchCase="'GROUP'"
+              [disabled]="model.disabled"
+              [formGroupName]="model.id"
+              [name]="model.name"
+              [ngClass]="model.cls.element.control">
+
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+        <dynamic-form-basic-control *ngFor="let controlModel of model.group"
+                                    [controlGroup]="controlGroup.controls[model.id]"
+                                    [model]="controlModel"></dynamic-form-basic-control>
+    </fieldset>
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"

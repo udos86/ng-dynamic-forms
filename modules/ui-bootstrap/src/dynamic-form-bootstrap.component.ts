@@ -1,4 +1,4 @@
-import {Component, Input, ContentChild, TemplateRef} from "@angular/core";
+import {Component, forwardRef, Input, ContentChild, TemplateRef} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
 import {DynamicFormControlComponent, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 
@@ -6,7 +6,7 @@ export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES],
+    directives: [REACTIVE_FORM_DIRECTIVES, forwardRef(() => DynamicFormBootstrapComponent)],
     moduleId: module.id,
     selector: "dynamic-form-bootstrap-control",
     templateUrl: "./dynamic-form-bootstrap.component.html"

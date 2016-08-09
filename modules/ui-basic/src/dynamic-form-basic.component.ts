@@ -1,5 +1,4 @@
-import {Component, forwardRef, ContentChild, TemplateRef} from "@angular/core";
-import {Input} from "@angular/core";
+import {Component, forwardRef, Input, ContentChild, TemplateRef} from "@angular/core";
 import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 
