@@ -8,6 +8,7 @@ example/node_modules/
 example/app/**/*.js
 example/app/**/*.js.map
 example/app/**/*.d.ts
+example/dist/
 
 modules/**/*.js
 modules/**/*.js.map

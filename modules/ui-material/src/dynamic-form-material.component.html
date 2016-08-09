@@ -11,26 +11,26 @@
               [disabled]="model.disabled"
               [formGroupName]="model.id"
               [name]="model.name"
-              [ngClass]="model.cls.element.control">
+              [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-        <dynamic-form-basic-control *ngFor="let controlModel of model.group"
+        <dynamic-form-material-control *ngFor="let controlModel of model.group"
                                     [controlGroup]="controlGroup.controls[model.id]"
-                                    [model]="controlModel"></dynamic-form-basic-control>
+                                    [model]="controlModel"></dynamic-form-material-control>
     </fieldset>
 
 
     <div *ngSwitchCase="'ARRAY'"
          [formArrayName]="model.id"
-         [ngClass]="model.cls.element.control">
+         [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
         <fieldset *ngFor="let idx = index; let group of model.groups"
                   [formGroupName]="idx">
 
-            <dynamic-form-basic-control *ngFor="let controlModel of group"
+            <dynamic-form-material-control *ngFor="let controlModel of group"
                                         [controlGroup]="controlGroup.controls[model.id].controls[idx]"
-                                        [model]="controlModel"></dynamic-form-basic-control>
+                                        [model]="controlModel"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate"></template>
 

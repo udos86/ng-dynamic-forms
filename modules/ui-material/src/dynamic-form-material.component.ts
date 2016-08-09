@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, ContentChild, TemplateRef} from "@angular/core";
+import {Component, Input, ViewChild, ContentChild, TemplateRef, forwardRef} from "@angular/core";
 import {FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 import {MdUniqueSelectionDispatcher} from "@angular2-material/core";
 import {MdCheckbox} from "@angular2-material/checkbox";
@@ -11,7 +11,8 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, MdCheckbox, MdInput, MdRadioButton, MdRadioGroup],
+    directives: [REACTIVE_FORM_DIRECTIVES, forwardRef(() => DynamicFormMaterialComponent), MdCheckbox, MdInput,
+        MdRadioButton, MdRadioGroup],
     moduleId: module.id,
     providers: [MdUniqueSelectionDispatcher],
     selector: "dynamic-form-material-control",
