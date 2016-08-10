@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-basic",
+  "name": "@ng2-dynamic-forms/ui-semantic",
   "version": "1.0.0-beta.8",
-  "description": "Basic UI package for ng2 Dynamic Forms",
+  "description": "Semnatic UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ import {BASIC_EXAMPLE_MODEL, BASIC_EXAMPLE_ARRAY_MODEL} from "./basic-example.mo
     moduleId: module.id,
     providers: [DynamicFormService],
     selector: "dynamic-form-basic-example",
-    templateUrl: "./basic-example.component.html",
+    templateUrl: "./basic-example.component.html"
 })
 
 export class BasicExampleComponent implements OnInit {
