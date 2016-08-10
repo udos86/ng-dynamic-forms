@@ -3,7 +3,6 @@
   "version": "1.0.0-beta.8",
   "description": "Sample application for ng2 Dynamic Forms",
   "scripts": {
-    "build": "webpack --progress",
     "start": "lite-server"
   },
   "author": {
