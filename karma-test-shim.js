@@ -115,12 +115,18 @@ Promise.all([
 
 ]).then(function (providers) {
 
-    var testing = providers[0];
-    var testingBrowser = providers[1];
+    var testingCore = providers[0];
+    var testingBrowserDynamic = providers[1];
 
+    testingCore.TestBed.initTestEnvironment(
+        testingBrowserDynamic.BrowserDynamicTestingModule,
+        testingBrowserDynamic.platformBrowserDynamicTesting()
+    );
+
+    /*
     testing.setBaseTestProviders(testingBrowser.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
         testingBrowser.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
-
+    */
 }).then(function () {
 
     return Promise.all(
