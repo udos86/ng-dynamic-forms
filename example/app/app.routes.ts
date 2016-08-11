@@ -10,7 +10,7 @@ export const appRoutes: Routes = [
     {path: "example-basic", component: BasicExampleComponent},
     {path: "example-bootstrap", component: BootstrapExampleComponent},
     {path: "example-foundation", component: FoundationExampleComponent},
-    //{path: "example-material", component: MaterialExampleComponent},
+    {path: "example-material", component: MaterialExampleComponent},
     {path: "example-primeng", component: PrimeNGExampleComponent}
 ];
 

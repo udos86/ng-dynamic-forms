@@ -1,3 +1,15 @@
+# beta.9
+
+### **Major Breaking Changes** 
+
+* **!!! IMPORTANT !!!** ng2 DynamicForms now supports **`NgModule`** 
+--> **Please read updated README.md**
+
+### **Minor Breaking Changes** 
+
+* none
+
+
 # beta.8
 
 ### **Major Breaking Changes** 

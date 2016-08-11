@@ -5,6 +5,7 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormPrimeNGComponent} from "./dynamic-form-primeng.component";
 
 @NgModule({
+
     imports: [BrowserModule, FormsModule, ReactiveFormsModule],
     declarations: [DynamicFormPrimeNGComponent],
     providers: [],

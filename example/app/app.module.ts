@@ -21,9 +21,10 @@ import{AppComponent}  from './app.component';
 @NgModule({
 
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule, routing, DynamicFormsBasicModule,
-        DynamicFormsBootstrapModule, DynamicFormsFoundationModule, DynamicFormsPrimeNGModule],
+        DynamicFormsBootstrapModule, DynamicFormsFoundationModule, DynamicFormsMaterialModule,
+        DynamicFormsPrimeNGModule],
     declarations: [BasicExampleComponent, BootstrapExampleComponent, FoundationExampleComponent,
-        PrimeNGExampleComponent, AppComponent],
+        MaterialExampleComponent, PrimeNGExampleComponent, AppComponent],
     providers: [appRoutingProviders],
     bootstrap: [AppComponent]
 })

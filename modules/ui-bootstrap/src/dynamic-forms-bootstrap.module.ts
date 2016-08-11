@@ -5,6 +5,7 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormBootstrapComponent} from "./dynamic-form-bootstrap.component";
 
 @NgModule({
+
     imports: [BrowserModule, FormsModule, ReactiveFormsModule],
     declarations: [DynamicFormBootstrapComponent],
     providers: [],
