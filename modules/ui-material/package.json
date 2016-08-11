@@ -20,6 +20,7 @@
   "peerDependencies": {
     "@angular/core": "^2.0.0-rc.5",
     "@angular/forms": "^0.3.0",
+    "@angular/platform-browser": "^2.0.0-rc.5",
     "@angular2-material/checkbox": "^2.0.0-alpha.7-2",
     "@angular2-material/core": "^2.0.0-alpha.7-2",
     "@angular2-material/input": "^2.0.0-alpha.7-2",

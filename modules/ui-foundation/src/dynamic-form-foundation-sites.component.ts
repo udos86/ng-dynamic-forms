@@ -1,12 +1,11 @@
-import {Component, forwardRef, Input, ContentChild, TemplateRef} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
+import {Component, Input, ContentChild, TemplateRef} from "@angular/core";
+import {FormGroup} from "@angular/forms";
 import {DynamicFormControlComponent, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_FOUNDATION_SITES = "FOUNDATION_SITES";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, forwardRef(() => DynamicFormFoundationSitesComponent)],
     moduleId: module.id,
     selector: "dynamic-form-foundation-sites-control",
     templateUrl: "./dynamic-form-foundation-sites.component.html"

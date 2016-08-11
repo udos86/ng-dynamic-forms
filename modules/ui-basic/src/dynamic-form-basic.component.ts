@@ -1,12 +1,11 @@
-import {Component, forwardRef, Input, ContentChild, TemplateRef} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup} from "@angular/forms";
+import {Component, Input, ContentChild, TemplateRef} from "@angular/core";
+import {FormGroup} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_BASIC = "BASIC";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, forwardRef(() => DynamicFormBasicComponent)],
     moduleId: module.id,
     selector: "dynamic-form-basic-control",
     templateUrl: "./dynamic-form-basic.component.html"
