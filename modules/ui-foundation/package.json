@@ -19,7 +19,7 @@
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
     "@angular/core": "^2.0.0-rc.5",
-    "@angular/forms": "^0.2.0",
+    "@angular/forms": "^0.3.0",
     "@ng2-dynamic-forms/core": "^1.0.0-beta.8",
     "foundation-sites": "^6.2.3"
   }
