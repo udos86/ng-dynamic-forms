@@ -119,18 +119,25 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
 ];
 ```
 
-**2. Provide** `DynamicFormService` **and plug in a** `DynamicFormControlComponent`:
+**2. Import and plug in a ng2 Dynamics Forms UI** `@NgModule`:
 ```ts
-import {DynamicFormService} from "@ng2-dynamic-forms/core";
-import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DynamicFormsBootstrapModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
-@Component({
+// ..all remaining component and routing imports
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
-    providers: [DynamicFormService],
+@NgModule({
 
-    // ... all mandatory properties (selector, templateUrl, etc.)
+    imports: [DynamicFormsBootstrapModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    declarations: [AppComponent, MyDynamicFormComponent],
+    
+    // ...all remaining definitions (routing providers, bootstrap, exports)
+
 })
+
+export class AppModule {}
 ```
 
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
@@ -180,20 +187,8 @@ package and it's peer dependencies**:
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
-Every UI package comes with a `DynamicFormControlComponent` that **can easily be added to
-your component** `directives` and `template`:
-```ts
-import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
-
-@Component({
-
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
-
-    // ... all mandatory component properties (selector, templateUrl, etc.)
-})
-```
-
-To get it all running **just bind an arbitrary** `DynamicFormModel`:
+Every UI `@NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
+your component** `template`:
 ```ts
 <form [formGroup]="myForm">
 
