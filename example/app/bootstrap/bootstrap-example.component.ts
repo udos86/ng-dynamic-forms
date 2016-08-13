@@ -1,14 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl} from "@angular/forms";
 import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
 import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
     moduleId: module.id,
-    providers: [DynamicFormService],
     selector: "dynamic-form-bootstrap-example",
     styleUrls: ["../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
     templateUrl: "./bootstrap-example.component.html",

@@ -1,18 +1,15 @@
 import {Component, OnInit} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormMaterialComponent} from "@ng2-dynamic-forms/ui-material";
 import {MATERIAL_EXAMPLE_MODEL} from "./material-example.model";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormMaterialComponent],
     moduleId: module.id,
-    providers: [DynamicFormService],
     selector: "dynamic-form-material-example",
     templateUrl: "./material-example.component.html",
 })

@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.8)
+# ng2 Dynamic Forms (beta.9)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -15,7 +15,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
-- [Form UI Components](#form-ui-components)
+- [Form UI Modules and Components](#form-ui-modules-and-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
@@ -119,18 +119,24 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
 ];
 ```
 
-**2. Provide** `DynamicFormService` **and plug in a** `DynamicFormControlComponent`:
+**2. Import and plug in a ng2 Dynamics Forms UI** `@NgModule`:
 ```ts
-import {DynamicFormService} from "@ng2-dynamic-forms/core";
-import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
-@Component({
+// ..all remaining component and routing imports
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
-    providers: [DynamicFormService],
+@NgModule({
 
-    // ... all mandatory properties (selector, templateUrl, etc.)
+    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    declarations: [AppComponent, MyDynamicFormComponent],
+    
+    // ...all remaining definitions (routing providers, bootstrap, exports)
 })
+
+export class AppModule {}
 ```
 
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
@@ -163,7 +169,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```
 
 
-## Form UI Components
+## Form UI Modules and Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -175,25 +181,28 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * *Kendo UI (coming Q3/Q4)*
 
 You can instantly plug in your favorite form controls by **installing the appropriate
-package and it's peer dependencies**:
+package and it's peer dependencies** and **importing the corresponding UI** `NgModule`:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
-Every UI package comes with a `DynamicFormControlComponent` that **can easily be added to
-your component** `directives` and `template`:
 ```ts
-import {DynamicFormBootstrapComponent} from "@ng2-dynamic-forms/ui-bootstrap";
+@NgModule({
 
-@Component({
-
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBootstrapComponent],
-
-    // ... all mandatory component properties (selector, templateUrl, etc.)
+    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    
+    // ...all remaining definitions (declarations, routing providers, bootstrap, exports)
 })
+
+export class AppModule {}
 ```
 
-To get it all running **just bind an arbitrary** `DynamicFormModel`:
+> All **UI modules re-export** `DynamicFormsCoreModule` 
+so **you don't need to explicitly import it** to your app module.
+
+
+Every UI `@NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
+your component** `template`:
 ```ts
 <form [formGroup]="myForm">
 

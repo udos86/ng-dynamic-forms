@@ -11,7 +11,8 @@ function toImportPromise(module) {
 window.Error.stackTraceLimit = Infinity;
 window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
-karma.loaded = function () {};
+karma.loaded = function () {
+};
 
 System.config({
 
@@ -123,10 +124,6 @@ Promise.all([
         testingBrowserDynamic.platformBrowserDynamicTesting()
     );
 
-    /*
-    testing.setBaseTestProviders(testingBrowser.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
-        testingBrowser.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
-    */
 }).then(function () {
 
     return Promise.all(

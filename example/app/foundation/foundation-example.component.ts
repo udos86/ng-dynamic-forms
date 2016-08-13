@@ -1,18 +1,15 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormFoundationSitesComponent} from "@ng2-dynamic-forms/ui-foundation";
 import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormFoundationSitesComponent],
     moduleId: module.id,
-    providers: [DynamicFormService],
     selector: "dynamic-form-foundation-example",
     styleUrls: ["../../node_modules/foundation-sites/dist/foundation.min.css"],
     templateUrl: "./foundation-example.component.html",

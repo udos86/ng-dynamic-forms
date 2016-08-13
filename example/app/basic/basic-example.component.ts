@@ -1,14 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl, FormArray} from "@angular/forms";
+import {FormGroup, FormControl, FormArray} from "@angular/forms";
 import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel, DynamicFormArrayModel} from "@ng2-dynamic-forms/core";
-import {DynamicFormBasicComponent} from "@ng2-dynamic-forms/ui-basic";
 import {BASIC_EXAMPLE_MODEL, BASIC_EXAMPLE_ARRAY_MODEL} from "./basic-example.model";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormBasicComponent],
     moduleId: module.id,
-    providers: [DynamicFormService],
     selector: "dynamic-form-basic-example",
     templateUrl: "./basic-example.component.html"
 })

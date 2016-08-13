@@ -1,17 +1,19 @@
 var pkg = require("./package.json");
 var gulp = require("gulp");
 var del = require("del");
-var htmlMinifier = require('html-minifier');
+var htmlMinifier = require("html-minifier");
 var inlineTemplate = require("gulp-inline-ng2-template");
 var preprocess = require("gulp-preprocess");
 var replace = require("gulp-replace");
 var tslint = require("gulp-tslint");
 var typedoc = require("gulp-typedoc");
 
+var DIST_PATH = "./@ng2-dynamic-forms/";
+
 gulp.task("clean:modules", function () {
 
     return del([
-        "./dist/**/*",
+        DIST_PATH + "**/*",
         "./node_modules/@ng2-dynamic-forms/**/*",
         "./example/node_modules/@ng2-dynamic-forms/**/*"
     ]);
@@ -41,7 +43,7 @@ gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
         .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
         .pipe(gulp.dest("./example/node_modules/@ng2-dynamic-forms/"))
         .pipe(preprocess())
-        .pipe(gulp.dest("./dist/"));
+        .pipe(gulp.dest(DIST_PATH));
 });
 
 
@@ -63,15 +65,15 @@ gulp.task("inline:templates", ["preprocess:modules"], function () {
         }
     }
 
-    return gulp.src(["./dist/**/*.js"], {base: "dist"})
+    return gulp.src([DIST_PATH + "**/*.js"], {base: DIST_PATH})
         .pipe(inlineTemplate({
-            base: "dist",
+            base: DIST_PATH,
             removeLineBreaks: true,
             target: "es5",
             templateProcessor: minify,
             useRelativePaths: true
         }))
-        .pipe(gulp.dest("./dist"));
+        .pipe(gulp.dest(DIST_PATH));
 });
 
 

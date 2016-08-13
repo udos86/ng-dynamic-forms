@@ -1,14 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl} from "@angular/forms";
 import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {DynamicFormPrimeNGComponent} from "@ng2-dynamic-forms/ui-primeng";
 import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
 
 @Component({
 
-    directives: [REACTIVE_FORM_DIRECTIVES, DynamicFormPrimeNGComponent],
     moduleId: module.id,
-    providers: [DynamicFormService],
     selector: "dynamic-form-primeng-example",
     styleUrls: ["../../node_modules/primeui/themes/omega/theme.css", "../../node_modules/primeui/primeui-ng-all.min.css"],
     templateUrl: "./primeng-example.component.html",
