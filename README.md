@@ -15,7 +15,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 
 - [Getting Started](#getting-started)
 - [Basic Usage](#basic-usage)
-- [Form UI Components](#form-ui-components)
+- [Form UI Modules and Components](#form-ui-modules-and-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
@@ -134,7 +134,6 @@ import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
     declarations: [AppComponent, MyDynamicFormComponent],
     
     // ...all remaining definitions (routing providers, bootstrap, exports)
-
 })
 
 export class AppModule {}
@@ -170,7 +169,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```
 
 
-## Form UI Components
+## Form UI Modules and Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -182,10 +181,24 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * *Kendo UI (coming Q3/Q4)*
 
 You can instantly plug in your favorite form controls by **installing the appropriate
-package and it's peer dependencies**:
+package and it's peer dependencies** and **importing the corresponding UI** `NgModule`:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
+
+```ts
+@NgModule({
+
+    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    
+    // ...all remaining definitions (declarations, routing providers, bootstrap, exports)
+})
+
+export class AppModule {}
+```
+
+> g2 Dynamic Forms **UI modules re-export** `DynamicFormsCoreModule` 
+so **you don't need to explicitly import it** to your app module.
 
 Every UI `@NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
