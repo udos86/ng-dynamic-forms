@@ -6,10 +6,11 @@ import {DynamicFormPrimeNGComponent} from "./dynamic-form-primeng.component";
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormPrimeNGComponent],
     providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormPrimeNGComponent]
 })
-export class DynamicFormsPrimeNGModule {
+
+export class DynamicFormsPrimeNGUIModule {
 }

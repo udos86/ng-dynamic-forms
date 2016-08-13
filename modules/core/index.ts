@@ -11,7 +11,7 @@ export * from "./src/model/radio/dynamic-radio-group.model";
 export * from "./src/model/select/dynamic-select.model";
 export * from "./src/model/textarea/dynamic-textarea.model";
 
-export * from "./src/dynamic-forms-core.module";
+export * from "./src/core.module";
 
 export * from "./src/service/dynamic-form.service";
 export * from "./src/service/dynamic-form-autofill.service";

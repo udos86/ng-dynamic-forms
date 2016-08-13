@@ -124,13 +124,13 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DynamicFormsBootstrapModule} from "@ng2-dynamic-forms/ui-bootstrap";
+import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
 // ..all remaining component and routing imports
 
 @NgModule({
 
-    imports: [DynamicFormsBootstrapModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
     declarations: [AppComponent, MyDynamicFormComponent],
     
     // ...all remaining definitions (routing providers, bootstrap, exports)

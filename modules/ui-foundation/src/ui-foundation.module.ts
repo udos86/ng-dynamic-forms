@@ -6,10 +6,11 @@ import {DynamicFormFoundationSitesComponent} from "./dynamic-form-foundation-sit
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormFoundationSitesComponent],
     providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormFoundationSitesComponent]
 })
-export class DynamicFormsFoundationModule {
+
+export class DynamicFormsFoundationUIModule {
 }

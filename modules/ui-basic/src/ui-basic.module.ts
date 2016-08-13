@@ -6,10 +6,11 @@ import {DynamicFormBasicComponent} from "./dynamic-form-basic.component";
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormBasicComponent],
     providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormBasicComponent]
 })
-export class DynamicFormsBasicModule {
+
+export class DynamicFormsBasicUIModule {
 }

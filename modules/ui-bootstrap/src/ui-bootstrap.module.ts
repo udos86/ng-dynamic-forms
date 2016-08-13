@@ -6,10 +6,11 @@ import {DynamicFormBootstrapComponent} from "./dynamic-form-bootstrap.component"
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormBootstrapComponent],
     providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormBootstrapComponent]
 })
-export class DynamicFormsBootstrapModule {
+
+export class DynamicFormsBootstrapUIModule {
 }

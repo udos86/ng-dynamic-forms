@@ -3,11 +3,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
-import {DynamicFormsBasicModule} from "@ng2-dynamic-forms/ui-basic";
-import {DynamicFormsBootstrapModule} from "@ng2-dynamic-forms/ui-bootstrap";
-import {DynamicFormsFoundationModule} from "@ng2-dynamic-forms/ui-foundation";
-import {DynamicFormsMaterialModule} from "@ng2-dynamic-forms/ui-material";
-import {DynamicFormsPrimeNGModule} from "@ng2-dynamic-forms/ui-primeng";
+import {DynamicFormsBasicUIModule} from "@ng2-dynamic-forms/ui-basic";
+import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
+import {DynamicFormsFoundationUIModule} from "@ng2-dynamic-forms/ui-foundation";
+import {DynamicFormsMaterialUIModule} from "@ng2-dynamic-forms/ui-material";
+import {DynamicFormsPrimeNGUIModule} from "@ng2-dynamic-forms/ui-primeng";
 
 import {BasicExampleComponent} from "./basic/basic-example.component";
 import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
@@ -20,9 +20,9 @@ import{AppComponent}  from './app.component';
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule, routing, DynamicFormsBasicModule,
-        DynamicFormsBootstrapModule, DynamicFormsFoundationModule, DynamicFormsMaterialModule,
-        DynamicFormsPrimeNGModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule, routing, DynamicFormsBasicUIModule,
+        DynamicFormsBootstrapUIModule, DynamicFormsFoundationUIModule, DynamicFormsMaterialUIModule,
+        DynamicFormsPrimeNGUIModule],
     declarations: [BasicExampleComponent, BootstrapExampleComponent, FoundationExampleComponent,
         MaterialExampleComponent, PrimeNGExampleComponent, AppComponent],
     providers: [appRoutingProviders],
