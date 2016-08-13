@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.8)
+# ng2 Dynamic Forms (beta.9)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -197,8 +197,9 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 export class AppModule {}
 ```
 
-> g2 Dynamic Forms **UI modules re-export** `DynamicFormsCoreModule` 
+> All **UI modules re-export** `DynamicFormsCoreModule` 
 so **you don't need to explicitly import it** to your app module.
+
 
 Every UI `@NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
