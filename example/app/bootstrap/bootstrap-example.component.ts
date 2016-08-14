@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl} from "@angular/forms";
-import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
+import {FormGroup, FormControl, FormArray} from "@angular/forms";
+import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel, DynamicFormArrayModel} from "@ng2-dynamic-forms/core";
 import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
 @Component({
@@ -20,6 +20,9 @@ export class BootstrapExampleComponent implements OnInit {
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
+    sampleArrayControl: FormArray;
+    sampleArrayModel: DynamicFormArrayModel;
+
     constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = BOOTSTRAP_EXAMPLE_MODEL;
@@ -32,6 +35,24 @@ export class BootstrapExampleComponent implements OnInit {
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+
+        this.sampleArrayControl = <FormArray> this.form.controls["bootstrapFormArray"];
+        this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("bootstrapFormArray", this.dynamicFormModel);
+
+    }
+
+    add() {
+        console.log(this.sampleArrayControl, this.sampleArrayModel);
+        this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
+    }
+
+    remove(index: number) {
+        console.log(index);
+        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
+    }
+
+    clear() {
+        this.dynamicFormService.clearFormArray(this.sampleArrayControl, this.sampleArrayModel);
     }
 
     set modelEdit(value: string) {

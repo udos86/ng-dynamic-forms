@@ -32,7 +32,8 @@
                                         [controlGroup]="controlGroup.controls[model.id].controls[idx]"
                                         [model]="controlModel"></dynamic-form-material-control>
 
-            <template [ngTemplateOutlet]="customTemplate"></template>
+            <template [ngTemplateOutlet]="customTemplate"
+                      [ngOutletContext]="group"></template>
 
         </fieldset>
 

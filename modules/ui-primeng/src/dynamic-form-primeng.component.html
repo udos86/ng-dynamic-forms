@@ -94,7 +94,8 @@
                                                 [controlGroup]="controlGroup.controls[model.id].controls[idx]"
                                                 [model]="controlModel"></dynamic-form-primeng-control>
 
-                    <template [ngTemplateOutlet]="customTemplate"></template>
+                    <template [ngTemplateOutlet]="customTemplate"
+                              [ngOutletContext]="group"></template>
 
                 </fieldset>
 
