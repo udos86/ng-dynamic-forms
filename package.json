@@ -52,7 +52,7 @@
     "bootstrap": "^3.3.7",
     "codelyzer": "^0.0.24",
     "core-js": "^2.4.1",
-    "del": "^2.2.1",
+    "del": "^2.2.2",
     "foundation-sites": "^6.2.3",
     "gulp": "^3.9.1",
     "gulp-inline-ng2-template": "^2.1.0",

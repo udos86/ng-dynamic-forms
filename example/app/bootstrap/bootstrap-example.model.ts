@@ -5,6 +5,7 @@ import {
     DynamicSelectModel,
     DynamicRadioGroupModel,
     DynamicTextAreaModel,
+    DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 
 export const BOOTSTRAP_EXAMPLE_MODEL = [
@@ -160,6 +161,34 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
         {
             grid: {
                 control: "col-sm-offset-3 col-sm-9"
+            }
+        }
+    ),
+
+    new DynamicFormArrayModel(
+        {
+            id: "bootstrapFormArray",
+            initialCount: 5,
+            label: "Example Array Model",
+            createGroup: () => {
+                return [
+                    new DynamicInputModel(
+                        {
+                            id: "basicArrayGroupInput",
+                            label: "Example Array Group Input",
+                            placeholder: "example array group input"
+                        }
+                    )
+                ];
+            }
+        },
+        {
+            element: {
+                label: "control-label"
+            },
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
             }
         }
     )
