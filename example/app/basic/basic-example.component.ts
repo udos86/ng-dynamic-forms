@@ -49,6 +49,7 @@ export class BasicExampleComponent implements OnInit {
     }
 
     remove(index: number) {
+        console.log(index);
         this.dynamicFormService.removeFormArrayGroup(index, this.basicArrayControl, this.basicArrayModel);
     }
 

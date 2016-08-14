@@ -34,11 +34,16 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         }
     }
 
+    updateGroupIndex() {
+        this.groups.forEach((group, idx) => group["index"] = idx);
+    }
+
     addGroup(): Array<DynamicFormValueControlModel<any>> {
 
         let group = this.createGroup();
 
         this.groups.push(group);
+        this.updateGroupIndex();
 
         return group;
     }
@@ -48,11 +53,14 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         let group = this.createGroup();
 
         this.groups.splice(index, 0, group);
+        this.updateGroupIndex();
 
         return group;
     }
 
     removeGroup(index: number): void {
+
         this.groups.splice(index, 1);
+        this.updateGroupIndex();
     }
 }
