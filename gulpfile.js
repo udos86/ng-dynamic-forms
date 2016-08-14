@@ -98,10 +98,10 @@ gulp.task("build:documentation", function () {
 gulp.task("increment:version", function () {
 
     var versionNumber = Number(pkg.version.substr(pkg.version.length - 1)),
-        versionString = /(\d\.\d\.\d-[a-z]+\.)\d/,
+        versionString = /\^(\d\.\d\.\d-[a-z]+\.)\d/,
         newVersionString = pkg.version.replace(versionString, "$1" + (versionNumber + 1)),
-        versionField = /("version":\s)"\d\.\d\.\d-[a-z]+\.\d"/,
-        dependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\d\.\d\.\d-[a-z]+\.\d"/g;
+        versionField = /("version":\s)"\^\d\.\d\.\d-[a-z]+\.\d"/,
+        dependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d\.\d\.\d-[a-z]+\.\d"/g;
 
     return gulp.src([
             "./package.json",

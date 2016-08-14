@@ -18,7 +18,7 @@
                                         [controlGroup]="form2"
                                         [model]="controlModel">
 
-                <template>
+                <template *ngIf="controlModel.type === 'ARRAY'">
                     <button type="button" (click)="remove(idx)">Remove Item</button>
                 </template>
 

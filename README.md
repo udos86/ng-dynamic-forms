@@ -119,7 +119,7 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
 ];
 ```
 
-**2. Import and plug in a ng2 Dynamics Forms UI** `@NgModule`:
+**2. Import and plug in a ng2 Dynamics Forms UI** `NgModule`:
 ```ts
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -197,11 +197,11 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 export class AppModule {}
 ```
 
-> All **UI modules re-export** `DynamicFormsCoreModule` 
-so **you don't need to explicitly import it** to your app module.
+> **UI modules re-export** `DynamicFormsCoreModule` 
+**so you don't need to explicitly import it to your app module**!
 
 
-Every UI `@NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
+Every UI `NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
 ```ts
 <form [formGroup]="myForm">
@@ -423,7 +423,9 @@ No Problemo! **By adding a** `<template>` **you can declare some custom content*
                                 [controlGroup]="myForm" 
                                 [model]="controlModel">
     
-        <template><button type="button" (click)="remove(idx)">Remove Item</button></template>
+        <template *ngIf="controlModel.type === 'ARRAY'">
+            <button type="button" (click)="remove(idx)">Remove Item</button>
+        </template>
                                 
     </dynamic-form-basic-control>
 
