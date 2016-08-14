@@ -1,9 +1,23 @@
+# beta.10
+
+### **Major Breaking Changes** 
+
+* none
+
+### **Minor Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* `NgTemplateOutletContext` is now correctly set for `<template>` for `DynamicFormArrayModel 
+
 # beta.9
 
 ### **Major Breaking Changes** 
 
 * **!!! IMPORTANT !!!** ng2 DynamicForms now supports **`NgModule`** 
---> **Please read updated README.md**
+--> **Please read updated `README.md**
 
 ### **Minor Breaking Changes** 
 
