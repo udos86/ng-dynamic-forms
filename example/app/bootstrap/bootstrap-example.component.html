@@ -6,7 +6,11 @@
 
         <form class="form-horizontal" [formGroup]="form">
 
-            <div *ngFor="let idx = index; let controlModel of dynamicFormModel">
+            <div *ngFor="let controlModel of dynamicFormModel">
+
+                <button *ngIf="controlModel.type === 'ARRAY'" class="col-sm-offset-3 col-sm-9"
+                        type="button" (click)="add()">Add Item
+                </button>
 
                 <dynamic-form-bootstrap-control [controlGroup]="form"
                                                 [model]="controlModel">
@@ -16,13 +20,6 @@
                     </template>
 
                 </dynamic-form-bootstrap-control>
-
-                <div *ngIf="controlModel.type === 'ARRAY'" class="col-sm-offset-3 col-sm-9">
-
-                    <button type="button" (click)="add()">Add Item</button>
-                    <button type="button" (click)="clear()">Remove All</button>
-
-                </div>
 
             </div>
 

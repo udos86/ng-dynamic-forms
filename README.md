@@ -423,8 +423,8 @@ No Problemo! **By adding a** `<template>` **you can declare some custom content*
                                 [controlGroup]="myForm" 
                                 [model]="controlModel">
     
-        <template *ngIf="controlModel.type === 'ARRAY'">
-            <button type="button" (click)="remove(idx)">Remove Item</button>
+        <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+            <button type="button" (click)="remove(index)">Remove Item</button>
         </template>
                                 
     </dynamic-form-basic-control>
