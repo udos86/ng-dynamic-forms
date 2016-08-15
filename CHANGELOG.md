@@ -4,13 +4,11 @@
 
 * none
 
-### **Minor Breaking Changes** 
-
-* none
-
 ### **Bugfixes** 
 
-* `NgTemplateOutletContext` is now correctly set for `<template>` for `DynamicFormArrayModel 
+* `NgTemplateOutletContext` is now correctly set for `<template>` for `DynamicFormArrayModel` 
+(closes [#67](https://github.com/udos86/ng2-dynamic-forms/issues/67))
+
 
 # beta.9
 
