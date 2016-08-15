@@ -49,7 +49,7 @@ gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
 
 gulp.task("inline:templates", ["preprocess:modules"], function () {
 
-    function minify(ext, file, callback) {
+    function minify(path, ext, file, callback) {
         try {
             var minifiedFile = htmlMinifier.minify(file, {
                 collapseWhitespace: true,

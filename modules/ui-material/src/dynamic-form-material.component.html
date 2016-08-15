@@ -25,15 +25,15 @@
          [formArrayName]="model.id"
          [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
-        <fieldset *ngFor="let idx = index; let group of model.groups"
+        <fieldset *ngFor="let idx = index; let groupModel of model.groups"
                   [formGroupName]="idx">
 
-            <dynamic-form-material-control *ngFor="let controlModel of group.items"
+            <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
                                         [controlGroup]="controlGroup.controls[model.id].controls[idx]"
                                         [model]="controlModel"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate"
-                      [ngOutletContext]="group"></template>
+                      [ngOutletContext]="groupModel"></template>
 
         </fieldset>
 
