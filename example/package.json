@@ -30,7 +30,7 @@
     "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.10",
     "@ng2-dynamic-forms/ui-material": "^1.0.0-beta.10",
     "@ng2-dynamic-forms/ui-primeng": "^1.0.0-beta.10",
-    "angular2-in-memory-web-api": "0.0.14",
+    "angular2-in-memory-web-api": "0.0.15",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.2.3",
