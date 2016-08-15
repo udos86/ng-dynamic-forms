@@ -1,22 +1,22 @@
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
-import {getValue, isFunction} from "../../utils";
+import {getValue, isFunction, isDefined} from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
-    items: Array<DynamicFormValueControlModel<any>>;
+    group: Array<DynamicFormValueControlModel<any>>;
     index: number;
 
-    constructor(items: Array<DynamicFormValueControlModel<any>> = [], index?: number) {
+    constructor(group: Array<DynamicFormValueControlModel<any>> = [], index?: number) {
 
-        this.items = items;
-        this.index = index !== undefined && index !== null ? index : null;
+        this.group = group;
+        this.index = isDefined(index) ? index : null;
     }
 }
 
 export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
-export interface FormArrayModelConfig extends DynamicFormControlModelConfig {
+export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
     createGroup?: () => Array<DynamicFormValueControlModel<any>>;
     groups?: Array<DynamicFormArrayGroupModel>;
@@ -29,7 +29,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     groups: Array<DynamicFormArrayGroupModel> = [];
     initialCount: number;
 
-    constructor(config: FormArrayModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

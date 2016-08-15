@@ -8,7 +8,7 @@ export interface DynamicFieldSet {
 
 export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
-export interface FormGroupModelConfig extends DynamicFormControlModelConfig {
+export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConfig {
 
     group?: Array<DynamicFormControlModel>;
     legend?: string;
@@ -19,7 +19,7 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
     group: Array<DynamicFormControlModel> = [];
     legend: string;
 
-    constructor(config: FormGroupModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFormGroupModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

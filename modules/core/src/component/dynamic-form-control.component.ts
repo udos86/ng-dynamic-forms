@@ -4,7 +4,6 @@ import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
 
 export abstract class DynamicFormControlComponent implements OnInit {
 

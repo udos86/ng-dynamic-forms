@@ -1,5 +1,3 @@
-import {isEmptyString} from "../utils";
-
 export const AUTOCOMPLETE_OFF = "off";
 export const AUTOCOMPLETE_ON = "on";
 
@@ -112,23 +110,23 @@ export class DynamicFormAutoFillService {
     constructor() {
     }
 
-    isAddressToken(token: string) {
+    isAddressToken(token: string): boolean {
         return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
     }
 
-    isContactField(token: string) {
+    isContactField(token: string): boolean {
         return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
     }
 
-    isContactToken(token: string) {
+    isContactToken(token: string): boolean {
         return AUTOFILL_TOKENS_CONTACT.indexOf(token) > -1;
     }
 
-    isField(token: string) {
+    isField(token: string): boolean {
         return AUTOFILL_FIELDS.indexOf(token) > -1;
     }
 
-    isSectionToken(token: string) {
+    isSectionToken(token: string): boolean {
         return token.startsWith("section-");
     }
 

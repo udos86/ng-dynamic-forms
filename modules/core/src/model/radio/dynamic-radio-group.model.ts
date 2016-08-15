@@ -5,7 +5,7 @@ import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP = "RADIO_GROUP";
 
-export interface RadioGroupModelConfig extends DynamicOptionControlModelConfig {
+export interface DynamicRadioGroupModelConfig extends DynamicOptionControlModelConfig {
 
     legend?: string;
 }
@@ -14,7 +14,7 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> impl
 
     legend: string;
 
-    constructor(config: RadioGroupModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicRadioGroupModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
