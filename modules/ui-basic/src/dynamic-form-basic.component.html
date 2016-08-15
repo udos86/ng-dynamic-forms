@@ -27,7 +27,7 @@
         <fieldset *ngFor="let idx = index; let group of model.groups;"
                   [formGroupName]="idx">
 
-            <dynamic-form-basic-control *ngFor="let controlModel of group"
+            <dynamic-form-basic-control *ngFor="let controlModel of group.items"
                                         [controlGroup]="controlGroup.controls[model.id].controls[idx]"
                                         [model]="controlModel"></dynamic-form-basic-control>
 
