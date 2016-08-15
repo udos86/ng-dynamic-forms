@@ -2,7 +2,11 @@ import {Injectable} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
-import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
+import {
+    DynamicFormArrayModel,
+    DynamicFormArrayGroupModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY
+} from "../model/form-array/dynamic-form-array.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 
@@ -16,11 +20,11 @@ export class DynamicFormService {
         this.formBuilder = formBuilder;
     }
 
-    createFormArray(groups: Array<Array<DynamicFormValueControlModel<any>>>): FormArray {
+    createFormArray(groups: Array<DynamicFormArrayGroupModel>): FormArray {
 
         let formArray = [];
 
-        groups.forEach(group => formArray.push(this.createFormGroup(group)));
+        groups.forEach(group => formArray.push(this.createFormGroup(group.items)));
 
         return this.formBuilder.array(formArray);
     }
@@ -61,7 +65,7 @@ export class DynamicFormService {
 
     createFormArrayGroup(dynamicFormArrayModel: DynamicFormArrayModel): FormGroup {
 
-        return this.createFormGroup(dynamicFormArrayModel.addGroup());
+        return this.createFormGroup(dynamicFormArrayModel.addGroup().items);
     }
 
     addFormArrayGroup(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
@@ -71,7 +75,7 @@ export class DynamicFormService {
 
     insertFormArrayGroup(index: number, formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
 
-        formArray.insert(index, this.createFormGroup(dynamicFormArrayModel.insertGroup(index)));
+        formArray.insert(index, this.createFormGroup(dynamicFormArrayModel.insertGroup(index).items));
     }
 
     removeFormArrayGroup(index: number, formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {

@@ -2,19 +2,31 @@ import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from 
 import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
 import {getValue, isFunction} from "../../utils";
 
+export class DynamicFormArrayGroupModel {
+
+    items: Array<DynamicFormValueControlModel<any>>;
+    index: number;
+
+    constructor(items: Array<DynamicFormValueControlModel<any>> = [], index?: number) {
+
+        this.items = items;
+        this.index = index !== undefined && index !== null ? index : null;
+    }
+}
+
 export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
 export interface FormArrayModelConfig extends DynamicFormControlModelConfig {
 
     createGroup?: () => Array<DynamicFormValueControlModel<any>>;
-    groups?: Array<Array<DynamicFormValueControlModel<any>>>;
+    groups?: Array<DynamicFormArrayGroupModel>;
     initialCount?: number;
 }
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
-    groups: Array<Array<DynamicFormValueControlModel<any>>> = [];
+    groups: Array<DynamicFormArrayGroupModel> = [];
     initialCount: number;
 
     constructor(config: FormArrayModelConfig, cls?: ClsConfig) {
@@ -34,13 +46,13 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         }
     }
 
-    updateGroupIndex() {
-        this.groups.forEach((group, idx) => group["index"] = idx);
+    updateGroupIndex(): void {
+        this.groups.forEach((group, index) => group.index = index);
     }
 
-    addGroup(): Array<DynamicFormValueControlModel<any>> {
+    addGroup(): DynamicFormArrayGroupModel {
 
-        let group = this.createGroup();
+        let group = new DynamicFormArrayGroupModel(this.createGroup());
 
         this.groups.push(group);
         this.updateGroupIndex();
@@ -48,9 +60,9 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         return group;
     }
 
-    insertGroup(index: number): Array<DynamicFormValueControlModel<any>> {
+    insertGroup(index: number): DynamicFormArrayGroupModel {
 
-        let group = this.createGroup();
+        let group = new DynamicFormArrayGroupModel(this.createGroup());
 
         this.groups.splice(index, 0, group);
         this.updateGroupIndex();

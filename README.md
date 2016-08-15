@@ -412,9 +412,9 @@ clear() {
 
 Alright, works like a charm! 
 
-But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for every array group**?
+But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for each array group**?
 
-No Problemo! **By adding a** `<template>` **you can declare some custom content**:
+No Problemo! **By adding a** `<template>` you can **declare some custom content** that is **rendered equally for all array groups**:
 
 ```ts
 <form [formGroup]="myForm">
@@ -440,6 +440,10 @@ removeItem(index: number) {
     this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
 }
 ```
+
+> When a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
+the associated** `DynamicFormArrayGroup` so you can **access the group index
+index by declaring a local template variable** `let-index="index"`!
 
 
 ## Form Layouts

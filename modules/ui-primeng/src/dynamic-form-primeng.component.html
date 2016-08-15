@@ -90,7 +90,7 @@
                 <fieldset *ngFor="let idx = index; let group of model.groups"
                           [formGroupName]="idx">
 
-                    <dynamic-form-primeng-control *ngFor="let controlModel of group"
+                    <dynamic-form-primeng-control *ngFor="let controlModel of group.items"
                                                 [controlGroup]="controlGroup.controls[model.id].controls[idx]"
                                                 [model]="controlModel"></dynamic-form-primeng-control>
 
