@@ -24,7 +24,7 @@ export class DynamicFormService {
 
         let formArray = [];
 
-        groups.forEach(group => formArray.push(this.createFormGroup(group.items)));
+        groups.forEach(groupModel => formArray.push(this.createFormGroup(groupModel.group)));
 
         return this.formBuilder.array(formArray);
     }
@@ -65,7 +65,7 @@ export class DynamicFormService {
 
     createFormArrayGroup(dynamicFormArrayModel: DynamicFormArrayModel): FormGroup {
 
-        return this.createFormGroup(dynamicFormArrayModel.addGroup().items);
+        return this.createFormGroup(dynamicFormArrayModel.addGroup().group);
     }
 
     addFormArrayGroup(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
@@ -75,7 +75,7 @@ export class DynamicFormService {
 
     insertFormArrayGroup(index: number, formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
 
-        formArray.insert(index, this.createFormGroup(dynamicFormArrayModel.insertGroup(index).items));
+        formArray.insert(index, this.createFormGroup(dynamicFormArrayModel.insertGroup(index).group));
     }
 
     removeFormArrayGroup(index: number, formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {

@@ -17,7 +17,6 @@ describe("DynamicFormArrayModel test suite", () => {
             expect(defaultModel.initialCount).toBe(1);
 
             expect(defaultModel.groups).toBeDefined();
-            //expect(defaultModel.groups).toEqual([[]]);
             expect(defaultModel.groups.length).toBe(defaultModel.initialCount);
 
             expect(defaultModel.id).toBeDefined();

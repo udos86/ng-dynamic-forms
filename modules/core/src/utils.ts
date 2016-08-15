@@ -23,11 +23,15 @@ if (typeof Object.assign !== "function") {
     })();
 }
 
-export function isEmptyString (_string: string): boolean {
+export function isDefined(object: any): boolean {
+    return object !== undefined && object !== null;
+}
+
+export function isEmptyString(_string: string): boolean {
     return typeof _string !== "string" || _string.length === 0;
 }
 
-export function isFunction (object: any): boolean {
+export function isFunction(object: any): boolean {
     return typeof object === "function";
 }
 
@@ -36,9 +40,9 @@ export function getValue(object: any, key: string, defaultValue: any): any {
     if (object === undefined || object === null) {
         return defaultValue;
     }
-    
+
     let value = object[key];
-    
+
     if (value === undefined && defaultValue !== undefined) {
         return defaultValue;
     }
@@ -48,7 +52,7 @@ export function getValue(object: any, key: string, defaultValue: any): any {
         for (let property in value) {
 
             if (value.hasOwnProperty(property) && typeof value[property] === "object") {
-                
+
                 value[property] = getValue(value, property, defaultValue ? defaultValue[property] : null);
             }
         }

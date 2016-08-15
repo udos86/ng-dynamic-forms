@@ -20,7 +20,7 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_TIME = "time";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_WEEK = "week";
 
-export interface InputModelConfig extends DynamicInputControlModelConfig {
+export interface DynamicInputModelConfig extends DynamicInputControlModelConfig {
 
     accept?: string;
     inputType?: string;
@@ -43,7 +43,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
 
     private listId: string = null;
 
-    constructor(config: InputModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicInputModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
