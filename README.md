@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.9)
+# ng2 Dynamic Forms (beta.10)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -442,7 +442,7 @@ removeItem(index: number) {
 ```
 
 > When a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
-the associated** `DynamicFormArrayGroup` so you can **access the group index
+the associated** `DynamicFormArrayGroup` so you can **access the group 
 index by declaring a local template variable** `let-index="index"`!
 
 
