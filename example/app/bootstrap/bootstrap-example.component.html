@@ -2,13 +2,13 @@
 
     <h2 style="background-color: #6f5499; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Bootstrap UI</h2>
 
-    <div class="float-left content-margin" style="width: 55%;">
+    <div class="float-left content-margin container-fluid" style="width: 60%;">
 
         <form class="form-horizontal" [formGroup]="form">
 
             <div *ngFor="let controlModel of dynamicFormModel">
 
-                <button *ngIf="controlModel.type === 'ARRAY'" class="col-sm-offset-3 col-sm-9"
+                <button *ngIf="controlModel.type === 'ARRAY'" style="float: right;"
                         type="button" (click)="add()">Add Item
                 </button>
 
@@ -16,7 +16,11 @@
                                                 [model]="controlModel">
 
                     <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
-                        <button type="button" (click)="remove(index)">Remove Item</button>
+
+                        <div class="col-sm-3">
+                            <button type="button" (click)="remove(index)">Remove Item</button>
+                        </div>
+
                     </template>
 
                 </dynamic-form-bootstrap-control>
@@ -27,7 +31,7 @@
 
     </div>
 
-    <div class="float-left content-margin text-center" style="width: 45%;">
+    <div class="float-left content-margin text-center" style="width: 40%;">
 
         <textarea rows="18" cols="46" class="live-edit" [(ngModel)]="modelEdit"></textarea>
 
