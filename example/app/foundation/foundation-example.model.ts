@@ -5,6 +5,7 @@ import {
     DynamicSelectModel,
     DynamicRadioGroupModel,
     DynamicTextAreaModel,
+    DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 
 export const FOUNDATION_EXAMPLE_MODEL = [
@@ -37,7 +38,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right middle"
+                label: "text-right middle font-bold"
             },
             grid: {
                 control: "small-9 columns",
@@ -74,7 +75,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right"
+                label: "text-right font-bold"
             },
             grid: {
                 control: "small-9 columns",
@@ -96,7 +97,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right middle"
+                label: "text-right middle font-bold"
             },
             grid: {
                 control: "small-9 columns",
@@ -127,7 +128,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right"
+                label: "text-right font-bold"
             },
             grid: {
                 control: "small-9 columns",
@@ -146,7 +147,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right"
+                label: "text-right font-bold"
             },
             grid: {
                 control: "small-9 columns",
@@ -166,6 +167,40 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             },
             grid: {
                 control: "small-offset-3 small-9 columns"
+            }
+        }
+    ),
+
+    new DynamicFormArrayModel(
+        {
+            id: "foundationFormArray",
+            initialCount: 5,
+            label: "Example Array Model",
+            createGroup: () => {
+                return [
+                    new DynamicInputModel(
+                        {
+                            id: "basicArrayGroupInput",
+                            placeholder: "example array group input"
+                        },
+                        {
+                            grid: {
+                                control: "small-9 columns",
+                            }
+                        }
+                    )
+                ];
+            }
+        },
+        {
+            element: {
+                container: "row float-clear",
+                control: "row",
+                label: "text-right font-bold"
+            },
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
             }
         }
     )

@@ -6,9 +6,27 @@
 
         <form class="form-horizontal" [formGroup]="form">
 
-            <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel"
-                                                   [controlGroup]="form"
-                                                   [model]="controlModel"></dynamic-form-foundation-sites-control>
+            <div *ngFor="let controlModel of dynamicFormModel">
+
+                <button *ngIf="controlModel.type === 'ARRAY'" (click)="add()"
+                        type="button" class="button success" style="float: right; margin-right: .9375rem">Add Item
+                </button>
+
+                <dynamic-form-foundation-sites-control [controlGroup]="form"
+                                                       [model]="controlModel">
+
+                    <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+
+                        <div class="small-3 columns">
+                            <button type="button" class="button" (click)="remove(index)">Remove Item</button>
+                        </div>
+
+                    </template>
+
+                </dynamic-form-foundation-sites-control>
+
+            </div>
+
         </form>
 
     </div>

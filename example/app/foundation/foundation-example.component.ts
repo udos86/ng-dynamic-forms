@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl, FormArray} from "@angular/forms";
 import {
     DynamicFormService,
     DynamicCheckboxModel,
-    DynamicFormControlModel
+    DynamicFormControlModel,
+    DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 
@@ -24,6 +25,9 @@ export class FoundationExampleComponent implements OnInit {
     exampleCheckboxControl: FormControl;
     exampleCheckboxModel: DynamicCheckboxModel;
 
+    sampleArrayControl: FormArray;
+    sampleArrayModel: DynamicFormArrayModel;
+
     constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = FOUNDATION_EXAMPLE_MODEL;
@@ -36,5 +40,17 @@ export class FoundationExampleComponent implements OnInit {
         this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
         this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+
+        this.sampleArrayControl = <FormArray> this.form.controls["foundationFormArray"];
+        this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("foundationFormArray", this.dynamicFormModel);
     }
+
+    add() {
+        this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
+    }
+
+    remove(index: number) {
+        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
+    }
+
 }
