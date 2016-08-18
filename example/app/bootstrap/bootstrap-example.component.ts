@@ -38,16 +38,13 @@ export class BootstrapExampleComponent implements OnInit {
 
         this.sampleArrayControl = <FormArray> this.form.controls["bootstrapFormArray"];
         this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("bootstrapFormArray", this.dynamicFormModel);
-
     }
 
     add() {
-        console.log(this.sampleArrayControl, this.sampleArrayModel);
         this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
     }
 
     remove(index: number) {
-        console.log(index);
         this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
     }
 
