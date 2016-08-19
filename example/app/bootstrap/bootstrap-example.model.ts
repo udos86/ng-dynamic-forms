@@ -179,7 +179,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                         },
                         {
                             grid: {
-                                container: "col-sm-9"
+                                container: "col-sm-8"
                             }
                         }
                     )

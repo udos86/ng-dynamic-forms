@@ -44,6 +44,10 @@ export class BootstrapExampleComponent implements OnInit {
         this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
     }
 
+    insert(index: number) {
+        this.dynamicFormService.insertFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
+    }
+
     remove(index: number) {
         this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
     }
