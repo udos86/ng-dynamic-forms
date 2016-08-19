@@ -78,7 +78,7 @@
                 <legend *ngIf="model.legend">{{model.legend}}</legend>
 
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
-                                            [controlGroup]="controlGroup.controls[model.id]"
+                                            [controlGroup]="control"
                                             [model]="controlModel"></dynamic-form-primeng-control>
             </fieldset>
 
@@ -91,7 +91,7 @@
                           [formGroupName]="idx">
 
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
-                                                [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                                [controlGroup]="control.controls[idx]"
                                                 [model]="controlModel"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate"
@@ -117,7 +117,6 @@
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
-                   [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    [ngClass]="model.cls.element.control"
@@ -145,7 +144,6 @@
             <p-dropdown *ngSwitchCase="'SELECT'"
                         [formControlName]="model.id"
                         [options]="model.options"
-                        [required]="model.required"
                         [(ngModel)]="model.value"></p-dropdown>
 
 
@@ -157,7 +155,6 @@
                       [name]="model.name"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
-                      [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"

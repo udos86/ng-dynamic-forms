@@ -4,7 +4,7 @@ import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
     help?: string;
-    required?: boolean;
+    //required?: boolean;
     validators?: Array<any>;
     validatorsAsync?: Array<any>;
     value?: any;
@@ -13,7 +13,7 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
     help: string;
-    required: boolean;
+    //required: boolean;
     validators: Array<any>;
     validatorsAsync: Array<any>;
     value: T;
@@ -23,7 +23,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         super(config, cls);
 
         this.help = getValue(config, "help", null);
-        this.required = getValue(config, "required", false);
+        //this.required = getValue(config, "required", false);
         this.validators = getValue(config, "validators", []);
         this.validatorsAsync = getValue(config, "validatorsAsync", []);
         this.value = getValue(config, "value", null);
