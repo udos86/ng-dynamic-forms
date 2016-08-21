@@ -60,6 +60,10 @@
             overflow: hidden;
         }
 
+        .rounded {
+            border-radius: 50% !important;
+        }
+
         .text-center {
             text-align: center;
         }
@@ -83,6 +87,14 @@
         form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
             display: inline-block !important;
             margin: 0.8rem 0;
+        }
+
+        fieldset:not(:last-of-type) .btn-success, fieldset:not(:last-of-type) .button.success {
+            display: none;
+        }
+
+        fieldset:only-of-type .btn-danger, fieldset:only-of-type .button.alert {
+            display: none;
         }
 
     </style>

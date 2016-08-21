@@ -20,7 +20,7 @@
                       [formGroupName]="idx">
 
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
-                                            [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                            [controlGroup]="control.controls[idx]"
                                             [model]="controlModel"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate"
@@ -40,7 +40,7 @@
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
             <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
-                                        [controlGroup]="controlGroup.controls[model.id]"
+                                        [controlGroup]="control"
                                         [model]="controlModel"></dynamic-form-foundation-sites-control>
         </fieldset>
 
@@ -53,7 +53,6 @@
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
                    [name]="model.name"
-                   [required]="model.required"
                    [value]="model.value"
                    [ngClass]="model.cls.element.control"
                    [(ngModel)]="model.value"
@@ -77,7 +76,6 @@
                        [disabled]="item.disabled"
                        [formControlName]="item.id"
                        [name]="item.name"
-                       [required]="model.required"
                        [value]="item.value"
                        [ngClass]="item.cls.element.control"
                        [(ngModel)]="item.value"
@@ -106,7 +104,6 @@
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
-                   [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    [ngClass]="model.cls.element.control"
@@ -149,7 +146,6 @@
                 [disabled]="model.disabled"
                 [formControlName]="model.id"
                 [name]="model.name"
-                [required]="model.required"
                 [ngClass]="model.cls.element.control"
                 [(ngModel)]="model.value"
                 (blur)="onBlur($event)"
@@ -172,7 +168,6 @@
                   [name]="model.name"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
-                  [required]="model.required"
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"

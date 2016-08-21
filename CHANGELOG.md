@@ -1,3 +1,15 @@
+# beta.11
+
+### **Major Breaking Changes** 
+
+* none
+
+### **Minor Breaking Changes** 
+
+* `required` attribute (temporarily) removed from templates due to [**issues**](https://github.com/angular/angular/issues/5976) 
+still not being resolved in Angular 2
+
+
 # beta.10
 
 ### **Major Breaking Changes** 

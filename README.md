@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.10)
+# ng2 Dynamic Forms (beta.11)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -14,6 +14,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 ##Table of Contents
 
 - [Getting Started](#getting-started)
+- [Running the Example](#running-the-example)
 - [Basic Usage](#basic-usage)
 - [Form UI Modules and Components](#form-ui-modules-and-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
@@ -65,6 +66,29 @@ System.config({
         }
     }
 });
+```
+
+
+## Running the Example
+
+**1. Clone the ng2 Dynamic Forms git repository**:
+```
+git clone https://github.com/udos86/ng2-dynamic-forms.git
+```
+
+**2. Change directory to the example subfolder**:
+```
+cd example
+```
+
+**3. Install all npm dependencies**:
+```
+npm install
+```
+
+**4. Run the sample application**:
+```
+npm start
 ```
 
 

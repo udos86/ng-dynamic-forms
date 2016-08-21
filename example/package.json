@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms-example",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "description": "Sample application for ng2 Dynamic Forms",
   "scripts": {
     "start": "lite-server"
@@ -24,13 +24,12 @@
     "@angular2-material/core": "^2.0.0-alpha.7-2",
     "@angular2-material/input": "^2.0.0-alpha.7-2",
     "@angular2-material/radio": "^2.0.0-alpha.7-2",
-    "@ng2-dynamic-forms/core": "^1.0.0-beta.10",
-    "@ng2-dynamic-forms/ui-basic": "^1.0.0-beta.10",
-    "@ng2-dynamic-forms/ui-bootstrap": "^1.0.0-beta.10",
-    "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.10",
-    "@ng2-dynamic-forms/ui-material": "^1.0.0-beta.10",
-    "@ng2-dynamic-forms/ui-primeng": "^1.0.0-beta.10",
-    "angular2-in-memory-web-api": "0.0.15",
+    "@ng2-dynamic-forms/core": "^1.0.0-beta.11",
+    "@ng2-dynamic-forms/ui-basic": "^1.0.0-beta.11",
+    "@ng2-dynamic-forms/ui-bootstrap": "^1.0.0-beta.11",
+    "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.11",
+    "@ng2-dynamic-forms/ui-material": "^1.0.0-beta.11",
+    "@ng2-dynamic-forms/ui-primeng": "^1.0.0-beta.11",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.2.3",
@@ -39,8 +38,8 @@
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.0-beta.11",
     "symbol-observable": "^1.0.2",
-    "systemjs": "^0.19.36",
-    "zone.js": "^0.6.12"
+    "systemjs": "^0.19.37",
+    "zone.js": "^0.6.15"
   },
   "devDependencies": {
     "lite-server": "^2.2.0",

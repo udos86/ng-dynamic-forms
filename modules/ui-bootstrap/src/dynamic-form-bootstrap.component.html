@@ -21,7 +21,6 @@
                        [disabled]="model.disabled"
                        [formControlName]="model.id"
                        [name]="model.name"
-                       [required]="model.required"
                        [value]="model.value"
                        [ngClass]="model.cls.element.control"
                        [(ngModel)]="model.value"
@@ -44,8 +43,8 @@
                       [formGroupName]="idx">
 
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
-                                            [controlGroup]="controlGroup.controls[model.id].controls[idx]"
-                                            [model]="controlModel"></dynamic-form-bootstrap-control>
+                                                [controlGroup]="control.controls[idx]"
+                                                [model]="controlModel"></dynamic-form-bootstrap-control>
 
                 <template [ngTemplateOutlet]="customTemplate"
                           [ngOutletContext]="groupModel"></template>
@@ -64,8 +63,8 @@
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
             <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
-                                        [controlGroup]="controlGroup.controls[model.id]"
-                                        [model]="controlModel"></dynamic-form-bootstrap-control>
+                                            [controlGroup]="control"
+                                            [model]="controlModel"></dynamic-form-bootstrap-control>
         </fieldset>
 
 
@@ -88,7 +87,6 @@
                            [disabled]="item.disabled"
                            [formControlName]="item.id"
                            [name]="item.name"
-                           [required]="model.required"
                            [value]="item.value"
                            [ngClass]="item.cls.element.control"
                            [(ngModel)]="item.value"
@@ -121,7 +119,6 @@
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
-                   [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    [ngClass]="model.cls.element.control"
@@ -169,7 +166,6 @@
                 [disabled]="model.disabled"
                 [formControlName]="model.id"
                 [name]="model.name"
-                [required]="model.required"
                 [ngClass]="model.cls.element.control"
                 [(ngModel)]="model.value"
                 (blur)="onBlur($event)"
@@ -193,7 +189,6 @@
                   [name]="model.name"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
-                  [required]="model.required"
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
