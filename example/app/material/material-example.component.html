@@ -6,7 +6,20 @@
 
         <dynamic-form-material-control *ngFor="let controlModel of dynamicFormModel"
                                        [controlGroup]="form"
-                                       [model]="controlModel"></dynamic-form-material-control>
+                                       [model]="controlModel">
+
+            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+
+                <div>
+
+                    <button md-mini-fab (click)="add()">Add Item</button>
+
+                </div>
+
+            </template>
+
+
+        </dynamic-form-material-control>
     </form>
 
 </div>

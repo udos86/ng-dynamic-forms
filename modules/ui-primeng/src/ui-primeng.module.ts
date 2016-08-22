@@ -3,10 +3,19 @@ import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormPrimeNGComponent} from "./dynamic-form-primeng.component";
+import {
+    CheckboxModule,
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule,
+    RadioButtonModule,
+    SpinnerModule
+} from "primeng/primeng";
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule, CheckboxModule, DropdownModule,
+        InputTextModule, InputTextareaModule, RadioButtonModule, SpinnerModule],
     declarations: [DynamicFormPrimeNGComponent],
     providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormPrimeNGComponent]
