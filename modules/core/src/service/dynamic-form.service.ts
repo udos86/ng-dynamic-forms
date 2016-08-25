@@ -34,7 +34,7 @@ export class DynamicFormService {
     createFormGroup(group: Array<DynamicFormControlModel>): FormGroup {
 
         let formGroup = {},
-            extra = null;
+            formGroupExtra = null;
 
         group.forEach(model => {
 
@@ -48,8 +48,8 @@ export class DynamicFormService {
 
                 let groupModel = <DynamicFormGroupModel> model;
 
-                extra = {validator: groupModel.validator, asyncValidator: groupModel.asyncValidator};
                 formGroup[model.id] = this.createFormGroup(groupModel.group);
+                formGroupExtra = {validator: groupModel.validator, asyncValidator: groupModel.asyncValidator};
 
             } else {
 
@@ -63,7 +63,7 @@ export class DynamicFormService {
             }
         });
 
-        return this.formBuilder.group(formGroup, extra);
+        return this.formBuilder.group(formGroup, formGroupExtra);
     }
 
 
