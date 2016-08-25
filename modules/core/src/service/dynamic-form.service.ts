@@ -20,18 +20,21 @@ export class DynamicFormService {
         this.formBuilder = formBuilder;
     }
 
-    createFormArray(groups: Array<DynamicFormArrayGroupModel>): FormArray {
+    createFormArray(model: DynamicFormArrayModel): FormArray {
 
         let formArray = [];
 
-        groups.forEach(groupModel => formArray.push(this.createFormGroup(groupModel.group)));
+        model.groups.forEach((arrayGroupModel: DynamicFormArrayGroupModel) => {
+            formArray.push(this.createFormGroup(arrayGroupModel.group));
+        });
 
-        return this.formBuilder.array(formArray);
+        return this.formBuilder.array(formArray, model.validator, model.asyncValidator);
     }
 
     createFormGroup(group: Array<DynamicFormControlModel>): FormGroup {
 
-        let formGroup = {};
+        let formGroup = {},
+            extra = null;
 
         group.forEach(model => {
 
@@ -39,12 +42,13 @@ export class DynamicFormService {
 
                 let arrayModel = <DynamicFormArrayModel> model;
 
-                formGroup[model.id] = this.createFormArray(arrayModel.groups);
+                formGroup[model.id] = this.createFormArray(arrayModel);
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
                 let groupModel = <DynamicFormGroupModel> model;
 
+                extra = {validator: groupModel.validator, asyncValidator: groupModel.asyncValidator};
                 formGroup[model.id] = this.createFormGroup(groupModel.group);
 
             } else {
@@ -54,12 +58,12 @@ export class DynamicFormService {
                 formGroup[controlModel.id] = new FormControl(
                     controlModel.value || null,
                     Validators.compose(controlModel.validators),
-                    Validators.composeAsync(controlModel.validatorsAsync)
+                    Validators.composeAsync(controlModel.asyncValidators)
                 );
             }
         });
 
-        return this.formBuilder.group(formGroup);
+        return this.formBuilder.group(formGroup, extra);
     }
 
 

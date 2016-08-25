@@ -1,3 +1,4 @@
+import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
 import {getValue, isFunction, isDefined} from "../../utils";
@@ -18,16 +19,20 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
+    asyncValidator?: AsyncValidatorFn;
     createGroup?: () => Array<DynamicFormValueControlModel<any>>;
     groups?: Array<DynamicFormArrayGroupModel>;
     initialCount?: number;
+    validator?: ValidatorFn;
 }
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
+    asyncValidator: AsyncValidatorFn;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
     groups: Array<DynamicFormArrayGroupModel> = [];
     initialCount: number;
+    validator: ValidatorFn;
 
     constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
 
@@ -37,9 +42,11 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
             throw new Error("createGroup function must be specified for DynamicFormArrayModel");
         }
 
+        this.asyncValidator = getValue(config, "asyncValidator", null);
         this.createGroup = config["createGroup"];
         this.initialCount = getValue(config, "initialCount", 1);
         this.type = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
+        this.validator = getValue(config, "validator", null);
 
         for (let i = 0; i < this.initialCount; i += 1) {
             this.addGroup();
