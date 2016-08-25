@@ -17,7 +17,7 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
     @Input() model: DynamicFormControlModel;
 
     @ContentChild(TemplateRef) customTemplate;
-    
+
     type: string = DYNAMIC_FORM_UI_BOOTSTRAP;
 
     constructor() {

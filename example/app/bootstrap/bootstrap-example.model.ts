@@ -1,3 +1,4 @@
+import {Validators} from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -54,7 +55,8 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
             maxLength: 51,
             placeholder: "example input",
             prefix: "Prefix",
-            suffix: "Suffix"
+            suffix: "Suffix",
+            validators: [Validators.required]
         },
         {
             element: {

@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-basic",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.12",
   "description": "Basic UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "repository": {
@@ -21,6 +21,6 @@
     "@angular/core": "^2.0.0-rc.5",
     "@angular/forms": "^0.3.0",
     "@angular/platform-browser": "^2.0.0-rc.5",
-    "@ng2-dynamic-forms/core": "^1.0.0-beta.11"
+    "@ng2-dynamic-forms/core": "^1.0.0-beta.12"
   }
 }

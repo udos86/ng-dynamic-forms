@@ -1,3 +1,18 @@
+# beta.12
+
+### **Major Breaking Changes** 
+
+* property `validatorsAsync` of `DynamicFormValueControlModel`renamed to `asyncValidators`
+
+### **Minor Breaking Changes** 
+
+* none
+
+### **Feature**
+ 
+* support for `FormGroup` and `FormArray` validator functions added (closes #79)
+* `ui-primeng` now working with `NgModule`
+
 # beta.11
 
 ### **Major Breaking Changes** 
