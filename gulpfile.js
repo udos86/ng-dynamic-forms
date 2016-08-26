@@ -14,8 +14,7 @@ gulp.task("clean:modules", function () {
 
     return del([
         DIST_PATH + "**/*",
-        "./node_modules/@ng2-dynamic-forms/**/*",
-        "./example/node_modules/@ng2-dynamic-forms/**/*"
+        "./node_modules/@ng2-dynamic-forms/**/*"
     ]);
 });
 
@@ -36,12 +35,11 @@ gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
             "./modules/**/*.css",
             "./modules/**/*.js",
             "./modules/**/*.js.map",
-            "./modules/**/*.d.ts",
+            "./modules/**/*.ts",
             "!./modules/**/*.spec.*"
         ],
         {base: "modules"})
         .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-        .pipe(gulp.dest("./example/node_modules/@ng2-dynamic-forms/"))
         .pipe(preprocess())
         .pipe(gulp.dest(DIST_PATH));
 });
@@ -104,11 +102,8 @@ gulp.task("increment:version", function () {
         versionField = /("version":\s)"\d\.\d\.\d-[a-z]+\.\d{1,2}"/,
         dependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d\.\d\.\d-[a-z]+\.\d{1,2}"/g;
 
-    console.log(newVersionNumber);
-
     return gulp.src([
             "./package.json",
-            "./example/package.json",
             "./modules/**/package.json"
         ],
         {base: "./modules"})
