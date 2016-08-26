@@ -4,9 +4,7 @@ import {DynamicFormAutoFillService} from "./service/dynamic-form-autofill.servic
 
 @NgModule({
 
-    declarations: [],
-    providers: [DynamicFormService, DynamicFormAutoFillService],
-    exports: []
+    providers: [DynamicFormService, DynamicFormAutoFillService]
 })
 export class DynamicFormsCoreModule {
 }

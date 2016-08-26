@@ -8,7 +8,6 @@ import {DynamicFormBasicComponent} from "./dynamic-form-basic.component";
 
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormBasicComponent],
-    providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormBasicComponent]
 })
 

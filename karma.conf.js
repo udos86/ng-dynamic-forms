@@ -18,6 +18,7 @@ module.exports = function (config) {
             'node_modules/core-js/client/shim.min.js',
             'node_modules/reflect-metadata/Reflect.js',
             'node_modules/zone.js/dist/zone.js',
+            'node_modules/zone.js/dist/async-test.js',
 
             'node_modules/systemjs/dist/system-polyfills.js',
             'node_modules/systemjs/dist/system.src.js',
@@ -39,12 +40,12 @@ module.exports = function (config) {
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js.map', included: false, watched: false},
 
-            {pattern: 'modules/core/src/**/*.js', included: false, watched: true},
-            {pattern: 'modules/ui-basic/src/**/*.js', included: false, watched: true},
-            {pattern: 'modules/ui-bootstrap/src/**/*.js', included: false, watched: true},
-            {pattern: 'modules/ui-foundation/src/**/*.js', included: false, watched: true},
-            {pattern: 'modules/ui-material/src/**/*.js', included: false, watched: true},
-            {pattern: 'modules/ui-primeng/src/**/*.js', included: false, watched: true},
+            {pattern: 'modules/core/src/**/*.*', included: false, watched: true},
+            {pattern: 'modules/ui-basic/src/**/*.*', included: false, watched: true},
+            {pattern: 'modules/ui-bootstrap/src/**/*.*', included: false, watched: true},
+            {pattern: 'modules/ui-foundation/src/**/*.*', included: false, watched: true},
+            {pattern: 'modules/ui-material/src/**/*.*', included: false, watched: true},
+            {pattern: 'modules/ui-primeng/src/**/*.*', included: false, watched: true},
 
             'karma-test-shim.js'
         ],

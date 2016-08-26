@@ -3,10 +3,8 @@
 
 coverage/
 
-dist/
 @ng2-dynamic-forms/
 
-example/node_modules/
 example/app/**/*.js
 example/app/**/*.js.map
 example/app/**/*.d.ts

@@ -25,6 +25,12 @@ describe("DynamicFormArrayModel test suite", () => {
 
             expect(defaultModel.type).toBeDefined();
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
+
+            expect(defaultModel.asyncValidator).toBeDefined();
+            expect(defaultModel.asyncValidator).toBeNull();
+
+            expect(defaultModel.validator).toBeDefined();
+            expect(defaultModel.validator).toBeNull();
         });
         
     });
