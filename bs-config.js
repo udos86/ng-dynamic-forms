@@ -1,12 +1,13 @@
-module.exports = {
+var indexPath = "./example/index.html";
 
+module.exports = {
     server: {
         middleware: {
             1: require("connect-history-api-fallback")({
-                index: "./example/index.html"
+                index: indexPath
             })
         }
     },
 
-    startPath: "./example/index.html"
+    startPath: indexPath
 };
