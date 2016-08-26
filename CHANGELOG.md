@@ -1,3 +1,19 @@
+# beta.13
+
+### **Major Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* `FormGroup` validator extras now set correctly (closes [#79](https://github.com/udos86/ng2-dynamic-forms/issues/79))  
+
+### **Features**
+ 
+* Sample app start simplified
+* `*.ts` files added to npm packages for source map support (closes [#82](https://github.com/udos86/ng2-dynamic-forms/issues/82))
+
+
 # beta.12
 
 ### **Major Breaking Changes** 
@@ -8,9 +24,9 @@
 
 * none
 
-### **Feature**
+### **Features**
  
-* support for `FormGroup` and `FormArray` validator functions added (closes #79)
+* support for `FormGroup` and `FormArray` validator functions added (closes [#79](https://github.com/udos86/ng2-dynamic-forms/issues/79))
 * `ui-primeng` now working with `NgModule`
 
 # beta.11

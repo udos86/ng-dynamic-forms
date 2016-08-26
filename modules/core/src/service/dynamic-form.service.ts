@@ -31,10 +31,9 @@ export class DynamicFormService {
         return this.formBuilder.array(formArray, model.validator, model.asyncValidator);
     }
 
-    createFormGroup(group: Array<DynamicFormControlModel>): FormGroup {
+    createFormGroup(group: Array<DynamicFormControlModel>, groupExtra: {[key: string]: any} = null): FormGroup {
 
-        let formGroup = {},
-            formGroupExtra = null;
+        let formGroup = {};
 
         group.forEach(model => {
 
@@ -46,10 +45,10 @@ export class DynamicFormService {
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
-                let groupModel = <DynamicFormGroupModel> model;
+                let groupModel = <DynamicFormGroupModel> model,
+                    groupExtra = {validator: groupModel.validator, asyncValidator: groupModel.asyncValidator};
 
-                formGroup[model.id] = this.createFormGroup(groupModel.group);
-                formGroupExtra = {validator: groupModel.validator, asyncValidator: groupModel.asyncValidator};
+                formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);
 
             } else {
 
@@ -63,7 +62,7 @@ export class DynamicFormService {
             }
         });
 
-        return this.formBuilder.group(formGroup, formGroupExtra);
+        return this.formBuilder.group(formGroup, groupExtra);
     }
 
 

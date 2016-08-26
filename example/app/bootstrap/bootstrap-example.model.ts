@@ -1,4 +1,4 @@
-import {Validators} from "@angular/forms";
+import {Validators, AbstractControl} from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -8,6 +8,12 @@ import {
     DynamicTextAreaModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
+
+function testValidator(control: AbstractControl): {[errorId: string]: boolean} {
+    return {
+        testValidator: false
+    };
+}
 
 export const BOOTSTRAP_EXAMPLE_MODEL = [
 
@@ -88,7 +94,8 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                         value: true
                     }
                 )
-            ]
+            ],
+            validator: testValidator,
         },
         {
             element: {

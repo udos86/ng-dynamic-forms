@@ -8,6 +8,7 @@
     "ci:typings": "typings install",
     "gulp": "gulp",
     "karma": "karma",
+    "start": "lite-server -c bs-config.js",
     "test:e2e": "protractor",
     "test:unit": "karma start --single-run",
     "tsc": "tsc -watch",
@@ -67,6 +68,7 @@
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.0",
+    "lite-server": "^2.2.2",
     "ng2-semantic-ui-directives": "^1.0.5",
     "phantomjs-prebuilt": "^2.1.12",
     "primeng": "^1.0.0-beta.13",
@@ -83,6 +85,7 @@
     "zone.js": "^0.6.16"
   },
   "dependencies": {
+    "@angular2-material/button": "^2.0.0-alpha.7-4",
     "zone.js": "^0.6.17"
   }
 }

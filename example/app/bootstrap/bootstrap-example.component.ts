@@ -7,7 +7,7 @@ import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
     moduleId: module.id,
     selector: "dynamic-form-bootstrap-example",
-    styleUrls: ["../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
+    styleUrls: ["../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
     templateUrl: "./bootstrap-example.component.html",
     encapsulation: ViewEncapsulation.None
 })

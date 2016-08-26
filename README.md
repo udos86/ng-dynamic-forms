@@ -1,10 +1,10 @@
-# ng2 Dynamic Forms (beta.12)
+# ng2 Dynamic Forms (beta.13)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
-[**dynamic form cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
+[**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 It simplifies all the hard work of implementing handcrafted Angular 2 forms by building
 upon a layer of descriptive object models.
 
@@ -76,14 +76,14 @@ System.config({
 git clone https://github.com/udos86/ng2-dynamic-forms.git
 ```
 
-**2. Change directory to the example subfolder**:
-```
-cd example
-```
-
-**3. Install all npm dependencies**:
+**2. Install the npm dependencies**:
 ```
 npm install
+```
+
+**3. Transpile the TypeScript files**:
+```
+npm run tsc
 ```
 
 **4. Run the sample application**:

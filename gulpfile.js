@@ -36,7 +36,7 @@ gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
             "./modules/**/*.css",
             "./modules/**/*.js",
             "./modules/**/*.js.map",
-            "./modules/**/*.d.ts",
+            "./modules/**/*.ts",
             "!./modules/**/*.spec.*"
         ],
         {base: "modules"})
