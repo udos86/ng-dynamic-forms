@@ -11,10 +11,16 @@ import {DynamicFormMaterialComponent} from "./dynamic-form-material.component";
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, MdCheckboxModule, MdInputModule, MdRadioModule,
-        DynamicFormsCoreModule],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MdCheckboxModule,
+        MdInputModule,
+        MdRadioModule,
+        DynamicFormsCoreModule
+    ],
     declarations: [DynamicFormMaterialComponent],
-    providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormMaterialComponent]
 })
 

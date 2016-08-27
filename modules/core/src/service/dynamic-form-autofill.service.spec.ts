@@ -1,10 +1,15 @@
-import {inject, addProviders} from "@angular/core/testing";
+import {TestBed, inject} from "@angular/core/testing";
 import {DynamicFormAutoFillService} from "./dynamic-form-autofill.service";
 
 describe("DynamicFillAutoFillService test suite", () => {
 
     beforeEach(() => {
-        addProviders([DynamicFormAutoFillService]);
+
+        TestBed.configureTestingModule({
+            providers: [DynamicFormAutoFillService]
+        });
+
+        TestBed.compileComponents();
     });
 
     it("tests if autofill validation is working correctly", inject([DynamicFormAutoFillService],

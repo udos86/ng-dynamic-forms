@@ -8,7 +8,6 @@ import {DynamicFormSemanticComponent} from "./dynamic-form-semantic.component";
 
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormSemanticComponent],
-    providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormSemanticComponent]
 })
 

@@ -33,7 +33,6 @@ export abstract class DynamicFormControlComponent implements OnInit {
         //@endexclude
     }
 
-
     get isCheckbox() {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }

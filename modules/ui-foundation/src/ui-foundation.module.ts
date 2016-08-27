@@ -8,7 +8,6 @@ import {DynamicFormFoundationSitesComponent} from "./dynamic-form-foundation-sit
 
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormFoundationSitesComponent],
-    providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormFoundationSitesComponent]
 })
 

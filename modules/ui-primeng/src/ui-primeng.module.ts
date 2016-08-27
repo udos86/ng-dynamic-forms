@@ -14,10 +14,19 @@ import {
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule, CheckboxModule, DropdownModule,
-        InputTextModule, InputTextareaModule, RadioButtonModule, SpinnerModule],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DynamicFormsCoreModule,
+        CheckboxModule,
+        DropdownModule,
+        InputTextModule,
+        InputTextareaModule,
+        RadioButtonModule,
+        SpinnerModule
+    ],
     declarations: [DynamicFormPrimeNGComponent],
-    providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormPrimeNGComponent]
 })
 

@@ -1,11 +1,17 @@
-import {inject, addProviders} from "@angular/core/testing";
-import {FormBuilder} from "@angular/forms";
+import {TestBed, inject} from "@angular/core/testing";
+import {ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormService} from "./dynamic-form.service";
 
 describe("DynamicFormService test suite", () => {
 
     beforeEach(() => {
-        addProviders([FormBuilder, DynamicFormService]);
+
+        TestBed.configureTestingModule({
+            imports: [ReactiveFormsModule],
+            providers: [DynamicFormService]
+        });
+
+        TestBed.compileComponents();
     });
 
     it("tests if service works correctly", inject([DynamicFormService], service => {

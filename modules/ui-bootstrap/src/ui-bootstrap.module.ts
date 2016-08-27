@@ -8,7 +8,6 @@ import {DynamicFormBootstrapComponent} from "./dynamic-form-bootstrap.component"
 
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
     declarations: [DynamicFormBootstrapComponent],
-    providers: [],
     exports: [DynamicFormsCoreModule, DynamicFormBootstrapComponent]
 })
 
