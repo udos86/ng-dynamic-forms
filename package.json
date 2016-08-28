@@ -23,9 +23,9 @@
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
   },
   "author": {
-    "name": "Udo Schöfer",
-    "email": "contact@udos86.de",
-    "url": "http://www.udos86.de"
+    "name" : "Udo Schöfer",
+    "email": "ng2-dynamic-forms@udos86.de",
+    "url" : "https://github.com/udos86/ng2-dynamic-forms"
   },
   "license": "ISC",
   "bugs": {
