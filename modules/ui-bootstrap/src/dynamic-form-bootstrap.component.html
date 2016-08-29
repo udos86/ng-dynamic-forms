@@ -1,4 +1,6 @@
 <div class="form-group"
+     [class.has-error]="hasErrorStyles && control.touched && !control.valid"
+     [class.has-success]="hasSuccessStyles && control.touched && control.valid"
      [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]"
      [ngSwitch]="model.type">
