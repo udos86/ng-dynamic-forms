@@ -117,6 +117,7 @@
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
+                   [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    [ngClass]="model.cls.element.control"
@@ -136,6 +137,7 @@
                         [disabled]="model.disabled"
                         [formControlName]="model.id"
                         [name]="model.name"
+                        [required]="model.required"
                         [value]="model.value"
                         [ngClass]="model.cls.element.control"
                         [(ngModel)]="model.value"></p-checkbox>
@@ -155,6 +157,7 @@
                       [name]="model.name"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
+                      [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
