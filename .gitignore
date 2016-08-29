@@ -2,7 +2,7 @@
 .DS_STORE
 
 coverage/
-
+docs/
 @ng2-dynamic-forms/
 
 example/app/**/*.js

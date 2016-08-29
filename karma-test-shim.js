@@ -11,8 +11,7 @@ function toImportPromise(module) {
 window.Error.stackTraceLimit = Infinity;
 window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
-karma.loaded = function () {
-};
+karma.loaded = function () {};
 
 System.config({
 
@@ -128,8 +127,8 @@ Promise.all([
 
     return Promise.all(
         Object.keys(karma.files)
-            .filter(isSpecFile)
-            .map(toImportPromise)
+              .filter(isSpecFile)
+              .map(toImportPromise)
     );
 
 }).then(karma.start, karma.error);

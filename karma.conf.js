@@ -19,15 +19,11 @@ module.exports = function (config) {
             'node_modules/reflect-metadata/Reflect.js',
             'node_modules/zone.js/dist/zone.js',
             'node_modules/zone.js/dist/async-test.js',
-
-            'node_modules/systemjs/dist/system-polyfills.js',
             'node_modules/systemjs/dist/system.src.js',
-
-            {pattern: 'node_modules/symbol-observable/**/*.js', included: false, watched: false},
 
             {pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false},
-            
+
             {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
 
@@ -36,7 +32,7 @@ module.exports = function (config) {
 
             {pattern: 'node_modules/primeng/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/primeng/**/*.js.map', included: false, watched: false},
-            
+
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js.map', included: false, watched: false},
 
