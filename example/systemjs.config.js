@@ -21,7 +21,11 @@
         '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
         '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
         '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
-        "@angular2-material": "npm:@angular2-material",
+        "@angular2-material/button": "npm:@angular2-material/button/button.umd.js",
+        "@angular2-material/core": "npm:@angular2-material/core/core.umd.js",
+        "@angular2-material/checkbox": "npm:@angular2-material/checkbox/checkbox.umd.js",
+        "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
+        "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
         "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
         "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "app": "app",
@@ -46,14 +50,6 @@
         }
     };
 
-    var angularMaterialPackageNames = [
-        "button",
-        "checkbox",
-        "core",
-        "input",
-        "radio"
-    ];
-
     var ng2DynamicFormsPackageNames = [
         "@ng2-dynamic-forms/core",
         "@ng2-dynamic-forms/ui-basic",
@@ -62,15 +58,6 @@
         "@ng2-dynamic-forms/ui-material",
         "@ng2-dynamic-forms/ui-primeng"
     ];
-
-    angularMaterialPackageNames.forEach(function (packageName) {
-
-        packages["@angular2-material/" +packageName] = {
-            format: "cjs",
-            main: packageName +".js",
-            defaultExtension: "js"
-        };
-    });
 
     ng2DynamicFormsPackageNames.forEach(function (packageName) {
 

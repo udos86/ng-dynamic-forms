@@ -38,7 +38,11 @@ System.config({
         '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
         '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
         '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
-        "@angular2-material": "npm:@angular2-material",
+        "@angular2-material/button": "npm:@angular2-material/button/button.umd.js",
+        "@angular2-material/core": "npm:@angular2-material/core/core.umd.js",
+        "@angular2-material/checkbox": "npm:@angular2-material/checkbox/checkbox.umd.js",
+        "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
+        "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
         "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
         "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "primeng": "npm:primeng",
@@ -46,22 +50,6 @@ System.config({
     },
 
     packages: {
-        '@angular2-material/core': {
-            main: 'core.js',
-            defaultExtension: 'js'
-        },
-        '@angular2-material/checkbox': {
-            main: 'checkbox.js',
-            defaultExtension: 'js'
-        },
-        '@angular2-material/input': {
-            main: 'input.js',
-            defaultExtension: 'js'
-        },
-        '@angular2-material/radio': {
-            main: 'radio.js',
-            defaultExtension: 'js'
-        },
         "@ng2-dynamic-forms/core": {
             main: "index.js",
             defaultExtension: "js"

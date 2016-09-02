@@ -13,7 +13,6 @@ import {
 } from "primeng/primeng";
 
 @NgModule({
-
     imports: [
         BrowserModule,
         FormsModule,
@@ -27,8 +26,6 @@ import {
         SpinnerModule
     ],
     declarations: [DynamicFormPrimeNGComponent],
-    exports: [DynamicFormsCoreModule, DynamicFormPrimeNGComponent]
+    exports: [DynamicFormPrimeNGComponent]
 })
-
-export class DynamicFormsPrimeNGUIModule {
-}
+export class DynamicFormsPrimeNGUIModule {}

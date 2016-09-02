@@ -4,7 +4,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 import {MdButtonModule} from "@angular2-material/button";
+import {MdCheckboxModule} from "@angular2-material/checkbox";
+import {MdInputModule} from "@angular2-material/input";
+import {MdRadioModule} from "@angular2-material/radio";
 
+import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormsBasicUIModule} from "@ng2-dynamic-forms/ui-basic";
 import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 import {DynamicFormsFoundationUIModule} from "@ng2-dynamic-forms/ui-foundation";
@@ -22,11 +26,31 @@ import {AppComponent} from './app.component';
 
 @NgModule({
 
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule, appRouting, DynamicFormsBasicUIModule,
-        DynamicFormsBootstrapUIModule, DynamicFormsFoundationUIModule, DynamicFormsMaterialUIModule,
-        /*DynamicFormsPrimeNGUIModule,*/ MdButtonModule],
-    declarations: [BasicExampleComponent, BootstrapExampleComponent, FoundationExampleComponent,
-        MaterialExampleComponent, /*PrimeNGExampleComponent,*/ AppComponent],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        appRouting,
+        DynamicFormsCoreModule.forRoot(),
+        DynamicFormsBasicUIModule,
+        DynamicFormsBootstrapUIModule,
+        DynamicFormsFoundationUIModule,
+        DynamicFormsMaterialUIModule,
+        /*DynamicFormsPrimeNGUIModule,*/
+        MdButtonModule.forRoot(),
+        MdCheckboxModule.forRoot(),
+        MdInputModule.forRoot(),
+        MdRadioModule.forRoot(),
+    ],
+    declarations: [
+        BasicExampleComponent,
+        BootstrapExampleComponent,
+        FoundationExampleComponent,
+        MaterialExampleComponent,
+        /*PrimeNGExampleComponent,*/
+        AppComponent
+    ],
     providers: [appRoutingProviders],
     bootstrap: [AppComponent]
 })
