@@ -17,7 +17,12 @@ import {DynamicFormMaterialComponent} from "./dynamic-form-material.component";
         MdRadioModule,
         DynamicFormsCoreModule
     ],
-    declarations: [DynamicFormMaterialComponent],
-    exports: [DynamicFormMaterialComponent]
+    declarations: [
+        DynamicFormMaterialComponent
+    ],
+    exports: [
+        DynamicFormsCoreModule,
+        DynamicFormMaterialComponent
+    ]
 })
 export class DynamicFormsMaterialUIModule {}

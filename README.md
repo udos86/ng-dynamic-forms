@@ -94,7 +94,32 @@ npm start
 
 ## Basic Usage
 
-**1. Define your dynamic form model as** `Array<DynamicFormControlModel>`:
+**1. Import the ng2 Dynamic Forms core** `NgModule` **and a corresponding UI** `NgModule`:
+```ts
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
+
+// ..all remaining component and routing imports
+
+@NgModule({
+    imports: [
+        DynamicFormsCoreModule.forRoot(), 
+        DynamicFormsBootstrapUIModule, 
+        BrowserModule, 
+        FormsModule, 
+        ReactiveFormsModule
+    ],
+    declarations: [AppComponent, MyDynamicFormComponent],
+    
+    // ...all remaining definitions (routing providers, bootstrap, exports)
+})
+
+export class AppModule {}
+```
+
+**2. Define your dynamic form model as** `Array<DynamicFormControlModel>`:
 ```ts
 import {
     DynamicFormControlModel
@@ -141,26 +166,6 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
         label: "I do agree"
     })
 ];
-```
-
-**2. Import and plug in a ng2 Dynamics Forms UI** `NgModule`:
-```ts
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
-
-// ..all remaining component and routing imports
-
-@NgModule({
-
-    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
-    declarations: [AppComponent, MyDynamicFormComponent],
-    
-    // ...all remaining definitions (routing providers, bootstrap, exports)
-})
-
-export class AppModule {}
 ```
 
 **3. Create a** `FormGroup` **via** `DynamicFormService`:

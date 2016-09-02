@@ -5,11 +5,18 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormSemanticComponent} from "./dynamic-form-semantic.component";
 
 @NgModule({
-
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, DynamicFormsCoreModule],
-    declarations: [DynamicFormSemanticComponent],
-    exports: [DynamicFormsCoreModule, DynamicFormSemanticComponent]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DynamicFormsCoreModule
+    ],
+    declarations: [
+        DynamicFormSemanticComponent
+    ],
+    exports: [
+        DynamicFormsCoreModule,
+        DynamicFormSemanticComponent
+    ]
 })
-
-export class DynamicFormsSemanticUIModule {
-}
+export class DynamicFormsSemanticUIModule {}

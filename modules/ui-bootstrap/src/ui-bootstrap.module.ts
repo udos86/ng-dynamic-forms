@@ -11,7 +11,12 @@ import {DynamicFormBootstrapComponent} from "./dynamic-form-bootstrap.component"
         ReactiveFormsModule,
         DynamicFormsCoreModule
     ],
-    declarations: [DynamicFormBootstrapComponent],
-    exports: [DynamicFormBootstrapComponent]
+    declarations: [
+        DynamicFormBootstrapComponent
+    ],
+    exports: [
+        DynamicFormsCoreModule,
+        DynamicFormBootstrapComponent
+    ]
 })
 export class DynamicFormsBootstrapUIModule {}

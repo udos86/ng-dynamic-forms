@@ -12,6 +12,9 @@ import {DynamicFormBasicComponent} from "./dynamic-form-basic.component";
         DynamicFormsCoreModule
     ],
     declarations: [DynamicFormBasicComponent],
-    exports: [DynamicFormBasicComponent]
+    exports: [
+        DynamicFormsCoreModule,
+        DynamicFormBasicComponent
+    ]
 })
 export class DynamicFormsBasicUIModule {}

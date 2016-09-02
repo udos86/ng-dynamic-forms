@@ -36,8 +36,9 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     constructor() {
         super();
     }
-    
+    /*
     get characterCount() {
         return this.mdInput ? this.mdInput.characterCount : 0;
     }
+    */
 }

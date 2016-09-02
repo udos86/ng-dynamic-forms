@@ -25,7 +25,12 @@ import {
         RadioButtonModule,
         SpinnerModule
     ],
-    declarations: [DynamicFormPrimeNGComponent],
-    exports: [DynamicFormPrimeNGComponent]
+    declarations: [
+        DynamicFormPrimeNGComponent
+    ],
+    exports: [
+        DynamicFormsCoreModule,
+        DynamicFormPrimeNGComponent
+    ]
 })
 export class DynamicFormsPrimeNGUIModule {}

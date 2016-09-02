@@ -11,7 +11,12 @@ import {DynamicFormFoundationSitesComponent} from "./dynamic-form-foundation-sit
         ReactiveFormsModule,
         DynamicFormsCoreModule
     ],
-    declarations: [DynamicFormFoundationSitesComponent],
-    exports: [DynamicFormFoundationSitesComponent]
+    declarations: [
+        DynamicFormFoundationSitesComponent
+    ],
+    exports: [
+        DynamicFormsCoreModule,
+        DynamicFormFoundationSitesComponent
+    ]
 })
 export class DynamicFormsFoundationUIModule {}
