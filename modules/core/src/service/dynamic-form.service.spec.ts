@@ -10,8 +10,6 @@ describe("DynamicFormService test suite", () => {
             imports: [ReactiveFormsModule],
             providers: [DynamicFormService]
         });
-
-        TestBed.compileComponents();
     });
 
     it("tests if service works correctly", inject([DynamicFormService], service => {

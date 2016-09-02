@@ -25,7 +25,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
             throw new Error(`Control ${this.model.id} of type ${this.model.type} is not supported by ${this.type} UI package.`);
         }
 
-        this.control = <FormControl> this.controlGroup.controls[this.model.id];
+        this.control = <FormControl> this.controlGroup.get(this.model.id);
         //@exclude
         this.control.valueChanges.subscribe((value: any) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid);

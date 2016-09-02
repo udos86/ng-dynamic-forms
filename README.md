@@ -548,8 +548,6 @@ with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Gu
 you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
 to gain much more control over validation logic and it's corresponding message output.
 
-> **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 counterpart!
-
 ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
 would be off the original subject and result in a library too opinionated.
 

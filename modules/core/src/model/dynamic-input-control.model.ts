@@ -8,6 +8,7 @@ export interface DynamicInputControlModelConfig extends DynamicFormValueControlM
     autoComplete?: boolean;
     autoFocus?: boolean;
     maxLength?: number;
+    minLength?: number;
     placeholder?: string;
     prefix?: string;
     readOnly?: boolean;
@@ -20,6 +21,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
     autoComplete: boolean;
     autoFocus: boolean;
     maxLength: number;
+    minLength: number;
     placeholder: string;
     prefix: string;
     readOnly: boolean;
@@ -32,7 +34,8 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
 
         this.autoComplete = getValue(config, "autoComplete", AUTOCOMPLETE_ON);
         this.autoFocus = getValue(config, "autoFocus", false);
-        this.maxLength = getValue(config, "maxLength", 100);
+        this.maxLength = getValue(config, "maxLength", null);
+        this.minLength = getValue(config, "minLength", null);
         this.placeholder = getValue(config, "placeholder", "");
         this.prefix = getValue(config, "prefix", null);
         this.readOnly = getValue(config, "readOnly", false);

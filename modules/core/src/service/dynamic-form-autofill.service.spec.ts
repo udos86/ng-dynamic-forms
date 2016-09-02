@@ -8,8 +8,6 @@ describe("DynamicFillAutoFillService test suite", () => {
         TestBed.configureTestingModule({
             providers: [DynamicFormAutoFillService]
         });
-
-        TestBed.compileComponents();
     });
 
     it("tests if autofill validation is working correctly", inject([DynamicFormAutoFillService],

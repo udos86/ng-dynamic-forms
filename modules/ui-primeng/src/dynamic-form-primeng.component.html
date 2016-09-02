@@ -91,7 +91,7 @@
                           [formGroupName]="idx">
 
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
-                                                [controlGroup]="control.controls[idx]"
+                                                [controlGroup]="control.at(idx)"
                                                 [model]="controlModel"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate"
@@ -107,13 +107,14 @@
                    [attr.autoComplete]="model.autoComplete"
                    [attr.list]="model.listId"
                    [attr.max]="model.max"
-                   [attr.maxlength]="model.maxLength"
                    [attr.min]="model.min"
                    [attr.multiple]="model.multiple"
                    [attr.step]="model.step"
                    [autofocus]="model.autoFocus"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
+                   [maxlength]="model.maxLength"
+                   [minlength]="model.minLength"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -149,10 +150,11 @@
 
 
             <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
-                      [attr.maxlength]="model.maxLength"
                       [cols]="model.cols"
                       [disabled]="model.disabled"
                       [formControlName]="model.id"
+                      [maxlength]="model.maxLength"
+                      [minlength]="model.minLength"
                       [name]="model.name"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"

@@ -16,7 +16,7 @@
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
         <dynamic-form-material-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="controlGroup.controls[model.id]"
+                                    [controlGroup]="control"
                                     [model]="controlModel"></dynamic-form-material-control>
     </fieldset>
 
@@ -29,7 +29,7 @@
                   [formGroupName]="idx">
 
             <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
-                                        [controlGroup]="controlGroup.controls[model.id].controls[idx]"
+                                        [controlGroup]="control.at(idx)"
                                         [model]="controlModel"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate"

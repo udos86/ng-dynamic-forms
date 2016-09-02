@@ -55,7 +55,7 @@ export class DynamicFormService {
                 let controlModel = <DynamicFormValueControlModel<any>> model;
 
                 formGroup[controlModel.id] = new FormControl(
-                    controlModel.value || null,
+                    controlModel.value,
                     Validators.compose(controlModel.validators),
                     Validators.composeAsync(controlModel.asyncValidators)
                 );
