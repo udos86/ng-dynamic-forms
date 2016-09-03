@@ -16,8 +16,8 @@
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
         <dynamic-form-material-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="control"
-                                    [model]="controlModel"></dynamic-form-material-control>
+                                       [controlGroup]="control"
+                                       [model]="controlModel"></dynamic-form-material-control>
     </fieldset>
 
 
@@ -29,8 +29,8 @@
                   [formGroupName]="idx">
 
             <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
-                                        [controlGroup]="control.at(idx)"
-                                        [model]="controlModel"></dynamic-form-material-control>
+                                           [controlGroup]="control.at(idx)"
+                                           [model]="controlModel"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate"
                       [ngOutletContext]="groupModel"></template>
@@ -79,14 +79,23 @@
 
 
     <md-input *ngSwitchCase="'INPUT'"
-              [attr.autofocus]="model.autoFocus"
+              [autocomplete]="model.autoComplete"
+              [autofocus]="model.autoFocus"
               [disabled]="model.disabled"
               [formControlName]="model.id"
+              [hintLabel]="model.help"
+              [list]="model.listId"
               [max]="model.max"
+              [maxlength]="model.maxLength"
               [min]="model.min"
+              [minlength]="model.minLength"
               [name]="model.name"
               [placeholder]="model.placeholder"
+              [readonly]="model.readOnly"
+              [required]="model.required"
+              [spellcheck]="model.spellCheck"
               [step]="model.step"
+              [tabindex]="model.tabIndex"
               [type]="model.inputType"
               [ngClass]="model.cls.element.control"
               [(ngModel)]="model.value"
@@ -95,11 +104,7 @@
 
         <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
         <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
-        <!--
-        <md-hint *ngIf="model.showLength" align="end">
-            {{characterCount}} / {{model.maxLength}}
-        </md-hint>
-        -->
+
     </md-input>
 
 
@@ -116,6 +121,7 @@
                          [name]="model.name"
                          [value]="option.value">{{option.label}}
         </md-radio-button>
+
     </md-radio-group>
 
     <ng-content></ng-content>

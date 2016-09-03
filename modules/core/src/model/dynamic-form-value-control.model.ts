@@ -1,12 +1,13 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
-import {getValue} from "../utils";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
+import {getValue} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
     asyncValidators?: Array<AsyncValidatorFn>;
     help?: string;
     required?: boolean;
+    tabIndex?: number;
     validators?: Array<ValidatorFn>;
     value?: any;
 }
@@ -16,6 +17,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     asyncValidators: Array<AsyncValidatorFn>;
     help: string;
     required: boolean;
+    tabIndex: number;
     validators: Array<ValidatorFn>;
     value: T;
 
@@ -26,6 +28,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.asyncValidators = getValue(config, "asyncValidators", []);
         this.help = getValue(config, "help", null);
         this.required = getValue(config, "required", false);
+        this.tabIndex = getValue(config, "tabIndex", null);
         this.validators = getValue(config, "validators", []);
         this.value = getValue(config, "value", null);
     }

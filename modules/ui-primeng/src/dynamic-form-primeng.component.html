@@ -34,6 +34,7 @@
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'"
               role="radiogroup"
+              [attr.tabindex]="model.tabIndex"
               [disabled]="model.disabled">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
@@ -110,6 +111,7 @@
                    [attr.min]="model.min"
                    [attr.multiple]="model.multiple"
                    [attr.step]="model.step"
+                   [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
@@ -150,6 +152,7 @@
 
 
             <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
+                      [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [disabled]="model.disabled"
                       [formControlName]="model.id"

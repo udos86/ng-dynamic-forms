@@ -50,6 +50,7 @@
                [ngClass]="model.cls.element.label">
 
             <input type="checkbox"
+                   [attr.tabindex]="model.tabIndex"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
                    [name]="model.name"
@@ -74,6 +75,7 @@
                    [ngClass]="item.cls.element.label">
 
                 <input type="checkbox"
+                       [attr.tabindex]="model.tabIndex"
                        [disabled]="item.disabled"
                        [formControlName]="item.id"
                        [name]="item.name"
@@ -99,6 +101,7 @@
                    [attr.min]="model.min"
                    [attr.multiple]="model.multiple"
                    [attr.step]="model.step"
+                   [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
                    [disabled]="model.disabled"
                    [formControlName]="model.id"
@@ -128,6 +131,7 @@
 
         <fieldset *ngSwitchCase="'RADIO_GROUP'"
                   role="radiogroup"
+                  [attr.tabindex]="model.tabIndex"
                   [disabled]="model.disabled"
                   [name]="model.name">
 
@@ -147,6 +151,7 @@
 
 
         <select *ngSwitchCase="'SELECT'"
+                [attr.tabindex]="model.tabIndex"
                 [disabled]="model.disabled"
                 [formControlName]="model.id"
                 [name]="model.name"
@@ -166,6 +171,7 @@
 
 
         <textarea *ngSwitchCase="'TEXTAREA'"
+                  [attr.tabindex]="model.tabIndex"
                   [cols]="model.cols"
                   [disabled]="model.disabled"
                   [formControlName]="model.id"

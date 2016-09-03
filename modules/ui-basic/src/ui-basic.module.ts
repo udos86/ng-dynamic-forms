@@ -11,7 +11,9 @@ import {DynamicFormBasicComponent} from "./dynamic-form-basic.component";
         ReactiveFormsModule,
         DynamicFormsCoreModule
     ],
-    declarations: [DynamicFormBasicComponent],
+    declarations: [
+        DynamicFormBasicComponent
+    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicFormBasicComponent
