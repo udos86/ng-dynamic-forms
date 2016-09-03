@@ -1,3 +1,25 @@
+# beta.14
+
+### **Major Breaking Changes** 
+
+* **!!! IMPORTANT !!!** `DynamicFormsCoreModule` now needs to be imported in app root `NgModule` via `forRoot()`
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+ 
+* Migration to Angular 2 RC.6
+* Migration to Angular 2 Material alpha.8
+* `required` property binding re-added to `DynamicFormControlComponent`s due to [**fixes**](https://github.com/angular/angular/issues/5976) in Angular 2 RC.6
+* `tabIndex` property added to `DynamicFormValueControlModel`
+
+### **Known Issues**
+
+* `disabled` property binding currently [**not fully**]([Link](https://github.com/angular/angular/pull/10994)) supported in Angular 2 RC.6
+
+
 # beta.13
 
 ### **Major Breaking Changes** 

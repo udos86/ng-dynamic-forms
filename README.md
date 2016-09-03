@@ -218,17 +218,19 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```ts
 @NgModule({
 
-    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [
+        DynamicFormsCoreModule.forRoot(),
+        DynamicFormsBootstrapUIModule, 
+        BrowserModule, 
+        FormsModule, 
+        ReactiveFormsModule
+    ],
     
     // ...all remaining definitions (declarations, routing providers, bootstrap, exports)
 })
 
 export class AppModule {}
 ```
-
-> **UI modules re-export** `DynamicFormsCoreModule` 
-**so you don't need to explicitly import it to your app module**!
-
 
 Every UI `NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
