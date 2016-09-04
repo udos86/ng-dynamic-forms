@@ -57,6 +57,12 @@ export abstract class DynamicFormControlComponent implements OnInit {
         //@endexclude
     }
 
+    onChange($event) {
+        //@exclude
+        console.log(this.model.id + " field is changed", $event);
+        //@endexclude
+    }
+
     onFocus($event) {
 
         this.hasFocus = true;

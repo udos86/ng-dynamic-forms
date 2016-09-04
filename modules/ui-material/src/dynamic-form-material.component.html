@@ -48,10 +48,10 @@
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [ngClass]="model.cls.element.control"
-                 [(ngModel)]="model.value"
                  (blur)="onBlur($event)"
-                 (focus)="onFocus($event)">{{model.label}}
-    </md-checkbox>
+                 (change)="onChange($event)"
+                 (focus)="onFocus($event)"
+                 [(ngModel)]="model.value">{{model.label}}</md-checkbox>
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
@@ -70,10 +70,10 @@
                      [indeterminate]="item.indeterminate"
                      [name]="item.name"
                      [ngClass]="item.cls.element.control"
-                     [(ngModel)]="item.value"
                      (blur)="onBlur($event)"
-                     (focus)="onFocus($event)">{{item.label}}
-        </md-checkbox>
+                     (change)="onChange($event)"
+                     (focus)="onFocus($event)"
+                     [(ngModel)]="item.value">{{item.label}}</md-checkbox>
 
     </fieldset>
 
@@ -90,6 +90,7 @@
               [min]="model.min"
               [minlength]="model.minLength"
               [name]="model.name"
+              [ngClass]="model.cls.element.control"
               [placeholder]="model.placeholder"
               [readonly]="model.readOnly"
               [required]="model.required"
@@ -97,10 +98,10 @@
               [step]="model.step"
               [tabindex]="model.tabIndex"
               [type]="model.inputType"
-              [ngClass]="model.cls.element.control"
-              [(ngModel)]="model.value"
               (blur)="onBlur($event)"
-              (focus)="onFocus($event)">
+              (change)="onChange($event)"
+              (focus)="onFocus($event)"
+              [(ngModel)]="model.value">
 
         <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
         <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
@@ -112,9 +113,10 @@
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
-                    [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
-                    (focus)="onFocus($event)">
+                    (change)="onChange($event)"
+                    (focus)="onFocus($event)"
+                    [(ngModel)]="model.value">
 
         <md-radio-button *ngFor="let option of model.options"
                          [disabled]="!!option.disabled"

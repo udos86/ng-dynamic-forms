@@ -32,8 +32,7 @@
     </fieldset>
 
 
-    <fieldset *ngSwitchCase="'RADIO_GROUP'"
-              role="radiogroup"
+    <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [disabled]="model.disabled">
 
@@ -79,8 +78,8 @@
                 <legend *ngIf="model.legend">{{model.legend}}</legend>
 
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
-                                            [controlGroup]="control"
-                                            [model]="controlModel"></dynamic-form-primeng-control>
+                                              [controlGroup]="control"
+                                              [model]="controlModel"></dynamic-form-primeng-control>
             </fieldset>
 
 
@@ -92,8 +91,8 @@
                           [formGroupName]="idx">
 
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
-                                                [controlGroup]="control.at(idx)"
-                                                [model]="controlModel"></dynamic-form-primeng-control>
+                                                  [controlGroup]="control.at(idx)"
+                                                  [model]="controlModel"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate"
                               [ngOutletContext]="groupModel"></template>
@@ -118,15 +117,16 @@
                    [maxlength]="model.maxLength"
                    [minlength]="model.minLength"
                    [name]="model.name"
+                   [ngClass]="model.cls.element.control"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
-                   [ngClass]="model.cls.element.control"
-                   [(ngModel)]="model.value"
                    (blur)="onBlur($event)"
-                   (focus)="onFocus($event)"/>
+                   (change)="onChange($event)"
+                   (focus)="onFocus($event)"
+                   [(ngModel)]="model.value"/>
 
             <datalist *ngIf="model.list" [id]="model.listId">
 
@@ -135,13 +135,12 @@
             </datalist>
 
 
-            <p-checkbox *ngSwitchCase="'CHECKBOX'"
-                        binary="true"
+            <p-checkbox *ngSwitchCase="'CHECKBOX'" binary="true"
                         [disabled]="model.disabled"
                         [formControlName]="model.id"
                         [name]="model.name"
-                        [value]="model.value"
                         [ngClass]="model.cls.element.control"
+                        [value]="model.value"
                         [(ngModel)]="model.value"></p-checkbox>
 
 
@@ -159,16 +158,17 @@
                       [maxlength]="model.maxLength"
                       [minlength]="model.minLength"
                       [name]="model.name"
+                      [ngClass]="model.cls.element.control"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      [ngClass]="model.cls.element.control"
-                      [(ngModel)]="model.value"
                       (blur)="onBlur($event)"
-                      (focus)="onFocus($event)"></textarea>
+                      (change)="onChange($event)"
+                      (focus)="onFocus($event)"
+                      [(ngModel)]="model.value"></textarea>
 
         </div>
 
