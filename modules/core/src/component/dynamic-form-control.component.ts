@@ -49,6 +49,18 @@ export abstract class DynamicFormControlComponent implements OnInit {
         return this.control.valid;
     }
 
+    disable() {
+
+        this.control.disable();
+        this.model.disabled = true;
+    }
+
+    enable() {
+
+        this.control.enable();
+        this.model.disabled = false;
+    }
+
     onBlur($event) {
 
         this.hasFocus = false;

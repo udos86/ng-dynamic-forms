@@ -3,7 +3,6 @@
      [ngSwitch]="model.type">
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-              [disabled]="model.disabled"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -15,7 +14,6 @@
             <div [ngClass]="item.cls.grid.control">
 
                 <p-checkbox binary="true"
-                            [disabled]="item.disabled"
                             [formControlName]="item.id"
                             [name]="model.name"
                             [value]="item.value"
@@ -33,8 +31,7 @@
 
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
-              [attr.tabindex]="model.tabIndex"
-              [disabled]="model.disabled">
+              [attr.tabindex]="model.tabIndex">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -42,8 +39,7 @@
 
             <div [ngClass]="model.cls.grid.control">
 
-                <p-radioButton [disabled]="!!option.disabled"
-                               [formControlName]="model.id"
+                <p-radioButton [formControlName]="model.id"
                                [name]="model.name"
                                [value]="option.value"
                                [(ngModel)]="model.value"></p-radioButton>
@@ -70,7 +66,6 @@
         <div [ngClass]="model.cls.grid.control">
 
             <fieldset *ngSwitchCase="'GROUP'"
-                      [disabled]="model.disabled"
                       [formGroupName]="model.id"
                       [name]="model.name"
                       [ngClass]="model.cls.element.control">
@@ -112,7 +107,6 @@
                    [attr.step]="model.step"
                    [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
-                   [disabled]="model.disabled"
                    [formControlName]="model.id"
                    [maxlength]="model.maxLength"
                    [minlength]="model.minLength"
@@ -136,7 +130,6 @@
 
 
             <p-checkbox *ngSwitchCase="'CHECKBOX'" binary="true"
-                        [disabled]="model.disabled"
                         [formControlName]="model.id"
                         [name]="model.name"
                         [ngClass]="model.cls.element.control"
@@ -153,7 +146,6 @@
             <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
-                      [disabled]="model.disabled"
                       [formControlName]="model.id"
                       [maxlength]="model.maxLength"
                       [minlength]="model.minLength"

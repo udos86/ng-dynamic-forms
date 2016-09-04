@@ -3,6 +3,8 @@
 ### **Major Breaking Changes** 
 
 * **!!! IMPORTANT !!!** `DynamicFormsCoreModule` now needs to be imported in app root `NgModule` via `forRoot()`
+* **!!! IMPORTANT !!!** `disabled` property bindings were removed! Use `disable()`and `enable()` functions of `DynamicFormControlComponent` instead
+(see *Known Issues* for explanation)
 * `help` property of `DynamicFormControlModel` renamed to `hint`
 
 ### **Bugfixes** 
@@ -18,7 +20,9 @@
 
 ### **Known Issues**
 
-* `disabled` property binding currently [**not supported**](https://github.com/angular/angular/pull/10994) in Angular 2 RC.6
+* Changing the `disabled` property of `DynamicFormControlModel` after initialization **has no effect**. 
+This is due to Angular 2 RC.6 [**not supporting**](https://github.com/angular/angular/pull/11271) `disabled` property bindings anymore!
+Use `disable()`and `enable()` functions of `DynamicFormControlComponent` as a workaround!
 
 
 # beta.13

@@ -55,7 +55,7 @@ export class DynamicFormService {
                 let controlModel = <DynamicFormValueControlModel<any>> model;
 
                 formGroup[controlModel.id] = new FormControl(
-                    controlModel.value,
+                    {value: controlModel.value, disabled: controlModel.disabled},
                     Validators.compose(controlModel.validators),
                     Validators.composeAsync(controlModel.asyncValidators)
                 );

@@ -4,7 +4,6 @@
 
     <input *ngSwitchCase="'CHECKBOX'" type="checkbox"
            [attr.tabindex]="model.tabIndex"
-           [disabled]="model.disabled"
            [formControlName]="model.id"
            [name]="model.name"
            [ngClass]="model.cls.element.control"
@@ -41,7 +40,6 @@
 
 
     <fieldset *ngSwitchCase="'GROUP'"
-              [disabled]="model.disabled"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -55,7 +53,6 @@
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-              [disabled]="model.disabled"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -68,7 +65,6 @@
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
-                   [disabled]="item.disabled"
                    [formControlName]="item.id"
                    [name]="item.name"
                    [ngClass]="item.cls.element.control"
@@ -91,7 +87,6 @@
            [attr.step]="model.step"
            [attr.tabindex]="model.tabIndex"
            [autofocus]="model.autoFocus"
-           [disabled]="model.disabled"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"
@@ -116,7 +111,6 @@
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
-              [disabled]="model.disabled"
               [name]="model.name"
               (change)="onChange($event)">
 
@@ -125,18 +119,16 @@
         <label *ngFor="let option of model.options">
 
             <input type="radio"
-                   [disabled]="!!option.disabled"
                    [formControlName]="model.id"
                    [name]="model.name"
                    [ngClass]="model.cls.element.control"
                    [value]="option.value"
-                   [(ngModel)]="model.value">{{option.label}}</label>
+                   [(ngModel)]="model.value"/>{{option.label}}</label>
     </fieldset>
 
 
     <select *ngSwitchCase="'SELECT'"
             [attr.tabindex]="model.tabIndex"
-            [disabled]="model.disabled"
             [formControlName]="model.id"
             [name]="model.name"
             [ngClass]="model.cls.element.control"
@@ -158,7 +150,6 @@
     <textarea *ngSwitchCase="'TEXTAREA'"
               [attr.tabindex]="model.tabIndex"
               [cols]="model.cols"
-              [disabled]="model.disabled"
               [formControlName]="model.id"
               [maxlength]="model.maxLength"
               [minlength]="model.minLength"
