@@ -3,6 +3,7 @@
 ### **Major Breaking Changes** 
 
 * **!!! IMPORTANT !!!** `DynamicFormsCoreModule` now needs to be imported in app root `NgModule` via `forRoot()`
+* `help` property of `DynamicFormControlModel` renamed to `hint`
 
 ### **Bugfixes** 
 
@@ -17,7 +18,7 @@
 
 ### **Known Issues**
 
-* `disabled` property binding currently [**not fully**]([Link](https://github.com/angular/angular/pull/10994)) supported in Angular 2 RC.6
+* `disabled` property binding currently [**not supported**](https://github.com/angular/angular/pull/10994) in Angular 2 RC.6
 
 
 # beta.13

@@ -86,7 +86,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
 
     new DynamicInputModel(
         {
-            help: "Just a sample help text",
+            hint: "Just a sample help text",
             id: "foundationInput",
             label: "Example Input",
             maxLength: 51,

@@ -47,10 +47,10 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultModel.cls.grid.label).toEqual("");
         });
 
-        it("tests if correct default help property is set", () => {
+        it("tests if correct default hint property is set", () => {
 
-            expect(defaultModel.help).toBeDefined();
-            expect(defaultModel.help).toBeNull();
+            expect(defaultModel.hint).toBeDefined();
+            expect(defaultModel.hint).toBeNull();
         });
 
         it("tests if correct default label properties aree set", () => {

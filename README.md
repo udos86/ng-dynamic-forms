@@ -5,10 +5,11 @@
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
-It simplifies all the hard work of implementing reactive Angular 2 forms by building
-upon a layer of straightforward object models.
+It simplifies all the time-consuming work of implementing reactive Angular 2 forms by building
+upon a layer of easy-to-handle object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
+It also provides a flexible system of dynamic UI components with out of the box support for 
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
 
 
 ##Table of Contents
@@ -110,10 +111,10 @@ import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
         BrowserModule, 
         FormsModule, 
         ReactiveFormsModule
+        // ...all remaining imports
     ],
     declarations: [AppComponent, MyDynamicFormComponent],
-    
-    // ...all remaining definitions (routing providers, bootstrap, exports)
+    bootstrap: [AppComponent]
 })
 
 export class AppModule {}
@@ -226,7 +227,7 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
         ReactiveFormsModule
     ],
     
-    // ...all remaining definitions (declarations, routing providers, bootstrap, exports)
+    // ...all remaining definitions
 })
 
 export class AppModule {}
