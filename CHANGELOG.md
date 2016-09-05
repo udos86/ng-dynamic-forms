@@ -24,6 +24,9 @@
 This is due to Angular 2 RC.6 [**not supporting**](https://github.com/angular/angular/pull/11271) `disabled` property bindings anymore!
 Use `disable()`and `enable()` functions of `DynamicFormControlComponent` as a workaround!
 
+* Setting `disabled: true` on any `DynamicFormControlModel` in `ui-material` causes an exception. 
+This is due to a [**bug**](https://github.com/angular/material2/issues/1171) in Angular 2 Material alpha.8-1.
+
 
 # beta.13
 
