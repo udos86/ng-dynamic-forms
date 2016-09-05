@@ -55,7 +55,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
 
     new DynamicInputModel(
         {
-            help: "Just a sample help text",
+            hint: "Just a sample help text",
             id: "bootstrapInput",
             label: "Example Input",
             maxLength: 51,

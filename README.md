@@ -5,10 +5,11 @@
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
-It simplifies all the hard work of implementing handcrafted Angular 2 forms by building
-upon a layer of descriptive object models.
+It simplifies all the time-consuming work of implementing reactive Angular 2 forms by building
+upon a layer of easy-to-handle object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
+It also provides a flexible system of dynamic UI components with out of the box support for 
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
 
 
 ##Table of Contents
@@ -94,7 +95,32 @@ npm start
 
 ## Basic Usage
 
-**1. Define your dynamic form model as** `Array<DynamicFormControlModel>`:
+**1. Import the ng2 Dynamic Forms core** `NgModule` **and a corresponding UI** `NgModule`:
+```ts
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
+
+// ..all remaining component and routing imports
+
+@NgModule({
+    imports: [
+        DynamicFormsCoreModule.forRoot(), 
+        DynamicFormsBootstrapUIModule, 
+        BrowserModule, 
+        FormsModule, 
+        ReactiveFormsModule
+        // ...all remaining imports
+    ],
+    declarations: [AppComponent, MyDynamicFormComponent],
+    bootstrap: [AppComponent]
+})
+
+export class AppModule {}
+```
+
+**2. Define your dynamic form model as** `Array<DynamicFormControlModel>`:
 ```ts
 import {
     DynamicFormControlModel
@@ -141,26 +167,6 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
         label: "I do agree"
     })
 ];
-```
-
-**2. Import and plug in a ng2 Dynamics Forms UI** `NgModule`:
-```ts
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
-
-// ..all remaining component and routing imports
-
-@NgModule({
-
-    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
-    declarations: [AppComponent, MyDynamicFormComponent],
-    
-    // ...all remaining definitions (routing providers, bootstrap, exports)
-})
-
-export class AppModule {}
 ```
 
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
@@ -213,17 +219,19 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```ts
 @NgModule({
 
-    imports: [DynamicFormsBootstrapUIModule, BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [
+        DynamicFormsCoreModule.forRoot(),
+        DynamicFormsBootstrapUIModule, 
+        BrowserModule, 
+        FormsModule, 
+        ReactiveFormsModule
+    ],
     
-    // ...all remaining definitions (declarations, routing providers, bootstrap, exports)
+    // ...all remaining definitions
 })
 
 export class AppModule {}
 ```
-
-> **UI modules re-export** `DynamicFormsCoreModule` 
-**so you don't need to explicitly import it to your app module**!
-
 
 Every UI `NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
@@ -547,8 +555,6 @@ Delivering meaningful validation information to the user is an essential part of
 with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
 you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
 to gain much more control over validation logic and it's corresponding message output.
-
-> **Note**: There's still some [incompatibility](https://github.com/angular/angular/issues/5976) with Angular 2 validation and it's native HTML5 counterpart!
 
 ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
 would be off the original subject and result in a library too opinionated.

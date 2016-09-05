@@ -47,10 +47,10 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultModel.cls.grid.label).toEqual("");
         });
 
-        it("tests if correct default help property is set", () => {
+        it("tests if correct default hint property is set", () => {
 
-            expect(defaultModel.help).toBeDefined();
-            expect(defaultModel.help).toBeNull();
+            expect(defaultModel.hint).toBeDefined();
+            expect(defaultModel.hint).toBeNull();
         });
 
         it("tests if correct default label properties aree set", () => {
@@ -68,7 +68,13 @@ describe("DynamicInputModel test suite", () => {
         it("tests if correct default maxLength property is set", () => {
 
             expect(defaultModel.maxLength).toBeDefined();
-            expect(defaultModel.maxLength).toBe(100);
+            expect(defaultModel.maxLength).toBeNull();
+        });
+
+        it("tests if correct default minLength property is set", () => {
+
+            expect(defaultModel.minLength).toBeDefined();
+            expect(defaultModel.minLength).toBeNull();
         });
         
         it("tests if correct default min property is set", () => {

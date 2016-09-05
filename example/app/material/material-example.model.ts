@@ -10,6 +10,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
 
     new DynamicInputModel({
 
+        hint: "Just a simple hint text",
         id: "materialInput",
         label: "Example Input",
         maxLength: 51,

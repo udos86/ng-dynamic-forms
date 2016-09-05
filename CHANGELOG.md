@@ -1,3 +1,33 @@
+# beta.14
+
+### **Major Breaking Changes** 
+
+* **!!! IMPORTANT !!!** `DynamicFormsCoreModule` now needs to be imported in app root `NgModule` via `forRoot()`
+* **!!! IMPORTANT !!!** `disabled` property bindings were removed! Use `disable()`and `enable()` functions of `DynamicFormControlComponent` instead
+(see *Known Issues* for explanation)
+* `help` property of `DynamicFormControlModel` renamed to `hint`
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+ 
+* Migration to Angular 2 RC.6
+* Migration to Angular 2 Material alpha.8
+* `required` property binding re-added to `DynamicFormControlComponent`s due to [**fixes**](https://github.com/angular/angular/issues/5976) in Angular 2 RC.6
+* `tabIndex` property added to `DynamicFormValueControlModel`
+
+### **Known Issues**
+
+* Changing the `disabled` property of `DynamicFormControlModel` after initialization **has no effect**. 
+This is due to Angular 2 RC.6 [**not supporting**](https://github.com/angular/angular/pull/11271) `disabled` property bindings anymore!
+Use `disable()`and `enable()` functions of `DynamicFormControlComponent` as a workaround!
+
+* Setting `disabled: true` on any `DynamicFormControlModel` in `ui-material` causes an exception. 
+This is due to a [**bug**](https://github.com/angular/material2/issues/1171) in Angular 2 Material alpha.8-1.
+
+
 # beta.13
 
 ### **Major Breaking Changes** 

@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Material UI package for ng2 Dynamic Forms",
   "main": "index.js",
   "repository": {
@@ -18,13 +18,13 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.5",
-    "@angular/forms": "^0.3.0",
-    "@angular/platform-browser": "^2.0.0-rc.5",
-    "@angular2-material/checkbox": "^2.0.0-alpha.7-2",
-    "@angular2-material/core": "^2.0.0-alpha.7-2",
-    "@angular2-material/input": "^2.0.0-alpha.7-2",
-    "@angular2-material/radio": "^2.0.0-alpha.7-2",
-    "@ng2-dynamic-forms/core": "^1.0.0-beta.13"
+    "@angular/core": "^2.0.0-rc.6",
+    "@angular/forms": "^2.0.0-rc.6",
+    "@angular/platform-browser": "^2.0.0-rc.6",
+    "@angular2-material/checkbox": "^2.0.0-alpha.8-1",
+    "@angular2-material/core": "^2.0.0-alpha.8-1",
+    "@angular2-material/input": "^2.0.0-alpha.8-1",
+    "@angular2-material/radio": "^2.0.0-alpha.8-1",
+    "@ng2-dynamic-forms/core": "^1.0.0-beta.14"
   }
 }

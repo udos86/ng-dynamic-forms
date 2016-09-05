@@ -12,7 +12,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     customTemplate: TemplateRef<any>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    type: string; // must be defined by sublcass
+    type: string; // must be defined by subclass
 
     incompatibilities: Array<string> = [];
 
@@ -25,7 +25,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
             throw new Error(`Control ${this.model.id} of type ${this.model.type} is not supported by ${this.type} UI package.`);
         }
 
-        this.control = <FormControl> this.controlGroup.controls[this.model.id];
+        this.control = <FormControl> this.controlGroup.get(this.model.id);
         //@exclude
         this.control.valueChanges.subscribe((value: any) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid);
@@ -49,11 +49,29 @@ export abstract class DynamicFormControlComponent implements OnInit {
         return this.control.valid;
     }
 
+    disable() {
+
+        this.control.disable();
+        this.model.disabled = true;
+    }
+
+    enable() {
+
+        this.control.enable();
+        this.model.disabled = false;
+    }
+
     onBlur($event) {
 
         this.hasFocus = false;
         //@exclude
         console.log(this.model.id + " field is blurred");
+        //@endexclude
+    }
+
+    onChange($event) {
+        //@exclude
+        console.log(this.model.id + " field is changed", $event);
         //@endexclude
     }
 

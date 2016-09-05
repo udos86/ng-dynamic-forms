@@ -1,7 +1,5 @@
-// Karma configuration
-// Generated on Thu Jun 02 2016 18:45:36 GMT+0200 (CEST)
-
 module.exports = function (config) {
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -14,20 +12,21 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-
             'node_modules/core-js/client/shim.min.js',
             'node_modules/reflect-metadata/Reflect.js',
-            'node_modules/zone.js/dist/zone.js',
-            'node_modules/zone.js/dist/async-test.js',
-
-            'node_modules/systemjs/dist/system-polyfills.js',
             'node_modules/systemjs/dist/system.src.js',
 
-            {pattern: 'node_modules/symbol-observable/**/*.js', included: false, watched: false},
+            'node_modules/zone.js/dist/zone.js',
+            'node_modules/zone.js/dist/long-stack-trace-zone.js',
+            'node_modules/zone.js/dist/proxy.js',
+            'node_modules/zone.js/dist/sync-test.js',
+            'node_modules/zone.js/dist/jasmine-patch.js',
+            'node_modules/zone.js/dist/async-test.js',
+            'node_modules/zone.js/dist/fake-async-test.js',
 
             {pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false},
-            
+
             {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
 
@@ -36,16 +35,11 @@ module.exports = function (config) {
 
             {pattern: 'node_modules/primeng/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/primeng/**/*.js.map', included: false, watched: false},
-            
+
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js.map', included: false, watched: false},
 
-            {pattern: 'modules/core/src/**/*.*', included: false, watched: true},
-            {pattern: 'modules/ui-basic/src/**/*.*', included: false, watched: true},
-            {pattern: 'modules/ui-bootstrap/src/**/*.*', included: false, watched: true},
-            {pattern: 'modules/ui-foundation/src/**/*.*', included: false, watched: true},
-            {pattern: 'modules/ui-material/src/**/*.*', included: false, watched: true},
-            {pattern: 'modules/ui-primeng/src/**/*.*', included: false, watched: true},
+            {pattern: 'modules/**/*.*', included: false, watched: true},
 
             'karma-test-shim.js'
         ],

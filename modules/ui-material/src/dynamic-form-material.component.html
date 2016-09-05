@@ -8,7 +8,6 @@
 
 
     <fieldset *ngSwitchCase="'GROUP'"
-              [disabled]="model.disabled"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -16,8 +15,8 @@
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
         <dynamic-form-material-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="controlGroup.controls[model.id]"
-                                    [model]="controlModel"></dynamic-form-material-control>
+                                       [controlGroup]="control"
+                                       [model]="controlModel"></dynamic-form-material-control>
     </fieldset>
 
 
@@ -29,8 +28,8 @@
                   [formGroupName]="idx">
 
             <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
-                                        [controlGroup]="controlGroup.controls[model.id].controls[idx]"
-                                        [model]="controlModel"></dynamic-form-material-control>
+                                           [controlGroup]="control.at(idx)"
+                                           [model]="controlModel"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate"
                       [ngOutletContext]="groupModel"></template>
@@ -43,19 +42,18 @@
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [checked]="model.value"
-                 [disabled]="model.disabled"
                  [formControlName]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [ngClass]="model.cls.element.control"
-                 [(ngModel)]="model.value"
+
                  (blur)="onBlur($event)"
+                 (change)="onChange($event)"
                  (focus)="onFocus($event)">{{model.label}}
     </md-checkbox>
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-              [disabled]="model.disabled"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -65,41 +63,45 @@
         <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
                      [checked]="model.value"
-                     [disabled]="item.disabled"
                      [formControlName]="item.id"
                      [indeterminate]="item.indeterminate"
                      [name]="item.name"
                      [ngClass]="item.cls.element.control"
-                     [(ngModel)]="item.value"
                      (blur)="onBlur($event)"
-                     (focus)="onFocus($event)">{{item.label}}
-        </md-checkbox>
+                     (change)="onChange($event)"
+                     (focus)="onFocus($event)"
+                     [(ngModel)]="item.value">{{item.label}}</md-checkbox>
 
     </fieldset>
 
 
     <md-input *ngSwitchCase="'INPUT'"
-              [attr.autofocus]="model.autoFocus"
-              [disabled]="model.disabled"
+              [autocomplete]="model.autoComplete"
+              [autofocus]="model.autoFocus"
               [formControlName]="model.id"
+              [hintLabel]="model.help"
+              [list]="model.listId"
               [max]="model.max"
+              [maxlength]="model.maxLength"
               [min]="model.min"
+              [minlength]="model.minLength"
               [name]="model.name"
-              [placeholder]="model.placeholder"
-              [step]="model.step"
-              [type]="model.inputType"
               [ngClass]="model.cls.element.control"
-              [(ngModel)]="model.value"
+              [placeholder]="model.placeholder"
+              [readonly]="model.readOnly"
+              [required]="model.required"
+              [spellcheck]="model.spellCheck"
+              [step]="model.step"
+              [tabindex]="model.tabIndex"
+              [type]="model.inputType"
               (blur)="onBlur($event)"
-              (focus)="onFocus($event)">
+              (change)="onChange($event)"
+              (focus)="onFocus($event)"
+              [(ngModel)]="model.value">
 
         <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
         <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
-        <!--
-        <md-hint *ngIf="model.showLength" align="end">
-            {{characterCount}} / {{model.maxLength}}
-        </md-hint>
-        -->
+
     </md-input>
 
 
@@ -107,15 +109,16 @@
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
-                    [(ngModel)]="model.value"
                     (blur)="onBlur($event)"
-                    (focus)="onFocus($event)">
+                    (change)="onChange($event)"
+                    (focus)="onFocus($event)"
+                    [(ngModel)]="model.value">
 
         <md-radio-button *ngFor="let option of model.options"
-                         [disabled]="!!option.disabled"
                          [name]="model.name"
                          [value]="option.value">{{option.label}}
         </md-radio-button>
+
     </md-radio-group>
 
     <ng-content></ng-content>
