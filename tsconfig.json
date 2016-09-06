@@ -11,6 +11,7 @@
     "noImplicitAny": false
   },
   "exclude": [
+    "@ng2-dynamic-forms",
     "node_modules",
     "typings/main",
     "typings/main.d.ts"
