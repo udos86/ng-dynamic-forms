@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormPrimeNGComponent} from "./dynamic-form-primeng.component";
@@ -12,7 +12,7 @@ import {SpinnerModule} from "primeng/components/spinner/spinner";
 
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule,
         ReactiveFormsModule,
         DynamicFormsCoreModule,
