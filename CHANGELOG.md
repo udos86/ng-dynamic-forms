@@ -1,3 +1,18 @@
+# beta.15
+
+### **Major Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* bad `BrowserModule` imports replaced by `CommonModule` (closes [#89](https://github.com/udos86/ng2-dynamic-forms/issues/89))  
+
+### **Features**
+ 
+* Migration to PrimeNG beta.15 (`ui-primeng` working again)
+
+
 # beta.14
 
 ### **Major Breaking Changes** 

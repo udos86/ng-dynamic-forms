@@ -13,13 +13,13 @@ import {DynamicFormsBasicUIModule} from "@ng2-dynamic-forms/ui-basic";
 import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 import {DynamicFormsFoundationUIModule} from "@ng2-dynamic-forms/ui-foundation";
 import {DynamicFormsMaterialUIModule} from "@ng2-dynamic-forms/ui-material";
-//import {DynamicFormsPrimeNGUIModule} from "@ng2-dynamic-forms/ui-primeng";
+import {DynamicFormsPrimeNGUIModule} from "@ng2-dynamic-forms/ui-primeng";
 
 import {BasicExampleComponent} from "./basic/basic-example.component";
 import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
 import {FoundationExampleComponent} from "./foundation/foundation-example.component";
 import {MaterialExampleComponent} from "./material/material-example.component";
-//import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
+import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 
 import {appRouting, appRoutingProviders} from './app.routing';
 import {AppComponent} from './app.component';
@@ -37,18 +37,18 @@ import {AppComponent} from './app.component';
         DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,
         DynamicFormsMaterialUIModule,
-        /*DynamicFormsPrimeNGUIModule,*/
+        DynamicFormsPrimeNGUIModule,
         MdButtonModule.forRoot(),
         MdCheckboxModule.forRoot(),
         MdInputModule.forRoot(),
-        MdRadioModule.forRoot(),
+        MdRadioModule.forRoot()
     ],
     declarations: [
         BasicExampleComponent,
         BootstrapExampleComponent,
         FoundationExampleComponent,
         MaterialExampleComponent,
-        /*PrimeNGExampleComponent,*/
+        PrimeNGExampleComponent,
         AppComponent
     ],
     providers: [appRoutingProviders],

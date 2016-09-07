@@ -1,12 +1,12 @@
 import {NgModule, ModuleWithProviders} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormService} from "./service/dynamic-form.service";
 import {DynamicFormAutoFillService} from "./service/dynamic-form-autofill.service";
 
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule,
         ReactiveFormsModule,
     ]
