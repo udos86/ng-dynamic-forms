@@ -1,6 +1,7 @@
 var pkg = require("./package.json");
 var gulp = require("gulp");
 var del = require("del");
+var deleteLines = require("gulp-delete-lines");
 var htmlMinifier = require("html-minifier");
 var inlineTemplate = require("gulp-inline-ng2-template");
 var preprocess = require("gulp-preprocess");
@@ -22,8 +23,8 @@ gulp.task("clean:modules", function () {
 gulp.task("lint:modules", function () {
 
     return gulp.src(["./modules/**/*.ts"], {base: "modules"})
-        .pipe(tslint({configuration: "./tslint.json"}))
-        .pipe(tslint.report());
+               .pipe(tslint({configuration: "./tslint.json"}))
+               .pipe(tslint.report());
 });
 
 
@@ -39,9 +40,9 @@ gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
             "!./modules/**/*.spec.*"
         ],
         {base: "modules"})
-        .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-        .pipe(preprocess())
-        .pipe(gulp.dest(DIST_PATH));
+               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
+               .pipe(preprocess())
+               .pipe(gulp.dest(DIST_PATH));
 });
 
 
@@ -64,14 +65,17 @@ gulp.task("inline:templates", ["preprocess:modules"], function () {
     }
 
     return gulp.src([DIST_PATH + "**/*.js"], {base: DIST_PATH})
-        .pipe(inlineTemplate({
-            base: DIST_PATH,
-            removeLineBreaks: true,
-            target: "es5",
-            templateProcessor: minify,
-            useRelativePaths: true
-        }))
-        .pipe(gulp.dest(DIST_PATH));
+               .pipe(deleteLines({
+                   'filters': [/moduleId: module.id/]
+               }))
+               .pipe(inlineTemplate({
+                   base: DIST_PATH,
+                   removeLineBreaks: true,
+                   target: "es5",
+                   templateProcessor: minify,
+                   useRelativePaths: true
+               }))
+               .pipe(gulp.dest(DIST_PATH));
 });
 
 
@@ -81,15 +85,15 @@ gulp.task("build:documentation", function () {
             "./modules/*/src/**/*.ts"
         ],
         {read: false})
-        .pipe(typedoc({
-            exclude: "./modules/**/*.spec.ts",
-            module: "commonjs",
-            target: "es5",
-            out: "./docs/",
-            name: "ng2 Dynamic Forms",
-            includeDeclarations: true,
-            ignoreCompilerErrors: true
-        }));
+               .pipe(typedoc({
+                   exclude: "./modules/**/*.spec.ts",
+                   module: "commonjs",
+                   target: "es5",
+                   out: "./docs/",
+                   name: "ng2 Dynamic Forms",
+                   includeDeclarations: true,
+                   ignoreCompilerErrors: true
+               }));
 });
 
 
@@ -107,9 +111,9 @@ gulp.task("increment:version", function () {
             "./modules/**/package.json"
         ],
         {base: "./modules"})
-        .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
-        .pipe(replace(dependencyField, "$1" + '"^' + newVersionString + '"'))
-        .pipe(gulp.dest("./modules"));
+               .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
+               .pipe(replace(dependencyField, "$1" + '"^' + newVersionString + '"'))
+               .pipe(gulp.dest("./modules"));
 });
 
 

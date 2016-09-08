@@ -27,6 +27,12 @@
         "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
         "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
         "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
+        '@ng2-dynamic-forms/core': '../@ng2-dynamic-forms/core/core.umd.js',
+        '@ng2-dynamic-forms/ui-basic': '../@ng2-dynamic-forms/ui-basic/ui-basic.umd.js',
+        '@ng2-dynamic-forms/ui-bootstrap': '../@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js',
+        '@ng2-dynamic-forms/ui-foundation': '../@ng2-dynamic-forms/ui-foundation/ui-foundation.umd.js',
+        '@ng2-dynamic-forms/ui-material': '../@ng2-dynamic-forms/ui-material/ui-material.umd.js',
+        '@ng2-dynamic-forms/ui-primeng': '../@ng2-dynamic-forms/ui-primeng/ui-primeng.umd.js',
         "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "app": "app",
         "primeng": "npm:primeng",
@@ -49,23 +55,6 @@
             defaultExtension: "js"
         }
     };
-
-    var ng2DynamicFormsPackageNames = [
-        "@ng2-dynamic-forms/core",
-        "@ng2-dynamic-forms/ui-basic",
-        "@ng2-dynamic-forms/ui-bootstrap",
-        "@ng2-dynamic-forms/ui-foundation",
-        "@ng2-dynamic-forms/ui-material",
-        "@ng2-dynamic-forms/ui-primeng"
-    ];
-
-    ng2DynamicFormsPackageNames.forEach(function (packageName) {
-
-        packages[packageName] = {
-            main: "index.js",
-            defaultExtension: "js"
-        };
-    });
 
     var config = {
         paths: paths,
