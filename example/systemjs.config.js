@@ -1,4 +1,4 @@
-(function (global) {
+(function (context) {
 
     var paths = {
         'npm:': '../node_modules/'
@@ -78,10 +78,10 @@
         packages: packages
     };
 
-    if (global.filterSystemConfig) {
-        global.filterSystemConfig(config);
+    if (context.filterSystemConfig) {
+        context.filterSystemConfig(config);
     }
 
     System.config(config);
 
-})(this);
+})(window);
