@@ -1,6 +1,6 @@
 .idea/
 .DS_STORE
-.npm-debug.log
+npm-debug.log
 
 coverage/
 docs/
