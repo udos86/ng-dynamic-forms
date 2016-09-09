@@ -1,5 +1,6 @@
 var pkg = require("./package.json");
 var gulp = require("gulp");
+var util = require("gulp-util");
 var del = require("del");
 var deleteLines = require("gulp-delete-lines");
 var htmlMinifier = require("html-minifier");
@@ -8,8 +9,17 @@ var preprocess = require("gulp-preprocess");
 var replace = require("gulp-replace");
 var tslint = require("gulp-tslint");
 var typedoc = require("gulp-typedoc");
+var webpack = require("webpack");
 
 var DIST_PATH = "./@ng2-dynamic-forms/";
+
+gulp.task("lint:modules", function () {
+
+    return gulp.src(["./modules/**/*.ts"], {base: "modules"})
+               .pipe(tslint({configuration: "./tslint.json"}))
+               .pipe(tslint.report());
+});
+
 
 gulp.task("clean:modules", function () {
 
@@ -20,15 +30,7 @@ gulp.task("clean:modules", function () {
 });
 
 
-gulp.task("lint:modules", function () {
-
-    return gulp.src(["./modules/**/*.ts"], {base: "modules"})
-               .pipe(tslint({configuration: "./tslint.json"}))
-               .pipe(tslint.report());
-});
-
-
-gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
+gulp.task("prepare:modules", ["lint:modules", "clean:modules"], function () {
 
     return gulp.src([
             "./modules/**/*.json",
@@ -40,13 +42,11 @@ gulp.task("preprocess:modules", ["clean:modules", "lint:modules"], function () {
             "!./modules/**/*.spec.*"
         ],
         {base: "modules"})
-               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-               .pipe(preprocess())
                .pipe(gulp.dest(DIST_PATH));
 });
 
 
-gulp.task("inline:templates", ["preprocess:modules"], function () {
+gulp.task("inline:ng2-templates", ["prepare:modules"], function () {
 
     function minify(path, ext, file, callback) {
         try {
@@ -79,12 +79,37 @@ gulp.task("inline:templates", ["preprocess:modules"], function () {
 });
 
 
+gulp.task("bundle:modules", ["inline:ng2-templates"], function (callback) {
+
+    webpack(require("./webpack.config"), function (error, stats) {
+
+        if (error) {
+            throw new util.PluginError("webpack", error);
+        }
+
+        util.log("Webpack", stats.toString({
+            chunks: false,
+            colors: true,
+            hash: false,
+            version: false
+        }));
+        callback();
+    });
+});
+
+
+gulp.task("prime:modules", ["lint:modules", "clean:modules", "prepare:modules", "inline:ng2-templates", "bundle:modules"], function () {
+
+    return gulp.src([DIST_PATH + "**/*.*",], {base: "@ng2-dynamic-forms"})
+               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
+               .pipe(preprocess())
+               .pipe(gulp.dest(DIST_PATH));
+});
+
+
 gulp.task("build:documentation", function () {
 
-    return gulp.src([
-            "./modules/*/src/**/*.ts"
-        ],
-        {read: false})
+    return gulp.src(["./modules/*/src/**/*.ts"], {read: false})
                .pipe(typedoc({
                    exclude: "./modules/**/*.spec.ts",
                    module: "commonjs",
@@ -106,15 +131,18 @@ gulp.task("increment:version", function () {
         versionField = /("version":\s)"\d\.\d\.\d-[a-z]+\.\d{1,2}"/,
         dependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d\.\d\.\d-[a-z]+\.\d{1,2}"/g;
 
-    return gulp.src([
-            "./package.json",
-            "./modules/**/package.json"
-        ],
-        {base: "./modules"})
+    return gulp.src(["./package.json", "./modules/**/package.json"], {base: "./modules"})
                .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
                .pipe(replace(dependencyField, "$1" + '"^' + newVersionString + '"'))
                .pipe(gulp.dest("./modules"));
 });
 
 
-gulp.task("build:modules", ["clean:modules", "lint:modules", "preprocess:modules", "inline:templates"]);
+gulp.task("build:modules", [
+    "lint:modules",
+    "clean:modules",
+    "prepare:modules",
+    "inline:ng2-templates",
+    "bundle:modules",
+    "prime:modules"
+]);

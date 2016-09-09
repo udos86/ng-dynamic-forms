@@ -78,6 +78,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-tslint": "^6.1.1",
     "gulp-typedoc": "^2.0.0",
+    "gulp-util": "^3.0.7",
     "html-minifier": "^3.0.2",
     "jasmine-core": "^2.4.1",
     "jasmine-spec-reporter": "^2.7.0",

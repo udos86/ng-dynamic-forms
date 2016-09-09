@@ -1,3 +1,18 @@
+# beta.16
+
+### **Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+ 
+* UMD bundles added (see README.md and sample application)
+
+
 # beta.15
 
 ### **Major Breaking Changes** 

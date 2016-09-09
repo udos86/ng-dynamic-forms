@@ -43,33 +43,18 @@ System.config({
         "@angular2-material/checkbox": "npm:@angular2-material/checkbox/checkbox.umd.js",
         "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
         "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
-        "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
+        '@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js',
+        '@ng2-dynamic-forms/ui-basic': 'npm:@ng2-dynamic-forms/ui-basic/ui-basic.umd.js',
+        '@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js',
+        '@ng2-dynamic-forms/ui-foundation': 'npm:@ng2-dynamic-forms/ui-foundation/ui-foundation.umd.js',
+        '@ng2-dynamic-forms/ui-material': 'npm:@ng2-dynamic-forms/ui-material/ui-material.umd.js',
+        '@ng2-dynamic-forms/ui-primeng': 'npm:@ng2-dynamic-forms/ui-primeng/ui-primeng.umd.js',
         "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     },
 
     packages: {
-        "@ng2-dynamic-forms/core": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
-        "@ng2-dynamic-forms/ui-basic": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
-        "@ng2-dynamic-forms/ui-bootstrap": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
-        "@ng2-dynamic-forms/ui-foundation": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
-        "@ng2-dynamic-forms/ui-material": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
         'modules': {
             defaultExtension: 'js'
         },

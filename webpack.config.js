@@ -41,9 +41,9 @@ module.exports = {
 
     output: {
         filename: "[name].umd.js",
-        library: ['@ng2-dynamic-forms', '[name]'],
-        libraryTarget: 'umd',
-        path: './'
+        library: ["ng2-dynamic-forms", "[name]"],
+        libraryTarget: "umd",
+        path: "./"
         //umdNamedDefine: '[name]'
     }
 };
