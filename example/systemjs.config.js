@@ -26,19 +26,19 @@
         "@angular2-material/checkbox": "npm:@angular2-material/checkbox/checkbox.umd.js",
         "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
         "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
-        '@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js',
-        '@ng2-dynamic-forms/ui-basic': 'npm:@ng2-dynamic-forms/ui-basic/ui-basic.umd.js',
-        '@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js',
-        '@ng2-dynamic-forms/ui-foundation': 'npm:@ng2-dynamic-forms/ui-foundation/ui-foundation.umd.js',
-        '@ng2-dynamic-forms/ui-material': 'npm:@ng2-dynamic-forms/ui-material/ui-material.umd.js',
-        '@ng2-dynamic-forms/ui-primeng': 'npm:@ng2-dynamic-forms/ui-primeng/ui-primeng.umd.js',
+        "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
+        //'@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js',
+        //'@ng2-dynamic-forms/ui-basic': 'npm:@ng2-dynamic-forms/ui-basic/ui-basic.umd.js',
+        //'@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js',
+        //'@ng2-dynamic-forms/ui-foundation': 'npm:@ng2-dynamic-forms/ui-foundation/ui-foundation.umd.js',
+        //'@ng2-dynamic-forms/ui-material': 'npm:@ng2-dynamic-forms/ui-material/ui-material.umd.js',
+        //'@ng2-dynamic-forms/ui-primeng': 'npm:@ng2-dynamic-forms/ui-primeng/ui-primeng.umd.js',
         "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "app": "app",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     };
 
-    // packages tells the System loader how to load when no filename and/or no extension is indicated
     var packages = {
         "angular2-in-memory-web-api": {
             defaultExtension: "js"
@@ -55,13 +55,29 @@
         }
     };
 
+    var ng2DynamicFormsPackageNames = [
+        "@ng2-dynamic-forms/core",
+        "@ng2-dynamic-forms/ui-basic",
+        "@ng2-dynamic-forms/ui-bootstrap",
+        "@ng2-dynamic-forms/ui-foundation",
+        "@ng2-dynamic-forms/ui-material",
+        "@ng2-dynamic-forms/ui-primeng"
+    ];
+
+    ng2DynamicFormsPackageNames.forEach(function (packageName) {
+
+        packages[packageName] = {
+            main: "index.js",
+            defaultExtension: "js"
+        };
+    });
+
     var config = {
         paths: paths,
         map: map,
         packages: packages
     };
 
-    // filterSystemConfig - index.html's chance to modify config before we register it.
     if (global.filterSystemConfig) {
         global.filterSystemConfig(config);
     }

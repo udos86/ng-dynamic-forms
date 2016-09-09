@@ -42,7 +42,8 @@ gulp.task("prepare:modules", ["lint:modules", "clean:modules"], function () {
             "!./modules/**/*.spec.*"
         ],
         {base: "modules"})
-               //.pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
+               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
+               .pipe(preprocess())
                .pipe(gulp.dest(DIST_PATH));
 });
 
@@ -101,10 +102,9 @@ gulp.task("bundle:modules", ["inline:ng2-templates"], function (callback) {
 
 gulp.task("prime:modules", ["lint:modules", "clean:modules", "prepare:modules", "inline:ng2-templates", "bundle:modules"], function () {
 
-    return gulp.src([DIST_PATH + "**/*.js",], {base: "@ng2-dynamic-forms"})
-               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-               .pipe(preprocess())
+    return gulp.src([DIST_PATH + "**/*.umd.js",], {base: "@ng2-dynamic-forms"})
                .pipe(deleteLines({'filters': [/# sourceMappingURL=/]}))
+               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
                .pipe(gulp.dest(DIST_PATH));
 });
 
