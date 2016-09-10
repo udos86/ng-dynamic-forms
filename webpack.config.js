@@ -36,7 +36,17 @@ module.exports = {
     plugins: [
         new webpack.BannerPlugin(
             `${package.name} ${package.version} ${dateformat(now, "dd.mm.yyyy HH:MM")} © ${package.author.name} ${dateformat(now, "yyyy")}`
-        )
+        ),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: [/*
+                "@ng2-dynamic-forms/core/core",
+                "@ng2-dynamic-forms/ui-basic/ui-basic",
+                "@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap",
+                "@ng2-dynamic-forms/ui-foundation/ui-foundation",
+                "@ng2-dynamic-forms/ui-material/ui-material",
+                "@ng2-dynamic-forms/ui-primeng/ui-primeng"
+            */]
+        })
     ],
 
     output: {

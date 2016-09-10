@@ -3,6 +3,7 @@
   "version": "1.0.0-beta.15",
   "description": "A rapid form development library for Angular 2",
   "scripts": {
+    "ci:build": "gulp build:modules",
     "ci:test": "karma start --single-run",
     "ci:tsc": "tsc && echo ok || echo not ok",
     "ci:typings": "typings install",

@@ -5,4 +5,5 @@ node_js:
 script:
   - npm run ci:typings
   - npm run ci:tsc
+  - npm run ci:build
   - npm run ci:test
