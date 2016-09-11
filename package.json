@@ -9,7 +9,7 @@
     "ci:typings": "typings install",
     "gulp": "gulp",
     "karma": "karma",
-    "start": "lite-server -c bs-config.js",
+    "start": "lite-server -c browsersync.config.js",
     "tests:e2e": "protractor",
     "tests:unit": "karma start --single-run",
     "tsc": "tsc -watch",
