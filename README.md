@@ -36,14 +36,14 @@ It also provides a flexible system of dynamic UI components with out of the box 
 npm install @ng2-dynamic-forms/core --save
 ```
   
-**2. Choose your UI library** (e.g. Bootstrap) and **install the corresponding package**:
+**2. Choose your UI library** (e.g. [**Bootstrap**](http://getbootstrap.com)) and **install the corresponding package**:
 ```
 npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
 
 **3.** When using **SystemJS**, update your configuration file:
 
-**Approach A**: import UMD bundles
+**Approach A** (import UMD bundles)
 ```ts
 System.config({
 
@@ -61,7 +61,7 @@ System.config({
 });
 ```
 
-**Approach B**: import single module files
+**Approach B** (import single module files)
 ```ts
 System.config({
 
@@ -91,7 +91,7 @@ System.config({
 
 ## Running the Example
 
-**1. Clone the ng2 Dynamic Forms git repository**:
+**1. Clone the ng2 Dynamic Forms Git repository**:
 ```
 git clone https://github.com/udos86/ng2-dynamic-forms.git
 ```
@@ -132,7 +132,7 @@ import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
         ReactiveFormsModule
         // ...all remaining imports
     ],
-    declarations: [AppComponent, MyDynamicFormComponent],
+    declarations: [AppComponent],
     bootstrap: [AppComponent]
 })
 
@@ -222,12 +222,13 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **Basic** (unstyled HTML5)
+* **Basic** (pure HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
 * **[Foundation](http://foundation.zurb.com/)**
-* **[Material](https://github.com/angular/material2)**
+* **[Material 2](https://github.com/angular/material2)**
 * **[PrimeNG](http://www.primefaces.org/primeng/#/)**
-* *Kendo UI (coming Q3/Q4)*
+* **[Semantic UI](https://semantic-ui-angular2.herokuapp.com/)** (*planned*)
+* **[Kendo UI](http://www.telerik.com/kendo-ui)** (*planned*)
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and it's peer dependencies** and **importing the corresponding UI** `NgModule`:
