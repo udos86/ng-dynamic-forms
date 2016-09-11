@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/core",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.16",
   "description": "A rapid form development library for Angular 2",
   "main": "index.js",
   "repository": {

@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms (beta.15)
+# ng2 Dynamic Forms (beta.16)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -43,7 +43,7 @@ npm install @ng2-dynamic-forms/ui-bootstrap --save
 
 **3.** When using **SystemJS**, update your configuration file:
 
-**import as UMD bundles:**
+**Approach A**: import UMD bundles
 ```ts
 System.config({
 
@@ -61,7 +61,7 @@ System.config({
 });
 ```
 
-**import as single module files:**
+**Approach B**: import single module files
 ```ts
 System.config({
 

@@ -4,7 +4,7 @@ module.exports = {
 
     server: {
 
-        baseDir: ['.', 'example'],
+        baseDir: [".", "example"],
         middleware: {
             1: require("connect-history-api-fallback")({index: indexPath})
         }
