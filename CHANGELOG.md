@@ -10,7 +10,7 @@
 
 ### **Features**
  
-* UMD bundles added (see README.md and sample application)
+* UMD bundles added (see README.md)
 
 
 # beta.15

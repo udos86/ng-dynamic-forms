@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.16",
   "description": "A rapid form development library for Angular 2",
   "scripts": {
     "ci:build": "gulp build:modules",
@@ -9,7 +9,7 @@
     "ci:typings": "typings install",
     "gulp": "gulp",
     "karma": "karma",
-    "start": "lite-server -c bs-config.js",
+    "start": "lite-server -c browsersync.config.js",
     "tests:e2e": "protractor",
     "tests:unit": "karma start --single-run",
     "tsc": "tsc -watch",
@@ -48,12 +48,12 @@
     "@angular2-material/core": "^2.0.0-alpha.8-1",
     "@angular2-material/input": "^2.0.0-alpha.8-1",
     "@angular2-material/radio": "^2.0.0-alpha.8-1",
-    "@ng2-dynamic-forms/core": "^1.0.0-beta.15",
-    "@ng2-dynamic-forms/ui-basic": "^1.0.0-beta.15",
-    "@ng2-dynamic-forms/ui-bootstrap": "^1.0.0-beta.15",
-    "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.15",
-    "@ng2-dynamic-forms/ui-material": "^1.0.0-beta.15",
-    "@ng2-dynamic-forms/ui-primeng": "^1.0.0-beta.15",
+    "@ng2-dynamic-forms/core": "^1.0.0-beta.16",
+    "@ng2-dynamic-forms/ui-basic": "^1.0.0-beta.16",
+    "@ng2-dynamic-forms/ui-bootstrap": "^1.0.0-beta.16",
+    "@ng2-dynamic-forms/ui-foundation": "^1.0.0-beta.16",
+    "@ng2-dynamic-forms/ui-material": "^1.0.0-beta.16",
+    "@ng2-dynamic-forms/ui-primeng": "^1.0.0-beta.16",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.2.3",
@@ -66,7 +66,7 @@
     "rxjs": "^5.0.0-beta.11",
     "symbol-observable": "^1.0.2",
     "systemjs": "^0.19.38",
-    "zone.js": "^0.6.17"
+    "zone.js": "^0.6.21"
   },
   "devDependencies": {
     "codelyzer": "0.0.28",

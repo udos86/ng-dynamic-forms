@@ -1,7 +1,9 @@
-# ng2 Dynamic Forms (beta.15)
+# ng2 Dynamic Forms (beta.16)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
+
+<img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" />
 
 ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
@@ -41,10 +43,27 @@ npm install @ng2-dynamic-forms/ui-bootstrap --save
 
 **3.** When using **SystemJS**, update your configuration file:
 
+**Approach A**: import UMD bundles
 ```ts
 System.config({
 
-    // ...all the rest (baseURL, etc.)
+    paths: {
+        "npm:": "node_modules/"
+    },
+
+    map: {
+
+        // ...all the rest (Angular 2, RxJS, etc.)
+
+        "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js",
+        "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js",
+    }
+});
+```
+
+**Approach B**: import single module files
+```ts
+System.config({
 
     map: {
 
@@ -563,8 +582,8 @@ As with form layouting, implementing validation messages should be entirely up t
 
 **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
 ```ts 
-import {Component, Input} from "angular2/core";
-import {FormControl} from "angular2/forms";
+import {Component, Input} from "@angular/core";
+import {FormControl} from "@angular/forms";
  
 @Component({
 

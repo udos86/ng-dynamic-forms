@@ -23,5 +23,3 @@ describe("DynamicFormBasicComponent test suite", () => {
         expect(true).toBeTruthy();
     });
 });
-
-
