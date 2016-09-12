@@ -10,7 +10,7 @@
 
 ### **Features**
  
-* `fromJSON()` function added to `DynamicFormServer` (closes [#79](https://github.com/udos86/ng2-dynamic-forms/issues/99))
+* `fromJSON()` function added to `DynamicFormService` (closes [#99](https://github.com/udos86/ng2-dynamic-forms/issues/99))
 
 
 # beta.16

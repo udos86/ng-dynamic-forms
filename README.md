@@ -552,7 +552,7 @@ storeForm() {
     
     let json: string = JSON.stringify(this.myDynamicFormModel);
     
-    // ...store data locally or transfer to server
+    // ...store JSON in localStorage or transfer to server
 }
 ```
 
@@ -568,7 +568,7 @@ restoreForm() {
     
     // ...load JSON from localStorage or server
 
-    let parsedJSON = JSON.parse(json);
+    let parsedJSON: Array<Object> = JSON.parse(json);
     
     this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
 }
