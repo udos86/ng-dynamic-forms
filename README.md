@@ -27,6 +27,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form Caching](#form-caching)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
+- [Appendix](#appendix)
 
 
 ## Getting Started
@@ -43,7 +44,7 @@ npm install @ng2-dynamic-forms/ui-bootstrap --save
 
 **3.** When using **SystemJS**, update your configuration file:
 
-**Approach A** (import UMD bundles)
+* **Approach A** (import UMD bundles)
 ```ts
 System.config({
 
@@ -61,7 +62,7 @@ System.config({
 });
 ```
 
-**Approach B** (import single module files)
+* **Approach B** (import single module files)
 ```ts
 System.config({
 
@@ -132,7 +133,7 @@ import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
         ReactiveFormsModule
         // ...all remaining imports
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, MyDynamicFormComponent],
     bootstrap: [AppComponent]
 })
 
@@ -693,3 +694,7 @@ new DynamicInputModel({
     list: ["One", "Two", "Three", "Four", "Five"]
 })
 ```
+
+## Appendix
+
+* Logo design made by [**oscarana**](http://www.oscarana-art.com)

@@ -1,4 +1,5 @@
 var package = require("./package.json");
+var license = require("fs").readFileSync("./LICENSE", "utf-8");
 var webpack = require("webpack");
 var dateformat = require("dateformat");
 var now = Date.now();
@@ -35,7 +36,7 @@ module.exports = {
 
     plugins: [
         new webpack.BannerPlugin(
-            `${package.name} ${package.version} ${dateformat(now, "dd.mm.yyyy HH:MM")} © ${package.author.name} ${dateformat(now, "yyyy")}`
+            `${package.name} ${package.version} ${dateformat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license}`
         )
     ],
 
