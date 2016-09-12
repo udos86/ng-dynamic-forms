@@ -1,3 +1,18 @@
+# beta.17
+
+### **Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+ 
+* `fromJSON()` function added to `DynamicFormServer` (closes [#79](https://github.com/udos86/ng2-dynamic-forms/issues/99))
+
+
 # beta.16
 
 ### **Breaking Changes** 
