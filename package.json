@@ -90,6 +90,7 @@
     "lite-server": "^2.2.2",
     "phantomjs-prebuilt": "^2.1.12",
     "protractor": "^4.0.5",
+    "systemjs-builder": "^0.15.31",
     "tslint": "^3.15.1",
     "typedoc": "^0.4.5",
     "typescript": "^1.8.10",
