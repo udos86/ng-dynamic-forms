@@ -24,8 +24,8 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
-- [Storing Forms](#storing-forms)
-- [Caching Forms](#caching-forms)
+- [Form JSON](#form-json)
+- [Form Caching](#form-caching)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
 - [Appendix](#appendix)
@@ -544,7 +544,7 @@ new DynamicInputModel(
 ```
 
 
-## Storing Forms
+## Form JSON
 
 Sooner or later you likely want to persist your dynamic form model using **JSON** in order to restore it at some point in the future:
 ```ts
@@ -575,7 +575,7 @@ restoreForm() {
 ```
 
 
-## Caching Forms
+## Form Caching
 
 One of the best things about ng2 Dynamic Forms, you won't recognize at first sight, is that you get **form
 caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
