@@ -10,6 +10,7 @@
 
 ### **Features**
  
+* Migration to Angular 2 RC.7 (closes [#100](https://github.com/udos86/ng2-dynamic-forms/issues/100)) 
 * `fromJSON()` function added to `DynamicFormService` (closes [#99](https://github.com/udos86/ng2-dynamic-forms/issues/99))
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/core",
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "description": "A rapid form development library for Angular 2",
   "main": "index.js",
   "repository": {
@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.7",
-    "@angular/common": "^2.0.0-rc.7",
-    "@angular/forms": "^2.0.0-rc.7"
+    "@angular/core": "^2.0.0",
+    "@angular/common": "^2.0.0",
+    "@angular/forms": "^2.0.0"
   }
 }

@@ -5,7 +5,7 @@ describe("AppComponent", () => {
     });
 
     it("should have a title", () => {
-        expect(browser.getTitle()).toEqual("ng2 Dynamics Forms samples");
+        expect(browser.getTitle()).toEqual("ng2 Dynamics Forms Sample App");
     });
     
 });
