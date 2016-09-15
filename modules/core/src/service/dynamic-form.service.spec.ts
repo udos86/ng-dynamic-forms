@@ -122,6 +122,28 @@ describe("DynamicFormService test suite", () => {
     }));
 
 
+    it("tests if fromJSON works correctly", inject([DynamicFormService], service => {
+
+        let json = JSON.parse(JSON.stringify(testModel)),
+            formModel;
+
+        expect(service.fromJSON).toBeDefined();
+
+        formModel = service.fromJSON(json);
+
+        expect(Array.isArray(formModel)).toBe(true);
+
+        expect(formModel[0] instanceof DynamicSelectModel).toBe(true);
+        expect(formModel[1] instanceof DynamicInputModel).toBe(true);
+        expect(formModel[2] instanceof DynamicCheckboxGroupModel).toBe(true);
+        expect(formModel[2]["group"].length).toBe(testModel[2].group.length);
+        expect(formModel[3] instanceof DynamicRadioGroupModel).toBe(true);
+        expect(formModel[4] instanceof DynamicTextAreaModel).toBe(true);
+        expect(formModel[5] instanceof DynamicCheckboxModel).toBe(true);
+        expect(formModel[6] instanceof DynamicFormArrayModel).toBe(true);
+    }));
+
+
     it("tests if findById works correctly", inject([DynamicFormService], service => {
 
         expect(service.findById).toBeDefined();

@@ -34,6 +34,8 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     initialCount: number;
     validator: ValidatorFn;
 
+    private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
+
     constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
@@ -44,12 +46,18 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         this.asyncValidator = getValue(config, "asyncValidator", null);
         this.createGroup = config["createGroup"];
+        this.groups = getValue(config, "groups", null);
         this.initialCount = getValue(config, "initialCount", 1);
+        this.originGroup = this.createGroup();
         this.type = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
         this.validator = getValue(config, "validator", null);
 
-        for (let i = 0; i < this.initialCount; i += 1) {
-            this.addGroup();
+        if (!Array.isArray(this.groups)) {
+
+            this.groups = [];
+            for (let i = 0; i < this.initialCount; i += 1) {
+                this.addGroup();
+            }
         }
     }
 

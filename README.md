@@ -24,6 +24,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Form JSON](#form-json)
 - [Form Caching](#form-caching)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocompletion](#form-autocompletion)
@@ -540,6 +541,37 @@ new DynamicInputModel(
         }
     }
 )
+```
+
+
+## Form JSON
+
+Sooner or later you likely want to persist your dynamic form model using **JSON** in order to restore it at some point in the future:
+```ts
+storeForm() {
+    
+    let json: string = JSON.stringify(this.myDynamicFormModel);
+    
+    // ...store JSON in localStorage or transfer to server
+}
+```
+
+Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
+recreating a form from JSON unfortunately becomes much more complicated. 
+
+The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
+
+```ts
+restoreForm() {
+
+    let json: string;
+    
+    // ...load JSON from localStorage or server
+
+    let parsedJSON: Array<Object> = JSON.parse(json);
+    
+    this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
+}
 ```
 
 

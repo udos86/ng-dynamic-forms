@@ -10,6 +10,7 @@ var replace = require("gulp-replace");
 var tslint = require("gulp-tslint");
 var typedoc = require("gulp-typedoc");
 var webpack = require("webpack");
+var Builder = require("systemjs-builder");
 
 var DIST_PATH = "./@ng2-dynamic-forms/";
 
@@ -81,7 +82,7 @@ gulp.task("inline:ng2-templates", ["prepare:modules"], function () {
 });
 
 
-gulp.task("bundle:modules", ["inline:ng2-templates"], function (callback) {
+gulp.task("bundle:modules:webpack", ["inline:ng2-templates"], function (callback) {
 
     webpack(require("./webpack.config"), function (error, stats) {
 
@@ -100,7 +101,42 @@ gulp.task("bundle:modules", ["inline:ng2-templates"], function (callback) {
 });
 
 
-gulp.task("prime:modules", ["lint:modules", "clean:modules", "prepare:modules", "inline:ng2-templates", "bundle:modules"], function () {
+gulp.task("bundle:modules:systemjs", ["inline:ng2-templates"], function (callback) {
+
+    var builder = new Builder({
+
+        map: {
+            "modules": "modules"
+        },
+        packages: {
+            "modules": {
+                defaultExtension: "js"
+            }
+        }
+    });
+
+    builder.buildStatic("modules/core/index.js", "bundles/core.umd.js", {
+
+        externals: [
+            "@angular/common",
+            "@angular/compiler",
+            "@angular/core",
+            "@angular/forms",
+            "@angular/http",
+            "@angular/platform-browser",
+            "@angular/platform-browser-dynamic",
+            "@angular/router",
+            "@angular2-material/checkbox",
+            "@angular2-material/core",
+            "@angular2-material/input",
+            "@angular2-material/radio",
+            "@ng2-dynamic-forms/core"
+        ]
+    }).then(function () {callback();});
+});
+
+
+gulp.task("prime:modules", ["lint:modules", "clean:modules", "prepare:modules", "inline:ng2-templates", "bundle:modules:webpack"], function () {
 
     return gulp.src([DIST_PATH + "**/*.umd.js",], {base: "@ng2-dynamic-forms"})
                .pipe(deleteLines({'filters': [/# sourceMappingURL=/]}))
@@ -145,6 +181,6 @@ gulp.task("build:modules", [
     "clean:modules",
     "prepare:modules",
     "inline:ng2-templates",
-    "bundle:modules",
+    "bundle:modules:webpack",
     "prime:modules"
 ]);
