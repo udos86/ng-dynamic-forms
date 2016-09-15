@@ -46,15 +46,19 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         this.asyncValidator = getValue(config, "asyncValidator", null);
         this.createGroup = config["createGroup"];
-        this.groups = getValue(config, "groups", null);
         this.initialCount = getValue(config, "initialCount", 1);
         this.originGroup = this.createGroup();
         this.type = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
         this.validator = getValue(config, "validator", null);
 
-        if (!Array.isArray(this.groups)) {
+        if (Array.isArray(config.groups)) {
 
-            this.groups = [];
+            config.groups.forEach((arrayGroup, index) => {
+                this.groups.push(new DynamicFormArrayGroupModel(arrayGroup.group, arrayGroup.index || index));
+            });
+
+        } else {
+
             for (let i = 0; i < this.initialCount; i += 1) {
                 this.addGroup();
             }

@@ -8,7 +8,10 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY
 } from "../model/form-array/dynamic-form-array.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP, DynamicCheckboxGroupModel} from "../model/checkbox/dynamic-checkbox-group.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DynamicCheckboxGroupModel
+} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel,} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input/dynamic-input.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
@@ -18,11 +21,7 @@ import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model
 @Injectable()
 export class DynamicFormService {
 
-    formBuilder: FormBuilder;
-
-    constructor(formBuilder: FormBuilder) {
-
-        this.formBuilder = formBuilder;
+    constructor(private formBuilder: FormBuilder) {
     }
 
     createFormArray(model: DynamicFormArrayModel): FormArray {
@@ -146,7 +145,7 @@ export class DynamicFormService {
                     break;
 
                 default:
-                    throw new Error(`no known form control type defined on JSON object`);
+                    throw new Error(`unknown form control type defined on JSON object`);
             }
         });
 

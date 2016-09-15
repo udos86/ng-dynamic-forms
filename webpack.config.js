@@ -7,12 +7,12 @@ var now = Date.now();
 module.exports = {
 
     entry: {
-        "@ng2-dynamic-forms/core/core": "./@ng2-dynamic-forms/core/index.js",
-        "@ng2-dynamic-forms/ui-basic/ui-basic": "./@ng2-dynamic-forms/ui-basic/index.js",
-        "@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap": "./@ng2-dynamic-forms/ui-bootstrap/index.js",
-        "@ng2-dynamic-forms/ui-foundation/ui-foundation": "./@ng2-dynamic-forms/ui-foundation/index.js",
-        "@ng2-dynamic-forms/ui-material/ui-material": "./@ng2-dynamic-forms/ui-material/index.js",
-        "@ng2-dynamic-forms/ui-primeng/ui-primeng": "./@ng2-dynamic-forms/ui-primeng/index.js"
+        "@ng2-dynamic-forms/core/bundles/core": "./@ng2-dynamic-forms/core/index.js",
+        "@ng2-dynamic-forms/ui-basic/bundles/ui-basic": "./@ng2-dynamic-forms/ui-basic/index.js",
+        "@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap": "./@ng2-dynamic-forms/ui-bootstrap/index.js",
+        "@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation": "./@ng2-dynamic-forms/ui-foundation/index.js",
+        "@ng2-dynamic-forms/ui-material/bundles/ui-material": "./@ng2-dynamic-forms/ui-material/index.js",
+        "@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng": "./@ng2-dynamic-forms/ui-primeng/index.js"
     },
     resolve: {
         extensions: ["", ".js"]
@@ -32,12 +32,19 @@ module.exports = {
         "@angular2-material/input": true,
         "@angular2-material/radio": true,
         "@ng2-dynamic-forms/core": true,
+        "primeng/components/checkbox/checkbox": true,
+        "primeng/components/dropdown/dropdown": true,
+        "primeng/components/inputtext/inputtext": true,
+        "primeng/components/inputtextarea/inputtextarea": true,
+        "primeng/components/radiobutton/radiobutton": true,
+        "primeng/components/spinner/spinner": true
     },
 
     plugins: [
         new webpack.BannerPlugin(
             `${package.name} ${package.version} ${dateformat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license}`
         )
+        //new webpack.optimize.UglifyJsPlugin({})
     ],
 
     output: {
