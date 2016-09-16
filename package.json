@@ -57,6 +57,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.2.3",
+    "html-minifier": "^3.0.3",
     "jasmine-core": "^2.5.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "ng2-semantic-ui-directives": "^1.0.5",
@@ -96,6 +97,7 @@
     "typedoc": "^0.4.5",
     "typescript": "^1.8.10",
     "typings": "^1.3.3",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-merge": "^0.14.1"
   }
 }

@@ -1,6 +1,6 @@
 <img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" style="float:left;" />
 
-#ng2 Dynamic Forms (beta.17)
+#ng2 Dynamic Forms (RC.1)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -57,8 +57,8 @@ System.config({
 
         // ...all the rest (Angular 2, RxJS, etc.)
 
-        "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js",
-        "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js",
+        "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
+        "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
     }
 });
 ```
@@ -233,10 +233,12 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[Kendo UI](http://www.telerik.com/kendo-ui)** (*planned*)
 
 You can instantly plug in your favorite form controls by **installing the appropriate
-package and it's peer dependencies** and **importing the corresponding UI** `NgModule`:
+package and it's peer dependencies**:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
+
+Right afterwards **just import the corresponding UI** `NgModule`:
 
 ```ts
 @NgModule({
@@ -255,7 +257,7 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 export class AppModule {}
 ```
 
-Every UI `NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
+Every UI `NgModule` declares a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
 ```ts
 <form [formGroup]="myForm">

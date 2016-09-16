@@ -1,3 +1,18 @@
+# RC.1
+
+### **Breaking Changes** 
+
+* **!!! IMPORTANT !!!** UMD bundles now provided in `bundles` sub folder 
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+ 
+* minified UMD bundles added to npm packages (closes [#105](https://github.com/udos86/ng2-dynamic-forms/issues/105)) 
+
+
 # beta.17
 
 ### **Breaking Changes** 
