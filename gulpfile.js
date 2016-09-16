@@ -1,75 +1,127 @@
 var pkg = require("./package.json"),
     gulp = require("gulp"),
-    deleteLines = require("gulp-delete-lines"),
-    preprocess = require("gulp-preprocess");
+    fs = require("fs"),
+    path = require("path"),
+    rollup = require("rollup").rollup;
 
-var TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-ts"),
-    TASK_CLEAN = require("./build/tasks/clean"),
+var TASK_CLEAN = require("./build/tasks/clean"),
+    TASK_COPY = require("./build/tasks/copy"),
+    TASK_INCREMENT_VERSION = require("./build/tasks/increment-version"),
     TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
-    TASK_BUNDLE_WEBPACK = require("./build/tasks/bundle-webpack"),
-    TASK_BUNDLE_SYSTEM_JS = require("./build/tasks/bundle-systemjs"),
-    TASK_DOC_API = require("./build/tasks/doc-api"),
-    TASK_INCREMENT_VERSION = require("./build/tasks/increment-version");
+    TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-ts"),
+    TASK_PREPROCESS = require("./build/tasks/preprocess"),
+    TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript");
 
-var DIST_PATH = "./@ng2-dynamic-forms/";
+var NPM_PATH = "./node_modules/@ng2-dynamic-forms/",
+    DIST_PATH = "./@ng2-dynamic-forms/";
+
 
 gulp.task("lint:modules", TASK_LINT_TYPESCRIPT(["./modules/**/*.ts"], "./tslint.json"));
 
-gulp.task("clean:modules", TASK_CLEAN([DIST_PATH + "**/*", "./node_modules/@ng2-dynamic-forms/**/*"]));
 
-gulp.task("prepare:modules", ["lint:modules", "clean:modules"], function () {
+gulp.task("clean:dist", ["lint:modules"], TASK_CLEAN([DIST_PATH + "**/*", "./node_modules/@ng2-dynamic-forms/**/*"]));
 
-    return gulp.src([
-            "./modules/**/*.json",
-            "./modules/**/*.html",
-            "./modules/**/*.css",
-            "./modules/**/*.js",
-            "./modules/**/*.js.map",
-            "./modules/**/*.ts",
-            "!./modules/**/*.spec.*"
-        ],
-        {base: "modules"})
-               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-               .pipe(preprocess())
-               .pipe(gulp.dest(DIST_PATH));
-});
 
-gulp.task("inline:ng2-templates", ["prepare:modules"], TASK_INLINE_NG2_TEMPLATES([DIST_PATH + "**/*.js"], DIST_PATH));
+gulp.task("copy:modules:npm", ["clean:dist"], TASK_COPY(["./modules/**/!(*.spec).*"], "node_modules/@ng2-dynamic-forms"));
 
-gulp.task("bundle:modules:webpack:dev", ["inline:ng2-templates"], TASK_BUNDLE_WEBPACK(require("./webpack.config")));
 
-gulp.task("bundle:modules:webpack:prod", ["inline:ng2-templates"], TASK_BUNDLE_WEBPACK(require("./webpack.min.config")));
+gulp.task("copy:modules:dist", ["clean:dist"], TASK_COPY(["./modules/**/*.*"], DIST_PATH));
 
-gulp.task("bundle:modules:systemjs", ["inline:ng2-templates"], TASK_BUNDLE_SYSTEM_JS());
 
-gulp.task("prime:modules", ["bundle:modules:webpack:dev", "bundle:modules:webpack:prod"], function () {
+gulp.task("transpile:modules:es6", ["copy:modules:npm", "copy:modules:dist"], TASK_TRANSPILE_TYPESCRIPT([DIST_PATH + "**/*.ts"], DIST_PATH, "./tsconfig.es6.json"));
 
-    return gulp.src([DIST_PATH + "**/*.umd.js", DIST_PATH + "**/*.umd.min.js",], {base: "@ng2-dynamic-forms"})
-               .pipe(deleteLines({'filters': [/# sourceMappingURL=/]}))
-               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-               .pipe(gulp.dest(DIST_PATH));
-});
 
-gulp.task("build:documentation", TASK_DOC_API(["./modules/*/src/**/*.ts"],
-    {
-        exclude: "./modules/**/*.spec.ts",
-        module: "commonjs",
-        target: "es5",
-        out: "./docs/",
-        name: "ng2 Dynamic Forms",
-        includeDeclarations: true,
-        ignoreCompilerErrors: true
+gulp.task("preprocess:modules", ["transpile:modules:es6"], TASK_PREPROCESS(DIST_PATH + "**/*.js", DIST_PATH));
+
+
+gulp.task("inline:ng2-templates", ["preprocess:modules"], TASK_INLINE_NG2_TEMPLATES([DIST_PATH + "**/*.js"], DIST_PATH));
+
+
+gulp.task("bundle:modules", ["inline:ng2-templates"], function () {
+
+    function camelCase(string) {
+        return string.replace(/-(\w)/g, function (_, letter) {
+            return letter.toUpperCase();
+        });
     }
-));
+
+    var modules = [
+            "core",
+            "ui-basic",
+            "ui-bootstrap",
+            "ui-foundation",
+            "ui-material",
+            "ui-primeng"
+        ],
+        globals = {
+
+            '@angular/core': 'ng.core',
+            '@angular/common': 'ng.common',
+            '@angular/forms': 'ng.forms',
+            '@angular/http': 'ng.http',
+            '@angular/platform-browser': 'ng.platformBrowser',
+            '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+
+            "@angular2-material/checkbox": "md.checkbox",
+            "@angular2-material/core": "md.core",
+            "@angular2-material/input": "md.input",
+            "@angular2-material/radio": "md.radio",
+
+            "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
+            "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
+            "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
+            "primeng/components/inputtextarea/inputtextarea": "primeng/components/inputtextarea/inputtextarea",
+            "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",
+            "primeng/components/spinner/spinner": "primeng/components/spinner/spinner"
+        };
+
+    modules.forEach(name => {
+        globals[`@ng2-dynamic-forms/${name}`] = `ng2DF.${camelCase(name)}`;
+    });
+
+    return modules.reduce((previous, name) => {
+
+        return previous.then(() => {
+
+            return rollup({
+
+                entry: path.join(DIST_PATH, name, "index.js"),
+                context: "window",
+                external: [...Object.keys(globals)]
+
+            }).then(function (bundle) {
+
+                var result = bundle.generate({
+                    moduleName: `ng2DF.${camelCase(name)}`,
+                    format: "umd",
+                    globals
+                });
+
+                fs.writeFileSync(path.join(DIST_PATH, name, `${name}.umd.js`), result.code);
+            });
+        });
+    }, Promise.resolve());
+});
+
+
+gulp.task("transpile:modules:es5", ["bundle:modules"], TASK_TRANSPILE_TYPESCRIPT([DIST_PATH + "**/*.ts"], DIST_PATH, "./tsconfig.es5.json"));
+
+
+gulp.task("prime:modules", ["transpile:modules:es5"], TASK_COPY([DIST_PATH + "**/*"], "node_modules/@ng2-dynamic-forms"));
+
 
 gulp.task("increment:version", TASK_INCREMENT_VERSION(pkg, ["./package.json", "./modules/**/package.json"], "./modules"));
 
+
 gulp.task("build:modules", [
     "lint:modules",
-    "clean:modules",
-    "prepare:modules",
+    "clean:dist",
+    "copy:modules:npm",
+    "copy:modules:dist",
+    "transpile:modules:es6",
+    "preprocess:modules",
     "inline:ng2-templates",
-    "bundle:modules:webpack:dev",
-    "bundle:modules:webpack:prod",
+    "bundle:modules",
+    "transpile:modules:es5",
     "prime:modules"
 ]);

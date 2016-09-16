@@ -170,7 +170,6 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
                 value: "option-1",
             },
             {
-                disabled: true,
                 label: "Option 2",
                 value: "option-2"
             },

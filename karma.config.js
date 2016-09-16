@@ -39,7 +39,7 @@ module.exports = function (config) {
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js', included: false, watched: false},
             {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js.map', included: false, watched: false},
 
-            {pattern: 'modules/**/*.*', included: false, watched: true},
+            {pattern: '@ng2-dynamic-forms/**/*.*', included: false, watched: true},
 
             'karma-test-shim.js'
         ],
@@ -51,7 +51,7 @@ module.exports = function (config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {'modules/**/!(*.spec).js': ['coverage']},
+        preprocessors: {'@ng2-dynamic-forms/**/!(*.spec).js': ['coverage']},
 
 
         // test results reporter to use

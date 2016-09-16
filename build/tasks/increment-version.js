@@ -1,3 +1,4 @@
+"use strict";
 var gulp = require("gulp"),
     replace = require("gulp-replace");
 

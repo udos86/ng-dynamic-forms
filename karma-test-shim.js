@@ -1,7 +1,7 @@
 var karma = window.__karma__;
 
 function isSpecFile(filePath) {
-    return filePath.startsWith("/base/modules/") && filePath.slice(-8) === ".spec.js";
+    return filePath.startsWith("/base/@ng2-dynamic-forms/") && filePath.slice(-8) === ".spec.js";
 }
 
 function toImportPromise(module) {
@@ -43,19 +43,19 @@ System.config({
         "@angular2-material/checkbox": "npm:@angular2-material/checkbox/checkbox.umd.js",
         "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
         "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
-        '@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/bundles/core.umd.js',
-        '@ng2-dynamic-forms/ui-basic': 'npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.js',
-        '@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js',
-        '@ng2-dynamic-forms/ui-foundation': 'npm:@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation.umd.js',
-        '@ng2-dynamic-forms/ui-material': 'npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.js',
-        '@ng2-dynamic-forms/ui-primeng': 'npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.js',
+        '@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js',
+        '@ng2-dynamic-forms/ui-basic': 'npm:@ng2-dynamic-forms/ui-basic/ui-basic.umd.js',
+        '@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js',
+        '@ng2-dynamic-forms/ui-foundation': 'npm:@ng2-dynamic-forms/ui-foundation/ui-foundation.umd.js',
+        '@ng2-dynamic-forms/ui-material': 'npm:@ng2-dynamic-forms/ui-material/ui-material.umd.js',
+        '@ng2-dynamic-forms/ui-primeng': 'npm:@ng2-dynamic-forms/ui-primeng/ui-primeng.umd.js',
         "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     },
 
     packages: {
-        'modules': {
+        '@ng2-dynamic-forms': {
             defaultExtension: 'js'
         },
         'primeng': {
