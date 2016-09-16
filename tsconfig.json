@@ -13,12 +13,11 @@
       "node_modules/@types"
     ],
     "types": [
+      "core-js",
+      "jasmine",
       "node"
     ]
   },
-  "include": [
-    "example"
-  ],
   "exclude": [
     "@ng2-dynamic-forms",
     "modules",
