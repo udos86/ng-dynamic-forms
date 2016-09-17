@@ -3,6 +3,7 @@ var dateFormat = require("dateformat"),
     path = require("path"),
     rollup = require("rollup").rollup,
     uglify = require("rollup-plugin-uglify"),
+    license = fs.readFileSync("./LICENSE", "utf8"),
     now = Date.now();
 
 module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg, dest) {
@@ -10,26 +11,28 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
     return function () {
 
         function camelCase(string) {
-
-            return string.replace(/-(\w)/g, function (_, letter) {
-                return letter.toUpperCase();
-            });
+            return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
         }
 
-        function bundle(moduleName, _uglify) {
+        function bundle(moduleName, minify) {
 
             return rollup({
 
                 context: "window",
                 entry: path.join(entryRootPath, moduleName, "index.js"),
                 external: [...Object.keys(globals)],
-                plugins: _uglify ? [uglify()] : []
+                plugins: minify ? [uglify({
+                    output: {
+                        comments: (node, comment) => comment.value.startsWith("!")
+                    }
+                })] : []
 
             }).then(bundle => {
 
                 var result = bundle.generate({
 
-                    banner: `/* ${pkg.name} ${pkg.version} ${dateFormat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license} */`,
+                    banner: "/*!\n" + pkg.name + " " + pkg.version + " " + dateFormat(now, "UTC:yyyy-mm-dd HH:MM")
+                    + " UTC\n" + license + "\n*/",
                     format: "umd",
                     globals: globals,
                     moduleName: `${globalsName}.${camelCase(moduleName)}`
@@ -42,11 +45,9 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
                 }
 
                 fs.writeFileSync(path.join(pathBundle,
-                    _uglify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
+                    minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
             });
         }
-
-        var license = fs.readFileSync("./LICENSE", "utf8");
 
         var globals = {
 
