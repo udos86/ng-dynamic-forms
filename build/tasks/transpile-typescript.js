@@ -1,27 +1,26 @@
-"use strict";
 var gulp = require("gulp"),
-    ts = require("gulp-typescript"),
+    typeScript = require("gulp-typescript"),
     merge = require("merge2"),
-    sourcemaps = require("gulp-sourcemaps");
+    sourceMaps = require("gulp-sourcemaps");
 
 module.exports = function (src, dest, configPath) {
 
     return function () {
 
-        var tsProject = ts.createProject(configPath, {
+        var tsProject = typeScript.createProject(configPath, {
             typescript: require("typescript")
         });
 
         var pipe = gulp.src(src)
-                            .pipe(sourcemaps.init())
-                            .pipe(ts(tsProject));
+                            .pipe(sourceMaps.init())
+                            .pipe(typeScript(tsProject));
 
         var dts = pipe.dts.pipe(gulp.dest(dest));
 
         return merge([
             dts,
             pipe
-                .pipe(sourcemaps.write("."))
+                .pipe(sourceMaps.write("."))
                 .pipe(gulp.dest(dest))
         ]);
     };

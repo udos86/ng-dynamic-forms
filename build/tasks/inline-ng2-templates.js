@@ -1,4 +1,3 @@
-"use strict";
 var gulp = require("gulp"),
     deleteLines = require("gulp-delete-lines"),
     htmlMinifier = require("html-minifier"),

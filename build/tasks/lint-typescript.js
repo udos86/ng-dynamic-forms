@@ -1,6 +1,5 @@
-"use strict";
-var gulp = require("gulp");
-var tsLint = require("gulp-tslint");
+var gulp = require("gulp"),
+    tsLint = require("gulp-tslint");
 
 module.exports = function (src, configPath) {
 

@@ -1,4 +1,3 @@
-"use strict";
 var util = require("gulp-util"),
     webpack = require("webpack");
 

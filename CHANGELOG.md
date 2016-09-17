@@ -6,11 +6,13 @@
 
 ### **Bugfixes** 
 
-* none
+* UMD bundles now work correctly for all module systems (closes [#106](https://github.com/udos86/ng2-dynamic-forms/issues/106)) 
+
 
 ### **Features**
- 
-* minified UMD bundles added to npm packages (closes [#105](https://github.com/udos86/ng2-dynamic-forms/issues/105)) 
+
+* Upgrade to TypeScript 2.0 (closes [#108](https://github.com/udos86/ng2-dynamic-forms/issues/108))  
+* Minified UMD bundles added to npm packages (closes [#105](https://github.com/udos86/ng2-dynamic-forms/issues/105)) 
 
 
 # beta.17

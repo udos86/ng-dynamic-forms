@@ -1,18 +1,48 @@
-"use strict";
-
 var dateFormat = require("dateformat"),
     fs = require("fs"),
     path = require("path"),
-    now = Date.now(),
-    rollup = require("rollup").rollup;
+    rollup = require("rollup").rollup,
+    uglify = require("rollup-plugin-uglify"),
+    now = Date.now();
 
-module.exports = function (modules, entryPath, libraryName, globalsName, pkg, dest) {
+module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg, dest) {
 
     return function () {
 
         function camelCase(string) {
+
             return string.replace(/-(\w)/g, function (_, letter) {
                 return letter.toUpperCase();
+            });
+        }
+
+        function bundle(moduleName, _uglify) {
+
+            return rollup({
+
+                context: "window",
+                entry: path.join(entryRootPath, moduleName, "index.js"),
+                external: [...Object.keys(globals)],
+                plugins: _uglify ? [uglify()] : []
+
+            }).then(bundle => {
+
+                var result = bundle.generate({
+
+                    banner: `/* ${pkg.name} ${pkg.version} ${dateFormat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license} */`,
+                    format: "umd",
+                    globals: globals,
+                    moduleName: `${globalsName}.${camelCase(moduleName)}`
+                });
+
+                var pathBundle = path.join(dest, moduleName, "bundles");
+
+                if (!fs.existsSync(pathBundle)) {
+                    fs.mkdirSync(pathBundle);
+                }
+
+                fs.writeFileSync(path.join(pathBundle,
+                    _uglify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
             });
         }
 
@@ -47,27 +77,8 @@ module.exports = function (modules, entryPath, libraryName, globalsName, pkg, de
 
         return modules.reduce((previous, moduleName) => {
 
-            return previous.then(() => {
+            return previous.then(() => Promise.all([bundle(moduleName, false), bundle(moduleName, true)]));
 
-                return rollup({
-
-                    context: "window",
-                    entry: path.join(entryPath, moduleName, "index.js"),
-                    external: [...Object.keys(globals)]
-
-                }).then(bundle => {
-
-                    var result = bundle.generate({
-
-                        banner: `/* ${pkg.name} ${pkg.version} ${dateFormat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license} */`,
-                        format: "umd",
-                        globals: globals,
-                        moduleName: `${globalsName}.${camelCase(moduleName)}`
-                    });
-
-                    fs.writeFileSync(path.join(dest, moduleName, `${moduleName}.umd.js`), result.code);
-                });
-            });
         }, Promise.resolve());
     }
 };

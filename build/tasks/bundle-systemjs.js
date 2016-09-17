@@ -1,4 +1,3 @@
-"use strict";
 var util = require("gulp-util"),
     Builder = require("systemjs-builder");
 

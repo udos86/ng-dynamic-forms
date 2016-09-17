@@ -1,4 +1,3 @@
-"use strict";
 var gulp = require("gulp"),
     preprocess = require("gulp-preprocess");
 
