@@ -18,7 +18,7 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     @ContentChild(TemplateRef) customTemplate;
 
-    type: string = DYNAMIC_FORM_UI_BASIC;
+    readonly type: string = DYNAMIC_FORM_UI_BASIC;
 
     constructor() {
         super();

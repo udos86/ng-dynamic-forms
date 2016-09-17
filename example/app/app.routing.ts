@@ -6,7 +6,7 @@ import {MaterialExampleComponent} from "./material/material-example.component";
 import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 
 export const appRoutes: Routes = [
-    {path: "", redirectTo: "/example-basic", pathMatch: "full"},
+    {path: "", redirectTo: "/example-bootstrap", pathMatch: "full"},
     {path: "example-basic", component: BasicExampleComponent},
     {path: "example-bootstrap", component: BootstrapExampleComponent},
     {path: "example-foundation", component: FoundationExampleComponent},

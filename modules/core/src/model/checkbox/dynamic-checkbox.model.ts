@@ -18,13 +18,14 @@ export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> 
     align: string;
     indeterminate: boolean;
 
+    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
+
     constructor(config: DynamicCheckboxModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
         this.align = getValue(config, "align", DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
         this.indeterminate = getValue(config, "indeterminate", false);
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
 
         if (this.value !== true) {
             this.value = false;

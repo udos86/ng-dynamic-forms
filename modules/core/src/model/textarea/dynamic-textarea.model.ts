@@ -20,13 +20,14 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
     rows: number;
     wrap: string;
 
+    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
+
     constructor(config: DynamicTextAreaModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
         this.cols = getValue(config, "cols", 20);
         this.rows = getValue(config, "rows", 2);
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
         this.wrap = getValue(config, "wrap", DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
     }
 }

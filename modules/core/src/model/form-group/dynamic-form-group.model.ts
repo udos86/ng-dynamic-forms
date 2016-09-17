@@ -4,7 +4,7 @@ import {getValue} from "../../utils";
 
 export interface DynamicFieldSet {
 
-    legend: string;
+    legend: string | null;
 }
 
 export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
@@ -19,10 +19,12 @@ export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
-    asyncValidator: AsyncValidatorFn;
+    asyncValidator: AsyncValidatorFn | null;
     group: Array<DynamicFormControlModel> = [];
-    legend: string;
-    validator: ValidatorFn;
+    legend: string | null;
+    validator: ValidatorFn | null;
+
+    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 
     constructor(config: DynamicFormGroupModelConfig, cls?: ClsConfig) {
 
@@ -35,7 +37,6 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
         this.asyncValidator = getValue(config, "asyncValidator", null);
         this.group = getValue(config, "group", []);
         this.legend = getValue(config, "legend", null);
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
         this.validator = getValue(config, "validator", null);
     }
 }

@@ -15,11 +15,12 @@
     "types": [
       "core-js",
       "jasmine",
-      "node"
+      "node",
+      "q"
     ]
   },
   "exclude": [
-    "@ng2-dynamic-forms",
+    "example",
     "modules",
     "node_modules"
   ]

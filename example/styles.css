@@ -1,0 +1,92 @@
+* {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    padding: 3rem;
+}
+
+nav a {
+    padding: 1rem;
+}
+
+.content-padding {
+    padding: 0 8rem;
+}
+
+.content-margin {
+    margin: 4rem auto;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-clear {
+    clear: both;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.live-edit {
+
+    background-color: whitesmoke;
+    resize: none;
+    font-family: Consolas, "Courier New", "Helvetica Neue", Helvetica, Arial;
+}
+
+.live-edit:focus {
+
+    box-shadow: none;
+    outline: none;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.rounded {
+    border-radius: 50% !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+md-input {
+    vertical-align: middle;
+}
+
+.form-row {
+    display: block;
+}
+
+.form-row label, md-input, md-radio-button {
+    margin: 0 1rem;
+}
+
+.form-row, dynamic-form-material-control > div {
+    margin-bottom: 1.6rem;
+}
+
+form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
+    display: inline-block !important;
+    margin: 0.8rem 0;
+}
+
+fieldset:not(:last-of-type) .btn-success, fieldset:not(:last-of-type) .button.success {
+    display: none;
+}
+
+fieldset:only-of-type .btn-danger, fieldset:only-of-type .button.alert {
+    display: none;
+}
+
+dynamic-form-material-example fieldset {
+    border: none;
+    display: inline-block;
+}

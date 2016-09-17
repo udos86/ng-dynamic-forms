@@ -1,5 +1,5 @@
 import {TestBed, async, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormsModule, FormGroup} from "@angular/forms";
+import {ReactiveFormsModule, FormsModule, FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -45,7 +45,21 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
     it("tests if component initializes correctly", () => {
 
         expect(component.type).toEqual(DYNAMIC_FORM_UI_FOUNDATION_SITES);
+
+        expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
+
+        expect(component.enable).toBeDefined();
+        expect(component.disable).toBeDefined();
+
+        expect(component.onBlur).toBeDefined();
+        expect(component.onChange).toBeDefined();
+        expect(component.onFocus).toBeDefined();
+
+        expect(component.isCheckbox).toBe(false);
+        expect(component.isCheckboxGroup).toBe(false);
+        expect(component.isRadioGroup).toBe(false);
+        expect(component.isValid).toBe(true);
     });
 });

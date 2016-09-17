@@ -1,186 +1,81 @@
-var pkg = require("./package.json");
-var gulp = require("gulp");
-var util = require("gulp-util");
-var del = require("del");
-var deleteLines = require("gulp-delete-lines");
-var htmlMinifier = require("html-minifier");
-var inlineTemplate = require("gulp-inline-ng2-template");
-var preprocess = require("gulp-preprocess");
-var replace = require("gulp-replace");
-var tslint = require("gulp-tslint");
-var typedoc = require("gulp-typedoc");
-var webpack = require("webpack");
-var Builder = require("systemjs-builder");
+var gulp = require("gulp"),
+    pkg = require("./package.json");
 
-var DIST_PATH = "./@ng2-dynamic-forms/";
+var TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
+    TASK_CLEAN = require("./build/tasks/clean"),
+    TASK_COPY = require("./build/tasks/copy"),
+    TASK_INCREMENT_VERSION = require("./build/tasks/increment-version"),
+    TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
+    TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-typescript"),
+    TASK_PREPROCESS = require("./build/tasks/preprocess"),
+    TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript");
 
-gulp.task("lint:modules", function () {
-
-    return gulp.src(["./modules/**/*.ts"], {base: "modules"})
-               .pipe(tslint({configuration: "./tslint.json"}))
-               .pipe(tslint.report());
-});
-
-
-gulp.task("clean:modules", function () {
-
-    return del([
-        DIST_PATH + "**/*",
-        "./node_modules/@ng2-dynamic-forms/**/*"
-    ]);
-});
+var SRC_PATH = "./modules",
+    NPM_PATH = "./node_modules/@ng2-dynamic-forms",
+    DIST_PATH = "./@ng2-dynamic-forms",
+    MODULES = [
+        "core",
+        "ui-basic",
+        "ui-bootstrap",
+        "ui-foundation",
+        "ui-material",
+        "ui-primeng"
+    ];
 
 
-gulp.task("prepare:modules", ["lint:modules", "clean:modules"], function () {
-
-    return gulp.src([
-            "./modules/**/*.json",
-            "./modules/**/*.html",
-            "./modules/**/*.css",
-            "./modules/**/*.js",
-            "./modules/**/*.js.map",
-            "./modules/**/*.ts",
-            "!./modules/**/*.spec.*"
-        ],
-        {base: "modules"})
-               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-               .pipe(preprocess())
-               .pipe(gulp.dest(DIST_PATH));
-});
+gulp.task("lint:modules",
+    TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
 
-gulp.task("inline:ng2-templates", ["prepare:modules"], function () {
-
-    function minify(path, ext, file, callback) {
-        try {
-            var minifiedFile = htmlMinifier.minify(file, {
-                collapseWhitespace: true,
-                caseSensitive: true,
-                removeComments: true,
-                removeRedundantAttributes: true
-            });
-
-            callback(null, minifiedFile);
-        }
-        catch (err) {
-            callback(err);
-        }
-    }
-
-    return gulp.src([DIST_PATH + "**/*.js"], {base: DIST_PATH})
-               .pipe(deleteLines({
-                   'filters': [/moduleId: module.id/]
-               }))
-               .pipe(inlineTemplate({
-                   base: DIST_PATH,
-                   removeLineBreaks: true,
-                   target: "es5",
-                   templateProcessor: minify,
-                   useRelativePaths: true
-               }))
-               .pipe(gulp.dest(DIST_PATH));
-});
+gulp.task("clean:dist", ["lint:modules"],
+    TASK_CLEAN([`${DIST_PATH}**/*`, `${NPM_PATH}/**/*`]));
 
 
-gulp.task("bundle:modules:webpack", ["inline:ng2-templates"], function (callback) {
-
-    webpack(require("./webpack.config"), function (error, stats) {
-
-        if (error) {
-            throw new util.PluginError("webpack", error);
-        }
-
-        util.log("bundle:modules", stats.toString({
-            chunks: false,
-            colors: true,
-            hash: false,
-            version: false
-        }));
-        callback();
-    });
-});
+gulp.task("copy:modules:npm", ["clean:dist"],
+    TASK_COPY([`${SRC_PATH}/**/!(*.spec).*`], NPM_PATH));
 
 
-gulp.task("bundle:modules:systemjs", ["inline:ng2-templates"], function (callback) {
-
-    var builder = new Builder({
-
-        map: {
-            "modules": "modules"
-        },
-        packages: {
-            "modules": {
-                defaultExtension: "js"
-            }
-        }
-    });
-
-    builder.buildStatic("modules/core/index.js", "bundles/core.umd.js", {
-
-        externals: [
-            "@angular/common",
-            "@angular/compiler",
-            "@angular/core",
-            "@angular/forms",
-            "@angular/http",
-            "@angular/platform-browser",
-            "@angular/platform-browser-dynamic",
-            "@angular/router",
-            "@angular2-material/checkbox",
-            "@angular2-material/core",
-            "@angular2-material/input",
-            "@angular2-material/radio",
-            "@ng2-dynamic-forms/core"
-        ]
-    }).then(function () {callback();});
-});
+gulp.task("copy:modules:dist", ["clean:dist"],
+    TASK_COPY([`${SRC_PATH}/**/*.*`], DIST_PATH));
 
 
-gulp.task("prime:modules", ["lint:modules", "clean:modules", "prepare:modules", "inline:ng2-templates", "bundle:modules:webpack"], function () {
-
-    return gulp.src([DIST_PATH + "**/*.umd.js",], {base: "@ng2-dynamic-forms"})
-               .pipe(deleteLines({'filters': [/# sourceMappingURL=/]}))
-               .pipe(gulp.dest("./node_modules/@ng2-dynamic-forms/"))
-               .pipe(gulp.dest(DIST_PATH));
-});
+gulp.task("transpile:modules:es6", ["copy:modules:npm", "copy:modules:dist"],
+    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es6.json"));
 
 
-gulp.task("build:documentation", function () {
-
-    return gulp.src(["./modules/*/src/**/*.ts"], {read: false})
-               .pipe(typedoc({
-                   exclude: "./modules/**/*.spec.ts",
-                   module: "commonjs",
-                   target: "es5",
-                   out: "./docs/",
-                   name: "ng2 Dynamic Forms",
-                   includeDeclarations: true,
-                   ignoreCompilerErrors: true
-               }));
-});
+gulp.task("preprocess:modules", ["transpile:modules:es6"],
+    TASK_PREPROCESS(`${DIST_PATH}/**/*.js`, DIST_PATH));
 
 
-gulp.task("increment:version", function () {
+gulp.task("inline:ng2-templates", ["preprocess:modules"],
+    TASK_INLINE_NG2_TEMPLATES([`${DIST_PATH}/**/*.js`], DIST_PATH));
 
-    var versionNumber = Number(pkg.version.slice(-2)),
-        versionString = /(\d\.\d\.\d-[a-z]+\.)\d{1,2}/,
-        newVersionNumber = versionNumber + 1,
-        newVersionString = pkg.version.replace(versionString, "$1" + newVersionNumber),
-        versionField = /("version":\s)"\d\.\d\.\d-[a-z]+\.\d{1,2}"/,
-        dependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d\.\d\.\d-[a-z]+\.\d{1,2}"/g;
 
-    return gulp.src(["./package.json", "./modules/**/package.json"], {base: "./modules"})
-               .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
-               .pipe(replace(dependencyField, "$1" + '"^' + newVersionString + '"'))
-               .pipe(gulp.dest("./modules"));
-});
+gulp.task("bundle:modules", ["inline:ng2-templates"],
+    TASK_BUNDLE_ROLLUP(MODULES, DIST_PATH, "@ng2-dynamic-forms", "ng2DF", pkg, DIST_PATH));
+
+
+gulp.task("transpile:modules:es5", ["bundle:modules"],
+    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es5.json"));
+
+
+gulp.task("prime:modules", ["transpile:modules:es5"],
+    TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
+
+
+gulp.task("increment:version",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], SRC_PATH));
 
 
 gulp.task("build:modules", [
     "lint:modules",
-    "clean:modules",
-    "prepare:modules",
+    "clean:dist",
+    "copy:modules:npm",
+    "copy:modules:dist",
+    "transpile:modules:es6",
+    "preprocess:modules",
     "inline:ng2-templates",
-    "bundle:modules:webpack",
+    "bundle:modules",
+    "transpile:modules:es5",
     "prime:modules"
 ]);

@@ -18,7 +18,7 @@ export class DynamicFormSemanticComponent extends DynamicFormControlComponent {
 
     @ContentChild(TemplateRef) customTemplate;
 
-    type: string = DYNAMIC_FORM_UI_SEMANTIC;
+    readonly type: string = DYNAMIC_FORM_UI_SEMANTIC;
 
     constructor() {
         super();

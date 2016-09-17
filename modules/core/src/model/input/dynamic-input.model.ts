@@ -33,15 +33,17 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig 
 
 export class DynamicInputModel extends DynamicInputControlModel<any> {
 
-    accept: string;
+    accept: string | null;
     inputType: string;
-    list: Array<string>;
-    max: number;
-    min: number;
-    multiple: boolean;
-    step: number;
+    list: Array<string> | null;
+    max: number | null;
+    min: number | null;
+    multiple: boolean | null;
+    step: number | null;
 
-    private listId: string = null;
+    private listId: string | null = null;
+
+    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, cls?: ClsConfig) {
 
@@ -54,7 +56,6 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
         this.min = getValue(config, "min", null);
         this.multiple = getValue(config, "multiple", null);
         this.step = getValue(config, "step", null);
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
         if (this.list) {
             this.listId = `${this.id}List`;

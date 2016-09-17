@@ -3,7 +3,12 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "commonjs",
+    "lib": [
+      "es6",
+      "es2015",
+      "dom"
+    ],
+    "module": "es2015",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "removeComments": false,
@@ -13,13 +18,13 @@
       "node_modules/@types"
     ],
     "types": [
-      "core-js",
       "jasmine",
-      "node"
+      "node",
+      "q"
     ]
   },
   "exclude": [
-    "@ng2-dynamic-forms",
+    "example",
     "modules",
     "node_modules"
   ]

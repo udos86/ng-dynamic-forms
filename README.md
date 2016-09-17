@@ -1,6 +1,6 @@
 <img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" style="float:left;" />
 
-#ng2 Dynamic Forms (beta.17)
+#ng2 Dynamic Forms (RC.1)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -38,14 +38,12 @@ It also provides a flexible system of dynamic UI components with out of the box 
 npm install @ng2-dynamic-forms/core --save
 ```
   
-**2. Choose your UI library** (e.g. [**Bootstrap**](http://getbootstrap.com)) and **install the corresponding package**:
+**2. Choose your UI library** (e.g. [**Bootstrap**](http://getbootstrap.com)) and **install the appropriate package**:
 ```
 npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
 
-**3.** When using **SystemJS**, update your configuration file:
-
-* **Approach A** (import UMD bundles)
+**3.** When using **SystemJS**, update your configuration to **import the corresponding UMD bundles**:
 ```ts
 System.config({
 
@@ -57,35 +55,8 @@ System.config({
 
         // ...all the rest (Angular 2, RxJS, etc.)
 
-        "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/core.umd.js",
-        "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/ui-bootstrap.umd.js",
-    }
-});
-```
-
-* **Approach B** (import single module files)
-```ts
-System.config({
-
-    map: {
-
-        // ...all the rest (Angular 2, RxJS, etc.)
-
-        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
-    },
-
-    packages: {
-
-        // ...all the rest (Angular 2, RxJS, etc.)
-
-        "@ng2-dynamic-forms/core": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
-        "@ng2-dynamic-forms/ui-bootstrap": {
-            main: "index.js",
-            defaultExtension: "js"
-        }
+        "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
+        "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
     }
 });
 ```
@@ -170,7 +141,6 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
                 value: "option-1",
             },
             {
-                disabled: true,
                 label: "Option 2",
                 value: "option-2"
             },
@@ -233,10 +203,12 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[Kendo UI](http://www.telerik.com/kendo-ui)** (*planned*)
 
 You can instantly plug in your favorite form controls by **installing the appropriate
-package and it's peer dependencies** and **importing the corresponding UI** `NgModule`:
+package and it's peer dependencies**:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
+
+Right afterwards **just import the corresponding UI** `NgModule`:
 
 ```ts
 @NgModule({
@@ -255,7 +227,7 @@ npm install @ng2-dynamic-forms/ui-<library-name> --save
 export class AppModule {}
 ```
 
-Every UI `NgModule` comes with a `DynamicFormControlComponent` that **can easily be added to
+Every UI `NgModule` declares a `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
 ```ts
 <form [formGroup]="myForm">
