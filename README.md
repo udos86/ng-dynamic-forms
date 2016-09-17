@@ -38,14 +38,12 @@ It also provides a flexible system of dynamic UI components with out of the box 
 npm install @ng2-dynamic-forms/core --save
 ```
   
-**2. Choose your UI library** (e.g. [**Bootstrap**](http://getbootstrap.com)) and **install the corresponding package**:
+**2. Choose your UI library** (e.g. [**Bootstrap**](http://getbootstrap.com)) and **install the appropriate package**:
 ```
 npm install @ng2-dynamic-forms/ui-bootstrap --save
 ```
 
-**3.** When using **SystemJS**, update your configuration file:
-
-* **Approach A** (import UMD bundles)
+**3.** When using **SystemJS**, update your configuration to **import the corresponding UMD bundles**:
 ```ts
 System.config({
 
@@ -59,33 +57,6 @@ System.config({
 
         "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
         "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
-    }
-});
-```
-
-* **Approach B** (import single module files)
-```ts
-System.config({
-
-    map: {
-
-        // ...all the rest (Angular 2, RxJS, etc.)
-
-        "@ng2-dynamic-forms": "node_modules/@ng2-dynamic-forms",
-    },
-
-    packages: {
-
-        // ...all the rest (Angular 2, RxJS, etc.)
-
-        "@ng2-dynamic-forms/core": {
-            main: "index.js",
-            defaultExtension: "js"
-        },
-        "@ng2-dynamic-forms/ui-bootstrap": {
-            main: "index.js",
-            defaultExtension: "js"
-        }
     }
 });
 ```
