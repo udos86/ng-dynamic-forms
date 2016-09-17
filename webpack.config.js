@@ -80,6 +80,7 @@ module.exports = {
         new webpack.BannerPlugin(
             `${package.name} ${package.version} ${dateformat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license}`
         )
+        // new webpack.optimize.UglifyJsPlugin({})
     ],
 
     output: {

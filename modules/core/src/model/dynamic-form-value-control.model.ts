@@ -9,17 +9,17 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
     required?: boolean;
     tabIndex?: number;
     validators?: Array<ValidatorFn>;
-    value?: any;
+    value?: boolean | number | string;
 }
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
     asyncValidators: Array<AsyncValidatorFn>;
-    hint: string;
+    hint: string | null;
     required: boolean;
-    tabIndex: number;
+    tabIndex: number | null;
     validators: Array<ValidatorFn>;
-    value: T;
+    value: T | null;
 
     constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {
 

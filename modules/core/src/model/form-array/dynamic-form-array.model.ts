@@ -28,11 +28,13 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    asyncValidator: AsyncValidatorFn;
+    asyncValidator: AsyncValidatorFn | null;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
     groups: Array<DynamicFormArrayGroupModel> = [];
     initialCount: number;
-    validator: ValidatorFn;
+    validator: ValidatorFn | null;
+
+    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
     private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
 
@@ -48,7 +50,6 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         this.createGroup = config["createGroup"];
         this.initialCount = getValue(config, "initialCount", 1);
         this.originGroup = this.createGroup();
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
         this.validator = getValue(config, "validator", null);
 
         if (Array.isArray(config.groups)) {

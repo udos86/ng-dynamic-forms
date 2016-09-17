@@ -101,7 +101,7 @@ export class DynamicFormService {
         return group.find(controlModel => controlModel.id === id);
     }
 
-    fromJSON(json: Array<Object>): Array<DynamicFormControlModel> {
+    fromJSON(json: Array<Object>): Array<DynamicFormControlModel> | never {
 
         let formModel: Array<DynamicFormControlModel> = [];
 

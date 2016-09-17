@@ -6,13 +6,13 @@ export interface DynamicFormOptionConfig {
 
     disabled?: boolean;
     label?: string;
-    value: any;
+    value: boolean | number | string;
 }
 
 export class DynamicFormOption implements DynamicFormOptionConfig {
 
     disabled: boolean;
-    label: string;
+    label: string | null;
     value: any;
 
     constructor(config: DynamicFormOptionConfig) {

@@ -3,45 +3,45 @@ module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '',
+        basePath: "",
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
+        frameworks: ["jasmine"],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'node_modules/core-js/client/shim.min.js',
-            'node_modules/reflect-metadata/Reflect.js',
-            'node_modules/systemjs/dist/system.src.js',
+            "node_modules/core-js/client/shim.min.js",
+            "node_modules/reflect-metadata/Reflect.js",
+            "node_modules/systemjs/dist/system.src.js",
 
-            'node_modules/zone.js/dist/zone.js',
-            'node_modules/zone.js/dist/long-stack-trace-zone.js',
-            'node_modules/zone.js/dist/proxy.js',
-            'node_modules/zone.js/dist/sync-test.js',
-            'node_modules/zone.js/dist/jasmine-patch.js',
-            'node_modules/zone.js/dist/async-test.js',
-            'node_modules/zone.js/dist/fake-async-test.js',
+            "node_modules/zone.js/dist/zone.js",
+            "node_modules/zone.js/dist/long-stack-trace-zone.js",
+            "node_modules/zone.js/dist/proxy.js",
+            "node_modules/zone.js/dist/sync-test.js",
+            "node_modules/zone.js/dist/jasmine-patch.js",
+            "node_modules/zone.js/dist/async-test.js",
+            "node_modules/zone.js/dist/fake-async-test.js",
 
-            {pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false},
-            {pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false},
+            {pattern: "node_modules/rxjs/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/rxjs/**/*.js.map", included: false, watched: false},
 
-            {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
-            {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
+            {pattern: "node_modules/@angular/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/@angular/**/*.js.map", included: false, watched: false},
 
-            {pattern: 'node_modules/@angular2-material/**/*.js', included: false, watched: false},
-            {pattern: 'node_modules/@angular2-material/**/*.js.map', included: false, watched: false},
+            {pattern: "node_modules/@angular2-material/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/@angular2-material/**/*.js.map", included: false, watched: false},
 
-            {pattern: 'node_modules/primeng/**/*.js', included: false, watched: false},
-            {pattern: 'node_modules/primeng/**/*.js.map', included: false, watched: false},
+            {pattern: "node_modules/primeng/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/primeng/**/*.js.map", included: false, watched: false},
 
-            {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js', included: false, watched: false},
-            {pattern: 'node_modules/@ng2-dynamic-forms/**/*.js.map', included: false, watched: false},
+            {pattern: "node_modules/@ng2-dynamic-forms/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/@ng2-dynamic-forms/**/*.js.map", included: false, watched: false},
 
-            {pattern: '@ng2-dynamic-forms/**/*.*', included: false, watched: true},
+            {pattern: "@ng2-dynamic-forms/**/*.*", included: false, watched: true},
 
-            'karma-test-shim.js'
+            "karma-test-shim.js"
         ],
 
 
@@ -51,13 +51,13 @@ module.exports = function (config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {'@ng2-dynamic-forms/**/!(*.spec).js': ['coverage']},
+        preprocessors: {"@ng2-dynamic-forms/**/!(*.spec).js": ["coverage"]},
 
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage'],
+        reporters: ["progress", "coverage"],
 
 
         // web server port
@@ -79,7 +79,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
+        browsers: ["PhantomJS"],
 
 
         // Continuous Integration mode

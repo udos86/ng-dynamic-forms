@@ -18,7 +18,7 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
 
     @ContentChild(TemplateRef) customTemplate;
 
-    type: string = DYNAMIC_FORM_UI_FOUNDATION_SITES;
+    readonly type: string = DYNAMIC_FORM_UI_FOUNDATION_SITES;
 
     constructor() {
         super();

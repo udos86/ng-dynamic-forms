@@ -20,13 +20,13 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
 
     autoComplete: boolean;
     autoFocus: boolean;
-    maxLength: number;
-    minLength: number;
+    maxLength: number | null;
+    minLength: number | null;
     placeholder: string;
-    prefix: string;
+    prefix: string | null;
     readOnly: boolean;
     spellCheck: boolean;
-    suffix: string;
+    suffix: string | null;
 
     constructor(config: DynamicInputControlModelConfig, cls?: ClsConfig) {
 

@@ -8,10 +8,10 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
 
     group: Array<DynamicCheckboxModel>;
 
+    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
+
     constructor(config: DynamicFormGroupModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
-
-        this.type = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
     }
 }

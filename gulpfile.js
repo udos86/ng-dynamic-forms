@@ -1,6 +1,7 @@
 var pkg = require("./package.json"),
-    gulp = require("gulp"),
     fs = require("fs"),
+    license = fs.readFileSync("./LICENSE", "utf-8"),
+    gulp = require("gulp"),
     path = require("path"),
     rollup = require("rollup").rollup;
 
@@ -8,7 +9,7 @@ var TASK_CLEAN = require("./build/tasks/clean"),
     TASK_COPY = require("./build/tasks/copy"),
     TASK_INCREMENT_VERSION = require("./build/tasks/increment-version"),
     TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
-    TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-ts"),
+    TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-typescript"),
     TASK_PREPROCESS = require("./build/tasks/preprocess"),
     TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript");
 
@@ -55,12 +56,12 @@ gulp.task("bundle:modules", ["inline:ng2-templates"], function () {
         ],
         globals = {
 
-            '@angular/core': 'ng.core',
-            '@angular/common': 'ng.common',
-            '@angular/forms': 'ng.forms',
-            '@angular/http': 'ng.http',
-            '@angular/platform-browser': 'ng.platformBrowser',
-            '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+            "@angular/core": "ng.core",
+            "@angular/common": "ng.common",
+            "@angular/forms": "ng.forms",
+            "@angular/http": "ng.http",
+            "@angular/platform-browser": "ng.platformBrowser",
+            "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
 
             "@angular2-material/checkbox": "md.checkbox",
             "@angular2-material/core": "md.core",
@@ -85,16 +86,18 @@ gulp.task("bundle:modules", ["inline:ng2-templates"], function () {
 
             return rollup({
 
-                entry: path.join(DIST_PATH, name, "index.js"),
                 context: "window",
+                entry: path.join(DIST_PATH, name, "index.js"),
                 external: [...Object.keys(globals)]
 
-            }).then(function (bundle) {
+            }).then(bundle => {
 
                 var result = bundle.generate({
-                    moduleName: `ng2DF.${camelCase(name)}`,
+
+                    banner: `/* ${license} */`,
                     format: "umd",
-                    globals
+                    globals: globals,
+                    moduleName: `ng2DF.${camelCase(name)}`
                 });
 
                 fs.writeFileSync(path.join(DIST_PATH, name, `${name}.umd.js`), result.code);

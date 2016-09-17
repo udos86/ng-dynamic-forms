@@ -25,9 +25,10 @@ export abstract class DynamicFormControlModel {
     cls: any = {};
     disabled: boolean;
     id: string;
-    label: string;
+    label: string | null;
     name: string;
-    type: string = null; // must be defined by child class
+
+    abstract readonly type: string;
 
     constructor(config: DynamicFormControlModelConfig, cls?: ClsConfig) {
 

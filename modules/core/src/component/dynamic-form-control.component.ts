@@ -13,9 +13,10 @@ export abstract class DynamicFormControlComponent implements OnInit {
     customTemplate: TemplateRef<any>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    type: string; // must be defined by subclass
 
     incompatibilities: Array<string> = [];
+
+    abstract readonly type: string;
 
     constructor() {}
 
