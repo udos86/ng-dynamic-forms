@@ -4,7 +4,7 @@ import {getValue} from "../../utils";
 
 export interface DynamicFieldSet {
 
-    legend: string;
+    legend: string | null;
 }
 
 export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";

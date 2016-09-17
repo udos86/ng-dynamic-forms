@@ -35,7 +35,7 @@ export class DynamicFormService {
         return this.formBuilder.array(formArray, model.validator, model.asyncValidator);
     }
 
-    createFormGroup(group: Array<DynamicFormControlModel>, groupExtra: {[key: string]: any} = null): FormGroup {
+    createFormGroup(group: Array<DynamicFormControlModel>, groupExtra: {[key: string]: any} | null = null): FormGroup {
 
         let formGroup = {};
 

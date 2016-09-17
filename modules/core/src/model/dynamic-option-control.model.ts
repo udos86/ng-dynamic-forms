@@ -9,11 +9,11 @@ export interface DynamicFormOptionConfig {
     value: boolean | number | string;
 }
 
-export class DynamicFormOption implements DynamicFormOptionConfig {
+export class DynamicFormOption {
 
     disabled: boolean;
     label: string | null;
-    value: any;
+    value: boolean | number | string;
 
     constructor(config: DynamicFormOptionConfig) {
 

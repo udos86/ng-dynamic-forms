@@ -18,7 +18,8 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
     abstract readonly type: string;
 
-    constructor() {}
+    constructor() {
+    }
 
     ngOnInit() {
 
@@ -59,13 +60,13 @@ export abstract class DynamicFormControlComponent implements OnInit {
         return this.control.valid;
     }
 
-    disable() {
+    disable(): void {
 
         this.control.disable();
         this.model.disabled = true;
     }
 
-    enable() {
+    enable(): void {
 
         this.control.enable();
         this.model.disabled = false;

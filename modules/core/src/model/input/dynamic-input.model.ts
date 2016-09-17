@@ -41,7 +41,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
     multiple: boolean | null;
     step: number | null;
 
-    private listId: string = null;
+    private listId: string | null = null;
 
     readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 

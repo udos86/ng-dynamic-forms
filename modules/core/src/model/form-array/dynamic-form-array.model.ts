@@ -1,17 +1,17 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
-import {getValue, isFunction, isDefined} from "../../utils";
+import {getValue, isFunction} from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
     group: Array<DynamicFormValueControlModel<any>>;
-    index: number;
+    index: number | null;
 
-    constructor(group: Array<DynamicFormValueControlModel<any>> = [], index?: number) {
+    constructor(group: Array<DynamicFormValueControlModel<any>> = [], index: number | null = null) {
 
         this.group = group;
-        this.index = isDefined(index) ? index : null;
+        this.index = index;
     }
 }
 

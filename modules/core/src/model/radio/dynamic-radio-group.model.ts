@@ -7,7 +7,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP = "RADIO_GROUP";
 
 export interface DynamicRadioGroupModelConfig extends DynamicOptionControlModelConfig {
 
-    legend?: string;
+    legend?: string | null;
 }
 
 export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> implements DynamicFieldSet {

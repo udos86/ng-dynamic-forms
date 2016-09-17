@@ -2,7 +2,7 @@ export function isDefined(object: any): boolean {
     return object !== undefined && object !== null;
 }
 
-export function isEmptyString(_string: string): boolean {
+export function isEmptyString(_string: string | null | undefined): boolean {
     return typeof _string !== "string" || _string.length === 0;
 }
 
