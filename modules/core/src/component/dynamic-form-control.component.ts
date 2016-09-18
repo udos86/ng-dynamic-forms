@@ -1,6 +1,6 @@
 import {TemplateRef, OnInit, OnDestroy} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Subscription} from "rxjs/subscription";
+import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel, DynamicFormControlDependency} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
