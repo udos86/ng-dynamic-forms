@@ -148,7 +148,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
             depends: [
                 {
                     on: "bootstrapSelect",
-                    disabledValue: "option-4"
+                    disableValue: "option-4"
                 }
             ],
             id: "bootstrapTextArea",

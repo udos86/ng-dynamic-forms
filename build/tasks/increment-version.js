@@ -1,7 +1,7 @@
 var gulp = require("gulp"),
     replace = require("gulp-replace");
 
-module.exports = function (pkg, src, dest) {
+module.exports = function (pkg, src) {
 
     return function () {
 
@@ -15,6 +15,6 @@ module.exports = function (pkg, src, dest) {
         return gulp.src(src)
                    .pipe(replace(versionField, "$1" + '"' + newVersionString + '"'))
                    .pipe(replace(dependencyField, "$1" + '"^' + newVersionString + '"'))
-                   .pipe(gulp.dest(dest));
+                   .pipe(gulp.dest("."));
     }
 };

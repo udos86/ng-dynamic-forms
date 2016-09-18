@@ -1,6 +1,6 @@
 <img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" style="float:left;" />
 
-#ng2 Dynamic Forms (RC.1)
+#ng2 Dynamic Forms (RC.2)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -556,7 +556,7 @@ new DynamicTextAreaModel(
         depends: [
             {
                 on: "mySelect",
-                disabledValue: "option-3"
+                disableValue: "option-3"
             }
         ],
         id: "myTextArea",
@@ -565,7 +565,7 @@ new DynamicTextAreaModel(
 )
 ```
 
-> You can relate to another form control's `value` or `status` by using `disabledValue`, `disabledStatus`, `enabledValue` and `enabledStatus`.
+> You can relate to another form control's `value` or `status` by using `disableValue`, `disableStatus`, `enableValue` and `enableStatus`.
 
 
 ## Form JSON

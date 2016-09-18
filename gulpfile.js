@@ -64,7 +64,7 @@ gulp.task("prime:modules", ["transpile:modules:es5"],
 
 
 gulp.task("increment:version",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], SRC_PATH));
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`]));
 
 
 gulp.task("build:modules", [

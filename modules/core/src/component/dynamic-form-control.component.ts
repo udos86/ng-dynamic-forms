@@ -85,12 +85,12 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     checkFormControlDependency(dep: DynamicFormControlDependency, control: FormControl) {
 
-        if (dep.disabledValue || dep.disabledStatus) {
-            (dep.disabledValue === control.value || dep.disabledStatus === control.status) ? this.disable() : this.enable();
+        if (dep.disableValue || dep.disableStatus) {
+            (dep.disableValue === control.value || dep.disableStatus === control.status) ? this.disable() : this.enable();
         }
 
-        if (dep.enabledValue || dep.enabledStatus) {
-            (dep.enabledValue === control.value || dep.enabledStatus === control.status) ? this.enable() : this.disable();
+        if (dep.enableValue || dep.enableStatus) {
+            (dep.enableValue === control.value || dep.enableStatus === control.status) ? this.enable() : this.disable();
         }
     }
 

@@ -15,10 +15,10 @@ export interface ClsConfig {
 
 export interface DynamicFormControlDependency {
 
-    disabledStatus?: string;
-    disabledValue?: boolean | number | string;
-    enabledStatus?: string;
-    enabledValue?: boolean | number | string;
+    disableStatus?: string;
+    disableValue?: boolean | number | string;
+    enableStatus?: string;
+    enableValue?: boolean | number | string;
     on: string;
 }
 
