@@ -1,25 +1,39 @@
-<h2 style="background-color: #009688; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Material UI</h2>
+<div class="overflow-hidden">
 
-<div class="content-margin">
+    <h2 class="comp-h2" style="background-color: #009688;">
 
-    <form class="text-center" [formGroup]="form">
+        <span>Material UI</span>
 
-        <dynamic-form-material-control *ngFor="let controlModel of dynamicFormModel"
-                                       [controlGroup]="form"
-                                       [model]="controlModel">
+        <a class="float-right" title="View Source"
+           href="https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/material/material-example.model.ts">
+            <img src="../../assets/logo-github.png"
+                 srcset="../../assets/logo-github.png 1x, ../../assets/logo-github@2x.png 2x" alt="Logo GitHub"/>
+        </a>
 
-            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+    </h2>
 
-                <div>
+    <div class="content-margin">
 
-                    <button md-mini-fab (click)="add()">Add Item</button>
+        <form class="text-center" [formGroup]="form">
 
-                </div>
+            <dynamic-form-material-control *ngFor="let controlModel of dynamicFormModel"
+                                           [controlGroup]="form"
+                                           [model]="controlModel">
 
-            </template>
+                <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+
+                    <div>
+
+                        <button md-mini-fab (click)="add()">Add Item</button>
+
+                    </div>
+
+                </template>
 
 
-        </dynamic-form-material-control>
-    </form>
+            </dynamic-form-material-control>
+        </form>
+
+    </div>
 
 </div>

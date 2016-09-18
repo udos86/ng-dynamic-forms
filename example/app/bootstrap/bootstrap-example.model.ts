@@ -9,9 +9,10 @@ import {
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
 
-function testValidator(control: AbstractControl): {[errorId: string]: boolean} {
+export function testValidator(control: AbstractControl): {[errorId: string]: boolean} {
+
     return {
-        testValidator: false
+        testValidator: true
     };
 }
 

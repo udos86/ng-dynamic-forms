@@ -1,4 +1,5 @@
 * {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -24,12 +25,29 @@ nav a {
     float: left;
 }
 
+.float-right {
+    float: right;
+}
+
 .float-clear {
     clear: both;
 }
 
 .font-bold {
     font-weight: bold;
+}
+
+.comp-h2 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 40px;
+    padding: 8px 16px;
+}
+
+.comp-h2 > span {
+
+    color: white;
 }
 
 .live-edit {

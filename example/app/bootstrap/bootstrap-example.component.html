@@ -1,8 +1,16 @@
 <div class="overflow-hidden">
 
-    <h2 style="background-color: #6f5499; color: white; margin: 0 4rem; padding: 0.75rem 1.5rem;">Bootstrap UI</h2>
+    <h2 class="comp-h2" style="background-color: #6f5499;">
 
-    <div class="float-left content-margin container-fluid" style="width: 60%;">
+        <span>Bootstrap UI</span>
+
+        <a class="float-right" title="View Source" href="https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/bootstrap/bootstrap-example.model.ts">
+            <img src="../../assets/logo-github.png" srcset="../../assets/logo-github.png 1x, ../../assets/logo-github@2x.png 2x" alt="Logo GitHub"/>
+        </a>
+
+    </h2>
+
+    <div class="content-margin container-fluid" style="width: 50%;">
 
         <form class="form-horizontal" [formGroup]="form">
 
@@ -28,12 +36,12 @@
         <!--<button (click)="test()" type="button">Test</button>-->
 
     </div>
-
+    <!--
     <div class="float-left content-margin text-center" style="width: 40%;">
 
         <textarea rows="18" cols="46" class="live-edit" [(ngModel)]="modelEdit"></textarea>
 
         <p class="font-bold">Live edit the underlying Dynamic Form Model</p>
     </div>
-
+    -->
 </div>
