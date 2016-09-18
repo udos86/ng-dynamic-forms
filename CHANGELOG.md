@@ -1,3 +1,18 @@
+# RC.2
+
+### **Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+
+* **Related Form Controls**(closes [#111](https://github.com/udos86/ng2-dynamic-forms/issues/111)) 
+
+
 # RC.1
 
 ### **Breaking Changes** 
