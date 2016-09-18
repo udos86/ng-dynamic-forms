@@ -69,7 +69,9 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
             "primeng/components/inputtextarea/inputtextarea": "primeng/components/inputtextarea/inputtextarea",
             "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",
-            "primeng/components/spinner/spinner": "primeng/components/spinner/spinner"
+            "primeng/components/spinner/spinner": "primeng/components/spinner/spinner",
+
+            "rxjs/Subscription": "Rx"
         };
 
         modules.forEach(moduleName => {

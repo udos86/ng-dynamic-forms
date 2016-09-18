@@ -28,7 +28,6 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     value: "option-1",
                 },
                 {
-                    disabled: true,
                     label: "Option 2",
                     value: "option-2"
                 },
@@ -119,7 +118,6 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     value: "option-1",
                 },
                 {
-                    disabled: true,
                     label: "Option 2",
                     value: "option-2"
                 },
@@ -147,6 +145,12 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
 
     new DynamicTextAreaModel(
         {
+            depends: [
+                {
+                    on: "bootstrapSelect",
+                    disableValue: "option-4"
+                }
+            ],
             id: "bootstrapTextArea",
             label: "Example Textarea",
             rows: 5,

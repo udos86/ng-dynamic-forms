@@ -30,8 +30,6 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @ViewChild(MdInput) mdInput: MdInput;
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
 
-    incompatibilities: Array<string> = [DYNAMIC_FORM_CONTROL_TYPE_SELECT, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA];
-
     readonly type: string = DYNAMIC_FORM_UI_MATERIAL;
 
     constructor() {
