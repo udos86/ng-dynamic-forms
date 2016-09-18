@@ -24,6 +24,7 @@ It also provides a flexible system of dynamic UI components with out of the box 
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Related Form Controls](#related-form-controls)
 - [Form JSON](#form-json)
 - [Form Caching](#form-caching)
 - [Validation Messaging](#validation-messaging)
@@ -514,6 +515,57 @@ new DynamicInputModel(
     }
 )
 ```
+
+
+## Related Form Controls
+
+In many complex forms the activation state of a certain form control depends on the value or status of some other form control.
+
+So let's pretend we need to have our text area `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
+
+Implementing such a requirement would be boring, time-consuming and lead to undesired boilerplate code. 
+
+**Using ng2 Dynamic Forms however, you can define relations between form controls by declaration**: 
+
+```ts
+
+new DynamicSelectModel<string>(
+    {
+        id: "mySelect",
+        label: "My Select",
+        options: [
+            {
+                label: "Option 1",
+                value: "option-1",
+            },
+            {
+                label: "Option 2",
+                value: "option-2"
+            },
+            {
+                label: "Option 3",
+                value: "option-3"
+            }
+        ],
+        value: "option-1"
+    }
+),
+
+new DynamicTextAreaModel(
+    {
+        depends: [
+            {
+                on: "mySelect",
+                disabledValue: "option-3"
+            }
+        ],
+        id: "myTextArea",
+        label: "My Textarea"
+    }
+)
+```
+
+> You can relate to another form control's `value` or `status` by using `disabledValue`, `disabledStatus`, `enabledValue` and `enabledStatus`.
 
 
 ## Form JSON

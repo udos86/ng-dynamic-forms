@@ -1,12 +1,13 @@
-import {OnInit, TemplateRef} from "@angular/core";
+import {TemplateRef, OnInit, OnDestroy} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
+import {Subscription} from "rxjs/subscription";
+import {DynamicFormControlModel, DynamicFormControlDependency} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {isDefined} from "../utils";
 
-export abstract class DynamicFormControlComponent implements OnInit {
+export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     control: FormControl;
     controlGroup: FormGroup;
@@ -14,7 +15,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
     hasFocus: boolean;
     model: DynamicFormControlModel;
 
-    incompatibilities: Array<string> = [];
+    private subscriptions: Array<Subscription> = [];
 
     abstract readonly type: string;
 
@@ -22,10 +23,6 @@ export abstract class DynamicFormControlComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        if (this.incompatibilities.indexOf(this.model.type) > -1) {
-            throw new Error(`Control ${this.model.id} of type ${this.model.type} is not supported by ${this.type} UI package.`);
-        }
 
         if (!isDefined(this.model)) {
             throw new Error(`no model input defined for DynamicFormControlComponent`);
@@ -37,11 +34,37 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
         this.control = <FormControl> this.controlGroup.get(this.model.id);
 
+        this.model.depends.forEach(dependency => {
+
+            if (this.model.id === dependency.on) {
+                throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
+            }
+
+            let control: FormControl = <FormControl> this.controlGroup.get(dependency.on);
+
+            if (control) {
+
+                this.checkFormControlDependency(dependency, control);
+
+                this.subscriptions.push(control.valueChanges.subscribe(value => {
+                    this.checkFormControlDependency(dependency, control);
+                }));
+
+                this.subscriptions.push(control.statusChanges.subscribe(status => {
+                    this.checkFormControlDependency(dependency, control);
+                }));
+            }
+        });
+
         //@exclude
         this.control.valueChanges.subscribe((value: any) => {
             console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid);
         });
         //@endexclude
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
     get isCheckbox() {
@@ -58,6 +81,17 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
     get isValid() {
         return this.control.valid;
+    }
+
+    checkFormControlDependency(dep: DynamicFormControlDependency, control: FormControl) {
+
+        if (dep.disabledValue || dep.disabledStatus) {
+            (dep.disabledValue === control.value || dep.disabledStatus === control.status) ? this.disable() : this.enable();
+        }
+
+        if (dep.enabledValue || dep.enabledStatus) {
+            (dep.enabledValue === control.value || dep.enabledStatus === control.status) ? this.enable() : this.disable();
+        }
     }
 
     disable(): void {
@@ -82,7 +116,7 @@ export abstract class DynamicFormControlComponent implements OnInit {
 
     onChange($event) {
         //@exclude
-        console.log(this.model.id + " field is changed", $event);
+        //console.log(this.model.id + " field is changed", $event);
         //@endexclude
     }
 
