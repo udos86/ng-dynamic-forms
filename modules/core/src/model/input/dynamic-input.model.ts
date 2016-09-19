@@ -35,14 +35,15 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
 
     accept: string | null;
     inputType: string;
+    files: FileList | null = null;
     list: Array<string> | null;
     max: number | null;
     min: number | null;
     multiple: boolean | null;
+
     step: number | null;
 
     private listId: string | null = null;
-
     readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, cls?: ClsConfig) {

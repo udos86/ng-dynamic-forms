@@ -148,7 +148,11 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
             depends: [
                 {
                     on: "bootstrapSelect",
-                    disableValue: "option-4"
+                    enableValue: "option-4"
+                },
+                {
+                    on: "bootstrapRadioGroup",
+                    enableValue: "option-4"
                 }
             ],
             id: "bootstrapTextArea",

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
+import {DynamicFormControlModel, DynamicFormControlDependency} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,

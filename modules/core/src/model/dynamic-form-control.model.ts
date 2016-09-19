@@ -1,3 +1,4 @@
+import {FormGroup} from "@angular/forms";
 import {getValue, isEmptyString} from "../utils";
 
 export interface Cls {
@@ -55,5 +56,32 @@ export abstract class DynamicFormControlModel {
         this.id = config.id;
         this.label = getValue(config, "label", null);
         this.name = this.id;
+    }
+
+    static toBeDisabled(deps: Array<DynamicFormControlDependency>, formGroup: FormGroup): boolean {
+
+        return deps.reduce((toBeDisabled: boolean, dep: DynamicFormControlDependency, index: number) => {
+
+            let control = formGroup.get(dep.on);
+
+            if (dep.disableValue || dep.disableStatus) {
+
+                if (index > 0 && !toBeDisabled) {
+                    return false;
+                }
+                return dep.disableValue === control.value || dep.disableStatus === control.status;
+            }
+
+            if (dep.enableValue || dep.enableStatus) {
+
+                if (index > 0 && toBeDisabled) {
+                    return true;
+                }
+                return !(dep.enableValue === control.value || dep.enableStatus === control.status);
+            }
+
+            return false;
+
+        }, false);
     }
 }

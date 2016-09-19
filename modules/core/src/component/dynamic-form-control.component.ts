@@ -1,9 +1,14 @@
 import {TemplateRef, OnInit, OnDestroy} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs/Subscription";
-import {DynamicFormControlModel, DynamicFormControlDependency} from "../model/dynamic-form-control.model";
+import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
+import {
+    DynamicInputModel,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
+} from "../model/input/dynamic-input.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {isDefined} from "../utils";
 
@@ -34,27 +39,11 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         this.control = <FormControl> this.controlGroup.get(this.model.id);
 
-        this.model.depends.forEach(dependency => {
+        if (this.model.depends.length > 0) {
 
-            if (this.model.id === dependency.on) {
-                throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
-            }
-
-            let control: FormControl = <FormControl> this.controlGroup.get(dependency.on);
-
-            if (control) {
-
-                this.checkFormControlDependency(dependency, control);
-
-                this.subscriptions.push(control.valueChanges.subscribe(value => {
-                    this.checkFormControlDependency(dependency, control);
-                }));
-
-                this.subscriptions.push(control.statusChanges.subscribe(status => {
-                    this.checkFormControlDependency(dependency, control);
-                }));
-            }
-        });
+            this.setControlActivationState();
+            this.registerControlDependencies();
+        }
 
         //@exclude
         this.control.valueChanges.subscribe((value: any) => {
@@ -83,17 +72,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         return this.control.valid;
     }
 
-    checkFormControlDependency(dep: DynamicFormControlDependency, control: FormControl) {
-
-        if (dep.disableValue || dep.disableStatus) {
-            (dep.disableValue === control.value || dep.disableStatus === control.status) ? this.disable() : this.enable();
-        }
-
-        if (dep.enableValue || dep.enableStatus) {
-            (dep.enableValue === control.value || dep.enableStatus === control.status) ? this.enable() : this.disable();
-        }
-    }
-
     disable(): void {
 
         this.control.disable();
@@ -106,23 +84,57 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.model.disabled = false;
     }
 
+    registerControlDependencies(): void {
+
+        this.model.depends.forEach(dependency => {
+
+            if (this.model.id === dependency.on) {
+                throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
+            }
+
+            let control: FormControl = <FormControl> this.controlGroup.get(dependency.on);
+
+            if (control) {
+
+                this.subscriptions.push(control.valueChanges.subscribe(value => this.setControlActivationState()));
+                this.subscriptions.push(control.statusChanges.subscribe(status => this.setControlActivationState()));
+            }
+        });
+    }
+
+    setControlActivationState(): void {
+        DynamicFormControlModel.toBeDisabled(this.model.depends, this.controlGroup) ? this.disable() : this.enable();
+    }
+
     onBlur($event) {
 
         this.hasFocus = false;
+
         //@exclude
         console.log(this.model.id + " field is blurred");
         //@endexclude
     }
 
     onChange($event) {
+
+        if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
+
+            let inputModel = <DynamicInputModel> this.model;
+
+            if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
+                inputModel.files = $event.srcElement.files;
+            }
+        }
+
         //@exclude
-        //console.log(this.model.id + " field is changed", $event);
+        console.log(this.model.id + " field is changed", $event);
         //@endexclude
     }
 
     onFocus($event) {
 
         this.hasFocus = true;
+
         //@exclude
         console.log(this.model.id + " field is focused");
         //@endexclude
