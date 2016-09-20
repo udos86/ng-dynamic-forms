@@ -1,5 +1,6 @@
 import {FormGroup} from "@angular/forms";
 import {getValue, isEmptyString} from "../utils";
+import {DynamicFormControlDependencyGroup} from "./dynamic-form-control-dependency.model";
 
 export interface Cls {
 
@@ -14,19 +15,10 @@ export interface ClsConfig {
     grid?: Cls;
 }
 
-export interface DynamicFormControlDependency {
-
-    disableStatus?: string;
-    disableValue?: boolean | number | string;
-    enableStatus?: string;
-    enableValue?: boolean | number | string;
-    on: string;
-}
-
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
-    depends?: Array<DynamicFormControlDependency>;
+    depends?: Array<DynamicFormControlDependencyGroup>;
     id?: string;
     label?: string;
 }
@@ -35,7 +27,7 @@ export abstract class DynamicFormControlModel {
 
     cls: any = {};
     disabled: boolean;
-    depends: Array<DynamicFormControlDependency>;
+    depends: Array<DynamicFormControlDependencyGroup>;
     id: string;
     label: string | null;
     name: string;
@@ -56,32 +48,5 @@ export abstract class DynamicFormControlModel {
         this.id = config.id;
         this.label = getValue(config, "label", null);
         this.name = this.id;
-    }
-
-    static toBeDisabled(deps: Array<DynamicFormControlDependency>, formGroup: FormGroup): boolean {
-
-        return deps.reduce((toBeDisabled: boolean, dep: DynamicFormControlDependency, index: number) => {
-
-            let control = formGroup.get(dep.on);
-
-            if (dep.disableValue || dep.disableStatus) {
-
-                if (index > 0 && !toBeDisabled) {
-                    return false;
-                }
-                return dep.disableValue === control.value || dep.disableStatus === control.status;
-            }
-
-            if (dep.enableValue || dep.enableStatus) {
-
-                if (index > 0 && toBeDisabled) {
-                    return true;
-                }
-                return !(dep.enableValue === control.value || dep.enableStatus === control.status);
-            }
-
-            return false;
-
-        }, false);
     }
 }

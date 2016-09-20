@@ -11,6 +11,7 @@ import {
 } from "../model/input/dynamic-input.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {isDefined} from "../utils";
+import {findActivationDependency, toBeDisabled} from "../model/dynamic-form-control-dependency.model";
 
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
@@ -86,24 +87,24 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     registerControlDependencies(): void {
 
-        this.model.depends.forEach(dependency => {
+        this.model.depends.forEach(depGroup => depGroup.on.forEach(dependency => {
 
-            if (this.model.id === dependency.on) {
+            if (this.model.id === dependency.id) {
                 throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
             }
 
-            let control: FormControl = <FormControl> this.controlGroup.get(dependency.on);
+            let control: FormControl = <FormControl> this.controlGroup.get(dependency.id);
 
             if (control) {
 
                 this.subscriptions.push(control.valueChanges.subscribe(value => this.setControlActivationState()));
                 this.subscriptions.push(control.statusChanges.subscribe(status => this.setControlActivationState()));
             }
-        });
+        }));
     }
 
     setControlActivationState(): void {
-        DynamicFormControlModel.toBeDisabled(this.model.depends, this.controlGroup) ? this.disable() : this.enable();
+        toBeDisabled(findActivationDependency(this.model.depends), this.controlGroup) ? this.disable() : this.enable();
     }
 
     onBlur($event) {
