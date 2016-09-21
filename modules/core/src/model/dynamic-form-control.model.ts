@@ -17,19 +17,19 @@ export interface ClsConfig {
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
-    depends?: Array<DynamicFormControlRelationGroup>;
     id?: string;
     label?: string;
+    relation?: Array<DynamicFormControlRelationGroup>;
 }
 
 export abstract class DynamicFormControlModel {
 
     cls: any = {};
     disabled: boolean;
-    depends: Array<DynamicFormControlRelationGroup>;
     id: string;
     label: string | null;
     name: string;
+    relation: Array<DynamicFormControlRelationGroup>;
 
     abstract readonly type: string;
 
@@ -42,10 +42,10 @@ export abstract class DynamicFormControlModel {
         this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
         this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
 
-        this.depends = getValue(config, "depends", []);
         this.disabled = getValue(config, "disabled", false);
         this.id = config.id;
         this.label = getValue(config, "label", null);
         this.name = this.id;
+        this.relation = getValue(config, "relation", []);
     }
 }

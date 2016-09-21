@@ -17,7 +17,7 @@ export interface DynamicFormControlRelationGroup {
 
     connective: string;
     effect: string;
-    on: Array<DynamicFormControlRelation>;
+    fields: Array<DynamicFormControlRelation>;
 }
 
 export function findDisableRelation(deps: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
@@ -38,7 +38,7 @@ export function flattenIds(deps: Array<DynamicFormControlRelationGroup>): Array<
 
     deps.forEach(depGroup => {
 
-        depGroup.on.forEach(dep => {
+        depGroup.fields.forEach(dep => {
 
             if (ids.indexOf(dep.id) === -1) {
                 ids.push(dep.id);
@@ -51,7 +51,7 @@ export function flattenIds(deps: Array<DynamicFormControlRelationGroup>): Array<
 
 export function toBeDisabled(depGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
 
-    return depGroup.on.reduce((toBeDisabled: boolean, dep: DynamicFormControlRelation, index: number) => {
+    return depGroup.fields.reduce((toBeDisabled: boolean, dep: DynamicFormControlRelation, index: number) => {
 
         let control = formGroup.get(dep.id);
 
@@ -75,7 +75,7 @@ export function toBeDisabled(depGroup: DynamicFormControlRelationGroup, formGrou
 
 export function toBeEnabled(depGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
 
-    return depGroup.on.reduce((toBeDisabled: boolean, dep: DynamicFormControlRelation, index: number) => {
+    return depGroup.fields.reduce((toBeDisabled: boolean, dep: DynamicFormControlRelation, index: number) => {
 
         let control = formGroup.get(dep.id);
 

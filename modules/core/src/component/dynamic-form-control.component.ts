@@ -82,11 +82,11 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     registerControlRelations(): void {
 
-        if (this.model.depends.length > 0 && findActivationRelation(this.model.depends)) {
+        if (this.model.relation.length > 0 && findActivationRelation(this.model.relation)) {
 
             this.setControlActivationState();
 
-            flattenIds(this.model.depends).forEach(controlId => {
+            flattenIds(this.model.relation).forEach(controlId => {
 
                 if (this.model.id === controlId) {
                     throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
@@ -106,7 +106,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     setControlActivationState(): void {
 
         toBeDisabled(
-            findActivationRelation(this.model.depends), this.controlGroup) ? this.disable() : this.enable();
+            findActivationRelation(this.model.relation), this.controlGroup) ? this.disable() : this.enable();
     }
 
     onBlur($event) {
