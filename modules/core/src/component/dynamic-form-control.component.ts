@@ -10,8 +10,8 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
+import {flattenIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
 import {isDefined} from "../utils";
-import {findActivationDependency, toBeDisabled} from "../model/dynamic-form-control-dependency.model";
 
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
@@ -39,12 +39,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
 
         this.control = <FormControl> this.controlGroup.get(this.model.id);
-
-        if (this.model.depends.length > 0) {
-
-            this.setControlActivationState();
-            this.registerControlDependencies();
-        }
+        this.registerControlRelations();
 
         //@exclude
         this.control.valueChanges.subscribe((value: any) => {
@@ -85,26 +80,33 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.model.disabled = false;
     }
 
-    registerControlDependencies(): void {
+    registerControlRelations(): void {
 
-        this.model.depends.forEach(depGroup => depGroup.on.forEach(dependency => {
+        if (this.model.depends.length > 0 && findActivationRelation(this.model.depends)) {
 
-            if (this.model.id === dependency.id) {
-                throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
-            }
+            this.setControlActivationState();
 
-            let control: FormControl = <FormControl> this.controlGroup.get(dependency.id);
+            flattenIds(this.model.depends).forEach(controlId => {
 
-            if (control) {
+                if (this.model.id === controlId) {
+                    throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
+                }
 
-                this.subscriptions.push(control.valueChanges.subscribe(value => this.setControlActivationState()));
-                this.subscriptions.push(control.statusChanges.subscribe(status => this.setControlActivationState()));
-            }
-        }));
+                let control: FormControl = <FormControl> this.controlGroup.get(controlId);
+
+                if (control) {
+
+                    this.subscriptions.push(control.valueChanges.subscribe(value => this.setControlActivationState()));
+                    this.subscriptions.push(control.statusChanges.subscribe(status => this.setControlActivationState()));
+                }
+            });
+        }
     }
 
     setControlActivationState(): void {
-        toBeDisabled(findActivationDependency(this.model.depends), this.controlGroup) ? this.disable() : this.enable();
+
+        toBeDisabled(
+            findActivationRelation(this.model.depends), this.controlGroup) ? this.disable() : this.enable();
     }
 
     onBlur($event) {
@@ -112,7 +114,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.hasFocus = false;
 
         //@exclude
-        console.log(this.model.id + " field is blurred");
+        console.log($event, this.model.id + " field is blurred");
         //@endexclude
     }
 
@@ -128,7 +130,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
 
         //@exclude
-        console.log(this.model.id + " field is changed", $event);
+        console.log($event, this.model.id + " field is changed", $event);
         //@endexclude
     }
 
@@ -137,7 +139,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.hasFocus = true;
 
         //@exclude
-        console.log(this.model.id + " field is focused");
+        console.log($event, this.model.id + " field is focused");
         //@endexclude
     }
 }

@@ -147,19 +147,19 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
         {
             depends: [
                 {
-                    connective: "OR",
+                    //connective: "OR",
+                    effect: "DISABLE",
                     on: [
                         {
                             id: "bootstrapSelect",
                             value: "option-4"
-                        },
+                        }/*,
                         {
                             id: "bootstrapRadioGroup",
                             value: "option-4",
-                        }
+                        }*/
 
-                    ],
-                    relation: "DISABLE"
+                    ]
                 }
             ],
             id: "bootstrapTextArea",

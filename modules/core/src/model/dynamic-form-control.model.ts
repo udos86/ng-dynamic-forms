@@ -1,6 +1,5 @@
-import {FormGroup} from "@angular/forms";
 import {getValue, isEmptyString} from "../utils";
-import {DynamicFormControlDependencyGroup} from "./dynamic-form-control-dependency.model";
+import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
 
 export interface Cls {
 
@@ -18,7 +17,7 @@ export interface ClsConfig {
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
-    depends?: Array<DynamicFormControlDependencyGroup>;
+    depends?: Array<DynamicFormControlRelationGroup>;
     id?: string;
     label?: string;
 }
@@ -27,7 +26,7 @@ export abstract class DynamicFormControlModel {
 
     cls: any = {};
     disabled: boolean;
-    depends: Array<DynamicFormControlDependencyGroup>;
+    depends: Array<DynamicFormControlRelationGroup>;
     id: string;
     label: string | null;
     name: string;

@@ -555,8 +555,13 @@ new DynamicTextAreaModel(
     {
         depends: [
             {
-                on: "mySelect",
-                disableValue: "option-3"
+                effect: "DISABLE",
+                on: [
+                    {
+                        id: "bootstrapSelect",
+                        value: "option-4"
+                    }
+                ]
             }
         ],
         id: "myTextArea",
