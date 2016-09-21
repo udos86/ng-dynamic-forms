@@ -521,7 +521,7 @@ new DynamicInputModel(
 
 In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
 
-*So let's pretend we need to have our text area `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.*
+So let's pretend we need to have our text area `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
 
 Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
 
@@ -534,23 +534,22 @@ new DynamicTextAreaModel(
         relation: [
             {
                 effect: "DISABLE",
-                fields: [
+                requires: [
                     {
                         id: "mySelect",
-                        value: "option-4"
+                        value: "option-3"
                     }
                 ]
             }
         ]
     }
-)
 ```
 
 The `relation` property may seem a bit oversized at first sight, but that way it allows the flexible declaration of even **multi-related form controls**. 
 
 *So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
 
-Just add a second entry to the `fields` array and define how both relations should logically be connected via `connective`:
+Just add a second entry to the `requires` array and define how both relations should logically be connected via `connective`:
 ```ts
 new DynamicTextAreaModel(
     {
@@ -560,14 +559,14 @@ new DynamicTextAreaModel(
             {
                 connective: "AND",
                 effect: "DISABLE",
-                fields: [
+                requires: [
                     {
                         id: "mySelect",
-                        value: "option-4"
+                        value: "option-3"
                     },
                     {
                         id: "myRadioGroup",
-                        value: "option-3"
+                        value: "option-4"
                     }
                 ]
             }

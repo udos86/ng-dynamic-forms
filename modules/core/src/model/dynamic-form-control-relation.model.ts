@@ -17,79 +17,66 @@ export interface DynamicFormControlRelationGroup {
 
     connective: string;
     effect: string;
-    fields: Array<DynamicFormControlRelation>;
+    requires: Array<DynamicFormControlRelation>;
 }
 
-export function findDisableRelation(deps: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
-    return deps.find(dep => dep.effect === DYNAMIC_FORM_CONTROL_EFFECT_DISABLE);
+export function findDisableRelation(relGroups: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
+    return relGroups.find(rel => rel.effect === DYNAMIC_FORM_CONTROL_EFFECT_DISABLE);
 }
 
-export function findEnableRelation(deps: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
-    return deps.find(dep => dep.effect === DYNAMIC_FORM_CONTROL_EFFECT_ENABLE);
+export function findEnableRelation(relGroups: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
+    return relGroups.find(rel => rel.effect === DYNAMIC_FORM_CONTROL_EFFECT_ENABLE);
 }
 
-export function findActivationRelation(deps: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
-    return deps.find(dep => dep.effect === DYNAMIC_FORM_CONTROL_EFFECT_DISABLE || dep.effect === DYNAMIC_FORM_CONTROL_EFFECT_ENABLE);
+export function findActivationRelation(relGroups: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
+    return relGroups.find(
+        rel => rel.effect === DYNAMIC_FORM_CONTROL_EFFECT_DISABLE || rel.effect === DYNAMIC_FORM_CONTROL_EFFECT_ENABLE);
 }
 
-export function flattenIds(deps: Array<DynamicFormControlRelationGroup>): Array<string> {
+export function flattenIds(relGroups: Array<DynamicFormControlRelationGroup>): Array<string> {
 
     let ids: Array<string> = [];
 
-    deps.forEach(depGroup => {
+    relGroups.forEach(relGroup => relGroup.requires.forEach(rel => {
 
-        depGroup.fields.forEach(dep => {
-
-            if (ids.indexOf(dep.id) === -1) {
-                ids.push(dep.id);
-            }
-        });
-    });
+        if (ids.indexOf(rel.id) === -1) {
+            ids.push(rel.id);
+        }
+    }));
 
     return ids;
 }
 
-export function toBeDisabled(depGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
+export function toBeDisabled(relGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
 
-    return depGroup.fields.reduce((toBeDisabled: boolean, dep: DynamicFormControlRelation, index: number) => {
+    return relGroup.requires.reduce((toBeDisabled: boolean, rel: DynamicFormControlRelation, index: number) => {
 
-        let control = formGroup.get(dep.id);
+        let control = formGroup.get(rel.id);
 
-        if (depGroup.effect === DYNAMIC_FORM_CONTROL_EFFECT_DISABLE && control) {
+        if (control && relGroup.effect === DYNAMIC_FORM_CONTROL_EFFECT_DISABLE) {
 
-            if (index > 0 && depGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeDisabled) { // AND: all deps must be true
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeDisabled) {
                 return false;
             }
 
-            if (index > 0 && depGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeDisabled) { // OR: one of all deps must be true
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeDisabled) {
                 return true;
             }
 
-            return dep.value === control.value || dep.status === control.status;
+            return rel.value === control.value || rel.status === control.status;
         }
 
-        return false;
+        if (control && relGroup.effect === DYNAMIC_FORM_CONTROL_EFFECT_ENABLE) {
 
-    }, false);
-}
-
-export function toBeEnabled(depGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
-
-    return depGroup.fields.reduce((toBeDisabled: boolean, dep: DynamicFormControlRelation, index: number) => {
-
-        let control = formGroup.get(dep.id);
-
-        if (depGroup.effect === DYNAMIC_FORM_CONTROL_EFFECT_ENABLE && control) {
-
-            if (index > 0 && depGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && toBeDisabled) {
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && toBeDisabled) {
                 return true;
             }
 
-            if (index > 0 && depGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeDisabled) {
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeDisabled) {
                 return false;
             }
 
-            return !(dep.value === control.value || dep.status === control.status);
+            return !(rel.value === control.value || rel.status === control.status);
         }
 
         return false;

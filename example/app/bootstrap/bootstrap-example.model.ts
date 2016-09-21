@@ -153,7 +153,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 {
                     connective: "OR",
                     effect: "DISABLE",
-                    fields: [
+                    requires: [
                         {
                             id: "bootstrapSelect",
                             value: "option-4"
