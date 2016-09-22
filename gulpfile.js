@@ -23,6 +23,18 @@ var SRC_PATH = "./modules",
     ];
 
 
+gulp.task("increment:version:major",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
+
+
+gulp.task("increment:version:minor",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MINOR", SRC_PATH));
+
+
+gulp.task("increment:version:patch",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
+
+
 gulp.task("lint:modules",
     TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
@@ -61,10 +73,6 @@ gulp.task("transpile:modules:es5", ["bundle:modules"],
 
 gulp.task("prime:modules", ["transpile:modules:es5"],
     TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
-
-
-gulp.task("increment:version",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], SRC_PATH));
 
 
 gulp.task("build:modules", [

@@ -1,8 +1,8 @@
 {
   "name": "@ng2-dynamic-forms/core",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0",
   "description": "A rapid form development library for Angular 2",
-  "main": "index.js",
+  "main": "./bundles/core.umd.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"

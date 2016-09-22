@@ -1,8 +1,8 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0",
   "description": "Material UI package for ng2 Dynamic Forms",
-  "main": "index.js",
+  "main": "./bundles/ui-material.umd.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
@@ -25,7 +25,7 @@
     "@angular2-material/core": "^2.0.0-alpha.8-1",
     "@angular2-material/input": "^2.0.0-alpha.8-1",
     "@angular2-material/radio": "^2.0.0-alpha.8-1",
-    "@ng2-dynamic-forms/core": "^1.0.0-rc.3",
+    "@ng2-dynamic-forms/core": "^1.0.0",
     "rxjs": "^5.0.0-beta.12"
   }
 }
