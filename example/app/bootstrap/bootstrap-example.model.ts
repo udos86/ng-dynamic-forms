@@ -151,9 +151,9 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
             placeholder: "example Textarea",
             relation: [
                 {
+                    action: "DISABLE",
                     connective: "OR",
-                    effect: "DISABLE",
-                    requires: [
+                    when: [
                         {
                             id: "bootstrapSelect",
                             value: "option-4"

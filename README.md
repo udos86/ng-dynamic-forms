@@ -1,6 +1,6 @@
 <img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" style="float:left;" />
 
-#ng2 Dynamic Forms (RC.2)
+#ng2 Dynamic Forms (RC.3)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -533,8 +533,8 @@ new DynamicTextAreaModel(
         label: "My Textarea",
         relation: [
             {
-                effect: "DISABLE",
-                requires: [
+                action: "DISABLE",
+                when: [
                     {
                         id: "mySelect",
                         value: "option-3"
@@ -549,7 +549,7 @@ The `relation` property may seem a bit oversized at first sight, but that way it
 
 *So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
 
-Just add a second entry to the `requires` array and define how both relations should logically be connected via `connective`:
+Just add a second entry to the `when` array and define how both relations should logically be connected via `connective`:
 ```ts
 new DynamicTextAreaModel(
     {
@@ -557,9 +557,9 @@ new DynamicTextAreaModel(
         label: "My Textarea",
         relation: [
             {
+                action: "DISABLE",
                 connective: "AND",
-                effect: "DISABLE",
-                requires: [
+                when: [
                     {
                         id: "mySelect",
                         value: "option-3"

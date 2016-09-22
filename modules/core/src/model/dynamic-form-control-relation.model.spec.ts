@@ -3,7 +3,7 @@ import {
     findDisableRelation,
     findEnableRelation,
     findActivationRelation,
-    flattenIds
+    findIds
 } from "./dynamic-form-control-relation.model";
 
 describe("DynamicFormControlRelationModel test suite", () => {
@@ -19,8 +19,8 @@ describe("DynamicFormControlRelationModel test suite", () => {
                 placeholder: "example Textarea",
                 relation: [
                     {
-                        effect: "DISABLE",
-                        requires: [
+                        action: "DISABLE",
+                        when: [
                             {
                                 id: "mySelect",
                                 value: "option-4"
@@ -28,9 +28,9 @@ describe("DynamicFormControlRelationModel test suite", () => {
                         ]
                     },
                     {
+                        action: "ENABLE",
                         connective: "AND",
-                        effect: "ENABLE",
-                        requires: [
+                        when: [
                             {
                                 id: "mySelect",
                                 value: "option-3"
@@ -47,7 +47,7 @@ describe("DynamicFormControlRelationModel test suite", () => {
         beforeEach(() => {
             testModel = new DynamicTextAreaModel(config);
         });
-        
+
         it("tests if findDisableRelation function works correctly", () => {
 
             expect(findDisableRelation(testModel.relation)).toBeDefined();
@@ -66,10 +66,10 @@ describe("DynamicFormControlRelationModel test suite", () => {
             expect(findActivationRelation(testModel.relation)).toBe(config.relation[0]);
         });
 
-        it("tests if flattenIds function works correctly", () => {
+        it("tests if findIds function works correctly", () => {
 
-            expect(flattenIds(testModel.relation).length).toBe(2);
-            expect(flattenIds(testModel.relation).join()).toBe("mySelect,myRadioGroup");
+            expect(findIds(testModel.relation).length).toBe(2);
+            expect(findIds(testModel.relation).join()).toBe("mySelect,myRadioGroup");
         });
 
     });

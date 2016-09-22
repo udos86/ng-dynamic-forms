@@ -10,7 +10,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import {flattenIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
+import {findIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
 import {isDefined} from "../utils";
 
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
@@ -86,7 +86,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
             this.setControlActivationState();
 
-            flattenIds(this.model.relation).forEach(controlId => {
+            findIds(this.model.relation).forEach(controlId => {
 
                 if (this.model.id === controlId) {
                     throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
