@@ -6,11 +6,11 @@
 
 ### **Bugfixes** 
 
-* none
+* `files` field added to `DynamicInputModel` (closes [#114](https://github.com/udos86/ng2-dynamic-forms/issues/114)) 
 
 ### **Features**
 
-* **Multi-related Form Controls**(closes [#115](https://github.com/udos86/ng2-dynamic-forms/issues/115)) 
+* **Multi-related Form Controls** (closes [#115](https://github.com/udos86/ng2-dynamic-forms/issues/115)) 
 
 
 # RC.2

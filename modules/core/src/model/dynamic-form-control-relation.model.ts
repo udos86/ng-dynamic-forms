@@ -15,7 +15,7 @@ export interface DynamicFormControlRelation {
 
 export interface DynamicFormControlRelationGroup {
 
-    connective: string;
+    connective?: string;
     effect: string;
     requires: Array<DynamicFormControlRelation>;
 }
