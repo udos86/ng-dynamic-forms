@@ -28,6 +28,7 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig 
     max?: number;
     min?: number;
     multiple?: boolean;
+    pattern?: string;
     step?: number;
 }
 
@@ -40,7 +41,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
     max: number | null;
     min: number | null;
     multiple: boolean | null;
-
+    pattern: string | null;
     step: number | null;
 
     private listId: string | null = null;
@@ -56,6 +57,7 @@ export class DynamicInputModel extends DynamicInputControlModel<any> {
         this.max = getValue(config, "max", null);
         this.min = getValue(config, "min", null);
         this.multiple = getValue(config, "multiple", null);
+        this.pattern = getValue(config, "pattern", null);
         this.step = getValue(config, "step", null);
 
         if (this.list) {
