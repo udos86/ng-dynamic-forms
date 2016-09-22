@@ -21,6 +21,18 @@
 
 <main>
 
+    <h2 class="comp-h2" [ngStyle]="{'background-color': routeData.bgColor}">
+
+        <span>{{routeData.title}}</span>
+
+        <a class="float-right" title="View Source" [href]="routeData.href">
+            <img src="../../assets/logo-github.png"
+                 srcset="../../assets/logo-github.png 1x, ../../assets/logo-github@2x.png 2x"
+                 alt="Logo GitHub"/>
+        </a>
+
+    </h2>
+
     <router-outlet></router-outlet>
 
 </main>

@@ -1,67 +1,53 @@
-<div class="overflow-hidden">
+<div class="overflow-hidden content-margin content-padding" style="width: 50%;">
 
-    <h2 class="comp-h2" style="background-color: gray;">
+    <form [formGroup]="form1">
 
-        <span>Basic UI</span>
-
-        <a class="float-right" title="View Source" href="https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/basic/basic-example.model.ts">
-            <img src="../../assets/logo-github.png" srcset="../../assets/logo-github.png 1x, ../../assets/logo-github@2x.png 2x" alt="Logo GitHub"/>
-        </a>
-
-    </h2>
-
-    <div class="float-left content-margin content-padding" style="width: 55%;">
-
-        <form [formGroup]="form1">
-
-            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel1" class="form-row"
-                                        [controlGroup]="form1"
-                                        [model]="controlModel"></dynamic-form-basic-control>
-        </form>
+        <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel1" class="form-row"
+                                    [controlGroup]="form1"
+                                    [model]="controlModel"></dynamic-form-basic-control>
+    </form>
 
 
-        <form [formGroup]="form2">
+    <form [formGroup]="form2">
 
-            <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2" class="form-row"
-                                        [controlGroup]="form2"
-                                        [model]="controlModel">
+        <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2" class="form-row"
+                                    [controlGroup]="form2"
+                                    [model]="controlModel">
 
-                <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
-                    <button type="button" (click)="remove(index)">Remove Item</button>
-                </template>
+            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+                <button type="button" (click)="remove(index)">Remove Item</button>
+            </template>
 
-            </dynamic-form-basic-control>
+        </dynamic-form-basic-control>
 
-            <button type="button" (click)="add()">Add Item</button>
-            <button type="button" (click)="clear()">Remove All</button>
+        <button type="button" (click)="add()">Add Item</button>
+        <button type="button" (click)="clear()">Remove All</button>
 
-        </form>
+    </form>
 
 
-        <!--
-        <form [formGroup]="form2">
+    <!--
+    <form [formGroup]="form2">
 
-            <div formArrayName="basicFormArray">
+        <div formArrayName="basicFormArray">
 
-                <div *ngFor="let idx = index; let group of dynamicFormModel2.findById('basicFormArray').groups"
-                     [formGroupName]="idx">
+            <div *ngFor="let idx = index; let group of dynamicFormModel2.findById('basicFormArray').groups"
+                 [formGroupName]="idx">
 
-                    <dynamic-form-basic-control *ngFor="let controlModel of group" class="form-row"
-                                                [controlGroup]="form2.controls['basicFormArray'].controls[idx]"
-                                                [model]="controlModel"
-                                                style="display: inline-block;"></dynamic-form-basic-control>
+                <dynamic-form-basic-control *ngFor="let controlModel of group" class="form-row"
+                                            [controlGroup]="form2.controls['basicFormArray'].controls[idx]"
+                                            [model]="controlModel"
+                                            style="display: inline-block;"></dynamic-form-basic-control>
 
-                    <button type="button" (click)="remove(idx)">Remove Item</button>
-
-                </div>
+                <button type="button" (click)="remove(idx)">Remove Item</button>
 
             </div>
 
-            <button type="button" (click)="add()">Add Item</button>
-            <button type="button" (click)="clear()">Remove All</button>
+        </div>
 
-        </form>
-        -->
-    </div>
+        <button type="button" (click)="add()">Add Item</button>
+        <button type="button" (click)="clear()">Remove All</button>
 
+    </form>
+    -->
 </div>

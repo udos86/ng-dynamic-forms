@@ -1,47 +1,34 @@
-<div class="overflow-hidden">
+<div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
 
-    <h2 class="comp-h2" style="background-color: #6f5499;">
+    <form class="form-horizontal" [formGroup]="form">
 
-        <span>Bootstrap UI</span>
+        <dynamic-form-bootstrap-control *ngFor="let controlModel of dynamicFormModel"
+                                        [controlGroup]="form"
+                                        [model]="controlModel">
 
-        <a class="float-right" title="View Source" href="https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/bootstrap/bootstrap-example.model.ts">
-            <img src="../../assets/logo-github.png" srcset="../../assets/logo-github.png 1x, ../../assets/logo-github@2x.png 2x" alt="Logo GitHub"/>
-        </a>
+            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
 
-    </h2>
+                <div class="col-sm-4">
 
-    <div class="content-margin container-fluid" style="width: 50%;">
+                    <button type="button" class="btn btn-danger rounded" (click)="remove(index)">&#10005;</button>
+                    <button type="button" class="btn btn-success rounded" (click)="insert(index + 1)">&#43;</button>
 
-        <form class="form-horizontal" [formGroup]="form">
+                </div>
 
-            <dynamic-form-bootstrap-control *ngFor="let controlModel of dynamicFormModel"
-                                            [controlGroup]="form"
-                                            [model]="controlModel">
+            </template>
 
-                <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+        </dynamic-form-bootstrap-control>
 
-                    <div class="col-sm-4">
+    </form>
 
-                        <button type="button" class="btn btn-danger rounded" (click)="remove(index)">&#10005;</button>
-                        <button type="button" class="btn btn-success rounded" (click)="insert(index + 1)">&#43;</button>
+    <!--<button (click)="test()" type="button">Test</button>-->
 
-                    </div>
-
-                </template>
-
-            </dynamic-form-bootstrap-control>
-
-        </form>
-
-        <!--<button (click)="test()" type="button">Test</button>-->
-
-    </div>
-    <!--
-    <div class="float-left content-margin text-center" style="width: 40%;">
-
-        <textarea rows="18" cols="46" class="live-edit" [(ngModel)]="modelEdit"></textarea>
-
-        <p class="font-bold">Live edit the underlying Dynamic Form Model</p>
-    </div>
-    -->
 </div>
+<!--
+<div class="float-left content-margin text-center" style="width: 40%;">
+
+    <textarea rows="18" cols="46" class="live-edit" [(ngModel)]="modelEdit"></textarea>
+
+    <p class="font-bold">Live edit the underlying Dynamic Form Model</p>
+</div>
+-->
