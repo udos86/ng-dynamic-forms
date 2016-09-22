@@ -2,6 +2,7 @@ export * from "./src/model/dynamic-form-control.model";
 export * from "./src/model/dynamic-form-value-control.model";
 export * from "./src/model/dynamic-input-control.model";
 export * from "./src/model/dynamic-option-control.model";
+export * from "./src/model/dynamic-form-control-relation.model";
 export * from "./src/model/checkbox/dynamic-checkbox.model";
 export * from "./src/model/checkbox/dynamic-checkbox-group.model";
 export * from "./src/model/form-group/dynamic-form-group.model";

@@ -145,16 +145,26 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
 
     new DynamicTextAreaModel(
         {
-            depends: [
-                {
-                    on: "bootstrapSelect",
-                    disableValue: "option-4"
-                }
-            ],
             id: "bootstrapTextArea",
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
+            relation: [
+                {
+                    action: "DISABLE",
+                    connective: "OR",
+                    when: [
+                        {
+                            id: "bootstrapSelect",
+                            value: "option-4"
+                        },
+                        {
+                            id: "bootstrapRadioGroup",
+                            value: "option-4",
+                        }
+                    ]
+                }
+            ],
         },
         {
             element: {

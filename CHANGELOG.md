@@ -1,3 +1,18 @@
+# RC.3
+
+### **Breaking Changes** 
+
+* **!!! IMPORTANT !!!** form control relation API changed (see [`README.md`](https://github.com/udos86/ng2-dynamic-forms#related-form-controls))
+
+### **Bugfixes** 
+
+* `files` field added to `DynamicInputModel` (closes [#114](https://github.com/udos86/ng2-dynamic-forms/issues/114)) 
+
+### **Features**
+
+* **Multi-related Form Controls** (closes [#115](https://github.com/udos86/ng2-dynamic-forms/issues/115)) 
+
+
 # RC.2
 
 ### **Breaking Changes** 

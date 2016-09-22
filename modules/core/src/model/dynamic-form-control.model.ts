@@ -1,4 +1,5 @@
 import {getValue, isEmptyString} from "../utils";
+import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
 
 export interface Cls {
 
@@ -13,31 +14,22 @@ export interface ClsConfig {
     grid?: Cls;
 }
 
-export interface DynamicFormControlDependency {
-
-    disableStatus?: string;
-    disableValue?: boolean | number | string;
-    enableStatus?: string;
-    enableValue?: boolean | number | string;
-    on: string;
-}
-
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
-    depends?: Array<DynamicFormControlDependency>;
     id?: string;
     label?: string;
+    relation?: Array<DynamicFormControlRelationGroup>;
 }
 
 export abstract class DynamicFormControlModel {
 
     cls: any = {};
     disabled: boolean;
-    depends: Array<DynamicFormControlDependency>;
     id: string;
     label: string | null;
     name: string;
+    relation: Array<DynamicFormControlRelationGroup>;
 
     abstract readonly type: string;
 
@@ -50,10 +42,10 @@ export abstract class DynamicFormControlModel {
         this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
         this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
 
-        this.depends = getValue(config, "depends", []);
         this.disabled = getValue(config, "disabled", false);
         this.id = config.id;
         this.label = getValue(config, "label", null);
         this.name = this.id;
+        this.relation = getValue(config, "relation", []);
     }
 }

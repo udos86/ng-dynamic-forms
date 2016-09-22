@@ -1,6 +1,6 @@
 <img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" style="float:left;" />
 
-#ng2 Dynamic Forms (RC.2)
+#ng2 Dynamic Forms (RC.3)
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
@@ -519,53 +519,61 @@ new DynamicInputModel(
 
 ## Related Form Controls
 
-In many complex forms the activation state of a certain form control depends on the value or status of some other form control.
+In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
 
 So let's pretend we need to have our text area `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
 
-Implementing such a requirement would be boring, time-consuming and lead to undesired boilerplate code. 
+Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
 
-**Using ng2 Dynamic Forms however, you can define relations between form controls by declaration**: 
-
+**Using ng2 Dynamic Forms however, you can easily define relations between form controls by declaration**: 
 ```ts
-
-new DynamicSelectModel<string>(
-    {
-        id: "mySelect",
-        label: "My Select",
-        options: [
-            {
-                label: "Option 1",
-                value: "option-1",
-            },
-            {
-                label: "Option 2",
-                value: "option-2"
-            },
-            {
-                label: "Option 3",
-                value: "option-3"
-            }
-        ],
-        value: "option-1"
-    }
-),
-
 new DynamicTextAreaModel(
     {
-        depends: [
-            {
-                on: "mySelect",
-                disableValue: "option-3"
-            }
-        ],
         id: "myTextArea",
-        label: "My Textarea"
+        label: "My Textarea",
+        relation: [
+            {
+                action: "DISABLE",
+                when: [
+                    {
+                        id: "mySelect",
+                        value: "option-3"
+                    }
+                ]
+            }
+        ]
+    }
+```
+
+The `relation` property may seem a bit oversized at first sight, but that way it allows the flexible declaration of even **multi-related form controls**. 
+
+*So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
+
+Just add a second entry to the `when` array and define how both relations should logically be connected via `connective`:
+```ts
+new DynamicTextAreaModel(
+    {
+        id: "myTextArea",
+        label: "My Textarea",
+        relation: [
+            {
+                action: "DISABLE",
+                connective: "AND",
+                when: [
+                    {
+                        id: "mySelect",
+                        value: "option-3"
+                    },
+                    {
+                        id: "myRadioGroup",
+                        value: "option-4"
+                    }
+                ]
+            }
+        ]
     }
 )
 ```
-
-> You can relate to another form control's `value` or `status` by using `disableValue`, `disableStatus`, `enableValue` and `enableStatus`.
 
 
 ## Form JSON
