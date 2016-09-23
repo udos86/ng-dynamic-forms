@@ -11,8 +11,9 @@ It simplifies all the time-consuming work of implementing reactive Angular 2 for
 upon a layer of easy-to-handle object models.
 
 It also provides a flexible system of dynamic UI components with out of the box support for 
-**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Angular 2 Material](https://github.com/angular/material2)** and more.
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and more.
 
+See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example)!
 
 ##Table of Contents
 
