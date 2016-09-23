@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {Router, NavigationEnd} from "@angular/router";
 
 @Component({
 
@@ -8,4 +9,16 @@ import {Component} from "@angular/core";
 })
 
 export class AppComponent {
+
+    routeData: any = {};
+
+    constructor (private router:Router) {
+
+        this.router.events.subscribe(event => {
+           if (event instanceof NavigationEnd) {
+               this.routeData = this.router.routerState.snapshot.root.firstChild.data;
+               console.log(this.router.routerState);
+           }
+        });
+    }
 }

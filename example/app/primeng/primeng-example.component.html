@@ -1,24 +1,10 @@
-<div class="overflow-hidden">
+<div class="overflow-hidden content-margin content-padding" style="width: 50%;">
 
-    <h2 class="comp-h2" style="background-color: #DB2226;">
+    <form [formGroup]="form" class="ui-grid ui-grid-responsive">
 
-        <span>Prime NG UI</span>
-
-        <a class="float-right" title="View Source" href="https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/primeng/primeng-example.model.ts">
-            <img src="../../assets/logo-github.png" srcset="../../assets/logo-github.png 1x, ../../assets/logo-github@2x.png 2x" alt="Logo GitHub"/>
-        </a>
-
-    </h2>
-
-    <div class="float-left content-margin content-padding" style="width: 55%;">
-
-        <form [formGroup]="form" class="ui-grid ui-grid-responsive">
-
-            <dynamic-form-primeng-control *ngFor="let controlModel of dynamicFormModel" class="form-row"
-                                          [controlGroup]="form"
-                                          [model]="controlModel"></dynamic-form-primeng-control>
-        </form>
-
-    </div>
+        <dynamic-form-primeng-control *ngFor="let controlModel of dynamicFormModel" class="form-row"
+                                      [controlGroup]="form"
+                                      [model]="controlModel"></dynamic-form-primeng-control>
+    </form>
 
 </div>

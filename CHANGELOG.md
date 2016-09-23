@@ -1,3 +1,18 @@
+# 1.0.0
+
+### **Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* Webpack flaws fixed (closes [#118](https://github.com/udos86/ng2-dynamic-forms/issues/118)) 
+
+### **Features**
+
+* none
+
+
 # RC.3
 
 ### **Breaking Changes** 
