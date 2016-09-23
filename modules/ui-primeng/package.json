@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "description": "PrimeNG UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-primeng.umd.js",
+  "keywords": [
+    "angular",
+    "dynamic forms",
+    "forms",
+    "ng2 dynamic forms",
+    "prime ng",
+    "reactive forms",
+    "ui"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"

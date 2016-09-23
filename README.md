@@ -27,9 +27,8 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Layouts](#form-layouts)
 - [Related Form Controls](#related-form-controls)
 - [Form JSON](#form-json)
-- [Form Caching](#form-caching)
 - [Validation Messaging](#validation-messaging)
-- [Form Autocompletion](#form-autocompletion)
+- [Form Autocomplete](#form-autocomplete)
 - [Appendix](#appendix)
 
 
@@ -66,7 +65,7 @@ System.config({
 
 ## Running the Example
 
-**1. Clone the ng2 Dynamic Forms Git repository**:
+**1. Clone the Git repository**:
 ```
 git clone https://github.com/udos86/ng2-dynamic-forms.git
 ```
@@ -350,7 +349,7 @@ export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
 ];  
  ```
 
-**2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent` **as always**:
+**2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent`:
 ```ts
 ngOnInit() {
     this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel);
@@ -522,7 +521,7 @@ new DynamicInputModel(
 
 In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
 
-So let's pretend we need to have our text area `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
+So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
 
 Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
 
@@ -590,7 +589,7 @@ storeForm() {
 ```
 
 Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
-recreating a form from JSON unfortunately becomes much more complicated. 
+recreating a form from JSON unfortunately becomes more complicated. 
 
 The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
 
@@ -606,33 +605,6 @@ restoreForm() {
     this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
 }
 ```
-
-
-## Form Caching
-
-One of the best things about ng2 Dynamic Forms, you won't recognize at first sight, is that you get **form
-caching across routes for free**. All you need to do is to separate the initialization of your `DynamicFormModel` from your 
-component code by exporting it on it's own:
-```ts
-export const MY_DYNAMIC_FORM_MODEL = [
-
-    // ...all dynamic control models
-]; 
-```
-
-```ts
-import {MY_DYNAMIC_FORM_MODEL} from "./my-dynamic-form.model";
-
-export class MyDynamicFormComponent {
-
-    dynamicFormModel: Array<DynamicFormControlModel> = MY_DYNAMIC_FORM_MODEL;
-
-    // ...
-}
-```
-
-While the component is entirely destroyed when navigating away from it, the `DynamicFormModel` **will remain in memory and 
-automatically be reused** when navigating back!
 
 
 ## Validation Messaging
@@ -701,7 +673,7 @@ and **bind the internal** `FormControl` **reference via local template variables
  ```
  
  
-## Form Autocompletion
+## Form Autocomplete
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
@@ -759,6 +731,7 @@ new DynamicInputModel({
     list: ["One", "Two", "Three", "Four", "Five"]
 })
 ```
+
 
 ## Appendix
 

@@ -1,27 +1,17 @@
 var gulp = require("gulp"),
-    typeScript = require("gulp-typescript"),
-    merge = require("merge2"),
+    ts = require("gulp-typescript"),
     sourceMaps = require("gulp-sourcemaps");
 
 module.exports = function (src, dest, configPath) {
 
     return function () {
 
-        var tsProject = typeScript.createProject(configPath, {
-            typescript: require("typescript")
-        });
+        var tsProject = ts.createProject(configPath);
 
-        var pipe = gulp.src(src)
-                            .pipe(sourceMaps.init())
-                            .pipe(typeScript(tsProject));
-
-        var dts = pipe.dts.pipe(gulp.dest(dest));
-
-        return merge([
-            dts,
-            pipe
-                .pipe(sourceMaps.write("."))
-                .pipe(gulp.dest(dest))
-        ]);
+        return gulp.src(src)
+                   .pipe(sourceMaps.init())
+                   .pipe(tsProject(ts.reporter.defaultReporter()))
+                   .pipe(sourceMaps.write("."))
+                   .pipe(gulp.dest(dest));
     };
 };

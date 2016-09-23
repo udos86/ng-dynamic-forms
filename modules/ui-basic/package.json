@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "Basic UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
+  "keywords": [
+    "angular",
+    "dynamic forms",
+    "forms",
+    "ng2 dynamic forms",
+    "reactive forms",
+    "ui"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
