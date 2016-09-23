@@ -1,8 +1,17 @@
 {
   "name": "@ng2-dynamic-forms/ui-semantic",
   "version": "1.0.0",
-  "description": "Semnatic UI package for ng2 Dynamic Forms",
+  "description": "Semantic UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-semantic.umd.js",
+  "keywords": [
+    "angular",
+    "dynamic forms",
+    "forms",
+    "ng2 dynamic forms",
+    "reactive forms",
+    "semantic",
+    "ui"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
