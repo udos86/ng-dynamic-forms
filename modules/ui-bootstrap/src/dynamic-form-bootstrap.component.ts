@@ -13,6 +13,7 @@ export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
 
 export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
 
+    @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
 

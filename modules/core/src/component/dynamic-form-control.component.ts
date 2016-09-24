@@ -15,6 +15,7 @@ import {isDefined} from "../utils";
 
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
+    bindId: boolean;
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;

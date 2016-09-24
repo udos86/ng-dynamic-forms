@@ -8,6 +8,7 @@
 
 
     <fieldset *ngSwitchCase="'GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -28,6 +29,7 @@
                   [formGroupName]="idx">
 
             <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
+                                           [bindId]="false"
                                            [controlGroup]="control.at(idx)"
                                            [model]="controlModel"></dynamic-form-material-control>
 
@@ -42,6 +44,7 @@
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [checked]="model.value"
+                 [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
@@ -54,6 +57,7 @@
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -63,6 +67,7 @@
         <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
                      [checked]="model.value"
+                     [dynamicId]="bindId && item.id"
                      [formControlName]="item.id"
                      [indeterminate]="item.indeterminate"
                      [name]="item.name"
@@ -78,6 +83,7 @@
     <md-input *ngSwitchCase="'INPUT'"
               [autocomplete]="model.autoComplete"
               [autofocus]="model.autoFocus"
+              [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
               [hintLabel]="model.help"
               [list]="model.listId"
@@ -107,6 +113,7 @@
 
 
     <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
+                    [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
