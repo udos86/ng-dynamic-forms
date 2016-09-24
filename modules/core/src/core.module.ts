@@ -3,7 +3,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormService} from "./service/dynamic-form.service";
 import {DynamicFormAutoFillService} from "./service/dynamic-form-autofill.service";
-import {DynamicIdDirective} from "./directives/dynamic-id.directive";
+import {DynamicIdDirective} from "./directive/dynamic-id.directive";
 
 @NgModule({
     imports: [
