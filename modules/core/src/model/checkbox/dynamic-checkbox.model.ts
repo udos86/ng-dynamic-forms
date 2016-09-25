@@ -28,7 +28,7 @@ export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> 
         this.indeterminate = getValue(config, "indeterminate", false);
 
         if (this.value !== true) {
-            this.value = false;
+            this.valueChanges.next(false);
         }
     }
 }

@@ -12,7 +12,7 @@ export class DynamicSwitchModel extends DynamicFormValueControlModel<boolean> {
         super(config, cls);
 
         if (this.value !== true) {
-            this.value = false;
+            this.valueChanges.next(false);
         }
     }
 }

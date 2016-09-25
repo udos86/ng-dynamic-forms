@@ -1,5 +1,6 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {getValue} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
@@ -20,6 +21,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     tabIndex: number | null;
     validators: Array<ValidatorFn>;
     value: T | null;
+    valueChanges: BehaviorSubject<T>;
 
     constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {
 
@@ -30,6 +32,8 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.required = getValue(config, "required", false);
         this.tabIndex = getValue(config, "tabIndex", null);
         this.validators = getValue(config, "validators", []);
-        this.value = getValue(config, "value", null);
+
+        this.valueChanges = new BehaviorSubject<T>(getValue(config, "value", null));
+        this.valueChanges.subscribe((value: T) => this.value = value);
     }
 }

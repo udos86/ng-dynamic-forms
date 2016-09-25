@@ -19,8 +19,7 @@
                             [formControlName]="item.id"
                             [name]="model.name"
                             [value]="item.value"
-                            [ngClass]="item.cls.element.control"
-                            [(ngModel)]="item.value"></p-checkbox>
+                            [ngClass]="item.cls.element.control"></p-checkbox>
             </div>
 
             <div [ngClass]="item.cls.grid.label">
@@ -46,8 +45,7 @@
 
                 <p-radioButton [formControlName]="model.id"
                                [name]="model.name"
-                               [value]="option.value"
-                               [(ngModel)]="model.value"></p-radioButton>
+                               [value]="option.value"></p-radioButton>
             </div>
 
             <div [ngClass]="model.cls.grid.label">
@@ -129,8 +127,7 @@
                    [type]="model.inputType"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
-                   (focus)="onFocus($event)"
-                   [(ngModel)]="model.value"/>
+                   (focus)="onFocus($event)"/>
 
             <datalist *ngIf="model.list" [id]="model.listId">
 
@@ -144,15 +141,13 @@
                         [formControlName]="model.id"
                         [name]="model.name"
                         [ngClass]="model.cls.element.control"
-                        [value]="model.value"
-                        [(ngModel)]="model.value"></p-checkbox>
+                        [value]="model.value"></p-checkbox>
 
 
             <p-dropdown *ngSwitchCase="'SELECT'"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
-                        [options]="model.options"
-                        [(ngModel)]="model.value"></p-dropdown>
+                        [options]="model.options"></p-dropdown>
 
 
             <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
@@ -172,8 +167,7 @@
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onChange($event)"
-                      (focus)="onFocus($event)"
-                      [(ngModel)]="model.value"></textarea>
+                      (focus)="onFocus($event)"></textarea>
 
         </div>
 
