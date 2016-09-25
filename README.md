@@ -5,12 +5,12 @@
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
 
-ng2 Dynamic Forms is a rapid form development library based on the official Angular 2
+ng2 Dynamic Forms is a **rapid form development library** based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 It simplifies all the time-consuming work of implementing reactive Angular 2 forms by building
-upon a layer of easy-to-handle object models.
+upon a layer of maintainable object models.
 
-It also provides a flexible system of dynamic UI components with out of the box support for 
+It also provides a flexible system of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and more.
 
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example)!
@@ -247,13 +247,13 @@ your component** `template`:
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
 full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
-|               	| Checkbox 	| Checkbox Group 	| Input 	| Radio Group 	| Select 	| Textarea 	|
-|---------------	|:--------:	|:--------------:	|:-----:	|:-----------:	|:------:	|:--------:	|
-| ui-basic      	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
-| ui-bootstrap  	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
-| ui-foundation 	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
-| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|
-| ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|
+|               	| Checkbox 	| Checkbox Group 	| Input 	| Radio Group 	| Select 	| Textarea 	| Switch 	|
+|---------------	|:--------:	|:--------------:	|:-----:	|:-----------:	|:------:	|:--------:	|:------:	|
+| ui-basic      	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
+| ui-bootstrap  	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
+| ui-foundation 	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
+| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|    ✓   	|
+| ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
 
 
 ## Model Bindings and Control References
@@ -292,7 +292,7 @@ Just obtain a reference to the `FormControl` and use it's `valueChanges` observa
 ```ts
 ngOnInit() {
 
-  this.control = <FormControl> this.myForm.controls[this.exampleInputModel.id];
+  this.control = <FormControl> this.myForm.get(this.exampleInputModel.id);
   this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
 ```
@@ -424,7 +424,7 @@ this.myForm = this.dynamicFormService.createFormGroup(this.myDynamicFormModel);
 ```ts
 ngOnInit() {
 
-    this.myArrayControl = <FormArray> this.myForm.controls["myFormArray"]; 
+    this.myArrayControl = <FormArray> this.myForm.get("myFormArray"); 
     this.myArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("myFormArray", myDynamicFormModel);
 }
 
@@ -468,7 +468,7 @@ removeItem(index: number) {
 }
 ```
 
-> When a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
+**Note**: When a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
 the associated** `DynamicFormArrayGroup` so you can **access the group 
 index by declaring a local template variable** `let-index="index"`!
 
