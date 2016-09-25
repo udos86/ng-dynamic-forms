@@ -3,6 +3,7 @@ import {ReactiveFormsModule, FormsModule, FormGroup, FormControl} from "@angular
 import {MdCheckboxModule} from "@angular2-material/checkbox";
 import {MdInputModule} from "@angular2-material/input";
 import {MdRadioModule} from "@angular2-material/radio";
+import {MdSlideToggleModule} from "@angular2-material/slide-toggle";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -27,7 +28,8 @@ describe("DynamicFormMaterialComponent test suite", () => {
                 DynamicFormsCoreModule.forRoot(),
                 MdCheckboxModule.forRoot(),
                 MdInputModule.forRoot(),
-                MdRadioModule.forRoot()
+                MdRadioModule.forRoot(),
+                MdSlideToggleModule.forRoot()
             ],
             declarations: [DynamicFormMaterialComponent]
         });

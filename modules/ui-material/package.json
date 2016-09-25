@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "keywords": [
@@ -35,7 +35,7 @@
     "@angular2-material/input": "^2.0.0-alpha.8-1",
     "@angular2-material/radio": "^2.0.0-alpha.8-1",
     "@angular2-material/slide-toggle": "^2.0.0-alpha.8-2",
-    "@ng2-dynamic-forms/core": "^1.0.0",
+    "@ng2-dynamic-forms/core": "^1.0.1",
     "hammerjs": "^2.0.8",
     "rxjs": "^5.0.0-beta.12"
   }

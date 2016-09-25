@@ -135,7 +135,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
             }
         }
 
-        this.disable();
         //@exclude
         console.log($event, this.model.id + " field is changed", $event);
         //@endexclude

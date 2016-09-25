@@ -85,6 +85,7 @@
 
 
             <div *ngSwitchCase="'ARRAY'"
+                 [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
 

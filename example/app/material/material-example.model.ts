@@ -67,6 +67,17 @@ export const MATERIAL_EXAMPLE_MODEL = [
                 value: "option-4"
             }
         ],
+        relation: [
+            {
+                action: "DISABLE",
+                when: [
+                    {
+                        id: "materialSwitch",
+                        value: true
+                    }
+                ]
+            }
+        ],
         value: "option-3"
     }),
 

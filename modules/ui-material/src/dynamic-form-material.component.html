@@ -22,6 +22,7 @@
 
 
     <div *ngSwitchCase="'ARRAY'"
+         [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
@@ -86,7 +87,6 @@
     <md-input *ngSwitchCase="'INPUT'"
               [autocomplete]="model.autoComplete"
               [autofocus]="model.autoFocus"
-              [disabled]="model.disabled"
               [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
               [hintLabel]="model.help"

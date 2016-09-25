@@ -88,7 +88,7 @@ gulp.task("build:modules", function (done) {
         "inline:ng2-templates",
         "bundle:modules",
         "transpile:modules:es5",
-        //"preprocess:modules",
+        "preprocess:modules",
         "inline:ng2-templates",
         "prime:modules",
         done
