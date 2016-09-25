@@ -79,6 +79,10 @@ md-input {
     vertical-align: middle;
 }
 
+md-slide-toggle {
+    display: inline-block !important;
+}
+
 .form-row {
     display: block;
 }

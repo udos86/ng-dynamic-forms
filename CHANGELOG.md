@@ -1,3 +1,20 @@
+# 1.0.1
+
+### **Breaking Changes** 
+
+* none
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+
+* `DynamicSwitchModel` introduced in `ui-material`
+* `id` attribute is now bound again to improve accessibility (see [#42](https://github.com/udos86/ng2-dynamic-forms/issues/42)) 
+* `disabled` bindings added in `ui-material` where appropriate
+
+
 # 1.0.0
 
 ### **Breaking Changes** 

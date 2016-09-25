@@ -2,12 +2,13 @@
      [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
-    <label *ngIf="!isCheckbox && model.label"
+    <label *ngIf="!isCheckbox && !isSwitch && model.label"
            [attr.for]="model.id"
            [ngClass]="model.cls.element.label">{{model.label}}</label>
 
 
     <fieldset *ngSwitchCase="'GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -21,6 +22,7 @@
 
 
     <div *ngSwitchCase="'ARRAY'"
+         [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
@@ -28,6 +30,7 @@
                   [formGroupName]="idx">
 
             <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
+                                           [bindId]="false"
                                            [controlGroup]="control.at(idx)"
                                            [model]="controlModel"></dynamic-form-material-control>
 
@@ -42,6 +45,8 @@
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
                  [checked]="model.value"
+                 [disabled]="model.disabled"
+                 [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
@@ -54,6 +59,7 @@
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -63,6 +69,8 @@
         <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
                      [checked]="model.value"
+                     [disabled]="model.disabled"
+                     [dynamicId]="bindId && item.id"
                      [formControlName]="item.id"
                      [indeterminate]="item.indeterminate"
                      [name]="item.name"
@@ -70,7 +78,8 @@
                      (blur)="onBlur($event)"
                      (change)="onChange($event)"
                      (focus)="onFocus($event)"
-                     [(ngModel)]="item.value">{{item.label}}</md-checkbox>
+                     [(ngModel)]="item.value">{{item.label}}
+        </md-checkbox>
 
     </fieldset>
 
@@ -78,6 +87,7 @@
     <md-input *ngSwitchCase="'INPUT'"
               [autocomplete]="model.autoComplete"
               [autofocus]="model.autoFocus"
+              [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
               [hintLabel]="model.help"
               [list]="model.listId"
@@ -107,6 +117,8 @@
 
 
     <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
+                    [disabled]="model.disabled"
+                    [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
@@ -121,6 +133,17 @@
         </md-radio-button>
 
     </md-radio-group>
+
+
+    <md-slide-toggle *ngSwitchCase="'SWITCH'"
+                     [disabled]="model.disabled"
+                     [dynamicId]="bindId && model.id"
+                     [formControlName]="model.id"
+                     [name]="model.name"
+                     [ngClass]="model.cls.element.control"
+                     (change)="onChange($event)"
+                     [(ngModel)]="model.value">{{model.label}}
+    </md-slide-toggle>
 
     <ng-content></ng-content>
 

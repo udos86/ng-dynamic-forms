@@ -43,6 +43,7 @@ System.config({
         "@angular2-material/checkbox": "npm:@angular2-material/checkbox/checkbox.umd.js",
         "@angular2-material/input": "npm:@angular2-material/input/input.umd.js",
         "@angular2-material/radio": "npm:@angular2-material/radio/radio.umd.js",
+        "@angular2-material/slide-toggle": "npm:@angular2-material/slide-toggle/slide-toggle.umd.js",
         "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
         "@ng2-dynamic-forms/ui-basic": "npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.js",
         "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",

@@ -13,6 +13,7 @@ export const DYNAMIC_FORM_UI_BASIC = "BASIC";
 
 export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
+    @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
 

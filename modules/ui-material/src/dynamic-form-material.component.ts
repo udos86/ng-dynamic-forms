@@ -21,6 +21,7 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
+    @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
 

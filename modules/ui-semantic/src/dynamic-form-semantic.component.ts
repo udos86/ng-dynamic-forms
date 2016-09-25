@@ -13,6 +13,7 @@ export const DYNAMIC_FORM_UI_SEMANTIC = "SEMANTIC";
 
 export class DynamicFormSemanticComponent extends DynamicFormControlComponent {
 
+    @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
 

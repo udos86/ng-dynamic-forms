@@ -3,6 +3,7 @@
      [ngSwitch]="model.type">
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -14,6 +15,7 @@
             <div [ngClass]="item.cls.grid.control">
 
                 <p-checkbox binary="true"
+                            [dynamicId]="bindId && item.id"
                             [formControlName]="item.id"
                             [name]="model.name"
                             [value]="item.value"
@@ -31,7 +33,10 @@
 
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
-              [attr.tabindex]="model.tabIndex">
+              [attr.tabindex]="model.tabIndex"
+              [dynamicId]="bindId && model.id"
+              [name]="model.name"
+              (change)="onChange($event)">
 
         <legend *ngIf="model.legend">{{model.legend}}</legend>
 
@@ -66,6 +71,7 @@
         <div [ngClass]="model.cls.grid.control">
 
             <fieldset *ngSwitchCase="'GROUP'"
+                      [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
                       [ngClass]="model.cls.element.control">
@@ -79,6 +85,7 @@
 
 
             <div *ngSwitchCase="'ARRAY'"
+                 [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
 
@@ -86,6 +93,7 @@
                           [formGroupName]="idx">
 
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
+                                                  [bindId]="false"
                                                   [controlGroup]="control.at(idx)"
                                                   [model]="controlModel"></dynamic-form-primeng-control>
 
@@ -107,6 +115,7 @@
                    [attr.step]="model.step"
                    [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
+                   [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [maxlength]="model.maxLength"
                    [minlength]="model.minLength"
@@ -131,6 +140,7 @@
 
 
             <p-checkbox *ngSwitchCase="'CHECKBOX'" binary="true"
+                        [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [name]="model.name"
                         [ngClass]="model.cls.element.control"
@@ -139,6 +149,7 @@
 
 
             <p-dropdown *ngSwitchCase="'SELECT'"
+                        [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
                         [(ngModel)]="model.value"></p-dropdown>
@@ -147,6 +158,7 @@
             <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
+                      [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [maxlength]="model.maxLength"
                       [minlength]="model.minLength"

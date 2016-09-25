@@ -19,10 +19,6 @@
       true,
       "element"
     ],
-    "directive-selector-prefix": [
-      true,
-      "df"
-    ],
     "component-selector-prefix": [
       true,
       "dynamic-form"

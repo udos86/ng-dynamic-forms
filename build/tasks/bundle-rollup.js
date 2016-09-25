@@ -63,6 +63,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@angular2-material/core": "md.core",
             "@angular2-material/input": "md.input",
             "@angular2-material/radio": "md.radio",
+            "@angular2-material/slide-toggle": "md.slideToggle",
 
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",

@@ -4,6 +4,7 @@
 
     <input *ngSwitchCase="'CHECKBOX'" type="checkbox"
            [attr.tabindex]="model.tabIndex"
+           [dynamicId]="bindId && model.id"
            [formControlName]="model.id"
            [name]="model.name"
            [ngClass]="model.cls.element.control"
@@ -21,6 +22,7 @@
 
 
     <div *ngSwitchCase="'ARRAY'"
+         [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="model.cls.element.control">
 
@@ -28,6 +30,7 @@
                   [formGroupName]="idx">
 
             <dynamic-form-basic-control *ngFor="let controlModel of groupModel.group"
+                                        [bindId]="false"
                                         [controlGroup]="control.at(idx)"
                                         [model]="controlModel"></dynamic-form-basic-control>
 
@@ -40,6 +43,7 @@
 
 
     <fieldset *ngSwitchCase="'GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -53,6 +57,7 @@
 
 
     <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="model.cls.element.control">
@@ -65,6 +70,7 @@
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
+                   [dynamicId]="bindId && item.id"
                    [formControlName]="item.id"
                    [name]="item.name"
                    [ngClass]="item.cls.element.control"
@@ -87,6 +93,7 @@
            [attr.step]="model.step"
            [attr.tabindex]="model.tabIndex"
            [autofocus]="model.autoFocus"
+           [dynamicId]="bindId && model.id"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"
@@ -112,6 +119,7 @@
 
     <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
+              [dynamicId]="bindId && model.id"
               [name]="model.name"
               (change)="onChange($event)">
 
@@ -130,6 +138,7 @@
 
     <select *ngSwitchCase="'SELECT'"
             [attr.tabindex]="model.tabIndex"
+            [dynamicId]="bindId && model.id"
             [formControlName]="model.id"
             [name]="model.name"
             [ngClass]="model.cls.element.control"
@@ -151,6 +160,7 @@
     <textarea *ngSwitchCase="'TEXTAREA'"
               [attr.tabindex]="model.tabIndex"
               [cols]="model.cols"
+              [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
               [maxlength]="model.maxLength"
               [minlength]="model.minLength"
