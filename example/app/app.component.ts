@@ -17,7 +17,6 @@ export class AppComponent {
         this.router.events.subscribe(event => {
            if (event instanceof NavigationEnd) {
                this.routeData = this.router.routerState.snapshot.root.firstChild.data;
-               console.log(this.router.routerState);
            }
         });
     }

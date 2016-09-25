@@ -8,6 +8,7 @@ import {MdButtonModule} from "@angular2-material/button";
 import {MdCheckboxModule} from "@angular2-material/checkbox";
 import {MdInputModule} from "@angular2-material/input";
 import {MdRadioModule} from "@angular2-material/radio";
+import {MdSlideToggleModule} from "@angular2-material/slide-toggle";
 
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormsBasicUIModule} from "@ng2-dynamic-forms/ui-basic";
@@ -42,7 +43,8 @@ import {AppComponent} from './app.component';
         MdButtonModule.forRoot(),
         MdCheckboxModule.forRoot(),
         MdInputModule.forRoot(),
-        MdRadioModule.forRoot()
+        MdRadioModule.forRoot(),
+        MdSlideToggleModule.forRoot()
     ],
     declarations: [
         BasicExampleComponent,

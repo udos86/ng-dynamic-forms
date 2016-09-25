@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MdCheckboxModule} from "@angular2-material/checkbox";
 import {MdInputModule} from "@angular2-material/input";
 import {MdRadioModule} from "@angular2-material/radio";
+import {MdSlideToggleModule} from "@angular2-material/slide-toggle";
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormMaterialComponent} from "./dynamic-form-material.component";
 
@@ -15,6 +16,7 @@ import {DynamicFormMaterialComponent} from "./dynamic-form-material.component";
         MdCheckboxModule,
         MdInputModule,
         MdRadioModule,
+        MdSlideToggleModule,
         DynamicFormsCoreModule
     ],
     declarations: [

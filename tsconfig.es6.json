@@ -18,6 +18,7 @@
       "node_modules/@types"
     ],
     "types": [
+      "hammerjs",
       "jasmine",
       "node",
       "q"

@@ -10,6 +10,7 @@ export * from "./src/model/form-array/dynamic-form-array.model";
 export * from "./src/model/input/dynamic-input.model";
 export * from "./src/model/radio/dynamic-radio-group.model";
 export * from "./src/model/select/dynamic-select.model";
+export * from "./src/model/switch/dynamic-switch.model";
 export * from "./src/model/textarea/dynamic-textarea.model";
 
 export * from "./src/directive/dynamic-id.directive";

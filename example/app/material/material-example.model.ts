@@ -3,7 +3,7 @@ import {
     DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
-    DynamicFormArrayModel
+    DynamicSwitchModel
 } from "@ng2-dynamic-forms/core";
 
 export const MATERIAL_EXAMPLE_MODEL = [
@@ -37,6 +37,12 @@ export const MATERIAL_EXAMPLE_MODEL = [
             label: "Example Checkbox Group"
         }
     ),
+
+    new DynamicSwitchModel({
+
+        id: "materialSwitch",
+        label: "Get it on"
+    }),
 
     new DynamicRadioGroupModel<string>({
 

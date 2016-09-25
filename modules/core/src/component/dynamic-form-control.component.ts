@@ -5,10 +5,11 @@ import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH} from "../model/switch/dynamic-switch.model";
 import {
-    DynamicInputModel,
-    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
+DynamicInputModel,
+DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
 import {findIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
 import {isDefined} from "../utils";
@@ -63,6 +64,10 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     get isRadioGroup() {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
+    }
+
+    get isSwitch() {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_SWITCH;
     }
 
     get isValid() {
@@ -130,6 +135,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
             }
         }
 
+        this.disable();
         //@exclude
         console.log($event, this.model.id + " field is changed", $event);
         //@endexclude
