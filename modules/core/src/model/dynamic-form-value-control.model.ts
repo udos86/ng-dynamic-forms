@@ -1,6 +1,7 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
-import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
+import {serializable} from "../decorator/serialize.decorator";
 import {getValue} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
@@ -16,11 +17,11 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
     asyncValidators: Array<AsyncValidatorFn>;
-    hint: string | null;
-    required: boolean;
-    tabIndex: number | null;
+    @serializable hint: string | null;
+    @serializable required: boolean;
+    @serializable tabIndex: number | null;
     validators: Array<ValidatorFn>;
-    value: T | null;
+    @serializable value: T | null;
     valueChanges: BehaviorSubject<T>;
 
     constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {

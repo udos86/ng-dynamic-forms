@@ -1,5 +1,6 @@
 import {ClsConfig} from "../dynamic-form-control.model";
 import {DynamicInputControlModel, DynamicInputControlModelConfig} from "../dynamic-input-control.model";
+import {serializable} from "../../decorator/serialize.decorator";
 import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
@@ -34,18 +35,18 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig 
 
 export class DynamicInputModel extends DynamicInputControlModel<any> {
 
-    accept: string | null;
-    inputType: string;
+    @serializable accept: string | null;
+    @serializable inputType: string;
     files: FileList | null = null;
-    list: Array<string> | null;
-    max: number | null;
-    min: number | null;
-    multiple: boolean | null;
-    pattern: string | null;
-    step: number | null;
+    @serializable list: Array<string> | null;
+    @serializable max: number | null;
+    @serializable min: number | null;
+    @serializable multiple: boolean | null;
+    @serializable pattern: string | null;
+    @serializable step: number | null;
 
     private listId: string | null = null;
-    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
+    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, cls?: ClsConfig) {
 

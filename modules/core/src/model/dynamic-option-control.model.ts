@@ -1,5 +1,6 @@
 import {ClsConfig} from "./dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
+import {serializable} from "../decorator/serialize.decorator";
 import {getValue} from "../utils";
 
 export interface DynamicFormOptionConfig {
@@ -38,7 +39,7 @@ export interface DynamicOptionControlModelConfig extends DynamicFormValueControl
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    options: Array<DynamicFormOption>;
+    @serializable options: Array<DynamicFormOption>;
 
     constructor(config: DynamicOptionControlModelConfig, cls?: ClsConfig) {
 
