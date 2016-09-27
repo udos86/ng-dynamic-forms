@@ -1,17 +1,22 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
-import {getValue, isFunction} from "../../utils";
+import {serializable} from "../../decorator/serialize.decorator";
+import {getValue, isFunction, serialize} from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
-    group: Array<DynamicFormValueControlModel<any>>;
-    index: number | null;
+    @serializable() group: Array<DynamicFormValueControlModel<any>>;
+    @serializable() index: number | null;
 
     constructor(group: Array<DynamicFormValueControlModel<any>> = [], index: number | null = null) {
 
         this.group = group;
         this.index = index;
+    }
+
+    toJSON() {
+        return serialize(this);
     }
 }
 
@@ -30,13 +35,13 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     asyncValidator: AsyncValidatorFn | null;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
-    groups: Array<DynamicFormArrayGroupModel> = [];
-    initialCount: number;
+    @serializable() groups: Array<DynamicFormArrayGroupModel> = [];
+    @serializable() initialCount: number;
     validator: ValidatorFn | null;
 
-    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
-    private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
+    @serializable() private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
 
     constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
 

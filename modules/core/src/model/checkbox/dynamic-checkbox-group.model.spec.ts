@@ -13,18 +13,19 @@ describe("DynamicCheckboxGroupModel test suite", () => {
         
         it("tests if default model is correctly initialized", () => {
 
-            expect(defaultModel.id).toBeDefined();
             expect(defaultModel.id).toEqual(config.id);
-
-            expect(defaultModel.group).toBeDefined();
             expect(defaultModel.group).toEqual(config.group);
             expect(defaultModel.group.length).toBe(0);
-
-            expect(defaultModel.legend).toBeDefined();
             expect(defaultModel.legend).toBeNull();
-
-            expect(defaultModel.type).toBeDefined();
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
+        });
+
+        it("should serialize correctly", () => {
+
+            let json = JSON.parse(JSON.stringify(defaultModel));
+
+            expect(json.id).toEqual(defaultModel.id);
+            expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
         });
         
     });

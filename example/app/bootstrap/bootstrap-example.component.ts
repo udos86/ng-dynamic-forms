@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {FormGroup, FormControl, FormArray} from "@angular/forms";
-import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel, DynamicFormArrayModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
+import {DynamicFormService, DynamicFormControlModel, DynamicFormArrayModel, DynamicInputModel} from "@ng2-dynamic-forms/core";
 import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
 @Component({
@@ -70,7 +70,6 @@ export class BootstrapExampleComponent implements OnInit {
     }
 
     test() {
-
-        this.exampleControl.disabled ? this.exampleControl.enable() : this.exampleControl.disable();
+        this.exampleModel.valueUpdates.next("Hallo Hallo");
     }
 }

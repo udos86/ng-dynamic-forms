@@ -77,8 +77,7 @@
                      [ngClass]="item.cls.element.control"
                      (blur)="onBlur($event)"
                      (change)="onChange($event)"
-                     (focus)="onFocus($event)"
-                     [(ngModel)]="item.value">{{item.label}}
+                     (focus)="onFocus($event)">{{item.label}}
         </md-checkbox>
 
     </fieldset>
@@ -107,8 +106,7 @@
               [type]="model.inputType"
               (blur)="onBlur($event)"
               (change)="onChange($event)"
-              (focus)="onFocus($event)"
-              [(ngModel)]="model.value">
+              (focus)="onFocus($event)">
 
         <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
         <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
@@ -124,8 +122,7 @@
                     [ngClass]="model.cls.element.control"
                     (blur)="onBlur($event)"
                     (change)="onChange($event)"
-                    (focus)="onFocus($event)"
-                    [(ngModel)]="model.value">
+                    (focus)="onFocus($event)">
 
         <md-radio-button *ngFor="let option of model.options"
                          [name]="model.name"
@@ -141,8 +138,7 @@
                      [formControlName]="model.id"
                      [name]="model.name"
                      [ngClass]="model.cls.element.control"
-                     (change)="onChange($event)"
-                     [(ngModel)]="model.value">{{model.label}}
+                     (change)="onChange($event)">{{model.label}}
     </md-slide-toggle>
 
     <ng-content></ng-content>

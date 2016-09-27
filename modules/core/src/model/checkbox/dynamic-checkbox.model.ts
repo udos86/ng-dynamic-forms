@@ -1,5 +1,6 @@
 import {ClsConfig} from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "../dynamic-form-value-control.model";
+import {serializable} from "../../decorator/serialize.decorator";
 import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
@@ -15,10 +16,10 @@ export interface DynamicCheckboxModelConfig extends DynamicFormValueControlModel
 
 export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> {
 
-    align: string;
-    indeterminate: boolean;
+    @serializable() align: string;
+    @serializable() indeterminate: boolean;
 
-    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
 
     constructor(config: DynamicCheckboxModelConfig, cls?: ClsConfig) {
 

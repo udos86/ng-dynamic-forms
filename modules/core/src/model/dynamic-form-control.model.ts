@@ -1,5 +1,6 @@
-import {getValue, isEmptyString} from "../utils";
 import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
+import {serializable} from "../decorator/serialize.decorator";
+import {getValue, isEmptyString, serialize} from "../utils";
 
 export interface Cls {
 
@@ -24,12 +25,12 @@ export interface DynamicFormControlModelConfig {
 
 export abstract class DynamicFormControlModel {
 
-    cls: any = {};
-    disabled: boolean;
-    id: string;
-    label: string | null;
-    name: string;
-    relation: Array<DynamicFormControlRelationGroup>;
+    @serializable() cls: any = {};
+    @serializable() disabled: boolean;
+    @serializable() id: string;
+    @serializable() label: string | null;
+    @serializable() name: string;
+    @serializable() relation: Array<DynamicFormControlRelationGroup>;
 
     abstract readonly type: string;
 
@@ -47,5 +48,9 @@ export abstract class DynamicFormControlModel {
         this.label = getValue(config, "label", null);
         this.name = this.id;
         this.relation = getValue(config, "relation", []);
+    }
+
+    toJSON() {
+        return serialize(this);
     }
 }

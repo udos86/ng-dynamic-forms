@@ -26,6 +26,9 @@ export class BasicExampleComponent implements OnInit {
 
     constructor(private dynamicFormService: DynamicFormService) {
 
+        //this.dynamicFormModel1 = BASIC_EXAMPLE_MODEL;
+        //this.dynamicFormModel2 = BASIC_EXAMPLE_ARRAY_MODEL;
+
         this.dynamicFormModel1 = this.dynamicFormService.fromJSON(JSON.parse(JSON.stringify(BASIC_EXAMPLE_MODEL)));
         this.dynamicFormModel2 = this.dynamicFormService.fromJSON(JSON.parse(JSON.stringify(BASIC_EXAMPLE_ARRAY_MODEL)));
 

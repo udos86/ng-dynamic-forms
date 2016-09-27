@@ -1,6 +1,7 @@
 import {ClsConfig} from "./dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
 import {AUTOCOMPLETE_ON} from "../service/dynamic-form-autofill.service";
+import {serializable} from "../decorator/serialize.decorator";
 import {getValue} from "../utils";
 
 export interface DynamicInputControlModelConfig extends DynamicFormValueControlModelConfig {
@@ -18,15 +19,15 @@ export interface DynamicInputControlModelConfig extends DynamicFormValueControlM
 
 export abstract class DynamicInputControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    autoComplete: boolean;
-    autoFocus: boolean;
-    maxLength: number | null;
-    minLength: number | null;
-    placeholder: string;
-    prefix: string | null;
-    readOnly: boolean;
-    spellCheck: boolean;
-    suffix: string | null;
+    @serializable() autoComplete: boolean;
+    @serializable() autoFocus: boolean;
+    @serializable() maxLength: number | null;
+    @serializable() minLength: number | null;
+    @serializable() placeholder: string;
+    @serializable() prefix: string | null;
+    @serializable() readOnly: boolean;
+    @serializable() spellCheck: boolean;
+    @serializable() suffix: string | null;
 
     constructor(config: DynamicInputControlModelConfig, cls?: ClsConfig) {
 

@@ -1,10 +1,15 @@
 import {DYNAMIC_FORM_CONTROL_TYPE_ARRAY, DynamicFormArrayModel} from "./dynamic-form-array.model";
+import {DynamicInputModel} from "../input/dynamic-input.model";
 
 describe("DynamicFormArrayModel test suite", () => {
 
     describe("default model test suite", () => {
 
-        let config = {id: "default", createGroup: () => []};
+        let config = {
+            id: "default",
+            initialCount: 3,
+            createGroup: () => [new DynamicInputModel({id: "defaultInput"})]
+        };
         let defaultModel: DynamicFormArrayModel;
 
         beforeEach(() => {
@@ -13,29 +18,23 @@ describe("DynamicFormArrayModel test suite", () => {
         
         it("tests if default model is correctly initialized", () => {
 
-            expect(defaultModel.initialCount).toBeDefined();
-            expect(defaultModel.initialCount).toBe(1);
-
-            expect(defaultModel.groups).toBeDefined();
+            expect(defaultModel.initialCount).toBe(config.initialCount);
             expect(defaultModel.groups.length).toBe(defaultModel.initialCount);
-
-            expect(defaultModel.id).toBeDefined();
             expect(defaultModel.id).toEqual(config.id);
-
-            expect(defaultModel.type).toBeDefined();
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
-
-            expect(defaultModel.asyncValidator).toBeDefined();
             expect(defaultModel.asyncValidator).toBeNull();
-
-            expect(defaultModel.validator).toBeDefined();
             expect(defaultModel.validator).toBeNull();
-
-            expect(defaultModel.createGroup).toBeDefined();
-            expect(defaultModel.createGroup()).toEqual([]);
-
-            expect(defaultModel.addGroup).toBeDefined();
+            expect(defaultModel.createGroup().length).toEqual(1);
             expect(defaultModel.removeGroup).toBeDefined();
+        });
+
+        it("should serialize correctly", () => {
+
+            let json = JSON.parse(JSON.stringify(defaultModel));
+
+            expect(json.id).toEqual(defaultModel.id);
+            expect(json.groups.length).toEqual(defaultModel.groups.length);
+            expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
         });
         
     });

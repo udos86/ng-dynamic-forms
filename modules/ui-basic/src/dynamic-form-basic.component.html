@@ -12,8 +12,7 @@
            [value]="model.value"
            (blur)="onBlur($event)"
            (change)="onChange($event)"
-           (focus)="onFocus($event)"
-           [(ngModel)]="model.value"/>
+           (focus)="onFocus($event)"/>
 
 
     <label *ngIf="model.label"
@@ -78,8 +77,7 @@
                    [value]="item.value"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
-                   (focus)="onFocus($event)"
-                   [(ngModel)]="item.value"/>{{item.label}}</label>
+                   (focus)="onFocus($event)"/>{{item.label}}</label>
     </fieldset>
 
 
@@ -107,8 +105,7 @@
            [type]="model.inputType"
            (blur)="onBlur($event)"
            (change)="onChange($event)"
-           (focus)="onFocus($event)"
-           [(ngModel)]="model.value"/>
+           (focus)="onFocus($event)"/>
 
     <datalist *ngIf="model.list" [id]="model.listId">
 
@@ -131,8 +128,7 @@
                    [formControlName]="model.id"
                    [name]="model.name"
                    [ngClass]="model.cls.element.control"
-                   [value]="option.value"
-                   [(ngModel)]="model.value"/>{{option.label}}</label>
+                   [value]="option.value"/>{{option.label}}</label>
     </fieldset>
 
 
@@ -145,8 +141,7 @@
             [required]="model.required"
             (blur)="onBlur($event)"
             (change)="onChange($event)"
-            (focus)="onFocus($event)"
-            [(ngModel)]="model.value">
+            (focus)="onFocus($event)">
 
         <option *ngFor="let option of model.options"
                 [attr.name]="model.name"
@@ -174,8 +169,7 @@
               [wrap]="model.wrap"
               (blur)="onBlur($event)"
               (change)="onChange($event)"
-              (focus)="onFocus($event)"
-              [(ngModel)]="model.value"></textarea>
+              (focus)="onFocus($event)"></textarea>
 
     <ng-content></ng-content>
 

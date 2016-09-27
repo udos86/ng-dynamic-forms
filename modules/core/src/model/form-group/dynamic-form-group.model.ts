@@ -1,5 +1,6 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
+import {serializable} from "../../decorator/serialize.decorator";
 import {getValue} from "../../utils";
 
 export interface DynamicFieldSet {
@@ -20,11 +21,11 @@ export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConf
 export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
     asyncValidator: AsyncValidatorFn | null;
-    group: Array<DynamicFormControlModel> = [];
-    legend: string | null;
+    @serializable() group: Array<DynamicFormControlModel> = [];
+    @serializable() legend: string | null;
     validator: ValidatorFn | null;
 
-    readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 
     constructor(config: DynamicFormGroupModelConfig, cls?: ClsConfig) {
 

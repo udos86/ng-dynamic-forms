@@ -1,6 +1,7 @@
 import {ClsConfig} from "./dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
-import {getValue} from "../utils";
+import {serializable} from "../decorator/serialize.decorator";
+import {getValue, serialize} from "../utils";
 
 export interface DynamicFormOptionConfig {
 
@@ -11,9 +12,9 @@ export interface DynamicFormOptionConfig {
 
 export class DynamicFormOption {
 
-    disabled: boolean;
-    label: string | null;
-    value: boolean | number | string;
+    @serializable() disabled: boolean;
+    @serializable() label: string | null;
+    @serializable() value: boolean | number | string;
 
     constructor(config: DynamicFormOptionConfig) {
 
@@ -29,6 +30,10 @@ export class DynamicFormOption {
     set text(text: string) {
         this.label = text;
     }
+
+    toJSON() {
+        return serialize(this);
+    }
 }
 
 export interface DynamicOptionControlModelConfig extends DynamicFormValueControlModelConfig {
@@ -38,7 +43,7 @@ export interface DynamicOptionControlModelConfig extends DynamicFormValueControl
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    options: Array<DynamicFormOption>;
+    @serializable() options: Array<DynamicFormOption>;
 
     constructor(config: DynamicOptionControlModelConfig, cls?: ClsConfig) {
 

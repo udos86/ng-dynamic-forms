@@ -28,8 +28,7 @@
                        [value]="model.value"
                        (blur)="onBlur($event)"
                        (change)="onChange($event)"
-                       (focus)="onFocus($event)"
-                       [(ngModel)]="model.value"/>{{model.label}}</label>
+                       (focus)="onFocus($event)"/>{{model.label}}</label>
 
         </div>
 
@@ -96,8 +95,7 @@
                            [value]="item.value"
                            (blur)="onBlur($event)"
                            (change)="onChange($event)"
-                           (focus)="onFocus($event)"
-                           [(ngModel)]="item.value"/>{{model.label}}</label>
+                           (focus)="onFocus($event)"/>{{model.label}}</label>
 
             </div>
 
@@ -133,8 +131,7 @@
                    [type]="model.inputType"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
-                   (focus)="onFocus($event)"
-                   [(ngModel)]="model.value"/>
+                   (focus)="onFocus($event)"/>
 
             <div *ngIf="model.suffix" class="input-group-addon">{{model.suffix}}</div>
 
@@ -162,8 +159,7 @@
                            [formControlName]="model.id"
                            [name]="model.name"
                            [ngClass]="model.cls.element.control"
-                           [value]="option.value"
-                           [(ngModel)]="model.value"/>{{option.label}}</label>
+                           [value]="option.value"/>{{option.label}}</label>
             </div>
 
         </fieldset>
@@ -178,8 +174,7 @@
                 [required]="model.required"
                 (blur)="onBlur($event)"
                 (change)="onChange($event)"
-                (focus)="onFocus($event)"
-                [(ngModel)]="model.value">
+                (focus)="onFocus($event)">
 
             <option *ngFor="let option of model.options"
                     [attr.name]="model.name"
@@ -206,8 +201,7 @@
                   [wrap]="model.wrap"
                   (blur)="onBlur($event)"
                   (change)="onChange($event)"
-                  (focus)="onFocus($event)"
-                  [(ngModel)]="model.value"></textarea>
+                  (focus)="onFocus($event)"></textarea>
 
 
         <span *ngIf="model.hint" class="help-block">{{model.hint}}</span>
