@@ -19,15 +19,15 @@ export interface DynamicInputControlModelConfig extends DynamicFormValueControlM
 
 export abstract class DynamicInputControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    @serializable autoComplete: boolean;
-    @serializable autoFocus: boolean;
-    @serializable maxLength: number | null;
-    @serializable minLength: number | null;
-    @serializable placeholder: string;
-    @serializable prefix: string | null;
-    @serializable readOnly: boolean;
-    @serializable spellCheck: boolean;
-    @serializable suffix: string | null;
+    @serializable() autoComplete: boolean;
+    @serializable() autoFocus: boolean;
+    @serializable() maxLength: number | null;
+    @serializable() minLength: number | null;
+    @serializable() placeholder: string;
+    @serializable() prefix: string | null;
+    @serializable() readOnly: boolean;
+    @serializable() spellCheck: boolean;
+    @serializable() suffix: string | null;
 
     constructor(config: DynamicInputControlModelConfig, cls?: ClsConfig) {
 

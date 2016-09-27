@@ -6,14 +6,14 @@ export const DYNAMIC_FORM_CONTROL_TYPE_SWITCH = "SWITCH";
 
 export class DynamicSwitchModel extends DynamicFormValueControlModel<boolean> {
 
-    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SWITCH;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SWITCH;
 
     constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 
         if (this.value !== true) {
-            this.valueChanges.next(false);
+            this.value = false;
         }
     }
 }

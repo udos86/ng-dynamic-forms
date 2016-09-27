@@ -35,18 +35,19 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig 
 
 export class DynamicInputModel extends DynamicInputControlModel<any> {
 
-    @serializable accept: string | null;
-    @serializable inputType: string;
+    @serializable() accept: string | null;
+    @serializable() inputType: string;
     files: FileList | null = null;
-    @serializable list: Array<string> | null;
-    @serializable max: number | null;
-    @serializable min: number | null;
-    @serializable multiple: boolean | null;
-    @serializable pattern: string | null;
-    @serializable step: number | null;
+    @serializable() list: Array<string> | null;
+    @serializable() max: number | null;
+    @serializable() min: number | null;
+    @serializable() multiple: boolean | null;
+    @serializable() pattern: string | null;
+    @serializable() step: number | null;
 
     private listId: string | null = null;
-    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
+
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, cls?: ClsConfig) {
 

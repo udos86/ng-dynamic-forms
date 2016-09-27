@@ -45,13 +45,17 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.control.valueChanges.subscribe((value: any) => {
 
             if (this.model instanceof DynamicFormValueControlModel) {
-                (<DynamicFormValueControlModel<any>> this.model).valueChanges.next(value);
+                (<DynamicFormValueControlModel<any>> this.model).value = value;
             }
 
             //@exclude
-            console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid);
+            console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid, this.model);
             //@endexclude
         });
+
+        if (this.model instanceof DynamicFormValueControlModel) {
+            (<DynamicFormValueControlModel<any>> this.model).valueUpdates.subscribe(value => this.control.setValue(value));
+        }
 
         this.registerControlRelations();
     }

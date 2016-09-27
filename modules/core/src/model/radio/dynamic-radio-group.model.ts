@@ -13,9 +13,9 @@ export interface DynamicRadioGroupModelConfig extends DynamicOptionControlModelC
 
 export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> implements DynamicFieldSet {
 
-    @serializable legend: string | null;
+    @serializable() legend: string | null;
 
-    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
 
     constructor(config: DynamicRadioGroupModelConfig, cls?: ClsConfig) {
 

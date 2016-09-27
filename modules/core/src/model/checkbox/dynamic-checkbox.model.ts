@@ -16,10 +16,10 @@ export interface DynamicCheckboxModelConfig extends DynamicFormValueControlModel
 
 export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> {
 
-    @serializable align: string;
-    @serializable indeterminate: boolean;
+    @serializable() align: string;
+    @serializable() indeterminate: boolean;
 
-    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
 
     constructor(config: DynamicCheckboxModelConfig, cls?: ClsConfig) {
 
@@ -29,7 +29,7 @@ export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> 
         this.indeterminate = getValue(config, "indeterminate", false);
 
         if (this.value !== true) {
-            this.valueChanges.next(false);
+            this.value = false;
         }
     }
 }

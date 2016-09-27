@@ -1,4 +1,4 @@
-import {getSerializable} from "./decorator/serialize.decorator";
+import {getSerializable, SerializableProperty} from "./decorator/serialize.decorator";
 
 if (typeof Object.assign !== "function") {
     Object.assign = function (target) {
@@ -61,10 +61,10 @@ export function getValue(object: any, key: string, defaultValue: any): any {
     return value;
 }
 
-export function serialize (context): Object {
+export function serialize(context): Object {
 
-    return getSerializable(context).reduce((prev, key) => {
-        prev[key] = context[key];
+    return getSerializable(context).reduce((prev, prop: SerializableProperty) => {
+        prev[prop.name] = context[prop.key];
         return prev;
     }, {});
 }

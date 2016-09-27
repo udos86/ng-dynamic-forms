@@ -25,12 +25,12 @@ export interface DynamicFormControlModelConfig {
 
 export abstract class DynamicFormControlModel {
 
-    @serializable cls: any = {};
-    @serializable disabled: boolean;
-    @serializable id: string;
-    @serializable label: string | null;
-    @serializable name: string;
-    @serializable relation: Array<DynamicFormControlRelationGroup>;
+    @serializable() cls: any = {};
+    @serializable() disabled: boolean;
+    @serializable() id: string;
+    @serializable() label: string | null;
+    @serializable() name: string;
+    @serializable() relation: Array<DynamicFormControlRelationGroup>;
 
     abstract readonly type: string;
 

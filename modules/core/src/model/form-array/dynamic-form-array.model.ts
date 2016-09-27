@@ -6,8 +6,8 @@ import {getValue, isFunction, serialize} from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
-    @serializable group: Array<DynamicFormValueControlModel<any>>;
-    @serializable index: number | null;
+    @serializable() group: Array<DynamicFormValueControlModel<any>>;
+    @serializable() index: number | null;
 
     constructor(group: Array<DynamicFormValueControlModel<any>> = [], index: number | null = null) {
 
@@ -35,13 +35,13 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     asyncValidator: AsyncValidatorFn | null;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
-    @serializable groups: Array<DynamicFormArrayGroupModel> = [];
-    @serializable initialCount: number;
+    @serializable() groups: Array<DynamicFormArrayGroupModel> = [];
+    @serializable() initialCount: number;
     validator: ValidatorFn | null;
 
-    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
-    @serializable private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
+    @serializable() private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
 
     constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
 

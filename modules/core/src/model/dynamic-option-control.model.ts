@@ -12,9 +12,9 @@ export interface DynamicFormOptionConfig {
 
 export class DynamicFormOption {
 
-    @serializable disabled: boolean;
-    @serializable label: string | null;
-    @serializable value: boolean | number | string;
+    @serializable() disabled: boolean;
+    @serializable() label: string | null;
+    @serializable() value: boolean | number | string;
 
     constructor(config: DynamicFormOptionConfig) {
 
@@ -43,7 +43,7 @@ export interface DynamicOptionControlModelConfig extends DynamicFormValueControl
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    @serializable options: Array<DynamicFormOption>;
+    @serializable() options: Array<DynamicFormOption>;
 
     constructor(config: DynamicOptionControlModelConfig, cls?: ClsConfig) {
 

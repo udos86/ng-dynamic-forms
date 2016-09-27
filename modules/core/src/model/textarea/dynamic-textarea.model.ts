@@ -17,11 +17,11 @@ export interface DynamicTextAreaModelConfig extends DynamicInputControlModelConf
 
 export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
-    @serializable cols: number;
-    @serializable rows: number;
-    @serializable wrap: string;
+    @serializable() cols: number;
+    @serializable() rows: number;
+    @serializable() wrap: string;
 
-    @serializable readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
+    @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
 
     constructor(config: DynamicTextAreaModelConfig, cls?: ClsConfig) {
 

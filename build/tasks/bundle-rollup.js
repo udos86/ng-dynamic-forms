@@ -72,7 +72,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",
             "primeng/components/spinner/spinner": "primeng/components/spinner/spinner",
 
-            "rxjs/BehaviorSubject": "Rx",
+            "rxjs/Subject": "Rx",
             "rxjs/Subscription": "Rx"
         };
 
