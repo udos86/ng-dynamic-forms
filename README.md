@@ -262,38 +262,31 @@ One of the benefits of using ng2 Dynamic Forms is that interacting with your for
 Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular 2 core mechanisms,
 changing one of it's properties will immediately trigger a UI update.
 
-So what if we actually want to update the value of an arbitrary form control at runtime?
+Well, almost...
+
+ng2 Dynamic Forms relies on Angular 2 reactive forms. Therefore the `value` property **is not** two-way-bound via `[(ngModel)]` internally.
+
+*So what if we actually want to update the value of an arbitrary form control at runtime?*
 
 At first we need to get a reference to it's `DynamicFormControlModel` representation. This can easily be achieved either by
 a simple index-based `items` array lookup or through the `findById` method of `DynamicFormService`:
 
 ```ts
-this.exampleInputModel = this.myDynamicFormModel.items[2];
+this.myInputModel = this.myDynamicFormModel.items[2];
 ```
 ```ts
-this.exampleInputModel = <DynamicInputModel> this.dynamicFormService.findById("exampleInput", this.myDynamicFormModel);
+this.myInputModel = <DynamicInputModel> this.dynamicFormService.findById("myInput", this.myDynamicFormModel);
 ```
 
-Due to the `value` property being already two-way-bound via `[(ngModel)]` under the hood, assigning a new value to it will just do the job:
+We now have access to the `valueChanges` `BehaviorSubject` and can keep tracking value changes or push new values via `next()`:
 ```ts
-this.exampleInputModel.value = "my new value";
+this.exampleInputModel.valueChanges.next("my new value");
 ```
 
-At the same time this also means that you can safely read the most recent user input from `value` at any time:
+At any time you can also safely read the most recent user input from `value` property:
 ```ts
 onSubmit() {
   let currentValue = this.exampleInputModel.value;
-}
-```
-
-In many cases you may want to step a bit further and keep tracking value changes over time. That's where Angular 2 itself and RxJS come to rescue! 
-
-Just obtain a reference to the `FormControl` and use it's `valueChanges` observable:
-```ts
-ngOnInit() {
-
-  this.control = <FormControl> this.myForm.get(this.exampleInputModel.id);
-  this.control.valueChanges.subscribe((value: string) => console.log("value changed to: ", value));
 }
 ```
 
@@ -578,7 +571,9 @@ new DynamicTextAreaModel(
 
 ## Form JSON
 
-Sooner or later you likely want to persist your dynamic form model using **JSON** in order to restore it at some point in the future:
+Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
+
+That's why all `DynamicFormControlModel`s have been preprared to **export properly to JSON**: 
 ```ts
 storeForm() {
     
@@ -589,7 +584,7 @@ storeForm() {
 ```
 
 Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
-recreating a form from JSON unfortunately becomes more complicated. 
+recreating a form from JSON unfortunately becomes more complex. 
 
 The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
 

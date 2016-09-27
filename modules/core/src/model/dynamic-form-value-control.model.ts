@@ -2,7 +2,7 @@ import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
 import {serializable} from "../decorator/serialize.decorator";
-import {getValue} from "../utils";
+import {getValue, serialize} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
@@ -36,5 +36,9 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         this.valueChanges = new BehaviorSubject<T>(getValue(config, "value", null));
         this.valueChanges.subscribe((value: T) => this.value = value);
+    }
+
+    toJSON() {
+        return Object.getPrototypeOf(this) ? Object.assign(super.toJSON(), serialize(this)) : serialize(this);
     }
 }

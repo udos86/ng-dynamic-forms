@@ -14,25 +14,21 @@ describe("DynamicInputModel test suite", () => {
         
         it("tests if correct default type property is set", () => {
 
-            expect(defaultModel.type).toBeDefined();
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
         });
 
         it("tests if correct default input type property is set", () => {
 
-            expect(defaultModel.inputType).toBeDefined();
             expect(defaultModel.inputType).toEqual(DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
         });
 
         it("tests if correct default autoComplete property is set", () => {
 
-            expect(defaultModel.autoComplete).toBeDefined();
             expect(defaultModel.autoComplete).toEqual(AUTOCOMPLETE_ON);
         });
 
         it("tests if correct default autoFocus property is set", () => {
 
-            expect(defaultModel.autoFocus).toBeDefined();
             expect(defaultModel.autoFocus).toBe(false);
         });
 
@@ -49,67 +45,56 @@ describe("DynamicInputModel test suite", () => {
 
         it("tests if correct default hint property is set", () => {
 
-            expect(defaultModel.hint).toBeDefined();
             expect(defaultModel.hint).toBeNull();
         });
 
         it("tests if correct default label properties aree set", () => {
 
-            expect(defaultModel.label).toBeDefined();
             expect(defaultModel.label).toBeNull();
         });
 
         it("tests if correct default max property is set", () => {
 
-            expect(defaultModel.max).toBeDefined();
             expect(defaultModel.max).toBeNull();
         });
 
         it("tests if correct default maxLength property is set", () => {
 
-            expect(defaultModel.maxLength).toBeDefined();
             expect(defaultModel.maxLength).toBeNull();
         });
 
         it("tests if correct default minLength property is set", () => {
 
-            expect(defaultModel.minLength).toBeDefined();
             expect(defaultModel.minLength).toBeNull();
         });
         
         it("tests if correct default min property is set", () => {
 
-            expect(defaultModel.min).toBeDefined();
             expect(defaultModel.min).toBeNull();
         });
 
         it("tests if correct default placeholder property is set", () => {
 
-            expect(defaultModel.placeholder).toBeDefined();
             expect(defaultModel.placeholder).toEqual("");
         });
 
         it("tests if correct default readonly property is set", () => {
 
-            expect(defaultModel.readOnly).toBeDefined();
             expect(defaultModel.readOnly).toBe(false);
         });
 
         it("tests if correct default required property is set", () => {
 
-            expect(defaultModel.required).toBeDefined();
             expect(defaultModel.required).toBe(false);
         });
 
         it("tests if correct default spellcheck property is set", () => {
 
-            expect(defaultModel.spellCheck).toBeDefined();
             expect(defaultModel.spellCheck).toBe(false);
         });
         
         it("tests if correct default step property is set", () => {
 
-            expect(defaultModel.step).toBeDefined();
             expect(defaultModel.step).toBeNull();
         });
         
@@ -121,8 +106,16 @@ describe("DynamicInputModel test suite", () => {
 
         it("tests if correct default suffix property is set", () => {
 
-            expect(defaultModel.suffix).toBeDefined();
             expect(defaultModel.prefix).toBeNull();
+        });
+
+        it("should serialize correctly", () => {
+
+            let json = JSON.parse(JSON.stringify(defaultModel));
+
+            expect(json.id).toEqual(defaultModel.id);
+            expect(json.value).toBe(defaultModel.value);
+            expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
         });
         
     });

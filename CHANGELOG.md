@@ -1,3 +1,19 @@
+# 1.0.2
+
+### **Breaking Changes** 
+
+* **!!! IMPORTANT !!!**: `[(ngModel)]` bindings have been removed. If you need to update the `value` of any `DynamicFormControlModel` 
+at run time use `valueChanges` `BehaviorSubject` [(see README.md)](https://github.com/udos86/ng2-dynamic-forms#model-bindings-and-control-references) 
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+
+* proper JSON export of all `DynamicFormControlModel`s (closes [#125](https://github.com/udos86/ng2-dynamic-forms/issues/125)) 
+
+
 # 1.0.1
 
 ### **Breaking Changes** 

@@ -4,7 +4,7 @@ describe("DynamicSelectModel test suite", () => {
 
     describe("default model test suite", () => {
 
-        let config = {id: "default"};
+        let config = {id: "default", options: [{value: "1"}, {value: "2"}]};
         let defaultModel: DynamicSelectModel<any>;
 
         beforeEach(() => {
@@ -13,26 +13,24 @@ describe("DynamicSelectModel test suite", () => {
 
         it("tests if default model is correctly initialized", () => {
 
-            expect(defaultModel.disabled).toBeDefined();
+
             expect(defaultModel.disabled).toBe(false);
-
-            expect(defaultModel.id).toBeDefined();
             expect(defaultModel.id).toEqual(config.id);
-
-            expect(defaultModel.label).toBeDefined();
             expect(defaultModel.label).toBeNull();
-
-            expect(defaultModel.name).toBeDefined();
             expect(defaultModel.name).toEqual(defaultModel.id);
-
-            expect(defaultModel.options).toBeDefined();
-            expect(defaultModel.options).toEqual([]);
-
-            expect(defaultModel.type).toBeDefined();
+            expect(defaultModel.options.length).toBe(config.options.length);
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
-
-            expect(defaultModel.value).toBeDefined();
             expect(defaultModel.value).toBeNull();
+        });
+
+        it("should serialize correctly", () => {
+
+            let json = JSON.parse(JSON.stringify(defaultModel));
+
+            expect(json.id).toEqual(defaultModel.id);
+            expect(json.options.length).toBe(defaultModel.options.length);
+            expect(json.value).toBe(defaultModel.value);
+            expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
         });
 
     });
