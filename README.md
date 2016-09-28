@@ -264,15 +264,15 @@ changing one of it's properties will immediately trigger a UI update.
 
 Well, almost...
 
-ng2 Dynamic Forms relies on Angular 2 reactive forms. Therefore the `value` property **is not** two-way-bound via `[(ngModel)]` under the hood.
+ng2 Dynamic Forms relies on the Angular 2 `ReactiveFormsModule`. Therefore the `value` property **is not** two-way-bound via `[(ngModel)]` under the hood.
 
 *So what if we actually want to update the value of an arbitrary form control at runtime?*
 
 At first we need to get a reference to it's `DynamicFormControlModel` representation. This can easily be achieved either by
-a simple index-based `items` array lookup or through the `findById` method of `DynamicFormService`:
+a simple index-based array lookup or through the `findById` method of `DynamicFormService`:
 
 ```ts
-this.myInputModel = this.myDynamicFormModel.items[2];
+this.myInputModel = this.myDynamicFormModel[2];
 ```
 ```ts
 this.myInputModel = <DynamicInputModel> this.dynamicFormService.findById("myInput", this.myDynamicFormModel);
@@ -283,7 +283,7 @@ We now have access to the `valueUpdates` `Subject` to push new values via `next(
 this.myInputModel.valueUpdates.next("my new value");
 ```
 
-At any time we can safely read the most recent user input from `value` property:
+At any time we can safely read the most recent user input from the `value` property:
 ```ts
 onSubmit() {
   let currentValue = this.myInputModel.value;
