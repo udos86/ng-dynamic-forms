@@ -285,9 +285,7 @@ this.myInputModel.valueUpdates.next("my new value");
 
 At any time we can safely read the most recent user input from the `value` property:
 ```ts
-onSubmit() {
-  let currentValue = this.myInputModel.value;
-}
+let currentValue = this.myInputModel.value;
 ```
 
 

@@ -1,9 +1,6 @@
 import {TestBed, async, inject} from "@angular/core/testing";
 import {ReactiveFormsModule, FormsModule, FormGroup, FormControl} from "@angular/forms";
-import {MdCheckboxModule} from "@angular2-material/checkbox";
-import {MdInputModule} from "@angular2-material/input";
-import {MdRadioModule} from "@angular2-material/radio";
-import {MdSlideToggleModule} from "@angular2-material/slide-toggle";
+import {MaterialModule} from "@angular/material";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -26,10 +23,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
                 FormsModule,
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot(),
-                MdCheckboxModule.forRoot(),
-                MdInputModule.forRoot(),
-                MdRadioModule.forRoot(),
-                MdSlideToggleModule.forRoot()
+                MaterialModule.forRoot()
             ],
             declarations: [DynamicFormMaterialComponent]
         });

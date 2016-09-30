@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {FormGroup, FormControl, FormArray} from "@angular/forms";
 import {
     DynamicFormService,
@@ -12,7 +12,9 @@ import {MATERIAL_EXAMPLE_MODEL} from "./material-example.model";
 
     moduleId: module.id,
     selector: "dynamic-form-material-example",
+    styleUrls: ["../../../node_modules/@angular/material/core/theming/prebuilt/indigo-pink.css"],
     templateUrl: "./material-example.component.html",
+    encapsulation: ViewEncapsulation.None
 })
 
 export class MaterialExampleComponent implements OnInit {

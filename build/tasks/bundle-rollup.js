@@ -54,16 +54,11 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@angular/common": "ng.common",
             "@angular/core": "ng.core",
             "@angular/forms": "ng.forms",
+            "@angular/material": "ng.material",
             "@angular/http": "ng.http",
             "@angular/platform-browser": "ng.platformBrowser",
             "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
             "@angular/router": "ng.router",
-
-            "@angular2-material/checkbox": "md.checkbox",
-            "@angular2-material/core": "md.core",
-            "@angular2-material/input": "md.input",
-            "@angular2-material/radio": "md.radio",
-            "@angular2-material/slide-toggle": "md.slideToggle",
 
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
