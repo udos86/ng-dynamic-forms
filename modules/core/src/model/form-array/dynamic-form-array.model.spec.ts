@@ -1,3 +1,4 @@
+import {Validators} from "@angular/forms";
 import {DYNAMIC_FORM_CONTROL_TYPE_ARRAY, DynamicFormArrayModel} from "./dynamic-form-array.model";
 import {DynamicInputModel} from "../input/dynamic-input.model";
 
@@ -8,7 +9,8 @@ describe("DynamicFormArrayModel test suite", () => {
         let config = {
             id: "default",
             initialCount: 3,
-            createGroup: () => [new DynamicInputModel({id: "defaultInput"})]
+            createGroup: () => [new DynamicInputModel({id: "defaultInput"})],
+            validator: Validators.required
         };
         let defaultModel: DynamicFormArrayModel;
 
@@ -23,7 +25,7 @@ describe("DynamicFormArrayModel test suite", () => {
             expect(defaultModel.id).toEqual(config.id);
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
             expect(defaultModel.asyncValidator).toBeNull();
-            expect(defaultModel.validator).toBeNull();
+            expect(defaultModel.validator).toBeDefined();
             expect(defaultModel.createGroup().length).toEqual(1);
             expect(defaultModel.removeGroup).toBeDefined();
         });
@@ -36,6 +38,7 @@ describe("DynamicFormArrayModel test suite", () => {
             expect(json.id).toEqual(defaultModel.id);
             expect(json.groups.length).toEqual(defaultModel.groups.length);
             expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
+            expect(json.validator).toEqual("required");
             expect(json.validators).toBeUndefined();
         });
         
