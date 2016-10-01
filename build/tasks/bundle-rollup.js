@@ -59,14 +59,13 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@angular/platform-browser": "ng.platformBrowser",
             "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
             "@angular/router": "ng.router",
-
+            "@ng2-dynamic-forms/core": "ng2DF.core",
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
             "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
             "primeng/components/inputtextarea/inputtextarea": "primeng/components/inputtextarea/inputtextarea",
             "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",
             "primeng/components/spinner/spinner": "primeng/components/spinner/spinner",
-
             "rxjs/Subject": "Rx",
             "rxjs/Subscription": "Rx"
         };

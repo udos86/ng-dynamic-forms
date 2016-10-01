@@ -18,12 +18,14 @@ describe("DynamicCheckboxModel test suite", () => {
         it("tests if default model is correctly initialized", () => {
 
             expect(defaultModel.align).toEqual(DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
+            expect(defaultModel.asyncValidators).toEqual([]);
             expect(defaultModel.disabled).toBe(false);
             expect(defaultModel.id).toEqual(config.id);
             expect(defaultModel.indeterminate).toBe(false);
             expect(defaultModel.label).toBeNull();
             expect(defaultModel.name).toEqual(defaultModel.id);
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
+            expect(defaultModel.validators).toEqual([]);
             expect(defaultModel.value).toBe(false);
         });
 

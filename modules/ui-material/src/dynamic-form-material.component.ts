@@ -2,11 +2,7 @@ import {Component, Input, ViewChild, ContentChild, TemplateRef} from "@angular/c
 import {FormGroup} from "@angular/forms";
 import {MdCheckbox, MdInput, MdRadioGroup} from "@angular/material";
 import {DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {
-    DynamicFormControlComponent,
-    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
-} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
@@ -34,9 +30,10 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     constructor() {
         super();
     }
+
     /*
-    get characterCount() {
-        return this.mdInput ? this.mdInput.characterCount : 0;
-    }
-    */
+     get characterCount() {
+     return this.mdInput ? this.mdInput.characterCount : 0;
+     }
+     */
 }

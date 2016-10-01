@@ -1,4 +1,6 @@
-import {getSerializable, SerializableProperty} from "./decorator/serialize.decorator";
+import {AsyncValidatorFn, Validators, ValidatorFn} from "@angular/forms";
+import {getSerializables, SerializableProperty} from "./decorator/serialize.decorator";
+import {DynamicFormArrayModel} from "./model/form-array/dynamic-form-array.model";
 
 if (typeof Object.assign !== "function") {
     Object.assign = function (target) {
@@ -33,6 +35,18 @@ export function isFunction(object: any): boolean {
     return typeof object === "function";
 }
 
+export function getFunctionName(func: any): string | null {
+
+    if (func.name) {
+        return func.name;
+
+    } else {
+
+        let name = /^function\s+([\w\$]+)\s*\(/.exec(func.toString());
+        return name ? name[1] : null;
+    }
+}
+
 export function getValue(object: any, key: string, defaultValue: any): any {
 
     if (object === undefined || object === null) {
@@ -61,10 +75,37 @@ export function getValue(object: any, key: string, defaultValue: any): any {
     return value;
 }
 
-export function serialize(context): Object {
+export function serializeValidators(validators: Array<ValidatorFn | AsyncValidatorFn>): Array<string> {
 
-    return getSerializable(context).reduce((prev, prop: SerializableProperty) => {
-        prev[prop.name] = context[prop.key];
+    let serialized = [];
+
+    validators.forEach(validator => {
+
+        for (let validatorName in Validators) {
+
+            if (Validators.hasOwnProperty(validatorName) && validator === Validators[validatorName]) {
+                serialized.push(validatorName);
+                break;
+            }
+        }
+    });
+
+    return serialized;
+}
+
+export function serialize(target, prototype?): Object {
+
+    return getSerializables(prototype || target).reduce((prev, prop: SerializableProperty) => {
+
+        if (prop.key === "validators" || prop.key === "asyncValidators") {
+
+            prev[prop.name] = serializeValidators(target[prop.key]);
+
+        } else {
+            prev[prop.name] = target[prop.key];
+        }
+
         return prev;
+
     }, {});
 }

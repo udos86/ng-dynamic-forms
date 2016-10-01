@@ -70,6 +70,7 @@ export class BootstrapExampleComponent implements OnInit {
     }
 
     test() {
-        this.exampleModel.valueUpdates.next("Hallo Hallo");
+        //this.exampleModel.valueUpdates.next("Hallo Hallo");
+        console.log(JSON.stringify(this.exampleModel));
     }
 }

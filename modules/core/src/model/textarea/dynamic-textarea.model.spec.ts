@@ -1,3 +1,4 @@
+import {Validators} from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_TEXTAREA_WRAP_SOFT,
@@ -8,7 +9,7 @@ describe("DynamicTextAreaModel test suite", () => {
 
     describe("default model test suite", () => {
 
-        let config = {id: "default"};
+        let config = {id: "default", validators: [Validators.required]};
         let defaultModel: DynamicTextAreaModel;
 
         beforeEach(() => {
@@ -34,6 +35,7 @@ describe("DynamicTextAreaModel test suite", () => {
 
             expect(json.id).toEqual(defaultModel.id);
             expect(json.cols).toBe(defaultModel.cols);
+            expect(json.validators.length).toBe(defaultModel.validators.length);
             expect(json.value).toBe(defaultModel.value);
             expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA);
         });

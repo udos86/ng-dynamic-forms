@@ -2,7 +2,7 @@ import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {Subject} from "rxjs/Subject";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
 import {serializable} from "../decorator/serialize.decorator";
-import {getValue, serialize} from "../utils";
+import {getValue} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
@@ -16,11 +16,11 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
-    asyncValidators: Array<AsyncValidatorFn>;
+    @serializable() asyncValidators: Array<AsyncValidatorFn>;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
-    validators: Array<ValidatorFn>;
+    @serializable() validators: Array<ValidatorFn>;
     @serializable("value") _value: T | null;
     valueUpdates: Subject<T>;
 
@@ -45,9 +45,5 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
     get value(): T {
         return this._value;
-    }
-
-    toJSON() {
-        return Object.getPrototypeOf(this) ? Object.assign(super.toJSON(), serialize(this)) : serialize(this);
     }
 }

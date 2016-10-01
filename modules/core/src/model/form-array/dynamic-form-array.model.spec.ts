@@ -32,9 +32,11 @@ describe("DynamicFormArrayModel test suite", () => {
 
             let json = JSON.parse(JSON.stringify(defaultModel));
 
+            expect(json.asyncValidators).toBeUndefined();
             expect(json.id).toEqual(defaultModel.id);
             expect(json.groups.length).toEqual(defaultModel.groups.length);
             expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
+            expect(json.validators).toBeUndefined();
         });
         
     });
