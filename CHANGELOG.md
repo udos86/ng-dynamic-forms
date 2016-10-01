@@ -1,3 +1,20 @@
+# 1.0.3
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* some JSON export flaws have been fixed
+
+### **Features**
+
+* Upgrade to `@angular/material` (closes [#129](https://github.com/udos86/ng2-dynamic-forms/issues/129)) 
+* JSON export for `Validators` added (closes [#128](https://github.com/udos86/ng2-dynamic-forms/issues/128)) 
+
+
+
 # 1.0.2
 
 ### **Breaking Changes** 
@@ -11,7 +28,7 @@ at run time use `valueUpdates` `Subject` [(see README.md)](https://github.com/ud
 
 ### **Features**
 
-* proper JSON export of all `DynamicFormControlModel`s (closes [#125](https://github.com/udos86/ng2-dynamic-forms/issues/125)) 
+* proper JSON export of all `DynamicFormControlModel`s (closes [#125](https://github.com/udos86/ng2-dynamic-forms/issues/125))_ 
 
 
 # 1.0.1

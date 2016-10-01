@@ -33,11 +33,11 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    asyncValidator: AsyncValidatorFn | null;
+    @serializable() asyncValidator: AsyncValidatorFn | null;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
     @serializable() groups: Array<DynamicFormArrayGroupModel> = [];
     @serializable() initialCount: number;
-    validator: ValidatorFn | null;
+    @serializable() validator: ValidatorFn | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 

@@ -17,6 +17,7 @@ import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/select/dynamic-select.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
+import {deserializeValidator, deserializeValidators} from "../utils";
 
 @Injectable()
 export class DynamicFormService {
@@ -106,6 +107,22 @@ export class DynamicFormService {
         let formModel: Array<DynamicFormControlModel> = [];
 
         json.forEach(object => {
+
+            if (object["asyncValidator"]) {
+                object["asyncValidator"] = deserializeValidator(object["asyncValidator"]);
+            }
+
+            if (object["validator"]) {
+                object["validator"] = deserializeValidator(object["validator"]);
+            }
+
+            if (Array.isArray(object["asyncValidators"])) {
+                object["asyncValidators"] = deserializeValidators(object["asyncValidators"]);
+            }
+
+            if (Array.isArray(object["validators"])) {
+                object["validators"] = deserializeValidators(object["validators"]);
+            }
 
             switch (object["type"]) {
 

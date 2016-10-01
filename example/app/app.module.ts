@@ -1,14 +1,9 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {LocationStrategy, HashLocationStrategy} from "@angular/common";
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MaterialModule} from "@angular/material";
 import {RouterModule} from '@angular/router';
-
-import {MdButtonModule} from "@angular2-material/button";
-import {MdCheckboxModule} from "@angular2-material/checkbox";
-import {MdInputModule} from "@angular2-material/input";
-import {MdRadioModule} from "@angular2-material/radio";
-import {MdSlideToggleModule} from "@angular2-material/slide-toggle";
 
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormsBasicUIModule} from "@ng2-dynamic-forms/ui-basic";
@@ -40,11 +35,7 @@ import {AppComponent} from './app.component';
         DynamicFormsFoundationUIModule,
         DynamicFormsMaterialUIModule,
         DynamicFormsPrimeNGUIModule,
-        MdButtonModule.forRoot(),
-        MdCheckboxModule.forRoot(),
-        MdInputModule.forRoot(),
-        MdRadioModule.forRoot(),
-        MdSlideToggleModule.forRoot()
+        MaterialModule.forRoot()
     ],
     declarations: [
         BasicExampleComponent,
