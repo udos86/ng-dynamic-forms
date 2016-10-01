@@ -56,8 +56,8 @@ System.config({
 
         // ...all the rest (Angular 2, RxJS, etc.)
 
-        "@ng2-dynamic-forms/core': 'npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
-        "@ng2-dynamic-forms/ui-bootstrap': 'npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
+        "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
+        "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
     }
 });
 ```
@@ -90,9 +90,9 @@ npm start
 
 **1. Import the ng2 Dynamic Forms core** `NgModule` **and a corresponding UI** `NgModule`:
 ```ts
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
 // ..all remaining component and routing imports

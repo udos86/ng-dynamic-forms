@@ -1,6 +1,6 @@
 declare var Reflect: any;
 
-export const METADATA_KEY_PREFIX_SERIALIZABLE = "SERIALIZABLE";
+export const METADATA_KEY_SERIALIZABLE = "SERIALIZABLE";
 
 export interface SerializableProperty {
 
@@ -8,32 +8,25 @@ export interface SerializableProperty {
     name: string;
 }
 
-export function getSerializableMetadataKey(target): string {
-    return `${METADATA_KEY_PREFIX_SERIALIZABLE}_${target.constructor.name.toUpperCase()}`;
-}
-
 export function serializable(name?: string) {
 
     return function (target, key) {
 
-        let metadataKey = getSerializableMetadataKey(target),
-            serializable = Reflect.getMetadata(metadataKey, target) || [];
-
-        serializable.push({key: key, name: name || key});
-
-        Reflect.defineMetadata(metadataKey, serializable, target);
+        Reflect.defineMetadata(METADATA_KEY_SERIALIZABLE, {key: key, name: name || key}, target, key);
     };
 }
 
 export function getSerializables(target): Array<SerializableProperty> {
 
-    let serializables = [],
-        prototype = Object.getPrototypeOf(target);
+    let serializables = [];
 
-    while (prototype) {
+    for (let key in target) {
 
-        serializables.push(...Reflect.getMetadata(getSerializableMetadataKey(prototype), prototype) || []);
-        prototype = Object.getPrototypeOf(prototype);
+        let metadata = Reflect.getMetadata(METADATA_KEY_SERIALIZABLE, target, key);
+
+        if (metadata) {
+            serializables.push(metadata);
+        }
     }
 
     return serializables;
