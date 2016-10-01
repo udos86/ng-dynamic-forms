@@ -8,7 +8,7 @@ export interface SerializableProperty {
     name: string;
 }
 
-export function getSerializableMetadataKey (target): string {
+export function getSerializableMetadataKey(target): string {
     return `${METADATA_KEY_PREFIX_SERIALIZABLE}_${target.constructor.name.toUpperCase()}`;
 }
 
@@ -30,7 +30,7 @@ export function getSerializables(target): Array<SerializableProperty> {
     let serializables = [],
         prototype = Object.getPrototypeOf(target);
 
-    while(prototype) {
+    while (prototype) {
 
         serializables.push(...Reflect.getMetadata(getSerializableMetadataKey(prototype), prototype) || []);
         prototype = Object.getPrototypeOf(prototype);

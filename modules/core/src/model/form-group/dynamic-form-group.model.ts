@@ -20,10 +20,10 @@ export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
-    asyncValidator: AsyncValidatorFn | null;
+    @serializable() asyncValidator: AsyncValidatorFn | null;
     @serializable() group: Array<DynamicFormControlModel> = [];
     @serializable() legend: string | null;
-    validator: ValidatorFn | null;
+    @serializable() validator: ValidatorFn | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 

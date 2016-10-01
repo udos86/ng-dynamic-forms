@@ -1,27 +1,5 @@
 import {AsyncValidatorFn, Validators, ValidatorFn} from "@angular/forms";
 import {getSerializables, SerializableProperty} from "./decorator/serialize.decorator";
-import {DynamicFormArrayModel} from "./model/form-array/dynamic-form-array.model";
-
-if (typeof Object.assign !== "function") {
-    Object.assign = function (target) {
-        "use strict";
-        if (target === null) {
-            throw new TypeError("Cannot convert undefined or null to object");
-        }
-        target = Object(target);
-        for (var index = 1; index < arguments.length; index++) {
-            var source = arguments[index];
-            if (source !== null) {
-                for (var key in source) {
-                    if (Object.prototype.hasOwnProperty.call(source, key)) {
-                        target[key] = source[key];
-                    }
-                }
-            }
-        }
-        return target;
-    };
-}
 
 export function isDefined(object: any): boolean {
     return object !== undefined && object !== null;
@@ -75,22 +53,43 @@ export function getValue(object: any, key: string, defaultValue: any): any {
     return value;
 }
 
+
+export function serializeValidator(validator: ValidatorFn | AsyncValidatorFn): string {
+
+    for (let validatorName in Validators) {
+
+        if (Validators.hasOwnProperty(validatorName) && validator === Validators[validatorName]) {
+            return validatorName;
+        }
+    }
+
+    return null;
+}
+
 export function serializeValidators(validators: Array<ValidatorFn | AsyncValidatorFn>): Array<string> {
 
     let serialized = [];
 
     validators.forEach(validator => {
 
-        for (let validatorName in Validators) {
+        let validatorName = serializeValidator(validator);
 
-            if (Validators.hasOwnProperty(validatorName) && validator === Validators[validatorName]) {
-                serialized.push(validatorName);
-                break;
-            }
+        if (validatorName) {
+            serialized.push(validatorName);
         }
     });
 
     return serialized;
+}
+
+export function deserializeValidator(serialized: string): ValidatorFn | AsyncValidatorFn {
+
+    return Validators[serialized];
+}
+
+export function deserializeValidators(serialized: Array<string>): Array<ValidatorFn | AsyncValidatorFn> {
+
+    return serialized.map(validatorName => deserializeValidator[validatorName]);
 }
 
 export function serialize(target, prototype?): Object {
@@ -100,6 +99,10 @@ export function serialize(target, prototype?): Object {
         if (prop.key === "validators" || prop.key === "asyncValidators") {
 
             prev[prop.name] = serializeValidators(target[prop.key]);
+
+        } else if (prop.key === "validator" || prop.key === "asyncValidator") {
+
+            prev[prop.name] = serializeValidator(target[prop.key]);
 
         } else {
             prev[prop.name] = target[prop.key];
