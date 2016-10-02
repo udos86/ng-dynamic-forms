@@ -26,7 +26,7 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Related Form Controls](#related-form-controls)
-- [Form JSON](#form-json)
+- [Form JSON Export and Import](#form-json-export-and-import)
 - [Validation Messaging](#validation-messaging)
 - [Form Autocomplete](#form-autocomplete)
 - [Appendix](#appendix)
@@ -567,7 +567,7 @@ new DynamicTextAreaModel(
 ```
 
 
-## Form JSON
+## Form JSON Export and Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
 

@@ -73,4 +73,12 @@ export class BootstrapExampleComponent implements OnInit {
         //this.exampleModel.valueUpdates.next("Hallo Hallo");
         console.log(JSON.stringify(this.exampleModel));
     }
+
+    onBlur($event) {
+        console.log(`blur event on ${$event.target.id}: `, $event);
+    }
+
+    onFocus($event) {
+        console.log(`focus event on ${$event.target.id}: `, $event);
+    }
 }

@@ -40,39 +40,39 @@ gulp.task("lint:modules",
     TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
 
-gulp.task("clean:dist", /*["lint:modules"],*/
+gulp.task("clean:dist",
     TASK_CLEAN([`${DIST_PATH}**/*`, `${NPM_PATH}/**/*`]));
 
 
-gulp.task("copy:modules:npm", /*["clean:dist"],*/
+gulp.task("copy:modules:npm",
     TASK_COPY([`${SRC_PATH}/**/!(*.spec).*`], NPM_PATH));
 
 
-gulp.task("copy:modules:dist", /*["clean:dist"],*/
+gulp.task("copy:modules:dist",
     TASK_COPY([`${SRC_PATH}/**/*.*`], DIST_PATH));
 
 
-gulp.task("transpile:modules:es6", /*["copy:modules:npm", "copy:modules:dist"],*/
+gulp.task("transpile:modules:es6",
     TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es6.json"));
 
 
-gulp.task("preprocess:modules", /*["transpile:modules:es6"],*/
+gulp.task("preprocess:modules",
     TASK_PREPROCESS(`${DIST_PATH}/**/*.js`, DIST_PATH));
 
 
-gulp.task("inline:ng2-templates", /*["preprocess:modules"],*/
+gulp.task("inline:ng2-templates",
     TASK_INLINE_NG2_TEMPLATES([`${DIST_PATH}/**/*.js`], DIST_PATH));
 
 
-gulp.task("bundle:modules", /*["inline:ng2-templates"],*/
+gulp.task("bundle:modules",
     TASK_BUNDLE_ROLLUP(MODULES, DIST_PATH, "@ng2-dynamic-forms", "ng2DF", pkg, DIST_PATH));
 
 
-gulp.task("transpile:modules:es5", /*["bundle:modules"],*/
+gulp.task("transpile:modules:es5",
     TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es5.json"));
 
 
-gulp.task("prime:modules", /*["transpile:modules:es5"],*/
+gulp.task("prime:modules",
     TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
 
 

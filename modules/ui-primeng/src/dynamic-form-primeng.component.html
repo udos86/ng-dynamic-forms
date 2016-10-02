@@ -78,7 +78,9 @@
 
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
                                               [controlGroup]="control"
-                                              [model]="controlModel"></dynamic-form-primeng-control>
+                                              [model]="controlModel"
+                                              (blur)="onBlur($event)"
+                                              (focus)="onFocus($event)"></dynamic-form-primeng-control>
             </fieldset>
 
 
@@ -93,7 +95,9 @@
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
                                                   [bindId]="false"
                                                   [controlGroup]="control.at(idx)"
-                                                  [model]="controlModel"></dynamic-form-primeng-control>
+                                                  [model]="controlModel"
+                                                  (blur)="onBlur($event)"
+                                                  (focus)="onFocus($event)"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate"
                               [ngOutletContext]="groupModel"></template>

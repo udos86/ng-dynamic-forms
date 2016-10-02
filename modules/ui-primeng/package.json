@@ -5,6 +5,7 @@
   "main": "./bundles/ui-primeng.umd.js",
   "keywords": [
     "angular",
+    "angular 2",
     "dynamic forms",
     "forms",
     "ng2 dynamic forms",

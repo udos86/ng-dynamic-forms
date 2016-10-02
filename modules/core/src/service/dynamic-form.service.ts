@@ -108,21 +108,15 @@ export class DynamicFormService {
 
         json.forEach(object => {
 
-            if (object["asyncValidator"]) {
-                object["asyncValidator"] = deserializeValidator(object["asyncValidator"]);
-            }
+            ["asyncValidator", "validator"].forEach(prop => {
+                object[prop] = deserializeValidator(object[prop]);
+            });
 
-            if (object["validator"]) {
-                object["validator"] = deserializeValidator(object["validator"]);
-            }
-
-            if (Array.isArray(object["asyncValidators"])) {
-                object["asyncValidators"] = deserializeValidators(object["asyncValidators"]);
-            }
-
-            if (Array.isArray(object["validators"])) {
-                object["validators"] = deserializeValidators(object["validators"]);
-            }
+            ["asyncValidators", "validators"].forEach(prop => {
+                if (Array.isArray(object[prop])) {
+                    object[prop] = deserializeValidators(object[prop]);
+                }
+            });
 
             switch (object["type"]) {
 

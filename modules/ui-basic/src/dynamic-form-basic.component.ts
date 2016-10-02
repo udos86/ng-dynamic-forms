@@ -1,4 +1,4 @@
-import {Component, Input, ContentChild, TemplateRef} from "@angular/core";
+import {Component, Input, Output, EventEmitter, ContentChild, TemplateRef} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
 
@@ -16,6 +16,9 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent {
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
+
+    @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+    @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
     @ContentChild(TemplateRef) customTemplate;
 

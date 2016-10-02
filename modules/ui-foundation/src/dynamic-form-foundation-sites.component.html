@@ -23,7 +23,9 @@
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
                                                        [controlGroup]="control.at(idx)"
-                                                       [model]="controlModel"></dynamic-form-foundation-sites-control>
+                                                       [model]="controlModel"
+                                                       (blur)="onBlur($event)"
+                                                       (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate"
                           [ngOutletContext]="groupModel"></template>
@@ -43,7 +45,9 @@
 
             <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
                                                    [controlGroup]="control"
-                                                   [model]="controlModel"></dynamic-form-foundation-sites-control>
+                                                   [model]="controlModel"
+                                                   (blur)="onBlur($event)"
+                                                   (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 
 
