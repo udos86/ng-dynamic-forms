@@ -1,4 +1,4 @@
-import {TemplateRef, OnInit, OnDestroy} from "@angular/core";
+import {EventEmitter, TemplateRef, OnInit, OnDestroy} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
@@ -18,9 +18,11 @@ import {isDefined} from "../utils";
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     bindId: boolean;
+    blur: EventEmitter<any>;
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
+    focus: EventEmitter<any>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
 
@@ -127,6 +129,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     onBlur($event) {
 
+        this.blur.emit($event);
         this.hasFocus = false;
 
         //@exclude
@@ -152,6 +155,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     onFocus($event) {
 
+        this.focus.emit($event);
         this.hasFocus = true;
 
         //@exclude
