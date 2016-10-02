@@ -3,7 +3,7 @@ module.exports = function (config) {
     var coverageReporters = [{type: "text-summary"}];
 
     if (process.env.TRAVIS) {
-
+        console.log("TRAVIS BUILD");
         coverageReporters.push({type: "lcov", dir: "coverage"});
 
     } else {
@@ -99,5 +99,4 @@ module.exports = function (config) {
         // how many browser should be started simultaneous
         concurrency: Infinity
     })
-}
-;
+};
