@@ -4,7 +4,9 @@
 
         <dynamic-form-bootstrap-control *ngFor="let controlModel of dynamicFormModel"
                                         [controlGroup]="form"
-                                        [model]="controlModel">
+                                        [model]="controlModel"
+                                        (blur)="onBlur($event)"
+                                        (focus)="onFocus($event)">
 
             <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
 

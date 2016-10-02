@@ -13,18 +13,6 @@ export function isFunction(object: any): boolean {
     return typeof object === "function";
 }
 
-export function getFunctionName(func: any): string | null {
-
-    if (func.name) {
-        return func.name;
-
-    } else {
-
-        let name = /^function\s+([\w\$]+)\s*\(/.exec(func.toString());
-        return name ? name[1] : null;
-    }
-}
-
 export function getValue(object: any, key: string, defaultValue: any): any {
 
     if (object === undefined || object === null) {
@@ -54,7 +42,7 @@ export function getValue(object: any, key: string, defaultValue: any): any {
 }
 
 
-export function serializeValidator(validator: ValidatorFn | AsyncValidatorFn): string {
+export function serializeValidator(validator: ValidatorFn | AsyncValidatorFn): string | null {
 
     for (let validatorName in Validators) {
 

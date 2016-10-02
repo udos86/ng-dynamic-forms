@@ -1,5 +1,17 @@
 module.exports = function (config) {
 
+    var reporters = ["progress", "coverage"],
+        coverageReporters = [{type: "text-summary"}];
+
+    if (process.env.TRAVIS) {
+
+        reporters.push("coveralls");
+        coverageReporters.push({type: "lcov", dir: "coverage"});
+
+    } else {
+        coverageReporters.push({type: "html", dir: "coverage"});
+    }
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -55,8 +67,9 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ["progress", "coverage"],
+        reporters: reporters,
 
+        coverageReporter: {reporters: coverageReporters},
 
         // web server port
         port: 9876,

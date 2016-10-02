@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, ContentChild, TemplateRef} from "@angular/core";
+import {Component, Input, Output, EventEmitter, ViewChild, ContentChild, TemplateRef} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {MdCheckbox, MdInput, MdRadioGroup} from "@angular/material";
 import {DynamicFormControlModel} from "@ng2-dynamic-forms/core";
@@ -18,6 +18,9 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
+
+    @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+    @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
     @ContentChild(TemplateRef) customTemplate;
 

@@ -8,13 +8,13 @@ export class DynamicIdDirective implements OnInit {
 
     @Input() dynamicId: string | boolean;
 
-    constructor(private elmRef: ElementRef, private renderer: Renderer) {
+    constructor(private elementRef: ElementRef, private renderer: Renderer) {
     }
 
     ngOnInit() {
 
         if (this.dynamicId) {
-            this.renderer.setElementAttribute(this.elmRef.nativeElement, "id", <string> this.dynamicId);
+            this.renderer.setElementAttribute(this.elementRef.nativeElement, "id", <string> this.dynamicId);
         }
     }
 }
