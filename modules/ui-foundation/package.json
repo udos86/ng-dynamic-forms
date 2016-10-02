@@ -5,6 +5,7 @@
   "main": "./bundles/ui-foundation.umd.js",
   "keywords": [
     "angular",
+    "angular 2",
     "dynamic forms",
     "forms",
     "foundation",

@@ -17,8 +17,8 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
 
-    @Output() blur: EventEmitter<any> = new EventEmitter<any>();
-    @Output() focus: EventEmitter<any> = new EventEmitter<any>();
+    @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+    @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
     @ContentChild(TemplateRef) customTemplate;
 

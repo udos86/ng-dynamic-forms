@@ -1,5 +1,5 @@
-import {NgModule, Optional, SkipSelf, ModuleWithProviders} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {NgModule, Optional, SkipSelf, ModuleWithProviders} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormService} from "./service/dynamic-form.service";
 import {DynamicFormAutoFillService} from "./service/dynamic-form-autofill.service";

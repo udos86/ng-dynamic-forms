@@ -5,6 +5,7 @@
   "main": "./bundles/ui-material.umd.js",
   "keywords": [
     "angular",
+    "angular 2",
     "dynamic forms",
     "forms",
     "material",

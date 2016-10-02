@@ -18,11 +18,11 @@ import {isDefined} from "../utils";
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     bindId: boolean;
-    blur: EventEmitter<any>;
+    blur: EventEmitter<FocusEvent>;
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
-    focus: EventEmitter<any>;
+    focus: EventEmitter<FocusEvent>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
 
@@ -127,7 +127,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
             findActivationRelation(this.model.relation), this.controlGroup) ? this.disable() : this.enable();
     }
 
-    onBlur($event) {
+    onBlur($event: FocusEvent) {
 
         this.blur.emit($event);
         this.hasFocus = false;
@@ -153,7 +153,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         //@endexclude
     }
 
-    onFocus($event) {
+    onFocus($event: FocusEvent) {
 
         this.focus.emit($event);
         this.hasFocus = true;

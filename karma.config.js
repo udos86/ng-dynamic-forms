@@ -1,5 +1,15 @@
 module.exports = function (config) {
 
+    var coverageReporters = [{type: "text-summary"}];
+
+    if (process.env.TRAVIS) {
+
+        coverageReporters.push({type: "lcov", dir: "coverage"});
+
+    } else {
+        coverageReporters.push({type: "html", dir: "coverage"});
+    }
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -57,6 +67,7 @@ module.exports = function (config) {
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         reporters: ["progress", "coverage"],
 
+        coverageReporter: {reporters: coverageReporters},
 
         // web server port
         port: 9876,
@@ -88,4 +99,5 @@ module.exports = function (config) {
         // how many browser should be started simultaneous
         concurrency: Infinity
     })
-};
+}
+;

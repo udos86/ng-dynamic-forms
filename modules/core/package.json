@@ -5,6 +5,7 @@
   "main": "./bundles/core.umd.js",
   "keywords": [
     "angular",
+    "angular 2",
     "core",
     "dynamic forms",
     "forms",
