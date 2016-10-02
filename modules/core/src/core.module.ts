@@ -24,7 +24,9 @@ export class DynamicFormsCoreModule {
     }
 
     static forRoot(): ModuleWithProviders {
+
         return {
+
             ngModule: DynamicFormsCoreModule,
             providers: [DynamicFormService, DynamicFormAutoFillService]
         };
