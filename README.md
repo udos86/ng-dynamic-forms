@@ -93,7 +93,7 @@ npm start
 ```ts
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
 // ..all remaining component and routing imports
@@ -102,8 +102,7 @@ import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
     imports: [
         DynamicFormsCoreModule.forRoot(), 
         DynamicFormsBootstrapUIModule, 
-        BrowserModule, 
-        FormsModule, 
+        BrowserModule,  
         ReactiveFormsModule
         // ...all remaining imports
     ],
@@ -218,8 +217,7 @@ Right afterwards **just import the corresponding UI** `NgModule`:
     imports: [
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBootstrapUIModule, 
-        BrowserModule, 
-        FormsModule, 
+        BrowserModule,  
         ReactiveFormsModule
     ],
     

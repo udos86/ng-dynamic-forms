@@ -30,9 +30,9 @@ module.exports = function (pkg, src, type, dest) {
 
     return function () {
 
-        var regExVersionString = /(\d).(\d).(\d)/,
-            regExVersionField = /("version":\s)"\d.\d.\d"/,
-            regExDependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d.\d.\d"/g,
+        var regExVersionString = /(\d+).(\d+).(\d+)/,
+            regExVersionField = /("version":\s)"\d+.\d+.\d+"/,
+            regExDependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d+.\d+.\d+"/g,
             newVersionString = pkg.version.replace(regExVersionString, replaceVersionString);
 
         return gulp.src(src, {base: dest})
