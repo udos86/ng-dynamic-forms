@@ -1,5 +1,5 @@
 import {TestBed, async, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormsModule, FormGroup, FormControl} from "@angular/forms";
+import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {DynamicFormsCoreModule, DynamicFormService, DynamicInputModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 import {CheckboxModule} from "primeng/components/checkbox/checkbox";
 import {DropdownModule} from "primeng/components/dropdown/dropdown";
@@ -20,7 +20,6 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         TestBed.configureTestingModule({
             imports: [
-                FormsModule,
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot(),
                 CheckboxModule,

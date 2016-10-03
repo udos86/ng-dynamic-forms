@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {LocationStrategy, HashLocationStrategy} from "@angular/common";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
 import {RouterModule} from '@angular/router';
 
@@ -25,7 +25,6 @@ import {AppComponent} from './app.component';
 
     imports: [
         BrowserModule,
-        FormsModule,
         ReactiveFormsModule,
         RouterModule,
         appRouting,

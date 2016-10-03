@@ -1,5 +1,5 @@
 import {TestBed, async, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormsModule, FormGroup, FormControl} from "@angular/forms";
+import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -21,7 +21,10 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule, DynamicFormsCoreModule.forRoot()],
+            imports: [
+                ReactiveFormsModule,
+                DynamicFormsCoreModule.forRoot()
+            ],
             declarations: [DynamicFormFoundationSitesComponent]
         });
 
