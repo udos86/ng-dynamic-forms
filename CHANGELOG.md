@@ -1,3 +1,19 @@
+# 1.0.4
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+
+* `focus` and `blur` outputs added to `DynamicFormControlComponent` for event bindings (closes [#130](https://github.com/udos86/ng2-dynamic-forms/issues/130)) 
+* JSON export code has been improved
+
+
 # 1.0.3
 
 ### **Breaking Changes** 
@@ -19,8 +35,8 @@
 
 ### **Breaking Changes** 
 
-* **!!! IMPORTANT !!!**: `[(ngModel)]` bindings have been removed. If you need to update the `value` of any `DynamicFormControlModel` 
-at run time use `valueUpdates` `Subject` [(see README.md)](https://github.com/udos86/ng2-dynamic-forms#model-bindings-and-control-references) 
+* **!!! IMPORTANT !!!** `[(ngModel)]` bindings have been completely removed. If you need to update the `value` of any `DynamicFormControlModel` 
+at runtime use `valueUpdates` `Rx.Subject` [(see README.md)](https://github.com/udos86/ng2-dynamic-forms#model-bindings-and-control-references) 
 
 ### **Bugfixes** 
 
