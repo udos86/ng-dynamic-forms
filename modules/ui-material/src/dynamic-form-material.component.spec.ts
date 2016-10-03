@@ -1,5 +1,5 @@
 import {TestBed, async, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormsModule, FormGroup, FormControl} from "@angular/forms";
+import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
 import {
     DynamicFormsCoreModule,
@@ -20,7 +20,6 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         TestBed.configureTestingModule({
             imports: [
-                FormsModule,
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot(),
                 MaterialModule.forRoot()
