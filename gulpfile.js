@@ -79,16 +79,16 @@ gulp.task("prime:modules",
 gulp.task("build:modules", function (done) {
 
     runSequence(
-        //"lint:modules",
+        "lint:modules",
         "clean:dist",
         "copy:modules:npm",
         "copy:modules:dist",
         "transpile:modules:es6",
-        //"preprocess:modules",
+        "preprocess:modules",
         "inline:ng2-templates",
         "bundle:modules",
         "transpile:modules:es5",
-        //"preprocess:modules",
+        "preprocess:modules",
         "inline:ng2-templates",
         "prime:modules",
         done
