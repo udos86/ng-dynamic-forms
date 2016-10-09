@@ -6,11 +6,13 @@ import {getValue, isFunction, serialize} from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
+    context: DynamicFormArrayModel;
     @serializable() group: Array<DynamicFormValueControlModel<any>>;
     @serializable() index: number | null;
 
-    constructor(group: Array<DynamicFormValueControlModel<any>> = [], index: number | null = null) {
+    constructor(context: DynamicFormArrayModel, group: Array<DynamicFormValueControlModel<any>> = [], index: number | null = null) {
 
+        this.context = context;
         this.group = group;
         this.index = index;
     }
@@ -60,7 +62,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         if (Array.isArray(config.groups)) {
 
             config.groups.forEach((arrayGroup, index) => {
-                this.groups.push(new DynamicFormArrayGroupModel(arrayGroup.group, arrayGroup.index || index));
+                this.groups.push(new DynamicFormArrayGroupModel(this, arrayGroup.group, arrayGroup.index || index));
             });
 
         } else {
@@ -77,7 +79,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     addGroup(): DynamicFormArrayGroupModel {
 
-        let group = new DynamicFormArrayGroupModel(this.createGroup());
+        let group = new DynamicFormArrayGroupModel(this, this.createGroup());
 
         this.groups.push(group);
         this.updateGroupIndex();
@@ -87,7 +89,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     insertGroup(index: number): DynamicFormArrayGroupModel {
 
-        let group = new DynamicFormArrayGroupModel(this.createGroup());
+        let group = new DynamicFormArrayGroupModel(this, this.createGroup());
 
         this.groups.splice(index, 0, group);
         this.updateGroupIndex();

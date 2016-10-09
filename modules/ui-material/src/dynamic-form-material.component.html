@@ -18,6 +18,7 @@
         <dynamic-form-material-control *ngFor="let controlModel of model.group"
                                        [controlGroup]="control"
                                        [model]="controlModel"
+                                       [nestedTemplate]="customTemplate"
                                        (blur)="onBlur($event)"
                                        (focus)="onFocus($event)"></dynamic-form-material-control>
     </fieldset>
@@ -35,10 +36,11 @@
                                            [bindId]="false"
                                            [controlGroup]="control.at(idx)"
                                            [model]="controlModel"
+                                           [nestedTemplate]="nestedTemplate"
                                            (blur)="onBlur($event)"
                                            (focus)="onFocus($event)"></dynamic-form-material-control>
 
-            <template [ngTemplateOutlet]="customTemplate"
+            <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
                       [ngOutletContext]="groupModel"></template>
 
         </fieldset>

@@ -470,7 +470,7 @@ When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential*
 
 Apart from that, ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
-So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
+So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal)...
 
 At first we have to append the mandatory Bootstrap CSS class `form-horizontal` to the `<form>` element in our template:
 ```ts

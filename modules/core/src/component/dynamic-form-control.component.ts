@@ -25,6 +25,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     focus: EventEmitter<FocusEvent>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
+    nestedTemplate: TemplateRef<any>;
 
     private subscriptions: Array<Subscription> = [];
 
