@@ -429,9 +429,9 @@ clear() {
 
 Alright, works like a charm! 
 
-But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for each array group**?
+*But wait a minute... what if we want to append, let's say, a remove* `<button>` *for each array group*?
 
-No Problemo! **By adding a** `<template>` you can **declare some custom content** that is **rendered equally for all array groups**:
+No Problemo! Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
 
 ```ts
 <form [formGroup]="myForm">
@@ -440,27 +440,35 @@ No Problemo! **By adding a** `<template>` you can **declare some custom content*
                                 [controlGroup]="myForm" 
                                 [model]="controlModel">
     
-        <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
-            <button type="button" (click)="remove(index)">Remove Item</button>
+        <template let-context="context" let-index="index">
+
+            <button type="button" (click)="removeItem(context, index)">Remove Item</button>
+            <button type="button" (click)="insertItem(context, index + 1)">Add Item</button>
+
         </template>
                                 
     </dynamic-form-basic-control>
 
-    <button type="button" (click)="addItem()">Add item</button>
-    <button type="button" (click)="clear()">Remove all items</button>
-
 </form>       
 ```
 
+Whenever a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
+the associated** `DynamicFormArrayGroup`. 
+
+That means you can **access the group index and it's context** `DynamicFormArrayModel` 
+**by declaring some local template variable** `let-context="context" let-index="index"`.
+
+This is extremely useful when you'd like to add a remove or insert function:
+
 ```ts
-removeItem(index: number) {
-    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
+removeItem(context: DynamicFormArrayModel, index: number) {
+    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, context);
+}
+
+insertItem(context: DynamicFormArrayModel, index: number) {
+    this.dynamicFormService.insertFormArrayGroup(index, this.myArrayControl, context);
 }
 ```
-
-**Note**: When a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
-the associated** `DynamicFormArrayGroup` so you can **access the group 
-index by declaring a local template variable** `let-index="index"`!
 
 
 ## Form Layouts
