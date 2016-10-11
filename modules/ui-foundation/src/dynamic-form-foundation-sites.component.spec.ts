@@ -53,8 +53,9 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.enable).toBeDefined();
-        expect(component.disable).toBeDefined();
+        expect(component.onControlValueChanges).toBeDefined();
+        expect(component.onModelDisabledUpdates).toBeDefined();
+        expect(component.onModelValueUpdates).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
         expect(component.onChange).toBeDefined();

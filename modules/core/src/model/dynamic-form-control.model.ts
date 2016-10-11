@@ -1,4 +1,5 @@
 import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
+import {Subject} from "rxjs/Subject";
 import {serializable} from "../decorator/serialize.decorator";
 import {getValue, isEmptyString, serialize} from "../utils";
 
@@ -26,7 +27,8 @@ export interface DynamicFormControlModelConfig {
 export abstract class DynamicFormControlModel {
 
     @serializable() cls: any = {};
-    @serializable() disabled: boolean;
+    @serializable("disabled") _disabled: boolean;
+    disabledUpdates: Subject<boolean>;
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() name: string;
@@ -43,11 +45,22 @@ export abstract class DynamicFormControlModel {
         this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
         this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
 
-        this.disabled = getValue(config, "disabled", false);
+        this._disabled = getValue(config, "disabled", false);
         this.id = config.id;
         this.label = getValue(config, "label", null);
         this.name = this.id;
         this.relation = getValue(config, "relation", []);
+
+        this.disabledUpdates = new Subject<boolean>();
+        this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);
+    }
+
+    set disabled(value: boolean) {
+        this._disabled = value;
+    }
+
+    get disabled(): boolean {
+        return this._disabled;
     }
 
     toJSON() {
