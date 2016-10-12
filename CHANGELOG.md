@@ -1,3 +1,18 @@
+# 1.0.5
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* support for nested `templates`(closes [#139](https://github.com/udos86/ng2-dynamic-forms/issues/139)) 
+
+### **Features**
+
+* `disabledUpdates` `Rx.Subject` added for setting activation state at model level
+
+
 # 1.0.4
 
 ### **Breaking Changes** 

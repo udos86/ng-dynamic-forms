@@ -26,6 +26,7 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
 - [Form JSON Export and Import](#form-json-export-and-import)
 - [Validation Messaging](#validation-messaging)
@@ -94,6 +95,7 @@ npm start
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
+import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
 // ..all remaining component and routing imports
@@ -282,7 +284,7 @@ We now have access to the `valueUpdates` `Rx.Subject` to push new values via `ne
 this.myInputModel.valueUpdates.next("my new value");
 ```
 
-At any time we can safely read the most recent user input from the `value` property:
+At any time we also can safely read the most recent user input from the `value` property:
 ```ts
 let currentValue = this.myInputModel.value;
 ```
@@ -429,9 +431,9 @@ clear() {
 
 Alright, works like a charm! 
 
-But wait a minute...**what if we want to append, let's say, a remove** `<button>` **for each array group**?
+*But wait a minute... what if we want to append, let's say, a remove* `<button>` *for each array group*?
 
-No Problemo! **By adding a** `<template>` you can **declare some custom content** that is **rendered equally for all array groups**:
+No Problemo! Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
 
 ```ts
 <form [formGroup]="myForm">
@@ -440,27 +442,35 @@ No Problemo! **By adding a** `<template>` you can **declare some custom content*
                                 [controlGroup]="myForm" 
                                 [model]="controlModel">
     
-        <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
-            <button type="button" (click)="remove(index)">Remove Item</button>
+        <template let-context="context" let-index="index">
+
+            <button type="button" (click)="removeItem(context, index)">Remove Item</button>
+            <button type="button" (click)="insertItem(context, index + 1)">Add Item</button>
+
         </template>
                                 
     </dynamic-form-basic-control>
 
-    <button type="button" (click)="addItem()">Add item</button>
-    <button type="button" (click)="clear()">Remove all items</button>
-
 </form>       
 ```
 
+Whenever a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
+the associated** `DynamicFormArrayGroup`. 
+
+That means you can **access the group index and it's context** `DynamicFormArrayModel` 
+**by declaring some local template variable** `let-context="context" let-index="index"`.
+
+This is extremely useful when you'd like to add a remove or insert function:
+
 ```ts
-removeItem(index: number) {
-    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, this.myArrayModel);
+removeItem(context: DynamicFormArrayModel, index: number) {
+    this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, context);
+}
+
+insertItem(context: DynamicFormArrayModel, index: number) {
+    this.dynamicFormService.insertFormArrayGroup(index, this.myArrayControl, context);
 }
 ```
-
-**Note**: When a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
-the associated** `DynamicFormArrayGroup` so you can **access the group 
-index by declaring a local template variable** `let-index="index"`!
 
 
 ## Form Layouts
@@ -470,7 +480,7 @@ When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential*
 
 Apart from that, ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
-So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal):
+So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal)...
 
 At first we have to append the mandatory Bootstrap CSS class `form-horizontal` to the `<form>` element in our template:
 ```ts
@@ -504,6 +514,18 @@ new DynamicInputModel(
         }
     }
 )
+```
+
+## Disabling and Enabling Form Controls
+
+Since RC.6 Angular 2 does not allow any dynamic bindings of the `disabled` attribute in reactive forms to date (see [**Issue**](https://github.com/angular/angular/issues/11271)). 
+
+That means changing the corresponding `disabled` property of some `DynamicFormControlModel` at runtime won't have any effect.
+
+But similar to [updating values](#model-bindings-and-control-references) ng2 Dynamic Forms helps you out here 
+by providing a `Rx.Subject` `disabledUpdates` that can be used to programmatically switch the activation state of any form control:
+```ts
+this.myInputModel.disabledUpdates.next(true);
 ```
 
 

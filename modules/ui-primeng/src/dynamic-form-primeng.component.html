@@ -45,6 +45,7 @@
 
                 <p-radioButton [formControlName]="model.id"
                                [name]="model.name"
+                               [(ngModel)]="model.value"
                                [value]="option.value"></p-radioButton>
             </div>
 
@@ -79,6 +80,7 @@
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
                                               [controlGroup]="control"
                                               [model]="controlModel"
+                                              [nestedTemplate]="customTemplate"
                                               (blur)="onBlur($event)"
                                               (focus)="onFocus($event)"></dynamic-form-primeng-control>
             </fieldset>
@@ -96,10 +98,11 @@
                                                   [bindId]="false"
                                                   [controlGroup]="control.at(idx)"
                                                   [model]="controlModel"
+                                                  [nestedTemplate]="nestedTemplate"
                                                   (blur)="onBlur($event)"
                                                   (focus)="onFocus($event)"></dynamic-form-primeng-control>
 
-                    <template [ngTemplateOutlet]="customTemplate"
+                    <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
                               [ngOutletContext]="groupModel"></template>
 
                 </fieldset>

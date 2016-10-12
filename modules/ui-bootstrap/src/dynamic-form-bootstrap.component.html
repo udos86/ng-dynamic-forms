@@ -49,10 +49,11 @@
                                                 [bindId]="false"
                                                 [controlGroup]="control.at(idx)"
                                                 [model]="controlModel"
+                                                [nestedTemplate]="nestedTemplate"
                                                 (blur)="onBlur($event)"
                                                 (focus)="onFocus($event)"></dynamic-form-bootstrap-control>
 
-                <template [ngTemplateOutlet]="customTemplate"
+                <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
                           [ngOutletContext]="groupModel"></template>
 
             </fieldset>
@@ -71,6 +72,7 @@
             <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
                                             [controlGroup]="control"
                                             [model]="controlModel"
+                                            [nestedTemplate]="customTemplate"
                                             (blur)="onBlur($event)"
                                             (focus)="onFocus($event)"></dynamic-form-bootstrap-control>
         </fieldset>
@@ -163,7 +165,9 @@
                            [formControlName]="model.id"
                            [name]="model.name"
                            [ngClass]="model.cls.element.control"
-                           [value]="option.value"/>{{option.label}}</label>
+                           [value]="option.value"
+                           (blur)="onBlur($event)"
+                           (focus)="onFocus($event)"/>{{option.label}}</label>
             </div>
 
         </fieldset>

@@ -105,7 +105,7 @@ fieldset:not(:last-of-type) .btn-success, fieldset:not(:last-of-type) .button.su
 }
 
 fieldset:only-of-type .btn-danger, fieldset:only-of-type .button.alert {
-    display: none;
+    /*display: none;*/
 }
 
 dynamic-form-material-example fieldset {

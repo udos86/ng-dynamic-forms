@@ -1,8 +1,8 @@
 {
-  "name": "@ng2-dynamic-forms/ui-semantic",
-  "version": "1.0.4",
-  "description": "Semantic UI package for ng2 Dynamic Forms",
-  "main": "./bundles/ui-semantic.umd.js",
+  "name": "@ng2-dynamic-forms/ui-kendo",
+  "version": "1.0.5",
+  "description": "Kendo UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-kendo.umd.js",
   "keywords": [
     "angular",
     "angular 2",
@@ -10,7 +10,7 @@
     "forms",
     "ng2 dynamic forms",
     "reactive forms",
-    "semantic",
+    "kendo",
     "ui"
   ],
   "repository": {
@@ -31,7 +31,9 @@
     "@angular/core": "^2.0.0",
     "@angular/common": "^2.0.0",
     "@angular/forms": "^2.0.0",
-    "@ng2-dynamic-forms/core": "^1.0.4",
-    "rxjs": "^5.0.0-beta.12"
+    "@ng2-dynamic-forms/core": "^1.0.5",
+    "@progress/kendo-angular-dropdowns": "^0.11.0",
+    "@progress/kendo-angular-inputs": "^0.11.0",
+    "rxjs": "^5.0.0-rc.1"
   }
 }

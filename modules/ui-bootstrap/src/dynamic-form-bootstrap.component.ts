@@ -16,11 +16,12 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
-
+    @Input() nestedTemplate: TemplateRef<any>;
     @Input() hasSuccessStyles: boolean = false;
     @Input() hasErrorStyles: boolean = false;
 
     @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+
     @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
     @ContentChild(TemplateRef) customTemplate;

@@ -8,12 +8,12 @@
                                         (blur)="onBlur($event)"
                                         (focus)="onFocus($event)">
 
-            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+            <template let-context="context" let-index="index">
 
                 <div class="col-sm-4">
 
-                    <button type="button" class="btn btn-danger rounded" (click)="remove(index)">&#10005;</button>
-                    <button type="button" class="btn btn-success rounded" (click)="insert(index + 1)">&#43;</button>
+                    <button type="button" class="btn btn-danger rounded" (click)="remove(context, index)">&#10005;</button>
+                    <button type="button" class="btn btn-success rounded" (click)="insert(context, index + 1)">&#43;</button>
 
                 </div>
 

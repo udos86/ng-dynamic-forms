@@ -121,7 +121,16 @@ export class DynamicFormService {
             switch (object["type"]) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+
                     object["createGroup"] = () => this.fromJSON(object["originGroup"]);
+                    object["groups"] = object["groups"].forEach(groupObject => {
+                        return new DynamicFormArrayGroupModel(
+                            <DynamicFormArrayModel> object,
+                            <Array<DynamicFormValueControlModel<any>>> this.fromJSON(groupObject["group"]),
+                            groupObject["index"]
+                        );
+                    });
+
                     formModel.push(new DynamicFormArrayModel(object, object["cls"]));
                     break;
 

@@ -114,6 +114,7 @@ describe("DynamicInputModel test suite", () => {
             let json = JSON.parse(JSON.stringify(defaultModel));
 
             expect(json.id).toEqual(defaultModel.id);
+            expect(json.disabled).toEqual(defaultModel.disabled);
             expect(json.value).toBe(defaultModel.value);
             expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
         });

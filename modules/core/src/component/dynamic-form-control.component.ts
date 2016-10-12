@@ -25,6 +25,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     focus: EventEmitter<FocusEvent>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
+    nestedTemplate: TemplateRef<any>;
 
     private subscriptions: Array<Subscription> = [];
 
@@ -44,19 +45,15 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
 
         this.control = <FormControl> this.controlGroup.get(this.model.id);
-        this.control.valueChanges.subscribe((value: any) => {
 
-            if (this.model instanceof DynamicFormValueControlModel) {
-                (<DynamicFormValueControlModel<any>> this.model).value = value;
-            }
-
-            //@exclude
-            console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid, this.model);
-            //@endexclude
-        });
+        this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
+        this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
 
         if (this.model instanceof DynamicFormValueControlModel) {
-            (<DynamicFormValueControlModel<any>> this.model).valueUpdates.subscribe(value => this.control.setValue(value));
+
+            let model = <DynamicFormValueControlModel<any>> this.model;
+
+            this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
 
         this.registerControlRelations();
@@ -86,18 +83,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         return this.control.valid;
     }
 
-    disable(): void {
-
-        this.control.disable();
-        this.model.disabled = true;
-    }
-
-    enable(): void {
-
-        this.control.enable();
-        this.model.disabled = false;
-    }
-
     registerControlRelations(): void {
 
         if (this.model.relation.length > 0 && findActivationRelation(this.model.relation)) {
@@ -114,8 +99,13 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
                 if (control) {
 
-                    this.subscriptions.push(control.valueChanges.subscribe(value => this.setControlActivationState()));
-                    this.subscriptions.push(control.statusChanges.subscribe(status => this.setControlActivationState()));
+                    this.subscriptions.push(control.valueChanges.subscribe(
+                        value => this.setControlActivationState())
+                    );
+
+                    this.subscriptions.push(control.statusChanges.subscribe(
+                        status => this.setControlActivationState())
+                    );
                 }
             });
         }
@@ -123,8 +113,27 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     setControlActivationState(): void {
 
-        toBeDisabled(
-            findActivationRelation(this.model.relation), this.controlGroup) ? this.disable() : this.enable();
+        this.model.disabledUpdates.next(
+            toBeDisabled(findActivationRelation(this.model.relation), this.controlGroup)
+        );
+    }
+
+    onControlValueChanges(value: any) {
+
+        if (this.model instanceof DynamicFormValueControlModel) {
+            (<DynamicFormValueControlModel<any>> this.model).value = value;
+        }
+        //@exclude
+        console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid, this.model);
+        //@endexclude
+    }
+
+    onModelDisabledUpdates(value: boolean) {
+        value ? this.control.disable() : this.control.enable();
+    }
+
+    onModelValueUpdates(value: any) {
+        this.control.setValue(value);
     }
 
     onBlur($event: FocusEvent) {
