@@ -26,6 +26,7 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
 - [Form JSON Export and Import](#form-json-export-and-import)
 - [Validation Messaging](#validation-messaging)
@@ -94,6 +95,7 @@ npm start
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
+import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormsBootstrapUIModule} from "@ng2-dynamic-forms/ui-bootstrap";
 
 // ..all remaining component and routing imports
@@ -282,7 +284,7 @@ We now have access to the `valueUpdates` `Rx.Subject` to push new values via `ne
 this.myInputModel.valueUpdates.next("my new value");
 ```
 
-At any time we can safely read the most recent user input from the `value` property:
+At any time we also can safely read the most recent user input from the `value` property:
 ```ts
 let currentValue = this.myInputModel.value;
 ```
@@ -512,6 +514,18 @@ new DynamicInputModel(
         }
     }
 )
+```
+
+## Disabling and Enabling Form Controls
+
+Since RC.6 Angular 2 does not allow any dynamic bindings of the `disabled` attribute in reactive forms to date (see [**Issue**](https://github.com/angular/angular/issues/11271)). 
+
+That means changing the corresponding `disabled` property of some `DynamicFormControlModel` at runtime won't have any effect.
+
+But similar to [updating values](#model-bindings-and-control-references) ng2 Dynamic Forms helps you out here 
+by providing a `Rx.Subject` `disabledUpdates` that can be used to programmatically switch the activation state of any form control:
+```ts
+this.myInputModel.disabledUpdates.next(true);
 ```
 
 
