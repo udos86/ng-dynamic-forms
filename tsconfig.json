@@ -16,7 +16,9 @@
       "core-js",
       "hammerjs",
       "jasmine",
-      "node"
+      "node",
+      "protractor",
+      "selenium-webdriver"
     ]
   },
   "exclude": [
