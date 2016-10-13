@@ -434,7 +434,6 @@ Alright, works like a charm!
 *But wait a minute... what if we want to append, let's say, a remove* `<button>` *for each array group*?
 
 No Problemo! Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
-
 ```ts
 <form [formGroup]="myForm">
 
@@ -461,7 +460,6 @@ That means you can **access the group index and it's context** `DynamicFormArray
 **by declaring some local template variable** `let-context="context" let-index="index"`.
 
 This is extremely useful when you'd like to add a remove or insert function:
-
 ```ts
 removeItem(context: DynamicFormArrayModel, index: number) {
     this.dynamicFormService.removeFormArrayGroup(index, this.myArrayControl, context);
@@ -518,7 +516,7 @@ new DynamicInputModel(
 
 ## Disabling and Enabling Form Controls
 
-Since RC.6 Angular 2 does not allow any dynamic bindings of the `disabled` attribute in reactive forms to date (see [**Issue**](https://github.com/angular/angular/issues/11271)). 
+Since RC.6 to date, Angular 2 [**does not allow**](https://github.com/angular/angular/issues/11271) any dynamic bindings of the `disabled` attribute in reactive forms. 
 
 That means changing the corresponding `disabled` property of some `DynamicFormControlModel` at runtime won't have any effect.
 

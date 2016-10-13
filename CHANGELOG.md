@@ -1,3 +1,18 @@
+# 1.0.7
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* `fromJSON()` finally working flawless
+
+### **Features**
+
+* Upgrade to Angular `2.1.0`
+
+
 # 1.0.5
 
 ### **Breaking Changes** 
