@@ -94,3 +94,7 @@ gulp.task("build:modules", function (done) {
         done
     );
 });
+
+gulp.task("watch:modules", function () {
+    gulp.watch([`${SRC_PATH}/**/*.*`], ["build:modules"]);
+});

@@ -13,6 +13,7 @@
     "tests:unit": "karma start karma.config.js --single-run",
     "tsc": "tsc -watch",
     "tslint": "tslint -c ./tslint.json",
+    "watch": "gulp watch:modules",
     "webdriver:start": "webdriver-manager start",
     "webdriver:update": "webdriver-manager update"
   },
@@ -54,7 +55,7 @@
     "primeui": "^4.1.15",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.0-rc.1",
-    "symbol-observable": "^1.0.3",
+    "symbol-observable": "^1.0.4",
     "systemjs": "^0.19.39",
     "zone.js": "^0.6.25"
   },
@@ -74,7 +75,7 @@
     "gulp-inline-ng2-template": "^3.0.1",
     "gulp-preprocess": "^2.0.0",
     "gulp-replace": "^0.5.4",
-    "gulp-sourcemaps": "^2.0.1",
+    "gulp-sourcemaps": "^2.1.1",
     "gulp-tslint": "^6.1.2",
     "gulp-typedoc": "^2.0.0",
     "gulp-typescript": "^3.0.2",
