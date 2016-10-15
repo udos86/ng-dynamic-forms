@@ -7,6 +7,7 @@ import {
     DynamicTextAreaModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
+import {Validators} from "@angular/forms";
 
 export const FOUNDATION_EXAMPLE_MODEL = [
 
@@ -14,6 +15,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             id: "foundationSelect",
             label: "Example Select",
+            hint: "Option 4 is the only valid value",
             options: [
                 {
                     label: "Option 1",
@@ -33,7 +35,8 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                     value: "option-4"
                 }
             ],
-            value: "option-3"
+            value: "option-3",
+            validators: [Validators.pattern("^option-4$")]
         },
         {
             element: {
@@ -88,11 +91,12 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             hint: "Just a sample help text",
             id: "foundationInput",
-            label: "Example Input",
+            label: "Example Input (Required)",
             maxLength: 51,
             placeholder: "example input",
             prefix: "Prefix",
-            suffix: "Suffix"
+            suffix: "Suffix",
+            validators: [Validators.required]
         },
         {
             element: {
@@ -140,9 +144,10 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicTextAreaModel(
         {
             id: "foundationTextArea",
-            label: "Example Textarea",
+            label: "Example Textarea (Required)",
             rows: 5,
             placeholder: "example Textarea",
+            validators: [Validators.required]
         },
         {
             element: {

@@ -28,4 +28,8 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
     constructor() {
         super();
     }
+
+    public get showErrors(): boolean {
+        return this.control.touched && this.control.invalid;
+    }
 }
