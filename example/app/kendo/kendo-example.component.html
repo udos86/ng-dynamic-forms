@@ -1,0 +1,10 @@
+<div class="content-margin content-padding" style="width: 50%;">
+
+    <form [formGroup]="form">
+
+        <dynamic-form-kendo-control *ngFor="let controlModel of dynamicFormModel"
+                                    [controlGroup]="form"
+                                    [model]="controlModel"></dynamic-form-kendo-control>
+    </form>
+
+</div>

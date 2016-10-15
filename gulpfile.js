@@ -19,6 +19,7 @@ var SRC_PATH = "./modules",
         "ui-basic",
         "ui-bootstrap",
         "ui-foundation",
+        "ui-kendo",
         "ui-material",
         "ui-primeng"
     ];

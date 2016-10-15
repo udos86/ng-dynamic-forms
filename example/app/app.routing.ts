@@ -2,6 +2,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {BasicExampleComponent} from "./basic/basic-example.component";
 import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
 import {FoundationExampleComponent} from "./foundation/foundation-example.component";
+import {KendoExampleComponent} from "./kendo/kendo-example.component";
 import {MaterialExampleComponent} from "./material/material-example.component";
 import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 
@@ -45,6 +46,15 @@ export const appRoutes: Routes = [
             title: "Material UI",
             href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/material/material-example.model.ts",
             bgColor: "#009688"
+        }
+    },
+    {
+        path: "example-kendo",
+        component: KendoExampleComponent,
+        data: {
+            title: "Kendo UI",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/kendo/kendo-example.model.ts",
+            bgColor: "#ff5747"
         }
     },
     {
