@@ -17,6 +17,7 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
+    @Input() errorMessagesMap: {[key: string]: string} = {};
 
     @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
     @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
@@ -31,5 +32,35 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
 
     public get isShowErrors(): boolean {
         return this.control.touched && this.control.invalid;
+    }
+
+    public get errorMessages(): string[] {
+        let errorMessages = [];
+        let errors = this.control.errors;
+
+        for(let validatorName in errors) {
+            let message: string;
+            let validationObj = errors[validatorName];
+
+            if(this.errorMessagesMap[validatorName]) {
+                message = this.errorMessagesMap[validatorName].replace(/\{\{(model|validator)\.(.+?)\}\}/mg, (match, variableSource, variableName) => {
+                    let replacement;
+
+                    if(variableSource === "model" && this.model[variableName]) {
+                        replacement = <string> this.model[variableName];
+                    } else if(variableSource === "validator" && typeof validationObj === "object" && validationObj[variableName]) {
+                        replacement = <string> validationObj[variableName];
+                    }
+
+                    return replacement;
+                });
+            } else {
+                message = `Validation "${validatorName}" failed`;
+            }
+
+            errorMessages.push(message);
+        }
+
+        return errorMessages;
     }
 }

@@ -201,6 +201,10 @@
 
     </div>
 
+    <div [ngClass]="model.cls.element.error">
+        <span *ngFor="let error of errorMessages" class="form-error" [class.is-visible]="isShowErrors">{{error}}</span>
+    </div>
+
     <ng-content></ng-content>
 
 </div>

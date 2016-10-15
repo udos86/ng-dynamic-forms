@@ -15,7 +15,6 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             id: "foundationSelect",
             label: "Example Select",
-            hint: "Option 4 is the only valid value",
             options: [
                 {
                     label: "Option 1",
@@ -35,13 +34,13 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                     value: "option-4"
                 }
             ],
-            value: "option-3",
-            validators: [Validators.pattern("^option-4$")]
+            value: "option-3"
         },
         {
             element: {
                 container: "row",
-                label: "text-right middle font-bold"
+                label: "text-right middle font-bold",
+                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
@@ -91,7 +90,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             hint: "Just a sample help text",
             id: "foundationInput",
-            label: "Example Input (Required)",
+            label: "Example Input",
             maxLength: 51,
             placeholder: "example input",
             prefix: "Prefix",
@@ -101,7 +100,8 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right middle font-bold"
+                label: "text-right middle font-bold",
+                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
@@ -144,15 +144,16 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicTextAreaModel(
         {
             id: "foundationTextArea",
-            label: "Example Textarea (Required)",
+            label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
-            validators: [Validators.required]
+            validators: [Validators.required, Validators.pattern("[a-c]+")]
         },
         {
             element: {
                 container: "row",
-                label: "text-right font-bold"
+                label: "text-right font-bold",
+                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
