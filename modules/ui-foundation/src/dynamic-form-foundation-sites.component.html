@@ -6,7 +6,7 @@
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
-               [ngClass]="model.cls.element.label">{{model.label}}</label>
+               [ngClass]="model.cls.element.label" [class.is-invalid-label]="isShowErrors">{{model.label}}</label>
     </div>
 
 
@@ -121,6 +121,7 @@
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
+                   [class.is-invalid-input]="isShowErrors"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
                    (focus)="onFocus($event)"/>
@@ -163,6 +164,7 @@
                 [name]="model.name"
                 [ngClass]="model.cls.element.control"
                 [required]="model.required"
+                [class.is-invalid-input]="isShowErrors"
                 (blur)="onBlur($event)"
                 (change)="onChange($event)"
                 (focus)="onFocus($event)">
@@ -190,12 +192,17 @@
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
+                  [class.is-invalid-input]="isShowErrors"
                   (blur)="onBlur($event)"
                   (change)="onChange($event)"
                   (focus)="onFocus($event)"></textarea>
 
         <p *ngIf="model.hint" class="help-text">{{model.hint}}</p>
 
+    </div>
+
+    <div [ngClass]="model.cls.element.error">
+        <span *ngFor="let error of errorMessages" class="form-error" [class.is-visible]="isShowErrors">{{error}}</span>
     </div>
 
     <ng-content></ng-content>

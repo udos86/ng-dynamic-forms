@@ -7,6 +7,7 @@ import {
     DynamicTextAreaModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
+import {Validators} from "@angular/forms";
 
 export const FOUNDATION_EXAMPLE_MODEL = [
 
@@ -38,7 +39,8 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right middle font-bold"
+                label: "text-right middle font-bold",
+                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
@@ -92,12 +94,14 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             maxLength: 51,
             placeholder: "example input",
             prefix: "Prefix",
-            suffix: "Suffix"
+            suffix: "Suffix",
+            validators: [Validators.required]
         },
         {
             element: {
                 container: "row",
-                label: "text-right middle font-bold"
+                label: "text-right middle font-bold",
+                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
@@ -143,11 +147,13 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
+            validators: [Validators.required, Validators.pattern("[a-c]+")]
         },
         {
             element: {
                 container: "row",
-                label: "text-right font-bold"
+                label: "text-right font-bold",
+                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
