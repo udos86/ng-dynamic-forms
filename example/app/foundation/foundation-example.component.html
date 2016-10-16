@@ -2,17 +2,16 @@
 
     <form class="form-horizontal" [formGroup]="form">
 
-
         <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel"
                                                [controlGroup]="form"
                                                [model]="controlModel">
 
-            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+            <template let-context="context" let-index="index">
 
                 <div class="small-3 columns">
 
-                    <button type="button" class="button alert rounded" (click)="remove(index)">&#10005;</button>
-                    <button type="button" class="button success rounded" (click)="add()">&#43;</button>
+                    <button type="button" class="button alert rounded" (click)="remove(context, index)">&#10005;</button>
+                    <button type="button" class="button success rounded" (click)="insert(context, index + 1)">&#43;</button>
 
                 </div>
 
