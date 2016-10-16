@@ -7,9 +7,10 @@
 
 
     <kendo-dropdownlist *ngSwitchCase="'SELECT'"
-            [data]="model.options"
-            [textField]="'label'"
-            [valueField]="'value'"></kendo-dropdownlist>
+                        [data]="model.options"
+                        [formControlName]="model.id"
+                        [textField]="'label'"
+                        [valueField]="'value'"></kendo-dropdownlist>
 
     <ng-content></ng-content>
 

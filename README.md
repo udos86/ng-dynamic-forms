@@ -118,7 +118,7 @@ export class AppModule {}
 **2. Define your dynamic form model as** `Array<DynamicFormControlModel>`:
 ```ts
 import {
-    DynamicFormControlModel
+    DynamicFormControlModel,
     DynamicCheckboxModel,
     DynamicInputModel,
     DynamicRadioGroupModel
@@ -199,11 +199,11 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 
 * **Basic** (pure HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
-* **[Foundation](http://foundation.zurb.com/)**
+* **[Foundation](http://foundation.zurb.com)**
 * **[Material 2](https://github.com/angular/material2)**
 * **[PrimeNG](http://www.primefaces.org/primeng/#/)**
-* **[Semantic UI](https://semantic-ui-angular2.herokuapp.com/)** (*planned*)
-* **[Kendo UI](http://www.telerik.com/kendo-ui)** (*planned*)
+* **[Kendo UI](http://www.telerik.com/kendo-angular-ui)** (*work in progress*)
+* **[Semantic UI](https://semantic-ui-angular2.herokuapp.com)** (*planned*)
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and it's peer dependencies**:
@@ -385,7 +385,7 @@ new DynamicFormArrayModel({
     createGroup: () => {
         return [
             new DynamicInputModel({
-                
+  
                 id: "formArrayInput",
                 label: "Form Array Input"
             })
@@ -457,7 +457,7 @@ Whenever a `<template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletC
 the associated** `DynamicFormArrayGroup`. 
 
 That means you can **access the group index and it's context** `DynamicFormArrayModel` 
-**by declaring some local template variable** `let-context="context" let-index="index"`.
+**by declaring some local template variables** `let-context="context"` and `let-index="index"`.
 
 This is extremely useful when you'd like to add a remove or insert function:
 ```ts
