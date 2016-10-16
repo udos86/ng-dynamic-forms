@@ -23,25 +23,52 @@
         "@angular/forms": "npm:@angular/forms/bundles/forms.umd.js",
         "@angular/forms/testing": "npm:@angular/forms/bundles/forms-testing.umd.js",
         "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
-        //"@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.min.js",
-        //"@ng2-dynamic-forms/ui-basic": "npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.min.js",
-        //"@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.min.js",
-        //"@ng2-dynamic-forms/ui-foundation": "npm:@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation.umd.min.js",
-        //"@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.min.js",
-        //"@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.min.js",
-        "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
+        "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.min.js",
+        "@ng2-dynamic-forms/ui-basic": "npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.min.js",
+        "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.min.js",
+        "@ng2-dynamic-forms/ui-foundation": "npm:@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation.umd.min.js",
+        "@ng2-dynamic-forms/ui-kendo": "npm:@ng2-dynamic-forms/ui-kendo/bundles/ui-kendo.umd.min.js",
+        "@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.min.js",
+        "@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.min.js",
+        '@progress': 'npm:@progress',
+        '@telerik': 'npm:@telerik',
         "app": "app",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     };
 
     var packages = {
-        "angular2-in-memory-web-api": {
-            defaultExtension: "js"
-        },
         "app": {
             main: "main.js",
             defaultExtension: "js"
+        },
+        "@progress/kendo-angular-dropdowns": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/main.js"
+        },
+        "@progress/kendo-angular-inputs": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/main.js"
+        },
+        "@progress/kendo-angular-popup": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/main.js"
+        },
+        "@progress/kendo-popup-common": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/main.js"
+        },
+        "@telerik/kendo-inputs-common": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/main.js"
+        },
+        "@telerik/kendo-draggable": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/Draggable.js"
+        },
+        "@telerik/kendo-dropdowns-common": {
+            defaultExtension: "js",
+            main: "./dist/npm/js/main.js"
         },
         "rxjs": {
             defaultExtension: "js"
@@ -50,12 +77,13 @@
             defaultExtension: "js"
         }
     };
-
+    /*
     var ng2DynamicFormsPackageNames = [
         "@ng2-dynamic-forms/core",
         "@ng2-dynamic-forms/ui-basic",
         "@ng2-dynamic-forms/ui-bootstrap",
         "@ng2-dynamic-forms/ui-foundation",
+        "@ng2-dynamic-forms/ui-kendo",
         "@ng2-dynamic-forms/ui-material",
         "@ng2-dynamic-forms/ui-primeng"
     ];
@@ -67,7 +95,7 @@
             defaultExtension: "js"
         };
     });
-
+    */
     var config = {
         paths: paths,
         map: map,

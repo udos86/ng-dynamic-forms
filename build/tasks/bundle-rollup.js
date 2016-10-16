@@ -60,6 +60,8 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
             "@angular/router": "ng.router",
             "@ng2-dynamic-forms/core": "ng2DF.core",
+            "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
+            "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
             "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
