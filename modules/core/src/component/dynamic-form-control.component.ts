@@ -26,6 +26,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     hasFocus: boolean;
     model: DynamicFormControlModel;
     nestedTemplate: TemplateRef<any>;
+    validationMessages: {[key: string]: string} = null;
 
     private subscriptions: Array<Subscription> = [];
 
@@ -81,6 +82,10 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     get isValid() {
         return this.control.valid;
+    }
+
+    get isInvalid() {
+        return this.control.touched && this.control.invalid;
     }
 
     registerControlRelations(): void {

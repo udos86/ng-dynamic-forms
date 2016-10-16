@@ -6,7 +6,8 @@
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
-               [ngClass]="model.cls.element.label" [class.is-invalid-label]="isShowErrors">{{model.label}}</label>
+               [class.is-invalid-label]="validationMessages && isInvalid"
+               [ngClass]="model.cls.element.label">{{model.label}}</label>
     </div>
 
 
@@ -109,6 +110,7 @@
                    [attr.step]="model.step"
                    [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
+                   [class.is-invalid-input]="validationMessages && isInvalid"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [maxlength]="model.maxLength"
@@ -121,7 +123,6 @@
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
-                   [class.is-invalid-input]="isShowErrors"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
                    (focus)="onFocus($event)"/>
@@ -164,7 +165,6 @@
                 [name]="model.name"
                 [ngClass]="model.cls.element.control"
                 [required]="model.required"
-                [class.is-invalid-input]="isShowErrors"
                 (blur)="onBlur($event)"
                 (change)="onChange($event)"
                 (focus)="onFocus($event)">
@@ -179,6 +179,7 @@
 
         <textarea *ngSwitchCase="'TEXTAREA'"
                   [attr.tabindex]="model.tabIndex"
+                  [class.is-invalid-input]="validationMessages && isInvalid"
                   [cols]="model.cols"
                   [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
@@ -192,7 +193,6 @@
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
-                  [class.is-invalid-input]="isShowErrors"
                   (blur)="onBlur($event)"
                   (change)="onChange($event)"
                   (focus)="onFocus($event)"></textarea>
@@ -201,8 +201,11 @@
 
     </div>
 
-    <div [ngClass]="model.cls.element.error">
-        <span *ngFor="let error of errorMessages" class="form-error" [class.is-visible]="isShowErrors">{{error}}</span>
+    <div *ngIf="validationMessages" [ngClass]="model.cls.element.error">
+
+        <span *ngFor="let message of errorMessages" class="form-error"
+              [class.is-visible]="isInvalid">{{message}}</span>
+
     </div>
 
     <ng-content></ng-content>
