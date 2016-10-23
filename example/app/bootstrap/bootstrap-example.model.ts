@@ -1,4 +1,4 @@
-import {Validators, AbstractControl} from "@angular/forms";
+import {Validators} from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -10,21 +10,13 @@ import {
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
 
-
-export function testValidator(control: AbstractControl): {[errorId: string]: boolean} {
-
-    return {
-        testValidator: true
-    };
-}
-
 export const BOOTSTRAP_EXAMPLE_MODEL = [
 
 
     new DynamicFormGroupModel({
 
-        id: "bootstrapFormGroup",
-        legend: "Bootstrap Form Group",
+        id: "bootstrapFormGroup1",
+        legend: "Bootstrap Form Group 1",
         group: [
             new DynamicSelectModel<string>(
                 {
@@ -102,8 +94,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                                 value: true
                             }
                         )
-                    ],
-                    validator: testValidator,
+                    ]
                 },
                 {
                     element: {
@@ -114,8 +105,15 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                         label: "col-sm-3"
                     }
                 }
-            ),
+            )
+        ]
+    }),
 
+    new DynamicFormGroupModel({
+
+        id: "bootstrapFormGroup2",
+        legend: "Bootstrap Form Group 2",
+        group: [
             new DynamicRadioGroupModel<string>(
                 {
                     id: "bootstrapRadioGroup",

@@ -15,6 +15,7 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
+    @Input() enableErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
     @Input() hasSuccessStyles: boolean = false;

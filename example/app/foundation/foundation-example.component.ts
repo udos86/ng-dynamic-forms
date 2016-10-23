@@ -28,11 +28,6 @@ export class FoundationExampleComponent implements OnInit {
     sampleArrayControl: FormArray;
     sampleArrayModel: DynamicFormArrayModel;
 
-    errorMessagesMap = {
-        required: "{{model.label}} is required",
-        pattern: "{{model.label}} doesn't match {{validator.requiredPattern}} pattern"
-    };
-
     constructor(private dynamicFormService: DynamicFormService) {
 
         this.dynamicFormModel = FOUNDATION_EXAMPLE_MODEL;

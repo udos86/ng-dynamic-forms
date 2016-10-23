@@ -6,7 +6,7 @@
         <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel"
                                                [controlGroup]="form"
                                                [model]="controlModel"
-                                               [validationMessages]="errorMessagesMap">
+                                               [enableErrorMessaging]="!!controlModel.errorMessages">
 
             <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
 

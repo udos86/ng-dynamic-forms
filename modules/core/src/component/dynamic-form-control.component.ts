@@ -22,11 +22,11 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
+    enableErrorMessaging: boolean = false;
     focus: EventEmitter<FocusEvent>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
     nestedTemplate: TemplateRef<any>;
-    validationMessages: {[key: string]: string} = null;
 
     private subscriptions: Array<Subscription> = [];
 
@@ -62,6 +62,32 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    }
+
+    get errorMessages(): Array<string> {
+
+        let messages = [];
+
+        if (isDefined(this.model["errorMessages"])) {
+
+            for (let validatorName in this.control.errors) {
+
+                let message: string;
+
+                if (this.model["errorMessages"][validatorName]) {
+
+                    message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
+                        (match, propertyName) => this.model[propertyName] ? this.model[propertyName] : null);
+
+                } else {
+                    message = `Validation "${validatorName}" failed`;
+                }
+
+                messages.push(message);
+            }
+        }
+
+        return messages;
     }
 
     get isCheckbox() {

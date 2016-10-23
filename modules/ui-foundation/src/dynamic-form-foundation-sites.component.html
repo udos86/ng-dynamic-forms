@@ -6,7 +6,7 @@
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
-               [class.is-invalid-label]="validationMessages && isInvalid"
+               [class.is-invalid-label]="enableErrorMessaging && !hasFocus && isInvalid"
                [ngClass]="model.cls.element.label">{{model.label}}</label>
     </div>
 
@@ -110,7 +110,7 @@
                    [attr.step]="model.step"
                    [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
-                   [class.is-invalid-input]="validationMessages && isInvalid"
+                   [class.is-invalid-input]="enableErrorMessaging && !hasFocus && isInvalid"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [maxlength]="model.maxLength"
@@ -179,7 +179,7 @@
 
         <textarea *ngSwitchCase="'TEXTAREA'"
                   [attr.tabindex]="model.tabIndex"
-                  [class.is-invalid-input]="validationMessages && isInvalid"
+                  [class.is-invalid-input]="enableErrorMessaging && !hasFocus && isInvalid"
                   [cols]="model.cols"
                   [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
@@ -201,10 +201,10 @@
 
     </div>
 
-    <div *ngIf="validationMessages" [ngClass]="model.cls.element.error">
+    <div *ngIf="enableErrorMessaging" [ngClass]="model.cls.element.error">
 
         <span *ngFor="let message of errorMessages" class="form-error"
-              [class.is-visible]="isInvalid">{{message}}</span>
+              [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>
 
     </div>
 

@@ -40,7 +40,6 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             element: {
                 container: "row",
                 label: "text-right middle font-bold",
-                error: "small-9 small-offset-3 columns"
             },
             grid: {
                 control: "small-9 columns",
@@ -95,7 +94,10 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             placeholder: "example input",
             prefix: "Prefix",
             suffix: "Suffix",
-            validators: [Validators.required]
+            validators: [Validators.required],
+            errorMessages: {
+                required: "{{label}} is required"
+            }
         },
         {
             element: {
@@ -147,7 +149,11 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
-            validators: [Validators.required, Validators.pattern("[a-c]+")]
+            validators: [Validators.required, Validators.pattern("[a-c]+")],
+            errorMessages: {
+                required: "{{label}} is required",
+                pattern: "{{label}} does not match pattern [a-c]"
+            }
         },
         {
             element: {
