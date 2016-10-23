@@ -8,6 +8,7 @@ export interface Cls {
     container?: string;
     control?: string;
     label?: string;
+    error?: string;
 }
 
 export interface ClsConfig {

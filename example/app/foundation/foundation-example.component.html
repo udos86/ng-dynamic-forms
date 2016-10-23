@@ -4,7 +4,8 @@
 
         <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel"
                                                [controlGroup]="form"
-                                               [model]="controlModel">
+                                               [model]="controlModel"
+                                               [enableErrorMessaging]="!!controlModel.errorMessages">
 
             <template let-context="context" let-index="index">
 

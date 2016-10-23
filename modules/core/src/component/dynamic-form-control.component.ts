@@ -22,6 +22,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
+    enableErrorMessaging: boolean = false;
     focus: EventEmitter<FocusEvent>;
     hasFocus: boolean;
     model: DynamicFormControlModel;
@@ -63,6 +64,32 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
+    get errorMessages(): Array<string> {
+
+        let messages = [];
+
+        if (isDefined(this.model["errorMessages"])) {
+
+            for (let validatorName in this.control.errors) {
+
+                let message: string;
+
+                if (this.model["errorMessages"][validatorName]) {
+
+                    message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
+                        (match, propertyName) => this.model[propertyName] ? this.model[propertyName] : null);
+
+                } else {
+                    message = `Validation "${validatorName}" failed`;
+                }
+
+                messages.push(message);
+            }
+        }
+
+        return messages;
+    }
+
     get isCheckbox() {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
@@ -81,6 +108,10 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     get isValid() {
         return this.control.valid;
+    }
+
+    get isInvalid() {
+        return this.control.touched && this.control.invalid;
     }
 
     registerControlRelations(): void {

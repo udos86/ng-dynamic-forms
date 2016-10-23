@@ -6,6 +6,7 @@
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
+               [class.is-invalid-label]="enableErrorMessaging && !hasFocus && isInvalid"
                [ngClass]="model.cls.element.label">{{model.label}}</label>
     </div>
 
@@ -109,6 +110,7 @@
                    [attr.step]="model.step"
                    [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
+                   [class.is-invalid-input]="enableErrorMessaging && !hasFocus && isInvalid"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [maxlength]="model.maxLength"
@@ -177,6 +179,7 @@
 
         <textarea *ngSwitchCase="'TEXTAREA'"
                   [attr.tabindex]="model.tabIndex"
+                  [class.is-invalid-input]="enableErrorMessaging && !hasFocus && isInvalid"
                   [cols]="model.cols"
                   [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
@@ -195,6 +198,13 @@
                   (focus)="onFocus($event)"></textarea>
 
         <p *ngIf="model.hint" class="help-text">{{model.hint}}</p>
+
+    </div>
+
+    <div *ngIf="enableErrorMessaging" [ngClass]="model.cls.element.error">
+
+        <span *ngFor="let message of errorMessages" class="form-error"
+              [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>
 
     </div>
 

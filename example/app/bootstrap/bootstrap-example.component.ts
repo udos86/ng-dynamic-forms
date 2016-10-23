@@ -38,12 +38,12 @@ export class BootstrapExampleComponent implements OnInit {
 
         this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
 
-        this.exampleControl = <FormControl> this.form.get("bootstrapFormGroup").get("bootstrapInput"); // Type assertion for having updateValue method available
+        this.exampleControl = <FormControl> this.form.get("bootstrapFormGroup1").get("bootstrapInput"); // Type assertion for having updateValue method available
         this.exampleModel = <DynamicInputModel> this.dynamicFormService.findById(
             "bootstrapInput", (<DynamicFormGroupModel> this.dynamicFormModel[0]).group);
         //this.exampleControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
 
-        this.sampleArrayControl = <FormArray> this.form.get("bootstrapFormGroup").get("bootstrapFormArray");
+        this.sampleArrayControl = <FormArray> this.form.get("bootstrapFormGroup2").get("bootstrapFormArray");
         this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById(
             "bootstrapFormArray", this.dynamicFormModel);
     }
