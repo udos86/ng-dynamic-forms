@@ -102,11 +102,11 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right middle font-bold",
-                error: "small-9 small-offset-3 columns"
+                label: "text-right middle font-bold"
             },
             grid: {
                 control: "small-9 columns",
+                errors: "small-9 small-offset-3 columns",
                 label: "small-3 columns"
             }
         }
@@ -158,11 +158,11 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
-                label: "text-right font-bold",
-                error: "small-9 small-offset-3 columns"
+                label: "text-right font-bold"
             },
             grid: {
                 control: "small-9 columns",
+                errors: "small-9 small-offset-3 columns",
                 label: "small-3 columns"
             }
         }

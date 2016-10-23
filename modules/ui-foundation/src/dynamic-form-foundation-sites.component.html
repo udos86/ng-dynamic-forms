@@ -24,6 +24,7 @@
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
                                                        [controlGroup]="control.at(idx)"
+                                                       [enableErrorMessaging]="!!controlModel.errorMessages"
                                                        [model]="controlModel"
                                                        [nestedTemplate]="nestedTemplate"
                                                        (blur)="onBlur($event)"
@@ -47,6 +48,7 @@
 
             <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
                                                    [controlGroup]="control"
+                                                   [enableErrorMessaging]="!!controlModel.errorMessages"
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
                                                    (blur)="onBlur($event)"
@@ -201,7 +203,7 @@
 
     </div>
 
-    <div *ngIf="enableErrorMessaging" [ngClass]="model.cls.element.error">
+    <div *ngIf="enableErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <span *ngFor="let message of errorMessages" class="form-error"
               [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>

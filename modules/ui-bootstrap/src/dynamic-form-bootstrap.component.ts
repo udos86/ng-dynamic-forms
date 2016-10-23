@@ -18,8 +18,6 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
     @Input() enableErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
-    @Input() hasSuccessStyles: boolean = false;
-    @Input() hasErrorStyles: boolean = false;
 
     @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 

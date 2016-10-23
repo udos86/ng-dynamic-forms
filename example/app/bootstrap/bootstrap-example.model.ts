@@ -62,7 +62,10 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     placeholder: "example input",
                     prefix: "Prefix",
                     suffix: "Suffix",
-                    validators: [Validators.required]
+                    validators: [Validators.required],
+                    errorMessages: {
+                        required: "{{label}} is required"
+                    }
                 },
                 {
                     element: {
@@ -70,6 +73,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     },
                     grid: {
                         control: "col-sm-9",
+                        errors: "col-sm-offset-3 col-sm-9",
                         label: "col-sm-3"
                     }
                 }
