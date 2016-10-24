@@ -23,6 +23,7 @@ describe("DynamicTextAreaModel test suite", () => {
 
             expect(defaultModel.cols).toBe(20);
             expect(defaultModel.disabled).toBe(false);
+            expect(defaultModel.errorMessages).toBeNull();
             expect(defaultModel.id).toEqual(config.id);
             expect(defaultModel.label).toBeNull();
             expect(defaultModel.name).toEqual(defaultModel.id);

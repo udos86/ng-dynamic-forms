@@ -1,5 +1,5 @@
 <div class="form-group"
-     [class.has-error]="enableErrorMessaging && !hasFocus && isInvalid"
+     [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
      [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]"
      [ngSwitch]="model.type">
@@ -47,7 +47,7 @@
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
                                                 [bindId]="false"
                                                 [controlGroup]="control.at(idx)"
-                                                [enableErrorMessaging]="!!controlModel.errorMessages"
+                                                [hasErrorMessaging]="!!controlModel.errorMessages"
                                                 [model]="controlModel"
                                                 [nestedTemplate]="nestedTemplate"
                                                 (blur)="onBlur($event)"
@@ -71,7 +71,7 @@
 
             <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
                                             [controlGroup]="control"
-                                            [enableErrorMessaging]="!!controlModel.errorMessages"
+                                            [hasErrorMessaging]="!!controlModel.errorMessages"
                                             [model]="controlModel"
                                             [nestedTemplate]="customTemplate"
                                             (blur)="onBlur($event)"
@@ -217,7 +217,7 @@
 
     </div>
 
-    <div *ngIf="enableErrorMessaging" class="has-error"
+    <div *ngIf="hasErrorMessaging" class="has-error"
          [class.hidden]="!control.touched || hasFocus || isValid"
          [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 

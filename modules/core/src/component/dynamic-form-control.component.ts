@@ -22,8 +22,8 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
-    enableErrorMessaging: boolean = false;
     focus: EventEmitter<FocusEvent>;
+    hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
     nestedTemplate: TemplateRef<any>;

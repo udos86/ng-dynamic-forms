@@ -1,4 +1,8 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT, DynamicInputModel} from "./dynamic-input.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT,
+    DynamicInputModel
+} from "./dynamic-input.model";
 import {AUTOCOMPLETE_ON} from "../../service/dynamic-form-autofill.service";
 
 describe("DynamicInputModel test suite", () => {
@@ -11,7 +15,7 @@ describe("DynamicInputModel test suite", () => {
         beforeEach(() => {
             defaultModel = new DynamicInputModel(config);
         });
-        
+
         it("tests if correct default type property is set", () => {
 
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
@@ -37,9 +41,11 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultModel.cls).toBeDefined();
             expect(defaultModel.cls.element.container).toEqual("");
             expect(defaultModel.cls.element.control).toEqual("");
+            expect(defaultModel.cls.element.errors).toEqual("");
             expect(defaultModel.cls.element.label).toEqual("");
             expect(defaultModel.cls.grid.container).toEqual("");
             expect(defaultModel.cls.grid.control).toEqual("");
+            expect(defaultModel.cls.grid.errors).toEqual("");
             expect(defaultModel.cls.grid.label).toEqual("");
         });
 
@@ -67,7 +73,7 @@ describe("DynamicInputModel test suite", () => {
 
             expect(defaultModel.minLength).toBeNull();
         });
-        
+
         it("tests if correct default min property is set", () => {
 
             expect(defaultModel.min).toBeNull();
@@ -92,21 +98,20 @@ describe("DynamicInputModel test suite", () => {
 
             expect(defaultModel.spellCheck).toBe(false);
         });
-        
+
         it("tests if correct default step property is set", () => {
 
             expect(defaultModel.step).toBeNull();
         });
-        
+
         it("tests if correct default prefix property is set", () => {
 
-            expect(defaultModel.prefix).toBeDefined();
             expect(defaultModel.prefix).toBeNull();
         });
 
         it("tests if correct default suffix property is set", () => {
 
-            expect(defaultModel.prefix).toBeNull();
+            expect(defaultModel.suffix).toBeNull();
         });
 
         it("should serialize correctly", () => {
@@ -118,7 +123,7 @@ describe("DynamicInputModel test suite", () => {
             expect(json.value).toBe(defaultModel.value);
             expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
         });
-        
+
     });
 
 });

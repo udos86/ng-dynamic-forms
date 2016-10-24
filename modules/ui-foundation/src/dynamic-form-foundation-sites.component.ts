@@ -15,7 +15,7 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
 
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
-    @Input() enableErrorMessaging: boolean = false;
+    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
 
