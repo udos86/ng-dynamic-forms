@@ -24,7 +24,7 @@
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
                                                        [controlGroup]="control.at(idx)"
-                                                       [hasErrorMessaging]="!!controlModel.errorMessages"
+                                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
                                                        [nestedTemplate]="nestedTemplate"
                                                        (blur)="onBlur($event)"
@@ -48,7 +48,7 @@
 
             <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
                                                    [controlGroup]="control"
-                                                   [hasErrorMessaging]="!!controlModel.errorMessages"
+                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
                                                    (blur)="onBlur($event)"

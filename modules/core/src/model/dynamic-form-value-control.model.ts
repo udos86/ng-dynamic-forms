@@ -2,7 +2,7 @@ import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {Subject} from "rxjs/Subject";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
 import {serializable} from "../decorator/serialize.decorator";
-import {getValue} from "../utils";
+import {getValue, isDefined} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
@@ -48,5 +48,9 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
     get value(): T {
         return this._value;
+    }
+
+    get hasErrorMessages(): boolean {
+        return isDefined(this.errorMessages);
     }
 }

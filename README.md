@@ -27,9 +27,9 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
-- [Related Form Controls](#related-form-controls)
-- [Form JSON Export and Import](#form-json-export-and-import)
 - [Validation Messaging](#validation-messaging)
+- [Form JSON Export and Import](#form-json-export-and-import)
+- [Related Form Controls](#related-form-controls)
 - [Form Autocomplete](#form-autocomplete)
 - [Appendix](#appendix)
 
@@ -514,6 +514,7 @@ new DynamicInputModel(
 )
 ```
 
+
 ## Disabling and Enabling Form Controls
 
 Since RC.6 to date, Angular 2 [**does not allow**](https://github.com/angular/angular/issues/11271) any dynamic bindings of the `disabled` attribute in reactive forms. 
@@ -524,98 +525,6 @@ But similar to [updating values](#model-bindings-and-control-references) ng2 Dyn
 by providing a `Rx.Subject` `disabledUpdates` that can be used to programmatically switch the activation state of any form control:
 ```ts
 this.myInputModel.disabledUpdates.next(true);
-```
-
-
-## Related Form Controls
-
-In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
-
-So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
-
-Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
-
-**Using ng2 Dynamic Forms however, you can easily define relations between form controls by declaration**: 
-```ts
-new DynamicTextAreaModel(
-    {
-        id: "myTextArea",
-        label: "My Textarea",
-        relation: [
-            {
-                action: "DISABLE",
-                when: [
-                    {
-                        id: "mySelect",
-                        value: "option-3"
-                    }
-                ]
-            }
-        ]
-    }
-```
-
-The `relation` property may seem a bit oversized at first sight, but that way it allows the flexible declaration of even **multi-related form controls**. 
-
-*So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
-
-Just add a second entry to the `when` array and define how both relations should logically be connected via `connective`:
-```ts
-new DynamicTextAreaModel(
-    {
-        id: "myTextArea",
-        label: "My Textarea",
-        relation: [
-            {
-                action: "DISABLE",
-                connective: "AND",
-                when: [
-                    {
-                        id: "mySelect",
-                        value: "option-3"
-                    },
-                    {
-                        id: "myRadioGroup",
-                        value: "option-4"
-                    }
-                ]
-            }
-        ]
-    }
-)
-```
-
-
-## Form JSON Export and Import
-
-Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
-
-That's why all `DynamicFormControlModel`s have been preprared to **export properly to JSON**: 
-```ts
-storeForm() {
-    
-    let json: string = JSON.stringify(this.myDynamicFormModel);
-    
-    // ...store JSON in localStorage or transfer to server
-}
-```
-
-Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
-recreating a form from JSON unfortunately becomes more complex. 
-
-The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
-
-```ts
-restoreForm() {
-
-    let json: string;
-    
-    // ...load JSON from localStorage or server
-
-    let parsedJSON: Array<Object> = JSON.parse(json);
-    
-    this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
-}
 ```
 
 
@@ -707,9 +616,101 @@ and **bind the internal** `FormControl` **reference via local template variables
     </div>
     
 </form>
- ```
+```
  
  
+## Form JSON Export and Import
+
+Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
+
+That's why all `DynamicFormControlModel`s have been preprared to **export properly to JSON**: 
+```ts
+storeForm() {
+    
+    let json: string = JSON.stringify(this.myDynamicFormModel);
+    
+    // ...store JSON in localStorage or transfer to server
+}
+```
+
+Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
+recreating a form from JSON unfortunately becomes more complex. 
+
+The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
+
+```ts
+restoreForm() {
+
+    let json: string;
+    
+    // ...load JSON from localStorage or server
+
+    let parsedJSON: Array<Object> = JSON.parse(json);
+    
+    this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
+}
+```
+
+
+## Related Form Controls
+
+In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
+
+So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
+
+Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
+
+**Using ng2 Dynamic Forms however, you can easily define relations between form controls by declaration**: 
+```ts
+new DynamicTextAreaModel(
+    {
+        id: "myTextArea",
+        label: "My Textarea",
+        relation: [
+            {
+                action: "DISABLE",
+                when: [
+                    {
+                        id: "mySelect",
+                        value: "option-3"
+                    }
+                ]
+            }
+        ]
+    }
+```
+
+The `relation` property may seem a bit oversized at first sight, but that way it allows the flexible declaration of even **multi-related form controls**. 
+
+*So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
+
+Just add a second entry to the `when` array and define how both relations should logically be connected via `connective`:
+```ts
+new DynamicTextAreaModel(
+    {
+        id: "myTextArea",
+        label: "My Textarea",
+        relation: [
+            {
+                action: "DISABLE",
+                connective: "AND",
+                when: [
+                    {
+                        id: "mySelect",
+                        value: "option-3"
+                    },
+                    {
+                        id: "myRadioGroup",
+                        value: "option-4"
+                    }
+                ]
+            }
+        ]
+    }
+)
+```
+
+  
 ## Form Autocomplete
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 

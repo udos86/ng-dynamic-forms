@@ -5,7 +5,7 @@
         <dynamic-form-bootstrap-control *ngFor="let controlModel of dynamicFormModel"
                                         [controlGroup]="form"
                                         [model]="controlModel"
-                                        [hasErrorMessaging]="!!controlModel.errorMessages">
+                                        [hasErrorMessaging]="controlModel.hasErrorMessages">
 
             <template let-context="context" let-index="index">
 
@@ -22,7 +22,7 @@
 
     </form>
 
-    <!--<button (click)="test()" type="button">Test</button>-->
+    <button (click)="test()" type="button">Test</button>
 
 </div>
 <!--
