@@ -535,11 +535,11 @@ with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Gu
 you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
 to gain much more control over validation logic and it's corresponding message output.
 
-Originally, ng2 Dynamic Forms has been developed without any kind of obtrusive validation message system in mind. 
-However, due to it's common use case, model-based error messaging has become a **built-in feature** in `ui-bootstrap` 
-and `ui-foundation`: 
+Avoiding a library too opinioated in the beginning, ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
 
-**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **define error messages based on** `Validators` **names**:
+However, due to it's very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature** in `ui-bootstrap` and `ui-foundation`: 
+
+**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error messages based on** `Validators` **names**:
 ```ts 
 new DynamicInputModel({
 
@@ -553,17 +553,17 @@ new DynamicInputModel({
 })
 ```
 
-**2. Enable error messaging by binding the** `hasErrorMessages` **property of any** `DynamicFormBootstrapComponent` **or** 
+**2. Enable error messaging by binding the** `hasErrorMessaging` `@Input()`**property of any** `DynamicFormBootstrapComponent` **or** 
 `DynamicFormFoundationSitesComponent` **to** `true`:
 ```ts
 <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel"
                                 [controlGroup]="control.at(idx)"
                                 [model]="controlModel"
-                                [hasErrorMessaging]="!!controlModel.errorMessages"></dynamic-form-bootstrap-control>
+                                [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
 ```
 
 
-You're also free to implement your own validation messaging following the recommended approach below:
+**Still you are completely free to implement your own validation messaging following the recommended approach below**:
 
 **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
 ```ts 
