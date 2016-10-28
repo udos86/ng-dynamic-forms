@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^2.1.0",
-    "@angular/common": "^2.1.0",
-    "@angular/forms": "^2.1.0",
+    "@angular/core": "^2.1.2",
+    "@angular/common": "^2.1.2",
+    "@angular/forms": "^2.1.2",
     "@ng2-dynamic-forms/core": "^1.0.7",
     "primeng": "^1.0.0-beta.20",
     "primeui": "^4.1.15",
