@@ -26,9 +26,9 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
-- [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Validation Messaging](#validation-messaging)
 - [Form JSON Export and Import](#form-json-export-and-import)
+- [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
 - [Form Autocomplete](#form-autocomplete)
 - [Appendix](#appendix)
@@ -515,19 +515,6 @@ new DynamicInputModel(
 ```
 
 
-## Disabling and Enabling Form Controls
-
-Since RC.6 to date, Angular 2 [**does not allow**](https://github.com/angular/angular/issues/11271) any dynamic bindings of the `disabled` attribute in reactive forms. 
-
-That means changing the corresponding `disabled` property of some `DynamicFormControlModel` at runtime won't have any effect.
-
-But similar to [updating values](#model-bindings-and-control-references) ng2 Dynamic Forms helps you out here 
-by providing a `Rx.Subject` `disabledUpdates` that can be used to programmatically switch the activation state of any form control:
-```ts
-this.myInputModel.disabledUpdates.next(true);
-```
-
-
 ## Validation Messaging
 
 Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 
@@ -535,11 +522,11 @@ with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Gu
 you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
 to gain much more control over validation logic and it's corresponding message output.
 
-Avoiding a library too opinioated in the beginning, ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
+Avoiding a library too opinionated in the beginning, ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
 
 However, due to it's very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature** in `ui-bootstrap` and `ui-foundation`: 
 
-**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error messages based on** `Validators` **names**:
+**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
 ```ts 
 new DynamicInputModel({
 
@@ -562,8 +549,7 @@ new DynamicInputModel({
                                 [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
 ```
 
-
-**Still you are completely free to implement your own validation messaging following the recommended approach below**:
+**Still you are completely free to implement your own validation messaging. Follow the recommended approach below**:
 
 **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
 ```ts 
@@ -637,7 +623,6 @@ Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical
 recreating a form from JSON unfortunately becomes more complex. 
 
 The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
-
 ```ts
 restoreForm() {
 
@@ -649,6 +634,19 @@ restoreForm() {
     
     this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
 }
+```
+
+
+## Disabling and Enabling Form Controls
+
+Since RC.6 to date, Angular 2 [**does not allow**](https://github.com/angular/angular/issues/11271) any dynamic bindings of the `disabled` attribute in reactive forms. 
+
+That means changing the corresponding `disabled` property of some `DynamicFormControlModel` at runtime won't have any effect.
+
+But similar to [updating values](#model-bindings-and-control-references) ng2 Dynamic Forms helps you out here 
+by providing a `Rx.Subject` `disabledUpdates` that can be used to programmatically switch the activation state of any form control:
+```ts
+this.myInputModel.disabledUpdates.next(true);
 ```
 
 
