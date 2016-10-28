@@ -8,7 +8,7 @@
               [name]="model.name"
               [ngClass]="model.cls.element.control">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
         <div *ngFor="let item of model.group" [ngClass]="item.cls.grid.container">
 
@@ -23,7 +23,9 @@
             </div>
 
             <div [ngClass]="item.cls.grid.label">
-                <label [attr.for]="item.id" [ngClass]="item.cls.element.label">{{item.label}}</label>
+
+                <label [attr.for]="item.id" [innerHTML]="item.label" [ngClass]="item.cls.element.label"></label>
+
             </div>
 
         </div>
@@ -37,7 +39,7 @@
               [name]="model.name"
               (change)="onChange($event)">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
         <div *ngFor="let option of model.options" [ngClass]="model.cls.grid.container">
 
@@ -50,7 +52,9 @@
             </div>
 
             <div [ngClass]="model.cls.grid.label">
-                <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{option.label}}</label>
+
+                <label [attr.for]="model.id" [innerHTML]="option.label" [ngClass]="model.cls.element.label"></label>
+
             </div>
 
         </div>
@@ -62,7 +66,7 @@
 
         <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
 
-            <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{model.label}}</label>
+            <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
         </div>
 
@@ -75,7 +79,7 @@
                       [name]="model.name"
                       [ngClass]="model.cls.element.control">
 
-                <legend *ngIf="model.legend">{{model.legend}}</legend>
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
                                               [controlGroup]="control"
@@ -92,8 +96,7 @@
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
 
-                <fieldset *ngFor="let idx = index; let groupModel of model.groups"
-                          [formGroupName]="idx">
+                <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
                                                   [bindId]="false"
@@ -183,7 +186,7 @@
 
         <div *ngIf="isCheckbox" [ngClass]="model.cls.grid.label">
 
-            <label [attr.for]="model.id" [ngClass]="model.cls.element.label">{{model.label}}</label>
+            <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
         </div>
 

@@ -4,7 +4,8 @@
 
     <label *ngIf="!isCheckbox && !isSwitch && model.label"
            [attr.for]="model.id"
-           [ngClass]="model.cls.element.label">{{model.label}}</label>
+           [innerHTML]="model.label"
+           [ngClass]="model.cls.element.label"></label>
 
 
     <fieldset *ngSwitchCase="'GROUP'"
@@ -13,7 +14,7 @@
               [name]="model.name"
               [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
         <dynamic-form-material-control *ngFor="let controlModel of model.group"
                                        [controlGroup]="control"
@@ -30,8 +31,7 @@
          [formArrayName]="model.id"
          [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
-        <fieldset *ngFor="let idx = index; let groupModel of model.groups"
-                  [formGroupName]="idx">
+        <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
             <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
                                            [bindId]="false"
@@ -61,7 +61,7 @@
                  [ngClass]="model.cls.element.control"
                  (blur)="onBlur($event)"
                  (change)="onChange($event)"
-                 (focus)="onFocus($event)">{{model.label}}
+                 (focus)="onFocus($event)"><span [innerHTML]="model.label"></span>
     </md-checkbox>
 
 
@@ -71,7 +71,7 @@
               [name]="model.name"
               [ngClass]="model.cls.element.control">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
         <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
@@ -84,7 +84,7 @@
                      [ngClass]="item.cls.element.control"
                      (blur)="onBlur($event)"
                      (change)="onChange($event)"
-                     (focus)="onFocus($event)">{{item.label}}
+                     (focus)="onFocus($event)"><span [innerHTML]="item.label"></span>
         </md-checkbox>
 
     </fieldset>
@@ -115,8 +115,8 @@
               (change)="onChange($event)"
               (focus)="onFocus($event)">
 
-        <span *ngIf="model.prefix" md-prefix>{{model.prefix}}</span>
-        <span *ngIf="model.suffix" md-suffix>{{model.suffix}}</span>
+        <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
+        <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
 
     </md-input>
 
@@ -133,7 +133,7 @@
 
         <md-radio-button *ngFor="let option of model.options"
                          [name]="model.name"
-                         [value]="option.value">{{option.label}}
+                         [value]="option.value"><span [innerHTML]="option.label"></span>
         </md-radio-button>
 
     </md-radio-group>
@@ -145,7 +145,7 @@
                      [formControlName]="model.id"
                      [name]="model.name"
                      [ngClass]="model.cls.element.control"
-                     (change)="onChange($event)">{{model.label}}
+                     (change)="onChange($event)"><span [innerHTML]="model.label"></span>
     </md-slide-toggle>
 
     <ng-content></ng-content>

@@ -7,7 +7,8 @@
 
         <label [attr.for]="model.id"
                [class.is-invalid-label]="hasErrorMessaging && !hasFocus && isInvalid"
-               [ngClass]="model.cls.element.label">{{model.label}}</label>
+               [innerHTML]="model.label"
+               [ngClass]="model.cls.element.label"></label>
     </div>
 
 
@@ -18,8 +19,7 @@
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
 
-            <fieldset *ngFor="let idx = index; let groupModel of model.groups"
-                      [formGroupName]="idx">
+            <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
@@ -58,9 +58,7 @@
         </fieldset>
 
 
-        <label *ngSwitchCase="'CHECKBOX'"
-               [attr.for]="model.id"
-               [ngClass]="model.cls.element.label">
+        <label *ngSwitchCase="'CHECKBOX'" [attr.for]="model.id" [ngClass]="model.cls.element.label">
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -72,7 +70,9 @@
                    [value]="model.value"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
-                   (focus)="onFocus($event)"/>{{model.label}}</label>
+                   (focus)="onFocus($event)"/><span [innerHTML]="model.label"></span>
+
+        </label>
 
 
         <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
@@ -81,10 +81,9 @@
                   [name]="model.name"
                   [ngClass]="model.cls.element.control">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <label *ngFor="let item of model.group"
-                   [ngClass]="item.cls.element.label">
+            <label *ngFor="let item of model.group" [ngClass]="item.cls.element.label">
 
                 <input type="checkbox"
                        [attr.tabindex]="model.tabIndex"
@@ -96,13 +95,16 @@
                        [value]="item.value"
                        (blur)="onBlur($event)"
                        (change)="onChange($event)"
-                       (focus)="onFocus($event)"/>{{item.label}}</label>
+                       (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
+
+            </label>
+
         </fieldset>
 
 
         <div *ngSwitchCase="'INPUT'" class="input-group">
 
-            <span *ngIf="model.prefix" class="input-group-label">{{model.prefix}}</span>
+            <span *ngIf="model.prefix" class="input-group-label" [innerHTML]="model.prefix"></span>
 
             <input class="input-group-field"
                    [attr.accept]="model.accept"
@@ -131,7 +133,7 @@
                    (change)="onChange($event)"
                    (focus)="onFocus($event)"/>
 
-            <span *ngIf="model.suffix" class="input-group-label">{{model.suffix}}</span>
+            <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
 
             <datalist *ngIf="model.list" [id]="model.listId">
 
@@ -148,7 +150,7 @@
                   [name]="model.name"
                   (change)="onChange($event)">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
             <label *ngFor="let option of model.options">
 
@@ -158,7 +160,10 @@
                        [ngClass]="model.cls.element.control"
                        [value]="option.value"
                        (blur)="onBlur($event)"
-                       (focus)="onFocus($event)"/>{{option.label}}</label>
+                       (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span>
+
+            </label>
+
         </fieldset>
 
 
@@ -201,7 +206,7 @@
                   (change)="onChange($event)"
                   (focus)="onFocus($event)"></textarea>
 
-        <p *ngIf="model.hint" class="help-text">{{model.hint}}</p>
+        <p *ngIf="model.hint" class="help-text" [innerHTML]="model.hint"></p>
 
     </div>
 
