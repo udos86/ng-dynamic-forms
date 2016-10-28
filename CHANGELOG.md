@@ -1,3 +1,21 @@
+# 1.1.0
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* none
+
+### **Features**
+
+* Error Messaging system to `ui-bootstrap` and `ui-foundation` added (closes [#153](https://github.com/udos86/ng2-dynamic-forms/issues/153) 
+, see [README.md](https://github.com/udos86/ng2-dynamic-forms#validation-messaging)) **Thanks @DavyJohnes** 
+* `()Output change` `EventEmitter<Event>` added to `DynamicFormControlComponent` ([#149](https://github.com/udos86/ng2-dynamic-forms/issues/149))
+* Update to `@angular 2.1.2`
+
+
 # 1.0.7
 
 ### **Breaking Changes** 

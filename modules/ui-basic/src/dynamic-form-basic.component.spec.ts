@@ -54,6 +54,11 @@ describe("DynamicFormBasicComponent test suite", () => {
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
         expect(component.onModelValueUpdates).toBeDefined();
+
+        expect(component.blur).toBeDefined();
+        expect(component.change).toBeDefined();
+        expect(component.focus).toBeDefined();
+
         expect(component.onBlur).toBeDefined();
         expect(component.onChange).toBeDefined();
         expect(component.onFocus).toBeDefined();

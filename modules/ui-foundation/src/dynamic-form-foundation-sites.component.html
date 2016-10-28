@@ -28,6 +28,7 @@
                                                        [model]="controlModel"
                                                        [nestedTemplate]="nestedTemplate"
                                                        (blur)="onBlur($event)"
+                                                       (change)="onChange($event)"
                                                        (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
@@ -52,6 +53,7 @@
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
                                                    (blur)="onBlur($event)"
+                                                   (change)="onChange($event)"
                                                    (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 

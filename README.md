@@ -543,10 +543,14 @@ new DynamicInputModel({
 **2. Enable error messaging by binding the** `hasErrorMessaging` `@Input()`**property of any** `DynamicFormBootstrapComponent` **or** 
 `DynamicFormFoundationSitesComponent` **to** `true`:
 ```ts
-<dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel"
-                                [controlGroup]="control.at(idx)"
-                                [model]="controlModel"
-                                [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
+
+<form [formGroup]="myForm">
+
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel"
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel"
+                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
+</form>
 ```
 
 **Still you are completely free to implement your own validation messaging. Follow the recommended approach below**:

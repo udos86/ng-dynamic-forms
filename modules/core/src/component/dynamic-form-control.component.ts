@@ -19,6 +19,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     bindId: boolean;
     blur: EventEmitter<FocusEvent>;
+    change: EventEmitter<Event>;
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
@@ -177,14 +178,16 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         //@endexclude
     }
 
-    onChange($event) {
+    onChange($event: Event) {
+
+        this.change.emit($event);
 
         if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
             let inputModel = <DynamicInputModel> this.model;
 
             if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
-                inputModel.files = $event.srcElement.files;
+                inputModel.files = $event.srcElement["files"];
             }
         }
 

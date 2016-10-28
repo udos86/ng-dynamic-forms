@@ -10,11 +10,11 @@ module.exports = function (pkg, src, type, dest) {
         switch (type) {
 
             case "MAJOR":
-                versionString = (Number($1) + 1) + "." + $2 + "." + $3;
+                versionString = (Number($1) + 1) + ".0.0";
                 break;
 
             case "MINOR":
-                versionString = $1 + "." + (Number($2) + 1) + "." + $3;
+                versionString = $1 + "." + (Number($2) + 1) + ".0";
                 break;
 
             case "PATCH":
