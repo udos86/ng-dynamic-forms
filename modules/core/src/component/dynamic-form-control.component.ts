@@ -19,10 +19,12 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     bindId: boolean;
     blur: EventEmitter<FocusEvent>;
+    change: EventEmitter<Event>;
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
     focus: EventEmitter<FocusEvent>;
+    hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
     nestedTemplate: TemplateRef<any>;
@@ -63,6 +65,32 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
+    get errorMessages(): Array<string> {
+
+        let messages = [];
+
+        if (isDefined(this.model["errorMessages"])) {
+
+            for (let validatorName in this.control.errors) {
+
+                let message: string;
+
+                if (this.model["errorMessages"][validatorName]) {
+
+                    message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
+                        (match, propertyName) => this.model[propertyName] ? this.model[propertyName] : null);
+
+                } else {
+                    message = `Validation "${validatorName}" failed`;
+                }
+
+                messages.push(message);
+            }
+        }
+
+        return messages;
+    }
+
     get isCheckbox() {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
@@ -81,6 +109,10 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     get isValid() {
         return this.control.valid;
+    }
+
+    get isInvalid() {
+        return this.control.touched && this.control.invalid;
     }
 
     registerControlRelations(): void {
@@ -146,14 +178,16 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         //@endexclude
     }
 
-    onChange($event) {
+    onChange($event: Event) {
+
+        this.change.emit($event);
 
         if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
             let inputModel = <DynamicInputModel> this.model;
 
             if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
-                inputModel.files = $event.srcElement.files;
+                inputModel.files = $event.srcElement["files"];
             }
         }
 

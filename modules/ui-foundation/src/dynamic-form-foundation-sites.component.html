@@ -6,6 +6,7 @@
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
+               [class.is-invalid-label]="hasErrorMessaging && !hasFocus && isInvalid"
                [ngClass]="model.cls.element.label">{{model.label}}</label>
     </div>
 
@@ -23,9 +24,11 @@
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
                                                        [controlGroup]="control.at(idx)"
+                                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
                                                        [nestedTemplate]="nestedTemplate"
                                                        (blur)="onBlur($event)"
+                                                       (change)="onChange($event)"
                                                        (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
@@ -46,9 +49,11 @@
 
             <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
                                                    [controlGroup]="control"
+                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
                                                    (blur)="onBlur($event)"
+                                                   (change)="onChange($event)"
                                                    (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 
@@ -109,6 +114,7 @@
                    [attr.step]="model.step"
                    [attr.tabindex]="model.tabIndex"
                    [autofocus]="model.autoFocus"
+                   [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [maxlength]="model.maxLength"
@@ -177,6 +183,7 @@
 
         <textarea *ngSwitchCase="'TEXTAREA'"
                   [attr.tabindex]="model.tabIndex"
+                  [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
                   [cols]="model.cols"
                   [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
@@ -195,6 +202,13 @@
                   (focus)="onFocus($event)"></textarea>
 
         <p *ngIf="model.hint" class="help-text">{{model.hint}}</p>
+
+    </div>
+
+    <div *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+        <span *ngFor="let message of errorMessages" class="form-error"
+              [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>
 
     </div>
 

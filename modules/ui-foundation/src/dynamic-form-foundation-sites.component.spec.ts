@@ -53,9 +53,16 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
+        expect(component.hasErrorMessaging).toBe(false);
+        expect(component.errorMessages).toEqual([]);
+
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
         expect(component.onModelValueUpdates).toBeDefined();
+
+        expect(component.blur).toBeDefined();
+        expect(component.change).toBeDefined();
+        expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
         expect(component.onChange).toBeDefined();
@@ -65,5 +72,6 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.isCheckboxGroup).toBe(false);
         expect(component.isRadioGroup).toBe(false);
         expect(component.isValid).toBe(true);
+        expect(component.isInvalid).toBe(false);
     });
 });

@@ -21,6 +21,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @Input() nestedTemplate: TemplateRef<any>;
 
     @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+    @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
     @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
     @ContentChild(TemplateRef) customTemplate;

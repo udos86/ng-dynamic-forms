@@ -1,6 +1,5 @@
 <div class="form-group"
-     [class.has-error]="hasErrorStyles && control.touched && !control.valid"
-     [class.has-success]="hasSuccessStyles && control.touched && control.valid"
+     [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
      [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]"
      [ngSwitch]="model.type">
@@ -48,9 +47,11 @@
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
                                                 [bindId]="false"
                                                 [controlGroup]="control.at(idx)"
+                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                 [model]="controlModel"
                                                 [nestedTemplate]="nestedTemplate"
                                                 (blur)="onBlur($event)"
+                                                (change)="onChange($event)"
                                                 (focus)="onFocus($event)"></dynamic-form-bootstrap-control>
 
                 <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
@@ -71,9 +72,11 @@
 
             <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
                                             [controlGroup]="control"
+                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                             [model]="controlModel"
                                             [nestedTemplate]="customTemplate"
                                             (blur)="onBlur($event)"
+                                            (change)="onChange($event)"
                                             (focus)="onFocus($event)"></dynamic-form-bootstrap-control>
         </fieldset>
 
@@ -213,6 +216,14 @@
 
 
         <span *ngIf="model.hint" class="help-block">{{model.hint}}</span>
+
+    </div>
+
+    <div *ngIf="hasErrorMessaging" class="has-error"
+         [class.hidden]="!control.touched || hasFocus || isValid"
+         [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+        <span *ngFor="let message of errorMessages" class="help-block">{{message}}</span>
 
     </div>
 

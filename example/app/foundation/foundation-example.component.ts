@@ -21,15 +21,14 @@ export class FoundationExampleComponent implements OnInit {
 
     dynamicFormModel: Array<DynamicFormControlModel>;
     form: FormGroup;
-    
-    exampleCheckboxControl: FormControl;
-    exampleCheckboxModel: DynamicCheckboxModel;
+
+    sampleCheckboxControl: FormControl;
+    sampleCheckboxModel: DynamicCheckboxModel;
 
     sampleArrayControl: FormArray;
     sampleArrayModel: DynamicFormArrayModel;
 
     constructor(private dynamicFormService: DynamicFormService) {
-
         this.dynamicFormModel = FOUNDATION_EXAMPLE_MODEL;
     }
 
@@ -37,20 +36,19 @@ export class FoundationExampleComponent implements OnInit {
 
         this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
 
-        this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
-        //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+        this.sampleCheckboxControl = <FormControl> this.form.controls["foundationCheckbox"]; // Type assertion for having updateValue method available
+        this.sampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("foundationCheckbox", this.dynamicFormModel);
+        //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("foundation checkbox field changed to: ", value, typeof value));
 
         this.sampleArrayControl = <FormArray> this.form.controls["foundationFormArray"];
         this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("foundationFormArray", this.dynamicFormModel);
     }
 
-    add() {
-        this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
+    insert(context: DynamicFormArrayModel, index: number) {
+        this.dynamicFormService.insertFormArrayGroup(index, this.sampleArrayControl, context);
     }
 
-    remove(index: number) {
-        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
+    remove(context: DynamicFormArrayModel, index: number) {
+        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, context);
     }
-
 }

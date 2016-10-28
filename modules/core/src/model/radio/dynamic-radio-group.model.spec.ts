@@ -14,6 +14,8 @@ describe("DynamicRadioModel test suite", () => {
         it("tests if default model is correctly initialized", () => {
 
             expect(defaultModel.disabled).toBe(false);
+            expect(defaultModel.errorMessages).toBeNull();
+            expect(defaultModel.hasErrorMessages).toBe(false);
             expect(defaultModel.id).toEqual(config.id);
             expect(defaultModel.label).toBeNull();
             expect(defaultModel.legend).toBeNull();

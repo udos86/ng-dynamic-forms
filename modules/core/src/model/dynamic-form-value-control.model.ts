@@ -2,11 +2,12 @@ import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {Subject} from "rxjs/Subject";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
 import {serializable} from "../decorator/serialize.decorator";
-import {getValue} from "../utils";
+import {getValue, isDefined} from "../utils";
 
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
     asyncValidators?: Array<AsyncValidatorFn>;
+    errorMessages?: {[key: string]: string};
     hint?: string;
     required?: boolean;
     tabIndex?: number;
@@ -17,6 +18,7 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
     @serializable() asyncValidators: Array<AsyncValidatorFn>;
+    @serializable() errorMessages: {[key: string]: string} | null;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
@@ -29,6 +31,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         super(config, cls);
 
         this.asyncValidators = getValue(config, "asyncValidators", []);
+        this.errorMessages = getValue(config, "errorMessages", null);
         this.hint = getValue(config, "hint", null);
         this.required = getValue(config, "required", false);
         this.tabIndex = getValue(config, "tabIndex", null);
@@ -45,5 +48,9 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
     get value(): T {
         return this._value;
+    }
+
+    get hasErrorMessages(): boolean {
+        return isDefined(this.errorMessages);
     }
 }

@@ -26,10 +26,10 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Validation Messaging](#validation-messaging)
+- [Form JSON Export and Import](#form-json-export-and-import)
 - [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
-- [Form JSON Export and Import](#form-json-export-and-import)
-- [Validation Messaging](#validation-messaging)
 - [Form Autocomplete](#form-autocomplete)
 - [Appendix](#appendix)
 
@@ -514,6 +514,133 @@ new DynamicInputModel(
 )
 ```
 
+
+## Validation Messaging
+
+Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 
+with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
+you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
+to gain much more control over validation logic and it's corresponding message output.
+
+Avoiding a library too opinionated in the beginning, ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
+
+However, due to it's very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature** in `ui-bootstrap` and `ui-foundation`: 
+
+**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
+```ts 
+new DynamicInputModel({
+
+        id: "bootstrapInput",
+        label: "Example Input",
+        placeholder: "example input",
+        validators: [Validators.required],
+        errorMessages: {
+            required: "{{label}} is required."
+        }
+})
+```
+
+**2. Enable error messaging by binding the** `hasErrorMessaging` `@Input()`**property of any** `DynamicFormBootstrapComponent` **or** 
+`DynamicFormFoundationSitesComponent` **to** `true`:
+```ts
+
+<form [formGroup]="myForm">
+
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel"
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel"
+                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
+</form>
+```
+
+**Still you are completely free to implement your own validation messaging. Follow the recommended approach below**:
+
+**1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
+```ts 
+import {Component, Input} from "@angular/core";
+import {FormControl} from "@angular/forms";
+ 
+@Component({
+
+    moduleId: module.id,
+    selector: "my-validation-message",
+    templateUrl: "./my-validation-message.html"
+})
+ 
+export class MyValidationMessage {
+
+    @Input() control: FormControl;
+
+    constructor () {}
+}
+```
+ 
+**2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
+```ts
+<span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
+```
+
+**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
+```ts
+new DynamicInputModel({
+    
+    id: "exampleInput",
+    label: "Example Input",
+    placeholder: "example input",
+    validators: [Validators.required]
+})
+```
+
+**4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
+and **bind the internal** `FormControl` **reference via local template variables**:
+```ts
+<form [formGroup]="myForm">
+
+    <div *ngFor="let controlModel of myDynamicFormModel">
+    
+        <dynamic-form-basic-control [controlGroup]="myForm" 
+                                    [model]="controlModel" #componentRef></dynamic-form-basic-control>
+        
+        <my-validation-message [control]="componentRef.control"></my-validation-message>
+    
+    </div>
+    
+</form>
+```
+ 
+ 
+## Form JSON Export and Import
+
+Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
+
+That's why all `DynamicFormControlModel`s have been preprared to **export properly to JSON**: 
+```ts
+storeForm() {
+    
+    let json: string = JSON.stringify(this.myDynamicFormModel);
+    
+    // ...store JSON in localStorage or transfer to server
+}
+```
+
+Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
+recreating a form from JSON unfortunately becomes more complex. 
+
+The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
+```ts
+restoreForm() {
+
+    let json: string;
+    
+    // ...load JSON from localStorage or server
+
+    let parsedJSON: Array<Object> = JSON.parse(json);
+    
+    this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
+}
+```
+
+
 ## Disabling and Enabling Form Controls
 
 Since RC.6 to date, Angular 2 [**does not allow**](https://github.com/angular/angular/issues/11271) any dynamic bindings of the `disabled` attribute in reactive forms. 
@@ -585,106 +712,7 @@ new DynamicTextAreaModel(
 )
 ```
 
-
-## Form JSON Export and Import
-
-Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
-
-That's why all `DynamicFormControlModel`s have been preprared to **export properly to JSON**: 
-```ts
-storeForm() {
-    
-    let json: string = JSON.stringify(this.myDynamicFormModel);
-    
-    // ...store JSON in localStorage or transfer to server
-}
-```
-
-Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
-recreating a form from JSON unfortunately becomes more complex. 
-
-The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
-
-```ts
-restoreForm() {
-
-    let json: string;
-    
-    // ...load JSON from localStorage or server
-
-    let parsedJSON: Array<Object> = JSON.parse(json);
-    
-    this.myDynamicFormModel = this.dynamicFormService.fromJSON(parsedJSON);
-}
-```
-
-
-## Validation Messaging
-
-Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 
-with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
-you very likely want to use [Angular 2 mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
-to gain much more control over validation logic and it's corresponding message output.
-
-ng2 Dynamic Forms was intentionally developed without any kind of obtrusive validation message system since this
-would be off the original subject and result in a library too opinionated.
-
-As with form layouting, implementing validation messages should be entirely up to you, following the recommended approach below:
-
-**1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
-```ts 
-import {Component, Input} from "@angular/core";
-import {FormControl} from "@angular/forms";
- 
-@Component({
-
-    moduleId: module.id,
-    selector: "my-validation-message",
-    templateUrl: "./my-validation-message.html"
-})
- 
-export class MyValidationMessage {
-
-    @Input() control: FormControl;
-
-    constructor () {}
-}
-```
- 
-**2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
-```ts
-<span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
-```
-
-**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
-```ts
-new DynamicInputModel({
-    
-    id: "exampleInput",
-    label: "Example Input",
-    placeholder: "example input",
-    validators: [Validators.required]
-})
-```
-
-**4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
-and **bind the internal** `FormControl` **reference via local template variables**:
-```ts
-<form [formGroup]="myForm">
-
-    <div *ngFor="let controlModel of myDynamicFormModel">
-    
-        <dynamic-form-basic-control [controlGroup]="myForm" 
-                                    [model]="controlModel" #componentRef></dynamic-form-basic-control>
-        
-        <my-validation-message [control]="componentRef.control"></my-validation-message>
-    
-    </div>
-    
-</form>
- ```
- 
- 
+  
 ## Form Autocomplete
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 

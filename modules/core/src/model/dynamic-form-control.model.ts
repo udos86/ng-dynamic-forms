@@ -7,6 +7,7 @@ export interface Cls {
 
     container?: string;
     control?: string;
+    errors?: string;
     label?: string;
 }
 
@@ -42,8 +43,8 @@ export abstract class DynamicFormControlModel {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = getValue(cls, "element", {container: "", control: "", label: ""});
-        this.cls.grid = getValue(cls, "grid", {container: "", control: "", label: ""});
+        this.cls.element = getValue(cls, "element", {container: "", control: "", errors: "", label: ""});
+        this.cls.grid = getValue(cls, "grid", {container: "", control: "", errors: "", label: ""});
 
         this._disabled = getValue(config, "disabled", false);
         this.id = config.id;
