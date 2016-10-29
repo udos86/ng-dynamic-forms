@@ -1,4 +1,4 @@
-import {TestBed, async, inject} from "@angular/core/testing";
+import {TestBed} from "@angular/core/testing";
 import {Component} from "@angular/core";
 import {By} from "@angular/platform-browser";
 import {DynamicIdDirective} from "./dynamic-id.directive";

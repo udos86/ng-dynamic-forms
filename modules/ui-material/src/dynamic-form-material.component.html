@@ -75,8 +75,8 @@
 
         <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
-                     [checked]="model.value"
-                     [disabled]="model.disabled"
+                     [checked]="item.value"
+                     [disabled]="item.disabled"
                      [dynamicId]="bindId && item.id"
                      [formControlName]="item.id"
                      [indeterminate]="item.indeterminate"

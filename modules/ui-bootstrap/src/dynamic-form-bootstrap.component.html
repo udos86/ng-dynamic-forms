@@ -94,12 +94,12 @@
                 <label [ngClass]="item.cls.element.label">
 
                     <input type="checkbox"
-                           [attr.tabindex]="model.tabIndex"
+                           [attr.tabindex]="item.tabIndex"
                            [dynamicId]="bindId && item.id"
                            [formControlName]="item.id"
                            [name]="item.name"
                            [ngClass]="item.cls.element.control"
-                           [required]="model.required"
+                           [required]="item.required"
                            [value]="item.value"
                            (blur)="onBlur($event)"
                            (change)="onChange($event)"
