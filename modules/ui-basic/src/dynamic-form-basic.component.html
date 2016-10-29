@@ -17,7 +17,8 @@
 
     <label *ngIf="model.label"
            [attr.for]="model.id"
-           [ngClass]="model.cls.element.label">{{model.label}}</label>
+           [innerHTML]="model.label"
+           [ngClass]="model.cls.element.label"></label>
 
 
     <div *ngSwitchCase="'ARRAY'"
@@ -25,8 +26,7 @@
          [formArrayName]="model.id"
          [ngClass]="model.cls.element.control">
 
-        <fieldset *ngFor="let idx = index; let groupModel of model.groups;"
-                  [formGroupName]="idx">
+        <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
             <dynamic-form-basic-control *ngFor="let controlModel of groupModel.group"
                                         [bindId]="false"
@@ -51,7 +51,7 @@
               [name]="model.name"
               [ngClass]="model.cls.element.control">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
         <dynamic-form-basic-control *ngFor="let controlModel of model.group"
                                     [controlGroup]="control"
@@ -69,23 +69,24 @@
               [name]="model.name"
               [ngClass]="model.cls.element.control">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-        <label *ngFor="let item of model.group"
-               [attr.for]="item.id"
-               [ngClass]="item.cls.element.label">
+        <label *ngFor="let item of model.group" [attr.for]="item.id" [ngClass]="item.cls.element.label">
 
             <input type="checkbox"
-                   [attr.tabindex]="model.tabIndex"
+                   [attr.tabindex]="item.tabIndex"
                    [dynamicId]="bindId && item.id"
                    [formControlName]="item.id"
                    [name]="item.name"
                    [ngClass]="item.cls.element.control"
-                   [required]="model.required"
+                   [required]="item.required"
                    [value]="item.value"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
-                   (focus)="onFocus($event)"/>{{item.label}}</label>
+                   (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
+
+        </label>
+
     </fieldset>
 
 
@@ -128,7 +129,7 @@
               [name]="model.name"
               (change)="onChange($event)">
 
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
         <label *ngFor="let option of model.options">
 
@@ -138,7 +139,10 @@
                    [ngClass]="model.cls.element.control"
                    [value]="option.value"
                    (blur)="onBlur($event)"
-                   (focus)="onFocus($event)"/>{{option.label}}</label>
+                   (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span>
+
+        </label>
+
     </fieldset>
 
 

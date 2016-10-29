@@ -119,7 +119,8 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                 new DynamicCheckboxModel(
                     {
                         id: "foundationCheckbox1",
-                        label: "Checkbox 1"
+                        label: "Checkbox 1",
+                        value: true
                     }
                 ),
                 new DynamicCheckboxModel(

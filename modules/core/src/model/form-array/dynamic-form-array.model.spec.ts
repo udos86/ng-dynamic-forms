@@ -6,18 +6,18 @@ describe("DynamicFormArrayModel test suite", () => {
 
     describe("default model test suite", () => {
 
+        let defaultModel: DynamicFormArrayModel;
         let config = {
             id: "default",
             initialCount: 3,
             createGroup: () => [new DynamicInputModel({id: "defaultInput"})],
             validator: Validators.required
         };
-        let defaultModel: DynamicFormArrayModel;
 
         beforeEach(() => {
             defaultModel = new DynamicFormArrayModel(config);
         });
-        
+
         it("tests if default model is correctly initialized", () => {
 
             expect(defaultModel.initialCount).toBe(config.initialCount);
@@ -41,7 +41,7 @@ describe("DynamicFormArrayModel test suite", () => {
             expect(json.validator).toEqual("required");
             expect(json.validators).toBeUndefined();
         });
-        
+
     });
 
 });

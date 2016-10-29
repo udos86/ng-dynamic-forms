@@ -91,27 +91,27 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         return messages;
     }
 
-    get isCheckbox() {
+    get isCheckbox(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
-    get isCheckboxGroup() {
+    get isCheckboxGroup(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
     }
 
-    get isRadioGroup() {
+    get isRadioGroup(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
 
-    get isSwitch() {
+    get isSwitch(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_SWITCH;
     }
 
-    get isValid() {
+    get isValid(): boolean {
         return this.control.valid;
     }
 
-    get isInvalid() {
+    get isInvalid(): boolean {
         return this.control.touched && this.control.invalid;
     }
 

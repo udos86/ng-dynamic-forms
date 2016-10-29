@@ -1,3 +1,18 @@
+# 1.1.1
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* `DynamicCheckboxGroupModel` template bugs fixed (closes [#160](https://github.com/udos86/ng2-dynamic-forms/issues/160)) 
+
+### **Features**
+
+* `label`, `legend`, `prefix`, `suffix`, `hint`, are now bound via `[innerHTML]` (see [#157](https://github.com/udos86/ng2-dynamic-forms/issues/157)) 
+
+
 # 1.1.0
 
 ### **Breaking Changes** 
@@ -12,7 +27,7 @@
 
 * Error Messaging system to `ui-bootstrap` and `ui-foundation` added (closes [#153](https://github.com/udos86/ng2-dynamic-forms/issues/153) 
 , see [README.md](https://github.com/udos86/ng2-dynamic-forms#validation-messaging)) **Thanks @DavyJohnes** 
-* `()Output change` `EventEmitter<Event>` added to `DynamicFormControlComponent` ([#149](https://github.com/udos86/ng2-dynamic-forms/issues/149))
+* `@Output() change` `EventEmitter<Event>` added to `DynamicFormControlComponent` ([#149](https://github.com/udos86/ng2-dynamic-forms/issues/149))
 * Update to `@angular 2.1.2`
 
 

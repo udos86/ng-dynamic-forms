@@ -6,14 +6,13 @@
 
     <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
-           [ngClass]="[model.cls.element.label, model.cls.grid.label]">{{model.label}}</label>
+           [innerHTML]="model.label"
+           [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <div *ngSwitchCase="'CHECKBOX'"
-         [ngClass]="model.cls.grid.control">
+    <div *ngSwitchCase="'CHECKBOX'" [ngClass]="model.cls.grid.control">
 
-        <div class="checkbox"
-             [class.disabled]="model.disabled">
+        <div class="checkbox" [class.disabled]="model.disabled">
 
             <label [ngClass]="model.cls.element.label">
 
@@ -27,7 +26,9 @@
                        [value]="model.value"
                        (blur)="onBlur($event)"
                        (change)="onChange($event)"
-                       (focus)="onFocus($event)"/>{{model.label}}</label>
+                       (focus)="onFocus($event)"/><span [innerHTML]="model.label"></span>
+
+            </label>
 
         </div>
 
@@ -41,8 +42,7 @@
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
 
-            <fieldset *ngFor="let idx = index; let groupModel of model.groups"
-                      [formGroupName]="idx">
+            <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
                                                 [bindId]="false"
@@ -68,7 +68,7 @@
                   [name]="model.name"
                   [ngClass]="model.cls.element.control">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
             <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
                                             [controlGroup]="control"
@@ -87,34 +87,34 @@
                   [name]="model.name"
                   [ngClass]="model.cls.element.control">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <div *ngFor="let item of model.group" class="checkbox"
-                 [class.disabled]="model.disabled">
+            <div *ngFor="let item of model.group" class="checkbox" [class.disabled]="model.disabled">
 
                 <label [ngClass]="item.cls.element.label">
 
                     <input type="checkbox"
-                           [attr.tabindex]="model.tabIndex"
+                           [attr.tabindex]="item.tabIndex"
                            [dynamicId]="bindId && item.id"
                            [formControlName]="item.id"
                            [name]="item.name"
                            [ngClass]="item.cls.element.control"
-                           [required]="model.required"
+                           [required]="item.required"
                            [value]="item.value"
                            (blur)="onBlur($event)"
                            (change)="onChange($event)"
-                           (focus)="onFocus($event)"/>{{model.label}}</label>
+                           (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
+
+                </label>
 
             </div>
 
         </fieldset>
 
 
-        <div *ngSwitchCase="'INPUT'"
-             [class.input-group]="model.prefix || model.suffix">
+        <div *ngSwitchCase="'INPUT'" [class.input-group]="model.prefix || model.suffix">
 
-            <div *ngIf="model.prefix" class="input-group-addon">{{model.prefix}}</div>
+            <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
 
             <input class="form-control"
                    [attr.accept]="model.accept"
@@ -142,7 +142,7 @@
                    (change)="onChange($event)"
                    (focus)="onFocus($event)"/>
 
-            <div *ngIf="model.suffix" class="input-group-addon">{{model.suffix}}</div>
+            <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
 
             <datalist *ngIf="model.list" [id]="model.listId">
 
@@ -159,18 +159,22 @@
                   [name]="model.name"
                   (change)="onChange($event)">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
             <div *ngFor="let option of model.options" class="radio">
 
                 <label>
+
                     <input type="radio"
                            [formControlName]="model.id"
                            [name]="model.name"
                            [ngClass]="model.cls.element.control"
                            [value]="option.value"
                            (blur)="onBlur($event)"
-                           (focus)="onFocus($event)"/>{{option.label}}</label>
+                           (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span>
+
+                </label>
+
             </div>
 
         </fieldset>
@@ -215,7 +219,7 @@
                   (focus)="onFocus($event)"></textarea>
 
 
-        <span *ngIf="model.hint" class="help-block">{{model.hint}}</span>
+        <span *ngIf="model.hint" class="help-block" [innerHTML]="model.hint"></span>
 
     </div>
 

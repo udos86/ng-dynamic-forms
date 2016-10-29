@@ -3,7 +3,8 @@
      [ngSwitch]="model.type">
 
     <label [attr.for]="model.id"
-           [ngClass]="[model.cls.element.label, model.cls.grid.label]">{{model.label}}</label>
+           [innerHTML]="model.label"
+           [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
     <kendo-dropdownlist *ngSwitchCase="'SELECT'"
