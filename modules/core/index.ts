@@ -1,3 +1,9 @@
+export * from "./src/component/dynamic-form-control.component";
+
+export * from "./src/directive/dynamic-id.directive";
+
+export * from "./src/decorator/serializable.decorator";
+
 export * from "./src/model/dynamic-form-control.model";
 export * from "./src/model/dynamic-form-value-control.model";
 export * from "./src/model/dynamic-input-control.model";
@@ -13,11 +19,8 @@ export * from "./src/model/select/dynamic-select.model";
 export * from "./src/model/switch/dynamic-switch.model";
 export * from "./src/model/textarea/dynamic-textarea.model";
 
-export * from "./src/directive/dynamic-id.directive";
-
-export * from "./src/core.module";
-
 export * from "./src/service/dynamic-form.service";
 export * from "./src/service/dynamic-form-autofill.service";
-export * from "./src/component/dynamic-form-control.component";
+
+export * from "./src/core.module";
 export * from "./src/utils";

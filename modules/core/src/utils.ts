@@ -1,5 +1,5 @@
 import {AsyncValidatorFn, Validators, ValidatorFn} from "@angular/forms";
-import {getSerializables, SerializableProperty} from "./decorator/serialize.decorator";
+import {getSerializables, SerializableProperty} from "./decorator/serializable.decorator";
 
 export function isDefined(object: any): boolean {
     return object !== undefined && object !== null;

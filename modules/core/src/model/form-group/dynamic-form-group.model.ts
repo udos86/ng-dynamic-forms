@@ -1,6 +1,6 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
-import {serializable} from "../../decorator/serialize.decorator";
+import {serializable} from "../../decorator/serializable.decorator";
 import {getValue} from "../../utils";
 
 export interface DynamicFieldSet {
