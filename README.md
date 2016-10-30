@@ -524,7 +524,7 @@ to gain much more control over validation logic and it's corresponding message o
 
 Avoiding a library too opinionated in the beginning, ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
 
-However, due to it's very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature** in `ui-bootstrap` and `ui-foundation`: 
+However, due to it's very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature** in `ui-basic`, `ui-bootstrap` and `ui-foundation`: 
 
 **1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
 ```ts 
