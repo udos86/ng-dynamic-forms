@@ -1,7 +1,7 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
-import {serializable} from "../../decorator/serialize.decorator";
+import {serializable} from "../../decorator/serializable.decorator";
 import {getValue, isFunction, serialize} from "../../utils";
 
 export class DynamicFormArrayGroupModel {

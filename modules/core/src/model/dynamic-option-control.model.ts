@@ -1,6 +1,6 @@
 import {ClsConfig} from "./dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
-import {serializable} from "../decorator/serialize.decorator";
+import {serializable} from "../decorator/serializable.decorator";
 import {getValue, serialize} from "../utils";
 
 export interface DynamicFormOptionConfig {

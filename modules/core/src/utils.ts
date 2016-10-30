@@ -1,5 +1,5 @@
 import {AsyncValidatorFn, Validators, ValidatorFn} from "@angular/forms";
-import {getSerializables, SerializableProperty} from "./decorator/serialize.decorator";
+import {getSerializables, SerializableProperty} from "./decorator/serializable.decorator";
 
 export function isDefined(object: any): boolean {
     return object !== undefined && object !== null;
@@ -77,7 +77,7 @@ export function deserializeValidator(serialized: string): ValidatorFn | AsyncVal
 
 export function deserializeValidators(serialized: Array<string>): Array<ValidatorFn | AsyncValidatorFn> {
 
-    return serialized.map(validatorName => deserializeValidator[validatorName]);
+    return serialized.map(validatorName => deserializeValidator(validatorName));
 }
 
 export function serialize(target, prototype?): Object {

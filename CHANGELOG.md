@@ -1,3 +1,19 @@
+# 1.1.2
+
+### **Breaking Changes** 
+
+* none 
+
+### **Bugfixes** 
+
+* `validators` deserialization fixed (closes [#163](https://github.com/udos86/ng2-dynamic-forms/issues/163)) 
+* `rxjs` peer dependency downgraded to match with Angular 2 (closes [#162](https://github.com/udos86/ng2-dynamic-forms/issues/162)) 
+
+### **Features**
+
+* error validation messaging added for `ui-basic` (closes [#154](https://github.com/udos86/ng2-dynamic-forms/issues/154)) 
+
+
 # 1.1.1
 
 ### **Breaking Changes** 
@@ -10,7 +26,7 @@
 
 ### **Features**
 
-* `label`, `legend`, `prefix`, `suffix`, `hint`, are now bound via `[innerHTML]` (see [#157](https://github.com/udos86/ng2-dynamic-forms/issues/157)) 
+* `label`, `legend`, `prefix`, `suffix` and `hint` are now bound via `[innerHTML]` (see [#157](https://github.com/udos86/ng2-dynamic-forms/issues/157)) 
 
 
 # 1.1.0

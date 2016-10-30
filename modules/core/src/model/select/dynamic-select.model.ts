@@ -1,6 +1,6 @@
 import {ClsConfig} from "../dynamic-form-control.model";
 import {DynamicOptionControlModel, DynamicOptionControlModelConfig} from "../dynamic-option-control.model";
-import {serializable} from "../../decorator/serialize.decorator";
+import {serializable} from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 

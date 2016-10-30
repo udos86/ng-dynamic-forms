@@ -1,6 +1,6 @@
 import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
 import {Subject} from "rxjs/Subject";
-import {serializable} from "../decorator/serialize.decorator";
+import {serializable} from "../decorator/serializable.decorator";
 import {getValue, isEmptyString, serialize} from "../utils";
 
 export interface Cls {
