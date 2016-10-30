@@ -77,7 +77,7 @@ export function deserializeValidator(serialized: string): ValidatorFn | AsyncVal
 
 export function deserializeValidators(serialized: Array<string>): Array<ValidatorFn | AsyncValidatorFn> {
 
-    return serialized.map(validatorName => deserializeValidator[validatorName]);
+    return serialized.map(validatorName => deserializeValidator(validatorName));
 }
 
 export function serialize(target, prototype?): Object {

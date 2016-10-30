@@ -4,6 +4,7 @@
 
         <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel1" class="form-row"
                                     [controlGroup]="form1"
+                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                     [model]="controlModel"></dynamic-form-basic-control>
     </form>
 

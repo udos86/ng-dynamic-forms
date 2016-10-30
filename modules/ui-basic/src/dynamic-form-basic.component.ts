@@ -15,6 +15,7 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
+    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
 

@@ -8,6 +8,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
+import {Validators} from "@angular/forms";
 
 export const BASIC_EXAMPLE_MODEL = [
 
@@ -41,7 +42,11 @@ export const BASIC_EXAMPLE_MODEL = [
         maxLength: 51,
         placeholder: "example input",
         spellCheck: false,
-        required: false
+        required: false,
+        validators: [Validators.required],
+        errorMessages: {
+            required: "{{label}} is required"
+        }
     }),
 
     new DynamicCheckboxGroupModel({
