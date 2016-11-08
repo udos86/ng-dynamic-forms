@@ -1,1 +1,0 @@
-{"version":3,"sources":["ui-foundation/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,+CAA+C,CAAC,EAAA;AAC9D,iBAAc,4BAA4B,CAAC,EAAA","file":"index.js","sourcesContent":["export * from \"./src/dynamic-form-foundation-sites.component\";\nexport * from \"./src/ui-foundation.module\";"]}
