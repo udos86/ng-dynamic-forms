@@ -18,6 +18,7 @@
 
                 <input type="checkbox"
                        [attr.tabindex]="model.tabIndex"
+                       [checked]="model.value"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [name]="model.name"
@@ -95,6 +96,7 @@
 
                     <input type="checkbox"
                            [attr.tabindex]="item.tabIndex"
+                           [checked]="item.value"
                            [dynamicId]="bindId && item.id"
                            [formControlName]="item.id"
                            [name]="item.name"
