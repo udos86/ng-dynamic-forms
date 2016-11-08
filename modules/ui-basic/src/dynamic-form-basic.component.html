@@ -4,6 +4,7 @@
 
     <input *ngSwitchCase="'CHECKBOX'" type="checkbox"
            [attr.tabindex]="model.tabIndex"
+           [checked]="model.value"
            [dynamicId]="bindId && model.id"
            [formControlName]="model.id"
            [name]="model.name"
@@ -83,6 +84,7 @@
                    [ngClass]="item.cls.element.control"
                    [required]="item.required"
                    [value]="item.value"
+                   [checked]="item.value"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
                    (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
