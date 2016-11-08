@@ -1,0 +1,1 @@
+{"version":3,"sources":["ui-material/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,uCAAuC,CAAC,EAAA;AACtD,iBAAc,0BAA0B,CAAC,EAAA","file":"index.js","sourcesContent":["export * from \"./src/dynamic-form-material.component\";\nexport * from \"./src/ui-material.module\";"]}

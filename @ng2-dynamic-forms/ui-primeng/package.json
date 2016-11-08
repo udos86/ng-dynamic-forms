@@ -1,0 +1,39 @@
+{
+  "name": "@ng2-dynamic-forms/ui-primeng",
+  "version": "1.1.2",
+  "description": "PrimeNG UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-primeng.umd.js",
+  "keywords": [
+    "angular",
+    "angular 2",
+    "dynamic forms",
+    "forms",
+    "ng2 dynamic forms",
+    "prime ng",
+    "reactive forms",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
+  },
+  "author": {
+    "name" : "Udo Schöfer",
+    "email": "ng2-dynamic-forms@udos86.de",
+    "url" : "https://github.com/udos86/ng2-dynamic-forms"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
+  },
+  "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
+  "peerDependencies": {
+    "@angular/core": "^2.1.2",
+    "@angular/common": "^2.1.2",
+    "@angular/forms": "^2.1.2",
+    "@ng2-dynamic-forms/core": "^1.1.2",
+    "primeng": "^1.0.0-beta.20",
+    "primeui": "^4.1.15",
+    "rxjs": "5.0.0-beta.12"
+  }
+}

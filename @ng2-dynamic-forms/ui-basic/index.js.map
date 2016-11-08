@@ -1,0 +1,1 @@
+{"version":3,"sources":["ui-basic/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,oCAAoC,CAAC,EAAA;AACnD,iBAAc,uBAAuB,CAAC,EAAA","file":"index.js","sourcesContent":["export * from \"./src/dynamic-form-basic.component\";\nexport * from \"./src/ui-basic.module\";"]}
