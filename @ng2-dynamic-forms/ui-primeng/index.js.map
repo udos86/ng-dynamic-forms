@@ -1,0 +1,1 @@
+{"version":3,"sources":["ui-primeng/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,sCAAsC,CAAC,EAAA;AACrD,iBAAc,yBAAyB,CAAC,EAAA","file":"index.js","sourcesContent":["export * from \"./src/dynamic-form-primeng.component\";\nexport * from \"./src/ui-primeng.module\";"]}

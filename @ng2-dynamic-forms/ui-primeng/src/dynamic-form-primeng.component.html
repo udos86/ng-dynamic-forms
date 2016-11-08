@@ -1,0 +1,195 @@
+<div [formGroup]="controlGroup"
+     [ngClass]="model.cls.element.container"
+     [ngSwitch]="model.type">
+
+    <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+              [dynamicId]="bindId && model.id"
+              [formGroupName]="model.id"
+              [name]="model.name"
+              [ngClass]="model.cls.element.control">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <div *ngFor="let item of model.group" [ngClass]="item.cls.grid.container">
+
+            <div [ngClass]="item.cls.grid.control">
+
+                <p-checkbox binary="true"
+                            [dynamicId]="bindId && item.id"
+                            [formControlName]="item.id"
+                            [name]="model.name"
+                            [value]="item.value"
+                            [ngClass]="item.cls.element.control"></p-checkbox>
+            </div>
+
+            <div [ngClass]="item.cls.grid.label">
+
+                <label [attr.for]="item.id" [innerHTML]="item.label" [ngClass]="item.cls.element.label"></label>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+
+    <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
+              [attr.tabindex]="model.tabIndex"
+              [dynamicId]="bindId && model.id"
+              [name]="model.name"
+              (change)="onChange($event)">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <div *ngFor="let option of model.options" [ngClass]="model.cls.grid.container">
+
+            <div [ngClass]="model.cls.grid.control">
+
+                <p-radioButton [formControlName]="model.id"
+                               [name]="model.name"
+                               [(ngModel)]="model.value"
+                               [value]="option.value"></p-radioButton>
+            </div>
+
+            <div [ngClass]="model.cls.grid.label">
+
+                <label [attr.for]="model.id" [innerHTML]="option.label" [ngClass]="model.cls.element.label"></label>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+
+    <div *ngIf="!isRadioGroup && !isCheckboxGroup" [ngClass]="model.cls.grid.container">
+
+        <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
+
+            <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+
+        </div>
+
+
+        <div [ngClass]="model.cls.grid.control">
+
+            <fieldset *ngSwitchCase="'GROUP'"
+                      [dynamicId]="bindId && model.id"
+                      [formGroupName]="model.id"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control">
+
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+                <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
+                                              [controlGroup]="control"
+                                              [model]="controlModel"
+                                              [nestedTemplate]="customTemplate"
+                                              (blur)="onBlur($event)"
+                                              (change)="onChange($event)"
+                                              (focus)="onFocus($event)"></dynamic-form-primeng-control>
+            </fieldset>
+
+
+            <div *ngSwitchCase="'ARRAY'"
+                 [dynamicId]="bindId && model.id"
+                 [formArrayName]="model.id"
+                 [ngClass]="model.cls.element.control">
+
+                <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+
+                    <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
+                                                  [bindId]="false"
+                                                  [controlGroup]="control.at(idx)"
+                                                  [model]="controlModel"
+                                                  [nestedTemplate]="nestedTemplate"
+                                                  (blur)="onBlur($event)"
+                                                  (change)="onChange($event)"
+                                                  (focus)="onFocus($event)"></dynamic-form-primeng-control>
+
+                    <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
+                              [ngOutletContext]="groupModel"></template>
+
+                </fieldset>
+
+            </div>
+
+
+            <input *ngSwitchCase="'INPUT'" pInputText
+                   [attr.accept]="model.accept"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.list]="model.listId"
+                   [attr.max]="model.max"
+                   [attr.min]="model.min"
+                   [attr.multiple]="model.multiple"
+                   [attr.step]="model.step"
+                   [attr.tabindex]="model.tabIndex"
+                   [autofocus]="model.autoFocus"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [maxlength]="model.maxLength"
+                   [minlength]="model.minLength"
+                   [name]="model.name"
+                   [ngClass]="model.cls.element.control"
+                   [pattern]="model.pattern"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readOnly"
+                   [required]="model.required"
+                   [spellcheck]="model.spellCheck"
+                   [type]="model.inputType"
+                   (blur)="onBlur($event)"
+                   (change)="onChange($event)"
+                   (focus)="onFocus($event)"/>
+
+            <datalist *ngIf="model.list" [id]="model.listId">
+
+                <option *ngFor="let option of model.list" [value]="option">
+
+            </datalist>
+
+
+            <p-checkbox *ngSwitchCase="'CHECKBOX'" binary="true"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [name]="model.name"
+                        [ngClass]="model.cls.element.control"
+                        [value]="model.value"></p-checkbox>
+
+
+            <p-dropdown *ngSwitchCase="'SELECT'"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [options]="model.options"></p-dropdown>
+
+
+            <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
+                      [attr.tabindex]="model.tabIndex"
+                      [cols]="model.cols"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [maxlength]="model.maxLength"
+                      [minlength]="model.minLength"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readOnly"
+                      [required]="model.required"
+                      [rows]="model.rows"
+                      [spellcheck]="model.spellCheck"
+                      [wrap]="model.wrap"
+                      (blur)="onBlur($event)"
+                      (change)="onChange($event)"
+                      (focus)="onFocus($event)"></textarea>
+
+        </div>
+
+
+        <div *ngIf="isCheckbox" [ngClass]="model.cls.grid.label">
+
+            <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+
+        </div>
+
+    </div>
+
+</div>

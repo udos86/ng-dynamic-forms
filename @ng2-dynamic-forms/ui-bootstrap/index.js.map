@@ -1,0 +1,1 @@
+{"version":3,"sources":["ui-bootstrap/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,wCAAwC,CAAC,EAAA;AACvD,iBAAc,2BAA2B,CAAC,EAAA","file":"index.js","sourcesContent":["export * from \"./src/dynamic-form-bootstrap.component\";\nexport * from \"./src/ui-bootstrap.module\";"]}
