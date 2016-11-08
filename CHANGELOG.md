@@ -1,3 +1,10 @@
+# 1.1.3
+
+### **Bugfixes** 
+
+* `checked` attribute added to templates (closes [#168](https://github.com/udos86/ng2-dynamic-forms/issues/168)) 
+
+
 # 1.1.2
 
 ### **Breaking Changes** 
