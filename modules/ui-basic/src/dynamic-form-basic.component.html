@@ -10,6 +10,7 @@
            [ngClass]="model.cls.element.control"
            [required]="model.required"
            [value]="model.value"
+           [checked]="model.value"
            (blur)="onBlur($event)"
            (change)="onChange($event)"
            (focus)="onFocus($event)"/>
@@ -83,6 +84,7 @@
                    [ngClass]="item.cls.element.control"
                    [required]="item.required"
                    [value]="item.value"
+                   [checked]="item.value"
                    (blur)="onBlur($event)"
                    (change)="onChange($event)"
                    (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
