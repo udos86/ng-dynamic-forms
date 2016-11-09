@@ -35,15 +35,15 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
+    @serializable() private groups: Array<DynamicFormArrayGroupModel> = [];
+    @serializable() private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
+
     @serializable() asyncValidator: AsyncValidatorFn | null;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
-    @serializable() groups: Array<DynamicFormArrayGroupModel> = [];
     @serializable() initialCount: number;
     @serializable() validator: ValidatorFn | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
-
-    @serializable() private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
 
     constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
 
@@ -73,18 +73,16 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         }
     }
 
-    updateGroupIndex(): void {
+    get size(): number {
+        return this.groups.length;
+    }
+
+    private updateGroupIndex(): void {
         this.groups.forEach((group, index) => group.index = index);
     }
 
     addGroup(): DynamicFormArrayGroupModel {
-
-        let group = new DynamicFormArrayGroupModel(this, this.createGroup());
-
-        this.groups.push(group);
-        this.updateGroupIndex();
-
-        return group;
+        return this.insertGroup(this.groups.length - 1);
     }
 
     insertGroup(index: number): DynamicFormArrayGroupModel {
@@ -101,5 +99,9 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         this.groups.splice(index, 1);
         this.updateGroupIndex();
+    }
+
+    get(index: number): DynamicFormArrayGroupModel {
+        return this.groups[index];
     }
 }
