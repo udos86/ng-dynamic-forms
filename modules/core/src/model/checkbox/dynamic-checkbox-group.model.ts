@@ -16,10 +16,10 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
     }
 
     checkAll(): void {
-        this.group.forEach(model => model.valueUpdates.next(true));
+        this.group.forEach(model => model.check());
     }
 
     uncheckAll(): void {
-        this.group.forEach(model => model.valueUpdates.next(false));
+        this.group.forEach(model => model.uncheck());
     }
 }

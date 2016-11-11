@@ -8,7 +8,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
 
-    constructor(config: DynamicOptionControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicOptionControlModelConfig<T>, cls?: ClsConfig) {
 
         super(config, cls);
     }

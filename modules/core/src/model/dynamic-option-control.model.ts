@@ -3,20 +3,20 @@ import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "
 import {serializable} from "../decorator/serializable.decorator";
 import {getValue, serialize} from "../utils";
 
-export interface DynamicFormOptionConfig {
+export interface DynamicFormOptionConfig<T> {
 
     disabled?: boolean;
     label?: string;
-    value: boolean | number | string;
+    value: T;
 }
 
-export class DynamicFormOption {
+export class DynamicFormOption<T> {
 
     @serializable() disabled: boolean;
     @serializable() label: string | null;
-    @serializable() value: boolean | number | string;
+    @serializable() value: T;
 
-    constructor(config: DynamicFormOptionConfig) {
+    constructor(config: DynamicFormOptionConfig<T>) {
 
         this.disabled = getValue(config, "disabled", false);
         this.label = getValue(config, "label", null);
@@ -36,19 +36,23 @@ export class DynamicFormOption {
     }
 }
 
-export interface DynamicOptionControlModelConfig extends DynamicFormValueControlModelConfig {
+export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig {
 
-    options?: Array<DynamicFormOptionConfig>;
+    options?: Array<DynamicFormOptionConfig<T>>;
 }
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    @serializable() options: Array<DynamicFormOption>;
+    @serializable() options: Array<DynamicFormOption<T>>;
 
-    constructor(config: DynamicOptionControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicOptionControlModelConfig<T>, cls?: ClsConfig) {
 
         super(config, cls);
 
-        this.options = config.options ? config.options.map(optionConfig => new DynamicFormOption(optionConfig)) : [];
+        this.options = config.options ? config.options.map(optionConfig => new DynamicFormOption<T>(optionConfig)) : [];
+    }
+
+    select(index: number): void {
+        this.valueUpdates.next(this.options[index].value);
     }
 }

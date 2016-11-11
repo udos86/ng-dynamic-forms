@@ -32,4 +32,12 @@ export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> 
             this.value = false;
         }
     }
+
+    check(): void {
+        this.valueUpdates.next(true);
+    }
+
+    uncheck(): void {
+        this.valueUpdates.next(false);
+    }
 }

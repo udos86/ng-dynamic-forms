@@ -5,14 +5,13 @@ describe("DynamicSelectModel test suite", () => {
     describe("default model test suite", () => {
 
         let config = {id: "default", options: [{value: "1"}, {value: "2"}]};
-        let defaultModel: DynamicSelectModel<any>;
+        let defaultModel: DynamicSelectModel<string>;
 
         beforeEach(() => {
             defaultModel = new DynamicSelectModel(config);
         });
 
         it("tests if default model is correctly initialized", () => {
-
 
             expect(defaultModel.disabled).toBe(false);
             expect(defaultModel.id).toEqual(config.id);
@@ -22,6 +21,14 @@ describe("DynamicSelectModel test suite", () => {
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
             expect(defaultModel.value).toBeNull();
         });
+
+
+        it("should select correct option", () => {
+
+            defaultModel.select(1);
+            expect(defaultModel.value).toEqual(defaultModel.options[1].value);
+        });
+
 
         it("should serialize correctly", () => {
 
