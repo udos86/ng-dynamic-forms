@@ -42,7 +42,8 @@ export const MATERIAL_EXAMPLE_MODEL = [
     new DynamicSwitchModel({
 
         id: "materialSwitch",
-        label: "Get it on"
+        label: "Get it on",
+        value: true
     }),
 
     new DynamicRadioGroupModel<string>({
