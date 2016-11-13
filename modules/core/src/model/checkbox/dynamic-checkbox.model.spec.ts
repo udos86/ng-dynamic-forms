@@ -8,7 +8,7 @@ describe("DynamicCheckboxModel test suite", () => {
 
     describe("default model test suite", () => {
 
-        let config = {id: "default"};
+        let config = {id: "default", value: true};
         let defaultModel: DynamicCheckboxModel;
 
         beforeEach(() => {
@@ -26,9 +26,26 @@ describe("DynamicCheckboxModel test suite", () => {
             expect(defaultModel.name).toEqual(defaultModel.id);
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
             expect(defaultModel.validators).toEqual([]);
+            expect(defaultModel.value).toBe(config.value);
+        });
+
+        it("should get and set checked property correctly", () => {
+
+            expect(defaultModel.checked).toBe(config.value);
+
+            defaultModel.checked = false;
+
+            expect(defaultModel.checked).toBe(false);
             expect(defaultModel.value).toBe(false);
         });
 
+        it("should toggle correctly", () => {
+
+            defaultModel.toggle();
+
+            expect(defaultModel.checked).toBe(!config.value);
+            expect(defaultModel.value).toBe(!config.value);
+        });
 
         it("should serialize correctly", () => {
 

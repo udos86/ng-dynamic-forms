@@ -9,7 +9,7 @@ describe("DynamicInputModel test suite", () => {
 
     describe("default model test suite", () => {
 
-        let config = {id: "default"};
+        let config = {id: "default", list: ["One", "Two", "Three"]};
         let defaultModel: DynamicInputModel;
 
         beforeEach(() => {
@@ -54,9 +54,14 @@ describe("DynamicInputModel test suite", () => {
             expect(defaultModel.hint).toBeNull();
         });
 
-        it("tests if correct default label properties aree set", () => {
+        it("tests if correct default label property is set", () => {
 
             expect(defaultModel.label).toBeNull();
+        });
+
+        it("tests if correct default list property is set", () => {
+
+            expect(defaultModel.list).toEqual(config.list);
         });
 
         it("tests if correct default max property is set", () => {

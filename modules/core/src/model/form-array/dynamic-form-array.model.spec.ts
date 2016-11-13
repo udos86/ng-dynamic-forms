@@ -34,6 +34,13 @@ describe("DynamicFormArrayModel test suite", () => {
             expect(defaultModel.removeGroup).toBeDefined();
         });
 
+        it("should throw when no createGroup function is specified", () => {
+
+            expect(function () {
+                new DynamicFormArrayModel({id: "test"});
+            }).toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
+        });
+
         it("tests if get function works correctly", () => {
 
             expect(defaultModel.get(0) instanceof DynamicFormArrayGroupModel).toBe(true);

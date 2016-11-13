@@ -52,6 +52,10 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         this.options = config.options ? config.options.map(optionConfig => new DynamicFormOption<T>(optionConfig)) : [];
     }
 
+    get(index: number): DynamicFormOption<T> {
+        return this.options[index];
+    }
+
     select(index: number): void {
         this.valueUpdates.next(this.options[index].value);
     }

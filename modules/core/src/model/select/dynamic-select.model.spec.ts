@@ -4,8 +4,21 @@ describe("DynamicSelectModel test suite", () => {
 
     describe("default model test suite", () => {
 
-        let config = {id: "default", options: [{value: "1"}, {value: "2"}]};
-        let defaultModel: DynamicSelectModel<string>;
+        let defaultModel: DynamicSelectModel<string>,
+            config = {
+                id: "default",
+                options: [
+                    {
+                        value: "1",
+                        label: "One"
+                    },
+                    {
+                        value: "2",
+                        label: "Two"
+                    }
+                ]
+            };
+
 
         beforeEach(() => {
             defaultModel = new DynamicSelectModel(config);
@@ -22,13 +35,26 @@ describe("DynamicSelectModel test suite", () => {
             expect(defaultModel.value).toBeNull();
         });
 
+        it("should get and set text property correctly", () => {
+
+            expect(defaultModel.options[0].text).toEqual("One");
+
+            defaultModel.options[0].text = "Eins";
+
+            expect(defaultModel.options[0].text).toEqual("Eins");
+        });
+
+        it("should get the correct option", () => {
+
+            expect(defaultModel.get(0)).toEqual(defaultModel.options[0]);
+            expect(defaultModel.get(1)).toEqual(defaultModel.options[1]);
+        });
 
         it("should select correct option", () => {
 
             defaultModel.select(1);
             expect(defaultModel.value).toEqual(defaultModel.options[1].value);
         });
-
 
         it("should serialize correctly", () => {
 
