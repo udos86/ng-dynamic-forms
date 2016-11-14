@@ -1,4 +1,4 @@
-var indexPath = "./example/index.html";
+let indexPath = "./example/index.html";
 
 module.exports = {
 

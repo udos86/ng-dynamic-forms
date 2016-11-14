@@ -1,3 +1,15 @@
+# 1.1.4
+
+### **Features** 
+
+* updated to `@angular 2.2`
+* `checked` setter/getter and `toggle()` function added to `DynamicCheckControlModel`
+* `checkAll()` and `uncheckAll()` function added to `DynamicCheckboxGroupModel`
+* `select()` and `get()` function added to `DynamicOptionControlModel`
+* `get()`function added to `DynamicFormGroupModel` and `DynamicFormArrayModel`
+* textarea support for `ui-material` added
+
+
 # 1.1.3
 
 ### **Bugfixes** 

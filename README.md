@@ -27,10 +27,10 @@ See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.ud
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Validation Messaging](#validation-messaging)
-- [Form JSON Export and Import](#form-json-export-and-import)
+- [JSON Export and Import](#json-export-and-import)
 - [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
-- [Form Autocomplete](#form-autocomplete)
+- [Autocomplete](#autocomplete)
 - [Appendix](#appendix)
 
 
@@ -253,7 +253,7 @@ full support for all major form controls cannot be provided at the moment. See t
 | ui-basic      	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
 | ui-bootstrap  	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
 | ui-foundation 	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
-| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✗    	|    ✓   	|
+| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✓    	|    ✓   	|
 | ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
 
 
@@ -609,7 +609,7 @@ and **bind the internal** `FormControl` **reference via local template variables
 ```
  
  
-## Form JSON Export and Import
+## JSON Export and Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
 
@@ -713,7 +713,7 @@ new DynamicTextAreaModel(
 ```
 
   
-## Form Autocomplete
+## Autocomplete
 
 Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!

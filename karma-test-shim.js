@@ -1,4 +1,4 @@
-var karma = window.__karma__;
+let karma = window.__karma__;
 
 function isSpecFile(filePath) {
     return filePath.startsWith("/base/@ng2-dynamic-forms/") && filePath.slice(-8) === ".spec.js";
@@ -45,7 +45,6 @@ System.config({
         "@ng2-dynamic-forms/ui-foundation": "npm:@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation.umd.js",
         "@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.js",
         "@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.js",
-        "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     },
@@ -70,8 +69,8 @@ Promise.all([
 
 ]).then(function (providers) {
 
-    var testingCore = providers[0];
-    var testingBrowserDynamic = providers[1];
+    let testingCore = providers[0];
+    let testingBrowserDynamic = providers[1];
 
     testingCore.TestBed.initTestEnvironment(
         testingBrowserDynamic.BrowserDynamicTestingModule,

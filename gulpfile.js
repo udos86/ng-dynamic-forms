@@ -1,8 +1,8 @@
-var gulp = require("gulp"),
+let gulp = require("gulp"),
     runSequence = require("run-sequence"),
     pkg = require("./package.json");
 
-var TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
+let TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
     TASK_CLEAN = require("./build/tasks/clean"),
     TASK_COPY = require("./build/tasks/copy"),
     TASK_INCREMENT_VERSION = require("./build/tasks/increment-version"),
@@ -11,7 +11,7 @@ var TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
     TASK_PREPROCESS = require("./build/tasks/preprocess"),
     TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript");
 
-var SRC_PATH = "./modules",
+let SRC_PATH = "./modules",
     NPM_PATH = "./node_modules/@ng2-dynamic-forms",
     DIST_PATH = "./@ng2-dynamic-forms",
     MODULES = [
