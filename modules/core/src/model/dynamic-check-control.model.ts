@@ -19,15 +19,7 @@ export abstract class DynamicCheckControlModel extends DynamicFormValueControlMo
         this.valueUpdates.next(checked);
     }
 
-    check(): void {
-        this.valueUpdates.next(true);
-    }
-
-    uncheck(): void {
-        this.valueUpdates.next(false);
-    }
-
     toggle(): void {
-        this.valueUpdates.next(!this.value);
+        this.checked = !this.checked;
     }
 }
