@@ -1,4 +1,4 @@
-let karma = window.__karma__;
+var karma = window.__karma__;
 
 function isSpecFile(filePath) {
     return filePath.startsWith("/base/@ng2-dynamic-forms/") && filePath.slice(-8) === ".spec.js";
@@ -69,8 +69,8 @@ Promise.all([
 
 ]).then(function (providers) {
 
-    let testingCore = providers[0];
-    let testingBrowserDynamic = providers[1];
+    var testingCore = providers[0];
+    var testingBrowserDynamic = providers[1];
 
     testingCore.TestBed.initTestEnvironment(
         testingBrowserDynamic.BrowserDynamicTestingModule,
