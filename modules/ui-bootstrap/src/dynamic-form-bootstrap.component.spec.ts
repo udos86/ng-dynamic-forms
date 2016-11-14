@@ -1,4 +1,5 @@
-import {TestBed, async, inject} from "@angular/core/testing";
+import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
+import {Type} from "@angular/core";
 import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormsCoreModule,
@@ -11,30 +12,32 @@ import {DynamicFormBootstrapComponent, DYNAMIC_FORM_UI_BOOTSTRAP} from "./dynami
 describe("DynamicFormBootstrapComponent test suite", () => {
 
     let formModel = [new DynamicInputModel({id: "test"})],
-        formGroup,
-        fixture,
-        component;
+        formGroup: FormGroup,
+        fixture: ComponentFixture<DynamicFormBootstrapComponent>,
+        component: DynamicFormBootstrapComponent;
 
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
+            
             imports: [
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicFormBootstrapComponent]
-        });
+            
+        }).compileComponents().then(() => {
 
-        TestBed.compileComponents();
+            fixture = TestBed.createComponent(DynamicFormBootstrapComponent as Type<DynamicFormBootstrapComponent>);
+            component = fixture.componentInstance;
+        });
+        
     }));
 
     beforeEach(inject([DynamicFormService], service => {
 
         formGroup = service.createFormGroup(formModel);
-
-        fixture = TestBed.createComponent(DynamicFormBootstrapComponent);
-        component = fixture.componentInstance;
-
+        
         component.controlGroup = formGroup;
         component.model = formModel[0];
 

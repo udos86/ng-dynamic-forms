@@ -1,4 +1,5 @@
-import {TestBed, async, inject} from "@angular/core/testing";
+import {Type} from "@angular/core";
+import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
 import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {DynamicFormsCoreModule, DynamicFormService, DynamicInputModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
 import {CheckboxModule} from "primeng/components/checkbox/checkbox";
@@ -12,13 +13,14 @@ import {DynamicFormPrimeNGComponent, DYNAMIC_FORM_UI_PRIME_NG} from "./dynamic-f
 describe("DynamicFormPrimeNGComponent test suite", () => {
 
     let formModel = [new DynamicInputModel({id: "test"})],
-        formGroup,
-        fixture,
-        component;
+        formGroup: FormGroup,
+        fixture: ComponentFixture<DynamicFormPrimeNGComponent>,
+        component: DynamicFormPrimeNGComponent;
 
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
+
             imports: [
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot(),
@@ -30,17 +32,18 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 SpinnerModule
             ],
             declarations: [DynamicFormPrimeNGComponent]
+
+        }).compileComponents().then(() => {
+
+            fixture = TestBed.createComponent(DynamicFormPrimeNGComponent as Type<DynamicFormPrimeNGComponent>);
+            component = fixture.componentInstance;
         });
 
-        TestBed.compileComponents();
     }));
 
     beforeEach(inject([DynamicFormService], service => {
 
         formGroup = service.createFormGroup(formModel);
-
-        fixture = TestBed.createComponent(DynamicFormPrimeNGComponent);
-        component = fixture.componentInstance;
 
         component.controlGroup = formGroup;
         component.model = formModel[0];
