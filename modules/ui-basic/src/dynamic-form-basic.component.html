@@ -10,9 +10,9 @@
            [name]="model.name"
            [ngClass]="model.cls.element.control"
            [required]="model.required"
-           [value]="model.value"
+           [(ngModel)]="model.value"
            (blur)="onBlur($event)"
-           (change)="onChange($event)"
+           (ngModelChange)="onChange($event)"
            (focus)="onFocus($event)"/>
 
 
@@ -83,10 +83,10 @@
                    [name]="item.name"
                    [ngClass]="item.cls.element.control"
                    [required]="item.required"
-                   [value]="item.value"
+                   [(ngModel)]="item.value"
                    [checked]="item.value"
                    (blur)="onBlur($event)"
-                   (change)="onChange($event)"
+                   (ngModelChange)="onChange($event)"
                    (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
 
         </label>
