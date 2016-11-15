@@ -3,6 +3,7 @@
 ### **Features** 
 
 * updated to `@angular 2.2`
+* `valueUpdates Rx.Observable` can now safely be used to listen to new values
 * `checked` setter/getter and `toggle()` function added to `DynamicCheckControlModel`
 * `checkAll()` and `uncheckAll()` function added to `DynamicCheckboxGroupModel`
 * `select()` and `get()` function added to `DynamicOptionControlModel`

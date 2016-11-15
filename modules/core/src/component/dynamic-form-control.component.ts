@@ -53,7 +53,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<any>> this.model;
+            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
 
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
@@ -153,10 +153,15 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     onControlValueChanges(value: any) {
 
         if (this.model instanceof DynamicFormValueControlModel) {
-            (<DynamicFormValueControlModel<any>> this.model).value = value;
+
+            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
+
+            if (model.value !== value) {
+                model.valueUpdates.next(value);
+            }
         }
         //@exclude
-        console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid, this.model);
+        //console.log(`valueChanges on ${this.model.id}: `, value, typeof value, this.control.valid, this.model);
         //@endexclude
     }
 
@@ -165,7 +170,10 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     }
 
     onModelValueUpdates(value: any) {
-        this.control.setValue(value);
+
+        if (this.control.value !== value) {
+            this.control.setValue(value);
+        }
     }
 
     onBlur($event: FocusEvent) {
@@ -174,7 +182,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.hasFocus = false;
 
         //@exclude
-        console.log($event, this.model.id + " field is blurred");
+        console.log(`Blur event on ${this.model.id}: `, $event);
         //@endexclude
     }
 
@@ -192,7 +200,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
 
         //@exclude
-        console.log($event, this.model.id + " field is changed", $event);
+        console.log(`Change event on ${this.model.id}: `, $event);
         //@endexclude
     }
 
@@ -202,7 +210,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.hasFocus = true;
 
         //@exclude
-        console.log($event, this.model.id + " field is focused");
+        console.log(`Focus event on ${this.model.id}: `, $event);
         //@endexclude
     }
 }
