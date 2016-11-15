@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, ContentChild, TemplateRef} from "@angular/core";
 import {FormGroup} from "@angular/forms";
-import {DynamicFormControlModel, DynamicFormControlComponent} from "@ng2-dynamic-forms/core";
+import {DynamicFormControlModel, DynamicFormControlComponent, DynamicFormControlEvent} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_BASIC = "BASIC";
 
@@ -19,9 +19,9 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent {
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
 
-    @Output() blur: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
-    @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
-    @Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChild(TemplateRef) customTemplate;
 

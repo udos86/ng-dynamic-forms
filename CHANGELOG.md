@@ -1,9 +1,14 @@
-# 1.1.4
+# 1.2
+
+### **Breaking Changes** 
+
+* `DynamicFormControlComponent` **does now emit a** `DynamicFormControlEvent` **on blur, change and focus instead of simply passing through** `$event` 
+* **blur, change and focus events are only emitted for single form controls from now on** (see Bootstrap example)
 
 ### **Features** 
 
 * updated to `@angular 2.2`
-* `valueUpdates Rx.Observable` can now safely be used to listen to new values
+* `valueUpdates Rx.Observable` can now safely be used from anywhere to listen to new values
 * `checked` setter/getter and `toggle()` function added to `DynamicCheckControlModel`
 * `checkAll()` and `uncheckAll()` function added to `DynamicCheckboxGroupModel`
 * `select()` and `get()` function added to `DynamicOptionControlModel`

@@ -5,7 +5,10 @@
         <dynamic-form-bootstrap-control *ngFor="let controlModel of dynamicFormModel"
                                         [controlGroup]="form"
                                         [model]="controlModel"
-                                        [hasErrorMessaging]="controlModel.hasErrorMessages">
+                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                        (blur)="onBlur($event)"
+                                        (change)="onChange($event)"
+                                        (focus)="onFocus($event)">
 
             <template let-context="context" let-index="index">
 
