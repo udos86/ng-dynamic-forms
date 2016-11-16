@@ -76,6 +76,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.isCheckbox).toBe(false);
         expect(component.isCheckboxGroup).toBe(false);
         expect(component.isRadioGroup).toBe(false);
+        expect(component.isSwitch).toBe(false);
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
     });

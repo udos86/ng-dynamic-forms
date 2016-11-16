@@ -46,7 +46,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (!isDefined(this.model) || !isDefined(this.controlGroup)) {
-            throw new Error(`no model or controlGroup @Input() defined for DynamicFormControlComponent`);
+            throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
         }
 
         this.control = <FormControl> this.controlGroup.get(this.model.id);

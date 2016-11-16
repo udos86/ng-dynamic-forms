@@ -1,9 +1,17 @@
-# 1.2
+# 1.2.0
 
 ### **Breaking Changes** 
 
-* `DynamicFormControlComponent` **does now emit a** `DynamicFormControlEvent` **on blur, change and focus instead of simply passing through** `$event` 
-* **blur, change and focus events are only emitted for single form controls from now on** (see Bootstrap example)
+* `DynamicFormControlComponent` **does now emit a** `DynamicFormControlEvent` **on blur, change and focus instead of simply passing through** `$event`:
+ ```
+ export interface DynamicFormControlEvent {
+     
+     $event: Event;
+     control: FormControl;
+     model: DynamicFormControlModel;
+ }
+ ```
+* **blur, change and focus events are only emitted for single form controls and checkbox groups from now on** (see Bootstrap example)
 
 ### **Features** 
 
