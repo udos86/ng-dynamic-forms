@@ -1,10 +1,12 @@
-var typeDoc = require("gulp-typedoc");
+let gulp = require("gulp"),
+    typeDoc = require("gulp-typedoc");
 
 module.exports = function (src, config) {
 
     return function () {
 
-        return gulp.src(src, {read: false})
-                   .pipe(typeDoc(config));
+        return gulp
+            .src(src, {read: false})
+            .pipe(typeDoc(config));
     }
 };

@@ -1,11 +1,11 @@
-var util = require("gulp-util"),
+let util = require("gulp-util"),
     Builder = require("systemjs-builder");
 
 module.exports = function () {
 
     return function (done) {
 
-        var builder = new Builder({
+        let builder = new Builder({
 
             map: {
                 "modules": "modules"

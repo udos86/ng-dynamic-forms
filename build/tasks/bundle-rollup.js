@@ -1,4 +1,4 @@
-var dateFormat = require("dateformat"),
+let dateFormat = require("dateformat"),
     fs = require("fs"),
     path = require("path"),
     rollup = require("rollup").rollup,
@@ -29,7 +29,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
 
             }).then(bundle => {
 
-                var result = bundle.generate({
+                let result = bundle.generate({
 
                     banner: "/*!\n" + pkg.name + " " + pkg.version + " " + dateFormat(now, "UTC:yyyy-mm-dd HH:MM")
                     + " UTC\n" + license + "\n*/",
@@ -38,7 +38,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
                     moduleName: `${globalsName}.${camelCase(moduleName)}`
                 });
 
-                var pathBundle = path.join(dest, moduleName, "bundles");
+                let pathBundle = path.join(dest, moduleName, "bundles");
 
                 if (!fs.existsSync(pathBundle)) {
                     fs.mkdirSync(pathBundle);
@@ -49,7 +49,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             });
         }
 
-        var globals = {
+        let globals = {
 
             "@angular/common": "ng.common",
             "@angular/core": "ng.core",
