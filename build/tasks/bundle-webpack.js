@@ -1,4 +1,4 @@
-var util = require("gulp-util"),
+let util = require("gulp-util"),
     webpack = require("webpack");
 
 module.exports = function (config) {

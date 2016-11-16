@@ -1,8 +1,8 @@
-let pkg = require("./package.json");
-let license = require("fs").readFileSync("./LICENSE", "utf-8");
-let webpack = require("webpack");
-let dateformat = require("dateformat");
-let now = Date.now();
+let pkg = require("./package.json"),
+    license = require("fs").readFileSync("./LICENSE", "utf-8"),
+    webpack = require("webpack"),
+    dateformat = require("dateformat"),
+    now = Date.now();
 
 module.exports = {
 
@@ -66,7 +66,7 @@ module.exports = {
             amd: "@ng2-dynamic-forms/core",
             commonjs: "@ng2-dynamic-forms/core",
             commonjs2: "@ng2-dynamic-forms/core",
-            root: ["dynamicForms", "core"]
+            root: ["ng2DF", "core"]
         },
         "primeng/components/checkbox/checkbox": true,
         "primeng/components/dropdown/dropdown": true,

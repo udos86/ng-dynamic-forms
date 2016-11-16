@@ -1,4 +1,4 @@
-var del = require("del");
+let del = require("del");
 
 module.exports = function (src) {
 

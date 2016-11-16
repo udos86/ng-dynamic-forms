@@ -1,4 +1,4 @@
-var gulp = require("gulp"),
+let gulp = require("gulp"),
     preprocess = require("gulp-preprocess");
 
 module.exports = function (src, dest) {

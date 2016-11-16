@@ -9,7 +9,8 @@ let TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
     TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
     TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-typescript"),
     TASK_PREPROCESS = require("./build/tasks/preprocess"),
-    TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript");
+    TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
+    TASK_DOC_TYPESCRIPT = require("./build/tasks/doc-typescript");
 
 let SRC_PATH = "./modules",
     NPM_PATH = "./node_modules/@ng2-dynamic-forms",
@@ -76,6 +77,20 @@ gulp.task("transpile:modules:es5",
 gulp.task("prime:modules",
     TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
 
+gulp.task("doc:modules",
+    TASK_DOC_TYPESCRIPT([`${SRC_PATH}/*/src/**/!(*.spec).ts`], {
+            externalPattern: `${NPM_PATH}/**/*.*`,
+            excludeExternals: true,
+            ignoreCompilerErrors: true,
+            includeDeclarations: true,
+            module: "commonjs",
+            name: "ng2 Dynamic Forms",
+            out: "docs/",
+            readme: "none",
+            target: "es5",
+            theme: "minimal"
+        }
+    ));
 
 gulp.task("build:modules", function (done) {
 

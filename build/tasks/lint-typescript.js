@@ -1,4 +1,4 @@
-var gulp = require("gulp"),
+let gulp = require("gulp"),
     tsLint = require("gulp-tslint");
 
 module.exports = function (src, configPath) {

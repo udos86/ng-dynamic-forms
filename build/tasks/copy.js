@@ -1,4 +1,4 @@
-var gulp = require("gulp");
+let gulp = require("gulp");
 
 module.exports = function (src, dest) {
 
