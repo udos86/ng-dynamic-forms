@@ -12,7 +12,14 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
 
     constructor(config: DynamicFormGroupModelConfig, cls?: ClsConfig) {
-
         super(config, cls);
+    }
+
+    checkAll(): void {
+        this.group.forEach(model => model.checked = true);
+    }
+
+    uncheckAll(): void {
+        this.group.forEach(model => model.checked = false);
     }
 }

@@ -1,5 +1,9 @@
 import {Validators} from "@angular/forms";
-import {DYNAMIC_FORM_CONTROL_TYPE_ARRAY, DynamicFormArrayModel} from "./dynamic-form-array.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DynamicFormArrayModel,
+    DynamicFormArrayGroupModel
+} from "./dynamic-form-array.model";
 import {DynamicInputModel} from "../input/dynamic-input.model";
 
 describe("DynamicFormArrayModel test suite", () => {
@@ -21,7 +25,7 @@ describe("DynamicFormArrayModel test suite", () => {
         it("tests if default model is correctly initialized", () => {
 
             expect(defaultModel.initialCount).toBe(config.initialCount);
-            expect(defaultModel.groups.length).toBe(defaultModel.initialCount);
+            expect(defaultModel.size).toBe(defaultModel.initialCount);
             expect(defaultModel.id).toEqual(config.id);
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
             expect(defaultModel.asyncValidator).toBeNull();
@@ -30,13 +34,26 @@ describe("DynamicFormArrayModel test suite", () => {
             expect(defaultModel.removeGroup).toBeDefined();
         });
 
+        it("should throw when no createGroup function is specified", () => {
+
+            expect(function () {
+                new DynamicFormArrayModel({id: "test"});
+            }).toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
+        });
+
+        it("tests if get function works correctly", () => {
+
+            expect(defaultModel.get(0) instanceof DynamicFormArrayGroupModel).toBe(true);
+            expect(defaultModel.get(1) instanceof DynamicFormArrayGroupModel).toBe(true);
+        });
+
         it("should serialize correctly", () => {
 
             let json = JSON.parse(JSON.stringify(defaultModel));
 
             expect(json.asyncValidators).toBeUndefined();
             expect(json.id).toEqual(defaultModel.id);
-            expect(json.groups.length).toEqual(defaultModel.groups.length);
+            expect(json.groups.length).toEqual(defaultModel.size);
             expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
             expect(json.validator).toEqual("required");
             expect(json.validators).toBeUndefined();

@@ -40,4 +40,8 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
         this.legend = getValue(config, "legend", null);
         this.validator = getValue(config, "validator", null);
     }
+
+    get(index: number): DynamicFormControlModel {
+        return this.group[index];
+    }
 }

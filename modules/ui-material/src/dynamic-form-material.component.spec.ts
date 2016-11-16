@@ -1,4 +1,5 @@
-import {TestBed, async, inject} from "@angular/core/testing";
+import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
+import {Type} from "@angular/core";
 import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
 import {
@@ -12,30 +13,32 @@ import {DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL} from "./dynamic-
 describe("DynamicFormMaterialComponent test suite", () => {
 
     let formModel = [new DynamicInputModel({id: "test"})],
-        formGroup,
-        fixture,
-        component;
+        formGroup: FormGroup,
+        fixture: ComponentFixture<DynamicFormMaterialComponent>,
+        component: DynamicFormMaterialComponent;
 
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
+
             imports: [
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot(),
                 MaterialModule.forRoot()
             ],
             declarations: [DynamicFormMaterialComponent]
+
+        }).compileComponents().then(() => {
+
+            fixture = TestBed.createComponent(DynamicFormMaterialComponent as Type<DynamicFormMaterialComponent>);
+            component = fixture.componentInstance;
         });
 
-        TestBed.compileComponents();
     }));
 
     beforeEach(inject([DynamicFormService], service => {
 
         formGroup = service.createFormGroup(formModel);
-
-        fixture = TestBed.createComponent(DynamicFormMaterialComponent);
-        component = fixture.componentInstance;
 
         component.controlGroup = formGroup;
         component.model = formModel[0];
@@ -68,6 +71,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isCheckbox).toBe(false);
         expect(component.isCheckboxGroup).toBe(false);
         expect(component.isRadioGroup).toBe(false);
+        expect(component.isSwitch).toBe(false);
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
     });

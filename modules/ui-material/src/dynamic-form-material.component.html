@@ -52,7 +52,7 @@
 
     <md-checkbox *ngSwitchCase="'CHECKBOX'"
                  [align]="model.align"
-                 [checked]="model.value"
+                 [checked]="model.checked"
                  [disabled]="model.disabled"
                  [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
@@ -75,7 +75,7 @@
 
         <md-checkbox *ngFor="let item of model.group"
                      [align]="item.align"
-                     [checked]="item.value"
+                     [checked]="item.checked"
                      [disabled]="item.disabled"
                      [dynamicId]="bindId && item.id"
                      [formControlName]="item.id"
@@ -140,6 +140,7 @@
 
 
     <md-slide-toggle *ngSwitchCase="'SWITCH'"
+                     [checked]="model.checked"
                      [disabled]="model.disabled"
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
@@ -147,6 +148,26 @@
                      [ngClass]="model.cls.element.control"
                      (change)="onChange($event)"><span [innerHTML]="model.label"></span>
     </md-slide-toggle>
+
+
+    <md-textarea *ngSwitchCase="'TEXTAREA'" class="form-control"
+              [attr.tabindex]="model.tabIndex"
+              [dynamicId]="bindId && model.id"
+              [cols]="model.cols"
+              [formControlName]="model.id"
+              [maxlength]="model.maxLength"
+              [minlength]="model.minLength"
+              [name]="model.name"
+              [ngClass]="model.cls.element.control"
+              [placeholder]="model.placeholder"
+              [readonly]="model.readOnly"
+              [required]="model.required"
+              [rows]="model.rows"
+              [spellcheck]="model.spellCheck"
+              [wrap]="model.wrap"
+              (blur)="onBlur($event)"
+              (change)="onChange($event)"
+              (focus)="onFocus($event)"></md-textarea>
 
     <ng-content></ng-content>
 

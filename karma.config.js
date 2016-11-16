@@ -1,6 +1,6 @@
 module.exports = function (config) {
 
-    var reporters = ["progress", "coverage"],
+    let reporters = ["progress", "coverage"],
         coverageReporters = [{type: "text-summary"}];
 
     if (process.env.TRAVIS) {

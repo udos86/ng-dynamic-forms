@@ -1,8 +1,8 @@
-var package = require("./package.json");
-var license = require("fs").readFileSync("./LICENSE", "utf-8");
-var webpack = require("webpack");
-var dateformat = require("dateformat");
-var now = Date.now();
+let pkg = require("./package.json");
+let license = require("fs").readFileSync("./LICENSE", "utf-8");
+let webpack = require("webpack");
+let dateformat = require("dateformat");
+let now = Date.now();
 
 module.exports = {
 
@@ -78,7 +78,7 @@ module.exports = {
 
     plugins: [
         new webpack.BannerPlugin(
-            `${package.name} ${package.version} ${dateformat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license}`
+            `${pkg.name} ${pkg.version} ${dateformat(now, "UTC:yyyy-mm-dd HH:MM")} UTC ${license}`
         )
         // new webpack.optimize.UglifyJsPlugin({})
     ],

@@ -29,9 +29,9 @@ export class DynamicFormService {
 
         let formArray = [];
 
-        model.groups.forEach((arrayGroupModel: DynamicFormArrayGroupModel) => {
-            formArray.push(this.createFormGroup(arrayGroupModel.group));
-        });
+        for (let i = 0; i < model.size; i += 1) {
+            formArray.push(this.createFormGroup(model.get(i).group));
+        }
 
         return this.formBuilder.array(formArray, model.validator, model.asyncValidator);
     }

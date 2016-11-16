@@ -5,7 +5,7 @@ describe("DynamicRadioModel test suite", () => {
     describe("default model test suite", () => {
 
         let config = {id: "default", options: [{value: "1"}, {value: "2"}]};
-        let defaultModel: DynamicRadioGroupModel<any>;
+        let defaultModel: DynamicRadioGroupModel<string>;
 
         beforeEach(() => {
             defaultModel = new DynamicRadioGroupModel(config);
@@ -24,6 +24,14 @@ describe("DynamicRadioModel test suite", () => {
             expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
             expect(defaultModel.value).toBeNull();
         });
+
+
+        it("should select correct option", () => {
+
+            defaultModel.select(1);
+            expect(defaultModel.value).toEqual(defaultModel.options[1].value);
+        });
+
 
         it("should serialize correctly", () => {
 

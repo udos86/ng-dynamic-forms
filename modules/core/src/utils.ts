@@ -1,6 +1,10 @@
 import {AsyncValidatorFn, Validators, ValidatorFn} from "@angular/forms";
 import {getSerializables, SerializableProperty} from "./decorator/serializable.decorator";
 
+export function isBoolean(object: any): boolean {
+    return typeof object === "boolean";
+}
+
 export function isDefined(object: any): boolean {
     return object !== undefined && object !== null;
 }

@@ -15,15 +15,22 @@ import {
 import {findIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
 import {isDefined} from "../utils";
 
+export interface DynamicFormControlEvent {
+
+    $event: Event;
+    control: FormControl;
+    model: DynamicFormControlModel;
+}
+
 export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     bindId: boolean;
-    blur: EventEmitter<FocusEvent>;
-    change: EventEmitter<Event>;
+    blur: EventEmitter<DynamicFormControlEvent>;
+    change: EventEmitter<DynamicFormControlEvent>;
     control: FormControl;
     controlGroup: FormGroup;
     customTemplate: TemplateRef<any>;
-    focus: EventEmitter<FocusEvent>;
+    focus: EventEmitter<DynamicFormControlEvent>;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
@@ -38,12 +45,8 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        if (!isDefined(this.model)) {
-            throw new Error(`no model input defined for DynamicFormControlComponent`);
-        }
-
-        if (!isDefined(this.controlGroup)) {
-            throw new Error(`no controlGroup input defined for DynamicFormControlComponent`);
+        if (!isDefined(this.model) || !isDefined(this.controlGroup)) {
+            throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
         }
 
         this.control = <FormControl> this.controlGroup.get(this.model.id);
@@ -53,7 +56,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<any>> this.model;
+            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
 
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
@@ -73,7 +76,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
             for (let validatorName in this.control.errors) {
 
-                let message: string;
+                let message;
 
                 if (this.model["errorMessages"][validatorName]) {
 
@@ -127,7 +130,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
                     throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
                 }
 
-                let control: FormControl = <FormControl> this.controlGroup.get(controlId);
+                let control = <FormControl> this.controlGroup.get(controlId);
 
                 if (control) {
 
@@ -150,13 +153,18 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         );
     }
 
-    onControlValueChanges(value: any) {
+    onControlValueChanges(value: boolean | number | string) {
 
         if (this.model instanceof DynamicFormValueControlModel) {
-            (<DynamicFormValueControlModel<any>> this.model).value = value;
+
+            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
+
+            if (model.value !== value) {
+                model.valueUpdates.next(value);
+            }
         }
         //@exclude
-        console.log(this.model.id + " field changed to: ", value, typeof value, this.control.valid, this.model);
+        //console.log(`valueChanges on ${this.model.id}: `, value, typeof value, this.control.valid, this.model);
         //@endexclude
     }
 
@@ -164,45 +172,70 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         value ? this.control.disable() : this.control.enable();
     }
 
-    onModelValueUpdates(value: any) {
-        this.control.setValue(value);
+    onModelValueUpdates(value: boolean | number | string) {
+
+        if (this.control.value !== value) {
+            this.control.setValue(value);
+        }
     }
 
-    onBlur($event: FocusEvent) {
+    onBlur($event: FocusEvent | DynamicFormControlEvent) {
 
-        this.blur.emit($event);
         this.hasFocus = false;
 
-        //@exclude
-        console.log($event, this.model.id + " field is blurred");
-        //@endexclude
-    }
+        if ($event instanceof FocusEvent) {
 
-    onChange($event: Event) {
+            $event.stopImmediatePropagation();
 
-        this.change.emit($event);
+            this.blur.emit({$event: $event, control: this.control, model: this.model});
 
-        if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
-
-            let inputModel = <DynamicInputModel> this.model;
-
-            if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
-                inputModel.files = $event.srcElement["files"];
-            }
+        } else {
+            this.blur.emit($event as DynamicFormControlEvent);
         }
-
         //@exclude
-        console.log($event, this.model.id + " field is changed", $event);
+        console.log(`Blur event on ${this.model.id}: `, $event);
         //@endexclude
     }
 
-    onFocus($event: FocusEvent) {
+    onChange($event: Event | DynamicFormControlEvent) {
 
-        this.focus.emit($event);
+        if ($event instanceof Event) {
+
+            $event.stopImmediatePropagation();
+
+            this.change.emit({$event: $event, control: this.control, model: this.model});
+
+            if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
+
+                let model = <DynamicInputModel> this.model;
+
+                if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
+                    model.files = $event.srcElement["files"];
+                }
+            }
+        } else {
+            this.change.emit($event as DynamicFormControlEvent);
+        }
+        //@exclude
+        console.log(`Change event on ${this.model.id}: `, $event);
+        //@endexclude
+    }
+
+    onFocus($event: FocusEvent | DynamicFormControlEvent) {
+
         this.hasFocus = true;
 
+        if ($event instanceof FocusEvent) {
+
+            $event.stopImmediatePropagation();
+
+            this.focus.emit({$event: $event, control: this.control, model: this.model});
+
+        } else {
+            this.focus.emit($event as DynamicFormControlEvent);
+        }
         //@exclude
-        console.log($event, this.model.id + " field is focused");
+        console.log(`Focus event on ${this.model.id}: `, $event);
         //@endexclude
     }
 }

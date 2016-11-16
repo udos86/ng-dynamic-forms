@@ -1,5 +1,6 @@
 import {ClsConfig} from "../dynamic-form-control.model";
-import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "../dynamic-form-value-control.model";
+import {DynamicFormValueControlModelConfig} from "../dynamic-form-value-control.model";
+import {DynamicCheckControlModel} from "../dynamic-check-control.model";
 import {serializable} from "../../decorator/serializable.decorator";
 import {getValue} from "../../utils";
 
@@ -14,7 +15,7 @@ export interface DynamicCheckboxModelConfig extends DynamicFormValueControlModel
     indeterminate?: boolean;
 }
 
-export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> {
+export class DynamicCheckboxModel extends DynamicCheckControlModel {
 
     @serializable() align: string;
     @serializable() indeterminate: boolean;
@@ -27,9 +28,5 @@ export class DynamicCheckboxModel extends DynamicFormValueControlModel<boolean> 
 
         this.align = getValue(config, "align", DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
         this.indeterminate = getValue(config, "indeterminate", false);
-
-        if (this.value !== true) {
-            this.value = false;
-        }
     }
 }

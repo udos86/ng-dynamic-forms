@@ -34,6 +34,20 @@ describe("DynamicTextAreaModel test suite", () => {
             expect(defaultModel.wrap).toEqual(DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
         });
 
+        it("should throw when no model id is specified", () => {
+
+            expect(function () {
+                new DynamicTextAreaModel({});
+            }).toThrow(new Error("string id must be specified for DynamicFormControlModel"));
+        });
+
+        it("should set disabled property correctly", () => {
+
+            defaultModel.disabledUpdates.next(true);
+
+            expect(defaultModel.disabled).toBe(true);
+        });
+
         it("should serialize correctly", () => {
 
             let json = JSON.parse(JSON.stringify(defaultModel));

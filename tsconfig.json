@@ -17,8 +17,7 @@
       "hammerjs",
       "jasmine",
       "node",
-      "protractor",
-      "selenium-webdriver"
+      "protractor"
     ]
   },
   "exclude": [

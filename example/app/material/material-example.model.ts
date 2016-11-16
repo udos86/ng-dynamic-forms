@@ -3,7 +3,8 @@ import {
     DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
-    DynamicSwitchModel
+    DynamicSwitchModel,
+    DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
 export const MATERIAL_EXAMPLE_MODEL = [
@@ -41,7 +42,8 @@ export const MATERIAL_EXAMPLE_MODEL = [
     new DynamicSwitchModel({
 
         id: "materialSwitch",
-        label: "Get it on"
+        label: "Get it on",
+        value: true
     }),
 
     new DynamicRadioGroupModel<string>({
@@ -81,28 +83,17 @@ export const MATERIAL_EXAMPLE_MODEL = [
         value: "option-3"
     }),
 
+    new DynamicTextAreaModel({
+
+        id: "foundationTextArea",
+        label: "Example Textarea",
+        rows: 5,
+        placeholder: "example Textarea",
+    }),
+
     new DynamicCheckboxModel({
 
         id: "materialCheckbox",
         label: "I do agree"
     })
-    /*
-    new DynamicFormArrayModel(
-        {
-            id: "materialFormArray",
-            initialCount: 5,
-            label: "Example Array Model",
-            createGroup: () => {
-                return [
-                    new DynamicInputModel(
-                        {
-                            id: "basicArrayGroupInput",
-                            placeholder: "example array group input"
-                        }
-                    )
-                ];
-            }
-        }
-    )
-    */
 ];

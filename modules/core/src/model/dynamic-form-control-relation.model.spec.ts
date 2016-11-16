@@ -1,9 +1,15 @@
-import {DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
+import {TestBed, async, inject} from "@angular/core/testing";
+import {ReactiveFormsModule} from "@angular/forms";
+import {DynamicFormService} from "../service/dynamic-form.service";
+import {DynamicTextAreaModel} from "./textarea/dynamic-textarea.model";
+import {DynamicSelectModel} from "./select/dynamic-select.model";
+import {DynamicRadioGroupModel} from "./radio/dynamic-radio-group.model";
 import {
     findDisableRelation,
     findEnableRelation,
     findActivationRelation,
-    findIds
+    findIds,
+    toBeDisabled
 } from "./dynamic-form-control-relation.model";
 
 describe("DynamicFormControlRelationModel test suite", () => {
@@ -13,17 +19,14 @@ describe("DynamicFormControlRelationModel test suite", () => {
         let testModel: DynamicTextAreaModel,
             config = {
 
-                id: "default",
-                label: "Example Textarea",
-                rows: 5,
-                placeholder: "example Textarea",
+                id: "testTextArea",
                 relation: [
                     {
                         action: "DISABLE",
                         when: [
                             {
-                                id: "mySelect",
-                                value: "option-4"
+                                id: "testSelect",
+                                value: "option-2"
                             }
                         ]
                     },
@@ -32,17 +35,25 @@ describe("DynamicFormControlRelationModel test suite", () => {
                         connective: "AND",
                         when: [
                             {
-                                id: "mySelect",
+                                id: "testSelect",
                                 value: "option-3"
                             },
                             {
-                                id: "myRadioGroup",
-                                value: "option-4",
+                                id: "testRadioGroup",
+                                value: "option-2",
                             }
                         ]
                     }
                 ]
             };
+
+        beforeEach(async(() => {
+
+            TestBed.configureTestingModule({
+                imports: [ReactiveFormsModule],
+                providers: [DynamicFormService]
+            });
+        }));
 
         beforeEach(() => {
             testModel = new DynamicTextAreaModel(config);
@@ -69,8 +80,39 @@ describe("DynamicFormControlRelationModel test suite", () => {
         it("tests if findIds function works correctly", () => {
 
             expect(findIds(testModel.relation).length).toBe(2);
-            expect(findIds(testModel.relation).join()).toBe("mySelect,myRadioGroup");
+            expect(findIds(testModel.relation).join()).toBe("testSelect,testRadioGroup");
         });
+
+        it("tests if findIds function works correctly", () => {
+
+            expect(findIds(testModel.relation).length).toBe(2);
+            expect(findIds(testModel.relation).join()).toBe("testSelect,testRadioGroup");
+        });
+
+        it("tests if toBeDisabled function works correctly", inject([DynamicFormService], service => {
+
+            let formGroup = service.createFormGroup([
+
+                new DynamicSelectModel({
+
+                    id: "testSelect",
+                    options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
+                    value: "option-1"
+                }),
+
+                new DynamicRadioGroupModel({
+
+                    id: "testRadioGroup",
+                    options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
+                    value: "option-1"
+                }),
+
+                testModel
+            ]);
+
+            expect(toBeDisabled(testModel.relation[0], formGroup)).toBe(false);
+            expect(toBeDisabled(testModel.relation[1], formGroup)).toBe(true);
+        }));
 
     });
 

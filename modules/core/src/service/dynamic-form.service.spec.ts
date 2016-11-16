@@ -9,10 +9,13 @@ import {DynamicInputModel} from "../model/input/dynamic-input.model";
 import {DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DynamicSelectModel} from "../model/select/dynamic-select.model";
 import {DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
+import {DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
+import {group} from "@angular/core";
 
 describe("DynamicFormService test suite", () => {
 
-    let testModel;
+    let testModel,
+        service;
 
     beforeEach(() => {
 
@@ -93,18 +96,22 @@ describe("DynamicFormService test suite", () => {
                         ];
                     }
                 }
-            )
+            ),
+
+            new DynamicFormGroupModel({id: "testFormGroup", group: []})
         ];
     });
 
+    beforeEach(inject([DynamicFormService], dynamicFormService => service = dynamicFormService));
 
-    it("tests if service is initialized correctly", inject([DynamicFormService], service => {
+
+    it("tests if service is initialized correctly", () => {
 
         expect(service).toBeDefined();
-    }));
+    });
 
 
-    it("tests if createFormGroup works correctly", inject([DynamicFormService], service => {
+    it("tests if createFormGroup works correctly", () => {
 
         expect(service.createFormGroup).toBeDefined();
 
@@ -119,10 +126,10 @@ describe("DynamicFormService test suite", () => {
         expect(result.get("testRadioGroup") instanceof FormControl).toBe(true);
         expect(result.get("testSelect") instanceof FormControl).toBe(true);
         expect(result.get("testTextArea") instanceof FormControl).toBe(true);
-    }));
+    });
 
 
-    it("tests if fromJSON works correctly", inject([DynamicFormService], service => {
+    it("tests if fromJSON works correctly", () => {
 
         let json = JSON.parse(JSON.stringify(testModel)),
             formModel;
@@ -141,10 +148,18 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[4] instanceof DynamicTextAreaModel).toBe(true);
         expect(formModel[5] instanceof DynamicCheckboxModel).toBe(true);
         expect(formModel[6] instanceof DynamicFormArrayModel).toBe(true);
-    }));
+    });
 
 
-    it("tests if findById works correctly", inject([DynamicFormService], service => {
+    it("should throw when unknown DynamicFormControlModel id is specified in JSON", () => {
+
+        expect(function () {
+            service.fromJSON([{}]);
+        }).toThrow(new Error(`unknown form control type defined on JSON object`));
+    });
+
+
+    it("tests if findById works correctly", () => {
 
         expect(service.findById).toBeDefined();
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
@@ -154,10 +169,10 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testRadioGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testSelect", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
-    }));
+    });
 
 
-    it("tests if createFormArray works correctly", inject([DynamicFormService], service => {
+    it("tests if createFormArray works correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
             formArray;
@@ -168,19 +183,19 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray instanceof FormArray).toBe(true);
         expect(formArray.length).toBe(model.initialCount);
-    }));
+    });
 
 
-    it("tests if createFormArrayGroup works correctly", inject([DynamicFormService], service => {
+    it("tests if createFormArrayGroup works correctly", () => {
 
         let model = service.findById("testFormArray", testModel);
 
         expect(service.createFormArrayGroup).toBeDefined();
         expect(service.createFormArrayGroup(model) instanceof FormGroup).toBe(true);
-    }));
+    });
 
 
-    it("tests if addFormArrayGroup works correctly", inject([DynamicFormService], service => {
+    it("tests if addFormArrayGroup works correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
             formArray = service.createFormArray(model);
@@ -190,10 +205,10 @@ describe("DynamicFormService test suite", () => {
         service.addFormArrayGroup(formArray, model);
 
         expect(formArray.length).toBe(model.initialCount + 1);
-    }));
+    });
 
 
-    it("tests if insertFormArrayGroup work correctly", inject([DynamicFormService], service => {
+    it("tests if insertFormArrayGroup work correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
             formArray = service.createFormArray(model);
@@ -203,10 +218,10 @@ describe("DynamicFormService test suite", () => {
         service.insertFormArrayGroup(0, formArray, model);
 
         expect(formArray.length).toBe(model.initialCount + 1);
-    }));
+    });
 
 
-    it("tests if removeFormArrayGroup work correctly", inject([DynamicFormService], service => {
+    it("tests if removeFormArrayGroup work correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
             formArray = service.createFormArray(model);
@@ -216,10 +231,9 @@ describe("DynamicFormService test suite", () => {
         service.removeFormArrayGroup(0, formArray, model);
 
         expect(formArray.length).toBe(model.initialCount - 1);
-    }));
+    });
 
-
-    it("tests if clearFormArray work correctly", inject([DynamicFormService], service => {
+    it("tests if clearFormArray work correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
             formArray = service.createFormArray(model);
@@ -229,6 +243,6 @@ describe("DynamicFormService test suite", () => {
         service.clearFormArray(formArray, model);
 
         expect(formArray.length).toBe(0);
-    }));
+    });
 
 });

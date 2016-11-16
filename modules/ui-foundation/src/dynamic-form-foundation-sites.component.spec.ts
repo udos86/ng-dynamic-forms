@@ -1,4 +1,5 @@
-import {TestBed, async, inject} from "@angular/core/testing";
+import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
+import {Type} from "@angular/core";
 import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {
     DynamicFormsCoreModule,
@@ -14,29 +15,31 @@ import {
 describe("DynamicFormFoundationSitesComponent test suite", () => {
 
     let formModel = [new DynamicInputModel({id: "test"})],
-        formGroup,
-        fixture,
-        component;
+        formGroup: FormGroup,
+        fixture: ComponentFixture<DynamicFormFoundationSitesComponent>,
+        component: DynamicFormFoundationSitesComponent;
 
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
+
             imports: [
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicFormFoundationSitesComponent]
+
+        }).compileComponents().then(() => {
+
+            fixture = TestBed.createComponent(DynamicFormFoundationSitesComponent as Type<DynamicFormFoundationSitesComponent>);
+            component = fixture.componentInstance;
         });
 
-        TestBed.compileComponents();
     }));
 
     beforeEach(inject([DynamicFormService], service => {
 
         formGroup = service.createFormGroup(formModel);
-
-        fixture = TestBed.createComponent(DynamicFormFoundationSitesComponent);
-        component = fixture.componentInstance;
 
         component.controlGroup = formGroup;
         component.model = formModel[0];
@@ -71,6 +74,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.isCheckbox).toBe(false);
         expect(component.isCheckboxGroup).toBe(false);
         expect(component.isRadioGroup).toBe(false);
+        expect(component.isSwitch).toBe(false);
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
     });
