@@ -279,12 +279,14 @@ this.myInputModel = this.myDynamicFormModel[2];
 this.myInputModel = <DynamicInputModel> this.dynamicFormService.findById("myInput", this.myDynamicFormModel);
 ```
 
-We now have access to the `valueUpdates` `Rx.Subject` to push new values via `next()`:
+We now have access to the `valueUpdates` `Rx.Subject` to push new values via `next()` as well as to listen to new user input via `subscribe()`:
 ```ts
 this.myInputModel.valueUpdates.next("my new value");
+
+this.myInputModel.valueUpdates.subscribe(value => console.log("new value: ", value);
 ```
 
-At any time we also can safely read the most recent user input from the `value` property:
+At any time we can also safely read the most recent user input from the `value` property:
 ```ts
 let currentValue = this.myInputModel.value;
 ```

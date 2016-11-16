@@ -6,7 +6,7 @@
  ```
  export interface DynamicFormControlEvent {
      
-     $event: Event;
+     $event: Event | FocusEvent;
      control: FormControl;
      model: DynamicFormControlModel;
  }
@@ -15,8 +15,10 @@
 
 ### **Features** 
 
-* updated to `@angular 2.2`
-* `valueUpdates Rx.Observable` can now safely be used from anywhere to listen to new values
+* update to `@angular 2.2.0`
+* update to `@angular/material alpha.10`
+* update to `primeng rc.4`
+* `valueUpdates Rx.Subject` can now safely be used from anywhere to listen to new values
 * `checked` setter/getter and `toggle()` function added to `DynamicCheckControlModel`
 * `checkAll()` and `uncheckAll()` function added to `DynamicCheckboxGroupModel`
 * `select()` and `get()` function added to `DynamicOptionControlModel`

@@ -17,7 +17,7 @@ import {isDefined} from "../utils";
 
 export interface DynamicFormControlEvent {
 
-    $event: Event;
+    $event: Event | FocusEvent;
     control: FormControl;
     model: DynamicFormControlModel;
 }
@@ -153,7 +153,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         );
     }
 
-    onControlValueChanges(value: boolean | number | string) {
+    onControlValueChanges(value: boolean | number | string): void {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
@@ -168,7 +168,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         //@endexclude
     }
 
-    onModelDisabledUpdates(value: boolean) {
+    onModelDisabledUpdates(value: boolean): void {
         value ? this.control.disable() : this.control.enable();
     }
 
@@ -179,7 +179,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    onBlur($event: FocusEvent | DynamicFormControlEvent) {
+    onBlur($event: FocusEvent | DynamicFormControlEvent): void {
 
         this.hasFocus = false;
 
@@ -197,7 +197,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         //@endexclude
     }
 
-    onChange($event: Event | DynamicFormControlEvent) {
+    onChange($event: Event | DynamicFormControlEvent): void {
 
         if ($event instanceof Event) {
 
@@ -221,7 +221,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         //@endexclude
     }
 
-    onFocus($event: FocusEvent | DynamicFormControlEvent) {
+    onFocus($event: FocusEvent | DynamicFormControlEvent): void {
 
         this.hasFocus = true;
 
