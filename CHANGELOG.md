@@ -1,3 +1,16 @@
+# 1.2.1
+
+### **Bugfixes** 
+
+* `addGroup()` **function of** `DynamicFormArrayModel` **does now work correctly** (closes [#183](https://github.com/udos86/ng2-dynamic-forms/issues/183))
+ 
+### **Features** 
+
+* update to `@angular 2.2.1`
+* update to `primeng rc.5`
+* `add()`, `insert()` and `get()` function added to `DynamicOptionControlModel` (closes [#180](https://github.com/udos86/ng2-dynamic-forms/issues/180))
+
+
 # 1.2.0
 
 ### **Breaking Changes** 

@@ -82,7 +82,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     }
 
     addGroup(): DynamicFormArrayGroupModel {
-        return this.insertGroup(this.groups.length - 1);
+        return this.insertGroup(this.groups.length);
     }
 
     insertGroup(index: number): DynamicFormArrayGroupModel {

@@ -6,56 +6,54 @@ import {
 
 describe("DynamicCheckboxModel test suite", () => {
 
-    describe("default model test suite", () => {
+    let model: DynamicCheckboxModel,
+        config = {
+            id: "default",
+            value: true
+        };
 
-        let config = {id: "default", value: true};
-        let defaultModel: DynamicCheckboxModel;
-
-        beforeEach(() => {
-            defaultModel = new DynamicCheckboxModel(config);
-        });
-        
-        it("tests if default model is correctly initialized", () => {
-
-            expect(defaultModel.align).toEqual(DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
-            expect(defaultModel.asyncValidators).toEqual([]);
-            expect(defaultModel.disabled).toBe(false);
-            expect(defaultModel.id).toEqual(config.id);
-            expect(defaultModel.indeterminate).toBe(false);
-            expect(defaultModel.label).toBeNull();
-            expect(defaultModel.name).toEqual(defaultModel.id);
-            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
-            expect(defaultModel.validators).toEqual([]);
-            expect(defaultModel.value).toBe(config.value);
-        });
-
-        it("should get and set checked property correctly", () => {
-
-            expect(defaultModel.checked).toBe(config.value);
-
-            defaultModel.checked = false;
-
-            expect(defaultModel.checked).toBe(false);
-            expect(defaultModel.value).toBe(false);
-        });
-
-        it("should toggle correctly", () => {
-
-            defaultModel.toggle();
-
-            expect(defaultModel.checked).toBe(!config.value);
-            expect(defaultModel.value).toBe(!config.value);
-        });
-
-        it("should serialize correctly", () => {
-
-            let json = JSON.parse(JSON.stringify(defaultModel));
-
-            expect(json.id).toEqual(defaultModel.id);
-            expect(json.value).toBe(defaultModel.value);
-            expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
-        });
-        
+    beforeEach(() => {
+        model = new DynamicCheckboxModel(config);
     });
 
+    it("tests if default model is correctly initialized", () => {
+
+        expect(model.align).toEqual(DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
+        expect(model.asyncValidators).toEqual([]);
+        expect(model.disabled).toBe(false);
+        expect(model.id).toEqual(config.id);
+        expect(model.indeterminate).toBe(false);
+        expect(model.label).toBeNull();
+        expect(model.name).toEqual(model.id);
+        expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
+        expect(model.validators).toEqual([]);
+        expect(model.value).toBe(config.value);
+    });
+
+    it("should get and set checked property correctly", () => {
+
+        expect(model.checked).toBe(config.value);
+
+        model.checked = false;
+
+        expect(model.checked).toBe(false);
+        expect(model.value).toBe(false);
+    });
+
+    it("should toggle correctly", () => {
+
+        model.toggle();
+
+        expect(model.checked).toBe(!config.value);
+        expect(model.value).toBe(!config.value);
+    });
+
+    it("should serialize correctly", () => {
+
+        let json = JSON.parse(JSON.stringify(model));
+
+        expect(json.id).toEqual(model.id);
+        expect(json.value).toBe(model.value);
+        expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
+    });
 });
