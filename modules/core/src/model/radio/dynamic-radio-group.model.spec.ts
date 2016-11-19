@@ -2,47 +2,77 @@ import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "./d
 
 describe("DynamicRadioModel test suite", () => {
 
-    describe("default model test suite", () => {
+    let model: DynamicRadioGroupModel<string>,
+        config = {
+            id: "default",
+            options: [
+                {
+                    value: "1",
+                    label: "One"
+                },
+                {
+                    value: "2",
+                    label: "Two"
+                }
+            ]
+        };
 
-        let config = {id: "default", options: [{value: "1"}, {value: "2"}]};
-        let defaultModel: DynamicRadioGroupModel<string>;
-
-        beforeEach(() => {
-            defaultModel = new DynamicRadioGroupModel(config);
-        });
-
-        it("tests if default model is correctly initialized", () => {
-
-            expect(defaultModel.disabled).toBe(false);
-            expect(defaultModel.errorMessages).toBeNull();
-            expect(defaultModel.hasErrorMessages).toBe(false);
-            expect(defaultModel.id).toEqual(config.id);
-            expect(defaultModel.label).toBeNull();
-            expect(defaultModel.legend).toBeNull();
-            expect(defaultModel.name).toEqual(defaultModel.id);
-            expect(defaultModel.options.length).toBe(config.options.length);
-            expect(defaultModel.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
-            expect(defaultModel.value).toBeNull();
-        });
-
-
-        it("should select correct option", () => {
-
-            defaultModel.select(1);
-            expect(defaultModel.value).toEqual(defaultModel.options[1].value);
-        });
-
-
-        it("should serialize correctly", () => {
-
-            let json = JSON.parse(JSON.stringify(defaultModel));
-
-            expect(json.id).toEqual(defaultModel.id);
-            expect(json.options.length).toBe(defaultModel.options.length);
-            expect(json.value).toBe(defaultModel.value);
-            expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
-        });
-
+    beforeEach(() => {
+        model = new DynamicRadioGroupModel(config);
     });
 
+    it("tests if default model is correctly initialized", () => {
+
+        expect(model.disabled).toBe(false);
+        expect(model.errorMessages).toBeNull();
+        expect(model.hasErrorMessages).toBe(false);
+        expect(model.id).toEqual(config.id);
+        expect(model.label).toBeNull();
+        expect(model.legend).toBeNull();
+        expect(model.name).toEqual(model.id);
+        expect(model.options.length).toBe(config.options.length);
+        expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
+        expect(model.value).toBeNull();
+    });
+
+    it("should select correct option", () => {
+
+        model.select(1);
+
+        expect(model.value).toEqual(model.options[1].value);
+    });
+
+    it("should insert another option", () => {
+
+        let option = {label: "test option", value: "test-option"},
+            index = 1;
+
+        model.insert(index, option);
+
+        expect(model.options.length).toBe(config.options.length + 1);
+        expect(model.get(index).value).toEqual(option.value);
+    });
+
+    it("should remove an option", () => {
+
+        model.remove(1);
+
+        expect(model.options.length).toBe(config.options.length - 1);
+    });
+
+    it("should get the correct option", () => {
+
+        expect(model.get(0)).toEqual(model.options[0]);
+        expect(model.get(1)).toEqual(model.options[1]);
+    });
+
+    it("should serialize correctly", () => {
+
+        let json = JSON.parse(JSON.stringify(model));
+
+        expect(json.id).toEqual(model.id);
+        expect(json.options.length).toBe(model.options.length);
+        expect(json.value).toBe(model.value);
+        expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
+    });
 });
