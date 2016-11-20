@@ -13,11 +13,9 @@ describe("DynamicTextAreaModel test suite", () => {
             validators: [Validators.required]
         };
 
-    beforeEach(() => {
-        model = new DynamicTextAreaModel(config);
-    });
+    beforeEach(() => model = new DynamicTextAreaModel(config));
 
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.cols).toBe(20);
         expect(model.disabled).toBe(false);

@@ -15,12 +15,9 @@ describe("DynamicFormArrayModel test suite", () => {
             validator: Validators.required
         };
 
+    beforeEach(() => model = new DynamicFormGroupModel(config));
 
-    beforeEach(() => {
-        model = new DynamicFormGroupModel(config);
-    });
-
-    it("tests if default object is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.id).toEqual(config.id);
         expect(model.group.length).toBe(1);

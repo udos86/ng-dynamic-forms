@@ -1,4 +1,4 @@
-declare var Reflect: any;
+declare let Reflect: any;
 
 export const METADATA_KEY_SERIALIZABLE = "SERIALIZABLE";
 
@@ -8,10 +8,9 @@ export interface SerializableProperty {
     name: string;
 }
 
-export function serializable(name?: string) {
+export function serializable(name?: string): (target, key) => void {
 
     return function (target, key) {
-
         Reflect.defineMetadata(METADATA_KEY_SERIALIZABLE, {key: key, name: name || key}, target, key);
     };
 }

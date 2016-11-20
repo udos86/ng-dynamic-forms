@@ -40,8 +40,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     abstract readonly type: string;
 
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
 

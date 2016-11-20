@@ -6,6 +6,7 @@ import {DynamicFormAutoFillService} from "./service/dynamic-form-autofill.servic
 import {DynamicIdDirective} from "./directive/dynamic-id.directive";
 
 @NgModule({
+
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -13,6 +14,7 @@ import {DynamicIdDirective} from "./directive/dynamic-id.directive";
     declarations: [DynamicIdDirective],
     exports: [DynamicIdDirective]
 })
+
 export class DynamicFormsCoreModule {
 
     constructor(@Optional() @SkipSelf() parentModule: DynamicFormsCoreModule) {

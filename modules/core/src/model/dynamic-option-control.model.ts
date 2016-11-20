@@ -53,7 +53,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     }
 
     add(optionConfig: DynamicFormOptionConfig<T>): DynamicFormOption<T> {
-        return this.insert(this.options.length, optionConfig,);
+        return this.insert(this.options.length, optionConfig);
     }
 
     get(index: number): DynamicFormOption<T> {
@@ -74,6 +74,6 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     }
 
     select(index: number): void {
-        this.valueUpdates.next(this.options[index].value);
+        this.valueUpdates.next(this.get(index).value);
     }
 }

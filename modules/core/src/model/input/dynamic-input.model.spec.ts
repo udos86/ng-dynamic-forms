@@ -13,9 +13,7 @@ describe("DynamicInputModel test suite", () => {
             list: ["One", "Two", "Three"]
         };
 
-    beforeEach(() => {
-        model = new DynamicInputModel(config);
-    });
+    beforeEach(() => model = new DynamicInputModel(config));
 
     it("tests if correct default type property is set", () => {
 

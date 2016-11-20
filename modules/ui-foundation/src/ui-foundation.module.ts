@@ -5,6 +5,7 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormFoundationSitesComponent} from "./dynamic-form-foundation-sites.component";
 
 @NgModule({
+    
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -18,4 +19,5 @@ import {DynamicFormFoundationSitesComponent} from "./dynamic-form-foundation-sit
         DynamicFormFoundationSitesComponent
     ]
 })
+
 export class DynamicFormsFoundationUIModule {}
