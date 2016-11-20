@@ -6,12 +6,18 @@
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-
     <kendo-dropdownlist *ngSwitchCase="'SELECT'"
                         [data]="model.options"
                         [formControlName]="model.id"
                         [textField]="'label'"
-                        [valueField]="'value'"></kendo-dropdownlist>
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"></kendo-dropdownlist>
+
+    <kendo-switch *ngSwitchCase="'SWITCH'"
+                  [checked]="model.checked"
+                  [formControlName]="model.id"
+                  [offLabel]="''"
+                  [onLabel]="''"></kendo-switch>
 
     <ng-content></ng-content>
 
