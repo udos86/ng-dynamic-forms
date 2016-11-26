@@ -89,6 +89,11 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                                 id: "checkboxGroup1",
                                 label: "Checkbox 1",
                                 value: true
+                            },
+                            {
+                                grid: {
+                                    control: "col-sm-12"
+                                }
                             }
                         ),
                         new DynamicCheckboxModel(
@@ -96,6 +101,11 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                                 id: "checkboxGroup2",
                                 label: "Checkbox 2",
                                 value: true
+                            },
+                            {
+                                grid: {
+                                    control: "col-sm-12"
+                                }
                             }
                         )
                     ]

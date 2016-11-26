@@ -7,10 +7,7 @@ import {DynamicIdDirective} from "./directive/dynamic-id.directive";
 
 @NgModule({
 
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-    ],
+    imports: [CommonModule, ReactiveFormsModule],
     declarations: [DynamicIdDirective],
     exports: [DynamicIdDirective]
 })

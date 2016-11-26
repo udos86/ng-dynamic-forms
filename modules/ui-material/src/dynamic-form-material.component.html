@@ -20,9 +20,9 @@
                                        [controlGroup]="control"
                                        [model]="controlModel"
                                        [nestedTemplate]="customTemplate"
-                                       (blur)="onBlur($event)"
+                                       (blur)="onFocusChange($event)"
                                        (change)="onChange($event)"
-                                       (focus)="onFocus($event)"></dynamic-form-material-control>
+                                       (focus)="onFocusChange($event)"></dynamic-form-material-control>
     </fieldset>
 
 
@@ -38,9 +38,9 @@
                                            [controlGroup]="control.at(idx)"
                                            [model]="controlModel"
                                            [nestedTemplate]="nestedTemplate"
-                                           (blur)="onBlur($event)"
+                                           (blur)="onFocusChange($event)"
                                            (change)="onChange($event)"
-                                           (focus)="onFocus($event)"></dynamic-form-material-control>
+                                           (focus)="onFocusChange($event)"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
                       [ngOutletContext]="groupModel"></template>
@@ -59,9 +59,9 @@
                  [indeterminate]="model.indeterminate"
                  [name]="model.name"
                  [ngClass]="model.cls.element.control"
-                 (blur)="onBlur($event)"
+                 (blur)="onFocusChange($event)"
                  (change)="onChange($event)"
-                 (focus)="onFocus($event)"><span [innerHTML]="model.label"></span>
+                 (focus)="onFocusChange($event)"><span [innerHTML]="model.label"></span>
     </md-checkbox>
 
 
@@ -73,20 +73,13 @@
 
         <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-        <md-checkbox *ngFor="let item of model.group"
-                     [align]="item.align"
-                     [checked]="item.checked"
-                     [disabled]="item.disabled"
-                     [dynamicId]="bindId && item.id"
-                     [formControlName]="item.id"
-                     [indeterminate]="item.indeterminate"
-                     [name]="item.name"
-                     [ngClass]="item.cls.element.control"
-                     (blur)="onBlur($event)"
-                     (change)="onChange($event)"
-                     (focus)="onFocus($event)"><span [innerHTML]="item.label"></span>
-        </md-checkbox>
-
+        <dynamic-form-material-control *ngFor="let controlModel of model.group"
+                                       [controlGroup]="control"
+                                       [model]="controlModel"
+                                       [nestedTemplate]="customTemplate"
+                                       (blur)="onFocusChange($event)"
+                                       (change)="onChange($event)"
+                                       (focus)="onFocusChange($event)"></dynamic-form-material-control>
     </fieldset>
 
 
@@ -111,9 +104,9 @@
               [step]="model.step"
               [tabindex]="model.tabIndex"
               [type]="model.inputType"
-              (blur)="onBlur($event)"
+              (blur)="onFocusChange($event)"
               (change)="onChange($event)"
-              (focus)="onFocus($event)">
+              (focus)="onFocusChange($event)">
 
         <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
         <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
@@ -127,9 +120,9 @@
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
-                    (blur)="onBlur($event)"
+                    (blur)="onFocusChange($event)"
                     (change)="onChange($event)"
-                    (focus)="onFocus($event)">
+                    (focus)="onFocusChange($event)">
 
         <md-radio-button *ngFor="let option of model.options"
                          [name]="model.name"
@@ -165,9 +158,9 @@
               [rows]="model.rows"
               [spellcheck]="model.spellCheck"
               [wrap]="model.wrap"
-              (blur)="onBlur($event)"
+              (blur)="onFocusChange($event)"
               (change)="onChange($event)"
-              (focus)="onFocus($event)"></md-textarea>
+              (focus)="onFocusChange($event)"></md-textarea>
 
     <ng-content></ng-content>
 

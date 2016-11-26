@@ -2,37 +2,6 @@
      [ngClass]="model.cls.element.container"
      [ngSwitch]="model.type">
 
-    <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-              [dynamicId]="bindId && model.id"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-        <div *ngFor="let item of model.group" [ngClass]="item.cls.grid.container">
-
-            <div [ngClass]="item.cls.grid.control">
-
-                <p-checkbox binary="true"
-                            [dynamicId]="bindId && item.id"
-                            [formControlName]="item.id"
-                            [name]="model.name"
-                            [value]="item.value"
-                            [ngClass]="item.cls.element.control"></p-checkbox>
-            </div>
-
-            <div [ngClass]="item.cls.grid.label">
-
-                <label [attr.for]="item.id" [innerHTML]="item.label" [ngClass]="item.cls.element.label"></label>
-
-            </div>
-
-        </div>
-
-    </fieldset>
-
-
     <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
@@ -62,7 +31,7 @@
     </fieldset>
 
 
-    <div *ngIf="!isRadioGroup && !isCheckboxGroup" [ngClass]="model.cls.grid.container">
+    <div *ngIf="!isRadioGroup" [ngClass]="model.cls.grid.container">
 
         <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
 
@@ -85,9 +54,27 @@
                                               [controlGroup]="control"
                                               [model]="controlModel"
                                               [nestedTemplate]="customTemplate"
-                                              (blur)="onBlur($event)"
+                                              (blur)="onFocusChange($event)"
                                               (change)="onChange($event)"
-                                              (focus)="onFocus($event)"></dynamic-form-primeng-control>
+                                              (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
+            </fieldset>
+
+
+            <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
+                      [dynamicId]="bindId && model.id"
+                      [formGroupName]="model.id"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control">
+
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+                <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
+                                              [controlGroup]="control"
+                                              [model]="controlModel"
+                                              [nestedTemplate]="customTemplate"
+                                              (blur)="onFocusChange($event)"
+                                              (change)="onChange($event)"
+                                              (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
             </fieldset>
 
 
@@ -103,9 +90,9 @@
                                                   [controlGroup]="control.at(idx)"
                                                   [model]="controlModel"
                                                   [nestedTemplate]="nestedTemplate"
-                                                  (blur)="onBlur($event)"
+                                                  (blur)="onFocusChange($event)"
                                                   (change)="onChange($event)"
-                                                  (focus)="onFocus($event)"></dynamic-form-primeng-control>
+                                                  (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
                               [ngOutletContext]="groupModel"></template>
@@ -137,9 +124,9 @@
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
-                   (blur)="onBlur($event)"
+                   (blur)="onFocusChange($event)"
                    (change)="onChange($event)"
-                   (focus)="onFocus($event)"/>
+                   (focus)="onFocusChange($event)"/>
 
             <datalist *ngIf="model.list" [id]="model.listId">
 
@@ -177,9 +164,9 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onBlur($event)"
+                      (blur)="onFocusChange($event)"
                       (change)="onChange($event)"
-                      (focus)="onFocus($event)"></textarea>
+                      (focus)="onFocusChange($event)"></textarea>
 
         </div>
 
