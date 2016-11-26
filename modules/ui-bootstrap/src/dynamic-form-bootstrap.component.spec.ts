@@ -19,25 +19,22 @@ describe("DynamicFormBootstrapComponent test suite", () => {
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
-            
-            imports: [
-                ReactiveFormsModule,
-                DynamicFormsCoreModule.forRoot()
-            ],
+
+            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot()],
             declarations: [DynamicFormBootstrapComponent]
-            
+
         }).compileComponents().then(() => {
 
             fixture = TestBed.createComponent(DynamicFormBootstrapComponent as Type<DynamicFormBootstrapComponent>);
             component = fixture.componentInstance;
         });
-        
+
     }));
 
     beforeEach(inject([DynamicFormService], service => {
 
         formGroup = service.createFormGroup(formModel);
-        
+
         component.controlGroup = formGroup;
         component.model = formModel[0];
 
@@ -64,7 +61,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
+        expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
 
         expect(component.isCheckbox).toBe(false);

@@ -69,7 +69,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
+        expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
 
         expect(component.isCheckbox).toBe(false);

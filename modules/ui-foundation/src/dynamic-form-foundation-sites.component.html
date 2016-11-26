@@ -28,7 +28,7 @@
                                                        [model]="controlModel"
                                                        [nestedTemplate]="nestedTemplate"
                                                        (blur)="onFocusChange($event)"
-                                                       (change)="onChange($event)"
+                                                       (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
@@ -53,7 +53,7 @@
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
                                                    (blur)="onFocusChange($event)"
-                                                   (change)="onChange($event)"
+                                                   (change)="onValueChange($event)"
                                                    (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 
@@ -70,7 +70,7 @@
                    [required]="model.required"
                    [value]="model.value"
                    (blur)="onFocusChange($event)"
-                   (change)="onChange($event)"
+                   (change)="onValueChange($event)"
                    (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span>
 
         </label>
@@ -90,7 +90,7 @@
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
                                                    (blur)="onFocusChange($event)"
-                                                   (change)="onChange($event)"
+                                                   (change)="onValueChange($event)"
                                                    (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 
@@ -123,7 +123,7 @@
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    (blur)="onFocusChange($event)"
-                   (change)="onChange($event)"
+                   (change)="onValueChange($event)"
                    (focus)="onFocusChange($event)"/>
 
             <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
@@ -141,7 +141,7 @@
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
-                  (change)="onChange($event)">
+                  (change)="onValueChange($event)">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -168,7 +168,7 @@
                 [ngClass]="model.cls.element.control"
                 [required]="model.required"
                 (blur)="onFocusChange($event)"
-                (change)="onChange($event)"
+                (change)="onValueChange($event)"
                 (focus)="onFocusChange($event)">
 
             <option *ngFor="let option of model.options"
@@ -196,7 +196,7 @@
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
                   (blur)="onFocusChange($event)"
-                  (change)="onChange($event)"
+                  (change)="onValueChange($event)"
                   (focus)="onFocusChange($event)"></textarea>
 
         <p *ngIf="model.hint" class="help-text" [innerHTML]="model.hint"></p>

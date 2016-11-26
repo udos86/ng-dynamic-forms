@@ -21,7 +21,7 @@
                                        [model]="controlModel"
                                        [nestedTemplate]="customTemplate"
                                        (blur)="onFocusChange($event)"
-                                       (change)="onChange($event)"
+                                       (change)="onValueChange($event)"
                                        (focus)="onFocusChange($event)"></dynamic-form-material-control>
     </fieldset>
 
@@ -39,7 +39,7 @@
                                            [model]="controlModel"
                                            [nestedTemplate]="nestedTemplate"
                                            (blur)="onFocusChange($event)"
-                                           (change)="onChange($event)"
+                                           (change)="onValueChange($event)"
                                            (focus)="onFocusChange($event)"></dynamic-form-material-control>
 
             <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
@@ -60,7 +60,7 @@
                  [name]="model.name"
                  [ngClass]="model.cls.element.control"
                  (blur)="onFocusChange($event)"
-                 (change)="onChange($event)"
+                 (change)="onValueChange($event)"
                  (focus)="onFocusChange($event)"><span [innerHTML]="model.label"></span>
     </md-checkbox>
 
@@ -78,7 +78,7 @@
                                        [model]="controlModel"
                                        [nestedTemplate]="customTemplate"
                                        (blur)="onFocusChange($event)"
-                                       (change)="onChange($event)"
+                                       (change)="onValueChange($event)"
                                        (focus)="onFocusChange($event)"></dynamic-form-material-control>
     </fieldset>
 
@@ -105,7 +105,7 @@
               [tabindex]="model.tabIndex"
               [type]="model.inputType"
               (blur)="onFocusChange($event)"
-              (change)="onChange($event)"
+              (change)="onValueChange($event)"
               (focus)="onFocusChange($event)">
 
         <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
@@ -121,7 +121,7 @@
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     (blur)="onFocusChange($event)"
-                    (change)="onChange($event)"
+                    (change)="onValueChange($event)"
                     (focus)="onFocusChange($event)">
 
         <md-radio-button *ngFor="let option of model.options"
@@ -139,7 +139,7 @@
                      [formControlName]="model.id"
                      [name]="model.name"
                      [ngClass]="model.cls.element.control"
-                     (change)="onChange($event)"><span [innerHTML]="model.label"></span>
+                     (change)="onValueChange($event)"><span [innerHTML]="model.label"></span>
     </md-slide-toggle>
 
 
@@ -159,7 +159,7 @@
               [spellcheck]="model.spellCheck"
               [wrap]="model.wrap"
               (blur)="onFocusChange($event)"
-              (change)="onChange($event)"
+              (change)="onValueChange($event)"
               (focus)="onFocusChange($event)"></md-textarea>
 
     <ng-content></ng-content>

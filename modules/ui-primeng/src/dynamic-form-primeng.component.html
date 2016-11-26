@@ -6,7 +6,7 @@
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
-              (change)="onChange($event)">
+              (change)="onValueChange($event)">
 
         <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -55,7 +55,7 @@
                                               [model]="controlModel"
                                               [nestedTemplate]="customTemplate"
                                               (blur)="onFocusChange($event)"
-                                              (change)="onChange($event)"
+                                              (change)="onValueChange($event)"
                                               (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
             </fieldset>
 
@@ -73,7 +73,7 @@
                                               [model]="controlModel"
                                               [nestedTemplate]="customTemplate"
                                               (blur)="onFocusChange($event)"
-                                              (change)="onChange($event)"
+                                              (change)="onValueChange($event)"
                                               (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
             </fieldset>
 
@@ -91,7 +91,7 @@
                                                   [model]="controlModel"
                                                   [nestedTemplate]="nestedTemplate"
                                                   (blur)="onFocusChange($event)"
-                                                  (change)="onChange($event)"
+                                                  (change)="onValueChange($event)"
                                                   (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
 
                     <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
@@ -125,7 +125,7 @@
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
                    (blur)="onFocusChange($event)"
-                   (change)="onChange($event)"
+                   (change)="onValueChange($event)"
                    (focus)="onFocusChange($event)"/>
 
             <datalist *ngIf="model.list" [id]="model.listId">
@@ -165,7 +165,7 @@
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
                       (blur)="onFocusChange($event)"
-                      (change)="onChange($event)"
+                      (change)="onValueChange($event)"
                       (focus)="onFocusChange($event)"></textarea>
 
         </div>

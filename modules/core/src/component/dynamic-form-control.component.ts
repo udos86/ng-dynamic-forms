@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {MdCheckboxChange, MdSlideToggleChange, MdRadioChange} from "@angular/material";
 import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
+import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH} from "../model/switch/dynamic-switch.model";
@@ -58,7 +58,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
+            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
 
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
@@ -120,7 +120,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model.relation.length > 0 && findActivationRelation(this.model.relation)) {
 
-            this.setControlActivationState();
+            this.updateControlActivation();
 
             findIds(this.model.relation).forEach(controlId => {
 
@@ -132,19 +132,14 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
                 if (control) {
 
-                    this.subscriptions.push(control.valueChanges.subscribe(
-                        value => this.setControlActivationState())
-                    );
-
-                    this.subscriptions.push(control.statusChanges.subscribe(
-                        status => this.setControlActivationState())
-                    );
+                    this.subscriptions.push(control.valueChanges.subscribe(value => this.updateControlActivation()));
+                    this.subscriptions.push(control.statusChanges.subscribe(status => this.updateControlActivation()));
                 }
             });
         }
     }
 
-    setControlActivationState(): void {
+    updateControlActivation(): void {
 
         this.model.disabledUpdates.next(
             toBeDisabled(findActivationRelation(this.model.relation), this.controlGroup)
@@ -163,10 +158,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    onModelDisabledUpdates(value: boolean): void {
-        value ? this.control.disable() : this.control.enable();
-    }
-
     onModelValueUpdates(value: boolean | number | string) {
 
         if (this.control.value !== value) {
@@ -174,7 +165,11 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    onChange($event: Event | MdFormControlChangeEvent | DynamicFormControlEvent): void {
+    onModelDisabledUpdates(value: boolean): void {
+        value ? this.control.disable() : this.control.enable();
+    }
+
+    onValueChange($event: Event | MdFormControlChangeEvent | DynamicFormControlEvent): void {
 
         if ($event instanceof Event) {
 

@@ -1,3 +1,21 @@
+# 1.2.2
+
+**!!! IMPORTANT !!!** `DynamicCheckboxGroupModel` **will probably be deprecated in a future version! 
+Simply switch to** `DynamicFormGroupModel` **instead!!!**
+
+### **Bugfixes** 
+
+* `DynamicCheckboxGroupModel` **internally works identical to** `DynamicFormGroupModel` **now in order to make property bindings work correctly** 
+(closes [#172](https://github.com/udos86/ng2-dynamic-forms/issues/172) and [#189](https://github.com/udos86/ng2-dynamic-forms/issues/189))
+ 
+### **Features** 
+
+* ***!!! IMPORTANT !!!*** `blur, focus, change` events are now emitted for single checkboxe in a `DynamicCheckboxGroupModel` instead of the whole group
+* `@angular/material` change events are now correctly included in `DynamicFormControlEvent`
+* update to `@angular 2.2.3`
+* update to `primeng 1.0.0`
+
+
 # 1.2.1
 
 ### **Bugfixes** 

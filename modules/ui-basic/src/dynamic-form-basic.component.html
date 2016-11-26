@@ -61,7 +61,7 @@
                                     [model]="controlModel"
                                     [nestedTemplate]="customTemplate"
                                     (blur)="onFocusChange($event)"
-                                    (change)="onChange($event)"
+                                    (change)="onValueChange($event)"
                                     (focus)="onFocusChange($event)"></dynamic-form-basic-control>
     </fieldset>
 
@@ -80,7 +80,7 @@
                                     [model]="controlModel"
                                     [nestedTemplate]="customTemplate"
                                     (blur)="onFocusChange($event)"
-                                    (change)="onChange($event)"
+                                    (change)="onValueChange($event)"
                                     (focus)="onFocusChange($event)"></dynamic-form-basic-control>
     </fieldset>
 
@@ -108,7 +108,7 @@
            [spellcheck]="model.spellCheck"
            [type]="model.inputType"
            (blur)="onFocusChange($event)"
-           (change)="onChange($event)"
+           (change)="onValueChange($event)"
            (focus)="onFocusChange($event)"/>
 
     <datalist *ngIf="model.list" [id]="model.listId">
@@ -122,7 +122,7 @@
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
-              (change)="onChange($event)">
+              (change)="onValueChange($event)">
 
         <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -149,7 +149,7 @@
             [ngClass]="model.cls.element.control"
             [required]="model.required"
             (blur)="onFocusChange($event)"
-            (change)="onChange($event)"
+            (change)="onValueChange($event)"
             (focus)="onFocusChange($event)">
 
         <option *ngFor="let option of model.options"
@@ -177,7 +177,7 @@
               [spellcheck]="model.spellCheck"
               [wrap]="model.wrap"
               (blur)="onFocusChange($event)"
-              (change)="onChange($event)"
+              (change)="onValueChange($event)"
               (focus)="onFocusChange($event)"></textarea>
 
 

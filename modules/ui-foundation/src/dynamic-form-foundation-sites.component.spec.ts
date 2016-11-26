@@ -23,10 +23,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [
-                ReactiveFormsModule,
-                DynamicFormsCoreModule.forRoot()
-            ],
+            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot()],
             declarations: [DynamicFormFoundationSitesComponent]
 
         }).compileComponents().then(() => {
@@ -67,7 +64,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
+        expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
 
         expect(component.isCheckbox).toBe(false);

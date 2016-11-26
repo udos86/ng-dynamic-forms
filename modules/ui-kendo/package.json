@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^2.2.1",
-    "@angular/common": "^2.2.1",
-    "@angular/forms": "^2.2.1",
+    "@angular/core": "^2.2.3",
+    "@angular/common": "^2.2.3",
+    "@angular/forms": "^2.2.3",
     "@ng2-dynamic-forms/core": "^1.2.1",
     "@progress/kendo-angular-dropdowns": "^0.16.11",
     "@progress/kendo-angular-inputs": "^0.13.2",

@@ -25,11 +25,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [
-                ReactiveFormsModule,
-                DynamicFormsCoreModule.forRoot(),
-                MaterialModule.forRoot()
-            ],
+            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot(), MaterialModule.forRoot()],
             declarations: [DynamicFormMaterialComponent]
 
         }).compileComponents().then(() => {
@@ -68,7 +64,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
+        expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
 
         expect(component.isCheckbox).toBe(false);
