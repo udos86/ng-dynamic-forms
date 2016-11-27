@@ -5,7 +5,7 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormBasicComponent} from "./dynamic-form-basic.component";
 
 @NgModule({
-    
+
     imports: [
         CommonModule,
         ReactiveFormsModule,

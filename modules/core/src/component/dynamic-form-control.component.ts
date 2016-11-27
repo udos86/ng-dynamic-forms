@@ -42,8 +42,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     abstract readonly type: string;
 
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
 
@@ -207,7 +206,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
             this[$event.type].emit({$event: $event, control: this.control, model: this.model});
 
         } else {
-            this[(<FocusEvent> (<DynamicFormControlEvent> $event).$event).type].emit($event as DynamicFormControlEvent);
+            this[(<FocusEvent> (<DynamicFormControlEvent> $event).$event).type].emit($event);
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Material UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "keywords": [
@@ -32,7 +32,7 @@
     "@angular/common": "^2.2.3",
     "@angular/forms": "^2.2.3",
     "@angular/material": "^2.0.0-alpha.10",
-    "@ng2-dynamic-forms/core": "^1.2.1",
+    "@ng2-dynamic-forms/core": "^1.2.2",
     "hammerjs": "^2.0.8",
     "rxjs": "5.0.0-beta.12"
   }

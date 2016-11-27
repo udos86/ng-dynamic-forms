@@ -8,8 +8,7 @@ export class DynamicIdDirective implements OnInit {
 
     @Input() dynamicId: string | boolean;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer) {
-    }
+    constructor(private elementRef: ElementRef, private renderer: Renderer) {}
 
     ngOnInit() {
 

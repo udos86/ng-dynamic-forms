@@ -38,10 +38,11 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicSwitchModel({
-
-        id: "kendoSwitch",
-        label: "Get it on",
-        value: true
-    }),
+    new DynamicSwitchModel(
+        {
+            id: "kendoSwitch",
+            label: "Get it on",
+            value: true
+        }
+    ),
 ];

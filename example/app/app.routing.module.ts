@@ -2,11 +2,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {BasicExampleComponent} from "./basic/basic-example.component";
 import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
 import {FoundationExampleComponent} from "./foundation/foundation-example.component";
-import {KendoExampleComponent} from "./kendo/kendo-example.component";
+//import {KendoExampleComponent} from "./kendo/kendo-example.component";
 import {MaterialExampleComponent} from "./material/material-example.component";
 import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
+import {NgModule} from "@angular/core";
 
-export const appRoutes: Routes = [
+const APP_ROUTES: Routes = [
     {
         path: "",
         redirectTo: "/example-bootstrap",
@@ -48,7 +49,7 @@ export const appRoutes: Routes = [
             bgColor: "#009688"
         }
     },
-
+    /*
     {
         path: "example-kendo",
         component: KendoExampleComponent,
@@ -58,7 +59,7 @@ export const appRoutes: Routes = [
             bgColor: "#ff5747"
         }
     },
-
+    */
     {
         path: "example-primeng",
         component: PrimeNGExampleComponent,
@@ -70,6 +71,10 @@ export const appRoutes: Routes = [
     }
 ];
 
-export const appRoutingProviders: any[] = [];
+@NgModule({
 
-export const appRouting: any = RouterModule.forRoot(appRoutes);
+    imports: [RouterModule.forRoot(APP_ROUTES)],
+    exports: [RouterModule]
+})
+
+export class AppRoutingModule {}
