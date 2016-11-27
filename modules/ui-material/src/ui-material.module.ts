@@ -6,6 +6,7 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormMaterialComponent} from "./dynamic-form-material.component";
 
 @NgModule({
+
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -20,4 +21,5 @@ import {DynamicFormMaterialComponent} from "./dynamic-form-material.component";
         DynamicFormMaterialComponent
     ]
 })
+
 export class DynamicFormsMaterialUIModule {}

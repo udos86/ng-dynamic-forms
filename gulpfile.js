@@ -81,6 +81,7 @@ gulp.task("doc:modules",
     TASK_DOC_TYPESCRIPT([`${SRC_PATH}/*/src/**/!(*.spec).ts`], {
             externalPattern: `${NPM_PATH}/**/*.*`,
             excludeExternals: true,
+            experimentalDecorators: true,
             ignoreCompilerErrors: true,
             includeDeclarations: true,
             module: "commonjs",

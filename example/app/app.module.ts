@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {LocationStrategy, HashLocationStrategy} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
-import {RouterModule} from '@angular/router';
 
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormsBasicUIModule} from "@ng2-dynamic-forms/ui-basic";
@@ -20,7 +19,7 @@ import {FoundationExampleComponent} from "./foundation/foundation-example.compon
 import {MaterialExampleComponent} from "./material/material-example.component";
 import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 
-import {appRouting, appRoutingProviders} from './app.routing';
+import {AppRoutingModule} from './app.routing.module';
 import {AppComponent} from './app.component';
 
 @NgModule({
@@ -28,8 +27,7 @@ import {AppComponent} from './app.component';
     imports: [
         BrowserModule,
         ReactiveFormsModule,
-        RouterModule,
-        appRouting,
+        AppRoutingModule,
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,
         DynamicFormsBootstrapUIModule,
@@ -49,11 +47,9 @@ import {AppComponent} from './app.component';
         AppComponent
     ],
     providers: [
-        appRoutingProviders,
         {provide: LocationStrategy, useClass: HashLocationStrategy}
     ],
     bootstrap: [AppComponent]
 })
 
-export class AppModule {
-}
+export class AppModule {}

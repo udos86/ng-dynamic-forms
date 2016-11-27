@@ -79,10 +79,9 @@ Promise.all([
 
 }).then(function () {
 
-    return Promise.all(
-        Object.keys(karma.files)
-              .filter(isSpecFile)
-              .map(toImportPromise)
+    return Promise.all(Object.keys(karma.files)
+                             .filter(isSpecFile)
+                             .map(toImportPromise)
     );
 
 }).then(karma.start, karma.error);

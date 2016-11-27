@@ -27,9 +27,9 @@
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
                                                        [nestedTemplate]="nestedTemplate"
-                                                       (blur)="onBlur($event)"
-                                                       (change)="onChange($event)"
-                                                       (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
+                                                       (blur)="onFocusChange($event)"
+                                                       (change)="onValueChange($event)"
+                                                       (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
 
                 <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
                           [ngOutletContext]="groupModel"></template>
@@ -52,9 +52,9 @@
                                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
                                                    [nestedTemplate]="customTemplate"
-                                                   (blur)="onBlur($event)"
-                                                   (change)="onChange($event)"
-                                                   (focus)="onFocus($event)"></dynamic-form-foundation-sites-control>
+                                                   (blur)="onFocusChange($event)"
+                                                   (change)="onValueChange($event)"
+                                                   (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 
 
@@ -69,9 +69,9 @@
                    [ngClass]="model.cls.element.control"
                    [required]="model.required"
                    [value]="model.value"
-                   (blur)="onBlur($event)"
-                   (change)="onChange($event)"
-                   (focus)="onFocus($event)"/><span [innerHTML]="model.label"></span>
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span>
 
         </label>
 
@@ -84,23 +84,14 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <label *ngFor="let item of model.group" [ngClass]="item.cls.element.label">
-
-                <input type="checkbox"
-                       [attr.tabindex]="item.tabIndex"
-                       [checked]="item.checked"
-                       [dynamicId]="bindId && item.id"
-                       [formControlName]="item.id"
-                       [name]="item.name"
-                       [ngClass]="item.cls.element.control"
-                       [required]="item.required"
-                       [value]="item.value"
-                       (blur)="onBlur($event)"
-                       (change)="onChange($event)"
-                       (focus)="onFocus($event)"/><span [innerHTML]="item.label"></span>
-
-            </label>
-
+            <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
+                                                   [controlGroup]="control"
+                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                   [model]="controlModel"
+                                                   [nestedTemplate]="customTemplate"
+                                                   (blur)="onFocusChange($event)"
+                                                   (change)="onValueChange($event)"
+                                                   (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
         </fieldset>
 
 
@@ -131,9 +122,9 @@
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
-                   (blur)="onBlur($event)"
-                   (change)="onChange($event)"
-                   (focus)="onFocus($event)"/>
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/>
 
             <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
 
@@ -150,7 +141,7 @@
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
-                  (change)="onChange($event)">
+                  (change)="onValueChange($event)">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -161,8 +152,8 @@
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
                        [value]="option.value"
-                       (blur)="onBlur($event)"
-                       (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span>
+                       (blur)="onFocusChange($event)"
+                       (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
 
             </label>
 
@@ -176,9 +167,9 @@
                 [name]="model.name"
                 [ngClass]="model.cls.element.control"
                 [required]="model.required"
-                (blur)="onBlur($event)"
-                (change)="onChange($event)"
-                (focus)="onFocus($event)">
+                (blur)="onFocusChange($event)"
+                (change)="onValueChange($event)"
+                (focus)="onFocusChange($event)">
 
             <option *ngFor="let option of model.options"
                     [attr.name]="model.name"
@@ -204,9 +195,9 @@
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
-                  (blur)="onBlur($event)"
-                  (change)="onChange($event)"
-                  (focus)="onFocus($event)"></textarea>
+                  (blur)="onFocusChange($event)"
+                  (change)="onValueChange($event)"
+                  (focus)="onFocusChange($event)"></textarea>
 
         <p *ngIf="model.hint" class="help-text" [innerHTML]="model.hint"></p>
 

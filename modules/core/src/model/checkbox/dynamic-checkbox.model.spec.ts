@@ -12,11 +12,9 @@ describe("DynamicCheckboxModel test suite", () => {
             value: true
         };
 
-    beforeEach(() => {
-        model = new DynamicCheckboxModel(config);
-    });
+    beforeEach(() => model = new DynamicCheckboxModel(config));
 
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.align).toEqual(DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
         expect(model.asyncValidators).toEqual([]);

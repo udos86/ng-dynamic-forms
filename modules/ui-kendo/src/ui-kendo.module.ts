@@ -7,6 +7,7 @@ import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
 import {DynamicFormKendoComponent} from "./dynamic-form-kendo.component";
 
 @NgModule({
+
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -22,4 +23,5 @@ import {DynamicFormKendoComponent} from "./dynamic-form-kendo.component";
         DynamicFormKendoComponent
     ]
 })
+
 export class DynamicFormsKendoUIModule {}

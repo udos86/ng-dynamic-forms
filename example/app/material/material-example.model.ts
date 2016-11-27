@@ -13,7 +13,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
 
         hint: "Just a simple hint text",
         id: "materialInput",
-        label: "Example Input",
+        //label: "Example Input",
         maxLength: 51,
         placeholder: "example input"
     }),
@@ -34,8 +34,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
                         label: "Checkbox 2"
                     }
                 )
-            ],
-            label: "Example Checkbox Group"
+            ]
         }
     ),
 
@@ -43,13 +42,13 @@ export const MATERIAL_EXAMPLE_MODEL = [
 
         id: "materialSwitch",
         label: "Get it on",
-        value: true
+        value: false
     }),
 
     new DynamicRadioGroupModel<string>({
 
         id: "materialRadioGroup",
-        label: "Example Option",
+        //label: "Example Option",
         options: [
             {
                 label: "Option 1",
@@ -86,8 +85,8 @@ export const MATERIAL_EXAMPLE_MODEL = [
     new DynamicTextAreaModel({
 
         id: "foundationTextArea",
-        label: "Example Textarea",
-        rows: 5,
+        //label: "Example Textarea",
+        rows: 1,
         placeholder: "example Textarea",
     }),
 

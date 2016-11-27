@@ -4,6 +4,8 @@ import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from 
 import {serializable} from "../decorator/serializable.decorator";
 import {getValue, isDefined} from "../utils";
 
+export type DynamicFormControlValue = boolean | number | string;
+
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
     asyncValidators?: Array<AsyncValidatorFn>;
@@ -12,7 +14,7 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
     required?: boolean;
     tabIndex?: number;
     validators?: Array<ValidatorFn>;
-    value?: boolean | number | string;
+    value?: DynamicFormControlValue;
 }
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {

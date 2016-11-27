@@ -19,11 +19,11 @@ describe("DynamicIdDirective test suite", () => {
 
     beforeEach(() => {
 
-        fixture = TestBed.configureTestingModule(
-            {
-                declarations: [DynamicIdDirective, TestComponent]
-            }
-        ).createComponent(TestComponent as Type<TestComponent>);
+        fixture = TestBed.configureTestingModule({
+
+            declarations: [DynamicIdDirective, TestComponent]
+
+        }).createComponent(TestComponent as Type<TestComponent>);
 
         fixture.detectChanges();
 

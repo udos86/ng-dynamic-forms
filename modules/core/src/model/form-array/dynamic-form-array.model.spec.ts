@@ -16,11 +16,9 @@ describe("DynamicFormArrayModel test suite", () => {
             validator: Validators.required
         };
 
-    beforeEach(() => {
-        model = new DynamicFormArrayModel(config);
-    });
+    beforeEach(() => model = new DynamicFormArrayModel(config));
 
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.initialCount).toBe(config.initialCount);
         expect(model.size).toBe(model.initialCount);
@@ -39,7 +37,7 @@ describe("DynamicFormArrayModel test suite", () => {
         }).toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
     });
 
-    it("tests if get function works correctly", () => {
+    it("should get the correct group model", () => {
 
         expect(model.get(0) instanceof DynamicFormArrayGroupModel).toBe(true);
         expect(model.get(1) instanceof DynamicFormArrayGroupModel).toBe(true);

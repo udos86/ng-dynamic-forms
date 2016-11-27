@@ -3,6 +3,7 @@ import {
     DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicSelectModel,
+    DynamicSwitchModel,
     DynamicRadioGroupModel,
     DynamicTextAreaModel,
     DynamicFormArrayModel,
@@ -34,6 +35,14 @@ export const KENDO_EXAMPLE_MODEL = [
                 }
             ],
             value: "option-3"
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "kendoSwitch",
+            label: "Get it on",
+            value: true
         }
     ),
 ];

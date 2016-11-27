@@ -24,11 +24,9 @@ describe("DynamicCheckboxGroupModel test suite", () => {
             ]
         };
 
-    beforeEach(() => {
-        model = new DynamicCheckboxGroupModel(config);
-    });
+    beforeEach(() => model = new DynamicCheckboxGroupModel(config));
 
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.id).toEqual(config.id);
         expect(model.group.length).toBe(config.group.length);
@@ -36,7 +34,7 @@ describe("DynamicCheckboxGroupModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
     });
 
-    it("tests if checkAll function works correctly", () => {
+    it("should check all checkboxes correctly", () => {
 
         model.checkAll();
 
@@ -44,7 +42,7 @@ describe("DynamicCheckboxGroupModel test suite", () => {
         expect(model.group[1].value).toEqual(true);
     });
 
-    it("tests if uncheckAll function works correctly", () => {
+    it("should uncheck all checkboxes correctly", () => {
 
         model.uncheckAll();
 

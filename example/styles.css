@@ -110,5 +110,4 @@ fieldset:only-of-type .btn-danger, fieldset:only-of-type .button.alert {
 
 dynamic-form-material-example fieldset {
     border: none;
-    display: inline-block;
 }

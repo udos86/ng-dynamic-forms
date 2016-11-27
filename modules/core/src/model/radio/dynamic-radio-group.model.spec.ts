@@ -17,11 +17,9 @@ describe("DynamicRadioModel test suite", () => {
             ]
         };
 
-    beforeEach(() => {
-        model = new DynamicRadioGroupModel(config);
-    });
+    beforeEach(() => model = new DynamicRadioGroupModel(config));
 
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.disabled).toBe(false);
         expect(model.errorMessages).toBeNull();
@@ -35,11 +33,11 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.value).toBeNull();
     });
 
-    it("should select correct option", () => {
+    it("should select the correct option", () => {
 
         model.select(1);
 
-        expect(model.value).toEqual(model.options[1].value);
+        expect(model.value).toEqual(model.get(1).value);
     });
 
     it("should insert another option", () => {
@@ -53,7 +51,7 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.get(index).value).toEqual(option.value);
     });
 
-    it("should remove an option", () => {
+    it("should remove a given option correctly", () => {
 
         model.remove(1);
 

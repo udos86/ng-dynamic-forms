@@ -18,8 +18,7 @@ import {deserializeValidator, deserializeValidators} from "../utils";
 @Injectable()
 export class DynamicFormService {
 
-    constructor(private formBuilder: FormBuilder) {
-    }
+    constructor(private formBuilder: FormBuilder) {}
 
     createFormArray(model: DynamicFormArrayModel): FormArray {
 

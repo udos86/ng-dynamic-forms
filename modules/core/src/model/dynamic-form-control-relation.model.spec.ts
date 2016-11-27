@@ -53,9 +53,7 @@ describe("DynamicFormControlRelationModel test suite", () => {
         });
     }));
 
-    beforeEach(() => {
-        model = new DynamicTextAreaModel(config);
-    });
+    beforeEach(() => model = new DynamicTextAreaModel(config));
 
     it("tests if findDisableRelation function works correctly", () => {
 

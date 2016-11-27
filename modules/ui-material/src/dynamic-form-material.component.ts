@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, ViewChild, ContentChild, TemplateRef} from "@angular/core";
 import {FormGroup} from "@angular/forms";
-import {MdCheckbox, MdInput, MdRadioGroup} from "@angular/material";
+import {MdCheckbox, MdInput, MdRadioGroup/*, MdSlideToggle*/} from "@angular/material";
 import {DynamicFormControlComponent, DynamicFormControlModel, DynamicFormControlEvent} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
@@ -28,6 +28,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
     @ViewChild(MdInput) mdInput: MdInput;
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
+    //@ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle;
 
     readonly type: string = DYNAMIC_FORM_UI_MATERIAL;
 
@@ -36,8 +37,8 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     }
 
     /*
-     get characterCount() {
-     return this.mdInput ? this.mdInput.characterCount : 0;
-     }
-     */
+    get characterCount() {
+        return this.mdInput ? this.mdInput.characterCount : 0;
+    }
+    */
 }

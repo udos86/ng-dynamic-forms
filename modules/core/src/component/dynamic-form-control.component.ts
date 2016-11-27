@@ -1,10 +1,10 @@
 import {EventEmitter, TemplateRef, OnInit, OnDestroy} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
+import {MdCheckboxChange, MdSlideToggleChange, MdRadioChange} from "@angular/material";
 import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
+import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP} from "../model/checkbox/dynamic-checkbox-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH} from "../model/switch/dynamic-switch.model";
 import {
@@ -15,9 +15,11 @@ import {
 import {findIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
 import {isDefined} from "../utils";
 
+export type MdFormControlChangeEvent = MdCheckboxChange | MdRadioChange | MdSlideToggleChange;
+
 export interface DynamicFormControlEvent {
 
-    $event: Event | FocusEvent;
+    $event: Event | FocusEvent | MdFormControlChangeEvent;
     control: FormControl;
     model: DynamicFormControlModel;
 }
@@ -40,8 +42,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     abstract readonly type: string;
 
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
 
@@ -56,7 +57,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
+            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
 
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
@@ -98,10 +99,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
-    get isCheckboxGroup(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
-    }
-
     get isRadioGroup(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
@@ -122,7 +119,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model.relation.length > 0 && findActivationRelation(this.model.relation)) {
 
-            this.setControlActivationState();
+            this.updateControlActivation();
 
             findIds(this.model.relation).forEach(controlId => {
 
@@ -134,19 +131,14 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
                 if (control) {
 
-                    this.subscriptions.push(control.valueChanges.subscribe(
-                        value => this.setControlActivationState())
-                    );
-
-                    this.subscriptions.push(control.statusChanges.subscribe(
-                        status => this.setControlActivationState())
-                    );
+                    this.subscriptions.push(control.valueChanges.subscribe(value => this.updateControlActivation()));
+                    this.subscriptions.push(control.statusChanges.subscribe(status => this.updateControlActivation()));
                 }
             });
         }
     }
 
-    setControlActivationState(): void {
+    updateControlActivation(): void {
 
         this.model.disabledUpdates.next(
             toBeDisabled(findActivationRelation(this.model.relation), this.controlGroup)
@@ -163,13 +155,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
                 model.valueUpdates.next(value);
             }
         }
-        //@exclude
-        //console.log(`valueChanges on ${this.model.id}: `, value, typeof value, this.control.valid, this.model);
-        //@endexclude
-    }
-
-    onModelDisabledUpdates(value: boolean): void {
-        value ? this.control.disable() : this.control.enable();
     }
 
     onModelValueUpdates(value: boolean | number | string) {
@@ -179,31 +164,15 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    onBlur($event: FocusEvent | DynamicFormControlEvent): void {
-
-        this.hasFocus = false;
-
-        if ($event instanceof FocusEvent) {
-
-            $event.stopImmediatePropagation();
-
-            this.blur.emit({$event: $event, control: this.control, model: this.model});
-
-        } else {
-            this.blur.emit($event as DynamicFormControlEvent);
-        }
-        //@exclude
-        console.log(`Blur event on ${this.model.id}: `, $event);
-        //@endexclude
+    onModelDisabledUpdates(value: boolean): void {
+        value ? this.control.disable() : this.control.enable();
     }
 
-    onChange($event: Event | DynamicFormControlEvent): void {
+    onValueChange($event: Event | MdFormControlChangeEvent | DynamicFormControlEvent): void {
 
         if ($event instanceof Event) {
 
             $event.stopImmediatePropagation();
-
-            this.change.emit({$event: $event, control: this.control, model: this.model});
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
@@ -213,29 +182,31 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
                     model.files = $event.srcElement["files"];
                 }
             }
-        } else {
+
+            this.change.emit({$event: $event as Event, control: this.control, model: this.model});
+
+        } else if ((<DynamicFormControlEvent> $event).$event instanceof Event) {
+
             this.change.emit($event as DynamicFormControlEvent);
+
+        } else {
+
+            this.change.emit({$event: $event as MdFormControlChangeEvent, control: this.control, model: this.model});
         }
-        //@exclude
-        console.log(`Change event on ${this.model.id}: `, $event);
-        //@endexclude
     }
 
-    onFocus($event: FocusEvent | DynamicFormControlEvent): void {
-
-        this.hasFocus = true;
+    onFocusChange($event: FocusEvent | DynamicFormControlEvent): void {
 
         if ($event instanceof FocusEvent) {
 
             $event.stopImmediatePropagation();
 
-            this.focus.emit({$event: $event, control: this.control, model: this.model});
+            this.hasFocus = $event.type === "focus";
+
+            this[$event.type].emit({$event: $event, control: this.control, model: this.model});
 
         } else {
-            this.focus.emit($event as DynamicFormControlEvent);
+            this[(<FocusEvent> (<DynamicFormControlEvent> $event).$event).type].emit($event);
         }
-        //@exclude
-        console.log(`Focus event on ${this.model.id}: `, $event);
-        //@endexclude
     }
 }

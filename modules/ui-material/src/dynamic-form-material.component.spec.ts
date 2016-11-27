@@ -6,13 +6,17 @@ import {
     DynamicFormsCoreModule,
     DynamicFormService,
     DynamicInputModel,
+    DynamicSwitchModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
 import {DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL} from "./dynamic-form-material.component";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
-    let formModel = [new DynamicInputModel({id: "test"})],
+    let formModel = [
+            new DynamicInputModel({id: "testInput"}),
+            new DynamicSwitchModel({id: "testSwitch"})
+        ],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormMaterialComponent>,
         component: DynamicFormMaterialComponent;
@@ -21,11 +25,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [
-                ReactiveFormsModule,
-                DynamicFormsCoreModule.forRoot(),
-                MaterialModule.forRoot()
-            ],
+            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot(), MaterialModule.forRoot()],
             declarations: [DynamicFormMaterialComponent]
 
         }).compileComponents().then(() => {
@@ -47,7 +47,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
     }));
 
 
-    it("tests if component initializes correctly", () => {
+    it("should initialize correctly", () => {
 
         expect(component.type).toEqual(DYNAMIC_FORM_UI_MATERIAL);
 
@@ -64,15 +64,21 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onBlur).toBeDefined();
-        expect(component.onChange).toBeDefined();
-        expect(component.onFocus).toBeDefined();
+        expect(component.onValueChange).toBeDefined();
+        expect(component.onFocusChange).toBeDefined();
 
         expect(component.isCheckbox).toBe(false);
-        expect(component.isCheckboxGroup).toBe(false);
         expect(component.isRadioGroup).toBe(false);
         expect(component.isSwitch).toBe(false);
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
+    });
+
+    it("should initialize view childs correctly", () => {
+
+        expect(component.mdCheckbox).toBeUndefined();
+        expect(component.mdInput).toBeDefined();
+        expect(component.mdRadioGroup).toBeUndefined();
+        //expect(component.mdSlideToggle).toBeDefined();
     });
 });

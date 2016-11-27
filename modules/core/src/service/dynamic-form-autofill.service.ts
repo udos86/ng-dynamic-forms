@@ -107,8 +107,7 @@ export const AUTOFILL_FIELDS_CONTACT = [
 
 export class DynamicFormAutoFillService {
 
-    constructor() {
-    }
+    constructor() {}
 
     isAddressToken(token: string): boolean {
         return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;

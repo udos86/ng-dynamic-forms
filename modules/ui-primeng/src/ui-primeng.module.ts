@@ -11,6 +11,7 @@ import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
 import {SpinnerModule} from "primeng/components/spinner/spinner";
 
 @NgModule({
+
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -30,4 +31,5 @@ import {SpinnerModule} from "primeng/components/spinner/spinner";
         DynamicFormPrimeNGComponent
     ]
 })
+
 export class DynamicFormsPrimeNGUIModule {}

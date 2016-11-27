@@ -7,11 +7,9 @@ describe("DynamicSwitchModel test suite", () => {
             id: "default"
         };
 
-    beforeEach(() => {
-        model = new DynamicSwitchModel(config);
-    });
+    beforeEach(() => model = new DynamicSwitchModel(config));
 
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);

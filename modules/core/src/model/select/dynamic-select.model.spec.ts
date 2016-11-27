@@ -17,12 +17,9 @@ describe("DynamicSelectModel test suite", () => {
             ]
         };
 
+    beforeEach(() => model = new DynamicSelectModel(config));
 
-    beforeEach(() => {
-        model = new DynamicSelectModel(config);
-    });
-
-    it("tests if default model is correctly initialized", () => {
+    it("should initialize correctly", () => {
 
         expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);
@@ -35,11 +32,11 @@ describe("DynamicSelectModel test suite", () => {
 
     it("should get and set text property correctly", () => {
 
-        expect(model.options[0].text).toEqual("One");
+        expect(model.get(0).text).toEqual("One");
 
-        model.options[0].text = "Eins";
+        model.get(0).text = "Eins";
 
-        expect(model.options[0].text).toEqual("Eins");
+        expect(model.get(0).text).toEqual("Eins");
     });
 
     it("should add another option", () => {
@@ -63,7 +60,7 @@ describe("DynamicSelectModel test suite", () => {
         expect(model.get(index).value).toEqual(option.value);
     });
 
-    it("should remove an option", () => {
+    it("should remove a given option", () => {
 
         model.remove(1);
 
@@ -79,7 +76,8 @@ describe("DynamicSelectModel test suite", () => {
     it("should select correct option", () => {
 
         model.select(1);
-        expect(model.value).toEqual(model.options[1].value);
+
+        expect(model.value).toEqual(model.get(1).value);
     });
 
     it("should serialize correctly", () => {
