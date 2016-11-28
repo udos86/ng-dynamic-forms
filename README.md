@@ -246,8 +246,8 @@ your component** `template`:
 <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> 
 ```
 
-Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
-full support for all major form controls cannot be provided at the moment. See the following compatibility table:
+Due to technical restrictions or external dependencies still being in development full support for all form controls 
+cannot be provided in every UI library. See the following compatibility table:
 
 |               | Checkbox | Checkbox Group | Input | Radio Group | Select | Switch | Textarea |
 |---------------|:--------:|:--------------:|:-----:|:-----------:|:------:|:------:|:--------:|
