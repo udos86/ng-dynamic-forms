@@ -247,14 +247,14 @@ your component** `template`:
 ```
 
 Due to technical restrictions or external dependencies still being in development full support for all form controls 
-cannot be provided in every UI library. See the following compatibility table:
+cannot be provided in every UI library. **See the following compatibility table**:
 
 |               | Checkbox | Checkbox Group | Input | Radio Group | Select | Switch | Textarea |
 |---------------|:--------:|:--------------:|:-----:|:-----------:|:------:|:------:|:--------:|
 | ui-basic      |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✗   |     ✓    |
 | ui-bootstrap  |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✗   |     ✓    |
 | ui-foundation |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✓   |     ✓    |
-| ui-material   |     ✓    |        ✓       |   ✓   |      ✓      |    ✗   |    ✓   |     ✗    |
+| ui-material   |     ✓    |        ✓       |   ✓   |      ✓      |    ✗   |    ✓   |     ✓    |
 | ui-primeng    |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✓   |     ✓    |
 
 
