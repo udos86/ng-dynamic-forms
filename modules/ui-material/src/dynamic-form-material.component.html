@@ -59,8 +59,7 @@
                  [ngClass]="model.cls.element.control"
                  (blur)="onFocusChange($event)"
                  (change)="onValueChange($event)"
-                 (focus)="onFocusChange($event)"><span [innerHTML]="model.label"></span>
-    </md-checkbox>
+                 (focus)="onFocusChange($event)"><span [innerHTML]="model.label"></span></md-checkbox>
 
 
     <md-input *ngIf="model.type === 'INPUT'"
@@ -124,23 +123,23 @@
 
 
     <md-textarea *ngIf="model.type === 'TEXTAREA'" class="form-control"
-              [attr.tabindex]="model.tabIndex"
-              [dynamicId]="bindId && model.id"
-              [cols]="model.cols"
-              [formControlName]="model.id"
-              [maxlength]="model.maxLength"
-              [minlength]="model.minLength"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control"
-              [placeholder]="model.placeholder"
-              [readonly]="model.readOnly"
-              [required]="model.required"
-              [rows]="model.rows"
-              [spellcheck]="model.spellCheck"
-              [wrap]="model.wrap"
-              (blur)="onFocusChange($event)"
-              (change)="onValueChange($event)"
-              (focus)="onFocusChange($event)"></md-textarea>
+                 [attr.tabindex]="model.tabIndex"
+                 [dynamicId]="bindId && model.id"
+                 [cols]="model.cols"
+                 [formControlName]="model.id"
+                 [maxlength]="model.maxLength"
+                 [minlength]="model.minLength"
+                 [name]="model.name"
+                 [ngClass]="model.cls.element.control"
+                 [placeholder]="model.placeholder"
+                 [readonly]="model.readOnly"
+                 [required]="model.required"
+                 [rows]="model.rows"
+                 [spellcheck]="model.spellCheck"
+                 [wrap]="model.wrap"
+                 (blur)="onFocusChange($event)"
+                 (change)="onValueChange($event)"
+                 (focus)="onFocusChange($event)"></md-textarea>
 
     <ng-content></ng-content>
 

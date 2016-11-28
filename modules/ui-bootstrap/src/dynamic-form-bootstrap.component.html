@@ -26,10 +26,7 @@
                        [value]="model.value"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span>
-
-            </label>
-
+                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span></label>
         </div>
 
     </div>
@@ -140,9 +137,7 @@
                            [ngClass]="model.cls.element.control"
                            [value]="option.value"
                            (blur)="onFocusChange($event)"
-                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
-
-                </label>
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
             </div>
 
@@ -162,8 +157,7 @@
 
             <option *ngFor="let option of model.options"
                     [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.label}}
-            </option>
+                    [ngValue]="option.value">{{option.label}}</option>
 
         </select>
 

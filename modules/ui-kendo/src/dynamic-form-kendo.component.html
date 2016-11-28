@@ -14,8 +14,8 @@
     <kendo-switch *ngIf="model.type === 'SWITCH'"
                   [checked]="model.checked"
                   [formControlName]="model.id"
-                  [offLabel]="''"
-                  [onLabel]="''"></kendo-switch>
+                  [offLabel]="model.offLabel"
+                  [onLabel]="model.onLabel"></kendo-switch>
 
     <ng-content></ng-content>
 

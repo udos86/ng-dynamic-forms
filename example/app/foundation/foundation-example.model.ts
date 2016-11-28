@@ -1,11 +1,12 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
-    DynamicInputModel,
-    DynamicSelectModel,
-    DynamicRadioGroupModel,
-    DynamicTextAreaModel,
     DynamicFormArrayModel
+    DynamicInputModel,
+    DynamicRadioGroupModel,
+    DynamicSelectModel,
+    DynamicSwitchModel
+    DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 import {Validators} from "@angular/forms";
 
@@ -135,6 +136,27 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
+                label: "text-right font-bold"
+            },
+            grid: {
+                control: "small-9 columns",
+                label: "small-3 columns"
+            }
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "foundationSwitch",
+            label: "Example Switch",
+            offLabel: "Off",
+            onLabel: "On",
+            value: false
+        },
+        {
+            element: {
+                container: "row",
+                control: "small",
                 label: "text-right font-bold"
             },
             grid: {

@@ -113,9 +113,7 @@
                    [ngClass]="model.cls.element.control"
                    [value]="option.value"
                    (blur)="onFocusChange($event)"
-                   (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
-
-        </label>
+                   (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
     </fieldset>
 
@@ -134,8 +132,7 @@
         <option *ngFor="let option of model.options"
                 [attr.name]="model.name"
                 [disabled]="!!option.disabled"
-                [ngValue]="option.value">{{option.label}}
-        </option>
+                [ngValue]="option.value">{{option.label}}</option>
 
     </select>
 

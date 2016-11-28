@@ -69,9 +69,7 @@
                    [value]="model.value"
                    (blur)="onFocusChange($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span>
-
-        </label>
+                   (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span></label>
 
 
         <div *ngIf="model.type === 'INPUT'" class="input-group">
@@ -132,9 +130,7 @@
                        [ngClass]="model.cls.element.control"
                        [value]="option.value"
                        (blur)="onFocusChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
-
-            </label>
+                       (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
         </fieldset>
 
@@ -152,10 +148,33 @@
 
             <option *ngFor="let option of model.options"
                     [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.label}}
-            </option>
+                    [ngValue]="option.value">{{option.label}}</option>
 
         </select>
+
+
+        <div *ngIf="model.type === 'SWITCH'" class="switch" [ngClass]="model.cls.element.control">
+
+            <input type="checkbox" class="switch-input"
+                   [attr.tabindex]="model.tabIndex"
+                   [checked]="model.checked"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [name]="model.name"
+                   [required]="model.required"
+                   [value]="model.value"
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/>
+
+            <label class="switch-paddle" [attr.for]="model.id">
+
+                <span class="switch-active" aria-hidden="true">{{model.onLabel}}</span>
+                <span class="switch-inactive" aria-hidden="true">{{model.offLabel}}</span>
+
+            </label>
+
+        </div>
 
 
         <textarea *ngIf="model.type === 'TEXTAREA'"

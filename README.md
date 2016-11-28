@@ -249,13 +249,13 @@ your component** `template`:
 Due to Angular 2 Material still being in [alpha](https://github.com/angular/material2/blob/master/CHANGELOG.md)
 full support for all major form controls cannot be provided at the moment. See the following compatibility table:
 
-|               	| Checkbox 	| Checkbox Group 	| Input 	| Radio Group 	| Select 	| Textarea 	| Switch 	|
-|---------------	|:--------:	|:--------------:	|:-----:	|:-----------:	|:------:	|:--------:	|:------:	|
-| ui-basic      	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
-| ui-bootstrap  	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
-| ui-foundation 	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
-| ui-material   	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✗   	|     ✓    	|    ✓   	|
-| ui-primeng    	|     ✓    	|        ✓       	|   ✓   	|      ✓      	|    ✓   	|     ✓    	|    ✗   	|
+|               | Checkbox | Checkbox Group | Input | Radio Group | Select | Switch | Textarea |
+|---------------|:--------:|:--------------:|:-----:|:-----------:|:------:|:------:|:--------:|
+| ui-basic      |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✗   |     ✓    |
+| ui-bootstrap  |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✗   |     ✓    |
+| ui-foundation |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✓   |     ✓    |
+| ui-material   |     ✓    |        ✓       |   ✓   |      ✓      |    ✗   |    ✓   |     ✗    |
+| ui-primeng    |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✓   |     ✓    |
 
 
 ## Model Bindings and Control References

@@ -64,6 +64,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
+            "primeng/components/inputswitch/inputswitch": "primeng/components/inputswitch/inputswitch",
             "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
             "primeng/components/inputtextarea/inputtextarea": "primeng/components/inputtextarea/inputtextarea",
             "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",

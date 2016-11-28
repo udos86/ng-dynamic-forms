@@ -2,7 +2,10 @@
 
 ### **Features** 
 
-* `@angular/material` change events are now correctly included in `DynamicFormControlEvent`
+* `ui-foundation` and `ui-primeng` now support `DynamicSwitchModel`
+* `DynamicSwitchModel` now has `offLabel` and `onLabel` properties
+* `DynamicFormControlRelationModel` refactored and `DynamicFormRelationService` introduced 
+* template files optimized
 * update to tslint `4.0.0`
 
 # 1.2.2

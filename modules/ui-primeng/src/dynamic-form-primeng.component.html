@@ -129,6 +129,13 @@
                         [options]="model.options"></p-dropdown>
 
 
+            <p-inputSwitch *ngIf="model.type === 'SWITCH'"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [onLabel]="model.onLabel"
+                           [offLabel]="model.offLabel"></p-inputSwitch>
+
+
             <textarea *ngIf="model.type === 'TEXTAREA'" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
