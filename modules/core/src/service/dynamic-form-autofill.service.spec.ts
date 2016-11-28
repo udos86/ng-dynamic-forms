@@ -12,7 +12,7 @@ describe("DynamicFormAutoFillService test suite", () => {
         });
     });
 
-    beforeEach(inject([DynamicFormAutoFillService], dynamicAutoFillService => service = dynamicAutoFillService));
+    beforeEach(inject([DynamicFormAutoFillService], autoFillService => service = autoFillService));
 
     it("should validate autofill expressions correctly", () => {
 

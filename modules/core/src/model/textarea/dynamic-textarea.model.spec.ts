@@ -32,9 +32,8 @@ describe("DynamicTextAreaModel test suite", () => {
 
     it("should throw when no model id is specified", () => {
 
-        expect(function () {
-            new DynamicTextAreaModel({});
-        }).toThrow(new Error("string id must be specified for DynamicFormControlModel"));
+        expect(() => new DynamicTextAreaModel({}))
+            .toThrow(new Error("string id must be specified for DynamicFormControlModel"));
     });
 
     it("should set disabled property correctly", () => {

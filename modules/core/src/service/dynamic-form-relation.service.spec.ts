@@ -10,33 +10,74 @@ describe("DynamicFormRelationService test suite", () => {
 
     let service: DynamicFormRelationService,
         controlGroup: FormGroup,
-        model: DynamicTextAreaModel,
-        config = {
-
-            id: "testTextArea",
-            relation: [
+        model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"}),
+        rel1 = {
+            action: "DISABLE",
+            connective: "OR",
+            when: [
                 {
-                    action: "DISABLE",
-                    when: [
-                        {
-                            id: "testSelect",
-                            value: "option-2"
-                        }
-                    ]
+                    id: "testSelect",
+                    value: "option-2"
                 },
                 {
-                    action: "ENABLE",
-                    connective: "AND",
-                    when: [
-                        {
-                            id: "testSelect",
-                            value: "option-3"
-                        },
-                        {
-                            id: "testRadioGroup",
-                            value: "option-2",
-                        }
-                    ]
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel2 = {
+            action: "ENABLE",
+            connective: "AND",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-3"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-2",
+                }
+            ]
+        },
+        rel3 = {
+            action: "DISABLE",
+            connective: "AND",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel4 = {
+            action: "ENABLE",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-1"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-2",
+                }
+            ]
+        },
+        rel5 = {
+            action: "DISABLE",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-1"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
                 }
             ]
         };
@@ -51,7 +92,6 @@ describe("DynamicFormRelationService test suite", () => {
 
     beforeEach(inject([DynamicFormRelationService, DynamicFormService], (relationService, formService) => {
 
-        model = new DynamicTextAreaModel(config);
         service = relationService;
         controlGroup = formService.createFormGroup([
 
@@ -73,20 +113,56 @@ describe("DynamicFormRelationService test suite", () => {
         ]);
     }));
 
-    it("tests if findActivationRelation function works correctly", () => {
+    it("should find an activation relation correctly", () => {
 
-        expect(service.findActivationRelation(model.relation)).toBeDefined();
-        expect(service.findActivationRelation(model.relation)).toBe(config.relation[0]);
+        model.relation = [rel1];
+        expect(service.findActivationRelation(model.relation)).toBe(rel1);
+
+        model.relation = [rel2];
+        expect(service.findActivationRelation(model.relation)).toBe(rel2);
     });
 
-    it("tests if findIds function works correctly", () => {
+    it("should get all related form controls correctly", () => {
 
-        expect(service.getRelatedControls(model, controlGroup).length).toBe(2);
+        model.relation = [rel2];
+
+        expect(service.getRelatedFormControls(model, controlGroup).length).toBe(2);
     });
 
-    it("tests if toBeDisabled function works correctly", () => {
+    it("should throw when model depends on itself", () => {
 
-        expect(service.isControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
-        expect(service.isControlToBeDisabled(model.relation[1], controlGroup)).toBe(true);
+        model.relation = [{
+            action: "DISABLE",
+            when: [
+                {
+                    id: "testTextArea",
+                    value: "test"
+                }
+            ]
+        }];
+
+        expect(() => service.getRelatedFormControls(model, controlGroup))
+            .toThrow(new Error(`FormControl ${model.id} cannot depend on itself`));
+    });
+
+    it("should check if form control is to be disabled correctly", () => {
+
+        model.relation = [rel1];
+        expect(service.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel2];
+        expect(service.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
+
+        model.relation = [rel3];
+        expect(service.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel4];
+        expect(service.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel5];
+        expect(service.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
+
+        model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
+        expect(service.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
     });
 });

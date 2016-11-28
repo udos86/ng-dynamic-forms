@@ -3,25 +3,17 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "directive-selector-name": [
+    "directive-selector": [
       true,
+      "attribute",
+      "",
       "camelCase"
     ],
-    "component-selector-name": [
+    "component-selector": [
       true,
+      "element",
+      "dynamic-form",
       "kebab-case"
-    ],
-    "directive-selector-type": [
-      true,
-      "attribute"
-    ],
-    "component-selector-type": [
-      true,
-      "element"
-    ],
-    "component-selector-prefix": [
-      true,
-      "dynamic-form"
     ],
     "quotemark": [
       true,

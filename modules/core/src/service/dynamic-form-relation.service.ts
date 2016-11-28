@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {FormGroup, FormControl} from "@angular/forms";
+import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {
     DynamicFormControlRelation,
     DynamicFormControlRelationGroup,
@@ -8,7 +9,6 @@ import {
     DYNAMIC_FORM_CONTROL_CONNECTIVE_AND,
     DYNAMIC_FORM_CONTROL_CONNECTIVE_OR
 } from "../model/dynamic-form-control-relation.model";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 
 @Injectable()
 export class DynamicFormRelationService {
@@ -19,7 +19,7 @@ export class DynamicFormRelationService {
         return relGroups.find(rel => rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE);
     }
 
-    getRelatedControls(model: DynamicFormControlModel, controlGroup: FormGroup): Array<FormControl> {
+    getRelatedFormControls(model: DynamicFormControlModel, controlGroup: FormGroup): Array<FormControl> {
 
         let controls: Array<FormControl> = [];
 
@@ -39,7 +39,7 @@ export class DynamicFormRelationService {
         return controls;
     }
 
-    isControlToBeDisabled(relGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
+    isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
 
         return relGroup.when.reduce((toBeDisabled: boolean, rel: DynamicFormControlRelation, index: number) => {
 

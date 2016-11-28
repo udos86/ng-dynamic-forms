@@ -126,7 +126,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
             this.updateModelDisabled(relActivation);
 
-            this.relationService.getRelatedControls(this.model, this.controlGroup).forEach(control => {
+            this.relationService.getRelatedFormControls(this.model, this.controlGroup).forEach(control => {
 
                 this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
@@ -136,7 +136,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(this.relationService.isControlToBeDisabled(relation, this.controlGroup));
+        this.model.disabledUpdates.next(this.relationService.isFormControlToBeDisabled(relation, this.controlGroup));
     }
 
     onControlValueChanges(value: boolean | number | string): void {
