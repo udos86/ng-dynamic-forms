@@ -4,6 +4,7 @@ import {MdCheckboxChange, MdSlideToggleChange, MdRadioChange} from "@angular/mat
 import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
+import {DynamicFormControlRelationGroup} from "../model/dynamic-form-control-relation.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH} from "../model/switch/dynamic-switch.model";
@@ -12,7 +13,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import {findIds, findActivationRelation, toBeDisabled} from "../model/dynamic-form-control-relation.model";
+import {DynamicFormRelationService} from "../service/dynamic-form-relation.service";
 import {isDefined} from "../utils";
 
 export type MdFormControlChangeEvent = MdCheckboxChange | MdRadioChange | MdSlideToggleChange;
@@ -42,7 +43,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     abstract readonly type: string;
 
-    constructor() {}
+    constructor(private relationService: DynamicFormRelationService) {}
 
     ngOnInit() {
 
@@ -62,7 +63,9 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
 
-        this.registerControlRelations();
+        if (this.model.relation.length > 0) {
+            this.setControlRelations();
+        }
     }
 
     ngOnDestroy() {
@@ -115,34 +118,25 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         return this.control.touched && this.control.invalid;
     }
 
-    registerControlRelations(): void {
+    setControlRelations(): void {
 
-        if (this.model.relation.length > 0 && findActivationRelation(this.model.relation)) {
+        let relActivation = this.relationService.findActivationRelation(this.model.relation);
 
-            this.updateControlActivation();
+        if (relActivation) {
 
-            findIds(this.model.relation).forEach(controlId => {
+            this.updateModelDisabled(relActivation);
 
-                if (this.model.id === controlId) {
-                    throw new Error(`FormControl ${this.model.id} cannot depend on itself`);
-                }
+            this.relationService.getRelatedControls(this.model, this.controlGroup).forEach(control => {
 
-                let control = <FormControl> this.controlGroup.get(controlId);
-
-                if (control) {
-
-                    this.subscriptions.push(control.valueChanges.subscribe(value => this.updateControlActivation()));
-                    this.subscriptions.push(control.statusChanges.subscribe(status => this.updateControlActivation()));
-                }
+                this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
+                this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
             });
         }
     }
 
-    updateControlActivation(): void {
+    updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(
-            toBeDisabled(findActivationRelation(this.model.relation), this.controlGroup)
-        );
+        this.model.disabledUpdates.next(this.relationService.isControlToBeDisabled(relation, this.controlGroup));
     }
 
     onControlValueChanges(value: boolean | number | string): void {

@@ -1,7 +1,7 @@
 import {TestBed, inject} from "@angular/core/testing";
 import {DynamicFormAutoFillService} from "./dynamic-form-autofill.service";
 
-describe("DynamicFillAutoFillService test suite", () => {
+describe("DynamicFormAutoFillService test suite", () => {
 
     let service;
 
