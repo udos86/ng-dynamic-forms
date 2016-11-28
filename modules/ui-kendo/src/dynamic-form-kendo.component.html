@@ -1,19 +1,17 @@
-<div [formGroup]="controlGroup"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
-     [ngSwitch]="model.type">
+<div [formGroup]="controlGroup" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-    <kendo-dropdownlist *ngSwitchCase="'SELECT'"
+    <kendo-dropdownlist *ngIf="model.type === 'SELECT'"
                         [data]="model.options"
                         [formControlName]="model.id"
                         [textField]="'label'"
                         [valueField]="'value'"
                         [valuePrimitive]="true"></kendo-dropdownlist>
 
-    <kendo-switch *ngSwitchCase="'SWITCH'"
+    <kendo-switch *ngIf="model.type === 'SWITCH'"
                   [checked]="model.checked"
                   [formControlName]="model.id"
                   [offLabel]="''"

@@ -1,8 +1,6 @@
-<div [formGroup]="controlGroup"
-     [ngClass]="model.cls.element.container"
-     [ngSwitch]="model.type">
+<div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <input *ngSwitchCase="'CHECKBOX'" type="checkbox"
+    <input *ngIf="model.type === 'CHECKBOX'" type="checkbox"
            [attr.tabindex]="model.tabIndex"
            [checked]="model.checked"
            [dynamicId]="bindId && model.id"
@@ -22,7 +20,7 @@
            [ngClass]="model.cls.element.label"></label>
 
 
-    <div *ngSwitchCase="'ARRAY'"
+    <div *ngIf="model.type === 'ARRAY'"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="model.cls.element.control">
@@ -47,7 +45,7 @@
     </div>
 
 
-    <fieldset *ngSwitchCase="'GROUP'"
+    <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
@@ -66,26 +64,7 @@
     </fieldset>
 
 
-    <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-              [dynamicId]="bindId && model.id"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-        <dynamic-form-basic-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="control"
-                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                    [model]="controlModel"
-                                    [nestedTemplate]="customTemplate"
-                                    (blur)="onFocusChange($event)"
-                                    (change)="onValueChange($event)"
-                                    (focus)="onFocusChange($event)"></dynamic-form-basic-control>
-    </fieldset>
-
-
-    <input *ngSwitchCase="'INPUT'"
+    <input *ngIf="model.type === 'INPUT'"
            [attr.accept]="model.accept"
            [attr.autoComplete]="model.autoComplete"
            [attr.list]="model.listId"
@@ -118,7 +97,7 @@
     </datalist>
 
 
-    <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
+    <fieldset *ngIf="model.type === 'RADIO_GROUP'" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -141,7 +120,7 @@
     </fieldset>
 
 
-    <select *ngSwitchCase="'SELECT'"
+    <select *ngIf="model.type === 'SELECT'"
             [attr.tabindex]="model.tabIndex"
             [dynamicId]="bindId && model.id"
             [formControlName]="model.id"
@@ -161,7 +140,7 @@
     </select>
 
 
-    <textarea *ngSwitchCase="'TEXTAREA'"
+    <textarea *ngIf="model.type === 'TEXTAREA'"
               [attr.tabindex]="model.tabIndex"
               [cols]="model.cols"
               [dynamicId]="bindId && model.id"

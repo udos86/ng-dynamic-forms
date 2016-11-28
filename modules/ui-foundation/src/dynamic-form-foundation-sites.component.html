@@ -1,6 +1,4 @@
-<div [formGroup]="controlGroup"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
-     [ngSwitch]="model.type">
+<div [formGroup]="controlGroup" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <div *ngIf="!isCheckbox && model.label"
          [ngClass]="model.cls.grid.label">
@@ -14,7 +12,7 @@
 
     <div [ngClass]="model.cls.grid.control">
 
-        <div *ngSwitchCase="'ARRAY'"
+        <div *ngIf="model.type === 'ARRAY'"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
@@ -39,7 +37,7 @@
         </div>
 
 
-        <fieldset *ngSwitchCase="'GROUP'"
+        <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -58,7 +56,7 @@
         </fieldset>
 
 
-        <label *ngSwitchCase="'CHECKBOX'" [attr.for]="model.id" [ngClass]="model.cls.element.label">
+        <label *ngIf="model.type === 'CHECKBOX'" [attr.for]="model.id" [ngClass]="model.cls.element.label">
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -76,26 +74,7 @@
         </label>
 
 
-        <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-                  [dynamicId]="bindId && model.id"
-                  [formGroupName]="model.id"
-                  [name]="model.name"
-                  [ngClass]="model.cls.element.control">
-
-            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-            <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
-                                                   [controlGroup]="control"
-                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                   [model]="controlModel"
-                                                   [nestedTemplate]="customTemplate"
-                                                   (blur)="onFocusChange($event)"
-                                                   (change)="onValueChange($event)"
-                                                   (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
-        </fieldset>
-
-
-        <div *ngSwitchCase="'INPUT'" class="input-group">
+        <div *ngIf="model.type === 'INPUT'" class="input-group">
 
             <span *ngIf="model.prefix" class="input-group-label" [innerHTML]="model.prefix"></span>
 
@@ -137,7 +116,7 @@
         </div>
 
 
-        <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
+        <fieldset *ngIf="model.type === 'RADIO_GROUP'" role="radiogroup"
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
@@ -160,7 +139,7 @@
         </fieldset>
 
 
-        <select *ngSwitchCase="'SELECT'"
+        <select *ngIf="model.type === 'SELECT'"
                 [attr.tabindex]="model.tabIndex"
                 [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
@@ -179,7 +158,7 @@
         </select>
 
 
-        <textarea *ngSwitchCase="'TEXTAREA'"
+        <textarea *ngIf="model.type === 'TEXTAREA'"
                   [attr.tabindex]="model.tabIndex"
                   [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
                   [cols]="model.cols"
