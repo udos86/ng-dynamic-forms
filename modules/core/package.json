@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/core",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A rapid form development library for Angular 2",
   "main": "./bundles/core.umd.js",
   "keywords": [
