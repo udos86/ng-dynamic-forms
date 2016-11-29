@@ -1,11 +1,11 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
-    DynamicFormArrayModel
+    DynamicFormArrayModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicSwitchModel
+    DynamicSwitchModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
 import {Validators} from "@angular/forms";
