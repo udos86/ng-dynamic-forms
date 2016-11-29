@@ -4,7 +4,8 @@
 
         <dynamic-form-material-control *ngFor="let controlModel of dynamicFormModel"
                                        [controlGroup]="form"
-                                       [model]="controlModel">
+                                       [model]="controlModel"
+                                       (change)="onChange($event)">
 
             <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
 

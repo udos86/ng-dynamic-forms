@@ -51,4 +51,8 @@ export class MaterialExampleComponent implements OnInit {
     remove(index: number) {
         this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
     }
+
+    onChange($event) {
+        console.log(`CHANGE event on: `, $event);
+    }
 }

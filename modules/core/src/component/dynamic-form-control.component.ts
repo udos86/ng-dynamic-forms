@@ -1,6 +1,5 @@
 import {EventEmitter, TemplateRef, OnInit, OnDestroy} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {MdCheckboxChange, MdSlideToggleChange, MdRadioChange} from "@angular/material";
 import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
@@ -16,11 +15,9 @@ import {
 import {DynamicFormRelationService} from "../service/dynamic-form-relation.service";
 import {isDefined} from "../utils";
 
-export type MdFormControlChangeEvent = MdCheckboxChange | MdRadioChange | MdSlideToggleChange;
-
 export interface DynamicFormControlEvent {
 
-    $event: Event | FocusEvent | MdFormControlChangeEvent;
+    $event: Event | FocusEvent | any;
     control: FormControl;
     model: DynamicFormControlModel;
 }
@@ -162,7 +159,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         value ? this.control.disable() : this.control.enable();
     }
 
-    onValueChange($event: Event | MdFormControlChangeEvent | DynamicFormControlEvent): void {
+    onValueChange($event: Event |  DynamicFormControlEvent): void {
 
         if ($event instanceof Event) {
 
@@ -179,13 +176,13 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
             this.change.emit({$event: $event as Event, control: this.control, model: this.model});
 
-        } else if ((<DynamicFormControlEvent> $event).$event instanceof Event) {
+        } else if ($event.hasOwnProperty("source")) { // Material 2
 
-            this.change.emit($event as DynamicFormControlEvent);
+            this.change.emit({$event: $event, control: this.control, model: this.model});
 
         } else {
 
-            this.change.emit({$event: $event as MdFormControlChangeEvent, control: this.control, model: this.model});
+            this.change.emit($event as DynamicFormControlEvent);
         }
     }
 

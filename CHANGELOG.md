@@ -1,3 +1,10 @@
+# 1.2.4
+
+### **Bugfixes** 
+
+* **bad** `@angular/material` **import removed from** `DynamicFormControlComponent` (closes [#194](https://github.com/udos86/ng2-dynamic-forms/issues/194))
+ 
+
 # 1.2.3
 
 ### **Features** 
