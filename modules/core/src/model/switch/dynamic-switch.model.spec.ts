@@ -14,6 +14,8 @@ describe("DynamicSwitchModel test suite", () => {
         expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
+        expect(model.offLabel).toBeNull();
+        expect(model.onLabel).toBeNull();
         expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SWITCH);
         expect(model.value).toBe(false);

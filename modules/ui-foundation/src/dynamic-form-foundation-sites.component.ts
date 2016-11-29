@@ -1,6 +1,11 @@
 import {Component, Input, Output, EventEmitter, ContentChild, TemplateRef} from "@angular/core";
 import {FormGroup} from "@angular/forms";
-import {DynamicFormControlComponent, DynamicFormControlModel, DynamicFormControlEvent} from "@ng2-dynamic-forms/core";
+import {
+    DynamicFormControlComponent,
+    DynamicFormControlModel,
+    DynamicFormControlEvent,
+    DynamicFormRelationService
+} from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_FOUNDATION_SITES = "FOUNDATION_SITES";
 
@@ -27,7 +32,7 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
 
     readonly type: string = DYNAMIC_FORM_UI_FOUNDATION_SITES;
 
-    constructor() {
-        super();
+    constructor(relationService: DynamicFormRelationService) {
+        super(relationService);
     }
 }

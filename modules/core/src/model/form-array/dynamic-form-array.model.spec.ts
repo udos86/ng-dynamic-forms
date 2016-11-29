@@ -32,9 +32,8 @@ describe("DynamicFormArrayModel test suite", () => {
 
     it("should throw when no createGroup function is specified", () => {
 
-        expect(function () {
-            new DynamicFormArrayModel({id: "test"});
-        }).toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
+        expect(() => new DynamicFormArrayModel({id: "test"}))
+            .toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
     });
 
     it("should get the correct group model", () => {

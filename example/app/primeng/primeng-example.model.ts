@@ -4,7 +4,7 @@ import {
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicTextAreaModel,
+    DynamicTextAreaModel, DynamicSwitchModel,
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
@@ -130,6 +130,26 @@ export const PRIMENG_EXAMPLE_MODEL = [
             },
             grid: {
                 container: "ui-grid-row"
+            }
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "primeSwitch",
+            label: "Example Switch",
+            offLabel: "Off",
+            onLabel: "On",
+            value: false
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
             }
         }
     ),

@@ -1,6 +1,4 @@
-<div [formGroup]="controlGroup"
-     [ngClass]="model.cls.element.container"
-     [ngSwitch]="model.type">
+<div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
     <label *ngIf="!isCheckbox && !isSwitch && model.label"
            [attr.for]="model.id"
@@ -8,7 +6,7 @@
            [ngClass]="model.cls.element.label"></label>
 
 
-    <fieldset *ngSwitchCase="'GROUP'"
+    <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
@@ -26,7 +24,7 @@
     </fieldset>
 
 
-    <div *ngSwitchCase="'ARRAY'"
+    <div *ngIf="model.type === 'ARRAY'"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -50,7 +48,7 @@
     </div>
 
 
-    <md-checkbox *ngSwitchCase="'CHECKBOX'"
+    <md-checkbox *ngIf="model.type === 'CHECKBOX'"
                  [align]="model.align"
                  [checked]="model.checked"
                  [disabled]="model.disabled"
@@ -61,29 +59,10 @@
                  [ngClass]="model.cls.element.control"
                  (blur)="onFocusChange($event)"
                  (change)="onValueChange($event)"
-                 (focus)="onFocusChange($event)"><span [innerHTML]="model.label"></span>
-    </md-checkbox>
+                 (focus)="onFocusChange($event)"><span [innerHTML]="model.label"></span></md-checkbox>
 
 
-    <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-              [dynamicId]="bindId && model.id"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-        <dynamic-form-material-control *ngFor="let controlModel of model.group"
-                                       [controlGroup]="control"
-                                       [model]="controlModel"
-                                       [nestedTemplate]="customTemplate"
-                                       (blur)="onFocusChange($event)"
-                                       (change)="onValueChange($event)"
-                                       (focus)="onFocusChange($event)"></dynamic-form-material-control>
-    </fieldset>
-
-
-    <md-input *ngSwitchCase="'INPUT'"
+    <md-input *ngIf="model.type === 'INPUT'"
               [autocomplete]="model.autoComplete"
               [autofocus]="model.autoFocus"
               [dynamicId]="bindId && model.id"
@@ -114,7 +93,7 @@
     </md-input>
 
 
-    <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
+    <md-radio-group *ngIf="model.type === 'RADIO_GROUP'"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -132,7 +111,7 @@
     </md-radio-group>
 
 
-    <md-slide-toggle *ngSwitchCase="'SWITCH'"
+    <md-slide-toggle *ngIf="model.type === 'SWITCH'"
                      [checked]="model.checked"
                      [disabled]="model.disabled"
                      [dynamicId]="bindId && model.id"
@@ -143,24 +122,24 @@
     </md-slide-toggle>
 
 
-    <md-textarea *ngSwitchCase="'TEXTAREA'" class="form-control"
-              [attr.tabindex]="model.tabIndex"
-              [dynamicId]="bindId && model.id"
-              [cols]="model.cols"
-              [formControlName]="model.id"
-              [maxlength]="model.maxLength"
-              [minlength]="model.minLength"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control"
-              [placeholder]="model.placeholder"
-              [readonly]="model.readOnly"
-              [required]="model.required"
-              [rows]="model.rows"
-              [spellcheck]="model.spellCheck"
-              [wrap]="model.wrap"
-              (blur)="onFocusChange($event)"
-              (change)="onValueChange($event)"
-              (focus)="onFocusChange($event)"></md-textarea>
+    <md-textarea *ngIf="model.type === 'TEXTAREA'"
+                 [attr.tabindex]="model.tabIndex"
+                 [dynamicId]="bindId && model.id"
+                 [cols]="model.cols"
+                 [formControlName]="model.id"
+                 [maxlength]="model.maxLength"
+                 [minlength]="model.minLength"
+                 [name]="model.name"
+                 [ngClass]="model.cls.element.control"
+                 [placeholder]="model.placeholder"
+                 [readonly]="model.readOnly"
+                 [required]="model.required"
+                 [rows]="model.rows"
+                 [spellcheck]="model.spellCheck"
+                 [wrap]="model.wrap"
+                 (blur)="onFocusChange($event)"
+                 (change)="onValueChange($event)"
+                 (focus)="onFocusChange($event)"></md-textarea>
 
     <ng-content></ng-content>
 

@@ -1,7 +1,7 @@
 import {TestBed, inject} from "@angular/core/testing";
 import {DynamicFormAutoFillService} from "./dynamic-form-autofill.service";
 
-describe("DynamicFillAutoFillService test suite", () => {
+describe("DynamicFormAutoFillService test suite", () => {
 
     let service;
 
@@ -12,7 +12,7 @@ describe("DynamicFillAutoFillService test suite", () => {
         });
     });
 
-    beforeEach(inject([DynamicFormAutoFillService], dynamicAutoFillService => service = dynamicAutoFillService));
+    beforeEach(inject([DynamicFormAutoFillService], autoFillService => service = autoFillService));
 
     it("should validate autofill expressions correctly", () => {
 

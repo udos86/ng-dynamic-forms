@@ -1,8 +1,6 @@
-<div [formGroup]="controlGroup"
-     [ngClass]="model.cls.element.container"
-     [ngSwitch]="model.type">
+<div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
+    <fieldset *ngIf="model.type === 'RADIO_GROUP'" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -42,7 +40,7 @@
 
         <div [ngClass]="model.cls.grid.control">
 
-            <fieldset *ngSwitchCase="'GROUP'"
+            <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -60,25 +58,7 @@
             </fieldset>
 
 
-            <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-                      [dynamicId]="bindId && model.id"
-                      [formGroupName]="model.id"
-                      [name]="model.name"
-                      [ngClass]="model.cls.element.control">
-
-                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-                <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
-                                              [controlGroup]="control"
-                                              [model]="controlModel"
-                                              [nestedTemplate]="customTemplate"
-                                              (blur)="onFocusChange($event)"
-                                              (change)="onValueChange($event)"
-                                              (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
-            </fieldset>
-
-
-            <div *ngSwitchCase="'ARRAY'"
+            <div *ngIf="model.type === 'ARRAY'"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
@@ -102,7 +82,7 @@
             </div>
 
 
-            <input *ngSwitchCase="'INPUT'" pInputText
+            <input *ngIf="model.type === 'INPUT'" pInputText
                    [attr.accept]="model.accept"
                    [attr.autoComplete]="model.autoComplete"
                    [attr.list]="model.listId"
@@ -135,7 +115,7 @@
             </datalist>
 
 
-            <p-checkbox *ngSwitchCase="'CHECKBOX'" binary="true"
+            <p-checkbox *ngIf="model.type === 'CHECKBOX'" binary="true"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [name]="model.name"
@@ -143,13 +123,20 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-dropdown *ngSwitchCase="'SELECT'"
+            <p-dropdown *ngIf="model.type === 'SELECT'"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"></p-dropdown>
 
 
-            <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
+            <p-inputSwitch *ngIf="model.type === 'SWITCH'"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [onLabel]="model.onLabel"
+                           [offLabel]="model.offLabel"></p-inputSwitch>
+
+
+            <textarea *ngIf="model.type === 'TEXTAREA'" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"

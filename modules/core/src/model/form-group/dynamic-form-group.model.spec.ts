@@ -29,9 +29,8 @@ describe("DynamicFormArrayModel test suite", () => {
 
     it("should throw when no group array is specified", () => {
 
-        expect(function () {
-            new DynamicFormGroupModel({id: "test"});
-        }).toThrow(new Error("group array must be specified for DynamicFormGroupModel"));
+        expect(() => new DynamicFormGroupModel({id: "test"}))
+            .toThrow(new Error("group array must be specified for DynamicFormGroupModel"));
     });
 
     it("should get the correct DynamicFormControlModel of group", () => {

@@ -175,8 +175,8 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                             connective: "OR",
                             when: [
                                 {
-                                    id: "bootstrapSelect",
-                                    value: "option-4"
+                                    id: "bootstrapRadioGroup",
+                                    value: "option-2"
                                 },
                                 {
                                     id: "bootstrapRadioGroup",

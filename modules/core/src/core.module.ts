@@ -3,6 +3,7 @@ import {NgModule, Optional, SkipSelf, ModuleWithProviders} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
 import {DynamicFormService} from "./service/dynamic-form.service";
 import {DynamicFormAutoFillService} from "./service/dynamic-form-autofill.service";
+import {DynamicFormRelationService} from "./service/dynamic-form-relation.service";
 import {DynamicIdDirective} from "./directive/dynamic-id.directive";
 
 @NgModule({
@@ -25,7 +26,7 @@ export class DynamicFormsCoreModule {
 
         return {
             ngModule: DynamicFormsCoreModule,
-            providers: [DynamicFormService, DynamicFormAutoFillService]
+            providers: [DynamicFormService, DynamicFormAutoFillService, DynamicFormRelationService]
         };
     }
 }

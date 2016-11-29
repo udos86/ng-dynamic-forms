@@ -1,8 +1,7 @@
 <div class="form-group"
      [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
      [formGroup]="controlGroup"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
-     [ngSwitch]="model.type">
+     [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
@@ -10,7 +9,7 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <div *ngSwitchCase="'CHECKBOX'" [ngClass]="model.cls.grid.control">
+    <div *ngIf="model.type === 'CHECKBOX'" [ngClass]="model.cls.grid.control">
 
         <div class="checkbox" [class.disabled]="model.disabled">
 
@@ -27,10 +26,7 @@
                        [value]="model.value"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span>
-
-            </label>
-
+                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span></label>
         </div>
 
     </div>
@@ -38,7 +34,7 @@
 
     <div *ngIf="!isCheckbox" [ngClass]="model.cls.grid.control">
 
-        <div *ngSwitchCase="'ARRAY'"
+        <div *ngIf="model.type === 'ARRAY'"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
@@ -63,7 +59,7 @@
         </div>
 
 
-        <fieldset *ngSwitchCase="'GROUP'"
+        <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -82,26 +78,7 @@
         </fieldset>
 
 
-        <fieldset *ngSwitchCase="'CHECKBOX_GROUP'"
-                  [dynamicId]="bindId && model.id"
-                  [formGroupName]="model.id"
-                  [name]="model.name"
-                  [ngClass]="model.cls.element.control">
-
-            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-            <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
-                                            [controlGroup]="control"
-                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                            [model]="controlModel"
-                                            [nestedTemplate]="customTemplate"
-                                            (blur)="onFocusChange($event)"
-                                            (change)="onValueChange($event)"
-                                            (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
-        </fieldset>
-
-
-        <div *ngSwitchCase="'INPUT'" [class.input-group]="model.prefix || model.suffix">
+        <div *ngIf="model.type === 'INPUT'" [class.input-group]="model.prefix || model.suffix">
 
             <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
 
@@ -142,7 +119,7 @@
         </div>
 
 
-        <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
+        <fieldset *ngIf="model.type === 'RADIO_GROUP'" role="radiogroup"
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
@@ -160,16 +137,14 @@
                            [ngClass]="model.cls.element.control"
                            [value]="option.value"
                            (blur)="onFocusChange($event)"
-                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
-
-                </label>
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
             </div>
 
         </fieldset>
 
 
-        <select *ngSwitchCase="'SELECT'" class="form-control"
+        <select *ngIf="model.type === 'SELECT'" class="form-control"
                 [attr.tabindex]="model.tabIndex"
                 [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
@@ -182,13 +157,12 @@
 
             <option *ngFor="let option of model.options"
                     [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.label}}
-            </option>
+                    [ngValue]="option.value">{{option.label}}</option>
 
         </select>
 
 
-        <textarea *ngSwitchCase="'TEXTAREA'" class="form-control"
+        <textarea *ngIf="model.type === 'TEXTAREA'" class="form-control"
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [cols]="model.cols"

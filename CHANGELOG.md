@@ -1,3 +1,13 @@
+# 1.2.3
+
+### **Features** 
+
+* `ui-foundation` and `ui-primeng` now support `DynamicSwitchModel`
+* `DynamicSwitchModel` now has `offLabel` and `onLabel` properties
+* `DynamicFormControlRelationModel` refactored and `DynamicFormRelationService` introduced 
+* template files optimized
+* update to tslint `4.0.0`
+
 # 1.2.2
 
 ### **Bugfixes** 
@@ -7,7 +17,7 @@
  
 ### **Features** 
 
-* ***!!! IMPORTANT !!!*** `blur, focus, change` events are now emitted for single checkbox in a `DynamicCheckboxGroupModel` instead of the whole group
+* **!!! IMPORTANT !!!** `blur, focus, change` events are now emitted for single checkbox in a `DynamicCheckboxGroupModel` instead of the whole group
 * `@angular/material` change events are now correctly included in `DynamicFormControlEvent`
 * update to `@angular 2.2.3`
 * update to `primeng 1.0.0`
