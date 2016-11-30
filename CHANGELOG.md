@@ -1,3 +1,10 @@
+# 1.2.5
+
+### **Bugfixes** 
+
+* `change` **event handler in** `DynamicFormBasicComponent` **corrected (closes [#197](https://github.com/udos86/ng2-dynamic-forms/issues/197))
+ 
+
 # 1.2.4
 
 ### **Bugfixes** 

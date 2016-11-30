@@ -10,7 +10,7 @@
            [required]="model.required"
            [value]="model.value"
            (blur)="onFocusChange($event)"
-           (change)="onChange($event)"
+           (change)="onValueChange($event)"
            (focus)="onFocusChange($event)"/>
 
 
@@ -34,7 +34,7 @@
                                         [model]="controlModel"
                                         [nestedTemplate]="nestedTemplate"
                                         (blur)="onFocusChange($event)"
-                                        (change)="onChange($event)"
+                                        (change)="onValueChange($event)"
                                         (focus)="onFocusChange($event)"></dynamic-form-basic-control>
 
             <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
