@@ -3,51 +3,11 @@ let dateFormat = require("dateformat"),
     path = require("path"),
     rollup = require("rollup").rollup,
     uglify = require("rollup-plugin-uglify"),
-    license = fs.readFileSync("./LICENSE", "utf8"),
-    now = Date.now();
+    license = fs.readFileSync("./LICENSE", "utf8");
 
 module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg, dest) {
 
     return function () {
-
-        function camelCase(string) {
-            return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
-        }
-
-        function bundle(moduleName, minify) {
-
-            return rollup({
-
-                context: "window",
-                entry: path.join(entryRootPath, moduleName, "index.js"),
-                external: [...Object.keys(globals)],
-                plugins: minify ? [uglify({
-                    output: {
-                        comments: (node, comment) => comment.value.startsWith("!")
-                    }
-                })] : []
-
-            }).then(bundle => {
-
-                let result = bundle.generate({
-
-                    banner: "/*!\n" + pkg.name + " " + pkg.version + " " + dateFormat(now, "UTC:yyyy-mm-dd HH:MM")
-                    + " UTC\n" + license + "\n*/",
-                    format: "umd",
-                    globals: globals,
-                    moduleName: `${globalsName}.${camelCase(moduleName)}`
-                });
-
-                let pathBundle = path.join(dest, moduleName, "bundles");
-
-                if (!fs.existsSync(pathBundle)) {
-                    fs.mkdirSync(pathBundle);
-                }
-
-                fs.writeFileSync(path.join(pathBundle,
-                    minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
-            });
-        }
 
         let globals = {
 
@@ -72,6 +32,44 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "rxjs/Subject": "Rx",
             "rxjs/Subscription": "Rx"
         };
+
+        function camelCase(string) {
+            return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
+        }
+
+        function bundle(moduleName, minify) {
+
+            return rollup({
+
+                context: "window",
+                entry: path.join(entryRootPath, moduleName, "index.js"),
+                external: [...Object.keys(globals)],
+                plugins: minify ? [uglify({
+                    output: {
+                        comments: (node, comment) => comment.value.startsWith("!")
+                    }
+                })] : []
+
+            }).then(bundle => {
+
+                let result = bundle.generate({
+
+                    banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
+                    format: "umd",
+                    globals: globals,
+                    moduleName: `${globalsName}.${camelCase(moduleName)}`
+                });
+
+                let pathBundle = path.join(dest, moduleName, "bundles");
+
+                if (!fs.existsSync(pathBundle)) {
+                    fs.mkdirSync(pathBundle);
+                }
+
+                fs.writeFileSync(path.join(pathBundle,
+                    minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
+            });
+        }
 
         modules.forEach(moduleName => {
             globals[`${libraryName}/${moduleName}`] = `${globalsName}.${camelCase(moduleName)}`;

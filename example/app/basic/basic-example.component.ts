@@ -59,4 +59,16 @@ export class BasicExampleComponent implements OnInit {
     clear() {
         this.dynamicFormService.clearFormArray(this.basicArrayControl, this.basicArrayModel);
     }
+
+    onBlur($event) {
+        console.log(`BLUR event on ${$event.model.id}: `, $event);
+    }
+
+    onChange($event) {
+        console.log(`CHANGE event on ${$event.model.id}: `, $event);
+    }
+
+    onFocus($event) {
+        console.log(`FOCUS event on ${$event.model.id}: `, $event);
+    }
 }
