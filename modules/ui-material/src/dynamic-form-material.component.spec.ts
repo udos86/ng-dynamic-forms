@@ -1,6 +1,7 @@
 import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
-import {Type} from "@angular/core";
+import {Type, DebugElement} from "@angular/core";
 import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
+import {By} from "@angular/platform-browser";
 import {MaterialModule} from "@angular/material";
 import {
     DynamicFormsCoreModule,
@@ -13,13 +14,16 @@ import {DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL} from "./dynamic-
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
-    let formModel = [
-            new DynamicInputModel({id: "testInput"}),
+    let inputModel = new DynamicInputModel({id: "testInput"}),
+        formModel = [
+            inputModel,
             new DynamicSwitchModel({id: "testSwitch"})
         ],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormMaterialComponent>,
-        component: DynamicFormMaterialComponent;
+        component: DynamicFormMaterialComponent,
+        debugElement: DebugElement,
+        inputElement: DebugElement;
 
     beforeEach(async(() => {
 
@@ -31,9 +35,10 @@ describe("DynamicFormMaterialComponent test suite", () => {
         }).compileComponents().then(() => {
 
             fixture = TestBed.createComponent(DynamicFormMaterialComponent as Type<DynamicFormMaterialComponent>);
-            component = fixture.componentInstance;
-        });
 
+            component = fixture.componentInstance;
+            debugElement = fixture.debugElement;
+        });
     }));
 
     beforeEach(inject([DynamicFormService], service => {
@@ -44,8 +49,9 @@ describe("DynamicFormMaterialComponent test suite", () => {
         component.model = formModel[0];
 
         fixture.detectChanges();
-    }));
 
+        inputElement = debugElement.query(By.css(`md-input[id='${formModel[0].id}']`));
+    }));
 
     it("should initialize correctly", () => {
 
@@ -74,11 +80,60 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
     });
 
-    it("should initialize view childs correctly", () => {
+    it("should have an input element", () => {
 
-        expect(component.mdCheckbox).toBeUndefined();
-        expect(component.mdInput).toBeDefined();
-        expect(component.mdRadioGroup).toBeUndefined();
-        //expect(component.mdSlideToggle).toBeDefined();
+        expect(inputElement instanceof DebugElement).toBe(true);
+    });
+
+    it("should listen to native focus and blur events", () => {
+
+        spyOn(component, "onFocusChange");
+
+        inputElement.triggerEventHandler("focus", null);
+        inputElement.triggerEventHandler("blur", null);
+
+        expect(component.onFocusChange).toHaveBeenCalledTimes(2);
+    });
+
+    it("should listen to native change event", () => {
+
+        spyOn(component, "onValueChange");
+
+        inputElement.triggerEventHandler("change", null);
+
+        expect(component.onValueChange).toHaveBeenCalled();
+    });
+
+    it("should update model value when control value changes", () => {
+
+        spyOn(component, "onControlValueChanges");
+
+        component.ngOnInit();
+
+        component.control.setValue("test");
+
+        expect(component.onControlValueChanges).toHaveBeenCalled();
+    });
+
+    it("should update control value when model value changes", () => {
+
+        spyOn(component, "onModelValueUpdates");
+
+        component.ngOnInit();
+
+        inputModel.valueUpdates.next("test");
+
+        expect(component.onModelValueUpdates).toHaveBeenCalled();
+    });
+
+    it("should update control activation when model disabled property changes", () => {
+
+        spyOn(component, "onModelDisabledUpdates");
+
+        component.ngOnInit();
+
+        inputModel.disabledUpdates.next(true);
+
+        expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 });

@@ -67,14 +67,14 @@ Promise.all([
     System.import("@angular/core/testing"),
     System.import("@angular/platform-browser-dynamic/testing")
 
-]).then(function (providers) {
+]).then(function (modules) {
 
-    var testingCore = providers[0];
-    var testingBrowserDynamic = providers[1];
+    var testingCore = modules[0],
+        testingPlatformBrowserDynamic = modules[1];
 
-    testingCore.TestBed.initTestEnvironment(
-        testingBrowserDynamic.BrowserDynamicTestingModule,
-        testingBrowserDynamic.platformBrowserDynamicTesting()
+    return testingCore.TestBed.initTestEnvironment(
+        testingPlatformBrowserDynamic.BrowserDynamicTestingModule,
+        testingPlatformBrowserDynamic.platformBrowserDynamicTesting()
     );
 
 }).then(function () {

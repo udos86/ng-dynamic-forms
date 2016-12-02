@@ -51,4 +51,16 @@ export class FoundationExampleComponent implements OnInit {
     remove(context: DynamicFormArrayModel, index: number) {
         this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, context);
     }
+
+    onBlur($event) {
+        console.log(`BLUR event on ${$event.model.id}: `, $event);
+    }
+
+    onChange($event) {
+        console.log(`CHANGE event on ${$event.model.id}: `, $event);
+    }
+
+    onFocus($event) {
+        console.log(`FOCUS event on ${$event.model.id}: `, $event);
+    }
 }
