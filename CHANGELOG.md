@@ -1,3 +1,11 @@
+# 1.2.6
+
+### **Features** 
+
+* `ui-material` now supports `offLabel` and `onLabel` properties of `DynamicSwitchModel`
+(see [**Material example**](https://github.com/udos86/ng2-dynamic-forms/tree/master/example/app/material))
+
+
 # 1.2.5
 
 ### **Bugfixes** 

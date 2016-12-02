@@ -41,7 +41,8 @@ export const MATERIAL_EXAMPLE_MODEL = [
     new DynamicSwitchModel({
 
         id: "materialSwitch",
-        label: "Get it on",
+        offLabel: "Off",
+        onLabel: "On",
         value: false
     }),
 
