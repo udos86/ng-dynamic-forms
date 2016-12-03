@@ -153,7 +153,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should throw when unknown DynamicFormControlModel id is specified in JSON", () => {
 
-        expect(() =>  service.fromJSON([{}]))
+        expect(() => service.fromJSON([{}]))
             .toThrow(new Error(`unknown form control type defined on JSON object`));
     });
 

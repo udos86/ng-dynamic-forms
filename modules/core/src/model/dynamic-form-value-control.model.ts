@@ -1,30 +1,35 @@
 import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
 import {Subject} from "rxjs/Subject";
-import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "./dynamic-form-control.model";
+import {
+    DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig,
+    DynamicValidatorsConfig
+} from "./dynamic-form-control.model";
 import {serializable} from "../decorator/serializable.decorator";
 import {getValue, isDefined} from "../utils";
 
 export type DynamicFormControlValue = boolean | number | string;
 
+export type DynamicErrorMessages = {[validatorName: string]: string};
+
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidators?: Array<AsyncValidatorFn>;
-    errorMessages?: {[key: string]: string};
+    asyncValidators?: DynamicValidatorsConfig; //Array<AsyncValidatorFn>;
+    errorMessages?: DynamicErrorMessages;
     hint?: string;
     required?: boolean;
     tabIndex?: number;
-    validators?: Array<ValidatorFn>;
+    validators?: DynamicValidatorsConfig; //Array<ValidatorFn>;
     value?: DynamicFormControlValue;
 }
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
-    @serializable() asyncValidators: Array<AsyncValidatorFn>;
-    @serializable() errorMessages: {[key: string]: string} | null;
+    @serializable() asyncValidators: DynamicValidatorsConfig | null; //Array<AsyncValidatorFn>;
+    @serializable() errorMessages: DynamicErrorMessages | null;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
-    @serializable() validators: Array<ValidatorFn>;
+    @serializable() validators: DynamicValidatorsConfig | null; //Array<ValidatorFn>;
     @serializable("value") _value: T | null;
     valueUpdates: Subject<T>;
 
@@ -32,12 +37,12 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         super(config, cls);
 
-        this.asyncValidators = getValue(config, "asyncValidators", []);
-        this.errorMessages = getValue(config, "errorMessages", null);
+        this.asyncValidators = getValue(config, "asyncValidators", null /*[]*/);
+        this.errorMessages = getValue(config, "errorMessages", null /*[]*/);
         this.hint = getValue(config, "hint", null);
         this.required = getValue(config, "required", false);
         this.tabIndex = getValue(config, "tabIndex", null);
-        this.validators = getValue(config, "validators", []);
+        this.validators = getValue(config, "validators", null);
         this._value = getValue(config, "value", null);
 
         this.valueUpdates = new Subject<T>();

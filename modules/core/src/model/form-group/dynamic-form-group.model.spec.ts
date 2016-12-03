@@ -2,7 +2,7 @@ import {Validators} from "@angular/forms";
 import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "./dynamic-form-group.model";
 import {DynamicInputModel} from "../input/dynamic-input.model";
 
-describe("DynamicFormArrayModel test suite", () => {
+describe("DynamicFormGroupModel test suite", () => {
 
     let model: DynamicFormGroupModel,
         config = {
@@ -12,7 +12,7 @@ describe("DynamicFormArrayModel test suite", () => {
                     id: "defaultInput"
                 })
             ],
-            validator: Validators.required
+            validator: {required: null}
         };
 
     beforeEach(() => model = new DynamicFormGroupModel(config));
@@ -44,6 +44,6 @@ describe("DynamicFormArrayModel test suite", () => {
 
         expect(json.id).toEqual(model.id);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
-        expect(json.validator).toEqual("required");
+        expect(Object.keys(json.validator)[0]).toEqual("required");
     });
 });

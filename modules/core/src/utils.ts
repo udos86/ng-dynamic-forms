@@ -45,7 +45,6 @@ export function getValue(object: any, key: string, defaultValue: any): any {
     return value;
 }
 
-
 export function serializeValidator(validator: ValidatorFn | AsyncValidatorFn): string | null {
 
     for (let validatorName in Validators) {
@@ -87,7 +86,7 @@ export function deserializeValidators(serialized: Array<string>): Array<Validato
 export function serialize(target, prototype?): Object {
 
     return getSerializables(prototype || target).reduce((prev, prop: SerializableProperty) => {
-
+        /*
         if (prop.key === "validators" || prop.key === "asyncValidators") {
 
             prev[prop.name] = serializeValidators(target[prop.key]);
@@ -99,6 +98,9 @@ export function serialize(target, prototype?): Object {
         } else {
             prev[prop.name] = target[prop.key];
         }
+        */
+
+        prev[prop.name] = target[prop.key];
 
         return prev;
 

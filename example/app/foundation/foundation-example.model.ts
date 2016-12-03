@@ -8,7 +8,6 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
-import {Validators} from "@angular/forms";
 
 export const FOUNDATION_EXAMPLE_MODEL = [
 
@@ -95,7 +94,9 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             placeholder: "example input",
             prefix: "Prefix",
             suffix: "Suffix",
-            validators: [Validators.required],
+            validators: {
+                required: null
+            },
             errorMessages: {
                 required: "{{label}} is required"
             }
@@ -172,7 +173,10 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
-            validators: [Validators.required, Validators.pattern("[a-c]+")],
+            validators: {
+                required: null,
+                pattern: "[a-c]+"
+            },
             errorMessages: {
                 required: "{{label}} is required",
                 pattern: "{{label}} does not match pattern [a-c]"

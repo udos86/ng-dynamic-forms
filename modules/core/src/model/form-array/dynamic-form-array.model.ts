@@ -1,6 +1,10 @@
-import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
-import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
-import {DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
+import {
+    DynamicFormControlModel,
+    DynamicFormControlModelConfig,
+    DynamicValidatorsConfig,
+    ClsConfig,
+} from "../dynamic-form-control.model";
+import {DynamicFormValueControlModel, DynamicFormControlValue} from "../dynamic-form-value-control.model";
 import {serializable} from "../../decorator/serializable.decorator";
 import {getValue, isFunction, serialize} from "../../utils";
 
@@ -10,7 +14,9 @@ export class DynamicFormArrayGroupModel {
     @serializable() group: Array<DynamicFormValueControlModel<any>>;
     @serializable() index: number | null;
 
-    constructor(context: DynamicFormArrayModel, group: Array<DynamicFormValueControlModel<any>> = [], index: number | null = null) {
+    constructor(context: DynamicFormArrayModel,
+                group: Array<DynamicFormValueControlModel<DynamicFormControlValue>> = [],
+                index: number | null = null) {
 
         this.context = context;
         this.group = group;
@@ -26,11 +32,11 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidator?: AsyncValidatorFn;
+    asyncValidator?: DynamicValidatorsConfig; //AsyncValidatorFn;
     createGroup?: () => Array<DynamicFormValueControlModel<any>>;
     groups?: Array<DynamicFormArrayGroupModel>;
     initialCount?: number;
-    validator?: ValidatorFn;
+    validator?: DynamicValidatorsConfig; //ValidatorFn;
 }
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
@@ -38,10 +44,10 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     @serializable() private groups: Array<DynamicFormArrayGroupModel> = [];
     @serializable() private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
 
-    @serializable() asyncValidator: AsyncValidatorFn | null;
+    @serializable() asyncValidator: DynamicValidatorsConfig | null; //AsyncValidatorFn | null;
     createGroup: () => Array<DynamicFormValueControlModel<any>>;
     @serializable() initialCount: number;
-    @serializable() validator: ValidatorFn | null;
+    @serializable() validator: DynamicValidatorsConfig | null; //ValidatorFn | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 

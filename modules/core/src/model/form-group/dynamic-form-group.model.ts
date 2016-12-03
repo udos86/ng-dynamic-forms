@@ -1,5 +1,9 @@
-import {ValidatorFn, AsyncValidatorFn} from "@angular/forms";
-import {DynamicFormControlModel, DynamicFormControlModelConfig, ClsConfig} from "../dynamic-form-control.model";
+import {
+    DynamicFormControlModel,
+    DynamicFormControlModelConfig,
+    DynamicValidatorsConfig,
+    ClsConfig
+} from "../dynamic-form-control.model";
 import {serializable} from "../../decorator/serializable.decorator";
 import {getValue} from "../../utils";
 
@@ -12,18 +16,18 @@ export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
 export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidator?: AsyncValidatorFn;
+    asyncValidator?: DynamicValidatorsConfig; //AsyncValidatorFn;
     group?: Array<DynamicFormControlModel>;
     legend?: string;
-    validator?: ValidatorFn;
+    validator?: DynamicValidatorsConfig; //ValidatorFn;
 }
 
 export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
-    @serializable() asyncValidator: AsyncValidatorFn | null;
+    @serializable() asyncValidator: DynamicValidatorsConfig | null; //AsyncValidatorFn | null;
     @serializable() group: Array<DynamicFormControlModel> = [];
     @serializable() legend: string | null;
-    @serializable() validator: ValidatorFn | null;
+    @serializable() validator: DynamicValidatorsConfig | null; //ValidatorFn | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 
