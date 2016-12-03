@@ -9,7 +9,7 @@ function toImportPromise(module) {
 }
 
 window.Error.stackTraceLimit = Infinity;
-window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
 karma.loaded = function () {};
 

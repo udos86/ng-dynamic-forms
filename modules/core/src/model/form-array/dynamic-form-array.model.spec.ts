@@ -53,8 +53,6 @@ describe("DynamicFormArrayModel test suite", () => {
 
         let json = JSON.parse(JSON.stringify(model));
 
-        console.log(json);
-
         expect(json.asyncValidators).toBeUndefined();
         expect(json.id).toEqual(model.id);
         expect(json.groups.length).toEqual(model.size);

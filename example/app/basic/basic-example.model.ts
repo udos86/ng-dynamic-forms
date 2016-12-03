@@ -43,7 +43,10 @@ export const BASIC_EXAMPLE_MODEL = [
         placeholder: "example input",
         spellCheck: false,
         required: false,
-        validators: [Validators.required, Validators.maxLength(5)],
+        validators: {
+            required: null,
+            maxLength: 5
+        },
         errorMessages: {
             required: "{{label}} is required"
         }

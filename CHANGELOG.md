@@ -1,4 +1,6 @@
-# 1.2.6
+# 1.3.0
+
+### **Breaking Changes**
 
 ### **Features** 
 
