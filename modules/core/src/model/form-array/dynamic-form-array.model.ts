@@ -2,7 +2,7 @@ import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
     DynamicValidatorsConfig,
-    ClsConfig,
+    ClsConfig
 } from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../dynamic-form-value-control.model";
 import {serializable} from "../../decorator/serializable.decorator";
@@ -32,22 +32,22 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidator?: DynamicValidatorsConfig; //AsyncValidatorFn;
-    createGroup?: () => Array<DynamicFormValueControlModel<any>>;
+    asyncValidator?: DynamicValidatorsConfig;
+    createGroup?: () => Array<DynamicFormValueControlModel<DynamicFormControlValue>>;
     groups?: Array<DynamicFormArrayGroupModel>;
     initialCount?: number;
-    validator?: DynamicValidatorsConfig; //ValidatorFn;
+    validator?: DynamicValidatorsConfig;
 }
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     @serializable() private groups: Array<DynamicFormArrayGroupModel> = [];
-    @serializable() private originGroup: Array<DynamicFormValueControlModel<any>>; // only to reinstantiate from JSON
+    @serializable() private originGroup: Array<DynamicFormValueControlModel<DynamicFormControlValue>>; // only to reinstantiate from JSON
 
-    @serializable() asyncValidator: DynamicValidatorsConfig | null; //AsyncValidatorFn | null;
-    createGroup: () => Array<DynamicFormValueControlModel<any>>;
+    @serializable() asyncValidator: DynamicValidatorsConfig | null;
+    createGroup: () => Array<DynamicFormValueControlModel<DynamicFormControlValue>>;
     @serializable() initialCount: number;
-    @serializable() validator: DynamicValidatorsConfig | null; //ValidatorFn | null;
+    @serializable() validator: DynamicValidatorsConfig | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 

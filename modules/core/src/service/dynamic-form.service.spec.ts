@@ -232,6 +232,7 @@ describe("DynamicFormService test suite", () => {
         expect(formArray.length).toBe(model.initialCount - 1);
     });
 
+
     it("should clear a form array correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
@@ -242,5 +243,14 @@ describe("DynamicFormService test suite", () => {
         service.clearFormArray(formArray, model);
 
         expect(formArray.length).toBe(0);
+    });
+
+
+    it("should resolve validators from config correctly", () => {
+
+        let config = {required: null, maxLength: 7, minLength: 3},
+            validators = service.getValidatorFns(config);
+
+        expect(validators.length).toBe(Object.keys(config).length);
     });
 });

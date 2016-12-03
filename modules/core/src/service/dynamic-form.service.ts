@@ -1,6 +1,11 @@
 import {Injectable} from "@angular/core";
 import {
-    FormBuilder, FormControl, FormGroup, FormArray, Validators, ValidatorFn,
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    FormArray,
+    Validators,
+    ValidatorFn,
     AsyncValidatorFn
 } from "@angular/forms";
 import {DynamicFormControlModel, DynamicValidatorsConfig} from "../model/dynamic-form-control.model";
@@ -16,21 +21,21 @@ import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/select/dynamic-select.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
-import {deserializeValidator, deserializeValidators} from "../utils";
 
 @Injectable()
 export class DynamicFormService {
 
     constructor(private formBuilder: FormBuilder) {}
 
-    getValidator(validatorName: string, validatorArgs: any): ValidatorFn | AsyncValidatorFn {
+    getValidatorFn(validatorName: string, validatorArgs: any): ValidatorFn | AsyncValidatorFn {
 
         return validatorArgs ? Validators[validatorName](validatorArgs) : Validators[validatorName];
     }
 
-    getValidators(config: DynamicValidatorsConfig): Array<ValidatorFn | AsyncValidatorFn> {
+    getValidatorFns(config: DynamicValidatorsConfig): Array<ValidatorFn | AsyncValidatorFn> {
 
-        return Object.keys(config || {}).map(validatorName => this.getValidator(validatorName, config[validatorName]));
+        return config ?
+            Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
     }
 
     createFormArray(model: DynamicFormArrayModel): FormArray {
@@ -43,8 +48,8 @@ export class DynamicFormService {
 
         return this.formBuilder.array(
             formArray,
-            this.getValidators(model.validator)[0] || null, //model.validator,
-            this.getValidators(model.asyncValidator)[0] || null // model.asyncValidator
+            this.getValidatorFns(model.validator)[0] || null,
+            this.getValidatorFns(model.asyncValidator)[0] || null
         );
     }
 
@@ -64,8 +69,8 @@ export class DynamicFormService {
 
                 let groupModel = <DynamicFormGroupModel> model,
                     groupExtra = {
-                        validator: this.getValidators(groupModel.validator)[0] || null, //groupModel.validator,
-                        asyncValidator: this.getValidators(groupModel.asyncValidator)[0] || null //groupModel.asyncValidator
+                        validator: this.getValidatorFns(groupModel.validator)[0] || null,
+                        asyncValidator: this.getValidatorFns(groupModel.asyncValidator)[0] || null
                     };
 
                 formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);
@@ -79,8 +84,8 @@ export class DynamicFormService {
                         value: controlModel.value,
                         disabled: controlModel.disabled
                     },
-                    Validators.compose(this.getValidators(controlModel.validators || [])), //Validators.compose(controlModel.validators),
-                    Validators.composeAsync(this.getValidators(controlModel.asyncValidators || [])) //Validators.composeAsync(controlModel.asyncValidators)
+                    Validators.compose(this.getValidatorFns(controlModel.validators || [])),
+                    Validators.composeAsync(this.getValidatorFns(controlModel.asyncValidators || []))
                 );
             }
         });
@@ -125,16 +130,6 @@ export class DynamicFormService {
         let formModel: Array<DynamicFormControlModel> = [];
 
         json.forEach(object => {
-
-            ["asyncValidator", "validator"].forEach(prop => {
-                object[prop] = deserializeValidator(object[prop]);
-            });
-
-            ["asyncValidators", "validators"].forEach(prop => {
-                if (Array.isArray(object[prop])) {
-                    object[prop] = deserializeValidators(object[prop]);
-                }
-            });
 
             switch (object["type"]) {
 

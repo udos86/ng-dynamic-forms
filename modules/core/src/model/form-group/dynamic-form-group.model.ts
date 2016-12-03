@@ -16,18 +16,18 @@ export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
 export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidator?: DynamicValidatorsConfig; //AsyncValidatorFn;
+    asyncValidator?: DynamicValidatorsConfig;
     group?: Array<DynamicFormControlModel>;
     legend?: string;
-    validator?: DynamicValidatorsConfig; //ValidatorFn;
+    validator?: DynamicValidatorsConfig;
 }
 
 export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
-    @serializable() asyncValidator: DynamicValidatorsConfig | null; //AsyncValidatorFn | null;
+    @serializable() asyncValidator: DynamicValidatorsConfig | null;
     @serializable() group: Array<DynamicFormControlModel> = [];
     @serializable() legend: string | null;
-    @serializable() validator: DynamicValidatorsConfig | null; //ValidatorFn | null;
+    @serializable() validator: DynamicValidatorsConfig | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 
