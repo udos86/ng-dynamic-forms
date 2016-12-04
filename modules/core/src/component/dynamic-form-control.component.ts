@@ -79,13 +79,17 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
                 let message;
 
+                if (validatorName === "minlength" || validatorName === "maxlength") {
+                    validatorName = validatorName.replace("length", "Length");
+                }
+
                 if (this.model["errorMessages"][validatorName]) {
 
                     message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
                         (match, propertyName) => this.model[propertyName] ? this.model[propertyName] : null);
 
                 } else {
-                    message = `Validation "${validatorName}" failed`;
+                    message = `Error on "${validatorName}" validation`;
                 }
 
                 messages.push(message);
@@ -101,10 +105,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     get isRadioGroup(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
-    }
-
-    get isSwitch(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_SWITCH;
     }
 
     get isValid(): boolean {

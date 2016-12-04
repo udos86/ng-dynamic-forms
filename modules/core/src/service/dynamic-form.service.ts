@@ -1,7 +1,15 @@
 import {Injectable} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, FormArray, Validators} from "@angular/forms";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DynamicFormValueControlModel} from "../model/dynamic-form-value-control.model";
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    FormArray,
+    Validators,
+    ValidatorFn,
+    AsyncValidatorFn
+} from "@angular/forms";
+import {DynamicFormControlModel, DynamicValidatorsMap} from "../model/dynamic-form-control.model";
+import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
 import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
 import {
@@ -13,12 +21,29 @@ import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/select/dynamic-select.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
-import {deserializeValidator, deserializeValidators} from "../utils";
+import {isFunction, isDefined} from "../utils";
 
 @Injectable()
 export class DynamicFormService {
 
     constructor(private formBuilder: FormBuilder) {}
+
+    getValidatorFn(validatorName: string, validatorArgs: any): ValidatorFn | AsyncValidatorFn | never {
+
+        let validatorFn = Validators[validatorName];
+
+        if (!isFunction(validatorFn)) {
+            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS multi provider`);
+        }
+
+        return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
+    }
+
+    getValidatorFns(config: DynamicValidatorsMap): Array<ValidatorFn | AsyncValidatorFn> {
+
+        return config ?
+            Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
+    }
 
     createFormArray(model: DynamicFormArrayModel): FormArray {
 
@@ -28,7 +53,11 @@ export class DynamicFormService {
             formArray.push(this.createFormGroup(model.get(i).group));
         }
 
-        return this.formBuilder.array(formArray, model.validator, model.asyncValidator);
+        return this.formBuilder.array(
+            formArray,
+            this.getValidatorFns(model.validator)[0] || null,
+            this.getValidatorFns(model.asyncValidator)[0] || null
+        );
     }
 
     createFormGroup(group: Array<DynamicFormControlModel>, groupExtra: {[key: string]: any} | null = null): FormGroup {
@@ -46,18 +75,24 @@ export class DynamicFormService {
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
                 let groupModel = <DynamicFormGroupModel> model,
-                    groupExtra = {validator: groupModel.validator, asyncValidator: groupModel.asyncValidator};
+                    groupExtra = {
+                        validator: this.getValidatorFns(groupModel.validator)[0] || null,
+                        asyncValidator: this.getValidatorFns(groupModel.asyncValidator)[0] || null
+                    };
 
                 formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);
 
             } else {
 
-                let controlModel = <DynamicFormValueControlModel<any>> model;
+                let controlModel = <DynamicFormValueControlModel<DynamicFormControlValue>> model;
 
                 formGroup[controlModel.id] = new FormControl(
-                    {value: controlModel.value, disabled: controlModel.disabled},
-                    Validators.compose(controlModel.validators),
-                    Validators.composeAsync(controlModel.asyncValidators)
+                    {
+                        value: controlModel.value,
+                        disabled: controlModel.disabled
+                    },
+                    Validators.compose(this.getValidatorFns(controlModel.validators || [])),
+                    Validators.composeAsync(this.getValidatorFns(controlModel.asyncValidators || []))
                 );
             }
         });
@@ -102,16 +137,6 @@ export class DynamicFormService {
         let formModel: Array<DynamicFormControlModel> = [];
 
         json.forEach(object => {
-
-            ["asyncValidator", "validator"].forEach(prop => {
-                object[prop] = deserializeValidator(object[prop]);
-            });
-
-            ["asyncValidators", "validators"].forEach(prop => {
-                if (Array.isArray(object[prop])) {
-                    object[prop] = deserializeValidators(object[prop]);
-                }
-            });
 
             switch (object["type"]) {
 

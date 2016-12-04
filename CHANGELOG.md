@@ -1,3 +1,44 @@
+# 1.3.0
+
+### **Breaking Changes**
+
+**!!! IMPORTANT !!!** All `Validators` of any `DynamicFormControlModel` now need to be configured by a simply object literal (similar to `errorMessages`) instead of an `Array<ValidatorFn | AsyncValidatorFn>`.
+
+This change was unavoidable to allow proper serialization for all validators as well as a significant code reduction 
+(closes [#200](https://github.com/udos86/ng2-dynamic-forms/issues/200))!.
+
+Defining validators becomes even more easy now!
+
+**Before:**
+```ts
+new DynamicInputModel({
+
+    id: "myInput",
+    validators: [Validators.required, Validators.minLength(3)]
+})
+```
+
+**After:**
+```ts
+new DynamicInputModel({
+
+    id: "myInput",
+    validators: {
+        required: null,
+        minLength: 3
+    }
+})
+```
+
+**Please see updated [example](https://github.com/udos86/ng2-dynamic-forms/tree/master/example) for practical use!!!**
+
+### **Features** 
+
+* `ui-material` now supports `offLabel` and `onLabel` properties of `DynamicSwitchModel`
+(see [**Material example**](https://github.com/udos86/ng2-dynamic-forms/tree/master/example/app/material))
+* update to `@angular 2.2.4`
+
+
 # 1.2.5
 
 ### **Bugfixes** 

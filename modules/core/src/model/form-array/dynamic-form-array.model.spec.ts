@@ -13,7 +13,7 @@ describe("DynamicFormArrayModel test suite", () => {
             id: "default",
             initialCount: 3,
             createGroup: () => [new DynamicInputModel({id: "defaultInput"})],
-            validator: Validators.required
+            validator: {required: null}
         };
 
     beforeEach(() => model = new DynamicFormArrayModel(config));
@@ -57,7 +57,7 @@ describe("DynamicFormArrayModel test suite", () => {
         expect(json.id).toEqual(model.id);
         expect(json.groups.length).toEqual(model.size);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
-        expect(json.validator).toEqual("required");
+        expect(Object.keys(json.validator)[0]).toEqual("required");
         expect(json.validators).toBeUndefined();
     });
 });

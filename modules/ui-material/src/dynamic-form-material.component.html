@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="!isCheckbox && !isSwitch && model.label"
+    <label *ngIf="!isCheckbox && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
@@ -118,7 +118,11 @@
                      [formControlName]="model.id"
                      [name]="model.name"
                      [ngClass]="model.cls.element.control"
-                     (change)="onValueChange($event)"><span [innerHTML]="model.label"></span>
+                     (change)="onValueChange($event)">
+
+        <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>
+        <span *ngIf="model.checked" [innerHTML]="model.onLabel"></span>
+
     </md-slide-toggle>
 
 
