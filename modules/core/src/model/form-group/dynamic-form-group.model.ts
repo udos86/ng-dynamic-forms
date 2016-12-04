@@ -1,7 +1,7 @@
 import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
-    DynamicValidatorsConfig,
+    DynamicValidatorsMap,
     ClsConfig
 } from "../dynamic-form-control.model";
 import {serializable} from "../../decorator/serializable.decorator";
@@ -16,18 +16,18 @@ export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
 export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidator?: DynamicValidatorsConfig;
+    asyncValidator?: DynamicValidatorsMap;
     group?: Array<DynamicFormControlModel>;
     legend?: string;
-    validator?: DynamicValidatorsConfig;
+    validator?: DynamicValidatorsMap;
 }
 
 export class DynamicFormGroupModel extends DynamicFormControlModel implements DynamicFieldSet {
 
-    @serializable() asyncValidator: DynamicValidatorsConfig | null;
+    @serializable() asyncValidator: DynamicValidatorsMap | null;
     @serializable() group: Array<DynamicFormControlModel> = [];
     @serializable() legend: string | null;
-    @serializable() validator: DynamicValidatorsConfig | null;
+    @serializable() validator: DynamicValidatorsMap | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 

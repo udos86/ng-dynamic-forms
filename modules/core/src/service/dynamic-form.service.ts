@@ -8,7 +8,7 @@ import {
     ValidatorFn,
     AsyncValidatorFn
 } from "@angular/forms";
-import {DynamicFormControlModel, DynamicValidatorsConfig} from "../model/dynamic-form-control.model";
+import {DynamicFormControlModel, DynamicValidatorsMap} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
 import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
@@ -21,18 +21,25 @@ import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/select/dynamic-select.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
+import {isFunction, isDefined} from "../utils";
 
 @Injectable()
 export class DynamicFormService {
 
     constructor(private formBuilder: FormBuilder) {}
 
-    getValidatorFn(validatorName: string, validatorArgs: any): ValidatorFn | AsyncValidatorFn {
+    getValidatorFn(validatorName: string, validatorArgs: any): ValidatorFn | AsyncValidatorFn | never {
 
-        return validatorArgs ? Validators[validatorName](validatorArgs) : Validators[validatorName];
+        let validatorFn = Validators[validatorName];
+
+        if (!isFunction(validatorFn)) {
+            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS multi provider`);
+        }
+
+        return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
     }
 
-    getValidatorFns(config: DynamicValidatorsConfig): Array<ValidatorFn | AsyncValidatorFn> {
+    getValidatorFns(config: DynamicValidatorsMap): Array<ValidatorFn | AsyncValidatorFn> {
 
         return config ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];

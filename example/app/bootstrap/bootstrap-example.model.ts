@@ -63,11 +63,12 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     prefix: "Prefix",
                     suffix: "Suffix",
                     validators: {
-                       required: null,
+                        required: null,
                         maxLength: 5
-                    }, //[Validators.required, Validators.maxLength(5)],
+                    },
                     errorMessages: {
-                        required: "{{label}} is required"
+                        required: "{{label}} is required",
+                        maxLength: "Max character count is 5"
                     }
                 },
                 {

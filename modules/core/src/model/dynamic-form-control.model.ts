@@ -3,7 +3,7 @@ import {Subject} from "rxjs/Subject";
 import {serializable} from "../decorator/serializable.decorator";
 import {getValue, isEmptyString, serialize} from "../utils";
 
-export type DynamicValidatorsConfig = {[validatorName: string]: any};
+export type DynamicValidatorsMap = {[validatorName: string]: any};
 
 export interface Cls {
 

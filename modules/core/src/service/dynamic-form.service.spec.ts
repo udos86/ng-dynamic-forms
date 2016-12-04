@@ -253,4 +253,11 @@ describe("DynamicFormService test suite", () => {
 
         expect(validators.length).toBe(Object.keys(config).length);
     });
+
+
+    it("should throw when validator is not provided via NG_VALIDATORS", () => {
+
+        expect(() => service.getValidatorFn("test", null))
+            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS multi provider`));
+    });
 });

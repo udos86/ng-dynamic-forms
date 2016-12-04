@@ -45,6 +45,7 @@ export const BASIC_EXAMPLE_MODEL = [
         required: false,
         validators: {
             required: null,
+            minLength: 2,
             maxLength: 5
         },
         errorMessages: {

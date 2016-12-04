@@ -536,7 +536,9 @@ new DynamicInputModel({
         id: "bootstrapInput",
         label: "Example Input",
         placeholder: "example input",
-        validators: [Validators.required],
+        validators: {
+            required: null
+        },
         errorMessages: {
             required: "{{label}} is required."
         }
@@ -590,7 +592,9 @@ new DynamicInputModel({
     id: "exampleInput",
     label: "Example Input",
     placeholder: "example input",
-    validators: [Validators.required]
+    validators: {
+        required: null
+    }
 })
 ```
 

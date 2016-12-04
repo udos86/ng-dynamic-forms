@@ -2,7 +2,7 @@ import {Subject} from "rxjs/Subject";
 import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
-    DynamicValidatorsConfig,
+    DynamicValidatorsMap,
     ClsConfig
 } from "./dynamic-form-control.model";
 import {serializable} from "../decorator/serializable.decorator";
@@ -10,27 +10,25 @@ import {getValue, isDefined} from "../utils";
 
 export type DynamicFormControlValue = boolean | number | string;
 
-export type DynamicErrorMessages = {[validatorName: string]: string};
-
 export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
 
-    asyncValidators?: DynamicValidatorsConfig;
-    errorMessages?: DynamicErrorMessages;
+    asyncValidators?: DynamicValidatorsMap;
+    errorMessages?: DynamicValidatorsMap;
     hint?: string;
     required?: boolean;
     tabIndex?: number;
-    validators?: DynamicValidatorsConfig;
+    validators?: DynamicValidatorsMap;
     value?: DynamicFormControlValue;
 }
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
-    @serializable() asyncValidators: DynamicValidatorsConfig | null;
-    @serializable() errorMessages: DynamicErrorMessages | null;
+    @serializable() asyncValidators: DynamicValidatorsMap | null;
+    @serializable() errorMessages: DynamicValidatorsMap | null;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
-    @serializable() validators: DynamicValidatorsConfig | null;
+    @serializable() validators: DynamicValidatorsMap | null;
     @serializable("value") _value: T | null;
     valueUpdates: Subject<T>;
 
