@@ -5,8 +5,8 @@ import {
     ClsConfig
 } from "../dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../dynamic-form-value-control.model";
-import {serializable} from "../../decorator/serializable.decorator";
-import {getValue, isFunction, serialize} from "../../utils";
+import {serializable, serialize} from "../../decorator/serializable.decorator";
+import {getValue, isFunction} from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 

@@ -28,7 +28,7 @@ export class DynamicFormService {
 
     constructor(private formBuilder: FormBuilder) {}
 
-    getValidatorFn(validatorName: string, validatorArgs: any): ValidatorFn | AsyncValidatorFn | never {
+    getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | AsyncValidatorFn | never {
 
         let validatorFn = Validators[validatorName];
 
@@ -41,7 +41,7 @@ export class DynamicFormService {
 
     getValidatorFns(config: DynamicValidatorsMap): Array<ValidatorFn | AsyncValidatorFn> {
 
-        return config ?
+        return isDefined(config) ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
     }
 
@@ -100,35 +100,36 @@ export class DynamicFormService {
         return this.formBuilder.group(formGroup, groupExtra);
     }
 
-    createFormArrayGroup(dynamicFormArrayModel: DynamicFormArrayModel): FormGroup {
+    createFormArrayGroup(formArrayModel: DynamicFormArrayModel): FormGroup {
 
-        return this.createFormGroup(dynamicFormArrayModel.addGroup().group);
+        return this.createFormGroup(formArrayModel.addGroup().group);
     }
 
-    addFormArrayGroup(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
+    addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
-        formArray.push(this.createFormArrayGroup(dynamicFormArrayModel));
+        formArray.push(this.createFormArrayGroup(model));
     }
 
-    insertFormArrayGroup(index: number, formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
+    insertFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
-        formArray.insert(index, this.createFormGroup(dynamicFormArrayModel.insertGroup(index).group));
+        formArray.insert(index, this.createFormGroup(model.insertGroup(index).group));
     }
 
-    removeFormArrayGroup(index: number, formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
+    removeFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.removeAt(index);
-        dynamicFormArrayModel.removeGroup(index);
+        model.removeGroup(index);
     }
 
-    clearFormArray(formArray: FormArray, dynamicFormArrayModel: DynamicFormArrayModel): void {
+    clearFormArray(formArray: FormArray, model: DynamicFormArrayModel): void {
 
         while (formArray.length > 0) {
-            this.removeFormArrayGroup(0, formArray, dynamicFormArrayModel);
+            this.removeFormArrayGroup(0, formArray, model);
         }
     }
 
     findById(id: string, group: Array<DynamicFormControlModel>): DynamicFormControlModel {
+
         return group.find(controlModel => controlModel.id === id);
     }
 
@@ -177,7 +178,7 @@ export class DynamicFormService {
                     break;
 
                 default:
-                    throw new Error(`unknown form control type defined on JSON object`);
+                    throw new Error(`unknown form control type with id "${object["id"]}" defined on JSON object`);
             }
         });
 

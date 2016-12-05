@@ -6,7 +6,6 @@ import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dy
 import {DynamicFormControlRelationGroup} from "../model/dynamic-form-control-relation.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH} from "../model/switch/dynamic-switch.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -136,7 +135,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.model.disabledUpdates.next(this.relationService.isFormControlToBeDisabled(relation, this.controlGroup));
     }
 
-    onControlValueChanges(value: boolean | number | string): void {
+    onControlValueChanges(value: DynamicFormControlValue): void {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
@@ -148,7 +147,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    onModelValueUpdates(value: boolean | number | string) {
+    onModelValueUpdates(value: DynamicFormControlValue): void {
 
         if (this.control.value !== value) {
             this.control.setValue(value);
@@ -161,7 +160,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     onValueChange($event: Event |  DynamicFormControlEvent): void {
 
-        if ($event instanceof Event) {
+        if ($event instanceof Event) { // native HTML5 change event
 
             $event.stopImmediatePropagation();
 
@@ -176,7 +175,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
             this.change.emit({$event: $event as Event, control: this.control, model: this.model});
 
-        } else if ($event.hasOwnProperty("source")) { // Material 2
+        } else if ($event.hasOwnProperty("source")) { // Material 2 change event
 
             this.change.emit({$event: $event, control: this.control, model: this.model});
 

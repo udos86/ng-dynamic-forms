@@ -9,8 +9,8 @@ export const DYNAMIC_FORM_CONTROL_CONNECTIVE_OR = "OR";
 export interface DynamicFormControlRelation {
 
     id: string;
-    value?: DynamicFormControlValue;
     status?: string;
+    value?: DynamicFormControlValue;
 }
 
 export interface DynamicFormControlRelationGroup {

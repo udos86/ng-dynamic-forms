@@ -1,5 +1,3 @@
-import {getSerializables, SerializableProperty} from "./decorator/serializable.decorator";
-
 export function isBoolean(object: any): boolean {
     return typeof object === "boolean";
 }
@@ -42,15 +40,4 @@ export function getValue(object: any, key: string, defaultValue: any): any {
     }
 
     return value;
-}
-
-export function serialize(target, prototype?): Object {
-
-    return getSerializables(prototype || target).reduce((prev, prop: SerializableProperty) => {
-
-        prev[prop.name] = target[prop.key];
-
-        return prev;
-
-    }, {});
 }
