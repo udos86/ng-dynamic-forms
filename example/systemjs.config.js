@@ -22,7 +22,7 @@
         "@angular/router/testing": "npm:@angular/router/bundles/router-testing.umd.js",
         "@angular/forms": "npm:@angular/forms/bundles/forms.umd.js",
         "@angular/forms/testing": "npm:@angular/forms/bundles/forms-testing.umd.js",
-        "@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
+        //"@ng2-dynamic-forms": "npm:@ng2-dynamic-forms",
         "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.min.js",
         "@ng2-dynamic-forms/ui-basic": "npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.min.js",
         "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.min.js",
@@ -30,8 +30,15 @@
         "@ng2-dynamic-forms/ui-kendo": "npm:@ng2-dynamic-forms/ui-kendo/bundles/ui-kendo.umd.min.js",
         "@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.min.js",
         "@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.min.js",
-        '@progress': 'npm:@progress',
-        '@telerik': 'npm:@telerik',
+        "@progress": "npm:@progress",
+        "@progress/kendo-angular-dropdowns": "npm:@progress/kendo-angular-dropdowns/dist/npm/js/main.js",
+        "@progress/kendo-angular-inputs": "npm:@progress/kendo-angular-inputs/dist/npm/js/main.js",
+        "@progress/kendo-angular-popup": "npm:@progress/kendo-angular-popup/dist/npm/js/main.js",
+        "@progress/kendo-popup-common": "npm:@progress/kendo-popup-common/dist/npm/js/main.js",
+        "@telerik": "npm:@telerik",
+        "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/js/main.js",
+        "@telerik/kendo-draggable": "npm:@telerik/kendo-draggable/dist/npm/js/Draggable.js",
+        "@telerik/kendo-dropdowns-common": "npm:@telerik/kendo-dropdowns-common/dist/npm/js/main.js",
         "app": "app",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
@@ -42,33 +49,11 @@
             main: "main.js",
             defaultExtension: "js"
         },
-        "@progress/kendo-angular-dropdowns": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/main.js"
+        "@progress": {
+            defaultExtension: "js"
         },
-        "@progress/kendo-angular-inputs": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/main.js"
-        },
-        "@progress/kendo-angular-popup": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/main.js"
-        },
-        "@progress/kendo-popup-common": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/main.js"
-        },
-        "@telerik/kendo-inputs-common": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/main.js"
-        },
-        "@telerik/kendo-draggable": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/Draggable.js"
-        },
-        "@telerik/kendo-dropdowns-common": {
-            defaultExtension: "js",
-            main: "./dist/npm/js/main.js"
+        "@telerik": {
+            defaultExtension: "js"
         },
         "rxjs": {
             defaultExtension: "js"

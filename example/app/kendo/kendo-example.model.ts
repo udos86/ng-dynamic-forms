@@ -41,7 +41,8 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSwitchModel(
         {
             id: "kendoSwitch",
-            label: "Get it on",
+            offLabel: "Off",
+            onLabel: "On",
             value: true
         }
     ),

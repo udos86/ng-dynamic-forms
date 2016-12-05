@@ -1,4 +1,4 @@
-declare let Reflect: any;
+declare let Reflect;
 
 export const METADATA_KEY_SERIALIZABLE = "SERIALIZABLE";
 

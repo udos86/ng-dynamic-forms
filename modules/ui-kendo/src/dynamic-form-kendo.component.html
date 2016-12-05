@@ -9,13 +9,15 @@
                         [formControlName]="model.id"
                         [textField]="'label'"
                         [valueField]="'value'"
-                        [valuePrimitive]="true"></kendo-dropdownlist>
+                        [valuePrimitive]="true"
+                        (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
     <kendo-switch *ngIf="model.type === 'SWITCH'"
                   [checked]="model.checked"
                   [formControlName]="model.id"
                   [offLabel]="model.offLabel"
-                  [onLabel]="model.onLabel"></kendo-switch>
+                  [onLabel]="model.onLabel"
+                  (valueChange)="onValueChange($event)"></kendo-switch>
 
     <ng-content></ng-content>
 

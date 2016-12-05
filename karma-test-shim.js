@@ -45,12 +45,27 @@ System.config({
         "@ng2-dynamic-forms/ui-foundation": "npm:@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation.umd.js",
         "@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.js",
         "@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.js",
+        "@progress": "npm:@progress",
+        "@progress/kendo-angular-dropdowns": "npm:@progress/kendo-angular-dropdowns/dist/npm/js/main.js",
+        "@progress/kendo-angular-inputs": "npm:@progress/kendo-angular-inputs/dist/npm/js/main.js",
+        "@progress/kendo-angular-popup": "npm:@progress/kendo-angular-popup/dist/npm/js/main.js",
+        "@progress/kendo-popup-common": "npm:@progress/kendo-popup-common/dist/npm/js/main.js",
+        "@telerik": "npm:@telerik",
+        "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/js/main.js",
+        "@telerik/kendo-draggable": "npm:@telerik/kendo-draggable/dist/npm/js/Draggable.js",
+        "@telerik/kendo-dropdowns-common": "npm:@telerik/kendo-dropdowns-common/dist/npm/js/main.js",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     },
 
     packages: {
         "@ng2-dynamic-forms": {
+            defaultExtension: "js"
+        },
+        "@progress": {
+            defaultExtension: "js"
+        },
+        "@telerik": {
             defaultExtension: "js"
         },
         "primeng": {

@@ -3,7 +3,7 @@
      [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="!isCheckbox && model.label"
+    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
@@ -32,7 +32,7 @@
     </div>
 
 
-    <div *ngIf="!isCheckbox" [ngClass]="model.cls.grid.control">
+    <div *ngIf="!(model.type === 'CHECKBOX')" [ngClass]="model.cls.grid.control">
 
         <div *ngIf="model.type === 'ARRAY'"
              [dynamicId]="bindId && model.id"

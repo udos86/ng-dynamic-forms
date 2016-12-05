@@ -29,9 +29,9 @@
     </fieldset>
 
 
-    <div *ngIf="!isRadioGroup" [ngClass]="model.cls.grid.container">
+    <div *ngIf="!(model.type === 'RADIO_GROUP')" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
+        <div *ngIf="!(model.type === 'CHECKBOX') && model.label" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -158,7 +158,7 @@
         </div>
 
 
-        <div *ngIf="isCheckbox" [ngClass]="model.cls.grid.label">
+        <div *ngIf="model.type === 'CHECKBOX'" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 

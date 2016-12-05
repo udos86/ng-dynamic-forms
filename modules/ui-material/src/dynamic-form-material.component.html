@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="!isCheckbox && model.label"
+    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>

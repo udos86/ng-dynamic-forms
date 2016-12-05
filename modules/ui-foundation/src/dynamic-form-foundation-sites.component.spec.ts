@@ -71,9 +71,6 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
 
-        expect(component.isCheckbox).toBe(false);
-        expect(component.isRadioGroup).toBe(false);
-
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
     });

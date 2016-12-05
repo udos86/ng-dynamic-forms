@@ -4,8 +4,6 @@ import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
 import {DynamicFormControlRelationGroup} from "../model/dynamic-form-control-relation.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -96,14 +94,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
 
         return messages;
-    }
-
-    get isCheckbox(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
-    }
-
-    get isRadioGroup(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
 
     get isValid(): boolean {

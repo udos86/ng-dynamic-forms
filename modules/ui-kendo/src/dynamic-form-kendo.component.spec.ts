@@ -2,39 +2,41 @@ import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
 import {Type, DebugElement} from "@angular/core";
 import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
 import {By} from "@angular/platform-browser";
-import {MaterialModule} from "@angular/material";
+import {DropDownsModule} from "@progress/kendo-angular-dropdowns";
+import {InputsModule} from "@progress/kendo-angular-inputs";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
-    DynamicInputModel,
     DynamicSwitchModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL} from "./dynamic-form-material.component";
+import {DynamicFormKendoComponent, DYNAMIC_FORM_UI_KENDO} from "./dynamic-form-kendo.component";
 
-describe("DynamicFormMaterialComponent test suite", () => {
+describe("DynamicFormKendoComponent test suite", () => {
 
-    let inputModel = new DynamicInputModel({id: "testInput"}),
-        formModel = [
-            inputModel,
-            new DynamicSwitchModel({id: "testSwitch"})
-        ],
+    let switchModel = new DynamicSwitchModel({id: "test"}),
+        formModel = [switchModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicFormMaterialComponent>,
-        component: DynamicFormMaterialComponent,
+        fixture: ComponentFixture<DynamicFormKendoComponent>,
+        component: DynamicFormKendoComponent,
         debugElement: DebugElement,
-        inputElement: DebugElement;
+        switchElement: DebugElement;
 
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot(), MaterialModule.forRoot()],
-            declarations: [DynamicFormMaterialComponent]
+            imports: [
+                ReactiveFormsModule,
+                DropDownsModule,
+                InputsModule,
+                DynamicFormsCoreModule.forRoot()
+            ],
+            declarations: [DynamicFormKendoComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormMaterialComponent as Type<DynamicFormMaterialComponent>);
+            fixture = TestBed.createComponent(DynamicFormKendoComponent as Type<DynamicFormKendoComponent>);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -50,12 +52,12 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         fixture.detectChanges();
 
-        inputElement = debugElement.query(By.css(`md-input[id='${formModel[0].id}']`));
+        switchElement = debugElement.query(By.css(`kendo-switch`));
     }));
 
     it("should initialize correctly", () => {
 
-        expect(component.type).toEqual(DYNAMIC_FORM_UI_MATERIAL);
+        expect(component.type).toEqual(DYNAMIC_FORM_UI_KENDO);
 
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
@@ -79,24 +81,24 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should have an input element", () => {
 
-        expect(inputElement instanceof DebugElement).toBe(true);
+        expect(switchElement instanceof DebugElement).toBe(true);
     });
 
-    it("should listen to native focus and blur events", () => {
+    xit("should listen to native focus and blur events", () => {
 
         spyOn(component, "onFocusChange");
 
-        inputElement.triggerEventHandler("focus", null);
-        inputElement.triggerEventHandler("blur", null);
+        switchElement.triggerEventHandler("focus", null);
+        switchElement.triggerEventHandler("blur", null);
 
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
 
-    it("should listen to native change event", () => {
+    xit("should listen to native change event", () => {
 
         spyOn(component, "onValueChange");
 
-        inputElement.triggerEventHandler("change", null);
+        switchElement.triggerEventHandler("change", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });
@@ -118,7 +120,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.valueUpdates.next("test");
+        switchModel.valueUpdates.next(true);
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -129,7 +131,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.disabledUpdates.next(true);
+        switchModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });

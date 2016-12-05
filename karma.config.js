@@ -43,6 +43,9 @@ module.exports = function (config) {
             {pattern: "node_modules/@angular/**/*.js", included: false, watched: false},
             {pattern: "node_modules/@angular/**/*.js.map", included: false, watched: false},
 
+            {pattern: "node_modules/@progress/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/@telerik/**/*.js", included: false, watched: false},
+
             {pattern: "node_modules/primeng/**/*.js", included: false, watched: false},
             {pattern: "node_modules/primeng/**/*.js.map", included: false, watched: false},
 
