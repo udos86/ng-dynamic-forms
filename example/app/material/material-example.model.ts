@@ -3,6 +3,7 @@ import {
     DynamicCheckboxGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicSliderModel
     DynamicSwitchModel,
     DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
@@ -83,9 +84,18 @@ export const MATERIAL_EXAMPLE_MODEL = [
         value: "option-3"
     }),
 
+    new DynamicSliderModel({
+
+        id: "materialSlider",
+        min: 0,
+        max: 10,
+        step: 1,
+        value: 3
+    }),
+
     new DynamicTextAreaModel({
 
-        id: "foundationTextArea",
+        id: "materialTextArea",
         //label: "Example Textarea",
         rows: 1,
         placeholder: "example Textarea",

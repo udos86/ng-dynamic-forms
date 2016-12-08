@@ -4,7 +4,7 @@ import {
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicTextAreaModel, DynamicSwitchModel,
+    DynamicTextAreaModel, DynamicSwitchModel, DynamicSliderModel,
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
@@ -160,6 +160,27 @@ export const PRIMENG_EXAMPLE_MODEL = [
             label: "Example Textarea",
             rows: 5,
             placeholder: "example Textarea",
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
+        }
+    ),
+
+    new DynamicSliderModel(
+        {
+            id: "primeSlider",
+            label: "Example Slider",
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 3
         },
         {
             element: {

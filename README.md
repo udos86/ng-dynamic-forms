@@ -249,13 +249,16 @@ your component** `template`:
 Due to technical restrictions or external dependencies still being in development full support for all form controls 
 cannot be provided in every UI library. **See the following compatibility table**:
 
-|               | Checkbox | Checkbox Group | Input | Radio Group | Select | Switch | Textarea |
-|---------------|:--------:|:--------------:|:-----:|:-----------:|:------:|:------:|:--------:|
-| ui-basic      |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✗   |     ✓    |
-| ui-bootstrap  |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✗   |     ✓    |
-| ui-foundation |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✓   |     ✓    |
-| ui-material   |     ✓    |        ✓       |   ✓   |      ✓      |    ✗   |    ✓   |     ✓    |
-| ui-primeng    |     ✓    |        ✓       |   ✓   |      ✓      |    ✓   |    ✓   |     ✓    |
+|               	| Checkbox (Group) 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
+|---------------	|:----------------:	|:-----:	|:-----------:	|:------:	|--------	|:------:	|:--------:	|
+| ui-basic      	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
+| ui-bootstrap  	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
+| ui-foundation 	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
+| ui-kendo      	|         ✗        	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
+| ui-material   	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+| ui-primeng    	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+
+**\*)** sliders can be defined by using a `DynamicInputModel` with `inputType: range`
 
 
 ## Model Bindings and Control References

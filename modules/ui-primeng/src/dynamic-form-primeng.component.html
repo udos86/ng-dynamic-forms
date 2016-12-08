@@ -129,6 +129,15 @@
                         [options]="model.options"></p-dropdown>
 
 
+            <p-slider *ngIf="model.type === 'SLIDER'"
+                      [dynamicId]="bindId && model.id"
+                      [min]="model.min"
+                      [max]="model.max"
+                      [step]="model.step"
+                      [formControlName]="model.id"
+                      (onChange)="onValueChange($event)"></p-slider>
+
+
             <p-inputSwitch *ngIf="model.type === 'SWITCH'"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"

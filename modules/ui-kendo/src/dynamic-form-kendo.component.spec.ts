@@ -94,11 +94,11 @@ describe("DynamicFormKendoComponent test suite", () => {
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
 
-    xit("should listen to native change event", () => {
+    it("should listen to native change event", () => {
 
         spyOn(component, "onValueChange");
 
-        switchElement.triggerEventHandler("change", null);
+        switchElement.triggerEventHandler("valueChange", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });

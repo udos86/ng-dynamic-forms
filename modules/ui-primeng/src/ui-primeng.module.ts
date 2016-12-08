@@ -9,6 +9,7 @@ import {InputSwitchModule} from "primeng/components/inputswitch/inputswitch";
 import {InputTextModule} from "primeng/components/inputtext/inputtext";
 import {InputTextareaModule} from "primeng/components/inputtextarea/inputtextarea";
 import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
+import {SliderModule} from "primeng/components/slider/slider";
 import {SpinnerModule} from "primeng/components/spinner/spinner";
 
 @NgModule({
@@ -23,6 +24,7 @@ import {SpinnerModule} from "primeng/components/spinner/spinner";
         InputTextModule,
         InputTextareaModule,
         RadioButtonModule,
+        SliderModule,
         SpinnerModule
     ],
     declarations: [

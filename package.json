@@ -33,15 +33,15 @@
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "dependencies": {
-    "@angular/common": "^2.2.4",
-    "@angular/compiler": "^2.2.4",
-    "@angular/core": "^2.2.4",
-    "@angular/forms": "^2.2.4",
-    "@angular/http": "^2.2.4",
-    "@angular/material": "^2.0.0-alpha.10",
-    "@angular/platform-browser": "^2.2.4",
-    "@angular/platform-browser-dynamic": "^2.2.4",
-    "@angular/router": "^3.2.4",
+    "@angular/common": "^2.3.0",
+    "@angular/compiler": "^2.3.0",
+    "@angular/core": "^2.3.0",
+    "@angular/forms": "^2.3.0",
+    "@angular/http": "^2.3.0",
+    "@angular/material": "^2.0.0-alpha.11",
+    "@angular/platform-browser": "^2.3.0",
+    "@angular/platform-browser-dynamic": "^2.3.0",
+    "@angular/router": "^3.3.0",
     "@ng2-dynamic-forms/core": "^1.3.0",
     "@ng2-dynamic-forms/ui-basic": "^1.3.0",
     "@ng2-dynamic-forms/ui-bootstrap": "^1.3.0",
@@ -55,10 +55,10 @@
     "primeng": "^1.0.1",
     "primeui": "^4.1.15",
     "reflect-metadata": "^0.1.8",
-    "rxjs": "5.0.0-beta.12",
+    "rxjs": "5.0.0-rc.4",
     "symbol-observable": "^1.0.4",
     "systemjs": "^0.19.41",
-    "zone.js": "^0.6.26"
+    "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.35",
@@ -90,14 +90,14 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "lite-server": "^2.2.2",
     "phantomjs-prebuilt": "^2.1.13",
-    "protractor": "^4.0.11",
+    "protractor": "^4.0.12",
     "rollup": "^0.36.4",
     "rollup-plugin-uglify": "^1.0.1",
     "run-sequence": "^1.2.2",
     "systemjs-builder": "^0.15.34",
     "tslint": "^4.0.2",
     "typedoc": "^0.5.1",
-    "typescript": "^2.1.1",
-    "webpack": "^1.13.3"
+    "typescript": "^2.1.4",
+    "webpack": "^1.14.0"
   }
 }
