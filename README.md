@@ -250,7 +250,7 @@ Due to technical restrictions or external dependencies still being in developmen
 cannot be provided in every UI library. **See the following compatibility table**:
 
 |               	| Checkbox (Group) 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
-|---------------	|:----------------:	|:-----:	|:-----------:	|:------:	|--------	|:------:	|:--------:	|
+|---------------	|:----------------:	|:-----:	|:-----------:	|:------:	|:------:	|:------:	|:--------:	|
 | ui-basic      	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
 | ui-bootstrap  	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
 | ui-foundation 	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
