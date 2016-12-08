@@ -4,7 +4,7 @@ describe("DynamicSelectModel test suite", () => {
 
     let model: DynamicSelectModel<string>,
         config = {
-            id: "default",
+            id: "select",
             options: [
                 {
                     value: "1",

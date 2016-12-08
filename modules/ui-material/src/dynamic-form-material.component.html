@@ -115,7 +115,14 @@
                [dynamicId]="bindId && model.id"
                [formControlName]="model.id"
                [ngClass]="model.cls.element.control"
-               (change)="onValueChange($event)"></md-select>
+               (blur)="onFocusChange($event)"
+               (change)="onValueChange($event)"
+               (focus)="onFocusChange($event)">
+
+        <md-option *ngFor="let option of model.options"
+                   [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
+
+    </md-select>
 
 
     <md-slider *ngIf="model.type === 'SLIDER'" thumb-label

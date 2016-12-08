@@ -4,7 +4,7 @@ describe("DynamicSliderModel test suite", () => {
 
     let model: DynamicSliderModel,
         config = {
-            id: "default",
+            id: "slider",
             min: 0,
             max: 100,
             step: 1,

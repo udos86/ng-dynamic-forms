@@ -258,7 +258,7 @@ cannot be provided in every UI library. **See the following compatibility table*
 | ui-material   	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 | ui-primeng    	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 
-**\*)** sliders can be defined by using a `DynamicInputModel` with `inputType: range`
+**\*)** sliders can be defined by using a `DynamicInputModel` with `inputType: "range"`
 
 
 ## Model Bindings and Control References

@@ -1,4 +1,3 @@
-import {Validators} from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DynamicFormArrayModel,
@@ -10,7 +9,7 @@ describe("DynamicFormArrayModel test suite", () => {
 
     let model: DynamicFormArrayModel,
         config = {
-            id: "default",
+            id: "formArray",
             initialCount: 3,
             createGroup: () => [new DynamicInputModel({id: "defaultInput"})],
             validator: {required: null}

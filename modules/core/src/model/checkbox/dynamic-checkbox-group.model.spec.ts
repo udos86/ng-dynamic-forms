@@ -5,7 +5,7 @@ describe("DynamicCheckboxGroupModel test suite", () => {
 
     let model: DynamicCheckboxGroupModel,
         config = {
-            id: "default",
+            id: "checkboxGroup",
             group: [
                 new DynamicCheckboxModel(
                     {

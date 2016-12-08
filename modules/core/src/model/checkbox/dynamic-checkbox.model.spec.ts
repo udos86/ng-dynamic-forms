@@ -8,7 +8,7 @@ describe("DynamicCheckboxModel test suite", () => {
 
     let model: DynamicCheckboxModel,
         config = {
-            id: "default",
+            id: "checkbox",
             value: true
         };
 
