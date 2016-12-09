@@ -4,7 +4,7 @@ import {
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicSliderModel
+    DynamicSliderModel,
     DynamicSwitchModel,
     DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";

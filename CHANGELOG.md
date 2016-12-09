@@ -1,3 +1,16 @@
+# 1.3.1
+
+### **Features** 
+
+* `DynamicSliderModel` added (working in `ui-material`, `ui-kendo`, `ui-primeng`)
+* `DynamicSelectModel` now working in `ui-material`
+* `hint` now working in `ui-basic` (closes [#203](https://github.com/udos86/ng2-dynamic-forms/issues/203))
+* update to `@angular 2.3.0`
+* update to `rxjs rc.4`
+* update to `zone.js 0.7.2`
+* update to `@angular-material alpha-11.3`
+
+
 # 1.3.0
 
 ### **Breaking Changes**

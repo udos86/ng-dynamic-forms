@@ -111,3 +111,12 @@ fieldset:only-of-type .btn-danger, fieldset:only-of-type .button.alert {
 dynamic-form-material-example fieldset {
     border: none;
 }
+
+dynamic-form-material-example fieldset {
+    border: none;
+}
+
+dynamic-form-kendo-control {
+    display: block;
+    margin: 2.5rem;
+}

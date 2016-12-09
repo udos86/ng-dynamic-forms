@@ -37,6 +37,7 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicInputModel({
 
         id: "basicInput",
+        hint: "Just a hint",
         label: "Example Input",
         list: ["One", "Two", "Three", "Four", "Five"],
         maxLength: 51,
