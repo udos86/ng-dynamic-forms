@@ -23,4 +23,8 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> impl
 
         this.legend = getValue(config, "legend", null);
     }
+
+    select(index: number): void {
+        this.valueUpdates.next(this.get(index).value);
+    }
 }

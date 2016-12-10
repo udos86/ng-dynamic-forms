@@ -20,6 +20,13 @@ describe("DynamicCheckboxGroupModel test suite", () => {
                         label: "Checkbox 2",
                         value: false
                     }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "checkbox3",
+                        label: "Checkbox 3",
+                        value: false
+                    }
                 )
             ]
         };
@@ -34,20 +41,38 @@ describe("DynamicCheckboxGroupModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
     });
 
+    it("should check checkboxes correctly", () => {
+
+        model.check(0, 2);
+
+        expect(model.group[0].value).toBe(true);
+        expect(model.group[2].value).toBe(true);
+    });
+
     it("should check all checkboxes correctly", () => {
 
         model.checkAll();
 
-        expect(model.group[0].value).toEqual(true);
-        expect(model.group[1].value).toEqual(true);
+        expect(model.group[0].value).toBe(true);
+        expect(model.group[1].value).toBe(true);
+        expect(model.group[2].value).toBe(true);
+    });
+
+    it("should uncheck checkboxes correctly", () => {
+
+        model.uncheck(0, 2);
+
+        expect(model.group[0].value).toBe(false);
+        expect(model.group[2].value).toBe(false);
     });
 
     it("should uncheck all checkboxes correctly", () => {
 
         model.uncheckAll();
 
-        expect(model.group[0].value).toEqual(false);
-        expect(model.group[1].value).toEqual(false);
+        expect(model.group[0].value).toBe(false);
+        expect(model.group[1].value).toBe(false);
+        expect(model.group[2].value).toBe(false);
     });
 
     it("should serialize correctly", () => {

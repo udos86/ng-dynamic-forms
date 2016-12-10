@@ -14,6 +14,7 @@ import {InputSwitchModule} from "primeng/components/inputswitch/inputswitch";
 import {InputTextModule} from "primeng/components/inputtext/inputtext";
 import {InputTextareaModule} from "primeng/components/inputtextarea/inputtextarea";
 import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
+import {SliderModule} from "primeng/components/slider/slider";
 import {SpinnerModule} from "primeng/components/spinner/spinner";
 import {DynamicFormPrimeNGComponent, DYNAMIC_FORM_UI_PRIME_NG} from "./dynamic-form-primeng.component";
 
@@ -40,6 +41,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 InputTextModule,
                 InputTextareaModule,
                 RadioButtonModule,
+                SliderModule,
                 SpinnerModule
             ],
             declarations: [DynamicFormPrimeNGComponent]

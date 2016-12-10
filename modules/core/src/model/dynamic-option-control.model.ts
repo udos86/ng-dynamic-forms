@@ -36,12 +36,12 @@ export class DynamicFormOption<T> {
     }
 }
 
-export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
+export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig<T | Array<T>> {
 
     options?: Array<DynamicFormOptionConfig<T>>;
 }
 
-export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
+export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T | Array<T>> {
 
     @serializable() options: Array<DynamicFormOption<T>>;
 
@@ -51,6 +51,8 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
         this.options = config.options ? config.options.map(optionConfig => new DynamicFormOption<T>(optionConfig)) : [];
     }
+
+    abstract select(...indices: Array<number>): void;
 
     add(optionConfig: DynamicFormOptionConfig<T>): DynamicFormOption<T> {
         return this.insert(this.options.length, optionConfig);
@@ -71,9 +73,5 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
     remove(index: number): void {
         this.options.splice(index, 1);
-    }
-
-    select(index: number): void {
-        this.valueUpdates.next(this.get(index).value);
     }
 }

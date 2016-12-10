@@ -5,12 +5,12 @@ import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
-export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelConfig<T | Array<T>> {
+export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelConfig<T> {
 
     multiple?: boolean;
 }
 
-export class DynamicSelectModel<T> extends DynamicOptionControlModel<T | Array<T>> {
+export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
     @serializable() multiple: boolean;
 
@@ -23,14 +23,10 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T | Array<T
         this.multiple = getValue(config, "multiple", false);
     }
 
-    select(index: number): void {
+    select(...indices: Array<number>): void {
 
-        if (this.multiple) {
+        let nextValue = this.multiple ? indices.map(index => this.get(index).value) : this.get(indices[0]).value;
 
-            // TODO
-
-        } else {
-            this.valueUpdates.next(this.get(index).value);
-        }
+        this.valueUpdates.next(nextValue);
     }
 }

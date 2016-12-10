@@ -4,7 +4,9 @@ import {
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicTextAreaModel, DynamicSwitchModel, DynamicSliderModel,
+    DynamicSliderModel,
+    DynamicSwitchModel,
+    DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
