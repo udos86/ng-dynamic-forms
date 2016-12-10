@@ -5,7 +5,7 @@ import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SLIDER = "SLIDER";
 
-export interface DynamicSliderModelConfig extends DynamicFormValueControlModelConfig {
+export interface DynamicSliderModelConfig extends DynamicFormValueControlModelConfig<number> {
 
     min?: number;
     max?: number;

@@ -129,7 +129,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
+            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
 
             if (model.value !== value) {
                 model.valueUpdates.next(value);

@@ -4,7 +4,7 @@ import {isBoolean} from "../utils";
 
 export abstract class DynamicCheckControlModel extends DynamicFormValueControlModel<boolean> {
 
-    constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFormValueControlModelConfig<boolean>, cls?: ClsConfig) {
 
         super(config, cls);
 

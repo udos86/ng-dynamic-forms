@@ -4,7 +4,7 @@ import {AUTOCOMPLETE_ON} from "../service/dynamic-form-autofill.service";
 import {serializable} from "../decorator/serializable.decorator";
 import {getValue} from "../utils";
 
-export interface DynamicInputControlModelConfig extends DynamicFormValueControlModelConfig {
+export interface DynamicInputControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
 
     autoComplete?: boolean;
     autoFocus?: boolean;
@@ -29,7 +29,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
     @serializable() spellCheck: boolean;
     @serializable() suffix: string | null;
 
-    constructor(config: DynamicInputControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicInputControlModelConfig<T>, cls?: ClsConfig) {
 
         super(config, cls);
 

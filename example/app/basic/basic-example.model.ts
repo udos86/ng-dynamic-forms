@@ -16,6 +16,7 @@ export const BASIC_EXAMPLE_MODEL = [
 
         id: "basicSelect",
         label: "Example Select",
+        multiple: false,
         options: [
             {
                 label: "Option 1",

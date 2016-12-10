@@ -1,4 +1,3 @@
-import {Validators} from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -11,7 +10,6 @@ import {
 } from "@ng2-dynamic-forms/core";
 
 export const BOOTSTRAP_EXAMPLE_MODEL = [
-
 
     new DynamicFormGroupModel({
 

@@ -8,7 +8,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "TEXTAREA";
 export const DYNAMIC_FORM_TEXTAREA_WRAP_HARD = "hard";
 export const DYNAMIC_FORM_TEXTAREA_WRAP_SOFT = "soft";
 
-export interface DynamicTextAreaModelConfig extends DynamicInputControlModelConfig {
+export interface DynamicTextAreaModelConfig extends DynamicInputControlModelConfig<string> {
 
     cols?: number;
     rows?: number;
