@@ -25,8 +25,8 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
     select(...indices: Array<number>): void {
 
-        let nextValue = this.multiple ? indices.map(index => this.get(index).value) : this.get(indices[0]).value;
+        let value = this.multiple ? indices.map(index => this.get(index).value) : this.get(indices[0]).value;
 
-        this.valueUpdates.next(nextValue);
+        this.valueUpdates.next(value);
     }
 }

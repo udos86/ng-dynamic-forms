@@ -15,6 +15,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         {
             id: "primeSelect",
             label: "Example Select",
+            multiple: true,
             options: [
                 {
                     label: "Option 1",
@@ -29,7 +30,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     value: "option-3"
                 }
             ],
-            value: "option-3"
+            value: ["option-3"]
         },
         {
             element: {

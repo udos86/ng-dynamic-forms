@@ -27,6 +27,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "primeng/components/inputswitch/inputswitch": "primeng/components/inputswitch/inputswitch",
             "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
             "primeng/components/inputtextarea/inputtextarea": "primeng/components/inputtextarea/inputtextarea",
+            "primeng/components/multiselect/multiselect": "primeng/components/multiselect/multiselect",
             "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",
             "primeng/components/spinner/spinner": "primeng/components/spinner/spinner",
             "primeng/components/slider/slider": "primeng/components/slider/slider",

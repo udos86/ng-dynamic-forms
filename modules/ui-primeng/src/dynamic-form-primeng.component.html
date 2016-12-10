@@ -123,10 +123,18 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-dropdown *ngIf="model.type === 'SELECT'"
+            <p-dropdown *ngIf="model.type === 'SELECT' && !model.multiple"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
-                        [options]="model.options"></p-dropdown>
+                        [options]="model.options"
+                        (onChange)="onValueChange($event)"></p-dropdown>
+
+
+            <p-multiSelect *ngIf="model.type === 'SELECT' && model.multiple"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [options]="model.options"
+                           (onChange)="onValueChange($event)"></p-multiSelect>
 
 
             <p-slider *ngIf="model.type === 'SLIDER'"
@@ -134,15 +142,15 @@
                       [min]="model.min"
                       [max]="model.max"
                       [step]="model.step"
-                      [formControlName]="model.id"
-                      (onChange)="onValueChange($event)"></p-slider>
+                      [formControlName]="model.id"></p-slider>
 
 
             <p-inputSwitch *ngIf="model.type === 'SWITCH'"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
-                           [offLabel]="model.offLabel"></p-inputSwitch>
+                           [offLabel]="model.offLabel"
+                           (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
             <textarea *ngIf="model.type === 'TEXTAREA'" pInputTextarea

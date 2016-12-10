@@ -52,8 +52,6 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         this.options = config.options ? config.options.map(optionConfig => new DynamicFormOption<T>(optionConfig)) : [];
     }
 
-    abstract select(...indices: Array<number>): void;
-
     add(optionConfig: DynamicFormOptionConfig<T>): DynamicFormOption<T> {
         return this.insert(this.options.length, optionConfig);
     }
@@ -71,7 +69,9 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         return option;
     }
 
-    remove(index: number): void {
-        this.options.splice(index, 1);
+    remove(...indices: Array<number>): void {
+        indices.forEach(index => this.options.splice(index, 1));
     }
+
+    abstract select(...indices: Array<number>): void;
 }
