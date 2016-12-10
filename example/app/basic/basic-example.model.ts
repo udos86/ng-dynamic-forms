@@ -8,7 +8,6 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
-import {Validators} from "@angular/forms";
 
 export const BASIC_EXAMPLE_MODEL = [
 
@@ -16,7 +15,6 @@ export const BASIC_EXAMPLE_MODEL = [
 
         id: "basicSelect",
         label: "Example Select",
-        multiple: false,
         options: [
             {
                 label: "Option 1",
