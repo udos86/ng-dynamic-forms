@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Inject, Optional} from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -6,7 +6,8 @@ import {
     FormArray,
     Validators,
     ValidatorFn,
-    AsyncValidatorFn
+    AsyncValidatorFn,
+    NG_VALIDATORS, NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import {DynamicFormControlModel, DynamicValidatorsMap} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
@@ -23,14 +24,30 @@ import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/sel
 import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
 import {isFunction, isDefined} from "../utils";
 
-@Injectable()
 export class DynamicFormService {
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(@Inject(FormBuilder) private formBuilder: FormBuilder,
+                @Optional() @Inject(NG_VALIDATORS) private ngValidators: Array<ValidatorFn>,
+                @Optional() @Inject(NG_ASYNC_VALIDATORS) private ngAsyncValidators: Array<ValidatorFn>) {}
+
+    getCustomValidatorFn(validatorName: string): ValidatorFn | AsyncValidatorFn | undefined {
+
+        let validatorFn;
+
+        if (this.ngValidators) {
+            validatorFn = this.ngValidators.find(validator => validatorName === validator.name);
+        }
+
+        if (!isDefined(validatorFn) && this.ngAsyncValidators) {
+            validatorFn = this.ngAsyncValidators.find(asyncValidator => validatorName === asyncValidator.name);
+        }
+
+        return validatorFn;
+    }
 
     getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | AsyncValidatorFn | never {
 
-        let validatorFn = Validators[validatorName];
+        let validatorFn = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
 
         if (!isFunction(validatorFn)) {
             throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS multi provider`);

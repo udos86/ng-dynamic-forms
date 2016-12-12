@@ -8,6 +8,7 @@
                         [data]="model.options"
                         [disabled]="model.disabled"
                         [formControlName]="model.id"
+                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                         [textField]="'label'"
                         [valueField]="'value'"
                         [valuePrimitive]="true"
@@ -19,6 +20,7 @@
                   [formControlName]="model.id"
                   [min]="model.min"
                   [max]="model.max"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   [showButtons]="true"
                   [smallStep]="model.step"
                   [vertical]="model.vertical"
@@ -29,6 +31,7 @@
                   [checked]="model.checked"
                   [disabled]="model.disabled"
                   [formControlName]="model.id"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   [offLabel]="model.offLabel"
                   [onLabel]="model.onLabel"
                   (valueChange)="onValueChange($event)"></kendo-switch>

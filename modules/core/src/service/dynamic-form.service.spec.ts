@@ -1,5 +1,5 @@
 import {TestBed, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormGroup, FormControl, FormArray} from "@angular/forms";
+import {ReactiveFormsModule, FormGroup, FormControl, FormArray, NG_VALIDATORS} from "@angular/forms";
 import {DynamicFormService} from "./dynamic-form.service";
 import {DynamicCheckboxModel} from "../model/checkbox/dynamic-checkbox.model";
 import {DynamicCheckboxGroupModel} from "../model/checkbox/dynamic-checkbox-group.model";
@@ -17,11 +17,23 @@ describe("DynamicFormService test suite", () => {
     let testModel,
         service;
 
+    function testValidator() {
+
+        return {
+            testValidate: {
+                valid: true
+            }
+        };
+    }
+
     beforeEach(() => {
 
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
-            providers: [DynamicFormService]
+            providers: [
+                DynamicFormService,
+                {provide: NG_VALIDATORS, useValue: testValidator, multi: true}
+            ]
         });
 
         testModel = [
@@ -254,6 +266,13 @@ describe("DynamicFormService test suite", () => {
         expect(validators.length).toBe(Object.keys(config).length);
     });
 
+    it("should resolve custom validators from config correctly", () => {
+
+        let config = {required: null, maxLength: 7, testValidator: null},
+            validators = service.getValidatorFns(config);
+
+        expect(validators.length).toBe(Object.keys(config).length);
+    });
 
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
