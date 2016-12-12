@@ -1,5 +1,9 @@
 # 1.3.1
 
+### **Bugfixes** 
+
+* custom validator functions are now correctly detected in model configuration (closes [#200](https://github.com/udos86/ng2-dynamic-forms/issues/200))
+ 
 ### **Features** 
 
 * `DynamicSliderModel` added (working in `ui-material`, `ui-kendo`, `ui-primeng`)
