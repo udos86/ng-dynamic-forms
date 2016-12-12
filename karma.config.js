@@ -1,10 +1,11 @@
+const TRAVIS = process.env["TRAVIS"] !== undefined;
+
 module.exports = function (config) {
 
     let reporters = ["progress", "coverage"],
-        coverageReporters = [{type: "text-summary"}],
-        excludeTravis = ["@ng2-dynamic-forms/ui-kendo/**/*.*"];
+        coverageReporters = [{type: "text-summary"}];
 
-    if (process.env.TRAVIS) {
+    if (TRAVIS) {
 
         reporters.push("coveralls");
         coverageReporters.push({type: "lcov", dir: "coverage"});
@@ -60,7 +61,11 @@ module.exports = function (config) {
 
 
         // list of files to exclude
-        exclude: process.env.TRAVIS ? excludeTravis : [],
+        exclude: TRAVIS ? [
+            "node_modules/@progress/**/*.js",
+            "node_modules/@telerik/**/*.js",
+            "@ng2-dynamic-forms/ui-kendo/**/*.*"
+        ] : [],
 
 
         // preprocess matching files before serving them to the browser

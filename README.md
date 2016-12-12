@@ -27,6 +27,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
 - [JSON Export and Import](#json-export-and-import)
 - [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
@@ -518,6 +519,60 @@ new DynamicInputModel(
         }
     }
 )
+```
+
+## Custom Validators
+
+Adding built-in validators to any `DynamicFormValueControlModel` is dead easy! 
+
+Just reference a `Validators` function by it's name in the `validators` or `asyncValidators` object literal and ng2 Dynamic Forms will do the rest:
+```ts 
+new DynamicInputModel({
+
+    id: "myInput",
+    label: "My Input",
+    validators: {
+        required: null,
+        minLength: 3
+    }
+})
+```
+
+So far so good! But what if you'd like to use a custom validator as well?
+
+**At first use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your function**:
+```ts 
+function testValidator() {
+
+    return {
+        testValidate: {
+            valid: true
+        }
+    };
+}
+
+@NgModule({
+    // ...
+    providers: [
+        {provide: NG_VALIDATORS, useValue: testValidator, multi: true}
+    ]
+})
+``` 
+
+> **Note:** thoughtram.io - [Custom Validators in Angular 2](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html)
+
+**And as if by magic you can now apply your custom validator, too**:
+```ts 
+new DynamicInputModel({
+
+    id: "myInput",
+    label: "My Input",
+    validators: {
+        required: null,
+        minLength: 3,
+        testValidator: null
+    }
+})
 ```
 
 
