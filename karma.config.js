@@ -1,7 +1,8 @@
 module.exports = function (config) {
 
     let reporters = ["progress", "coverage"],
-        coverageReporters = [{type: "text-summary"}];
+        coverageReporters = [{type: "text-summary"}],
+        excludeTravis = ["@ng2-dynamic-forms/ui-kendo/**/*.*"];
 
     if (process.env.TRAVIS) {
 
@@ -59,7 +60,7 @@ module.exports = function (config) {
 
 
         // list of files to exclude
-        exclude: [],
+        exclude: process.env.TRAVIS ? excludeTravis : [],
 
 
         // preprocess matching files before serving them to the browser
@@ -95,7 +96,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ["Chrome"],
+        browsers: ["PhantomJS"],
 
 
         // Continuous Integration mode
