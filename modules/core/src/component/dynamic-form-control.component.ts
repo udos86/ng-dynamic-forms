@@ -150,8 +150,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     onValueChange($event: Event |  DynamicFormControlEvent): void {
 
-        console.log($event);
-
         if ($event instanceof Event) { // native HTML5 change event
 
             $event.stopImmediatePropagation();

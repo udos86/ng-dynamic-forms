@@ -1,9 +1,11 @@
+const TRAVIS = process.env["TRAVIS"] !== undefined;
+
 module.exports = function (config) {
 
     let reporters = ["progress", "coverage"],
         coverageReporters = [{type: "text-summary"}];
 
-    if (process.env.TRAVIS) {
+    if (TRAVIS) {
 
         reporters.push("coveralls");
         coverageReporters.push({type: "lcov", dir: "coverage"});
@@ -59,7 +61,11 @@ module.exports = function (config) {
 
 
         // list of files to exclude
-        exclude: [],
+        exclude: TRAVIS ? [
+            "node_modules/@progress/**/*.js",
+            "node_modules/@telerik/**/*.js",
+            "@ng2-dynamic-forms/ui-kendo/**/*.*"
+        ] : [],
 
 
         // preprocess matching files before serving them to the browser
@@ -95,7 +101,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ["Chrome"],
+        browsers: ["PhantomJS"],
 
 
         // Continuous Integration mode

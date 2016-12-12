@@ -7,7 +7,8 @@ import {
     Validators,
     ValidatorFn,
     AsyncValidatorFn,
-    NG_VALIDATORS, NG_ASYNC_VALIDATORS
+    NG_VALIDATORS,
+    NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import {DynamicFormControlModel, DynamicValidatorsMap} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
@@ -27,19 +28,19 @@ import {isFunction, isDefined} from "../utils";
 export class DynamicFormService {
 
     constructor(@Inject(FormBuilder) private formBuilder: FormBuilder,
-                @Optional() @Inject(NG_VALIDATORS) private ngValidators: Array<ValidatorFn>,
-                @Optional() @Inject(NG_ASYNC_VALIDATORS) private ngAsyncValidators: Array<ValidatorFn>) {}
+                @Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: Array<ValidatorFn>,
+                @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: Array<AsyncValidatorFn>) {}
 
     getCustomValidatorFn(validatorName: string): ValidatorFn | AsyncValidatorFn | undefined {
 
         let validatorFn;
 
-        if (this.ngValidators) {
-            validatorFn = this.ngValidators.find(validator => validatorName === validator.name);
+        if (this.NG_VALIDATORS) {
+            validatorFn = this.NG_VALIDATORS.find(validator => validatorName === validator.name);
         }
 
-        if (!isDefined(validatorFn) && this.ngAsyncValidators) {
-            validatorFn = this.ngAsyncValidators.find(asyncValidator => validatorName === asyncValidator.name);
+        if (!isDefined(validatorFn) && this.NG_ASYNC_VALIDATORS) {
+            validatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidator => validatorName === asyncValidator.name);
         }
 
         return validatorFn;
