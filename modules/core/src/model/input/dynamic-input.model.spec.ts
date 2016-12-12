@@ -9,7 +9,7 @@ describe("DynamicInputModel test suite", () => {
 
     let model: DynamicInputModel,
         config = {
-            id: "default",
+            id: "input",
             list: ["One", "Two", "Three"]
         };
 

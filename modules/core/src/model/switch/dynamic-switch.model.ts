@@ -6,7 +6,7 @@ import {getValue} from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SWITCH = "SWITCH";
 
-export interface DynamicSwitchModelConfig extends DynamicFormValueControlModelConfig {
+export interface DynamicSwitchModelConfig extends DynamicFormValueControlModelConfig<boolean> {
 
     offLabel?: string;
     onLabel?: string;

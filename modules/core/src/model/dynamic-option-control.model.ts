@@ -1,7 +1,7 @@
 import {ClsConfig} from "./dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
-import {serializable} from "../decorator/serializable.decorator";
-import {getValue, serialize} from "../utils";
+import {serializable, serialize} from "../decorator/serializable.decorator";
+import {getValue} from "../utils";
 
 export interface DynamicFormOptionConfig<T> {
 
@@ -36,12 +36,12 @@ export class DynamicFormOption<T> {
     }
 }
 
-export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig {
+export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig<T | Array<T>> {
 
     options?: Array<DynamicFormOptionConfig<T>>;
 }
 
-export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T> {
+export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T | Array<T>> {
 
     @serializable() options: Array<DynamicFormOption<T>>;
 
@@ -69,11 +69,9 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         return option;
     }
 
-    remove(index: number): void {
-        this.options.splice(index, 1);
+    remove(...indices: Array<number>): void {
+        indices.forEach(index => this.options.splice(index, 1));
     }
 
-    select(index: number): void {
-        this.valueUpdates.next(this.get(index).value);
-    }
+    abstract select(...indices: Array<number>): void;
 }

@@ -15,6 +15,14 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
         super(config, cls);
     }
 
+    check(...indices: Array<number>): void {
+        indices.forEach(index => this.group[index].checked = true);
+    }
+
+    uncheck(...indices: Array<number>): void {
+        indices.forEach(index => this.group[index].checked = false);
+    }
+
     checkAll(): void {
         this.group.forEach(model => model.checked = true);
     }

@@ -21,7 +21,7 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_TIME = "time";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_WEEK = "week";
 
-export interface DynamicInputModelConfig extends DynamicInputControlModelConfig {
+export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<string | number> {
 
     accept?: string;
     inputType?: string;
@@ -33,7 +33,7 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig 
     step?: number;
 }
 
-export class DynamicInputModel extends DynamicInputControlModel<any> {
+export class DynamicInputModel extends DynamicInputControlModel<string | number> {
 
     @serializable() accept: string | null;
     @serializable() inputType: string;

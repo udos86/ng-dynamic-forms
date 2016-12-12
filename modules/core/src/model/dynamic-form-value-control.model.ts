@@ -8,9 +8,9 @@ import {
 import {serializable} from "../decorator/serializable.decorator";
 import {getValue, isDefined} from "../utils";
 
-export type DynamicFormControlValue = boolean | number | string;
+export type DynamicFormControlValue = boolean | number | string | Array<boolean | number | string>;
 
-export interface DynamicFormValueControlModelConfig extends DynamicFormControlModelConfig {
+export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
     asyncValidators?: DynamicValidatorsMap;
     errorMessages?: DynamicValidatorsMap;
@@ -18,7 +18,7 @@ export interface DynamicFormValueControlModelConfig extends DynamicFormControlMo
     required?: boolean;
     tabIndex?: number;
     validators?: DynamicValidatorsMap;
-    value?: DynamicFormControlValue;
+    value?: T;
 }
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
@@ -32,7 +32,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     @serializable("value") _value: T | null;
     valueUpdates: Subject<T>;
 
-    constructor(config: DynamicFormValueControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFormValueControlModelConfig<T>, cls?: ClsConfig) {
 
         super(config, cls);
 

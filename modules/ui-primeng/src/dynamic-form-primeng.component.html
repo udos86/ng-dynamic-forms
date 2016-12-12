@@ -29,9 +29,9 @@
     </fieldset>
 
 
-    <div *ngIf="!isRadioGroup" [ngClass]="model.cls.grid.container">
+    <div *ngIf="!(model.type === 'RADIO_GROUP')" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="!isCheckbox && model.label" [ngClass]="model.cls.grid.label">
+        <div *ngIf="!(model.type === 'CHECKBOX') && model.label" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -123,17 +123,34 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-dropdown *ngIf="model.type === 'SELECT'"
+            <p-dropdown *ngIf="model.type === 'SELECT' && !model.multiple"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
-                        [options]="model.options"></p-dropdown>
+                        [options]="model.options"
+                        (onChange)="onValueChange($event)"></p-dropdown>
+
+
+            <p-multiSelect *ngIf="model.type === 'SELECT' && model.multiple"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [options]="model.options"
+                           (onChange)="onValueChange($event)"></p-multiSelect>
+
+
+            <p-slider *ngIf="model.type === 'SLIDER'"
+                      [dynamicId]="bindId && model.id"
+                      [min]="model.min"
+                      [max]="model.max"
+                      [step]="model.step"
+                      [formControlName]="model.id"></p-slider>
 
 
             <p-inputSwitch *ngIf="model.type === 'SWITCH'"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
-                           [offLabel]="model.offLabel"></p-inputSwitch>
+                           [offLabel]="model.offLabel"
+                           (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
             <textarea *ngIf="model.type === 'TEXTAREA'" pInputTextarea
@@ -158,7 +175,7 @@
         </div>
 
 
-        <div *ngIf="isCheckbox" [ngClass]="model.cls.grid.label">
+        <div *ngIf="model.type === 'CHECKBOX'" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 

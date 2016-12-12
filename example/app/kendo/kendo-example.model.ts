@@ -1,17 +1,11 @@
 import {
-    DynamicCheckboxModel,
-    DynamicCheckboxGroupModel,
-    DynamicInputModel,
     DynamicSelectModel,
     DynamicSwitchModel,
-    DynamicRadioGroupModel,
-    DynamicTextAreaModel,
-    DynamicFormArrayModel,
-    DynamicFormGroupModel
+    DynamicSliderModel
 } from "@ng2-dynamic-forms/core";
 
 export const KENDO_EXAMPLE_MODEL = [
-
+    /*
     new DynamicSelectModel<string>(
         {
             id: "kendoSelect",
@@ -37,11 +31,22 @@ export const KENDO_EXAMPLE_MODEL = [
             value: "option-3"
         }
     ),
+    */
+    new DynamicSliderModel(
+        {
+            id: "kendoSlider",
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 3
+        }
+    ),
 
     new DynamicSwitchModel(
         {
             id: "kendoSwitch",
-            label: "Get it on",
+            offLabel: "Off",
+            onLabel: "On",
             value: true
         }
     ),

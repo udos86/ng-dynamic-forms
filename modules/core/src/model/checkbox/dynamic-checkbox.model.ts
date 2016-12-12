@@ -9,7 +9,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 export const DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START = "start";
 export const DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_END = "end";
 
-export interface DynamicCheckboxModelConfig extends DynamicFormValueControlModelConfig {
+export interface DynamicCheckboxModelConfig extends DynamicFormValueControlModelConfig<boolean> {
 
     align?: string;
     indeterminate?: boolean;

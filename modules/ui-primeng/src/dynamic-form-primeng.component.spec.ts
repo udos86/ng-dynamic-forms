@@ -13,7 +13,9 @@ import {DropdownModule} from "primeng/components/dropdown/dropdown";
 import {InputSwitchModule} from "primeng/components/inputswitch/inputswitch";
 import {InputTextModule} from "primeng/components/inputtext/inputtext";
 import {InputTextareaModule} from "primeng/components/inputtextarea/inputtextarea";
+import {MultiSelectModule} from "primeng/components/multiselect/multiselect";
 import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
+import {SliderModule} from "primeng/components/slider/slider";
 import {SpinnerModule} from "primeng/components/spinner/spinner";
 import {DynamicFormPrimeNGComponent, DYNAMIC_FORM_UI_PRIME_NG} from "./dynamic-form-primeng.component";
 
@@ -39,7 +41,9 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 InputSwitchModule,
                 InputTextModule,
                 InputTextareaModule,
+                MultiSelectModule,
                 RadioButtonModule,
+                SliderModule,
                 SpinnerModule
             ],
             declarations: [DynamicFormPrimeNGComponent]
@@ -84,9 +88,6 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
-
-        expect(component.isCheckbox).toBe(false);
-        expect(component.isRadioGroup).toBe(false);
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);

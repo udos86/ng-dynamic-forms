@@ -4,7 +4,7 @@ describe("DynamicSwitchModel test suite", () => {
 
     let model: DynamicSwitchModel,
         config = {
-            id: "default"
+            id: "switch"
         };
 
     beforeEach(() => model = new DynamicSwitchModel(config));

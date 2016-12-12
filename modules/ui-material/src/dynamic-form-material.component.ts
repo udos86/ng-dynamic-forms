@@ -41,8 +41,8 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
         super(relationService);
     }
     /*
-     get characterCount() {
-     return this.mdInput ? this.mdInput.characterCount : 0;
-     }
-     */
+    get characterCount() {
+        return this.mdInput ? this.mdInput.characterCount : 0;
+    }
+    */
 }

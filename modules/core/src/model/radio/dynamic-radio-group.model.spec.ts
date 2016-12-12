@@ -4,7 +4,7 @@ describe("DynamicRadioModel test suite", () => {
 
     let model: DynamicRadioGroupModel<string>,
         config = {
-            id: "default",
+            id: "radio",
             options: [
                 {
                     value: "1",

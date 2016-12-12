@@ -1,4 +1,3 @@
-import {Validators} from "@angular/forms";
 import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "./dynamic-form-group.model";
 import {DynamicInputModel} from "../input/dynamic-input.model";
 
@@ -6,7 +5,7 @@ describe("DynamicFormGroupModel test suite", () => {
 
     let model: DynamicFormGroupModel,
         config = {
-            id: "default",
+            id: "formGroup",
             group: [
                 new DynamicInputModel({
                     id: "defaultInput"

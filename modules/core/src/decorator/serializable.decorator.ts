@@ -1,4 +1,4 @@
-declare let Reflect: any;
+declare let Reflect;
 
 export const METADATA_KEY_SERIALIZABLE = "SERIALIZABLE";
 
@@ -29,4 +29,15 @@ export function getSerializables(target): Array<SerializableProperty> {
     }
 
     return serializables;
+}
+
+export function serialize(target, prototype?): Object {
+
+    return getSerializables(prototype || target).reduce((prev, prop: SerializableProperty) => {
+
+        prev[prop.name] = target[prop.key];
+
+        return prev;
+
+    }, {});
 }

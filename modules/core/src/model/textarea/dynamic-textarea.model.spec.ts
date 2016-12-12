@@ -8,7 +8,7 @@ describe("DynamicTextAreaModel test suite", () => {
 
     let model: DynamicTextAreaModel,
         config = {
-            id: "default",
+            id: "textarea",
             validators: {required: null, minLength: 5}
         };
 

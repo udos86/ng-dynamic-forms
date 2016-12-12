@@ -4,9 +4,6 @@ import {Subscription} from "rxjs/Subscription";
 import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
 import {DynamicFormControlRelationGroup} from "../model/dynamic-form-control-relation.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX} from "../model/checkbox/dynamic-checkbox.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP} from "../model/radio/dynamic-radio-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH} from "../model/switch/dynamic-switch.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -99,14 +96,6 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         return messages;
     }
 
-    get isCheckbox(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
-    }
-
-    get isRadioGroup(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
-    }
-
     get isValid(): boolean {
         return this.control.valid;
     }
@@ -136,11 +125,11 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         this.model.disabledUpdates.next(this.relationService.isFormControlToBeDisabled(relation, this.controlGroup));
     }
 
-    onControlValueChanges(value: boolean | number | string): void {
+    onControlValueChanges(value: DynamicFormControlValue): void {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<boolean | number | string>> this.model;
+            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
 
             if (model.value !== value) {
                 model.valueUpdates.next(value);
@@ -148,7 +137,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    onModelValueUpdates(value: boolean | number | string) {
+    onModelValueUpdates(value: DynamicFormControlValue): void {
 
         if (this.control.value !== value) {
             this.control.setValue(value);
@@ -161,7 +150,9 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     onValueChange($event: Event |  DynamicFormControlEvent): void {
 
-        if ($event instanceof Event) {
+        console.log($event);
+
+        if ($event instanceof Event) { // native HTML5 change event
 
             $event.stopImmediatePropagation();
 
@@ -176,7 +167,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
             this.change.emit({$event: $event as Event, control: this.control, model: this.model});
 
-        } else if ($event.hasOwnProperty("source")) { // Material 2
+        } else if ($event.hasOwnProperty("source") || $event.hasOwnProperty("originalEvent")) { // Material 2 and PrimeNG change event
 
             this.change.emit({$event: $event, control: this.control, model: this.model});
 

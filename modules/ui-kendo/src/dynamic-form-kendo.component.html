@@ -6,16 +6,35 @@
 
     <kendo-dropdownlist *ngIf="model.type === 'SELECT'"
                         [data]="model.options"
+                        [disabled]="model.disabled"
                         [formControlName]="model.id"
+                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                         [textField]="'label'"
                         [valueField]="'value'"
-                        [valuePrimitive]="true"></kendo-dropdownlist>
+                        [valuePrimitive]="true"
+                        (valueChange)="onValueChange($event)"></kendo-dropdownlist>
+
+
+    <kendo-slider *ngIf="model.type === 'SLIDER'"
+                  [disabled]="model.disabled"
+                  [formControlName]="model.id"
+                  [min]="model.min"
+                  [max]="model.max"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                  [showButtons]="true"
+                  [smallStep]="model.step"
+                  [vertical]="model.vertical"
+                  (valueChange)="onValueChange($event)"></kendo-slider>
+
 
     <kendo-switch *ngIf="model.type === 'SWITCH'"
                   [checked]="model.checked"
+                  [disabled]="model.disabled"
                   [formControlName]="model.id"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   [offLabel]="model.offLabel"
-                  [onLabel]="model.onLabel"></kendo-switch>
+                  [onLabel]="model.onLabel"
+                  (valueChange)="onValueChange($event)"></kendo-switch>
 
     <ng-content></ng-content>
 

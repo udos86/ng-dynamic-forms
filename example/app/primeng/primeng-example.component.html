@@ -4,7 +4,8 @@
 
         <dynamic-form-primeng-control *ngFor="let controlModel of dynamicFormModel" class="form-row"
                                       [controlGroup]="form"
-                                      [model]="controlModel"></dynamic-form-primeng-control>
+                                      [model]="controlModel"
+                                      (change)="onChange($event)"></dynamic-form-primeng-control>
     </form>
 
 </div>

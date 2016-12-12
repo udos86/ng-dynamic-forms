@@ -8,7 +8,6 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
-import {Validators} from "@angular/forms";
 
 export const BASIC_EXAMPLE_MODEL = [
 
@@ -37,6 +36,7 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicInputModel({
 
         id: "basicInput",
+        hint: "Just a hint",
         label: "Example Input",
         list: ["One", "Two", "Three", "Four", "Five"],
         maxLength: 51,

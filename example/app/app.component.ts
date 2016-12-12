@@ -12,12 +12,12 @@ export class AppComponent {
 
     routeData: any = {};
 
-    constructor (private router:Router) {
+    constructor(private router: Router) {
 
         this.router.events.subscribe(event => {
-           if (event instanceof NavigationEnd) {
-               this.routeData = this.router.routerState.snapshot.root.firstChild.data;
-           }
+            if (event instanceof NavigationEnd) {
+                this.routeData = this.router.routerState.snapshot.root.firstChild.data;
+            }
         });
     }
 }

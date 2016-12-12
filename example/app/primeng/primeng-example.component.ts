@@ -34,4 +34,8 @@ export class PrimeNGExampleComponent implements OnInit {
 
         //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
     }
+
+    onChange($event) {
+        console.log(`CHANGE event on ${$event.model.id}: `, $event);
+    }
 }

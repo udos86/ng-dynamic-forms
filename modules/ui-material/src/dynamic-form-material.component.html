@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="!isCheckbox && model.label"
+    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
@@ -105,10 +105,37 @@
 
         <md-radio-button *ngFor="let option of model.options"
                          [name]="model.name"
-                         [value]="option.value"><span [innerHTML]="option.label"></span>
-        </md-radio-button>
+                         [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
 
     </md-radio-group>
+
+
+    <md-select *ngIf="model.type === 'SELECT'"
+               [disabled]="model.disabled"
+               [dynamicId]="bindId && model.id"
+               [formControlName]="model.id"
+               [ngClass]="model.cls.element.control"
+               (blur)="onFocusChange($event)"
+               (change)="onValueChange($event)"
+               (focus)="onFocusChange($event)">
+
+        <md-option *ngFor="let option of model.options"
+                   [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
+
+    </md-select>
+
+
+    <md-slider *ngIf="model.type === 'SLIDER'" thumb-label
+               [disabled]="model.disabled"
+               [dynamicId]="bindId && model.id"
+               [formControlName]="model.id"
+               [min]="model.min"
+               [max]="model.max"
+               [ngClass]="model.cls.element.control"
+               [step]="model.step"
+               tick-interval="1"
+               [attr.vertical]="model.vertical"
+               (change)="onValueChange($event)"></md-slider>
 
 
     <md-slide-toggle *ngIf="model.type === 'SWITCH'"

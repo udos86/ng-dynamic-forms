@@ -4,7 +4,8 @@ describe("DynamicSelectModel test suite", () => {
 
     let model: DynamicSelectModel<string>,
         config = {
-            id: "default",
+            id: "select",
+            multiple: false,
             options: [
                 {
                     value: "1",
@@ -24,6 +25,7 @@ describe("DynamicSelectModel test suite", () => {
         expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
+        expect(model.multiple).toBe(config.multiple);
         expect(model.name).toEqual(model.id);
         expect(model.options.length).toBe(config.options.length);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
@@ -78,6 +80,14 @@ describe("DynamicSelectModel test suite", () => {
         model.select(1);
 
         expect(model.value).toEqual(model.get(1).value);
+    });
+
+    it("should select multiple options", () => {
+
+        model.multiple = true;
+        model.select(0, 1);
+
+        expect(model.value).toEqual([model.get(0).value, model.get(1).value]);
     });
 
     it("should serialize correctly", () => {
