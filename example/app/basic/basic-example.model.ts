@@ -46,10 +46,12 @@ export const BASIC_EXAMPLE_MODEL = [
         validators: {
             required: null,
             minLength: 2,
-            maxLength: 5
+            maxLength: 5,
+            testValidator: null
         },
         errorMessages: {
-            required: "{{label}} is required"
+            required: "{{label}} is required",
+            testValidator: "{{label}} cannot start with abc"
         }
     }),
 

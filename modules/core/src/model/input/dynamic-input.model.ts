@@ -39,8 +39,8 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number>
     @serializable() inputType: string;
     files: FileList | null = null;
     @serializable() list: Array<string> | null;
-    @serializable() max: number | null;
-    @serializable() min: number | null;
+    @serializable() max: number | string | null;
+    @serializable() min: number | string | null;
     @serializable() multiple: boolean | null;
     @serializable() pattern: string | null;
     @serializable() step: number | null;

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {LocationStrategy, HashLocationStrategy} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule, NG_VALIDATORS, FormControl} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
 
 import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
@@ -21,6 +21,15 @@ import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 
 import {AppRoutingModule} from './app.routing.module';
 import {AppComponent} from './app.component';
+
+function testValidator(formControl: FormControl) {
+
+    return {
+        testValidator: {
+            valid: formControl.value ? <string>formControl.value.startsWith("abc") : false
+        }
+    };
+}
 
 @NgModule({
 
@@ -47,7 +56,8 @@ import {AppComponent} from './app.component';
         AppComponent
     ],
     providers: [
-        {provide: LocationStrategy, useClass: HashLocationStrategy}
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {provide: NG_VALIDATORS, useValue: testValidator, multi: true}
     ],
     bootstrap: [AppComponent]
 })
