@@ -1,5 +1,12 @@
 import {TestBed, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormGroup, FormControl, FormArray, NG_VALIDATORS} from "@angular/forms";
+import {
+    ReactiveFormsModule,
+    FormGroup,
+    FormControl,
+    FormArray,
+    NG_VALIDATORS,
+    NG_ASYNC_VALIDATORS
+} from "@angular/forms";
 import {DynamicFormService} from "./dynamic-form.service";
 import {DynamicCheckboxModel} from "../model/checkbox/dynamic-checkbox.model";
 import {DynamicCheckboxGroupModel} from "../model/checkbox/dynamic-checkbox-group.model";
@@ -20,10 +27,15 @@ describe("DynamicFormService test suite", () => {
     function testValidator() {
 
         return {
-            testValidate: {
+            testValidator: {
                 valid: true
             }
         };
+    }
+
+    function testAsyncValidator() {
+
+        return new Promise<boolean>(resolve => setTimeout(() => resolve(true), 0));
     }
 
     beforeEach(() => {
@@ -32,7 +44,8 @@ describe("DynamicFormService test suite", () => {
             imports: [ReactiveFormsModule],
             providers: [
                 DynamicFormService,
-                {provide: NG_VALIDATORS, useValue: testValidator, multi: true}
+                {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
+                {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
             ]
         });
 
@@ -269,6 +282,14 @@ describe("DynamicFormService test suite", () => {
     it("should resolve custom validators from config correctly", () => {
 
         let config = {required: null, maxLength: 7, testValidator: null},
+            validators = service.getValidatorFns(config);
+
+        expect(validators.length).toBe(Object.keys(config).length);
+    });
+
+    it("should resolve custom async validators from config correctly", () => {
+
+        let config = {required: null, maxLength: 7, testAsyncValidator: null},
             validators = service.getValidatorFns(config);
 
         expect(validators.length).toBe(Object.keys(config).length);

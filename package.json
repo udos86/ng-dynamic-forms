@@ -95,7 +95,7 @@
     "rollup-plugin-uglify": "^1.0.1",
     "run-sequence": "^1.2.2",
     "systemjs-builder": "^0.15.34",
-    "tslint": "^4.0.2",
+    "tslint": "^4.1.0",
     "typedoc": "^0.5.1",
     "typescript": "^2.1.4",
     "webpack": "^1.14.0"
