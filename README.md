@@ -22,7 +22,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Getting Started](#getting-started)
 - [Running the Example](#running-the-example)
 - [Basic Usage](#basic-usage)
-- [Form UI Modules and Components](#form-ui-modules-and-components)
+- [UI Modules and Components](#ui-modules-and-components)
 - [Model Bindings and Control References](#model-bindings-and-control-references)
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
@@ -195,7 +195,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```
 
 
-## Form UI Modules and Components
+## UI Modules and Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -204,8 +204,7 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[Foundation](http://foundation.zurb.com)**
 * **[Material 2](https://github.com/angular/material2)**
 * **[PrimeNG](http://www.primefaces.org/primeng/#/)**
-* **[Kendo UI](http://www.telerik.com/kendo-angular-ui)** (*work in progress*)
-* **[Semantic UI](https://semantic-ui-angular2.herokuapp.com)** (*planned*)
+* **[Kendo UI](http://www.telerik.com/kendo-angular-ui)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and it's peer dependencies**:
@@ -259,7 +258,7 @@ cannot be provided in every UI library. **See the following compatibility table*
 | ui-material   	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 | ui-primeng    	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 
-**\*)** sliders can be defined by using a `DynamicInputModel` with `inputType: "range"`
+**\*)** sliders can be achieved by using a `DynamicInputModel` with `inputType: "range"`
 
 
 ## Model Bindings and Control References
