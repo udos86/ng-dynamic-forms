@@ -12,7 +12,7 @@ import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 
     moduleId: module.id,
     selector: "dynamic-form-foundation-example",
-    styleUrls: ["../../../node_modules/foundation-sites/dist/foundation.min.css"],
+    styleUrls: ["../../../node_modules/foundation-sites/dist/css/foundation.css"],
     templateUrl: "./foundation-example.component.html",
     encapsulation: ViewEncapsulation.None
 })

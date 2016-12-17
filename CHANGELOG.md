@@ -1,3 +1,17 @@
+# 1.3.2
+
+### **Bugfixes** 
+
+* `DynamicSliderModel` and `DynamicSwitchModel` are now correctly deserialized from JSON
+ 
+### **Features** 
+
+* `min` and `max` typing updated (closes [#206](https://github.com/udos86/ng2-dynamic-forms/issues/206))
+* update to `@angular 2.3.1`
+* update to `foundation 6.3.0`
+* update to `primeng 1.1.0`
+
+
 # 1.3.1
 
 ### **Bugfixes** 

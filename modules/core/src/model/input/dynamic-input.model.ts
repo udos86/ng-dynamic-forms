@@ -26,8 +26,8 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
     accept?: string;
     inputType?: string;
     list?: Array<string>;
-    max?: number;
-    min?: number;
+    max?: number | string;
+    min?: number | string;
     multiple?: boolean;
     pattern?: string;
     step?: number;
