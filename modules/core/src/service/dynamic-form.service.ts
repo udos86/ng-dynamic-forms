@@ -104,15 +104,15 @@ export class DynamicFormService {
 
             } else {
 
-                let valueControlModel = <DynamicFormValueControlModel<DynamicFormControlValue>> model;
+                let controlModel = <DynamicFormValueControlModel<DynamicFormControlValue>> model;
 
-                formGroup[valueControlModel.id] = new FormControl(
+                formGroup[controlModel.id] = new FormControl(
                     {
-                        value: valueControlModel.value,
-                        disabled: valueControlModel.disabled
+                        value: controlModel.value,
+                        disabled: controlModel.disabled
                     },
-                    Validators.compose(this.getValidators(valueControlModel.validators || [])),
-                    Validators.composeAsync(this.getValidators(valueControlModel.asyncValidators || []))
+                    Validators.compose(this.getValidators(controlModel.validators || [])),
+                    Validators.composeAsync(this.getValidators(controlModel.asyncValidators || []))
                 );
             }
         });
@@ -148,7 +148,7 @@ export class DynamicFormService {
         }
     }
 
-    findById(id: string, group: Array<DynamicFormControlModel>): DynamicFormControlModel {
+    findById(id: string, group: Array<DynamicFormControlModel>): DynamicFormControlModel | undefined {
 
         return group.find(controlModel => controlModel.id === id);
     }
@@ -157,56 +157,56 @@ export class DynamicFormService {
 
         let formModel: Array<DynamicFormControlModel> = [];
 
-        json.forEach(object => {
+        json.forEach(model => {
 
-            switch (object["type"]) {
+            switch (model["type"]) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                    object["groups"].forEach(groupObject => groupObject["group"] = this.fromJSON(groupObject["group"]));
-                    object["createGroup"] = () => this.fromJSON(object["originGroup"]);
-                    formModel.push(new DynamicFormArrayModel(object, object["cls"]));
+                    model["groups"].forEach(groupObject => groupObject["group"] = this.fromJSON(groupObject["group"]));
+                    model["createGroup"] = () => this.fromJSON(model["originGroup"]);
+                    formModel.push(new DynamicFormArrayModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                    formModel.push(new DynamicCheckboxModel(object, object["cls"]));
+                    formModel.push(new DynamicCheckboxModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-                    object["group"] = this.fromJSON(object["group"]);
-                    formModel.push(new DynamicCheckboxGroupModel(object, object["cls"]));
+                    model["group"] = this.fromJSON(model["group"]);
+                    formModel.push(new DynamicCheckboxGroupModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                    object["group"] = this.fromJSON(object["group"]);
-                    formModel.push(new DynamicFormGroupModel(object, object["cls"]));
+                    model["group"] = this.fromJSON(model["group"]);
+                    formModel.push(new DynamicFormGroupModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                    formModel.push(new DynamicInputModel(object, object["cls"]));
+                    formModel.push(new DynamicInputModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                    formModel.push(new DynamicRadioGroupModel(object, object["cls"]));
+                    formModel.push(new DynamicRadioGroupModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                    formModel.push(new DynamicSelectModel(object, object["cls"]));
+                    formModel.push(new DynamicSelectModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                    formModel.push(new DynamicSliderModel(object, object["cls"]));
+                    formModel.push(new DynamicSliderModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                    formModel.push(new DynamicSwitchModel(object, object["cls"]));
+                    formModel.push(new DynamicSwitchModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                    formModel.push(new DynamicTextAreaModel(object, object["cls"]));
+                    formModel.push(new DynamicTextAreaModel(model, model["cls"]));
                     break;
 
                 default:
-                    throw new Error(`unknown form control type with id "${object["id"]}" defined on JSON object`);
+                    throw new Error(`unknown form control type with id "${model["id"]}" defined on JSON object`);
             }
         });
 
