@@ -18,10 +18,12 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DynamicCheckboxGroupModel
 } from "../model/checkbox/dynamic-checkbox-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel,} from "../model/checkbox/dynamic-checkbox.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel} from "../model/checkbox/dynamic-checkbox.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input/dynamic-input.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/select/dynamic-select.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel} from "../model/slider/dynamic-slider.model";
+import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel} from "../model/switch/dynamic-switch.model";
 import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
 import {isFunction, isDefined} from "../utils";
 
@@ -51,13 +53,13 @@ export class DynamicFormService {
         let validatorFn = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
 
         if (!isFunction(validatorFn)) {
-            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS multi provider`);
+            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
         }
 
         return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
     }
 
-    getValidatorFns(config: DynamicValidatorsMap): Array<ValidatorFn | AsyncValidatorFn> {
+    getValidators(config: DynamicValidatorsMap): Array<ValidatorFn | AsyncValidatorFn> {
 
         return isDefined(config) ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
@@ -73,8 +75,8 @@ export class DynamicFormService {
 
         return this.formBuilder.array(
             formArray,
-            this.getValidatorFns(model.validator)[0] || null,
-            this.getValidatorFns(model.asyncValidator)[0] || null
+            this.getValidators(model.validator)[0] || null,
+            this.getValidators(model.asyncValidator)[0] || null
         );
     }
 
@@ -94,23 +96,23 @@ export class DynamicFormService {
 
                 let groupModel = <DynamicFormGroupModel> model,
                     groupExtra = {
-                        validator: this.getValidatorFns(groupModel.validator)[0] || null,
-                        asyncValidator: this.getValidatorFns(groupModel.asyncValidator)[0] || null
+                        validator: this.getValidators(groupModel.validator)[0] || null,
+                        asyncValidator: this.getValidators(groupModel.asyncValidator)[0] || null
                     };
 
                 formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);
 
             } else {
 
-                let controlModel = <DynamicFormValueControlModel<DynamicFormControlValue>> model;
+                let valueControlModel = <DynamicFormValueControlModel<DynamicFormControlValue>> model;
 
-                formGroup[controlModel.id] = new FormControl(
+                formGroup[valueControlModel.id] = new FormControl(
                     {
-                        value: controlModel.value,
-                        disabled: controlModel.disabled
+                        value: valueControlModel.value,
+                        disabled: valueControlModel.disabled
                     },
-                    Validators.compose(this.getValidatorFns(controlModel.validators || [])),
-                    Validators.composeAsync(this.getValidatorFns(controlModel.asyncValidators || []))
+                    Validators.compose(this.getValidators(valueControlModel.validators || [])),
+                    Validators.composeAsync(this.getValidators(valueControlModel.asyncValidators || []))
                 );
             }
         });
@@ -189,6 +191,14 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
                     formModel.push(new DynamicSelectModel(object, object["cls"]));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                    formModel.push(new DynamicSliderModel(object, object["cls"]));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                    formModel.push(new DynamicSwitchModel(object, object["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:

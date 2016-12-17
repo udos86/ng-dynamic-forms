@@ -15,6 +15,8 @@ import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {DynamicInputModel} from "../model/input/dynamic-input.model";
 import {DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {DynamicSelectModel} from "../model/select/dynamic-select.model";
+import {DynamicSliderModel} from "../model/slider/dynamic-slider.model";
+import {DynamicSwitchModel} from "../model/switch/dynamic-switch.model";
 import {DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
 import {DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
 import {group} from "@angular/core";
@@ -123,7 +125,11 @@ describe("DynamicFormService test suite", () => {
                 }
             ),
 
-            new DynamicFormGroupModel({id: "testFormGroup", group: []})
+            new DynamicFormGroupModel({id: "testFormGroup", group: []}),
+
+            new DynamicSliderModel({id: "testSlider"}),
+
+            new DynamicSwitchModel({id: "testSwitch"})
         ];
     });
 
@@ -173,6 +179,9 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[4] instanceof DynamicTextAreaModel).toBe(true);
         expect(formModel[5] instanceof DynamicCheckboxModel).toBe(true);
         expect(formModel[6] instanceof DynamicFormArrayModel).toBe(true);
+        expect(formModel[7] instanceof DynamicFormGroupModel).toBe(true);
+        expect(formModel[8] instanceof DynamicSliderModel).toBe(true);
+        expect(formModel[9] instanceof DynamicSwitchModel).toBe(true);
     });
 
 
@@ -192,6 +201,8 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testInput", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testRadioGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testSelect", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("testSlider", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("testSwitch", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
     });
 
@@ -274,7 +285,7 @@ describe("DynamicFormService test suite", () => {
     it("should resolve validators from config correctly", () => {
 
         let config = {required: null, maxLength: 7, minLength: 3},
-            validators = service.getValidatorFns(config);
+            validators = service.getValidators(config);
 
         expect(validators.length).toBe(Object.keys(config).length);
     });
@@ -282,7 +293,7 @@ describe("DynamicFormService test suite", () => {
     it("should resolve custom validators from config correctly", () => {
 
         let config = {required: null, maxLength: 7, testValidator: null},
-            validators = service.getValidatorFns(config);
+            validators = service.getValidators(config);
 
         expect(validators.length).toBe(Object.keys(config).length);
     });
@@ -290,14 +301,14 @@ describe("DynamicFormService test suite", () => {
     it("should resolve custom async validators from config correctly", () => {
 
         let config = {required: null, maxLength: 7, testAsyncValidator: null},
-            validators = service.getValidatorFns(config);
+            validators = service.getValidators(config);
 
         expect(validators.length).toBe(Object.keys(config).length);
     });
 
-    it("should throw when validator is not provided via NG_VALIDATORS", () => {
+    it("should throw when validator is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS", () => {
 
         expect(() => service.getValidatorFn("test", null))
-            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS multi provider`));
+            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 });
