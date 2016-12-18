@@ -1,7 +1,7 @@
-import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
-import {Subject} from "rxjs/Subject";
-import {serializable, serialize} from "../decorator/serializable.decorator";
-import {getValue, isEmptyString} from "../utils";
+import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
+import { Subject } from "rxjs/Subject";
+import { serializable, serialize } from "../decorator/serializable.decorator";
+import { getValue, isEmptyString } from "../utils";
 
 export type DynamicValidatorsMap = {[validatorName: string]: any};
 

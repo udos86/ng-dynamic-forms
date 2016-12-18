@@ -1,11 +1,11 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
-import {DynamicFormsCoreModule} from "@ng2-dynamic-forms/core";
-import {DynamicFormBootstrapComponent} from "./dynamic-form-bootstrap.component";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
+import { DynamicFormBootstrapComponent } from "./dynamic-form-bootstrap.component";
 
 @NgModule({
-    
+
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -20,4 +20,5 @@ import {DynamicFormBootstrapComponent} from "./dynamic-form-bootstrap.component"
     ]
 })
 
-export class DynamicFormsBootstrapUIModule {}
+export class DynamicFormsBootstrapUIModule {
+}

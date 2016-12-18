@@ -1,6 +1,6 @@
-import {Component, Input, Output, EventEmitter, ViewChild, ContentChild, TemplateRef} from "@angular/core";
-import {FormGroup} from "@angular/forms";
-import {MdCheckbox, MdInput, MdRadioGroup/*, MdSlideToggle*/} from "@angular/material";
+import { Component, Input, Output, EventEmitter, ViewChild, ContentChild, TemplateRef } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { MdCheckbox, MdInput, MdRadioGroup/*, MdSlideToggle*/ } from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -40,9 +40,10 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
     }
+
     /*
-    get characterCount() {
-        return this.mdInput ? this.mdInput.characterCount : 0;
-    }
-    */
+     get characterCount() {
+     return this.mdInput ? this.mdInput.characterCount : 0;
+     }
+     */
 }

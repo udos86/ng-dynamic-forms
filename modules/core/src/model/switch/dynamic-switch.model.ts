@@ -1,8 +1,8 @@
-import {ClsConfig} from "../dynamic-form-control.model";
-import {DynamicCheckControlModel} from "../dynamic-check-control.model";
-import {DynamicFormValueControlModelConfig} from "../dynamic-form-value-control.model";
-import {serializable} from "../../decorator/serializable.decorator";
-import {getValue} from "../../utils";
+import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicCheckControlModel } from "../dynamic-check-control.model";
+import { DynamicFormValueControlModelConfig } from "../dynamic-form-value-control.model";
+import { serializable } from "../../decorator/serializable.decorator";
+import { getValue } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SWITCH = "SWITCH";
 

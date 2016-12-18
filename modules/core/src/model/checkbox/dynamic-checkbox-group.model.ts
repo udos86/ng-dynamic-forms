@@ -1,7 +1,7 @@
-import {ClsConfig} from "../dynamic-form-control.model";
-import {DynamicFormGroupModel, DynamicFormGroupModelConfig} from "../form-group/dynamic-form-group.model";
-import {DynamicCheckboxModel} from "./dynamic-checkbox.model";
-import {serializable} from "../../decorator/serializable.decorator";
+import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormGroupModel, DynamicFormGroupModelConfig } from "../form-group/dynamic-form-group.model";
+import { DynamicCheckboxModel } from "./dynamic-checkbox.model";
+import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
 

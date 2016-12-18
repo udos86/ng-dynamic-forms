@@ -3,7 +3,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormArrayGroupModel
 } from "./dynamic-form-array.model";
-import {DynamicInputModel} from "../input/dynamic-input.model";
+import { DynamicInputModel } from "../input/dynamic-input.model";
 
 describe("DynamicFormArrayModel test suite", () => {
 

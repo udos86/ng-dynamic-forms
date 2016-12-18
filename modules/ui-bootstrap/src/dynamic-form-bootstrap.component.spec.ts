@@ -1,14 +1,14 @@
-import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
-import {Type, DebugElement} from "@angular/core";
-import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
-import {By} from "@angular/platform-browser";
+import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { Type, DebugElement } from "@angular/core";
+import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { By } from "@angular/platform-browser";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
     DynamicInputModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormBootstrapComponent, DYNAMIC_FORM_UI_BOOTSTRAP} from "./dynamic-form-bootstrap.component";
+import { DynamicFormBootstrapComponent, DYNAMIC_FORM_UI_BOOTSTRAP } from "./dynamic-form-bootstrap.component";
 
 describe("DynamicFormBootstrapComponent test suite", () => {
 

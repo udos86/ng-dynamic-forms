@@ -1,8 +1,8 @@
-import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
-import {Type, DebugElement} from "@angular/core";
-import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
-import {By} from "@angular/platform-browser";
-import {MaterialModule} from "@angular/material";
+import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { Type, DebugElement } from "@angular/core";
+import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { By } from "@angular/platform-browser";
+import { MaterialModule } from "@angular/material";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -10,7 +10,7 @@ import {
     DynamicSwitchModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL} from "./dynamic-form-material.component";
+import { DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL } from "./dynamic-form-material.component";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 

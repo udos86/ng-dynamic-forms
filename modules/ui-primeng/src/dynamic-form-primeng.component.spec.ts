@@ -1,23 +1,23 @@
-import {Type, DebugElement} from "@angular/core";
-import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
-import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
-import {By} from "@angular/platform-browser";
+import { Type, DebugElement } from "@angular/core";
+import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { By } from "@angular/platform-browser";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
     DynamicInputModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {CheckboxModule} from "primeng/components/checkbox/checkbox";
-import {DropdownModule} from "primeng/components/dropdown/dropdown";
-import {InputSwitchModule} from "primeng/components/inputswitch/inputswitch";
-import {InputTextModule} from "primeng/components/inputtext/inputtext";
-import {InputTextareaModule} from "primeng/components/inputtextarea/inputtextarea";
-import {MultiSelectModule} from "primeng/components/multiselect/multiselect";
-import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
-import {SliderModule} from "primeng/components/slider/slider";
-import {SpinnerModule} from "primeng/components/spinner/spinner";
-import {DynamicFormPrimeNGComponent, DYNAMIC_FORM_UI_PRIME_NG} from "./dynamic-form-primeng.component";
+import { CheckboxModule } from "primeng/components/checkbox/checkbox";
+import { DropdownModule } from "primeng/components/dropdown/dropdown";
+import { InputSwitchModule } from "primeng/components/inputswitch/inputswitch";
+import { InputTextModule } from "primeng/components/inputtext/inputtext";
+import { InputTextareaModule } from "primeng/components/inputtextarea/inputtextarea";
+import { MultiSelectModule } from "primeng/components/multiselect/multiselect";
+import { RadioButtonModule } from "primeng/components/radiobutton/radiobutton";
+import { SliderModule } from "primeng/components/slider/slider";
+import { SpinnerModule } from "primeng/components/spinner/spinner";
+import { DynamicFormPrimeNGComponent, DYNAMIC_FORM_UI_PRIME_NG } from "./dynamic-form-primeng.component";
 
 describe("DynamicFormPrimeNGComponent test suite", () => {
 

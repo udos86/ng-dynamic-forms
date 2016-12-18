@@ -1,16 +1,16 @@
-import {TestBed, async, inject, ComponentFixture} from "@angular/core/testing";
-import {Type, DebugElement} from "@angular/core";
-import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
-import {By} from "@angular/platform-browser";
-import {DropDownsModule} from "@progress/kendo-angular-dropdowns";
-import {InputsModule} from "@progress/kendo-angular-inputs";
+import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { Type, DebugElement } from "@angular/core";
+import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { By } from "@angular/platform-browser";
+import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
+import { InputsModule } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
     DynamicSwitchModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import {DynamicFormKendoComponent, DYNAMIC_FORM_UI_KENDO} from "./dynamic-form-kendo.component";
+import { DynamicFormKendoComponent, DYNAMIC_FORM_UI_KENDO } from "./dynamic-form-kendo.component";
 
 describe("DynamicFormKendoComponent test suite", () => {
 

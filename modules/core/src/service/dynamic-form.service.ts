@@ -1,4 +1,4 @@
-import {Inject, Optional} from "@angular/core";
+import { Inject, Optional } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -10,22 +10,25 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
-import {DynamicFormControlModel, DynamicValidatorsMap} from "../model/dynamic-form-control.model";
-import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
-import {DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY} from "../model/form-array/dynamic-form-array.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
+import { DynamicFormControlModel, DynamicValidatorsMap } from "../model/dynamic-form-control.model";
+import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY } from "../model/form-array/dynamic-form-array.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DynamicCheckboxGroupModel
 } from "../model/checkbox/dynamic-checkbox-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel} from "../model/checkbox/dynamic-checkbox.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel} from "../model/input/dynamic-input.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "../model/select/dynamic-select.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel} from "../model/slider/dynamic-slider.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel} from "../model/switch/dynamic-switch.model";
-import {DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
-import {isFunction, isDefined} from "../utils";
+import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel } from "../model/input/dynamic-input.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DynamicRadioGroupModel
+} from "../model/radio/dynamic-radio-group.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "../model/select/dynamic-select.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/slider/dynamic-slider.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
+import { isFunction, isDefined } from "../utils";
 
 export class DynamicFormService {
 

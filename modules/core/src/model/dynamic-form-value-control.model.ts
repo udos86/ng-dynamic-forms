@@ -1,12 +1,12 @@
-import {Subject} from "rxjs/Subject";
+import { Subject } from "rxjs/Subject";
 import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
     DynamicValidatorsMap,
     ClsConfig
 } from "./dynamic-form-control.model";
-import {serializable} from "../decorator/serializable.decorator";
-import {getValue, isDefined} from "../utils";
+import { serializable } from "../decorator/serializable.decorator";
+import { getValue, isDefined } from "../utils";
 
 export type DynamicFormControlValue = boolean | number | string | Array<boolean | number | string>;
 

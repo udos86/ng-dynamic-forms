@@ -4,8 +4,8 @@ import {
     DynamicValidatorsMap,
     ClsConfig
 } from "../dynamic-form-control.model";
-import {serializable} from "../../decorator/serializable.decorator";
-import {getValue} from "../../utils";
+import { serializable } from "../../decorator/serializable.decorator";
+import { getValue } from "../../utils";
 
 export interface DynamicFieldSet {
 
