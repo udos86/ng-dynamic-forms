@@ -66,6 +66,10 @@ const APP_ROUTES: Routes = [
             href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/primeng/primeng-example.model.ts",
             bgColor: "#DB2226"
         }
+    },
+    {
+        path: "example-async",
+        loadChildren: "app/async/async-example.module#AsyncExampleModule"
     }
 ];
 
