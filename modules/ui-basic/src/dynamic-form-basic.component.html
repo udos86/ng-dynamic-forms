@@ -1,20 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <input *ngIf="model.type === 'CHECKBOX'" type="checkbox"
-           [attr.tabindex]="model.tabIndex"
-           [checked]="model.checked"
-           [dynamicId]="bindId && model.id"
-           [formControlName]="model.id"
-           [name]="model.name"
-           [ngClass]="model.cls.element.control"
-           [required]="model.required"
-           [value]="model.value"
-           (blur)="onFocusChange($event)"
-           (change)="onValueChange($event)"
-           (focus)="onFocusChange($event)"/>
-
-
-    <label *ngIf="model.label"
+    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
@@ -62,6 +48,22 @@
                                     (change)="onValueChange($event)"
                                     (focus)="onFocusChange($event)"></dynamic-form-basic-control>
     </fieldset>
+
+
+    <label *ngIf="model.type === 'CHECKBOX'" [ngClass]="model.cls.element.label">
+
+        <input type="checkbox"
+               [attr.tabindex]="model.tabIndex"
+               [checked]="model.checked"
+               [dynamicId]="bindId && model.id"
+               [formControlName]="model.id"
+               [name]="model.name"
+               [ngClass]="model.cls.element.control"
+               [required]="model.required"
+               [value]="model.value"
+               (blur)="onFocusChange($event)"
+               (change)="onValueChange($event)"
+               (focus)="onFocusChange($event)"/><span *ngIf="model.label" [innerHTML]="model.label"></span></label>
 
 
     <input *ngIf="model.type === 'INPUT'"
@@ -132,7 +134,8 @@
         <option *ngFor="let option of model.options"
                 [attr.name]="model.name"
                 [disabled]="!!option.disabled"
-                [ngValue]="option.value">{{option.label}}</option>
+                [ngValue]="option.value">{{option.label}}
+        </option>
 
     </select>
 
