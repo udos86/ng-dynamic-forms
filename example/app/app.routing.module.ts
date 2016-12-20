@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule, Route} from "@angular/router";
 import {BasicExampleComponent} from "./basic/basic-example.component";
 import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
 import {FoundationExampleComponent} from "./foundation/foundation-example.component";
@@ -7,7 +7,7 @@ import {MaterialExampleComponent} from "./material/material-example.component";
 import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 import {NgModule} from "@angular/core";
 
-const APP_ROUTES: Routes = [
+const APP_ROUTES: Array<Route> = [
     {
         path: "",
         redirectTo: "/example-bootstrap",
