@@ -15,8 +15,8 @@ export class AsyncExampleComponent {
     formModel: Array<DynamicFormControlModel> = ASYNC_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
-    constructor(private dynamicFormService: DynamicFormService) {
+    constructor(private formService: DynamicFormService) {
 
-        this.formGroup = this.dynamicFormService.createFormGroup(this.formModel);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
     }
 }

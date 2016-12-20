@@ -1,9 +1,9 @@
 <div class="overflow-hidden content-margin">
 
-    <form class="text-center" [formGroup]="form">
+    <form class="text-center" [formGroup]="formGroup">
 
-        <dynamic-form-material-control *ngFor="let controlModel of dynamicFormModel"
-                                       [controlGroup]="form"
+        <dynamic-form-material-control *ngFor="let controlModel of formModel"
+                                       [controlGroup]="formGroup"
                                        [model]="controlModel"
                                        (change)="onChange($event)">
 

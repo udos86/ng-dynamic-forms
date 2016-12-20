@@ -8,10 +8,10 @@
 
 ng2 Dynamic Forms is a **rapid form development library** based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
-It simplifies all the time-consuming work of implementing reactive Angular 2 forms by building
-upon a layer of maintainable object models.
+It simplifies the time-consuming work of implementing reactive Angular 2 forms by building
+upon a layer of maintainable form control models to fully automate form UI creation and synchronization.
 
-It also provides a flexible system of **dynamic UI components** with out of the box support for 
+Therefore it provides a set of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and more.
 
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/) 
@@ -369,7 +369,7 @@ ngOnInit() {
 Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. addresses, products and so on.
 Particularly for this reason Angular 2 provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
 
-Luckily, ng2 Dynamic Forms is capable of managing such nested form structures!  
+Fortunately ng2 Dynamic Forms is capable of managing such nested form structures!  
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts

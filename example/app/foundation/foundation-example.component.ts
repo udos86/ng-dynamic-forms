@@ -19,37 +19,36 @@ import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 
 export class FoundationExampleComponent implements OnInit {
 
-    dynamicFormModel: Array<DynamicFormControlModel>;
+    formModel: Array<DynamicFormControlModel> = FOUNDATION_EXAMPLE_MODEL;
     form: FormGroup;
 
-    sampleCheckboxControl: FormControl;
-    sampleCheckboxModel: DynamicCheckboxModel;
+    checkboxControl: FormControl;
+    checkboxModel: DynamicCheckboxModel;
 
-    sampleArrayControl: FormArray;
-    sampleArrayModel: DynamicFormArrayModel;
+    arrayControl: FormArray;
+    arrayModel: DynamicFormArrayModel;
 
-    constructor(private dynamicFormService: DynamicFormService) {
-        this.dynamicFormModel = FOUNDATION_EXAMPLE_MODEL;
-    }
+    constructor(private formService: DynamicFormService) {}
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.form = this.formService.createFormGroup(this.formModel);
 
-        this.sampleCheckboxControl = <FormControl> this.form.controls["foundationCheckbox"]; // Type assertion for having updateValue method available
-        this.sampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("foundationCheckbox", this.dynamicFormModel);
-        //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("foundation checkbox field changed to: ", value, typeof value));
+        this.checkboxControl = <FormControl> this.form.controls["foundationCheckbox"]; // Type assertion for having updateValue method available
+        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("foundationCheckbox", this.formModel);
 
-        this.sampleArrayControl = <FormArray> this.form.controls["foundationFormArray"];
-        this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("foundationFormArray", this.dynamicFormModel);
+        //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("foundation checkbox field changed to: ", value, typeof value));
+
+        this.arrayControl = <FormArray> this.form.controls["foundationFormArray"];
+        this.arrayModel = <DynamicFormArrayModel> this.formService.findById("foundationFormArray", this.formModel);
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
-        this.dynamicFormService.insertFormArrayGroup(index, this.sampleArrayControl, context);
+        this.formService.insertFormArrayGroup(index, this.arrayControl, context);
     }
 
     remove(context: DynamicFormArrayModel, index: number) {
-        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, context);
+        this.formService.removeFormArrayGroup(index, this.arrayControl, context);
     }
 
     onBlur($event) {
