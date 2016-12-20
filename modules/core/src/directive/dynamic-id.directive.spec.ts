@@ -1,7 +1,7 @@
-import {TestBed, ComponentFixture} from "@angular/core/testing";
-import {Component, Type, DebugElement} from "@angular/core";
-import {By} from "@angular/platform-browser";
-import {DynamicIdDirective} from "./dynamic-id.directive";
+import { TestBed, ComponentFixture } from "@angular/core/testing";
+import { Component, Type, DebugElement } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { DynamicIdDirective } from "./dynamic-id.directive";
 
 @Component({
     template: `

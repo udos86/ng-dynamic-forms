@@ -1,4 +1,4 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel} from "./dynamic-select.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "./dynamic-select.model";
 
 describe("DynamicSelectModel test suite", () => {
 

@@ -1,7 +1,7 @@
-import {DynamicFormControlRelationGroup} from "./dynamic-form-control-relation.model";
-import {Subject} from "rxjs/Subject";
-import {serializable, serialize} from "../decorator/serializable.decorator";
-import {getValue, isEmptyString} from "../utils";
+import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
+import { Subject } from "rxjs/Subject";
+import { serializable, serialize } from "../decorator/serializable.decorator";
+import { getValue, isEmptyString } from "../utils";
 
 export type DynamicValidatorsMap = {[validatorName: string]: any};
 
@@ -10,6 +10,7 @@ export interface Cls {
     container?: string;
     control?: string;
     errors?: string;
+    hint?: string;
     label?: string;
 }
 
@@ -45,8 +46,8 @@ export abstract class DynamicFormControlModel {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = getValue(cls, "element", {container: "", control: "", errors: "", label: ""});
-        this.cls.grid = getValue(cls, "grid", {container: "", control: "", errors: "", label: ""});
+        this.cls.element = getValue(cls, "element", {container: "", control: "", errors: "", hint: "", label: ""});
+        this.cls.grid = getValue(cls, "grid", {container: "", control: "", errors: "", hint: "", label: ""});
 
         this._disabled = getValue(config, "disabled", false);
         this.id = config.id;

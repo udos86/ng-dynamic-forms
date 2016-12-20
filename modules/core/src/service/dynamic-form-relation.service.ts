@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {FormGroup, FormControl} from "@angular/forms";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
+import { Injectable } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import {
     DynamicFormControlRelation,
     DynamicFormControlRelationGroup,

@@ -1,16 +1,16 @@
-import {EventEmitter, TemplateRef, OnInit, OnDestroy} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Subscription} from "rxjs/Subscription";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DynamicFormValueControlModel, DynamicFormControlValue} from "../model/dynamic-form-value-control.model";
-import {DynamicFormControlRelationGroup} from "../model/dynamic-form-control-relation.model";
+import { EventEmitter, TemplateRef, OnInit, OnDestroy } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { Subscription } from "rxjs/Subscription";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import {DynamicFormRelationService} from "../service/dynamic-form-relation.service";
-import {isDefined} from "../utils";
+import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
+import { isDefined } from "../utils";
 
 export interface DynamicFormControlEvent {
 

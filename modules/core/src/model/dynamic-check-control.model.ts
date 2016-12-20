@@ -1,6 +1,6 @@
-import {ClsConfig} from "./dynamic-form-control.model";
-import {DynamicFormValueControlModel, DynamicFormValueControlModelConfig} from "./dynamic-form-value-control.model";
-import {isBoolean} from "../utils";
+import { ClsConfig } from "./dynamic-form-control.model";
+import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
+import { isBoolean } from "../utils";
 
 export abstract class DynamicCheckControlModel extends DynamicFormValueControlModel<boolean> {
 

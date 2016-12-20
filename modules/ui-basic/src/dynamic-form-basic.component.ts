@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter, ContentChild, TemplateRef} from "@angular/core";
-import {FormGroup} from "@angular/forms";
+import { Component, Input, Output, EventEmitter, ContentChild, TemplateRef } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlModel,
     DynamicFormControlComponent,

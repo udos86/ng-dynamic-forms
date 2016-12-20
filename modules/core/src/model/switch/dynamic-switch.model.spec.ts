@@ -1,4 +1,4 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel} from "./dynamic-switch.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "./dynamic-switch.model";
 
 describe("DynamicSwitchModel test suite", () => {
 

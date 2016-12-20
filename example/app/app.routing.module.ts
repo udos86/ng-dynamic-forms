@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule, Route} from "@angular/router";
 import {BasicExampleComponent} from "./basic/basic-example.component";
 import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
 import {FoundationExampleComponent} from "./foundation/foundation-example.component";
@@ -7,7 +7,7 @@ import {MaterialExampleComponent} from "./material/material-example.component";
 import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
 import {NgModule} from "@angular/core";
 
-const APP_ROUTES: Routes = [
+const APP_ROUTES: Array<Route> = [
     {
         path: "",
         redirectTo: "/example-bootstrap",
@@ -66,6 +66,10 @@ const APP_ROUTES: Routes = [
             href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/primeng/primeng-example.model.ts",
             bgColor: "#DB2226"
         }
+    },
+    {
+        path: "example-async",
+        loadChildren: "app/async/async-example.module#AsyncExampleModule"
     }
 ];
 

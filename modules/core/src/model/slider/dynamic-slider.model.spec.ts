@@ -1,4 +1,4 @@
-import {DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel} from "./dynamic-slider.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "./dynamic-slider.model";
 
 describe("DynamicSliderModel test suite", () => {
 

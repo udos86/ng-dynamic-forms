@@ -1,4 +1,4 @@
-import {TestBed, inject} from "@angular/core/testing";
+import { TestBed, inject } from "@angular/core/testing";
 import {
     ReactiveFormsModule,
     FormGroup,
@@ -7,19 +7,18 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
-import {DynamicFormService} from "./dynamic-form.service";
-import {DynamicCheckboxModel} from "../model/checkbox/dynamic-checkbox.model";
-import {DynamicCheckboxGroupModel} from "../model/checkbox/dynamic-checkbox-group.model";
-import {DynamicFormArrayModel} from "../model/form-array/dynamic-form-array.model";
-import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
-import {DynamicInputModel} from "../model/input/dynamic-input.model";
-import {DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
-import {DynamicSelectModel} from "../model/select/dynamic-select.model";
-import {DynamicSliderModel} from "../model/slider/dynamic-slider.model";
-import {DynamicSwitchModel} from "../model/switch/dynamic-switch.model";
-import {DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
-import {DynamicFormGroupModel} from "../model/form-group/dynamic-form-group.model";
-import {group} from "@angular/core";
+import { DynamicFormService } from "./dynamic-form.service";
+import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
+import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
+import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.model";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicInputModel } from "../model/input/dynamic-input.model";
+import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
+import { DynamicSelectModel } from "../model/select/dynamic-select.model";
+import { DynamicSliderModel } from "../model/slider/dynamic-slider.model";
+import { DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
+import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
+import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 
 describe("DynamicFormService test suite", () => {
 

@@ -1,5 +1,5 @@
-import {TestBed, inject} from "@angular/core/testing";
-import {DynamicFormAutoFillService} from "./dynamic-form-autofill.service";
+import { TestBed, inject } from "@angular/core/testing";
+import { DynamicFormAutoFillService } from "./dynamic-form-autofill.service";
 
 describe("DynamicFormAutoFillService test suite", () => {
 

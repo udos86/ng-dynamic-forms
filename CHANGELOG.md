@@ -1,3 +1,17 @@
+# 1.3.3
+
+**Merry X-mas**!
+
+### **Bugfixes** 
+
+* `DynamicFormsCoreModule` now working when used in async routes (closes [#212](https://github.com/udos86/ng2-dynamic-forms/issues/212))
+ 
+### **Features** 
+
+* async routing example added to demo application
+* template improvements for checkboxes (closes [#214](https://github.com/udos86/ng2-dynamic-forms/issues/214))
+* `hint` property added to `Cls` interface
+
 # 1.3.2
 
 ### **Bugfixes** 

@@ -1,7 +1,7 @@
-import {ClsConfig} from "../dynamic-form-control.model";
-import {DynamicFormValueControlModelConfig, DynamicFormValueControlModel} from "../dynamic-form-value-control.model";
-import {serializable} from "../../decorator/serializable.decorator";
-import {getValue} from "../../utils";
+import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "../dynamic-form-value-control.model";
+import { serializable } from "../../decorator/serializable.decorator";
+import { getValue } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SLIDER = "SLIDER";
 

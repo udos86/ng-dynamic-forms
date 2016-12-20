@@ -1,10 +1,10 @@
-import {TestBed, inject} from "@angular/core/testing";
-import {ReactiveFormsModule, FormGroup} from "@angular/forms";
-import {DynamicFormRelationService} from "./dynamic-form-relation.service";
-import {DynamicFormService} from "./dynamic-form.service";
-import {DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
-import {DynamicSelectModel} from "../model/select/dynamic-select.model";
-import {DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
+import { TestBed, inject } from "@angular/core/testing";
+import { ReactiveFormsModule, FormGroup } from "@angular/forms";
+import { DynamicFormRelationService } from "./dynamic-form-relation.service";
+import { DynamicFormService } from "./dynamic-form.service";
+import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
+import { DynamicSelectModel } from "../model/select/dynamic-select.model";
+import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 
 describe("DynamicFormRelationService test suite", () => {
 
