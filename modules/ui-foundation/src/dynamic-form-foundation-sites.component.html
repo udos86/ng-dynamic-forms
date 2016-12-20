@@ -56,7 +56,7 @@
         </fieldset>
 
 
-        <label *ngIf="model.type === 'CHECKBOX'" [attr.for]="model.id" [ngClass]="model.cls.element.label">
+        <label *ngIf="model.type === 'CHECKBOX'">
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -69,7 +69,7 @@
                    [value]="model.value"
                    (blur)="onFocusChange($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/><span *ngIf="model.label" [innerHTML]="model.label"></span></label>
+                   (focus)="onFocusChange($event)"/><span [ngClass]="[model.cls.element.label, model.cls.grid.label]" [innerHTML]="model.label"></span></label>
 
 
         <div *ngIf="model.type === 'INPUT'" class="input-group">

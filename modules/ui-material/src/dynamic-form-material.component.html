@@ -59,7 +59,7 @@
                  [ngClass]="model.cls.element.control"
                  (blur)="onFocusChange($event)"
                  (change)="onValueChange($event)"
-                 (focus)="onFocusChange($event)"><span *ngIf="model.label" [innerHTML]="model.label"></span></md-checkbox>
+                 (focus)="onFocusChange($event)"><span [ngClass]="model.cls.element.label" [innerHTML]="model.label"></span></md-checkbox>
 
 
     <md-input *ngIf="model.type === 'INPUT'"

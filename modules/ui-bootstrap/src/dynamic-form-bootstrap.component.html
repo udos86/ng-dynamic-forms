@@ -13,7 +13,7 @@
 
         <div class="checkbox" [class.disabled]="model.disabled">
 
-            <label [ngClass]="model.cls.element.label">
+            <label>
 
                 <input type="checkbox"
                        [attr.tabindex]="model.tabIndex"
@@ -26,7 +26,7 @@
                        [value]="model.value"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span *ngIf="model.label" [innerHTML]="model.label"></span></label>
+                       (focus)="onFocusChange($event)"/><span [ngClass]="[model.cls.element.label, model.cls.grid.label]" [innerHTML]="model.label"></span></label>
         </div>
 
     </div>
