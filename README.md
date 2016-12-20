@@ -369,7 +369,7 @@ ngOnInit() {
 Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. addresses, products and so on.
 Particularly for this reason Angular 2 provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
 
-Luckily, ng2 Dynamic Forms is capable of managing such nested form structures!  
+Fortunately ng2 Dynamic Forms is capable of managing such nested form structures!  
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts
