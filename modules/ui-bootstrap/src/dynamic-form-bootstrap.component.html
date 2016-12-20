@@ -26,7 +26,7 @@
                        [value]="model.value"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span></label>
+                       (focus)="onFocusChange($event)"/><span *ngIf="model.label" [innerHTML]="model.label"></span></label>
         </div>
 
     </div>
@@ -182,7 +182,7 @@
                   (focus)="onFocusChange($event)"></textarea>
 
 
-        <span *ngIf="model.hint" class="help-block" [innerHTML]="model.hint"></span>
+        <span *ngIf="model.hint" class="help-block" [ngClass]="model.cls.element.hint" [innerHTML]="model.hint"></span>
 
     </div>
 

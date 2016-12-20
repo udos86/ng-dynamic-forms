@@ -69,7 +69,7 @@
                    [value]="model.value"
                    (blur)="onFocusChange($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"></span></label>
+                   (focus)="onFocusChange($event)"/><span *ngIf="model.label" [innerHTML]="model.label"></span></label>
 
 
         <div *ngIf="model.type === 'INPUT'" class="input-group">
@@ -197,7 +197,7 @@
                   (change)="onValueChange($event)"
                   (focus)="onFocusChange($event)"></textarea>
 
-        <p *ngIf="model.hint" class="help-text" [innerHTML]="model.hint"></p>
+        <p *ngIf="model.hint" class="help-text" [ngClass]="model.cls.element.hint" [innerHTML]="model.hint"></p>
 
     </div>
 

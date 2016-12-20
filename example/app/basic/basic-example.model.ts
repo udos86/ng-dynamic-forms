@@ -160,21 +160,49 @@ export const BASIC_EXAMPLE_MODEL = [
 
 export const BASIC_EXAMPLE_ARRAY_MODEL = [
 
-    new DynamicFormArrayModel({
+    new DynamicFormArrayModel(
+        {
+            id: "basicFormArray",
+            initialCount: 2,
+            label: "Example Array Model",
+            createGroup: () => {
+                return [
+                    new DynamicCheckboxModel({
 
-        id: "basicFormArray",
-        initialCount: 5,
-        label: "Example Array Model",
-        createGroup: () => {
-            return [
-                new DynamicInputModel(
-                    {
-                        id: "basicArrayGroupInput",
-                        label: "Example Array Group Input",
-                        placeholder: "example array group input"
-                    }
-                )
-            ];
-        }
-    })
+                        label: "Mon",
+                        id: "monday"
+                    }),
+                    new DynamicCheckboxModel({
+
+                        label: "Tue",
+                        id: "tuesday"
+                    }),
+                    new DynamicCheckboxModel({
+
+                        label: "Wen",
+                        id: "wednesday"
+                    }),
+                    new DynamicCheckboxModel({
+
+                        label: "Thu",
+                        id: "thursday"
+                    }),
+                    new DynamicCheckboxModel({
+
+                        label: "Fri",
+                        id: "friday"
+                    }),
+                    new DynamicCheckboxModel({
+
+                        label: "Sat",
+                        id: "saturday"
+                    }),
+                    new DynamicCheckboxModel({
+
+                        label: "Sun",
+                        id: "sunday"
+                    })
+                ];
+            }
+        })
 ];
