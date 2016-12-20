@@ -1,12 +1,12 @@
-import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl, FormArray} from "@angular/forms";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicFormControlModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
-import {MATERIAL_EXAMPLE_MODEL} from "./material-example.model";
+import { MATERIAL_EXAMPLE_MODEL } from "./material-example.model";
 
 @Component({
 
@@ -19,37 +19,34 @@ import {MATERIAL_EXAMPLE_MODEL} from "./material-example.model";
 
 export class MaterialExampleComponent implements OnInit {
 
-    dynamicFormModel: Array<DynamicFormControlModel>;
-    form: FormGroup;
+    formModel: Array<DynamicFormControlModel> = MATERIAL_EXAMPLE_MODEL;
+    formGroup: FormGroup;
 
-    exampleCheckboxControl: FormControl;
-    exampleCheckboxModel: DynamicCheckboxModel;
+    checkboxControl: FormControl;
+    checkboxModel: DynamicCheckboxModel;
 
-    sampleArrayControl: FormArray;
-    sampleArrayModel: DynamicFormArrayModel;
+    arrayControl: FormArray;
+    arrayModel: DynamicFormArrayModel;
 
-    constructor(private dynamicFormService: DynamicFormService) {
-
-        this.dynamicFormModel = MATERIAL_EXAMPLE_MODEL;
-    }
+    constructor(private formService: DynamicFormService) {}
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
+        this.checkboxControl = <FormControl> this.formGroup.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
+        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("exampleCheckbox", this.formModel);
 
-        this.sampleArrayControl = <FormArray> this.form.controls["materialFormArray"];
-        this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById("materialFormArray", this.dynamicFormModel);
+        this.arrayControl = <FormArray> this.formGroup.controls["materialFormArray"];
+        this.arrayModel = <DynamicFormArrayModel> this.formService.findById("materialFormArray", this.formModel);
     }
 
     add() {
-        this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
+        this.formService.addFormArrayGroup(this.arrayControl, this.arrayModel);
     }
 
     remove(index: number) {
-        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, this.sampleArrayModel);
+        this.formService.removeFormArrayGroup(index, this.arrayControl, this.arrayModel);
     }
 
     onChange($event) {

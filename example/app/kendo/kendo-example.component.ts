@@ -1,13 +1,7 @@
-import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl, FormArray} from "@angular/forms";
-import {
-    DynamicFormService,
-    DynamicFormControlModel,
-    DynamicFormGroupModel,
-    DynamicFormArrayModel,
-    DynamicInputModel
-} from "@ng2-dynamic-forms/core";
-import {KENDO_EXAMPLE_MODEL} from "./kendo-example.model";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
+import { KENDO_EXAMPLE_MODEL } from "./kendo-example.model";
 
 @Component({
 
@@ -20,16 +14,13 @@ import {KENDO_EXAMPLE_MODEL} from "./kendo-example.model";
 
 export class KendoExampleComponent implements OnInit {
 
-    dynamicFormModel: Array<DynamicFormControlModel>;
-    form: FormGroup;
+    formModel: Array<DynamicFormControlModel> = KENDO_EXAMPLE_MODEL;
+    formGroup: FormGroup;
 
-    constructor(private dynamicFormService: DynamicFormService) {
-
-        this.dynamicFormModel = KENDO_EXAMPLE_MODEL;
-    }
+    constructor(private formService: DynamicFormService) {}
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
     }
 }

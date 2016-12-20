@@ -1,9 +1,9 @@
 <div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
 
-    <form class="form-horizontal" [formGroup]="form">
+    <form class="form-horizontal" [formGroup]="formGroup">
 
-        <dynamic-form-bootstrap-control *ngFor="let controlModel of dynamicFormModel"
-                                        [controlGroup]="form"
+        <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel"
+                                        [controlGroup]="formGroup"
                                         [model]="controlModel"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         (blur)="onBlur($event)"
@@ -28,11 +28,3 @@
     <!--<button (click)="test()" type="button">Test</button>-->
 
 </div>
-<!--
-<div class="float-left content-margin text-center" style="width: 40%;">
-
-    <textarea rows="18" cols="46" class="live-edit" [(ngModel)]="modelEdit"></textarea>
-
-    <p class="font-bold">Live edit the underlying Dynamic Form Model</p>
-</div>
--->

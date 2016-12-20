@@ -2,7 +2,7 @@
 
     <form class="form-horizontal" [formGroup]="form">
 
-        <dynamic-form-foundation-sites-control *ngFor="let controlModel of dynamicFormModel"
+        <dynamic-form-foundation-sites-control *ngFor="let controlModel of formModel"
                                                [controlGroup]="form"
                                                [model]="controlModel"
                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
