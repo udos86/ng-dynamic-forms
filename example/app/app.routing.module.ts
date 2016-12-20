@@ -1,11 +1,11 @@
-import {RouterModule, Route} from "@angular/router";
-import {BasicExampleComponent} from "./basic/basic-example.component";
-import {BootstrapExampleComponent} from "./bootstrap/bootstrap-example.component";
-import {FoundationExampleComponent} from "./foundation/foundation-example.component";
-import {KendoExampleComponent} from "./kendo/kendo-example.component";
-import {MaterialExampleComponent} from "./material/material-example.component";
-import {PrimeNGExampleComponent} from "./primeng/primeng-example.component";
-import {NgModule} from "@angular/core";
+import { RouterModule, Route } from "@angular/router";
+import { BasicExampleComponent } from "./basic/basic-example.component";
+import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.component";
+import { FoundationExampleComponent } from "./foundation/foundation-example.component";
+import { KendoExampleComponent } from "./kendo/kendo-example.component";
+import { MaterialExampleComponent } from "./material/material-example.component";
+import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
+import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Array<Route> = [
     {
@@ -79,4 +79,5 @@ const APP_ROUTES: Array<Route> = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

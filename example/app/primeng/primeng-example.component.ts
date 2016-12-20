@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl} from "@angular/forms";
-import {DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel} from "@ng2-dynamic-forms/core";
-import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { DynamicFormService, DynamicCheckboxModel, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
+import { PRIMENG_EXAMPLE_MODEL } from "./primeng-example.model";
 
 @Component({
 
@@ -14,25 +14,22 @@ import {PRIMENG_EXAMPLE_MODEL} from "./primeng-example.model";
 
 export class PrimeNGExampleComponent implements OnInit {
 
-    dynamicFormModel: Array<DynamicFormControlModel>;
-    form: FormGroup;
+    formModel: Array<DynamicFormControlModel> = PRIMENG_EXAMPLE_MODEL;
+    formGroup: FormGroup;
 
-    exampleCheckboxControl: FormControl;
-    exampleCheckboxModel: DynamicCheckboxModel;
+    checkboxControl: FormControl;
+    checkboxModel: DynamicCheckboxModel;
 
-    constructor(private dynamicFormService: DynamicFormService) {
-
-        this.dynamicFormModel = PRIMENG_EXAMPLE_MODEL;
-    }
+    constructor(private formService: DynamicFormService) {}
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.exampleCheckboxControl = <FormControl> this.form.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.exampleCheckboxModel = <DynamicCheckboxModel> this.dynamicFormService.findById("exampleCheckbox", this.dynamicFormModel);
+        this.checkboxControl = <FormControl> this.formGroup.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
+        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("exampleCheckbox", this.formModel);
 
-        //this.exampleCheckboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+        //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
     }
 
     onChange($event) {

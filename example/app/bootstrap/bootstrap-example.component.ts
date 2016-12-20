@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl, FormArray} from "@angular/forms";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import {
     DynamicFormService,
     DynamicFormControlModel,
@@ -7,7 +7,7 @@ import {
     DynamicFormArrayModel,
     DynamicInputModel
 } from "@ng2-dynamic-forms/core";
-import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
+import { BOOTSTRAP_EXAMPLE_MODEL } from "./bootstrap-example.model";
 
 @Component({
 
@@ -20,61 +20,45 @@ import {BOOTSTRAP_EXAMPLE_MODEL} from "./bootstrap-example.model";
 
 export class BootstrapExampleComponent implements OnInit {
 
-    dynamicFormModel: Array<DynamicFormControlModel>;
-    form: FormGroup;
+    formModel: Array<DynamicFormControlModel> = BOOTSTRAP_EXAMPLE_MODEL;
+    formGroup: FormGroup;
 
     exampleControl: FormControl;
     exampleModel: DynamicInputModel;
 
-    sampleArrayControl: FormArray;
-    sampleArrayModel: DynamicFormArrayModel;
+    arrayControl: FormArray;
+    arrayModel: DynamicFormArrayModel;
 
-    constructor(private dynamicFormService: DynamicFormService) {
-
-        this.dynamicFormModel = BOOTSTRAP_EXAMPLE_MODEL;
-    }
+    constructor(private formService: DynamicFormService) {}
 
     ngOnInit() {
 
-        this.form = this.dynamicFormService.createFormGroup(this.dynamicFormModel);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.exampleControl = <FormControl> this.form.get("bootstrapFormGroup1").get("bootstrapInput"); // Type assertion for having updateValue method available
-        this.exampleModel = <DynamicInputModel> this.dynamicFormService.findById(
-            "bootstrapInput", (<DynamicFormGroupModel> this.dynamicFormModel[0]).group);
+        this.exampleControl = <FormControl> this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput"); // Type assertion for having updateValue method available
+        this.exampleModel = <DynamicInputModel> this.formService.findById(
+            "bootstrapInput", (<DynamicFormGroupModel> this.formModel[0]).group);
         //this.exampleControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
 
-        this.sampleArrayControl = <FormArray> this.form.get("bootstrapFormGroup2").get("bootstrapFormArray");
-        this.sampleArrayModel = <DynamicFormArrayModel> this.dynamicFormService.findById(
-            "bootstrapFormArray", this.dynamicFormModel);
+        this.arrayControl = <FormArray> this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray");
+        this.arrayModel = <DynamicFormArrayModel> this.formService.findById(
+            "bootstrapFormArray", this.formModel);
     }
 
     add() {
-        this.dynamicFormService.addFormArrayGroup(this.sampleArrayControl, this.sampleArrayModel);
+        this.formService.addFormArrayGroup(this.arrayControl, this.arrayModel);
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
-        this.dynamicFormService.insertFormArrayGroup(index, this.sampleArrayControl, context);
+        this.formService.insertFormArrayGroup(index, this.arrayControl, context);
     }
 
     remove(context: DynamicFormArrayModel, index: number) {
-        this.dynamicFormService.removeFormArrayGroup(index, this.sampleArrayControl, context);
+        this.formService.removeFormArrayGroup(index, this.arrayControl, context);
     }
 
     clear() {
-        this.dynamicFormService.clearFormArray(this.sampleArrayControl, this.sampleArrayModel);
-    }
-
-    set modelEdit(value: string) {
-        try {
-            this.dynamicFormModel = JSON.parse(value);
-            console.log(JSON.parse(value));
-        } catch (e) {
-            // Just do nothing
-        }
-    }
-
-    get modelEdit() {
-        return JSON.stringify(this.dynamicFormModel, null, 2);
+        this.formService.clearFormArray(this.arrayControl, this.arrayModel);
     }
 
     test() {

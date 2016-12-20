@@ -1,9 +1,9 @@
 <div class="overflow-hidden content-margin content-padding" style="width: 50%;">
 
-    <form [formGroup]="form" class="ui-grid ui-grid-responsive">
+    <form [formGroup]="formGroup" class="ui-grid ui-grid-responsive">
 
-        <dynamic-form-primeng-control *ngFor="let controlModel of dynamicFormModel" class="form-row"
-                                      [controlGroup]="form"
+        <dynamic-form-primeng-control *ngFor="let controlModel of formModel" class="form-row"
+                                      [controlGroup]="formGroup"
                                       [model]="controlModel"
                                       (change)="onChange($event)"></dynamic-form-primeng-control>
     </form>

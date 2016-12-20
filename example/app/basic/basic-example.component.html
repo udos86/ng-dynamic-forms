@@ -1,9 +1,9 @@
 <div class="overflow-hidden content-margin content-padding" style="width: 50%;">
 
-    <form [formGroup]="form1">
+    <form [formGroup]="formGroup1">
 
-        <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel1" class="form-row"
-                                    [controlGroup]="form1"
+        <dynamic-form-basic-control *ngFor="let controlModel of formModel1" class="form-row"
+                                    [controlGroup]="formGroup1"
                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                     [model]="controlModel"
                                     (blur)="onBlur($event)"
@@ -12,14 +12,19 @@
     </form>
 
 
-    <form [formGroup]="form2">
+    <form [formGroup]="formGroup2">
 
-        <dynamic-form-basic-control *ngFor="let controlModel of dynamicFormModel2" class="form-row"
-                                    [controlGroup]="form2"
-                                    [model]="controlModel">
+        <dynamic-form-basic-control *ngFor="let controlModel of formModel2" class="form-row"
+                                    [controlGroup]="formGroup2"
+                                    [model]="controlModel"
+                                    (blur)="onBlur($event)"
+                                    (change)="onChange($event)"
+                                    (focus)="onFocus($event)">
 
             <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+
                 <button type="button" (click)="remove(index)">Remove Item</button>
+
             </template>
 
         </dynamic-form-basic-control>
@@ -29,29 +34,4 @@
 
     </form>
 
-
-    <!--
-    <form [formGroup]="form2">
-
-        <div formArrayName="basicFormArray">
-
-            <div *ngFor="let idx = index; let group of dynamicFormModel2.findById('basicFormArray').groups"
-                 [formGroupName]="idx">
-
-                <dynamic-form-basic-control *ngFor="let controlModel of group" class="form-row"
-                                            [controlGroup]="form2.controls['basicFormArray'].controls[idx]"
-                                            [model]="controlModel"
-                                            style="display: inline-block;"></dynamic-form-basic-control>
-
-                <button type="button" (click)="remove(idx)">Remove Item</button>
-
-            </div>
-
-        </div>
-
-        <button type="button" (click)="add()">Add Item</button>
-        <button type="button" (click)="clear()">Remove All</button>
-
-    </form>
-    -->
 </div>
