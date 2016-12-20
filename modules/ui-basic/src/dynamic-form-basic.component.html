@@ -157,7 +157,7 @@
               (focus)="onFocusChange($event)"></textarea>
 
 
-    <div *ngIf="model.hint"><span [innerHTML]="model.hint"></span></div>
+    <div *ngIf="model.hint" [ngClass]="model.cls.element.hint"><span [innerHTML]="model.hint"></span></div>
 
 
     <div *ngIf="hasErrorMessaging && control.touched && !hasFocus && isInvalid" [ngClass]="model.cls.element.errors">
