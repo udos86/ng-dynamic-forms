@@ -61,6 +61,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
         expect(component.hasErrorMessaging).toBe(false);
+        expect(component.showCharacterHint).toBe(false);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();

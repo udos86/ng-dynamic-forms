@@ -91,8 +91,8 @@
                (change)="onValueChange($event)"
                (focus)="onFocusChange($event)"/>
 
-        <md-hint *ngIf="model.hint" align="'start'" [innerHTML]="model.hint"></md-hint>
-        <!--<md-hint align="end">{{characterCount}} / {{model.maxLength}}</md-hint>-->
+        <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
+        <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
         <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
         <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
@@ -182,8 +182,8 @@
                   (change)="onValueChange($event)"
                   (focus)="onFocusChange($event)"></textarea>
 
-        <md-hint *ngIf="model.hint" align="'start'" [innerHTML]="model.hint"></md-hint>
-        <!--<md-hint align="end">{{characterCount}} / {{model.maxLength}}</md-hint>-->
+        <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
+        <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
     </md-input-container>
 

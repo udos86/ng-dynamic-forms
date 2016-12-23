@@ -19,10 +19,20 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
+    private _showCharacterCount: boolean = false;
+
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplate: TemplateRef<any>;
+
+    @Input()
+    get showCharacterHint(): boolean {
+        return !!(this._showCharacterCount && this.model["maxLength"] && this.characterCount);
+    }
+    set showCharacterHint(value: boolean) {
+        this._showCharacterCount = value;
+    }
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
