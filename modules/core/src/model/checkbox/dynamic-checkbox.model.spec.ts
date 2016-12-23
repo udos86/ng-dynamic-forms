@@ -1,8 +1,4 @@
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START,
-    DynamicCheckboxModel
-} from "./dynamic-checkbox.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "./dynamic-checkbox.model";
 
 describe("DynamicCheckboxModel test suite", () => {
 
@@ -16,15 +12,15 @@ describe("DynamicCheckboxModel test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(model.align).toEqual(DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
-        expect(model.asyncValidators).toEqual(null);
+        expect(model.asyncValidators).toBeNull();
         expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.indeterminate).toBe(false);
         expect(model.label).toBeNull();
+        expect(model.labelPosition).toBeNull();
         expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
-        expect(model.validators).toEqual(null);
+        expect(model.validators).toBeNull();
         expect(model.value).toBe(config.value);
     });
 

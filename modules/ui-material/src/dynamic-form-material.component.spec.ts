@@ -50,7 +50,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         fixture.detectChanges();
 
-        inputElement = debugElement.query(By.css(`md-input[id='${formModel[0].id}']`));
+        inputElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
     }));
 
     it("should initialize correctly", () => {
