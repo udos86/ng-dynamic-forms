@@ -14,7 +14,7 @@ import { DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL } from "./dynami
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
-    let inputModel = new DynamicInputModel({id: "testInput"}),
+    let inputModel = new DynamicInputModel({id: "testInput", maxLength: 51}),
         formModel = [
             inputModel,
             new DynamicSwitchModel({id: "testSwitch"})
@@ -47,6 +47,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         component.controlGroup = formGroup;
         component.model = formModel[0];
+        component.showCharacterHint = false;
 
         fixture.detectChanges();
 
@@ -62,6 +63,8 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
         expect(component.hasErrorMessaging).toBe(false);
         expect(component.showCharacterHint).toBe(false);
+
+        expect(component.characterCount).toBe(0);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();

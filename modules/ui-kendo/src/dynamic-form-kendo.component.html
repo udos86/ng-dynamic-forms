@@ -4,6 +4,49 @@
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
+
+    <div *ngIf="model.type === 'ARRAY'"
+         [dynamicId]="bindId && model.id"
+         [formArrayName]="model.id"
+         [ngClass]="model.cls.element.control">
+
+        <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+
+            <dynamic-form-kendo-control *ngFor="let controlModel of groupModel.group"
+                                        [bindId]="false"
+                                        [controlGroup]="control.at(idx)"
+                                        [model]="controlModel"
+                                        [nestedTemplates]="templates"
+                                        (blur)="onFocusChange($event)"
+                                        (change)="onValueChange($event)"
+                                        (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
+
+            <template [ngTemplateOutlet]="customTemplate"
+                      [ngOutletContext]="groupModel"></template>
+
+        </fieldset>
+
+    </div>
+
+
+    <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
+              [dynamicId]="bindId && model.id"
+              [formGroupName]="model.id"
+              [name]="model.name"
+              [ngClass]="model.cls.element.control">
+
+        <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+        <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
+                                    [controlGroup]="control"
+                                    [model]="controlModel"
+                                    [nestedTemplates]="templates"
+                                    (blur)="onFocusChange($event)"
+                                    (change)="onValueChange($event)"
+                                    (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
+    </fieldset>
+
+
     <kendo-dropdownlist *ngIf="model.type === 'SELECT'"
                         [data]="model.options"
                         [disabled]="model.disabled"

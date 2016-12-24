@@ -27,6 +27,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
 - [JSON Export and Import](#json-export-and-import)
@@ -447,7 +448,7 @@ No Problemo! Particularly for this case you can add a `<template>` and **declare
                                 [controlGroup]="myForm" 
                                 [model]="controlModel">
     
-        <template let-context="context" let-index="index">
+        <template modelId="myFormArray" let-context="context" let-index="index">
 
             <button type="button" (click)="removeItem(context, index)">Remove Item</button>
             <button type="button" (click)="insertItem(context, index + 1)">Add Item</button>
