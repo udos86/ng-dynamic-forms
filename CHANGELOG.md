@@ -1,6 +1,14 @@
-# 1.3.3
+# 1.3.4
 
-**Merry X-mas**!
+### **Features** 
+
+* update to `@angular 2.4.1`
+* update to `@angular/material beta.1`
+* `@Input() showCharacterHint` added in `DynamicFormMaterialComponent`
+* `DynamicSelectModel` now enabled in `ui-kendo`
+
+
+# 1.3.3
 
 ### **Bugfixes** 
 

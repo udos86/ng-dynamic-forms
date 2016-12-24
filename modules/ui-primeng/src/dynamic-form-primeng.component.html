@@ -51,7 +51,7 @@
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
                                               [controlGroup]="control"
                                               [model]="controlModel"
-                                              [nestedTemplate]="customTemplate"
+                                              [nestedTemplates]="templates"
                                               (blur)="onFocusChange($event)"
                                               (change)="onValueChange($event)"
                                               (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
@@ -69,12 +69,12 @@
                                                   [bindId]="false"
                                                   [controlGroup]="control.at(idx)"
                                                   [model]="controlModel"
-                                                  [nestedTemplate]="nestedTemplate"
+                                                  [nestedTemplates]="templates"
                                                   (blur)="onFocusChange($event)"
                                                   (change)="onValueChange($event)"
                                                   (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
 
-                    <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
+                    <template [ngTemplateOutlet]="customTemplate"
                               [ngOutletContext]="groupModel"></template>
 
                 </fieldset>

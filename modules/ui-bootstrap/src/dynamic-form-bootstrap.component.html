@@ -46,12 +46,12 @@
                                                 [controlGroup]="control.at(idx)"
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                 [model]="controlModel"
-                                                [nestedTemplate]="nestedTemplate"
+                                                [nestedTemplates]="templates"
                                                 (blur)="onFocusChange($event)"
                                                 (change)="onValueChange($event)"
                                                 (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
 
-                <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
+                <template [ngTemplateOutlet]="customTemplate"
                           [ngOutletContext]="groupModel"></template>
 
             </fieldset>
@@ -71,7 +71,7 @@
                                             [controlGroup]="control"
                                             [hasErrorMessaging]="controlModel.hasErrorMessages"
                                             [model]="controlModel"
-                                            [nestedTemplate]="customTemplate"
+                                            [nestedTemplates]="templates"
                                             (blur)="onFocusChange($event)"
                                             (change)="onValueChange($event)"
                                             (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
