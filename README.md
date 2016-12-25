@@ -466,6 +466,8 @@ the associated** `DynamicFormArrayGroup`.
 That means you can **access the group index and it's context** `DynamicFormArrayModel` 
 **by declaring some local template variables** `let-context="context"` and `let-index="index"`.
 
+> see chapter on [Custom Templates](#custom-templates)
+
 This is extremely useful when you'd like to add a remove or insert function:
 ```ts
 removeItem(context: DynamicFormArrayModel, index: number) {

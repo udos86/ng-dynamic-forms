@@ -40,7 +40,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
     constructor(private relationService: DynamicFormRelationService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
 
         if (!isDefined(this.model) || !isDefined(this.controlGroup)) {
             throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
@@ -77,7 +77,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
         });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
