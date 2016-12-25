@@ -440,7 +440,7 @@ Alright, works like a charm!
 
 *But wait a minute... what if we want to append, let's say, a remove* `<button>` *for each array group*?
 
-No Problemo! Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
+Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
 ```ts
 <form [formGroup]="myForm">
 
@@ -520,6 +520,57 @@ new DynamicInputModel(
     }
 )
 ```
+
+## Custom Templates
+
+As mentioned above, ng2 Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
+
+However there are situations where you would like to add custom markup for some of your form controls, as well. 
+
+**No problem at all!**
+
+Just **put a** `template` **inside your dynamic form control element** and **assign a** `modelId`
+**attribute** to connect it with a certain control.
+```ts
+<form [formGroup]="myForm">
+    
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+                                    
+        <template modelId="myInput">
+        
+            <p>Just some custom markup</p>
+            
+        </template>
+        
+    </dynamic-form-bootstrap-control>
+    
+</form>
+```
+
+**It's getting even better!** 
+
+Since for every template `NgTemplateOutletContext` is internally bound to the corresponding `DynamicFormControlModel` **you 
+can use local template variables to reference your models' properties**:
+```ts
+<form [formGroup]="myForm">
+
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+                                    
+        <template modelId="myInput" let-id="id">
+        
+            <p>Just some custom markup for {{ id }}</p>
+            
+        </template>                                               
+                                    
+    </dynamic-form-bootstrap-control>
+    
+</form>
+```
+
 
 ## Custom Validators
 
