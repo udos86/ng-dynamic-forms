@@ -29,8 +29,7 @@
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
 
-                <template [ngTemplateOutlet]="customTemplate"
-                          [ngOutletContext]="groupModel"></template>
+                <template [ngTemplateOutlet]="customTemplate" [ngOutletContext]="groupModel"></template>
 
             </fieldset>
 
@@ -207,6 +206,8 @@
               [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>
 
     </div>
+
+    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="customTemplate" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

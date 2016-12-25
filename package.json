@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@types/core-js": "^0.9.35",
-    "@types/hammerjs": "^2.0.33",
+    "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.38",
     "@types/node": "^6.0.53",
     "@types/reflect-metadata": "^0.0.5",

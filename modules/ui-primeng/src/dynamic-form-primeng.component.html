@@ -183,4 +183,8 @@
 
     </div>
 
+    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="customTemplate" [ngOutletContext]="model"></template>
+
+    <ng-content></ng-content>
+
 </div>

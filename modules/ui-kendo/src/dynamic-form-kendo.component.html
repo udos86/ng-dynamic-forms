@@ -21,8 +21,7 @@
                                         (change)="onValueChange($event)"
                                         (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
 
-            <template [ngTemplateOutlet]="customTemplate"
-                      [ngOutletContext]="groupModel"></template>
+            <template [ngTemplateOutlet]="customTemplate" [ngOutletContext]="groupModel"></template>
 
         </fieldset>
 
@@ -78,6 +77,8 @@
                   [offLabel]="model.offLabel"
                   [onLabel]="model.onLabel"
                   (valueChange)="onValueChange($event)"></kendo-switch>
+
+    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="customTemplate" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 
