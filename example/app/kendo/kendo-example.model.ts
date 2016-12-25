@@ -5,11 +5,10 @@ import {
 } from "@ng2-dynamic-forms/core";
 
 export const KENDO_EXAMPLE_MODEL = [
-    /*
+
     new DynamicSelectModel<string>(
         {
             id: "kendoSelect",
-            label: "Example Select",
             options: [
                 {
                     label: "Option 1",
@@ -31,7 +30,7 @@ export const KENDO_EXAMPLE_MODEL = [
             value: "option-3"
         }
     ),
-    */
+
     new DynamicSliderModel(
         {
             id: "kendoSlider",

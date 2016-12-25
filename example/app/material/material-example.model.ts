@@ -39,9 +39,8 @@ export const MATERIAL_EXAMPLE_MODEL = [
 
     new DynamicInputModel({
 
-        hint: "Just a simple hint text",
+        hint: "Just a hint",
         id: "materialInput",
-        //label: "Example Input",
         maxLength: 51,
         placeholder: "example input"
     }),

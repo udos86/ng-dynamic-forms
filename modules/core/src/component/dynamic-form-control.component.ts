@@ -1,4 +1,4 @@
-import { EventEmitter, TemplateRef, OnInit, OnDestroy } from "@angular/core";
+import { EventEmitter, TemplateRef, OnInit, AfterContentInit, OnDestroy, QueryList } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -19,19 +19,20 @@ export interface DynamicFormControlEvent {
     model: DynamicFormControlModel;
 }
 
-export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
+export abstract class DynamicFormControlComponent implements OnInit, AfterContentInit, OnDestroy {
 
     bindId: boolean;
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
     control: FormControl;
     controlGroup: FormGroup;
-    customTemplate: TemplateRef<any>;
     focus: EventEmitter<DynamicFormControlEvent>;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    nestedTemplate: TemplateRef<any>;
+    nestedTemplates: QueryList<any>;
+    template: TemplateRef<any>;
+    templates: QueryList<any>;
 
     private subscriptions: Array<Subscription> = [];
 
@@ -39,7 +40,7 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
 
     constructor(private relationService: DynamicFormRelationService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
 
         if (!isDefined(this.model) || !isDefined(this.controlGroup)) {
             throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
@@ -62,7 +63,21 @@ export abstract class DynamicFormControlComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy() {
+    ngAfterContentInit(): void {
+
+        if (this.nestedTemplates) {
+            this.templates = this.nestedTemplates;
+        }
+
+        this.templates.forEach(dynamicTemplate => {
+
+            if (dynamicTemplate.modelId === this.model.id) {
+                this.template = dynamicTemplate.templateRef;
+            }
+        });
+    }
+
+    ngOnDestroy(): void {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 

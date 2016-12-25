@@ -1,6 +1,22 @@
-# 1.3.3
+# 1.3.4
 
-**Merry X-mas**!
+### **Features** 
+
+**!!! IMPORTANT !!!** 
+
+**Adding custom templates has become more powerful!**
+
+**You now need to assign a** `modelId` **attribute to any of your custom templates.** 
+
+**Please see new chapter in [README.md](https://github.com/udos86/ng2-dynamic-forms/tree/development#custom-templates) and updated examples!**
+
+* update to `@angular 2.4.1`
+* update to `@angular/material beta.1`
+* `@Input() showCharacterHint` added in `DynamicFormMaterialComponent`
+* `DynamicSelectModel` now enabled in `ui-kendo`
+
+
+# 1.3.3
 
 ### **Bugfixes** 
 

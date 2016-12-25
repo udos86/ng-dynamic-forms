@@ -30,7 +30,7 @@ export const BASIC_EXAMPLE_MODEL = [
                 value: "option-3"
             }
         ],
-        value: "option-3"
+        value: "option-1"
     }),
 
     new DynamicInputModel({

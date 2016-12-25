@@ -24,13 +24,12 @@
                                                        [controlGroup]="control.at(idx)"
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
-                                                       [nestedTemplate]="nestedTemplate"
+                                                       [nestedTemplates]="templates"
                                                        (blur)="onFocusChange($event)"
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
 
-                <template [ngTemplateOutlet]="customTemplate || nestedTemplate"
-                          [ngOutletContext]="groupModel"></template>
+                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
 
             </fieldset>
 
@@ -49,7 +48,7 @@
                                                    [controlGroup]="control"
                                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
-                                                   [nestedTemplate]="customTemplate"
+                                                   [nestedTemplates]="templates"
                                                    (blur)="onFocusChange($event)"
                                                    (change)="onValueChange($event)"
                                                    (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
@@ -207,6 +206,8 @@
               [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>
 
     </div>
+
+    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

@@ -6,19 +6,16 @@ import { getValue } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 
-export const DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START = "start";
-export const DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_END = "end";
-
 export interface DynamicCheckboxModelConfig extends DynamicFormValueControlModelConfig<boolean> {
 
-    align?: string;
     indeterminate?: boolean;
+    labelPosition?: string;
 }
 
 export class DynamicCheckboxModel extends DynamicCheckControlModel {
 
-    @serializable() align: string;
     @serializable() indeterminate: boolean;
+    @serializable() labelPosition: string | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
 
@@ -26,7 +23,7 @@ export class DynamicCheckboxModel extends DynamicCheckControlModel {
 
         super(config, cls);
 
-        this.align = getValue(config, "align", DYNAMIC_FORM_CONTROL_CHECKBOX_ALIGN_START);
         this.indeterminate = getValue(config, "indeterminate", false);
+        this.labelPosition = getValue(config, "labelPosition", null);
     }
 }

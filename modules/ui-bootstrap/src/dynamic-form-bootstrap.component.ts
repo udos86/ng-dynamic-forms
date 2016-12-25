@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter, ContentChild, TemplateRef } from "@angular/core";
+import { Component, Input, Output, EventEmitter, QueryList, ContentChildren } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormControlEvent,
-    DynamicFormRelationService
+    DynamicFormRelationService,
+    DynamicTemplateDirective
 } from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_BOOTSTRAP = "BOOTSTRAP";
@@ -22,13 +23,13 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
     @Input() controlGroup: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input() nestedTemplate: TemplateRef<any>;
+    @Input() nestedTemplates: QueryList<any>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChild(TemplateRef) customTemplate;
+    @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
     readonly type: string = DYNAMIC_FORM_UI_BOOTSTRAP;
 

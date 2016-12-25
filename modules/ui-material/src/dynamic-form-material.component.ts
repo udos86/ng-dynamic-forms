@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ContentChild, TemplateRef } from "@angular/core";
+import { Component, Input, Output, EventEmitter, QueryList, ViewChild, ContentChildren } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MdCheckbox, MdInput, MdRadioGroup/*, MdSlideToggle*/ } from "@angular/material";
+import { MdCheckbox, MdInputContainer, MdRadioGroup, MdSelect, MdSlider, MdSlideToggle } from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormControlEvent,
-    DynamicFormRelationService
+    DynamicFormRelationService,
+    DynamicTemplateDirective
 } from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
@@ -19,21 +20,34 @@ export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
+    private _showCharacterCount: boolean = false;
+
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
-    @Input() nestedTemplate: TemplateRef<any>;
+    @Input() nestedTemplates: QueryList<any>;
+
+    @Input()
+    get showCharacterHint(): boolean {
+        return !!(this._showCharacterCount && this.model["maxLength"] && this.characterCount);
+    }
+
+    set showCharacterHint(value: boolean) {
+        this._showCharacterCount = value;
+    }
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChild(TemplateRef) customTemplate;
+    @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
-    @ViewChild(MdInput) mdInput: MdInput;
+    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer;
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
-    //@ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle;
+    @ViewChild(MdSelect) mdSelect: MdSelect;
+    @ViewChild(MdSlider) mdSlider: MdSlider;
+    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle;
 
     readonly type: string = DYNAMIC_FORM_UI_MATERIAL;
 
@@ -41,9 +55,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
         super(relationService);
     }
 
-    /*
-     get characterCount() {
-     return this.mdInput ? this.mdInput.characterCount : 0;
-     }
-     */
+    get characterCount(): number | null {
+        return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
+    }
 }

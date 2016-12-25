@@ -27,6 +27,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
 - [JSON Export and Import](#json-export-and-import)
@@ -254,7 +255,7 @@ cannot be provided in every UI library. **See the following compatibility table*
 | ui-basic      	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
 | ui-bootstrap  	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
 | ui-foundation 	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
-| ui-kendo      	|         ✗        	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
+| ui-kendo      	|         ✗        	|   ✗   	|      ✗      	|    ✓   	|    ✓   	|    ✓   	|     ✗    	|
 | ui-material   	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 | ui-primeng    	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 
@@ -369,7 +370,7 @@ ngOnInit() {
 Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. addresses, products and so on.
 Particularly for this reason Angular 2 provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
 
-Fortunately ng2 Dynamic Forms is capable of managing such nested form structures!  
+Fortunately, ng2 Dynamic Forms is capable of managing such nested form structures!  
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts
@@ -439,7 +440,7 @@ Alright, works like a charm!
 
 *But wait a minute... what if we want to append, let's say, a remove* `<button>` *for each array group*?
 
-No Problemo! Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
+Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
 ```ts
 <form [formGroup]="myForm">
 
@@ -447,7 +448,7 @@ No Problemo! Particularly for this case you can add a `<template>` and **declare
                                 [controlGroup]="myForm" 
                                 [model]="controlModel">
     
-        <template let-context="context" let-index="index">
+        <template modelId="myFormArray" let-context="context" let-index="index">
 
             <button type="button" (click)="removeItem(context, index)">Remove Item</button>
             <button type="button" (click)="insertItem(context, index + 1)">Add Item</button>
@@ -464,6 +465,8 @@ the associated** `DynamicFormArrayGroup`.
 
 That means you can **access the group index and it's context** `DynamicFormArrayModel` 
 **by declaring some local template variables** `let-context="context"` and `let-index="index"`.
+
+> see chapter on [Custom Templates](#custom-templates)
 
 This is extremely useful when you'd like to add a remove or insert function:
 ```ts
@@ -519,6 +522,57 @@ new DynamicInputModel(
     }
 )
 ```
+
+## Custom Templates
+
+As mentioned above, ng2 Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
+
+However there are situations where you would like to add custom markup for some of your form controls, as well. 
+
+**No problem at all!**
+
+Just **put a** `template` **inside your dynamic form control element** and **assign a** `modelId`
+**attribute** to connect it with a certain control.
+```ts
+<form [formGroup]="myForm">
+    
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+                                    
+        <template modelId="myInput">
+        
+            <p>Just some custom markup</p>
+            
+        </template>
+        
+    </dynamic-form-bootstrap-control>
+    
+</form>
+```
+
+**It's getting even better!** 
+
+Since for every template `NgTemplateOutletContext` is internally bound to the corresponding `DynamicFormControlModel` **you 
+can use local template variables to reference your models' properties**:
+```ts
+<form [formGroup]="myForm">
+
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of myDynamicFormModel" 
+                                    [controlGroup]="myForm"
+                                    [model]="controlModel">
+                                    
+        <template modelId="myInput" let-id="id">
+        
+            <p>Just some custom markup for {{ id }}</p>
+            
+        </template>                                               
+                                    
+    </dynamic-form-bootstrap-control>
+    
+</form>
+```
+
 
 ## Custom Validators
 

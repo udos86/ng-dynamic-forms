@@ -119,4 +119,5 @@ dynamic-form-material-example fieldset {
 dynamic-form-kendo-control {
     display: block;
     margin: 2.5rem;
+    text-align: center;
 }

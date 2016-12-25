@@ -1,5 +1,6 @@
 export * from "./src/component/dynamic-form-control.component";
 
+export * from "./src/directive/dynamic-template.directive";
 export * from "./src/directive/dynamic-id.directive";
 
 export * from "./src/decorator/serializable.decorator";
