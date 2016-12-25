@@ -51,7 +51,7 @@
                                                 (change)="onValueChange($event)"
                                                 (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
 
-                <template [ngTemplateOutlet]="customTemplate" [ngOutletContext]="groupModel"></template>
+                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
 
             </fieldset>
 
@@ -193,7 +193,7 @@
 
     </div>
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="customTemplate" [ngOutletContext]="model"></template>
+    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

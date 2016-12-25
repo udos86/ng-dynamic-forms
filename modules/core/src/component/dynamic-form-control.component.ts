@@ -26,12 +26,12 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
     change: EventEmitter<DynamicFormControlEvent>;
     control: FormControl;
     controlGroup: FormGroup;
-    customTemplate: TemplateRef<any>;
     focus: EventEmitter<DynamicFormControlEvent>;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
     nestedTemplates: QueryList<any>;
+    template: TemplateRef<any>;
     templates: QueryList<any>;
 
     private subscriptions: Array<Subscription> = [];
@@ -69,15 +69,12 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
             this.templates = this.nestedTemplates;
         }
 
-        if (this.templates) {
+        this.templates.forEach(dynamicTemplate => {
 
-            this.templates.forEach(dynamicTemplate => {
-
-                if (dynamicTemplate.modelId === this.model.id) {
-                    this.customTemplate = dynamicTemplate.templateRef;
-                }
-            });
-        }
+            if (dynamicTemplate.modelId === this.model.id) {
+                this.template = dynamicTemplate.templateRef;
+            }
+        });
     }
 
     ngOnDestroy() {

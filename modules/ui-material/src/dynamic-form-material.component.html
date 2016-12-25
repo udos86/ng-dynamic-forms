@@ -40,7 +40,7 @@
                                            (change)="onValueChange($event)"
                                            (focus)="onFocusChange($event)"></dynamic-form-material-control>
 
-            <template [ngTemplateOutlet]="customTemplate" [ngOutletContext]="groupModel"></template>
+            <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
 
         </fieldset>
 
@@ -186,7 +186,7 @@
 
     </md-input-container>
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="customTemplate" [ngOutletContext]="model"></template>
+    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 
