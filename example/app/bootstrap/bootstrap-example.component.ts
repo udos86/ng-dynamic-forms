@@ -42,7 +42,7 @@ export class BootstrapExampleComponent implements OnInit {
 
         this.arrayControl = <FormArray> this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray");
         this.arrayModel = <DynamicFormArrayModel> this.formService.findById(
-            "bootstrapFormArray", this.formModel);
+            "bootstrapFormArray", (<DynamicFormGroupModel> this.formModel[1]).group);
     }
 
     add() {
@@ -63,8 +63,10 @@ export class BootstrapExampleComponent implements OnInit {
 
     test() {
         //this.exampleModel.disabledUpdates.next(!this.exampleModel.disabled);
-        this.exampleModel.valueUpdates.next("Hello Hello");
+        //this.exampleModel.valueUpdates.next("Hello Hello");
         //console.log(JSON.stringify(this.exampleModel));
+        //this.arrayModel.get(1).group[0].valueUpdates.next("This is just a test");
+        this.formService.moveFormArrayGroup(2, -1, this.arrayControl, this.arrayModel);
     }
 
     onBlur($event) {

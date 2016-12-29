@@ -11,7 +11,7 @@ import { getValue, isFunction } from "../../utils";
 export class DynamicFormArrayGroupModel {
 
     context: DynamicFormArrayModel;
-    @serializable() group: Array<DynamicFormValueControlModel<any>>;
+    @serializable() group: Array<DynamicFormValueControlModel<DynamicFormControlValue>>;
     @serializable() index: number | null;
 
     constructor(context: DynamicFormArrayModel,
@@ -87,6 +87,10 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         this.groups.forEach((group, index) => group.index = index);
     }
 
+    get(index: number): DynamicFormArrayGroupModel {
+        return this.groups[index];
+    }
+
     addGroup(): DynamicFormArrayGroupModel {
         return this.insertGroup(this.groups.length);
     }
@@ -107,7 +111,13 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         this.updateGroupIndex();
     }
 
-    get(index: number): DynamicFormArrayGroupModel {
-        return this.groups[index];
+    moveGroup(index: number, step: number): void {
+
+        let newIndex = index + step,
+            group = this.groups[index];
+
+        this.groups[index] = this.groups[newIndex];
+        this.groups[newIndex] = group;
+        this.updateGroupIndex();
     }
 }

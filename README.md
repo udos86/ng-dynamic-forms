@@ -9,7 +9,7 @@
 ng2 Dynamic Forms is a **rapid form development library** based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 It simplifies the time-consuming work of implementing reactive Angular 2 forms by building
-upon a layer of maintainable form control models to fully automate form UI creation and synchronization.
+upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and more.
@@ -656,7 +656,7 @@ new DynamicInputModel({
 })
 ```
 
-**2. Enable error messaging by binding the** `hasErrorMessaging` `@Input()`**property of any** `DynamicFormBootstrapComponent` **or** 
+**2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of any** `DynamicFormBootstrapComponent` **or** 
 `DynamicFormFoundationSitesComponent` **to** `true`:
 ```ts
 

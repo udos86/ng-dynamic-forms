@@ -220,15 +220,6 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should create a form array group correctly", () => {
-
-        let model = service.findById("testFormArray", testModel);
-
-        expect(service.createFormArrayGroup).toBeDefined();
-        expect(service.createFormArrayGroup(model) instanceof FormGroup).toBe(true);
-    });
-
-
     it("should add a form array group correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
@@ -252,6 +243,34 @@ describe("DynamicFormService test suite", () => {
         service.insertFormArrayGroup(0, formArray, model);
 
         expect(formArray.length).toBe(model.initialCount + 1);
+    });
+
+
+    it("should move a form array group correctly", () => {
+
+        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+            formArray = service.createFormArray(model),
+            formArrayGroup,
+            index = 3,
+            step = -2;
+
+        expect(service.moveFormArrayGroup).toBeDefined();
+
+        formArray.at(index).controls["basicArrayGroupInput"].setValue("next test value 1");
+        formArray.at(index + step).controls["basicArrayGroupInput"].setValue("next test value 2");
+
+        model.get(index).group[0].valueUpdates.next("next test value 1");
+        model.get(index + step).group[0].valueUpdates.next("next test value 2");
+
+        service.moveFormArrayGroup(index, step, formArray, model);
+
+        expect(formArray.length).toBe(model.initialCount);
+
+        expect(formArray.at(index).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
+        expect(formArray.at(index + step).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
+
+        expect(model.get(index).group[0].value).toEqual("next test value 2");
+        expect(model.get(index + step).group[0].value).toEqual("next test value 1");
     });
 
 
