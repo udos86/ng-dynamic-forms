@@ -274,6 +274,16 @@ describe("DynamicFormService test suite", () => {
     });
 
 
+    it("should throw when form array group is to be moved out of bounds", () => {
+
+        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+            formArray = service.createFormArray(model);
+
+        expect(() => service.moveFormArrayGroup(2, -5, formArray, model))
+            .toThrow(new Error(`form array group cannot be moved due to index or new index being out of bounds`));
+    });
+
+
     it("should remove a form array group correctly", () => {
 
         let model = service.findById("testFormArray", testModel),
