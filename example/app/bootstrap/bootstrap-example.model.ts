@@ -234,6 +234,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 },
                 {
                     element: {
+                        container: "form-array",
                         label: "control-label"
                     },
                     grid: {

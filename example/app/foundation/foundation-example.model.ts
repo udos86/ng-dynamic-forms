@@ -224,7 +224,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                         },
                         {
                             grid: {
-                                control: "small-9 columns",
+                                control: "small-8 columns",
                             }
                         }
                     )
@@ -233,7 +233,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row float-clear",
+                container: "row float-clear form-array",
                 control: "row",
                 label: "text-right font-bold"
             },

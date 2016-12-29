@@ -9,13 +9,14 @@
 ng2 Dynamic Forms is a **rapid form development library** based on the official Angular 2
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 It simplifies the time-consuming work of implementing reactive Angular 2 forms by building
-upon a layer of maintainable form control models to fully automate form UI creation and synchronization.
+upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and more.
 
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
+
 
 ## Table of Contents
 
@@ -34,6 +35,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
 - [Autocomplete](#autocomplete)
+- [A Word to the Community](#a-word-to-the-community)
 - [Appendix](#appendix)
 
 
@@ -468,7 +470,7 @@ That means you can **access the group index and it's context** `DynamicFormArray
 
 > see chapter on [Custom Templates](#custom-templates)
 
-This is extremely useful when you'd like to add a remove or insert function:
+This is extremely useful when you'd like to implement a remove or insert function:
 ```ts
 removeItem(context: DynamicFormArrayModel, index: number) {
     this.formService.removeFormArrayGroup(index, this.arrayControl, context);
@@ -477,6 +479,11 @@ removeItem(context: DynamicFormArrayModel, index: number) {
 insertItem(context: DynamicFormArrayModel, index: number) {
     this.formService.insertFormArrayGroup(index, this.arrayControl, context);
 }
+```
+
+Using `DynamicFormService` again, you can even change the order of the groups in a form array dynamically:
+```ts
+this.formService.moveFormArrayGroup(index, -1, this.arrayControl, context);
 ```
 
 
@@ -656,7 +663,7 @@ new DynamicInputModel({
 })
 ```
 
-**2. Enable error messaging by binding the** `hasErrorMessaging` `@Input()`**property of any** `DynamicFormBootstrapComponent` **or** 
+**2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of any** `DynamicFormBootstrapComponent` **or** 
 `DynamicFormFoundationSitesComponent` **to** `true`:
 ```ts
 
@@ -853,7 +860,7 @@ Further on ng2 Dynamic Forms embraces the brand new HTML5
 [**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
 `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
 
-> **Note:** Jason Grigsby - ["Autofill: What web devs should know, but don’t"](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
+> **Note:** Jason Grigsby - [Autofill: What web devs should know, but don’t](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
 
 ```ts
 import {
@@ -889,6 +896,16 @@ new DynamicInputModel({
     list: ["One", "Two", "Three", "Four", "Five"]
 })
 ```
+
+
+## A Word to the Community
+
+**Thank you very much for the great feedback so far and everyone giving ng2 Dynamic Forms a try!**
+
+Angular 2 is a fantastic framework and I'm convinced that ng2 Dynamic Forms is a high-quality library that will 
+save you lots of time when building reactive forms with it.
+
+**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng2-dynamic-forms/blob/master/README.md) **before**!
 
 
 ## Appendix

@@ -51,6 +51,10 @@ export class FoundationExampleComponent implements OnInit {
         this.formService.removeFormArrayGroup(index, this.arrayControl, context);
     }
 
+    move (context: DynamicFormArrayModel, index: number, step: number) {
+        this.formService.moveFormArrayGroup(index, step, this.arrayControl, context);
+    }
+
     onBlur($event) {
         console.log(`BLUR event on ${$event.model.id}: `, $event);
     }

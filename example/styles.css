@@ -1,5 +1,5 @@
 * {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -100,7 +100,14 @@ form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     margin: 0.8rem 0;
 }
 
-fieldset:not(:last-of-type) .btn-success, fieldset:not(:last-of-type) .button.success {
+.form-array fieldset:not(:last-of-type) .btn-success,
+.form-array fieldset:not(:last-of-type) .button.success,
+.form-array fieldset:first-of-type .btn-default:nth-of-type(2),
+.form-array fieldset:last-of-type .btn-default:nth-of-type(3),
+.form-array fieldset:first-of-type .button.primary:nth-of-type(2),
+.form-array fieldset:last-of-type .button.primary:nth-of-type(3),
+.form-array fieldset:only-of-type .btn-danger,
+.form-array fieldset:only-of-type .button.alert {
     display: none;
 }
 

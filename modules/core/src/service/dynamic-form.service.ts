@@ -122,15 +122,16 @@ export class DynamicFormService {
 
         return this.formBuilder.group(formGroup, groupExtra);
     }
+    /*
+    addFormControl(formGroup: FormGroup, formModel: DynamicFormControlModel[], controlModel: DynamicFormControlModel) {
 
-    createFormArrayGroup(formArrayModel: DynamicFormArrayModel): FormGroup {
-
-        return this.createFormGroup(formArrayModel.addGroup().group);
+        formGroup.addControl(controlModel.id);
+        formModel.push(controlModel);
     }
-
+    */
     addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
-        formArray.push(this.createFormArrayGroup(model));
+        formArray.push(this.createFormGroup(model.addGroup().group));
     }
 
     insertFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
@@ -142,6 +143,22 @@ export class DynamicFormService {
 
         formArray.removeAt(index);
         model.removeGroup(index);
+    }
+
+    moveFormArrayGroup(index: number, step: number, formArray: FormArray, model: DynamicFormArrayModel): void {
+
+        let newIndex = index + step,
+            formControl = formArray.at(index);
+
+        if ((index >= 0 && index < model.size) && (newIndex >= 0 && newIndex < model.size)) {
+
+            formArray.setControl(index, formArray.at(newIndex));
+            formArray.setControl(newIndex, formControl);
+            model.moveGroup(index, step);
+
+        } else {
+            throw new Error(`form array group cannot be moved due to index or new index being out of bounds`);
+        }
     }
 
     clearFormArray(formArray: FormArray, model: DynamicFormArrayModel): void {
