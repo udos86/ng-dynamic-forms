@@ -57,6 +57,10 @@ export class BootstrapExampleComponent implements OnInit {
         this.formService.removeFormArrayGroup(index, this.arrayControl, context);
     }
 
+    move (context: DynamicFormArrayModel, index: number, step: number) {
+        this.formService.moveFormArrayGroup(index, step, this.arrayControl, context);
+    }
+
     clear() {
         this.formService.clearFormArray(this.arrayControl, this.arrayModel);
     }
