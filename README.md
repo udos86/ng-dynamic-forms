@@ -905,7 +905,7 @@ new DynamicInputModel({
 Angular 2 is a fantastic framework and I'm convinced that ng2 Dynamic Forms is a high-quality library that will 
 save you lots of time when building reactive forms with it.
 
-**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng2-dynamic-forms/blob/master/README.md) **before**!
+**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng2-dynamic-forms/blob/master/CONTRIBUTE.md) **before**!
 
 
 ## Appendix
