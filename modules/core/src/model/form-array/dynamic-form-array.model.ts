@@ -23,6 +23,10 @@ export class DynamicFormArrayGroupModel {
         this.index = index;
     }
 
+    get(index: number): DynamicFormValueControlModel<DynamicFormControlValue> {
+        return this.group[index];
+    }
+
     toJSON() {
         return serialize(this);
     }

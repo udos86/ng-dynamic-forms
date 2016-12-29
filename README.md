@@ -468,7 +468,7 @@ That means you can **access the group index and it's context** `DynamicFormArray
 
 > see chapter on [Custom Templates](#custom-templates)
 
-This is extremely useful when you'd like to add a remove or insert function:
+This is extremely useful when you'd like to implement a remove or insert function:
 ```ts
 removeItem(context: DynamicFormArrayModel, index: number) {
     this.formService.removeFormArrayGroup(index, this.arrayControl, context);
@@ -477,6 +477,11 @@ removeItem(context: DynamicFormArrayModel, index: number) {
 insertItem(context: DynamicFormArrayModel, index: number) {
     this.formService.insertFormArrayGroup(index, this.arrayControl, context);
 }
+```
+
+Using `DynamicFormService` again, you can even change the order of the groups in a form array dynamically:
+```ts
+this.formService.moveFormArrayGroup(index, -1 this.arrayControl, context);
 ```
 
 

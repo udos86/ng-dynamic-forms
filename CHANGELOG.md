@@ -3,8 +3,9 @@
 ### **Features** 
 
 * `DynamicFormService` has now a function `moveFormArrayGroup(index: number, step: number, formArray: FormArray, model: DynamicFormArrayModel)` 
-to move form array elements up and down (see updated [**live example**](2-dynamic-forms.udos86.de/example/))
-
+to dynamically move form array elements (see updated [**live example**](2-dynamic-forms.udos86.de/example/))
+* `get(index: number)` function added to `DynamicFormArrayGroupModel`
+* `[(ngModel)]` could be completely removed from `ui-primeng` template at last 
 
 # 1.3.4
 

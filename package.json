@@ -62,7 +62,7 @@
   "devDependencies": {
     "@types/core-js": "^0.9.35",
     "@types/hammerjs": "^2.0.34",
-    "@types/jasmine": "^2.5.39",
+    "@types/jasmine": "^2.5.40",
     "@types/node": "^6.0.54",
     "@types/reflect-metadata": "^0.0.5",
     "codelyzer": "^2.0.0-beta.4",
@@ -89,7 +89,7 @@
     "lite-server": "^2.2.2",
     "phantomjs-prebuilt": "^2.1.14",
     "protractor": "^4.0.14",
-    "rollup": "^0.38.2",
+    "rollup": "^0.38.3",
     "rollup-plugin-uglify": "^1.0.1",
     "run-sequence": "^1.2.2",
     "systemjs-builder": "^0.15.34",
