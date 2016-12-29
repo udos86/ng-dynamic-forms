@@ -17,6 +17,7 @@ Therefore it provides a set of **dynamic UI components** with out of the box sup
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -34,6 +35,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
 - [Related Form Controls](#related-form-controls)
 - [Autocomplete](#autocomplete)
+- [A Word to the Community](#a-word-to-the-community)
 - [Appendix](#appendix)
 
 
@@ -481,7 +483,7 @@ insertItem(context: DynamicFormArrayModel, index: number) {
 
 Using `DynamicFormService` again, you can even change the order of the groups in a form array dynamically:
 ```ts
-this.formService.moveFormArrayGroup(index, -1 this.arrayControl, context);
+this.formService.moveFormArrayGroup(index, -1, this.arrayControl, context);
 ```
 
 
@@ -858,7 +860,7 @@ Further on ng2 Dynamic Forms embraces the brand new HTML5
 [**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
 `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
 
-> **Note:** Jason Grigsby - ["Autofill: What web devs should know, but don’t"](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
+> **Note:** Jason Grigsby - [Autofill: What web devs should know, but don’t](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
 
 ```ts
 import {
@@ -894,6 +896,16 @@ new DynamicInputModel({
     list: ["One", "Two", "Three", "Four", "Five"]
 })
 ```
+
+
+## A Word to the Community
+
+**Thank you very much for the great feedback so far and everyone giving ng2 Dynamic Forms a try!**
+
+Angular 2 is a fantastic framework and I'm convinced that ng2 Dynamic Forms is a high-quality library that will 
+save you lots of time when building reactive forms with it.
+
+**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng2-dynamic-forms/blob/master/README.md) **before**!
 
 
 ## Appendix

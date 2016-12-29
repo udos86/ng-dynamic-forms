@@ -17,6 +17,6 @@ Please follow this little instructions for a successful contribution:
 
 **6.** Wait for the Travis build to succeed
 
-The repository owner will merge your contribution after a final code review.
+**7.** Your contribution will be merged after a final code review.
 
 **Thank you very much!**
