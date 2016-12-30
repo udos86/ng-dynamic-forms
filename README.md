@@ -724,10 +724,12 @@ and **bind the internal** `FormControl` **reference via local template variables
     <div *ngFor="let controlModel of formModel">
     
         <dynamic-form-basic-control [controlGroup]="formGroup" 
-                                    [model]="controlModel" #componentRef></dynamic-form-basic-control>
+                                    [model]="controlModel" #componentRef>
         
-        <my-validation-message [control]="componentRef.control"></my-validation-message>
-    
+            <my-validation-message [control]="componentRef.control"></my-validation-message>
+                                    
+        </dynamic-form-basic-control>
+        
     </div>
     
 </form>
