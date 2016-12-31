@@ -19,6 +19,7 @@ import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 
+import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 
@@ -53,6 +54,7 @@ function testValidator(formControl: FormControl) {
         KendoExampleComponent,
         MaterialExampleComponent,
         PrimeNGExampleComponent,
+        ValidationMessageComponent,
         AppComponent
     ],
     providers: [
