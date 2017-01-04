@@ -97,8 +97,16 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
                 if (this.model["errorMessages"][validatorName]) {
 
-                    message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
-                        (match, propertyName) => this.model[propertyName] ? this.model[propertyName] : null);
+                    message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg, (match, propertyName) => {
+                        let propertySource = this.model;
+
+                        if (propertyName.indexOf("validator.") >= 0) {
+                            propertySource = this.control.errors[validatorName];
+                            propertyName = propertyName.replace("validator.", "");
+                        }
+
+                        return propertySource[propertyName] ? propertySource[propertyName] : null;
+                    });
 
                 } else {
                     message = `Error on "${validatorName}" validation`;
