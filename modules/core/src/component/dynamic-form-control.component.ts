@@ -206,7 +206,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
         if ($event instanceof FocusEvent) {
 
-            $event.stopImmediatePropagation();
+            $event.stopPropagation();
 
             this.hasFocus = $event.type === "focus";
 
