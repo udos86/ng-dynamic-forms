@@ -179,7 +179,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             },
             errorMessages: {
                 required: "{{label}} is required",
-                pattern: "{{label}} does not match pattern [a-c]"
+                pattern: "{{label}} does not match pattern {{validator.requiredPattern}}"
             }
         },
         {
