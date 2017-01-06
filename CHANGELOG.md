@@ -1,3 +1,14 @@
+# 1.3.6
+
+### **Bugfixes** 
+
+* Caret now visible in Firefox (closes [#237](https://github.com/udos86/ng2-dynamic-forms/issues/237))
+ 
+### **Features** 
+
+* validator properties can now be referenced in error messages (see [README.md](https://github.com/udos86/ng2-dynamic-forms/tree/development#validation-messaging))
+
+
 # 1.3.5
 
 ### **Features** 
@@ -6,6 +17,7 @@
 to dynamically move form array elements (see updated [**live example**](http://ng2-dynamic-forms.udos86.de/example/))
 * `get(index: number)` function added to `DynamicFormArrayGroupModel`
 * `[(ngModel)]` could be completely removed from `ui-primeng` template at last 
+
 
 # 1.3.4
 
