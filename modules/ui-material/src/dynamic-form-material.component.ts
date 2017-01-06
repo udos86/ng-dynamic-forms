@@ -24,6 +24,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
+    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplates: QueryList<any>;
 

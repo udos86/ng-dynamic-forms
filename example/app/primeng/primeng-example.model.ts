@@ -50,7 +50,13 @@ export const PRIMENG_EXAMPLE_MODEL = [
             label: "Example Input",
             list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
-            placeholder: "example input"
+            placeholder: "example input",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "{{label}} is required"
+            }
         },
         {
             element: {
@@ -58,7 +64,8 @@ export const PRIMENG_EXAMPLE_MODEL = [
             },
             grid: {
                 container: "ui-grid-row",
-                control: "ui-grid-col-9",
+                control: "ui-grid-col-3",
+                errors: "ui-grid-col-6",
                 label: "ui-grid-col-3"
             }
         }

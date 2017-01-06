@@ -5,6 +5,7 @@
         <dynamic-form-material-control *ngFor="let controlModel of formModel"
                                        [controlGroup]="formGroup"
                                        [model]="controlModel"
+                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                        [showCharacterHint]="controlModel.type === 'INPUT'"
                                        (change)="onChange($event)">
 

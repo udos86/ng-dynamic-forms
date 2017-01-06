@@ -123,6 +123,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
         return messages;
     }
 
+    get showErrorMessages(): boolean {
+        return this.control.touched && !this.hasFocus && this.isInvalid;
+    }
+
     get isValid(): boolean {
         return this.control.valid;
     }

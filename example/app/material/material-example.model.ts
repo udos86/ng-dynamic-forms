@@ -125,6 +125,12 @@ export const MATERIAL_EXAMPLE_MODEL = [
         //label: "Example Textarea",
         rows: 1,
         placeholder: "example Textarea",
+        validators: {
+            required: null
+        },
+        errorMessages: {
+            required:"Field is required"
+        }
     }),
 
     new DynamicCheckboxModel({

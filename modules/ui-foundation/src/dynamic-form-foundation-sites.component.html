@@ -200,12 +200,12 @@
 
     </div>
 
-    <div *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <ul *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
-        <span *ngFor="let message of errorMessages" class="form-error"
-              [class.is-visible]="!hasFocus && isInvalid">{{message}}</span>
+        <li *ngFor="let message of errorMessages" class="form-error"
+            [class.is-visible]="showErrorMessages">{{message}}</li>
 
-    </div>
+    </ul>
 
     <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
