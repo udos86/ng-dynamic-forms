@@ -663,11 +663,11 @@ new DynamicInputModel({
 })
 ```
 Error message template allows the following placeholders: 
+
 - ```{{property_name}}``` where property_name is property of model, for example ```{{label}}```.
 - ```{{validator.property_name}}``` where property_name is property of object returned by validation function, for example ```{{validator.requiredPattern}}``` in case of pattern validator.
 
-**2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of any** `DynamicFormBootstrapComponent` **or** 
-`DynamicFormFoundationSitesComponent` **to** `true`:
+**2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of to** `true`:
 ```ts
 
 <form [formGroup]="formGroup">
