@@ -179,7 +179,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
         if ($event instanceof Event) { // native HTML5 change event
 
-            $event.stopImmediatePropagation();
+            $event.stopPropagation();
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
