@@ -98,7 +98,19 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
                 if (this.model["errorMessages"][validatorName]) {
 
                     message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
-                        (match, propertyName) => this.model[propertyName] ? this.model[propertyName] : null);
+                        (match, expression) => {
+
+                            let propertySource = this.model,
+                                propertyName = expression;
+
+                            if (expression.indexOf("validator.") >= 0) {
+
+                                propertySource = this.control.errors[validatorName];
+                                propertyName = expression.replace("validator.", "");
+                            }
+
+                            return propertySource[propertyName] ? propertySource[propertyName] : null;
+                        });
 
                 } else {
                     message = `Error on "${validatorName}" validation`;
@@ -167,7 +179,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
         if ($event instanceof Event) { // native HTML5 change event
 
-            $event.stopImmediatePropagation();
+            $event.stopPropagation();
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
@@ -194,7 +206,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
         if ($event instanceof FocusEvent) {
 
-            $event.stopImmediatePropagation();
+            $event.stopPropagation();
 
             this.hasFocus = $event.type === "focus";
 
