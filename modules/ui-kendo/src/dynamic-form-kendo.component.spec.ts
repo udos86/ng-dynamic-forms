@@ -7,20 +7,20 @@ import { InputsModule } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
-    DynamicSwitchModel,
-    DynamicFormControlModel
+    DynamicFormControlModel,
+    DynamicSelectModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormKendoComponent, DYNAMIC_FORM_UI_KENDO } from "./dynamic-form-kendo.component";
 
 describe("DynamicFormKendoComponent test suite", () => {
 
-    let switchModel = new DynamicSwitchModel({id: "test"}),
-        formModel = [switchModel],
+    let selectModel = new DynamicSelectModel({id: "test", options:[{value: "One"}, {value: "Two"}], value: "One"}),
+        formModel = [selectModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormKendoComponent>,
         component: DynamicFormKendoComponent,
         debugElement: DebugElement,
-        switchElement: DebugElement;
+        selectElement: DebugElement;
 
     beforeEach(async(() => {
 
@@ -52,7 +52,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         fixture.detectChanges();
 
-        switchElement = debugElement.query(By.css(`kendo-switch`));
+        selectElement = debugElement.query(By.css(`kendo-dropdownlist`));
     }));
 
     it("should initialize correctly", () => {
@@ -79,17 +79,17 @@ describe("DynamicFormKendoComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
     });
 
-    it("should have an input element", () => {
+    it("should have correct view child", () => {
 
-        expect(switchElement instanceof DebugElement).toBe(true);
+        expect(component.kendoDropDownList).toBeDefined();
     });
 
-    xit("should listen to native focus and blur events", () => {
+    it("should listen to native focus and blur events", () => {
 
         spyOn(component, "onFocusChange");
 
-        switchElement.triggerEventHandler("focus", null);
-        switchElement.triggerEventHandler("blur", null);
+        selectElement.triggerEventHandler("focus", null);
+        selectElement.triggerEventHandler("blur", null);
 
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
@@ -98,7 +98,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onValueChange");
 
-        switchElement.triggerEventHandler("valueChange", null);
+        selectElement.triggerEventHandler("valueChange", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });
@@ -120,7 +120,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         component.ngOnInit();
 
-        switchModel.valueUpdates.next(true);
+        selectModel.valueUpdates.next("Two");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -131,7 +131,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         component.ngOnInit();
 
-        switchModel.disabledUpdates.next(true);
+        selectModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });

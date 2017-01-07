@@ -64,17 +64,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
     }
 
     ngAfterContentInit(): void {
-
-        if (this.nestedTemplates) {
-            this.templates = this.nestedTemplates;
-        }
-
-        this.templates.forEach(dynamicTemplate => {
-
-            if (dynamicTemplate.modelId === this.model.id) {
-                this.template = dynamicTemplate.templateRef;
-            }
-        });
+        this.setTemplates();
     }
 
     ngOnDestroy(): void {
@@ -133,6 +123,20 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
 
     get isInvalid(): boolean {
         return this.control.touched && this.control.invalid;
+    }
+
+    setTemplates(): void {
+
+        if (this.nestedTemplates) {
+            this.templates = this.nestedTemplates;
+        }
+
+        this.templates.forEach(dynamicTemplate => {
+
+            if (dynamicTemplate.modelId === this.model.id) {
+                this.template = dynamicTemplate.templateRef;
+            }
+        });
     }
 
     setControlRelations(): void {

@@ -54,6 +54,8 @@
                         [textField]="'label'"
                         [valueField]="'value'"
                         [valuePrimitive]="true"
+                        (blur)="onFocusChange($event)"
+                        (focus)="onFocusChange($event)"
                         (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 

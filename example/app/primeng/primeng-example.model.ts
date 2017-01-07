@@ -64,8 +64,8 @@ export const PRIMENG_EXAMPLE_MODEL = [
             },
             grid: {
                 container: "ui-grid-row",
-                control: "ui-grid-col-3",
-                errors: "ui-grid-col-6",
+                control: "ui-grid-col-4",
+                errors: "ui-grid-col-5",
                 label: "ui-grid-col-3"
             }
         }

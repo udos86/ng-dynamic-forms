@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, QueryList, ViewChild, ContentChildren } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MdCheckbox, MdInputContainer, MdRadioGroup, MdSelect, MdSlider, MdSlideToggle } from "@angular/material";
 import {
