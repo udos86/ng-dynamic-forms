@@ -1,3 +1,5 @@
+import { browser} from "protractor";
+
 describe("AppComponent", () => {
 
     beforeEach( () => {

@@ -111,10 +111,6 @@ form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     display: none;
 }
 
-fieldset:only-of-type .btn-danger, fieldset:only-of-type .button.alert {
-    /*display: none;*/
-}
-
 dynamic-form-material-example fieldset {
     border: none;
 }
@@ -127,4 +123,8 @@ dynamic-form-kendo-control {
     display: block;
     margin: 2.5rem;
     text-align: center;
+}
+
+dynamic-form-material-control .md-list-item {
+    justify-content: center;
 }
