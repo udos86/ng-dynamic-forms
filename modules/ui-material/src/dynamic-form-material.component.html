@@ -186,6 +186,15 @@
 
     </md-input-container>
 
+
+    <md-list *ngIf="hasErrorMessaging"
+             [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+        <md-list-item *ngFor="let message of errorMessages"
+                      [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}</md-list-item>
+
+    </md-list>
+
     <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>

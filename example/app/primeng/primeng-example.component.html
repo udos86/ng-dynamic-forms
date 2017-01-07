@@ -5,6 +5,7 @@
         <dynamic-form-primeng-control *ngFor="let controlModel of formModel" class="form-row"
                                       [controlGroup]="formGroup"
                                       [model]="controlModel"
+                                      [hasErrorMessaging]="controlModel.hasErrorMessages"
                                       (change)="onChange($event)"></dynamic-form-primeng-control>
     </form>
 

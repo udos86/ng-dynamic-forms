@@ -1,3 +1,11 @@
+# 1.3.7
+
+### **Features** 
+
+* error messaging enabled in `ui-material` and `ui-primeng` (closes [#240](https://github.com/udos86/ng2-dynamic-forms/issues/240))
+* update to Angular `2.4.2` 
+
+
 # 1.3.6
 
 ### **Bugfixes** 

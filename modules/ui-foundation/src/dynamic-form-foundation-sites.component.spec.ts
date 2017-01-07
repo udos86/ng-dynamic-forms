@@ -73,6 +73,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
+        expect(component.showErrorMessages).toBe(false);
     });
 
     it("should have an input element", () => {

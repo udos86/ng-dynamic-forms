@@ -15,14 +15,7 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
 })
 
 export class DynamicFormsCoreModule {
-    /*
-    constructor(@Optional() @SkipSelf() parentModule: DynamicFormsCoreModule) {
 
-        if (parentModule) {
-            throw new Error("DynamicFormsCoreModule should only be imported in the root NgModule of the application!");
-        }
-    }
-    */
     static forRoot(): ModuleWithProviders {
 
         return {

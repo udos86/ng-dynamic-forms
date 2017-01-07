@@ -179,6 +179,19 @@
 
         </div>
 
+
+        <ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+            <li class="ui-message ui-messages-error ui-corner-all"
+                [class.ui-helper-hidden]="!showErrorMessages"
+                [ngClass]="model.cls.element.errors">
+
+                <span *ngFor="let message of errorMessages">{{message}}</span>
+
+            </li>
+
+        </ul>
+
     </div>
 
     <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>

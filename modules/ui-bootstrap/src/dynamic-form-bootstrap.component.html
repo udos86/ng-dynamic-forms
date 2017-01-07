@@ -26,7 +26,9 @@
                        [value]="model.value"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span [ngClass]="[model.cls.element.label, model.cls.grid.label]" [innerHTML]="model.label"></span></label>
+                       (focus)="onFocusChange($event)"/><span
+                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"
+                    [innerHTML]="model.label"></span></label>
         </div>
 
     </div>
@@ -185,13 +187,13 @@
 
     </div>
 
-    <div *ngIf="hasErrorMessaging" class="has-error"
-         [class.hidden]="!control.touched || hasFocus || isValid"
-         [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <ul *ngIf="hasErrorMessaging" class="has-error"
+        [class.hidden]="!showErrorMessages"
+        [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
-        <span *ngFor="let message of errorMessages" class="help-block">{{message}}</span>
+        <li *ngFor="let message of errorMessages" class="help-block">{{message}}</li>
 
-    </div>
+    </ul>
 
     <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
