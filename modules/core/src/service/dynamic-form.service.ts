@@ -122,13 +122,7 @@ export class DynamicFormService {
 
         return this.formBuilder.group(formGroup, groupExtra);
     }
-    /*
-    addFormControl(formGroup: FormGroup, formModel: DynamicFormControlModel[], controlModel: DynamicFormControlModel) {
 
-        formGroup.addControl(controlModel.id);
-        formModel.push(controlModel);
-    }
-    */
     addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.push(this.createFormGroup(model.addGroup().group));
