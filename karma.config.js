@@ -31,6 +31,9 @@ module.exports = function (config) {
             "node_modules/hammerjs/hammer.min.js",
             "node_modules/systemjs/dist/system.src.js",
 
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/semantic-ui/dist/semantic.min.js",
+
             "node_modules/zone.js/dist/zone.js",
             "node_modules/zone.js/dist/long-stack-trace-zone.js",
             "node_modules/zone.js/dist/proxy.js",
@@ -50,6 +53,9 @@ module.exports = function (config) {
 
             {pattern: "node_modules/primeng/**/*.js", included: false, watched: false},
             {pattern: "node_modules/primeng/**/*.js.map", included: false, watched: false},
+
+            {pattern: "node_modules/ng-semantic/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/ng-semantic/**/*.js.map", included: false, watched: false},
 
             {pattern: "node_modules/@ng2-dynamic-forms/**/*.js", included: false, watched: false},
             {pattern: "node_modules/@ng2-dynamic-forms/**/*.js.map", included: false, watched: false},

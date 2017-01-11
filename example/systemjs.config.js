@@ -30,6 +30,7 @@
         "@ng2-dynamic-forms/ui-kendo": "npm:@ng2-dynamic-forms/ui-kendo/bundles/ui-kendo.umd.min.js",
         "@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.min.js",
         "@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.min.js",
+        "@ng2-dynamic-forms/ui-semantic": "npm:@ng2-dynamic-forms/ui-semantic/bundles/ui-semantic.umd.min.js",
         "@progress": "npm:@progress",
         "@progress/kendo-angular-dropdowns": "npm:@progress/kendo-angular-dropdowns/dist/npm/main.js",
         "@progress/kendo-angular-inputs": "npm:@progress/kendo-angular-inputs/dist/npm/main.js",
@@ -42,6 +43,7 @@
         "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/main.js",
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
         "app": "app",
+        "ng-semantic": "npm:ng-semantic",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     };
@@ -57,6 +59,10 @@
         "@telerik": {
             defaultExtension: "js"
         },
+        "ng-semantic": {
+            main: "ng-semantic.js",
+            defaultExtension: "js"
+        },
         "rxjs": {
             defaultExtension: "js"
         },
@@ -65,7 +71,7 @@
         }
     };
     /*
-    var ng2DynamicFormsPackageNames = [
+     var ng2DynamicFormsPackageNames = [
         "@ng2-dynamic-forms/core",
         "@ng2-dynamic-forms/ui-basic",
         "@ng2-dynamic-forms/ui-bootstrap",
@@ -73,16 +79,16 @@
         "@ng2-dynamic-forms/ui-kendo",
         "@ng2-dynamic-forms/ui-material",
         "@ng2-dynamic-forms/ui-primeng"
-    ];
+     ];
 
-    ng2DynamicFormsPackageNames.forEach(function (packageName) {
+     ng2DynamicFormsPackageNames.forEach(function (packageName) {
 
         packages[packageName] = {
             main: "index.js",
             defaultExtension: "js"
         };
-    });
-    */
+     });
+     */
     var config = {
         paths: paths,
         map: map,

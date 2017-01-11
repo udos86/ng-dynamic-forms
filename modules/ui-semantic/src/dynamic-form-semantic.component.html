@@ -43,15 +43,15 @@
 
             <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
-                <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
-                                                [bindId]="false"
-                                                [controlGroup]="control.at(idx)"
-                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                [model]="controlModel"
-                                                [nestedTemplates]="templates"
-                                                (blur)="onFocusChange($event)"
-                                                (change)="onValueChange($event)"
-                                                (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
+                <dynamic-form-semantic-control *ngFor="let controlModel of groupModel.group"
+                                               [bindId]="false"
+                                               [controlGroup]="control.at(idx)"
+                                               [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                               [model]="controlModel"
+                                               [nestedTemplates]="templates"
+                                               (blur)="onFocusChange($event)"
+                                               (change)="onValueChange($event)"
+                                               (focus)="onFocusChange($event)"></dynamic-form-semantic-control>
 
                 <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
 
@@ -68,14 +68,14 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
-                                            [controlGroup]="control"
-                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                            [model]="controlModel"
-                                            [nestedTemplates]="templates"
-                                            (blur)="onFocusChange($event)"
-                                            (change)="onValueChange($event)"
-                                            (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
+            <dynamic-form-semantic-control *ngFor="let controlModel of model.group"
+                                           [controlGroup]="control"
+                                           [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                           [model]="controlModel"
+                                           [nestedTemplates]="templates"
+                                           (blur)="onFocusChange($event)"
+                                           (change)="onValueChange($event)"
+                                           (focus)="onFocusChange($event)"></dynamic-form-semantic-control>
         </fieldset>
 
 
@@ -158,7 +158,8 @@
 
             <option *ngFor="let option of model.options"
                     [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.label}}</option>
+                    [ngValue]="option.value">{{option.label}}
+            </option>
 
         </select>
 
