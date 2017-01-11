@@ -1,0 +1,39 @@
+{
+  "name": "@ng2-dynamic-forms/ui-semantic",
+  "version": "1.3.7",
+  "description": "Semantic UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-semantic.umd.js",
+  "keywords": [
+    "angular",
+    "angular 2",
+    "dynamic forms",
+    "forms",
+    "ng2 dynamic forms",
+    "semantic ui",
+    "reactive forms",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
+  },
+  "author": {
+    "name" : "Udo Schöfer",
+    "email": "ng2-dynamic-forms@udos86.de",
+    "url" : "https://github.com/udos86/ng2-dynamic-forms"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
+  },
+  "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
+  "peerDependencies": {
+    "@angular/core": "^2.4.2",
+    "@angular/common": "^2.4.2",
+    "@angular/forms": "^2.4.2",
+    "@ng2-dynamic-forms/core": "^1.3.7",
+    "jquery": "^3.1.1",
+    "ng-semantic": "^1.1.13",
+    "rxjs": "^5.0.3"
+  }
+}
