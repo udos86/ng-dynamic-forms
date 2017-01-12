@@ -4,16 +4,15 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
+    DynamicSwitchModel,
     DynamicTextAreaModel,
-    DynamicFormArrayModel,
-    DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
 
 export const SEMANTIC_EXAMPLE_MODEL = [
-    /*
+
     new DynamicSelectModel<string>(
         {
-            id: "bootstrapSelect",
+            id: "semanticSelect",
             label: "Example Select",
             options: [
                 {
@@ -34,88 +33,65 @@ export const SEMANTIC_EXAMPLE_MODEL = [
                 }
             ],
             value: "option-3"
-        },
-        {
-            element: {
-                label: "control-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            }
         }
     ),
 
-    new DynamicInputModel(
-        {
-            hint: "Just a sample help text",
-            id: "bootstrapInput",
-            label: "Example Input",
-            maxLength: 51,
-            placeholder: "example input",
-            prefix: "Prefix",
-            suffix: "Suffix",
-            validators: {
-                required: null,
-                maxLength: 5
-            },
-            errorMessages: {
-                required: "{{label}} is required",
-                maxLength: "Max character count is 5"
-            }
-        },
-        {
-            element: {
-                label: "control-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                errors: "col-sm-offset-3 col-sm-9",
-                label: "col-sm-3"
-            }
-        }
-    ),
+    new DynamicInputModel({
 
-    new DynamicCheckboxGroupModel(
-        {
-            id: "bootstrapCheckboxGroup",
-            label: "Example Checkbox Group",
-            group: [
-                new DynamicCheckboxModel(
-                    {
-                        id: "checkboxGroup1",
-                        label: "Checkbox 1",
-                        value: true
-                    },
-                    {
-                        grid: {
-                            control: "col-sm-12"
-                        }
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "checkboxGroup2",
-                        label: "Checkbox 2",
-                        value: true
-                    },
-                    {
-                        grid: {
-                            control: "col-sm-12"
-                        }
-                    }
-                )
-            ]
+        id: "semanticInput",
+        label: "Example Input",
+        placeholder: "example input",
+        validators: {
+            required: null
         },
-        {
-            element: {
-                label: "control-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            }
+        errorMessages: {
+            required: "Field is required"
         }
-    )
-    */
+    }),
+
+    new DynamicSwitchModel({
+
+        id: "semanticSwitch",
+        label: "Example Switch",
+        value: true
+    }),
+
+    new DynamicRadioGroupModel<string>({
+
+        id: "semanticRadioGroup",
+        label: "Example Radio Group",
+        options: [
+            {
+                label: "Option 1",
+                value: "option-1",
+            },
+            {
+                label: "Option 2",
+                value: "option-2"
+            },
+            {
+                label: "Option 3",
+                value: "option-3"
+            },
+            {
+                label: "Option 4",
+                value: "option-4"
+            }
+        ],
+        value: "option-3"
+    }),
+
+    new DynamicTextAreaModel({
+
+        id: "semanticTextArea",
+        label: "Example Textarea",
+        rows: 1,
+        placeholder: "example Textarea"
+    }),
+
+    new DynamicCheckboxModel({
+
+        id: "semanticCheckbox",
+        label: "I do agree"
+    })
 ];

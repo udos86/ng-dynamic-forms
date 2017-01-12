@@ -1,13 +1,11 @@
 <div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
 
-    <form class="form-horizontal" [formGroup]="formGroup">
+    <form class="ui form" [formGroup]="formGroup">
 
         <dynamic-form-semantic-control *ngFor="let controlModel of formModel"
                                         [controlGroup]="formGroup"
-                                        [model]="controlModel"
-                                        (blur)="onBlur($event)"
-                                        (change)="onChange($event)"
-                                        (focus)="onFocus($event)"></dynamic-form-semantic-control>
+                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                        [model]="controlModel"></dynamic-form-semantic-control>
 
     </form>
 

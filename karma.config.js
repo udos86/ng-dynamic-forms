@@ -32,7 +32,7 @@ module.exports = function (config) {
             "node_modules/systemjs/dist/system.src.js",
 
             "node_modules/jquery/dist/jquery.min.js",
-            "node_modules/semantic-ui/dist/semantic.min.js",
+            "node_modules/semantic-ui-css/semantic.min.js",
 
             "node_modules/zone.js/dist/zone.js",
             "node_modules/zone.js/dist/long-stack-trace-zone.js",
