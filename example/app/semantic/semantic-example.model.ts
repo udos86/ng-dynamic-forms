@@ -49,6 +49,33 @@ export const SEMANTIC_EXAMPLE_MODEL = [
         }
     }),
 
+    new DynamicCheckboxGroupModel(
+        {
+
+            id: "semanticCheckboxGroup",
+            legend: "Example Checkbox Group",
+            group: [
+                new DynamicCheckboxModel(
+                    {
+                        id: "checkboxGroup1",
+                        label: "Checkbox 1"
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "checkboxGroup2",
+                        label: "Checkbox 2"
+                    }
+                )
+            ]
+        },
+        {
+            element: {
+                control: "fields"
+            }
+        }
+    ),
+
     new DynamicSwitchModel({
 
         id: "semanticSwitch",
@@ -56,30 +83,36 @@ export const SEMANTIC_EXAMPLE_MODEL = [
         value: true
     }),
 
-    new DynamicRadioGroupModel<string>({
-
-        id: "semanticRadioGroup",
-        label: "Example Radio Group",
-        options: [
-            {
-                label: "Option 1",
-                value: "option-1",
-            },
-            {
-                label: "Option 2",
-                value: "option-2"
-            },
-            {
-                label: "Option 3",
-                value: "option-3"
-            },
-            {
-                label: "Option 4",
-                value: "option-4"
+    new DynamicRadioGroupModel<string>(
+        {
+            id: "semanticRadioGroup",
+            label: "Example Radio Group",
+            options: [
+                {
+                    label: "Option 1",
+                    value: "option-1",
+                },
+                {
+                    label: "Option 2",
+                    value: "option-2"
+                },
+                {
+                    label: "Option 3",
+                    value: "option-3"
+                },
+                {
+                    label: "Option 4",
+                    value: "option-4"
+                }
+            ],
+            value: "option-3"
+        },
+        {
+            element: {
+                control: "grouped"
             }
-        ],
-        value: "option-3"
-    }),
+        }
+    ),
 
     new DynamicTextAreaModel({
 
