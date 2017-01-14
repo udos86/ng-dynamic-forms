@@ -71,6 +71,7 @@ export const KENDO_EXAMPLE_MODEL = [
                     value: "volleyball"
                 }
             ],
+            placeholder: "Add another item",
             value: ["basketball"]
         }
     ),

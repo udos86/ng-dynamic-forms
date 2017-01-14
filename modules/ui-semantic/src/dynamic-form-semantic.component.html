@@ -78,7 +78,7 @@
         <option *ngFor="let option of model.options"
                 [attr.name]="model.name"
                 [disabled]="!!option.disabled"
-                [ngValue]="option.value">{{option.label}}</option>
+                [value]="option.value">{{option.label}}</option>
 
     </sm-select>
 

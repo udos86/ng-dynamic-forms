@@ -1,4 +1,4 @@
-<div class="content-margin content-padding" style="width: 50%;">
+<div class="content-margin" style="width: 50%;">
 
     <form [formGroup]="formGroup">
 
@@ -6,13 +6,22 @@
                                     [controlGroup]="formGroup"
                                     [model]="controlModel">
 
-            <template modelId="kendoDropDownList" type="kendoDropDownListItemTemplate">
+            <template modelId="kendoDropDownList" type="kendoDropDownListFooterTemplate">
 
-                <p>TEST TEST</p>
+                <p>LIST FOOTER TEMPLATE</p>
+
+            </template>
+
+            <template modelId="kendoDropDownList" type="kendoDropDownListHeaderTemplate">
+
+                <p>LIST HEADER TEMPLATE</p>
 
             </template>
 
         </dynamic-form-kendo-control>
+
     </form>
+
+    <pre>{{formGroup.value | json}}</pre>
 
 </div>

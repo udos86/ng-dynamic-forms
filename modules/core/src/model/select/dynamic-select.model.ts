@@ -14,7 +14,7 @@ export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelCo
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
     @serializable() multiple: boolean;
-    @serializable() placeholder: string | null;
+    @serializable() placeholder: string;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
 
@@ -23,7 +23,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
         super(config, cls);
 
         this.multiple = getValue(config, "multiple", false);
-        this.placeholder = getValue(config, "placeholder", null);
+        this.placeholder = getValue(config, "placeholder", "");
     }
 
     select(...indices: Array<number>): void {
