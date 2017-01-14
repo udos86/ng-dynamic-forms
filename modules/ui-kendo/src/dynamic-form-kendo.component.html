@@ -46,7 +46,7 @@
     </fieldset>
 
 
-    <kendo-dropdownlist *ngIf="model.type === 'SELECT'"
+    <kendo-dropdownlist *ngIf="model.type === 'SELECT' && !model.multiple"
                         [data]="model.options"
                         [disabled]="model.disabled"
                         [formControlName]="model.id"
@@ -57,6 +57,19 @@
                         (blur)="onFocusChange($event)"
                         (focus)="onFocusChange($event)"
                         (valueChange)="onValueChange($event)"></kendo-dropdownlist>
+
+
+    <kendo-multiselect *ngIf="model.type === 'SELECT' && model.multiple"
+                       [data]="model.options"
+                       [disabled]="model.disabled"
+                       [formControlName]="model.id"
+                       [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                       [textField]="'label'"
+                       [valueField]="'value'"
+                       [valuePrimitive]="true"
+                       (blur)="onFocusChange($event)"
+                       (focus)="onFocusChange($event)"
+                       (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
     <kendo-slider *ngIf="model.type === 'SLIDER'"

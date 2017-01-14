@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DropDownListComponent } from "@progress/kendo-angular-dropdowns";
+import { DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import { Slider, Switch } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormControlComponent,
@@ -33,6 +33,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
     @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent;
+    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent;
     @ViewChild(Slider) kendoSlider: Slider;
     @ViewChild(Switch) kendoSwitch: Switch;
 
