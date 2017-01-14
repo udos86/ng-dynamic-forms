@@ -4,7 +4,15 @@
 
         <dynamic-form-kendo-control *ngFor="let controlModel of formModel"
                                     [controlGroup]="formGroup"
-                                    [model]="controlModel"></dynamic-form-kendo-control>
+                                    [model]="controlModel">
+
+            <template modelId="kendoDropDownList" type="kendoDropDownListItemTemplate">
+
+                <p>TEST TEST</p>
+
+            </template>
+
+        </dynamic-form-kendo-control>
     </form>
 
 </div>

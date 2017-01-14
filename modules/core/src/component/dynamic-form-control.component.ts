@@ -125,21 +125,21 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return this.control.touched && this.control.invalid;
     }
 
-    setTemplates(): void {
+    protected setTemplates(): void {
 
         if (this.nestedTemplates) {
             this.templates = this.nestedTemplates;
         }
 
-        this.templates.forEach(dynamicTemplate => {
+        this.templates.forEach(template => {
 
-            if (dynamicTemplate.modelId === this.model.id) {
-                this.template = dynamicTemplate.templateRef;
+            if (template.type === null && template.modelId === this.model.id) {
+                this.template = template.templateRef;
             }
         });
     }
 
-    setControlRelations(): void {
+    protected setControlRelations(): void {
 
         let relActivation = this.relationService.findActivationRelation(this.model.relation);
 

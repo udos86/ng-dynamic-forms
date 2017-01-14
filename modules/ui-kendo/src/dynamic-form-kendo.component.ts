@@ -11,6 +11,32 @@ import {
 } from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_KENDO = "KENDO";
+/*
+export const KENDO_COMBO_BOX_TEMPLATE_DIRECTIVES = {
+
+    footerTemplate: "kendoComboBoxFooterTemplate",
+    headerTemplate: "kendoComboBoxHeaderTemplate",
+    itemTemplate: "kendoComboBoxItemTemplate",
+    noDataTemplate: "kendoComboBoxNoDataTemplate"
+};
+*/
+export const KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES = {
+
+    footerTemplate: "kendoDropDownListFooterTemplate",
+    headerTemplate: "kendoDropDownListHeaderTemplate",
+    itemTemplate: "kendoDropDownListItemTemplate",
+    noDataTemplate: "kendoDropDownListNoDataTemplate",
+    valueTemplate: "kendoDropDownListValueTemplate"
+};
+
+export const KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES = {
+
+    footerTemplate: "kendoMultiSelectFooterTemplate",
+    headerTemplate: "kendoMultiSelectHeaderTemplate",
+    itemTemplate: "kendoMultiSelectItemTemplate",
+    noDataTemplate: "kendoMultiSelectNoDataTemplate",
+    tagTemplate: "kendoMultiSelectTagTemplate"
+};
 
 @Component({
 
@@ -41,5 +67,39 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
+    }
+
+    protected setKendoTemplateDirective(template: DynamicTemplateDirective): void {
+
+        let templateDirectives,
+            viewChild;
+
+        if (this.kendoDropDownList) {
+
+            templateDirectives = KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
+            viewChild = this.kendoDropDownList;
+
+        } else if (this.kendoMultiSelect) {
+
+            templateDirectives = KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES;
+            viewChild = this.kendoMultiSelect;
+        }
+
+        Object.keys(templateDirectives || {}).forEach(key => {
+
+            if (templateDirectives[key] === template.type) {
+                viewChild[key] = template;
+            }
+        });
+    }
+
+    protected setTemplates(): void {
+
+        super.setTemplates();
+
+        //noinspection TypeScriptUnresolvedFunction
+        this.templates
+            .filter(template => template.type.startsWith("kendo"))
+            .forEach(template => this.setKendoTemplateDirective(template));
     }
 }
