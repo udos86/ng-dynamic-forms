@@ -28,6 +28,7 @@ describe("DynamicSelectModel test suite", () => {
         expect(model.multiple).toBe(config.multiple);
         expect(model.name).toEqual(model.id);
         expect(model.options.length).toBe(config.options.length);
+        expect(model.placeholder).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
         expect(model.value).toBeNull();
     });

@@ -1,3 +1,10 @@
+# 1.3.8
+
+### **Features** 
+
+* multi select support added in `ui-kendo`
+
+
 # 1.3.7
 
 ### **Features** 

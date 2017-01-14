@@ -1,4 +1,4 @@
-import { EventEmitter, TemplateRef, OnInit, AfterContentInit, OnDestroy, QueryList } from "@angular/core";
+import { EventEmitter, TemplateRef, OnInit, AfterViewInit, OnDestroy, QueryList } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -19,7 +19,7 @@ export interface DynamicFormControlEvent {
     model: DynamicFormControlModel;
 }
 
-export abstract class DynamicFormControlComponent implements OnInit, AfterContentInit, OnDestroy {
+export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
     blur: EventEmitter<DynamicFormControlEvent>;
@@ -63,7 +63,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
         }
     }
 
-    ngAfterContentInit(): void {
+    ngAfterViewInit(): void {
         this.setTemplates();
     }
 

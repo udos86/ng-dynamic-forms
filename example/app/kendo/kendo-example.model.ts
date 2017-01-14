@@ -8,7 +8,7 @@ export const KENDO_EXAMPLE_MODEL = [
 
     new DynamicSelectModel<string>(
         {
-            id: "kendoDropdown",
+            id: "kendoDropDownList",
             options: [
                 {
                     label: "Option 1",
