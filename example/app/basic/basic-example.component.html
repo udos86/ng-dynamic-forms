@@ -11,6 +11,8 @@
                                     (focus)="onFocus($event)"></dynamic-form-basic-control>
     </form>
 
+    <pre>{{formGroup1.value | json}}</pre>
+
 
     <form [formGroup]="formGroup2">
 
@@ -33,5 +35,7 @@
         <button type="button" (click)="clear()">Remove All</button>
 
     </form>
+
+    <pre>{{formGroup2.value | json}}</pre>
 
 </div>

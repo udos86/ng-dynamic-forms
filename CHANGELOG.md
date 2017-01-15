@@ -2,6 +2,7 @@
 
 ### **Features** 
 
+* support for Kendo UI template directives added
 * multi select support added in `ui-kendo`
 
 
