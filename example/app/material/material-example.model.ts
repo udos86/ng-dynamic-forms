@@ -33,6 +33,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     value: "option-4"
                 }
             ],
+            placeholder: "Select an option",
             value: "option-3"
         }
     ),

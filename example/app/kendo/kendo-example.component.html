@@ -1,10 +1,27 @@
-<div class="content-margin content-padding" style="width: 50%;">
+<div class="content-margin" style="width: 50%;">
 
     <form [formGroup]="formGroup">
 
         <dynamic-form-kendo-control *ngFor="let controlModel of formModel"
                                     [controlGroup]="formGroup"
-                                    [model]="controlModel"></dynamic-form-kendo-control>
+                                    [model]="controlModel">
+
+            <template modelId="kendoDropDownList" type="kendoDropDownListFooterTemplate">
+
+                <p>LIST FOOTER TEMPLATE</p>
+
+            </template>
+
+            <template modelId="kendoDropDownList" type="kendoDropDownListHeaderTemplate">
+
+                <p>LIST HEADER TEMPLATE</p>
+
+            </template>
+
+        </dynamic-form-kendo-control>
+
     </form>
+
+    <pre>{{formGroup.value | json}}</pre>
 
 </div>

@@ -1,4 +1,4 @@
-<div class="overflow-hidden content-margin">
+<div class="content-margin" style="width: 50%;">
 
     <form class="text-center" [formGroup]="formGroup">
 
@@ -19,8 +19,10 @@
 
             </template>
 
-
         </dynamic-form-material-control>
+
     </form>
+
+    <pre>{{formGroup.value | json}}</pre>
 
 </div>

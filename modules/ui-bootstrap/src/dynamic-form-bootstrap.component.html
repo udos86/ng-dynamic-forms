@@ -26,9 +26,8 @@
                        [value]="model.value"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span
-                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"
-                    [innerHTML]="model.label"></span></label>
+                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
+                                                              [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span></label>
         </div>
 
     </div>

@@ -8,7 +8,7 @@ export const KENDO_EXAMPLE_MODEL = [
 
     new DynamicSelectModel<string>(
         {
-            id: "kendoSelect",
+            id: "kendoDropDownList",
             options: [
                 {
                     label: "Option 1",
@@ -38,6 +38,41 @@ export const KENDO_EXAMPLE_MODEL = [
             max: 10,
             step: 1,
             value: 3
+        }
+    ),
+
+    new DynamicSelectModel<string>(
+        {
+            id: "kendoMultiSelect",
+            multiple: true,
+            options: [
+                {
+                    label: "Football",
+                    value: "football",
+                },
+                {
+                    label: "Basketball",
+                    value: "basketball"
+                },
+                {
+                    label: "Baseball",
+                    value: "baseball"
+                },
+                {
+                    label: "Hockey",
+                    value: "hockey"
+                },
+                {
+                    label: "Rugby",
+                    value: "rugby"
+                },
+                {
+                    label: "Volleyball",
+                    value: "volleyball"
+                }
+            ],
+            placeholder: "Add another item",
+            value: ["basketball"]
         }
     ),
 
