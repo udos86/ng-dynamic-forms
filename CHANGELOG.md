@@ -2,8 +2,9 @@
 
 ### **Features** 
 
-* support for Kendo UI template directives added
-* multi select support added in `ui-kendo`
+* support for Kendo UI template directives added (see [README.md](https://github.com/udos86/ng2-dynamic-forms#custom-templates), closes [#247](https://github.com/udos86/ng2-dynamic-forms/issues/247))
+* initial multi select support added in `ui-kendo`
+* update to Angular `2.4.3`
 
 
 # 1.3.7

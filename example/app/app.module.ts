@@ -9,7 +9,7 @@ import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng2-dynamic-forms/ui-basic";
 import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng2-dynamic-forms/ui-foundation";
-import { DynamicFormsKendoUIModule } from "@ng2-dynamic-forms/ui-kendo";
+//import { DynamicFormsKendoUIModule } from "@ng2-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng2-dynamic-forms/ui-material";
 import { DynamicFormsPrimeNGUIModule } from "@ng2-dynamic-forms/ui-primeng";
 import { DynamicFormsSemanticUIModule } from "@ng2-dynamic-forms/ui-semantic";
@@ -17,7 +17,7 @@ import { DynamicFormsSemanticUIModule } from "@ng2-dynamic-forms/ui-semantic";
 import { BasicExampleComponent } from "./basic/basic-example.component";
 import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.component";
 import { FoundationExampleComponent } from "./foundation/foundation-example.component";
-import { KendoExampleComponent } from "./kendo/kendo-example.component";
+//import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 import { SemanticExampleComponent } from "./semantic/semantic-example.component";
@@ -45,7 +45,7 @@ function testValidator(formControl: FormControl) {
         DynamicFormsBasicUIModule,
         DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,
-        DynamicFormsKendoUIModule,
+        //DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
         DynamicFormsPrimeNGUIModule,
         DynamicFormsSemanticUIModule,
@@ -56,7 +56,7 @@ function testValidator(formControl: FormControl) {
         BasicExampleComponent,
         BootstrapExampleComponent,
         FoundationExampleComponent,
-        KendoExampleComponent,
+        //KendoExampleComponent,
         MaterialExampleComponent,
         PrimeNGExampleComponent,
         SemanticExampleComponent,

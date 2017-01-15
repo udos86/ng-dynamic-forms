@@ -12,13 +12,13 @@ import {
 
 export const DYNAMIC_FORM_UI_KENDO = "KENDO";
 /*
- export const KENDO_COMBO_BOX_TEMPLATE_DIRECTIVES = {
+export const KENDO_COMBO_BOX_TEMPLATE_DIRECTIVES = {
 
- footerTemplate: "kendoComboBoxFooterTemplate",
- headerTemplate: "kendoComboBoxHeaderTemplate",
- itemTemplate: "kendoComboBoxItemTemplate",
- noDataTemplate: "kendoComboBoxNoDataTemplate"
- };
+    footerTemplate: "kendoComboBoxFooterTemplate",
+    headerTemplate: "kendoComboBoxHeaderTemplate",
+    itemTemplate: "kendoComboBoxItemTemplate",
+    noDataTemplate: "kendoComboBoxNoDataTemplate"
+};
  */
 export const KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES = {
 
