@@ -31,6 +31,12 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
     multiple?: boolean;
     pattern?: string;
     step?: number;
+    dateFormat?: string;
+    defaultDate?: Date;
+    maxDate?: Date;
+    minDate?: Date;
+    dateOnly?: boolean;
+    timeOnly?: boolean;
 }
 
 export class DynamicInputModel extends DynamicInputControlModel<string | number> {
@@ -44,6 +50,12 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number>
     @serializable() multiple: boolean | null;
     @serializable() pattern: string | null;
     @serializable() step: number | null;
+    @serializable() dateFormat: number | null;
+    @serializable() defaultDate: Date | null;
+    @serializable() maxDate: Date | null;
+    @serializable() minDate: Date | null;
+    @serializable() dateOnly: boolean | null;
+    @serializable() timeOnly: boolean | null;
 
     private listId: string | null = null;
 
@@ -61,6 +73,12 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number>
         this.multiple = getValue(config, "multiple", null);
         this.pattern = getValue(config, "pattern", null);
         this.step = getValue(config, "step", null);
+        this.dateFormat = getValue(config, "dateFormat", null);
+        this.defaultDate = getValue(config, "defaultDate", null);
+        this.maxDate = getValue(config, "defaultDate", null);
+        this.minDate = getValue(config, "defaultDate", null);
+        this.dateOnly = getValue(config, "dateOnly", null);
+        this.timeOnly = getValue(config, "timeOnly", null);
 
         if (this.list) {
             this.listId = `${this.id}List`;
