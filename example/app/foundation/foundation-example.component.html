@@ -1,9 +1,9 @@
 <div class="overflow-hidden content-margin" style="width: 50%;">
 
-    <form class="form-horizontal" [formGroup]="form">
+    <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-form-foundation-sites-control *ngFor="let controlModel of formModel"
-                                               [controlGroup]="form"
+                                               [controlGroup]="formGroup"
                                                [model]="controlModel"
                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                (blur)="onBlur($event)"
@@ -26,5 +26,7 @@
         </dynamic-form-foundation-sites-control>
 
     </form>
+
+    <pre>{{formGroup.value | json}}</pre>
 
 </div>

@@ -1,4 +1,4 @@
-import { EventEmitter, TemplateRef, OnInit, AfterContentInit, OnDestroy, QueryList } from "@angular/core";
+import { EventEmitter, TemplateRef, OnInit, AfterViewInit, OnDestroy, QueryList } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -19,7 +19,7 @@ export interface DynamicFormControlEvent {
     model: DynamicFormControlModel;
 }
 
-export abstract class DynamicFormControlComponent implements OnInit, AfterContentInit, OnDestroy {
+export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
     blur: EventEmitter<DynamicFormControlEvent>;
@@ -63,7 +63,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
         }
     }
 
-    ngAfterContentInit(): void {
+    ngAfterViewInit(): void {
         this.setTemplates();
     }
 
@@ -125,21 +125,21 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterConten
         return this.control.touched && this.control.invalid;
     }
 
-    setTemplates(): void {
+    protected setTemplates(): void {
 
         if (this.nestedTemplates) {
             this.templates = this.nestedTemplates;
         }
 
-        this.templates.forEach(dynamicTemplate => {
+        this.templates.forEach(template => {
 
-            if (dynamicTemplate.modelId === this.model.id) {
-                this.template = dynamicTemplate.templateRef;
+            if (template.type === null && template.modelId === this.model.id) {
+                this.template = template.templateRef;
             }
         });
     }
 
-    setControlRelations(): void {
+    protected setControlRelations(): void {
 
         let relActivation = this.relationService.findActivationRelation(this.model.relation);
 

@@ -1,15 +1,15 @@
 {
-  "name": "@ng2-dynamic-forms/ui-bootstrap",
+  "name": "@ng2-dynamic-forms/ui-semantic",
   "version": "1.3.8",
-  "description": "Bootstrap UI package for ng2 Dynamic Forms",
-  "main": "./bundles/ui-bootstrap.umd.js",
+  "description": "Semantic UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-semantic.umd.js",
   "keywords": [
     "angular",
     "angular 2",
-    "bootstrap",
     "dynamic forms",
     "forms",
     "ng2 dynamic forms",
+    "semantic ui",
     "reactive forms",
     "ui"
   ],
@@ -27,15 +27,16 @@
     "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
-  "dependencies": {
-    "ng2-datetime-picker": "^0.12.1"
-  },
   "peerDependencies": {
     "@angular/core": "^2.4.3",
-    "@angular/forms": "^2.4.3",
     "@angular/common": "^2.4.3",
+    "@angular/forms": "^2.4.3",
     "@ng2-dynamic-forms/core": "^1.3.8",
-    "bootstrap": "^3.3.7",
+    "ng-semantic": "^1.1.13",
     "rxjs": "^5.0.3"
+  },
+  "optionalDependencies": {
+    "jquery": "^3.1.1",
+    "semantic-ui-css": "^2.2.4"
   }
 }

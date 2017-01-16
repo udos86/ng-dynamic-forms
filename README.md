@@ -536,10 +536,8 @@ As mentioned above, ng2 Dynamic Forms already gives you a lot of freedom in adju
 
 However there are situations where you would like to add custom markup for some of your form controls, as well. 
 
-**No problem at all!**
-
-Just **put a** `template` **inside your dynamic form control element** and **assign a** `modelId`
-**attribute** to connect it with a certain control.
+In order to do so, just **put a** `template` **inside your dynamic form control element** and **set a** `modelId`
+**attribute** to assign it to a certain control.
 ```ts
 <form [formGroup]="formGroup">
     
@@ -558,7 +556,7 @@ Just **put a** `template` **inside your dynamic form control element** and **ass
 </form>
 ```
 
-**And it's getting even better!** 
+**And it's getting better!** 
 
 Since for every template `NgTemplateOutletContext` is internally bound to the corresponding `DynamicFormControlModel` **you 
 can use local template variables to reference your models' properties**:
@@ -580,12 +578,41 @@ can use local template variables to reference your models' properties**:
 </form>
 ```
 
+**Still not convinced?**
+
+Some UI libraries, e.g. Kendo UI, allow detailed customizing of form controls via [**template directives**](http://www.telerik.com/kendo-angular-ui/components/dropdowns/dropdownlist/#toc-templates). 
+
+And you surely don't want to miss out on such a feature, do you?
+
+**That's why ng2 Dynamic Forms can even master this!**
+
+All you have to do is to **add a** `type` **attribute to your template** and specifiy the use of it:
+
+```ts
+<form [formGroup]="formGroup">
+
+    <dynamic-form-kendo-control *ngFor="let controlModel of formModel" 
+                                [controlGroup]="formGroup"
+                                [model]="controlModel">
+                                    
+        <template modelId="myDropDownList" type="kendoDropDownListHeaderTemplate">
+        
+            <p>My Header Template</p>
+            
+        </template>                                               
+                                    
+    </dynamic-form-kendo-control>
+    
+</form>
+```
+
+
 
 ## Custom Validators
 
 Adding built-in validators to any `DynamicFormValueControlModel` is dead easy! 
 
-Just reference a `Validators` function by it's name in the `validators` or `asyncValidators` object literal and ng2 Dynamic Forms will do the rest:
+Just reference a `Validators` function by it's name in the `validators` or `asyncValidators` configuration object and ng2 Dynamic Forms will do the rest:
 ```ts 
 new DynamicInputModel({
 

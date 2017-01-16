@@ -22,7 +22,8 @@ let SRC_PATH = "./modules",
         "ui-foundation",
         "ui-kendo",
         "ui-material",
-        "ui-primeng"
+        "ui-primeng",
+        "ui-semantic"
     ];
 
 

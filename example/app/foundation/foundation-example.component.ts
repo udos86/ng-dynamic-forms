@@ -20,7 +20,7 @@ import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 export class FoundationExampleComponent implements OnInit {
 
     formModel: Array<DynamicFormControlModel> = FOUNDATION_EXAMPLE_MODEL;
-    form: FormGroup;
+    formGroup: FormGroup;
 
     checkboxControl: FormControl;
     checkboxModel: DynamicCheckboxModel;
@@ -32,14 +32,14 @@ export class FoundationExampleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.form = this.formService.createFormGroup(this.formModel);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.checkboxControl = <FormControl> this.form.controls["foundationCheckbox"]; // Type assertion for having updateValue method available
+        this.checkboxControl = <FormControl> this.formGroup.controls["foundationCheckbox"]; // Type assertion for having updateValue method available
         this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("foundationCheckbox", this.formModel);
 
         //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("foundation checkbox field changed to: ", value, typeof value));
 
-        this.arrayControl = <FormArray> this.form.controls["foundationFormArray"];
+        this.arrayControl = <FormArray> this.formGroup.controls["foundationFormArray"];
         this.arrayModel = <DynamicFormArrayModel> this.formService.findById("foundationFormArray", this.formModel);
     }
 

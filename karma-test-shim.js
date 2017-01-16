@@ -56,6 +56,7 @@ System.config({
         "@telerik/kendo-dropdowns-common": "npm:@telerik/kendo-dropdowns-common/dist/npm/main.js",
         "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/main.js",
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
+        "ng-semantic": "npm:ng-semantic",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     },
@@ -68,6 +69,10 @@ System.config({
             defaultExtension: "js"
         },
         "@telerik": {
+            defaultExtension: "js"
+        },
+        "ng-semantic": {
+            main: "ng-semantic.js",
             defaultExtension: "js"
         },
         "primeng": {
