@@ -106,7 +106,8 @@
                    [type]="model.inputType"
                    (blur)="onFocusChange($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
+                   (focus)="onFocusChange($event)"
+                   (keydown)="onKeydown($event)"/>
             
              <input *ngIf="model.inputType.toLowerCase() == 'datetime'"  class="form-control"
                    [attr.accept]="model.accept"
@@ -133,6 +134,7 @@
                    (blur)="onFocusChange($event)"
                    (change)="onValueChange($event)"
                    (focus)="onFocusChange($event)"
+                   (keydown)="onKeydown($event)"
                    ng2-datetime-picker
                    [date-format]="model.dateFormat"
                    [default-value]="model.defaultDate"
