@@ -7,7 +7,7 @@ import { KENDO_EXAMPLE_MODEL } from "./kendo-example.model";
 
     moduleId: module.id,
     selector: "dynamic-form-kendo-example",
-    styleUrls: ["../../../node_modules/@telerik/kendo-theme-default/dist/all.css"],
+    styleUrls: ["../../../node_modules/@progress/kendo-theme-default/dist/all.css"],
     templateUrl: "./kendo-example.component.html",
     encapsulation: ViewEncapsulation.None
 })
