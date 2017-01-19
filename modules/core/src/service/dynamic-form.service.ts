@@ -123,6 +123,27 @@ export class DynamicFormService {
         return this.formBuilder.group(formGroup, groupExtra);
     }
 
+    addFormGroupControl(formGroup: FormGroup,
+                        groupModel: Array<DynamicFormControlModel> | DynamicFormGroupModel,
+                        ...controlModels: Array<DynamicFormControlModel>): void {
+
+        let controls = this.createFormGroup(controlModels).controls;
+
+        Object.keys(controls).forEach((controlName, index) => {
+
+            let controlModel = controlModels[index];
+
+            if (groupModel instanceof DynamicFormGroupModel) {
+                groupModel.add(controlModel);
+
+            } else {
+                (<Array<DynamicFormControlModel>> groupModel).push(controlModel);
+            }
+
+            formGroup.addControl(controlName, controls[controlName]);
+        });
+    }
+
     addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.push(this.createFormGroup(model.addGroup().group));
