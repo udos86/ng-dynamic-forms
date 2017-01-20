@@ -258,7 +258,7 @@ cannot be provided in every UI library. **See the following compatibility table*
 | ui-basic      	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
 | ui-bootstrap  	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
 | ui-foundation 	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
-| ui-kendo      	|         ✗        	|   ✗   	|      ✗      	|    ✓   	|    ✓   	|    ✓   	|     ✗    	|
+| ui-kendo      	|         ✗        	|   ✓   	|      ✗      	|    ✓   	|    ✓   	|    ✓   	|     ✗    	|
 | ui-material   	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 | ui-primeng    	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 

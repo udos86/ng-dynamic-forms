@@ -104,4 +104,12 @@ export const KENDO_EXAMPLE_MODEL = [
             value: true
         }
     ),
+
+    new DynamicInputModel(
+        {
+            id: "kendoMaskedTextBox",
+            mask: "0000-00-00",
+            value: "2017-01-01"
+        }
+    ),
 ];

@@ -50,7 +50,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#009688"
         }
     },
-
+    /*
     {
         path: "example-kendo",
         component: KendoExampleComponent,
@@ -60,7 +60,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#ff5747"
         }
     },
-
+    */
     {
         path: "example-primeng",
         component: PrimeNGExampleComponent,
@@ -70,6 +70,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#DB2226"
         }
     },
+    /*
     {
         path: "example-semantic",
         component: SemanticExampleComponent,
@@ -79,6 +80,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#31AEA4"
         }
     },
+    */
     {
         path: "example-async",
         loadChildren: "app/async/async-example.module#AsyncExampleModule"
