@@ -45,11 +45,15 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
         this.validator = getValue(config, "validator", null);
     }
 
+    get(index: number): DynamicFormControlModel {
+        return this.group[index];
+    }
+
     add(controlModel: DynamicFormControlModel): void {
         this.group.push(controlModel);
     }
 
-    get(index: number): DynamicFormControlModel {
-        return this.group[index];
+    remove(index: number) {
+        this.group.splice(index, 1);
     }
 }

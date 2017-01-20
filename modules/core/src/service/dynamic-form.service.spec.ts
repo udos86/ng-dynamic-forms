@@ -145,17 +145,17 @@ describe("DynamicFormService test suite", () => {
 
         expect(service.createFormGroup).toBeDefined();
 
-        let result = service.createFormGroup(testModel);
+        let formGroup = service.createFormGroup(testModel);
 
-        expect(result instanceof FormGroup).toBe(true);
+        expect(formGroup instanceof FormGroup).toBe(true);
 
-        expect(result.get("testCheckbox") instanceof FormControl).toBe(true);
-        expect(result.get("testCheckboxGroup") instanceof FormGroup).toBe(true);
-        expect(result.get("testFormArray") instanceof FormArray).toBe(true);
-        expect(result.get("testInput") instanceof FormControl).toBe(true);
-        expect(result.get("testRadioGroup") instanceof FormControl).toBe(true);
-        expect(result.get("testSelect") instanceof FormControl).toBe(true);
-        expect(result.get("testTextArea") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testCheckbox") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testCheckboxGroup") instanceof FormGroup).toBe(true);
+        expect(formGroup.get("testFormArray") instanceof FormArray).toBe(true);
+        expect(formGroup.get("testInput") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testRadioGroup") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testSelect") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testTextArea") instanceof FormControl).toBe(true);
     });
 
 
@@ -203,6 +203,35 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testSlider", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testSwitch", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
+    });
+
+
+    it("should add a form control to an existing form group", () => {
+
+        let formGroup = service.createFormGroup(testModel),
+            newModel = new DynamicInputModel({id: "newInput"});
+
+        service.addFormGroupControl(formGroup, testModel, newModel);
+
+        expect(formGroup.controls[newModel.id]).toBeDefined();
+        expect(testModel[testModel.length - 1] === newModel).toBe(true);
+    });
+
+
+    it("should remove a form control from an existing form group", () => {
+
+        let formGroup = service.createFormGroup(testModel),
+            length = testModel.length,
+            index = 1,
+            id = testModel[index].id;
+
+        service.removeFormGroupControl(index, formGroup, testModel);
+
+        expect(Object.keys(formGroup.controls).length).toBe(length - 1);
+        expect(formGroup.controls[id]).toBeUndefined();
+
+        expect(testModel.length).toBe(length - 1);
+        expect(service.findById(id, testModel)).toBeUndefined();
     });
 
 
