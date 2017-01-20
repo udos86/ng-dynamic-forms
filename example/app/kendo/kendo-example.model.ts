@@ -1,4 +1,5 @@
 import {
+    DynamicInputModel,
     DynamicSelectModel,
     DynamicSwitchModel,
     DynamicSliderModel
@@ -31,6 +32,14 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
+    new DynamicInputModel(
+        {
+            id: "kendoAutocomplete",
+            list: ["Football", "Basketball", "Baseball", "Hockey", "Rugby", "Volleyball"],
+            placeholder: "Kendo Autocomplete"
+        }
+    ),
+
     new DynamicSliderModel(
         {
             id: "kendoSlider",
@@ -38,6 +47,17 @@ export const KENDO_EXAMPLE_MODEL = [
             max: 10,
             step: 1,
             value: 3
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "kendoNumericTextBox",
+            inputType: "number",
+            min: 0,
+            max: 100,
+            step: 1,
+            value: 5
         }
     ),
 
@@ -82,6 +102,14 @@ export const KENDO_EXAMPLE_MODEL = [
             offLabel: "Off",
             onLabel: "On",
             value: true
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "kendoMaskedTextBox",
+            mask: "0000-00-00",
+            value: "2017-01-01"
         }
     ),
 ];

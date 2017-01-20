@@ -123,6 +123,42 @@ export class DynamicFormService {
         return this.formBuilder.group(formGroup, groupExtra);
     }
 
+    addFormGroupControl(formGroup: FormGroup,
+                        groupModel: Array<DynamicFormControlModel> | DynamicFormGroupModel,
+                        ...controlModels: Array<DynamicFormControlModel>): void {
+
+        let controls = this.createFormGroup(controlModels).controls;
+
+        Object.keys(controls).forEach((controlName, index) => {
+
+            let controlModel = controlModels[index];
+
+            if (groupModel instanceof DynamicFormGroupModel) {
+                groupModel.add(controlModel);
+
+            } else {
+                (<Array<DynamicFormControlModel>> groupModel).push(controlModel);
+            }
+
+            formGroup.addControl(controlName, controls[controlName]);
+        });
+    }
+
+    removeFormGroupControl(index: number,
+                           formGroup: FormGroup,
+                           groupModel: Array<DynamicFormControlModel> | DynamicFormGroupModel) {
+
+        if (groupModel instanceof DynamicFormGroupModel) {
+
+            formGroup.removeControl(groupModel.get(index).id);
+            groupModel.remove(index);
+
+        } else {
+            formGroup.removeControl(groupModel[index].id);
+            (<Array<DynamicFormControlModel>> groupModel).splice(index, 1);
+        }
+    }
+
     addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.push(this.createFormGroup(model.addGroup().group));
@@ -162,9 +198,9 @@ export class DynamicFormService {
         }
     }
 
-    findById(id: string, group: Array<DynamicFormControlModel>): DynamicFormControlModel | undefined {
+    findById(id: string, groupModel: Array<DynamicFormControlModel>): DynamicFormControlModel | undefined {
 
-        return group.find(controlModel => controlModel.id === id);
+        return groupModel.find(controlModel => controlModel.id === id);
     }
 
     fromJSON(json: Array<Object>): Array<DynamicFormControlModel> | never {

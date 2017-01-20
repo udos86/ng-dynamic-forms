@@ -2,7 +2,7 @@ import { RouterModule, Route } from "@angular/router";
 import { BasicExampleComponent } from "./basic/basic-example.component";
 import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.component";
 import { FoundationExampleComponent } from "./foundation/foundation-example.component";
-//import { KendoExampleComponent } from "./kendo/kendo-example.component";
+import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 import { SemanticExampleComponent } from "./semantic/semantic-example.component";
@@ -70,6 +70,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#DB2226"
         }
     },
+    /*
     {
         path: "example-semantic",
         component: SemanticExampleComponent,
@@ -79,6 +80,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#31AEA4"
         }
     },
+    */
     {
         path: "example-async",
         loadChildren: "app/async/async-example.module#AsyncExampleModule"

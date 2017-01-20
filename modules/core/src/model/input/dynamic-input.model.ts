@@ -21,11 +21,12 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_TIME = "time";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_WEEK = "week";
 
-export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<string | number> {
+export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<string | number | Array<string>> {
 
     accept?: string;
     inputType?: string;
     list?: Array<string>;
+    mask?: string | null;
     max?: number | string;
     min?: number | string;
     multiple?: boolean;
@@ -33,12 +34,13 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
     step?: number;
 }
 
-export class DynamicInputModel extends DynamicInputControlModel<string | number> {
+export class DynamicInputModel extends DynamicInputControlModel<string | number | Array<string>> {
 
     @serializable() accept: string | null;
     @serializable() inputType: string;
     files: FileList | null = null;
     @serializable() list: Array<string> | null;
+    @serializable() mask: string | null;
     @serializable() max: number | string | null;
     @serializable() min: number | string | null;
     @serializable() multiple: boolean | null;
@@ -56,6 +58,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number>
         this.accept = getValue(config, "accept", null);
         this.inputType = getValue(config, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
         this.list = getValue(config, "list", null);
+        this.mask = getValue(config, "mask", null);
         this.max = getValue(config, "max", null);
         this.min = getValue(config, "min", null);
         this.multiple = getValue(config, "multiple", null);

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
-import { Slider, Switch } from "@progress/kendo-angular-inputs";
+import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
+import { MaskedTextBox, NumericTextBox, Slider, Switch } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -11,15 +11,15 @@ import {
 } from "@ng2-dynamic-forms/core";
 
 export const DYNAMIC_FORM_UI_KENDO = "KENDO";
-/*
-export const KENDO_COMBO_BOX_TEMPLATE_DIRECTIVES = {
 
-    footerTemplate: "kendoComboBoxFooterTemplate",
-    headerTemplate: "kendoComboBoxHeaderTemplate",
-    itemTemplate: "kendoComboBoxItemTemplate",
-    noDataTemplate: "kendoComboBoxNoDataTemplate"
+export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
+
+    footerTemplate: "kendoAutoCompleteFooterTemplate",
+    headerTemplate: "kendoAutoCompleteHeaderTemplate",
+    itemTemplate: "kendoAutoCompleteItemTemplate",
+    noDataTemplate: "kendoAutoCompleteNoDataTemplate"
 };
- */
+
 export const KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES = {
 
     footerTemplate: "kendoDropDownListFooterTemplate",
@@ -58,8 +58,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
+    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent;
     @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent;
+    @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox;
     @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent;
+    @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox;
     @ViewChild(Slider) kendoSlider: Slider;
     @ViewChild(Switch) kendoSwitch: Switch;
 
@@ -74,7 +77,12 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
         let templateDirectives,
             viewChild;
 
-        if (this.kendoDropDownList) {
+        if (this.kendoAutoComplete) {
+
+            templateDirectives = KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
+            viewChild = this.kendoAutoComplete;
+
+        } else if (this.kendoDropDownList) {
 
             templateDirectives = KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
             viewChild = this.kendoDropDownList;

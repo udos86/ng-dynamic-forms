@@ -46,6 +46,42 @@
     </fieldset>
 
 
+    <kendo-autocomplete *ngIf="model.type === 'INPUT' && !model.mask && model.inputType !== 'number'"
+                        [data]="model.list"
+                        [disabled]="model.disabled"
+                        [formControlName]="model.id"
+                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                        [placeholder]="model.placeholder"
+                        (blur)="onFocusChange($event)"
+                        (focus)="onFocusChange($event)"
+                        (valueChange)="onValueChange($event)"></kendo-autocomplete>
+
+
+    <kendo-maskedtextbox *ngIf="model.type === 'INPUT' && model.mask && model.inputType !== 'number'"
+                         [disabled]="model.disabled"
+                         [formControlName]="model.id"
+                         [mask]="model.mask"
+                         [maskValidation]="true"
+                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                         (blur)="onFocusChange($event)"
+                         (focus)="onFocusChange($event)"
+                         (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
+
+
+    <kendo-numerictextbox *ngIf="model.type === 'INPUT' && !model.mask && model.inputType === 'number'"
+                          [autoCorrect]="model.autoComplete"
+                          [disabled]="model.disabled"
+                          [formControlName]="model.id"
+                          [max]="model.max"
+                          [min]="model.min"
+                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                          [spinners]="true"
+                          [step]="model.step"
+                          (blur)="onFocusChange($event)"
+                          (focus)="onFocusChange($event)"
+                          (valueChange)="onValueChange($event)"></kendo-numerictextbox>
+
+
     <kendo-dropdownlist *ngIf="model.type === 'SELECT' && !model.multiple"
                         [data]="model.options"
                         [disabled]="model.disabled"
