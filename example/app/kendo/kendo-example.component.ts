@@ -23,4 +23,8 @@ export class KendoExampleComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
     }
+
+    onChange($event) {
+        console.log(`CHANGE event on: `, $event);
+    }
 }

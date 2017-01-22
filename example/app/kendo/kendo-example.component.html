@@ -4,7 +4,8 @@
 
         <dynamic-form-kendo-control *ngFor="let controlModel of formModel"
                                     [controlGroup]="formGroup"
-                                    [model]="controlModel">
+                                    [model]="controlModel"
+                                    (change)="onChange($event)">
 
             <template modelId="kendoDropDownList" type="kendoDropDownListFooterTemplate">
 

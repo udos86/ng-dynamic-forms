@@ -122,10 +122,7 @@
                [dynamicId]="bindId && model.id"
                [formControlName]="model.id"
                [ngClass]="model.cls.element.control"
-               [placeholder]="model.placeholder"
-               (blur)="onFocusChange($event)"
-               (change)="onValueChange($event)"
-               (focus)="onFocusChange($event)">
+               [placeholder]="model.placeholder">
 
         <md-option *ngFor="let option of model.options"
                    [value]="option.value"><span [innerHTML]="option.label"></span></md-option>

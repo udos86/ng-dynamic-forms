@@ -14,7 +14,7 @@ import { isDefined } from "../utils";
 
 export interface DynamicFormControlEvent {
 
-    $event: Event | FocusEvent | any;
+    $event: Event | FocusEvent | DynamicFormControlEvent | any;
     control: FormControl;
     model: DynamicFormControlModel;
 }
@@ -71,7 +71,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
-    get errorMessages(): Array<string> {
+    get errorMessages(): string[] {
 
         let messages = [];
 
@@ -164,7 +164,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
+            let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
             if (model.value !== value) {
                 model.valueUpdates.next(value);
@@ -183,7 +183,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         value ? this.control.disable() : this.control.enable();
     }
 
-    onValueChange($event: Event |  DynamicFormControlEvent): void {
+    onValueChange($event: Event |  DynamicFormControlEvent | any): void {
 
         if ($event instanceof Event) { // native HTML5 change event
 
@@ -200,13 +200,13 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
             this.change.emit({$event: $event as Event, control: this.control, model: this.model});
 
-        } else if ($event.hasOwnProperty("source") || $event.hasOwnProperty("originalEvent")) { // Material 2 and PrimeNG change event
+        } else if ($event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
 
-            this.change.emit({$event: $event, control: this.control, model: this.model});
+            this.change.emit($event as DynamicFormControlEvent);
 
         } else {
 
-            this.change.emit($event as DynamicFormControlEvent);
+            this.change.emit({$event: $event, control: this.control, model: this.model});
         }
     }
 
@@ -221,7 +221,8 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
             this[$event.type].emit({$event: $event, control: this.control, model: this.model});
 
         } else {
-            this[(<FocusEvent> (<DynamicFormControlEvent> $event).$event).type].emit($event);
+
+            this[(($event as DynamicFormControlEvent).$event as FocusEvent).type].emit($event);
         }
     }
 }
