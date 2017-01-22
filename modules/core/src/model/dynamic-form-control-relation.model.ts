@@ -17,5 +17,5 @@ export interface DynamicFormControlRelationGroup {
 
     action: string;
     connective?: string;
-    when: Array<DynamicFormControlRelation>;
+    when: DynamicFormControlRelation[];
 }

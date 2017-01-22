@@ -11,11 +11,11 @@ import { getValue, isFunction } from "../../utils";
 export class DynamicFormArrayGroupModel {
 
     context: DynamicFormArrayModel;
-    @serializable() group: Array<DynamicFormValueControlModel<DynamicFormControlValue>>;
+    @serializable() group: DynamicFormValueControlModel<DynamicFormControlValue>[];
     @serializable() index: number | null;
 
     constructor(context: DynamicFormArrayModel,
-                group: Array<DynamicFormValueControlModel<DynamicFormControlValue>> = [],
+                group: DynamicFormValueControlModel<DynamicFormControlValue>[] = [],
                 index: number | null = null) {
 
         this.context = context;
@@ -37,19 +37,19 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
     asyncValidator?: DynamicValidatorsMap;
-    createGroup?: () => Array<DynamicFormValueControlModel<DynamicFormControlValue>>;
-    groups?: Array<DynamicFormArrayGroupModel>;
+    createGroup?: () => DynamicFormValueControlModel<DynamicFormControlValue>[];
+    groups?: DynamicFormArrayGroupModel[];
     initialCount?: number;
     validator?: DynamicValidatorsMap;
 }
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    @serializable() private groups: Array<DynamicFormArrayGroupModel> = [];
-    @serializable() private originGroup: Array<DynamicFormValueControlModel<DynamicFormControlValue>>; // only to reinstantiate from JSON
+    @serializable() private groups: DynamicFormArrayGroupModel[] = [];
+    @serializable() private originGroup: DynamicFormValueControlModel<DynamicFormControlValue>[]; // only to reinstantiate from JSON
 
     @serializable() asyncValidator: DynamicValidatorsMap | null;
-    createGroup: () => Array<DynamicFormValueControlModel<DynamicFormControlValue>>;
+    createGroup: () => DynamicFormValueControlModel<DynamicFormControlValue>[];
     @serializable() initialCount: number;
     @serializable() validator: DynamicValidatorsMap | null;
 

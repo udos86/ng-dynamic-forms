@@ -33,8 +33,8 @@ import { isFunction, isDefined } from "../utils";
 export class DynamicFormService {
 
     constructor(@Inject(FormBuilder) private formBuilder: FormBuilder,
-                @Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: Array<ValidatorFn>,
-                @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: Array<AsyncValidatorFn>) {}
+                @Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
+                @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
 
     getCustomValidatorFn(validatorName: string): ValidatorFn | AsyncValidatorFn | undefined {
 
@@ -62,7 +62,7 @@ export class DynamicFormService {
         return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
     }
 
-    getValidators(config: DynamicValidatorsMap): Array<ValidatorFn | AsyncValidatorFn> {
+    getValidators(config: DynamicValidatorsMap): ValidatorFn[] | AsyncValidatorFn[] {
 
         return isDefined(config) ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
@@ -83,7 +83,7 @@ export class DynamicFormService {
         );
     }
 
-    createFormGroup(group: Array<DynamicFormControlModel>, groupExtra: {[key: string]: any} | null = null): FormGroup {
+    createFormGroup(group: DynamicFormControlModel[], groupExtra: {[key: string]: any} | null = null): FormGroup {
 
         let formGroup = {};
 
@@ -91,13 +91,13 @@ export class DynamicFormService {
 
             if (model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
 
-                let arrayModel = <DynamicFormArrayModel> model;
+                let arrayModel = model as DynamicFormArrayModel;
 
                 formGroup[model.id] = this.createFormArray(arrayModel);
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
-                let groupModel = <DynamicFormGroupModel> model,
+                let groupModel = model as DynamicFormGroupModel,
                     groupExtra = {
                         validator: this.getValidators(groupModel.validator)[0] || null,
                         asyncValidator: this.getValidators(groupModel.asyncValidator)[0] || null
@@ -107,7 +107,7 @@ export class DynamicFormService {
 
             } else {
 
-                let controlModel = <DynamicFormValueControlModel<DynamicFormControlValue>> model;
+                let controlModel = model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
                 formGroup[controlModel.id] = new FormControl(
                     {
@@ -124,8 +124,8 @@ export class DynamicFormService {
     }
 
     addFormGroupControl(formGroup: FormGroup,
-                        groupModel: Array<DynamicFormControlModel> | DynamicFormGroupModel,
-                        ...controlModels: Array<DynamicFormControlModel>): void {
+                        groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
+                        ...controlModels: DynamicFormControlModel[]): void {
 
         let controls = this.createFormGroup(controlModels).controls;
 
@@ -137,7 +137,7 @@ export class DynamicFormService {
                 groupModel.add(controlModel);
 
             } else {
-                (<Array<DynamicFormControlModel>> groupModel).push(controlModel);
+                (groupModel as DynamicFormControlModel[]).push(controlModel);
             }
 
             formGroup.addControl(controlName, controls[controlName]);
@@ -146,7 +146,7 @@ export class DynamicFormService {
 
     removeFormGroupControl(index: number,
                            formGroup: FormGroup,
-                           groupModel: Array<DynamicFormControlModel> | DynamicFormGroupModel) {
+                           groupModel: DynamicFormControlModel[] | DynamicFormGroupModel) {
 
         if (groupModel instanceof DynamicFormGroupModel) {
 
@@ -155,7 +155,7 @@ export class DynamicFormService {
 
         } else {
             formGroup.removeControl(groupModel[index].id);
-            (<Array<DynamicFormControlModel>> groupModel).splice(index, 1);
+            (groupModel as DynamicFormControlModel[]).splice(index, 1);
         }
     }
 
@@ -198,14 +198,14 @@ export class DynamicFormService {
         }
     }
 
-    findById(id: string, groupModel: Array<DynamicFormControlModel>): DynamicFormControlModel | undefined {
+    findById(id: string, groupModel: DynamicFormControlModel[]): DynamicFormControlModel | undefined {
 
         return groupModel.find(controlModel => controlModel.id === id);
     }
 
-    fromJSON(json: Array<Object>): Array<DynamicFormControlModel> | never {
+    fromJSON(json: Object[]): DynamicFormControlModel[] | never {
 
-        let formModel: Array<DynamicFormControlModel> = [];
+        let formModel: DynamicFormControlModel[] = [];
 
         json.forEach(model => {
 

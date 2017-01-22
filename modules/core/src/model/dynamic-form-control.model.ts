@@ -25,7 +25,7 @@ export interface DynamicFormControlModelConfig {
     disabled?: boolean;
     id?: string;
     label?: string;
-    relation?: Array<DynamicFormControlRelationGroup>;
+    relation?: DynamicFormControlRelationGroup[];
 }
 
 export abstract class DynamicFormControlModel {
@@ -36,7 +36,7 @@ export abstract class DynamicFormControlModel {
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() name: string;
-    @serializable() relation: Array<DynamicFormControlRelationGroup>;
+    @serializable() relation: DynamicFormControlRelationGroup[];
 
     abstract readonly type: string;
 

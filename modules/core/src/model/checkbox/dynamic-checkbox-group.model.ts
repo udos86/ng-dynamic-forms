@@ -7,7 +7,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
 
 export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
 
-    @serializable() group: Array<DynamicCheckboxModel>;
+    @serializable() group: DynamicCheckboxModel[];
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
 
@@ -15,11 +15,11 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
         super(config, cls);
     }
 
-    check(...indices: Array<number>): void {
+    check(...indices: number[]): void {
         indices.forEach(index => this.group[index].checked = true);
     }
 
-    uncheck(...indices: Array<number>): void {
+    uncheck(...indices: number[]): void {
         indices.forEach(index => this.group[index].checked = false);
     }
 

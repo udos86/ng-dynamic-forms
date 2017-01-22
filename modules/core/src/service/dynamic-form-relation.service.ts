@@ -15,13 +15,13 @@ export class DynamicFormRelationService {
 
     constructor() {}
 
-    findActivationRelation(relGroups: Array<DynamicFormControlRelationGroup>): DynamicFormControlRelationGroup {
+    findActivationRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup {
         return relGroups.find(rel => rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE);
     }
 
-    getRelatedFormControls(model: DynamicFormControlModel, controlGroup: FormGroup): Array<FormControl> {
+    getRelatedFormControls(model: DynamicFormControlModel, controlGroup: FormGroup): FormControl[] {
 
-        let controls: Array<FormControl> = [];
+        let controls: FormControl[] = [];
 
         model.relation.forEach(relGroup => relGroup.when.forEach(rel => {
 

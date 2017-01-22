@@ -26,7 +26,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
         this.placeholder = getValue(config, "placeholder", "");
     }
 
-    select(...indices: Array<number>): void {
+    select(...indices: number[]): void {
 
         let value = this.multiple ? indices.map(index => this.get(index).value) : this.get(indices[0]).value;
 

@@ -34,7 +34,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     template: TemplateRef<any>;
     templates: QueryList<any>;
 
-    private subscriptions: Array<Subscription> = [];
+    private subscriptions: Subscription[] = [];
 
     abstract readonly type: string;
 
@@ -46,14 +46,14 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
             throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
         }
 
-        this.control = <FormControl> this.controlGroup.get(this.model.id);
+        this.control = this.controlGroup.get(this.model.id) as FormControl;
 
         this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
         this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
+            let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
@@ -191,7 +191,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
-                let model = <DynamicInputModel> this.model;
+                let model = this.model as DynamicInputModel;
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
                     model.files = $event.srcElement["files"];

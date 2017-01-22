@@ -133,7 +133,7 @@
     </md-select>
 
 
-    <md-slider *ngIf="model.type === 'SLIDER'" thumbLabel
+    <md-slider *ngIf="model.type === 'SLIDER'"
                [disabled]="model.disabled"
                [dynamicId]="bindId && model.id"
                [formControlName]="model.id"
@@ -141,8 +141,9 @@
                [max]="model.max"
                [ngClass]="model.cls.element.control"
                [step]="model.step"
+               [thumbLabel]="true"
                tickInterval="1"
-               [attr.vertical]="model.vertical"
+               [vertical]="model.vertical"
                (change)="onValueChange($event)"></md-slider>
 
 

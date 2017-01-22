@@ -251,7 +251,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should add a form array group correctly", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         expect(service.addFormArrayGroup).toBeDefined();
@@ -264,7 +264,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should insert a form array group correctly", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         expect(service.insertFormArrayGroup).toBeDefined();
@@ -277,9 +277,8 @@ describe("DynamicFormService test suite", () => {
 
     it("should move a form array group correctly", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model),
-            formArrayGroup,
             index = 3,
             step = -2;
 
@@ -305,7 +304,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should throw when form array group is to be moved out of bounds", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         expect(() => service.moveFormArrayGroup(2, -5, formArray, model))
@@ -315,7 +314,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should remove a form array group correctly", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         expect(service.removeFormArrayGroup).toBeDefined();
@@ -328,7 +327,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should clear a form array correctly", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         expect(service.clearFormArray).toBeDefined();

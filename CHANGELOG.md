@@ -2,7 +2,7 @@
 
 ### **Features** 
 
-* functions to add and remove form controls after initialization added in `DynamicFormService` (closes [#252](https://github.com/udos86/ng2-dynamic-forms/issues/247))
+* functions to add and remove form controls after initialization added in `DynamicFormService` (closes [#252](https://github.com/udos86/ng2-dynamic-forms/issues/252))
 * initial support for `AutoComplete`, `MaskedTextBox` and `NumericTextBox` in `ui-kendo`
 * update to Angular `2.4.4`
 
