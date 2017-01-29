@@ -2,7 +2,8 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicSwitchModel,
-    DynamicSliderModel
+    DynamicSliderModel,
+    DynamicDatepickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const KENDO_EXAMPLE_MODEL = [
@@ -29,6 +30,14 @@ export const KENDO_EXAMPLE_MODEL = [
                 }
             ],
             value: "option-3"
+        }
+    ),
+
+    new DynamicDatepickerModel(
+        {
+            id: "kendoDatepicker",
+            //focusedDate: new Date(2010, 11, 11)
+            value: new Date()
         }
     ),
 

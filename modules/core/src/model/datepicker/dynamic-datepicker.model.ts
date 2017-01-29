@@ -10,6 +10,7 @@ export const DYNAMIC_FORM_CONTROL_PICKER_TYPE_TIME = "TIME";
 
 export interface DynamicDatepickerModelConfig extends DynamicFormValueControlModelConfig<Date> {
 
+    focusedDate?: Date;
     min?: Date;
     max?: Date;
     pickerType?: string;
@@ -17,6 +18,7 @@ export interface DynamicDatepickerModelConfig extends DynamicFormValueControlMod
 
 export class DynamicDatepickerModel extends DynamicFormValueControlModel<Date> {
 
+    @serializable() focusedDate: Date | null;
     @serializable() min: Date | null;
     @serializable() max: Date | null;
     @serializable() pickerType: string;
@@ -27,6 +29,7 @@ export class DynamicDatepickerModel extends DynamicFormValueControlModel<Date> {
 
         super(config, cls);
 
+        this.focusedDate = getValue(config, "focusedDate", null);
         this.min = getValue(config, "min", null);
         this.max = getValue(config, "max", null);
         this.pickerType = getValue(config, "pickerType", DYNAMIC_FORM_CONTROL_PICKER_TYPE_DATE);

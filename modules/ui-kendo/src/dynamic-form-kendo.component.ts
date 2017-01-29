@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import { MaskedTextBox, NumericTextBox, Slider, Switch } from "@progress/kendo-angular-inputs";
 import {
@@ -18,6 +19,11 @@ export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
     headerTemplate: "kendoAutoCompleteHeaderTemplate",
     itemTemplate: "kendoAutoCompleteItemTemplate",
     noDataTemplate: "kendoAutoCompleteNoDataTemplate"
+};
+
+export const KENDO_CALENDAR_TEMPLATE_DIRECTIVES = {
+
+    cellTemplate: "kendoCalendarCellTemplate"
 };
 
 export const KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES = {
@@ -59,6 +65,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
     @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent;
+    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent;
     @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent;
     @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox;
     @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent;
@@ -81,6 +88,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
             templateDirectives = KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
             viewChild = this.kendoAutoComplete;
+
+        } else if (this.kendoCalendar) {
+
+            templateDirectives = KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
+            viewChild = this.kendoCalendar;
 
         } else if (this.kendoDropDownList) {
 

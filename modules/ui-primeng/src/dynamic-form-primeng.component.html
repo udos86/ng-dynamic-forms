@@ -113,6 +113,18 @@
             </datalist>
 
 
+            <p-calendar *ngIf="model.type === 'DATEPICKER'"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [maxDate]="model.max"
+                        [minDate]="model.min"
+                        [monthNavigator]="false"
+                        [ngClass]="model.cls.element.control"
+                        [placeholder]="model.placeholder"
+                        [showIcon]="false"
+                        [yearNavigator]="false"></p-calendar>
+
+
             <p-checkbox *ngIf="model.type === 'CHECKBOX'" binary="true"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -137,10 +149,10 @@
 
             <p-slider *ngIf="model.type === 'SLIDER'"
                       [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
                       [min]="model.min"
                       [max]="model.max"
-                      [step]="model.step"
-                      [formControlName]="model.id"></p-slider>
+                      [step]="model.step"></p-slider>
 
 
             <p-inputSwitch *ngIf="model.type === 'SWITCH'"

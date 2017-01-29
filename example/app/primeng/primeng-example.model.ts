@@ -6,7 +6,7 @@ import {
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicTextAreaModel
+    DynamicTextAreaModel, DynamicDatepickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
@@ -31,6 +31,23 @@ export const PRIMENG_EXAMPLE_MODEL = [
                 }
             ],
             value: ["option-3"]
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
+        }
+    ),
+
+    new DynamicDatepickerModel(
+        {
+            id: "primeDatepicker",
+            label: "Example Datepicker"
         },
         {
             element: {

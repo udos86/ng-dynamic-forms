@@ -89,6 +89,10 @@ pre {
     text-align: center;
 }
 
+kendo-calendar {
+    margin: 0 auto;
+}
+
 md-input {
     vertical-align: middle;
 }
