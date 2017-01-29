@@ -19,6 +19,10 @@ import {
     DynamicCheckboxGroupModel
 } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DynamicDatepickerModel
+} from "../model/datepicker/dynamic-datepicker.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel } from "../model/input/dynamic-input.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -36,6 +40,15 @@ export class DynamicFormService {
                 @Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
                 @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
 
+
+    private parseJSONReviver(key: string, value: any): any {
+
+        let regexISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+
+        return value === "string" && regexISO.test(value) ? new Date(value) : value;
+    }
+
+
     getCustomValidatorFn(validatorName: string): ValidatorFn | AsyncValidatorFn | undefined {
 
         let validatorFn;
@@ -51,6 +64,7 @@ export class DynamicFormService {
         return validatorFn;
     }
 
+
     getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | AsyncValidatorFn | never {
 
         let validatorFn = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
@@ -62,11 +76,13 @@ export class DynamicFormService {
         return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
     }
 
+
     getValidators(config: DynamicValidatorsMap): ValidatorFn[] | AsyncValidatorFn[] {
 
         return isDefined(config) ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
     }
+
 
     createFormArray(model: DynamicFormArrayModel): FormArray {
 
@@ -82,6 +98,7 @@ export class DynamicFormService {
             this.getValidators(model.asyncValidator)[0] || null
         );
     }
+
 
     createFormGroup(group: DynamicFormControlModel[], groupExtra: {[key: string]: any} | null = null): FormGroup {
 
@@ -123,6 +140,7 @@ export class DynamicFormService {
         return this.formBuilder.group(formGroup, groupExtra);
     }
 
+
     addFormGroupControl(formGroup: FormGroup,
                         groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
                         ...controlModels: DynamicFormControlModel[]): void {
@@ -144,6 +162,7 @@ export class DynamicFormService {
         });
     }
 
+
     removeFormGroupControl(index: number,
                            formGroup: FormGroup,
                            groupModel: DynamicFormControlModel[] | DynamicFormGroupModel) {
@@ -154,26 +173,31 @@ export class DynamicFormService {
             groupModel.remove(index);
 
         } else {
+
             formGroup.removeControl(groupModel[index].id);
             (groupModel as DynamicFormControlModel[]).splice(index, 1);
         }
     }
+
 
     addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.push(this.createFormGroup(model.addGroup().group));
     }
 
+
     insertFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.insert(index, this.createFormGroup(model.insertGroup(index).group));
     }
+
 
     removeFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.removeAt(index);
         model.removeGroup(index);
     }
+
 
     moveFormArrayGroup(index: number, step: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
@@ -191,6 +215,7 @@ export class DynamicFormService {
         }
     }
 
+
     clearFormArray(formArray: FormArray, model: DynamicFormArrayModel): void {
 
         while (formArray.length > 0) {
@@ -198,16 +223,19 @@ export class DynamicFormService {
         }
     }
 
+
     findById(id: string, groupModel: DynamicFormControlModel[]): DynamicFormControlModel | undefined {
 
         return groupModel.find(controlModel => controlModel.id === id);
     }
 
-    fromJSON(json: Object[]): DynamicFormControlModel[] | never {
 
-        let formModel: DynamicFormControlModel[] = [];
+    fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        json.forEach(model => {
+        let rawModel = typeof json === "string" ? JSON.parse(json, this.parseJSONReviver) : json,
+            formModel = [];
+
+        rawModel.forEach(model => {
 
             switch (model["type"]) {
 
@@ -224,6 +252,10 @@ export class DynamicFormService {
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
                     model["group"] = this.fromJSON(model["group"]);
                     formModel.push(new DynamicCheckboxGroupModel(model, model["cls"]));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                    formModel.push(new DynamicDatepickerModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:

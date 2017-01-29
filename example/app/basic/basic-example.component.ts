@@ -34,8 +34,8 @@ export class BasicExampleComponent implements OnInit {
         //this.formModel1 = BASIC_EXAMPLE_MODEL;
         //this.formModel2 = BASIC_EXAMPLE_ARRAY_MODEL;
 
-        this.formModel1 = this.formService.fromJSON(JSON.parse(JSON.stringify(BASIC_EXAMPLE_MODEL)));
-        this.formModel2 = this.formService.fromJSON(JSON.parse(JSON.stringify(BASIC_EXAMPLE_ARRAY_MODEL)));
+        this.formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_EXAMPLE_MODEL));
+        this.formModel2 = this.formService.fromJSON(JSON.stringify(BASIC_EXAMPLE_ARRAY_MODEL));
 
         this.formGroup1 = this.formService.createFormGroup(this.formModel1);
         this.formGroup2 = this.formService.createFormGroup(this.formModel2);

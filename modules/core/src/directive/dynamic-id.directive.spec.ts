@@ -15,7 +15,7 @@ class TestComponent {
 describe("DynamicIdDirective test suite", () => {
 
     let fixture: ComponentFixture<TestComponent>,
-        directives: Array<DebugElement>;
+        directives: DebugElement[];
 
     beforeEach(() => {
 
