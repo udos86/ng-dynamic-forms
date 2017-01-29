@@ -1,27 +1,18 @@
 import { ClsConfig } from "../dynamic-form-control.model";
-import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "../dynamic-form-value-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 import { getValue } from "../../utils";
+import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynamic-date-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 
-export const DYNAMIC_FORM_CONTROL_PICKER_TYPE_DATE = "DATE";
-export const DYNAMIC_FORM_CONTROL_PICKER_TYPE_TIME = "TIME";
+export interface DynamicDatepickerModelConfig extends DynamicDateControlModelConfig {
 
-export interface DynamicDatepickerModelConfig extends DynamicFormValueControlModelConfig<Date> {
-
-    focusedDate?: Date;
-    min?: Date;
-    max?: Date;
-    pickerType?: string;
+    inline?: boolean;
 }
 
-export class DynamicDatepickerModel extends DynamicFormValueControlModel<Date> {
+export class DynamicDatepickerModel extends DynamicDateControlModel {
 
-    @serializable() focusedDate: Date | null;
-    @serializable() min: Date | null;
-    @serializable() max: Date | null;
-    @serializable() pickerType: string;
+    @serializable() inline: boolean;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
 
@@ -29,9 +20,6 @@ export class DynamicDatepickerModel extends DynamicFormValueControlModel<Date> {
 
         super(config, cls);
 
-        this.focusedDate = getValue(config, "focusedDate", null);
-        this.min = getValue(config, "min", null);
-        this.max = getValue(config, "max", null);
-        this.pickerType = getValue(config, "pickerType", DYNAMIC_FORM_CONTROL_PICKER_TYPE_DATE);
+        this.inline = getValue(config, "inline", false);
     }
 }

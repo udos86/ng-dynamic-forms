@@ -8,6 +8,7 @@ export * from "./src/decorator/serializable.decorator";
 export * from "./src/model/dynamic-form-control.model";
 export * from "./src/model/dynamic-form-value-control.model";
 export * from "./src/model/dynamic-check-control.model";
+export * from "./src/model/dynamic-date-control.model";
 export * from "./src/model/dynamic-input-control.model";
 export * from "./src/model/dynamic-option-control.model";
 export * from "./src/model/dynamic-form-control-relation.model";

@@ -37,6 +37,7 @@ export const KENDO_EXAMPLE_MODEL = [
         {
             id: "kendoDatepicker",
             //focusedDate: new Date(2010, 11, 11)
+            inline: true,
             value: new Date()
         }
     ),

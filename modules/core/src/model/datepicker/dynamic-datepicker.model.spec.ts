@@ -1,4 +1,7 @@
-import { DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER, DynamicDatepickerModel } from "./dynamic-datepicker.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DynamicDatepickerModel
+} from "./dynamic-datepicker.model";
 
 describe("DynamicDatepickerModel test suite", () => {
 

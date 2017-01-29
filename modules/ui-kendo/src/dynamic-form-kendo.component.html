@@ -85,7 +85,7 @@
                           (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-    <kendo-calendar *ngIf="model.type === 'DATEPICKER'"
+    <kendo-calendar *ngIf="model.type === 'DATEPICKER' && model.inline"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [focusedDate]="model.focusedDate"
