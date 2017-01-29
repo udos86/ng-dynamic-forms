@@ -10,15 +10,16 @@ import {
 import { DynamicFormService } from "./dynamic-form.service";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
+import { DynamicDatepickerModel } from "../model/datepicker/dynamic-datepicker.model";
 import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 
 describe("DynamicFormService test suite", () => {
 
@@ -128,7 +129,9 @@ describe("DynamicFormService test suite", () => {
 
             new DynamicSliderModel({id: "testSlider"}),
 
-            new DynamicSwitchModel({id: "testSwitch"})
+            new DynamicSwitchModel({id: "testSwitch"}),
+
+            new DynamicDatepickerModel({id: "testDatepicker", value: new Date()}),
         ];
     });
 
@@ -151,6 +154,7 @@ describe("DynamicFormService test suite", () => {
 
         expect(formGroup.get("testCheckbox") instanceof FormControl).toBe(true);
         expect(formGroup.get("testCheckboxGroup") instanceof FormGroup).toBe(true);
+        expect(formGroup.get("testDatepicker") instanceof FormControl).toBe(true);
         expect(formGroup.get("testFormArray") instanceof FormArray).toBe(true);
         expect(formGroup.get("testInput") instanceof FormControl).toBe(true);
         expect(formGroup.get("testRadioGroup") instanceof FormControl).toBe(true);
@@ -161,7 +165,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should parse dynamic form JSON correctly", () => {
 
-        let json = JSON.parse(JSON.stringify(testModel)),
+        let json = JSON.stringify(testModel),
             formModel;
 
         expect(service.fromJSON).toBeDefined();
@@ -181,6 +185,8 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[7] instanceof DynamicFormGroupModel).toBe(true);
         expect(formModel[8] instanceof DynamicSliderModel).toBe(true);
         expect(formModel[9] instanceof DynamicSwitchModel).toBe(true);
+        expect(formModel[10] instanceof DynamicDatepickerModel).toBe(true);
+        expect(formModel[10].value instanceof Date).toBe(true);
     });
 
 
@@ -196,6 +202,7 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById).toBeDefined();
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("testDatepicker", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testFormArray", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testInput", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testRadioGroup", testModel) instanceof DynamicFormControlModel).toBe(true);

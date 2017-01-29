@@ -45,7 +45,7 @@ export class DynamicFormService {
 
         let regexISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return value === "string" && regexISO.test(value) ? new Date(value) : value;
+        return typeof value === "string" && regexISO.test(value) ? new Date(value) : value;
     }
 
 
