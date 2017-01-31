@@ -20,9 +20,11 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
             "@angular/router": "ng.router",
             "@ng2-dynamic-forms/core": "ng2DF.core",
+            "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs", // TODO
             "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "ng-semantic": "ng-semantic", // TODO
+            "primeng/components/calendar/calendar": "primeng/components/calendar/calendar",
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
             "primeng/components/inputswitch/inputswitch": "primeng/components/inputswitch/inputswitch",

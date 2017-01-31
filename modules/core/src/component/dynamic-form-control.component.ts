@@ -14,7 +14,7 @@ import { isDefined } from "../utils";
 
 export interface DynamicFormControlEvent {
 
-    $event: Event | FocusEvent | any;
+    $event: Event | FocusEvent | DynamicFormControlEvent | any;
     control: FormControl;
     model: DynamicFormControlModel;
 }
@@ -34,7 +34,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     template: TemplateRef<any>;
     templates: QueryList<any>;
 
-    private subscriptions: Array<Subscription> = [];
+    private subscriptions: Subscription[] = [];
 
     abstract readonly type: string;
 
@@ -46,14 +46,14 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
             throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
         }
 
-        this.control = <FormControl> this.controlGroup.get(this.model.id);
+        this.control = this.controlGroup.get(this.model.id) as FormControl;
 
         this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
         this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
+            let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
             this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
         }
@@ -71,7 +71,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
-    get errorMessages(): Array<string> {
+    get errorMessages(): string[] {
 
         let messages = [];
 
@@ -164,7 +164,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = <DynamicFormValueControlModel<DynamicFormControlValue>> this.model;
+            let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
             if (model.value !== value) {
                 model.valueUpdates.next(value);
@@ -183,7 +183,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         value ? this.control.disable() : this.control.enable();
     }
 
-    onValueChange($event: Event |  DynamicFormControlEvent): void {
+    onValueChange($event: Event |  DynamicFormControlEvent | any): void {
 
         if ($event instanceof Event) { // native HTML5 change event
 
@@ -191,7 +191,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
-                let model = <DynamicInputModel> this.model;
+                let model = this.model as DynamicInputModel;
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
                     model.files = $event.srcElement["files"];
@@ -200,13 +200,13 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
             this.change.emit({$event: $event as Event, control: this.control, model: this.model});
 
-        } else if ($event.hasOwnProperty("source") || $event.hasOwnProperty("originalEvent")) { // Material 2 and PrimeNG change event
+        } else if ($event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
 
-            this.change.emit({$event: $event, control: this.control, model: this.model});
+            this.change.emit($event as DynamicFormControlEvent);
 
         } else {
 
-            this.change.emit($event as DynamicFormControlEvent);
+            this.change.emit({$event: $event, control: this.control, model: this.model});
         }
     }
 
@@ -221,7 +221,8 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
             this[$event.type].emit({$event: $event, control: this.control, model: this.model});
 
         } else {
-            this[(<FocusEvent> (<DynamicFormControlEvent> $event).$event).type].emit($event);
+
+            this[(($event as DynamicFormControlEvent).$event as FocusEvent).type].emit($event);
         }
     }
 }

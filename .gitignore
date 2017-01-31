@@ -3,6 +3,7 @@
 npm-debug.log
 
 coverage/
+dist/
 docs/
 @ng2-dynamic-forms/
 

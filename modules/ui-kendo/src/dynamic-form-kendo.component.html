@@ -49,6 +49,7 @@
     <kendo-autocomplete *ngIf="model.type === 'INPUT' && !model.mask && model.inputType !== 'number'"
                         [data]="model.list"
                         [disabled]="model.disabled"
+                        [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                         [placeholder]="model.placeholder"
@@ -59,6 +60,7 @@
 
     <kendo-maskedtextbox *ngIf="model.type === 'INPUT' && model.mask && model.inputType !== 'number'"
                          [disabled]="model.disabled"
+                         [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [mask]="model.mask"
                          [maskValidation]="true"
@@ -71,6 +73,7 @@
     <kendo-numerictextbox *ngIf="model.type === 'INPUT' && !model.mask && model.inputType === 'number'"
                           [autoCorrect]="model.autoComplete"
                           [disabled]="model.disabled"
+                          [dynamicId]="bindId && model.id"
                           [formControlName]="model.id"
                           [max]="model.max"
                           [min]="model.min"
@@ -82,9 +85,20 @@
                           (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
+    <kendo-calendar *ngIf="model.type === 'DATEPICKER' && model.inline"
+                    [disabled]="model.disabled"
+                    [dynamicId]="bindId && model.id"
+                    [focusedDate]="model.focusedDate"
+                    [formControlName]="model.id"
+                    [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                    [rangeValidation]="true"
+                    (valueChange)="onValueChange($event)"></kendo-calendar>
+
+
     <kendo-dropdownlist *ngIf="model.type === 'SELECT' && !model.multiple"
                         [data]="model.options"
                         [disabled]="model.disabled"
+                        [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                         [textField]="'label'"
@@ -98,6 +112,7 @@
     <kendo-multiselect *ngIf="model.type === 'SELECT' && model.multiple"
                        [data]="model.options"
                        [disabled]="model.disabled"
+                       [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                        [placeholder]="model.placeholder"
@@ -111,6 +126,7 @@
 
     <kendo-slider *ngIf="model.type === 'SLIDER'"
                   [disabled]="model.disabled"
+                  [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
                   [min]="model.min"
                   [max]="model.max"
@@ -124,6 +140,7 @@
     <kendo-switch *ngIf="model.type === 'SWITCH'"
                   [checked]="model.checked"
                   [disabled]="model.disabled"
+                  [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
                   [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   [offLabel]="model.offLabel"

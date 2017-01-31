@@ -33,8 +33,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     value: "option-4"
                 }
             ],
-            placeholder: "Select an option",
-            value: "option-3"
+            placeholder: "Select an option"
         }
     ),
 
@@ -117,7 +116,8 @@ export const MATERIAL_EXAMPLE_MODEL = [
         min: 0,
         max: 10,
         step: 1,
-        value: 3
+        value: 3,
+        vertical: false
     }),
 
     new DynamicTextAreaModel({

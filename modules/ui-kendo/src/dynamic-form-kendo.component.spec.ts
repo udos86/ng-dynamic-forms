@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { Type, DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
 import {
@@ -28,6 +29,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
             imports: [
                 ReactiveFormsModule,
+                DateInputsModule,
                 DropDownsModule,
                 InputsModule,
                 DynamicFormsCoreModule.forRoot()

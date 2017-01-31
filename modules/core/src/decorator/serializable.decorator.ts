@@ -15,7 +15,7 @@ export function serializable(name?: string): (target, key) => void {
     };
 }
 
-export function getSerializables(target): Array<SerializableProperty> {
+export function getSerializables(target): SerializableProperty[] {
 
     let serializables = [];
 
