@@ -791,10 +791,8 @@ restoreForm() {
     let json: string;
     
     // ...load JSON from localStorage or server
-
-    let parsedJSON: Array<Object> = JSON.parse(json);
     
-    this.formModel = this.formService.fromJSON(parsedJSON);
+    this.formModel = this.formService.fromJSON(json);
 }
 ```
 

@@ -1,3 +1,13 @@
+# 1.3.10
+
+### **Features** 
+
+* initial addition of date control models
+* initial support for `Calendar` in `ui-kendo` and `ui-primeng`
+* `fromJSON(json: string | Object[])` function refactored to accept raw JSON strings and to revive `Date` objects
+* update to Angular `2.4.5`
+
+
 # 1.3.9
 
 ### **Features** 

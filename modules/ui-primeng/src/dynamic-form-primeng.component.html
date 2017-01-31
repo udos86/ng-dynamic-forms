@@ -114,13 +114,14 @@
 
 
             <p-calendar *ngIf="model.type === 'DATEPICKER'"
+                        [defaultDate]="model.focusedDate"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
+                        [inline]="model.inline"
                         [maxDate]="model.max"
                         [minDate]="model.min"
                         [monthNavigator]="false"
                         [ngClass]="model.cls.element.control"
-                        [placeholder]="model.placeholder"
                         [showIcon]="false"
                         [yearNavigator]="false"></p-calendar>
 

@@ -7,11 +7,13 @@ export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 
 export interface DynamicDatepickerModelConfig extends DynamicDateControlModelConfig {
 
+    focusedDate?: Date;
     inline?: boolean;
 }
 
 export class DynamicDatepickerModel extends DynamicDateControlModel {
 
+    @serializable() focusedDate: Date | null;
     @serializable() inline: boolean;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
@@ -20,6 +22,7 @@ export class DynamicDatepickerModel extends DynamicDateControlModel {
 
         super(config, cls);
 
+        this.focusedDate = getValue(config, "focusedDate", null);
         this.inline = getValue(config, "inline", false);
     }
 }

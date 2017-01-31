@@ -5,14 +5,12 @@ import { getValue } from "../utils";
 
 export interface DynamicDateControlModelConfig extends DynamicFormValueControlModelConfig<Date> {
 
-    focusedDate?: Date;
     max?: Date;
     min?: Date;
 }
 
 export abstract class DynamicDateControlModel extends DynamicFormValueControlModel<Date> {
 
-    @serializable() focusedDate: Date | null;
     @serializable() max: Date | null;
     @serializable() min: Date | null;
 
@@ -20,7 +18,6 @@ export abstract class DynamicDateControlModel extends DynamicFormValueControlMod
 
         super(config, cls);
 
-        this.focusedDate = getValue(config, "focusedDate", null);
         this.max = getValue(config, "max", null);
         this.min = getValue(config, "min", null);
     }
