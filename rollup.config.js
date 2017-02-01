@@ -7,7 +7,7 @@ export default {
 
     entry: "example/app/main.jit.js",
 
-    dest: "example/dist/build.js", // output a single application bundle
+    dest: "example/dist/bundle.js", // output a single application bundle
 
     sourceMap: false,
 
