@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
+    <label *ngIf="!(model.type === 'CHECKBOX') && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
@@ -91,7 +91,7 @@
            (change)="onValueChange($event)"
            (focus)="onFocusChange($event)"/>
 
-    <datalist *ngIf="model.list" [id]="model.listId">
+    <datalist *ngIf="hasList" [id]="model.listId">
 
         <option *ngFor="let option of model.list" [value]="option">
 
@@ -159,7 +159,11 @@
               (focus)="onFocusChange($event)"></textarea>
 
 
-    <div *ngIf="model.hint" [ngClass]="model.cls.element.hint"><span [innerHTML]="model.hint"></span></div>
+    <div *ngIf="hasHint" [ngClass]="model.cls.element.hint">
+
+        <span [innerHTML]="model.hint"></span>
+
+    </div>
 
 
     <ul *ngIf="hasErrorMessaging"

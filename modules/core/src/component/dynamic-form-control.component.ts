@@ -113,6 +113,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return messages;
     }
 
+    get hasHint(): boolean { // needed for AOT
+        return (this.model as DynamicInputModel).hint !== null;
+    }
+
     get showErrorMessages(): boolean {
         return this.control.touched && !this.hasFocus && this.isInvalid;
     }

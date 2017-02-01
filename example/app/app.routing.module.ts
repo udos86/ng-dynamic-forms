@@ -2,10 +2,10 @@ import { RouterModule, Route } from "@angular/router";
 import { BasicExampleComponent } from "./basic/basic-example.component";
 import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.component";
 import { FoundationExampleComponent } from "./foundation/foundation-example.component";
-import { KendoExampleComponent } from "./kendo/kendo-example.component";
+//import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
-import { SemanticExampleComponent } from "./semantic/semantic-example.component";
+//import { SemanticExampleComponent } from "./semantic/semantic-example.component";
 import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Array<Route> = [
@@ -50,7 +50,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#009688"
         }
     },
-
+    /*
     {
         path: "example-kendo",
         component: KendoExampleComponent,
@@ -60,7 +60,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#ff5747"
         }
     },
-
+    */
     {
         path: "example-primeng",
         component: PrimeNGExampleComponent,

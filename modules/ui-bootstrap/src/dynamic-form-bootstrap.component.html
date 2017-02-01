@@ -3,7 +3,7 @@
      [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
+    <label *ngIf="!(model.type === 'CHECKBOX') && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
