@@ -4,22 +4,21 @@
   "description": "A rapid form development library for Angular 2.x and higher",
   "scripts": {
     "aot:example": "ngc -p tsconfig.aot.json",
-    "bundle:example": "rollup -c rollup.config.js",
+    "bundle:example": "webpack --config ./webpack.config.js",
     "build:modules": "gulp build:modules",
     "ci:build": "gulp build:modules",
     "ci:test": "karma start karma.config.js --single-run",
     "ci:tsc": "tsc && echo ok || echo not ok",
     "gulp": "gulp",
     "karma": "karma start karma.config.js",
-    "start": "lite-server -c browsersync.config.js",
+    "start": "tsc && lite-server -c browsersync.config.js",
     "tests:e2e": "protractor protractor.config.js",
     "tests:unit": "karma start karma.config.js --single-run",
     "tsc": "tsc -watch",
     "tslint": "tslint -c ./tslint.json",
     "watch": "gulp watch:modules",
     "webdriver:start": "webdriver-manager start",
-    "webdriver:update": "webdriver-manager update",
-    "webpack": "webpack --config ./webpack.config.js"
+    "webdriver:update": "webdriver-manager update"
   },
   "repository": {
     "type": "git",
