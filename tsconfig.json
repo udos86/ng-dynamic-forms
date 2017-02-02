@@ -27,6 +27,7 @@
   "exclude": [
     "@ng2-dynamic-forms",
     "example/aot",
+    "example/dist",
     "modules",
     "node_modules"
   ]

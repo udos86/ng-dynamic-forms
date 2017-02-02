@@ -5,7 +5,7 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <div *ngIf="model.type === 'ARRAY'"
+    <div *ngIf="controlType === 4"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="model.cls.element.control">
@@ -28,7 +28,7 @@
     </div>
 
 
-    <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
+    <fieldset *ngIf="controlType === 5"
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
@@ -46,7 +46,7 @@
     </fieldset>
 
 
-    <kendo-autocomplete *ngIf="model.type === 'INPUT' && !model.mask && model.inputType !== 'number'"
+    <kendo-autocomplete *ngIf="controlType === 1"
                         [data]="model.list"
                         [disabled]="model.disabled"
                         [dynamicId]="bindId && model.id"
@@ -58,7 +58,7 @@
                         (valueChange)="onValueChange($event)"></kendo-autocomplete>
 
 
-    <kendo-maskedtextbox *ngIf="model.type === 'INPUT' && model.mask && model.inputType !== 'number'"
+    <kendo-maskedtextbox *ngIf="controlType === 6"
                          [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
@@ -70,7 +70,7 @@
                          (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
-    <kendo-numerictextbox *ngIf="model.type === 'INPUT' && !model.mask && model.inputType === 'number'"
+    <kendo-numerictextbox *ngIf="controlType === 8"
                           [autoCorrect]="model.autoComplete"
                           [disabled]="model.disabled"
                           [dynamicId]="bindId && model.id"
@@ -85,7 +85,7 @@
                           (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-    <kendo-calendar *ngIf="model.type === 'DATEPICKER' && model.inline"
+    <kendo-calendar *ngIf="controlType === 2"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [focusedDate]="model.focusedDate"
@@ -95,7 +95,7 @@
                     (valueChange)="onValueChange($event)"></kendo-calendar>
 
 
-    <kendo-dropdownlist *ngIf="model.type === 'SELECT' && !model.multiple"
+    <kendo-dropdownlist *ngIf="controlType === 3"
                         [data]="model.options"
                         [disabled]="model.disabled"
                         [dynamicId]="bindId && model.id"
@@ -109,7 +109,7 @@
                         (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 
-    <kendo-multiselect *ngIf="model.type === 'SELECT' && model.multiple"
+    <kendo-multiselect *ngIf="controlType === 7"
                        [data]="model.options"
                        [disabled]="model.disabled"
                        [dynamicId]="bindId && model.id"
@@ -124,7 +124,7 @@
                        (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
-    <kendo-slider *ngIf="model.type === 'SLIDER'"
+    <kendo-slider *ngIf="controlType === 9"
                   [disabled]="model.disabled"
                   [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
@@ -137,7 +137,7 @@
                   (valueChange)="onValueChange($event)"></kendo-slider>
 
 
-    <kendo-switch *ngIf="model.type === 'SWITCH'"
+    <kendo-switch *ngIf="controlType === 10"
                   [checked]="model.checked"
                   [disabled]="model.disabled"
                   [dynamicId]="bindId && model.id"
@@ -147,7 +147,7 @@
                   [onLabel]="model.onLabel"
                   (valueChange)="onValueChange($event)"></kendo-switch>
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="controlType !== 4" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 
