@@ -5,7 +5,7 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-container [ngSwitch]="kendoFormControlType">
+    <ng-container [ngSwitch]="formControlType">
 
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
@@ -154,8 +154,7 @@
     </ng-container>
 
 
-    <template *ngIf="kendoFormControlType !== 4" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
-
+    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

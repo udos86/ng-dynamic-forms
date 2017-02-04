@@ -1,12 +1,12 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="model.type !== 'CHECKBOX' && model.label !== null"
+    <label *ngIf="formControlType !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <ng-container [ngSwitch]="mdFormControlType">
+    <ng-container [ngSwitch]="formControlType">
 
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
@@ -199,8 +199,7 @@
     </md-list>
 
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
-
+    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

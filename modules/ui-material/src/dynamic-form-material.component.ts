@@ -69,7 +69,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
         return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
     }
 
-    get mdFormControlType(): MdFormControlType | null {
+    get formControlType(): MdFormControlType | null {
 
         switch (this.model.type) {
 

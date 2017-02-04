@@ -109,7 +109,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             .forEach(template => this.setKendoTemplateDirective(template));
     }
 
-    get kendoFormControlType(): KendoFormControlType | null {
+    get formControlType(): KendoFormControlType | null {
 
         let model;
 
