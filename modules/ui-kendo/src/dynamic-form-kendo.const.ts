@@ -1,5 +1,19 @@
 export const DYNAMIC_FORM_UI_KENDO = "KENDO";
 
+export const enum KendoFormControlType {
+
+    Array = 1,
+    AutoComplete = 2,
+    Calendar = 3,
+    DropDownList = 4,
+    Group = 5,
+    MaskedTextBox = 6,
+    MultiSelect = 7,
+    NumericTextBox = 8,
+    Slider = 9,
+    Switch = 10
+}
+
 export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
 
     footerTemplate: "kendoAutoCompleteFooterTemplate",
@@ -30,17 +44,3 @@ export const KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES = {
     noDataTemplate: "kendoMultiSelectNoDataTemplate",
     tagTemplate: "kendoMultiSelectTagTemplate"
 };
-
-export enum KendoFormControlType {
-
-    Array = 1,
-    AutoComplete = 2,
-    Calendar = 3,
-    DropDownList = 4,
-    Group = 5,
-    MaskedTextBox = 6,
-    MultiSelect = 7,
-    NumericTextBox = 8,
-    Slider = 9,
-    Switch = 10
-}

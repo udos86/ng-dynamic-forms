@@ -1,6 +1,6 @@
 export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
-export enum MdFormControlType {
+export const enum MdFormControlType {
 
     Array = 1,
     Checkbox = 2,

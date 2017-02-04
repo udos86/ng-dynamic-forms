@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <div *ngIf="!(model.type === 'CHECKBOX') && model.label !== null"
+    <div *ngIf="formControlType !== 2 && model.label !== null"
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
@@ -12,189 +12,196 @@
 
     <div [ngClass]="model.cls.grid.control">
 
-        <div *ngIf="model.type === 'ARRAY'"
-             [dynamicId]="bindId && model.id"
-             [formArrayName]="model.id"
-             [ngClass]="model.cls.element.control">
+        <ng-container [ngSwitch]="formControlType">
 
-            <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+            <div *ngSwitchCase="1"
+                 [dynamicId]="bindId && model.id"
+                 [formArrayName]="model.id"
+                 [ngClass]="model.cls.element.control">
 
-                <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
-                                                       [bindId]="false"
-                                                       [controlGroup]="control.at(idx)"
+                <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+
+                    <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
+                                                           [bindId]="false"
+                                                           [controlGroup]="control.at(idx)"
+                                                           [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                           [model]="controlModel"
+                                                           [nestedTemplates]="templates"
+                                                           (blur)="onFocusChange($event)"
+                                                           (change)="onValueChange($event)"
+                                                           (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
+
+                    <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+
+                </fieldset>
+
+            </div>
+
+
+            <label *ngSwitchCase="2">
+
+                <input type="checkbox"
+                       [attr.tabindex]="model.tabIndex"
+                       [checked]="model.checked"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [required]="model.required"
+                       [value]="model.value"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/><span
+                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"
+                    [innerHTML]="model.label"></span></label>
+
+
+            <fieldset *ngSwitchCase="3"
+                      [dynamicId]="bindId && model.id"
+                      [formGroupName]="model.id"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control">
+
+                <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+                <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
+                                                       [controlGroup]="control"
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
                                                        [nestedTemplates]="templates"
                                                        (blur)="onFocusChange($event)"
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
+            </fieldset>
 
-                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+
+            <div *ngSwitchCase="4" class="input-group">
+
+                <span *ngIf="model.prefix" class="input-group-label" [innerHTML]="model.prefix"></span>
+
+                <input class="input-group-field"
+                       [attr.accept]="model.accept"
+                       [attr.autoComplete]="model.autoComplete"
+                       [attr.list]="model.listId"
+                       [attr.max]="model.max"
+                       [attr.min]="model.min"
+                       [attr.multiple]="model.multiple"
+                       [attr.step]="model.step"
+                       [attr.tabindex]="model.tabIndex"
+                       [autofocus]="model.autoFocus"
+                       [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [maxlength]="model.maxLength"
+                       [minlength]="model.minLength"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [pattern]="model.pattern"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required"
+                       [spellcheck]="model.spellCheck"
+                       [type]="model.inputType"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
+
+                <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
+
+                <datalist *ngIf="model.list" [id]="model.listId">
+
+                    <option *ngFor="let option of model.list" [value]="option">
+
+                </datalist>
+
+            </div>
+
+
+            <fieldset *ngSwitchCase="5" role="radiogroup"
+                      [attr.tabindex]="model.tabIndex"
+                      [dynamicId]="bindId && model.id"
+                      [name]="model.name"
+                      (change)="onValueChange($event)">
+
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+                <label *ngFor="let option of model.options">
+
+                    <input type="radio"
+                           [formControlName]="model.id"
+                           [name]="model.name"
+                           [ngClass]="model.cls.element.control"
+                           [value]="option.value"
+                           (blur)="onFocusChange($event)"
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
             </fieldset>
 
-        </div>
+
+            <select *ngSwitchCase="6"
+                    [attr.tabindex]="model.tabIndex"
+                    [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    [name]="model.name"
+                    [ngClass]="model.cls.element.control"
+                    [required]="model.required"
+                    (blur)="onFocusChange($event)"
+                    (change)="onValueChange($event)"
+                    (focus)="onFocusChange($event)">
+
+                <option *ngFor="let option of model.options"
+                        [attr.name]="model.name"
+                        [ngValue]="option.value">{{option.label}}
+                </option>
+
+            </select>
 
 
-        <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
-                  [dynamicId]="bindId && model.id"
-                  [formGroupName]="model.id"
-                  [name]="model.name"
-                  [ngClass]="model.cls.element.control">
+            <div *ngSwitchCase="7" class="switch" [ngClass]="model.cls.element.control">
 
-            <legend *ngIf="model.legend">{{model.legend}}</legend>
-
-            <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
-                                                   [controlGroup]="control"
-                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                   [model]="controlModel"
-                                                   [nestedTemplates]="templates"
-                                                   (blur)="onFocusChange($event)"
-                                                   (change)="onValueChange($event)"
-                                                   (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
-        </fieldset>
-
-
-        <label *ngIf="model.type === 'CHECKBOX'">
-
-            <input type="checkbox"
-                   [attr.tabindex]="model.tabIndex"
-                   [checked]="model.checked"
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [name]="model.name"
-                   [ngClass]="model.cls.element.control"
-                   [required]="model.required"
-                   [value]="model.value"
-                   (blur)="onFocusChange($event)"
-                   (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/><span [ngClass]="[model.cls.element.label, model.cls.grid.label]" [innerHTML]="model.label"></span></label>
-
-
-        <div *ngIf="model.type === 'INPUT'" class="input-group">
-
-            <span *ngIf="model.prefix" class="input-group-label" [innerHTML]="model.prefix"></span>
-
-            <input class="input-group-field"
-                   [attr.accept]="model.accept"
-                   [attr.autoComplete]="model.autoComplete"
-                   [attr.list]="model.listId"
-                   [attr.max]="model.max"
-                   [attr.min]="model.min"
-                   [attr.multiple]="model.multiple"
-                   [attr.step]="model.step"
-                   [attr.tabindex]="model.tabIndex"
-                   [autofocus]="model.autoFocus"
-                   [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [maxlength]="model.maxLength"
-                   [minlength]="model.minLength"
-                   [name]="model.name"
-                   [ngClass]="model.cls.element.control"
-                   [pattern]="model.pattern"
-                   [placeholder]="model.placeholder"
-                   [readonly]="model.readOnly"
-                   [required]="model.required"
-                   [spellcheck]="model.spellCheck"
-                   [type]="model.inputType"
-                   (blur)="onFocusChange($event)"
-                   (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
-
-            <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
-
-            <datalist *ngIf="model.list" [id]="model.listId">
-
-                <option *ngFor="let option of model.list" [value]="option">
-
-            </datalist>
-
-        </div>
-
-
-        <fieldset *ngIf="model.type === 'RADIO_GROUP'" role="radiogroup"
-                  [attr.tabindex]="model.tabIndex"
-                  [dynamicId]="bindId && model.id"
-                  [name]="model.name"
-                  (change)="onValueChange($event)">
-
-            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-            <label *ngFor="let option of model.options">
-
-                <input type="radio"
+                <input type="checkbox" class="switch-input"
+                       [attr.tabindex]="model.tabIndex"
+                       [checked]="model.checked"
+                       [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [name]="model.name"
-                       [ngClass]="model.cls.element.control"
-                       [value]="option.value"
+                       [required]="model.required"
+                       [value]="model.value"
                        (blur)="onFocusChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
 
-        </fieldset>
+                <label class="switch-paddle" [attr.for]="model.id">
 
+                    <span class="switch-active" aria-hidden="true">{{model.onLabel}}</span>
+                    <span class="switch-inactive" aria-hidden="true">{{model.offLabel}}</span>
 
-        <select *ngIf="model.type === 'SELECT'"
-                [attr.tabindex]="model.tabIndex"
-                [dynamicId]="bindId && model.id"
-                [formControlName]="model.id"
-                [name]="model.name"
-                [ngClass]="model.cls.element.control"
-                [required]="model.required"
-                (blur)="onFocusChange($event)"
-                (change)="onValueChange($event)"
-                (focus)="onFocusChange($event)">
+                </label>
 
-            <option *ngFor="let option of model.options"
-                    [attr.name]="model.name"
-                    [ngValue]="option.value">{{option.label}}</option>
-
-        </select>
+            </div>
 
 
-        <div *ngIf="model.type === 'SWITCH'" class="switch" [ngClass]="model.cls.element.control">
+            <textarea *ngSwitchCase="8"
+                      [attr.tabindex]="model.tabIndex"
+                      [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
+                      [cols]="model.cols"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [maxlength]="model.maxLength"
+                      [minlength]="model.minLength"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readOnly"
+                      [required]="model.required"
+                      [rows]="model.rows"
+                      [spellcheck]="model.spellCheck"
+                      [wrap]="model.wrap"
+                      (blur)="onFocusChange($event)"
+                      (change)="onValueChange($event)"
+                      (focus)="onFocusChange($event)"></textarea>
 
-            <input type="checkbox" class="switch-input"
-                   [attr.tabindex]="model.tabIndex"
-                   [checked]="model.checked"
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [name]="model.name"
-                   [required]="model.required"
-                   [value]="model.value"
-                   (blur)="onFocusChange($event)"
-                   (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
-
-            <label class="switch-paddle" [attr.for]="model.id">
-
-                <span class="switch-active" aria-hidden="true">{{model.onLabel}}</span>
-                <span class="switch-inactive" aria-hidden="true">{{model.offLabel}}</span>
-
-            </label>
-
-        </div>
-
-
-        <textarea *ngIf="model.type === 'TEXTAREA'"
-                  [attr.tabindex]="model.tabIndex"
-                  [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
-                  [cols]="model.cols"
-                  [dynamicId]="bindId && model.id"
-                  [formControlName]="model.id"
-                  [maxlength]="model.maxLength"
-                  [minlength]="model.minLength"
-                  [name]="model.name"
-                  [ngClass]="model.cls.element.control"
-                  [placeholder]="model.placeholder"
-                  [readonly]="model.readOnly"
-                  [required]="model.required"
-                  [rows]="model.rows"
-                  [spellcheck]="model.spellCheck"
-                  [wrap]="model.wrap"
-                  (blur)="onFocusChange($event)"
-                  (change)="onValueChange($event)"
-                  (focus)="onFocusChange($event)"></textarea>
+        </ng-container>
 
         <p *ngIf="hasHint" class="help-text" [ngClass]="model.cls.element.hint" [innerHTML]="model.hint"></p>
 
@@ -203,11 +210,13 @@
     <ul *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <li *ngFor="let message of errorMessages" class="form-error"
-            [class.is-visible]="showErrorMessages">{{message}}</li>
+            [class.is-visible]="showErrorMessages">{{message}}
+        </li>
 
     </ul>
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+
+    <template *ngIf="formControlType !== 1"  [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 
