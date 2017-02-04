@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
@@ -13,53 +13,15 @@ import {
     DynamicSelectModel,
     DynamicDatepickerModel
 } from "@ng2-dynamic-forms/core";
+import {
+    KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
+    KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
+    KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
+    KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
+    KendoFormControlType
+} from "./dynamic-form-kendo.const";
 
 export const DYNAMIC_FORM_UI_KENDO = "KENDO";
-
-export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
-
-    footerTemplate: "kendoAutoCompleteFooterTemplate",
-    headerTemplate: "kendoAutoCompleteHeaderTemplate",
-    itemTemplate: "kendoAutoCompleteItemTemplate",
-    noDataTemplate: "kendoAutoCompleteNoDataTemplate"
-};
-
-export const KENDO_CALENDAR_TEMPLATE_DIRECTIVES = {
-
-    cellTemplate: "kendoCalendarCellTemplate"
-};
-
-export const KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES = {
-
-    footerTemplate: "kendoDropDownListFooterTemplate",
-    headerTemplate: "kendoDropDownListHeaderTemplate",
-    itemTemplate: "kendoDropDownListItemTemplate",
-    noDataTemplate: "kendoDropDownListNoDataTemplate",
-    valueTemplate: "kendoDropDownListValueTemplate"
-};
-
-export const KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES = {
-
-    footerTemplate: "kendoMultiSelectFooterTemplate",
-    headerTemplate: "kendoMultiSelectHeaderTemplate",
-    itemTemplate: "kendoMultiSelectItemTemplate",
-    noDataTemplate: "kendoMultiSelectNoDataTemplate",
-    tagTemplate: "kendoMultiSelectTagTemplate"
-};
-
-export enum KendoFormControlType {
-
-    AutoComplete = 1,
-    Calendar = 2,
-    DropDownList = 3,
-    FormArray = 4,
-    FormGroup = 5,
-    MaskedTextBox = 6,
-    MultiSelect = 7,
-    NumericTextBox = 8,
-    Slider = 9,
-    Switch = 10
-}
 
 @Component({
 
@@ -68,7 +30,7 @@ export enum KendoFormControlType {
     templateUrl: "./dynamic-form-kendo.component.html"
 })
 
-export class DynamicFormKendoComponent extends DynamicFormControlComponent implements OnInit{
+export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
@@ -81,28 +43,19 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
-    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent;
-    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent;
-    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent;
-    @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox;
-    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent;
-    @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox;
-    @ViewChild(Slider) kendoSlider: Slider;
-    @ViewChild(Switch) kendoSwitch: Switch;
-
-    private controlType: Number;
+    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | null;
+    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | null;
+    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | null;
+    @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox | null;
+    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | null;
+    @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox | null;
+    @ViewChild(Slider) kendoSlider: Slider | null;
+    @ViewChild(Switch) kendoSwitch: Switch | null;
 
     readonly type: string = DYNAMIC_FORM_UI_KENDO;
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
-    }
-
-    ngOnInit(): void {
-
-        super.ngOnInit();
-
-        this.controlType = this.kendoFormControlType;
     }
 
     protected setKendoTemplateDirective(template: DynamicTemplateDirective): void {

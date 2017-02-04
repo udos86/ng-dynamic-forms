@@ -11,6 +11,20 @@ import {
 
 export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
 
+export enum MdFormControlType {
+
+    Checkbox = 1,
+    FormArray = 2,
+    FormGroup = 3,
+    Input = 4,
+    RadioGroup = 5,
+    Select = 6,
+    Slider = 7,
+    SlideToggle = 8,
+    Switch = 9,
+    TextArea = 10
+}
+
 @Component({
 
     moduleId: module.id,
@@ -43,12 +57,12 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
-    @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
-    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer;
-    @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
-    @ViewChild(MdSelect) mdSelect: MdSelect;
-    @ViewChild(MdSlider) mdSlider: MdSlider;
-    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle;
+    @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
+    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;
+    @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup | null;
+    @ViewChild(MdSelect) mdSelect: MdSelect | null;
+    @ViewChild(MdSlider) mdSlider: MdSlider | null;
+    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle | null;
 
     readonly type: string = DYNAMIC_FORM_UI_MATERIAL;
 
@@ -58,5 +72,10 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     get characterCount(): number | null {
         return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
+    }
+
+    get MdFormControlType(): MdFormControlType | null {
+
+        return null;
     }
 }
