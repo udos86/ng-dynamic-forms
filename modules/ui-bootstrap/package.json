@@ -27,6 +27,9 @@
     "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
   },
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
+  "dependencies": {
+    "ng2-datetime-picker": "^0.12.1"
+  },
   "peerDependencies": {
     "@angular/core": "^2.4.5",
     "@angular/forms": "^2.4.5",

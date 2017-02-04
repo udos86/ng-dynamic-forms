@@ -33,6 +33,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     nestedTemplates: QueryList<any>;
     template: TemplateRef<any>;
     templates: QueryList<any>;
+    keydown: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
 
@@ -223,6 +224,18 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         } else {
 
             this[(($event as DynamicFormControlEvent).$event as FocusEvent).type].emit($event);
+        }
+    }
+
+    onKeydown($event: KeyboardEvent |  DynamicFormControlEvent): void {
+        if ($event instanceof KeyboardEvent) {
+
+            $event.stopPropagation();
+
+            this.keydown.emit({$event: $event, control: this.control, model: this.model});
+
+        } else {
+            this.keydown.emit($event as DynamicFormControlEvent);
         }
     }
 }
