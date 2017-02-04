@@ -7,7 +7,7 @@
 
     <ng-container [ngSwitch]="kendoFormControlType">
 
-        <div *ngSwitchCase="4"
+        <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
@@ -30,6 +30,44 @@
         </div>
 
 
+        <kendo-autocomplete *ngSwitchCase="2"
+                            [data]="model.list"
+                            [disabled]="model.disabled"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [placeholder]="model.placeholder"
+                            (blur)="onFocusChange($event)"
+                            (focus)="onFocusChange($event)"
+                            (valueChange)="onValueChange($event)"></kendo-autocomplete>
+
+
+        <kendo-calendar *ngSwitchCase="3"
+                        [disabled]="model.disabled"
+                        [dynamicId]="bindId && model.id"
+                        [focusedDate]="model.focusedDate"
+                        [formControlName]="model.id"
+                        [max]="model.max"
+                        [min]="model.min"
+                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                        [rangeValidation]="true"
+                        (valueChange)="onValueChange($event)"></kendo-calendar>
+
+
+        <kendo-dropdownlist *ngSwitchCase="4"
+                            [data]="model.options"
+                            [disabled]="model.disabled"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [textField]="'label'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            (blur)="onFocusChange($event)"
+                            (focus)="onFocusChange($event)"
+                            (valueChange)="onValueChange($event)"></kendo-dropdownlist>
+
+
         <fieldset *ngSwitchCase="5"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
@@ -48,18 +86,6 @@
         </fieldset>
 
 
-        <kendo-autocomplete *ngSwitchCase="1"
-                            [data]="model.list"
-                            [disabled]="model.disabled"
-                            [dynamicId]="bindId && model.id"
-                            [formControlName]="model.id"
-                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                            [placeholder]="model.placeholder"
-                            (blur)="onFocusChange($event)"
-                            (focus)="onFocusChange($event)"
-                            (valueChange)="onValueChange($event)"></kendo-autocomplete>
-
-
         <kendo-maskedtextbox *ngSwitchCase="6"
                              [disabled]="model.disabled"
                              [dynamicId]="bindId && model.id"
@@ -70,47 +96,6 @@
                              (blur)="onFocusChange($event)"
                              (focus)="onFocusChange($event)"
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
-
-
-        <kendo-numerictextbox *ngSwitchCase="8"
-                              [autoCorrect]="model.autoComplete"
-                              [disabled]="model.disabled"
-                              [dynamicId]="bindId && model.id"
-                              [formControlName]="model.id"
-                              [max]="model.max"
-                              [min]="model.min"
-                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                              [spinners]="true"
-                              [step]="model.step"
-                              (blur)="onFocusChange($event)"
-                              (focus)="onFocusChange($event)"
-                              (valueChange)="onValueChange($event)"></kendo-numerictextbox>
-
-
-        <kendo-calendar *ngSwitchCase="2"
-                        [disabled]="model.disabled"
-                        [dynamicId]="bindId && model.id"
-                        [focusedDate]="model.focusedDate"
-                        [formControlName]="model.id"
-                        [max]="model.max"
-                        [min]="model.min"
-                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                        [rangeValidation]="true"
-                        (valueChange)="onValueChange($event)"></kendo-calendar>
-
-
-        <kendo-dropdownlist *ngSwitchCase="3"
-                            [data]="model.options"
-                            [disabled]="model.disabled"
-                            [dynamicId]="bindId && model.id"
-                            [formControlName]="model.id"
-                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                            [textField]="'label'"
-                            [valueField]="'value'"
-                            [valuePrimitive]="true"
-                            (blur)="onFocusChange($event)"
-                            (focus)="onFocusChange($event)"
-                            (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 
         <kendo-multiselect *ngSwitchCase="7"
@@ -126,6 +111,21 @@
                            (blur)="onFocusChange($event)"
                            (focus)="onFocusChange($event)"
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
+
+
+        <kendo-numerictextbox *ngSwitchCase="8"
+                              [autoCorrect]="model.autoComplete"
+                              [disabled]="model.disabled"
+                              [dynamicId]="bindId && model.id"
+                              [formControlName]="model.id"
+                              [max]="model.max"
+                              [min]="model.min"
+                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                              [spinners]="true"
+                              [step]="model.step"
+                              (blur)="onFocusChange($event)"
+                              (focus)="onFocusChange($event)"
+                              (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
         <kendo-slider *ngSwitchCase="9"

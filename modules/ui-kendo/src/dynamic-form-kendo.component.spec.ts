@@ -11,7 +11,8 @@ import {
     DynamicFormControlModel,
     DynamicSelectModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormKendoComponent, DYNAMIC_FORM_UI_KENDO } from "./dynamic-form-kendo.component";
+import { DynamicFormKendoComponent } from "./dynamic-form-kendo.component";
+import { DYNAMIC_FORM_UI_KENDO } from "./dynamic-form-kendo.const";
 
 describe("DynamicFormKendoComponent test suite", () => {
 

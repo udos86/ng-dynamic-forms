@@ -6,24 +6,19 @@ import {
     DynamicFormControlModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-
-export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
-
-export enum MdFormControlType {
-
-    Checkbox = 1,
-    FormArray = 2,
-    FormGroup = 3,
-    Input = 4,
-    RadioGroup = 5,
-    Select = 6,
-    Slider = 7,
-    SlideToggle = 8,
-    Switch = 9,
-    TextArea = 10
-}
+import { DYNAMIC_FORM_UI_MATERIAL, MdFormControlType } from "./dynamic-form-material.const";
 
 @Component({
 
@@ -74,8 +69,40 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
         return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
     }
 
-    get MdFormControlType(): MdFormControlType | null {
+    get mdFormControlType(): MdFormControlType | null {
 
-        return null;
+        switch (this.model.type) {
+
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return MdFormControlType.Array;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+                return MdFormControlType.Checkbox;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return MdFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                return MdFormControlType.Input;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+                return MdFormControlType.RadioGroup;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                return MdFormControlType.Select;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                return MdFormControlType.Slider;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                return MdFormControlType.SlideToggle;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+                return MdFormControlType.TextArea;
+
+            default:
+                return null;
+        }
     }
 }

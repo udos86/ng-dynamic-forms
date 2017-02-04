@@ -10,7 +10,8 @@ import {
     DynamicSwitchModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormMaterialComponent, DYNAMIC_FORM_UI_MATERIAL } from "./dynamic-form-material.component";
+import { DynamicFormMaterialComponent } from "./dynamic-form-material.component";
+import { DYNAMIC_FORM_UI_MATERIAL } from "./dynamic-form-material.const";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 

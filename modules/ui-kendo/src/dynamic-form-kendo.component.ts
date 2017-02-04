@@ -11,17 +11,24 @@ import {
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
-    DynamicDatepickerModel
+    DynamicDatepickerModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
 } from "@ng2-dynamic-forms/core";
 import {
+    DYNAMIC_FORM_UI_KENDO,
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
     KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
     KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
     KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
     KendoFormControlType
 } from "./dynamic-form-kendo.const";
-
-export const DYNAMIC_FORM_UI_KENDO = "KENDO";
 
 @Component({
 
@@ -104,49 +111,50 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     get kendoFormControlType(): KendoFormControlType | null {
 
-        if (this.model.type === "ARRAY") {
+        let model;
 
-            return KendoFormControlType.FormArray;
+        switch (this.model.type) {
 
-        } else if (this.model.type === "DATEPICKER") {
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return KendoFormControlType.Array;
 
-            let model = this.model as DynamicDatepickerModel;
+            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                model = this.model as DynamicDatepickerModel;
 
-            return model.inline ? KendoFormControlType.Calendar : null;
+                return model.inline ? KendoFormControlType.Calendar : null;
 
-        } else if (this.model.type === "GROUP" || this.model.type === "CHECKBOX_GROUP") {
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return KendoFormControlType.Group;
 
-            return KendoFormControlType.FormGroup;
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                model = this.model as DynamicInputModel;
 
-        } else if (this.model.type === "INPUT") {
+                if (!model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return KendoFormControlType.AutoComplete;
 
-            let model = this.model as DynamicInputModel;
+                } else if (model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return KendoFormControlType.MaskedTextBox;
 
-            if (!model.mask && model.inputType !== "number") {
-                return KendoFormControlType.AutoComplete;
+                } else if (!model.mask && model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return KendoFormControlType.NumericTextBox;
 
-            } else if (model.mask && model.inputType !== "number") {
-                return KendoFormControlType.MaskedTextBox;
+                } else {
+                    return null;
+                }
 
-            } else if (!model.mask && model.inputType === "number") {
-                return KendoFormControlType.NumericTextBox;
-            }
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                model = this.model as DynamicSelectModel<any>;
 
-        } else if (this.model.type === "SELECT") {
+                return model.multiple ? KendoFormControlType.MultiSelect : KendoFormControlType.DropDownList;
 
-            let model = this.model as DynamicSelectModel<any>;
+            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                return KendoFormControlType.Slider;
 
-            return model.multiple ? KendoFormControlType.MultiSelect : KendoFormControlType.DropDownList;
+            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                return KendoFormControlType.Switch;
 
-        } else if (this.model.type === "SLIDER") {
-
-            return KendoFormControlType.Slider;
-
-        } else if (this.model.type === "SWITCH") {
-
-            return KendoFormControlType.Switch;
+            default:
+                return null;
         }
-
-        return null;
     }
 }
