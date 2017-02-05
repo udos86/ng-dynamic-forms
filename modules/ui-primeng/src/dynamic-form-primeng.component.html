@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <fieldset *ngIf="model.type === 'RADIO_GROUP'" role="radiogroup"
+    <fieldset *ngIf="formControlType === 9" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -28,36 +28,18 @@
     </fieldset>
 
 
-    <div *ngIf="!(model.type === 'RADIO_GROUP')" [ngClass]="model.cls.grid.container">
+    <div *ngIf="formControlType !== 9" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="!(model.type === 'CHECKBOX') && model.label" [ngClass]="model.cls.grid.label">
+        <div *ngIf="formControlType !== 3 && model.label !== null" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
         </div>
 
 
-        <div [ngClass]="model.cls.grid.control">
+        <div [ngClass]="model.cls.grid.control" [ngSwitch]="formControlType">
 
-            <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
-                      [dynamicId]="bindId && model.id"
-                      [formGroupName]="model.id"
-                      [name]="model.name"
-                      [ngClass]="model.cls.element.control">
-
-                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-                <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
-                                              [controlGroup]="control"
-                                              [model]="controlModel"
-                                              [nestedTemplates]="templates"
-                                              (blur)="onFocusChange($event)"
-                                              (change)="onValueChange($event)"
-                                              (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
-            </fieldset>
-
-
-            <div *ngIf="model.type === 'ARRAY'"
+            <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
@@ -80,40 +62,7 @@
             </div>
 
 
-            <input *ngIf="model.type === 'INPUT'" pInputText
-                   [attr.accept]="model.accept"
-                   [attr.autoComplete]="model.autoComplete"
-                   [attr.list]="model.listId"
-                   [attr.max]="model.max"
-                   [attr.min]="model.min"
-                   [attr.multiple]="model.multiple"
-                   [attr.step]="model.step"
-                   [attr.tabindex]="model.tabIndex"
-                   [autofocus]="model.autoFocus"
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [maxlength]="model.maxLength"
-                   [minlength]="model.minLength"
-                   [name]="model.name"
-                   [ngClass]="model.cls.element.control"
-                   [pattern]="model.pattern"
-                   [placeholder]="model.placeholder"
-                   [readonly]="model.readOnly"
-                   [required]="model.required"
-                   [spellcheck]="model.spellCheck"
-                   [type]="model.inputType"
-                   (blur)="onFocusChange($event)"
-                   (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
-
-            <datalist *ngIf="model.list" [id]="model.listId">
-
-                <option *ngFor="let option of model.list" [value]="option">
-
-            </datalist>
-
-
-            <p-calendar *ngIf="model.type === 'DATEPICKER'"
+            <p-calendar *ngSwitchCase="2"
                         [defaultDate]="model.focusedDate"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -126,7 +75,8 @@
                         [yearNavigator]="false"></p-calendar>
 
 
-            <p-checkbox *ngIf="model.type === 'CHECKBOX'" binary="true"
+            <p-checkbox *ngSwitchCase="3"
+                        binary="true"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [name]="model.name"
@@ -134,29 +84,69 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-dropdown *ngIf="model.type === 'SELECT' && !model.multiple"
+            <p-dropdown *ngSwitchCase="4"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
                         (onChange)="onValueChange($event)"></p-dropdown>
 
 
-            <p-multiSelect *ngIf="model.type === 'SELECT' && model.multiple"
-                           [dynamicId]="bindId && model.id"
-                           [formControlName]="model.id"
-                           [options]="model.options"
-                           (onChange)="onValueChange($event)"></p-multiSelect>
-
-
-            <p-slider *ngIf="model.type === 'SLIDER'"
+            <fieldset *ngSwitchCase="5"
                       [dynamicId]="bindId && model.id"
-                      [formControlName]="model.id"
-                      [min]="model.min"
-                      [max]="model.max"
-                      [step]="model.step"></p-slider>
+                      [formGroupName]="model.id"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control">
+
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+                <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
+                                              [controlGroup]="control"
+                                              [model]="controlModel"
+                                              [nestedTemplates]="templates"
+                                              (blur)="onFocusChange($event)"
+                                              (change)="onValueChange($event)"
+                                              (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
+            </fieldset>
 
 
-            <p-inputSwitch *ngIf="model.type === 'SWITCH'"
+            <ng-container *ngSwitchCase="6">
+
+                <input pInputText
+                       [attr.accept]="model.accept"
+                       [attr.autoComplete]="model.autoComplete"
+                       [attr.list]="model.listId"
+                       [attr.max]="model.max"
+                       [attr.min]="model.min"
+                       [attr.multiple]="model.multiple"
+                       [attr.step]="model.step"
+                       [attr.tabindex]="model.tabIndex"
+                       [autofocus]="model.autoFocus"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [maxlength]="model.maxLength"
+                       [minlength]="model.minLength"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [pattern]="model.pattern"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required"
+                       [spellcheck]="model.spellCheck"
+                       [type]="model.inputType"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
+
+                <datalist *ngIf="model.list" [id]="model.listId">
+
+                    <option *ngFor="let option of model.list" [value]="option">
+
+                </datalist>
+
+            </ng-container>
+
+
+            <p-inputSwitch *ngSwitchCase="7"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
@@ -164,7 +154,22 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
-            <textarea *ngIf="model.type === 'TEXTAREA'" pInputTextarea
+            <p-multiSelect *ngSwitchCase="8"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [options]="model.options"
+                           (onChange)="onValueChange($event)"></p-multiSelect>
+
+
+            <p-slider *ngSwitchCase="10"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [min]="model.min"
+                      [max]="model.max"
+                      [step]="model.step"></p-slider>
+
+
+            <textarea *ngSwitchCase="11" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
@@ -186,7 +191,7 @@
         </div>
 
 
-        <div *ngIf="model.type === 'CHECKBOX'" [ngClass]="model.cls.grid.label">
+        <div *ngIf="formControlType === 3" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -207,7 +212,8 @@
 
     </div>
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+
+    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

@@ -5,10 +5,17 @@ import {
     DynamicFormControlModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DynamicSelectModel, DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-
-export const DYNAMIC_FORM_UI_PRIME_NG = "PRIME_NG";
+import { DYNAMIC_FORM_UI_PRIME_NG, PFormControlType } from "./dynamic-form-primeng.const";
+import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH } from "../../core/src/model/switch/dynamic-switch.model";
 
 @Component({
 
@@ -35,5 +42,49 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
+    }
+
+    get formControlType(): number | null {
+
+        let model;
+
+        switch (this.model.type) {
+
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return PFormControlType.Array;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+                return PFormControlType.Checkbox;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return PFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                return PFormControlType.Calendar;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                return PFormControlType.Input;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+                return PFormControlType.RadioGroup;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                model = this.model as DynamicSelectModel<any>;
+
+                return model.multiple ? PFormControlType.MultiSelect : PFormControlType.DropDown;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                return PFormControlType.Slider;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                return PFormControlType.InputSwitch;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+                return PFormControlType.TextArea;
+
+            default:
+                return null;
+        }
     }
 }

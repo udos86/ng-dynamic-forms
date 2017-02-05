@@ -1,3 +1,13 @@
+# 1.3.11
+
+### **Features** 
+
+* AoT-Compiling is now officially supported
+* major template refactoring in all UI modules 
+* `max` and `min` support for calendar in `ui-kendo`
+* update to Angular `2.4.6`
+
+
 # 1.3.10
 
 ### **Features** 

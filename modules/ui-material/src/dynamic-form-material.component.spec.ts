@@ -11,7 +11,7 @@ import {
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormMaterialComponent } from "./dynamic-form-material.component";
-import { DYNAMIC_FORM_UI_MATERIAL } from "./dynamic-form-material.const";
+import { DYNAMIC_FORM_UI_MATERIAL, MdFormControlType } from "./dynamic-form-material.const";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
@@ -81,6 +81,8 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
+
+        expect(component.formControlType).toBe(MdFormControlType.Input);
     });
 
     it("should have an input element", () => {
