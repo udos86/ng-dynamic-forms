@@ -5,149 +5,156 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <div *ngIf="model.type === 'ARRAY'"
-         [dynamicId]="bindId && model.id"
-         [formArrayName]="model.id"
-         [ngClass]="model.cls.element.control">
+    <ng-container [ngSwitch]="formControlType">
 
-        <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+        <div *ngSwitchCase="1"
+             [dynamicId]="bindId && model.id"
+             [formArrayName]="model.id"
+             [ngClass]="model.cls.element.control">
 
-            <dynamic-form-kendo-control *ngFor="let controlModel of groupModel.group"
-                                        [bindId]="false"
-                                        [controlGroup]="control.at(idx)"
+            <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+
+                <dynamic-form-kendo-control *ngFor="let controlModel of groupModel.group"
+                                            [bindId]="false"
+                                            [controlGroup]="control.at(idx)"
+                                            [model]="controlModel"
+                                            [nestedTemplates]="templates"
+                                            (blur)="onFocusChange($event)"
+                                            (change)="onValueChange($event)"
+                                            (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
+
+                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+
+            </fieldset>
+
+        </div>
+
+
+        <kendo-autocomplete *ngSwitchCase="2"
+                            [data]="model.list"
+                            [disabled]="model.disabled"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [placeholder]="model.placeholder"
+                            (blur)="onFocusChange($event)"
+                            (focus)="onFocusChange($event)"
+                            (valueChange)="onValueChange($event)"></kendo-autocomplete>
+
+
+        <kendo-calendar *ngSwitchCase="3"
+                        [disabled]="model.disabled"
+                        [dynamicId]="bindId && model.id"
+                        [focusedDate]="model.focusedDate"
+                        [formControlName]="model.id"
+                        [max]="model.max"
+                        [min]="model.min"
+                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                        [rangeValidation]="true"
+                        (valueChange)="onValueChange($event)"></kendo-calendar>
+
+
+        <kendo-dropdownlist *ngSwitchCase="4"
+                            [data]="model.options"
+                            [disabled]="model.disabled"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [textField]="'label'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            (blur)="onFocusChange($event)"
+                            (focus)="onFocusChange($event)"
+                            (valueChange)="onValueChange($event)"></kendo-dropdownlist>
+
+
+        <fieldset *ngSwitchCase="5"
+                  [dynamicId]="bindId && model.id"
+                  [formGroupName]="model.id"
+                  [name]="model.name"
+                  [ngClass]="model.cls.element.control">
+
+            <legend *ngIf="model.legend">{{model.legend}}</legend>
+
+            <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
+                                        [controlGroup]="control"
                                         [model]="controlModel"
                                         [nestedTemplates]="templates"
                                         (blur)="onFocusChange($event)"
                                         (change)="onValueChange($event)"
                                         (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
-
-            <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
-
         </fieldset>
 
-    </div>
+
+        <kendo-maskedtextbox *ngSwitchCase="6"
+                             [disabled]="model.disabled"
+                             [dynamicId]="bindId && model.id"
+                             [formControlName]="model.id"
+                             [mask]="model.mask"
+                             [maskValidation]="true"
+                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                             (blur)="onFocusChange($event)"
+                             (focus)="onFocusChange($event)"
+                             (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
-    <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
-              [dynamicId]="bindId && model.id"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="model.cls.element.control">
-
-        <legend *ngIf="model.legend">{{model.legend}}</legend>
-
-        <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
-                                    [controlGroup]="control"
-                                    [model]="controlModel"
-                                    [nestedTemplates]="templates"
-                                    (blur)="onFocusChange($event)"
-                                    (change)="onValueChange($event)"
-                                    (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
-    </fieldset>
+        <kendo-multiselect *ngSwitchCase="7"
+                           [data]="model.options"
+                           [disabled]="model.disabled"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                           [placeholder]="model.placeholder"
+                           [textField]="'label'"
+                           [valueField]="'value'"
+                           [valuePrimitive]="true"
+                           (blur)="onFocusChange($event)"
+                           (focus)="onFocusChange($event)"
+                           (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
-    <kendo-autocomplete *ngIf="model.type === 'INPUT' && !model.mask && model.inputType !== 'number'"
-                        [data]="model.list"
-                        [disabled]="model.disabled"
-                        [dynamicId]="bindId && model.id"
-                        [formControlName]="model.id"
-                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                        [placeholder]="model.placeholder"
-                        (blur)="onFocusChange($event)"
-                        (focus)="onFocusChange($event)"
-                        (valueChange)="onValueChange($event)"></kendo-autocomplete>
+        <kendo-numerictextbox *ngSwitchCase="8"
+                              [autoCorrect]="model.autoComplete"
+                              [disabled]="model.disabled"
+                              [dynamicId]="bindId && model.id"
+                              [formControlName]="model.id"
+                              [max]="model.max"
+                              [min]="model.min"
+                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                              [spinners]="true"
+                              [step]="model.step"
+                              (blur)="onFocusChange($event)"
+                              (focus)="onFocusChange($event)"
+                              (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-    <kendo-maskedtextbox *ngIf="model.type === 'INPUT' && model.mask && model.inputType !== 'number'"
-                         [disabled]="model.disabled"
-                         [dynamicId]="bindId && model.id"
-                         [formControlName]="model.id"
-                         [mask]="model.mask"
-                         [maskValidation]="true"
-                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                         (blur)="onFocusChange($event)"
-                         (focus)="onFocusChange($event)"
-                         (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
+        <kendo-slider *ngSwitchCase="9"
+                      [disabled]="model.disabled"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [min]="model.min"
+                      [max]="model.max"
+                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [showButtons]="true"
+                      [smallStep]="model.step"
+                      [vertical]="model.vertical"
+                      (valueChange)="onValueChange($event)"></kendo-slider>
 
 
-    <kendo-numerictextbox *ngIf="model.type === 'INPUT' && !model.mask && model.inputType === 'number'"
-                          [autoCorrect]="model.autoComplete"
-                          [disabled]="model.disabled"
-                          [dynamicId]="bindId && model.id"
-                          [formControlName]="model.id"
-                          [max]="model.max"
-                          [min]="model.min"
-                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                          [spinners]="true"
-                          [step]="model.step"
-                          (blur)="onFocusChange($event)"
-                          (focus)="onFocusChange($event)"
-                          (valueChange)="onValueChange($event)"></kendo-numerictextbox>
+        <kendo-switch *ngSwitchCase="10"
+                      [checked]="model.checked"
+                      [disabled]="model.disabled"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [offLabel]="model.offLabel"
+                      [onLabel]="model.onLabel"
+                      (valueChange)="onValueChange($event)"></kendo-switch>
+
+    </ng-container>
 
 
-    <kendo-calendar *ngIf="model.type === 'DATEPICKER' && model.inline"
-                    [disabled]="model.disabled"
-                    [dynamicId]="bindId && model.id"
-                    [focusedDate]="model.focusedDate"
-                    [formControlName]="model.id"
-                    [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                    [rangeValidation]="true"
-                    (valueChange)="onValueChange($event)"></kendo-calendar>
-
-
-    <kendo-dropdownlist *ngIf="model.type === 'SELECT' && !model.multiple"
-                        [data]="model.options"
-                        [disabled]="model.disabled"
-                        [dynamicId]="bindId && model.id"
-                        [formControlName]="model.id"
-                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                        [textField]="'label'"
-                        [valueField]="'value'"
-                        [valuePrimitive]="true"
-                        (blur)="onFocusChange($event)"
-                        (focus)="onFocusChange($event)"
-                        (valueChange)="onValueChange($event)"></kendo-dropdownlist>
-
-
-    <kendo-multiselect *ngIf="model.type === 'SELECT' && model.multiple"
-                       [data]="model.options"
-                       [disabled]="model.disabled"
-                       [dynamicId]="bindId && model.id"
-                       [formControlName]="model.id"
-                       [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                       [placeholder]="model.placeholder"
-                       [textField]="'label'"
-                       [valueField]="'value'"
-                       [valuePrimitive]="true"
-                       (blur)="onFocusChange($event)"
-                       (focus)="onFocusChange($event)"
-                       (valueChange)="onValueChange($event)"></kendo-multiselect>
-
-
-    <kendo-slider *ngIf="model.type === 'SLIDER'"
-                  [disabled]="model.disabled"
-                  [dynamicId]="bindId && model.id"
-                  [formControlName]="model.id"
-                  [min]="model.min"
-                  [max]="model.max"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                  [showButtons]="true"
-                  [smallStep]="model.step"
-                  [vertical]="model.vertical"
-                  (valueChange)="onValueChange($event)"></kendo-slider>
-
-
-    <kendo-switch *ngIf="model.type === 'SWITCH'"
-                  [checked]="model.checked"
-                  [disabled]="model.disabled"
-                  [dynamicId]="bindId && model.id"
-                  [formControlName]="model.id"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                  [offLabel]="model.offLabel"
-                  [onLabel]="model.onLabel"
-                  (valueChange)="onValueChange($event)"></kendo-switch>
-
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

@@ -52,7 +52,7 @@
 
     var packages = {
         "app": {
-            main: "main.js",
+            main: "main.jit.js",
             defaultExtension: "js"
         },
         "@progress": {

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "hammerjs",
+      "node",
+      "q"
+    ]
+  },
+  "files": [
+    "example/app/app.module.ts",
+    "example/app/main.aot.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "example/aot",
+    "skipMetadataEmit": true
+  }
+}

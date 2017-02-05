@@ -18,7 +18,8 @@ import { MultiSelectModule } from "primeng/components/multiselect/multiselect";
 import { RadioButtonModule } from "primeng/components/radiobutton/radiobutton";
 import { SliderModule } from "primeng/components/slider/slider";
 import { SpinnerModule } from "primeng/components/spinner/spinner";
-import { DynamicFormPrimeNGComponent, DYNAMIC_FORM_UI_PRIME_NG } from "./dynamic-form-primeng.component";
+import { DynamicFormPrimeNGComponent } from "./dynamic-form-primeng.component";
+import { DYNAMIC_FORM_UI_PRIME_NG, PFormControlType } from "./dynamic-form-primeng.const";
 
 describe("DynamicFormPrimeNGComponent test suite", () => {
 
@@ -93,6 +94,8 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
+
+        expect(component.formControlType).toBe(PFormControlType.Input);
     });
 
     it("should have an input element", () => {

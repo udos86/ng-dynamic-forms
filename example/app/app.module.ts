@@ -25,7 +25,7 @@ import { ValidationMessageComponent } from "./validation-message/validation-mess
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 
-function testValidator(formControl: FormControl) {
+export function testValidator(formControl: FormControl) {
 
     return {
         testValidator: {

@@ -5,7 +5,7 @@ import { FoundationExampleComponent } from "./foundation/foundation-example.comp
 import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
-import { SemanticExampleComponent } from "./semantic/semantic-example.component";
+//import { SemanticExampleComponent } from "./semantic/semantic-example.component";
 import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Array<Route> = [

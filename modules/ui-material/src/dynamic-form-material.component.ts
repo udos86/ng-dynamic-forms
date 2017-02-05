@@ -6,10 +6,19 @@ import {
     DynamicFormControlModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-
-export const DYNAMIC_FORM_UI_MATERIAL = "MATERIAL";
+import { DYNAMIC_FORM_UI_MATERIAL, MdFormControlType } from "./dynamic-form-material.const";
 
 @Component({
 
@@ -43,12 +52,12 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
-    @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox;
-    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer;
-    @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup;
-    @ViewChild(MdSelect) mdSelect: MdSelect;
-    @ViewChild(MdSlider) mdSlider: MdSlider;
-    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle;
+    @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
+    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;
+    @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup | null;
+    @ViewChild(MdSelect) mdSelect: MdSelect | null;
+    @ViewChild(MdSlider) mdSlider: MdSlider | null;
+    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle | null;
 
     readonly type: string = DYNAMIC_FORM_UI_MATERIAL;
 
@@ -58,5 +67,42 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     get characterCount(): number | null {
         return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
+    }
+
+    get formControlType(): number | null {
+
+        switch (this.model.type) {
+
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return MdFormControlType.Array;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+                return MdFormControlType.Checkbox;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return MdFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                return MdFormControlType.Input;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+                return MdFormControlType.RadioGroup;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                return MdFormControlType.Select;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                return MdFormControlType.Slider;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                return MdFormControlType.SlideToggle;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+                return MdFormControlType.TextArea;
+
+            default:
+                return null;
+        }
     }
 }

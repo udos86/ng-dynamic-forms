@@ -7,8 +7,10 @@ dist/
 docs/
 @ng2-dynamic-forms/
 
+example/aot/
 example/app/**/*.js
 example/app/**/*.js.map
 example/app/**/*.d.ts
+example/dist
 
 node_modules/

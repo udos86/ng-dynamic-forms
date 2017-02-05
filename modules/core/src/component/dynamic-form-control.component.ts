@@ -4,11 +4,19 @@ import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_ARRAY } from "../model/form-array/dynamic-form-array.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX } from "../model/checkbox/dynamic-checkbox.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP } from "../model/checkbox/dynamic-checkbox-group.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_GROUP } from "../model/form-group/dynamic-form-group.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP } from "../model/radio/dynamic-radio-group.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SELECT } from "../model/select/dynamic-select.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH } from "../model/switch/dynamic-switch.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA } from "../model/textarea/dynamic-textarea.model";
 import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
 import { isDefined } from "../utils";
 
@@ -17,6 +25,18 @@ export interface DynamicFormControlEvent {
     $event: Event | FocusEvent | DynamicFormControlEvent | any;
     control: FormControl;
     model: DynamicFormControlModel;
+}
+
+export const enum CoreFormControlType {
+
+    Array = 1,
+    Checkbox = 2,
+    Group = 3,
+    Input = 4,
+    RadioGroup = 5,
+    Select = 6,
+    Switch = 7,
+    TextArea = 8
 }
 
 export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -111,6 +131,44 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         }
 
         return messages;
+    }
+
+    get formControlType(): number | null {
+
+        switch (this.model.type) {
+
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return CoreFormControlType.Array;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+                return CoreFormControlType.Checkbox;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return CoreFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                return CoreFormControlType.Input;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+                return CoreFormControlType.RadioGroup;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                return CoreFormControlType.Select;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                return CoreFormControlType.Switch;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+                return CoreFormControlType.TextArea;
+
+            default:
+                return null;
+        }
+    }
+
+    get hasHint(): boolean { // needed for AOT
+        return (this.model as DynamicInputModel).hint !== null;
     }
 
     get showErrorMessages(): boolean {

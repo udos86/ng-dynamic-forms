@@ -1,165 +1,167 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="!(model.type === 'CHECKBOX') && model.label"
+    <label *ngIf="formControlType !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <fieldset *ngIf="model.type === 'GROUP' || model.type === 'CHECKBOX_GROUP'"
-              [dynamicId]="bindId && model.id"
-              [formGroupName]="model.id"
-              [name]="model.name"
-              [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+    <ng-container [ngSwitch]="formControlType">
 
-        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+        <div *ngSwitchCase="1"
+             [dynamicId]="bindId && model.id"
+             [formArrayName]="model.id"
+             [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
-        <dynamic-form-material-control *ngFor="let controlModel of model.group"
-                                       [controlGroup]="control"
-                                       [model]="controlModel"
-                                       [nestedTemplates]="templates"
-                                       (blur)="onFocusChange($event)"
-                                       (change)="onValueChange($event)"
-                                       (focus)="onFocusChange($event)"></dynamic-form-material-control>
-    </fieldset>
+            <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+
+                <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
+                                               [bindId]="false"
+                                               [controlGroup]="control.at(idx)"
+                                               [model]="controlModel"
+                                               [nestedTemplates]="templates"
+                                               (blur)="onFocusChange($event)"
+                                               (change)="onValueChange($event)"
+                                               (focus)="onFocusChange($event)"></dynamic-form-material-control>
+
+                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+
+            </fieldset>
+
+        </div>
 
 
-    <div *ngIf="model.type === 'ARRAY'"
-         [dynamicId]="bindId && model.id"
-         [formArrayName]="model.id"
-         [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+        <md-checkbox *ngSwitchCase="2"
+                     [checked]="model.checked"
+                     [disabled]="model.disabled"
+                     [dynamicId]="bindId && model.id"
+                     [formControlName]="model.id"
+                     [indeterminate]="model.indeterminate"
+                     [labelPosition]="'after'"
+                     [name]="model.name"
+                     [ngClass]="model.cls.element.control"
+                     (blur)="onFocusChange($event)"
+                     (change)="onValueChange($event)"
+                     (focus)="onFocusChange($event)"><span [ngClass]="model.cls.element.label"
+                                                           [innerHTML]="model.label"></span></md-checkbox>
 
-        <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
 
-            <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
-                                           [bindId]="false"
-                                           [controlGroup]="control.at(idx)"
+        <fieldset *ngSwitchCase="3"
+                  [dynamicId]="bindId && model.id"
+                  [formGroupName]="model.id"
+                  [name]="model.name"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+            <dynamic-form-material-control *ngFor="let controlModel of model.group"
+                                           [controlGroup]="control"
                                            [model]="controlModel"
                                            [nestedTemplates]="templates"
                                            (blur)="onFocusChange($event)"
                                            (change)="onValueChange($event)"
                                            (focus)="onFocusChange($event)"></dynamic-form-material-control>
-
-            <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
-
         </fieldset>
 
-    </div>
+
+        <md-input-container *ngSwitchCase="4">
+
+            <input md-input
+                   [attr.accept]="model.accept"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.list]="model.listId"
+                   [attr.max]="model.max"
+                   [attr.min]="model.min"
+                   [attr.multiple]="model.multiple"
+                   [attr.step]="model.step"
+                   [attr.tabindex]="model.tabIndex"
+                   [autofocus]="model.autoFocus"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [maxlength]="model.maxLength"
+                   [minlength]="model.minLength"
+                   [name]="model.name"
+                   [ngClass]="model.cls.element.control"
+                   [pattern]="model.pattern"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readOnly"
+                   [required]="model.required"
+                   [spellcheck]="model.spellCheck"
+                   [type]="model.inputType"
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/>
+
+            <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
+            <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
+
+            <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
+            <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
+
+        </md-input-container>
 
 
-    <md-checkbox *ngIf="model.type === 'CHECKBOX'"
-                 [checked]="model.checked"
-                 [disabled]="model.disabled"
-                 [dynamicId]="bindId && model.id"
-                 [formControlName]="model.id"
-                 [indeterminate]="model.indeterminate"
-                 [labelPosition]="'after'"
-                 [name]="model.name"
-                 [ngClass]="model.cls.element.control"
-                 (blur)="onFocusChange($event)"
-                 (change)="onValueChange($event)"
-                 (focus)="onFocusChange($event)"><span [ngClass]="model.cls.element.label"
-                                                       [innerHTML]="model.label"></span></md-checkbox>
+        <md-radio-group *ngSwitchCase="5"
+                        [disabled]="model.disabled"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [name]="model.name"
+                        [ngClass]="model.cls.element.control"
+                        (blur)="onFocusChange($event)"
+                        (change)="onValueChange($event)"
+                        (focus)="onFocusChange($event)">
+
+            <md-radio-button *ngFor="let option of model.options"
+                             [labelPosition]="'after'"
+                             [name]="model.name"
+                             [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
+
+        </md-radio-group>
 
 
-    <md-input-container *ngIf="model.type === 'INPUT'">
+        <md-select *ngSwitchCase="6"
+                   [disabled]="model.disabled"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [ngClass]="model.cls.element.control"
+                   [placeholder]="model.placeholder">
 
-        <input md-input
-               [attr.accept]="model.accept"
-               [attr.autoComplete]="model.autoComplete"
-               [attr.list]="model.listId"
-               [attr.max]="model.max"
-               [attr.min]="model.min"
-               [attr.multiple]="model.multiple"
-               [attr.step]="model.step"
-               [attr.tabindex]="model.tabIndex"
-               [autofocus]="model.autoFocus"
-               [dynamicId]="bindId && model.id"
-               [formControlName]="model.id"
-               [maxlength]="model.maxLength"
-               [minlength]="model.minLength"
-               [name]="model.name"
-               [ngClass]="model.cls.element.control"
-               [pattern]="model.pattern"
-               [placeholder]="model.placeholder"
-               [readonly]="model.readOnly"
-               [required]="model.required"
-               [spellcheck]="model.spellCheck"
-               [type]="model.inputType"
-               (blur)="onFocusChange($event)"
-               (change)="onValueChange($event)"
-               (focus)="onFocusChange($event)"/>
+            <md-option *ngFor="let option of model.options"
+                       [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
 
-        <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
-        <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
-
-        <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
-        <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
-
-    </md-input-container>
+        </md-select>
 
 
-    <md-radio-group *ngIf="model.type === 'RADIO_GROUP'"
-                    [disabled]="model.disabled"
-                    [dynamicId]="bindId && model.id"
-                    [formControlName]="model.id"
-                    [name]="model.name"
-                    [ngClass]="model.cls.element.control"
-                    (blur)="onFocusChange($event)"
-                    (change)="onValueChange($event)"
-                    (focus)="onFocusChange($event)">
+        <md-slider *ngSwitchCase="7"
+                   [disabled]="model.disabled"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [min]="model.min"
+                   [max]="model.max"
+                   [ngClass]="model.cls.element.control"
+                   [step]="model.step"
+                   [thumbLabel]="true"
+                   tickInterval="1"
+                   [vertical]="model.vertical"
+                   (change)="onValueChange($event)"></md-slider>
 
-        <md-radio-button *ngFor="let option of model.options"
-                         [labelPosition]="'after'"
+
+        <md-slide-toggle *ngSwitchCase="8"
+                         [checked]="model.checked"
+                         [disabled]="model.disabled"
+                         [dynamicId]="bindId && model.id"
+                         [formControlName]="model.id"
                          [name]="model.name"
-                         [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
+                         [ngClass]="model.cls.element.control"
+                         (change)="onValueChange($event)">
 
-    </md-radio-group>
+            <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>
+            <span *ngIf="model.checked" [innerHTML]="model.onLabel"></span>
 
-
-    <md-select *ngIf="model.type === 'SELECT'"
-               [disabled]="model.disabled"
-               [dynamicId]="bindId && model.id"
-               [formControlName]="model.id"
-               [ngClass]="model.cls.element.control"
-               [placeholder]="model.placeholder">
-
-        <md-option *ngFor="let option of model.options"
-                   [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
-
-    </md-select>
+        </md-slide-toggle>
 
 
-    <md-slider *ngIf="model.type === 'SLIDER'"
-               [disabled]="model.disabled"
-               [dynamicId]="bindId && model.id"
-               [formControlName]="model.id"
-               [min]="model.min"
-               [max]="model.max"
-               [ngClass]="model.cls.element.control"
-               [step]="model.step"
-               [thumbLabel]="true"
-               tickInterval="1"
-               [vertical]="model.vertical"
-               (change)="onValueChange($event)"></md-slider>
-
-
-    <md-slide-toggle *ngIf="model.type === 'SWITCH'"
-                     [checked]="model.checked"
-                     [disabled]="model.disabled"
-                     [dynamicId]="bindId && model.id"
-                     [formControlName]="model.id"
-                     [name]="model.name"
-                     [ngClass]="model.cls.element.control"
-                     (change)="onValueChange($event)">
-
-        <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>
-        <span *ngIf="model.checked" [innerHTML]="model.onLabel"></span>
-
-    </md-slide-toggle>
-
-
-    <md-input-container *ngIf="model.type === 'TEXTAREA'">
+        <md-input-container *ngSwitchCase="9">
 
         <textarea md-input
                   [attr.tabindex]="model.tabIndex"
@@ -180,21 +182,24 @@
                   (change)="onValueChange($event)"
                   (focus)="onFocusChange($event)"></textarea>
 
-        <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
-        <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
+            <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
+            <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-    </md-input-container>
+        </md-input-container>
+
+    </ng-container>
 
 
-    <md-list *ngIf="hasErrorMessaging"
-             [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <md-list *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <md-list-item *ngFor="let message of errorMessages"
-                      [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}</md-list-item>
+                      [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </md-list-item>
 
     </md-list>
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+
+    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

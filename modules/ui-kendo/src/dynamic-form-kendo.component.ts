@@ -8,41 +8,27 @@ import {
     DynamicFormControlModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DynamicInputModel,
+    DynamicSelectModel,
+    DynamicDatepickerModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
 } from "@ng2-dynamic-forms/core";
-
-export const DYNAMIC_FORM_UI_KENDO = "KENDO";
-
-export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
-
-    footerTemplate: "kendoAutoCompleteFooterTemplate",
-    headerTemplate: "kendoAutoCompleteHeaderTemplate",
-    itemTemplate: "kendoAutoCompleteItemTemplate",
-    noDataTemplate: "kendoAutoCompleteNoDataTemplate"
-};
-
-export const KENDO_CALENDAR_TEMPLATE_DIRECTIVES = {
-
-    cellTemplate: "kendoCalendarCellTemplate"
-};
-
-export const KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES = {
-
-    footerTemplate: "kendoDropDownListFooterTemplate",
-    headerTemplate: "kendoDropDownListHeaderTemplate",
-    itemTemplate: "kendoDropDownListItemTemplate",
-    noDataTemplate: "kendoDropDownListNoDataTemplate",
-    valueTemplate: "kendoDropDownListValueTemplate"
-};
-
-export const KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES = {
-
-    footerTemplate: "kendoMultiSelectFooterTemplate",
-    headerTemplate: "kendoMultiSelectHeaderTemplate",
-    itemTemplate: "kendoMultiSelectItemTemplate",
-    noDataTemplate: "kendoMultiSelectNoDataTemplate",
-    tagTemplate: "kendoMultiSelectTagTemplate"
-};
+import {
+    DYNAMIC_FORM_UI_KENDO,
+    KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
+    KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
+    KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
+    KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
+    KendoFormControlType
+} from "./dynamic-form-kendo.const";
 
 @Component({
 
@@ -64,14 +50,14 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
-    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent;
-    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent;
-    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent;
-    @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox;
-    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent;
-    @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox;
-    @ViewChild(Slider) kendoSlider: Slider;
-    @ViewChild(Switch) kendoSwitch: Switch;
+    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | null;
+    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | null;
+    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | null;
+    @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox | null;
+    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | null;
+    @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox | null;
+    @ViewChild(Slider) kendoSlider: Slider | null;
+    @ViewChild(Switch) kendoSwitch: Switch | null;
 
     readonly type: string = DYNAMIC_FORM_UI_KENDO;
 
@@ -121,5 +107,54 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
         this.templates
             .filter(template => template.type.startsWith("kendo"))
             .forEach(template => this.setKendoTemplateDirective(template));
+    }
+
+    get formControlType(): number | null {
+
+        let model;
+
+        switch (this.model.type) {
+
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return KendoFormControlType.Array;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                model = this.model as DynamicDatepickerModel;
+
+                return model.inline ? KendoFormControlType.Calendar : null;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return KendoFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                model = this.model as DynamicInputModel;
+
+                if (!model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return KendoFormControlType.AutoComplete;
+
+                } else if (model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return KendoFormControlType.MaskedTextBox;
+
+                } else if (!model.mask && model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return KendoFormControlType.NumericTextBox;
+
+                } else {
+                    return null;
+                }
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                model = this.model as DynamicSelectModel<any>;
+
+                return model.multiple ? KendoFormControlType.MultiSelect : KendoFormControlType.DropDownList;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                return KendoFormControlType.Slider;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+                return KendoFormControlType.Switch;
+
+            default:
+                return null;
+        }
     }
 }
