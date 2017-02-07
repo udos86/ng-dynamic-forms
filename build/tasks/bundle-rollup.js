@@ -24,6 +24,7 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "ng-semantic": "ng-semantic", // TODO
+            "primeng/components/autocomplete/autocomplete": "primeng/components/autocomplete/autocomplete",
             "primeng/components/calendar/calendar": "primeng/components/calendar/calendar",
             "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
             "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
