@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormPrimeNGComponent } from "./dynamic-form-primeng.component";
+import { AutoCompleteModule } from "primeng/components/autocomplete/autocomplete";
 import { CalendarModule } from "primeng/components/calendar/calendar";
 import { CheckboxModule } from "primeng/components/checkbox/checkbox";
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
@@ -20,6 +21,7 @@ import { SpinnerModule } from "primeng/components/spinner/spinner";
         CommonModule,
         ReactiveFormsModule,
         DynamicFormsCoreModule,
+        AutoCompleteModule,
         CalendarModule,
         CheckboxModule,
         DropdownModule,

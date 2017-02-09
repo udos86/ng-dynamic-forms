@@ -8,6 +8,7 @@ import {
     DynamicInputModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
+import { AutoCompleteModule } from "primeng/components/autocomplete/autocomplete";
 import { CalendarModule } from "primeng/components/calendar/calendar";
 import { CheckboxModule } from "primeng/components/checkbox/checkbox";
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
@@ -38,6 +39,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 DynamicFormsCoreModule.forRoot(),
+                AutoCompleteModule,
                 CalendarModule,
                 CheckboxModule,
                 DropdownModule,

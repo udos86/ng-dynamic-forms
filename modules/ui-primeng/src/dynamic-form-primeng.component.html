@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
-    <fieldset *ngIf="formControlType === 9" role="radiogroup"
+    <fieldset *ngIf="formControlType === 10" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -28,9 +28,9 @@
     </fieldset>
 
 
-    <div *ngIf="formControlType !== 9" [ngClass]="model.cls.grid.container">
+    <div *ngIf="formControlType !== 10" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="formControlType !== 3 && model.label !== null" [ngClass]="model.cls.grid.label">
+        <div *ngIf="formControlType !== 4 && model.label !== null" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -62,7 +62,16 @@
             </div>
 
 
-            <p-calendar *ngSwitchCase="2"
+            <p-autoComplete *ngSwitchCase="2"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [multiple]="model.multiple"
+                            [placeholder]="model.placeholder"
+                            [suggestions]="suggestions"
+                            (completeMethod)="onAutoComplete($event)"></p-autoComplete>
+
+
+            <p-calendar *ngSwitchCase="3"
                         [defaultDate]="model.focusedDate"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -75,7 +84,7 @@
                         [yearNavigator]="false"></p-calendar>
 
 
-            <p-checkbox *ngSwitchCase="3"
+            <p-checkbox *ngSwitchCase="4"
                         binary="true"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -84,14 +93,14 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-dropdown *ngSwitchCase="4"
+            <p-dropdown *ngSwitchCase="5"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
                         (onChange)="onValueChange($event)"></p-dropdown>
 
 
-            <fieldset *ngSwitchCase="5"
+            <fieldset *ngSwitchCase="6"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -109,7 +118,7 @@
             </fieldset>
 
 
-            <ng-container *ngSwitchCase="6">
+            <ng-container *ngSwitchCase="7">
 
                 <input pInputText
                        [attr.accept]="model.accept"
@@ -146,7 +155,7 @@
             </ng-container>
 
 
-            <p-inputSwitch *ngSwitchCase="7"
+            <p-inputSwitch *ngSwitchCase="8"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
@@ -154,14 +163,14 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
-            <p-multiSelect *ngSwitchCase="8"
+            <p-multiSelect *ngSwitchCase="9"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [options]="model.options"
                            (onChange)="onValueChange($event)"></p-multiSelect>
 
 
-            <p-slider *ngSwitchCase="10"
+            <p-slider *ngSwitchCase="11"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -169,7 +178,7 @@
                       [step]="model.step"></p-slider>
 
 
-            <textarea *ngSwitchCase="11" pInputTextarea
+            <textarea *ngSwitchCase="12" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
@@ -191,7 +200,7 @@
         </div>
 
 
-        <div *ngIf="formControlType === 3" [ngClass]="model.cls.grid.label">
+        <div *ngIf="formControlType === 4" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 

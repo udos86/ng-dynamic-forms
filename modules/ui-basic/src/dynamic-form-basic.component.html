@@ -168,11 +168,7 @@
     </ng-container>
 
 
-    <div *ngIf="hasHint" [ngClass]="model.cls.element.hint">
-
-        <span [innerHTML]="model.hint"></span>
-
-    </div>
+    <div *ngIf="hasHint" [ngClass]="model.cls.element.hint"><span [innerHTML]="model.hint"></span></div>
 
 
     <ul *ngIf="hasErrorMessaging"

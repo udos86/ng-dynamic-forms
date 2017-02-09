@@ -6,6 +6,7 @@ import {
     DynamicFormControlEvent,
     DynamicFormRelationService,
     DynamicTemplateDirective,
+    DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
@@ -38,6 +39,8 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
 
+    private suggestions: string[];
+
     readonly type: string = DYNAMIC_FORM_UI_PRIME_NG;
 
     constructor(relationService: DynamicFormRelationService) {
@@ -64,7 +67,9 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
                 return PFormControlType.Calendar;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                return PFormControlType.Input;
+                model = this.model as DynamicInputModel;
+
+                return model.multiple ? PFormControlType.AutoComplete : PFormControlType.Input;
 
             case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
                 return PFormControlType.RadioGroup;
@@ -86,5 +91,9 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
             default:
                 return null;
         }
+    }
+
+    onAutoComplete($event): void {
+        this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
     }
 }

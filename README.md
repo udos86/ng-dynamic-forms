@@ -13,9 +13,9 @@ It simplifies the time-consuming work of implementing reactive Angular 2 forms b
 upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
-**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and more.
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and [more](#ui-modules-and-components).
 
-See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/) 
+See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.jit.html) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 
 
@@ -130,7 +130,7 @@ import {
     DynamicRadioGroupModel
 } from "@ng2-dynamic-forms/core";
 
-export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
+export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicInputModel({
 
@@ -176,7 +176,7 @@ import { DynamicFormControlModel, DynamicFormService } from "@ng2-dynamic-forms/
 
 export class MyDynamicFormComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = MY_DYNAMIC_FORM_MODEL;
+    formModel: DynamicFormControlModel[] = MY_DYNAMIC_FORM_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {}
@@ -250,17 +250,17 @@ your component** `template`:
 <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> 
 ```
 
-Due to technical restrictions or external dependencies still being in development full support for all form controls 
-cannot be provided in every UI library. **See the following compatibility table**:
+Due to technical restrictions or external dependencies still being in development full support for all major form controls 
+cannot be provided in every single UI library. **See the following compatibility table**:
 
-|               	| Checkbox (Group) 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
-|---------------	|:----------------:	|:-----:	|:-----------:	|:------:	|:------:	|:------:	|:--------:	|
-| ui-basic      	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
-| ui-bootstrap  	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
-| ui-foundation 	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
-| ui-kendo      	|         ✗        	|   ✓   	|      ✗      	|    ✓   	|    ✓   	|    ✓   	|     ✗    	|
-| ui-material   	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
-| ui-primeng    	|         ✓        	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+|               	| Checkbox (Group) 	| Datepicker 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
+|---------------	|:----------------:	|------------	|-------	|-------------	|--------	|--------	|--------	|----------	|
+| ui-basic      	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
+| ui-bootstrap  	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
+| ui-foundation 	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
+| ui-kendo      	|         ✗        	|      ✓     	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
+| ui-material   	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+| ui-primeng    	|         ✓        	|      ✓     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 
 **\*)** sliders can be achieved by using a `DynamicInputModel` with `inputType: "range"`
 
@@ -307,7 +307,7 @@ Luckily ng2 Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Just create a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
  ```ts
-export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
+export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
  
     new DynamicFormGroupModel({
  
@@ -377,7 +377,7 @@ Fortunately, ng2 Dynamic Forms is capable of managing such nested form structure
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts
-export const MY_DYNAMIC_FORM_MODEL: Array<DynamicFormControlModel> = [
+export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormArrayModel({
         id: "myFormArrayModel"
