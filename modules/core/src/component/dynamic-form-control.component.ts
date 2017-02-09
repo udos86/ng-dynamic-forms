@@ -84,7 +84,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     }
 
     ngAfterViewInit(): void {
-        this.setTemplates();
+        setTimeout(() => this.setTemplates(), 0); // setTimeout to trigger change detection
     }
 
     ngOnDestroy(): void {
