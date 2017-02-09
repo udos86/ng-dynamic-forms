@@ -1,3 +1,15 @@
+# 1.3.12
+
+### **Bugfixes** 
+
+* dev mode template change detection bug fixed (closes [#266](https://github.com/udos86/ng2-dynamic-forms/issues/266))
+ 
+### **Features** 
+
+* update to Angular `2.4.7`
+* update to Prime NG `2.0.0`
+
+
 # 1.3.11
 
 ### **Features** 
