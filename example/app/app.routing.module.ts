@@ -50,7 +50,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#009688"
         }
     },
-
+    /*
     {
         path: "example-kendo",
         component: KendoExampleComponent,
@@ -60,7 +60,7 @@ const APP_ROUTES: Array<Route> = [
             bgColor: "#ff5747"
         }
     },
-
+    */
     {
         path: "example-primeng",
         component: PrimeNGExampleComponent,
