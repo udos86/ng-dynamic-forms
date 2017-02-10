@@ -44,34 +44,37 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "rxjs/Subscription": "Rx"
         };
 
-        const options = {
-            context: "this",
-            external: Object.keys(globals),
-            /*
-             plugins: [
-                uglify({
-                    output: {
-                        comments: (node, comment) => comment.value.startsWith("!")
-                    }
-                })
-             ]
-             */
-        };
+        function getOptions(minify) {
 
-        const generateOptions = {
-            moduleId: "",
-            moduleName: `${globalsName}.${camelCase(moduleName)}`,
-            format: "umd",
-            globals,
-            banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
-            dest: `${moduleName}.umd.min.js`
-        };
+            return {
+                context: "this",
+                external: Object.keys(globals),
+                plugins: minify ? [
+                        uglify({
+                            output: {
+                                comments: (node, comment) => comment.value.startsWith("!")
+                            }
+                        })
+                    ] : []
+            };
+        }
 
-        const srcPath = path.join(entryRootPath, moduleName, "index.js");
-        const destPath = path.join(dest, moduleName, "bundles");
+        function getGenerateOptions(minify) {
 
-        return gulp.src(srcPath)
-                   .pipe(gulpRollup(options, generateOptions))
-                   .pipe(gulp.dest(destPath));
+            return {
+                moduleId: "",
+                moduleName: `${globalsName}.${camelCase(moduleName)}`,
+                format: "umd",
+                globals,
+                banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
+                dest: minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`
+            };
+        }
+
+        return gulp.src(path.join(entryRootPath, moduleName, "index.js"))
+                   .pipe(gulpRollup(getOptions(false), getGenerateOptions(false)))
+                   .pipe(gulp.dest(path.join(dest, moduleName, "bundles")))
+                   .pipe(gulpRollup(getOptions(true), getGenerateOptions(true)))
+                   .pipe(gulp.dest(path.join(dest, moduleName, "bundles")))
     }
 };
