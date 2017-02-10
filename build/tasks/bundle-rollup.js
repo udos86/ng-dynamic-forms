@@ -1,15 +1,20 @@
 let dateFormat = require("dateformat"),
     fs = require("fs"),
     path = require("path"),
-    rollup = require("rollup").rollup,
+    gulp = require("gulp"),
+    gulpRollup = require('gulp-better-rollup'),
     uglify = require("rollup-plugin-uglify"),
     license = fs.readFileSync("./LICENSE", "utf8");
 
-module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg, dest) {
+module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
+
+    function camelCase(string) {
+        return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
+    }
 
     return function () {
 
-        let globals = {
+        const globals = {
 
             "@angular/common": "ng.common",
             "@angular/core": "ng.core",
@@ -39,52 +44,34 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "rxjs/Subscription": "Rx"
         };
 
-        function camelCase(string) {
-            return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
-        }
-
-        function bundle(moduleName, minify) {
-
-            return rollup({
-
-                context: "window",
-                entry: path.join(entryRootPath, moduleName, "index.js"),
-                external: [...Object.keys(globals)],
-                plugins: minify ? [uglify({
+        const options = {
+            context: "this",
+            external: Object.keys(globals),
+            /*
+             plugins: [
+                uglify({
                     output: {
                         comments: (node, comment) => comment.value.startsWith("!")
                     }
-                })] : []
+                })
+             ]
+             */
+        };
 
-            }).then(bundle => {
+        const generateOptions = {
+            moduleId: "",
+            moduleName: `${globalsName}.${camelCase(moduleName)}`,
+            format: "umd",
+            globals,
+            banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
+            dest: `${moduleName}.umd.min.js`
+        };
 
-                let result = bundle.generate({
+        const srcPath = path.join(entryRootPath, moduleName, "index.js");
+        const destPath = path.join(dest, moduleName, "bundles");
 
-                    banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
-                    format: "umd",
-                    globals: globals,
-                    moduleName: `${globalsName}.${camelCase(moduleName)}`
-                });
-
-                let pathBundle = path.join(dest, moduleName, "bundles");
-
-                if (!fs.existsSync(pathBundle)) {
-                    fs.mkdirSync(pathBundle);
-                }
-
-                fs.writeFileSync(path.join(pathBundle,
-                    minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
-            });
-        }
-
-        modules.forEach(moduleName => {
-            globals[`${libraryName}/${moduleName}`] = `${globalsName}.${camelCase(moduleName)}`;
-        });
-
-        return modules.reduce((previous, moduleName) => {
-
-            return previous.then(() => Promise.all([bundle(moduleName, false), bundle(moduleName, true)]));
-
-        }, Promise.resolve());
+        return gulp.src(srcPath)
+                   .pipe(gulpRollup(options, generateOptions))
+                   .pipe(gulp.dest(destPath));
     }
 };
