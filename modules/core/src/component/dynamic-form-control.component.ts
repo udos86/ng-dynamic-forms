@@ -191,7 +191,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
         this.templates.forEach(template => {
 
-            if (template.type === null && template.modelId === this.model.id) {
+            if (template.type === this.model.type || template.modelId === this.model.id) {
                 this.template = template.templateRef;
             }
         });

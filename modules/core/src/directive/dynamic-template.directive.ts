@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef } from "@angular/core";
 
 @Directive({
-    selector: "template[modelId]"
+    selector: "template[modelId],template[type]"
 })
 
 export class DynamicTemplateDirective {
