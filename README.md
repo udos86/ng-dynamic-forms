@@ -253,14 +253,14 @@ your component** `template`:
 Due to technical restrictions or external dependencies still being in development full support for all major form controls 
 cannot be provided in every single UI library. **See the following compatibility table**:
 
-|               	| Checkbox (Group) 	| Datepicker 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
-|---------------	|:----------------:	|------------	|-------	|-------------	|--------	|--------	|--------	|----------	|
-| ui-basic      	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
-| ui-bootstrap  	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
-| ui-foundation 	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
-| ui-kendo      	|         ✗        	|      ✓     	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
-| ui-material   	|         ✓        	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
-| ui-primeng    	|         ✓        	|      ✓     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+|               	| Checkbox 	| Datepicker 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
+|---------------	|:--------:	|:----------:	|:-----:	|:-----------:	|:------:	|:------:	|:------:	|:--------:	|
+| ui-basic      	|     ✓    	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
+| ui-bootstrap  	|     ✓    	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✗   	|     ✓    	|
+| ui-foundation 	|     ✓    	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    *   	|    ✓   	|     ✓    	|
+| ui-kendo      	|     ✗    	|      ✓     	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
+| ui-material   	|     ✓    	|      ✗     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+| ui-primeng    	|     ✓    	|      ✓     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 
 **\*)** sliders can be achieved by using a `DynamicInputModel` with `inputType: "range"`
 
@@ -537,8 +537,7 @@ As mentioned above, ng2 Dynamic Forms already gives you a lot of freedom in adju
 
 However there are situations where you would like to add custom markup for some of your form controls, as well. 
 
-In order to do so, just **put a** `template` **inside your dynamic form control element** and **set a** `modelId`
-**attribute** to assign it to a certain control.
+In order to do so, just **put a** `template` **inside your dynamic form control element** and **set a** `modelId` **property** to assign it to a certain control.
 ```ts
 <form [formGroup]="formGroup">
     
@@ -547,6 +546,26 @@ In order to do so, just **put a** `template` **inside your dynamic form control 
                                     [model]="controlModel">
                                     
         <template modelId="myInput">
+        
+            <p>Just some custom markup</p>
+            
+        </template>
+        
+    </dynamic-form-bootstrap-control>
+    
+</form>
+```
+
+Alternatively **you can also apply** `modelType` **instead of** `modelId` **to reuse a template** for several form controls of the same type:
+
+```ts
+<form [formGroup]="formGroup">
+    
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
+                                    [controlGroup]="formGroup"
+                                    [model]="controlModel">
+                                    
+        <template modelType="ARRAY">
         
             <p>Just some custom markup</p>
             
@@ -607,7 +626,25 @@ All you have to do is to **add a** `type` **attribute to your template** and spe
 </form>
 ```
 
+Finally you can determine wether the template is rendered before or after the actual form control by using the `align` property:
 
+```ts
+<form [formGroup]="formGroup">
+    
+    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
+                                    [controlGroup]="formGroup"
+                                    [model]="controlModel">
+                                    
+        <template modelId="myInput" align="START">
+        
+            <p>Just some custom markup</p>
+            
+        </template>
+        
+    </dynamic-form-bootstrap-control>
+    
+</form>
+```
 
 ## Custom Validators
 
@@ -661,6 +698,17 @@ new DynamicInputModel({
         testValidator: null
     }
 })
+```
+
+**CAUTION**: When uglifying your code for production you need to exclude all custom validator function names from mangling: 
+```ts 
+plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+        mangle: {
+            except: ['myValidator']
+        }
+     })
+]
 ```
 
 
