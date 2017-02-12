@@ -15,9 +15,16 @@ module.exports = {
         filename: "bundle.aot.js"
     },
 
+    //devtool: "source-map",
+
     plugins: [
 
-        //new webpack.optimize.UglifyJsPlugin({})
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,
+            mangle: {
+                except: ['testValidator']
+            }
+        })
 
-    ],
+    ]
 };

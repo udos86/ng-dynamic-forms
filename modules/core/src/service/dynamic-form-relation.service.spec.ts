@@ -90,28 +90,29 @@ describe("DynamicFormRelationService test suite", () => {
         });
     });
 
-    beforeEach(inject([DynamicFormRelationService, DynamicFormService], (relationService, formService) => {
+    beforeEach(inject([DynamicFormRelationService, DynamicFormService],
+        (relationService: DynamicFormRelationService, formService: DynamicFormService) => {
 
-        service = relationService;
-        controlGroup = formService.createFormGroup([
+            service = relationService;
+            controlGroup = formService.createFormGroup([
 
-            new DynamicSelectModel({
+                new DynamicSelectModel({
 
-                id: "testSelect",
-                options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
-                value: "option-1"
-            }),
+                    id: "testSelect",
+                    options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
+                    value: "option-1"
+                }),
 
-            new DynamicRadioGroupModel({
+                new DynamicRadioGroupModel({
 
-                id: "testRadioGroup",
-                options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
-                value: "option-1"
-            }),
+                    id: "testRadioGroup",
+                    options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
+                    value: "option-1"
+                }),
 
-            model
-        ]);
-    }));
+                model
+            ]);
+        }));
 
     it("should find an activation relation correctly", () => {
 

@@ -1,5 +1,11 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
+
+    <template *ngIf="hasStartTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
+
+
     <fieldset *ngIf="formControlType === 10" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
@@ -222,7 +228,9 @@
     </div>
 
 
-    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="hasEndTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

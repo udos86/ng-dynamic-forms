@@ -10,6 +10,11 @@
     </div>
 
 
+    <template *ngIf="hasStartTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
+
+
     <div [ngClass]="model.cls.grid.control">
 
         <ng-container [ngSwitch]="formControlType">
@@ -216,7 +221,9 @@
     </ul>
 
 
-    <template *ngIf="formControlType !== 1"  [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="hasEndTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

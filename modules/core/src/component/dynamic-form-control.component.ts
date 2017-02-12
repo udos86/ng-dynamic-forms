@@ -1,4 +1,4 @@
-import { EventEmitter, TemplateRef, OnInit, AfterViewInit, OnDestroy, QueryList } from "@angular/core";
+import { EventEmitter, OnInit, AfterViewInit, OnDestroy, QueryList, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -18,6 +18,11 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SELECT } from "../model/select/dynamic-select
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA } from "../model/textarea/dynamic-textarea.model";
 import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
+import {
+    DynamicTemplateDirective,
+    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
+    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START
+} from "../directive/dynamic-template.directive";
 import { isDefined } from "../utils";
 
 export interface DynamicFormControlEvent {
@@ -50,9 +55,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    nestedTemplates: QueryList<any>;
+    nestedTemplates: QueryList<DynamicTemplateDirective>;
     template: TemplateRef<any>;
-    templates: QueryList<any>;
+    templateDirective: DynamicTemplateDirective;
+    templates: QueryList<DynamicTemplateDirective>;
 
     private subscriptions: Subscription[] = [];
 
@@ -108,7 +114,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
                 if (this.model["errorMessages"][validatorName]) {
 
                     message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
-                        (match, expression) => {
+                        (match: string, expression: string) => {
 
                             let propertySource = this.model,
                                 propertyName = expression;
@@ -171,6 +177,14 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return (this.model as DynamicInputModel).hint !== null;
     }
 
+    get hasEndTemplate(): boolean {
+        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
+    }
+
+    get hasStartTemplate(): boolean {
+        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START;
+    }
+
     get showErrorMessages(): boolean {
         return this.control.touched && !this.hasFocus && this.isInvalid;
     }
@@ -189,10 +203,16 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
             this.templates = this.nestedTemplates;
         }
 
-        this.templates.forEach(template => {
+        this.templates.forEach((directive: DynamicTemplateDirective) => {
 
-            if (template.type === null && template.modelId === this.model.id) {
-                this.template = template.templateRef;
+            if (directive.type !== null) {
+                return; // templates with type property need to be processed by concrete UI component
+            }
+
+            if (directive.modelType === this.model.type || directive.modelId === this.model.id) {
+
+                this.templateDirective = directive;
+                this.template = directive.templateRef;
             }
         });
     }

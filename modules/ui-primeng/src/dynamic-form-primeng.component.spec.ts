@@ -62,7 +62,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         });
     }));
 
-    beforeEach(inject([DynamicFormService], service => {
+    beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
 
         formGroup = service.createFormGroup(formModel);
 

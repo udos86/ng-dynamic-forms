@@ -66,9 +66,34 @@ gulp.task("preprocess:modules",
 gulp.task("inline:ng2-templates",
     TASK_INLINE_NG2_TEMPLATES([`${DIST_PATH}/**/*.js`], DIST_PATH));
 
-
+/*
 gulp.task("bundle:modules",
     TASK_BUNDLE_ROLLUP(MODULES, DIST_PATH, "@ng2-dynamic-forms", "ng2DF", pkg, DIST_PATH));
+*/
+
+gulp.task("bundle:core",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "core", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-basic",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-basic", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-bootstrap",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-bootstrap", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-foundation",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-foundation", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-kendo",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-kendo", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-material",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-material", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-primeng",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-primeng", "ng2DF", pkg, DIST_PATH));
+
+gulp.task("bundle:ui-semantic",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-semantic", "ng2DF", pkg, DIST_PATH));
 
 
 gulp.task("transpile:modules:es5",
@@ -104,7 +129,14 @@ gulp.task("build:modules", function (done) {
         "transpile:modules:es6",
         "preprocess:modules",
         "inline:ng2-templates",
-        "bundle:modules",
+        "bundle:core",
+        "bundle:ui-basic",
+        "bundle:ui-bootstrap",
+        "bundle:ui-foundation",
+        "bundle:ui-kendo",
+        "bundle:ui-material",
+        "bundle:ui-primeng",
+        "bundle:ui-semantic",
         "transpile:modules:es5",
         "preprocess:modules",
         "inline:ng2-templates",

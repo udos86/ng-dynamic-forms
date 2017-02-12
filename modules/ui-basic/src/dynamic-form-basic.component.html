@@ -6,6 +6,11 @@
            [ngClass]="model.cls.element.label"></label>
 
 
+    <template *ngIf="hasStartTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
+
+
     <ng-container [ngSwitch]="formControlType">
 
         <div *ngSwitchCase="1"
@@ -70,8 +75,7 @@
 
         <ng-container *ngSwitchCase="4">
 
-            <input
-                    [attr.accept]="model.accept"
+            <input  [attr.accept]="model.accept"
                     [attr.autoComplete]="model.autoComplete"
                     [attr.list]="model.listId"
                     [attr.max]="model.max"
@@ -180,7 +184,10 @@
     </ul>
 
 
-    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="hasEndTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
+
 
     <ng-content></ng-content>
 

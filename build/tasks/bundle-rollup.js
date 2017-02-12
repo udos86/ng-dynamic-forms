@@ -1,15 +1,50 @@
 let dateFormat = require("dateformat"),
     fs = require("fs"),
     path = require("path"),
-    rollup = require("rollup").rollup,
+    gulp = require("gulp"),
+    gulpRollup = require('gulp-better-rollup'),
     uglify = require("rollup-plugin-uglify"),
+    merge = require('merge-stream'),
     license = fs.readFileSync("./LICENSE", "utf8");
 
-module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg, dest) {
+module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
+
+    function camelCase(string) {
+        return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
+    }
 
     return function () {
 
-        let globals = {
+        function getOptions(minify) {
+
+            return {
+
+                context: "this",
+                external: Object.keys(globals),
+                plugins: minify ? [
+                        uglify({
+                            output: {
+                                comments: (node, comment) => comment.value.startsWith("!")
+                            }
+                        })
+                    ] : []
+            };
+        }
+
+        function getGenerateOptions(minify) {
+
+            return {
+
+                moduleId: "",
+                moduleName: `${globalsName}.${camelCase(moduleName)}`,
+                format: "umd",
+                globals,
+                banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
+                dest: minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`
+            };
+        }
+
+        const globals = {
 
             "@angular/common": "ng.common",
             "@angular/core": "ng.core",
@@ -39,52 +74,19 @@ module.exports = function (modules, entryRootPath, libraryName, globalsName, pkg
             "rxjs/Subscription": "Rx"
         };
 
-        function camelCase(string) {
-            return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
-        }
+        const srcPath = path.join(entryRootPath, moduleName, "index.js");
 
-        function bundle(moduleName, minify) {
+        const destPath = path.join(dest, moduleName, "bundles");
 
-            return rollup({
+        const bundle = gulp.src(srcPath)
+                           .pipe(gulpRollup(getOptions(false), getGenerateOptions(false)))
+                           .pipe(gulp.dest(destPath));
 
-                context: "window",
-                entry: path.join(entryRootPath, moduleName, "index.js"),
-                external: [...Object.keys(globals)],
-                plugins: minify ? [uglify({
-                    output: {
-                        comments: (node, comment) => comment.value.startsWith("!")
-                    }
-                })] : []
 
-            }).then(bundle => {
+        const bundleMinified = gulp.src(srcPath)
+                                   .pipe(gulpRollup(getOptions(true), getGenerateOptions(true)))
+                                   .pipe(gulp.dest(destPath));
 
-                let result = bundle.generate({
-
-                    banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
-                    format: "umd",
-                    globals: globals,
-                    moduleName: `${globalsName}.${camelCase(moduleName)}`
-                });
-
-                let pathBundle = path.join(dest, moduleName, "bundles");
-
-                if (!fs.existsSync(pathBundle)) {
-                    fs.mkdirSync(pathBundle);
-                }
-
-                fs.writeFileSync(path.join(pathBundle,
-                    minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`), result.code);
-            });
-        }
-
-        modules.forEach(moduleName => {
-            globals[`${libraryName}/${moduleName}`] = `${globalsName}.${camelCase(moduleName)}`;
-        });
-
-        return modules.reduce((previous, moduleName) => {
-
-            return previous.then(() => Promise.all([bundle(moduleName, false), bundle(moduleName, true)]));
-
-        }, Promise.resolve());
+        return merge(bundle, bundleMinified);
     }
 };

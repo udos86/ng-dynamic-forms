@@ -3,7 +3,7 @@ import { DynamicFormAutoFillService } from "./dynamic-form-autofill.service";
 
 describe("DynamicFormAutoFillService test suite", () => {
 
-    let service;
+    let service: DynamicFormAutoFillService;
 
     beforeEach(() => {
 
@@ -12,7 +12,7 @@ describe("DynamicFormAutoFillService test suite", () => {
         });
     });
 
-    beforeEach(inject([DynamicFormAutoFillService], autoFillService => service = autoFillService));
+    beforeEach(inject([DynamicFormAutoFillService], (_service: DynamicFormAutoFillService) => service = _service));
 
     it("should validate autofill expressions correctly", () => {
 

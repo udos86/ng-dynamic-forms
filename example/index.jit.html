@@ -8,6 +8,32 @@
 
     <title>ng2 Dynamics Forms Sample App - JIT Edition</title>
 
+    <style>
+
+        .loader-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .loader {
+            border: 10px solid #f3f3f3;
+            border-top: 10px solid rgb(25,111, 238);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+
     <link rel="icon" type="image/png" href="assets/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 
@@ -30,7 +56,9 @@
 
 <body>
 
-<app></app>
+    <app>
+        <div class="loader-container"><span class="loader"></span></div>
+    </app>
 
 </body>
 
