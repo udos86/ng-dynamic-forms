@@ -4,6 +4,7 @@ let dateFormat = require("dateformat"),
     gulp = require("gulp"),
     gulpRollup = require('gulp-better-rollup'),
     uglify = require("rollup-plugin-uglify"),
+    merge = require('merge-stream'),
     license = fs.readFileSync("./LICENSE", "utf8");
 
 module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
@@ -13,6 +14,35 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
     }
 
     return function () {
+
+        function getOptions(minify) {
+
+            return {
+
+                context: "this",
+                external: Object.keys(globals),
+                plugins: minify ? [
+                        uglify({
+                            output: {
+                                comments: (node, comment) => comment.value.startsWith("!")
+                            }
+                        })
+                    ] : []
+            };
+        }
+
+        function getGenerateOptions(minify) {
+
+            return {
+
+                moduleId: "",
+                moduleName: `${globalsName}.${camelCase(moduleName)}`,
+                format: "umd",
+                globals,
+                banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
+                dest: minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`
+            };
+        }
 
         const globals = {
 
@@ -44,37 +74,19 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "rxjs/Subscription": "Rx"
         };
 
-        function getOptions(minify) {
+        const srcPath = path.join(entryRootPath, moduleName, "index.js");
 
-            return {
-                context: "this",
-                external: Object.keys(globals),
-                plugins: minify ? [
-                        uglify({
-                            output: {
-                                comments: (node, comment) => comment.value.startsWith("!")
-                            }
-                        })
-                    ] : []
-            };
-        }
+        const destPath = path.join(dest, moduleName, "bundles");
 
-        function getGenerateOptions(minify) {
+        const bundle = gulp.src(srcPath)
+                           .pipe(gulpRollup(getOptions(false), getGenerateOptions(false)))
+                           .pipe(gulp.dest(destPath));
 
-            return {
-                moduleId: "",
-                moduleName: `${globalsName}.${camelCase(moduleName)}`,
-                format: "umd",
-                globals,
-                banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
-                dest: minify ? `${moduleName}.umd.min.js` : `${moduleName}.umd.js`
-            };
-        }
 
-        return gulp.src(path.join(entryRootPath, moduleName, "index.js"))
-                   .pipe(gulpRollup(getOptions(false), getGenerateOptions(false)))
-                   .pipe(gulp.dest(path.join(dest, moduleName, "bundles")))
-                   .pipe(gulpRollup(getOptions(true), getGenerateOptions(true)))
-                   .pipe(gulp.dest(path.join(dest, moduleName, "bundles")))
+        const bundleMinified = gulp.src(srcPath)
+                                   .pipe(gulpRollup(getOptions(true), getGenerateOptions(true)))
+                                   .pipe(gulp.dest(destPath));
+
+        return merge(bundle, bundleMinified);
     }
 };

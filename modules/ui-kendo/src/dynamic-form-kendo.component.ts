@@ -42,13 +42,13 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @Input() bindId: boolean = true;
     @Input() controlGroup: FormGroup;
     @Input() model: DynamicFormControlModel;
-    @Input() nestedTemplates: QueryList<any>;
+    @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
+    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
     @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | null;
     @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | null;
@@ -67,8 +67,8 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     protected setKendoTemplateDirective(template: DynamicTemplateDirective): void {
 
-        let templateDirectives,
-            viewChild;
+        let templateDirectives: any,
+            viewChild: any;
 
         if (this.kendoAutoComplete) {
 
@@ -91,7 +91,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             viewChild = this.kendoMultiSelect;
         }
 
-        Object.keys(templateDirectives || {}).forEach(key => {
+        Object.keys(templateDirectives || {}).forEach((key: string) => {
 
             if (templateDirectives[key] === template.type) {
                 viewChild[key] = template;
@@ -103,10 +103,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
         super.setTemplates();
 
-        //noinspection TypeScriptUnresolvedFunction
         this.templates
-            .filter(template => template.type.startsWith("kendo"))
-            .forEach(template => this.setKendoTemplateDirective(template));
+            .filter(directive => directive.type.startsWith("kendo"))
+            .forEach(directive => this.setKendoTemplateDirective(directive));
     }
 
     get formControlType(): number | null {

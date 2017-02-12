@@ -233,9 +233,9 @@ export class DynamicFormService {
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
         let rawModel = typeof json === "string" ? JSON.parse(json, this.parseJSONReviver) : json,
-            formModel = [];
+            formModel: DynamicFormControlModel[] = [];
 
-        rawModel.forEach(model => {
+        rawModel.forEach((model: any) => {
 
             switch (model["type"]) {
 

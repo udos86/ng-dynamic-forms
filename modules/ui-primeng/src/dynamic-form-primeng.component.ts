@@ -31,13 +31,13 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
     @Input() controlGroup: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input() nestedTemplates: QueryList<any>;
+    @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
+    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
     private suggestions: string[];
 

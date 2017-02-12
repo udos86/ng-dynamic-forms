@@ -7,6 +7,7 @@ import {
     DynamicFormControlEvent,
     DynamicFormRelationService,
     DynamicTemplateDirective,
+    DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
@@ -35,11 +36,11 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @Input() controlGroup: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input() nestedTemplates: QueryList<any>;
+    @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;
 
     @Input()
     get showCharacterHint(): boolean {
-        return !!(this._showCharacterCount && this.model["maxLength"] && this.characterCount);
+        return !!(this._showCharacterCount && (this.model as DynamicInputModel).maxLength && this.characterCount);
     }
 
     set showCharacterHint(value: boolean) {
@@ -50,7 +51,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<any>;
+    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
     @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;

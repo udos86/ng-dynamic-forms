@@ -131,7 +131,7 @@ export class DynamicFormAutoFillService {
 
     validate(tokens: string): boolean {
 
-        function toExpression(total, currentValue) {
+        function toExpression(total: string, currentValue: string) {
             return total + "|" + currentValue;
         }
 

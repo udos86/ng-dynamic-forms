@@ -9,6 +9,11 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
+    <template *ngIf="hasStartTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
+
+
     <div *ngIf="formControlType === 2" [ngClass]="model.cls.grid.control">
 
         <div class="checkbox" [class.disabled]="model.disabled">
@@ -202,7 +207,9 @@
     </ul>
 
 
-    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="hasEndTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

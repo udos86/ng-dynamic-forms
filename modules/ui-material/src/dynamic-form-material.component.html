@@ -6,6 +6,11 @@
            [ngClass]="model.cls.element.label"></label>
 
 
+    <template *ngIf="hasStartTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
+
+
     <ng-container [ngSwitch]="formControlType">
 
         <div *ngSwitchCase="1"
@@ -199,7 +204,9 @@
     </md-list>
 
 
-    <template *ngIf="formControlType !== 1" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <template *ngIf="hasEndTemplate && formControlType !== 1"
+              [ngTemplateOutlet]="template"
+              [ngOutletContext]="model"></template>
 
     <ng-content></ng-content>
 

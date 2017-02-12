@@ -20,11 +20,12 @@ import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
+import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
 
 describe("DynamicFormService test suite", () => {
 
-    let testModel,
-        service;
+    let testModel: DynamicFormControlModel[],
+        service: DynamicFormService;
 
     function testValidator() {
 
@@ -135,7 +136,7 @@ describe("DynamicFormService test suite", () => {
         ];
     });
 
-    beforeEach(inject([DynamicFormService], dynamicFormService => service = dynamicFormService));
+    beforeEach(inject([DynamicFormService], (formService: DynamicFormService) => service = formService));
 
 
     it("should be defined", () => {
@@ -177,7 +178,7 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[0] instanceof DynamicSelectModel).toBe(true);
         expect(formModel[1] instanceof DynamicInputModel).toBe(true);
         expect(formModel[2] instanceof DynamicCheckboxGroupModel).toBe(true);
-        expect(formModel[2]["group"].length).toBe(testModel[2].group.length);
+        expect((formModel[2] as DynamicCheckboxGroupModel).group.length).toBe((testModel[2] as DynamicCheckboxGroupModel).group.length);
         expect(formModel[3] instanceof DynamicRadioGroupModel).toBe(true);
         expect(formModel[4] instanceof DynamicTextAreaModel).toBe(true);
         expect(formModel[5] instanceof DynamicCheckboxModel).toBe(true);
@@ -186,7 +187,7 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[8] instanceof DynamicSliderModel).toBe(true);
         expect(formModel[9] instanceof DynamicSwitchModel).toBe(true);
         expect(formModel[10] instanceof DynamicDatepickerModel).toBe(true);
-        expect(formModel[10].value instanceof Date).toBe(true);
+        expect((formModel[10] as DynamicDateControlModel).value instanceof Date).toBe(true);
     });
 
 
@@ -291,8 +292,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(service.moveFormArrayGroup).toBeDefined();
 
-        formArray.at(index).controls["basicArrayGroupInput"].setValue("next test value 1");
-        formArray.at(index + step).controls["basicArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 2");
 
         model.get(index).get(0).valueUpdates.next("next test value 1");
         model.get(index + step).get(0).valueUpdates.next("next test value 2");
@@ -301,8 +302,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect(formArray.at(index).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
-        expect(formArray.at(index + step).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
 
         expect(model.get(index).get(0).value).toEqual("next test value 2");
         expect(model.get(index + step).get(0).value).toEqual("next test value 1");
