@@ -175,9 +175,7 @@
     <div *ngIf="hasHint" [ngClass]="model.cls.element.hint"><span [innerHTML]="model.hint"></span></div>
 
 
-    <ul *ngIf="hasErrorMessaging"
-        [hidden]="!showErrorMessages"
-        [ngClass]="model.cls.element.errors">
+    <ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages" [ngClass]="model.cls.element.errors">
 
         <li *ngFor="let message of errorMessages">{{message}}</li>
 

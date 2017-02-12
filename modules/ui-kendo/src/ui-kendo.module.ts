@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
+import { UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormKendoComponent } from "./dynamic-form-kendo.component";
 
@@ -15,6 +16,7 @@ import { DynamicFormKendoComponent } from "./dynamic-form-kendo.component";
         DateInputsModule,
         DropDownsModule,
         InputsModule,
+        UploadModule,
         DynamicFormsCoreModule
     ],
     declarations: [

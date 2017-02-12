@@ -113,6 +113,7 @@
     "@progress/kendo-angular-dropdowns": "^0.27.8",
     "@progress/kendo-angular-inputs": "^0.18.7",
     "@progress/kendo-angular-intl": "^0.9.1",
+    "@progress/kendo-angular-upload": "^0.13.2",
     "@progress/kendo-date-math": "^0.3.2",
     "@progress/kendo-theme-default": "^2.11.23",
     "jquery": "^3.1.1",

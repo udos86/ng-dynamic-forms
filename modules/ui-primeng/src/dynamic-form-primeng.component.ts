@@ -93,7 +93,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
         }
     }
 
-    onAutoComplete($event): void {
+    onAutoComplete($event: any): void {
         this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
     }
 }

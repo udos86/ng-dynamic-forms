@@ -4,7 +4,7 @@ import { DynamicInputModel } from "../input/dynamic-input.model";
 describe("DynamicFormGroupModel test suite", () => {
 
     let model: DynamicFormGroupModel,
-        config = {
+        config: any = {
             id: "formGroup",
             group: [
                 new DynamicInputModel({

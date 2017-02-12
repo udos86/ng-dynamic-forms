@@ -58,6 +58,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs", // TODO
             "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
+            "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
             "ng-semantic": "ng-semantic", // TODO
             "primeng/components/autocomplete/autocomplete": "primeng/components/autocomplete/autocomplete",
             "primeng/components/calendar/calendar": "primeng/components/calendar/calendar",

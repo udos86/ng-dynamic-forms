@@ -8,7 +8,7 @@ import { DynamicInputModel } from "../input/dynamic-input.model";
 describe("DynamicFormArrayModel test suite", () => {
 
     let model: DynamicFormArrayModel,
-        config = {
+        config: any = {
             id: "formArray",
             initialCount: 3,
             createGroup: () => [new DynamicInputModel({id: "defaultInput"})],

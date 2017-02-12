@@ -3,7 +3,8 @@ import {
     DynamicSelectModel,
     DynamicSwitchModel,
     DynamicSliderModel,
-    DynamicDatepickerModel
+    DynamicDatepickerModel,
+    DynamicFileUploadModel
 } from "@ng2-dynamic-forms/core";
 
 export const KENDO_EXAMPLE_MODEL = [
@@ -30,6 +31,16 @@ export const KENDO_EXAMPLE_MODEL = [
                 }
             ],
             value: "option-3"
+        }
+    ),
+
+    new DynamicFileUploadModel(
+        {
+            autoUpload: true,
+            id: "kendoUpload",
+            multiple: true,
+            removeUrl: "removeUrl",
+            saveUrl: "saveUrl"
         }
     ),
 

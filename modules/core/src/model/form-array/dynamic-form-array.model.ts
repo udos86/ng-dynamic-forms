@@ -45,11 +45,11 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    @serializable() private groups: DynamicFormArrayGroupModel[] = [];
     @serializable() private originGroup: DynamicFormValueControlModel<DynamicFormControlValue>[]; // only to reinstantiate from JSON
 
     @serializable() asyncValidator: DynamicValidatorsMap | null;
     createGroup: () => DynamicFormValueControlModel<DynamicFormControlValue>[];
+    @serializable() groups: DynamicFormArrayGroupModel[] = [];
     @serializable() initialCount: number;
     @serializable() validator: DynamicValidatorsMap | null;
 

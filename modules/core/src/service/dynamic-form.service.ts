@@ -33,6 +33,7 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { isFunction, isDefined } from "../utils";
+import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD, DynamicFileUploadModel } from "../model/file/dynamic-file-upload.model";
 
 export class DynamicFormService {
 
@@ -256,6 +257,11 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                     formModel.push(new DynamicDatepickerModel(model, model["cls"]));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
+                    model["value"] = null;
+                    formModel.push(new DynamicFileUploadModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:

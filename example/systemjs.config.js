@@ -37,6 +37,7 @@
         "@progress/kendo-angular-inputs": "npm:@progress/kendo-angular-inputs/dist/npm/main.js",
         "@progress/kendo-angular-intl": "npm:@progress/kendo-angular-intl/dist/npm/main.js",
         "@progress/kendo-angular-popup": "npm:@progress/kendo-angular-popup/dist/npm/main.js",
+        "@progress/kendo-angular-upload": "npm:@progress/kendo-angular-upload/dist/npm/main.js",
         "@progress/kendo-date-math": "npm:@progress/kendo-date-math/dist/npm/main.js",
         "@progress/kendo-popup-common": "npm:@progress/kendo-popup-common/dist/npm/main.js",
         "@telerik": "npm:@telerik",

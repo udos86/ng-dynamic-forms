@@ -156,6 +156,19 @@
                       [onLabel]="model.onLabel"
                       (valueChange)="onValueChange($event)"></kendo-switch>
 
+
+        <kendo-upload *ngSwitchCase="11"
+                      [autoUpload]="model.autoUpload"
+                      [disabled]="model.disabled"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [multiple]="model.multiple"
+                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [saveUrl]="model.saveUrl"
+                      [showFileList]="model.showFileList"
+                      [removeUrl]="model.removeUrl"
+                      (select)="onValueChange($event)"></kendo-upload>
+
     </ng-container>
 
 
