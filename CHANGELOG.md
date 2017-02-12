@@ -1,3 +1,11 @@
+# 1.3.13
+
+### **Features** 
+
+* Template alignment can now be determined by `align` property (closes [#264](https://github.com/udos86/ng2-dynamic-forms/issues/264))
+* Templates can now be reused by using `modelType` property (closes [#265](https://github.com/udos86/ng2-dynamic-forms/issues/265))
+ 
+
 # 1.3.12
 
 ### **Bugfixes** 

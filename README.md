@@ -626,7 +626,7 @@ All you have to do is to **add a** `type` **attribute to your template** and spe
 </form>
 ```
 
-Finally you can determine wether the template is rendered before or after the actual form control by using the `align` property:
+Finally **you can determine whether the template is rendered before or after the actual form control** by using the `align` property:
 
 ```ts
 <form [formGroup]="formGroup">
@@ -700,7 +700,7 @@ new DynamicInputModel({
 })
 ```
 
-**CAUTION**: When uglifying your code for production you need to exclude all custom validator function names from mangling: 
+**CAUTION:** When uglifying your code for production **you need to exclude all custom validator function names from mangling** to avoid a runtime exception: 
 ```ts 
 plugins: [
     new webpack.optimize.UglifyJsPlugin({
