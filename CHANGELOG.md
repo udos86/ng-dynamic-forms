@@ -1,3 +1,11 @@
+# 1.3.14
+
+### **Features** 
+
+* initial addition of file control models
+* initial support for `Upload` in `ui-kendo` 
+
+
 # 1.3.13
 
 ### **Features** 

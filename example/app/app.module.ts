@@ -50,7 +50,7 @@ export function testValidator(formControl: FormControl) {
         DynamicFormsMaterialUIModule,
         DynamicFormsPrimeNGUIModule,
         //DynamicFormsSemanticUIModule,
-        MaterialModule.forRoot()
+        MaterialModule
     ],
     declarations: [
         BasicExampleComponent,
