@@ -68,6 +68,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
             label: "Example Input",
             list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
+            multiple: true,
             placeholder: "example input",
             validators: {
                 required: null

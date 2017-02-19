@@ -40,7 +40,7 @@ export const KENDO_EXAMPLE_MODEL = [
             id: "kendoUpload",
             multiple: true,
             removeUrl: "removeUrl",
-            saveUrl: "saveUrl"
+            url: "saveUrl"
         }
     ),
 

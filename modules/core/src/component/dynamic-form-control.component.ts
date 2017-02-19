@@ -177,6 +177,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return (this.model as DynamicInputModel).hint !== null;
     }
 
+    get hasList(): boolean { // needed for AOT
+        return (this.model as DynamicInputModel).list !== null;
+    }
+
     get hasEndTemplate(): boolean {
         return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
     }

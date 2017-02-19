@@ -8,17 +8,20 @@ import {
     DynamicInputModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import { AutoCompleteModule } from "primeng/components/autocomplete/autocomplete";
-import { CalendarModule } from "primeng/components/calendar/calendar";
-import { CheckboxModule } from "primeng/components/checkbox/checkbox";
-import { DropdownModule } from "primeng/components/dropdown/dropdown";
-import { InputSwitchModule } from "primeng/components/inputswitch/inputswitch";
-import { InputTextModule } from "primeng/components/inputtext/inputtext";
-import { InputTextareaModule } from "primeng/components/inputtextarea/inputtextarea";
-import { MultiSelectModule } from "primeng/components/multiselect/multiselect";
-import { RadioButtonModule } from "primeng/components/radiobutton/radiobutton";
-import { SliderModule } from "primeng/components/slider/slider";
-import { SpinnerModule } from "primeng/components/spinner/spinner";
+import {
+    AutoCompleteModule,
+    CalendarModule,
+    CheckboxModule,
+    ChipsModule,
+    DropdownModule,
+    InputSwitchModule,
+    InputTextModule,
+    InputTextareaModule,
+    MultiSelectModule,
+    RadioButtonModule,
+    SliderModule,
+    SpinnerModule
+} from "primeng/primeng";
 import { DynamicFormPrimeNGComponent } from "./dynamic-form-primeng.component";
 import { DYNAMIC_FORM_UI_PRIME_NG, PFormControlType } from "./dynamic-form-primeng.const";
 
@@ -42,6 +45,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 AutoCompleteModule,
                 CalendarModule,
                 CheckboxModule,
+                ChipsModule,
                 DropdownModule,
                 InputSwitchModule,
                 InputTextModule,

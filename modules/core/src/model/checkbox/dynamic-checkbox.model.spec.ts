@@ -1,3 +1,4 @@
+import { DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER } from "../dynamic-check-control.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "./dynamic-checkbox.model";
 
 describe("DynamicCheckboxModel test suite", () => {
@@ -17,7 +18,7 @@ describe("DynamicCheckboxModel test suite", () => {
         expect(model.id).toEqual(config.id);
         expect(model.indeterminate).toBe(false);
         expect(model.label).toBeNull();
-        expect(model.labelPosition).toBeNull();
+        expect(model.labelPosition).toEqual(DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER);
         expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
         expect(model.validators).toBeNull();

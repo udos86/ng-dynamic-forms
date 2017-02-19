@@ -20,7 +20,6 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
 } from "@ng2-dynamic-forms/core";
 import {
@@ -31,10 +30,7 @@ import {
     KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
     KendoFormControlType, KENDO_UPLOAD_TEMPLATE_DIRECTIVES
 } from "./dynamic-form-kendo.const";
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
-    DynamicFileUploadModelConfig, DynamicFileUploadModel
-} from "../../core/src/model/file/dynamic-file-upload.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD } from "../../core/src/model/file-upload/dynamic-file-upload.model";
 
 @Component({
 

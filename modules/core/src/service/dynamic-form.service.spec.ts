@@ -12,7 +12,7 @@ import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
 import { DynamicDatepickerModel } from "../model/datepicker/dynamic-datepicker.model";
-import { DynamicFileUploadModel } from "../model/file/dynamic-file-upload.model";
+import { DynamicFileUploadModel } from "../model/file-upload/dynamic-file-upload.model";
 import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";

@@ -60,17 +60,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
             "ng-semantic": "ng-semantic", // TODO
-            "primeng/components/autocomplete/autocomplete": "primeng/components/autocomplete/autocomplete",
-            "primeng/components/calendar/calendar": "primeng/components/calendar/calendar",
-            "primeng/components/checkbox/checkbox": "primeng/components/checkbox/checkbox",
-            "primeng/components/dropdown/dropdown": "primeng/components/dropdown/dropdown",
-            "primeng/components/inputswitch/inputswitch": "primeng/components/inputswitch/inputswitch",
-            "primeng/components/inputtext/inputtext": "primeng/components/inputtext/inputtext",
-            "primeng/components/inputtextarea/inputtextarea": "primeng/components/inputtextarea/inputtextarea",
-            "primeng/components/multiselect/multiselect": "primeng/components/multiselect/multiselect",
-            "primeng/components/radiobutton/radiobutton": "primeng/components/radiobutton/radiobutton",
-            "primeng/components/spinner/spinner": "primeng/components/spinner/spinner",
-            "primeng/components/slider/slider": "primeng/components/slider/slider",
+            "primeng/primeng": "primeng/primeng",
             "rxjs/Subject": "Rx",
             "rxjs/Subscription": "Rx"
         };

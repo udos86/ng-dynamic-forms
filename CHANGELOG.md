@@ -4,6 +4,8 @@
 
 * initial addition of file control models
 * initial support for `Upload` in `ui-kendo` 
+* update to Angular `2.4.8`
+* update to `@angular/material beta.2`
 
 
 # 1.3.13
