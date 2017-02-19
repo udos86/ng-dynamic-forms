@@ -27,13 +27,12 @@ import { ValidationMessageComponent } from "./validation-message/validation-mess
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 
-export function testValidator(formControl: FormControl) {
+export function customValidator(formControl: FormControl) {
+    return {customValidator: {valid: formControl.value ? (formControl.value as string).startsWith("abc") : false}};
+}
 
-    return {
-        testValidator: {
-            valid: formControl.value ? <string>formControl.value.startsWith("abc") : false
-        }
-    };
+export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
+    return new Http(mockBackend, baseRequestOptions)
 }
 
 @NgModule({
@@ -69,7 +68,7 @@ export function testValidator(formControl: FormControl) {
         {
             provide: Http,
             deps: [MockBackend, BaseRequestOptions],
-            useFactory: (backend, options) => new Http(backend, options)
+            useFactory: mockBackendFactory
         },
         {
             provide: LocationStrategy,
@@ -77,7 +76,7 @@ export function testValidator(formControl: FormControl) {
         },
         {
             provide: NG_VALIDATORS,
-            useValue: testValidator,
+            useValue: customValidator,
             multi: true
         }
     ],
