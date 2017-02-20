@@ -59,13 +59,13 @@ export class DynamicFormService {
 
         if (this.NG_VALIDATORS) {
 
-            validatorFn = this.NG_VALIDATORS.find(validator => {
-                return (validatorName === validator.name) || ((validator(new FormControl()) as any).hasOwnProperty(validatorName));
+            validatorFn = this.NG_VALIDATORS.find(validatorFn => {
+                return validatorName === validatorFn.name || (validatorFn(new FormControl()) as Object).hasOwnProperty(validatorName);
             });
         }
 
-        if (!isDefined(validatorFn) && this.NG_ASYNC_VALIDATORS) {
-            validatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidator => validatorName === asyncValidator.name);
+        if (!validatorFn && this.NG_ASYNC_VALIDATORS) {
+            validatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => validatorName === asyncValidatorFn.name);
         }
 
         return validatorFn;

@@ -71,7 +71,7 @@
     "@types/jasmine": "^2.5.43",
     "@types/node": "^7.0.5",
     "@types/reflect-metadata": "^0.0.5",
-    "codelyzer": "^2.0.0",
+    "codelyzer": "^2.0.1",
     "dateformat": "^2.0.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -88,7 +88,7 @@
     "html-minifier": "^3.3.3",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
-    "karma": "^1.4.1",
+    "karma": "^1.5.0",
     "karma-coverage": "^1.1.1",
     "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.1.0",
@@ -110,11 +110,11 @@
   },
   "optionalDependencies": {
     "@progress/kendo-angular-dateinputs": "^0.3.6",
-    "@progress/kendo-angular-dropdowns": "^0.29.0",
+    "@progress/kendo-angular-dropdowns": "^0.29.1",
     "@progress/kendo-angular-inputs": "^0.18.7",
     "@progress/kendo-angular-intl": "^0.10.0",
     "@progress/kendo-angular-upload": "^0.13.2",
     "@progress/kendo-date-math": "^0.3.2",
-    "@progress/kendo-theme-default": "^2.12.9"
+    "@progress/kendo-theme-default": "^2.12.13"
   }
 }
