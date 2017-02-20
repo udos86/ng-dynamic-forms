@@ -33,7 +33,10 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { isFunction, isDefined } from "../utils";
-import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD, DynamicFileUploadModel } from "../model/file-upload/dynamic-file-upload.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
+    DynamicFileUploadModel
+} from "../model/file-upload/dynamic-file-upload.model";
 
 export class DynamicFormService {
 
@@ -55,7 +58,10 @@ export class DynamicFormService {
         let validatorFn;
 
         if (this.NG_VALIDATORS) {
-            validatorFn = this.NG_VALIDATORS.find(validator => validatorName === validator.name);
+
+            validatorFn = this.NG_VALIDATORS.find(validator => {
+                return (validatorName === validator.name) || ((validator(new FormControl()) as any).hasOwnProperty(validatorName));
+            });
         }
 
         if (!isDefined(validatorFn) && this.NG_ASYNC_VALIDATORS) {
