@@ -33,6 +33,10 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { isFunction, isDefined } from "../utils";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
+    DynamicFileUploadModel
+} from "../model/file-upload/dynamic-file-upload.model";
 
 export class DynamicFormService {
 
@@ -54,11 +58,14 @@ export class DynamicFormService {
         let validatorFn;
 
         if (this.NG_VALIDATORS) {
-            validatorFn = this.NG_VALIDATORS.find(validator => validatorName === validator.name);
+
+            validatorFn = this.NG_VALIDATORS.find(validatorFn => {
+                return validatorName === validatorFn.name || (validatorFn(new FormControl()) as Object).hasOwnProperty(validatorName);
+            });
         }
 
-        if (!isDefined(validatorFn) && this.NG_ASYNC_VALIDATORS) {
-            validatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidator => validatorName === asyncValidator.name);
+        if (!validatorFn && this.NG_ASYNC_VALIDATORS) {
+            validatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => validatorName === asyncValidatorFn.name);
         }
 
         return validatorFn;
@@ -256,6 +263,11 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                     formModel.push(new DynamicDatepickerModel(model, model["cls"]));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
+                    model["value"] = null;
+                    formModel.push(new DynamicFileUploadModel(model, model["cls"]));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:

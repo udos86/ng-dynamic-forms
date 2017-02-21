@@ -23,7 +23,7 @@ let SRC_PATH = "./modules",
         "ui-kendo",
         "ui-material",
         "ui-primeng",
-        "ui-semantic"
+        //"ui-semantic"
     ];
 
 
@@ -136,7 +136,7 @@ gulp.task("build:modules", function (done) {
         "bundle:ui-kendo",
         "bundle:ui-material",
         "bundle:ui-primeng",
-        "bundle:ui-semantic",
+        //"bundle:ui-semantic",
         "transpile:modules:es5",
         "preprocess:modules",
         "inline:ng2-templates",

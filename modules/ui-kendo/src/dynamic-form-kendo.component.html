@@ -42,6 +42,7 @@
                             [formControlName]="model.id"
                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                             [placeholder]="model.placeholder"
+                            [tabIndex]="model.tabIndex"
                             (blur)="onFocusChange($event)"
                             (focus)="onFocusChange($event)"
                             (valueChange)="onValueChange($event)"></kendo-autocomplete>
@@ -56,6 +57,7 @@
                         [min]="model.min"
                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                         [rangeValidation]="true"
+                        [tabIndex]="model.tabIndex"
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
 
@@ -65,6 +67,7 @@
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [tabIndex]="model.tabIndex"
                             [textField]="'label'"
                             [valueField]="'value'"
                             [valuePrimitive]="true"
@@ -98,6 +101,7 @@
                              [mask]="model.mask"
                              [maskValidation]="true"
                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                             [tabIndex]="model.tabIndex"
                              (blur)="onFocusChange($event)"
                              (focus)="onFocusChange($event)"
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
@@ -110,6 +114,7 @@
                            [formControlName]="model.id"
                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                            [placeholder]="model.placeholder"
+                           [tabIndex]="model.tabIndex"
                            [textField]="'label'"
                            [valueField]="'value'"
                            [valuePrimitive]="true"
@@ -128,6 +133,7 @@
                               [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                               [spinners]="true"
                               [step]="model.step"
+                              [tabIndex]="model.tabIndex"
                               (blur)="onFocusChange($event)"
                               (focus)="onFocusChange($event)"
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
@@ -142,6 +148,7 @@
                       [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                       [showButtons]="true"
                       [smallStep]="model.step"
+                      [tabIndex]="model.tabIndex"
                       [vertical]="model.vertical"
                       (valueChange)="onValueChange($event)"></kendo-slider>
 
@@ -154,7 +161,21 @@
                       [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                       [offLabel]="model.offLabel"
                       [onLabel]="model.onLabel"
+                      [tabIndex]="model.tabIndex"
                       (valueChange)="onValueChange($event)"></kendo-switch>
+
+
+        <kendo-upload *ngSwitchCase="11"
+                      [autoUpload]="model.autoUpload"
+                      [disabled]="model.disabled"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [multiple]="model.multiple"
+                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [removeUrl]="model.removeUrl"
+                      [saveUrl]="model.url"
+                      [showFileList]="model.showFileList"
+                      [tabIndex]="model.tabIndex"></kendo-upload>
 
     </ng-container>
 

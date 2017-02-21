@@ -11,7 +11,8 @@ export const enum KendoFormControlType {
     MultiSelect = 7,
     NumericTextBox = 8,
     Slider = 9,
-    Switch = 10
+    Switch = 10,
+    Upload = 11
 }
 
 export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
@@ -43,4 +44,9 @@ export const KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES = {
     itemTemplate: "kendoMultiSelectItemTemplate",
     noDataTemplate: "kendoMultiSelectNoDataTemplate",
     tagTemplate: "kendoMultiSelectTagTemplate"
+};
+
+export const KENDO_UPLOAD_TEMPLATE_DIRECTIVES = {
+
+    fileTemplate: "kendoUploadFileTemplate"
 };

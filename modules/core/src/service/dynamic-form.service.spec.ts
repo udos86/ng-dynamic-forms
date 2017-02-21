@@ -10,7 +10,9 @@ import {
 import { DynamicFormService } from "./dynamic-form.service";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
+import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
 import { DynamicDatepickerModel } from "../model/datepicker/dynamic-datepicker.model";
+import { DynamicFileUploadModel } from "../model/file-upload/dynamic-file-upload.model";
 import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
@@ -20,7 +22,6 @@ import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
 
 describe("DynamicFormService test suite", () => {
 
@@ -133,6 +134,8 @@ describe("DynamicFormService test suite", () => {
             new DynamicSwitchModel({id: "testSwitch"}),
 
             new DynamicDatepickerModel({id: "testDatepicker", value: new Date()}),
+
+            new DynamicFileUploadModel({id: "testFileUpload"})
         ];
     });
 
@@ -161,6 +164,7 @@ describe("DynamicFormService test suite", () => {
         expect(formGroup.get("testRadioGroup") instanceof FormControl).toBe(true);
         expect(formGroup.get("testSelect") instanceof FormControl).toBe(true);
         expect(formGroup.get("testTextArea") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testFileUpload") instanceof FormControl).toBe(true);
     });
 
 
@@ -188,6 +192,7 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[9] instanceof DynamicSwitchModel).toBe(true);
         expect(formModel[10] instanceof DynamicDatepickerModel).toBe(true);
         expect((formModel[10] as DynamicDateControlModel).value instanceof Date).toBe(true);
+        expect(formModel[11] instanceof DynamicFileUploadModel).toBe(true);
     });
 
 
@@ -211,6 +216,7 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testSlider", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testSwitch", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("testFileUpload", testModel) instanceof DynamicFormControlModel).toBe(true);
     });
 
 
@@ -348,7 +354,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should resolve validators from config correctly", () => {
 
-        let config = {required: null, maxLength: 7, minLength: 3},
+        let config: any = {required: null, maxLength: 7, minLength: 3},
             validators = service.getValidators(config);
 
         expect(validators.length).toBe(Object.keys(config).length);
@@ -356,7 +362,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should resolve custom validators from config correctly", () => {
 
-        let config = {required: null, maxLength: 7, testValidator: null},
+        let config: any = {required: null, maxLength: 7, testValidator: null},
             validators = service.getValidators(config);
 
         expect(validators.length).toBe(Object.keys(config).length);
@@ -364,7 +370,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should resolve custom async validators from config correctly", () => {
 
-        let config = {required: null, maxLength: 7, testAsyncValidator: null},
+        let config: any = {required: null, maxLength: 7, testAsyncValidator: null},
             validators = service.getValidators(config);
 
         expect(validators.length).toBe(Object.keys(config).length);

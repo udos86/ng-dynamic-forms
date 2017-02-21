@@ -7,13 +7,17 @@ import {
     DynamicFormRelationService,
     DynamicTemplateDirective,
     DynamicInputModel,
+    DynamicSelectModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_INPUT, DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DYNAMIC_FORM_CONTROL_TYPE_SELECT,
-    DynamicSelectModel, DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
 import { DYNAMIC_FORM_UI_PRIME_NG, PFormControlType } from "./dynamic-form-primeng.const";
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH } from "../../core/src/model/switch/dynamic-switch.model";
@@ -93,7 +97,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
         }
     }
 
-    onAutoComplete($event): void {
+    onAutoComplete($event: any): void {
         this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
     }
 }

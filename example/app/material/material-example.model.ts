@@ -41,6 +41,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
 
         hint: "Just a hint",
         id: "materialInput",
+        list: ["Football", "Basketball", "Baseball", "Hockey"],
         maxLength: 51,
         placeholder: "example input"
     }),

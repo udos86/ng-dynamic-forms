@@ -131,16 +131,12 @@ export class DynamicFormAutoFillService {
 
     validate(tokens: string): boolean {
 
-        function toExpression(total: string, currentValue: string) {
-            return total + "|" + currentValue;
-        }
-
-        let tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression);
-        let tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression);
-        let fields = AUTOFILL_FIELDS.reduce(toExpression);
-        let fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression);
-
-        let regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
+        let toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`,
+            tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression),
+            tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression),
+            fields = AUTOFILL_FIELDS.reduce(toExpression),
+            fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression),
+            regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
 
         return regex.test(tokens);
     }

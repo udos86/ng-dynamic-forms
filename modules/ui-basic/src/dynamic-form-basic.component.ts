@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, QueryList, ContentChildren } fr
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlModel,
-    DynamicInputModel,
     DynamicFormControlComponent,
     DynamicFormControlEvent,
     DynamicFormRelationService,
@@ -36,9 +35,5 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
-    }
-
-    get hasList(): boolean { // needed for AOT
-        return (this.model as DynamicInputModel).list !== null;
     }
 }

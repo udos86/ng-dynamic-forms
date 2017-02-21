@@ -5,6 +5,7 @@ import { By } from "@angular/platform-browser";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
+import { UploadModule } from "@progress/kendo-angular-upload";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -33,6 +34,7 @@ describe("DynamicFormKendoComponent test suite", () => {
                 DateInputsModule,
                 DropDownsModule,
                 InputsModule,
+                UploadModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicFormKendoComponent]

@@ -42,7 +42,7 @@
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [indeterminate]="model.indeterminate"
-                     [labelPosition]="'after'"
+                     [labelPosition]="model.labelPosition"
                      [name]="model.name"
                      [ngClass]="model.cls.element.control"
                      (blur)="onFocusChange($event)"
@@ -69,41 +69,52 @@
         </fieldset>
 
 
-        <md-input-container *ngSwitchCase="4">
+        <ng-container *ngSwitchCase="4">
 
-            <input md-input
-                   [attr.accept]="model.accept"
-                   [attr.autoComplete]="model.autoComplete"
-                   [attr.list]="model.listId"
-                   [attr.max]="model.max"
-                   [attr.min]="model.min"
-                   [attr.multiple]="model.multiple"
-                   [attr.step]="model.step"
-                   [attr.tabindex]="model.tabIndex"
-                   [autofocus]="model.autoFocus"
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [maxlength]="model.maxLength"
-                   [minlength]="model.minLength"
-                   [name]="model.name"
-                   [ngClass]="model.cls.element.control"
-                   [pattern]="model.pattern"
-                   [placeholder]="model.placeholder"
-                   [readonly]="model.readOnly"
-                   [required]="model.required"
-                   [spellcheck]="model.spellCheck"
-                   [type]="model.inputType"
-                   (blur)="onFocusChange($event)"
-                   (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
+            <md-input-container>
 
-            <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
-            <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
+                <input mdInput
+                       [attr.accept]="model.accept"
+                       [attr.autoComplete]="model.autoComplete"
+                       [attr.list]="model.listId"
+                       [attr.max]="model.max"
+                       [attr.min]="model.min"
+                       [attr.multiple]="model.multiple"
+                       [attr.step]="model.step"
+                       [attr.tabindex]="model.tabIndex"
+                       [autofocus]="model.autoFocus"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [maxlength]="model.maxLength"
+                       [mdAutocomplete]="autocomplete"
+                       [minlength]="model.minLength"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [pattern]="model.pattern"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required"
+                       [spellcheck]="model.spellCheck"
+                       [type]="model.inputType"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
 
-            <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
-            <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
+                <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
+                <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-        </md-input-container>
+                <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
+                <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
+
+            </md-input-container>
+
+            <md-autocomplete #autocomplete="mdAutocomplete">
+
+                <md-option *ngFor="let item of model.list" [value]="item">{{ item }}</md-option>
+
+            </md-autocomplete>
+
+        </ng-container>
 
 
         <md-radio-group *ngSwitchCase="5"
@@ -129,7 +140,8 @@
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [ngClass]="model.cls.element.control"
-                   [placeholder]="model.placeholder">
+                   [placeholder]="model.placeholder"
+                   (change)="onValueChange($event)">
 
             <md-option *ngFor="let option of model.options"
                        [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
@@ -156,6 +168,7 @@
                          [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
+                         [labelPosition]="model.labelPosition"
                          [name]="model.name"
                          [ngClass]="model.cls.element.control"
                          (change)="onValueChange($event)">
@@ -168,7 +181,7 @@
 
         <md-input-container *ngSwitchCase="9">
 
-        <textarea md-input
+        <textarea mdInput
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [cols]="model.cols"

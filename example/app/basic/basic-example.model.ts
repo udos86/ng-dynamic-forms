@@ -47,7 +47,7 @@ export const BASIC_EXAMPLE_MODEL = [
             required: null,
             minLength: 2,
             maxLength: 5,
-            testValidator: null
+            customValidator: null
         },
         errorMessages: {
             required: "{{label}} is required",

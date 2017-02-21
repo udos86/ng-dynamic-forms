@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import { MaskedTextBox, NumericTextBox, Slider, Switch } from "@progress/kendo-angular-inputs";
+import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -27,8 +28,9 @@ import {
     KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
     KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
     KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
-    KendoFormControlType
+    KendoFormControlType, KENDO_UPLOAD_TEMPLATE_DIRECTIVES
 } from "./dynamic-form-kendo.const";
+import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD } from "../../core/src/model/file-upload/dynamic-file-upload.model";
 
 @Component({
 
@@ -58,6 +60,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox | null;
     @ViewChild(Slider) kendoSlider: Slider | null;
     @ViewChild(Switch) kendoSwitch: Switch | null;
+    @ViewChild(UploadComponent) kendoUpload: UploadComponent | null;
 
     readonly type: string = DYNAMIC_FORM_UI_KENDO;
 
@@ -89,6 +92,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
             templateDirectives = KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES;
             viewChild = this.kendoMultiSelect;
+
+        } else if (this.kendoUpload) {
+
+            templateDirectives = KENDO_UPLOAD_TEMPLATE_DIRECTIVES;
+            viewChild = this.kendoUpload;
         }
 
         Object.keys(templateDirectives || {}).forEach((key: string) => {
@@ -121,6 +129,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
                 model = this.model as DynamicDatepickerModel;
 
                 return model.inline ? KendoFormControlType.Calendar : null;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
+                return KendoFormControlType.Upload;
 
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return KendoFormControlType.Group;

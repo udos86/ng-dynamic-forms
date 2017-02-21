@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
-import { NgSemanticModule } from "ng-semantic";
+//import { NgSemanticModule } from "ng-semantic";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormSemanticComponent } from "./dynamic-form-semantic.component";
 
@@ -10,7 +10,7 @@ import { DynamicFormSemanticComponent } from "./dynamic-form-semantic.component"
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        NgSemanticModule,
+        //NgSemanticModule,
         DynamicFormsCoreModule
     ],
     declarations: [
