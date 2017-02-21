@@ -15,7 +15,7 @@ upon a layer of maintainable form control models to **fully automate form UI cre
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and [more](#ui-modules-and-components).
 
-See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.jit.html) 
+See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.aot.html) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 
 
@@ -254,17 +254,19 @@ Due to technical restrictions or external dependencies still being in developmen
 cannot be provided in every single UI library. **See the following compatibility table**:
 
 |               	| Checkbox 	| Datepicker 	| File Upload 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
-|---------------	|:--------:	|:----------:	|:-----------:	|:-----:	|:-----------:	|:------:	|:------:	|:------:	|:--------:	|
-| ui-basic      	|     ✓    	|      ✗     	|      *      	|   ✓   	|      ✓      	|    ✓   	|   **   	|    ✗   	|     ✓    	|
-| ui-bootstrap  	|     ✓    	|      ✗     	|      *      	|   ✓   	|      ✓      	|    ✓   	|   **   	|    ✗   	|     ✓    	|
-| ui-foundation 	|     ✓    	|      ✗     	|      *      	|   ✓   	|      ✓      	|    ✓   	|   **   	|    ✓   	|     ✓    	|
+|:-------------:	|:--------:	|:----------:	|:-----------:	|:-----:	|:-----------:	|:------:	|:------:	|:------:	|:--------:	|
+| ui-basic      	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|   ***  	|    ✗   	|     ✓    	|
+| ui-bootstrap  	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|   ***  	|    ✗   	|     ✓    	|
+| ui-foundation 	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|   ***  	|    ✓   	|     ✓    	|
 | ui-kendo      	|     ✗    	|      ✓     	|      ✓      	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
-| ui-material   	|     ✓    	|      ✗     	|      *      	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
-| ui-primeng    	|     ✓    	|      ✓     	|      *      	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+| ui-material   	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+| ui-primeng    	|     ✓    	|      ✓     	|      **     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
 
-**\*)** file upload controls can be achieved using a `DynamicInputModel` with `inputType: "file"`
+**\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
-**\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
+**\*\*)** file upload controls can be achieved using a `DynamicInputModel` with `inputType: "file"`
+
+**\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
 
 
 ## Model Bindings and Control References
@@ -286,7 +288,7 @@ a simple index-based array lookup or through the `findById` method of `DynamicFo
 this.inputModel = this.formModel[2];
 ```
 ```ts
-this.inputModel = <DynamicInputModel> this.formService.findById("myInput", this.formModel);
+this.inputModel = this.formService.findById("myInput", this.formModel) as DynamicInputModel;
 ```
 
 We now have access to the `valueUpdates` `Rx.Subject` to push new values via `next()` as well as to listen to new user input via `subscribe()`:
