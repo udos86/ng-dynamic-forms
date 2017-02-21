@@ -2,6 +2,7 @@
 
 ### **Features** 
 
+* custom `NG_VALIDATORS` now working when using Angular CLI without `webpack.config` (closes [#271](https://github.com/udos86/ng2-dynamic-forms/issues/271))
 * initial addition of file control models
 * initial support for `Upload` in `ui-kendo` 
 * update to Angular `2.4.8`
