@@ -31,7 +31,7 @@
                                                            [controlGroup]="control.at(idx)"
                                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                            [model]="controlModel"
-                                                           [nestedTemplates]="templates"
+                                                           [nestedTemplates]="templateDirectives"
                                                            (blur)="onFocusChange($event)"
                                                            (change)="onValueChange($event)"
                                                            (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
@@ -73,7 +73,7 @@
                                                        [controlGroup]="control"
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
-                                                       [nestedTemplates]="templates"
+                                                       [nestedTemplates]="templateDirectives"
                                                        (blur)="onFocusChange($event)"
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>

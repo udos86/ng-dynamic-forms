@@ -111,7 +111,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
         super.setTemplates();
 
-        this.templates
+        this.templateDirectives
             .filter(directive => directive.type.startsWith("kendo"))
             .forEach(directive => this.setKendoTemplateDirective(directive));
     }
