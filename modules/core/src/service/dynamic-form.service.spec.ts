@@ -205,6 +205,13 @@ describe("DynamicFormService test suite", () => {
 
     it("should find a dynamic form control model by id correctly", () => {
 
+        expect(service.findById("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
+    });
+
+
+    it("should find a nested dynamic form control model by id correctly", () => {
+
         expect(service.findById).toBeDefined();
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
@@ -245,7 +252,7 @@ describe("DynamicFormService test suite", () => {
         expect(formGroup.controls[id]).toBeUndefined();
 
         expect(testModel.length).toBe(length - 1);
-        expect(service.findById(id, testModel)).toBeUndefined();
+        expect(service.findById(id, testModel)).toBeNull();
     });
 
 
