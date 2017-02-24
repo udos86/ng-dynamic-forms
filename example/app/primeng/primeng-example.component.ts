@@ -14,7 +14,7 @@ import { PRIMENG_EXAMPLE_MODEL } from "./primeng-example.model";
 
 export class PrimeNGExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = PRIMENG_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = PRIMENG_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     checkboxControl: FormControl;
@@ -26,10 +26,8 @@ export class PrimeNGExampleComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.checkboxControl = <FormControl> this.formGroup.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("exampleCheckbox", this.formModel);
-
-        //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+        this.checkboxControl = this.formGroup.controls["exampleCheckbox"] as FormControl; // Type assertion for having updateValue method available
+        this.checkboxModel = this.formService.findById("exampleCheckbox", this.formModel) as DynamicCheckboxModel;
     }
 
     onChange($event) {

@@ -1,8 +1,8 @@
-import {RouterModule, Route} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {AsyncExampleComponent} from "./async-example.component";
+import { RouterModule, Route } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { AsyncExampleComponent } from "./async-example.component";
 
-const ASYNC_ROUTES: Array<Route> = [
+const ASYNC_ROUTES: Route[] = [
     {
         path: "",
         component: AsyncExampleComponent
@@ -15,4 +15,5 @@ const ASYNC_ROUTES: Array<Route> = [
     exports: [RouterModule]
 })
 
-export class AsyncExampleRoutingModule {}
+export class AsyncExampleRoutingModule {
+}

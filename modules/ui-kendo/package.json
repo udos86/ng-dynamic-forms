@@ -39,6 +39,6 @@
     "@progress/kendo-angular-upload": "^0.13.2",
     "@progress/kendo-date-math": "^0.3.2",
     "@progress/kendo-theme-default": "^2.12.13",
-    "rxjs": "^5.1.0"
+    "rxjs": "^5.2.0"
   }
 }

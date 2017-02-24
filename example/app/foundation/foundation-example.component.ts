@@ -1,12 +1,12 @@
-import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import {FormGroup, FormControl, FormArray} from "@angular/forms";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicFormControlModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
-import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
+import { FOUNDATION_EXAMPLE_MODEL } from "./foundation-example.model";
 
 @Component({
 
@@ -19,7 +19,7 @@ import {FOUNDATION_EXAMPLE_MODEL} from "./foundation-example.model";
 
 export class FoundationExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = FOUNDATION_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = FOUNDATION_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     checkboxControl: FormControl;
@@ -34,13 +34,11 @@ export class FoundationExampleComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.checkboxControl = <FormControl> this.formGroup.controls["foundationCheckbox"]; // Type assertion for having updateValue method available
-        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("foundationCheckbox", this.formModel);
+        this.checkboxControl = this.formGroup.controls["foundationCheckbox"] as FormControl;
+        this.checkboxModel = this.formService.findById("foundationCheckbox", this.formModel) as DynamicCheckboxModel;
 
-        //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("foundation checkbox field changed to: ", value, typeof value));
-
-        this.arrayControl = <FormArray> this.formGroup.controls["foundationFormArray"];
-        this.arrayModel = <DynamicFormArrayModel> this.formService.findById("foundationFormArray", this.formModel);
+        this.arrayControl = this.formGroup.controls["foundationFormArray"] as FormArray;
+        this.arrayModel = this.formService.findById("foundationFormArray", this.formModel) as DynamicFormArrayModel;
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
@@ -51,7 +49,7 @@ export class FoundationExampleComponent implements OnInit {
         this.formService.removeFormArrayGroup(index, this.arrayControl, context);
     }
 
-    move (context: DynamicFormArrayModel, index: number, step: number) {
+    move(context: DynamicFormArrayModel, index: number, step: number) {
         this.formService.moveFormArrayGroup(index, step, this.arrayControl, context);
     }
 

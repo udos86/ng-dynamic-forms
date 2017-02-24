@@ -111,10 +111,10 @@
   "optionalDependencies": {
     "@progress/kendo-angular-dateinputs": "^0.3.6",
     "@progress/kendo-angular-dropdowns": "^0.29.1",
-    "@progress/kendo-angular-inputs": "^0.18.7",
+    "@progress/kendo-angular-inputs": "^0.18.8",
     "@progress/kendo-angular-intl": "^0.10.0",
-    "@progress/kendo-angular-upload": "^0.13.2",
+    "@progress/kendo-angular-upload": "^0.14.0",
     "@progress/kendo-date-math": "^0.3.2",
-    "@progress/kendo-theme-default": "^2.12.13"
+    "@progress/kendo-theme-default": "^2.12.16"
   }
 }

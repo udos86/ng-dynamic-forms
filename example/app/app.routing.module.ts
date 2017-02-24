@@ -8,7 +8,7 @@ import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 //import { SemanticExampleComponent } from "./semantic/semantic-example.component";
 import { NgModule } from "@angular/core";
 
-const APP_ROUTES: Array<Route> = [
+const APP_ROUTES: Route[] = [
     {
         path: "",
         redirectTo: "/example-bootstrap",

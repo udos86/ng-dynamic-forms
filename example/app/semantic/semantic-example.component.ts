@@ -17,7 +17,7 @@ import { SEMANTIC_EXAMPLE_MODEL } from "./semantic-example.model";
 
 export class SemanticExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = SEMANTIC_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = SEMANTIC_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {}

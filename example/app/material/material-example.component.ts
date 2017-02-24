@@ -19,7 +19,7 @@ import { MATERIAL_EXAMPLE_MODEL } from "./material-example.model";
 
 export class MaterialExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = MATERIAL_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = MATERIAL_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     checkboxControl: FormControl;
@@ -34,11 +34,11 @@ export class MaterialExampleComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.checkboxControl = <FormControl> this.formGroup.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("exampleCheckbox", this.formModel);
+        this.checkboxControl = this.formGroup.controls["exampleCheckbox"] as FormControl;
+        this.checkboxModel = this.formService.findById("exampleCheckbox", this.formModel) as DynamicCheckboxModel;
 
-        this.arrayControl = <FormArray> this.formGroup.controls["materialFormArray"];
-        this.arrayModel = <DynamicFormArrayModel> this.formService.findById("materialFormArray", this.formModel);
+        this.arrayControl = this.formGroup.controls["materialFormArray"] as FormArray;
+        this.arrayModel = this.formService.findById("materialFormArray", this.formModel) as DynamicFormArrayModel;
     }
 
     add() {
