@@ -6,7 +6,7 @@
               [ngOutletContext]="model"></template>
 
 
-    <fieldset *ngIf="formControlType === 10" role="radiogroup"
+    <fieldset *ngIf="formControlType === 11" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -74,6 +74,7 @@
                             [multiple]="model.multiple"
                             [placeholder]="model.placeholder"
                             [suggestions]="suggestions"
+                            (change)="onValueChange($event)"
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
 
@@ -99,14 +100,21 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-dropdown *ngSwitchCase="5"
+            <p-chips *ngSwitchCase="5"
+                     [dynamicId]="bindId && model.id"
+                     [formControlName]="model.id"
+                     [ngClass]="model.cls.element.control"
+                     (change)="onValueChange($event)"></p-chips>
+
+
+            <p-dropdown *ngSwitchCase="6"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
                         (onChange)="onValueChange($event)"></p-dropdown>
 
 
-            <fieldset *ngSwitchCase="6"
+            <fieldset *ngSwitchCase="7"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -124,7 +132,7 @@
             </fieldset>
 
 
-            <ng-container *ngSwitchCase="7">
+            <ng-container *ngSwitchCase="8">
 
                 <input pInputText
                        [attr.accept]="model.accept"
@@ -161,7 +169,7 @@
             </ng-container>
 
 
-            <p-inputSwitch *ngSwitchCase="8"
+            <p-inputSwitch *ngSwitchCase="9"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
@@ -169,14 +177,14 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
-            <p-multiSelect *ngSwitchCase="9"
+            <p-multiSelect *ngSwitchCase="10"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [options]="model.options"
                            (onChange)="onValueChange($event)"></p-multiSelect>
 
 
-            <p-slider *ngSwitchCase="11"
+            <p-slider *ngSwitchCase="12"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -184,7 +192,7 @@
                       [step]="model.step"></p-slider>
 
 
-            <textarea *ngSwitchCase="12" pInputTextarea
+            <textarea *ngSwitchCase="13" pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"

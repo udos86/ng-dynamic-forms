@@ -7,7 +7,7 @@ import { PRIMENG_EXAMPLE_MODEL } from "./primeng-example.model";
 
     moduleId: module.id,
     selector: "dynamic-form-primeng-example",
-    styleUrls: ["../../../node_modules/primeui/themes/omega/theme.css", "../../../node_modules/primeui/primeui-ng-all.min.css"],
+    styleUrls: ["../../../node_modules/primeng/resources/themes/omega/theme.css", "../../../node_modules/primeng/resources/primeng.min.css"],
     templateUrl: "./primeng-example.component.html",
     encapsulation: ViewEncapsulation.None
 })

@@ -2,7 +2,12 @@ import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, Vie
 import { FormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
-import { MaskedTextBox, NumericTextBox, Slider, Switch } from "@progress/kendo-angular-inputs";
+import {
+    MaskedTextBoxComponent,
+    NumericTextBoxComponent,
+    SliderComponent,
+    SwitchComponent
+} from "@progress/kendo-angular-inputs";
 import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
     DynamicFormControlComponent,
@@ -55,11 +60,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | null;
     @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | null;
     @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | null;
-    @ViewChild(MaskedTextBox) kendoMaskedTextBox: MaskedTextBox | null;
+    @ViewChild(MaskedTextBoxComponent) kendoMaskedTextBox: MaskedTextBoxComponent | null;
     @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | null;
-    @ViewChild(NumericTextBox) kendoNumericTextBox: NumericTextBox | null;
-    @ViewChild(Slider) kendoSlider: Slider | null;
-    @ViewChild(Switch) kendoSwitch: Switch | null;
+    @ViewChild(NumericTextBoxComponent) kendoNumericTextBox: NumericTextBoxComponent | null;
+    @ViewChild(SliderComponent) kendoSlider: SliderComponent | null;
+    @ViewChild(SwitchComponent) kendoSwitch: SwitchComponent | null;
     @ViewChild(UploadComponent) kendoUpload: UploadComponent | null;
 
     readonly type: string = DYNAMIC_FORM_UI_KENDO;

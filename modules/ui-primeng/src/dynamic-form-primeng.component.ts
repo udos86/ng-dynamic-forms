@@ -73,7 +73,15 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 model = this.model as DynamicInputModel;
 
-                return model.multiple ? PFormControlType.AutoComplete : PFormControlType.Input;
+                if (model.list) {
+                    return PFormControlType.AutoComplete;
+
+                } else if (model.multiple) {
+                    return PFormControlType.Chips;
+
+                } else {
+                    return PFormControlType.Input;
+                }
 
             case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
                 return PFormControlType.RadioGroup;

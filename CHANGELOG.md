@@ -1,3 +1,16 @@
+# 1.3.15
+
+### **Bugfixes** 
+
+* custom templates are now working in deep nested dynamic form control components (closes [#280](https://github.com/udos86/ng2-dynamic-forms/issues/266))
+ 
+### **Features** 
+
+* `findById()` function of `DynamicFormService` is now capable of looking up nested form group models (closes [#286](https://github.com/udos86/ng2-dynamic-forms/issues/286))
+* initial support for `Chips` in `ui-primeng` (closes [#275](https://github.com/udos86/ng2-dynamic-forms/issues/275))
+* example code refactored
+
+
 # 1.3.14
 
 ### **Features** 
@@ -21,7 +34,7 @@
 
 ### **Bugfixes** 
 
-* dev mode template change detection bug fixed (closes [#266](https://github.com/udos86/ng2-dynamic-forms/issues/266))
+* dev mode template change detection bug fixed (closes [#266](https://github.com/udos86/ng2-dynamic-forms/issues/280))
  
 ### **Features** 
 
