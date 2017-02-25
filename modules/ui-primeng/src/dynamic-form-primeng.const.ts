@@ -6,12 +6,13 @@ export const enum PFormControlType {
     AutoComplete = 2,
     Calendar = 3,
     Checkbox = 4,
-    DropDown = 5,
-    Group = 6,
-    Input = 7,
-    InputSwitch = 8,
-    MultiSelect = 9,
-    RadioGroup = 10,
-    Slider = 11,
-    TextArea = 12
+    Chips = 5,
+    DropDown = 6,
+    Group = 7,
+    Input = 8,
+    InputSwitch = 9,
+    MultiSelect = 10,
+    RadioGroup = 11,
+    Slider = 12,
+    TextArea = 13
 }

@@ -20,7 +20,7 @@ import { BOOTSTRAP_EXAMPLE_MODEL } from "./bootstrap-example.model";
 
 export class BootstrapExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = BOOTSTRAP_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = BOOTSTRAP_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     exampleControl: FormControl;
@@ -35,14 +35,11 @@ export class BootstrapExampleComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.exampleControl = <FormControl> this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput"); // Type assertion for having updateValue method available
-        this.exampleModel = <DynamicInputModel> this.formService.findById(
-            "bootstrapInput", (<DynamicFormGroupModel> this.formModel[0]).group);
-        //this.exampleControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+        this.exampleControl = this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput") as FormControl;
+        this.exampleModel = this.formService.findById("bootstrapInput", this.formModel) as DynamicInputModel;
 
-        this.arrayControl = <FormArray> this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray");
-        this.arrayModel = <DynamicFormArrayModel> this.formService.findById(
-            "bootstrapFormArray", (<DynamicFormGroupModel> this.formModel[1]).group);
+        this.arrayControl = this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray") as FormArray;
+        this.arrayModel = this.formService.findById("bootstrapFormArray", this.formModel) as DynamicFormArrayModel;
     }
 
     add() {
@@ -57,7 +54,7 @@ export class BootstrapExampleComponent implements OnInit {
         this.formService.removeFormArrayGroup(index, this.arrayControl, context);
     }
 
-    move (context: DynamicFormArrayModel, index: number, step: number) {
+    move(context: DynamicFormArrayModel, index: number, step: number) {
         this.formService.moveFormArrayGroup(index, step, this.arrayControl, context);
     }
 

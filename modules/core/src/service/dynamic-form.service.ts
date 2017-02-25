@@ -1,4 +1,4 @@
-import { Inject, Optional } from "@angular/core";
+import { Inject, Optional, group } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -231,9 +231,27 @@ export class DynamicFormService {
     }
 
 
-    findById(id: string, groupModel: DynamicFormControlModel[]): DynamicFormControlModel | undefined {
+    findById(id: string, groupModel: DynamicFormControlModel[]): DynamicFormControlModel | null {
 
-        return groupModel.find(controlModel => controlModel.id === id);
+        let result = null,
+            findFn = (id: string, groupModel: DynamicFormControlModel[]) => {
+
+                for (let controlModel of groupModel) {
+
+                    if (controlModel.id === id) {
+                        result = controlModel;
+                        break;
+                    }
+
+                    if (controlModel instanceof DynamicFormGroupModel) {
+                        findFn(id, (controlModel as DynamicFormGroupModel).group);
+                    }
+                }
+            };
+
+        findFn(id, groupModel);
+
+        return result;
     }
 
 

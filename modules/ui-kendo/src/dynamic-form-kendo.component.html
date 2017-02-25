@@ -23,7 +23,7 @@
                                             [bindId]="false"
                                             [controlGroup]="control.at(idx)"
                                             [model]="controlModel"
-                                            [nestedTemplates]="templates"
+                                            [nestedTemplates]="templateDirectives"
                                             (blur)="onFocusChange($event)"
                                             (change)="onValueChange($event)"
                                             (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
@@ -87,7 +87,7 @@
             <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
                                         [controlGroup]="control"
                                         [model]="controlModel"
-                                        [nestedTemplates]="templates"
+                                        [nestedTemplates]="templateDirectives"
                                         (blur)="onFocusChange($event)"
                                         (change)="onValueChange($event)"
                                         (focus)="onFocusChange($event)"></dynamic-form-kendo-control>

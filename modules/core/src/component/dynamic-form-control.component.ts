@@ -201,13 +201,13 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return this.control.touched && this.control.invalid;
     }
 
+    get templateDirectives(): QueryList<DynamicTemplateDirective> {
+        return this.nestedTemplates ? this.nestedTemplates : this.templates;
+    }
+
     protected setTemplates(): void {
 
-        if (this.nestedTemplates) {
-            this.templates = this.nestedTemplates;
-        }
-
-        this.templates.forEach((directive: DynamicTemplateDirective) => {
+        this.templateDirectives.forEach((directive: DynamicTemplateDirective) => {
 
             if (directive.type !== null) {
                 return; // templates with type property need to be processed by concrete UI component

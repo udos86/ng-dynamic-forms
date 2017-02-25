@@ -14,7 +14,7 @@ import { KENDO_EXAMPLE_MODEL } from "./kendo-example.model";
 
 export class KendoExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = KENDO_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = KENDO_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {}

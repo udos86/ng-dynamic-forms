@@ -17,8 +17,8 @@ import { BASIC_EXAMPLE_MODEL, BASIC_EXAMPLE_ARRAY_MODEL } from "./basic-example.
 
 export class BasicExampleComponent implements OnInit {
 
-    formModel1: Array<DynamicFormControlModel>;
-    formModel2: Array<DynamicFormControlModel>;
+    formModel1: DynamicFormControlModel[];
+    formModel2: DynamicFormControlModel[];
 
     formGroup1: FormGroup;
     formGroup2: FormGroup;
@@ -43,13 +43,11 @@ export class BasicExampleComponent implements OnInit {
 
     ngOnInit() {
 
-        this.checkboxControl = <FormControl> this.formGroup1.controls["basicCheckbox"]; // Type assertion for having updateValue method available
-        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("basicCheckbox", this.formModel1);
+        this.checkboxControl = this.formGroup1.controls["basicCheckbox"] as FormControl;
+        this.checkboxModel = this.formService.findById("basicCheckbox", this.formModel1) as DynamicCheckboxModel;
 
-        this.arrayControl = <FormArray> this.formGroup2.controls["basicFormArray"]; // Type assertion for having updateValue method available
-        this.arrayModel = <DynamicFormArrayModel> this.formService.findById("basicFormArray", this.formModel2);
-
-        //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+        this.arrayControl = this.formGroup2.controls["basicFormArray"] as FormArray;
+        this.arrayModel = this.formService.findById("basicFormArray", this.formModel2) as DynamicFormArrayModel;
     }
 
     add() {

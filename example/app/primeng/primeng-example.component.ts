@@ -7,14 +7,14 @@ import { PRIMENG_EXAMPLE_MODEL } from "./primeng-example.model";
 
     moduleId: module.id,
     selector: "dynamic-form-primeng-example",
-    styleUrls: ["../../../node_modules/primeui/themes/omega/theme.css", "../../../node_modules/primeui/primeui-ng-all.min.css"],
+    styleUrls: ["../../../node_modules/primeng/resources/themes/omega/theme.css", "../../../node_modules/primeng/resources/primeng.min.css"],
     templateUrl: "./primeng-example.component.html",
     encapsulation: ViewEncapsulation.None
 })
 
 export class PrimeNGExampleComponent implements OnInit {
 
-    formModel: Array<DynamicFormControlModel> = PRIMENG_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = PRIMENG_EXAMPLE_MODEL;
     formGroup: FormGroup;
 
     checkboxControl: FormControl;
@@ -26,10 +26,8 @@ export class PrimeNGExampleComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.checkboxControl = <FormControl> this.formGroup.controls["exampleCheckbox"]; // Type assertion for having updateValue method available
-        this.checkboxModel = <DynamicCheckboxModel> this.formService.findById("exampleCheckbox", this.formModel);
-
-        //this.checkboxControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
+        this.checkboxControl = this.formGroup.controls["exampleCheckbox"] as FormControl; // Type assertion for having updateValue method available
+        this.checkboxModel = this.formService.findById("exampleCheckbox", this.formModel) as DynamicCheckboxModel;
     }
 
     onChange($event) {
