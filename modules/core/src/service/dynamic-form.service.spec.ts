@@ -61,7 +61,7 @@ describe("DynamicFormService test suite", () => {
                     options: [
                         {
                             label: "Option 1",
-                            value: "option-1",
+                            value: "option-1"
                         },
                         {
                             label: "Option 2",
@@ -72,7 +72,7 @@ describe("DynamicFormService test suite", () => {
                 }
             ),
 
-            new DynamicInputModel({id: "testInput",}),
+            new DynamicInputModel({id: "testInput"}),
 
             new DynamicCheckboxGroupModel(
                 {
@@ -100,7 +100,7 @@ describe("DynamicFormService test suite", () => {
                     options: [
                         {
                             label: "Option 1",
-                            value: "option-1",
+                            value: "option-1"
                         },
                         {
                             label: "Option 2",
@@ -127,7 +127,7 @@ describe("DynamicFormService test suite", () => {
                 }
             ),
 
-            new DynamicFormGroupModel({id: "testFormGroup", group: []}),
+            new DynamicFormGroupModel({id: "testFormGroup", group: [new DynamicInputModel({id: "nestedTestInput"})]}),
 
             new DynamicSliderModel({id: "testSlider"}),
 
@@ -199,18 +199,11 @@ describe("DynamicFormService test suite", () => {
     it("should throw when unknown DynamicFormControlModel id is specified in JSON", () => {
 
         expect(() => service.fromJSON([{id: "test"}]))
-            .toThrow(new Error(`unknown form control type with id "test" defined on JSON object`));
+            .toThrow(new Error(`unknown form control model type defined on JSON object with id "test"`));
     });
 
 
     it("should find a dynamic form control model by id correctly", () => {
-
-        expect(service.findById("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
-        expect(service.findById("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
-    });
-
-
-    it("should find a nested dynamic form control model by id correctly", () => {
 
         expect(service.findById).toBeDefined();
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
@@ -224,6 +217,14 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testSwitch", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testFileUpload", testModel) instanceof DynamicFormControlModel).toBe(true);
+    });
+
+
+    it("should find a nested dynamic form control model by id correctly", () => {
+
+        expect(service.findById("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findById("nestedTestInput", testModel) instanceof DynamicFormControlModel).toBe(true);
     });
 
 
@@ -258,7 +259,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should create a form array correctly", () => {
 
-        let model = <DynamicFormArrayModel> service.findById("testFormArray", testModel),
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray;
 
         expect(service.createFormArray).toBeDefined();

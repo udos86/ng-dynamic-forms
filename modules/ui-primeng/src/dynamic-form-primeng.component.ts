@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, QueryList, ContentChildren } from "@angular/core";
+import { Component, Input, Output, EventEmitter, QueryList, ContentChildren, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
@@ -17,10 +17,15 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-import { DYNAMIC_FORM_UI_PRIME_NG, PFormControlType } from "./dynamic-form-primeng.const";
-import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH } from "../../core/src/model/switch/dynamic-switch.model";
+import { AutoComplete, Calendar, Checkbox, Chips, Dropdown, InputSwitch, MultiSelect, Slider } from "primeng/primeng";
+import {
+    DYNAMIC_FORM_UI_PRIME_NG, PFormControlType,
+    PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES, PRIMENG_CHIPS_TEMPLATE_DIRECTIVES,
+    PRIMENG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
+} from "./dynamic-form-primeng.const";
 
 @Component({
 
@@ -43,12 +48,59 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
+    @ViewChild(AutoComplete) pAutoComplete: AutoComplete | null;
+    @ViewChild(Calendar) pCalendar: Calendar | null;
+    @ViewChild(Checkbox) pCheckbox: Checkbox | null;
+    @ViewChild(Chips) pChips: Chips | null;
+    @ViewChild(Dropdown) pDropDown: Dropdown | null;
+    @ViewChild(InputSwitch) pInputSwitch: InputSwitch | null;
+    @ViewChild(MultiSelect) pMultiSelect: MultiSelect | null;
+    @ViewChild(Slider) pSlider: Slider | null;
+
     private suggestions: string[];
 
     readonly type: string = DYNAMIC_FORM_UI_PRIME_NG;
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
+    }
+
+    protected setPTemplateDirective(directive: DynamicTemplateDirective): void {
+
+        let templateDirectives: any,
+            viewChild: any;
+
+        if (this.pAutoComplete) {
+
+            templateDirectives = PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
+            viewChild = this.pAutoComplete;
+
+        } else if (this.pChips) {
+
+            templateDirectives = PRIMENG_CHIPS_TEMPLATE_DIRECTIVES;
+            viewChild = this.pChips;
+
+        } else if (this.pDropDown) {
+
+            templateDirectives = PRIMENG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
+            viewChild = this.pDropDown;
+        }
+
+        Object.keys(templateDirectives || {}).forEach((key: string) => {
+
+            if (templateDirectives[key] === directive.type) {
+                viewChild[key] = directive.templateRef;
+            }
+        });
+    }
+
+    protected setTemplates(): void {
+
+        super.setTemplates();
+
+        this.templateDirectives
+            .filter(directive => typeof directive.type === "string")
+            .forEach(directive => this.setPTemplateDirective(directive));
     }
 
     get formControlType(): number | null {

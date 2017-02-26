@@ -73,7 +73,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
         super(relationService);
     }
 
-    protected setKendoTemplateDirective(template: DynamicTemplateDirective): void {
+    protected setKendoTemplateDirective(directive: DynamicTemplateDirective): void {
 
         let templateDirectives: any,
             viewChild: any;
@@ -106,8 +106,8 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
         Object.keys(templateDirectives || {}).forEach((key: string) => {
 
-            if (templateDirectives[key] === template.type) {
-                viewChild[key] = template;
+            if (templateDirectives[key] === directive.type) {
+                viewChild[key] = directive;
             }
         });
     }

@@ -6,7 +6,13 @@
                                       [controlGroup]="formGroup"
                                       [model]="controlModel"
                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                      (change)="onChange($event)"></dynamic-form-primeng-control>
+                                      (change)="onChange($event)">
+
+            <template modelId="primeSelect" type="itemTemplate" let-item>
+                <p>{{ item.label }}</p>
+            </template>
+
+        </dynamic-form-primeng-control>
     </form>
 
     <pre>{{formGroup.value | json}}</pre>

@@ -1,4 +1,4 @@
-import { Inject, Optional, group } from "@angular/core";
+import { Inject, Optional } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -8,11 +8,14 @@ import {
     ValidatorFn,
     AsyncValidatorFn,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS
+    NG_ASYNC_VALIDATORS, AbstractControl
 } from "@angular/forms";
 import { DynamicFormControlModel, DynamicValidatorsMap } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
-import { DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY } from "../model/form-array/dynamic-form-array.model";
+import {
+    DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DynamicFormArrayGroupModel
+} from "../model/form-array/dynamic-form-array.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
@@ -74,7 +77,7 @@ export class DynamicFormService {
 
     getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | AsyncValidatorFn | never {
 
-        let validatorFn = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
+        let validatorFn: any = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
 
         if (!isFunction(validatorFn)) {
             throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
@@ -109,7 +112,7 @@ export class DynamicFormService {
 
     createFormGroup(group: DynamicFormControlModel[], groupExtra: {[key: string]: any} | null = null): FormGroup {
 
-        let formGroup = {};
+        let formGroup: {[id: string]: AbstractControl;} = {};
 
         group.forEach(model => {
 
@@ -234,7 +237,7 @@ export class DynamicFormService {
     findById(id: string, groupModel: DynamicFormControlModel[]): DynamicFormControlModel | null {
 
         let result = null,
-            findFn = (id: string, groupModel: DynamicFormControlModel[]) => {
+            findByIdFn = (id: string, groupModel: DynamicFormControlModel[]): void => {
 
                 for (let controlModel of groupModel) {
 
@@ -244,12 +247,12 @@ export class DynamicFormService {
                     }
 
                     if (controlModel instanceof DynamicFormGroupModel) {
-                        findFn(id, (controlModel as DynamicFormGroupModel).group);
+                        findByIdFn(id, (controlModel as DynamicFormGroupModel).group);
                     }
                 }
             };
 
-        findFn(id, groupModel);
+        findByIdFn(id, groupModel);
 
         return result;
     }
@@ -257,71 +260,73 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let rawModel = typeof json === "string" ? JSON.parse(json, this.parseJSONReviver) : json,
-            formModel: DynamicFormControlModel[] = [];
+        let raw = typeof json === "string" ? JSON.parse(json, this.parseJSONReviver) : json,
+            group: DynamicFormControlModel[] = [];
 
-        rawModel.forEach((model: any) => {
+        raw.forEach((model: any) => {
 
-            switch (model["type"]) {
+            switch (model.type) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                    model["groups"].forEach(groupObject => groupObject["group"] = this.fromJSON(groupObject["group"]));
-                    model["createGroup"] = () => this.fromJSON(model["originGroup"]);
-                    formModel.push(new DynamicFormArrayModel(model, model["cls"]));
+                    model.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
+                        groupModel.group = this.fromJSON(groupModel.group) as DynamicFormValueControlModel<DynamicFormControlValue>[];
+                    });
+                    model.createGroup = () => this.fromJSON(model.originGroup);
+                    group.push(new DynamicFormArrayModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                    formModel.push(new DynamicCheckboxModel(model, model["cls"]));
+                    group.push(new DynamicCheckboxModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-                    model["group"] = this.fromJSON(model["group"]);
-                    formModel.push(new DynamicCheckboxGroupModel(model, model["cls"]));
+                    model.group = this.fromJSON(model.group) as DynamicCheckboxModel[];
+                    group.push(new DynamicCheckboxGroupModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                    formModel.push(new DynamicDatepickerModel(model, model["cls"]));
+                    group.push(new DynamicDatepickerModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
-                    model["value"] = null;
-                    formModel.push(new DynamicFileUploadModel(model, model["cls"]));
+                    model.value = null;
+                    group.push(new DynamicFileUploadModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                    model["group"] = this.fromJSON(model["group"]);
-                    formModel.push(new DynamicFormGroupModel(model, model["cls"]));
+                    model.group = this.fromJSON(model.group);
+                    group.push(new DynamicFormGroupModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                    formModel.push(new DynamicInputModel(model, model["cls"]));
+                    group.push(new DynamicInputModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                    formModel.push(new DynamicRadioGroupModel(model, model["cls"]));
+                    group.push(new DynamicRadioGroupModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                    formModel.push(new DynamicSelectModel(model, model["cls"]));
+                    group.push(new DynamicSelectModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                    formModel.push(new DynamicSliderModel(model, model["cls"]));
+                    group.push(new DynamicSliderModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                    formModel.push(new DynamicSwitchModel(model, model["cls"]));
+                    group.push(new DynamicSwitchModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                    formModel.push(new DynamicTextAreaModel(model, model["cls"]));
+                    group.push(new DynamicTextAreaModel(model, model.cls));
                     break;
 
                 default:
-                    throw new Error(`unknown form control type with id "${model["id"]}" defined on JSON object`);
+                    throw new Error(`unknown form control model type defined on JSON object with id "${model.id}"`);
             }
         });
 
-        return formModel;
+        return group;
     }
 }
