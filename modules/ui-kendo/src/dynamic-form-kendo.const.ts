@@ -1,5 +1,3 @@
-export const DYNAMIC_FORM_UI_KENDO = "KENDO";
-
 export const enum KendoFormControlType {
 
     Array = 1,

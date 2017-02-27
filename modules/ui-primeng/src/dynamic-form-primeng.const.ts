@@ -1,5 +1,3 @@
-export const DYNAMIC_FORM_UI_PRIME_NG = "PRIME_NG";
-
 export const enum PFormControlType {
 
     Array = 1,

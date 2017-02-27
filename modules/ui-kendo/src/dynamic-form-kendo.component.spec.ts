@@ -13,7 +13,7 @@ import {
     DynamicSelectModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormKendoComponent } from "./dynamic-form-kendo.component";
-import { DYNAMIC_FORM_UI_KENDO, KendoFormControlType } from "./dynamic-form-kendo.const";
+import { KendoFormControlType } from "./dynamic-form-kendo.const";
 
 describe("DynamicFormKendoComponent test suite", () => {
 
@@ -62,8 +62,6 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.type).toEqual(DYNAMIC_FORM_UI_KENDO);
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
@@ -83,7 +81,7 @@ describe("DynamicFormKendoComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
 
-        expect(component.formControlType).toBe(KendoFormControlType.DropDownList);
+        expect(component.controlType).toBe(KendoFormControlType.DropDownList);
     });
 
     it("should have correct view child", () => {

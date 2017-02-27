@@ -22,8 +22,9 @@ import {
 } from "@ng2-dynamic-forms/core";
 import { AutoComplete, Calendar, Checkbox, Chips, Dropdown, InputSwitch, MultiSelect, Slider } from "primeng/primeng";
 import {
-    DYNAMIC_FORM_UI_PRIME_NG, PFormControlType,
-    PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES, PRIMENG_CHIPS_TEMPLATE_DIRECTIVES,
+    PFormControlType,
+    PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
+    PRIMENG_CHIPS_TEMPLATE_DIRECTIVES,
     PRIMENG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
 } from "./dynamic-form-primeng.const";
 
@@ -59,8 +60,6 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
     private suggestions: string[];
 
-    readonly type: string = DYNAMIC_FORM_UI_PRIME_NG;
-
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
     }
@@ -94,16 +93,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
         });
     }
 
-    protected setTemplates(): void {
-
-        super.setTemplates();
-
-        this.templateDirectives
-            .filter(directive => typeof directive.type === "string")
-            .forEach(directive => this.setPTemplateDirective(directive));
-    }
-
-    get formControlType(): number | null {
+    protected getFormControlType(): PFormControlType | null {
 
         let model;
 
@@ -155,6 +145,15 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
             default:
                 return null;
         }
+    }
+
+    protected setTemplates(): void {
+
+        super.setTemplates();
+
+        this.templateDirectives
+            .filter(directive => typeof directive.type === "string")
+            .forEach(directive => this.setPTemplateDirective(directive));
     }
 
     onAutoComplete($event: any): void {

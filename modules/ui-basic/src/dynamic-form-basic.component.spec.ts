@@ -9,7 +9,7 @@ import {
     DynamicFormControlModel,
     CoreFormControlType
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormBasicComponent, DYNAMIC_FORM_UI_BASIC } from "./dynamic-form-basic.component";
+import { DynamicFormBasicComponent } from "./dynamic-form-basic.component";
 
 describe("DynamicFormBasicComponent test suite", () => {
 
@@ -51,8 +51,6 @@ describe("DynamicFormBasicComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.type).toEqual(DYNAMIC_FORM_UI_BASIC);
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
@@ -73,7 +71,7 @@ describe("DynamicFormBasicComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.formControlType).toBe(CoreFormControlType.Input);
+        expect(component.controlType).toBe(CoreFormControlType.Input);
     });
 
     it("should have an input element", () => {

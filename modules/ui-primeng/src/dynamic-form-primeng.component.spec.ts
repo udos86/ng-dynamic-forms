@@ -23,7 +23,7 @@ import {
     SpinnerModule
 } from "primeng/primeng";
 import { DynamicFormPrimeNGComponent } from "./dynamic-form-primeng.component";
-import { DYNAMIC_FORM_UI_PRIME_NG, PFormControlType } from "./dynamic-form-primeng.const";
+import { PFormControlType } from "./dynamic-form-primeng.const";
 
 describe("DynamicFormPrimeNGComponent test suite", () => {
 
@@ -80,8 +80,6 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.type).toEqual(DYNAMIC_FORM_UI_PRIME_NG);
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
@@ -101,7 +99,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
 
-        expect(component.formControlType).toBe(PFormControlType.Input);
+        expect(component.controlType).toBe(PFormControlType.Input);
     });
 
     it("should have an input element", () => {
