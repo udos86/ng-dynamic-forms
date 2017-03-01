@@ -5,12 +5,12 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <template *ngIf="hasStartTemplate && formControlType !== 1"
+    <template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 
 
-    <ng-container [ngSwitch]="formControlType">
+    <ng-container [ngSwitch]="controlType">
 
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
@@ -180,7 +180,7 @@
     </ng-container>
 
 
-    <template *ngIf="hasEndTemplate && formControlType !== 1"
+    <template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 

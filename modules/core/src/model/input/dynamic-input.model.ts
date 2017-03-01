@@ -6,6 +6,7 @@ import { getValue } from "../../utils";
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_COLOR = "color";
+export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE = "date";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATETIME = "datetime";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATETIME_LOCAL = "datetime-local";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_EMAIL = "email";

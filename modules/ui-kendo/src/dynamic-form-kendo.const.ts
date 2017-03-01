@@ -1,10 +1,10 @@
-export const DYNAMIC_FORM_UI_KENDO = "KENDO";
-
 export const enum KendoFormControlType {
 
     Array = 1,
     AutoComplete = 2,
     Calendar = 3,
+    //DateInput
+    //DatePicker
     DropDownList = 4,
     Group = 5,
     MaskedTextBox = 6,
@@ -12,6 +12,7 @@ export const enum KendoFormControlType {
     NumericTextBox = 8,
     Slider = 9,
     Switch = 10,
+    //TimePicker
     Upload = 11
 }
 

@@ -10,8 +10,7 @@ import {
     DynamicSwitchModel,
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormMaterialComponent } from "./dynamic-form-material.component";
-import { DYNAMIC_FORM_UI_MATERIAL, MdFormControlType } from "./dynamic-form-material.const";
+import { DynamicFormMaterialComponent, MdFormControlType } from "./dynamic-form-material.component";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
@@ -57,8 +56,6 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.type).toEqual(DYNAMIC_FORM_UI_MATERIAL);
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
@@ -82,7 +79,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.formControlType).toBe(MdFormControlType.Input);
+        expect(component.controlType).toBe(MdFormControlType.Input);
     });
 
     it("should have an input element", () => {

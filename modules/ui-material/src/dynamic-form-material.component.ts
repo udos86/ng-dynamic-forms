@@ -19,7 +19,19 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-import { DYNAMIC_FORM_UI_MATERIAL, MdFormControlType } from "./dynamic-form-material.const";
+
+export const enum MdFormControlType {
+
+    Array = 1,
+    Checkbox = 2,
+    Group = 3,
+    Input = 4,
+    RadioGroup = 5,
+    Select = 6,
+    Slider = 7,
+    SlideToggle = 8,
+    TextArea = 9
+}
 
 @Component({
 
@@ -60,8 +72,6 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @ViewChild(MdSlider) mdSlider: MdSlider | null;
     @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle | null;
 
-    readonly type: string = DYNAMIC_FORM_UI_MATERIAL;
-
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
     }
@@ -70,7 +80,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
         return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
     }
 
-    get formControlType(): number | null {
+    protected getFormControlType(): MdFormControlType | null {
 
         switch (this.model.type) {
 

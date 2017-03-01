@@ -1,6 +1,6 @@
 <div [formGroup]="controlGroup" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <div *ngIf="formControlType !== 2 && model.label !== null"
+    <div *ngIf="controlType !== 2 && model.label !== null"
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
@@ -10,14 +10,14 @@
     </div>
 
 
-    <template *ngIf="hasStartTemplate && formControlType !== 1"
+    <template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 
 
     <div [ngClass]="model.cls.grid.control">
 
-        <ng-container [ngSwitch]="formControlType">
+        <ng-container [ngSwitch]="controlType">
 
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
@@ -221,7 +221,7 @@
     </ul>
 
 
-    <template *ngIf="hasEndTemplate && formControlType !== 1"
+    <template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 

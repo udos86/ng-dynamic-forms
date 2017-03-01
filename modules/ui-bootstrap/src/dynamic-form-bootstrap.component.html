@@ -3,18 +3,18 @@
      [formGroup]="controlGroup"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="formControlType !== 2 && model.label !== null"
+    <label *ngIf="controlType !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <template *ngIf="hasStartTemplate && formControlType !== 1"
+    <template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 
 
-    <div *ngIf="formControlType === 2" [ngClass]="model.cls.grid.control">
+    <div *ngIf="controlType === 2" [ngClass]="model.cls.grid.control">
 
         <div class="checkbox" [class.disabled]="model.disabled">
 
@@ -38,9 +38,9 @@
     </div>
 
 
-    <div *ngIf="formControlType !== 2" [ngClass]="model.cls.grid.control">
+    <div *ngIf="controlType !== 2" [ngClass]="model.cls.grid.control">
 
-        <ng-container [ngSwitch]="formControlType">
+        <ng-container [ngSwitch]="controlType">
 
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
@@ -207,7 +207,7 @@
     </ul>
 
 
-    <template *ngIf="hasEndTemplate && formControlType !== 1"
+    <template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 

@@ -1,12 +1,12 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
 
-    <template *ngIf="hasStartTemplate && formControlType !== 1"
+    <template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 
 
-    <fieldset *ngIf="formControlType === 11" role="radiogroup"
+    <fieldset *ngIf="controlType === 11" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -34,16 +34,16 @@
     </fieldset>
 
 
-    <div *ngIf="formControlType !== 10" [ngClass]="model.cls.grid.container">
+    <div *ngIf="controlType !== 11" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="formControlType !== 4 && model.label !== null" [ngClass]="model.cls.grid.label">
+        <div *ngIf="controlType !== 4 && model.label !== null" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
         </div>
 
 
-        <div [ngClass]="model.cls.grid.control" [ngSwitch]="formControlType">
+        <div [ngClass]="model.cls.grid.control" [ngSwitch]="controlType">
 
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
@@ -214,7 +214,7 @@
         </div>
 
 
-        <div *ngIf="formControlType === 4" [ngClass]="model.cls.grid.label">
+        <div *ngIf="controlType === 4" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -236,7 +236,7 @@
     </div>
 
 
-    <template *ngIf="hasEndTemplate && formControlType !== 1"
+    <template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
               [ngOutletContext]="model"></template>
 

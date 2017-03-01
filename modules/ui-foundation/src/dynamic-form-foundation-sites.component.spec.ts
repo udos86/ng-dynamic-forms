@@ -9,10 +9,7 @@ import {
     DynamicFormControlModel,
     CoreFormControlType
 } from "@ng2-dynamic-forms/core";
-import {
-    DynamicFormFoundationSitesComponent,
-    DYNAMIC_FORM_UI_FOUNDATION_SITES
-} from "./dynamic-form-foundation-sites.component";
+import { DynamicFormFoundationSitesComponent } from "./dynamic-form-foundation-sites.component";
 
 describe("DynamicFormFoundationSitesComponent test suite", () => {
 
@@ -54,8 +51,6 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.type).toEqual(DYNAMIC_FORM_UI_FOUNDATION_SITES);
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.controlGroup instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
@@ -76,7 +71,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.formControlType).toBe(CoreFormControlType.Input);
+        expect(component.controlType).toBe(CoreFormControlType.Input);
     });
 
     it("should have an input element", () => {

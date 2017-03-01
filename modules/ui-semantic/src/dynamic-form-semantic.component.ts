@@ -8,8 +8,6 @@ import {
     DynamicTemplateDirective
 } from "@ng2-dynamic-forms/core";
 
-export const DYNAMIC_FORM_UI_SEMANTIC = "SEMANTIC";
-
 @Component({
 
     moduleId: module.id,
@@ -30,8 +28,6 @@ export class DynamicFormSemanticComponent extends DynamicFormControlComponent {
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
-
-    readonly type: string = DYNAMIC_FORM_UI_SEMANTIC;
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);

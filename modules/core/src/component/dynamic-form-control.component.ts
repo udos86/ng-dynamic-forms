@@ -51,6 +51,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     change: EventEmitter<DynamicFormControlEvent>;
     control: FormControl;
     controlGroup: FormGroup;
+    controlType: number | null;
     focus: EventEmitter<DynamicFormControlEvent>;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
@@ -62,8 +63,6 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     private subscriptions: Subscription[] = [];
 
-    abstract readonly type: string;
-
     constructor(private relationService: DynamicFormRelationService) {}
 
     ngOnInit(): void {
@@ -73,6 +72,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         }
 
         this.control = this.controlGroup.get(this.model.id) as FormControl;
+        this.controlType = this.getFormControlType();
 
         this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
         this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
@@ -139,7 +139,39 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return messages;
     }
 
-    get formControlType(): number | null {
+    get hasHint(): boolean { // needed for AOT
+        return (this.model as DynamicInputModel).hint !== null;
+    }
+
+    get hasList(): boolean { // needed for AOT
+        return (this.model as DynamicInputModel).list !== null;
+    }
+
+    get hasEndTemplate(): boolean {
+        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
+    }
+
+    get hasStartTemplate(): boolean {
+        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START;
+    }
+
+    get showErrorMessages(): boolean {
+        return this.control.touched && !this.hasFocus && this.isInvalid;
+    }
+
+    get isValid(): boolean {
+        return this.control.valid;
+    }
+
+    get isInvalid(): boolean {
+        return this.control.touched && this.control.invalid;
+    }
+
+    get templateDirectives(): QueryList<DynamicTemplateDirective> {
+        return this.nestedTemplates ? this.nestedTemplates : this.templates;
+    }
+
+    protected getFormControlType(): number | null {
 
         switch (this.model.type) {
 
@@ -171,38 +203,6 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
             default:
                 return null;
         }
-    }
-
-    get hasHint(): boolean { // needed for AOT
-        return (this.model as DynamicInputModel).hint !== null;
-    }
-
-    get hasList(): boolean { // needed for AOT
-        return (this.model as DynamicInputModel).list !== null;
-    }
-
-    get hasEndTemplate(): boolean {
-        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
-    }
-
-    get hasStartTemplate(): boolean {
-        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START;
-    }
-
-    get showErrorMessages(): boolean {
-        return this.control.touched && !this.hasFocus && this.isInvalid;
-    }
-
-    get isValid(): boolean {
-        return this.control.valid;
-    }
-
-    get isInvalid(): boolean {
-        return this.control.touched && this.control.invalid;
-    }
-
-    get templateDirectives(): QueryList<DynamicTemplateDirective> {
-        return this.nestedTemplates ? this.nestedTemplates : this.templates;
     }
 
     protected setTemplates(): void {

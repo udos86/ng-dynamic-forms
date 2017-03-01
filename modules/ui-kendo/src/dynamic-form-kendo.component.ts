@@ -28,12 +28,12 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
 } from "@ng2-dynamic-forms/core";
 import {
-    DYNAMIC_FORM_UI_KENDO,
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
     KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
     KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
     KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
-    KendoFormControlType, KENDO_UPLOAD_TEMPLATE_DIRECTIVES
+    KENDO_UPLOAD_TEMPLATE_DIRECTIVES,
+    KendoFormControlType
 } from "./dynamic-form-kendo.const";
 import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD } from "../../core/src/model/file-upload/dynamic-file-upload.model";
 
@@ -67,13 +67,13 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @ViewChild(SwitchComponent) kendoSwitch: SwitchComponent | null;
     @ViewChild(UploadComponent) kendoUpload: UploadComponent | null;
 
-    readonly type: string = DYNAMIC_FORM_UI_KENDO;
+    readonly type: KendoFormControlType;
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
     }
 
-    protected setKendoTemplateDirective(template: DynamicTemplateDirective): void {
+    protected setKendoTemplateDirective(directive: DynamicTemplateDirective): void {
 
         let templateDirectives: any,
             viewChild: any;
@@ -106,22 +106,13 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
         Object.keys(templateDirectives || {}).forEach((key: string) => {
 
-            if (templateDirectives[key] === template.type) {
-                viewChild[key] = template;
+            if (templateDirectives[key] === directive.type) {
+                viewChild[key] = directive;
             }
         });
     }
 
-    protected setTemplates(): void {
-
-        super.setTemplates();
-
-        this.templateDirectives
-            .filter(directive => directive.type.startsWith("kendo"))
-            .forEach(directive => this.setKendoTemplateDirective(directive));
-    }
-
-    get formControlType(): number | null {
+    protected getFormControlType(): KendoFormControlType | null {
 
         let model;
 
@@ -171,5 +162,14 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             default:
                 return null;
         }
+    }
+
+    protected setTemplates(): void {
+
+        super.setTemplates();
+
+        this.templateDirectives
+            .filter(directive => directive.type.startsWith("kendo"))
+            .forEach(directive => this.setKendoTemplateDirective(directive));
     }
 }
