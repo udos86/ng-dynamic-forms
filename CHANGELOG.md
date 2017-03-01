@@ -1,3 +1,10 @@
+# 1.3.16
+
+### **Features** 
+
+* custom template support in `ui-primeng` (see example)
+
+
 # 1.3.15
 
 ### **Bugfixes** 
