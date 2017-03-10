@@ -4,26 +4,23 @@ import {
     DynamicValidatorsMap,
     ClsConfig
 } from "../dynamic-form-control.model";
-import { DynamicFormValueControlModel, DynamicFormControlValue } from "../dynamic-form-value-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
 import { getValue, isFunction } from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
     context: DynamicFormArrayModel;
-    @serializable() group: DynamicFormValueControlModel<DynamicFormControlValue>[];
+    @serializable() group: DynamicFormControlModel[];
     @serializable() index: number | null;
 
-    constructor(context: DynamicFormArrayModel,
-                group: DynamicFormValueControlModel<DynamicFormControlValue>[] = [],
-                index: number | null = null) {
+    constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number | null = null) {
 
         this.context = context;
         this.group = group;
         this.index = index;
     }
 
-    get(index: number): DynamicFormValueControlModel<DynamicFormControlValue> {
+    get(index: number): DynamicFormControlModel {
         return this.group[index];
     }
 
@@ -37,7 +34,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
     asyncValidator?: DynamicValidatorsMap;
-    createGroup?: () => DynamicFormValueControlModel<DynamicFormControlValue>[];
+    createGroup?: () => DynamicFormControlModel[];
     groups?: DynamicFormArrayGroupModel[];
     initialCount?: number;
     validator?: DynamicValidatorsMap;
@@ -45,10 +42,10 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    @serializable() private originGroup: DynamicFormValueControlModel<DynamicFormControlValue>[]; // only to reinstantiate from JSON
+    @serializable() private originGroup: DynamicFormControlModel[]; // only to reinstantiate from JSON
 
     @serializable() asyncValidator: DynamicValidatorsMap | null;
-    createGroup: () => DynamicFormValueControlModel<DynamicFormControlValue>[];
+    createGroup: () => DynamicFormControlModel[];
     @serializable() groups: DynamicFormArrayGroupModel[] = [];
     @serializable() initialCount: number;
     @serializable() validator: DynamicValidatorsMap | null;
