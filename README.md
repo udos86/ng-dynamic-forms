@@ -253,14 +253,17 @@ your component** `template`:
 Due to technical restrictions or external dependencies still being in development full support for all major form controls 
 cannot be provided in every single UI library. **See the following compatibility table**:
 
-|               	| Checkbox 	| Datepicker 	| File Upload 	| Input 	| Radio Group 	| Select 	| Slider 	| Switch 	| Textarea 	|
-|:-------------:	|:--------:	|:----------:	|:-----------:	|:-----:	|:-----------:	|:------:	|:------:	|:------:	|:--------:	|
-| ui-basic      	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|   ***  	|    ✗   	|     ✓    	|
-| ui-bootstrap  	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|   ***  	|    ✗   	|     ✓    	|
-| ui-foundation 	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|   ***  	|    ✓   	|     ✓    	|
-| ui-kendo      	|     ✗    	|      ✓     	|      ✓      	|   ✗   	|      ✗      	|    ✗   	|    ✓   	|    ✓   	|     ✗    	|
-| ui-material   	|     ✓    	|      *     	|      **     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
-| ui-primeng    	|     ✓    	|      ✓     	|      **     	|   ✓   	|      ✓      	|    ✓   	|    ✓   	|    ✓   	|     ✓    	|
+|             	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-kendo 	| ui-material 	| ui-primeng 	|
+|-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:-----------:	|:----------:	|
+| Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
+| Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|      *      	|      ✓     	|
+| File Upload 	|    **    	|      **      	|       **      	|     ✓    	|      **     	|     **     	|
+| Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
+| Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
+| Select      	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
+| Slider      	|    ***   	|      ***     	|      ***      	|     ✓    	|      ✓      	|      ✓     	|
+| Switch      	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
+| Textarea    	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
 
 **\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
