@@ -269,7 +269,7 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                     model.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
-                        groupModel.group = this.fromJSON(groupModel.group) as DynamicFormValueControlModel<DynamicFormControlValue>[];
+                        groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
                     });
                     model.createGroup = () => this.fromJSON(model.originGroup);
                     group.push(new DynamicFormArrayModel(model, model.cls));
