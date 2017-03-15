@@ -1,3 +1,11 @@
+# 1.3.17
+
+### **Features** 
+
+* added `module` and `typings` properties to `package.json` to fix Rollup "MISSING IMPORTS" error (probably closes [#267](https://github.com/udos86/ng2-dynamic-forms/issues/267))
+* `DynamicFormArrayModel` typings adjusted (closes [#289](https://github.com/udos86/ng2-dynamic-forms/issues/289))
+
+
 # 1.3.16
 
 ### **Features** 
@@ -9,7 +17,7 @@
 
 ### **Bugfixes** 
 
-* custom templates are now working in deep nested dynamic form control components (closes [#280](https://github.com/udos86/ng2-dynamic-forms/issues/266))
+* custom templates are now working in deep nested dynamic form control components (closes [#280](https://github.com/udos86/ng2-dynamic-forms/issues/280))
  
 ### **Features** 
 
