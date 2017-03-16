@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.3.17",
+  "version": "1.3.18",
   "description": "A rapid form development library for Angular 2.x and higher",
   "scripts": {
     "compile:app:aot": "ngc -p tsconfig.aot.json",
@@ -46,12 +46,12 @@
     "@angular/platform-browser": "^2.4.9",
     "@angular/platform-browser-dynamic": "^2.4.9",
     "@angular/router": "^3.4.9",
-    "@ng2-dynamic-forms/core": "^1.3.17",
-    "@ng2-dynamic-forms/ui-basic": "^1.3.17",
-    "@ng2-dynamic-forms/ui-bootstrap": "^1.3.17",
-    "@ng2-dynamic-forms/ui-foundation": "^1.3.17",
-    "@ng2-dynamic-forms/ui-material": "^1.3.17",
-    "@ng2-dynamic-forms/ui-primeng": "^1.3.17",
+    "@ng2-dynamic-forms/core": "^1.3.18",
+    "@ng2-dynamic-forms/ui-basic": "^1.3.18",
+    "@ng2-dynamic-forms/ui-bootstrap": "^1.3.18",
+    "@ng2-dynamic-forms/ui-foundation": "^1.3.18",
+    "@ng2-dynamic-forms/ui-material": "^1.3.18",
+    "@ng2-dynamic-forms/ui-primeng": "^1.3.18",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.3.1",
@@ -106,13 +106,13 @@
   },
   "optionalDependencies": {
     "@progress/kendo-angular-dateinputs": "^0.3.7",
-    "@progress/kendo-angular-dropdowns": "^0.32.0",
+    "@progress/kendo-angular-dropdowns": "^0.35.0",
     "@progress/kendo-angular-inputs": "^0.19.2",
     "@progress/kendo-angular-intl": "^0.11.0",
-    "@progress/kendo-angular-l10n": "^0.1.0",
+    "@progress/kendo-angular-l10n": "^0.2.1",
     "@progress/kendo-angular-resize-sensor": "^0.10.3",
     "@progress/kendo-angular-upload": "^0.17.0",
     "@progress/kendo-date-math": "^0.3.2",
-    "@progress/kendo-theme-default": "^2.12.38"
+    "@progress/kendo-theme-default": "^2.15.1"
   }
 }

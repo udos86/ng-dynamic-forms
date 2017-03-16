@@ -1,3 +1,10 @@
+# 1.3.18
+
+### **Bugfixes** 
+
+* validation messages now working in nested form groups in `ui-material` and `ui-primeng` (closes [#294](https://github.com/udos86/ng2-dynamic-forms/issues/294))
+
+
 # 1.3.17
 
 ### **Features** 
