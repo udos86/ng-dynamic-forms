@@ -23,6 +23,7 @@
                 <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
                                                [bindId]="false"
                                                [controlGroup]="control.at(idx)"
+                                               [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                [model]="controlModel"
                                                [nestedTemplates]="templateDirectives"
                                                (blur)="onFocusChange($event)"
@@ -61,6 +62,7 @@
 
             <dynamic-form-material-control *ngFor="let controlModel of model.group"
                                            [controlGroup]="control"
+                                           [hasErrorMessaging]="controlModel.hasErrorMessages"
                                            [model]="controlModel"
                                            [nestedTemplates]="templateDirectives"
                                            (blur)="onFocusChange($event)"
