@@ -2,11 +2,11 @@ import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { AUTOCOMPLETE_ON } from "../service/dynamic-form-autofill.service";
 import { serializable } from "../decorator/serializable.decorator";
-import { getValue } from "../utils";
+import { isBoolean, isNumber } from "../utils";
 
 export interface DynamicInputControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
 
-    autoComplete?: boolean;
+    autoComplete?: string;
     autoFocus?: boolean;
     maxLength?: number;
     minLength?: number;
@@ -19,7 +19,7 @@ export interface DynamicInputControlModelConfig<T> extends DynamicFormValueContr
 
 export abstract class DynamicInputControlModel<T> extends DynamicFormValueControlModel<T> {
 
-    @serializable() autoComplete: boolean;
+    @serializable() autoComplete: string;
     @serializable() autoFocus: boolean;
     @serializable() maxLength: number | null;
     @serializable() minLength: number | null;
@@ -33,14 +33,14 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
 
         super(config, cls);
 
-        this.autoComplete = getValue(config, "autoComplete", AUTOCOMPLETE_ON);
-        this.autoFocus = getValue(config, "autoFocus", false);
-        this.maxLength = getValue(config, "maxLength", null);
-        this.minLength = getValue(config, "minLength", null);
-        this.placeholder = getValue(config, "placeholder", "");
-        this.prefix = getValue(config, "prefix", null);
-        this.readOnly = getValue(config, "readOnly", false);
-        this.spellCheck = getValue(config, "spellCheck", false);
-        this.suffix = getValue(config, "suffix", null);
+        this.autoComplete = config.autoComplete || AUTOCOMPLETE_ON;
+        this.autoFocus = isBoolean(config.autoFocus) ? config.autoFocus : false;
+        this.maxLength = isNumber(config.maxLength) ? config.maxLength : null;
+        this.minLength = isNumber(config.minLength) ? config.minLength : null;
+        this.placeholder = config.placeholder || "";
+        this.prefix = config.prefix || null;
+        this.readOnly = isBoolean(config.readOnly) ? config.readOnly : false;
+        this.spellCheck = isBoolean(config.spellCheck) ? config.spellCheck : false;
+        this.suffix = config.suffix || null;
     }
 }

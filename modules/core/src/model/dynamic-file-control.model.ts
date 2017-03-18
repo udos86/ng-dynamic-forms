@@ -1,7 +1,7 @@
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { getValue } from "../utils";
+import { isBoolean } from "../utils";
 
 export interface DynamicFileControlModelConfig extends DynamicFormValueControlModelConfig<File | File[]> {
 
@@ -16,6 +16,6 @@ export abstract class DynamicFileControlModel extends DynamicFormValueControlMod
 
         super(config, cls);
 
-        this.multiple = getValue(config, "multiple", false);
+        this.multiple = isBoolean(config.multiple) ? config.multiple : false;
     }
 }

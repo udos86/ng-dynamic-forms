@@ -5,7 +5,6 @@ import {
     ClsConfig
 } from "../dynamic-form-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { getValue } from "../../utils";
 
 export interface DynamicFieldSet {
 
@@ -39,10 +38,10 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
             throw new Error("group array must be specified for DynamicFormGroupModel");
         }
 
-        this.asyncValidator = getValue(config, "asyncValidator", null);
-        this.group = getValue(config, "group", []);
-        this.legend = getValue(config, "legend", null);
-        this.validator = getValue(config, "validator", null);
+        this.asyncValidator = config.asyncValidator || null;
+        this.group = Array.isArray(config.group) ? config.group : [];
+        this.legend = config.legend || null;
+        this.validator = config.validator || null;
     }
 
     get(index: number): DynamicFormControlModel {

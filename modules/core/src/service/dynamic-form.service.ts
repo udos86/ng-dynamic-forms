@@ -271,7 +271,7 @@ export class DynamicFormService {
                     model.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
                         groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
                     });
-                    model.createGroup = () => this.fromJSON(model.originGroup);
+                    model.createGroup = () => this.fromJSON(model.origin);
                     group.push(new DynamicFormArrayModel(model, model.cls));
                     break;
 

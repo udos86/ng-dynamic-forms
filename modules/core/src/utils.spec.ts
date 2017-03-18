@@ -87,6 +87,18 @@ describe("Utils test suite", () => {
             expect(utils.isEmptyString(testString2)).toBe(false);
         });
 
+
+        it("tests if isNumber is working correctly", () => {
+
+            let testNumber0 = undefined;
+            let testNumber1 = 0;
+            let testNumber2 = 42;
+
+            expect(utils.isNumber(testNumber0)).toBe(false);
+            expect(utils.isNumber(testNumber1)).toBe(true);
+            expect(utils.isNumber(testNumber2)).toBe(true);
+        });
+
     });
 
 });

@@ -1,7 +1,7 @@
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { getValue, isEmptyString } from "../utils";
+import { getValue, isBoolean, isEmptyString } from "../utils";
 
 export type DynamicValidatorsMap = {[validatorName: string]: any};
 
@@ -49,11 +49,11 @@ export abstract class DynamicFormControlModel {
         this.cls.element = getValue(cls, "element", {container: "", control: "", errors: "", hint: "", label: ""});
         this.cls.grid = getValue(cls, "grid", {container: "", control: "", errors: "", hint: "", label: ""});
 
-        this._disabled = getValue(config, "disabled", false);
+        this._disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.id = config.id;
-        this.label = getValue(config, "label", null);
+        this.label = config.label || null;
         this.name = this.id;
-        this.relation = getValue(config, "relation", []);
+        this.relation = Array.isArray(config.relation) ? config.relation : [];
 
         this.disabledUpdates = new Subject<boolean>();
         this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);

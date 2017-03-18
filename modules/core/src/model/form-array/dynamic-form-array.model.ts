@@ -5,7 +5,7 @@ import {
     ClsConfig
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
-import { getValue, isFunction } from "../../utils";
+import { isFunction, isNumber } from "../../utils";
 
 export class DynamicFormArrayGroupModel {
 
@@ -42,7 +42,7 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
-    @serializable() private originGroup: DynamicFormControlModel[]; // only to reinstantiate from JSON
+    @serializable() private origin: DynamicFormControlModel[]; // only to reinstantiate from JSON
 
     @serializable() asyncValidator: DynamicValidatorsMap | null;
     createGroup: () => DynamicFormControlModel[];
@@ -56,15 +56,16 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         super(config, cls);
 
-        if (!isFunction(config["createGroup"])) {
+        if (!isFunction(config.createGroup)) {
             throw new Error("createGroup function must be specified for DynamicFormArrayModel");
         }
 
-        this.asyncValidator = getValue(config, "asyncValidator", null);
-        this.createGroup = config["createGroup"];
-        this.initialCount = getValue(config, "initialCount", 1);
-        this.originGroup = this.createGroup();
-        this.validator = getValue(config, "validator", null);
+        this.asyncValidator = config.asyncValidator || null;
+        this.createGroup = config.createGroup;
+        this.initialCount = isNumber(config.initialCount) ? config.initialCount : 1;
+        this.validator = config.validator || null;
+
+        this.origin = this.createGroup();
 
         if (Array.isArray(config.groups)) {
 
@@ -80,12 +81,12 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         }
     }
 
-    get size(): number {
-        return this.groups.length;
-    }
-
     private updateGroupIndex(): void {
         this.groups.forEach((group, index) => group.index = index);
+    }
+
+    get size(): number {
+        return this.groups.length;
     }
 
     get(index: number): DynamicFormArrayGroupModel {
