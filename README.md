@@ -78,7 +78,7 @@ System.config({
 git clone https://github.com/udos86/ng2-dynamic-forms.git
 ```
 
-**2. Install the npm dependencies**:
+**2. Install all npm dependencies** (including Kendo UI):
 ```
 npm install
 ```
@@ -92,7 +92,6 @@ npm run tsc
 ```
 npm start
 ```
-
 
 ## Basic Usage
 
