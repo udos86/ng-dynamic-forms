@@ -1,11 +1,10 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { DynamicCheckControlModel, DynamicCheckControlModelConfig } from "../dynamic-check-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { getValue } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SWITCH = "SWITCH";
 
-export interface DynamicSwitchModelConfig extends DynamicCheckControlModelConfig{
+export interface DynamicSwitchModelConfig extends DynamicCheckControlModelConfig {
 
     offLabel?: string;
     onLabel?: string;
@@ -22,7 +21,7 @@ export class DynamicSwitchModel extends DynamicCheckControlModel {
 
         super(config, cls);
 
-        this.offLabel = getValue(config, "offLabel", null);
-        this.onLabel = getValue(config, "onLabel", null);
+        this.offLabel = config.offLabel || null;
+        this.onLabel = config.onLabel || null;
     }
 }

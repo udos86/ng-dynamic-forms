@@ -1,17 +1,21 @@
-export function isBoolean(object: any): boolean {
-    return typeof object === "boolean";
+export function isBoolean(value: any): boolean {
+    return typeof value === "boolean";
 }
 
-export function isDefined(object: any): boolean {
-    return object !== undefined && object !== null;
+export function isDefined(value: any): boolean {
+    return value !== undefined && value !== null;
 }
 
-export function isEmptyString(_string: string | null | undefined): boolean {
-    return typeof _string !== "string" || _string.length === 0;
+export function isEmptyString(value: string | null | undefined): boolean {
+    return typeof value !== "string" || value.length === 0;
 }
 
-export function isFunction(object: any): boolean {
-    return typeof object === "function";
+export function isFunction(value: any): boolean {
+    return typeof value === "function";
+}
+
+export function isNumber(value: any): boolean {
+    return typeof value === "number";
 }
 
 export function getValue(object: any, key: string, defaultValue: any): any {

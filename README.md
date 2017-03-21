@@ -6,10 +6,10 @@
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng2-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng2-dynamic-forms)
 
-ng2 Dynamic Forms is a **rapid form development library** based on the official Angular 2
+ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
-It simplifies the time-consuming work of implementing reactive Angular 2 forms by building
+It highly simplifies the implementing of reactive Angular forms by building
 upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
@@ -25,7 +25,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Running the Example](#running-the-example)
 - [Basic Usage](#basic-usage)
 - [UI Modules and Components](#ui-modules-and-components)
-- [Model Bindings and Control References](#model-bindings-and-control-references)
+- [Value Updates](#value-updates)
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
@@ -78,7 +78,7 @@ System.config({
 git clone https://github.com/udos86/ng2-dynamic-forms.git
 ```
 
-**2. Install the npm dependencies**:
+**2. Install all npm dependencies** (including Kendo UI):
 ```
 npm install
 ```
@@ -92,7 +92,6 @@ npm run tsc
 ```
 npm start
 ```
-
 
 ## Basic Usage
 
@@ -272,7 +271,7 @@ cannot be provided in every single UI library. **See the following compatibility
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
 
 
-## Model Bindings and Control References
+## Value Updates
 
 One of the benefits of using ng2 Dynamic Forms is that interacting with your form programmatically becomes pretty easy.
 Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular 2 core mechanisms,

@@ -1,7 +1,7 @@
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { getValue } from "../utils";
+import { isBoolean } from "../utils";
 
 export interface DynamicFormOptionConfig<T> {
 
@@ -18,8 +18,8 @@ export class DynamicFormOption<T> {
 
     constructor(config: DynamicFormOptionConfig<T>) {
 
-        this.disabled = getValue(config, "disabled", false);
-        this.label = getValue(config, "label", null);
+        this.disabled = isBoolean(config.disabled) ? config.disabled : false;
+        this.label = config.label || null;
         this.value = config.value;
     }
 

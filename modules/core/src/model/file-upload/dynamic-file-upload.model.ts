@@ -1,7 +1,7 @@
 import { ClsConfig } from "../dynamic-form-control.model";
-import { serializable } from "../../decorator/serializable.decorator";
-import { getValue } from "../../utils";
 import { DynamicFileControlModelConfig, DynamicFileControlModel } from "../dynamic-file-control.model";
+import { serializable } from "../../decorator/serializable.decorator";
+import { isBoolean, isNumber } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD = "FILE_UPLOAD";
 
@@ -32,12 +32,12 @@ export class DynamicFileUploadModel extends DynamicFileControlModel {
 
         super(config, cls);
 
-        this.accept = getValue(config, "accept", null);
-        this.autoUpload = getValue(config, "autoUpload", true);
-        this.maxSize = getValue(config, "maxSize", null);
-        this.minSize = getValue(config, "minSize", null);
-        this.removeUrl = getValue(config, "removeUrl", null);
-        this.showFileList = getValue(config, "showFileList", true);
-        this.url = getValue(config, "url", null);
+        this.accept = Array.isArray(config.accept) ? config.accept : null;
+        this.autoUpload = isBoolean(config.autoUpload) ? config.autoUpload : true;
+        this.maxSize = isNumber(config.maxSize) ? config.maxSize : null;
+        this.minSize = isNumber(config.minSize) ? config.minSize : null;
+        this.removeUrl = config.removeUrl || null;
+        this.showFileList = isBoolean(config.showFileList) ? config.showFileList : true;
+        this.url = config.url || null;
     }
 }

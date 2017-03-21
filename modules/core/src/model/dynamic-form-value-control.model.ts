@@ -6,7 +6,7 @@ import {
     ClsConfig
 } from "./dynamic-form-control.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { getValue, isDefined } from "../utils";
+import { isBoolean, isDefined } from "../utils";
 
 export type DynamicFormControlValue = boolean | number | string | Array<boolean | number | string>;
 
@@ -36,13 +36,13 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         super(config, cls);
 
-        this.asyncValidators = getValue(config, "asyncValidators", null);
-        this.errorMessages = getValue(config, "errorMessages", null);
-        this.hint = getValue(config, "hint", null);
-        this.required = getValue(config, "required", false);
-        this.tabIndex = getValue(config, "tabIndex", null);
-        this.validators = getValue(config, "validators", null);
-        this._value = getValue(config, "value", null);
+        this.asyncValidators = config.asyncValidators || null;
+        this.errorMessages = config.errorMessages || null;
+        this.hint = config.hint || null;
+        this.required = isBoolean(config.required) ? config.required : false;
+        this.tabIndex = config.tabIndex || null;
+        this.validators = config.validators || null;
+        this._value = config.value || null;
 
         this.valueUpdates = new Subject<T>();
         this.valueUpdates.subscribe((value: T) => this.value = value);

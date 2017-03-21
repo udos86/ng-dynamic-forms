@@ -1,7 +1,7 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { getValue } from "../../utils";
+import { isBoolean, isDefined, isNumber } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -27,7 +27,7 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
     accept?: string;
     inputType?: string;
     list?: string[];
-    mask?: string | null;
+    mask?: string;
     max?: number | string;
     min?: number | string;
     multiple?: boolean;
@@ -56,15 +56,15 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         super(config, cls);
 
-        this.accept = getValue(config, "accept", null);
-        this.inputType = getValue(config, "inputType", DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT);
-        this.list = getValue(config, "list", null);
-        this.mask = getValue(config, "mask", null);
-        this.max = getValue(config, "max", null);
-        this.min = getValue(config, "min", null);
-        this.multiple = getValue(config, "multiple", null);
-        this.pattern = getValue(config, "pattern", null);
-        this.step = getValue(config, "step", null);
+        this.accept = config.accept || null;
+        this.inputType = config.inputType || DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;
+        this.list = Array.isArray(config.list) ? config.list : null;
+        this.mask = config.mask || null;
+        this.max = isDefined(config.max) ? config.max : null;
+        this.min = isDefined(config.min) ? config.min : null;
+        this.multiple = isBoolean(config.multiple) ? config.multiple : null;
+        this.pattern = config.pattern || null;
+        this.step = isNumber(config.step) ? config.step : null;
 
         if (this.list) {
             this.listId = `${this.id}List`;
