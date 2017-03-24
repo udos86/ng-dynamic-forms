@@ -1,9 +1,9 @@
 <div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
 
 
-    <template *ngIf="hasStartTemplate && controlType !== 1"
+    <ng-template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
 
     <fieldset *ngIf="controlType === 11" role="radiogroup"
@@ -62,7 +62,7 @@
                                                   (change)="onValueChange($event)"
                                                   (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
 
-                    <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+                    <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
                 </fieldset>
 
@@ -238,9 +238,9 @@
     </div>
 
 
-    <template *ngIf="hasEndTemplate && controlType !== 1"
+    <ng-template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

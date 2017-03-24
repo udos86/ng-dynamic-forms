@@ -8,11 +8,11 @@
                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                       (change)="onChange($event)">
 
-            <template modelId="primeSelect" type="itemTemplate" let-item>
+            <ng-template modelId="primeSelect" type="itemTemplate" let-item>
 
                 <p>{{ item.label }}</p>
 
-            </template>
+            </ng-template>
 
         </dynamic-form-primeng-control>
     </form>

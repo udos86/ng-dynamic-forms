@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import { Http, BaseRequestOptions } from "@angular/http";
 import { MockBackend } from "@angular/http/testing";
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, FormControl } from "@angular/forms";
 import { MaterialModule } from "@angular/material";
@@ -39,6 +40,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
 
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         AppRoutingModule,
         DynamicFormsCoreModule.forRoot(),

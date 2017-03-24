@@ -34,7 +34,7 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
 
         super(config, cls);
 
-        if (!Array.isArray(config["group"])) {
+        if (!Array.isArray(config.group)) {
             throw new Error("group array must be specified for DynamicFormGroupModel");
         }
 

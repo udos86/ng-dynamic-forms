@@ -9,9 +9,9 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <template *ngIf="hasStartTemplate && controlType !== 1"
+    <ng-template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
 
     <div *ngIf="controlType === 2" [ngClass]="model.cls.grid.control">
@@ -59,7 +59,7 @@
                                                     (change)="onValueChange($event)"
                                                     (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
 
-                    <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+                    <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
                 </fieldset>
 
@@ -207,9 +207,9 @@
     </ul>
 
 
-    <template *ngIf="hasEndTemplate && controlType !== 1"
+    <ng-template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

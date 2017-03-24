@@ -6,9 +6,9 @@
            [ngClass]="model.cls.element.label"></label>
 
 
-    <template *ngIf="hasStartTemplate && controlType !== 1"
+    <ng-template *ngIf="hasStartTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-container [ngSwitch]="controlType">
@@ -30,7 +30,7 @@
                                                (change)="onValueChange($event)"
                                                (focus)="onFocusChange($event)"></dynamic-form-material-control>
 
-                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+                <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
             </fieldset>
 
@@ -219,9 +219,9 @@
     </md-list>
 
 
-    <template *ngIf="hasEndTemplate && controlType !== 1"
+    <ng-template *ngIf="hasEndTemplate && controlType !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

@@ -9,6 +9,7 @@ let TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
     TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
     TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-typescript"),
     TASK_PREPROCESS = require("./build/tasks/preprocess"),
+    TASK_REMOVE_MODULE_ID = require("./build/tasks/remove-module-id"),
     TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
     TASK_DOC_TYPESCRIPT = require("./build/tasks/doc-typescript");
 
@@ -103,6 +104,11 @@ gulp.task("transpile:modules:es5",
 gulp.task("prime:modules",
     TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
 
+
+gulp.task("remove:moduleId",
+    TASK_REMOVE_MODULE_ID([`${DIST_PATH}/**/*`], DIST_PATH));
+
+
 gulp.task("doc:modules",
     TASK_DOC_TYPESCRIPT([`${SRC_PATH}/*/src/**/!(*.spec).ts`], {
             externalPattern: `${NPM_PATH}/**/*.*`,
@@ -141,6 +147,7 @@ gulp.task("build:modules", function (done) {
         "preprocess:modules",
         "inline:ng2-templates",
         "prime:modules",
+        "remove:moduleId",
         done
     );
 });

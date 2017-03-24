@@ -5,6 +5,9 @@
     };
 
     var map = {
+        "@angular/animations": "npm:@angular/animations/bundles/animations.umd.js",
+        "@angular/animations/browser": "npm:@angular/animations/bundles/animations-browser.umd.js",
+        "@angular/animations/testing": "npm:@angular/animations/bundles/animations-browser-testing.umd.js",
         "@angular/core": "npm:@angular/core/bundles/core.umd.js",
         "@angular/core/testing": "npm:@angular/core/bundles/core-testing.umd.js",
         "@angular/common": "npm:@angular/common/bundles/common.umd.js",
@@ -12,6 +15,7 @@
         "@angular/compiler": "npm:@angular/compiler/bundles/compiler.umd.js",
         "@angular/compiler/testing": "npm:@angular/compiler/bundles/compiler-testing.umd.js",
         "@angular/platform-browser": "npm:@angular/platform-browser/bundles/platform-browser.umd.js",
+        "@angular/platform-browser/animations": "npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js",
         "@angular/platform-browser/testing": "npm:@angular/platform-browser/bundles/platform-browser-testing.umd.js",
         "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
         "@angular/platform-browser-dynamic/testing": "npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js",
