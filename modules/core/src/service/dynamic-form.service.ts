@@ -35,7 +35,7 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import { isFunction, isDefined } from "../utils";
+import { isFunction, isDefined, isString } from "../utils";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
     DynamicFileUploadModel
@@ -52,7 +52,7 @@ export class DynamicFormService {
 
         let regexISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return typeof value === "string" && regexISO.test(value) ? new Date(value) : value;
+        return isString(value) && regexISO.test(value) ? new Date(value) : value;
     }
 
 
@@ -286,7 +286,7 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let raw = typeof json === "string" ? JSON.parse(json, this.parseJSONReviver) : json,
+        let raw = isString(json) ? JSON.parse(json as string, this.parseJSONReviver) : json,
             group: DynamicFormControlModel[] = [];
 
         raw.forEach((model: any) => {

@@ -1,17 +1,17 @@
-<div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="controlType !== 2 && model.label !== null"
+    <label *ngIf="type !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="model"></ng-template>
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <ng-container [ngSwitch]="controlType">
+    <ng-container [ngSwitch]="type">
 
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
@@ -22,7 +22,7 @@
 
                 <dynamic-form-basic-control *ngFor="let controlModel of groupModel.group"
                                             [bindId]="false"
-                                            [controlGroup]="control.at(idx)"
+                                            [group]="control.at(idx)"
                                             [hasErrorMessaging]="controlModel.hasErrorMessages"
                                             [model]="controlModel"
                                             [nestedTemplates]="templateDirectives"
@@ -63,7 +63,7 @@
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
             <dynamic-form-basic-control *ngFor="let controlModel of model.group"
-                                        [controlGroup]="control"
+                                        [group]="control"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         [model]="controlModel"
                                         [nestedTemplates]="templateDirectives"
@@ -75,30 +75,30 @@
 
         <ng-container *ngSwitchCase="4">
 
-            <input  [attr.accept]="model.accept"
-                    [attr.autoComplete]="model.autoComplete"
-                    [attr.list]="model.listId"
-                    [attr.max]="model.max"
-                    [attr.min]="model.min"
-                    [attr.multiple]="model.multiple"
-                    [attr.step]="model.step"
-                    [attr.tabindex]="model.tabIndex"
-                    [autofocus]="model.autoFocus"
-                    [dynamicId]="bindId && model.id"
-                    [formControlName]="model.id"
-                    [maxlength]="model.maxLength"
-                    [minlength]="model.minLength"
-                    [name]="model.name"
-                    [ngClass]="model.cls.element.control"
-                    [pattern]="model.pattern"
-                    [placeholder]="model.placeholder"
-                    [readonly]="model.readOnly"
-                    [required]="model.required"
-                    [spellcheck]="model.spellCheck"
-                    [type]="model.inputType"
-                    (blur)="onFocusChange($event)"
-                    (change)="onValueChange($event)"
-                    (focus)="onFocusChange($event)"/>
+            <input [attr.accept]="model.accept"
+                   [attr.autoComplete]="model.autoComplete"
+                   [attr.list]="model.listId"
+                   [attr.max]="model.max"
+                   [attr.min]="model.min"
+                   [attr.multiple]="model.multiple"
+                   [attr.step]="model.step"
+                   [attr.tabindex]="model.tabIndex"
+                   [autofocus]="model.autoFocus"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [maxlength]="model.maxLength"
+                   [minlength]="model.minLength"
+                   [name]="model.name"
+                   [ngClass]="model.cls.element.control"
+                   [pattern]="model.pattern"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readOnly"
+                   [required]="model.required"
+                   [spellcheck]="model.spellCheck"
+                   [type]="model.inputType"
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/>
 
             <datalist *ngIf="hasList" [id]="model.listId">
 
@@ -182,9 +182,9 @@
     </ul>
 
 
-    <ng-template *ngIf="hasEndTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="model"></ng-template>
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-content></ng-content>

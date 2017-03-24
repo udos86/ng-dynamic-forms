@@ -18,6 +18,10 @@ export function isNumber(value: any): boolean {
     return typeof value === "number";
 }
 
+export function isString(value: any): boolean {
+    return typeof value === "string";
+}
+
 export function getValue(object: any, key: string, defaultValue: any): any {
 
     if (object === undefined || object === null) {

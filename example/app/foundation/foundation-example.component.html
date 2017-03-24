@@ -3,7 +3,7 @@
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-form-foundation-sites-control *ngFor="let controlModel of formModel"
-                                               [controlGroup]="formGroup"
+                                               [group]="formGroup"
                                                [model]="controlModel"
                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                (blur)="onBlur($event)"

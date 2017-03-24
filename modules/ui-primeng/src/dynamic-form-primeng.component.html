@@ -1,12 +1,12 @@
-<div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
 
 
-    <ng-template *ngIf="hasStartTemplate && controlType !== 1"
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
               [ngTemplateOutlet]="template"
               [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <fieldset *ngIf="controlType === 11" role="radiogroup"
+    <fieldset *ngIf="type === 11" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -34,16 +34,16 @@
     </fieldset>
 
 
-    <div *ngIf="controlType !== 11" [ngClass]="model.cls.grid.container">
+    <div *ngIf="type !== 11" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="controlType !== 4 && model.label !== null" [ngClass]="model.cls.grid.label">
+        <div *ngIf="type !== 4 && model.label !== null" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
         </div>
 
 
-        <div [ngClass]="model.cls.grid.control" [ngSwitch]="controlType">
+        <div [ngClass]="model.cls.grid.control" [ngSwitch]="type">
 
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
@@ -54,7 +54,7 @@
 
                     <dynamic-form-primeng-control *ngFor="let controlModel of groupModel.group"
                                                   [bindId]="false"
-                                                  [controlGroup]="control.at(idx)"
+                                                  [group]="control.at(idx)"
                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                   [model]="controlModel"
                                                   [nestedTemplates]="templateDirectives"
@@ -124,7 +124,7 @@
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
                 <dynamic-form-primeng-control *ngFor="let controlModel of model.group"
-                                              [controlGroup]="control"
+                                              [group]="control"
                                               [hasErrorMessaging]="controlModel.hasErrorMessages"
                                               [model]="controlModel"
                                               [nestedTemplates]="templateDirectives"
@@ -216,7 +216,7 @@
         </div>
 
 
-        <div *ngIf="controlType === 4" [ngClass]="model.cls.grid.label">
+        <div *ngIf="type === 4" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -238,7 +238,7 @@
     </div>
 
 
-    <ng-template *ngIf="hasEndTemplate && controlType !== 1"
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
               [ngTemplateOutlet]="template"
               [ngTemplateOutletContext]="model"></ng-template>
 

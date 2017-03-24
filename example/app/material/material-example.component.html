@@ -3,7 +3,7 @@
     <form class="text-center" [formGroup]="formGroup">
 
         <dynamic-form-material-control *ngFor="let controlModel of formModel"
-                                       [controlGroup]="formGroup"
+                                       [group]="formGroup"
                                        [model]="controlModel"
                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                        [showCharacterHint]="controlModel.type === 'INPUT'"

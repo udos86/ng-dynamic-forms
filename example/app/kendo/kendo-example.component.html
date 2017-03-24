@@ -3,7 +3,7 @@
     <form [formGroup]="formGroup">
 
         <dynamic-form-kendo-control *ngFor="let controlModel of formModel"
-                                    [controlGroup]="formGroup"
+                                    [group]="formGroup"
                                     [model]="controlModel"
                                     (change)="onChange($event)">
 

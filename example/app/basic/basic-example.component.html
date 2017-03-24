@@ -3,7 +3,7 @@
     <form [formGroup]="formGroup1">
 
         <dynamic-form-basic-control *ngFor="let controlModel of formModel1" class="form-row"
-                                    [controlGroup]="formGroup1"
+                                    [group]="formGroup1"
                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                     [model]="controlModel"
                                     (blur)="onBlur($event)"
@@ -17,7 +17,7 @@
     <form [formGroup]="formGroup2">
 
         <dynamic-form-basic-control *ngFor="let controlModel of formModel2" class="form-row"
-                                    [controlGroup]="formGroup2"
+                                    [group]="formGroup2"
                                     [model]="controlModel"
                                     (blur)="onBlur($event)"
                                     (change)="onChange($event)"

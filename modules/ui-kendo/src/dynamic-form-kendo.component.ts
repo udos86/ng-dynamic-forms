@@ -47,7 +47,13 @@ import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD } from "../../core/src/model/file
 export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
-    @Input() controlGroup: FormGroup;
+
+    @Input()set controlGroup(group: FormGroup) {
+        this.group = group;
+        console.warn("[controlGroup] is deprecated. Use [group] instead.");
+    };
+
+    @Input() group: FormGroup;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;
 

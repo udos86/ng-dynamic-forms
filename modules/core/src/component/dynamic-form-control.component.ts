@@ -50,9 +50,9 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
     control: FormControl;
-    controlGroup: FormGroup;
-    controlType: number | null;
+    controlGroup: FormGroup; // deprecated
     focus: EventEmitter<DynamicFormControlEvent>;
+    group: FormGroup;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
@@ -60,6 +60,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     template: TemplateRef<any>;
     templateDirective: DynamicTemplateDirective;
     templates: QueryList<DynamicTemplateDirective>;
+    type: number | null;
 
     private subscriptions: Subscription[] = [];
 
@@ -67,12 +68,12 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     ngOnInit(): void {
 
-        if (!isDefined(this.model) || !isDefined(this.controlGroup)) {
-            throw new Error(`no [model] or [controlGroup] property binding defined for DynamicFormControlComponent`);
+        if (!isDefined(this.model) || !isDefined(this.group)) {
+            throw new Error(`no [model] or [group] input binding defined for DynamicFormControlComponent`);
         }
 
-        this.control = this.controlGroup.get(this.model.id) as FormControl;
-        this.controlType = this.getFormControlType();
+        this.control = this.group.get(this.model.id) as FormControl;
+        this.type = this.getFormControlType();
 
         this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
         this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
@@ -229,7 +230,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
             this.updateModelDisabled(relActivation);
 
-            this.relationService.getRelatedFormControls(this.model, this.controlGroup).forEach(control => {
+            this.relationService.getRelatedFormControls(this.model, this.group).forEach(control => {
 
                 this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
@@ -239,7 +240,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(this.relationService.isFormControlToBeDisabled(relation, this.controlGroup));
+        this.model.disabledUpdates.next(this.relationService.isFormControlToBeDisabled(relation, this.group));
     }
 
     onControlValueChanges(value: DynamicFormControlValue): void {

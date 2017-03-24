@@ -3,7 +3,7 @@
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel"
-                                        [controlGroup]="formGroup"
+                                        [group]="formGroup"
                                         [model]="controlModel"
                                         (blur)="onBlur($event)"
                                         (change)="onChange($event)"

@@ -1,6 +1,6 @@
-<div [formGroup]="controlGroup" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <div *ngIf="controlType !== 2 && model.label !== null"
+    <div *ngIf="type !== 2 && model.label !== null"
          [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
@@ -10,14 +10,14 @@
     </div>
 
 
-    <ng-template *ngIf="hasStartTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="model"></ng-template>
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
 
     <div [ngClass]="model.cls.grid.control">
 
-        <ng-container [ngSwitch]="controlType">
+        <ng-container [ngSwitch]="type">
 
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
@@ -28,7 +28,7 @@
 
                     <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                            [bindId]="false"
-                                                           [controlGroup]="control.at(idx)"
+                                                           [group]="control.at(idx)"
                                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                            [model]="controlModel"
                                                            [nestedTemplates]="templateDirectives"
@@ -70,7 +70,7 @@
                 <legend *ngIf="model.legend">{{model.legend}}</legend>
 
                 <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
-                                                       [controlGroup]="control"
+                                                       [group]="control"
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
                                                        [nestedTemplates]="templateDirectives"
@@ -221,9 +221,9 @@
     </ul>
 
 
-    <ng-template *ngIf="hasEndTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="model"></ng-template>
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 
