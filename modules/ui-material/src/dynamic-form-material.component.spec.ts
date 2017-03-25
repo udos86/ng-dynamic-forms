@@ -45,7 +45,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         formGroup = service.createFormGroup(formModel);
 
-        component.controlGroup = formGroup;
+        component.group = formGroup;
         component.model = formModel[0];
         component.showCharacterHint = false;
 
@@ -57,7 +57,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
     it("should initialize correctly", () => {
 
         expect(component.control instanceof FormControl).toBe(true);
-        expect(component.controlGroup instanceof FormGroup).toBe(true);
+        expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
         expect(component.hasErrorMessaging).toBe(false);
         expect(component.showCharacterHint).toBe(false);
@@ -79,7 +79,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.controlType).toBe(MdFormControlType.Input);
+        expect(component.type).toBe(MdFormControlType.Input);
     });
 
     it("should have an input element", () => {

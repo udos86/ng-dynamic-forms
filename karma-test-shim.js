@@ -22,6 +22,9 @@ System.config({
     },
 
     map: {
+        "@angular/animations": "npm:@angular/animations/bundles/animations.umd.js",
+        "@angular/animations/browser": "npm:@angular/animations/bundles/animations-browser.umd.js",
+        "@angular/animations/testing": "npm:@angular/animations/bundles/animations-browser-testing.umd.js",
         "@angular/core": "npm:@angular/core/bundles/core.umd.js",
         "@angular/core/testing": "npm:@angular/core/bundles/core-testing.umd.js",
         "@angular/common": "npm:@angular/common/bundles/common.umd.js",

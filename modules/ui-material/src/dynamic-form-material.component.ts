@@ -45,7 +45,13 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     private _showCharacterCount: boolean = false;
 
     @Input() bindId: boolean = true;
-    @Input() controlGroup: FormGroup;
+
+    @Input()set controlGroup(group: FormGroup) {
+        this.group = group;
+        console.warn("[controlGroup] is deprecated. Use [group] instead.");
+    };
+
+    @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;

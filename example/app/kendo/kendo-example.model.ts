@@ -60,7 +60,7 @@ export const KENDO_EXAMPLE_MODEL = [
             placeholder: "Kendo Autocomplete"
         }
     ),
-
+    /*
     new DynamicSliderModel(
         {
             id: "kendoSlider",
@@ -70,7 +70,7 @@ export const KENDO_EXAMPLE_MODEL = [
             value: 3
         }
     ),
-
+    */
     new DynamicInputModel(
         {
             id: "kendoNumericTextBox",
@@ -116,7 +116,7 @@ export const KENDO_EXAMPLE_MODEL = [
             value: ["basketball"]
         }
     ),
-
+    /*
     new DynamicSwitchModel(
         {
             id: "kendoSwitch",
@@ -125,12 +125,12 @@ export const KENDO_EXAMPLE_MODEL = [
             value: true
         }
     ),
-
+    */
     new DynamicInputModel(
         {
             id: "kendoMaskedTextBox",
             mask: "0000-00-00",
             value: "2017-01-01"
         }
-    ),
+    )
 ];

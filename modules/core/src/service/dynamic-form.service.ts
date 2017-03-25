@@ -35,7 +35,7 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import { isFunction, isDefined } from "../utils";
+import { isFunction, isDefined, isString } from "../utils";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
     DynamicFileUploadModel
@@ -52,13 +52,13 @@ export class DynamicFormService {
 
         let regexISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return typeof value === "string" && regexISO.test(value) ? new Date(value) : value;
+        return isString(value) && regexISO.test(value) ? new Date(value) : value;
     }
 
 
-    getCustomValidatorFn(validatorName: string): ValidatorFn | AsyncValidatorFn | undefined {
+    getCustomValidatorFn(validatorName: string): ValidatorFn | null {
 
-        let validatorFn;
+        let validatorFn = null;
 
         if (this.NG_VALIDATORS) {
 
@@ -67,30 +67,56 @@ export class DynamicFormService {
             });
         }
 
-        if (!validatorFn && this.NG_ASYNC_VALIDATORS) {
-            validatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => validatorName === asyncValidatorFn.name);
-        }
-
         return validatorFn;
     }
 
 
-    getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | AsyncValidatorFn | never {
+    getCustomAsyncValidatorFn(validatorName: string): AsyncValidatorFn | null {
+
+        let asyncValidatorFn = null;
+
+        if (this.NG_ASYNC_VALIDATORS) {
+            asyncValidatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => validatorName === asyncValidatorFn.name);
+        }
+
+        return asyncValidatorFn;
+    }
+
+
+    getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | never {
 
         let validatorFn: any = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
 
         if (!isFunction(validatorFn)) {
-            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
+            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS`);
         }
 
         return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
     }
 
 
-    getValidators(config: DynamicValidatorsMap): ValidatorFn[] | AsyncValidatorFn[] {
+    getAsyncValidatorFn(asyncValidatorName: string, asyncValidatorArgs?: any): AsyncValidatorFn | never {
+
+        let asyncValidatorFn: any = Validators[asyncValidatorName] || this.getCustomAsyncValidatorFn(asyncValidatorName);
+
+        if (!isFunction(asyncValidatorFn)) {
+            throw new Error(`async validator "${asyncValidatorName}" is not provided via NG_ASYNC_VALIDATORS`);
+        }
+
+        return isDefined(asyncValidatorArgs) ? asyncValidatorFn(asyncValidatorArgs) : asyncValidatorFn;
+    }
+
+
+    getValidators(config: DynamicValidatorsMap): ValidatorFn[] {
 
         return isDefined(config) ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
+    }
+
+    getAsyncValidators(config: DynamicValidatorsMap): AsyncValidatorFn[] {
+
+        return isDefined(config) ?
+            Object.keys(config).map(asyncValidatorName => this.getAsyncValidatorFn(asyncValidatorName, config[asyncValidatorName])) : [];
     }
 
 
@@ -105,7 +131,7 @@ export class DynamicFormService {
         return this.formBuilder.array(
             formArray,
             this.getValidators(model.validator)[0] || null,
-            this.getValidators(model.asyncValidator)[0] || null
+            this.getAsyncValidators(model.asyncValidator)[0] || null
         );
     }
 
@@ -142,7 +168,7 @@ export class DynamicFormService {
                         disabled: controlModel.disabled
                     },
                     Validators.compose(this.getValidators(controlModel.validators || [])),
-                    Validators.composeAsync(this.getValidators(controlModel.asyncValidators || []))
+                    Validators.composeAsync(this.getAsyncValidators(controlModel.asyncValidators || []))
                 );
             }
         });
@@ -260,7 +286,7 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let raw = typeof json === "string" ? JSON.parse(json, this.parseJSONReviver) : json,
+        let raw = isString(json) ? JSON.parse(json as string, this.parseJSONReviver) : json,
             group: DynamicFormControlModel[] = [];
 
         raw.forEach((model: any) => {

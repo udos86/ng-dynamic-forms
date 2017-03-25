@@ -3,13 +3,13 @@
     <form class="text-center" [formGroup]="formGroup">
 
         <dynamic-form-material-control *ngFor="let controlModel of formModel"
-                                       [controlGroup]="formGroup"
+                                       [group]="formGroup"
                                        [model]="controlModel"
                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                        [showCharacterHint]="controlModel.type === 'INPUT'"
                                        (change)="onChange($event)">
 
-            <template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
+            <ng-template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
 
                 <div>
 
@@ -17,7 +17,7 @@
 
                 </div>
 
-            </template>
+            </ng-template>
 
         </dynamic-form-material-control>
 

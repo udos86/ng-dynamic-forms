@@ -1,3 +1,18 @@
+# 1.4.0
+
+### **Breaking Changes**
+
+* `[controlGroup]` **input binding of** `DynamicFormControlComponent` **is now deprecated! Use** `[group]` **instead!**
+
+### **Bugfixes** 
+
+* `moduleId` is now removed from distributed component *.ts files (closes [#301](https://github.com/udos86/ng2-dynamic-forms/issues/301))
+
+### **Features** 
+
+* **Update to Angular 4** (closes [#292](https://github.com/udos86/ng2-dynamic-forms/issues/292))
+                      
+
 # 1.3.18
 
 ### **Bugfixes** 

@@ -27,7 +27,7 @@ module.exports = function (src, dest) {
 
         return gulp.src(src)
                    .pipe(deleteLines({
-                       'filters': [/moduleId: module.id/]
+                       "filters": [/moduleId: module.id/]
                    }))
                    .pipe(inlineNg2Template({
                        base: dest,

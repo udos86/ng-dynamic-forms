@@ -5,8 +5,8 @@ import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END } from "
 
 @Component({
     template: `
-        <template modelId="test1"></template>
-        <template modelId="test2"></template>
+        <ng-template modelId="test1"></ng-template>
+        <ng-template modelId="test2"></ng-template>
     `
 })
 class TestComponent {

@@ -1,16 +1,16 @@
-<div [formGroup]="controlGroup" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <template *ngIf="hasStartTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <ng-container [ngSwitch]="controlType">
+    <ng-container [ngSwitch]="type">
 
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
@@ -21,14 +21,14 @@
 
                 <dynamic-form-kendo-control *ngFor="let controlModel of groupModel.group"
                                             [bindId]="false"
-                                            [controlGroup]="control.at(idx)"
+                                            [group]="control.at(idx)"
                                             [model]="controlModel"
                                             [nestedTemplates]="templateDirectives"
                                             (blur)="onFocusChange($event)"
                                             (change)="onValueChange($event)"
                                             (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
 
-                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+                <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
             </fieldset>
 
@@ -85,7 +85,7 @@
             <legend *ngIf="model.legend">{{model.legend}}</legend>
 
             <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
-                                        [controlGroup]="control"
+                                        [group]="control"
                                         [model]="controlModel"
                                         [nestedTemplates]="templateDirectives"
                                         (blur)="onFocusChange($event)"
@@ -180,9 +180,9 @@
     </ng-container>
 
 
-    <template *ngIf="hasEndTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

@@ -1,20 +1,20 @@
 <div class="form-group"
      [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
-     [formGroup]="controlGroup"
+     [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="controlType !== 2 && model.label !== null"
+    <label *ngIf="type !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <template *ngIf="hasStartTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <div *ngIf="controlType === 2" [ngClass]="model.cls.grid.control">
+    <div *ngIf="type === 2" [ngClass]="model.cls.grid.control">
 
         <div class="checkbox" [class.disabled]="model.disabled">
 
@@ -38,9 +38,9 @@
     </div>
 
 
-    <div *ngIf="controlType !== 2" [ngClass]="model.cls.grid.control">
+    <div *ngIf="type !== 2" [ngClass]="model.cls.grid.control">
 
-        <ng-container [ngSwitch]="controlType">
+        <ng-container [ngSwitch]="type">
 
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
@@ -51,7 +51,7 @@
 
                     <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
                                                     [bindId]="false"
-                                                    [controlGroup]="control.at(idx)"
+                                                    [group]="control.at(idx)"
                                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                     [model]="controlModel"
                                                     [nestedTemplates]="templateDirectives"
@@ -59,7 +59,7 @@
                                                     (change)="onValueChange($event)"
                                                     (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
 
-                    <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+                    <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
                 </fieldset>
 
@@ -75,7 +75,7 @@
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
-                                                [controlGroup]="control"
+                                                [group]="control"
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                 [model]="controlModel"
                                                 [nestedTemplates]="templateDirectives"
@@ -164,7 +164,8 @@
 
                 <option *ngFor="let option of model.options"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}</option>
+                        [ngValue]="option.value">{{option.label}}
+                </option>
 
             </select>
 
@@ -207,9 +208,9 @@
     </ul>
 
 
-    <template *ngIf="hasEndTemplate && controlType !== 1"
-              [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

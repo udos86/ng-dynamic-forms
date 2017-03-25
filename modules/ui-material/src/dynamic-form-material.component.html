@@ -1,17 +1,17 @@
-<div [formGroup]="controlGroup" [ngClass]="model.cls.element.container">
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="controlType !== 2 && model.label !== null"
+    <label *ngIf="type !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <template *ngIf="hasStartTemplate && controlType !== 1"
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <ng-container [ngSwitch]="controlType">
+    <ng-container [ngSwitch]="type">
 
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
@@ -22,7 +22,7 @@
 
                 <dynamic-form-material-control *ngFor="let controlModel of groupModel.group"
                                                [bindId]="false"
-                                               [controlGroup]="control.at(idx)"
+                                               [group]="control.at(idx)"
                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                [model]="controlModel"
                                                [nestedTemplates]="templateDirectives"
@@ -30,7 +30,7 @@
                                                (change)="onValueChange($event)"
                                                (focus)="onFocusChange($event)"></dynamic-form-material-control>
 
-                <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+                <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
             </fieldset>
 
@@ -61,7 +61,7 @@
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
             <dynamic-form-material-control *ngFor="let controlModel of model.group"
-                                           [controlGroup]="control"
+                                           [group]="control"
                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                            [model]="controlModel"
                                            [nestedTemplates]="templateDirectives"
@@ -219,9 +219,9 @@
     </md-list>
 
 
-    <template *ngIf="hasEndTemplate && controlType !== 1"
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
               [ngTemplateOutlet]="template"
-              [ngOutletContext]="model"></template>
+              [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

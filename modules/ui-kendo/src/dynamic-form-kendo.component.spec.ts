@@ -52,7 +52,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         formGroup = service.createFormGroup(formModel);
 
-        component.controlGroup = formGroup;
+        component.group = formGroup;
         component.model = formModel[0];
 
         fixture.detectChanges();
@@ -63,7 +63,7 @@ describe("DynamicFormKendoComponent test suite", () => {
     it("should initialize correctly", () => {
 
         expect(component.control instanceof FormControl).toBe(true);
-        expect(component.controlGroup instanceof FormGroup).toBe(true);
+        expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
         expect(component.hasErrorMessaging).toBe(false);
 
@@ -81,7 +81,7 @@ describe("DynamicFormKendoComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
 
-        expect(component.controlType).toBe(KendoFormControlType.DropDownList);
+        expect(component.type).toBe(KendoFormControlType.DropDownList);
     });
 
     it("should have correct view child", () => {

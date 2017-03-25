@@ -19,7 +19,7 @@
                                            (change)="onValueChange($event)"
                                            (focus)="onFocusChange($event)"></dynamic-form-semantic-control>
 
-            <template [ngTemplateOutlet]="template" [ngOutletContext]="groupModel"></template>
+            <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
 
         </fieldset>
 
@@ -120,7 +120,7 @@
     </div>
 
 
-    <template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngOutletContext]="model"></template>
+    <ng-template *ngIf="model.type !== 'ARRAY'" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 

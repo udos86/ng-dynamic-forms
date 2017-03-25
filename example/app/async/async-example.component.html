@@ -3,7 +3,7 @@
     <form [formGroup]="formGroup">
 
         <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" class="form-row"
-                                        [controlGroup]="formGroup"
+                                        [group]="formGroup"
                                         [model]="controlModel"></dynamic-form-bootstrap-control>
     </form>
 
