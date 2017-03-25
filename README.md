@@ -13,7 +13,7 @@ It highly simplifies the implementing of reactive Angular forms by building
 upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
-**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material 2](https://github.com/angular/material2)** and [**more**](#ui-modules-and-components).
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material](https://github.com/angular/material2)** and [**more**](#ui-modules-and-components).
 
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.aot.html) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
@@ -206,7 +206,7 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[Bootstrap](http://getbootstrap.com)**
 * **[Foundation](http://foundation.zurb.com)**
 * **[Kendo UI](http://www.telerik.com/kendo-angular-ui)**
-* **[Material 2](https://github.com/angular/material2)**
+* **[Material](https://github.com/angular/material2)**
 * **[PrimeNG](http://www.primefaces.org/primeng/#/)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
