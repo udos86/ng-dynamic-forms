@@ -65,7 +65,7 @@
     "@angular/compiler-cli": "^4.0.0",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.46",
-    "@types/node": "^7.0.10",
+    "@types/node": "^7.0.11",
     "codelyzer": "^2.0.1",
     "dateformat": "^2.0.0",
     "del": "^2.2.2",
@@ -103,7 +103,7 @@
     "tslint": "^4.5.1",
     "typedoc": "^0.5.9",
     "typescript": "^2.2.1",
-    "webpack": "^2.3.1"
+    "webpack": "^2.3.2"
   },
   "optionalDependencies": {
     "@progress/kendo-angular-dateinputs": "^0.4.1",
