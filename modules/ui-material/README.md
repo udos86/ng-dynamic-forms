@@ -1,32 +1,31 @@
 # ng2 Dynamic Forms Material UI
 
-## Usage
+## Installation
+```
+npm install @ng2-dynamic-forms/ui-material -S
+```
 
-Please import all `@angular2-material` `NgModule`s in your app root `NgModule`:
-
+## Import
 ```ts
 @NgModule({
 
     imports: [
-        BrowserModule,
-        FormsModule,
+        // ...
         ReactiveFormsModule,
-        RouterModule,
-        appRouting,
-        DynamicFormsMaterialUIModule,
-        MdButtonModule.forRoot(),
-        MdCheckboxModule.forRoot(),
-        MdInputModule.forRoot(),
-        MdRadioModule.forRoot(),
-    ],
-    declarations: [
-        //...
-    ],
-    providers: [
-        //...
-    ],
-    bootstrap: [AppComponent]
+        DynamicFormsCoreModule.forRoot(),
+        DynamicFormsMaterialUIModule
+    ]
 })
 
 export class AppModule {}
+```
+
+## Usage
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-form-material-control *ngFor="let controlModel of myFormModel"
+                                   [group]="myFormGroup"
+                                   [model]="controlModel"></dynamic-form-material-control>
+</form>
 ```
