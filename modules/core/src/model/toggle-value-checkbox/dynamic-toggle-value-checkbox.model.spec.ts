@@ -41,7 +41,7 @@ describe("DynamicToggleValueCheckboxModel test suite", () => {
         model.checked = true;
         model.toggle();
 
-        expect(model.checked).toBe(config.falseValue);
+        expect(model.checked).toBe(false);
 
         model.toggle();
         expect(model.value).toBe(config.trueValue);
