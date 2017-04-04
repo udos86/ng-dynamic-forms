@@ -6,13 +6,14 @@ export const enum PFormControlType {
     Checkbox = 4,
     Chips = 5,
     DropDown = 6,
-    Group = 7,
-    Input = 8,
-    InputSwitch = 9,
-    MultiSelect = 10,
-    RadioGroup = 11,
-    Slider = 12,
-    TextArea = 13
+    Editor = 7,
+    Group = 8,
+    Input = 9,
+    InputSwitch = 10,
+    MultiSelect = 11,
+    RadioGroup = 12,
+    Slider = 13,
+    TextArea = 14
 }
 
 export const PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {

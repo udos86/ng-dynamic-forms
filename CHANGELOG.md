@@ -1,6 +1,6 @@
 # 1.4.0
 
-### **Breaking Changes**
+### **Deprecated APIs**
 
 * `[controlGroup]` **input binding of** `DynamicFormControlComponent` **is now deprecated! Use** `[group]` **instead!**
 

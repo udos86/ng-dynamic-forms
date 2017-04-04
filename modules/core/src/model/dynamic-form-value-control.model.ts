@@ -8,7 +8,7 @@ import {
 import { serializable } from "../decorator/serializable.decorator";
 import { isBoolean, isDefined } from "../utils";
 
-export type DynamicFormControlValue = boolean | number | string | Array<boolean | number | string>;
+export type DynamicFormControlValue = boolean | number | string | Date | Array<boolean | number | string>;
 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 

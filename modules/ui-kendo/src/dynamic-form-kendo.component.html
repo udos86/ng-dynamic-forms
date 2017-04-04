@@ -61,7 +61,20 @@
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
 
-        <kendo-dropdownlist *ngSwitchCase="4"
+        <kendo-dateinput *ngSwitchCase="4"
+                         [disabled]="model.disabled"
+                         [dynamicId]="bindId && model.id"
+                         [formControlName]="model.id"
+                         [max]="model.max"
+                         [min]="model.min"
+                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                         [rangeValidation]="true"
+                         [spinners]="true"
+                         [tabIndex]="model.tabIndex"
+                         (valueChange)="onValueChange($event)"></kendo-dateinput>
+
+
+        <kendo-dropdownlist *ngSwitchCase="6"
                             [data]="model.options"
                             [disabled]="model.disabled"
                             [dynamicId]="bindId && model.id"
@@ -76,7 +89,7 @@
                             (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 
-        <fieldset *ngSwitchCase="5"
+        <fieldset *ngSwitchCase="7"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -94,7 +107,7 @@
         </fieldset>
 
 
-        <kendo-maskedtextbox *ngSwitchCase="6"
+        <kendo-maskedtextbox *ngSwitchCase="8"
                              [disabled]="model.disabled"
                              [dynamicId]="bindId && model.id"
                              [formControlName]="model.id"
@@ -107,7 +120,7 @@
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
-        <kendo-multiselect *ngSwitchCase="7"
+        <kendo-multiselect *ngSwitchCase="9"
                            [data]="model.options"
                            [disabled]="model.disabled"
                            [dynamicId]="bindId && model.id"
@@ -123,7 +136,7 @@
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
-        <kendo-numerictextbox *ngSwitchCase="8"
+        <kendo-numerictextbox *ngSwitchCase="10"
                               [autoCorrect]="model.autoComplete"
                               [disabled]="model.disabled"
                               [dynamicId]="bindId && model.id"
@@ -139,7 +152,7 @@
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-        <kendo-slider *ngSwitchCase="9"
+        <kendo-slider *ngSwitchCase="11"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -153,7 +166,7 @@
                       (valueChange)="onValueChange($event)"></kendo-slider>
 
 
-        <kendo-switch *ngSwitchCase="10"
+        <kendo-switch *ngSwitchCase="12"
                       [checked]="model.checked"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
@@ -165,7 +178,7 @@
                       (valueChange)="onValueChange($event)"></kendo-switch>
 
 
-        <kendo-upload *ngSwitchCase="11"
+        <kendo-upload *ngSwitchCase="14"
                       [autoUpload]="model.autoUpload"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"

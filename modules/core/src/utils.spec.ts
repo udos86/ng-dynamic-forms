@@ -26,15 +26,15 @@ describe("Utils test suite", () => {
 
         it("tests if getValue is working correctly", () => {
 
-            let valueA = utils.getValue(configObject, "a", 4);
-            let valueB = utils.getValue(configObject, "b", false);
-            let valueC = utils.getValue(configObject, "c", null);
-            let valueD1 = utils.getValue(configObject, "d", {prop1: 1});
-            let valueD2 = utils.getValue(configObject, "d", {prop2: 3});
-            let valueE = utils.getValue(configObject, "e", null);
+            let valueA = utils.merge(configObject.a, 4);
+            let valueB = utils.merge(configObject.b, false);
+            let valueC = utils.merge(configObject.c, null);
+            let valueD1 = utils.merge(configObject.d, {prop1: 1});
+            let valueD2 = utils.merge(configObject.d, {prop2: 3});
+            let valueE = utils.merge(configObject.e, null);
 
-            let valueY = utils.getValue(configObject, "y", false);
-            let valueZ = utils.getValue(configObject, "z", null);
+            let valueY = utils.merge(configObject.y, false);
+            let valueZ = utils.merge(configObject.z, null);
 
             expect(valueA).toBe(5);
             expect(valueB).toBe(true);
@@ -51,7 +51,7 @@ describe("Utils test suite", () => {
 
         it("tests if getValue recursion is working correctly", () => {
 
-            let valueE = utils.getValue(configObject, "e", {
+            let valueE = utils.merge(configObject.e, {
                 prop1: 10,
                 prop2: {
                     nested1: 21,

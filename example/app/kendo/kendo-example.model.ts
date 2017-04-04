@@ -116,6 +116,15 @@ export const KENDO_EXAMPLE_MODEL = [
             value: ["basketball"]
         }
     ),
+
+    new DynamicInputModel(
+        {
+            id: "kendoDateInput",
+            placeholder: "Kendo DateInput",
+            inputType: "date"
+        }
+    ),
+
     /*
     new DynamicSwitchModel(
         {

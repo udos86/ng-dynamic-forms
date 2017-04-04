@@ -26,6 +26,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DynamicDatepickerModel
 } from "../model/datepicker/dynamic-datepicker.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_EDITOR, DynamicEditorModel } from "../model/editor/dynamic-editor.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
+    DynamicFileUploadModel
+} from "../model/file-upload/dynamic-file-upload.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel } from "../model/input/dynamic-input.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -36,10 +41,6 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { isFunction, isDefined, isString } from "../utils";
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
-    DynamicFileUploadModel
-} from "../model/file-upload/dynamic-file-upload.model";
 
 export class DynamicFormService {
 
@@ -312,6 +313,10 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                     group.push(new DynamicDatepickerModel(model, model.cls));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
+                    group.push(new DynamicEditorModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:

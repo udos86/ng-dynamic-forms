@@ -22,28 +22,28 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_TIME = "time";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_WEEK = "week";
 
-export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<string | number | string[]> {
+export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<string | number | Date | string[]> {
 
     accept?: string;
     inputType?: string;
     list?: string[];
     mask?: string;
-    max?: number | string;
-    min?: number | string;
+    max?: number | string | Date;
+    min?: number | string | Date;
     multiple?: boolean;
     pattern?: string;
     step?: number;
 }
 
-export class DynamicInputModel extends DynamicInputControlModel<string | number | string[]> {
+export class DynamicInputModel extends DynamicInputControlModel<string | number | Date | string[]> {
 
     @serializable() accept: string | null;
     @serializable() inputType: string;
     files: FileList | null = null;
     @serializable() list: string[] | null;
     @serializable() mask: string | null;
-    @serializable() max: number | string | null;
-    @serializable() min: number | string | null;
+    @serializable() max: number | string | Date | null;
+    @serializable() min: number | string | Date | null;
     @serializable() multiple: boolean | null;
     @serializable() pattern: string | null;
     @serializable() step: number | null;

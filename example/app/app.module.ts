@@ -29,7 +29,11 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 
 export function customValidator(formControl: FormControl) {
-    return {customValidator: {valid: formControl.value ? (formControl.value as string).startsWith("abc") : false}};
+    return {
+        customValidator: {
+            valid: formControl.value ? (formControl.value as string).startsWith("abc") : false
+        }
+    };
 }
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
