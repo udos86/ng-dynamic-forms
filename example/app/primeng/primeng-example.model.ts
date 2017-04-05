@@ -47,6 +47,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicDatepickerModel(
         {
             id: "primeDatepicker",
+            format: "mm/dd/yy",
             inline: true,
             label: "Example Datepicker"
         },
