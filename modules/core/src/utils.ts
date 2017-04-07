@@ -18,34 +18,32 @@ export function isNumber(value: any): boolean {
     return typeof value === "number";
 }
 
+export function isObject(value: any): boolean {
+    return typeof value === "object";
+}
+
 export function isString(value: any): boolean {
     return typeof value === "string";
 }
 
-export function getValue(object: any, key: string, defaultValue: any): any {
+export function merge(baseValue: any, defaultValue: any): any {
 
-    if (object === undefined || object === null) {
+    if (!isDefined(baseValue)) {
         return defaultValue;
     }
 
-    let value = object[key];
+    if (isObject(baseValue)) {
 
-    if (value === undefined && defaultValue !== undefined) {
-        return defaultValue;
-    }
+        for (let property in baseValue) {
 
-    if (typeof value === "object" && typeof defaultValue === "object") {
+            if (baseValue.hasOwnProperty(property) && isObject(baseValue[property])) {
 
-        for (let property in value) {
-
-            if (value.hasOwnProperty(property) && typeof value[property] === "object") {
-
-                value[property] = getValue(value, property, defaultValue ? defaultValue[property] : null);
+                baseValue[property] = merge(baseValue[property], defaultValue ? defaultValue[property] : null);
             }
         }
 
-        return defaultValue ? Object.assign(defaultValue, value) : value;
+        return defaultValue ? Object.assign(defaultValue, baseValue) : baseValue;
     }
 
-    return value;
+    return baseValue;
 }

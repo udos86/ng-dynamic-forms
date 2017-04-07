@@ -1,6 +1,16 @@
+# 1.4.1
+
+### **Features** 
+
+* inital support for `DynamicEditorModel` in `ui-primeng` (closes [#317](https://github.com/udos86/ng2-dynamic-forms/issues/317))
+* `format` property added to `DynamicDateControl` (closes [#318](https://github.com/udos86/ng2-dynamic-forms/issues/318))
+* checkbox and radio button labels are now clickable in `ui-primeng` (closes [#319](https://github.com/udos86/ng2-dynamic-forms/issues/319))
+* inital support for `Dateinput` in `ui-kendo` 
+
+
 # 1.4.0
 
-### **Breaking Changes**
+### **Deprecated APIs**
 
 * `[controlGroup]` **input binding of** `DynamicFormControlComponent` **is now deprecated! Use** `[group]` **instead!**
 

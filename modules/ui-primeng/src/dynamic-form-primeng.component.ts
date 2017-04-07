@@ -11,6 +11,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -20,7 +21,17 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-import { AutoComplete, Calendar, Checkbox, Chips, Dropdown, InputSwitch, MultiSelect, Slider } from "primeng/primeng";
+import {
+    AutoComplete,
+    Calendar,
+    Checkbox,
+    Chips,
+    Dropdown,
+    Editor,
+    InputSwitch,
+    MultiSelect,
+    Slider
+} from "primeng/primeng";
 import {
     PFormControlType,
     PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -60,6 +71,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
     @ViewChild(Checkbox) pCheckbox: Checkbox | null;
     @ViewChild(Chips) pChips: Chips | null;
     @ViewChild(Dropdown) pDropDown: Dropdown | null;
+    @ViewChild(Editor) pEditor: Editor | null;
     @ViewChild(InputSwitch) pInputSwitch: InputSwitch | null;
     @ViewChild(MultiSelect) pMultiSelect: MultiSelect | null;
     @ViewChild(Slider) pSlider: Slider | null;
@@ -117,6 +129,9 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                 return PFormControlType.Calendar;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
+                return PFormControlType.Editor;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 model = this.model as DynamicInputModel;

@@ -6,7 +6,7 @@ import {
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicTextAreaModel, DynamicDatepickerModel
+    DynamicTextAreaModel, DynamicDatepickerModel, DynamicEditorModel
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
@@ -47,6 +47,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicDatepickerModel(
         {
             id: "primeDatepicker",
+            format: "mm/dd/yy",
             inline: true,
             label: "Example Datepicker"
         },
@@ -86,6 +87,20 @@ export const PRIMENG_EXAMPLE_MODEL = [
                 control: "ui-grid-col-4",
                 errors: "ui-grid-col-5",
                 label: "ui-grid-col-3"
+            }
+        }
+    ),
+
+    new DynamicEditorModel(
+        {
+            id: "primeEditor"
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row"
             }
         }
     ),

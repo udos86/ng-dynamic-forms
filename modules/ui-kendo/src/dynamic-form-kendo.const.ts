@@ -3,17 +3,17 @@ export const enum KendoFormControlType {
     Array = 1,
     AutoComplete = 2,
     Calendar = 3,
-    //DateInput
-    //DatePicker
-    DropDownList = 4,
-    Group = 5,
-    MaskedTextBox = 6,
-    MultiSelect = 7,
-    NumericTextBox = 8,
-    Slider = 9,
-    Switch = 10,
-    //TimePicker
-    Upload = 11
+    DateInput = 4,
+    DatePicker = 5,
+    DropDownList = 6,
+    Group = 7,
+    MaskedTextBox = 8,
+    MultiSelect = 9,
+    NumericTextBox = 10,
+    Slider = 11,
+    Switch = 12,
+    TimePicker = 13,
+    Upload = 14
 }
 
 export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {

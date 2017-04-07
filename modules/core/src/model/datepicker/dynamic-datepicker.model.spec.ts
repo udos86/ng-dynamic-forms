@@ -19,6 +19,7 @@ describe("DynamicDatepickerModel test suite", () => {
         expect(model.focusedDate).toBeNull();
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
+        expect(model.format).toBeNull();
         expect(model.max).toBeNull();
         expect(model.min).toBeNull();
         expect(model.name).toEqual(model.id);

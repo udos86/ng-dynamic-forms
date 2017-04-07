@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-semantic",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Semantic UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-semantic.umd.js",
   "module": "./index.js",
@@ -33,7 +33,7 @@
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng2-dynamic-forms/core": "^1.4.0",
+    "@ng2-dynamic-forms/core": "^1.4.1",
     "ng-semantic": "^1.1.13",
     "rxjs": "^5.2.0"
   },

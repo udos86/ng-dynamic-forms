@@ -25,7 +25,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER, DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
 } from "@ng2-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -141,7 +141,10 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 model = this.model as DynamicInputModel;
 
-                if (!model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE) {
+                    return KendoFormControlType.DateInput;
+
+                } else if (!model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
                     return KendoFormControlType.AutoComplete;
 
                 } else if (model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {

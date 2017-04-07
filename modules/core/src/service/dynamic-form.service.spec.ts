@@ -232,12 +232,19 @@ describe("DynamicFormService test suite", () => {
     it("should add a form control to an existing form group", () => {
 
         let formGroup = service.createFormGroup(testModel),
-            newModel = new DynamicInputModel({id: "newInput"});
+            nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup,
+            nestedFormGroupModel = testModel[7] as DynamicFormGroupModel,
+            newModel1 = new DynamicInputModel({id: "newInput1"}),
+            newModel2 = new DynamicInputModel({id: "newInput2"});
 
-        service.addFormGroupControl(formGroup, testModel, newModel);
+        service.addFormGroupControl(formGroup, testModel, newModel1);
+        service.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel2);
 
-        expect(formGroup.controls[newModel.id]).toBeDefined();
-        expect(testModel[testModel.length - 1] === newModel).toBe(true);
+        expect(formGroup.controls[newModel1.id]).toBeDefined();
+        expect(testModel[testModel.length - 1] === newModel1).toBe(true);
+
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeDefined();
+        expect(nestedFormGroupModel.get(nestedFormGroupModel.group.length - 1) === newModel2).toBe(true);
     });
 
 

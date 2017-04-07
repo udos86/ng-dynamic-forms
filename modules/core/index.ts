@@ -17,6 +17,7 @@ export * from "./src/model/dynamic-form-control-relation.model";
 export * from "./src/model/checkbox/dynamic-checkbox.model";
 export * from "./src/model/checkbox/dynamic-checkbox-group.model";
 export * from "./src/model/datepicker/dynamic-datepicker.model";
+export * from "./src/model/editor/dynamic-editor.model";
 export * from "./src/model/file-upload/dynamic-file-upload.model";
 export * from "./src/model/form-group/dynamic-form-group.model";
 export * from "./src/model/form-array/dynamic-form-array.model";

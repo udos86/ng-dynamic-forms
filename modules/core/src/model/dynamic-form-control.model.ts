@@ -1,7 +1,7 @@
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { getValue, isBoolean, isEmptyString } from "../utils";
+import { merge, isBoolean, isEmptyString } from "../utils";
 
 export type DynamicValidatorsMap = {[validatorName: string]: any};
 
@@ -40,14 +40,14 @@ export abstract class DynamicFormControlModel {
 
     abstract readonly type: string;
 
-    constructor(config: DynamicFormControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFormControlModelConfig, cls: ClsConfig = {}) {
 
         if (isEmptyString(config.id)) {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = getValue(cls, "element", {container: "", control: "", errors: "", hint: "", label: ""});
-        this.cls.grid = getValue(cls, "grid", {container: "", control: "", errors: "", hint: "", label: ""});
+        this.cls.element = merge(cls.element, {container: "", control: "", errors: "", hint: "", label: ""});
+        this.cls.grid = merge(cls.grid, {container: "", control: "", errors: "", hint: "", label: ""});
 
         this._disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.id = config.id;

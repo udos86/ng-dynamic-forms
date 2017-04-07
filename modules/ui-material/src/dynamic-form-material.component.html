@@ -7,8 +7,8 @@
 
 
     <ng-template *ngIf="hasStartTemplate && type !== 1"
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="model"></ng-template>
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-container [ngSwitch]="type">
@@ -220,8 +220,8 @@
 
 
     <ng-template *ngIf="hasEndTemplate && type !== 1"
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="model"></ng-template>
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>
 
