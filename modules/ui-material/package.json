@@ -1,6 +1,6 @@
 {
   "name": "@ng2-dynamic-forms/ui-material",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Material UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "module": "./index.js",
@@ -20,9 +20,9 @@
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
   },
   "author": {
-    "name" : "Udo Schöfer",
+    "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
-    "url" : "https://github.com/udos86/ng2-dynamic-forms"
+    "url": "https://github.com/udos86/ng2-dynamic-forms"
   },
   "license": "ISC",
   "bugs": {
@@ -34,7 +34,7 @@
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/material": "^2.0.0-beta.2",
-    "@ng2-dynamic-forms/core": "^1.4.0",
+    "@ng2-dynamic-forms/core": "^1.4.1",
     "rxjs": "^5.2.0"
   }
 }
