@@ -12,6 +12,7 @@ npm install @ng2-dynamic-forms/ui-material -S
     imports: [
         // ...
         ReactiveFormsModule,
+        BrowserAnimationsModule,
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsMaterialUIModule
     ]

@@ -108,6 +108,9 @@
                 <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
                 <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
 
+                <md-error *ngFor="let message of errorMessages"
+                          [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}</md-error>
+
             </md-input-container>
 
             <md-autocomplete #autocomplete="mdAutocomplete">
@@ -141,6 +144,7 @@
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
+                   [multiple]="model.multiple"
                    [ngClass]="model.cls.element.control"
                    [placeholder]="model.placeholder"
                    (change)="onValueChange($event)">
@@ -204,13 +208,16 @@
 
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
+            <md-error *ngFor="let message of errorMessages"
+                      [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}</md-error>
 
         </md-input-container>
 
     </ng-container>
 
 
-    <md-list *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <md-list *ngIf="hasErrorMessaging && type !== 4 && type !== 9"
+             [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <md-list-item *ngFor="let message of errorMessages"
                       [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}

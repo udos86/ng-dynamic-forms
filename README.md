@@ -239,7 +239,7 @@ your component** `template`:
 <form [formGroup]="formGroup">
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [controlGroup]="formGroup"
+                                    [group]="formGroup"
                                     [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
@@ -449,7 +449,7 @@ Particularly for this case you can add a `<template>` and **declare some custom 
 <form [formGroup]="formGroup">
 
     <dynamic-form-basic-control *ngFor="let controlModel of formModel" 
-                                [controlGroup]="formGroup" 
+                                [group]="formGroup" 
                                 [model]="controlModel">
     
         <ng-template modelId="myFormArray" let-context="context" let-index="index">
