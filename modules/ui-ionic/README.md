@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms Kendo UI
+# ng2 Dynamic Forms Ionic UI
 
 ## Installation
 ```
@@ -26,6 +26,6 @@ export class AppModule {}
 
     <dynamic-form-ionic-control *ngFor="let controlModel of myFormModel"
                                 [group]="myFormGroup"
-                                [model]="controlModel"></dynamic-form-kendo-control>
+                                [model]="controlModel"></dynamic-form-ionic-control>
 </form>
 ```

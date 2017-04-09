@@ -1,5 +1,79 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
+    <ion-item [ngSwitch]="type">
+
+        <ion-label *ngIf="type !== 6 && model.label !== null">{{model.label}}</ion-label>
+
+        <ion-checkbox *ngSwitchCase="2"
+                      [checked]="model.checked"
+                      [disabled]="model.disabled"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      (ionChange)="onValueChange($event)"></ion-checkbox>
+
+
+        <ion-input *ngSwitchCase="5"
+                   clearInput="true"
+                   [disabled]="model.disabled"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [max]="model.max"
+                   [min]="model.min"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readOnly"
+                   [step]="model.step"
+                   [type]="model.inputType"></ion-input>
+
+
+        <ion-list *ngSwitchCase="6" radio-group
+                  [disabled]="model.disabled"
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  (ionChange)="onValueChange($event)">
+
+            <ion-list-header *ngIf="model.label !== null">{{model.label}}</ion-list-header>
+
+            <ion-item *ngFor="let option of model.options">
+
+                <ion-label>{{option.label}}</ion-label>
+                <ion-radio [value]="option.value"></ion-radio>
+
+            </ion-item>
+
+        </ion-list>
+
+
+        <ion-select *ngSwitchCase="7"
+                    [disabled]="model.disabled"
+                    [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    [multiple]="model.multiple"
+                    [placeholder]="model.placeholder"
+                    (ionChange)="onValueChange($event)">
+
+            <ion-option *ngFor="let option of model.options" [value]="option.value">{{option.label}}</ion-option>
+
+        </ion-select>
+
+
+        <ion-textarea *ngSwitchCase="8"
+                      clearInput="true"
+                      [disabled]="model.disabled"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readOnly"></ion-textarea>
+
+
+        <ion-toggle *ngSwitchCase="9"
+                    [checked]="model.checked"
+                    [disabled]="model.disabled"
+                    [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    (ionChange)="onValueChange($event)"></ion-toggle>
+
+    </ion-item>
+
     <ng-content></ng-content>
 
 </div>
