@@ -251,6 +251,7 @@ cannot be provided in every single UI library. **See the following compatibility
 |-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:-----------:	|:----------:	|
 | Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
 | Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|      *      	|      ✓     	|
+| Editor      	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|      ✗      	|      ✓     	|
 | File Upload 	|    **    	|      **      	|       **      	|     ✓    	|      **     	|     **     	|
 | Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
 | Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|

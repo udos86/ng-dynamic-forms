@@ -2,7 +2,7 @@
 
 ### **Features** 
 
-* update to Angular Material beta.3 
+* **update to Angular Material beta.3** 
 * `multiple` now working for `DynamicSelectModel` in `ui-material`
 * `md-error` added for `DynamicInputModel` and `DynamicTextareaModel` in `ui-material`
 
