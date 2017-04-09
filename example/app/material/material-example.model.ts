@@ -15,6 +15,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
         {
             id: "materialSelect",
             //label: "Example Select",
+            multiple: true,
             options: [
                 {
                     label: "Option 1",
@@ -43,7 +44,13 @@ export const MATERIAL_EXAMPLE_MODEL = [
         id: "materialInput",
         list: ["Football", "Basketball", "Baseball", "Hockey"],
         maxLength: 51,
-        placeholder: "example input"
+        placeholder: "example input",
+        validators: {
+            required: null
+        },
+        errorMessages: {
+            required:"Field is required"
+        }
     }),
 
     new DynamicCheckboxGroupModel(

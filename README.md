@@ -239,7 +239,7 @@ your component** `template`:
 <form [formGroup]="formGroup">
 
     <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [controlGroup]="formGroup"
+                                    [group]="formGroup"
                                     [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
@@ -251,6 +251,7 @@ cannot be provided in every single UI library. **See the following compatibility
 |-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:-----------:	|:----------:	|
 | Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
 | Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|      *      	|      ✓     	|
+| Editor      	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|      ✗      	|      ✓     	|
 | File Upload 	|    **    	|      **      	|       **      	|     ✓    	|      **     	|     **     	|
 | Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
 | Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
@@ -449,7 +450,7 @@ Particularly for this case you can add a `<template>` and **declare some custom 
 <form [formGroup]="formGroup">
 
     <dynamic-form-basic-control *ngFor="let controlModel of formModel" 
-                                [controlGroup]="formGroup" 
+                                [group]="formGroup" 
                                 [model]="controlModel">
     
         <ng-template modelId="myFormArray" let-context="context" let-index="index">

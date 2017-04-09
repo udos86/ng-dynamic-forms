@@ -1,8 +1,17 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { Type, DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MaterialModule } from "@angular/material";
+import {
+    MdAutocompleteModule,
+    MdCheckboxModule,
+    MdInputModule,
+    MdRadioModule,
+    MdSelectModule,
+    MdSliderModule,
+    MdSlideToggleModule
+} from "@angular/material";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -29,7 +38,18 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot(), MaterialModule.forRoot()],
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MdAutocompleteModule,
+                MdCheckboxModule,
+                MdInputModule,
+                MdRadioModule,
+                MdSelectModule,
+                MdSliderModule,
+                MdSlideToggleModule,
+                DynamicFormsCoreModule.forRoot()
+            ],
             declarations: [DynamicFormMaterialComponent]
 
         }).compileComponents().then(() => {

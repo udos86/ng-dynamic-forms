@@ -5,7 +5,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, FormControl } from "@angular/forms";
-import { MaterialModule } from "@angular/material";
 
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng2-dynamic-forms/ui-basic";
@@ -55,7 +54,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         DynamicFormsMaterialUIModule,
         DynamicFormsPrimeNGUIModule,
         //DynamicFormsSemanticUIModule,
-        MaterialModule
     ],
     declarations: [
         BasicExampleComponent,
