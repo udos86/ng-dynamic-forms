@@ -13,7 +13,6 @@ import { DynamicFormsFoundationUIModule } from "@ng2-dynamic-forms/ui-foundation
 import { DynamicFormsKendoUIModule } from "@ng2-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng2-dynamic-forms/ui-material";
 import { DynamicFormsPrimeNGUIModule } from "@ng2-dynamic-forms/ui-primeng";
-//import { DynamicFormsSemanticUIModule } from "@ng2-dynamic-forms/ui-semantic";
 
 import { BasicExampleComponent } from "./basic/basic-example.component";
 import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.component";
@@ -21,7 +20,6 @@ import { FoundationExampleComponent } from "./foundation/foundation-example.comp
 import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
-//import { SemanticExampleComponent } from "./semantic/semantic-example.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
@@ -52,8 +50,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         DynamicFormsFoundationUIModule,
         DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
-        DynamicFormsPrimeNGUIModule,
-        //DynamicFormsSemanticUIModule,
+        DynamicFormsPrimeNGUIModule
     ],
     declarations: [
         BasicExampleComponent,
@@ -62,7 +59,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         KendoExampleComponent,
         MaterialExampleComponent,
         PrimeNGExampleComponent,
-        //SemanticExampleComponent,
         ValidationMessageComponent,
         AppComponent
     ],

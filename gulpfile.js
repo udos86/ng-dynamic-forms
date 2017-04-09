@@ -24,8 +24,7 @@ let SRC_PATH = "./modules",
         "ui-ionic",
         "ui-kendo",
         "ui-material",
-        "ui-primeng",
-        //"ui-semantic"
+        "ui-primeng"
     ];
 
 
@@ -97,9 +96,6 @@ gulp.task("bundle:ui-material",
 gulp.task("bundle:ui-primeng",
     TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-primeng", "ng2DF", pkg, DIST_PATH));
 
-gulp.task("bundle:ui-semantic",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-semantic", "ng2DF", pkg, DIST_PATH));
-
 
 gulp.task("transpile:modules:es5",
     TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es5.json"));
@@ -147,7 +143,6 @@ gulp.task("build:modules", function (done) {
         "bundle:ui-kendo",
         "bundle:ui-material",
         "bundle:ui-primeng",
-        //"bundle:ui-semantic",
         "transpile:modules:es5",
         "preprocess:modules",
         "inline:ng2-templates",

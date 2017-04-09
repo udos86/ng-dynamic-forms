@@ -16,7 +16,14 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-import { Checkbox, DateTime, TextInput, RadioGroup, Select, Toggle } from "ionic-angular";
+import {
+    Checkbox,
+    DateTime,
+    TextInput,
+    RadioGroup,
+    Select,
+    Toggle
+} from "ionic-angular";
 
 export const enum IonicFormControlType {
 
