@@ -1,6 +1,14 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MdCheckbox, MdInputContainer, MdRadioGroup, MdSelect, MdSlider, MdSlideToggle } from "@angular/material";
+import {
+    MdAutocomplete,
+    MdCheckbox,
+    MdInputContainer,
+    MdRadioGroup,
+    MdSelect,
+    MdSlider,
+    MdSlideToggle
+} from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -71,6 +79,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
+    @ViewChild(MdAutocomplete) mdAutocomplete: MdAutocomplete | null;
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
     @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup | null;

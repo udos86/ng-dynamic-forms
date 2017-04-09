@@ -1,18 +1,18 @@
 {
-  "name": "@ng2-dynamic-forms/ui-bootstrap",
+  "name": "@ng2-dynamic-forms/ui-ionic",
   "version": "1.4.2",
-  "description": "Bootstrap UI package for ng2 Dynamic Forms",
-  "main": "./bundles/ui-bootstrap.umd.js",
+  "description": "Ionic UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-ionic.umd.js",
   "module": "./index.js",
   "typings": "./index.d.ts",
   "keywords": [
     "angular",
     "angular 2",
-    "bootstrap",
     "dynamic forms",
     "forms",
     "ng2 dynamic forms",
     "reactive forms",
+    "ionic",
     "ui"
   ],
   "repository": {
@@ -20,9 +20,9 @@
     "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
   },
   "author": {
-    "name": "Udo Schöfer",
+    "name" : "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
-    "url": "https://github.com/udos86/ng2-dynamic-forms"
+    "url" : "https://github.com/udos86/ng2-dynamic-forms"
   },
   "license": "ISC",
   "bugs": {
@@ -31,11 +31,10 @@
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0",
     "@angular/common": "^4.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.22",
+    "@angular/forms": "^4.0.0",
     "@ng2-dynamic-forms/core": "^1.4.2",
-    "bootstrap": "^3.3.7",
+    "ionic-angular": "^3.0.1",
     "rxjs": "^5.2.0"
   }
 }

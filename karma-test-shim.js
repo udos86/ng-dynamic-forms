@@ -43,6 +43,7 @@ System.config({
         "@angular/router/testing": "npm:@angular/router/bundles/router-testing.umd.js",
         "@angular/forms": "npm:@angular/forms/bundles/forms.umd.js",
         "@angular/forms/testing": "npm:@angular/forms/bundles/forms-testing.umd.js",
+        "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
         "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
         "@ng2-dynamic-forms/ui-basic": "npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.js",
         "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
@@ -65,6 +66,7 @@ System.config({
         "@telerik/kendo-dropdowns-common": "npm:@telerik/kendo-dropdowns-common/dist/npm/main.js",
         "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/main.js",
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
+        "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
         "ng-semantic": "npm:ng-semantic",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
