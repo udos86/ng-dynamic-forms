@@ -21,10 +21,10 @@ let SRC_PATH = "./modules",
         "ui-basic",
         "ui-bootstrap",
         "ui-foundation",
+        "ui-ionic",
         "ui-kendo",
         "ui-material",
-        "ui-primeng",
-        //"ui-semantic"
+        "ui-primeng"
     ];
 
 
@@ -84,6 +84,9 @@ gulp.task("bundle:ui-bootstrap",
 gulp.task("bundle:ui-foundation",
     TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-foundation", "ng2DF", pkg, DIST_PATH));
 
+gulp.task("bundle:ui-ionic",
+    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-ionic", "ng2DF", pkg, DIST_PATH));
+
 gulp.task("bundle:ui-kendo",
     TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-kendo", "ng2DF", pkg, DIST_PATH));
 
@@ -92,9 +95,6 @@ gulp.task("bundle:ui-material",
 
 gulp.task("bundle:ui-primeng",
     TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-primeng", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-semantic",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-semantic", "ng2DF", pkg, DIST_PATH));
 
 
 gulp.task("transpile:modules:es5",
@@ -139,10 +139,10 @@ gulp.task("build:modules", function (done) {
         "bundle:ui-basic",
         "bundle:ui-bootstrap",
         "bundle:ui-foundation",
+        "bundle:ui-ionic",
         "bundle:ui-kendo",
         "bundle:ui-material",
         "bundle:ui-primeng",
-        //"bundle:ui-semantic",
         "transpile:modules:es5",
         "preprocess:modules",
         "inline:ng2-templates",

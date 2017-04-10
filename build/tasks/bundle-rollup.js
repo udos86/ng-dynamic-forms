@@ -54,11 +54,13 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "@angular/platform-browser": "ng.platformBrowser",
             "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
             "@angular/router": "ng.router",
+            "@ng-bootstrap/ng-bootstrap": "@ng-bootstrap/ng-bootstrap",
             "@ng2-dynamic-forms/core": "ng2DF.core",
             "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs", // TODO
             "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
+            "ionic-angular": "ionic-angular",
             "ng-semantic": "ng-semantic", // TODO
             "primeng/primeng": "primeng/primeng",
             "rxjs/Subject": "Rx",

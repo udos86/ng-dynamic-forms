@@ -1,8 +1,8 @@
 {
-  "name": "@ng2-dynamic-forms/ui-semantic",
+  "name": "@ng2-dynamic-forms/ui-ionic",
   "version": "1.4.2",
-  "description": "Semantic UI package for ng2 Dynamic Forms",
-  "main": "./bundles/ui-semantic.umd.js",
+  "description": "Ionic UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-ionic.umd.js",
   "module": "./index.js",
   "typings": "./index.d.ts",
   "keywords": [
@@ -11,8 +11,8 @@
     "dynamic forms",
     "forms",
     "ng2 dynamic forms",
-    "semantic ui",
     "reactive forms",
+    "ionic",
     "ui"
   ],
   "repository": {
@@ -34,11 +34,7 @@
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@ng2-dynamic-forms/core": "^1.4.2",
-    "ng-semantic": "^1.1.13",
+    "ionic-angular": "^3.0.1",
     "rxjs": "^5.2.0"
-  },
-  "optionalDependencies": {
-    "jquery": "^3.1.1",
-    "semantic-ui-css": "^2.2.4"
   }
 }

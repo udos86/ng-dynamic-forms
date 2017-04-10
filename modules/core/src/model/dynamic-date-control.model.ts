@@ -2,18 +2,18 @@ import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 
-export interface DynamicDateControlModelConfig extends DynamicFormValueControlModelConfig<Date> {
+export interface DynamicDateControlModelConfig extends DynamicFormValueControlModelConfig<string | Date> {
 
     format?: string;
-    max?: Date;
-    min?: Date;
+    max?: string | Date;
+    min?: string | Date;
 }
 
-export abstract class DynamicDateControlModel extends DynamicFormValueControlModel<Date> {
+export abstract class DynamicDateControlModel extends DynamicFormValueControlModel<string | Date> {
 
     @serializable() format: string | null;
-    @serializable() max: Date | null;
-    @serializable() min: Date | null;
+    @serializable() max: string | Date | null;
+    @serializable() min: string | Date | null;
 
     constructor(config: DynamicDateControlModelConfig, cls?: ClsConfig) {
 

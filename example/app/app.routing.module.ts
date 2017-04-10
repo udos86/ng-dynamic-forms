@@ -5,7 +5,6 @@ import { FoundationExampleComponent } from "./foundation/foundation-example.comp
 import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
-//import { SemanticExampleComponent } from "./semantic/semantic-example.component";
 import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Route[] = [
@@ -14,6 +13,7 @@ const APP_ROUTES: Route[] = [
         redirectTo: "/example-bootstrap",
         pathMatch: "full"
     },
+
     {
         path: "example-basic",
         component: BasicExampleComponent,
@@ -23,6 +23,7 @@ const APP_ROUTES: Route[] = [
             bgColor: "gray"
         }
     },
+
     {
         path: "example-bootstrap",
         component: BootstrapExampleComponent,
@@ -32,6 +33,7 @@ const APP_ROUTES: Route[] = [
             bgColor: "#6f5499"
         }
     },
+
     {
         path: "example-foundation",
         component: FoundationExampleComponent,
@@ -41,6 +43,7 @@ const APP_ROUTES: Route[] = [
             bgColor: "#2199e8"
         }
     },
+
     {
         path: "example-material",
         component: MaterialExampleComponent,
@@ -70,17 +73,7 @@ const APP_ROUTES: Route[] = [
             bgColor: "#DB2226"
         }
     },
-    /*
-    {
-        path: "example-semantic",
-        component: SemanticExampleComponent,
-        data: {
-            title: "Semantic UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/semantic/semantic-example.model.ts",
-            bgColor: "#31AEA4"
-        }
-    },
-    */
+
     {
         path: "example-async",
         loadChildren: "app/async/async-example.module#AsyncExampleModule"
