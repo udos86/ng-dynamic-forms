@@ -67,7 +67,6 @@ System.config({
         "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/main.js",
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
         "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
-        "ng-semantic": "npm:ng-semantic",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     },

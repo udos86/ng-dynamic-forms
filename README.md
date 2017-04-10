@@ -13,7 +13,7 @@ It highly simplifies the implementing of reactive Angular forms by building
 upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
-**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)** 
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
 **[Kendo UI](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://github.com/angular/material2)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
 
@@ -49,9 +49,9 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 npm install @ng2-dynamic-forms/core --save
 ```
   
-**2. Choose your UI library** (e.g. [**Bootstrap**](http://getbootstrap.com)) and **install the appropriate package**:
+**2. Choose your [UI library](#ui-modules-and-components)** and **install the appropriate package**:
 ```
-npm install @ng2-dynamic-forms/ui-bootstrap --save
+npm install @ng2-dynamic-forms/ui-bootstrap -S
 ```
 
 **3.** When using **SystemJS**, update your configuration to **import the corresponding UMD bundles**:
@@ -215,7 +215,7 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and it's peer dependencies**:
 ```
-npm install @ng2-dynamic-forms/ui-<library-name> --save
+npm install @ng2-dynamic-forms/ui-<library-name> -S
 ```
 
 Right afterwards **just import the corresponding UI** `NgModule`:
