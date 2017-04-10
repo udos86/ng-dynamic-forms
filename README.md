@@ -13,7 +13,9 @@ It highly simplifies the implementing of reactive Angular forms by building
 upon a layer of maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
-**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Material](https://github.com/angular/material2)** and [**more**](#ui-modules-and-components).
+**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)** 
+**[Kendo UI](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://github.com/angular/material2)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
+                                                                                          
 
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.aot.html) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
@@ -205,6 +207,7 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **Basic** (pure HTML5)
 * **[Bootstrap](http://getbootstrap.com)**
 * **[Foundation](http://foundation.zurb.com)**
+* **[Ionic](http://ionicframework.com/)**
 * **[Kendo UI](http://www.telerik.com/kendo-angular-ui)**
 * **[Material](https://github.com/angular/material2)**
 * **[PrimeNG](http://www.primefaces.org/primeng/#/)**
@@ -247,18 +250,18 @@ your component** `template`:
 Due to technical restrictions or external dependencies still being in development full support for all major form controls 
 cannot be provided in every single UI library. **See the following compatibility table**:
 
-|             	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-kendo 	| ui-material 	| ui-primeng 	|
-|-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:-----------:	|:----------:	|
-| Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
-| Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|      *      	|      ✓     	|
-| Editor      	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|      ✗      	|      ✓     	|
-| File Upload 	|    **    	|      **      	|       **      	|     ✓    	|      **     	|     **     	|
-| Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
-| Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
-| Select      	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
-| Slider      	|    ***   	|      ***     	|      ***      	|     ✓    	|      ✓      	|      ✓     	|
-| Switch      	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|      ✓      	|      ✓     	|
-| Textarea    	|     ✓    	|       ✓      	|       ✓       	|     ✗    	|      ✓      	|      ✓     	|
+|             	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-primeng 	|
+|-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:----------:	|
+| Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
+| Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|      ✓     	|
+| Editor      	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|      ✓     	|
+| File Upload 	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|     **     	|
+| Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
+| Select      	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Slider      	|    ***   	|      ***     	|      ***      	|     ✗    	|     ✓    	|      ✓      	|      ✓     	|
+| Switch      	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Textarea    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
 
 **\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 

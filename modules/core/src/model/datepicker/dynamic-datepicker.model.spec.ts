@@ -33,6 +33,6 @@ describe("DynamicDatepickerModel test suite", () => {
 
         expect(json.id).toEqual(model.id);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER);
-        expect(json.value).toBe(model.value.toJSON());
+        expect(json.value).toBe((model.value as Date).toJSON());
     });
 });
