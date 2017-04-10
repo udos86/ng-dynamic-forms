@@ -54,7 +54,6 @@
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
         "app": "app",
         "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
-        "ng-semantic": "npm:ng-semantic",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs"
     };
