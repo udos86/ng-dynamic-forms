@@ -29,3 +29,13 @@ export class AppModule {}
                                 [model]="controlModel"></dynamic-form-basic-control>
 </form>
 ```
+
+## Form Controls
+
+|                                Control                               	|           Model          	| Required Property 	|
+|:--------------------------------------------------------------------:	|:------------------------:	|:-----------------:	|
+| **[Checkbox](https://www.w3.org/wiki/HTML/Elements/input/checkbox)** 	| `DynamicCheckboxModel`   	|         –         	|
+|       **[Input](https://www.w3.org/wiki/HTML/Elements/input)**       	| `DynamicInputModel`      	|         –         	|
+| **[Radio Group](https://www.w3.org/wiki/HTML/Elements/input/radio)** 	| `DynamicRadioGroupModel` 	|         –         	|
+|      **[Select](https://www.w3.org/wiki/HTML/Elements/select)**      	| `DynamicSelectModel`     	|         –         	|
+|    **[TextArea](https://www.w3.org/wiki/HTML/Elements/textarea)**    	| `DynamicTextAreaModel`   	|         –         	|
