@@ -60,7 +60,7 @@ export const KENDO_EXAMPLE_MODEL = [
             placeholder: "Kendo Autocomplete"
         }
     ),
-    /*
+
     new DynamicSliderModel(
         {
             id: "kendoSlider",
@@ -70,7 +70,7 @@ export const KENDO_EXAMPLE_MODEL = [
             value: 3
         }
     ),
-    */
+
     new DynamicInputModel(
         {
             id: "kendoNumericTextBox",
@@ -125,7 +125,6 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    /*
     new DynamicSwitchModel(
         {
             id: "kendoSwitch",
@@ -134,7 +133,7 @@ export const KENDO_EXAMPLE_MODEL = [
             value: true
         }
     ),
-    */
+
     new DynamicInputModel(
         {
             id: "kendoMaskedTextBox",
