@@ -109,14 +109,14 @@
     "webpack": "^2.3.3"
   },
   "optionalDependencies": {
-    "@progress/kendo-angular-dateinputs": "^0.6.0",
+    "@progress/kendo-angular-dateinputs": "^0.6.1",
     "@progress/kendo-angular-dropdowns": "^0.38.0",
-    "@progress/kendo-angular-inputs": "^0.22.1",
+    "@progress/kendo-angular-inputs": "^0.23.0",
     "@progress/kendo-angular-intl": "^0.12.0",
     "@progress/kendo-angular-l10n": "^0.3.0",
     "@progress/kendo-angular-resize-sensor": "^0.11.0",
     "@progress/kendo-angular-upload": "^0.20.0",
     "@progress/kendo-date-math": "^0.3.3",
-    "@progress/kendo-theme-default": "^2.25.3"
+    "@progress/kendo-theme-default": "^2.26.0"
   }
 }
