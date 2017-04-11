@@ -29,3 +29,13 @@ export class AppModule {}
                                     [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
+
+## Form Controls
+
+|                                Control                                	|           Model          	| Required Property 	|
+|:---------------------------------------------------------------------:	|:------------------------:	|:-----------------:	|
+|   **[Checkbox](http://getbootstrap.com/css/#checkboxes-and-radios)**  	| `DynamicCheckboxModel`   	|         –         	|
+|            **[Input](http://getbootstrap.com/css/#inputs)**           	| `DynamicInputModel`      	|         –         	|
+| **[Radio Group](http://getbootstrap.com/css/#checkboxes-and-radios)** 	| `DynamicRadioGroupModel` 	|         –         	|
+|           **[Select](http://getbootstrap.com/css/#selects)**          	| `DynamicSelectModel`     	|         –         	|
+|         **[TextArea](http://getbootstrap.com/css/#textarea)**         	| `DynamicTextAreaModel`   	|         –         	|

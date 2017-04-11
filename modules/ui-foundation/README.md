@@ -29,3 +29,14 @@ export class AppModule {}
                                            [model]="controlModel"></dynamic-form-foundation-sites-control>
 </form>
 ```
+
+## Form Controls
+
+|                                              Control                                             	|           Model          	| Required Property 	|
+|:------------------------------------------------------------------------------------------------:	|:------------------------:	|:-----------------:	|
+|   **[Checkbox](http://foundation.zurb.com/sites/docs/forms.html#checkboxes-and-radio-buttons)**  	| `DynamicCheckboxModel`   	|         –         	|
+|             **[Input](http://foundation.zurb.com/sites/docs/forms.html#text-inputs)**            	| `DynamicInputModel`      	|         –         	|
+| **[Radio Group](http://foundation.zurb.com/sites/docs/forms.html#checkboxes-and-radio-buttons)** 	| `DynamicRadioGroupModel` 	|         –         	|
+|            **[Select](http://foundation.zurb.com/sites/docs/forms.html#select-menus)**           	| `DynamicSelectModel`     	|         –         	|
+|                  **[Switch](http://foundation.zurb.com/sites/docs/switch.html)**                 	| `DynamicSwitchModel`     	|         –         	|
+|            **[TextArea](http://foundation.zurb.com/sites/docs/forms.html#text-areas)**           	| `DynamicTextAreaModel`   	|         –         	|

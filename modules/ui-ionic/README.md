@@ -29,3 +29,15 @@ export class AppModule {}
                                 [model]="controlModel"></dynamic-form-ionic-control>
 </form>
 ```
+
+## Form Controls
+
+|                               Control                               	|           Model          	| Required Property 	|
+|:-------------------------------------------------------------------:	|:------------------------:	|:-----------------:	|
+| **[Checkbox](http://ionicframework.com/docs/components/#checkbox)** 	| `DynamicCheckboxModel`   	|         –         	|
+| **[DateTime](http://ionicframework.com/docs/components/#datetime)** 	| `DynamicDatepickerModel` 	|         –         	|
+|    **[Input](http://ionicframework.com/docs/components/#inputs)**   	| `DynamicInputModel`      	|         –         	|
+| **[Radio Group](http://ionicframework.com/docs/components/#radio)** 	| `DynamicRadioGroupModel` 	|         –         	|
+|   **[Select](http://ionicframework.com/docs/components/#select)**   	| `DynamicSelectModel`     	|         –         	|
+|  **[TextArea](http://ionicframework.com/docs/components/#inputs)**  	| `DynamicTextAreaModel`   	|         –         	|
+|   **[Toggle](http://ionicframework.com/docs/components/#toggle)**   	| `DynamicSwitchModel`     	|         –         	|
