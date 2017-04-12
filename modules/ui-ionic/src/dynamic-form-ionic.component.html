@@ -109,7 +109,20 @@
                    [type]="model.inputType"></ion-input>
 
 
-        <ion-select *ngSwitchCase="7"
+        <ion-range *ngSwitchCase="7"
+                   [disabled]="model.disabled"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [max]="model.max"
+                   [min]="model.min"
+                   [ngClass]="model.cls.element.control"
+                   [pin]="true"
+                   [snaps]="true"
+                   [step]="model.step"
+                   (ionChange)="onValueChange($event)"></ion-range>
+
+
+        <ion-select *ngSwitchCase="8"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -123,7 +136,7 @@
         </ion-select>
 
 
-        <ion-textarea *ngSwitchCase="8"
+        <ion-textarea *ngSwitchCase="9"
                       clearInput="true"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
@@ -133,7 +146,7 @@
                       [readonly]="model.readOnly"></ion-textarea>
 
 
-        <ion-toggle *ngSwitchCase="9"
+        <ion-toggle *ngSwitchCase="10"
                     [checked]="model.checked"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
