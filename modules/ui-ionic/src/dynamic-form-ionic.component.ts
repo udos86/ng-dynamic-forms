@@ -13,6 +13,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
@@ -21,6 +22,7 @@ import {
     DateTime,
     TextInput,
     RadioGroup,
+    Range,
     Select,
     Toggle
 } from "ionic-angular";
@@ -33,9 +35,10 @@ export const enum IonicFormControlType {
     Group = 4,
     Input = 5,
     RadioGroup = 6,
-    Select = 7,
-    TextArea = 8,
-    Toggle = 9
+    Range = 7,
+    Select = 8,
+    TextArea = 9,
+    Toggle = 10
 }
 
 @Component({
@@ -69,6 +72,7 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent {
     @ViewChild(DateTime) ionDateTime: DateTime | null;
     @ViewChild(TextInput) ionInput: TextInput | null;
     @ViewChild(RadioGroup) ionRadioGroup: RadioGroup | null;
+    @ViewChild(Range) ionRange: Range | null;
     @ViewChild(Select) ionSelect: Select | null;
     @ViewChild(Toggle) ionToggle: Toggle | null;
 
@@ -100,6 +104,9 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent {
 
             case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
                 return IonicFormControlType.Select;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+                return IonicFormControlType.Range;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
                 return IonicFormControlType.Toggle;

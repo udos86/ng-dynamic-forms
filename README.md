@@ -204,13 +204,13 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **Basic** (pure HTML5)
-* **[Bootstrap](http://getbootstrap.com)**
-* **[Foundation](http://foundation.zurb.com)**
-* **[Ionic](http://ionicframework.com/)**
-* **[Kendo UI](http://www.telerik.com/kendo-angular-ui)**
-* **[Material](https://github.com/angular/material2)**
-* **[PrimeNG](http://www.primefaces.org/primeng/#/)**
+* **[Basic](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-basic)**
+* **[Bootstrap](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-bootstrap)**
+* **[Foundation](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-foundation)**
+* **[Ionic](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-ionic)**
+* **[Kendo UI](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-kendo)**
+* **[Material](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-material)**
+* **[PrimeNG](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and it's peer dependencies**:

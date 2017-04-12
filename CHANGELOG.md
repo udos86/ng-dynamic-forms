@@ -1,3 +1,11 @@
+# 1.4.3
+
+### **Features** 
+
+* **Initial UI support for Ionic 2** 
+* `README.md` files of UI packages now contain form control overview 
+
+
 # 1.4.2
 
 ### **Features** 
