@@ -24,6 +24,7 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
         console.warn("[controlGroup] is deprecated. Use [group] instead.");
     };
 
+    @Input() asBootstrapFormGroup: boolean = true;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;

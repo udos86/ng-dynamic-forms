@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "A rapid form development library for Angular 2.x and higher",
   "scripts": {
     "compile:app:aot": "ngc -p tsconfig.aot.json",
@@ -49,12 +49,12 @@
     "@angular/platform-browser-dynamic": "^4.0.2",
     "@angular/router": "^4.0.2",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.22",
-    "@ng2-dynamic-forms/core": "^1.4.3",
-    "@ng2-dynamic-forms/ui-basic": "^1.4.3",
-    "@ng2-dynamic-forms/ui-bootstrap": "^1.4.3",
-    "@ng2-dynamic-forms/ui-foundation": "^1.4.3",
-    "@ng2-dynamic-forms/ui-material": "^1.4.3",
-    "@ng2-dynamic-forms/ui-primeng": "^1.4.3",
+    "@ng2-dynamic-forms/core": "^1.4.4",
+    "@ng2-dynamic-forms/ui-basic": "^1.4.4",
+    "@ng2-dynamic-forms/ui-bootstrap": "^1.4.4",
+    "@ng2-dynamic-forms/ui-foundation": "^1.4.4",
+    "@ng2-dynamic-forms/ui-material": "^1.4.4",
+    "@ng2-dynamic-forms/ui-primeng": "^1.4.4",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.3.1",
@@ -89,7 +89,7 @@
     "gulp-util": "^3.0.8",
     "html-minifier": "^3.4.3",
     "jasmine-core": "^2.5.2",
-    "jasmine-spec-reporter": "^3.2.0",
+    "jasmine-spec-reporter": "^3.3.0",
     "karma": "^1.6.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
@@ -109,18 +109,18 @@
     "systemjs-builder": "^0.16.4",
     "tslint": "^5.0.0",
     "typedoc": "^0.5.10",
-    "typescript": "^2.2.2",
+    "typescript": ">2.2.2",
     "webpack": "^2.3.3"
   },
   "optionalDependencies": {
-    "@progress/kendo-angular-dateinputs": "^0.6.1",
-    "@progress/kendo-angular-dropdowns": "^0.38.0",
-    "@progress/kendo-angular-inputs": "^0.23.0",
+    "@progress/kendo-angular-dateinputs": "^0.7.0",
+    "@progress/kendo-angular-dropdowns": "^0.38.3",
+    "@progress/kendo-angular-inputs": "^0.23.1",
     "@progress/kendo-angular-intl": "^0.12.0",
     "@progress/kendo-angular-l10n": "^0.3.0",
     "@progress/kendo-angular-resize-sensor": "^0.11.0",
     "@progress/kendo-angular-upload": "^0.20.0",
     "@progress/kendo-date-math": "^0.3.3",
-    "@progress/kendo-theme-default": "^2.26.0"
+    "@progress/kendo-theme-default": "^2.28.0"
   }
 }

@@ -68,10 +68,19 @@ export class BootstrapExampleComponent implements OnInit {
         //console.log(JSON.stringify(this.exampleModel));
         //this.arrayModel.get(1).group[0].valueUpdates.next("This is just a test");
         //this.formService.moveFormArrayGroup(2, -1, this.arrayControl, this.arrayModel);
-        this.formService.removeFormGroupControl(
-            1,
-            this.formGroup.get("bootstrapFormGroup1") as FormGroup,
-            this.formModel[0] as DynamicFormGroupModel
+        this.formService.addFormGroupControl(
+            this.formGroup,
+            this.formModel,
+            new DynamicFormGroupModel({
+                id: "bootstrapFormGroup3",
+                group: []
+            })
+        );
+
+        this.formService.addFormGroupControl(
+            this.formGroup.get("bootstrapFormGroup3") as FormGroup,
+            this.formModel[2] as DynamicFormGroupModel,
+            new DynamicInputModel({id: "newInput"})
         );
     }
 

@@ -1,3 +1,12 @@
+# 1.4.4
+
+### **Features** 
+
+* **`DynamicFormBootstrapComponent` now has new `@Input() asBootstrapFormGroup`:**
+This is a major improvement to make complex form layouts more easy to achieve. 
+By default `form-group` CSS class now **is not set** for nested form models anymore. 
+
+
 # 1.4.3
 
 ### **Features** 
