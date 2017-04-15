@@ -1,4 +1,4 @@
-<div class="form-group"
+<div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
      [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
      [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
@@ -77,6 +77,7 @@
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
                                                 [group]="control"
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                [isBootstrapFormGroup]="false"
                                                 [model]="controlModel"
                                                 [nestedTemplates]="templateDirectives"
                                                 (blur)="onFocusChange($event)"

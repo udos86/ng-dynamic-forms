@@ -42,6 +42,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 },
                 {
                     element: {
+                        container: "form-group",
                         label: "control-label"
                     },
                     grid: {
@@ -71,6 +72,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 },
                 {
                     element: {
+                        container: "form-group",
                         label: "control-label"
                     },
                     grid: {
@@ -91,11 +93,6 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                                 id: "checkboxGroup1",
                                 label: "Checkbox 1",
                                 value: true
-                            },
-                            {
-                                grid: {
-                                    control: "col-sm-12"
-                                }
                             }
                         ),
                         new DynamicCheckboxModel(
@@ -103,17 +100,13 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                                 id: "checkboxGroup2",
                                 label: "Checkbox 2",
                                 value: true
-                            },
-                            {
-                                grid: {
-                                    control: "col-sm-12"
-                                }
                             }
                         )
                     ]
                 },
                 {
                     element: {
+                        container: "form-group",
                         label: "control-label"
                     },
                     grid: {
@@ -156,6 +149,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 },
                 {
                     element: {
+                        container: "form-group",
                         label: "control-label"
                     },
                     grid: {
@@ -190,6 +184,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 },
                 {
                     element: {
+                        container: "form-group",
                         label: "control-label"
                     },
                     grid: {
@@ -205,6 +200,9 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     label: "I do agree"
                 },
                 {
+                    element: {
+                        container: "form-group"
+                    },
                     grid: {
                         control: "col-sm-offset-3 col-sm-9"
                     }
@@ -234,7 +232,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 },
                 {
                     element: {
-                        container: "form-array",
+                        container: "form-group form-array",
                         label: "control-label"
                     },
                     grid: {

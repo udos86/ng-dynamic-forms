@@ -55,6 +55,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
         expect(component.hasErrorMessaging).toBe(false);
+        expect(component.asBootstrapFormGroup).toBe(true);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
