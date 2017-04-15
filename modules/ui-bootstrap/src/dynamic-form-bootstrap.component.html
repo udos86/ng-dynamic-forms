@@ -75,9 +75,9 @@
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
                 <dynamic-form-bootstrap-control *ngFor="let controlModel of model.group"
+                                                [asBootstrapFormGroup]="false"
                                                 [group]="control"
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                [isBootstrapFormGroup]="false"
                                                 [model]="controlModel"
                                                 [nestedTemplates]="templateDirectives"
                                                 (blur)="onFocusChange($event)"
