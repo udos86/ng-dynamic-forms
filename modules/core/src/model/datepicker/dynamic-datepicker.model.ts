@@ -5,20 +5,20 @@ import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynam
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 
-export interface DynamicDatepickerModelConfig extends DynamicDateControlModelConfig {
+export interface DynamicDatePickerModelConfig extends DynamicDateControlModelConfig {
 
     focusedDate?: string | Date;
     inline?: boolean;
 }
 
-export class DynamicDatepickerModel extends DynamicDateControlModel {
+export class DynamicDatePickerModel extends DynamicDateControlModel {
 
     @serializable() focusedDate: string | Date | null;
     @serializable() inline: boolean;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
 
-    constructor(config: DynamicDatepickerModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicDatePickerModelConfig, cls?: ClsConfig) {
 
         super(config, cls);
 

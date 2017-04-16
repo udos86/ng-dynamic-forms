@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
+import { CalendarComponent, DateInputComponent, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
     MaskedTextBoxComponent,
@@ -17,7 +17,7 @@ import {
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
-    DynamicDatepickerModel,
+    DynamicDatePickerModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -65,6 +65,8 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | null;
     @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | null;
+    @ViewChild(DateInputComponent) kendoDateInput: DateInputComponent | null;
+    @ViewChild(DatePickerComponent) kendoDatePicker: DatePickerComponent | null;
     @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | null;
     @ViewChild(MaskedTextBoxComponent) kendoMaskedTextBox: MaskedTextBoxComponent | null;
     @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | null;
@@ -81,7 +83,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     protected setKendoTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        let templateDirectives: any,
+        let templateDirectives: object,
             viewChild: any;
 
         if (this.kendoAutoComplete) {
@@ -93,6 +95,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
             templateDirectives = KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
             viewChild = this.kendoCalendar;
+
+        } else if (this.kendoDatePicker) {
+
+            templateDirectives = KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
+            viewChild = this.kendoDatePicker;
 
         } else if (this.kendoDropDownList) {
 
@@ -128,9 +135,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
                 return KendoFormControlType.Array;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                model = this.model as DynamicDatepickerModel;
+                model = this.model as DynamicDatePickerModel;
 
-                return model.inline ? KendoFormControlType.Calendar : null;
+                return model.inline ? KendoFormControlType.Calendar : KendoFormControlType.DatePicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
                 return KendoFormControlType.Upload;

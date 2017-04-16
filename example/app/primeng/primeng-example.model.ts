@@ -1,12 +1,14 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicEditorModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicTextAreaModel, DynamicDatepickerModel, DynamicEditorModel
+    DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
@@ -44,7 +46,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicDatepickerModel(
+    new DynamicDatePickerModel(
         {
             id: "primeDatepicker",
             format: "mm/dd/yy",

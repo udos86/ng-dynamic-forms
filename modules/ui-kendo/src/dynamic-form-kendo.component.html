@@ -68,10 +68,30 @@
                          [max]="model.max"
                          [min]="model.min"
                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                         [placeholder]="model.placeholder"
                          [rangeValidation]="true"
                          [spinners]="true"
                          [tabIndex]="model.tabIndex"
+                         (blur)="onFocusChange($event)"
+                         (focus)="onFocusChange($event)"
                          (valueChange)="onValueChange($event)"></kendo-dateinput>
+
+
+        <kendo-datepicker *ngSwitchCase="5"
+                          [disabled]="model.disabled"
+                          [dynamicId]="bindId && model.id"
+                          [focusedDate]="model.focusedDate"
+                          [format]="model.format"
+                          [formControlName]="model.id"
+                          [max]="model.max"
+                          [min]="model.min"
+                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                          [placeholder]="model.placeholder"
+                          [rangeValidation]="true"
+                          [tabIndex]="model.tabIndex"
+                          (blur)="onFocusChange($event)"
+                          (focus)="onFocusChange($event)"
+                          (valueChange)="onValueChange($event)"></kendo-datepicker>
 
 
         <kendo-dropdownlist *ngSwitchCase="6"
