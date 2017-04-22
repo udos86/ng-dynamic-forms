@@ -1,3 +1,15 @@
+# 1.4.5
+
+### **Breaking Change**
+
+`DynamicDatepickerModel` has been renamed to `DynamicDatePickerModel`
+
+### **Features** 
+
+* `placeholder` property added to `DynamicDateControlModel`
+* initial datepicker support in `ui-kendo`
+
+
 # 1.4.4
 
 ### **Features** 

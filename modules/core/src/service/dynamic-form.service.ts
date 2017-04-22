@@ -24,7 +24,7 @@ import {
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DynamicDatepickerModel
+    DynamicDatePickerModel
 } from "../model/datepicker/dynamic-datepicker.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_EDITOR, DynamicEditorModel } from "../model/editor/dynamic-editor.model";
 import {
@@ -312,7 +312,7 @@ export class DynamicFormService {
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                    group.push(new DynamicDatepickerModel(model, model.cls));
+                    group.push(new DynamicDatePickerModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:

@@ -3,7 +3,7 @@ import {
     DynamicSelectModel,
     DynamicSwitchModel,
     DynamicSliderModel,
-    DynamicDatepickerModel,
+    DynamicDatePickerModel,
     DynamicFileUploadModel
 } from "@ng2-dynamic-forms/core";
 
@@ -44,11 +44,11 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicDatepickerModel(
+    new DynamicDatePickerModel(
         {
             id: "kendoDatepicker",
             //focusedDate: new Date(2010, 11, 11)
-            inline: true,
+            inline: false,
             value: new Date()
         }
     ),

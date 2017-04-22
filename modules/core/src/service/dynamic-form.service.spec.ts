@@ -11,7 +11,7 @@ import { DynamicFormService } from "./dynamic-form.service";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
-import { DynamicDatepickerModel } from "../model/datepicker/dynamic-datepicker.model";
+import { DynamicDatePickerModel } from "../model/datepicker/dynamic-datepicker.model";
 import { DynamicFileUploadModel } from "../model/file-upload/dynamic-file-upload.model";
 import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -134,7 +134,7 @@ describe("DynamicFormService test suite", () => {
 
             new DynamicSwitchModel({id: "testSwitch"}),
 
-            new DynamicDatepickerModel({id: "testDatepicker", value: new Date()}),
+            new DynamicDatePickerModel({id: "testDatepicker", value: new Date()}),
 
             new DynamicFileUploadModel({id: "testFileUpload"})
         ];
@@ -191,7 +191,7 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[7] instanceof DynamicFormGroupModel).toBe(true);
         expect(formModel[8] instanceof DynamicSliderModel).toBe(true);
         expect(formModel[9] instanceof DynamicSwitchModel).toBe(true);
-        expect(formModel[10] instanceof DynamicDatepickerModel).toBe(true);
+        expect(formModel[10] instanceof DynamicDatePickerModel).toBe(true);
         expect((formModel[10] as DynamicDateControlModel).value instanceof Date).toBe(true);
         expect(formModel[11] instanceof DynamicFileUploadModel).toBe(true);
     });

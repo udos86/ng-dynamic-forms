@@ -1,17 +1,17 @@
 import {
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DynamicDatepickerModel
+    DynamicDatePickerModel
 } from "./dynamic-datepicker.model";
 
 describe("DynamicDatepickerModel test suite", () => {
 
-    let model: DynamicDatepickerModel,
+    let model: DynamicDatePickerModel,
         config = {
             id: "datepicker",
             value: new Date()
         };
 
-    beforeEach(() => model = new DynamicDatepickerModel(config));
+    beforeEach(() => model = new DynamicDatePickerModel(config));
 
     it("should initialize correctly", () => {
 

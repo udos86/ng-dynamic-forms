@@ -29,7 +29,7 @@ export class DynamicFormRelationService {
                 throw new Error(`FormControl ${model.id} cannot depend on itself`);
             }
 
-            let control = <FormControl> controlGroup.get(rel.id);
+            let control = controlGroup.get(rel.id) as FormControl;
 
             if (control && !controls.some(controlElement => controlElement === control)) {
                 controls.push(control);

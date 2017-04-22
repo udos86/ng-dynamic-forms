@@ -7,6 +7,7 @@ export interface DynamicDateControlModelConfig extends DynamicFormValueControlMo
     format?: string;
     max?: string | Date;
     min?: string | Date;
+    placeholder?: string;
 }
 
 export abstract class DynamicDateControlModel extends DynamicFormValueControlModel<string | Date> {
@@ -14,6 +15,7 @@ export abstract class DynamicDateControlModel extends DynamicFormValueControlMod
     @serializable() format: string | null;
     @serializable() max: string | Date | null;
     @serializable() min: string | Date | null;
+    @serializable() placeholder: string | null;
 
     constructor(config: DynamicDateControlModelConfig, cls?: ClsConfig) {
 
@@ -22,5 +24,6 @@ export abstract class DynamicDateControlModel extends DynamicFormValueControlMod
         this.format = config.format || null;
         this.max = config.max || null;
         this.min = config.min || null;
+        this.placeholder = config.placeholder || null;
     }
 }
