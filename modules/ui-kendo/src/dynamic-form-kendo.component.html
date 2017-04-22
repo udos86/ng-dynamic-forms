@@ -1,6 +1,7 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label [attr.for]="model.id"
+    <label *ngIf="type !== 4"
+           [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
@@ -43,8 +44,8 @@
                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                             [placeholder]="model.placeholder"
                             [tabIndex]="model.tabIndex"
-                            (blur)="onBlurChanged($event)"
-                            (focus)="onFocusChanged($event)"
+                            (blur)="onBlur($event)"
+                            (focus)="onFocus($event)"
                             (valueChange)="onValueChange($event)"></kendo-autocomplete>
 
 
@@ -61,7 +62,27 @@
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
 
-        <kendo-dateinput *ngSwitchCase="4"
+        <label *ngSwitchCase="4" class="k-form-field">
+
+            <input type="checkbox" class="k-checkbox"
+                   [attr.tabindex]="model.tabIndex"
+                   [checked]="model.checked"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [name]="model.name"
+                   [ngClass]="model.cls.element.control"
+                   [required]="model.required"
+                   [value]="model.value"
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/>
+
+            <label class="k-checkbox-label" [for]="model.id" [innerHTML]="model.label"></label>
+
+        </label>
+
+
+        <kendo-dateinput *ngSwitchCase="5"
                          [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
@@ -72,12 +93,12 @@
                          [rangeValidation]="true"
                          [spinners]="true"
                          [tabIndex]="model.tabIndex"
-                         (blur)="onBlurChanged($event)"
-                         (focus)="onFocusChanged($event)"
+                         (blur)="onBlur($event)"
+                         (focus)="onFocus($event)"
                          (valueChange)="onValueChange($event)"></kendo-dateinput>
 
 
-        <kendo-datepicker *ngSwitchCase="5"
+        <kendo-datepicker *ngSwitchCase="6"
                           [disabled]="model.disabled"
                           [dynamicId]="bindId && model.id"
                           [focusedDate]="model.focusedDate"
@@ -89,12 +110,12 @@
                           [placeholder]="model.placeholder"
                           [rangeValidation]="true"
                           [tabIndex]="model.tabIndex"
-                          (blur)="onBlurChanged($event)"
-                          (focus)="onFocusChanged($event)"
+                          (blur)="onBlur($event)"
+                          (focus)="onFocus($event)"
                           (valueChange)="onValueChange($event)"></kendo-datepicker>
 
 
-        <kendo-dropdownlist *ngSwitchCase="6"
+        <kendo-dropdownlist *ngSwitchCase="7"
                             [data]="model.options"
                             [disabled]="model.disabled"
                             [dynamicId]="bindId && model.id"
@@ -104,12 +125,12 @@
                             [textField]="'label'"
                             [valueField]="'value'"
                             [valuePrimitive]="true"
-                            (blur)="onBlurChanged($event)"
-                            (focus)="onFocusChanged($event)"
+                            (blur)="onBlur($event)"
+                            (focus)="onFocus($event)"
                             (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 
-        <fieldset *ngSwitchCase="7"
+        <fieldset *ngSwitchCase="8"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -127,7 +148,34 @@
         </fieldset>
 
 
-        <kendo-maskedtextbox *ngSwitchCase="8"
+        <input *ngSwitchCase="9" class="k-textbox"
+               [attr.accept]="model.accept"
+               [attr.autoComplete]="model.autoComplete"
+               [attr.list]="model.listId"
+               [attr.max]="model.max"
+               [attr.min]="model.min"
+               [attr.multiple]="model.multiple"
+               [attr.step]="model.step"
+               [attr.tabindex]="model.tabIndex"
+               [autofocus]="model.autoFocus"
+               [dynamicId]="bindId && model.id"
+               [formControlName]="model.id"
+               [maxlength]="model.maxLength"
+               [minlength]="model.minLength"
+               [name]="model.name"
+               [ngClass]="model.cls.element.control"
+               [pattern]="model.pattern"
+               [placeholder]="model.placeholder"
+               [readonly]="model.readOnly"
+               [required]="model.required"
+               [spellcheck]="model.spellCheck"
+               [type]="model.inputType"
+               (blur)="onFocusChange($event)"
+               (change)="onValueChange($event)"
+               (focus)="onFocusChange($event)"/>
+
+
+        <kendo-maskedtextbox *ngSwitchCase="10"
                              [disabled]="model.disabled"
                              [dynamicId]="bindId && model.id"
                              [formControlName]="model.id"
@@ -135,12 +183,12 @@
                              [maskValidation]="true"
                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                              [tabIndex]="model.tabIndex"
-                             (blur)="onBlurChanged($event)"
-                             (focus)="onFocusChanged($event)"
+                             (blur)="onBlur($event)"
+                             (focus)="onFocus($event)"
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
-        <kendo-multiselect *ngSwitchCase="9"
+        <kendo-multiselect *ngSwitchCase="11"
                            [data]="model.options"
                            [disabled]="model.disabled"
                            [dynamicId]="bindId && model.id"
@@ -151,12 +199,12 @@
                            [textField]="'label'"
                            [valueField]="'value'"
                            [valuePrimitive]="true"
-                           (blur)="onBlurChanged($event)"
-                           (focus)="onFocusChanged($event)"
+                           (blur)="onBlur($event)"
+                           (focus)="onFocus($event)"
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
-        <kendo-numerictextbox *ngSwitchCase="10"
+        <kendo-numerictextbox *ngSwitchCase="12"
                               [autoCorrect]="model.autoComplete"
                               [disabled]="model.disabled"
                               [dynamicId]="bindId && model.id"
@@ -167,12 +215,34 @@
                               [spinners]="true"
                               [step]="model.step"
                               [tabIndex]="model.tabIndex"
-                              (blur)="onBlurChanged($event)"
-                              (focus)="onFocusChanged($event)"
+                              (blur)="onBlur($event)"
+                              (focus)="onFocus($event)"
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-        <kendo-slider *ngSwitchCase="11"
+        <fieldset *ngSwitchCase="13" class="k-form-field" role="radiogroup">
+
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+            <ng-container *ngFor="let option of model.options; let idx = index">
+
+                <input type="radio" class="k-radio"
+                       [formControlName]="model.id"
+                       [id]="'option' + idx + model.id"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [value]="option.value"
+                       (blur)="onFocusChange($event)"
+                       (focus)="onFocusChange($event)"/>
+
+                <label class="k-radio-label" [for]="'option' + idx + model.id" [innerHTML]="option.label"></label>
+
+            </ng-container>
+
+        </fieldset>
+
+
+        <kendo-slider *ngSwitchCase="14"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -186,7 +256,7 @@
                       (valueChange)="onValueChange($event)"></kendo-slider>
 
 
-        <kendo-switch *ngSwitchCase="12"
+        <kendo-switch *ngSwitchCase="15"
                       [checked]="model.checked"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
@@ -198,7 +268,27 @@
                       (valueChange)="onValueChange($event)"></kendo-switch>
 
 
-        <kendo-upload *ngSwitchCase="14"
+        <textarea *ngSwitchCase="16" class="k-textarea"
+                  [attr.tabindex]="model.tabIndex"
+                  [cols]="model.cols"
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [maxlength]="model.maxLength"
+                  [minlength]="model.minLength"
+                  [name]="model.name"
+                  [ngClass]="model.cls.element.control"
+                  [placeholder]="model.placeholder"
+                  [readonly]="model.readOnly"
+                  [required]="model.required"
+                  [rows]="model.rows"
+                  [spellcheck]="model.spellCheck"
+                  [wrap]="model.wrap"
+                  (blur)="onFocusChange($event)"
+                  (change)="onValueChange($event)"
+                  (focus)="onFocusChange($event)"></textarea>
+
+
+        <kendo-upload *ngSwitchCase="18"
                       [autoUpload]="model.autoUpload"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"

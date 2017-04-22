@@ -252,16 +252,16 @@ cannot be provided in every single UI library. **See the following compatibility
 
 |             	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-primeng 	|
 |-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:----------:	|
-| Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
+| Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
 | Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|      ✓     	|
 | Editor      	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|      ✓     	|
 | File Upload 	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|     **     	|
 | Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
+| Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
 | Select      	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Slider      	|    ***   	|      ***     	|      ***      	|     ✗    	|     ✓    	|      ✓      	|      ✓     	|
+| Slider      	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
 | Switch      	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Textarea    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
+| Textarea    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
 
 **\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 

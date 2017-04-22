@@ -4,7 +4,7 @@ import {
     DynamicSwitchModel,
     DynamicSliderModel,
     DynamicDatePickerModel,
-    DynamicFileUploadModel
+    DynamicFileUploadModel, DynamicRadioGroupModel, DynamicCheckboxModel, DynamicCheckboxGroupModel
 } from "@ng2-dynamic-forms/core";
 
 export const KENDO_EXAMPLE_MODEL = [
@@ -50,6 +50,48 @@ export const KENDO_EXAMPLE_MODEL = [
             //focusedDate: new Date(2010, 11, 11)
             inline: false,
             value: new Date()
+        }
+    ),
+
+    new DynamicCheckboxGroupModel({
+
+        id: "kendoCheckboxGroup",
+        legend: "Kendo Checkbox Group",
+        group: [
+            new DynamicCheckboxModel(
+                {
+                    id: "checkboxGroup1",
+                    label: "Checkbox 1"
+                }
+            ),
+            new DynamicCheckboxModel(
+                {
+                    id: "checkboxGroup2",
+                    label: "Checkbox 2"
+                }
+            )
+        ]
+    }),
+
+    new DynamicRadioGroupModel<string>(
+        {
+            id: "kendoRadioGroup",
+            legend: "Kendo Radio Group",
+            options: [
+                {
+                    label: "Option 1",
+                    value: "option-1",
+                },
+                {
+                    label: "Option 2",
+                    value: "option-2"
+                },
+                {
+                    label: "Option 3",
+                    value: "option-3"
+                }
+            ],
+            value: "option-2"
         }
     ),
 

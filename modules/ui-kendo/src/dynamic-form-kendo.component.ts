@@ -19,13 +19,18 @@ import {
     DynamicSelectModel,
     DynamicDatePickerModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
-    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER, DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
 } from "@ng2-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -134,6 +139,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                 return KendoFormControlType.Array;
 
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+                return KendoFormControlType.Checkbox;
+
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                 model = this.model as DynamicDatePickerModel;
 
@@ -142,6 +150,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
                 return KendoFormControlType.Upload;
 
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return KendoFormControlType.Group;
 
@@ -151,7 +160,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE) {
                     return KendoFormControlType.DateInput;
 
-                } else if (!model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                } else if (!model.mask && model.list && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
                     return KendoFormControlType.AutoComplete;
 
                 } else if (model.mask && model.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
@@ -161,8 +170,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
                     return KendoFormControlType.NumericTextBox;
 
                 } else {
-                    return null;
+                    return KendoFormControlType.Input;
                 }
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+                return KendoFormControlType.RadioGroup;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
                 model = this.model as DynamicSelectModel<any>;
@@ -174,6 +186,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
             case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
                 return KendoFormControlType.Switch;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+                return KendoFormControlType.TextArea;
 
             default:
                 return null;
@@ -189,11 +204,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             .forEach(directive => this.setKendoTemplateDirective(directive));
     }
 
-    onFocusChanged($event): void {
+    onFocus($event): void {
         this.focus.emit({$event: $event, control: this.control, model: this.model});
     }
 
-    onBlurChanged($event): void {
+    onBlur($event): void {
         this.blur.emit({$event: $event, control: this.control, model: this.model});
     }
 }
