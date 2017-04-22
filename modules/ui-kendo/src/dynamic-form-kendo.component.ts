@@ -142,6 +142,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
                 return KendoFormControlType.Checkbox;
 
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+                return KendoFormControlType.CheckboxGroup;
+
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                 model = this.model as DynamicDatePickerModel;
 
@@ -150,7 +153,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
                 return KendoFormControlType.Upload;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            //case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return KendoFormControlType.Group;
 
