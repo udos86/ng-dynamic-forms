@@ -43,6 +43,8 @@
                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                             [placeholder]="model.placeholder"
                             [tabIndex]="model.tabIndex"
+                            (blur)="onBlurChanged($event)"
+                            (focus)="onFocusChanged($event)"
                             (valueChange)="onValueChange($event)"></kendo-autocomplete>
 
 
@@ -70,6 +72,8 @@
                          [rangeValidation]="true"
                          [spinners]="true"
                          [tabIndex]="model.tabIndex"
+                         (blur)="onBlurChanged($event)"
+                         (focus)="onFocusChanged($event)"
                          (valueChange)="onValueChange($event)"></kendo-dateinput>
 
 
@@ -85,6 +89,8 @@
                           [placeholder]="model.placeholder"
                           [rangeValidation]="true"
                           [tabIndex]="model.tabIndex"
+                          (blur)="onBlurChanged($event)"
+                          (focus)="onFocusChanged($event)"
                           (valueChange)="onValueChange($event)"></kendo-datepicker>
 
 
@@ -98,6 +104,8 @@
                             [textField]="'label'"
                             [valueField]="'value'"
                             [valuePrimitive]="true"
+                            (blur)="onBlurChanged($event)"
+                            (focus)="onFocusChanged($event)"
                             (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 
@@ -127,6 +135,8 @@
                              [maskValidation]="true"
                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                              [tabIndex]="model.tabIndex"
+                             (blur)="onBlurChanged($event)"
+                             (focus)="onFocusChanged($event)"
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
@@ -141,6 +151,8 @@
                            [textField]="'label'"
                            [valueField]="'value'"
                            [valuePrimitive]="true"
+                           (blur)="onBlurChanged($event)"
+                           (focus)="onFocusChanged($event)"
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
@@ -155,6 +167,8 @@
                               [spinners]="true"
                               [step]="model.step"
                               [tabIndex]="model.tabIndex"
+                              (blur)="onBlurChanged($event)"
+                              (focus)="onFocusChanged($event)"
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 

@@ -188,4 +188,12 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             .filter(directive => directive.type.startsWith("kendo"))
             .forEach(directive => this.setKendoTemplateDirective(directive));
     }
+
+    onFocusChanged($event): void {
+        this.focus.emit({$event: $event, control: this.control, model: this.model});
+    }
+
+    onBlurChanged($event): void {
+        this.blur.emit({$event: $event, control: this.control, model: this.model});
+    }
 }
