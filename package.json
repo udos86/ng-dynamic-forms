@@ -73,7 +73,7 @@
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.47",
     "@types/node": "^7.0.13",
-    "codelyzer": "^2.1.1",
+    "codelyzer": "^3.0.0",
     "dateformat": "^2.0.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",

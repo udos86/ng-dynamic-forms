@@ -56,7 +56,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;
         console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    };
+    }
 
     @Input() group: FormGroup;
     @Input() model: DynamicFormControlModel;

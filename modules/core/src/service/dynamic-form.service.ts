@@ -137,9 +137,9 @@ export class DynamicFormService {
     }
 
 
-    createFormGroup(group: DynamicFormControlModel[], groupExtra: {[key: string]: any} | null = null): FormGroup {
+    createFormGroup(group: DynamicFormControlModel[], groupExtra: { [key: string]: any } | null = null): FormGroup {
 
-        let formGroup: {[id: string]: AbstractControl;} = {};
+        let formGroup: { [id: string]: AbstractControl; } = {};
 
         group.forEach(model => {
 
@@ -182,17 +182,50 @@ export class DynamicFormService {
                         groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
                         ...controlModels: DynamicFormControlModel[]): void {
 
+        if (groupModel instanceof DynamicFormGroupModel) {
+
+            this.insertFormGroupControl(groupModel.size(), formGroup, groupModel, ...controlModels);
+
+        } else {
+
+            let formModel = groupModel as DynamicFormControlModel[];
+            this.insertFormGroupControl(formModel.length, formGroup, formModel, ...controlModels);
+        }
+    }
+
+
+    moveFormGroupControl(index: number,
+                         step: number,
+                         groupModel: DynamicFormControlModel[] | DynamicFormGroupModel): void {
+
+        if (groupModel instanceof DynamicFormGroupModel) {
+
+            groupModel.move(index, step);
+
+        } else {
+
+            let formModel = groupModel as DynamicFormControlModel[];
+            formModel.splice(index + step, 0, ...formModel.splice(index, 1));
+        }
+    }
+
+
+    insertFormGroupControl(index: number,
+                           formGroup: FormGroup,
+                           groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
+                           ...controlModels: DynamicFormControlModel[]): void {
+
         let controls = this.createFormGroup(controlModels).controls;
 
-        Object.keys(controls).forEach((controlName, index) => {
+        Object.keys(controls).forEach((controlName, idx) => {
 
-            let controlModel = controlModels[index];
+            let controlModel = controlModels[idx];
 
             if (groupModel instanceof DynamicFormGroupModel) {
-                groupModel.add(controlModel);
+                groupModel.insert(index, controlModel);
 
             } else {
-                (groupModel as DynamicFormControlModel[]).push(controlModel);
+                (groupModel as DynamicFormControlModel[]).splice(index, 0, controlModel);
             }
 
             formGroup.addControl(controlName, controls[controlName]);

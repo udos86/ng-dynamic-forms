@@ -48,11 +48,27 @@ export class DynamicFormGroupModel extends DynamicFormControlModel implements Dy
         return this.group[index];
     }
 
+    set(index: number, controlModel: DynamicFormControlModel,): void {
+        this.group[index] = controlModel;
+    }
+
     add(controlModel: DynamicFormControlModel): void {
         this.group.push(controlModel);
     }
 
+    insert(index: number, controlModel: DynamicFormControlModel): void {
+        this.group.splice(index, 0, controlModel);
+    }
+
+    move(index: number, step: number): void {
+        this.group.splice(index + step, 0, ...this.group.splice(index, 1));
+    }
+
     remove(index: number) {
         this.group.splice(index, 1);
+    }
+
+    size(): number {
+        return this.group.length;
     }
 }

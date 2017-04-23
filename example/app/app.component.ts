@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Response, ResponseOptions } from "@angular/http";
 import { MockBackend } from "@angular/http/testing";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, NavigationStart, RoutesRecognized } from "@angular/router";
 
 @Component({
 
@@ -13,6 +13,7 @@ import { Router, NavigationEnd } from "@angular/router";
 export class AppComponent {
 
     routeData: any = {};
+    url: string;
 
     constructor(private mockBackend: MockBackend, private router: Router) {
 
@@ -34,8 +35,17 @@ export class AppComponent {
         this.router.events.subscribe(event => {
 
             if (event instanceof NavigationEnd) {
-                this.routeData = this.router.routerState.snapshot.root.firstChild.data;
+
+                if (this.url !== "/" && this.url !== event.url) {
+                    location.reload(true); // reload to avoid CSS side effects
+
+                } else {
+                    this.routeData = this.router.routerState.snapshot.root.firstChild.data;
+                    this.url = event.urlAfterRedirects;
+                }
             }
         });
+
+        this.url = this.router.url;
     }
 }

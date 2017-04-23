@@ -1,10 +1,13 @@
 import {
+    DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicFileUploadModel,
     DynamicInputModel,
+    DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicSwitchModel,
     DynamicSliderModel,
-    DynamicDatePickerModel,
-    DynamicFileUploadModel, DynamicRadioGroupModel, DynamicCheckboxModel, DynamicCheckboxGroupModel,
     DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
@@ -47,13 +50,14 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicInputModel({
-
-        id: "kendoTextBox",
-        hint: "Just a hint",
-        label: "Kendo TextBox",
-        placeholder: "Kendo TextBox"
-    }),
+    new DynamicInputModel(
+        {
+            id: "kendoTextBox",
+            hint: "Just a hint",
+            label: "Kendo TextBox",
+            placeholder: "Kendo TextBox"
+        }
+    ),
 
     new DynamicDatePickerModel(
         {
@@ -65,25 +69,26 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicCheckboxGroupModel({
-
-        id: "kendoCheckboxGroup",
-        legend: "Kendo Checkbox Group",
-        group: [
-            new DynamicCheckboxModel(
-                {
-                    id: "checkboxGroup1",
-                    label: "Checkbox 1"
-                }
-            ),
-            new DynamicCheckboxModel(
-                {
-                    id: "checkboxGroup2",
-                    label: "Checkbox 2"
-                }
-            )
-        ]
-    }),
+    new DynamicCheckboxGroupModel(
+        {
+            id: "kendoCheckboxGroup",
+            legend: "Kendo Checkbox Group",
+            group: [
+                new DynamicCheckboxModel(
+                    {
+                        id: "kendoCheckbox1",
+                        label: "Kendo Checkbox 1"
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "kendoCheckbox2",
+                        label: "Kendo Checkbox 2"
+                    }
+                )
+            ]
+        }
+    ),
 
     new DynamicRadioGroupModel<string>(
         {
@@ -203,11 +208,12 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicTextAreaModel({
-
-        id: "kendoTextArea",
-        label: "Kendo TextArea",
-        rows: 5,
-        placeholder: "Kendo TextArea"
-    }),
+    new DynamicTextAreaModel(
+        {
+            id: "kendoTextArea",
+            label: "Kendo TextArea",
+            rows: 5,
+            placeholder: "Kendo TextArea"
+        }
+    ),
 ];
