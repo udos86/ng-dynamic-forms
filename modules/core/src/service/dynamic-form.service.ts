@@ -272,12 +272,30 @@ export class DynamicFormService {
     moveFormArrayGroup(index: number, step: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
         let newIndex = index + step,
-            formControl = formArray.at(index);
+            moveUp = step >= 0;
 
         if ((index >= 0 && index < model.size) && (newIndex >= 0 && newIndex < model.size)) {
 
-            formArray.setControl(index, formArray.at(newIndex));
-            formArray.setControl(newIndex, formControl);
+            let moving = [];
+
+            for (let i = moveUp ? index : newIndex; i <= (moveUp ? newIndex : index); i++) {
+                moving.push(formArray.at(i));
+            }
+
+            moving.forEach((formControl, idx) => {
+
+                let position;
+
+                if (moveUp) {
+                    position = idx === 0 ? newIndex : index + idx - 1;
+
+                } else {
+                    position = idx === moving.length - 1 ? newIndex : newIndex + idx + 1;
+                }
+
+                formArray.setControl(position, formControl);
+            });
+
             model.moveGroup(index, step);
 
         } else {
