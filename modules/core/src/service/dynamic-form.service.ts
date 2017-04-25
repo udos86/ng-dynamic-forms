@@ -235,7 +235,7 @@ export class DynamicFormService {
 
     removeFormGroupControl(index: number,
                            formGroup: FormGroup,
-                           groupModel: DynamicFormControlModel[] | DynamicFormGroupModel) {
+                           groupModel: DynamicFormControlModel[] | DynamicFormGroupModel): void {
 
         if (groupModel instanceof DynamicFormGroupModel) {
 
@@ -259,13 +259,6 @@ export class DynamicFormService {
     insertFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
         formArray.insert(index, this.createFormGroup(model.insertGroup(index).group));
-    }
-
-
-    removeFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
-
-        formArray.removeAt(index);
-        model.removeGroup(index);
     }
 
 
@@ -301,6 +294,13 @@ export class DynamicFormService {
         } else {
             throw new Error(`form array group cannot be moved due to index or new index being out of bounds`);
         }
+    }
+
+
+    removeFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
+
+        formArray.removeAt(index);
+        model.removeGroup(index);
     }
 
 

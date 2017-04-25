@@ -37,7 +37,7 @@ export class AppComponent {
             if (event instanceof NavigationEnd) {
 
                 if (this.url !== "/" && this.url !== event.url) {
-                    location.reload(true); // reload to avoid CSS side effects
+                    location.reload(true); // reload to avoid CSS side effects // DON'T DO this in production !!!
 
                 } else {
                     this.routeData = this.router.routerState.snapshot.root.firstChild.data;

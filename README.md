@@ -356,7 +356,7 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
     })
 ];  
  ```
-
+ 
 **2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent`:
 ```ts
 ngOnInit() {
@@ -372,6 +372,13 @@ ngOnInit() {
                                     [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
+
+**3. To manipulate existing** `DynamicFormGroupModel`s **you can simply use** `DynamicFormService`:
+
+* `addFormGroupControl(formGroup: FormGroup, groupModel: DynamicFormGroupModel, ...controlModels: DynamicFormControlModel[]): void`
+* `insertFormGroupControl(index: number, formGroup: FormGroup, groupModel: DynamicFormGroupModel, ...controlModels: DynamicFormControlModel[]): void`
+* `moveFormGroupControl(index: number, step: number, groupModel: DynamicFormGroupModel): void`
+* `removeFormGroupControl(index: number, formGroup: FormGroup, groupModel: DynamicFormGroupModel): void`
 
 
 ## Form Arrays
