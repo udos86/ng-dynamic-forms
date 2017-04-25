@@ -250,18 +250,19 @@ your component** `template`:
 Due to technical restrictions or external dependencies still being in development full support for all major form controls 
 cannot be provided in every single UI library. **See the following compatibility table**:
 
-|             	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-primeng 	|
-|-------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:----------:	|
-| Checkbox    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
-| Datepicker  	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|      ✓     	|
-| Editor      	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|      ✓     	|
-| File Upload 	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|     **     	|
-| Input       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Radio Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
-| Select      	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Slider      	|    ***   	|      ***     	|      ***      	|     ✗    	|     ✓    	|      ✓      	|      ✓     	|
-| Switch      	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Textarea    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✗    	|      ✓      	|      ✓     	|
+|                	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-primeng 	|
+|----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:----------:	|
+| Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|      ✓     	|
+| Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|      ✓     	|
+| File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|     **     	|
+| Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Radio Group    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Select         	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+| Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
 
 **\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
@@ -355,7 +356,7 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
     })
 ];  
  ```
-
+ 
 **2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent`:
 ```ts
 ngOnInit() {
@@ -371,6 +372,13 @@ ngOnInit() {
                                     [model]="controlModel"></dynamic-form-bootstrap-control>
 </form>
 ```
+
+**3. To manipulate existing** `DynamicFormGroupModel`s **you can simply use** `DynamicFormService`:
+
+* `addFormGroupControl(formGroup: FormGroup, groupModel: DynamicFormGroupModel, ...controlModels: DynamicFormControlModel[]): void`
+* `insertFormGroupControl(index: number, formGroup: FormGroup, groupModel: DynamicFormGroupModel, ...controlModels: DynamicFormControlModel[]): void`
+* `moveFormGroupControl(index: number, step: number, groupModel: DynamicFormGroupModel): void`
+* `removeFormGroupControl(index: number, formGroup: FormGroup, groupModel: DynamicFormGroupModel): void`
 
 
 ## Form Arrays

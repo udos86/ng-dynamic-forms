@@ -22,7 +22,7 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent {
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;
         console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    };
+    }
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() group: FormGroup;

@@ -139,8 +139,12 @@ dynamic-form-material-example fieldset {
 
 dynamic-form-kendo-control {
     display: block;
-    margin: 2.5rem;
+    margin-bottom: 3rem;
     text-align: center;
+}
+
+dynamic-form-kendo-control .k-widget {
+    margin: 0 auto;
 }
 
 dynamic-form-material-control .md-list-item {

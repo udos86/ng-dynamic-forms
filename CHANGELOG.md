@@ -1,3 +1,10 @@
+# 1.4.6
+
+### **Features** 
+
+* initial checkbox, input, radio group and textarea support in `ui-kendo`
+* `moveFormGroupControl()` function added to `DynamicFormService` (closes [#339](https://github.com/udos86/ng2-dynamic-forms/issues/339))
+
 # 1.4.5
 
 ### **Breaking Change**

@@ -22,7 +22,7 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;
         console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    };
+    }
 
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;

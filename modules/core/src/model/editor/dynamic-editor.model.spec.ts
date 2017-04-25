@@ -1,7 +1,4 @@
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
-    DynamicEditorModel
-} from "./dynamic-editor.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_EDITOR, DynamicEditorModel } from "./dynamic-editor.model";
 
 describe("DynamicEditorModel test suite", () => {
 

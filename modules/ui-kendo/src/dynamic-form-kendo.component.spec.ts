@@ -89,14 +89,22 @@ describe("DynamicFormKendoComponent test suite", () => {
         expect(component.kendoDropDownList).toBeDefined();
     });
 
-    xit("should listen to native focus and blur events", () => {
+    it("should listen to focus events", () => {
 
-        spyOn(component, "onFocusChange");
+        spyOn(component, "onFocus");
 
         selectElement.triggerEventHandler("focus", null);
+
+        expect(component.onFocus).toHaveBeenCalled();
+    });
+
+    it("should listen to blur events", () => {
+
+        spyOn(component, "onBlur");
+
         selectElement.triggerEventHandler("blur", null);
 
-        expect(component.onFocusChange).toHaveBeenCalledTimes(2);
+        expect(component.onBlur).toHaveBeenCalled();
     });
 
     it("should listen to native change event", () => {

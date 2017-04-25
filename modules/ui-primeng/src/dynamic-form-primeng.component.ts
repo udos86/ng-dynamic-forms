@@ -53,7 +53,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;
         console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    };
+    }
 
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
@@ -76,7 +76,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
     @ViewChild(MultiSelect) pMultiSelect: MultiSelect | null;
     @ViewChild(Slider) pSlider: Slider | null;
 
-    private suggestions: string[];
+    suggestions: string[];
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);

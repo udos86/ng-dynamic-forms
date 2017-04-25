@@ -1,10 +1,14 @@
 import {
+    DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicFileUploadModel,
     DynamicInputModel,
+    DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicSwitchModel,
     DynamicSliderModel,
-    DynamicDatePickerModel,
-    DynamicFileUploadModel
+    DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
 export const KENDO_EXAMPLE_MODEL = [
@@ -12,6 +16,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "kendoDropDownList",
+            label: "Kendo DropDownList",
             options: [
                 {
                     label: "Option 1",
@@ -38,24 +43,79 @@ export const KENDO_EXAMPLE_MODEL = [
         {
             autoUpload: true,
             id: "kendoUpload",
+            label: "Kendo Upload",
             multiple: true,
             removeUrl: "removeUrl",
             url: "saveUrl"
         }
     ),
 
+    new DynamicInputModel(
+        {
+            id: "kendoTextBox",
+            hint: "Just a hint",
+            label: "Kendo TextBox",
+            placeholder: "Kendo TextBox"
+        }
+    ),
+
     new DynamicDatePickerModel(
         {
-            id: "kendoDatepicker",
-            //focusedDate: new Date(2010, 11, 11)
+            id: "kendoDatePicker",
+            //focusedDate: new Date(2010, 11, 11),
             inline: false,
+            label: "Kendo DatePicker",
             value: new Date()
+        }
+    ),
+
+    new DynamicCheckboxGroupModel(
+        {
+            id: "kendoCheckboxGroup",
+            legend: "Kendo Checkbox Group",
+            group: [
+                new DynamicCheckboxModel(
+                    {
+                        id: "kendoCheckbox1",
+                        label: "Kendo Checkbox 1"
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "kendoCheckbox2",
+                        label: "Kendo Checkbox 2"
+                    }
+                )
+            ]
+        }
+    ),
+
+    new DynamicRadioGroupModel<string>(
+        {
+            id: "kendoRadioGroup",
+            legend: "Kendo Radio Group",
+            options: [
+                {
+                    label: "Option 1",
+                    value: "option-1",
+                },
+                {
+                    label: "Option 2",
+                    value: "option-2"
+                },
+                {
+                    label: "Option 3",
+                    value: "option-3"
+                }
+            ],
+            value: "option-2"
         }
     ),
 
     new DynamicInputModel(
         {
             id: "kendoAutocomplete",
+            label: "Kendo Autocomplete",
             list: ["Football", "Basketball", "Baseball", "Hockey", "Rugby", "Volleyball"],
             placeholder: "Kendo Autocomplete"
         }
@@ -64,6 +124,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSliderModel(
         {
             id: "kendoSlider",
+            label: "Kendo Slider",
             min: 0,
             max: 10,
             step: 1,
@@ -74,6 +135,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoNumericTextBox",
+            label: "Kendo NumericTextBox",
             inputType: "number",
             min: 0,
             max: 100,
@@ -85,6 +147,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "kendoMultiSelect",
+            label: "Kendo MultiSelect",
             multiple: true,
             options: [
                 {
@@ -120,6 +183,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoDateInput",
+            label: "Kendo DateInput",
             placeholder: "Kendo DateInput",
             inputType: "date"
         }
@@ -128,6 +192,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSwitchModel(
         {
             id: "kendoSwitch",
+            label: "Kendo Switch",
             offLabel: "Off",
             onLabel: "On",
             value: true
@@ -137,8 +202,18 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoMaskedTextBox",
+            label: "Kendo MaskedTextBox",
             mask: "0000-00-00",
             value: "2017-01-01"
         }
-    )
+    ),
+
+    new DynamicTextAreaModel(
+        {
+            id: "kendoTextArea",
+            label: "Kendo TextArea",
+            rows: 5,
+            placeholder: "Kendo TextArea"
+        }
+    ),
 ];
