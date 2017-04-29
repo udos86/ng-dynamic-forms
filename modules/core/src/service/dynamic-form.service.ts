@@ -86,7 +86,7 @@ export class DynamicFormService {
 
     getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | never {
 
-        let validatorFn: any = Validators[validatorName] || this.getCustomValidatorFn(validatorName);
+        let validatorFn: Function | null = (Validators as any)[validatorName] || this.getCustomValidatorFn(validatorName);
 
         if (!isFunction(validatorFn)) {
             throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS`);
@@ -98,7 +98,8 @@ export class DynamicFormService {
 
     getAsyncValidatorFn(asyncValidatorName: string, asyncValidatorArgs?: any): AsyncValidatorFn | never {
 
-        let asyncValidatorFn: any = Validators[asyncValidatorName] || this.getCustomAsyncValidatorFn(asyncValidatorName);
+
+        let asyncValidatorFn: Function | null = (Validators as any)[asyncValidatorName] || this.getCustomAsyncValidatorFn(asyncValidatorName);
 
         if (!isFunction(asyncValidatorFn)) {
             throw new Error(`async validator "${asyncValidatorName}" is not provided via NG_ASYNC_VALIDATORS`);
@@ -269,13 +270,13 @@ export class DynamicFormService {
 
         if ((index >= 0 && index < model.size) && (newIndex >= 0 && newIndex < model.size)) {
 
-            let moving = [];
+            let movingGroups: AbstractControl[] = [];
 
             for (let i = moveUp ? index : newIndex; i <= (moveUp ? newIndex : index); i++) {
-                moving.push(formArray.at(i));
+                movingGroups.push(formArray.at(i));
             }
 
-            moving.forEach((formControl, idx) => {
+            movingGroups.forEach((formControl, idx) => {
 
                 let position;
 
@@ -283,7 +284,7 @@ export class DynamicFormService {
                     position = idx === 0 ? newIndex : index + idx - 1;
 
                 } else {
-                    position = idx === moving.length - 1 ? newIndex : newIndex + idx + 1;
+                    position = idx === movingGroups.length - 1 ? newIndex : newIndex + idx + 1;
                 }
 
                 formArray.setControl(position, formControl);
