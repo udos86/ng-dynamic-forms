@@ -100,9 +100,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     get errorMessages(): string[] {
 
-        let messages = [];
+        let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>,
+            messages = [];
 
-        if (isDefined(this.model["errorMessages"])) {
+        if (isDefined(model.errorMessages)) {
 
             for (let validatorName in this.control.errors) {
 
@@ -112,21 +113,21 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
                     validatorName = validatorName.replace("length", "Length");
                 }
 
-                if (this.model["errorMessages"][validatorName]) {
+                if (model.errorMessages[validatorName]) {
 
-                    message = this.model["errorMessages"][validatorName].replace(/\{\{(.+?)\}\}/mg,
+                    message = model.errorMessages[validatorName].replace(/\{\{(.+?)\}\}/mg,
                         (match: string, expression: string) => {
 
-                            let propertySource = this.model,
-                                propertyName = expression;
+                            let propertySource: any = model,
+                                propertyName: string = expression;
 
                             if (expression.indexOf("validator.") >= 0) {
 
-                                propertySource = this.control.errors[validatorName];
+                                propertySource = this.control.errors[validatorName] as any;
                                 propertyName = expression.replace("validator.", "");
                             }
 
-                            return propertySource[propertyName] ? propertySource[propertyName] : null;
+                            return propertySource[propertyName] as string ? propertySource[propertyName] : null;
                         });
 
                 } else {
@@ -266,7 +267,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         value ? this.control.disable() : this.control.enable();
     }
 
-    onValueChange($event: Event |  DynamicFormControlEvent | any): void {
+    onValueChange($event: Event | DynamicFormControlEvent | any): void {
 
         if ($event instanceof Event) { // native HTML5 change event
 
@@ -277,7 +278,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
                 let model = this.model as DynamicInputModel;
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
-                    model.files = $event.srcElement["files"];
+
+                    let inputElement: any = ($event as Event).target || ($event as Event).srcElement;
+
+                    model.files = inputElement.files as FileList;
                 }
             }
 
@@ -295,17 +299,37 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     onFocusChange($event: FocusEvent | DynamicFormControlEvent): void {
 
+        let emitValue;
+
         if ($event instanceof FocusEvent) {
 
             $event.stopPropagation();
 
-            this.hasFocus = $event.type === "focus";
+            emitValue = {$event: $event, control: this.control, model: this.model};
 
-            this[$event.type].emit({$event: $event, control: this.control, model: this.model});
+            if ($event.type === "focus") {
+
+                this.hasFocus = true;
+                this.focus.emit(emitValue);
+
+            } else {
+
+                this.hasFocus = false;
+                this.blur.emit(emitValue);
+            }
 
         } else {
 
-            this[(($event as DynamicFormControlEvent).$event as FocusEvent).type].emit($event);
+            emitValue = $event as DynamicFormControlEvent;
+
+            if ((emitValue.$event as FocusEvent).type === "focus") {
+
+                this.focus.emit(emitValue);
+
+            } else {
+
+                this.blur.emit(emitValue);
+            }
         }
     }
 }

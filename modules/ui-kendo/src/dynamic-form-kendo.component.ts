@@ -88,7 +88,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     protected setKendoTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        let templateDirectives: object,
+        let templateDirectives: any,
             viewChild: any;
 
         if (this.kendoAutoComplete) {
@@ -122,7 +122,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             viewChild = this.kendoUpload;
         }
 
-        Object.keys(templateDirectives || {}).forEach((key: string) => {
+        Object.keys(templateDirectives || ({} as any)).forEach((key: string) => {
 
             if (templateDirectives[key] === directive.type) {
                 viewChild[key] = directive;
@@ -207,11 +207,11 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
             .forEach(directive => this.setKendoTemplateDirective(directive));
     }
 
-    onFocus($event): void {
+    onFocus($event: null): void {
         this.focus.emit({$event: $event, control: this.control, model: this.model});
     }
 
-    onBlur($event): void {
+    onBlur($event: null): void {
         this.blur.emit({$event: $event, control: this.control, model: this.model});
     }
 }
