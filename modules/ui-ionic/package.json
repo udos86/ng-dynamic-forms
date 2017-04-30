@@ -3,7 +3,7 @@
   "version": "1.4.6",
   "description": "Ionic UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-ionic.umd.js",
-  "module": "./index.js",
+  "module": "./bundles/ui-ionic.es.js",
   "typings": "./index.d.ts",
   "keywords": [
     "angular",

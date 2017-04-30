@@ -104,12 +104,14 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^1.0.2",
+    "rollup-stream": "^1.19.0",
     "run-sequence": "^1.2.2",
     "systemjs": "^0.20.12",
     "systemjs-builder": "^0.16.4",
     "tslint": "^5.0.0",
     "typedoc": "^0.6.0",
     "typescript": "^2.3.2",
+    "vinyl-source-stream": "^1.1.0",
     "webpack": "^2.4.1"
   },
   "optionalDependencies": {

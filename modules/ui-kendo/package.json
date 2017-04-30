@@ -3,7 +3,7 @@
   "version": "1.4.6",
   "description": "Kendo UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-kendo.umd.js",
-  "module": "./index.js",
+  "module": "./bundles/ui-kendo.es.js",
   "typings": "./index.d.ts",
   "keywords": [
     "angular",

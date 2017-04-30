@@ -115,19 +115,19 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
                 if (model.errorMessages[validatorName]) {
 
-                    message = model.errorMessages[validatorName].replace(/\{\{(.+?)\}\}/mg,
-                        (match: string, expression: string) => {
+                    message = model.errorMessages[validatorName]
+                        .replace(/\{\{(.+?)\}\}/mg, (match: string, expression: string) => {
 
                             let propertySource: any = model,
                                 propertyName: string = expression;
 
                             if (expression.indexOf("validator.") >= 0) {
 
-                                propertySource = this.control.errors[validatorName] as any;
+                                propertySource = this.control.errors[validatorName];
                                 propertyName = expression.replace("validator.", "");
                             }
 
-                            return propertySource[propertyName] as string ? propertySource[propertyName] : null;
+                            return propertySource[propertyName] ? propertySource[propertyName] : null;
                         });
 
                 } else {

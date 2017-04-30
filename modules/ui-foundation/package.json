@@ -3,7 +3,7 @@
   "version": "1.4.6",
   "description": "Foundation UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-foundation.umd.js",
-  "module": "./index.js",
+  "module": "./bundles/ui-foundation.es.js",
   "typings": "./index.d.ts",
   "keywords": [
     "angular",
