@@ -4,9 +4,7 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
-    DynamicTextAreaModel,
-    DynamicFormArrayModel,
-    DynamicFormGroupModel
+    DynamicTextAreaModel, DynamicDatePickerModel, DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
@@ -47,6 +45,24 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
         }
     ),
 
+    new DynamicDatePickerModel(
+        {
+            id: "ngbCalendar",
+            inline: true,
+            label: "Ngb Calendar"
+        },
+        {
+            element: {
+                container: "row",
+                label: "col-form-label"
+            },
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            }
+        }
+    ),
+
     new DynamicInputModel(
         {
             id: "ngbInput",
@@ -55,6 +71,23 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
             placeholder: "Ngb input",
             prefix: "Prefix",
             suffix: "Suffix"
+        },
+        {
+            element: {
+                container: "row",
+                label: "col-form-label"
+            },
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            }
+        }
+    ),
+
+    new DynamicTimePickerModel(
+        {
+            id: "ngbTimePicker",
+            label: "Ngb TimePicker"
         },
         {
             element: {

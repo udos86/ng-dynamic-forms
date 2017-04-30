@@ -40,6 +40,10 @@ import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "../model/s
 import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA, DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicTimePickerModel
+} from "../model/timepicker/dynamic-timepicker.model";
 import { isFunction, isDefined, isString } from "../utils";
 
 export class DynamicFormService {
@@ -403,6 +407,10 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
                     group.push(new DynamicTextAreaModel(model, model.cls));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+                    group.push(new DynamicTimePickerModel(model, model.cls));
                     break;
 
                 default:

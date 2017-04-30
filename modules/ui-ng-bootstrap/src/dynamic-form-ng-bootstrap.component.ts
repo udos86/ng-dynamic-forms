@@ -5,20 +5,32 @@ import {
     DynamicFormControlModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicDatePickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const enum NGBootstrapFormControlType {
 
     Array = 1,
-    Checkbox = 2,
-    DatePicker = 3,
-    Group = 4,
-    Input = 5,
-    RadioGroup = 6,
-    Select = 7,
-    TextArea = 8,
-    TimePicker = 9
+    Calendar = 2,
+    Checkbox = 3,
+    DatePicker = 4,
+    Group = 5,
+    Input = 6,
+    RadioGroup = 7,
+    Select = 8,
+    TextArea = 9,
+    TimePicker = 10
 }
 
 @Component({
@@ -51,5 +63,44 @@ export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent
 
     constructor(relationService: DynamicFormRelationService) {
         super(relationService);
+    }
+
+    protected getFormControlType(): NGBootstrapFormControlType | null {
+
+        switch (this.model.type) {
+
+            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+                return NGBootstrapFormControlType.Array;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+                return NGBootstrapFormControlType.Checkbox;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return NGBootstrapFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                let model = this.model as DynamicDatePickerModel;
+
+                return model.inline ? NGBootstrapFormControlType.Calendar : NGBootstrapFormControlType.DatePicker;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                return NGBootstrapFormControlType.Input;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+                return NGBootstrapFormControlType.RadioGroup;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+                return NGBootstrapFormControlType.Select;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+                return NGBootstrapFormControlType.TextArea;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+                return NGBootstrapFormControlType.TimePicker;
+
+            default:
+                return null;
+        }
     }
 }
