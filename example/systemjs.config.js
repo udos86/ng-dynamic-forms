@@ -88,6 +88,7 @@
         "@ng2-dynamic-forms/ui-foundation",
         "@ng2-dynamic-forms/ui-kendo",
         "@ng2-dynamic-forms/ui-material",
+        "@ng2-dynamic-forms/ui-ng-bootstrap",
         "@ng2-dynamic-forms/ui-primeng",
         //"@ng2-dynamic-forms/ui-semantic"
     ];

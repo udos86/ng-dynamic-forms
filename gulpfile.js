@@ -25,6 +25,7 @@ const SRC_PATH = "./modules",
         "ui-ionic",
         "ui-kendo",
         "ui-material",
+        "ui-ng-bootstrap",
         "ui-primeng"
     ];
 

@@ -41,7 +41,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
         "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
         "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
-        "ionic-angular": "ionic-angular",
+        "ionic-angular": "ionic-angular", // TODO
         "primeng/primeng": "primeng/primeng",
         "rxjs/Subject": "Rx",
         "rxjs/Subscription": "Rx"
@@ -51,7 +51,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         return string.replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
     }
 
-    function config(format, minify) {
+    function rollupConfig(format, minify) {
 
         return {
 
@@ -63,9 +63,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             moduleId: "",
             moduleName: `${globalsName}.${toCamelCase(moduleName)}`,
             globals,
-            plugins: minify ? [
-                uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}})
-            ] : []
+            plugins: minify ? [uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}})] : []
         };
     }
 
@@ -74,11 +72,11 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         const bundles = targets.map(target => {
 
             let bundleName = target.minify ? `${moduleName}.${target.format}.min.js` : `${moduleName}.${target.format}.js`,
-                bunldePath = path.join(dest, moduleName, "bundles");
+                bundlePath = path.join(dest, moduleName, "bundles");
 
-            return rollup(config(target.format, target.minify))
+            return rollup(rollupConfig(target.format, target.minify))
                 .pipe(source(bundleName))
-                .pipe(gulp.dest(bunldePath));
+                .pipe(gulp.dest(bundlePath));
         });
 
         return merge(...bundles);

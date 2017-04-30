@@ -36,6 +36,6 @@ export class PrimeNGExampleComponent implements OnInit {
     }
 
     onChange($event) {
-        console.log(`CHANGE event on ${$event.model.id}: `, $event);
+        //console.log(`CHANGE event on ${$event.model.id}: `, $event);
     }
 }

@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+
+<div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
+
+    <form class="form-horizontal" [formGroup]="formGroup">
+
+        <dynamic-form-ng-bootstrap-control *ngFor="let controlModel of formModel"
+                                           [group]="formGroup"
+                                           [model]="controlModel"></dynamic-form-ng-bootstrap-control>
+
+    </form>
+
+    <!--button (click)="test()" type="button">Test</button-->
+
+    <pre>{{formGroup.value | json}}</pre>
+
+</div>

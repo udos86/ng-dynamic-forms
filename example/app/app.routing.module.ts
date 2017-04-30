@@ -4,6 +4,7 @@ import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.compone
 import { FoundationExampleComponent } from "./foundation/foundation-example.component";
 import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
+import { NGBootstrapExampleComponent } from "./ng-bootstrap/ng-bootstrap-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 import { NgModule } from "@angular/core";
 
@@ -51,6 +52,16 @@ const APP_ROUTES: Route[] = [
             title: "Material UI",
             href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/material/material-example.model.ts",
             bgColor: "#009688"
+        }
+    },
+
+    {
+        path: "example-ng-bootstrap",
+        component: NGBootstrapExampleComponent,
+        data: {
+            title: "NG Bootstrap UI",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/ng-bootstrap/ng-bootstrap-example.model.ts",
+            bgColor: "#1b95e0"
         }
     },
 
