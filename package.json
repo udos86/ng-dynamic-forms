@@ -4,7 +4,7 @@
   "description": "A rapid form development library for Angular 2.x and higher",
   "scripts": {
     "compile:app:aot": "ngc -p tsconfig.aot.json",
-    "bundle:app:rollup": "tsc -p tsconfig.aot.json && rollup -c rollup.config.js",
+    "bundle:app:rollup": "rollup -c rollup.config.js",
     "bundle:app:webpack": "webpack --config ./webpack.config.js",
     "build:modules": "gulp build:modules",
     "ci:build": "gulp build:modules",
