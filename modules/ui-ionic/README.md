@@ -32,14 +32,14 @@ export class AppModule {}
 
 ## Form Controls
 
-|                                  Control                                  	|            Model            	| Required Property 	|
-|:-------------------------------------------------------------------------:	|:---------------------------:	|:-----------------:	|
-|    **[Checkbox](http://ionicframework.com/docs/components/#checkbox)**    	|    `DynamicCheckboxModel`   	|         –         	|
-| **[Checkbox Group](http://ionicframework.com/docs/components/#checkbox)** 	| `DynamicCheckboxGroupModel` 	|         –         	|
-|    **[DateTime](http://ionicframework.com/docs/components/#datetime)**    	|   `DynamicDatepickerModel`  	|         –         	|
-|       **[Input](http://ionicframework.com/docs/components/#inputs)**      	|     `DynamicInputModel`     	|         –         	|
-|    **[Radio Group](http://ionicframework.com/docs/components/#radio)**    	|   `DynamicRadioGroupModel`  	|         –         	|
-|       **[Range](http://ionicframework.com/docs/components/#range)**       	|     `DynamicSliderModel`    	|         –         	|
-|      **[Select](http://ionicframework.com/docs/components/#select)**      	|     `DynamicSelectModel`    	|         –         	|
-|     **[TextArea](http://ionicframework.com/docs/components/#inputs)**     	|    `DynamicTextAreaModel`   	|         –         	|
-|      **[Toggle](http://ionicframework.com/docs/components/#toggle)**      	|     `DynamicSwitchModel`    	|         –         	|
+|                                  Control                                  	|                        Model                       	| Required Property 	|
+|:-------------------------------------------------------------------------:	|:--------------------------------------------------:	|:-----------------:	|
+|    **[Checkbox](http://ionicframework.com/docs/components/#checkbox)**    	| `DynamicCheckboxModel`                             	|         –         	|
+| **[Checkbox Group](http://ionicframework.com/docs/components/#checkbox)** 	| `DynamicCheckboxGroupModel`                        	|         –         	|
+|    **[DateTime](http://ionicframework.com/docs/components/#datetime)**    	| `DynamicDatePickerModel`, `DynamicTimePckerModel` 	|         –         	|
+|       **[Input](http://ionicframework.com/docs/components/#inputs)**      	| `DynamicInputModel`                                	|         –         	|
+|    **[Radio Group](http://ionicframework.com/docs/components/#radio)**    	| `DynamicRadioGroupModel`                           	|         –         	|
+|       **[Range](http://ionicframework.com/docs/components/#range)**       	| `DynamicSliderModel`                               	|         –         	|
+|      **[Select](http://ionicframework.com/docs/components/#select)**      	| `DynamicSelectModel`                               	|         –         	|
+|     **[TextArea](http://ionicframework.com/docs/components/#inputs)**     	| `DynamicTextAreaModel`                             	|         –         	|
+|      **[Toggle](http://ionicframework.com/docs/components/#toggle)**      	| `DynamicSwitchModel`                               	|         –         	|

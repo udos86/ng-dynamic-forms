@@ -15,7 +15,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng2-dynamic-forms/core";
 import {
     Checkbox,
@@ -91,6 +92,7 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent {
                 return IonicFormControlType.Checkbox;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+            case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
                 return IonicFormControlType.DateTime;
 
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
