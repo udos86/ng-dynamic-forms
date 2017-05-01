@@ -14,7 +14,7 @@ upon a layer of maintainable form control models to **fully automate form UI cre
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
-**[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://github.com/angular/material2)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
+**[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
 
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.aot.html) 
@@ -210,6 +210,7 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[Ionic](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-ionic)**
 * **[Kendo UI](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-kendo)**
 * **[Material](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-material)**
+* **[NG Bootstrap](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-ng-bootstrap)**
 * **[PrimeNG](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
@@ -250,21 +251,22 @@ your component** `template`:
 Due to technical restrictions or external dependencies still being in development full support for all major form controls 
 cannot be provided in every single UI library. **See the following compatibility table**:
 
-|                	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-primeng 	|
-|----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:----------:	|
-| Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|      ✓     	|
-| Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|      ✓     	|
-| File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|     **     	|
-| Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Radio Group    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Select         	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
-| Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|      ✓     	|
+|                	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-ng-bootstrap 	| ui-primeng 	|
+|----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
+| Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+| Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
+| File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
+| Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Radio Group    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Select         	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
+| Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
+| Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| TimePicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✗    	|      ✗      	|        ✓        	|      ✓     	|
 
-**\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
+**\*)** datetime controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
 **\*\*)** file upload controls can be achieved using a `DynamicInputModel` with `inputType: "file"`
 

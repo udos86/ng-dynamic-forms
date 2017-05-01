@@ -1,0 +1,38 @@
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicTimePickerModel
+} from "./dynamic-timepicker.model";
+
+describe("DynamicTimePickerModel test suite", () => {
+
+    let model: DynamicTimePickerModel,
+        config = {
+            id: "timepicker",
+            value: new Date()
+        };
+
+    beforeEach(() => model = new DynamicTimePickerModel(config));
+
+    it("should initialize correctly", () => {
+
+        expect(model.disabled === false).toBe(true);
+        expect(model.id).toEqual(config.id);
+        expect(model.label).toBeNull();
+        expect(model.format).toBeNull();
+        expect(model.max).toBeNull();
+        expect(model.meridian === false).toBe(true);
+        expect(model.min).toBeNull();
+        expect(model.name).toEqual(model.id);
+        expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER);
+        expect(model.value === config.value).toBe(true);
+    });
+
+    it("should serialize correctly", () => {
+
+        let json = JSON.parse(JSON.stringify(model));
+
+        expect(json.id).toEqual(model.id);
+        expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER);
+        expect(json.value).toBe((model.value as Date).toJSON());
+    });
+});

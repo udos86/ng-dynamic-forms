@@ -1,9 +1,9 @@
 {
   "name": "@ng2-dynamic-forms/ui-basic",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "Basic UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
-  "module": "./index.js",
+  "module": "./bundles/ui-basic.es.js",
   "typings": "./index.d.ts",
   "keywords": [
     "angular",
@@ -32,7 +32,7 @@
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng2-dynamic-forms/core": "^1.4.6",
+    "@ng2-dynamic-forms/core": "^1.4.7",
     "rxjs": "^5.2.0"
   }
 }

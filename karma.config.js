@@ -48,6 +48,8 @@ module.exports = function (config) {
             {pattern: "node_modules/@angular/**/*.js", included: false, watched: false},
             {pattern: "node_modules/@angular/**/*.js.map", included: false, watched: false},
 
+            {pattern: "node_modules/@ng-bootstrap/**/*.js", included: false, watched: false},
+
             {pattern: "node_modules/@progress/**/*.js", included: false, watched: false},
             {pattern: "node_modules/@telerik/**/*.js", included: false, watched: false},
 
@@ -75,7 +77,7 @@ module.exports = function (config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {"@ng2-dynamic-forms/**/!(*.spec).js": ["coverage"]},
+        preprocessors: {"@ng2-dynamic-forms/*/src/**/!(*.spec).js": ["coverage"]},
 
 
         // test results reporter to use

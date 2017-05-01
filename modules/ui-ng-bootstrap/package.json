@@ -1,17 +1,18 @@
 {
-  "name": "@ng2-dynamic-forms/ui-primeng",
+  "name": "@ng2-dynamic-forms/ui-ng-bootstrap",
   "version": "1.4.7",
-  "description": "PrimeNG UI package for ng2 Dynamic Forms",
-  "main": "./bundles/ui-primeng.umd.js",
-  "module": "./bundles/ui-primeng.es.js",
+  "description": "NG Bootstrap UI package for ng2 Dynamic Forms",
+  "main": "./bundles/ui-ng-bootstrap.umd.js",
+  "module": "./bundles/ui-ng-bootstrap.es.js",
   "typings": "./index.d.ts",
   "keywords": [
     "angular",
     "angular 2",
+    "bootstrap",
+    "ng-bootstrap",
     "dynamic forms",
     "forms",
     "ng2 dynamic forms",
-    "prime ng",
     "reactive forms",
     "ui"
   ],
@@ -31,13 +32,11 @@
   "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
+    "@angular/common": "^4.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.25",
     "@ng2-dynamic-forms/core": "^1.4.7",
-    "primeng": "^4.0.0",
+    "bootstrap": "^4.0.0-alpha.6",
     "rxjs": "^5.2.0"
-  },
-  "optionalDependencies": {
-    "quill": "^1.2.3"
   }
 }

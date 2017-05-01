@@ -8,7 +8,8 @@ import {
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicTextAreaModel
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const PRIMENG_EXAMPLE_MODEL = [
@@ -16,7 +17,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "primeSelect",
-            label: "Example Select",
+            label: "Prime Select",
             multiple: false,
             options: [
                 {
@@ -50,8 +51,8 @@ export const PRIMENG_EXAMPLE_MODEL = [
         {
             id: "primeDatepicker",
             format: "mm/dd/yy",
-            inline: true,
-            label: "Example Datepicker"
+            inline: false,
+            label: "Prime Datepicker"
         },
         {
             element: {
@@ -68,11 +69,11 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "primeInput",
-            label: "Example Input",
+            label: "Prime Input",
             list: ["One", "Two", "Three", "Four", "Five"],
             maxLength: 51,
             multiple: true,
-            placeholder: "example input",
+            placeholder: "Prime input",
             validators: {
                 required: null
             },
@@ -95,7 +96,8 @@ export const PRIMENG_EXAMPLE_MODEL = [
 
     new DynamicEditorModel(
         {
-            id: "primeEditor"
+            id: "primeEditor",
+            value: "Prime Editor"
         },
         {
             element: {
@@ -110,7 +112,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicCheckboxGroupModel(
         {
             id: "primeCheckboxGroup",
-            legend: "Example Checkbox Group",
+            legend: "Prime Checkbox Group",
             group: [
                 new DynamicCheckboxModel(
                     {
@@ -145,10 +147,28 @@ export const PRIMENG_EXAMPLE_MODEL = [
         }
     ),
 
+    new DynamicTimePickerModel(
+        {
+            id: "primeTimePicker",
+            label: "Prime Timepicker",
+            showSeconds: true
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
+        }
+    ),
+
     new DynamicRadioGroupModel<string>(
         {
             id: "primeRadioGroup",
-            legend: "Example Radio Group",
+            legend: "Prime Radio Group",
             options: [
                 {
                     label: "Option 1",
@@ -183,7 +203,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicSwitchModel(
         {
             id: "primeSwitch",
-            label: "Example Switch",
+            label: "Prime Switch",
             offLabel: "Off",
             onLabel: "On",
             value: false
@@ -203,9 +223,9 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicTextAreaModel(
         {
             id: "primeTextArea",
-            label: "Example Textarea",
+            label: "Prime Textarea",
             rows: 5,
-            placeholder: "example Textarea",
+            placeholder: "Prime Textarea",
         },
         {
             element: {
@@ -222,7 +242,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicSliderModel(
         {
             id: "primeSlider",
-            label: "Example Slider",
+            label: "Prime Slider",
             min: 0,
             max: 10,
             step: 1,

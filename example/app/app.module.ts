@@ -5,6 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, FormControl } from "@angular/forms";
+import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng2-dynamic-forms/ui-basic";
@@ -12,6 +13,7 @@ import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng2-dynamic-forms/ui-foundation";
 import { DynamicFormsKendoUIModule } from "@ng2-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng2-dynamic-forms/ui-material";
+import { DynamicFormsNGBootstrapUIModule } from "@ng2-dynamic-forms/ui-ng-bootstrap";
 import { DynamicFormsPrimeNGUIModule } from "@ng2-dynamic-forms/ui-primeng";
 
 import { BasicExampleComponent } from "./basic/basic-example.component";
@@ -19,6 +21,7 @@ import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.compone
 import { FoundationExampleComponent } from "./foundation/foundation-example.component";
 import { KendoExampleComponent } from "./kendo/kendo-example.component";
 import { MaterialExampleComponent } from "./material/material-example.component";
+import { NGBootstrapExampleComponent } from "./ng-bootstrap/ng-bootstrap-example.component";
 import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
@@ -44,12 +47,15 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         BrowserAnimationsModule,
         ReactiveFormsModule,
         AppRoutingModule,
+        NgbDatepickerModule.forRoot(),
+        NgbTimepickerModule.forRoot(),
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,
         DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,
         DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
+        DynamicFormsNGBootstrapUIModule,
         DynamicFormsPrimeNGUIModule
     ],
     declarations: [
@@ -58,6 +64,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         FoundationExampleComponent,
         KendoExampleComponent,
         MaterialExampleComponent,
+        NGBootstrapExampleComponent,
         PrimeNGExampleComponent,
         ValidationMessageComponent,
         AppComponent

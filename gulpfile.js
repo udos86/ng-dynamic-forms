@@ -1,8 +1,8 @@
-let gulp = require("gulp"),
+const gulp = require("gulp"),
     runSequence = require("run-sequence"),
     pkg = require("./package.json");
 
-let TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
+const TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup-stream"),
     TASK_CLEAN = require("./build/tasks/clean"),
     TASK_COPY = require("./build/tasks/copy"),
     TASK_INCREMENT_VERSION = require("./build/tasks/increment-version"),
@@ -13,9 +13,10 @@ let TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup"),
     TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
     TASK_DOC_TYPESCRIPT = require("./build/tasks/doc-typescript");
 
-let SRC_PATH = "./modules",
+const SRC_PATH = "./modules",
     NPM_PATH = "./node_modules/@ng2-dynamic-forms",
     DIST_PATH = "./@ng2-dynamic-forms",
+    MODULE_TASKS = [],
     MODULES = [
         "core",
         "ui-basic",
@@ -24,8 +25,18 @@ let SRC_PATH = "./modules",
         "ui-ionic",
         "ui-kendo",
         "ui-material",
+        "ui-ng-bootstrap",
         "ui-primeng"
     ];
+
+MODULES.forEach(moduleName => {
+
+    let taskName = `bundle:${moduleName}`;
+
+    gulp.task(taskName, TASK_BUNDLE_ROLLUP(DIST_PATH, moduleName, "ng2DF", pkg, DIST_PATH));
+
+    MODULE_TASKS.push(taskName);
+});
 
 
 gulp.task("increment:version:major",
@@ -67,35 +78,6 @@ gulp.task("preprocess:modules",
 gulp.task("inline:ng2-templates",
     TASK_INLINE_NG2_TEMPLATES([`${DIST_PATH}/**/*.js`], DIST_PATH));
 
-/*
-gulp.task("bundle:modules",
-    TASK_BUNDLE_ROLLUP(MODULES, DIST_PATH, "@ng2-dynamic-forms", "ng2DF", pkg, DIST_PATH));
-*/
-
-gulp.task("bundle:core",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "core", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-basic",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-basic", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-bootstrap",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-bootstrap", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-foundation",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-foundation", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-ionic",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-ionic", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-kendo",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-kendo", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-material",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-material", "ng2DF", pkg, DIST_PATH));
-
-gulp.task("bundle:ui-primeng",
-    TASK_BUNDLE_ROLLUP(DIST_PATH, "ui-primeng", "ng2DF", pkg, DIST_PATH));
-
 
 gulp.task("transpile:modules:es5",
     TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es5.json"));
@@ -135,14 +117,7 @@ gulp.task("build:modules", function (done) {
         "transpile:modules:es6",
         "preprocess:modules",
         "inline:ng2-templates",
-        "bundle:core",
-        "bundle:ui-basic",
-        "bundle:ui-bootstrap",
-        "bundle:ui-foundation",
-        "bundle:ui-ionic",
-        "bundle:ui-kendo",
-        "bundle:ui-material",
-        "bundle:ui-primeng",
+        ...MODULE_TASKS,
         "transpile:modules:es5",
         "preprocess:modules",
         "inline:ng2-templates",

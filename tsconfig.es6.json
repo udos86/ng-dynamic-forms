@@ -10,7 +10,7 @@
     ],
     "module": "es2015",
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "removeComments": false,
     "sourceMap": true,
     "target": "es5",
