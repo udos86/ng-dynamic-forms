@@ -8,11 +8,13 @@ export const DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER = "TIMEPICKER";
 export interface DynamicTimePickerModelConfig extends DynamicDateControlModelConfig {
 
     meridian?: boolean;
+    showSeconds?: boolean;
 }
 
 export class DynamicTimePickerModel extends DynamicDateControlModel {
 
     @serializable() meridian: boolean;
+    @serializable() showSeconds: boolean;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER;
 
@@ -21,5 +23,6 @@ export class DynamicTimePickerModel extends DynamicDateControlModel {
         super(config, cls);
 
         this.meridian = isBoolean(config.meridian) ? config.meridian : false;
+        this.showSeconds = isBoolean(config.showSeconds) ? config.showSeconds : false;
     }
 }

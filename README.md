@@ -264,15 +264,13 @@ cannot be provided in every single UI library. **See the following compatibility
 | Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
 | Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
 | Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| TimePicker     	|   ****   	|     ****     	|      ****     	|     -    	|     -    	|      -      	|        ✓        	|      -     	|
+| TimePicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✗    	|      ✗      	|        ✓        	|      ✓     	|
 
-**\*)** date controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
+**\*)** datetime controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
 **\*\*)** file upload controls can be achieved using a `DynamicInputModel` with `inputType: "file"`
 
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
-
-**\*\*\*\*)** time controls can be achieved using a `DynamicInputModel` with `inputType: "time"`
 
 
 ## Value Updates

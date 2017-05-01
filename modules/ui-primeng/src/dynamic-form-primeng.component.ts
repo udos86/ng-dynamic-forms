@@ -19,7 +19,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng2-dynamic-forms/core";
 import {
     AutoComplete,
@@ -128,6 +129,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
                 return PFormControlType.Group;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+            case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
                 return PFormControlType.Calendar;
 
             case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
