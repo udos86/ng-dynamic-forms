@@ -82,10 +82,6 @@ System.config({
         "@telerik": {
             defaultExtension: "js"
         },
-        "ng-semantic": {
-            main: "ng-semantic.js",
-            defaultExtension: "js"
-        },
         "primeng": {
             defaultExtension: "js"
         },

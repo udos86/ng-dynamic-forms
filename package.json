@@ -85,7 +85,7 @@
     "gulp-util": "^3.0.8",
     "html-minifier": "^3.4.3",
     "jasmine-core": "^2.6.1",
-    "jasmine-spec-reporter": "^4.0.0",
+    "jasmine-spec-reporter": "^4.1.0",
     "karma": "^1.6.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
@@ -119,6 +119,6 @@
     "@progress/kendo-angular-resize-sensor": "^0.11.0",
     "@progress/kendo-angular-upload": "^0.20.0",
     "@progress/kendo-date-math": "^0.4.0",
-    "@progress/kendo-theme-default": "^2.31.7"
+    "@progress/kendo-theme-default": "^2.31.8"
   }
 }

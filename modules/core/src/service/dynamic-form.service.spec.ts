@@ -156,16 +156,7 @@ describe("DynamicFormService test suite", () => {
 
     beforeEach(inject([DynamicFormService], (formService: DynamicFormService) => service = formService));
 
-
-    it("should be defined", () => {
-
-        expect(service).toBeDefined();
-    });
-
-
     it("should create create a form group correctly", () => {
-
-        expect(service.createFormGroup).toBeDefined();
 
         let formGroup = service.createFormGroup(testModel);
 
@@ -188,13 +179,9 @@ describe("DynamicFormService test suite", () => {
     it("should parse dynamic form JSON correctly", () => {
 
         let json = JSON.stringify(testModel),
-            formModel;
+            formModel = service.fromJSON(json);
 
-        expect(service.fromJSON).toBeDefined();
-
-        formModel = service.fromJSON(json);
-
-        expect(Array.isArray(formModel) === true).toBe(true);
+        expect(Array.isArray(formModel)).toBe(true);
 
         expect(formModel[0] instanceof DynamicSelectModel).toBe(true);
         expect(formModel[1] instanceof DynamicInputModel).toBe(true);
@@ -223,7 +210,6 @@ describe("DynamicFormService test suite", () => {
 
     it("should find a dynamic form control model by id correctly", () => {
 
-        expect(service.findById).toBeDefined();
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testDatepicker", testModel) instanceof DynamicFormControlModel).toBe(true);
@@ -353,8 +339,6 @@ describe("DynamicFormService test suite", () => {
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
-        expect(service.addFormArrayGroup).toBeDefined();
-
         service.addFormArrayGroup(formArray, model);
 
         expect(formArray.length).toBe(model.initialCount + 1);
@@ -365,8 +349,6 @@ describe("DynamicFormService test suite", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
-
-        expect(service.insertFormArrayGroup).toBeDefined();
 
         service.insertFormArrayGroup(0, formArray, model);
 
@@ -389,7 +371,7 @@ describe("DynamicFormService test suite", () => {
 
         service.moveFormArrayGroup(index, step, formArray, model);
 
-        expect(formArray.length === model.initialCount).toBe(true);
+        expect(formArray.length).toBe(model.initialCount);
 
         expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
         expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
@@ -414,7 +396,7 @@ describe("DynamicFormService test suite", () => {
 
         service.moveFormArrayGroup(index, step, formArray, model);
 
-        expect(formArray.length === model.initialCount).toBe(true);
+        expect(formArray.length).toBe(model.initialCount);
 
         expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
         expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
@@ -439,8 +421,6 @@ describe("DynamicFormService test suite", () => {
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
-        expect(service.removeFormArrayGroup).toBeDefined();
-
         service.removeFormArrayGroup(0, formArray, model);
 
         expect(formArray.length).toBe(model.initialCount - 1);
@@ -451,8 +431,6 @@ describe("DynamicFormService test suite", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
-
-        expect(service.clearFormArray).toBeDefined();
 
         service.clearFormArray(formArray, model);
 

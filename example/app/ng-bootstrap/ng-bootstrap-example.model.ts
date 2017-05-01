@@ -45,6 +45,24 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
         }
     ),
 
+    new DynamicInputModel(
+        {
+            id: "ngbFileInput",
+            inputType: "file",
+            label: "Ngb File Input"
+        },
+        {
+            element: {
+                container: "row",
+                label: "col-form-label"
+            },
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            }
+        }
+    ),
+
     new DynamicDatePickerModel(
         {
             id: "ngbCalendar",
@@ -66,11 +84,19 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "ngbInput",
-            //hint: "Just a hint",
+            hint: "Just a hint",
             label: "Ngb Input",
             placeholder: "Ngb input",
             prefix: "Prefix",
-            suffix: "Suffix"
+            suffix: "Suffix",
+            validators: {
+                required: null,
+                maxLength: 5
+            },
+            errorMessages: {
+                required: "{{label}} is required",
+                maxLength: "Max character count is 5"
+            }
         },
         {
             element: {
