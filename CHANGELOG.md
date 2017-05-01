@@ -1,3 +1,19 @@
+# 1.4.7
+
+### **Bugfixes**
+
+* `FileList` is now correctly read from file inputs (closes [#304](https://github.com/udos86/ng2-dynamic-forms/issues/304))
+
+### **Features** 
+
+* **initial UI support for NG Bootstrap** (closes [#278](https://github.com/udos86/ng2-dynamic-forms/issues/278))
+* **npm packages now contain an additional ES bundle for tree-shaking improvements**  
+* **new** `DynamicTimePickerModel` **added**
+* initial timepicker support in `ui-ionic`, `ui-ng-bootstrap` and `ui-primeng`
+* update to PrimeNG `4.0.0` (closes [#340](https://github.com/udos86/ng2-dynamic-forms/issues/340))
+* Remaining `noImplicitAny: true` TypeScript errors have been removed (closes [#345](https://github.com/udos86/ng2-dynamic-forms/issues/344))
+
+
 # 1.4.6
 
 ### **Features** 
