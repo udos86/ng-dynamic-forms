@@ -22,6 +22,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -29,8 +30,9 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER
 } from "@ng2-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -40,7 +42,6 @@ import {
     KENDO_UPLOAD_TEMPLATE_DIRECTIVES,
     KendoFormControlType
 } from "./dynamic-form-kendo.const";
-import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD } from "../../core/src/model/file-upload/dynamic-file-upload.model";
 
 @Component({
 
@@ -192,6 +193,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
             case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
                 return KendoFormControlType.TextArea;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+                return KendoFormControlType.TimePicker;
 
             default:
                 return null;

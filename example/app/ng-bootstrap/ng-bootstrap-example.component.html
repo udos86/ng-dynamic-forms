@@ -5,6 +5,7 @@
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-form-ng-bootstrap-control *ngFor="let controlModel of formModel"
+                                           [hasErrorMessaging]="true"
                                            [group]="formGroup"
                                            [model]="controlModel"></dynamic-form-ng-bootstrap-control>
 

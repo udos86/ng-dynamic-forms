@@ -1,5 +1,5 @@
 <div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
-     [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
+     [class.has-danger]="hasErrorMessaging && !hasFocus && isInvalid"
      [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
@@ -209,26 +209,25 @@
                             [meridian]="model.meridian"
                             [ngClass]="[model.cls.element.control]"
                             [seconds]="model.showSeconds"
-                            [spinners]="true"></ngb-datepicker>
+                            [spinners]="true"></ngb-timepicker>
 
 
-            <span *ngIf="model.hint" class="help-block"
+            <div *ngIf="hasErrorMessaging"
+                 [hidden]="!showErrorMessages"
+                 [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+                <p *ngFor="let message of errorMessages" class="form-control-feedback">{{message}}</p>
+
+            </div>
+
+
+            <span *ngIf="model.hint" class="form-text text-muted"
                   [innerHTML]="model.hint"
                   [ngClass]="model.cls.element.hint"></span>
 
         </ng-container>
 
     </div>
-
-
-    <ul *ngIf="hasErrorMessaging" class="has-error"
-        [class.hidden]="!showErrorMessages"
-        [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
-
-        <li *ngFor="let message of errorMessages" class="help-block">{{message}}</li>
-
-    </ul>
-
 
     <ng-template *ngIf="hasEndTemplate && type !== 1"
                  [ngTemplateOutlet]="template"

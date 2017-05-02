@@ -1,7 +1,7 @@
 var karma = window.__karma__;
 
 function isSpecFile(filePath) {
-    return filePath.startsWith("/base/@ng2-dynamic-forms/") && filePath.slice(-8) === ".spec.js";
+    return filePath.startsWith("/base/test/") && filePath.slice(-8) === ".spec.js";
 }
 
 function toImportPromise(module) {
@@ -82,14 +82,13 @@ System.config({
         "@telerik": {
             defaultExtension: "js"
         },
-        "ng-semantic": {
-            main: "ng-semantic.js",
-            defaultExtension: "js"
-        },
         "primeng": {
             defaultExtension: "js"
         },
         "rxjs": {
+            defaultExtension: "js"
+        },
+        "test": {
             defaultExtension: "js"
         }
     }

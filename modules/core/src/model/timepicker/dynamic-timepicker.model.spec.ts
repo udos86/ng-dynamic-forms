@@ -15,16 +15,17 @@ describe("DynamicTimePickerModel test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(model.disabled === false).toBe(true);
+        expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.format).toBeNull();
         expect(model.max).toBeNull();
-        expect(model.meridian === false).toBe(true);
+        expect(model.meridian).toBe(false);
         expect(model.min).toBeNull();
         expect(model.name).toEqual(model.id);
+        expect(model.showSeconds).toBe(false);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER);
-        expect(model.value === config.value).toBe(true);
+        expect(model.value).toBe(config.value);
     });
 
     it("should serialize correctly", () => {

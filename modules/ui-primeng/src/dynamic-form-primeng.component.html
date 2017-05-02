@@ -76,6 +76,7 @@
                             [multiple]="model.multiple"
                             [placeholder]="model.placeholder"
                             [suggestions]="suggestions"
+                            [tabindex]="model.tabIndex"
                             (change)="onValueChange($event)"
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
@@ -93,6 +94,7 @@
                         [placeholder]="model.placeholder"
                         [showIcon]="true"
                         [showSeconds]="model.showSeconds"
+                        [tabindex]="model.tabIndex"
                         [timeOnly]="model.type === 'TIMEPICKER'"
                         [yearNavigator]="false"></p-calendar>
 
@@ -104,6 +106,7 @@
                         [label]="model.label"
                         [name]="model.name"
                         [ngClass]="model.cls.element.control"
+                        [tabindex]="model.tabIndex"
                         [value]="model.value"></p-checkbox>
 
 
@@ -111,6 +114,7 @@
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [ngClass]="model.cls.element.control"
+                     [tabindex]="model.tabIndex"
                      (change)="onValueChange($event)"></p-chips>
 
 
@@ -118,6 +122,7 @@
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
+                        [tabindex]="model.tabIndex"
                         (onChange)="onValueChange($event)"></p-dropdown>
 
 
@@ -188,6 +193,7 @@
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
                            [offLabel]="model.offLabel"
+                           [tabindex]="model.tabIndex"
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
@@ -195,6 +201,7 @@
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [options]="model.options"
+                           [tabindex]="model.tabIndex"
                            (onChange)="onValueChange($event)"></p-multiSelect>
 
 

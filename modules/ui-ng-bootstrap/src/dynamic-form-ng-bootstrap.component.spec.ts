@@ -59,8 +59,8 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.hasErrorMessaging === false).toBe(true);
-        expect(component.asBootstrapFormGroup === true).toBe(true);
+        expect(component.hasErrorMessaging).toBe(false);
+        expect(component.asBootstrapFormGroup).toBe(true);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -73,11 +73,11 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
         expect(component.onValueChange).toBeDefined();
         expect(component.onFocusChange).toBeDefined();
 
-        expect(component.isValid === true).toBe(true);
-        expect(component.isInvalid === false).toBe(true);
-        expect(component.showErrorMessages === false).toBe(true);
+        expect(component.isValid).toBe(true);
+        expect(component.isInvalid).toBe(false);
+        expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type === NGBootstrapFormControlType.Input).toBe(true);
+        expect(component.type).toBe(NGBootstrapFormControlType.Input);
     });
 
     it("should have an input element", () => {

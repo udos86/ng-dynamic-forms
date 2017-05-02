@@ -1,3 +1,14 @@
+# 1.4.8
+
+### **Features** 
+
+* **All single TypeScript files** are now transpiled to and **published in ES2015 module format**(`**/bundles/*.umd.js` bundle files **are not affected** by this)
+* NG Bootstrap template improvements 
+* `tabIndex` now supported in `ui-primeng`
+* build refactoring 
+* sample app now also bundles flawless with Rollup
+
+
 # 1.4.7
 
 ### **Bugfixes**
