@@ -8,7 +8,7 @@
       "es2015",
       "dom"
     ],
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "removeComments": false,
