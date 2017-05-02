@@ -5,6 +5,7 @@ npm-debug.log
 coverage/
 dist/
 docs/
+test/
 @ng2-dynamic-forms/
 
 example/aot/

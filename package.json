@@ -69,7 +69,7 @@
     "@angular/compiler-cli": "^4.1.0",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.47",
-    "@types/node": "^7.0.14",
+    "@types/node": "^7.0.15",
     "codelyzer": "^3.0.1",
     "dateformat": "^2.0.0",
     "del": "^2.2.2",
@@ -112,13 +112,13 @@
   },
   "optionalDependencies": {
     "@progress/kendo-angular-dateinputs": "^0.8.3",
-    "@progress/kendo-angular-dropdowns": "^0.39.8",
+    "@progress/kendo-angular-dropdowns": "^0.39.9",
     "@progress/kendo-angular-inputs": "^0.23.4",
     "@progress/kendo-angular-intl": "^0.12.0",
     "@progress/kendo-angular-l10n": "^0.3.0",
     "@progress/kendo-angular-resize-sensor": "^0.11.0",
     "@progress/kendo-angular-upload": "^0.20.0",
     "@progress/kendo-date-math": "^0.4.0",
-    "@progress/kendo-theme-default": "^2.31.8"
+    "@progress/kendo-theme-default": "^2.31.12"
   }
 }

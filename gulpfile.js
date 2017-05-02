@@ -16,6 +16,7 @@ const TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup-stream"),
 const SRC_PATH = "./modules",
     NPM_PATH = "./node_modules/@ng2-dynamic-forms",
     DIST_PATH = "./@ng2-dynamic-forms",
+    TEST_PATH = "./test",
     MODULE_TASKS = [],
     MODULES = [
         "core",
@@ -39,6 +40,7 @@ MODULES.forEach(moduleName => {
 });
 
 
+
 gulp.task("increment:version:major",
     TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
 
@@ -51,44 +53,110 @@ gulp.task("increment:version:patch",
     TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
 
 
+
 gulp.task("lint:modules",
     TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
 
+
 gulp.task("clean:dist",
-    TASK_CLEAN([`${DIST_PATH}**/*`, `${NPM_PATH}/**/*`]));
+    TASK_CLEAN([`${DIST_PATH}**/*`]));
 
+gulp.task("clean:npm",
+    TASK_CLEAN([`${NPM_PATH}/**/*`]));
 
-gulp.task("copy:modules:npm",
-    TASK_COPY([`${SRC_PATH}/**/!(*.spec).*`], NPM_PATH));
+gulp.task("clean:test",
+    TASK_CLEAN([`${TEST_PATH}/**/*`]));
+
 
 
 gulp.task("copy:modules:dist",
     TASK_COPY([`${SRC_PATH}/**/*.*`], DIST_PATH));
 
+gulp.task("copy:modules:npm",
+    TASK_COPY([`${SRC_PATH}/**/*.*`], NPM_PATH));
 
-gulp.task("transpile:modules:es6",
-    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es6.json"));
+gulp.task("copy:modules:test",
+    TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
 
 
-gulp.task("preprocess:modules",
+
+gulp.task("preprocess:modules:dist",
     TASK_PREPROCESS(`${DIST_PATH}/**/*.js`, DIST_PATH));
 
-
-gulp.task("inline:ng2-templates",
+gulp.task("inline:ng2-templates:dist",
     TASK_INLINE_NG2_TEMPLATES([`${DIST_PATH}/**/*.js`], DIST_PATH));
 
+gulp.task("remove:moduleId:dist",
+    TASK_REMOVE_MODULE_ID([`${DIST_PATH}/**/*`], DIST_PATH));
 
-gulp.task("transpile:modules:es5",
-    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es5.json"));
+
+
+gulp.task("transpile:modules:dist",
+    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es6.json"));
+
+gulp.task("transpile:modules:debug",
+    TASK_TRANSPILE_TYPESCRIPT([`${NPM_PATH}/**/*.ts`], NPM_PATH, "./tsconfig.es5.json"));
+
+gulp.task("transpile:modules:test",
+    TASK_TRANSPILE_TYPESCRIPT([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.es5.json"));
+
 
 
 gulp.task("prime:modules",
     TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
 
 
-gulp.task("remove:moduleId",
-    TASK_REMOVE_MODULE_ID([`${DIST_PATH}/**/*`], DIST_PATH));
+
+gulp.task("build:modules:debug", function (done) {
+
+    runSequence(
+        "clean:npm",
+        "copy:modules:npm",
+        "transpile:modules:debug",
+        done
+    );
+});
+
+gulp.task("build:modules:dist", function (done) {
+
+    runSequence(
+        "lint:modules",
+        "clean:dist",
+        "clean:npm",
+        "copy:modules:npm",
+        "copy:modules:dist",
+        "transpile:modules:dist",
+        "preprocess:modules:dist",
+        "inline:ng2-templates:dist",
+        ...MODULE_TASKS,
+        "prime:modules",
+        "remove:moduleId:dist",
+        done
+    );
+});
+
+gulp.task("build:modules:test", function (done) {
+
+    runSequence(
+        "clean:test",
+        "copy:modules:test",
+        "transpile:modules:test",
+        done
+    );
+});
+
+
+
+gulp.task("build:modules", function (done) {
+
+    runSequence(
+        "build:modules:test",
+        "build:modules:dist",
+        done
+    );
+});
+
 
 
 gulp.task("doc:modules",
@@ -107,25 +175,7 @@ gulp.task("doc:modules",
         }
     ));
 
-gulp.task("build:modules", function (done) {
 
-    runSequence(
-        "lint:modules",
-        "clean:dist",
-        "copy:modules:npm",
-        "copy:modules:dist",
-        "transpile:modules:es6",
-        "preprocess:modules",
-        "inline:ng2-templates",
-        ...MODULE_TASKS,
-        "transpile:modules:es5",
-        "preprocess:modules",
-        "inline:ng2-templates",
-        "prime:modules",
-        "remove:moduleId",
-        done
-    );
-});
 
 gulp.task("watch:modules", function () {
     gulp.watch([`${SRC_PATH}/**/*.*`], ["build:modules"]);
