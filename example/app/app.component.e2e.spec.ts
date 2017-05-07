@@ -1,8 +1,8 @@
-import { browser} from "protractor";
+import { browser } from "protractor";
 
 describe("AppComponent", () => {
 
-    beforeEach( () => {
+    beforeEach(() => {
         browser.get("/");
     });
 
