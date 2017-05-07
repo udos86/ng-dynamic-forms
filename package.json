@@ -106,7 +106,7 @@
     "typedoc": "^0.6.0",
     "typescript": "^2.3.2",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^2.5.0"
+    "webpack": "^2.5.1"
   },
   "optionalDependencies": {
     "@progress/kendo-angular-dateinputs": "^1.0.0",
