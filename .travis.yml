@@ -6,6 +6,5 @@ before_install:
   - echo "@progress:registry=https://registry.npm.telerik.com/" > .npmrc
   - echo "//registry.npm.telerik.com/:_authToken=\"$PROGRESS_REGISTRY_TOKEN\"" >> .npmrc
 script:
-  - npm run ci:tsc
-  - npm run ci:build
-  - npm run ci:test
+  - npm run build:modules
+  - npm run tests:unit
