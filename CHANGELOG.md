@@ -1,3 +1,11 @@
+# 1.4.9
+
+### **Features** 
+
+* **Kendo UI package updated to 1.0.0**
+* NG Bootstrap UI template now implements `NgbRadioGroup` (closes [#351](https://github.com/udos86/ng2-dynamic-forms/issues/351))
+
+
 # 1.4.8
 
 ### **Features** 

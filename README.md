@@ -264,7 +264,7 @@ cannot be provided in every single UI library. **See the following compatibility
 | Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
 | Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
 | Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| TimePicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✗    	|      ✗      	|        ✓        	|      ✓     	|
+| Timepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✗    	|      ✗      	|        ✓        	|      ✓     	|
 
 **\*)** datetime controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 

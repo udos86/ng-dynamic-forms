@@ -55,6 +55,15 @@
     "@ng2-dynamic-forms/ui-foundation": "^1.4.8",
     "@ng2-dynamic-forms/ui-material": "^1.4.8",
     "@ng2-dynamic-forms/ui-primeng": "^1.4.8",
+    "@progress/kendo-angular-dateinputs": "^1.0.0",
+    "@progress/kendo-angular-dropdowns": "^1.0.0",
+    "@progress/kendo-angular-inputs": "^1.0.0",
+    "@progress/kendo-angular-intl": "^1.0.0",
+    "@progress/kendo-angular-l10n": "^1.0.0",
+    "@progress/kendo-angular-resize-sensor": "^1.0.0",
+    "@progress/kendo-angular-upload": "^1.0.0",
+    "@progress/kendo-date-math": "^1.0.0",
+    "@progress/kendo-theme-default": "^2.32.12",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "foundation-sites": "^6.3.1",
@@ -109,16 +118,5 @@
     "typescript": "^2.3.2",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^2.5.1"
-  },
-  "optionalDependencies": {
-    "@progress/kendo-angular-dateinputs": "^1.0.0",
-    "@progress/kendo-angular-dropdowns": "^1.0.0",
-    "@progress/kendo-angular-inputs": "^1.0.0",
-    "@progress/kendo-angular-intl": "^1.0.0",
-    "@progress/kendo-angular-l10n": "^1.0.0",
-    "@progress/kendo-angular-resize-sensor": "^1.0.0",
-    "@progress/kendo-angular-upload": "^1.0.0",
-    "@progress/kendo-date-math": "^1.0.0",
-    "@progress/kendo-theme-default": "^2.32.12"
   }
 }
