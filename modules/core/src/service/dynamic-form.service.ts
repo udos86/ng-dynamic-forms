@@ -55,9 +55,9 @@ export class DynamicFormService {
 
     private parseJSONReviver(key: string, value: any): any {
 
-        let regexISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+        let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return isString(value) && regexISO.test(value) ? new Date(value) : value;
+        return isString(value) && regexDateISO.test(value) ? new Date(value) : value;
     }
 
 
@@ -101,7 +101,6 @@ export class DynamicFormService {
 
 
     getAsyncValidatorFn(asyncValidatorName: string, asyncValidatorArgs?: any): AsyncValidatorFn | never {
-
 
         let asyncValidatorFn: Function | null = (Validators as any)[asyncValidatorName] || this.getCustomAsyncValidatorFn(asyncValidatorName);
 
