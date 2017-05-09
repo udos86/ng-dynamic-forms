@@ -71,11 +71,7 @@ module.exports = function (config) {
 
 
         // list of files to exclude
-        exclude: TRAVIS ? [
-            "node_modules/@progress/**/*.js",
-            "node_modules/@telerik/**/*.js",
-            "test/ui-kendo/**/*.*"
-        ] : [],
+        exclude: [],
 
 
         // preprocess matching files before serving them to the browser

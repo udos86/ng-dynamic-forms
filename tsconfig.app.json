@@ -8,7 +8,7 @@
       "es2015",
       "dom"
     ],
-    "module": "es6",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "removeComments": false,
@@ -29,6 +29,7 @@
     "example/aot",
     "example/dist",
     "modules",
-    "node_modules"
+    "node_modules",
+    "test"
   ]
 }

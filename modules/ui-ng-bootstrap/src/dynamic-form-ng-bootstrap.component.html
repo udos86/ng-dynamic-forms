@@ -32,7 +32,9 @@
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"
                        (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
-                                                              [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span></label>
+                                                              [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
+            </label>
+
         </div>
 
     </div>
@@ -138,27 +140,25 @@
             </div>
 
 
-            <fieldset *ngSwitchCase="7" role="radiogroup"
+            <fieldset *ngSwitchCase="7" ngbRadioGroup role="radiogroup"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
                       [name]="model.name"
+                      [ngClass]="model.cls.element.control"
                       (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <div *ngFor="let option of model.options" class="form-check">
+                <label *ngFor="let option of model.options" class="btn btn-primary">
 
-                    <label class="form-check-label">
-
-                        <input type="radio" class="form-check-input"
-                               [formControlName]="model.id"
-                               [name]="model.name"
-                               [ngClass]="model.cls.element.control"
-                               [value]="option.value"
-                               (blur)="onFocusChange($event)"
-                               (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
-
-                </div>
+                    <input type="radio"
+                           [disabled]="option.disabled"
+                           [name]="model.name"
+                           [value]="option.value"
+                           (blur)="onFocusChange($event)"
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
+                </label>
 
             </fieldset>
 
@@ -176,8 +176,7 @@
 
                 <option *ngFor="let option of model.options"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}
-                </option>
+                        [ngValue]="option.value">{{option.label}}</option>
 
             </select>
 

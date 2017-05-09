@@ -93,13 +93,13 @@ gulp.task("remove:moduleId:dist",
 
 
 gulp.task("transpile:modules:dist",
-    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.es6.json"));
+    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.modules.json", "es2015"));
 
 gulp.task("transpile:modules:debug",
-    TASK_TRANSPILE_TYPESCRIPT([`${NPM_PATH}/**/*.ts`], NPM_PATH, "./tsconfig.es5.json"));
+    TASK_TRANSPILE_TYPESCRIPT([`${NPM_PATH}/**/*.ts`], NPM_PATH, "./tsconfig.modules.json", "commonjs"));
 
 gulp.task("transpile:modules:test",
-    TASK_TRANSPILE_TYPESCRIPT([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.es5.json"));
+    TASK_TRANSPILE_TYPESCRIPT([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.modules.json", "commonjs"));
 
 
 

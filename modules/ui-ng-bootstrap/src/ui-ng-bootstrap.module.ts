@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
-import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicFormNGBootstrapComponent } from "./dynamic-form-ng-bootstrap.component";
 
 @NgModule({
@@ -10,6 +10,7 @@ import { DynamicFormNGBootstrapComponent } from "./dynamic-form-ng-bootstrap.com
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        NgbButtonsModule,
         NgbDatepickerModule,
         NgbTimepickerModule,
         DynamicFormsCoreModule

@@ -37,7 +37,7 @@ export function customValidator(formControl: FormControl) {
 }
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
-    return new Http(mockBackend, baseRequestOptions)
+    return new Http(mockBackend, baseRequestOptions);
 }
 
 @NgModule({

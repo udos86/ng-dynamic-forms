@@ -2,11 +2,11 @@ let gulp = require("gulp"),
     ts = require("gulp-typescript"),
     sourceMaps = require("gulp-sourcemaps");
 
-module.exports = function (src, dest, configPath) {
+module.exports = function (src, dest, configPath, moduleFormat) {
 
     return function () {
 
-        let tsProject = ts.createProject(configPath);
+        let tsProject = ts.createProject(configPath, {module: moduleFormat});
 
         return gulp.src(src)
                    .pipe(sourceMaps.init())
