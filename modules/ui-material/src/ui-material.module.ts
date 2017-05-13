@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import {
     MdAutocompleteModule,
     MdCheckboxModule,
+    MdDatepickerModule,
     MdInputModule,
     MdRadioModule,
     MdSelectModule,
@@ -20,6 +21,7 @@ import { DynamicFormMaterialComponent } from "./dynamic-form-material.component"
         ReactiveFormsModule,
         MdAutocompleteModule,
         MdCheckboxModule,
+        MdDatepickerModule,
         MdInputModule,
         MdRadioModule,
         MdSelectModule,

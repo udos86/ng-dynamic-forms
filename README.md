@@ -255,7 +255,7 @@ cannot be provided in every single UI library. **See the following compatibility
 |----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
 | Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
 | Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+| Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
 | Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
 | File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
 | Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|

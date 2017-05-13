@@ -52,7 +52,30 @@
                                                            [innerHTML]="model.label"></span></md-checkbox>
 
 
-        <fieldset *ngSwitchCase="3"
+        <ng-container *ngSwitchCase="3">
+
+            <md-input-container>
+
+                <input mdInput
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [max]="model.max"
+                       [mdDatepicker]="mdDatepicker"
+                       [min]="model.min"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [placeholder]="model.placeholder"/>
+
+                <button mdSuffix [mdDatepickerToggle]="mdDatepicker"></button>
+
+            </md-input-container>
+
+            <md-datepicker #mdDatepicker [startAt]="model.focusedDate" [touchUi]="true"></md-datepicker>
+
+        </ng-container>
+
+
+        <fieldset *ngSwitchCase="4"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -71,7 +94,7 @@
         </fieldset>
 
 
-        <ng-container *ngSwitchCase="4">
+        <ng-container *ngSwitchCase="5">
 
             <md-input-container>
 
@@ -105,11 +128,12 @@
                 <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
                 <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-                <span *ngIf="model.prefix" md-prefix [innerHTML]="model.prefix"></span>
-                <span *ngIf="model.suffix" md-suffix [innerHTML]="model.suffix"></span>
+                <span *ngIf="model.prefix" mdPrefix [innerHTML]="model.prefix"></span>
+                <span *ngIf="model.suffix" mdSuffix [innerHTML]="model.suffix"></span>
 
                 <md-error *ngFor="let message of errorMessages"
-                          [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}</md-error>
+                          [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
+                </md-error>
 
             </md-input-container>
 
@@ -122,7 +146,7 @@
         </ng-container>
 
 
-        <md-radio-group *ngSwitchCase="5"
+        <md-radio-group *ngSwitchCase="6"
                         [disabled]="model.disabled"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -140,7 +164,7 @@
         </md-radio-group>
 
 
-        <md-select *ngSwitchCase="6"
+        <md-select *ngSwitchCase="7"
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -155,7 +179,7 @@
         </md-select>
 
 
-        <md-slider *ngSwitchCase="7"
+        <md-slider *ngSwitchCase="8"
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -169,7 +193,7 @@
                    (change)="onValueChange($event)"></md-slider>
 
 
-        <md-slide-toggle *ngSwitchCase="8"
+        <md-slide-toggle *ngSwitchCase="9"
                          [checked]="model.checked"
                          [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
@@ -185,7 +209,7 @@
         </md-slide-toggle>
 
 
-        <md-input-container *ngSwitchCase="9">
+        <md-input-container *ngSwitchCase="10">
 
         <textarea mdInput
                   [attr.tabindex]="model.tabIndex"
@@ -209,14 +233,15 @@
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
             <md-error *ngFor="let message of errorMessages"
-                      [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}</md-error>
+                      [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
+            </md-error>
 
         </md-input-container>
 
     </ng-container>
 
 
-    <md-list *ngIf="hasErrorMessaging && type !== 4 && type !== 9"
+    <md-list *ngIf="hasErrorMessaging && type !== 5 && type !== 10"
              [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <md-list-item *ngFor="let message of errorMessages"
