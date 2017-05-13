@@ -7,12 +7,14 @@ export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
 export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelConfig<T> {
 
+    filterable?: boolean;
     multiple?: boolean;
     placeholder?: string;
 }
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
+    @serializable() filterable: boolean;
     @serializable() multiple: boolean;
     @serializable() placeholder: string;
 
@@ -22,6 +24,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
         super(config, cls);
 
+        this.filterable = isBoolean(config.filterable) ? config.filterable : false;
         this.multiple = isBoolean(config.multiple) ? config.multiple : false;
         this.placeholder = config.placeholder || "";
     }
