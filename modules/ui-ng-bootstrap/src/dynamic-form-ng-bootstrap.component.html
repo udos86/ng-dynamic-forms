@@ -140,7 +140,7 @@
             </div>
 
 
-            <fieldset *ngSwitchCase="7" ngbRadioGroup role="radiogroup"
+            <div *ngSwitchCase="7" ngbRadioGroup role="radiogroup"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -160,7 +160,7 @@
                            (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
                 </label>
 
-            </fieldset>
+            </div>
 
 
             <select *ngSwitchCase="8" class="form-control"
