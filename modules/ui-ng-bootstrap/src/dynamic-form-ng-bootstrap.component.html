@@ -141,12 +141,12 @@
 
 
             <div *ngSwitchCase="7" ngbRadioGroup role="radiogroup"
-                      [attr.tabindex]="model.tabIndex"
-                      [dynamicId]="bindId && model.id"
-                      [formControlName]="model.id"
-                      [name]="model.name"
-                      [ngClass]="model.cls.element.control"
-                      (change)="onValueChange($event)">
+                 [attr.tabindex]="model.tabIndex"
+                 [dynamicId]="bindId && model.id"
+                 [formControlName]="model.id"
+                 [name]="model.name"
+                 [ngClass]="model.cls.element.control"
+                 (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -176,7 +176,8 @@
 
                 <option *ngFor="let option of model.options"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}</option>
+                        [ngValue]="option.value">{{option.label}}
+                </option>
 
             </select>
 
