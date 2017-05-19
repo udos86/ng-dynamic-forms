@@ -6,6 +6,7 @@ import { By } from "@angular/platform-browser";
 import {
     MdAutocompleteModule,
     MdCheckboxModule,
+    MdDatepickerModule,
     MdInputModule,
     MdRadioModule,
     MdSelectModule,
@@ -43,6 +44,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
                 NoopAnimationsModule,
                 MdAutocompleteModule,
                 MdCheckboxModule,
+                MdDatepickerModule,
                 MdInputModule,
                 MdRadioModule,
                 MdSelectModule,

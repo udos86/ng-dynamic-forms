@@ -218,4 +218,8 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     onBlur($event: null): void {
         this.blur.emit({$event: $event, control: this.control, model: this.model});
     }
+
+    onFilterChange(value: string):void {
+        //TODO
+    }
 }
