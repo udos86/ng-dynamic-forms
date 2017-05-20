@@ -43,8 +43,9 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
         "ionic-angular": "ionic-angular", // TODO
         "primeng/primeng": "primeng/primeng",
-        "rxjs/Subject": "Rx",
-        "rxjs/Subscription": "Rx"
+        "rxjs/Observable": "Rx.Observable",
+        "rxjs/Subject": "Rx.Subject",
+        "rxjs/Subscription": "Rx.Subscription"
     };
 
     function toCamelCase(string) {

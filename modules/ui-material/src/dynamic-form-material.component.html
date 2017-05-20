@@ -156,7 +156,7 @@
                         (change)="onValueChange($event)"
                         (focus)="onFocusChange($event)">
 
-            <md-radio-button *ngFor="let option of model.options"
+            <md-radio-button *ngFor="let option of model.options$ | async"
                              [labelPosition]="'after'"
                              [name]="model.name"
                              [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
@@ -173,7 +173,7 @@
                    [placeholder]="model.placeholder"
                    (change)="onValueChange($event)">
 
-            <md-option *ngFor="let option of model.options"
+            <md-option *ngFor="let option of model.options$ | async"
                        [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
 
         </md-select>

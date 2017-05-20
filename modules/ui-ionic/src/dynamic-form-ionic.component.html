@@ -57,7 +57,7 @@
 
         <ion-list-header *ngIf="model.label !== null">{{model.label}}</ion-list-header>
 
-        <ion-item *ngFor="let option of model.options">
+        <ion-item *ngFor="let option of model.options$ | async">
 
             <ion-label>{{option.label}}</ion-label>
             <ion-radio [value]="option.value"></ion-radio>
@@ -131,7 +131,7 @@
                     [placeholder]="model.placeholder"
                     (ionChange)="onValueChange($event)">
 
-            <ion-option *ngFor="let option of model.options" [value]="option.value">{{option.label}}</ion-option>
+            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{option.label}}</ion-option>
 
         </ion-select>
 

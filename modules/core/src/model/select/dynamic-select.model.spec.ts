@@ -1,3 +1,5 @@
+import { async } from "@angular/core/testing";
+import { Observable } from "rxjs/Observable";
 import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "./dynamic-select.model";
 
 describe("DynamicSelectModel test suite", () => {
@@ -29,6 +31,7 @@ describe("DynamicSelectModel test suite", () => {
         expect(model.multiple).toBe(config.multiple);
         expect(model.name).toEqual(model.id);
         expect(model.options.length).toBe(config.options.length);
+        expect(model.options$ instanceof Observable).toBe(true);
         expect(model.placeholder).toEqual("");
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SELECT);
         expect(model.value).toBeNull();
@@ -42,6 +45,13 @@ describe("DynamicSelectModel test suite", () => {
 
         expect(model.get(0).text).toEqual("Eins");
     });
+
+    it("should correctly create options Observable", async(() => {
+
+        model.options$.subscribe(options => {
+            expect(options.length).toBe(config.options.length);
+        });
+    }));
 
     it("should add another option", () => {
 

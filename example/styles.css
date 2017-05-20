@@ -81,7 +81,7 @@ pre {
     overflow: hidden;
 }
 
-.rounded {
+.btn.rounded {
     border-radius: 50% !important;
 }
 
