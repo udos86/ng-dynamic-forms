@@ -6,14 +6,13 @@ import {
     ClsConfig
 } from "./dynamic-form-control.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { isBoolean, isDefined } from "../utils";
+import { isBoolean } from "../utils";
 
 export type DynamicFormControlValue = boolean | number | string | Date | Array<boolean | number | string>;
 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
     asyncValidators?: DynamicValidatorsMap;
-    errorMessages?: DynamicValidatorsMap;
     hint?: string;
     required?: boolean;
     tabIndex?: number;
@@ -24,7 +23,6 @@ export interface DynamicFormValueControlModelConfig<T> extends DynamicFormContro
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
     @serializable() asyncValidators: DynamicValidatorsMap | null;
-    @serializable() errorMessages: DynamicValidatorsMap | null;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
@@ -37,7 +35,6 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         super(config, cls);
 
         this.asyncValidators = config.asyncValidators || null;
-        this.errorMessages = config.errorMessages || null;
         this.hint = config.hint || null;
         this.required = isBoolean(config.required) ? config.required : false;
         this.tabIndex = config.tabIndex || null;
@@ -54,9 +51,5 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
     get value(): T {
         return this._value;
-    }
-
-    get hasErrorMessages(): boolean {
-        return isDefined(this.errorMessages);
     }
 }

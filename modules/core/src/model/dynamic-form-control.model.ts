@@ -1,7 +1,7 @@
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { merge, isBoolean, isEmptyString } from "../utils";
+import { merge, isBoolean, isDefined, isEmptyString } from "../utils";
 
 export type DynamicValidatorsMap = {[validatorName: string]: any};
 
@@ -23,6 +23,7 @@ export interface ClsConfig {
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
+    errorMessages?: DynamicValidatorsMap;
     id?: string;
     label?: string;
     relation?: DynamicFormControlRelationGroup[];
@@ -33,6 +34,7 @@ export abstract class DynamicFormControlModel {
     @serializable() cls: any = {};
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
+    @serializable() errorMessages: DynamicValidatorsMap | null;
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() name: string;
@@ -50,6 +52,7 @@ export abstract class DynamicFormControlModel {
         this.cls.grid = merge(cls.grid, {container: "", control: "", errors: "", hint: "", label: ""});
 
         this._disabled = isBoolean(config.disabled) ? config.disabled : false;
+        this.errorMessages = config.errorMessages || null;
         this.id = config.id;
         this.label = config.label || null;
         this.name = this.id;
@@ -65,6 +68,10 @@ export abstract class DynamicFormControlModel {
 
     get disabled(): boolean {
         return this._disabled;
+    }
+
+    get hasErrorMessages(): boolean {
+        return isDefined(this.errorMessages);
     }
 
     toJSON() {
