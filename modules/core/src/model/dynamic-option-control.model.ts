@@ -1,3 +1,4 @@
+import { Observable } from "rxjs/Observable";
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
@@ -38,18 +39,53 @@ export class DynamicFormOption<T> {
 
 export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig<T | T[]> {
 
-    options?: DynamicFormOptionConfig<T>[];
+    options?: DynamicFormOptionConfig<T>[] | Observable<DynamicFormOption<T>[]>;
 }
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T | T[]> {
 
-    @serializable() options: DynamicFormOption<T>[];
+    @serializable("options") _options: DynamicFormOption<T>[];
+    options$: Observable<DynamicFormOption<T>[]>;
 
     constructor(config: DynamicOptionControlModelConfig<T>, cls?: ClsConfig) {
 
         super(config, cls);
 
-        this.options = config.options ? config.options.map(optionConfig => new DynamicFormOption<T>(optionConfig)) : [];
+        this.options = config.options;
+    }
+
+    private updateOptions$(): void {
+        this.options$ = Observable.of(this.options);
+    }
+
+    set options(options: any) {
+
+        if (Array.isArray(options)) {
+
+            this._options = (options as DynamicFormOptionConfig<T>[]).map(optionConfig => {
+                return new DynamicFormOption<T>(optionConfig);
+            });
+
+            this.updateOptions$();
+
+        } else if (options instanceof Observable) {
+
+            let subscription = options.subscribe(options => {
+                subscription.unsubscribe();
+                this._options = options;
+            });
+
+            this.options$ = options as Observable<DynamicFormOption<T>[]>;
+
+        } else {
+
+            this.options = [];
+            this.updateOptions$();
+        }
+    }
+
+    get options(): any {
+        return this._options;
     }
 
     add(optionConfig: DynamicFormOptionConfig<T>): DynamicFormOption<T> {
@@ -65,12 +101,15 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         let option = new DynamicFormOption(optionConfig);
 
         this.options.splice(index, 0, option);
+        this.updateOptions$();
 
         return option;
     }
 
     remove(...indices: number[]): void {
+
         indices.forEach(index => this.options.splice(index, 1));
+        this.updateOptions$();
     }
 
     abstract select(...indices: number[]): void;

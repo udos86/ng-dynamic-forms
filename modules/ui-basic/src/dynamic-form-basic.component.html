@@ -117,7 +117,7 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <label *ngFor="let option of model.options">
+            <label *ngFor="let option of model.options$ | async">
 
                 <input type="radio"
                        [formControlName]="model.id"
@@ -141,11 +141,10 @@
                 (change)="onValueChange($event)"
                 (focus)="onFocusChange($event)">
 
-            <option *ngFor="let option of model.options"
+            <option *ngFor="let option of model.options$ | async"
                     [attr.name]="model.name"
                     [disabled]="!!option.disabled"
-                    [ngValue]="option.value">{{option.label}}
-            </option>
+                    [ngValue]="option.value">{{option.label}}</option>
 
         </select>
 

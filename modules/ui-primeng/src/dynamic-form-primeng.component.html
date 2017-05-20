@@ -14,7 +14,7 @@
 
         <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-        <div *ngFor="let option of model.options" [ngClass]="model.cls.grid.container">
+        <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.grid.container">
 
             <div [ngClass]="model.cls.grid.control">
 

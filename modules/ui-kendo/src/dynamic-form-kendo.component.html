@@ -262,7 +262,7 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <ng-container *ngFor="let option of model.options; let idx = index">
+            <ng-container *ngFor="let option of model.options$ | async; let idx = index">
 
                 <input type="radio" class="k-radio"
                        [formControlName]="model.id"
