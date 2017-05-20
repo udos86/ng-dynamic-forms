@@ -1,6 +1,7 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
@@ -51,6 +52,14 @@ export const MATERIAL_EXAMPLE_MODEL = [
             errorMessages: {
                 required: "Field is required"
             }
+        }
+    ),
+
+    new DynamicDatePickerModel(
+        {
+            id: "materialDatepicker",
+            placeholder: "Material Datepicker",
+            value: new Date()
         }
     ),
 

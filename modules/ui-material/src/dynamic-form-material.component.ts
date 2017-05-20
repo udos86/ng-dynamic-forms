@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import {
     MdAutocomplete,
     MdCheckbox,
+    MdDatepicker,
     MdInputContainer,
     MdRadioGroup,
     MdSelect,
@@ -19,6 +20,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -32,13 +34,14 @@ export const enum MdFormControlType {
 
     Array = 1,
     Checkbox = 2,
-    Group = 3,
-    Input = 4,
-    RadioGroup = 5,
-    Select = 6,
-    Slider = 7,
-    SlideToggle = 8,
-    TextArea = 9
+    DatePicker = 3,
+    Group = 4,
+    Input = 5,
+    RadioGroup = 6,
+    Select = 7,
+    Slider = 8,
+    SlideToggle = 9,
+    TextArea = 10
 }
 
 @Component({
@@ -81,6 +84,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
 
     @ViewChild(MdAutocomplete) mdAutocomplete: MdAutocomplete | null;
     @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
+    @ViewChild(MdDatepicker) mdDatepicker: MdDatepicker<Date> | null;
     @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;
     @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup | null;
     @ViewChild(MdSelect) mdSelect: MdSelect | null;
@@ -108,6 +112,9 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return MdFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                return MdFormControlType.DatePicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 return MdFormControlType.Input;
