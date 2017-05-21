@@ -45,7 +45,8 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         "primeng/primeng": "primeng/primeng",
         "rxjs/Observable": "Rx.Observable",
         "rxjs/Subject": "Rx.Subject",
-        "rxjs/Subscription": "Rx.Subscription"
+        "rxjs/Subscription": "Rx.Subscription",
+        "rxjs/add/operator/map": "rxjs/add/operator/map"
     };
 
     function toCamelCase(string) {
