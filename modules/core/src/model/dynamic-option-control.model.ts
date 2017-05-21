@@ -1,4 +1,5 @@
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/map";
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
@@ -39,12 +40,12 @@ export class DynamicFormOption<T> {
 
 export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig<T | T[]> {
 
-    options?: DynamicFormOptionConfig<T>[] | Observable<DynamicFormOption<T>[]>;
+    options?: DynamicFormOptionConfig<T>[] | Observable<DynamicFormOptionConfig<T>[]>;
 }
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T | T[]> {
 
-    @serializable("options") _options: DynamicFormOption<T>[];
+    @serializable("options") _options: DynamicFormOption<T>[] = [];
     options$: Observable<DynamicFormOption<T>[]>;
 
     constructor(config: DynamicOptionControlModelConfig<T>, cls?: ClsConfig) {
@@ -70,16 +71,16 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
         } else if (options instanceof Observable) {
 
-            let subscription = options.subscribe(options => {
-                subscription.unsubscribe();
-                this._options = options;
-            });
+            this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).map(optionsConfig => {
 
-            this.options$ = options as Observable<DynamicFormOption<T>[]>;
+                let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
+                this._options = options;
+
+                return options;
+            });
 
         } else {
 
-            this.options = [];
             this.updateOptions$();
         }
     }
