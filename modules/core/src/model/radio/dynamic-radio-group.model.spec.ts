@@ -1,3 +1,6 @@
+import { async } from "@angular/core/testing";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/of";
 import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel } from "./dynamic-radio-group.model";
 
 describe("DynamicRadioModel test suite", () => {
@@ -5,7 +8,7 @@ describe("DynamicRadioModel test suite", () => {
     let model: DynamicRadioGroupModel<string>,
         config = {
             id: "radio",
-            options: [
+            options: Observable.of([
                 {
                     value: "1",
                     label: "One"
@@ -14,7 +17,7 @@ describe("DynamicRadioModel test suite", () => {
                     value: "2",
                     label: "Two"
                 }
-            ]
+            ])
         };
 
     beforeEach(() => model = new DynamicRadioGroupModel(config));
@@ -28,35 +31,51 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.label).toBeNull();
         expect(model.legend).toBeNull();
         expect(model.name).toEqual(model.id);
-        expect(model.options.length).toBe(config.options.length);
+        expect(model.options$ instanceof Observable).toBe(true);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
         expect(model.value).toBeNull();
     });
 
-    it("should select the correct option", () => {
+    it("should select the correct option", async(() => {
 
-        model.select(1);
+        model.options$.subscribe(() => {
 
-        expect(model.value).toEqual(model.get(1).value);
-    });
+            model.select(1);
 
-    it("should insert another option", () => {
+            expect(model.value).toEqual(model.get(1).value);
+        });
+    }));
+
+    it("should correctly create options Observable", async(() => {
+
+        model.options$.subscribe(options => {
+            expect(options.length).toBe(2);
+        });
+    }));
+
+    it("should insert another option", async(() => {
 
         let option = {label: "test option", value: "test-option"},
             index = 1;
 
-        model.insert(index, option);
+        model.options$.subscribe(() => {
 
-        expect(model.options.length).toBe(config.options.length + 1);
-        expect(model.get(index).value).toEqual(option.value);
-    });
+            model.insert(index, option);
 
-    it("should remove a given option correctly", () => {
+            expect(model.options.length).toBe(3);
+            expect(model.get(index).value).toEqual(option.value);
+        });
+    }));
 
-        model.remove(1);
+    it("should remove a given option correctly", async(() => {
 
-        expect(model.options.length).toBe(config.options.length - 1);
-    });
+        model.options$.subscribe(() => {
+
+            model.remove(1);
+
+            expect(model.options.length).toBe(1);
+        });
+    }));
 
     it("should get the correct option", () => {
 
