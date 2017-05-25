@@ -3,9 +3,8 @@ import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import {
     DynamicFormService,
     DynamicFormControlModel,
-    DynamicFormGroupModel,
     DynamicFormArrayModel,
-    DynamicInputModel, DynamicSelectModel
+    DynamicInputModel
 } from "@ng2-dynamic-forms/core";
 import { BOOTSTRAP_EXAMPLE_MODEL } from "./bootstrap-example.model";
 
@@ -24,7 +23,7 @@ export class BootstrapExampleComponent implements OnInit {
     formGroup: FormGroup;
 
     exampleControl: FormControl;
-    exampleModel: DynamicSelectModel;
+    exampleModel: DynamicInputModel;
 
     arrayControl: FormArray;
     arrayModel: DynamicFormArrayModel;
@@ -36,7 +35,7 @@ export class BootstrapExampleComponent implements OnInit {
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
         this.exampleControl = this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput") as FormControl;
-        this.exampleModel = this.formService.findById("bootstrapSelect", this.formModel) as DynamicSelectModel;
+        this.exampleModel = this.formService.findById("bootstrapInput", this.formModel) as DynamicInputModel;
 
         this.arrayControl = this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray") as FormArray;
         this.arrayModel = this.formService.findById("bootstrapFormArray", this.formModel) as DynamicFormArrayModel;
@@ -85,7 +84,7 @@ export class BootstrapExampleComponent implements OnInit {
         );
         */
 
-        this.exampleModel.add({label: "Option 5", value: "option-5"});
+        //this.exampleModel.add({label: "Option 5", value: "option-5"});
     }
 
     onBlur($event) {

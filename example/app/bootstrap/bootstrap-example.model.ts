@@ -8,6 +8,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
+import { Observable } from "rxjs/Observable";
 
 export const BOOTSTRAP_EXAMPLE_MODEL = [
 
@@ -20,7 +21,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 {
                     id: "bootstrapSelect",
                     label: "Example Select",
-                    options: [
+                    options: Observable.of([
                         {
                             label: "Option 1",
                             value: "option-1",
@@ -37,7 +38,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                             label: "Option 4",
                             value: "option-4"
                         }
-                    ],
+                    ]),
                     value: "option-3"
                 },
                 {
@@ -66,7 +67,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                         maxLength: 5
                     },
                     errorMessages: {
-                        required: "{{label}} is required",
+                        required: "{{ label }} is required",
                         maxLength: "Max character count is 5"
                     }
                 },

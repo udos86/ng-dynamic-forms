@@ -116,7 +116,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
                 if (model.errorMessages[validatorName]) {
 
                     message = model.errorMessages[validatorName]
-                        .replace(/\{\{(.+?)\}\}/mg, (match: string, expression: string) => {
+                        .replace(/\{\{\s*(.+?)\s*\}\}/mg, (match: string, expression: string) => {
 
                             let propertySource: any = model,
                                 propertyName: string = expression;
