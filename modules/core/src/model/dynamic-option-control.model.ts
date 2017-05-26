@@ -1,4 +1,5 @@
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/of";
 import "rxjs/add/operator/map";
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
