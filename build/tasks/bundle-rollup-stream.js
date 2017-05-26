@@ -46,6 +46,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         "rxjs/Observable": "Rx.Observable",
         "rxjs/Subject": "Rx.Subject",
         "rxjs/Subscription": "Rx.Subscription",
+        "rxjs/add/observable/of": "rxjs/add/observable/of",
         "rxjs/add/operator/map": "rxjs/add/operator/map"
     };
 

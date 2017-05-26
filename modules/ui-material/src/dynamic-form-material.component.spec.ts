@@ -16,24 +16,44 @@ import {
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
+    DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicFormArrayModel,
+    DynamicFormControlModel,
+    DynamicFormGroupModel,
     DynamicInputModel,
+    DynamicRadioGroupModel,
+    DynamicSelectModel,
+    DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicFormControlModel
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormMaterialComponent, MdFormControlType } from "./dynamic-form-material.component";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
-    let inputModel = new DynamicInputModel({id: "testInput", maxLength: 51}),
-        formModel = [
-            inputModel,
-            new DynamicSwitchModel({id: "testSwitch"})
+    let formModel = [
+            new DynamicInputModel({id: "input", maxLength: 51}),
+            new DynamicCheckboxModel({id: "checkbox"}),
+            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicDatePickerModel({id: "datepicker"}),
+            new DynamicFormArrayModel({id: "formArray", createGroup: () => []}),
+            new DynamicFormGroupModel({id: "formGroup", group: []}),
+            new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicSelectModel({id: "select"}),
+            new DynamicSliderModel({id: "slider"}),
+            new DynamicSwitchModel({id: "switch"}),
+            new DynamicTextAreaModel({id: "textarea"}),
+            new DynamicTimePickerModel({id: "timepicker"})
         ],
+        testModel = formModel[0] as DynamicInputModel,
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormMaterialComponent>,
         component: DynamicFormMaterialComponent,
         debugElement: DebugElement,
-        inputElement: DebugElement;
+        testElement: DebugElement;
 
     beforeEach(async(() => {
 
@@ -73,7 +93,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         fixture.detectChanges();
 
-        inputElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
+        testElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
     }));
 
     it("should initialize correctly", () => {
@@ -106,15 +126,15 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should have an input element", () => {
 
-        expect(inputElement instanceof DebugElement).toBe(true);
+        expect(testElement instanceof DebugElement).toBe(true);
     });
 
     xit("should listen to native focus and blur events", () => {
 
         spyOn(component, "onFocusChange");
 
-        inputElement.triggerEventHandler("focus", null);
-        inputElement.triggerEventHandler("blur", null);
+        testElement.triggerEventHandler("focus", null);
+        testElement.triggerEventHandler("blur", null);
 
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
@@ -123,7 +143,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         spyOn(component, "onValueChange");
 
-        inputElement.triggerEventHandler("change", null);
+        testElement.triggerEventHandler("change", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });
@@ -145,7 +165,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.valueUpdates.next("test");
+        testModel.valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -156,8 +176,41 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.disabledUpdates.next(true);
+        testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should set correct form control type", () => {
+
+        component.model = formModel[1];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.Checkbox);
+
+        component.model = formModel[2];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.Group);
+
+        component.model = formModel[3];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.DatePicker);
+
+        component.model = formModel[4];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.Array);
+
+        component.model = formModel[5];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.Group);
+
+        component.model = formModel[6];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.RadioGroup);
+
+        component.model = formModel[7];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.Select);
+
+        component.model = formModel[8];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.Slider);
+
+        component.model = formModel[9];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.SlideToggle);
+
+        component.model = formModel[10];
+        expect(component["getFormControlType"]()).toBe(MdFormControlType.TextArea);
     });
 });
