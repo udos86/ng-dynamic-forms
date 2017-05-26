@@ -1,8 +1,15 @@
+# 1.4.11
+
+### **Bugfixes**
+
+* missing `of` Observable operator import added (closes [#372](https://github.com/udos86/ng2-dynamic-forms/issues/372))
+
+
 # 1.4.10
 
 ### **Features** 
 
-* **LONG ANTICIPATED**: `option` **property of** `DynamicOptionControlModel` **now finally supports** `Observable`s (closes [#165](https://github.com/udos86/ng2-dynamic-forms/issues/165))  
+* `option` **property of** `DynamicOptionControlModel` **now finally supports** `Observable`s (closes [#165](https://github.com/udos86/ng2-dynamic-forms/issues/165))  
 * NG Bootstrap UI template now correctly displays `NgbRadioGroup` (closes [#356](https://github.com/udos86/ng2-dynamic-forms/issues/356))
 * update to @angular/material `beta.5` 
 * initial datepicker support in Material UI package
