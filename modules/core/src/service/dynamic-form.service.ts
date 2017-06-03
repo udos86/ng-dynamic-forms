@@ -13,7 +13,8 @@ import {
 import { DynamicFormControlModel, DynamicValidatorsMap } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
-    DynamicFormArrayModel, DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DynamicFormArrayModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DynamicFormArrayGroupModel
 } from "../model/form-array/dynamic-form-array.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_GROUP, DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";

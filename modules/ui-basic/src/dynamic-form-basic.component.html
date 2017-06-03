@@ -22,6 +22,7 @@
 
                 <dynamic-form-basic-control *ngFor="let controlModel of groupModel.group"
                                             [bindId]="false"
+                                            [context]="groupModel"
                                             [group]="control.at(idx)"
                                             [hasErrorMessaging]="controlModel.hasErrorMessages"
                                             [model]="controlModel"

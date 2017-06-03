@@ -13,6 +13,7 @@ import {
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
+    DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
     DynamicTemplateDirective,
@@ -56,6 +57,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     private _showCharacterCount: boolean = false;
 
     @Input() bindId: boolean = true;
+    @Input() context: DynamicFormArrayGroupModel = null;
 
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;

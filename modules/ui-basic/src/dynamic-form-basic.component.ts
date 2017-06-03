@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, QueryList, ContentChildren } fr
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlModel,
+    DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
     DynamicFormControlEvent,
     DynamicFormRelationService,
@@ -18,6 +19,7 @@ import {
 export class DynamicFormBasicComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
+    @Input() context: DynamicFormArrayGroupModel = null;
 
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;

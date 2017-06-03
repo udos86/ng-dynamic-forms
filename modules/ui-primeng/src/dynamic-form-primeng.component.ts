@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
+    DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
     DynamicTemplateDirective,
@@ -50,6 +51,7 @@ import {
 export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
+    @Input() context: DynamicFormArrayGroupModel = null;
 
     @Input()set controlGroup(group: FormGroup) {
         this.group = group;

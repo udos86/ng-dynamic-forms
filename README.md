@@ -406,7 +406,7 @@ Fortunately, ng2 Dynamic Forms is capable of managing such nested form structure
 export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormArrayModel({
-        id: "myFormArrayModel"
+        id: "myFormArray"
     })
 ];
 ```
@@ -452,8 +452,8 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 ```ts
 ngOnInit() {
 
-    this.arrayControl = <FormArray> this.formGroup.get("myFormArray"); 
-    this.arrayModel = <DynamicFormArrayModel> this.formService.findById("myFormArray", this.formModel);
+    this.arrayControl = this.formGroup.get("myFormArray") as FormArray; 
+    this.arrayModel = this.formService.findById("myFormArray", this.formModel) as DynamicFormArrayModel;
 }
 
 addItem() {
@@ -467,9 +467,9 @@ clear() {
 
 Alright, works like a charm! 
 
-*But wait a minute... what if we want to append, let's say, a remove* `<button>` *for each array group*?
+But what if we want to append an additional remove `<button>` for each array group?
 
-Particularly for this case you can add a `<template>` and **declare some custom content** that is **rendered equally for all array groups**:
+Particularly for this case you can add a `<ng-template>` and **declare some custom content** that is **rendered equally for all array groups**:
 ```ts
 <form [formGroup]="formGroup">
 
@@ -508,7 +508,7 @@ insertItem(context: DynamicFormArrayModel, index: number) {
 }
 ```
 
-Using `DynamicFormService` again, you can even change the order of the groups in a form array dynamically:
+Using `DynamicFormService` again, **you can even change the order of the groups** in a form array dynamically:
 ```ts
 this.formService.moveFormArrayGroup(index, -1, this.arrayControl, context);
 ```

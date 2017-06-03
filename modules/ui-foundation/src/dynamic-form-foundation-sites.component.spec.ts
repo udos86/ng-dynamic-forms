@@ -51,6 +51,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
