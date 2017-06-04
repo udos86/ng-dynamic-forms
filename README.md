@@ -116,7 +116,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
 
-// ..all remaining component and routing imports
+// ..all remaining imports
 
 @NgModule({
     imports: [
@@ -330,18 +330,18 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
  
     new DynamicFormGroupModel({
  
-        id: "basicFormGroup1",
+        id: "formGroup1",
         legend: "Form Group 1",
         group: [
             new DynamicInputModel({
                 
-                id: "basicGroupInput1-1",
+                id: "group1Input1",
                 label: "Example Group Input 1-1",
                 value: "Test 1-1"
             }),
             new DynamicInputModel({
                 
-                id: "basicGroupInput1-2",
+                id: "group1Input2",
                 label: "Example Group Input 1-2",
                 value: "Test 1-2"
             })
@@ -350,18 +350,18 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
     
     new DynamicFormGroupModel({
  
-        id: "basicFormGroup2",
+        id: "formGroup2",
         legend: "Form Group 2",
         group: [
             new DynamicInputModel({
                     
-                id: "basicGroupInput2-1",
+                id: "group2Input1",
                 label: "Example Group Input 2-1",
                 value: "Test 2-1"
             }),
             new DynamicInputModel({
                 
-                id: "basicGroupInput2-2",
+                id: "group2Input2",
                 label: "Example Group Input 2-2",
                 value: "Test 2-2"
             })
@@ -388,10 +388,10 @@ ngOnInit() {
 
 **3. To manipulate existing** `DynamicFormGroupModel`s **you can simply use** `DynamicFormService`:
 
-* `addFormGroupControl(formGroup: FormGroup, groupModel: DynamicFormGroupModel, ...controlModels: DynamicFormControlModel[]): void`
-* `insertFormGroupControl(index: number, formGroup: FormGroup, groupModel: DynamicFormGroupModel, ...controlModels: DynamicFormControlModel[]): void`
-* `moveFormGroupControl(index: number, step: number, groupModel: DynamicFormGroupModel): void`
-* `removeFormGroupControl(index: number, formGroup: FormGroup, groupModel: DynamicFormGroupModel): void`
+* `addFormGroupControl`
+* `insertFormGroupControl`
+* `moveFormGroupControl`
+* `removeFormGroupControl`
 
 
 ## Form Arrays
@@ -766,8 +766,8 @@ new DynamicInputModel({
 ```
 Error message template allows the following placeholders: 
 
-- ```{{property_name}}``` where property_name is property of model, for example ```{{label}}```.
-- ```{{validator.property_name}}``` where property_name is property of object returned by validation function, for example ```{{validator.requiredPattern}}``` in case of pattern validator.
+* `{{ propertyName }}` where propertyName is property of model, for example `{{ label }}`.
+* `{{ validator.propertyName }}` where propertyName is property of object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
 
 **2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of to** `true`:
 ```ts

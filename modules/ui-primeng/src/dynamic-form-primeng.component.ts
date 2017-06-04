@@ -52,12 +52,6 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
-
-    @Input()set controlGroup(group: FormGroup) {
-        this.group = group;
-        console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    }
-
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;

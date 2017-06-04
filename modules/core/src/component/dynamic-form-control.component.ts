@@ -52,13 +52,8 @@ export const enum CoreFormControlType {
 export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
-    blur: EventEmitter<DynamicFormControlEvent>;
-    change: EventEmitter<DynamicFormControlEvent>;
     context: DynamicFormArrayGroupModel | null;
     control: FormControl;
-    controlGroup: FormGroup; // deprecated
-    filter: EventEmitter<DynamicFormControlEvent>;
-    focus: EventEmitter<DynamicFormControlEvent>;
     group: FormGroup;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
@@ -68,6 +63,11 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     templateDirective: DynamicTemplateDirective;
     templates: QueryList<DynamicTemplateDirective>;
     type: number | null;
+
+    blur: EventEmitter<DynamicFormControlEvent>;
+    change: EventEmitter<DynamicFormControlEvent>;
+    filter: EventEmitter<DynamicFormControlEvent>;
+    focus: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
 
