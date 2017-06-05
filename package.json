@@ -59,7 +59,7 @@
     "@progress/kendo-angular-inputs": "^1.0.3",
     "@progress/kendo-angular-intl": "^1.0.0",
     "@progress/kendo-angular-l10n": "^1.0.0",
-    "@progress/kendo-angular-popup": "^1.0.1",
+    "@progress/kendo-angular-popup": "^1.0.2",
     "@progress/kendo-angular-resize-sensor": "^1.0.0",
     "@progress/kendo-angular-upload": "^1.0.0",
     "@progress/kendo-date-math": "^1.0.1",
