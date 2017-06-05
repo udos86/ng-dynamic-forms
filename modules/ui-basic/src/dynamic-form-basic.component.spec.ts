@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { Type, DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -25,7 +26,7 @@ describe("DynamicFormBasicComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot()],
+            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
             declarations: [DynamicFormBasicComponent]
 
         }).compileComponents().then(() => {

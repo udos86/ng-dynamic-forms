@@ -96,6 +96,7 @@
                    [readonly]="model.readOnly"
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
+                   [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                    [type]="model.inputType"
                    (blur)="onFocusChange($event)"
                    (change)="onValueChange($event)"

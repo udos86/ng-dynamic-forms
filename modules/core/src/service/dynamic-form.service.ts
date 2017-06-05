@@ -1,4 +1,4 @@
-import { Inject, Optional } from "@angular/core";
+import { Injectable, Inject, Optional } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -47,6 +47,7 @@ import {
 } from "../model/timepicker/dynamic-timepicker.model";
 import { isFunction, isDefined, isString } from "../utils";
 
+@Injectable()
 export class DynamicFormService {
 
     constructor(@Inject(FormBuilder) private formBuilder: FormBuilder,
