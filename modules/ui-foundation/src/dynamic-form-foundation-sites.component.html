@@ -28,6 +28,7 @@
 
                     <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
                                                            [bindId]="false"
+                                                           [context]="groupModel"
                                                            [group]="control.at(idx)"
                                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                            [model]="controlModel"
@@ -106,6 +107,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
                        (blur)="onFocusChange($event)"
                        (change)="onValueChange($event)"

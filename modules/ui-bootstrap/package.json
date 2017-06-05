@@ -35,6 +35,7 @@
     "@angular/common": "^4.0.0",
     "@ng2-dynamic-forms/core": "^1.4.11",
     "bootstrap": "^3.3.7",
+    "angular2-text-mask": "^8.0.1",
     "rxjs": "^5.2.0"
   }
 }

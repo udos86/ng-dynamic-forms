@@ -12,6 +12,7 @@ import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
+    DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
     DynamicTemplateDirective,
@@ -53,12 +54,7 @@ import {
 export class DynamicFormKendoComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
-
-    @Input()set controlGroup(group: FormGroup) {
-        this.group = group;
-        console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    }
-
+    @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;
@@ -212,14 +208,28 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     }
 
     onFocus($event: null): void {
-        this.focus.emit({$event: $event, control: this.control, model: this.model});
+
+        this.focus.emit(
+            {
+                $event: $event,
+                context: this.context,
+                control: this.control,
+                group: this.group,
+                model: this.model
+            }
+        );
     }
 
     onBlur($event: null): void {
-        this.blur.emit({$event: $event, control: this.control, model: this.model});
-    }
 
-    onFilterChange(value: string):void {
-        //TODO
+        this.blur.emit(
+            {
+                $event: $event,
+                context: this.context,
+                control: this.control,
+                group: this.group,
+                model: this.model
+            }
+        );
     }
 }

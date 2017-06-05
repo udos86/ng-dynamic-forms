@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { Type, DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -25,7 +26,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot()],
+            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
             declarations: [DynamicFormFoundationSitesComponent]
 
         }).compileComponents().then(() => {
@@ -51,6 +52,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);

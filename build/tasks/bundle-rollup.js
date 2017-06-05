@@ -60,6 +60,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns", // TODO
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs", // TODO
             "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
+            "angular2-text-mask": "angular2-text-mask", // TODO
             "ionic-angular": "ionic-angular",
             "ng-semantic": "ng-semantic", // TODO
             "primeng/primeng": "primeng/primeng",

@@ -67,9 +67,11 @@ System.config({
         "@telerik/kendo-dropdowns-common": "npm:@telerik/kendo-dropdowns-common/dist/npm/main.js",
         "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/main.js",
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
+        "angular2-text-mask": "npm:angular2-text-mask/dist/angular2TextMask.js",
         "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
         "primeng": "npm:primeng",
-        "rxjs": "npm:rxjs"
+        "rxjs": "npm:rxjs",
+        "text-mask-core": "npm:text-mask-core"
     },
 
     packages: {
@@ -89,6 +91,9 @@ System.config({
             defaultExtension: "js"
         },
         "test": {
+            defaultExtension: "js"
+        },
+        "text-mask-core": {
             defaultExtension: "js"
         }
     }

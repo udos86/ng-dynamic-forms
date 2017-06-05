@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
+    DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
     DynamicFormRelationService,
     DynamicTemplateDirective,
@@ -42,14 +43,9 @@ export const enum NGBootstrapFormControlType {
 
 export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
-
-    @Input()set controlGroup(group: FormGroup) {
-        this.group = group;
-        console.warn("[controlGroup] is deprecated. Use [group] instead.");
-    }
-
     @Input() asBootstrapFormGroup: boolean = true;
+    @Input() bindId: boolean = true;
+    @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;

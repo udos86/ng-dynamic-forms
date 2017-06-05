@@ -219,7 +219,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                         return [
                             new DynamicInputModel(
                                 {
-                                    id: "basicArrayGroupInput",
+                                    id: "bootstrapArrayGroupInput",
                                     placeholder: "example array group input"
                                 },
                                 {

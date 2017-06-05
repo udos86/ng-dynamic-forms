@@ -90,8 +90,9 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             hint: "Just a sample help text",
             id: "foundationInput",
             label: "Example Input",
+            mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/],
             maxLength: 51,
-            placeholder: "example input",
+            //placeholder: "example input",
             prefix: "Prefix",
             suffix: "Suffix",
             validators: {

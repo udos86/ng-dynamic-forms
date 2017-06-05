@@ -58,6 +58,9 @@ module.exports = function (config) {
             {pattern: "node_modules/@progress/**/*.js", included: false, watched: false},
             {pattern: "node_modules/@telerik/**/*.js", included: false, watched: false},
 
+            {pattern: "node_modules/angular2-text-mask/**/*.js", included: false, watched: false},
+            {pattern: "node_modules/text-mask-core/**/*.js", included: false, watched: false},
+
             {pattern: "node_modules/ionic-angular/**/*.js", included: false, watched: false},
 
             {pattern: "node_modules/primeng/**/*.js", included: false, watched: false},

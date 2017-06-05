@@ -4,7 +4,10 @@ import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_ARRAY } from "../model/form-array/dynamic-form-array.model";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DynamicFormArrayGroupModel
+} from "../model/form-array/dynamic-form-array.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX } from "../model/checkbox/dynamic-checkbox.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_GROUP } from "../model/form-group/dynamic-form-group.model";
@@ -28,7 +31,9 @@ import { isDefined } from "../utils";
 export interface DynamicFormControlEvent {
 
     $event: Event | FocusEvent | DynamicFormControlEvent | any;
+    context: DynamicFormArrayGroupModel | null;
     control: FormControl;
+    group: FormGroup;
     model: DynamicFormControlModel;
 }
 
@@ -47,11 +52,8 @@ export const enum CoreFormControlType {
 export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
-    blur: EventEmitter<DynamicFormControlEvent>;
-    change: EventEmitter<DynamicFormControlEvent>;
+    context: DynamicFormArrayGroupModel | null;
     control: FormControl;
-    controlGroup: FormGroup; // deprecated
-    focus: EventEmitter<DynamicFormControlEvent>;
     group: FormGroup;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
@@ -61,6 +63,11 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     templateDirective: DynamicTemplateDirective;
     templates: QueryList<DynamicTemplateDirective>;
     type: number | null;
+
+    blur: EventEmitter<DynamicFormControlEvent>;
+    change: EventEmitter<DynamicFormControlEvent>;
+    filter: EventEmitter<DynamicFormControlEvent>;
+    focus: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
 
@@ -285,7 +292,15 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
                 }
             }
 
-            this.change.emit({$event: $event as Event, control: this.control, model: this.model});
+            this.change.emit(
+                {
+                    $event: $event as Event,
+                    context: this.context,
+                    control: this.control,
+                    group: this.group,
+                    model: this.model
+                }
+            );
 
         } else if ($event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
 
@@ -293,8 +308,20 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
         } else {
 
-            this.change.emit({$event: $event, control: this.control, model: this.model});
+            this.change.emit(
+                {
+                    $event: $event,
+                    context: this.context,
+                    control: this.control,
+                    group: this.group,
+                    model: this.model
+                }
+            );
         }
+    }
+
+    onFilterChange($event: any | DynamicFormControlEvent): void {
+        // TODO
     }
 
     onFocusChange($event: FocusEvent | DynamicFormControlEvent): void {
@@ -305,7 +332,13 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
             $event.stopPropagation();
 
-            emitValue = {$event: $event, control: this.control, model: this.model};
+            emitValue = {
+                $event: $event,
+                context: this.context,
+                control: this.control,
+                group: this.group,
+                model: this.model
+            };
 
             if ($event.type === "focus") {
 

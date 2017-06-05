@@ -34,6 +34,7 @@
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@ng2-dynamic-forms/core": "^1.4.11",
+    "angular2-text-mask": "^8.0.1",
     "foundation-sites": "^6.3.1",
     "rxjs": "^5.2.0"
   }
