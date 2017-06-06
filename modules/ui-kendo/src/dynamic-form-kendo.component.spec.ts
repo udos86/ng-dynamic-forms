@@ -9,21 +9,49 @@ import { UploadModule } from "@progress/kendo-angular-upload";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
+    DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicEditorModel,
+    DynamicFileUploadModel,
+    DynamicFormArrayModel,
     DynamicFormControlModel,
-    DynamicSelectModel
+    DynamicFormGroupModel,
+    DynamicInputModel,
+    DynamicRadioGroupModel,
+    DynamicSelectModel,
+    DynamicSliderModel,
+    DynamicSwitchModel,
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormKendoComponent } from "./dynamic-form-kendo.component";
 import { KendoFormControlType } from "./dynamic-form-kendo.const";
 
 describe("DynamicFormKendoComponent test suite", () => {
 
-    let selectModel = new DynamicSelectModel({id: "test", options:[{value: "One"}, {value: "Two"}], value: "One"}),
-        formModel = [selectModel],
+    let formModel = [
+            new DynamicCheckboxModel({id: "checkbox"}),
+            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicDatePickerModel({id: "datepicker"}),
+            new DynamicEditorModel({id: "editor"}),
+            new DynamicFileUploadModel({id: "upload", url: ""}),
+            new DynamicFormArrayModel({id: "formArray", createGroup: () => []}),
+            new DynamicFormGroupModel({id: "formGroup", group: []}),
+            new DynamicInputModel({id: "input", maxLength: 51}),
+            new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+            new DynamicSliderModel({id: "slider"}),
+            new DynamicSwitchModel({id: "switch"}),
+            new DynamicTextAreaModel({id: "textarea"}),
+            new DynamicTimePickerModel({id: "timepicker"})
+        ],
+        testModel = formModel[9] as DynamicSelectModel<string>,
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormKendoComponent>,
         component: DynamicFormKendoComponent,
         debugElement: DebugElement,
-        selectElement: DebugElement;
+        testElement: DebugElement;
 
     beforeEach(async(() => {
 
@@ -53,11 +81,11 @@ describe("DynamicFormKendoComponent test suite", () => {
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = formModel[0];
+        component.model = formModel[9];
 
         fixture.detectChanges();
 
-        selectElement = debugElement.query(By.css(`kendo-dropdownlist`));
+        testElement = debugElement.query(By.css(`kendo-dropdownlist`));
     }));
 
     it("should initialize correctly", () => {
@@ -94,7 +122,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onFocus");
 
-        selectElement.triggerEventHandler("focus", null);
+        testElement.triggerEventHandler("focus", null);
 
         expect(component.onFocus).toHaveBeenCalled();
     });
@@ -103,7 +131,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onBlur");
 
-        selectElement.triggerEventHandler("blur", null);
+        testElement.triggerEventHandler("blur", null);
 
         expect(component.onBlur).toHaveBeenCalled();
     });
@@ -112,7 +140,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onValueChange");
 
-        selectElement.triggerEventHandler("valueChange", null);
+        testElement.triggerEventHandler("valueChange", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });
@@ -134,7 +162,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         component.ngOnInit();
 
-        selectModel.valueUpdates.next("Two");
+        testModel.valueUpdates.next("Two");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -145,8 +173,72 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         component.ngOnInit();
 
-        selectModel.disabledUpdates.next(true);
+        testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should set correct form control type", () => {
+
+        component.model = formModel[0];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Checkbox);
+
+        component.model = formModel[1];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.CheckboxGroup);
+
+        component.model = formModel[2];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.DatePicker);
+
+        (formModel[2] as DynamicDatePickerModel).inline = true;
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Calendar);
+
+        component.model = formModel[3];
+        expect(component["getFormControlType"]()).toBeNull();
+
+        component.model = formModel[4];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Upload);
+
+        component.model = formModel[5];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Array);
+
+        component.model = formModel[6];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Group);
+
+        component.model = formModel[7];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Input);
+
+        (formModel[7] as DynamicInputModel).list = ["one", "two", "three"];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.AutoComplete);
+
+        (formModel[7] as DynamicInputModel).mask = "0000-0000-0000-0000";
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.MaskedTextBox);
+
+        (formModel[7] as DynamicInputModel).inputType = "date";
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.DateInput);
+
+        (formModel[7] as DynamicInputModel).inputType = "number";
+        (formModel[7] as DynamicInputModel).mask = null;
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.NumericTextBox);
+
+        component.model = formModel[8];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.RadioGroup);
+
+        component.model = formModel[9];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.DropDownList);
+
+        (formModel[9] as DynamicSelectModel<string>).multiple = true;
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.MultiSelect);
+
+        component.model = formModel[10];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Slider);
+
+        component.model = formModel[11];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.Switch);
+
+        component.model = formModel[12];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.TextArea);
+
+        component.model = formModel[13];
+        expect(component["getFormControlType"]()).toBe(KendoFormControlType.TimePicker);
     });
 });
