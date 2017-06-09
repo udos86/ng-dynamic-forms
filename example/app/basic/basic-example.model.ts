@@ -51,7 +51,7 @@ export const BASIC_EXAMPLE_MODEL = [
         },
         errorMessages: {
             required: "{{label}} is required",
-            testValidator: "{{label}} cannot start with abc"
+            customValidator: "{{label}} cannot start with abc"
         }
     }),
 
