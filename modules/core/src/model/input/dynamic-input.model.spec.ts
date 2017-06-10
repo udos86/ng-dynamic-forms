@@ -10,7 +10,8 @@ describe("DynamicInputModel test suite", () => {
     let model: DynamicInputModel,
         config = {
             id: "input",
-            list: ["One", "Two", "Three"]
+            list: ["One", "Two", "Three"],
+            mask: ["test", /[1-9]/]
         };
 
     beforeEach(() => model = new DynamicInputModel(config));
@@ -124,6 +125,7 @@ describe("DynamicInputModel test suite", () => {
 
         expect(json.id).toEqual(model.id);
         expect(json.disabled).toEqual(model.disabled);
+        expect(json.mask).toEqual(["test", "/[1-9]/"]);
         expect(json.value).toBe(model.value);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
     });

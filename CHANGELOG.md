@@ -1,3 +1,12 @@
+# 1.4.12
+
+### **Features** 
+
+* initial [**text mask**](https://github.com/text-mask/text-mask) support for Basic, Bootstrap, Foundation, Ionic and NGBootstrap (closes [#379](https://github.com/udos86/ng2-dynamic-forms/issues/379))
+* `DynamicFormControlEvent` has been enhanced by `group` and `context` properties (closes [#378](https://github.com/udos86/ng2-dynamic-forms/issues/378))
+* `disabled` input bindings have been completely removed from Kendo UI template 
+
+
 # 1.4.11
 
 ### **Bugfixes**

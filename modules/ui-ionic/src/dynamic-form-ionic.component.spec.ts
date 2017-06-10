@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { IonicModule } from "ionic-angular";
+import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -34,6 +35,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 IonicModule.forRoot(null),
+                TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicFormIonicComponent]

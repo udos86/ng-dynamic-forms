@@ -39,6 +39,7 @@ export const BASIC_EXAMPLE_MODEL = [
         hint: "Just a hint",
         label: "Example Input",
         list: ["One", "Two", "Three", "Four", "Five"],
+        //mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
         maxLength: 51,
         placeholder: "example input",
         spellCheck: false,

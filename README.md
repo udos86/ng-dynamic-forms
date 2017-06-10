@@ -693,19 +693,17 @@ So far so good! But what if you'd like to use a custom validator as well?
 
 **At first use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your function**:
 ```ts 
-function testValidator() {
+export function customValidator(control: AbstractControl): ValidationErrors | null {
 
-    return {
-        testValidator: {
-            valid: true
-        }
-    };
+    let hasError = control.value ? (control.value as string).startsWith("abc") : false;
+
+    return hasError ? {customValidator: true} : null;
 }
 
 @NgModule({
     // ...
     providers: [
-        {provide: NG_VALIDATORS, useValue: testValidator, multi: true}
+        {provide: NG_VALIDATORS, useValue: customValidator, multi: true}
     ]
 })
 ``` 
@@ -721,7 +719,7 @@ new DynamicInputModel({
     validators: {
         required: null,
         minLength: 3,
-        testValidator: null
+        customValidator: null
     }
 })
 ```
@@ -731,7 +729,7 @@ new DynamicInputModel({
 plugins: [
     new webpack.optimize.UglifyJsPlugin({
         mangle: {
-            except: ['myValidator']
+            except: ['customValidator']
         }
      })
 ]

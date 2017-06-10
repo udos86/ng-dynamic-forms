@@ -3,6 +3,7 @@ import { Type, DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -30,6 +31,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
                 NgbButtonsModule,
                 NgbDatepickerModule.forRoot(),
                 NgbTimepickerModule.forRoot(),
+                TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicFormNGBootstrapComponent]
