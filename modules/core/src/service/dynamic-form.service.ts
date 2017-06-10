@@ -45,7 +45,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
-import { isFunction, isDefined, isString } from "../utils";
+import { isFunction, isDefined, isString, maskFromString } from "../utils";
+import { utils } from "protractor";
 
 @Injectable()
 export class DynamicFormService {
@@ -387,6 +388,7 @@ export class DynamicFormService {
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+                    if (model["mask"] !== null) { model["mask"] = maskFromString(model["mask"]); }
                     group.push(new DynamicInputModel(model, model.cls));
                     break;
 

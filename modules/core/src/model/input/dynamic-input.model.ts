@@ -1,7 +1,7 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { isBoolean, isDefined, isNumber } from "../../utils";
+import { isBoolean, isDefined, isNumber, maskToString } from "../../utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -41,7 +41,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() inputType: string;
     files: FileList | null = null;
     @serializable() list: string[] | null;
-    mask: string | RegExp | (string | RegExp)[] | null;
+    @serializable() mask: string | RegExp | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
     @serializable() multiple: boolean | null;
@@ -69,5 +69,14 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         if (this.list) {
             this.listId = `${this.id}List`;
         }
+    }
+
+    toJSON() {
+
+        let json: any = super.toJSON();
+
+        if (this.mask !== null) { json["mask"] = maskToString(this.mask); }
+
+        return json;
     }
 }

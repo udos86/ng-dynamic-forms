@@ -130,7 +130,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    xit("should listen to native focus and blur events", () => {
+    it("should listen to native focus and blur events", () => {
 
         spyOn(component, "onFocusChange");
 
