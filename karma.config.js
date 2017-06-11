@@ -3,18 +3,18 @@ const TRAVIS = process.env["TRAVIS"] !== undefined;
 module.exports = function (config) {
 
     let reporters = ["progress", "coverage", "karma-remap-istanbul"],
-        coverageReporters = [{type: "text-summary"}],
+        coverageReporters = [/*{type: "text-summary"}*/],
         reports = {"text-summary": null};
 
     if (TRAVIS) {
 
         reporters.push("coveralls");
-        coverageReporters.push({type: "lcov", dir: "coverage"});
-        reports.lcovonly = "coverage";
+        //coverageReporters.push({type: "lcov", dir: "coverage"});
+        reports.lcovonly = "coverage/lcov.info";
 
     } else {
 
-        coverageReporters.push({type: "html", dir: "coverage"});
+        //coverageReporters.push({type: "html", dir: "coverage"});
         reports.html = "coverage";
     }
 
