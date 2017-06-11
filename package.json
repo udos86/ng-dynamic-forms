@@ -102,6 +102,7 @@
     "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
+    "karma-remap-istanbul": "^0.6.0",
     "karma-sourcemap-loader": "^0.3.7",
     "lite-server": "^2.3.0",
     "merge-stream": "^1.0.1",
