@@ -2,16 +2,17 @@ const TRAVIS = process.env["TRAVIS"] !== undefined;
 
 module.exports = function (config) {
 
-    let reporters = ["progress", "coverage"],
-        coverageReporters = [{type: "text-summary"}];
+    let reporters = ["progress", "coverage", "karma-remap-istanbul"],
+        reports = {"text-summary": null};
 
     if (TRAVIS) {
 
         reporters.push("coveralls");
-        coverageReporters.push({type: "lcov", dir: "coverage"});
+        reports["lcov"] = "coverage";
 
     } else {
-        coverageReporters.push({type: "html", dir: "coverage"});
+
+        reports["html"] = "coverage";
     }
 
     config.set({
@@ -29,6 +30,7 @@ module.exports = function (config) {
             "karma-coveralls",
             "karma-jasmine",
             "karma-phantomjs-launcher",
+            "karma-remap-istanbul",
             "karma-sourcemap-loader"
         ],
 
@@ -95,8 +97,13 @@ module.exports = function (config) {
         reporters: reporters,
 
 
-        coverageReporter: {reporters: coverageReporters},
+        coverageReporter: {reporters: []},
 
+
+        remapIstanbulReporter: {
+
+            reports: reports
+        },
 
         // web server port
         port: 9876,

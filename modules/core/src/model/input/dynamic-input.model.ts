@@ -75,7 +75,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         let json: any = super.toJSON();
 
-        if (this.mask !== null) { json["mask"] = maskToString(this.mask); }
+        if (this.mask !== null) { json.mask = maskToString(this.mask); }
 
         return json;
     }

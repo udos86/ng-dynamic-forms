@@ -46,7 +46,6 @@ import {
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
 import { isFunction, isDefined, isString, maskFromString } from "../utils";
-import { utils } from "protractor";
 
 @Injectable()
 export class DynamicFormService {
