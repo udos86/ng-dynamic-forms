@@ -2,9 +2,9 @@ const TRAVIS = process.env["TRAVIS"] !== undefined;
 
 module.exports = function (config) {
 
-    let reporters = ["progress", "coverage", "karma-remap-istanbul", "coveralls"],
-        reports = {"text-summary": null, "lcovonly": "coverage"};
-    /*
+    let reporters = ["progress", "coverage", "karma-remap-istanbul"],
+        reports = {"text-summary": null};
+
     if (TRAVIS) {
 
         reporters.push("coveralls");
@@ -14,7 +14,7 @@ module.exports = function (config) {
 
         reports["html"] = "coverage";
     }
-    */
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
