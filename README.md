@@ -33,9 +33,9 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
-- [JSON Export / Import](#json-export-import)
+- [JSON Export / Import](#json-export--import)
 - [Updating Form Models](#updating-form-models)
-- [Disabling / Enabling Form Controls](#disabling-enabling-form-controls)
+- [Disabling / Enabling Form Controls](#disabling--enabling-form-controls)
 - [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
 - [Form Control Autocompletion](#form-control-autocompletion)
@@ -806,7 +806,7 @@ and **bind the internal** `FormControl` **reference via local template variables
 ```
  
  
-## JSON Export and Import
+## JSON Export / Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
 
