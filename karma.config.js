@@ -100,7 +100,10 @@ module.exports = function (config) {
         reporters: reporters,
 
 
-        coverageReporter: {reporters: coverageReporters},
+        coverageReporter: {
+
+            reporters: coverageReporters
+        },
 
 
         remapIstanbulReporter: {
