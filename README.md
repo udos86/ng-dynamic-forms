@@ -26,18 +26,19 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Getting Started](#getting-started)
 - [Running the Example](#running-the-example)
 - [Basic Usage](#basic-usage)
-- [UI Modules and Components](#ui-modules-and-components)
-- [Value Updates](#value-updates)
+- [UI Components](#ui-components)
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
-- [JSON Export and Import](#json-export-and-import)
-- [Disabling and Enabling Form Controls](#disabling-and-enabling-form-controls)
+- [JSON Export / Import](#json-export--import)
+- [Updating Form Models](#updating-form-models)
+- [Disabling / Enabling Form Controls](#disabling--enabling-form-controls)
+- [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
-- [Autocomplete](#autocomplete)
+- [Form Control Autocompletion](#form-control-autocompletion)
 - [A Word to the Community](#a-word-to-the-community)
 - [Appendix](#appendix)
 
@@ -211,7 +212,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```
 
 
-## UI Modules and Components
+## UI Components
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -230,7 +231,7 @@ package and it's peer dependencies**:
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
-Right afterwards **just import the corresponding UI** `NgModule`:
+Right afterwards **just import the corresponding** `NgModule`:
 
 ```ts
 @NgModule({
@@ -248,7 +249,7 @@ Right afterwards **just import the corresponding UI** `NgModule`:
 export class AppModule {}
 ```
 
-Every UI `NgModule` declares a `DynamicFormControlComponent` that **can easily be added to
+Every UI `NgModule` declares a specific `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
 ```ts
 <form [formGroup]="formGroup">
@@ -259,8 +260,8 @@ your component** `template`:
 </form>
 ```
 
-Due to technical restrictions or external dependencies still being in development full support for all major form controls 
-cannot be provided in every single UI library. **See the following compatibility table**:
+Due to technical restrictions or external dependencies still being in development the support of major form controls 
+varies among UI packages. **See the following compatibility table**:
 
 |                	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-ng-bootstrap 	| ui-primeng 	|
 |----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
@@ -284,39 +285,6 @@ cannot be provided in every single UI library. **See the following compatibility
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
 
 
-## Value Updates
-
-One of the benefits of using ng2 Dynamic Forms is that interacting with your form programmatically becomes pretty easy.
-Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms,
-changing one of it's properties will immediately trigger a UI update.
-
-Beware!
-
-ng2 Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not** two-way-bound via `[(ngModel)]` under the hood.
-
-So what if we actually want to update the value of an arbitrary form control at runtime?
-
-At first we need to get a reference to it's `DynamicFormControlModel` representation. This can easily be achieved either by
-a simple index-based array lookup or through the `findById` method of `DynamicFormService`:
-
-```ts
-this.inputModel = this.formModel[2];
-```
-```ts
-this.inputModel = this.formService.findById("myInput", this.formModel) as DynamicInputModel;
-```
-
-We now have access to a `Rx.Subject` named `valueUpdates` to push new values via `next()` as well as to listen to new user input via `subscribe()`:
-```ts
-this.inputModel.valueUpdates.next("my new value");
-
-this.inputModel.valueUpdates.subscribe(value => console.log("new value: ", value);
-```
-
-At any time we can also safely read the most recent user input from the `value` property:
-```ts
-let currentValue = this.inputModel.value;
-```
 
 
 ## Form Groups
@@ -838,7 +806,7 @@ and **bind the internal** `FormControl` **reference via local template variables
 ```
  
  
-## JSON Export and Import
+## JSON Export / Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
 
@@ -852,7 +820,7 @@ storeForm() {
 }
 ```
 
-Since all `DynamicFormControlModel`s in ng2 Dynamic Forms **rely on prototypical inheritance** and thus aren't just plain JavaScript objects literals, 
+Since a `DynamicFormControlModel` in ng2 Dynamic Forms **relies on prototypical inheritance** and thus is not represented by a simple JavaScript object literal, 
 recreating a form from JSON unfortunately becomes more complex. 
 
 The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
@@ -868,17 +836,82 @@ restoreForm() {
 ```
 
 
-## Disabling and Enabling Form Controls
+## Updating Form Models
 
-Since RC.6 to date, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) any dynamic bindings of the `disabled` attribute in reactive forms. 
+One of the benefits of using ng2 Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
 
-That means changing the corresponding `disabled` property of some `DynamicFormControlModel` at runtime won't have any effect.
+Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms,
+changing one of it's properties will immediately trigger an update of the user interface.
+
+But there's one major exception!
+
+ng2 Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
+
+So what if we actually want to update the value of an arbitrary form control at runtime?
+
+At first we need to get a reference to it's `DynamicFormControlModel` representation. 
+
+This can easily be achieved either by
+a simple index-based array lookup or through the `findById` method of `DynamicFormService`:
+
+```ts
+this.inputModel = this.formModel[2];
+```
+```ts
+this.inputModel = this.formService.findById("myInput", this.formModel) as DynamicInputModel;
+```
+
+We now have access to a `Rx.Subject` named `valueUpdates` to push new values via `next()` as well as to listen to new user input via `subscribe()`:
+```ts
+this.inputModel.valueUpdates.next("my new value");
+
+this.inputModel.valueUpdates.subscribe(value => console.log("new value: ", value);
+```
+
+At any time we can also safely read the most recent user input from the `value` property:
+```ts
+let currentValue = this.inputModel.value;
+```
+
+
+## Disabling / Enabling Form Controls
+
+Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) property bindings of the `disabled` attribute in reactive forms. 
+
+That means changing the corresponding `disabled` property of a `DynamicFormControlModel` at runtime won't have any effect.
 
 But similar to [updating values](#value-updates) ng2 Dynamic Forms helps you out here 
-by providing a `Rx.Subject` `disabledUpdates` that can be used to programmatically switch the activation state of any form control:
+by providing a `Rx.Subject` named `disabledUpdates`. 
+
+It can be used to programmatically switch the activation state of a form control through a `DynamicFormControlModel`:
 ```ts
 this.inputModel.disabledUpdates.next(true);
 ```
+
+
+# Text Masks
+
+Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
+
+Since Angular does not deliver an appropriate feature by default, ng2 Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
+
+That's why most UI packages demand one additional peer dependency to be installed:
+```
+npm install angular2-text-mask --save
+```
+
+You're now capable of adding a `mask` property to any `DynamicInputModel` according to [Text Mask docs](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask):
+
+```ts
+new DynamicInputModel({
+
+    id: "maskedInput",
+    label: "Sample masked Input",
+    mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+}),
+```
+
+Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
 
 
 ## Related Form Controls
@@ -940,9 +973,9 @@ new DynamicTextAreaModel(
 ```
 
   
-## Autocomplete
+## Form Control Autocompletion
 
-Adding automatic completion can be key factor to good user experience (especially on mobile devices) and should always 
+Adding automatic input completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
 
 Following HTML5 [standard behavior](http://www.w3schools.com/tags/att_form_autocomplete.asp), the `autocomplete` attribute is always bound to `on` for any `DynamicFormTextInputControl` form element by default. 

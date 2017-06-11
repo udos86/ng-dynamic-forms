@@ -40,7 +40,6 @@ MODULES.forEach(moduleName => {
 });
 
 
-
 gulp.task("increment:version:major",
     TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
 
@@ -53,10 +52,8 @@ gulp.task("increment:version:patch",
     TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
 
 
-
 gulp.task("lint:modules",
     TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
-
 
 
 gulp.task("clean:dist",
@@ -69,7 +66,6 @@ gulp.task("clean:test",
     TASK_CLEAN([`${TEST_PATH}/**/*`]));
 
 
-
 gulp.task("copy:modules:dist",
     TASK_COPY([`${SRC_PATH}/**/*.*`], DIST_PATH));
 
@@ -78,7 +74,6 @@ gulp.task("copy:modules:npm",
 
 gulp.task("copy:modules:test",
     TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
-
 
 
 gulp.task("preprocess:modules:dist",
@@ -91,7 +86,6 @@ gulp.task("remove:moduleId:dist",
     TASK_REMOVE_MODULE_ID([`${DIST_PATH}/**/*`], DIST_PATH));
 
 
-
 gulp.task("transpile:modules:dist",
     TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.modules.json", "es2015"));
 
@@ -102,10 +96,8 @@ gulp.task("transpile:modules:test",
     TASK_TRANSPILE_TYPESCRIPT([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.modules.json", "commonjs"));
 
 
-
 gulp.task("prime:modules",
     TASK_COPY([`${DIST_PATH}/**/*`], NPM_PATH));
-
 
 
 gulp.task("build:modules:debug", function (done) {
@@ -147,16 +139,14 @@ gulp.task("build:modules:test", function (done) {
 });
 
 
-
 gulp.task("build:modules", function (done) {
 
     runSequence(
-        "build:modules:test",
         "build:modules:dist",
+        "build:modules:test",
         done
     );
 });
-
 
 
 gulp.task("doc:modules",
@@ -174,7 +164,6 @@ gulp.task("doc:modules",
             theme: "minimal"
         }
     ));
-
 
 
 gulp.task("watch:modules", function () {
