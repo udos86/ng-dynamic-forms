@@ -8,7 +8,7 @@ module.exports = function (config) {
     if (TRAVIS) {
 
         reporters.push("coveralls");
-        reports["lcov"] = "coverage";
+        reports["lcovonly"] = "coverage";
 
     } else {
 
