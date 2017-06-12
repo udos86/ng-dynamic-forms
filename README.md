@@ -889,7 +889,7 @@ this.inputModel.disabledUpdates.next(true);
 ```
 
 
-# Text Masks
+## Text Masks
 
 Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
 
@@ -906,7 +906,7 @@ You're now capable of adding a `mask` property to any `DynamicInputModel` accord
 new DynamicInputModel({
 
     id: "maskedInput",
-    label: "Sample masked Input",
+    label: "Masked Input",
     mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
 }),
 ```

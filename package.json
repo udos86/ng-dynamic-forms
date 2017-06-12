@@ -112,7 +112,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "rollup-stream": "^1.19.0",
+    "rollup-stream": "^1.20.0",
     "run-sequence": "^1.2.2",
     "systemjs": "^0.20.13",
     "systemjs-builder": "^0.16.6",
