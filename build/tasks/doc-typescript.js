@@ -1,5 +1,5 @@
-let gulp = require("gulp"),
-    typeDoc = require("gulp-typedoc");
+const gulp    = require("gulp"),
+      typeDoc = require("gulp-typedoc");
 
 module.exports = function (src, config) {
 

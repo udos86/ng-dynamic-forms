@@ -106,12 +106,12 @@ Promise.all([
 
 ]).then(function (modules) {
 
-    var testingCore = modules[0],
-        testingPlatformBrowserDynamic = modules[1];
+    var ngCoreTesting                   = modules[0],
+        ngPlatformBrowserDynamicTesting = modules[1];
 
-    return testingCore.TestBed.initTestEnvironment(
-        testingPlatformBrowserDynamic.BrowserDynamicTestingModule,
-        testingPlatformBrowserDynamic.platformBrowserDynamicTesting()
+    return ngCoreTesting.TestBed.initTestEnvironment(
+        ngPlatformBrowserDynamicTesting.BrowserDynamicTestingModule,
+        ngPlatformBrowserDynamicTesting.platformBrowserDynamicTesting()
     );
 
 }).then(function () {

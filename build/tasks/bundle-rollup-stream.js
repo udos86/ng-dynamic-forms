@@ -1,11 +1,11 @@
-let dateFormat = require("dateformat"),
-    gulp = require("gulp"),
-    license = require("fs").readFileSync("./LICENSE", "utf8"),
-    merge = require("merge-stream"),
-    path = require("path"),
-    rollup = require("rollup-stream"),
-    source = require("vinyl-source-stream"),
-    uglify = require("rollup-plugin-uglify");
+const dateFormat = require("dateformat"),
+      gulp       = require("gulp"),
+      license    = require("fs").readFileSync("./LICENSE", "utf8"),
+      merge      = require("merge-stream"),
+      path       = require("path"),
+      rollup     = require("rollup-stream"),
+      source     = require("vinyl-source-stream"),
+      uglify     = require("rollup-plugin-uglify");
 
 module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
 

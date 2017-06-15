@@ -1,34 +1,34 @@
-const gulp = require("gulp"),
-    runSequence = require("run-sequence"),
-    pkg = require("./package.json");
+const gulp        = require("gulp"),
+      runSequence = require("run-sequence"),
+      pkg         = require("./package.json");
 
-const TASK_BUNDLE_ROLLUP = require("./build/tasks/bundle-rollup-stream"),
-    TASK_CLEAN = require("./build/tasks/clean"),
-    TASK_COPY = require("./build/tasks/copy"),
-    TASK_INCREMENT_VERSION = require("./build/tasks/increment-version"),
-    TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
-    TASK_LINT_TYPESCRIPT = require("./build/tasks/lint-typescript"),
-    TASK_PREPROCESS = require("./build/tasks/preprocess"),
-    TASK_REMOVE_MODULE_ID = require("./build/tasks/remove-module-id"),
-    TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
-    TASK_DOC_TYPESCRIPT = require("./build/tasks/doc-typescript");
+const TASK_BUNDLE_ROLLUP        = require("./build/tasks/bundle-rollup-stream"),
+      TASK_CLEAN                = require("./build/tasks/clean"),
+      TASK_COPY                 = require("./build/tasks/copy"),
+      TASK_INCREMENT_VERSION    = require("./build/tasks/increment-version"),
+      TASK_INLINE_NG2_TEMPLATES = require("./build/tasks/inline-ng2-templates"),
+      TASK_LINT_TYPESCRIPT      = require("./build/tasks/lint-typescript"),
+      TASK_PREPROCESS           = require("./build/tasks/preprocess"),
+      TASK_REMOVE_MODULE_ID     = require("./build/tasks/remove-module-id"),
+      TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
+      TASK_DOC_TYPESCRIPT       = require("./build/tasks/doc-typescript");
 
-const SRC_PATH = "./modules",
-    NPM_PATH = "./node_modules/@ng2-dynamic-forms",
-    DIST_PATH = "./@ng2-dynamic-forms",
-    TEST_PATH = "./test",
-    MODULE_TASKS = [],
-    MODULES = [
-        "core",
-        "ui-basic",
-        "ui-bootstrap",
-        "ui-foundation",
-        "ui-ionic",
-        "ui-kendo",
-        "ui-material",
-        "ui-ng-bootstrap",
-        "ui-primeng"
-    ];
+const SRC_PATH     = "./modules",
+      NPM_PATH     = "./node_modules/@ng2-dynamic-forms",
+      DIST_PATH    = "./@ng2-dynamic-forms",
+      TEST_PATH    = "./test",
+      MODULE_TASKS = [],
+      MODULES      = [
+          "core",
+          "ui-basic",
+          "ui-bootstrap",
+          "ui-foundation",
+          "ui-ionic",
+          "ui-kendo",
+          "ui-material",
+          "ui-ng-bootstrap",
+          "ui-primeng"
+      ];
 
 MODULES.forEach(moduleName => {
 

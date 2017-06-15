@@ -2,9 +2,9 @@ const TRAVIS = process.env["TRAVIS"] !== undefined;
 
 module.exports = function (config) {
 
-    let reporters = ["progress", "coverage", "karma-remap-istanbul"],
+    let reporters         = ["progress", "coverage", "karma-remap-istanbul"],
         coverageReporters = [/*{type: "text-summary"}*/],
-        reports = {"text-summary": null};
+        reports           = {"text-summary": null};
 
     if (TRAVIS) {
 

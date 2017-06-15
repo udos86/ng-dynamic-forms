@@ -1,5 +1,5 @@
-let gulp = require("gulp"),
-    deleteLines = require("gulp-delete-lines");
+const gulp        = require("gulp"),
+      deleteLines = require("gulp-delete-lines");
 
 module.exports = function (src, dest) {
 

@@ -1,5 +1,5 @@
-let util = require("gulp-util"),
-    webpack = require("webpack");
+const util    = require("gulp-util"),
+      webpack = require("webpack");
 
 module.exports = function (config) {
 

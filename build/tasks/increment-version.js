@@ -1,5 +1,5 @@
-let gulp = require("gulp"),
-    replace = require("gulp-replace");
+const gulp    = require("gulp"),
+      replace = require("gulp-replace");
 
 module.exports = function (pkg, src, type, dest) {
 
@@ -30,10 +30,10 @@ module.exports = function (pkg, src, type, dest) {
 
     return function () {
 
-        let regExVersionString = /(\d+).(\d+).(\d+)/,
-            regExVersionField = /("version":\s)"\d+.\d+.\d+"/,
+        let regExVersionString   = /(\d+).(\d+).(\d+)/,
+            regExVersionField    = /("version":\s)"\d+.\d+.\d+"/,
             regExDependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d+.\d+.\d+"/g,
-            newVersionString = pkg.version.replace(regExVersionString, replaceVersionString);
+            newVersionString     = pkg.version.replace(regExVersionString, replaceVersionString);
 
         return gulp.src(src, {base: dest})
                    .pipe(replace(regExVersionField, "$1" + '"' + newVersionString + '"'))

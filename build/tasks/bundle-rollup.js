@@ -1,11 +1,11 @@
-let dateFormat = require("dateformat"),
-    fs = require("fs"),
-    path = require("path"),
-    gulp = require("gulp"),
-    gulpRollup = require('gulp-better-rollup'),
-    uglify = require("rollup-plugin-uglify"),
-    merge = require('merge-stream'),
-    license = fs.readFileSync("./LICENSE", "utf8");
+const dateFormat = require("dateformat"),
+      fs         = require("fs"),
+      path       = require("path"),
+      gulp       = require("gulp"),
+      gulpRollup = require('gulp-better-rollup'),
+      uglify     = require("rollup-plugin-uglify"),
+      merge      = require('merge-stream'),
+      license    = fs.readFileSync("./LICENSE", "utf8");
 
 module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
 
@@ -22,12 +22,12 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
                 context: "this",
                 external: Object.keys(globals),
                 plugins: minify ? [
-                        uglify({
-                            output: {
-                                comments: (node, comment) => comment.value.startsWith("!")
-                            }
-                        })
-                    ] : []
+                    uglify({
+                        output: {
+                            comments: (node, comment) => comment.value.startsWith("!")
+                        }
+                    })
+                ] : []
             };
         }
 
