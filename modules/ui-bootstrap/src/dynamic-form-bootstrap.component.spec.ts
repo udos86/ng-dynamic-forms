@@ -14,13 +14,13 @@ import { DynamicFormBootstrapComponent } from "./dynamic-form-bootstrap.componen
 
 describe("DynamicFormBootstrapComponent test suite", () => {
 
-    let inputModel = new DynamicInputModel({id: "test"}),
-        formModel = [inputModel],
+    let testModel = new DynamicInputModel({id: "test"}),
+        formModel = [testModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormBootstrapComponent>,
         component: DynamicFormBootstrapComponent,
         debugElement: DebugElement,
-        inputElement: DebugElement;
+        testElement: DebugElement;
 
     beforeEach(async(() => {
 
@@ -43,11 +43,11 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = formModel[0];
+        component.model = testModel;
 
         fixture.detectChanges();
 
-        inputElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
+        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
@@ -79,15 +79,15 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
     it("should have an input element", () => {
 
-        expect(inputElement instanceof DebugElement).toBe(true);
+        expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to native focus and blur events", () => {
 
         spyOn(component, "onFocusChange");
 
-        inputElement.triggerEventHandler("focus", null);
-        inputElement.triggerEventHandler("blur", null);
+        testElement.triggerEventHandler("focus", null);
+        testElement.triggerEventHandler("blur", null);
 
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
@@ -96,7 +96,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         spyOn(component, "onValueChange");
 
-        inputElement.triggerEventHandler("change", null);
+        testElement.triggerEventHandler("change", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });
@@ -118,7 +118,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.valueUpdates.next("test");
+        testModel.valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -129,7 +129,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.disabledUpdates.next(true);
+        testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });

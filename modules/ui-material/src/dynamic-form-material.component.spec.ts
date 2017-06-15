@@ -19,6 +19,8 @@ import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
+    DynamicEditorModel,
+    DynamicFileUploadModel,
     DynamicFormArrayModel,
     DynamicFormControlModel,
     DynamicFormGroupModel,
@@ -31,24 +33,27 @@ import {
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormMaterialComponent, MdFormControlType } from "./dynamic-form-material.component";
+import { test } from "shelljs";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
     let formModel = [
-            new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicCheckboxModel({id: "checkbox"}),
             new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
             new DynamicDatePickerModel({id: "datepicker"}),
+            new DynamicEditorModel({id: "editor"}),
+            new DynamicFileUploadModel({id: "upload", url: ""}),
             new DynamicFormArrayModel({id: "formArray", createGroup: () => []}),
             new DynamicFormGroupModel({id: "formGroup", group: []}),
+            new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),
-            new DynamicSelectModel({id: "select"}),
+            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
             new DynamicSliderModel({id: "slider"}),
             new DynamicSwitchModel({id: "switch"}),
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[0] as DynamicInputModel,
+        testModel = formModel[7] as DynamicInputModel,
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormMaterialComponent>,
         component: DynamicFormMaterialComponent,
@@ -184,37 +189,48 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should set correct form control type", () => {
 
+        let testFn = component["getFormControlType"].bind(component);
+
+        component.model = formModel[0];
+        expect(testFn()).toEqual(MdFormControlType.Checkbox);
+
         component.model = formModel[1];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Checkbox);
+        expect(testFn()).toEqual(MdFormControlType.Group);
 
         component.model = formModel[2];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Group);
+        expect(testFn()).toEqual(MdFormControlType.DatePicker);
 
         component.model = formModel[3];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.DatePicker);
+        expect(testFn()).toBeNull();
 
         component.model = formModel[4];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Array);
+        expect(testFn()).toBeNull();
 
         component.model = formModel[5];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Group);
+        expect(testFn()).toEqual(MdFormControlType.Array);
 
         component.model = formModel[6];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.RadioGroup);
+        expect(testFn()).toEqual(MdFormControlType.Group);
 
         component.model = formModel[7];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Select);
+        expect(testFn()).toEqual(MdFormControlType.Input);
 
         component.model = formModel[8];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Slider);
+        expect(testFn()).toEqual(MdFormControlType.RadioGroup);
 
         component.model = formModel[9];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.SlideToggle);
+        expect(testFn()).toEqual(MdFormControlType.Select);
 
         component.model = formModel[10];
-        expect(component["getFormControlType"]()).toEqual(MdFormControlType.TextArea);
+        expect(testFn()).toEqual(MdFormControlType.Slider);
 
-        component.model = {id: "testNull", type: "NULL"} as DynamicFormControlModel;
-        expect(component["getFormControlType"]()).toBeNull();
+        component.model = formModel[11];
+        expect(testFn()).toEqual(MdFormControlType.SlideToggle);
+
+        component.model = formModel[12];
+        expect(testFn()).toEqual(MdFormControlType.TextArea);
+
+        component.model = formModel[13];
+        expect(testFn()).toBeNull();
     });
 });

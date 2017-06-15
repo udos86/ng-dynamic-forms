@@ -180,65 +180,67 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should set correct form control type", () => {
 
+        let testFn = component["getFormControlType"].bind(component);
+
         component.model = formModel[0];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Checkbox);
+        expect(testFn()).toEqual(KendoFormControlType.Checkbox);
 
         component.model = formModel[1];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.CheckboxGroup);
+        expect(testFn()).toEqual(KendoFormControlType.CheckboxGroup);
 
         component.model = formModel[2];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.DatePicker);
+        expect(testFn()).toEqual(KendoFormControlType.DatePicker);
 
         (formModel[2] as DynamicDatePickerModel).inline = true;
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Calendar);
+        expect(testFn()).toEqual(KendoFormControlType.Calendar);
 
         component.model = formModel[3];
-        expect(component["getFormControlType"]()).toBeNull();
+        expect(testFn()).toBeNull();
 
         component.model = formModel[4];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Upload);
+        expect(testFn()).toEqual(KendoFormControlType.Upload);
 
         component.model = formModel[5];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Array);
+        expect(testFn()).toEqual(KendoFormControlType.Array);
 
         component.model = formModel[6];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Group);
+        expect(testFn()).toEqual(KendoFormControlType.Group);
 
         component.model = formModel[7];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Input);
+        expect(testFn()).toEqual(KendoFormControlType.Input);
 
-        (formModel[7] as DynamicInputModel).list = ["one", "two", "three"];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.AutoComplete);
+        (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
+        expect(testFn()).toEqual(KendoFormControlType.AutoComplete);
 
         (formModel[7] as DynamicInputModel).mask = "0000-0000-0000-0000";
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.MaskedTextBox);
+        expect(testFn()).toEqual(KendoFormControlType.MaskedTextBox);
 
         (formModel[7] as DynamicInputModel).inputType = "date";
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.DateInput);
+        expect(testFn()).toEqual(KendoFormControlType.DateInput);
 
         (formModel[7] as DynamicInputModel).inputType = "number";
         (formModel[7] as DynamicInputModel).mask = null;
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.NumericTextBox);
+        expect(testFn()).toEqual(KendoFormControlType.NumericTextBox);
 
         component.model = formModel[8];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.RadioGroup);
+        expect(testFn()).toEqual(KendoFormControlType.RadioGroup);
 
         component.model = formModel[9];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.DropDownList);
+        expect(testFn()).toEqual(KendoFormControlType.DropDownList);
 
         (formModel[9] as DynamicSelectModel<string>).multiple = true;
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.MultiSelect);
+        expect(testFn()).toEqual(KendoFormControlType.MultiSelect);
 
         component.model = formModel[10];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Slider);
+        expect(testFn()).toEqual(KendoFormControlType.Slider);
 
         component.model = formModel[11];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.Switch);
+        expect(testFn()).toEqual(KendoFormControlType.Switch);
 
         component.model = formModel[12];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.TextArea);
+        expect(testFn()).toEqual(KendoFormControlType.TextArea);
 
         component.model = formModel[13];
-        expect(component["getFormControlType"]()).toEqual(KendoFormControlType.TimePicker);
+        expect(testFn()).toEqual(KendoFormControlType.TimePicker);
     });
 });
