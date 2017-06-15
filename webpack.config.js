@@ -1,6 +1,6 @@
-let pkg = require("./package.json"),
-    path = require("path"),
-    webpack = require("webpack");
+const pkg     = require("./package.json"),
+      path    = require("path"),
+      webpack = require("webpack");
 
 module.exports = {
 

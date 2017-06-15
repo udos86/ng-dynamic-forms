@@ -1,5 +1,5 @@
-let gulp = require("gulp"),
-    preprocess = require("gulp-preprocess");
+const gulp       = require("gulp"),
+      preprocess = require("gulp-preprocess");
 
 module.exports = function (src, dest) {
 

@@ -1,19 +1,19 @@
 export const enum PFormControlType {
 
-    Array = 1,
-    AutoComplete = 2,
-    Calendar = 3,
-    Checkbox = 4,
-    Chips = 5,
-    DropDown = 6,
-    Editor = 7,
-    Group = 8,
-    Input = 9,
-    InputSwitch = 10,
-    MultiSelect = 11,
-    RadioGroup = 12,
-    Slider = 13,
-    TextArea = 14
+    Array = "ARRAY",
+    AutoComplete = "AUTOCOMPLETE",
+    Calendar = "CALENDAR",
+    Checkbox = "CHECKBOX",
+    Chips = "CHIPS",
+    DropDown = "DROPDOWN",
+    Editor = "EDITOR",
+    Group = "GROUP",
+    Input = "INPUT",
+    InputSwitch = "INPUT_SWITCH",
+    MultiSelect = "MULTI_SELECT",
+    RadioGroup = "RADIO_GROUP",
+    Slider = "SLIDER",
+    TextArea = "TEXTAREA"
 }
 
 export const PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {

@@ -1,11 +1,11 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <ng-template *ngIf="hasStartTemplate && type !== 1"
+    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <div *ngIf="type === 1"
+    <div *ngIf="type === 'ARRAY'"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="model.cls.element.control">
@@ -30,7 +30,7 @@
     </div>
 
 
-    <fieldset *ngIf="type === 4"
+    <fieldset *ngIf="type === 'GROUP'"
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
@@ -49,7 +49,7 @@
     </fieldset>
 
 
-    <ion-list *ngIf="type === 6" radio-group
+    <ion-list *ngIf="type === 'RADIO_GROUP'" radio-group
               [disabled]="model.disabled"
               [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
@@ -68,14 +68,14 @@
     </ion-list>
 
 
-    <ion-item *ngIf="type !== 1 && type !== 4 && type !== 6" [ngSwitch]="type">
+    <ion-item *ngIf="type !== 'ARRAY' && type !== 'GROUP' && type !== 'RADIO_GROUP'" [ngSwitch]="type">
 
         <ion-label *ngIf="model.label !== null"
                    [innerHTML]="model.label"
                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"></ion-label>
 
 
-        <ion-checkbox *ngSwitchCase="2"
+        <ion-checkbox *ngSwitchCase="'CHECKBOX'"
                       [checked]="model.checked"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
@@ -84,7 +84,7 @@
                       (ionChange)="onValueChange($event)"></ion-checkbox>
 
 
-        <ion-datetime *ngSwitchCase="3"
+        <ion-datetime *ngSwitchCase="'DATETIME'"
                       [disabled]="model.disabled"
                       [displayFormat]="model.format"
                       [dynamicId]="bindId && model.id"
@@ -96,7 +96,7 @@
                       (ionChange)="onValueChange($event)"></ion-datetime>
 
 
-        <ion-input *ngSwitchCase="5"
+        <ion-input *ngSwitchCase="'INPUT'"
                    clearInput="true"
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
@@ -111,7 +111,7 @@
                    [type]="model.inputType"></ion-input>
 
 
-        <ion-range *ngSwitchCase="7"
+        <ion-range *ngSwitchCase="'RANGE'"
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -124,7 +124,7 @@
                    (ionChange)="onValueChange($event)"></ion-range>
 
 
-        <ion-select *ngSwitchCase="8"
+        <ion-select *ngSwitchCase="'SELECT'"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -138,7 +138,7 @@
         </ion-select>
 
 
-        <ion-textarea *ngSwitchCase="9"
+        <ion-textarea *ngSwitchCase="'TEXTAREA'"
                       clearInput="true"
                       [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
@@ -148,7 +148,7 @@
                       [readonly]="model.readOnly"></ion-textarea>
 
 
-        <ion-toggle *ngSwitchCase="10"
+        <ion-toggle *ngSwitchCase="'TOGGLE'"
                     [checked]="model.checked"
                     [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
@@ -159,7 +159,7 @@
     </ion-item>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 1"
+    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

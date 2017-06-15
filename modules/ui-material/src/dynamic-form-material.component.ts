@@ -33,16 +33,16 @@ import {
 
 export const enum MdFormControlType {
 
-    Array = 1,
-    Checkbox = 2,
-    DatePicker = 3,
-    Group = 4,
-    Input = 5,
-    RadioGroup = 6,
-    Select = 7,
-    Slider = 8,
-    SlideToggle = 9,
-    TextArea = 10
+    Array = "ARRAY",
+    Checkbox = "CHECKBOX",
+    DatePicker = "DATEPICKER",
+    Group = "GROUP",
+    Input = "INPUT",
+    RadioGroup = "RADIO_GROUP",
+    Select = "SELECT",
+    Slider = "SLIDER",
+    SlideToggle = "SLIDE_TOGGLE",
+    TextArea = "TEXTAREA"
 }
 
 @Component({

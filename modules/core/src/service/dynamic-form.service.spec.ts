@@ -75,7 +75,12 @@ describe("DynamicFormService test suite", () => {
                 }
             ),
 
-            new DynamicInputModel({id: "testInput"}),
+            new DynamicInputModel(
+                {
+                    id: "testInput",
+                    mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/],
+                }
+            ),
 
             new DynamicCheckboxGroupModel(
                 {

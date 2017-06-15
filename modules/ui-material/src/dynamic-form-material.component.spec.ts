@@ -88,12 +88,12 @@ describe("DynamicFormMaterialComponent test suite", () => {
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = formModel[0];
+        component.model = testModel;
         component.showCharacterHint = false;
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
+        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
@@ -122,7 +122,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toBe(MdFormControlType.Input);
+        expect(component.type).toEqual(MdFormControlType.Input as string);
     });
 
     it("should have an input element", () => {
@@ -185,33 +185,36 @@ describe("DynamicFormMaterialComponent test suite", () => {
     it("should set correct form control type", () => {
 
         component.model = formModel[1];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.Checkbox);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Checkbox);
 
         component.model = formModel[2];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.Group);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Group);
 
         component.model = formModel[3];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.DatePicker);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.DatePicker);
 
         component.model = formModel[4];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.Array);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Array);
 
         component.model = formModel[5];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.Group);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Group);
 
         component.model = formModel[6];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.RadioGroup);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.RadioGroup);
 
         component.model = formModel[7];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.Select);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Select);
 
         component.model = formModel[8];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.Slider);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.Slider);
 
         component.model = formModel[9];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.SlideToggle);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.SlideToggle);
 
         component.model = formModel[10];
-        expect(component["getFormControlType"]()).toBe(MdFormControlType.TextArea);
+        expect(component["getFormControlType"]()).toEqual(MdFormControlType.TextArea);
+
+        component.model = {id: "testNull", type: "NULL"} as DynamicFormControlModel;
+        expect(component["getFormControlType"]()).toBeNull();
     });
 });

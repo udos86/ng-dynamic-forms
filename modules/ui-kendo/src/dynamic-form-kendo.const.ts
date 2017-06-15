@@ -1,24 +1,24 @@
 export const enum KendoFormControlType {
 
-    Array = 1,
-    AutoComplete = 2,
-    Calendar = 3,
-    Checkbox = 4,
-    CheckboxGroup = 5,
-    DateInput = 6,
-    DatePicker = 7,
-    DropDownList = 8,
-    Group = 9,
-    Input = 10,
-    MaskedTextBox = 11,
-    MultiSelect = 12,
-    NumericTextBox = 13,
-    RadioGroup = 14,
-    Slider = 15,
-    Switch = 16,
-    TextArea = 17,
-    TimePicker = 18,
-    Upload = 19
+    Array = "ARRAY",
+    AutoComplete = "AUTOCOMPLETE",
+    Calendar = "CALENDAR",
+    Checkbox = "CHECKBOX",
+    CheckboxGroup = "CHECKBOX_GROUP",
+    DateInput = "DATE_INPUT",
+    DatePicker = "DATEPICKER",
+    DropDownList = "DROPDOWNLIST",
+    Group = "GROUP",
+    Input = "INPUT",
+    MaskedTextBox = "MASKED_TEXTBOX",
+    MultiSelect = "MULTI_SELECT",
+    NumericTextBox = "NUMERIC_TEXTBOX",
+    RadioGroup = "RADIO_GROUP",
+    Slider = "SLIDER",
+    Switch = "SWITCH",
+    TextArea = "TEXTAREA",
+    TimePicker = "TIMEPICKER",
+    Upload = "UPLOAD"
 }
 
 export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {

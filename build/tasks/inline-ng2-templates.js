@@ -1,7 +1,7 @@
-let gulp = require("gulp"),
-    deleteLines = require("gulp-delete-lines"),
-    htmlMinifier = require("html-minifier"),
-    inlineNg2Template = require("gulp-inline-ng2-template");
+const gulp              = require("gulp"),
+      deleteLines       = require("gulp-delete-lines"),
+      htmlMinifier      = require("html-minifier"),
+      inlineNg2Template = require("gulp-inline-ng2-template");
 
 module.exports = function (src, dest) {
 

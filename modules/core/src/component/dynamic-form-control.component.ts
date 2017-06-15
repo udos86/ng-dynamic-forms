@@ -39,14 +39,14 @@ export interface DynamicFormControlEvent {
 
 export const enum CoreFormControlType {
 
-    Array = 1,
-    Checkbox = 2,
-    Group = 3,
-    Input = 4,
-    RadioGroup = 5,
-    Select = 6,
-    Switch = 7,
-    TextArea = 8
+    Array = "ARRAY",
+    Checkbox = "CHECKBOX",
+    Group = "GROUP",
+    Input = "INPUT",
+    RadioGroup = "RADIO_GROUP",
+    Select = "SELECT",
+    Switch = "SWITCH",
+    TextArea = "TEXTAREA"
 }
 
 export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -62,7 +62,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     template: TemplateRef<any>;
     templateDirective: DynamicTemplateDirective;
     templates: QueryList<DynamicTemplateDirective>;
-    type: number | null;
+    type: string | null;
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
@@ -180,7 +180,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return this.nestedTemplates ? this.nestedTemplates : this.templates;
     }
 
-    protected getFormControlType(): number | null {
+    protected getFormControlType(): string | null {
 
         switch (this.model.type) {
 
