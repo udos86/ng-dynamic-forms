@@ -1,19 +1,19 @@
 <div [formGroup]="group" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="type !== 2 && model.label !== null"
+    <label *ngIf="type !== 'CHECKBOX' && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 1"
+    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-container [ngSwitch]="type">
 
-        <div *ngSwitchCase="1"
+        <div *ngSwitchCase="'ARRAY'"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -38,7 +38,7 @@
         </div>
 
 
-        <md-checkbox *ngSwitchCase="2"
+        <md-checkbox *ngSwitchCase="'GROUP'"
                      [checked]="model.checked"
                      [disabled]="model.disabled"
                      [dynamicId]="bindId && model.id"
@@ -53,7 +53,7 @@
                                                            [innerHTML]="model.label"></span></md-checkbox>
 
 
-        <ng-container *ngSwitchCase="3">
+        <ng-container *ngSwitchCase="'DATEPICKER'">
 
             <md-input-container>
 
@@ -76,7 +76,7 @@
         </ng-container>
 
 
-        <fieldset *ngSwitchCase="4"
+        <fieldset *ngSwitchCase="'GROUP'"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -95,7 +95,7 @@
         </fieldset>
 
 
-        <ng-container *ngSwitchCase="5">
+        <ng-container *ngSwitchCase="'INPUT'">
 
             <md-input-container>
 
@@ -147,7 +147,7 @@
         </ng-container>
 
 
-        <md-radio-group *ngSwitchCase="6"
+        <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
                         [disabled]="model.disabled"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -165,7 +165,7 @@
         </md-radio-group>
 
 
-        <md-select *ngSwitchCase="7"
+        <md-select *ngSwitchCase="'SELECT'"
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -180,7 +180,7 @@
         </md-select>
 
 
-        <md-slider *ngSwitchCase="8"
+        <md-slider *ngSwitchCase="'SLIDER'"
                    [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -194,7 +194,7 @@
                    (change)="onValueChange($event)"></md-slider>
 
 
-        <md-slide-toggle *ngSwitchCase="9"
+        <md-slide-toggle *ngSwitchCase="'SLIDE_TOGGLE'"
                          [checked]="model.checked"
                          [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
@@ -210,7 +210,7 @@
         </md-slide-toggle>
 
 
-        <md-input-container *ngSwitchCase="10">
+        <md-input-container *ngSwitchCase="'TEXTAREA'">
 
         <textarea mdInput
                   [attr.tabindex]="model.tabIndex"
@@ -242,7 +242,7 @@
     </ng-container>
 
 
-    <md-list *ngIf="hasErrorMessaging && type !== 5 && type !== 10"
+    <md-list *ngIf="hasErrorMessaging && type !== 'INPUT' && type !== 'TEXTAREA'"
              [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <md-list-item *ngFor="let message of errorMessages"
@@ -252,7 +252,7 @@
     </md-list>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 1"
+    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

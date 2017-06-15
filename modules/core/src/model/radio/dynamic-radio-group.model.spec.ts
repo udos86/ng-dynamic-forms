@@ -83,6 +83,16 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.get(1)).toEqual(model.options[1]);
     });
 
+    it("should make options Observable deliver an empty array when options are set to non-expected value", async(() => {
+
+        model.options = null;
+
+        model.options$.subscribe(options => {
+
+            expect(options.length).toBe(0);
+        });
+    }));
+
     it("should serialize correctly", () => {
 
         let json = JSON.parse(JSON.stringify(model));

@@ -14,7 +14,7 @@ import {
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormIonicComponent, IonicFormControlType } from "./dynamic-form-ionic.component";
 
-xdescribe("DynamicFormIonicComponent test suite", () => {
+describe("DynamicFormIonicComponent test suite", () => {
 
     let inputModel = new DynamicInputModel({id: "testInput"}),
         formModel = [
@@ -34,7 +34,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                IonicModule.forRoot(null),
+                IonicModule.forRoot(DynamicFormIonicComponent),
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
@@ -61,7 +61,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
         inputElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
     }));
 
-    it("should initialize correctly", () => {
+    xit("should initialize correctly", () => {
 
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
@@ -84,10 +84,10 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toBe(IonicFormControlType.Input);
+        expect(component.type).toEqual(IonicFormControlType.Input as string);
     });
 
-    it("should have an input element", () => {
+    xit("should have an input element", () => {
 
         expect(inputElement instanceof DebugElement).toBe(true);
     });
@@ -102,7 +102,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
 
-    it("should listen to native change event", () => {
+    xit("should listen to native change event", () => {
 
         spyOn(component, "onValueChange");
 
@@ -111,7 +111,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
         expect(component.onValueChange).toHaveBeenCalled();
     });
 
-    it("should update model value when control value changes", () => {
+    xit("should update model value when control value changes", () => {
 
         spyOn(component, "onControlValueChanges");
 
@@ -122,7 +122,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
         expect(component.onControlValueChanges).toHaveBeenCalled();
     });
 
-    it("should update control value when model value changes", () => {
+    xit("should update control value when model value changes", () => {
 
         spyOn(component, "onModelValueUpdates");
 
@@ -133,7 +133,7 @@ xdescribe("DynamicFormIonicComponent test suite", () => {
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
 
-    it("should update control activation when model disabled property changes", () => {
+    xit("should update control activation when model disabled property changes", () => {
 
         spyOn(component, "onModelDisabledUpdates");
 

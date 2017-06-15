@@ -3,18 +3,18 @@
      [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="type !== 3 && model.label !== null"
+    <label *ngIf="type !== 'CHECKBOX' && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 1"
+    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <div *ngIf="type === 3" [ngClass]="model.cls.grid.control">
+    <div *ngIf="type === 'CHECKBOX'" [ngClass]="model.cls.grid.control">
 
         <div class="form-check" [class.disabled]="model.disabled">
 
@@ -40,11 +40,11 @@
     </div>
 
 
-    <div *ngIf="type !== 3" [ngClass]="model.cls.grid.control">
+    <div *ngIf="type !== 'CHECKBOX'" [ngClass]="model.cls.grid.control">
 
         <ng-container [ngSwitch]="type">
 
-            <div *ngSwitchCase="1"
+            <div *ngSwitchCase="'ARRAY'"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
@@ -69,7 +69,7 @@
             </div>
 
 
-            <ngb-datepicker *ngSwitchCase="2"
+            <ngb-datepicker *ngSwitchCase="'CALENDAR'"
                             [disabled]="model.disabled"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
@@ -79,7 +79,7 @@
                             [startDate]="model.focusedDate"></ngb-datepicker>
 
 
-            <fieldset *ngSwitchCase="5"
+            <fieldset *ngSwitchCase="'GROUP'"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -99,7 +99,7 @@
             </fieldset>
 
 
-            <div *ngSwitchCase="6" [class.input-group]="model.prefix || model.suffix">
+            <div *ngSwitchCase="'INPUT'" [class.input-group]="model.prefix || model.suffix">
 
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
 
@@ -142,7 +142,7 @@
             </div>
 
 
-            <div *ngSwitchCase="7" ngbRadioGroup role="radiogroup"
+            <div *ngSwitchCase="'RADIO_GROUP'" ngbRadioGroup role="radiogroup"
                  [attr.tabindex]="model.tabIndex"
                  [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
@@ -164,7 +164,7 @@
             </div>
 
 
-            <select *ngSwitchCase="8" class="form-control"
+            <select *ngSwitchCase="'SELECT'" class="form-control"
                     [attr.tabindex]="model.tabIndex"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -183,7 +183,7 @@
             </select>
 
 
-            <textarea *ngSwitchCase="9" class="form-control"
+            <textarea *ngSwitchCase="'TEXTAREA'" class="form-control"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
@@ -203,7 +203,7 @@
                       (focus)="onFocusChange($event)"></textarea>
 
 
-            <ngb-timepicker *ngSwitchCase="10"
+            <ngb-timepicker *ngSwitchCase="'TIMEPICKER'"
                             [disabled]="model.disabled"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
@@ -230,7 +230,7 @@
 
     </div>
 
-    <ng-template *ngIf="hasEndTemplate && type !== 1"
+    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

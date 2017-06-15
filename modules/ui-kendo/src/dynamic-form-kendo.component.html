@@ -1,19 +1,19 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="type !== 4 && type !== 10"
+    <label *ngIf="type !== 'CHECKBOX' && type !== 'INPUT'"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 1"
+    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-container [ngSwitch]="type">
 
-        <div *ngSwitchCase="1"
+        <div *ngSwitchCase="'ARRAY'"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
@@ -37,7 +37,7 @@
         </div>
 
 
-        <kendo-autocomplete *ngSwitchCase="2"
+        <kendo-autocomplete *ngSwitchCase="'AUTOCOMPLETE'"
                             [data]="model.list"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
@@ -49,7 +49,7 @@
                             (valueChange)="onValueChange($event)"></kendo-autocomplete>
 
 
-        <kendo-calendar *ngSwitchCase="3"
+        <kendo-calendar *ngSwitchCase="'CALENDAR'"
                         [dynamicId]="bindId && model.id"
                         [focusedDate]="model.focusedDate"
                         [formControlName]="model.id"
@@ -61,7 +61,7 @@
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
 
-        <label *ngSwitchCase="4" class="k-form-field">
+        <label *ngSwitchCase="'CHECKBOX'" class="k-form-field">
 
             <input type="checkbox" class="k-checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -81,7 +81,7 @@
         </label>
 
 
-        <fieldset *ngSwitchCase="5" class="k-form-field"
+        <fieldset *ngSwitchCase="'CHECKBOX_GROUP'" class="k-form-field"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -111,7 +111,7 @@
         </fieldset>
 
 
-        <kendo-dateinput *ngSwitchCase="6"
+        <kendo-dateinput *ngSwitchCase="'DATE_INPUT'"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [max]="model.max"
@@ -125,7 +125,7 @@
                          (valueChange)="onValueChange($event)"></kendo-dateinput>
 
 
-        <kendo-datepicker *ngSwitchCase="7"
+        <kendo-datepicker *ngSwitchCase="'DATEPICKER'"
                           [dynamicId]="bindId && model.id"
                           [focusedDate]="model.focusedDate"
                           [format]="model.format"
@@ -140,7 +140,7 @@
                           (valueChange)="onValueChange($event)"></kendo-datepicker>
 
 
-        <kendo-dropdownlist *ngSwitchCase="8"
+        <kendo-dropdownlist *ngSwitchCase="'DROPDOWNLIST'"
                             [data]="model.options"
                             [dynamicId]="bindId && model.id"
                             [filterable]="model.filterable"
@@ -156,7 +156,7 @@
                             (valueChange)="onValueChange($event)"></kendo-dropdownlist>
 
 
-        <fieldset *ngSwitchCase="9"
+        <fieldset *ngSwitchCase="'GROUP'"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -174,7 +174,7 @@
         </fieldset>
 
 
-        <label *ngSwitchCase="10" class="k-form-field">
+        <label *ngSwitchCase="'INPUT'" class="k-form-field">
 
             <span>
                 <span [innerHTML]="model.label" [ngClass]="model.cls.element.label"></span>
@@ -209,7 +209,7 @@
         </label>
 
 
-        <kendo-maskedtextbox *ngSwitchCase="11"
+        <kendo-maskedtextbox *ngSwitchCase="'MASKED_TEXTBOX'"
                              [dynamicId]="bindId && model.id"
                              [formControlName]="model.id"
                              [mask]="model.mask"
@@ -221,7 +221,7 @@
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
-        <kendo-multiselect *ngSwitchCase="12"
+        <kendo-multiselect *ngSwitchCase="'MULTI_SELECT'"
                            [data]="model.options"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
@@ -236,7 +236,7 @@
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
-        <kendo-numerictextbox *ngSwitchCase="13"
+        <kendo-numerictextbox *ngSwitchCase="'NUMERIC_TEXTBOX'"
                               [autoCorrect]="model.autoComplete"
                               [dynamicId]="bindId && model.id"
                               [formControlName]="model.id"
@@ -251,7 +251,7 @@
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-        <fieldset *ngSwitchCase="14" class="k-form-field" role="radiogroup">
+        <fieldset *ngSwitchCase="'RADIO_GROUP'" class="k-form-field" role="radiogroup">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -273,7 +273,7 @@
         </fieldset>
 
 
-        <kendo-slider *ngSwitchCase="15"
+        <kendo-slider *ngSwitchCase="'SLIDER'"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -286,7 +286,7 @@
                       (valueChange)="onValueChange($event)"></kendo-slider>
 
 
-        <kendo-switch *ngSwitchCase="16"
+        <kendo-switch *ngSwitchCase="'SWITCH'"
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -297,7 +297,7 @@
                       (valueChange)="onValueChange($event)"></kendo-switch>
 
 
-        <textarea *ngSwitchCase="17" class="k-textarea"
+        <textarea *ngSwitchCase="'TEXTAREA'" class="k-textarea"
                   [attr.tabindex]="model.tabIndex"
                   [cols]="model.cols"
                   [dynamicId]="bindId && model.id"
@@ -317,7 +317,7 @@
                   (focus)="onFocusChange($event)"></textarea>
 
 
-        <kendo-upload *ngSwitchCase="19"
+        <kendo-upload *ngSwitchCase="'UPLOAD'"
                       [autoUpload]="model.autoUpload"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -331,7 +331,7 @@
     </ng-container>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 1"
+    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

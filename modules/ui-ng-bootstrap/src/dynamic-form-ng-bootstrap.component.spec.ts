@@ -81,7 +81,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toBe(NGBootstrapFormControlType.Input);
+        expect(component.type).toEqual(NGBootstrapFormControlType.Input as string);
     });
 
     it("should have an input element", () => {
