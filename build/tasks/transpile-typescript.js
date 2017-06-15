@@ -8,6 +8,8 @@ module.exports = function (src, dest, configPath, moduleFormat) {
 
         let tsProject = ts.createProject(configPath, {module: moduleFormat});
 
+        console.log("using TypeScript version: ", tsProject.typescript.version);
+
         return gulp.src(src)
                    .pipe(sourceMaps.init())
                    .pipe(tsProject(ts.reporter.defaultReporter()))

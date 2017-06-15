@@ -120,7 +120,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should listen to focus events", () => {
 
-        spyOn(component, "onFocus");
+        spyOn(component, "onFocus").and.callThrough();
 
         testElement.triggerEventHandler("focus", null);
 
@@ -129,7 +129,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should listen to blur events", () => {
 
-        spyOn(component, "onBlur");
+        spyOn(component, "onBlur").and.callThrough();
 
         testElement.triggerEventHandler("blur", null);
 

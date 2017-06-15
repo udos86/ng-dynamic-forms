@@ -880,7 +880,7 @@ Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/ang
 
 That means changing the corresponding `disabled` property of a `DynamicFormControlModel` at runtime won't have any effect.
 
-But similar to [updating values](#value-updates) ng2 Dynamic Forms helps you out here 
+But similar to [updating values](#updating-form-models) ng2 Dynamic Forms helps you out here 
 by providing a `Rx.Subject` named `disabledUpdates`. 
 
 It can be used to programmatically switch the activation state of a form control through a `DynamicFormControlModel`:
