@@ -13,19 +13,20 @@ import {
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormIonicComponent, IonicFormControlType } from "./dynamic-form-ionic.component";
+import { test } from "shelljs";
 
 describe("DynamicFormIonicComponent test suite", () => {
 
-    let inputModel = new DynamicInputModel({id: "testInput"}),
+    let testModel = new DynamicInputModel({id: "testInput"}),
         formModel = [
-            inputModel,
+            testModel,
             new DynamicSwitchModel({id: "testSwitch"})
         ],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormIonicComponent>,
         component: DynamicFormIonicComponent,
         debugElement: DebugElement,
-        inputElement: DebugElement;
+        testElement: DebugElement;
 
     beforeEach(async(() => {
 
@@ -54,11 +55,11 @@ describe("DynamicFormIonicComponent test suite", () => {
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = formModel[0];
+        component.model = testModel;
 
         fixture.detectChanges();
 
-        inputElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
+        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
 
     xit("should initialize correctly", () => {
@@ -89,15 +90,15 @@ describe("DynamicFormIonicComponent test suite", () => {
 
     xit("should have an input element", () => {
 
-        expect(inputElement instanceof DebugElement).toBe(true);
+        expect(testElement instanceof DebugElement).toBe(true);
     });
 
     xit("should listen to native focus and blur events", () => {
 
         spyOn(component, "onFocusChange");
 
-        inputElement.triggerEventHandler("focus", null);
-        inputElement.triggerEventHandler("blur", null);
+        testElement.triggerEventHandler("focus", null);
+        testElement.triggerEventHandler("blur", null);
 
         expect(component.onFocusChange).toHaveBeenCalledTimes(2);
     });
@@ -106,7 +107,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         spyOn(component, "onValueChange");
 
-        inputElement.triggerEventHandler("change", null);
+        testElement.triggerEventHandler("change", null);
 
         expect(component.onValueChange).toHaveBeenCalled();
     });
@@ -128,7 +129,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.valueUpdates.next("test");
+        testModel.valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -139,7 +140,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         component.ngOnInit();
 
-        inputModel.disabledUpdates.next(true);
+        testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
