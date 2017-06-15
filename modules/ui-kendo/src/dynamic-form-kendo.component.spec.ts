@@ -81,7 +81,7 @@ describe("DynamicFormKendoComponent test suite", () => {
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = formModel[9];
+        component.model = testModel;
 
         fixture.detectChanges();
 

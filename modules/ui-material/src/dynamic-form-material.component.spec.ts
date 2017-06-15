@@ -88,12 +88,12 @@ describe("DynamicFormMaterialComponent test suite", () => {
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = formModel[0];
+        component.model = testModel;
         component.showCharacterHint = false;
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id='${formModel[0].id}']`));
+        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
 
     it("should initialize correctly", () => {

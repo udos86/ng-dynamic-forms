@@ -9,7 +9,7 @@ export const enum PFormControlType {
     Editor = "EDITOR",
     Group = "GROUP",
     Input = "INPUT",
-    InputSwitch = "INPUT_SWTICH",
+    InputSwitch = "INPUT_SWITCH",
     MultiSelect = "MULTI_SELECT",
     RadioGroup = "RADIO_GROUP",
     Slider = "SLIDER",
