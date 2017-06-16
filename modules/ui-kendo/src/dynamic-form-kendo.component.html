@@ -178,7 +178,8 @@
 
             <span>
                 <span [innerHTML]="model.label" [ngClass]="model.cls.element.label"></span>
-                <span *ngIf="model.hint" class="k-field-info" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
+                <span *ngIf="model.hint" class="k-field-info" [innerHTML]="model.hint"
+                      [ngClass]="model.cls.element.hint"></span>
             </span>
 
             <input class="k-textbox"
@@ -329,6 +330,17 @@
                       [tabIndex]="model.tabIndex"></kendo-upload>
 
     </ng-container>
+
+
+    <ul *ngIf="hasErrorMessaging"
+        [class.hidden]="!showErrorMessages"
+        [ngClass]="[model.cls.grid.errors]">
+
+        <li *ngFor="let message of errorMessages" class="k-field-info"
+            [ngClass]="[model.cls.element.errors]"
+            style="color: #f31700;">{{message}}</li>
+
+    </ul>
 
 
     <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"

@@ -13,7 +13,6 @@ import {
     DynamicFormControlModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormIonicComponent, IonicFormControlType } from "./dynamic-form-ionic.component";
-import { test } from "shelljs";
 
 describe("DynamicFormIonicComponent test suite", () => {
 
