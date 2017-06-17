@@ -56,6 +56,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent {
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
+    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
     @Input() nestedTemplates: QueryList<DynamicTemplateDirective>;
 

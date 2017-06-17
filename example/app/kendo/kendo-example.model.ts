@@ -55,7 +55,13 @@ export const KENDO_EXAMPLE_MODEL = [
             id: "kendoTextBox",
             hint: "Just a hint",
             label: "Kendo TextBox",
-            placeholder: "Kendo TextBox"
+            placeholder: "Kendo TextBox",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "{{label}} is required"
+            }
         }
     ),
 

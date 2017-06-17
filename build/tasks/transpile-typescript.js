@@ -1,7 +1,7 @@
 const gulp       = require("gulp"),
-      ts         = require("gulp-typescript"),
       sourceMaps = require("gulp-sourcemaps"),
-      console    = require("console");
+      ts         = require("gulp-typescript"),
+      util       = require("gulp-util");
 
 module.exports = function (src, dest, configPath, moduleFormat) {
 
@@ -9,7 +9,7 @@ module.exports = function (src, dest, configPath, moduleFormat) {
 
         let tsProject = ts.createProject(configPath, {module: moduleFormat});
 
-        console.log(`Using TypeScript version ${tsProject.typescript.version}`);
+        util.log(`Using TypeScript ${util.colors.magenta(tsProject.typescript.version)}`);
 
         return gulp.src(src)
                    .pipe(sourceMaps.init())

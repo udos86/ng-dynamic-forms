@@ -4,6 +4,7 @@
 
         <dynamic-form-kendo-control *ngFor="let controlModel of formModel"
                                     [group]="formGroup"
+                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                     [model]="controlModel"
                                     (change)="onChange($event)">
 
