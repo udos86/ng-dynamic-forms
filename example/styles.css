@@ -147,6 +147,11 @@ dynamic-form-kendo-control .k-widget {
     margin: 0 auto;
 }
 
+dynamic-form-kendo-control ul {
+    list-style-type: none;
+    text-align: left;
+}
+
 dynamic-form-material-control .md-list-item {
     justify-content: center;
 }

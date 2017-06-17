@@ -1,3 +1,15 @@
+# 1.4.13
+
+### **Bugfixes**
+
+* `DynamicFormService` imports cleaned up (closes [#402](https://github.com/udos86/ng2-dynamic-forms/issues/402))
+* missing text mask dependency added in `package.json` files (closes [#398](https://github.com/udos86/ng2-dynamic-forms/issues/398))
+
+### **Features** 
+
+* initial support for error messsaging in Kendo UI package (closes [#386](https://github.com/udos86/ng2-dynamic-forms/issues/386))
+
+
 # 1.4.12
 
 ### **Features** 

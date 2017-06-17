@@ -332,14 +332,11 @@
     </ng-container>
 
 
-    <ul *ngIf="hasErrorMessaging"
-        [class.hidden]="!showErrorMessages"
-        [ngClass]="[model.cls.grid.errors]">
+    <ul *ngIf="hasErrorMessaging" [class.k-hidden]="!showErrorMessages" [ngClass]="[model.cls.grid.errors]">
 
         <li *ngFor="let message of errorMessages" class="k-field-info"
             [ngClass]="[model.cls.element.errors]"
             style="color: #f31700;">{{message}}</li>
-
     </ul>
 
 
