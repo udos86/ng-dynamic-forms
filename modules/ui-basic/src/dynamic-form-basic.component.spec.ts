@@ -6,16 +6,43 @@ import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
-    DynamicInputModel,
+    DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicEditorModel,
+    DynamicFileUploadModel,
+    DynamicFormArrayModel,
     DynamicFormControlModel,
-    CoreFormControlType
+    DynamicFormGroupModel,
+    DynamicInputModel,
+    DynamicRadioGroupModel,
+    DynamicSelectModel,
+    DynamicSliderModel,
+    DynamicSwitchModel,
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormBasicComponent } from "./dynamic-form-basic.component";
+import { BasicFormControlType, DynamicFormBasicComponent } from "./dynamic-form-basic.component";
 
 describe("DynamicFormBasicComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "test"}),
-        formModel = [testModel],
+    let formModel = [
+            new DynamicCheckboxModel({id: "checkbox"}),
+            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicDatePickerModel({id: "datepicker"}),
+            new DynamicEditorModel({id: "editor"}),
+            new DynamicFileUploadModel({id: "upload", url: ""}),
+            new DynamicFormArrayModel({id: "formArray", createGroup: () => []}),
+            new DynamicFormGroupModel({id: "formGroup", group: []}),
+            new DynamicInputModel({id: "input", maxLength: 51}),
+            new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+            new DynamicSliderModel({id: "slider"}),
+            new DynamicSwitchModel({id: "switch"}),
+            new DynamicTextAreaModel({id: "textarea"}),
+            new DynamicTimePickerModel({id: "timepicker"})
+        ],
+        testModel = formModel[7] as DynamicInputModel,
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormBasicComponent>,
         component: DynamicFormBasicComponent,
@@ -73,7 +100,7 @@ describe("DynamicFormBasicComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(CoreFormControlType.Input as string);
+        expect(component.type).toEqual(BasicFormControlType.Input as string);
     });
 
     it("should have an input element", () => {
@@ -131,5 +158,38 @@ describe("DynamicFormBasicComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should determine correct form control type", () => {
+
+        let testFn = DynamicFormBasicComponent.getFormControlType;
+
+        expect(testFn(formModel[0])).toEqual(BasicFormControlType.Checkbox);
+
+        expect(testFn(formModel[1])).toEqual(BasicFormControlType.Group);
+
+        expect(testFn(formModel[2])).toBeNull();
+
+        expect(testFn(formModel[3])).toBeNull();
+
+        expect(testFn(formModel[4])).toBeNull();
+
+        expect(testFn(formModel[5])).toEqual(BasicFormControlType.Array);
+
+        expect(testFn(formModel[6])).toEqual(BasicFormControlType.Group);
+
+        expect(testFn(formModel[7])).toEqual(BasicFormControlType.Input);
+
+        expect(testFn(formModel[8])).toEqual(BasicFormControlType.RadioGroup);
+
+        expect(testFn(formModel[9])).toEqual(BasicFormControlType.Select);
+
+        expect(testFn(formModel[10])).toBeNull();
+
+        expect(testFn(formModel[11])).toBeNull();
+
+        expect(testFn(formModel[12])).toEqual(BasicFormControlType.TextArea);
+
+        expect(testFn(formModel[13])).toBeNull();
     });
 });

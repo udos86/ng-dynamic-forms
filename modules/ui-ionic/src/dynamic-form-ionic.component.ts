@@ -1,14 +1,14 @@
-import { Component, Input, Output, EventEmitter, QueryList, ContentChildren, ViewChild } from "@angular/core";
+import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
-    DynamicFormRelationService,
     DynamicTemplateDirective,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -50,7 +50,7 @@ export const enum IonicFormControlType {
     templateUrl: "./dynamic-form-ionic.component.html"
 })
 
-export class DynamicFormIonicComponent extends DynamicFormControlComponent {
+export class DynamicFormIonicComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
@@ -73,13 +73,21 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent {
     @ViewChild(Select) ionSelect: Select | null;
     @ViewChild(Toggle) ionToggle: Toggle | null;
 
-    constructor(relationService: DynamicFormRelationService) {
-        super(relationService);
+    type: IonicFormControlType | null;
+
+    constructor() {
+        super();
     }
 
-    protected getFormControlType(): IonicFormControlType | null {
+    ngOnInit() {
+        super.ngOnInit();
 
-        switch (this.model.type) {
+        this.type = DynamicFormIonicComponent.getFormControlType(this.model);
+    }
+
+    static getFormControlType(model: DynamicFormControlModel): IonicFormControlType | null {
+
+        switch (model.type) {
 
             case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                 return IonicFormControlType.Array;
@@ -91,6 +99,7 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent {
             case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
                 return IonicFormControlType.DateTime;
 
+            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return IonicFormControlType.Group;
 

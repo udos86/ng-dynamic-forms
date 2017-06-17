@@ -81,28 +81,33 @@ System.config({
 git clone https://github.com/udos86/ng2-dynamic-forms.git
 ```
 
-**2. Log into your Telerik account** (see [Progress npm registry access](http://www.telerik.com/kendo-angular-ui/components/installation/npm-registry/)):
+**2. Optionally log into your Telerik account** (see [Progress npm registry access](http://www.telerik.com/kendo-angular-ui/components/installation/npm-registry/)):
 ```
 $ npm login --registry=https://registry.npm.telerik.com/ --scope=@progress
 ```
-> Alternatively remove @progress dependencies from `package.json` and exclude Kendo UI sample component
+> Alternatively remove @progress dependencies from `package.json` and exclude Kendo UI component /route from example
 
 **3. Install the npm dependencies**:
 ```
 npm install
 ```
 
-**4. Execute AoT compilation**:
+**4. Build the library**:
+```
+npm run build:modules
+```
+
+**5. Execute AoT compilation**:
 ```
 npm run compile:app:aot
 ```
 
-**5. Transpile the TypeScript files**:
+**6. Transpile the source code**:
 ```
 npm run transpile:app:systemjs
 ```
 
-**6. Run the sample application**:
+**7. Run the sample application**:
 ```
 npm start
 ```

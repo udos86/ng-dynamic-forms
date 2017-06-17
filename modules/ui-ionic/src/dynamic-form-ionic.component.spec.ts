@@ -8,25 +8,49 @@ import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
+    DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
+    DynamicEditorModel,
+    DynamicFileUploadModel,
+    DynamicFormArrayModel,
+    DynamicFormControlModel,
+    DynamicFormGroupModel,
     DynamicInputModel,
+    DynamicRadioGroupModel,
+    DynamicSelectModel,
+    DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicFormControlModel
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormIonicComponent, IonicFormControlType } from "./dynamic-form-ionic.component";
 
 describe("DynamicFormIonicComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "testInput"}),
-        formModel = [
-            testModel,
-            new DynamicSwitchModel({id: "testSwitch"})
+    let formModel = [
+            new DynamicCheckboxModel({id: "checkbox"}),
+            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicDatePickerModel({id: "datepicker"}),
+            new DynamicEditorModel({id: "editor"}),
+            new DynamicFileUploadModel({id: "upload", url: ""}),
+            new DynamicFormArrayModel({id: "formArray", createGroup: () => []}),
+            new DynamicFormGroupModel({id: "formGroup", group: []}),
+            new DynamicInputModel({id: "input", maxLength: 51}),
+            new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+            new DynamicSliderModel({id: "slider"}),
+            new DynamicSwitchModel({id: "switch"}),
+            new DynamicTextAreaModel({id: "textarea"}),
+            new DynamicTimePickerModel({id: "timepicker"})
         ],
+        testModel = formModel[7] as DynamicInputModel,
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicFormIonicComponent>,
         component: DynamicFormIonicComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
-
+    /*
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
@@ -34,7 +58,7 @@ describe("DynamicFormIonicComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                IonicModule.forRoot(DynamicFormIonicComponent),
+                IonicModule,
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
@@ -60,7 +84,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
-
+    */
     xit("should initialize correctly", () => {
 
         expect(component.context).toBeNull();
@@ -142,5 +166,38 @@ describe("DynamicFormIonicComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should determine correct form control type", () => {
+
+        let testFn = DynamicFormIonicComponent.getFormControlType;
+
+        expect(testFn(formModel[0])).toEqual(IonicFormControlType.Checkbox);
+
+        expect(testFn(formModel[1])).toEqual(IonicFormControlType.Group);
+
+        expect(testFn(formModel[2])).toEqual(IonicFormControlType.DateTime);
+
+        expect(testFn(formModel[3])).toBeNull();
+
+        expect(testFn(formModel[4])).toBeNull();
+
+        expect(testFn(formModel[5])).toEqual(IonicFormControlType.Array);
+
+        expect(testFn(formModel[6])).toEqual(IonicFormControlType.Group);
+
+        expect(testFn(formModel[7])).toEqual(IonicFormControlType.Input);
+
+        expect(testFn(formModel[8])).toEqual(IonicFormControlType.RadioGroup);
+
+        expect(testFn(formModel[9])).toEqual(IonicFormControlType.Select);
+
+        expect(testFn(formModel[10])).toEqual(IonicFormControlType.Range);
+
+        expect(testFn(formModel[11])).toEqual(IonicFormControlType.Toggle);
+
+        expect(testFn(formModel[12])).toEqual(IonicFormControlType.TextArea);
+
+        expect(testFn(formModel[13])).toEqual(IonicFormControlType.DateTime);
     });
 });

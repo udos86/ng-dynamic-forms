@@ -1,11 +1,10 @@
-import { Component, Input, Output, EventEmitter, QueryList, ContentChildren } from "@angular/core";
+import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
-    DynamicFormRelationService,
     DynamicTemplateDirective,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -41,7 +40,7 @@ export const enum NGBootstrapFormControlType {
     templateUrl: "./dynamic-form-ng-bootstrap.component.html"
 })
 
-export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent {
+export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() bindId: boolean = true;
@@ -57,13 +56,21 @@ export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    constructor(relationService: DynamicFormRelationService) {
-        super(relationService);
+    type: NGBootstrapFormControlType | null;
+
+    constructor() {
+        super();
     }
 
-    protected getFormControlType(): NGBootstrapFormControlType | null {
+    ngOnInit() {
+        super.ngOnInit();
 
-        switch (this.model.type) {
+        this.type = DynamicFormNGBootstrapComponent.getFormControlType(this.model);
+    }
+
+    static getFormControlType(model: DynamicFormControlModel): NGBootstrapFormControlType | null {
+
+        switch (model.type) {
 
             case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                 return NGBootstrapFormControlType.Array;
@@ -76,9 +83,9 @@ export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent
                 return NGBootstrapFormControlType.Group;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                let model = this.model as DynamicDatePickerModel;
+                let datepickerModel = model as DynamicDatePickerModel;
 
-                return model.inline ? NGBootstrapFormControlType.Calendar : NGBootstrapFormControlType.DatePicker;
+                return datepickerModel.inline ? NGBootstrapFormControlType.Calendar : NGBootstrapFormControlType.DatePicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 return NGBootstrapFormControlType.Input;

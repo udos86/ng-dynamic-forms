@@ -169,53 +169,39 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
-    it("should set correct form control type", () => {
+    it("should determine correct form control type", () => {
 
-        let testFn = component["getFormControlType"].bind(component);
+        let testFn = DynamicFormNGBootstrapComponent.getFormControlType;
 
-        component.model = formModel[0];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Checkbox);
+        expect(testFn(formModel[0])).toEqual(NGBootstrapFormControlType.Checkbox);
 
-        component.model = formModel[1];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Group);
+        expect(testFn(formModel[1])).toEqual(NGBootstrapFormControlType.Group);
 
-        component.model = formModel[2];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.DatePicker);
+        expect(testFn(formModel[2])).toEqual(NGBootstrapFormControlType.DatePicker);
 
         (formModel[2] as DynamicDatePickerModel).inline = true;
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Calendar);
+        expect(testFn(formModel[2])).toEqual(NGBootstrapFormControlType.Calendar);
 
-        component.model = formModel[3];
-        expect(testFn()).toBeNull();
+        expect(testFn(formModel[3])).toBeNull();
 
-        component.model = formModel[4];
-        expect(testFn()).toBeNull();
+        expect(testFn(formModel[4])).toBeNull();
 
-        component.model = formModel[5];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Array);
+        expect(testFn(formModel[5])).toEqual(NGBootstrapFormControlType.Array);
 
-        component.model = formModel[6];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(NGBootstrapFormControlType.Group);
 
-        component.model = formModel[7];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(NGBootstrapFormControlType.Input);
 
-        component.model = formModel[8];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.RadioGroup);
+        expect(testFn(formModel[8])).toEqual(NGBootstrapFormControlType.RadioGroup);
 
-        component.model = formModel[9];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.Select);
+        expect(testFn(formModel[9])).toEqual(NGBootstrapFormControlType.Select);
 
-        component.model = formModel[10];
-        expect(testFn()).toBeNull();
+        expect(testFn(formModel[10])).toBeNull();
 
-        component.model = formModel[11];
-        expect(testFn()).toBeNull();
+        expect(testFn(formModel[11])).toBeNull();
 
-        component.model = formModel[12];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(NGBootstrapFormControlType.TextArea);
 
-        component.model = formModel[13];
-        expect(testFn()).toEqual(NGBootstrapFormControlType.TimePicker);
+        expect(testFn(formModel[13])).toEqual(NGBootstrapFormControlType.TimePicker);
     });
 });
