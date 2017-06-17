@@ -1,11 +1,10 @@
-import { Component, Input, Output, EventEmitter, QueryList, ContentChildren, ViewChild } from "@angular/core";
+import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
-    DynamicFormRelationService,
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
@@ -48,7 +47,7 @@ import {
     templateUrl: "./dynamic-form-primeng.component.html"
 })
 
-export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
+export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
@@ -74,9 +73,16 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
     @ViewChild(Slider) pSlider: Slider | null;
 
     suggestions: string[];
+    type: PFormControlType | null;
 
-    constructor(relationService: DynamicFormRelationService) {
-        super(relationService);
+    constructor() {
+        super();
+    }
+
+    ngOnInit() {
+        super.ngOnInit();
+
+        this.type = DynamicFormPrimeNGComponent.getFormControlType(this.model);
     }
 
     protected setPTemplateDirective(directive: DynamicTemplateDirective): void {
@@ -108,11 +114,22 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
         });
     }
 
-    protected getFormControlType(): PFormControlType | null {
+    protected setTemplates(): void {
 
-        let model;
+        super.setTemplates();
 
-        switch (this.model.type) {
+        this.templateDirectives
+            .filter(directive => typeof directive.type === "string")
+            .forEach(directive => this.setPTemplateDirective(directive));
+    }
+
+    onAutoComplete($event: any): void {
+        this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
+    }
+
+    static getFormControlType(model: DynamicFormControlModel): PFormControlType | null {
+
+        switch (model.type) {
 
             case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                 return PFormControlType.Array;
@@ -132,12 +149,12 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
                 return PFormControlType.Editor;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                model = this.model as DynamicInputModel;
+                let inputModel = model as DynamicInputModel;
 
-                if (model.list) {
+                if (inputModel.list) {
                     return PFormControlType.AutoComplete;
 
-                } else if (model.multiple) {
+                } else if (inputModel.multiple) {
                     return PFormControlType.Chips;
 
                 } else {
@@ -148,9 +165,9 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
                 return PFormControlType.RadioGroup;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                model = this.model as DynamicSelectModel<any>;
+                let selectModel = model as DynamicSelectModel<any>;
 
-                return model.multiple ? PFormControlType.MultiSelect : PFormControlType.DropDown;
+                return selectModel.multiple ? PFormControlType.MultiSelect : PFormControlType.DropDown;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
                 return PFormControlType.Slider;
@@ -164,18 +181,5 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent {
             default:
                 return null;
         }
-    }
-
-    protected setTemplates(): void {
-
-        super.setTemplates();
-
-        this.templateDirectives
-            .filter(directive => typeof directive.type === "string")
-            .forEach(directive => this.setPTemplateDirective(directive));
-    }
-
-    onAutoComplete($event: any): void {
-        this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
     }
 }

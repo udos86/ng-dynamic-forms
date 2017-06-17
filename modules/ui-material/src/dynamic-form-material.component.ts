@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, ViewChild } from "@angular/core";
+import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     MdAutocomplete,
@@ -15,7 +15,6 @@ import {
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
-    DynamicFormRelationService,
     DynamicTemplateDirective,
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
@@ -52,7 +51,7 @@ export const enum MdFormControlType {
     templateUrl: "./dynamic-form-material.component.html"
 })
 
-export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
+export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements OnInit {
 
     private _showCharacterCount: boolean = false;
 
@@ -87,17 +86,25 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent {
     @ViewChild(MdSlider) mdSlider: MdSlider | null;
     @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle | null;
 
-    constructor(relationService: DynamicFormRelationService) {
-        super(relationService);
+    type: MdFormControlType | null;
+
+    constructor() {
+        super();
+    }
+
+    ngOnInit() {
+        super.ngOnInit();
+
+        this.type = DynamicFormMaterialComponent.getFormControlType(this.model);
     }
 
     get characterCount(): number | null {
         return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
     }
 
-    protected getFormControlType(): MdFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): MdFormControlType | null {
 
-        switch (this.model.type) {
+        switch (model.type) {
 
             case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                 return MdFormControlType.Array;

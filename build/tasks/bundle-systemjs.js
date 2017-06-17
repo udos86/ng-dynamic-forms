@@ -1,5 +1,4 @@
-const util    = require("gulp-util"),
-      Builder = require("systemjs-builder");
+const Builder = require("systemjs-builder");
 
 module.exports = function () {
 

@@ -1,4 +1,5 @@
 export * from "./src/component/dynamic-form-control.component";
+export * from "./src/component/dynamic-form-control-relation.utils";
 
 export * from "./src/directive/dynamic-template.directive";
 export * from "./src/directive/dynamic-id.directive";
@@ -31,7 +32,6 @@ export * from "./src/model/timepicker/dynamic-timepicker.model";
 
 export * from "./src/service/dynamic-form.service";
 export * from "./src/service/dynamic-form-autofill.service";
-export * from "./src/service/dynamic-form-relation.service";
 
 export * from "./src/core.module";
 export * from "./src/utils";

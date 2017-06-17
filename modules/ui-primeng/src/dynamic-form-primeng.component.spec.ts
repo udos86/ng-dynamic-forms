@@ -38,7 +38,6 @@ import {
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormPrimeNGComponent } from "./dynamic-form-primeng.component";
 import { PFormControlType } from "./dynamic-form-primeng.const";
-import { test } from "shelljs";
 
 describe("DynamicFormPrimeNGComponent test suite", () => {
 
@@ -193,57 +192,43 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
     it("should set correct form control type", () => {
 
-        let testFn = component["getFormControlType"].bind(component);
+        let testFn = DynamicFormPrimeNGComponent.getFormControlType;
 
-        component.model = formModel[0];
-        expect(testFn()).toEqual(PFormControlType.Checkbox);
+        expect(testFn(formModel[0])).toEqual(PFormControlType.Checkbox);
 
-        component.model = formModel[1];
-        expect(testFn()).toEqual(PFormControlType.Group);
+        expect(testFn(formModel[1])).toEqual(PFormControlType.Group);
 
-        component.model = formModel[2];
-        expect(testFn()).toEqual(PFormControlType.Calendar);
+        expect(testFn(formModel[2])).toEqual(PFormControlType.Calendar);
 
-        component.model = formModel[3];
-        expect(testFn()).toEqual(PFormControlType.Editor);
+        expect(testFn(formModel[3])).toEqual(PFormControlType.Editor);
 
-        component.model = formModel[4];
-        expect(testFn()).toBeNull();
+        expect(testFn(formModel[4])).toBeNull();
 
-        component.model = formModel[5];
-        expect(testFn()).toEqual(PFormControlType.Array);
+        expect(testFn(formModel[5])).toEqual(PFormControlType.Array);
 
-        component.model = formModel[6];
-        expect(testFn()).toEqual(PFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(PFormControlType.Group);
 
-        component.model = formModel[7];
-        expect(testFn()).toEqual(PFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(PFormControlType.Input);
 
         (formModel[7] as DynamicInputModel).multiple = true;
-        expect(testFn()).toEqual(PFormControlType.Chips);
+        expect(testFn(formModel[7])).toEqual(PFormControlType.Chips);
 
         (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
-        expect(testFn()).toEqual(PFormControlType.AutoComplete);
+        expect(testFn(formModel[7])).toEqual(PFormControlType.AutoComplete);
 
-        component.model = formModel[8];
-        expect(testFn()).toEqual(PFormControlType.RadioGroup);
+        expect(testFn(formModel[8])).toEqual(PFormControlType.RadioGroup);
 
-        component.model = formModel[9];
-        expect(testFn()).toEqual(PFormControlType.DropDown);
+        expect(testFn(formModel[9])).toEqual(PFormControlType.DropDown);
 
         (formModel[9] as DynamicSelectModel<string>).multiple = true;
-        expect(testFn()).toEqual(PFormControlType.MultiSelect);
+        expect(testFn(formModel[9])).toEqual(PFormControlType.MultiSelect);
 
-        component.model = formModel[10];
-        expect(testFn()).toEqual(PFormControlType.Slider);
+        expect(testFn(formModel[10])).toEqual(PFormControlType.Slider);
 
-        component.model = formModel[11];
-        expect(testFn()).toEqual(PFormControlType.InputSwitch);
+        expect(testFn(formModel[11])).toEqual(PFormControlType.InputSwitch);
 
-        component.model = formModel[12];
-        expect(testFn()).toEqual(PFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(PFormControlType.TextArea);
 
-        component.model = formModel[13];
-        expect(testFn()).toEqual(PFormControlType.Calendar);
+        expect(testFn(formModel[13])).toEqual(PFormControlType.Calendar);
     });
 });

@@ -4,29 +4,19 @@ import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
-    DynamicFormArrayGroupModel
-} from "../model/form-array/dynamic-form-array.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX } from "../model/checkbox/dynamic-checkbox.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP } from "../model/checkbox/dynamic-checkbox-group.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_GROUP } from "../model/form-group/dynamic-form-group.model";
+import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP } from "../model/radio/dynamic-radio-group.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_SELECT } from "../model/select/dynamic-select.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH } from "../model/switch/dynamic-switch.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA } from "../model/textarea/dynamic-textarea.model";
-import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
 import {
     DynamicTemplateDirective,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START
 } from "../directive/dynamic-template.directive";
 import { isDefined } from "../utils";
+import * as relationUtils from "./dynamic-form-control-relation.utils";
 
 export interface DynamicFormControlEvent {
 
@@ -35,18 +25,6 @@ export interface DynamicFormControlEvent {
     control: FormControl;
     group: FormGroup;
     model: DynamicFormControlModel;
-}
-
-export const enum CoreFormControlType {
-
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    Switch = "SWITCH",
-    TextArea = "TEXTAREA"
 }
 
 export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -62,7 +40,6 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     template: TemplateRef<any>;
     templateDirective: DynamicTemplateDirective;
     templates: QueryList<DynamicTemplateDirective>;
-    type: string | null;
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
@@ -71,7 +48,9 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     private subscriptions: Subscription[] = [];
 
-    constructor(private relationService: DynamicFormRelationService) {}
+    abstract type: string | null;
+
+    constructor() {}
 
     ngOnInit(): void {
 
@@ -80,7 +59,6 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         }
 
         this.control = this.group.get(this.model.id) as FormControl;
-        this.type = this.getFormControlType();
 
         this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
         this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
@@ -180,40 +158,6 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return this.nestedTemplates ? this.nestedTemplates : this.templates;
     }
 
-    protected getFormControlType(): string | null {
-
-        switch (this.model.type) {
-
-            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                return CoreFormControlType.Array;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                return CoreFormControlType.Checkbox;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                return CoreFormControlType.Group;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                return CoreFormControlType.Input;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                return CoreFormControlType.RadioGroup;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                return CoreFormControlType.Select;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                return CoreFormControlType.Switch;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                return CoreFormControlType.TextArea;
-
-            default:
-                return null;
-        }
-    }
-
     protected setTemplates(): void {
 
         this.templateDirectives.forEach((directive: DynamicTemplateDirective) => {
@@ -232,13 +176,13 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     protected setControlRelations(): void {
 
-        let relActivation = this.relationService.findActivationRelation(this.model.relation);
+        let relActivation = relationUtils.findActivationRelation(this.model.relation);
 
         if (relActivation) {
 
             this.updateModelDisabled(relActivation);
 
-            this.relationService.getRelatedFormControls(this.model, this.group).forEach(control => {
+            relationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
 
                 this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
@@ -248,7 +192,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(this.relationService.isFormControlToBeDisabled(relation, this.group));
+        this.model.disabledUpdates.next(relationUtils.isFormControlToBeDisabled(relation, this.group));
     }
 
     onControlValueChanges(value: DynamicFormControlValue): void {
