@@ -39,7 +39,6 @@ export const enum NGBootstrapFormControlType {
     selector: "dynamic-form-ng-bootstrap-control",
     templateUrl: "./dynamic-form-ng-bootstrap.component.html"
 })
-
 export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() asBootstrapFormGroup: boolean = true;
@@ -65,10 +64,10 @@ export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormNGBootstrapComponent.getFormControlType(this.model);
+        this.type = DynamicFormNGBootstrapComponent.mapFormControlType(this.model);
     }
 
-    static getFormControlType(model: DynamicFormControlModel): NGBootstrapFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): NGBootstrapFormControlType | null {
 
         switch (model.type) {
 

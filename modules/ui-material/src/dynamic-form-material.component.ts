@@ -44,13 +44,18 @@ export const enum MdFormControlType {
     TextArea = "TEXTAREA"
 }
 
+export type MdViewChild = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdInputContainer | MdRadioGroup |
+    MdSelect | MdSlider | MdSlideToggle;
+
+export const MdViewChildSelector = `mdAutocomplete,mdCheckbox,mdDatepicker,mdInput,mdRadioGroup,mdSelect,
+    mdSlider,mdSlideToggle,mdTextarea`;
+
 @Component({
 
     moduleId: module.id,
     selector: "dynamic-form-material-control",
     templateUrl: "./dynamic-form-material.component.html"
 })
-
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements OnInit {
 
     private _showCharacterCount: boolean = false;
@@ -77,14 +82,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(MdAutocomplete) mdAutocomplete: MdAutocomplete | null;
-    @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
-    @ViewChild(MdDatepicker) mdDatepicker: MdDatepicker<Date> | null;
-    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;
-    @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup | null;
-    @ViewChild(MdSelect) mdSelect: MdSelect | null;
-    @ViewChild(MdSlider) mdSlider: MdSlider | null;
-    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle | null;
+    @ViewChild(MdViewChildSelector) mdViewChild: MdViewChild | undefined;
 
     type: MdFormControlType | null;
 
@@ -95,14 +93,20 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormMaterialComponent.getFormControlType(this.model);
+        this.type = DynamicFormMaterialComponent.mapFormControlType(this.model);
     }
 
     get characterCount(): number | null {
-        return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
+
+        if (this.mdViewChild instanceof MdInputContainer) {
+            return (this.mdViewChild as MdInputContainer)._mdInputChild.value.length;
+
+        } else {
+            return null;
+        }
     }
 
-    static getFormControlType(model: DynamicFormControlModel): MdFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): MdFormControlType | null {
 
         switch (model.type) {
 

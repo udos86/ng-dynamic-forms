@@ -35,7 +35,6 @@ export const enum FoundationSitesFormControlType {
     selector: "dynamic-form-foundation-sites-control",
     templateUrl: "./dynamic-form-foundation-sites.component.html"
 })
-
 export class DynamicFormFoundationSitesComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
@@ -60,10 +59,10 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormFoundationSitesComponent.getFormControlType(this.model);
+        this.type = DynamicFormFoundationSitesComponent.mapFormControlType(this.model);
     }
 
-    static getFormControlType(model: DynamicFormControlModel): FoundationSitesFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): FoundationSitesFormControlType | null {
 
         switch (model.type) {
 

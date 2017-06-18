@@ -3,12 +3,6 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "directive-selector": [
-      true,
-      "attribute",
-      "",
-      "camelCase"
-    ],
     "component-selector": [
       true,
       "element",

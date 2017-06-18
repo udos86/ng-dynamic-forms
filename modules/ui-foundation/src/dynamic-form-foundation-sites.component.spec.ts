@@ -165,7 +165,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormFoundationSitesComponent.getFormControlType;
+        let testFn = DynamicFormFoundationSitesComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(FoundationSitesFormControlType.Checkbox);
 

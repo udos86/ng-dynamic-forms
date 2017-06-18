@@ -170,7 +170,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormIonicComponent.getFormControlType;
+        let testFn = DynamicFormIonicComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(IonicFormControlType.Checkbox);
 

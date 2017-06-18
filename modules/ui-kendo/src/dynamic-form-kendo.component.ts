@@ -49,7 +49,6 @@ import {
     selector: "dynamic-form-kendo-control",
     templateUrl: "./dynamic-form-kendo.component.html"
 })
-
 export class DynamicFormKendoComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
@@ -65,17 +64,17 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | null;
-    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | null;
-    @ViewChild(DateInputComponent) kendoDateInput: DateInputComponent | null;
-    @ViewChild(DatePickerComponent) kendoDatePicker: DatePickerComponent | null;
-    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | null;
-    @ViewChild(MaskedTextBoxComponent) kendoMaskedTextBox: MaskedTextBoxComponent | null;
-    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | null;
-    @ViewChild(NumericTextBoxComponent) kendoNumericTextBox: NumericTextBoxComponent | null;
-    @ViewChild(SliderComponent) kendoSlider: SliderComponent | null;
-    @ViewChild(SwitchComponent) kendoSwitch: SwitchComponent | null;
-    @ViewChild(UploadComponent) kendoUpload: UploadComponent | null;
+    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | undefined;
+    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | undefined;
+    @ViewChild(DateInputComponent) kendoDateInput: DateInputComponent | undefined;
+    @ViewChild(DatePickerComponent) kendoDatePicker: DatePickerComponent | undefined;
+    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | undefined;
+    @ViewChild(MaskedTextBoxComponent) kendoMaskedTextBox: MaskedTextBoxComponent | undefined;
+    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | undefined;
+    @ViewChild(NumericTextBoxComponent) kendoNumericTextBox: NumericTextBoxComponent | undefined;
+    @ViewChild(SliderComponent) kendoSlider: SliderComponent | undefined;
+    @ViewChild(SwitchComponent) kendoSwitch: SwitchComponent | undefined;
+    @ViewChild(UploadComponent) kendoUpload: UploadComponent | undefined;
 
     type: KendoFormControlType | null;
 
@@ -86,10 +85,10 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormKendoComponent.getFormControlType(this.model);
+        this.type = DynamicFormKendoComponent.mapFormControlType(this.model);
     }
 
-    protected setKendoTemplateDirective(directive: DynamicTemplateDirective): void {
+    protected setTemplateDirective(directive: DynamicTemplateDirective): void {
 
         let templateDirectives: any,
             viewChild: any;
@@ -139,7 +138,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
 
         this.templateDirectives
             .filter(directive => directive.type.startsWith("kendo"))
-            .forEach(directive => this.setKendoTemplateDirective(directive));
+            .forEach(directive => this.setTemplateDirective(directive));
     }
 
     onFocus($event: null): void {
@@ -168,7 +167,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
         );
     }
 
-    static getFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {
 
         switch (model.type) {
 
@@ -189,7 +188,6 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
             case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
                 return KendoFormControlType.Upload;
 
-            //case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return KendoFormControlType.Group;
 

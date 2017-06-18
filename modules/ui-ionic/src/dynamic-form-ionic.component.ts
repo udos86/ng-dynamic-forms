@@ -1,5 +1,6 @@
 import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { Checkbox, DateTime, TextInput, RadioGroup, Range, Select, Toggle } from "ionic-angular";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -19,15 +20,6 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng2-dynamic-forms/core";
-import {
-    Checkbox,
-    DateTime,
-    TextInput,
-    RadioGroup,
-    Range,
-    Select,
-    Toggle
-} from "ionic-angular";
 
 export const enum IonicFormControlType {
 
@@ -49,7 +41,6 @@ export const enum IonicFormControlType {
     selector: "dynamic-form-ionic-control",
     templateUrl: "./dynamic-form-ionic.component.html"
 })
-
 export class DynamicFormIonicComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
@@ -65,15 +56,15 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent imple
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(Checkbox) ionCheckbox: Checkbox | null;
-    @ViewChild(DateTime) ionDateTime: DateTime | null;
-    @ViewChild(TextInput) ionInput: TextInput | null;
-    @ViewChild(RadioGroup) ionRadioGroup: RadioGroup | null;
-    @ViewChild(Range) ionRange: Range | null;
-    @ViewChild(Select) ionSelect: Select | null;
-    @ViewChild(Toggle) ionToggle: Toggle | null;
+    @ViewChild(Checkbox) ionCheckbox: Checkbox | undefined;
+    @ViewChild(DateTime) ionDateTime: DateTime | undefined;
+    @ViewChild(TextInput) ionInput: TextInput | undefined;
+    @ViewChild(RadioGroup) ionRadioGroup: RadioGroup | undefined;
+    @ViewChild(Range) ionRange: Range | undefined;
+    @ViewChild(Select) ionSelect: Select | undefined;
+    @ViewChild(Toggle) ionToggle: Toggle | undefined;
 
-    type: IonicFormControlType | null;
+    type: IonicFormControlType | undefined;
 
     constructor() {
         super();
@@ -82,10 +73,10 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent imple
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormIonicComponent.getFormControlType(this.model);
+        this.type = DynamicFormIonicComponent.mapFormControlType(this.model);
     }
 
-    static getFormControlType(model: DynamicFormControlModel): IonicFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): IonicFormControlType | null {
 
         switch (model.type) {
 

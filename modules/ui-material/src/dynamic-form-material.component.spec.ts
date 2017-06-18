@@ -188,7 +188,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormMaterialComponent.getFormControlType;
+        let testFn = DynamicFormMaterialComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(MdFormControlType.Checkbox);
 

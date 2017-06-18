@@ -1,6 +1,17 @@
 import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    AutoComplete,
+    Calendar,
+    Checkbox,
+    Chips,
+    Dropdown,
+    Editor,
+    InputSwitch,
+    MultiSelect,
+    Slider
+} from "primeng/primeng";
+import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
@@ -23,17 +34,6 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng2-dynamic-forms/core";
 import {
-    AutoComplete,
-    Calendar,
-    Checkbox,
-    Chips,
-    Dropdown,
-    Editor,
-    InputSwitch,
-    MultiSelect,
-    Slider
-} from "primeng/primeng";
-import {
     PFormControlType,
     PRIMENG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
     PRIMENG_CHIPS_TEMPLATE_DIRECTIVES,
@@ -46,7 +46,6 @@ import {
     selector: "dynamic-form-primeng-control",
     templateUrl: "./dynamic-form-primeng.component.html"
 })
-
 export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
@@ -62,15 +61,15 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(AutoComplete) pAutoComplete: AutoComplete | null;
-    @ViewChild(Calendar) pCalendar: Calendar | null;
-    @ViewChild(Checkbox) pCheckbox: Checkbox | null;
-    @ViewChild(Chips) pChips: Chips | null;
-    @ViewChild(Dropdown) pDropDown: Dropdown | null;
-    @ViewChild(Editor) pEditor: Editor | null;
-    @ViewChild(InputSwitch) pInputSwitch: InputSwitch | null;
-    @ViewChild(MultiSelect) pMultiSelect: MultiSelect | null;
-    @ViewChild(Slider) pSlider: Slider | null;
+    @ViewChild(AutoComplete) pAutoComplete: AutoComplete | undefined;
+    @ViewChild(Calendar) pCalendar: Calendar | undefined;
+    @ViewChild(Checkbox) pCheckbox: Checkbox | undefined;
+    @ViewChild(Chips) pChips: Chips | undefined;
+    @ViewChild(Dropdown) pDropDown: Dropdown | undefined;
+    @ViewChild(Editor) pEditor: Editor | undefined;
+    @ViewChild(InputSwitch) pInputSwitch: InputSwitch | undefined;
+    @ViewChild(MultiSelect) pMultiSelect: MultiSelect | undefined;
+    @ViewChild(Slider) pSlider: Slider | undefined;
 
     suggestions: string[];
     type: PFormControlType | null;
@@ -82,7 +81,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormPrimeNGComponent.getFormControlType(this.model);
+        this.type = DynamicFormPrimeNGComponent.mapFormControlType(this.model);
     }
 
     protected setPTemplateDirective(directive: DynamicTemplateDirective): void {
@@ -127,7 +126,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
         this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
     }
 
-    static getFormControlType(model: DynamicFormControlModel): PFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): PFormControlType | null {
 
         switch (model.type) {
 

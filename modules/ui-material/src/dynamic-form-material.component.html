@@ -1,6 +1,6 @@
 <div [formGroup]="group" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="type !== 'CHECKBOX' && model.label !== null"
+    <label *ngIf="model.label && type !== 'CHECKBOX'"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
@@ -38,9 +38,8 @@
         </div>
 
 
-        <md-checkbox *ngSwitchCase="'CHECKBOX'"
+        <md-checkbox *ngSwitchCase="'CHECKBOX'" #mdCheckbox
                      [checked]="model.checked"
-                     [disabled]="model.disabled"
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [indeterminate]="model.indeterminate"
@@ -97,7 +96,7 @@
 
         <ng-container *ngSwitchCase="'INPUT'">
 
-            <md-input-container>
+            <md-input-container #mdInput>
 
                 <input mdInput
                        [attr.accept]="model.accept"
@@ -112,7 +111,7 @@
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [maxlength]="model.maxLength"
-                       [mdAutocomplete]="autocomplete"
+                       [mdAutocomplete]="mdAutocomplete"
                        [minlength]="model.minLength"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
@@ -138,7 +137,7 @@
 
             </md-input-container>
 
-            <md-autocomplete #autocomplete="mdAutocomplete">
+            <md-autocomplete #mdAutocomplete="mdAutocomplete">
 
                 <md-option *ngFor="let option of model.list" [value]="option">{{ option }}</md-option>
 
@@ -147,8 +146,7 @@
         </ng-container>
 
 
-        <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
-                        [disabled]="model.disabled"
+        <md-radio-group *ngSwitchCase="'RADIO_GROUP'" #mdRadioGroup
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [name]="model.name"
@@ -165,8 +163,7 @@
         </md-radio-group>
 
 
-        <md-select *ngSwitchCase="'SELECT'"
-                   [disabled]="model.disabled"
+        <md-select *ngSwitchCase="'SELECT'" #mdSelect
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [multiple]="model.multiple"
@@ -180,8 +177,7 @@
         </md-select>
 
 
-        <md-slider *ngSwitchCase="'SLIDER'"
-                   [disabled]="model.disabled"
+        <md-slider *ngSwitchCase="'SLIDER'" #mdSlider
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [min]="model.min"
@@ -194,9 +190,8 @@
                    (change)="onValueChange($event)"></md-slider>
 
 
-        <md-slide-toggle *ngSwitchCase="'SLIDE_TOGGLE'"
+        <md-slide-toggle *ngSwitchCase="'SLIDE_TOGGLE'" #mdSlideToggle
                          [checked]="model.checked"
-                         [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [labelPosition]="model.labelPosition"
@@ -210,7 +205,7 @@
         </md-slide-toggle>
 
 
-        <md-input-container *ngSwitchCase="'TEXTAREA'">
+        <md-input-container *ngSwitchCase="'TEXTAREA'" #mdTextarea>
 
         <textarea mdInput
                   [attr.tabindex]="model.tabIndex"

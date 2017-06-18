@@ -180,7 +180,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormKendoComponent.getFormControlType;
+        let testFn = DynamicFormKendoComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(KendoFormControlType.Checkbox);
 

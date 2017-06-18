@@ -192,7 +192,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
     it("should set correct form control type", () => {
 
-        let testFn = DynamicFormPrimeNGComponent.getFormControlType;
+        let testFn = DynamicFormPrimeNGComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(PFormControlType.Checkbox);
 

@@ -33,7 +33,6 @@ export const enum BasicFormControlType {
     selector: "dynamic-form-basic-control",
     templateUrl: "./dynamic-form-basic.component.html"
 })
-
 export class DynamicFormBasicComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;
@@ -58,10 +57,10 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent imple
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormBasicComponent.getFormControlType(this.model);
+        this.type = DynamicFormBasicComponent.mapFormControlType(this.model);
     }
 
-    static getFormControlType(model: DynamicFormControlModel): BasicFormControlType | null {
+    static mapFormControlType(model: DynamicFormControlModel): BasicFormControlType | null {
 
         switch (model.type) {
 

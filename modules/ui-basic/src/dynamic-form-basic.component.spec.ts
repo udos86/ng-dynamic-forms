@@ -162,7 +162,7 @@ describe("DynamicFormBasicComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormBasicComponent.getFormControlType;
+        let testFn = DynamicFormBasicComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(BasicFormControlType.Checkbox);
 

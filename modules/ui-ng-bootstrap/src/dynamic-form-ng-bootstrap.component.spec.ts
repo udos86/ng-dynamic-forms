@@ -171,7 +171,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormNGBootstrapComponent.getFormControlType;
+        let testFn = DynamicFormNGBootstrapComponent.mapFormControlType;
 
         expect(testFn(formModel[0])).toEqual(NGBootstrapFormControlType.Checkbox);
 

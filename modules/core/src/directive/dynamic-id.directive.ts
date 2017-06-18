@@ -3,7 +3,6 @@ import { Directive, ElementRef, Input, Renderer2, AfterViewInit } from "@angular
 @Directive({
     selector: "[dynamicId]"
 })
-
 export class DynamicIdDirective implements AfterViewInit {
 
     @Input() dynamicId: string | boolean;
