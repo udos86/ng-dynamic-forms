@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
@@ -81,7 +81,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormMaterialComponent as Type<DynamicFormMaterialComponent>);
+            fixture = TestBed.createComponent(DynamicFormMaterialComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -189,7 +189,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormMaterialComponent.mapFormControlType;
+        let testFn = DynamicFormMaterialComponent.getFormControlType;
 
         expect(testFn(formModel[0])).toEqual(MdFormControlType.Checkbox);
 

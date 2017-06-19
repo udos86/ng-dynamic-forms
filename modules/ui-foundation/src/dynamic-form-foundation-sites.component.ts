@@ -59,10 +59,10 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormFoundationSitesComponent.mapFormControlType(this.model);
+        this.type = DynamicFormFoundationSitesComponent.getFormControlType(this.model);
     }
 
-    static mapFormControlType(model: DynamicFormControlModel): FoundationSitesFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): FoundationSitesFormControlType | null {
 
         switch (model.type) {
 

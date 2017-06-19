@@ -85,7 +85,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormKendoComponent.mapFormControlType(this.model);
+        this.type = DynamicFormKendoComponent.getFormControlType(this.model);
     }
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
@@ -167,7 +167,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
         );
     }
 
-    static mapFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {
 
         switch (model.type) {
 

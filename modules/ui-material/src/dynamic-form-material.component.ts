@@ -20,7 +20,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-import { MdFormControlType, MdViewChild, MdViewChildSelector } from "./dynamic-form-material.const";
+import { MdFormControlType, MdFormControlComponent, MD_VIEW_CHILD_SELECTOR } from "./dynamic-form-material.const";
 
 @Component({
 
@@ -54,7 +54,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(MdViewChildSelector) mdViewChild: MdViewChild | undefined;
+    @ViewChild(MD_VIEW_CHILD_SELECTOR) mdViewChild: MdFormControlComponent | undefined;
 
     type: MdFormControlType | null;
 
@@ -65,7 +65,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormMaterialComponent.mapFormControlType(this.model);
+        this.type = DynamicFormMaterialComponent.getFormControlType(this.model);
     }
 
     get characterCount(): number | null {
@@ -78,7 +78,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
         }
     }
 
-    static mapFormControlType(model: DynamicFormControlModel): MdFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): MdFormControlType | null {
 
         switch (model.type) {
 

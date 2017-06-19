@@ -71,7 +71,7 @@
             </div>
 
 
-            <p-autoComplete *ngSwitchCase="2"
+            <p-autoComplete *ngSwitchCase="2" #pAutoComplete
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
                             [multiple]="model.multiple"
@@ -82,7 +82,7 @@
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
 
-            <p-calendar *ngSwitchCase="3"
+            <p-calendar *ngSwitchCase="3" #pCalendar
                         [dateFormat]="model.format"
                         [defaultDate]="model.focusedDate"
                         [dynamicId]="bindId && model.id"
@@ -100,7 +100,7 @@
                         [yearNavigator]="false"></p-calendar>
 
 
-            <p-checkbox *ngSwitchCase="4"
+            <p-checkbox *ngSwitchCase="4" #pCheckbox
                         binary="true"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -111,7 +111,7 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-chips *ngSwitchCase="5"
+            <p-chips *ngSwitchCase="5" #pChips
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [ngClass]="model.cls.element.control"
@@ -119,7 +119,7 @@
                      (change)="onValueChange($event)"></p-chips>
 
 
-            <p-dropdown *ngSwitchCase="6"
+            <p-dropdown *ngSwitchCase="6" #pDropdown
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
@@ -127,7 +127,7 @@
                         (onChange)="onValueChange($event)"></p-dropdown>
 
 
-            <p-editor *ngSwitchCase="7"
+            <p-editor *ngSwitchCase="7" #pEditor
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       (onTextChange)="onValueChange($event)"></p-editor>
@@ -154,7 +154,7 @@
 
             <ng-container *ngSwitchCase="9">
 
-                <input pInputText
+                <input pInputText #pInputText
                        [attr.accept]="model.accept"
                        [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
@@ -189,7 +189,7 @@
             </ng-container>
 
 
-            <p-inputSwitch *ngSwitchCase="10"
+            <p-inputSwitch *ngSwitchCase="10" #pInputSwitch
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
@@ -198,7 +198,7 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
-            <p-multiSelect *ngSwitchCase="11"
+            <p-multiSelect *ngSwitchCase="11" #pMultiSelect
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [options]="model.options"
@@ -206,7 +206,7 @@
                            (onChange)="onValueChange($event)"></p-multiSelect>
 
 
-            <p-slider *ngSwitchCase="13"
+            <p-slider *ngSwitchCase="13" #pSlider
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -214,7 +214,7 @@
                       [step]="model.step"></p-slider>
 
 
-            <textarea *ngSwitchCase="14" pInputTextarea
+            <textarea *ngSwitchCase="14" pInputTextarea #pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"

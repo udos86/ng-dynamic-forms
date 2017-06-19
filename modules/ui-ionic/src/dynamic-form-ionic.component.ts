@@ -73,10 +73,10 @@ export class DynamicFormIonicComponent extends DynamicFormControlComponent imple
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormIonicComponent.mapFormControlType(this.model);
+        this.type = DynamicFormIonicComponent.getFormControlType(this.model);
     }
 
-    static mapFormControlType(model: DynamicFormControlModel): IonicFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): IonicFormControlType | null {
 
         switch (model.type) {
 

@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
@@ -58,7 +58,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormBootstrapComponent as Type<DynamicFormBootstrapComponent>);
+            fixture = TestBed.createComponent(DynamicFormBootstrapComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -163,7 +163,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormBootstrapComponent.mapFormControlType;
+        let testFn = DynamicFormBootstrapComponent.getFormControlType;
 
         expect(testFn(formModel[0])).toEqual(BootstrapFormControlType.Checkbox);
 

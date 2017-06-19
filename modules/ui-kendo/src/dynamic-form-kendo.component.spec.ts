@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
@@ -69,7 +69,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormKendoComponent as Type<DynamicFormKendoComponent>);
+            fixture = TestBed.createComponent(DynamicFormKendoComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -180,7 +180,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormKendoComponent.mapFormControlType;
+        let testFn = DynamicFormKendoComponent.getFormControlType;
 
         expect(testFn(formModel[0])).toEqual(KendoFormControlType.Checkbox);
 

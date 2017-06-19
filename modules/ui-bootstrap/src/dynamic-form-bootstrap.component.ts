@@ -58,10 +58,10 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent i
     ngOnInit() {
         super.ngOnInit();
 
-        this.type = DynamicFormBootstrapComponent.mapFormControlType(this.model);
+        this.type = DynamicFormBootstrapComponent.getFormControlType(this.model);
     }
 
-    static mapFormControlType(model: DynamicFormControlModel): BootstrapFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): BootstrapFormControlType | null {
 
         switch (model.type) {
 

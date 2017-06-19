@@ -58,7 +58,7 @@ describe("DynamicFormBasicComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormBasicComponent as Type<DynamicFormBasicComponent>);
+            fixture = TestBed.createComponent(DynamicFormBasicComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -162,7 +162,7 @@ describe("DynamicFormBasicComponent test suite", () => {
 
     it("should determine correct form control type", () => {
 
-        let testFn = DynamicFormBasicComponent.mapFormControlType;
+        let testFn = DynamicFormBasicComponent.getFormControlType;
 
         expect(testFn(formModel[0])).toEqual(BasicFormControlType.Checkbox);
 

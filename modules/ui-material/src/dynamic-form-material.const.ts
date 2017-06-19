@@ -23,8 +23,8 @@ export const enum MdFormControlType {
     TextArea = 10, //"TEXTAREA"
 }
 
-export type MdViewChild = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdInputContainer | MdRadioGroup |
-    MdSelect | MdSlider | MdSlideToggle;
+export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdInputContainer |
+    MdRadioGroup | MdSelect | MdSlider | MdSlideToggle;
 
-export const MdViewChildSelector = `mdAutocomplete,mdCheckbox,mdDatepicker,mdInput,mdRadioGroup,mdSelect,
+export const MD_VIEW_CHILD_SELECTOR = `mdAutocomplete,mdCheckbox,mdDatepicker,mdInput,mdRadioGroup,mdSelect,
     mdSlider,mdSlideToggle,mdTextarea`;
