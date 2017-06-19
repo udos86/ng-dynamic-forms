@@ -55,7 +55,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     private subscriptions: Subscription[] = [];
 
-    abstract type: string | null;
+    abstract type: number | string | null;
 
     constructor() { }
 

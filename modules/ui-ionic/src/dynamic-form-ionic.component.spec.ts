@@ -108,7 +108,7 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(IonicFormControlType.Input as string);
+        expect(component.type).toEqual(IonicFormControlType.Input);
     });
 
     xit("should have an input element", () => {

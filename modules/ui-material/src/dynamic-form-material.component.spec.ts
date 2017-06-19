@@ -32,7 +32,8 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormMaterialComponent, MdFormControlType } from "./dynamic-form-material.component";
+import { DynamicFormMaterialComponent } from "./dynamic-form-material.component";
+import { MdFormControlType } from "./dynamic-form-material.const";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
@@ -126,7 +127,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(MdFormControlType.Input as string);
+        expect(component.type).toEqual(MdFormControlType.Input);
     });
 
     it("should have an input element", () => {

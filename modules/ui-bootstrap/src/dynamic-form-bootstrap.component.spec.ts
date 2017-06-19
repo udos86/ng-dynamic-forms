@@ -101,7 +101,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(BootstrapFormControlType.Input as string);
+        expect(component.type).toEqual(BootstrapFormControlType.Input);
     });
 
     it("should have an input element", () => {

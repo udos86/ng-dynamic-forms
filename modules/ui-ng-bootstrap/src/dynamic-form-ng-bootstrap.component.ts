@@ -21,16 +21,16 @@ import {
 
 export const enum NGBootstrapFormControlType {
 
-    Array = "ARRAY",
-    Calendar = "CALENDAR",
-    Checkbox = "CHECKBOX",
-    DatePicker = "DATEPICKER",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    TextArea = "TEXTAREA",
-    TimePicker = "TIMEPICKER"
+    Array = 1, //"ARRAY",
+    Calendar = 2, //"CALENDAR",
+    Checkbox = 3, //"CHECKBOX",
+    DatePicker = 4, //"DATEPICKER",
+    Group = 5, //"GROUP",
+    Input = 6, //"INPUT",
+    RadioGroup = 7, //"RADIO_GROUP",
+    Select = 8, //"SELECT",
+    TextArea = 9, //"TEXTAREA",
+    TimePicker = 10, //"TIMEPICKER"
 }
 
 @Component({

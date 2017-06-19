@@ -18,13 +18,13 @@ import {
 
 export const enum BootstrapFormControlType {
 
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    TextArea = "TEXTAREA"
+    Array = 1, //"ARRAY",
+    Checkbox = 2, //"CHECKBOX",
+    Group = 3, //"GROUP",
+    Input = 4, //"INPUT",
+    RadioGroup = 5, //"RADIO_GROUP",
+    Select = 6, //"SELECT",
+    TextArea = 7, //"TEXTAREA"
 }
 
 @Component({

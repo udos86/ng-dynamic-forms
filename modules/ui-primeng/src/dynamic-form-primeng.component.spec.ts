@@ -130,7 +130,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
 
-        expect(component.type).toEqual(PFormControlType.Input as string);
+        expect(component.type).toEqual(PFormControlType.Input);
     });
 
     it("should have an input element", () => {

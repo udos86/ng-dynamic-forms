@@ -103,7 +103,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(FoundationSitesFormControlType.Input as string);
+        expect(component.type).toEqual(FoundationSitesFormControlType.Input);
     });
 
     it("should have an input element", () => {

@@ -1,15 +1,6 @@
 import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    MdAutocomplete,
-    MdCheckbox,
-    MdDatepicker,
-    MdInputContainer,
-    MdRadioGroup,
-    MdSelect,
-    MdSlider,
-    MdSlideToggle
-} from "@angular/material";
+import { MdInputContainer } from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -29,26 +20,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-
-export const enum MdFormControlType {
-
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    DatePicker = "DATEPICKER",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    Slider = "SLIDER",
-    SlideToggle = "SLIDE_TOGGLE",
-    TextArea = "TEXTAREA"
-}
-
-export type MdViewChild = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdInputContainer | MdRadioGroup |
-    MdSelect | MdSlider | MdSlideToggle;
-
-export const MdViewChildSelector = `mdAutocomplete,mdCheckbox,mdDatepicker,mdInput,mdRadioGroup,mdSelect,
-    mdSlider,mdSlideToggle,mdTextarea`;
+import { MdFormControlType, MdViewChild, MdViewChildSelector } from "./dynamic-form-material.const";
 
 @Component({
 

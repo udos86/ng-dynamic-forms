@@ -23,16 +23,16 @@ import {
 
 export const enum IonicFormControlType {
 
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    DateTime = "DATETIME",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Range = "RANGE",
-    Select = "SELECT",
-    TextArea = "TEXTAREA",
-    Toggle = "TOGGLE"
+    Array = 1, //"ARRAY",
+    Checkbox = 2, //"CHECKBOX",
+    DateTime = 3, //"DATETIME",
+    Group = 4, //"GROUP",
+    Input = 5, //"INPUT",
+    RadioGroup = 6, //"RADIO_GROUP",
+    Range = 7, //"RANGE",
+    Select = 8, //"SELECT",
+    TextArea = 9, //"TEXTAREA",
+    Toggle = 10, //"TOGGLE"
 }
 
 @Component({

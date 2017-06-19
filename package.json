@@ -119,7 +119,7 @@
     "systemjs-builder": "^0.16.9",
     "tslint": "^5.4.3",
     "typedoc": "^0.7.1",
-    "typescript": "^2.5.0-dev.20170617",
+    "typescript": "^2.3.4",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^2.6.1"
   }
