@@ -37,6 +37,5 @@ import { DynamicFormMaterialComponent } from "./dynamic-form-material.component"
         DynamicFormMaterialComponent
     ]
 })
-
 export class DynamicFormsMaterialUIModule {
 }

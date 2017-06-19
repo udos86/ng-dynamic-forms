@@ -58,7 +58,7 @@ describe("DynamicFormBasicComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormBasicComponent as Type<DynamicFormBasicComponent>);
+            fixture = TestBed.createComponent(DynamicFormBasicComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -100,7 +100,7 @@ describe("DynamicFormBasicComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(BasicFormControlType.Input as string);
+        expect(component.type).toEqual(BasicFormControlType.Input);
     });
 
     it("should have an input element", () => {

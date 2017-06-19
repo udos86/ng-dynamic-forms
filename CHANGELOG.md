@@ -1,3 +1,10 @@
+# 1.4.15
+
+### **Bugfixes**
+
+* Buggy string enums reset (closes [#409](https://github.com/udos86/ng2-dynamic-forms/issues/409))
+
+
 # 1.4.14
 
 ### **Bugfixes**

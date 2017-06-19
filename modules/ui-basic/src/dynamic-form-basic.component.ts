@@ -18,13 +18,13 @@ import {
 
 export const enum BasicFormControlType {
 
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    TextArea = "TEXTAREA"
+    Array = 1, //"ARRAY",
+    Checkbox = 2, //"CHECKBOX",
+    Group = 3, //"GROUP",
+    Input = 4, //"INPUT",
+    RadioGroup = 5, //"RADIO_GROUP",
+    Select = 6, //"SELECT",
+    TextArea = 7, //"TEXTAREA"
 }
 
 @Component({
@@ -33,7 +33,6 @@ export const enum BasicFormControlType {
     selector: "dynamic-form-basic-control",
     templateUrl: "./dynamic-form-basic.component.html"
 })
-
 export class DynamicFormBasicComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;

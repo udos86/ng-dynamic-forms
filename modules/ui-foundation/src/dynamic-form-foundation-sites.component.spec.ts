@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
@@ -61,7 +61,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormFoundationSitesComponent as Type<DynamicFormFoundationSitesComponent>);
+            fixture = TestBed.createComponent(DynamicFormFoundationSitesComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -103,7 +103,7 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(FoundationSitesFormControlType.Input as string);
+        expect(component.type).toEqual(FoundationSitesFormControlType.Input);
     });
 
     it("should have an input element", () => {

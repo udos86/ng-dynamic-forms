@@ -1,19 +1,19 @@
 <div [formGroup]="group" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="type !== 'CHECKBOX' && model.label !== null"
+    <label *ngIf="type !== 2 && model.label !== null"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-container [ngSwitch]="type">
 
-        <div *ngSwitchCase="'ARRAY'"
+        <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
@@ -38,7 +38,7 @@
         </div>
 
 
-        <label *ngSwitchCase="'CHECKBOX'">
+        <label *ngSwitchCase="2">
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -55,7 +55,7 @@
                                                           [innerHTML]="model.label"></span></label>
 
 
-        <fieldset *ngSwitchCase="'GROUP'"
+        <fieldset *ngSwitchCase="3"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -74,7 +74,7 @@
         </fieldset>
 
 
-        <ng-container *ngSwitchCase="'INPUT'">
+        <ng-container *ngSwitchCase="4">
 
             <input [attr.accept]="model.accept"
                    [attr.autoComplete]="model.autoComplete"
@@ -111,7 +111,7 @@
         </ng-container>
 
 
-        <fieldset *ngSwitchCase="'RADIO_GROUP'" role="radiogroup"
+        <fieldset *ngSwitchCase="5" role="radiogroup"
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
@@ -132,7 +132,7 @@
         </fieldset>
 
 
-        <select *ngSwitchCase="'SELECT'"
+        <select *ngSwitchCase="6"
                 [attr.tabindex]="model.tabIndex"
                 [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
@@ -151,7 +151,7 @@
         </select>
 
 
-        <textarea *ngSwitchCase="'TEXTAREA'"
+        <textarea *ngSwitchCase="7"
                   [attr.tabindex]="model.tabIndex"
                   [cols]="model.cols"
                   [dynamicId]="bindId && model.id"
@@ -183,7 +183,7 @@
     </ul>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

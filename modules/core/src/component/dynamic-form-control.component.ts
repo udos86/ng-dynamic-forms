@@ -1,4 +1,11 @@
-import { EventEmitter, OnInit, AfterViewInit, OnDestroy, QueryList, TemplateRef } from "@angular/core";
+import {
+    AfterViewInit,
+    EventEmitter,
+    OnDestroy,
+    OnInit,
+    QueryList,
+    TemplateRef
+} from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -48,9 +55,9 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     private subscriptions: Subscription[] = [];
 
-    abstract type: string | null;
+    abstract type: number | string | null;
 
-    constructor() {}
+    constructor() { }
 
     ngOnInit(): void {
 

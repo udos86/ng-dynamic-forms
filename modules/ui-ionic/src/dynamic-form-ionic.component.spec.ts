@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
@@ -66,7 +66,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormIonicComponent as Type<DynamicFormIonicComponent>);
+            fixture = TestBed.createComponent(DynamicFormIonicComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -108,7 +108,7 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(IonicFormControlType.Input as string);
+        expect(component.type).toEqual(IonicFormControlType.Input);
     });
 
     xit("should have an input element", () => {

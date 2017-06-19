@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
@@ -58,7 +58,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormBootstrapComponent as Type<DynamicFormBootstrapComponent>);
+            fixture = TestBed.createComponent(DynamicFormBootstrapComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -101,7 +101,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(BootstrapFormControlType.Input as string);
+        expect(component.type).toEqual(BootstrapFormControlType.Input);
     });
 
     it("should have an input element", () => {

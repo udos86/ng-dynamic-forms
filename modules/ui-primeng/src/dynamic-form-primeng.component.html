@@ -1,12 +1,12 @@
 <div [formGroup]="group" [ngClass]="model.cls.element.container">
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <fieldset *ngIf="type === 'RADIO_GROUP'" role="radiogroup"
+    <fieldset *ngIf="type === 12" role="radiogroup"
               [attr.tabindex]="model.tabIndex"
               [dynamicId]="bindId && model.id"
               [name]="model.name"
@@ -35,9 +35,9 @@
     </fieldset>
 
 
-    <div *ngIf="type !== 'RADIO_GROUP'" [ngClass]="model.cls.grid.container">
+    <div *ngIf="type !== 12" [ngClass]="model.cls.grid.container">
 
-        <div *ngIf="type !== 4 && model.label !== null" [ngClass]="model.cls.grid.label">
+        <div *ngIf="model.label && type !== 4" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -46,7 +46,7 @@
 
         <div [ngClass]="model.cls.grid.control" [ngSwitch]="type">
 
-            <div *ngSwitchCase="'ARRAY'"
+            <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
@@ -71,7 +71,7 @@
             </div>
 
 
-            <p-autoComplete *ngSwitchCase="'AUTOCOMPLETE'"
+            <p-autoComplete *ngSwitchCase="2" #pAutoComplete
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
                             [multiple]="model.multiple"
@@ -82,7 +82,7 @@
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
 
-            <p-calendar *ngSwitchCase="'CALENDAR'"
+            <p-calendar *ngSwitchCase="3" #pCalendar
                         [dateFormat]="model.format"
                         [defaultDate]="model.focusedDate"
                         [dynamicId]="bindId && model.id"
@@ -100,7 +100,7 @@
                         [yearNavigator]="false"></p-calendar>
 
 
-            <p-checkbox *ngSwitchCase="'CHECKBOX'"
+            <p-checkbox *ngSwitchCase="4" #pCheckbox
                         binary="true"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -111,7 +111,7 @@
                         [value]="model.value"></p-checkbox>
 
 
-            <p-chips *ngSwitchCase="'CHIPS'"
+            <p-chips *ngSwitchCase="5" #pChips
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [ngClass]="model.cls.element.control"
@@ -119,7 +119,7 @@
                      (change)="onValueChange($event)"></p-chips>
 
 
-            <p-dropdown *ngSwitchCase="'DROPDOWN'"
+            <p-dropdown *ngSwitchCase="6" #pDropdown
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [options]="model.options"
@@ -127,13 +127,13 @@
                         (onChange)="onValueChange($event)"></p-dropdown>
 
 
-            <p-editor *ngSwitchCase="'EDITOR'"
+            <p-editor *ngSwitchCase="7" #pEditor
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       (onTextChange)="onValueChange($event)"></p-editor>
 
 
-            <fieldset *ngSwitchCase="'GROUP'"
+            <fieldset *ngSwitchCase="8"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -152,9 +152,9 @@
             </fieldset>
 
 
-            <ng-container *ngSwitchCase="'INPUT'">
+            <ng-container *ngSwitchCase="9">
 
-                <input pInputText
+                <input pInputText #pInputText
                        [attr.accept]="model.accept"
                        [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
@@ -189,7 +189,7 @@
             </ng-container>
 
 
-            <p-inputSwitch *ngSwitchCase="'INPUT_SWITCH'"
+            <p-inputSwitch *ngSwitchCase="10" #pInputSwitch
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [onLabel]="model.onLabel"
@@ -198,7 +198,7 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
-            <p-multiSelect *ngSwitchCase="'MULTI_SELECT'"
+            <p-multiSelect *ngSwitchCase="11" #pMultiSelect
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [options]="model.options"
@@ -206,7 +206,7 @@
                            (onChange)="onValueChange($event)"></p-multiSelect>
 
 
-            <p-slider *ngSwitchCase="'SLIDER'"
+            <p-slider *ngSwitchCase="13" #pSlider
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -214,7 +214,7 @@
                       [step]="model.step"></p-slider>
 
 
-            <textarea *ngSwitchCase="'TEXTAREA'" pInputTextarea
+            <textarea *ngSwitchCase="14" pInputTextarea #pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
@@ -236,7 +236,7 @@
         </div>
 
         <!--
-        <div *ngIf="type === 'CHECKBOX'" [ngClass]="model.cls.grid.label">
+        <div *ngIf="type === 4" [ngClass]="model.cls.grid.label">
 
             <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
 
@@ -258,7 +258,7 @@
     </div>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

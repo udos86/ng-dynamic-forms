@@ -1,7 +1,8 @@
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import {
     AutoCompleteModule,
     CalendarModule,
@@ -37,7 +38,12 @@ import {
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 import { DynamicFormPrimeNGComponent } from "./dynamic-form-primeng.component";
-import { PFormControlType } from "./dynamic-form-primeng.const";
+import {
+    PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
+    PRIME_NG_CHIPS_TEMPLATE_DIRECTIVES,
+    PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
+    PrimeNGFormControlType
+} from "./dynamic-form-primeng.const";
 
 describe("DynamicFormPrimeNGComponent test suite", () => {
 
@@ -70,6 +76,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
             imports: [
                 ReactiveFormsModule,
+                NoopAnimationsModule,
                 DynamicFormsCoreModule.forRoot(),
                 AutoCompleteModule,
                 CalendarModule,
@@ -89,7 +96,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormPrimeNGComponent as Type<DynamicFormPrimeNGComponent>);
+            fixture = TestBed.createComponent(DynamicFormPrimeNGComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -130,7 +137,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
 
-        expect(component.type).toEqual(PFormControlType.Input as string);
+        expect(component.type).toEqual(PrimeNGFormControlType.Input);
     });
 
     it("should have an input element", () => {
@@ -190,45 +197,62 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
-    it("should set correct form control type", () => {
+    it("should determine correct form control type", () => {
 
         let testFn = DynamicFormPrimeNGComponent.getFormControlType;
 
-        expect(testFn(formModel[0])).toEqual(PFormControlType.Checkbox);
+        expect(testFn(formModel[0])).toEqual(PrimeNGFormControlType.Checkbox);
 
-        expect(testFn(formModel[1])).toEqual(PFormControlType.Group);
+        expect(testFn(formModel[1])).toEqual(PrimeNGFormControlType.Group);
 
-        expect(testFn(formModel[2])).toEqual(PFormControlType.Calendar);
+        expect(testFn(formModel[2])).toEqual(PrimeNGFormControlType.Calendar);
 
-        expect(testFn(formModel[3])).toEqual(PFormControlType.Editor);
+        expect(testFn(formModel[3])).toEqual(PrimeNGFormControlType.Editor);
 
         expect(testFn(formModel[4])).toBeNull();
 
-        expect(testFn(formModel[5])).toEqual(PFormControlType.Array);
+        expect(testFn(formModel[5])).toEqual(PrimeNGFormControlType.Array);
 
-        expect(testFn(formModel[6])).toEqual(PFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(PrimeNGFormControlType.Group);
 
-        expect(testFn(formModel[7])).toEqual(PFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Input);
 
         (formModel[7] as DynamicInputModel).multiple = true;
-        expect(testFn(formModel[7])).toEqual(PFormControlType.Chips);
+        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Chips);
 
         (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
-        expect(testFn(formModel[7])).toEqual(PFormControlType.AutoComplete);
+        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.AutoComplete);
 
-        expect(testFn(formModel[8])).toEqual(PFormControlType.RadioGroup);
+        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.RadioGroup);
 
-        expect(testFn(formModel[9])).toEqual(PFormControlType.DropDown);
+        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.Dropdown);
 
         (formModel[9] as DynamicSelectModel<string>).multiple = true;
-        expect(testFn(formModel[9])).toEqual(PFormControlType.MultiSelect);
+        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.MultiSelect);
 
-        expect(testFn(formModel[10])).toEqual(PFormControlType.Slider);
+        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.Slider);
 
-        expect(testFn(formModel[11])).toEqual(PFormControlType.InputSwitch);
+        expect(testFn(formModel[11])).toEqual(PrimeNGFormControlType.InputSwitch);
 
-        expect(testFn(formModel[12])).toEqual(PFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(PrimeNGFormControlType.TextArea);
 
-        expect(testFn(formModel[13])).toEqual(PFormControlType.Calendar);
+        expect(testFn(formModel[13])).toEqual(PrimeNGFormControlType.Calendar);
     });
+
+    xit("should determine correct template directives", async(() => {
+
+        let testFn = DynamicFormPrimeNGComponent.getTemplateDirectives;
+
+        let fixture1 = TestBed.createComponent(DynamicFormPrimeNGComponent),
+            component1 = fixture1.componentInstance;
+
+        (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
+
+        component1.group = formGroup;
+        component1.model = formModel[7];
+
+        fixture1.detectChanges();
+
+        expect(testFn(component1.pViewChild)).toEqual(PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES);
+    }));
 });

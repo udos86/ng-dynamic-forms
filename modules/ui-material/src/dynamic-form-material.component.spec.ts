@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
@@ -32,7 +32,8 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormMaterialComponent, MdFormControlType } from "./dynamic-form-material.component";
+import { DynamicFormMaterialComponent } from "./dynamic-form-material.component";
+import { MdFormControlType } from "./dynamic-form-material.const";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
@@ -80,7 +81,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormMaterialComponent as Type<DynamicFormMaterialComponent>);
+            fixture = TestBed.createComponent(DynamicFormMaterialComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -126,7 +127,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(MdFormControlType.Input as string);
+        expect(component.type).toEqual(MdFormControlType.Input);
     });
 
     it("should have an input element", () => {

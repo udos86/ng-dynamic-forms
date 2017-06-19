@@ -1,19 +1,19 @@
 <div [formGroup]="group" [ngClass]="model.cls.element.container">
 
-    <label *ngIf="type !== 'CHECKBOX' && model.label !== null"
+    <label *ngIf="model.label && type !== 2"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="model.cls.element.label"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 'ARRAY'"
+    <ng-template *ngIf="hasStartTemplate && type !== 1"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
     <ng-container [ngSwitch]="type">
 
-        <div *ngSwitchCase="'ARRAY'"
+        <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
              [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -38,9 +38,8 @@
         </div>
 
 
-        <md-checkbox *ngSwitchCase="'CHECKBOX'"
+        <md-checkbox *ngSwitchCase="2" #mdCheckbox
                      [checked]="model.checked"
-                     [disabled]="model.disabled"
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [indeterminate]="model.indeterminate"
@@ -53,7 +52,7 @@
                                                            [innerHTML]="model.label"></span></md-checkbox>
 
 
-        <ng-container *ngSwitchCase="'DATEPICKER'">
+        <ng-container *ngSwitchCase="3">
 
             <md-input-container>
 
@@ -76,7 +75,7 @@
         </ng-container>
 
 
-        <fieldset *ngSwitchCase="'GROUP'"
+        <fieldset *ngSwitchCase="4"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
@@ -95,9 +94,9 @@
         </fieldset>
 
 
-        <ng-container *ngSwitchCase="'INPUT'">
+        <ng-container *ngSwitchCase="5">
 
-            <md-input-container>
+            <md-input-container #mdInput>
 
                 <input mdInput
                        [attr.accept]="model.accept"
@@ -112,7 +111,7 @@
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [maxlength]="model.maxLength"
-                       [mdAutocomplete]="autocomplete"
+                       [mdAutocomplete]="mdAutocomplete"
                        [minlength]="model.minLength"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
@@ -138,7 +137,7 @@
 
             </md-input-container>
 
-            <md-autocomplete #autocomplete="mdAutocomplete">
+            <md-autocomplete #mdAutocomplete="mdAutocomplete">
 
                 <md-option *ngFor="let option of model.list" [value]="option">{{ option }}</md-option>
 
@@ -147,8 +146,7 @@
         </ng-container>
 
 
-        <md-radio-group *ngSwitchCase="'RADIO_GROUP'"
-                        [disabled]="model.disabled"
+        <md-radio-group *ngSwitchCase="6" #mdRadioGroup
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [name]="model.name"
@@ -165,8 +163,7 @@
         </md-radio-group>
 
 
-        <md-select *ngSwitchCase="'SELECT'"
-                   [disabled]="model.disabled"
+        <md-select *ngSwitchCase="7" #mdSelect
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [multiple]="model.multiple"
@@ -180,8 +177,7 @@
         </md-select>
 
 
-        <md-slider *ngSwitchCase="'SLIDER'"
-                   [disabled]="model.disabled"
+        <md-slider *ngSwitchCase="8" #mdSlider
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [min]="model.min"
@@ -194,9 +190,8 @@
                    (change)="onValueChange($event)"></md-slider>
 
 
-        <md-slide-toggle *ngSwitchCase="'SLIDE_TOGGLE'"
+        <md-slide-toggle *ngSwitchCase="9" #mdSlideToggle
                          [checked]="model.checked"
-                         [disabled]="model.disabled"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [labelPosition]="model.labelPosition"
@@ -210,7 +205,7 @@
         </md-slide-toggle>
 
 
-        <md-input-container *ngSwitchCase="'TEXTAREA'">
+        <md-input-container *ngSwitchCase="10" #mdTextarea>
 
         <textarea mdInput
                   [attr.tabindex]="model.tabIndex"
@@ -242,7 +237,7 @@
     </ng-container>
 
 
-    <md-list *ngIf="hasErrorMessaging && type !== 'INPUT' && type !== 'TEXTAREA'"
+    <md-list *ngIf="hasErrorMessaging && type !== 5 && type !== 10"
              [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
         <md-list-item *ngFor="let message of errorMessages"
@@ -252,7 +247,7 @@
     </md-list>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 'ARRAY'"
+    <ng-template *ngIf="hasEndTemplate && type !== 1"
                  [ngTemplateOutlet]="template"
                  [ngTemplateOutletContext]="model"></ng-template>
 

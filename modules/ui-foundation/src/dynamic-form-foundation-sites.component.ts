@@ -19,14 +19,14 @@ import {
 
 export const enum FoundationSitesFormControlType {
 
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    Switch = "SWITCH",
-    TextArea = "TEXTAREA"
+    Array = 1, //"ARRAY",
+    Checkbox = 2, //"CHECKBOX",
+    Group = 3, //"GROUP",
+    Input = 4, //"INPUT",
+    RadioGroup = 5, //"RADIO_GROUP",
+    Select = 6, //"SELECT",
+    Switch = 7, //"SWITCH",
+    TextArea = 8, //"TEXTAREA"
 }
 
 @Component({
@@ -35,7 +35,6 @@ export const enum FoundationSitesFormControlType {
     selector: "dynamic-form-foundation-sites-control",
     templateUrl: "./dynamic-form-foundation-sites.component.html"
 })
-
 export class DynamicFormFoundationSitesComponent extends DynamicFormControlComponent implements OnInit {
 
     @Input() bindId: boolean = true;

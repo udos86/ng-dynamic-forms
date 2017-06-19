@@ -6,7 +6,6 @@ export const DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END = "END";
 @Directive({
     selector: "ng-template[modelId],ng-template[modelType]"
 })
-
 export class DynamicTemplateDirective {
 
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;

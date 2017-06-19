@@ -1,15 +1,6 @@
 import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    MdAutocomplete,
-    MdCheckbox,
-    MdDatepicker,
-    MdInputContainer,
-    MdRadioGroup,
-    MdSelect,
-    MdSlider,
-    MdSlideToggle
-} from "@angular/material";
+import { MdInputContainer } from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -29,20 +20,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-
-export const enum MdFormControlType {
-
-    Array = "ARRAY",
-    Checkbox = "CHECKBOX",
-    DatePicker = "DATEPICKER",
-    Group = "GROUP",
-    Input = "INPUT",
-    RadioGroup = "RADIO_GROUP",
-    Select = "SELECT",
-    Slider = "SLIDER",
-    SlideToggle = "SLIDE_TOGGLE",
-    TextArea = "TEXTAREA"
-}
+import { MdFormControlType, MdFormControlComponent, MD_VIEW_CHILD_SELECTOR } from "./dynamic-form-material.const";
 
 @Component({
 
@@ -50,7 +28,6 @@ export const enum MdFormControlType {
     selector: "dynamic-form-material-control",
     templateUrl: "./dynamic-form-material.component.html"
 })
-
 export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements OnInit {
 
     private _showCharacterCount: boolean = false;
@@ -77,14 +54,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(MdAutocomplete) mdAutocomplete: MdAutocomplete | null;
-    @ViewChild(MdCheckbox) mdCheckbox: MdCheckbox | null;
-    @ViewChild(MdDatepicker) mdDatepicker: MdDatepicker<Date> | null;
-    @ViewChild(MdInputContainer) mdInputContainer: MdInputContainer | null;
-    @ViewChild(MdRadioGroup) mdRadioGroup: MdRadioGroup | null;
-    @ViewChild(MdSelect) mdSelect: MdSelect | null;
-    @ViewChild(MdSlider) mdSlider: MdSlider | null;
-    @ViewChild(MdSlideToggle) mdSlideToggle: MdSlideToggle | null;
+    @ViewChild(MD_VIEW_CHILD_SELECTOR) mdViewChild: MdFormControlComponent | undefined;
 
     type: MdFormControlType | null;
 
@@ -99,7 +69,13 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
     }
 
     get characterCount(): number | null {
-        return this.mdInputContainer ? this.mdInputContainer._mdInputChild.value.length : null;
+
+        if (this.mdViewChild instanceof MdInputContainer) {
+            return (this.mdViewChild as MdInputContainer)._mdInputChild.value.length;
+
+        } else {
+            return null;
+        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): MdFormControlType | null {

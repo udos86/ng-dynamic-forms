@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { Type, DebugElement } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
@@ -66,7 +66,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormNGBootstrapComponent as Type<DynamicFormNGBootstrapComponent>);
+            fixture = TestBed.createComponent(DynamicFormNGBootstrapComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -109,7 +109,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toBe(NGBootstrapFormControlType.Input as string);
+        expect(component.type).toBe(NGBootstrapFormControlType.Input);
     });
 
     it("should have an input element", () => {
