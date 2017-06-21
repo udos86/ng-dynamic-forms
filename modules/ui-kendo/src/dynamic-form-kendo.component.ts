@@ -1,4 +1,14 @@
-import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
+import {
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    QueryList,
+    SimpleChanges,
+    ViewChild
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { CalendarComponent, DateInputComponent, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
@@ -32,7 +42,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
+    isString
 } from "@ng2-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -40,8 +51,13 @@ import {
     KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
     KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
     KENDO_UPLOAD_TEMPLATE_DIRECTIVES,
+    KENDO_VIEW_CHILD_SELECTOR,
     KendoFormControlType
 } from "./dynamic-form-kendo.const";
+
+export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponent | DateInputComponent |
+    DatePickerComponent | DropDownListComponent | MaskedTextBoxComponent | MultiSelectComponent |
+    NumericTextBoxComponent | SliderComponent | SwitchComponent | UploadComponent;
 
 @Component({
 
@@ -49,7 +65,7 @@ import {
     selector: "dynamic-form-kendo-control",
     templateUrl: "./dynamic-form-kendo.component.html"
 })
-export class DynamicFormKendoComponent extends DynamicFormControlComponent implements OnInit {
+export class DynamicFormKendoComponent extends DynamicFormControlComponent implements OnChanges {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
@@ -62,19 +78,9 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChild(AutoCompleteComponent) kendoAutoComplete: AutoCompleteComponent | undefined;
-    @ViewChild(CalendarComponent) kendoCalendar: CalendarComponent | undefined;
-    @ViewChild(DateInputComponent) kendoDateInput: DateInputComponent | undefined;
-    @ViewChild(DatePickerComponent) kendoDatePicker: DatePickerComponent | undefined;
-    @ViewChild(DropDownListComponent) kendoDropDownList: DropDownListComponent | undefined;
-    @ViewChild(MaskedTextBoxComponent) kendoMaskedTextBox: MaskedTextBoxComponent | undefined;
-    @ViewChild(MultiSelectComponent) kendoMultiSelect: MultiSelectComponent | undefined;
-    @ViewChild(NumericTextBoxComponent) kendoNumericTextBox: NumericTextBoxComponent | undefined;
-    @ViewChild(SliderComponent) kendoSlider: SliderComponent | undefined;
-    @ViewChild(SwitchComponent) kendoSwitch: SwitchComponent | undefined;
-    @ViewChild(UploadComponent) kendoUpload: UploadComponent | undefined;
+    @ViewChild(KENDO_VIEW_CHILD_SELECTOR) kendoViewChild: KendoFormControlComponent | undefined;
 
     type: KendoFormControlType | null;
 
@@ -82,62 +88,35 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
         super();
     }
 
-    ngOnInit() {
-        super.ngOnInit();
+    ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
 
-        this.type = DynamicFormKendoComponent.getFormControlType(this.model);
+        if (changes["model"]) {
+            this.type = DynamicFormKendoComponent.getFormControlType(this.model);
+        }
     }
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        let templateDirectives: any,
-            viewChild: any;
+        if (this.kendoViewChild) {
 
-        if (this.kendoAutoComplete) {
+            let templateDirectives: any = DynamicFormKendoComponent.getTemplateDirectives(this.kendoViewChild);
 
-            templateDirectives = KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
-            viewChild = this.kendoAutoComplete;
+            Object.keys(templateDirectives || ({} as any)).forEach((key: string) => {
 
-        } else if (this.kendoCalendar) {
-
-            templateDirectives = KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
-            viewChild = this.kendoCalendar;
-
-        } else if (this.kendoDatePicker) {
-
-            templateDirectives = KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
-            viewChild = this.kendoDatePicker;
-
-        } else if (this.kendoDropDownList) {
-
-            templateDirectives = KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
-            viewChild = this.kendoDropDownList;
-
-        } else if (this.kendoMultiSelect) {
-
-            templateDirectives = KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES;
-            viewChild = this.kendoMultiSelect;
-
-        } else if (this.kendoUpload) {
-
-            templateDirectives = KENDO_UPLOAD_TEMPLATE_DIRECTIVES;
-            viewChild = this.kendoUpload;
+                if (templateDirectives[key] === directive.as) {
+                    (this.kendoViewChild as any)[key] = directive;
+                }
+            });
         }
-
-        Object.keys(templateDirectives || ({} as any)).forEach((key: string) => {
-
-            if (templateDirectives[key] === directive.type) {
-                viewChild[key] = directive;
-            }
-        });
     }
 
     protected setTemplates(): void {
 
         super.setTemplates();
 
-        this.templateDirectives
-            .filter(directive => directive.type.startsWith("kendo"))
+        this.templates
+            .filter(directive => isString(directive.as) && directive.as.startsWith("kendo"))
             .forEach(directive => this.setTemplateDirective(directive));
     }
 
@@ -229,6 +208,31 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
 
             case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
                 return KendoFormControlType.TimePicker;
+
+            default:
+                return null;
+        }
+    }
+
+    static getTemplateDirectives(component: KendoFormControlComponent): any | null {
+
+        switch (component.constructor) {
+
+            case AutoCompleteComponent:
+                return KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
+
+            case CalendarComponent:
+            case DatePickerComponent:
+                return KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
+
+            case DropDownListComponent:
+                return KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
+
+            case MultiSelectComponent:
+                return KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES;
+
+            case UploadComponent:
+                return KENDO_UPLOAD_TEMPLATE_DIRECTIVES;
 
             default:
                 return null;

@@ -1,4 +1,14 @@
-import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
+import {
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    QueryList,
+    SimpleChanges,
+    ViewChild
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MdInputContainer } from "@angular/material";
 import {
@@ -28,7 +38,7 @@ import { MdFormControlType, MdFormControlComponent, MD_VIEW_CHILD_SELECTOR } fro
     selector: "dynamic-form-material-control",
     templateUrl: "./dynamic-form-material.component.html"
 })
-export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements OnInit {
+export class DynamicFormMaterialComponent extends DynamicFormControlComponent implements OnChanges {
 
     private _showCharacterCount: boolean = false;
 
@@ -52,7 +62,7 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     @ViewChild(MD_VIEW_CHILD_SELECTOR) mdViewChild: MdFormControlComponent | undefined;
 
@@ -62,10 +72,12 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
         super();
     }
 
-    ngOnInit() {
-        super.ngOnInit();
+    ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
 
-        this.type = DynamicFormMaterialComponent.getFormControlType(this.model);
+        if (changes["model"]) {
+            this.type = DynamicFormMaterialComponent.getFormControlType(this.model);
+        }
     }
 
     get characterCount(): number | null {

@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { DebugElement } from "@angular/core";
+import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
@@ -83,6 +83,12 @@ describe("DynamicFormKendoComponent test suite", () => {
         component.group = formGroup;
         component.model = testModel;
 
+        component.ngOnChanges({
+
+            group: new SimpleChange(null, component.group, true),
+            model: new SimpleChange(null, component.model, true)
+        });
+
         fixture.detectChanges();
 
         testElement = debugElement.query(By.css(`kendo-dropdownlist`));
@@ -115,7 +121,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
     it("should have correct view child", () => {
 
-        expect(component.kendoDropDownList).toBeDefined();
+        expect(component.kendoViewChild).toBeDefined();
     });
 
     it("should listen to focus events", () => {
@@ -149,8 +155,6 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onControlValueChanges");
 
-        component.ngOnInit();
-
         component.control.setValue("test");
 
         expect(component.onControlValueChanges).toHaveBeenCalled();
@@ -160,8 +164,6 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        component.ngOnInit();
-
         testModel.valueUpdates.next("Two");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
@@ -170,8 +172,6 @@ describe("DynamicFormKendoComponent test suite", () => {
     it("should update control activation when model disabled property changes", () => {
 
         spyOn(component, "onModelDisabledUpdates");
-
-        component.ngOnInit();
 
         testModel.disabledUpdates.next(true);
 

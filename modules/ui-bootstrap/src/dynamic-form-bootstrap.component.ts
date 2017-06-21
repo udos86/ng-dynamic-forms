@@ -1,4 +1,13 @@
-import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList } from "@angular/core";
+import {
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    QueryList,
+    SimpleChanges
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlModel,
@@ -33,7 +42,7 @@ export const enum BootstrapFormControlType {
     selector: "dynamic-form-bootstrap-control",
     templateUrl: "./dynamic-form-bootstrap.component.html"
 })
-export class DynamicFormBootstrapComponent extends DynamicFormControlComponent implements OnInit {
+export class DynamicFormBootstrapComponent extends DynamicFormControlComponent implements OnChanges {
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() bindId: boolean = true;
@@ -47,7 +56,7 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent i
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     type: BootstrapFormControlType | null;
 
@@ -55,10 +64,12 @@ export class DynamicFormBootstrapComponent extends DynamicFormControlComponent i
         super();
     }
 
-    ngOnInit() {
-        super.ngOnInit();
+    ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
 
-        this.type = DynamicFormBootstrapComponent.getFormControlType(this.model);
+        if (changes["model"]) {
+            this.type = DynamicFormBootstrapComponent.getFormControlType(this.model);
+        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): BootstrapFormControlType | null {

@@ -1,10 +1,12 @@
 import {
     AfterViewInit,
     EventEmitter,
+    OnChanges,
     OnDestroy,
     OnInit,
     QueryList,
-    TemplateRef
+    SimpleChange,
+    SimpleChanges
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
@@ -17,11 +19,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import {
-    DynamicTemplateDirective,
-    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
-    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START
-} from "../directive/dynamic-template.directive";
+import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { isDefined } from "../utils";
 import * as relationUtils from "./dynamic-form-control-relation.utils";
 
@@ -34,7 +32,7 @@ export interface DynamicFormControlEvent {
     model: DynamicFormControlModel;
 }
 
-export abstract class DynamicFormControlComponent implements OnInit, AfterViewInit, OnDestroy {
+export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
     context: DynamicFormArrayGroupModel | null;
@@ -43,10 +41,10 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    nestedTemplates: QueryList<DynamicTemplateDirective>;
-    template: TemplateRef<any>;
-    templateDirective: DynamicTemplateDirective;
-    templates: QueryList<DynamicTemplateDirective>;
+    nestedTemplates: QueryList<DynamicTemplateDirective> | null = null;
+
+    contentTemplates: QueryList<DynamicTemplateDirective>;
+    template: DynamicTemplateDirective;
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
@@ -59,26 +57,40 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
 
     constructor() { }
 
+    ngOnChanges(changes: SimpleChanges) {
+
+        if (changes["group"] as SimpleChange || changes["model"] as SimpleChange) {
+
+            if (this.model) {
+
+                this.unsubscribe();
+
+                if (this.group) {
+
+                    this.control = this.group.get(this.model.id) as FormControl;
+                    this.subscriptions.push(this.control.valueChanges.subscribe(value => this.onControlValueChanges(value)));
+                }
+
+                this.subscriptions.push(this.model.disabledUpdates.subscribe(value => this.onModelDisabledUpdates(value)));
+
+                if (this.model instanceof DynamicFormValueControlModel) {
+
+                    let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
+
+                    this.subscriptions.push(model.valueUpdates.subscribe(value => this.onModelValueUpdates(value)));
+                }
+
+                if (this.model.relation.length > 0) {
+                    this.setControlRelations();
+                }
+            }
+        }
+    }
+
     ngOnInit(): void {
 
         if (!isDefined(this.model) || !isDefined(this.group)) {
-            throw new Error(`no [model] or [group] input binding defined for DynamicFormControlComponent`);
-        }
-
-        this.control = this.group.get(this.model.id) as FormControl;
-
-        this.subscriptions.push(this.control.valueChanges.subscribe(this.onControlValueChanges.bind(this)));
-        this.subscriptions.push(this.model.disabledUpdates.subscribe(this.onModelDisabledUpdates.bind(this)));
-
-        if (this.model instanceof DynamicFormValueControlModel) {
-
-            let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
-
-            this.subscriptions.push(model.valueUpdates.subscribe(this.onModelValueUpdates.bind(this)));
-        }
-
-        if (this.model.relation.length > 0) {
-            this.setControlRelations();
+            throw new Error(`no [model] or [group] input set for DynamicFormControlComponent`);
         }
     }
 
@@ -87,7 +99,7 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     }
 
     ngOnDestroy(): void {
-        this.subscriptions.forEach(subscription => subscription.unsubscribe());
+        this.unsubscribe();
     }
 
     get errorMessages(): string[] {
@@ -141,14 +153,6 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return (this.model as DynamicInputModel).list !== null;
     }
 
-    get hasEndTemplate(): boolean {
-        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
-    }
-
-    get hasStartTemplate(): boolean {
-        return !!this.template && this.templateDirective.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START;
-    }
-
     get showErrorMessages(): boolean {
         return this.control.touched && !this.hasFocus && this.isInvalid;
     }
@@ -161,22 +165,16 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
         return this.control.touched && this.control.invalid;
     }
 
-    get templateDirectives(): QueryList<DynamicTemplateDirective> {
-        return this.nestedTemplates ? this.nestedTemplates : this.templates;
+    get templates(): QueryList<DynamicTemplateDirective> {
+        return this.nestedTemplates ? this.nestedTemplates : this.contentTemplates;
     }
 
     protected setTemplates(): void {
 
-        this.templateDirectives.forEach((directive: DynamicTemplateDirective) => {
+        this.templates.forEach((template: DynamicTemplateDirective) => {
 
-            if (directive.type !== null) {
-                return; // templates with type property need to be processed by concrete UI component
-            }
-
-            if (directive.modelType === this.model.type || directive.modelId === this.model.id) {
-
-                this.templateDirective = directive;
-                this.template = directive.templateRef;
+            if (template.as === null && (template.modelType === this.model.type || template.modelId === this.model.id)) {
+                this.template = template;
             }
         });
     }
@@ -200,6 +198,12 @@ export abstract class DynamicFormControlComponent implements OnInit, AfterViewIn
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
         this.model.disabledUpdates.next(relationUtils.isFormControlToBeDisabled(relation, this.group));
+    }
+
+    unsubscribe(): void {
+
+        this.subscriptions.forEach(subscription => subscription.unsubscribe());
+        this.subscriptions = [];
     }
 
     onControlValueChanges(value: DynamicFormControlValue): void {
