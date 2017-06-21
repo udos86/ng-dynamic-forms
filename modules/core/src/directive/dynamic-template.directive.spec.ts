@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-import { Component, Type, DebugElement } from "@angular/core";
+import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END } from "./dynamic-template.directive";
 
@@ -26,7 +26,7 @@ describe("DynamicTemplateDirective test suite", () => {
 
             declarations: [DynamicTemplateDirective, TestComponent]
 
-        }).createComponent(TestComponent as Type<TestComponent>);
+        }).createComponent(TestComponent);
 
         fixture.detectChanges();
 
@@ -36,8 +36,8 @@ describe("DynamicTemplateDirective test suite", () => {
     it("should be initialized correctly", () => {
 
         expect(directive.align).toEqual(DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END);
+        expect(directive.as).toBeNull();
         expect(directive.modelId).toBeUndefined();
         expect(directive.modelType).toBeUndefined();
-        expect(directive.type).toBeNull();
     });
 });

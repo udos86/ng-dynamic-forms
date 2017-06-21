@@ -1,4 +1,13 @@
-import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList } from "@angular/core";
+import {
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    QueryList,
+    SimpleChanges
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlModel,
@@ -35,7 +44,7 @@ export const enum FoundationSitesFormControlType {
     selector: "dynamic-form-foundation-sites-control",
     templateUrl: "./dynamic-form-foundation-sites.component.html"
 })
-export class DynamicFormFoundationSitesComponent extends DynamicFormControlComponent implements OnInit {
+export class DynamicFormFoundationSitesComponent extends DynamicFormControlComponent implements OnChanges {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
@@ -48,7 +57,7 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     type: FoundationSitesFormControlType | null;
 
@@ -56,10 +65,12 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
         super();
     }
 
-    ngOnInit() {
-        super.ngOnInit();
+    ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
 
-        this.type = DynamicFormFoundationSitesComponent.getFormControlType(this.model);
+        if (changes["model"]) {
+            this.type = DynamicFormFoundationSitesComponent.getFormControlType(this.model);
+        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): FoundationSitesFormControlType | null {

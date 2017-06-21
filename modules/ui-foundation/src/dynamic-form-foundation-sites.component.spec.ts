@@ -1,5 +1,5 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
-import { DebugElement } from "@angular/core";
+import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
@@ -75,6 +75,12 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
         component.group = formGroup;
         component.model = testModel;
 
+        component.ngOnChanges({
+
+            group: new SimpleChange(null, component.group, true),
+            model: new SimpleChange(null, component.model, true)
+        });
+
         fixture.detectChanges();
 
         testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
@@ -134,8 +140,6 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
         spyOn(component, "onControlValueChanges");
 
-        component.ngOnInit();
-
         component.control.setValue("test");
 
         expect(component.onControlValueChanges).toHaveBeenCalled();
@@ -145,8 +149,6 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        component.ngOnInit();
-
         testModel.valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
@@ -155,8 +157,6 @@ describe("DynamicFormFoundationSitesComponent test suite", () => {
     it("should update control activation when model disabled property changes", () => {
 
         spyOn(component, "onModelDisabledUpdates");
-
-        component.ngOnInit();
 
         testModel.disabledUpdates.next(true);
 

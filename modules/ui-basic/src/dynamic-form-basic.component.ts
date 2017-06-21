@@ -1,4 +1,13 @@
-import { Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList } from "@angular/core";
+import {
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    QueryList,
+    SimpleChanges
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlModel,
@@ -33,7 +42,7 @@ export const enum BasicFormControlType {
     selector: "dynamic-form-basic-control",
     templateUrl: "./dynamic-form-basic.component.html"
 })
-export class DynamicFormBasicComponent extends DynamicFormControlComponent implements OnInit {
+export class DynamicFormBasicComponent extends DynamicFormControlComponent implements OnChanges {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
@@ -46,7 +55,7 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent imple
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     type: BasicFormControlType | null;
 
@@ -54,10 +63,12 @@ export class DynamicFormBasicComponent extends DynamicFormControlComponent imple
         super();
     }
 
-    ngOnInit() {
-        super.ngOnInit();
+    ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
 
-        this.type = DynamicFormBasicComponent.getFormControlType(this.model);
+        if (changes["model"]) {
+            this.type = DynamicFormBasicComponent.getFormControlType(this.model);
+        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): BasicFormControlType | null {

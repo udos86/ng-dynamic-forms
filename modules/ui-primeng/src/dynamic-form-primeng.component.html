@@ -1,8 +1,8 @@
 <div [formGroup]="group" [ngClass]="model.cls.element.container">
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 1"
-                 [ngTemplateOutlet]="template"
+    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
+                 [ngTemplateOutlet]="template.templateRef"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
@@ -59,12 +59,13 @@
                                                   [group]="control.at(idx)"
                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                   [model]="controlModel"
-                                                  [nestedTemplates]="templateDirectives"
+                                                  [nestedTemplates]="templates"
                                                   (blur)="onFocusChange($event)"
                                                   (change)="onValueChange($event)"
                                                   (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
 
-                    <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
+                    <ng-template [ngTemplateOutlet]="template?.templateRef"
+                                 [ngTemplateOutletContext]="groupModel"></ng-template>
 
                 </fieldset>
 
@@ -145,7 +146,7 @@
                                               [group]="control"
                                               [hasErrorMessaging]="controlModel.hasErrorMessages"
                                               [model]="controlModel"
-                                              [nestedTemplates]="templateDirectives"
+                                              [nestedTemplates]="templates"
                                               (blur)="onFocusChange($event)"
                                               (change)="onValueChange($event)"
                                               (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
@@ -258,8 +259,8 @@
     </div>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 1"
-                 [ngTemplateOutlet]="template"
+    <ng-template *ngIf="type !== 1 && template?.align === 'END'"
+                 [ngTemplateOutlet]="template.templateRef"
                  [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>

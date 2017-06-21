@@ -56,3 +56,6 @@ export const KENDO_UPLOAD_TEMPLATE_DIRECTIVES = {
 
     fileTemplate: "kendoUploadFileTemplate"
 };
+
+export const KENDO_VIEW_CHILD_SELECTOR = `kendoAutocomplete,kendoCalendar,kendoDateInput,kendoDatePicker,
+kendoDropDownList,kendoMaskedTextBox,kendoMultiSelect,kendoNumericTextBox,kendoSlider,kendoSwitch,kendoUpload`;

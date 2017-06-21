@@ -6,8 +6,8 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-template *ngIf="hasStartTemplate && type !== 1"
-                 [ngTemplateOutlet]="template"
+    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
+                 [ngTemplateOutlet]="template.templateRef"
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
@@ -25,19 +25,20 @@
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
                                             [model]="controlModel"
-                                            [nestedTemplates]="templateDirectives"
+                                            [nestedTemplates]="templates"
                                             (blur)="onFocusChange($event)"
                                             (change)="onValueChange($event)"
                                             (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
 
-                <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="groupModel"></ng-template>
+                <ng-template [ngTemplateOutlet]="template?.templateRef"
+                             [ngTemplateOutletContext]="groupModel"></ng-template>
 
             </fieldset>
 
         </div>
 
 
-        <kendo-autocomplete *ngSwitchCase="2"
+        <kendo-autocomplete *ngSwitchCase="2" #kendoAutocomplete
                             [data]="model.list"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
@@ -49,7 +50,7 @@
                             (valueChange)="onValueChange($event)"></kendo-autocomplete>
 
 
-        <kendo-calendar *ngSwitchCase="3"
+        <kendo-calendar *ngSwitchCase="3" #kendoCalendar
                         [dynamicId]="bindId && model.id"
                         [focusedDate]="model.focusedDate"
                         [formControlName]="model.id"
@@ -111,7 +112,7 @@
         </fieldset>
 
 
-        <kendo-dateinput *ngSwitchCase="6"
+        <kendo-dateinput *ngSwitchCase="6" #kendoDateInput
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [max]="model.max"
@@ -125,7 +126,7 @@
                          (valueChange)="onValueChange($event)"></kendo-dateinput>
 
 
-        <kendo-datepicker *ngSwitchCase="7"
+        <kendo-datepicker *ngSwitchCase="7" #kendoDatePicker
                           [dynamicId]="bindId && model.id"
                           [focusedDate]="model.focusedDate"
                           [format]="model.format"
@@ -140,7 +141,7 @@
                           (valueChange)="onValueChange($event)"></kendo-datepicker>
 
 
-        <kendo-dropdownlist *ngSwitchCase="8"
+        <kendo-dropdownlist *ngSwitchCase="8" #kendoDropDownList
                             [data]="model.options"
                             [dynamicId]="bindId && model.id"
                             [filterable]="model.filterable"
@@ -167,7 +168,7 @@
             <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
                                         [group]="control"
                                         [model]="controlModel"
-                                        [nestedTemplates]="templateDirectives"
+                                        [nestedTemplates]="templates"
                                         (blur)="onFocusChange($event)"
                                         (change)="onValueChange($event)"
                                         (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
@@ -210,7 +211,7 @@
         </label>
 
 
-        <kendo-maskedtextbox *ngSwitchCase="11"
+        <kendo-maskedtextbox *ngSwitchCase="11" #kendoMaskedTextBox
                              [dynamicId]="bindId && model.id"
                              [formControlName]="model.id"
                              [mask]="model.mask"
@@ -222,7 +223,7 @@
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
-        <kendo-multiselect *ngSwitchCase="12"
+        <kendo-multiselect *ngSwitchCase="12" #kendoMultiSelect
                            [data]="model.options"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
@@ -237,7 +238,7 @@
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
 
 
-        <kendo-numerictextbox *ngSwitchCase="13"
+        <kendo-numerictextbox *ngSwitchCase="13" #kendoNumericTextBox
                               [autoCorrect]="model.autoComplete"
                               [dynamicId]="bindId && model.id"
                               [formControlName]="model.id"
@@ -274,7 +275,7 @@
         </fieldset>
 
 
-        <kendo-slider *ngSwitchCase="15"
+        <kendo-slider *ngSwitchCase="15" #kendoSlider
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -287,7 +288,7 @@
                       (valueChange)="onValueChange($event)"></kendo-slider>
 
 
-        <kendo-switch *ngSwitchCase="16"
+        <kendo-switch *ngSwitchCase="16" #kendoSwitch
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -318,7 +319,7 @@
                   (focus)="onFocusChange($event)"></textarea>
 
 
-        <kendo-upload *ngSwitchCase="19"
+        <kendo-upload *ngSwitchCase="19" #kendoUpload
                       [autoUpload]="model.autoUpload"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -340,8 +341,8 @@
     </ul>
 
 
-    <ng-template *ngIf="hasEndTemplate && type !== 1"
-                 [ngTemplateOutlet]="template"
+    <ng-template *ngIf="type !== 1 && template?.align === 'END'"
+                 [ngTemplateOutlet]="template.templateRef"
                  [ngTemplateOutletContext]="model"></ng-template>
 
     <ng-content></ng-content>

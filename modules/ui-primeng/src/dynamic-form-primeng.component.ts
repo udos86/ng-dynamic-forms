@@ -1,6 +1,13 @@
 import {
-    Component, ContentChildren, Input, EventEmitter, OnInit, Output, QueryList, ViewChild,
-    AfterViewInit
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    QueryList,
+    SimpleChanges,
+    ViewChild
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
@@ -53,7 +60,7 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
     selector: "dynamic-form-primeng-control",
     templateUrl: "./dynamic-form-primeng.component.html"
 })
-export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent implements OnInit, AfterViewInit {
+export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent implements OnChanges {
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
@@ -66,7 +73,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     @ViewChild(PRIME_NG_VIEW_CHILD_SELECTOR) pViewChild: PrimeNGFormControlComponent | undefined;
 
@@ -77,10 +84,12 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
         super();
     }
 
-    ngOnInit() {
-        super.ngOnInit();
+    ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
 
-        this.type = DynamicFormPrimeNGComponent.getFormControlType(this.model);
+        if (changes["model"]) {
+            this.type = DynamicFormPrimeNGComponent.getFormControlType(this.model);
+        }
     }
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
@@ -91,7 +100,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
 
             Object.keys(templateDirectives || {}).forEach((key: string) => {
 
-                if (templateDirectives[key] === directive.type) {
+                if (templateDirectives[key] === directive.as) {
                     (this.pViewChild as any)[key] = directive.templateRef;
                 }
             });
@@ -102,8 +111,8 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
 
         super.setTemplates();
 
-        this.templateDirectives
-            .filter(directive => typeof directive.type === "string")
+        this.templates
+            .filter(directive => typeof directive.as === "string")
             .forEach(directive => this.setTemplateDirective(directive));
     }
 

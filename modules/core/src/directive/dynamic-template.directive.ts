@@ -9,9 +9,14 @@ export const DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END = "END";
 export class DynamicTemplateDirective {
 
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
+    @Input() as: string | null = null;
     @Input() modelId: string;
     @Input() modelType: string;
-    @Input() type: string | null = null;
+
+    @Input()set type(type: string) {
+        this.as = type;
+        console.warn("[type] is deprecated. Use [as] instead.");
+    }
 
     constructor(public templateRef: TemplateRef<any>) {}
 }
