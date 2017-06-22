@@ -59,7 +59,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     ngOnChanges(changes: SimpleChanges) {
 
-        if (changes["group"] as SimpleChange || changes["model"] as SimpleChange) {
+        let groupChange = changes["group"] as SimpleChange,
+            modelChange = changes["model"] as SimpleChange;
+
+        if (groupChange || modelChange) {
 
             if (this.model) {
 
