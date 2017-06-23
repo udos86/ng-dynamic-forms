@@ -234,7 +234,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onValueChange($event: Event | DynamicFormControlEvent | any): void {
 
-        if ($event instanceof Event) { // native HTML5 change event
+        if ($event && $event instanceof Event) { // native HTML5 change event
 
             $event.stopPropagation();
 
@@ -260,7 +260,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
                 }
             );
 
-        } else if ($event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
+        } else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
 
             this.change.emit($event as DynamicFormControlEvent);
 

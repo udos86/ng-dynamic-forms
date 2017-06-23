@@ -1,3 +1,18 @@
+# 1.4.16
+
+### **Minor Breaking Change**
+
+* **custom** `<ng-template>` **input property** `type` **has been renamed to** `as` (see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#custom-templates))
+
+### **Bugfixes**
+
+* Kendo custom templates now working again (closes [#411](https://github.com/udos86/ng2-dynamic-forms/issues/411))
+
+### **Features** 
+
+* major internal component refactoring (part II of II)
+
+
 # 1.4.15
 
 ### **Bugfixes**
@@ -13,7 +28,7 @@
 
 ### **Features** 
 
-* major internal component refactoring
+* major internal component refactoring (part I of II)
 
 
 # 1.4.13
