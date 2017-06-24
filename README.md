@@ -530,6 +530,7 @@ new DynamicInputModel(
 )
 ```
 
+
 ## Custom Templates
 
 As mentioned above, ng2 Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
@@ -605,7 +606,7 @@ And you surely don't want to miss out on such a feature, do you?
 
 **That's why ng2 Dynamic Forms can even master this!**
 
-All you have to do is to **add a** `type` **attribute to your template** and specifiy the use of it:
+All you have to do is to **add a** `as` **attribute to your template** and specifiy the use of it:
 
 ```ts
 <form [formGroup]="formGroup">
@@ -614,7 +615,7 @@ All you have to do is to **add a** `type` **attribute to your template** and spe
                                 [group]="formGroup"
                                 [model]="controlModel">
                                     
-        <ng-template modelId="myDropDownList" type="kendoDropDownListHeaderTemplate">
+        <ng-template modelId="myDropDownList" as="kendoDropDownListHeaderTemplate">
         
             <p>My Header Template</p>
             
@@ -644,6 +645,7 @@ Finally **you can determine whether the template is rendered before or after the
     
 </form>
 ```
+
 
 ## Custom Validators
 

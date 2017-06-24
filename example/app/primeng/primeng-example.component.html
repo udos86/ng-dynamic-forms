@@ -8,7 +8,7 @@
                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                       (change)="onChange($event)">
 
-            <ng-template modelId="primeSelect" type="itemTemplate" let-item>
+            <ng-template modelId="primeSelect" as="itemTemplate" let-item>
 
                 <p>{{ item.label }}</p>
 

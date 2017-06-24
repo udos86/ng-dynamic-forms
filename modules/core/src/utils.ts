@@ -1,3 +1,7 @@
+export function equals<T>(value: T, ...comparables: T[]): boolean {
+    return !!(comparables.find(comparable => value === comparable));
+}
+
 export function isBoolean(value: any): boolean {
     return typeof value === "boolean";
 }

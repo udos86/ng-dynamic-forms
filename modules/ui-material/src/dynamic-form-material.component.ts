@@ -10,7 +10,16 @@ import {
     ViewChild
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MdInputContainer } from "@angular/material";
+import {
+    MdAutocomplete,
+    MdCheckbox,
+    MdDatepicker,
+    MdInputContainer,
+    MdRadioGroup,
+    MdSelect,
+    MdSlider,
+    MdSlideToggle
+} from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlModel,
@@ -30,7 +39,10 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng2-dynamic-forms/core";
-import { MdFormControlType, MdFormControlComponent, MD_VIEW_CHILD_SELECTOR } from "./dynamic-form-material.const";
+import { MdFormControlType, MD_VIEW_CHILD_SELECTOR } from "./dynamic-form-material.const";
+
+export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdInputContainer |
+    MdRadioGroup | MdSelect | MdSlider | MdSlideToggle;
 
 @Component({
 

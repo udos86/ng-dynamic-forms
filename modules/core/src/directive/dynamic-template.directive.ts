@@ -13,10 +13,5 @@ export class DynamicTemplateDirective {
     @Input() modelId: string;
     @Input() modelType: string;
 
-    @Input()set type(type: string) {
-        this.as = type;
-        console.warn("[type] is deprecated. Use [as] instead.");
-    }
-
     constructor(public templateRef: TemplateRef<any>) {}
 }

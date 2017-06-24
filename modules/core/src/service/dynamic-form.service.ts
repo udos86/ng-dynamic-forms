@@ -122,8 +122,8 @@ export class DynamicFormService {
 
     getAsyncValidators(config: DynamicValidatorsMap): AsyncValidatorFn[] {
 
-        return isDefined(config) ?
-            Object.keys(config).map(asyncValidatorName => this.getAsyncValidatorFn(asyncValidatorName, config[asyncValidatorName])) : [];
+        return isDefined(config) ? Object.keys(config).map(
+            asyncValidatorName => this.getAsyncValidatorFn(asyncValidatorName, config[asyncValidatorName])) : [];
     }
 
 

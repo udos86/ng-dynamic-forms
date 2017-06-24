@@ -2,10 +2,15 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
-import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
+import { CalendarComponent, DateInputsModule, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
+import {
+    AutoCompleteComponent,
+    DropDownListComponent,
+    DropDownsModule,
+    MultiSelectComponent
+} from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
-import { UploadModule } from "@progress/kendo-angular-upload";
+import { UploadComponent, UploadModule } from "@progress/kendo-angular-upload";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -25,8 +30,15 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicFormKendoComponent } from "./dynamic-form-kendo.component";
-import { KendoFormControlType } from "./dynamic-form-kendo.const";
+import { DynamicFormKendoComponent, KendoFormControlComponent } from "./dynamic-form-kendo.component";
+import {
+    KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
+    KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
+    KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
+    KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
+    KENDO_UPLOAD_TEMPLATE_DIRECTIVES,
+    KendoFormControlType
+} from "./dynamic-form-kendo.const";
 
 describe("DynamicFormKendoComponent test suite", () => {
 
@@ -228,5 +240,10 @@ describe("DynamicFormKendoComponent test suite", () => {
         expect(testFn(formModel[12])).toEqual(KendoFormControlType.TextArea);
 
         expect(testFn(formModel[13])).toEqual(KendoFormControlType.TimePicker);
+    });
+
+    xit("should determine correct form control template directive", () => {
+
+        let testFn = DynamicFormKendoComponent.getTemplateDirectives;
     });
 });
