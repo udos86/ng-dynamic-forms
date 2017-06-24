@@ -160,7 +160,7 @@ gulp.task("doc:modules",
             name: "ng2 Dynamic Forms",
             out: "docs/",
             readme: "none",
-            target: "es5",
+            target: "es6",
             theme: "minimal"
         }
     ));
