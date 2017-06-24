@@ -58,6 +58,7 @@
             <md-input-container>
 
                 <input mdInput
+                       [autofocus]="model.autoFocus"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [max]="model.max"
@@ -65,14 +66,21 @@
                        [min]="model.min"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
-                       [placeholder]="model.placeholder"/>
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
 
                 <button mdSuffix [mdDatepickerToggle]="mdDatepicker"></button>
 
             </md-input-container>
 
-            <md-datepicker #mdDatepicker [startAt]="model.focusedDate" [touchUi]="true"></md-datepicker>
-
+            <md-datepicker #mdDatepicker
+                           [startAt]="model.focusedDate"
+                           [touchUi]="true"
+                           (selectedChanged)="onValueChange($event)"></md-datepicker>
         </ng-container>
 
 

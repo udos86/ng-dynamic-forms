@@ -2,7 +2,7 @@
 
 ### **Minor Breaking Change**
 
-* **custom** `<ng-template>` **input property** `type` **has been renamed to** `as` (see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#custom-templates))
+* **custom** `<ng-template>` **input property** `type` **has been renamed to** `as` (currently suported by Kendo UI and Prime NG - see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#custom-templates))
 
 ### **Bugfixes**
 
@@ -10,6 +10,7 @@
 
 ### **Features** 
 
+* datepicker integration in Material UI package has been improved (closes [#407](https://github.com/udos86/ng2-dynamic-forms/issues/407))
 * major internal component refactoring (part II of II)
 
 

@@ -29,6 +29,7 @@ export default {
         commonjs(
             {
                 include: [
+                    "node_modules/angular2-text-mask/**/*",
                     "node_modules/primeng/**/*",
                     "node_modules/rxjs/**"
                 ],
