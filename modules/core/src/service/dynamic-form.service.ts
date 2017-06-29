@@ -70,7 +70,8 @@ export class DynamicFormService {
         if (this.NG_VALIDATORS) {
 
             validatorFn = this.NG_VALIDATORS.find(validatorFn => {
-                return validatorName === validatorFn.name || (validatorFn(new FormControl()) as Object).hasOwnProperty(validatorName);
+                return validatorName === validatorFn.name ||
+                       (validatorFn(new FormControl()) && (validatorFn(new FormControl()) as Object).hasOwnProperty(validatorName));
             });
         }
 
