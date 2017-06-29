@@ -18,6 +18,7 @@ System.config({
     baseURL: "./base/",
 
     paths: {
+        "lib:": "dist/@ng2-dynamic-forms/",
         "npm:": "node_modules/"
     },
 
@@ -44,13 +45,14 @@ System.config({
         "@angular/forms": "npm:@angular/forms/bundles/forms.umd.js",
         "@angular/forms/testing": "npm:@angular/forms/bundles/forms-testing.umd.js",
         "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
-        "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
-        "@ng2-dynamic-forms/ui-basic": "npm:@ng2-dynamic-forms/ui-basic/bundles/ui-basic.umd.js",
-        "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
-        "@ng2-dynamic-forms/ui-foundation": "npm:@ng2-dynamic-forms/ui-foundation/bundles/ui-foundation.umd.js",
-        "@ng2-dynamic-forms/ui-material": "npm:@ng2-dynamic-forms/ui-material/bundles/ui-material.umd.js",
-        "@ng2-dynamic-forms/ui-ng-bootstrap": "npm:@ng2-dynamic-forms/ui-ng-bootstrap/bundles/ui-ng-bootstrap.umd.js",
-        "@ng2-dynamic-forms/ui-primeng": "npm:@ng2-dynamic-forms/ui-primeng/bundles/ui-primeng.umd.js",
+        "@ng2-dynamic-forms/core": "lib:core/bundles/core.umd.js",
+        "@ng2-dynamic-forms/ui-basic": "lib:ui-basic/bundles/ui-basic.umd.js",
+        "@ng2-dynamic-forms/ui-bootstrap": "lib:ui-bootstrap/bundles/ui-bootstrap.umd.js",
+        "@ng2-dynamic-forms/ui-foundation": "lib:ui-foundation/bundles/ui-foundation.umd.js",
+        "@ng2-dynamic-forms/ui-kendo": "lib:ui-kendo/bundles/ui-kendo.umd.js",
+        "@ng2-dynamic-forms/ui-material": "lib:ui-material/bundles/ui-material.umd.js",
+        "@ng2-dynamic-forms/ui-ng-bootstrap": "lib:ui-ng-bootstrap/bundles/ui-ng-bootstrap.umd.js",
+        "@ng2-dynamic-forms/ui-primeng": "lib:ui-primeng/bundles/ui-primeng.umd.js",
         "@progress": "npm:@progress",
         "@progress/kendo-angular-dateinputs": "npm:@progress/kendo-angular-dateinputs/dist/npm/main.js",
         "@progress/kendo-angular-dropdowns": "npm:@progress/kendo-angular-dropdowns/dist/npm/main.js",

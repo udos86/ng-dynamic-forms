@@ -1,5 +1,6 @@
 import nodeResolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
+import includePaths from "rollup-plugin-includepaths";
 //import uglify from "rollup-plugin-uglify"
 
 export default {
@@ -19,6 +20,22 @@ export default {
     },
     plugins: [
 
+        includePaths(
+            {
+                include: {
+                    "@ng2-dynamic-forms/core": "dist/@ng2-dynamic-forms/core/index.js",
+                    "@ng2-dynamic-forms/ui-basic": "dist/@ng2-dynamic-forms/ui-basic/index.js",
+                    "@ng2-dynamic-forms/ui-bootstrap": "dist/@ng2-dynamic-forms/ui-bootstrap/index.js",
+                    "@ng2-dynamic-forms/ui-foundation": "dist/@ng2-dynamic-forms/ui-foundation/index.js",
+                    "@ng2-dynamic-forms/ui-ionic": "dist/@ng2-dynamic-forms/ui-ionic/index.js",
+                    "@ng2-dynamic-forms/ui-kendo": "dist/@ng2-dynamic-forms/ui-kendo/index.js",
+                    "@ng2-dynamic-forms/ui-material": "dist/@ng2-dynamic-forms/ui-material/index.js",
+                    "@ng2-dynamic-forms/ui-ng-bootstrap": "dist/@ng2-dynamic-forms/ui-ng-bootstrap/index.js",
+                    "@ng2-dynamic-forms/ui-primeng": "dist/@ng2-dynamic-forms/ui-primeng/index.js"
+                }
+            }
+        ),
+
         nodeResolve(
             {
                 jsnext: true,
@@ -31,7 +48,8 @@ export default {
                 include: [
                     "node_modules/angular2-text-mask/**/*",
                     "node_modules/primeng/**/*",
-                    "node_modules/rxjs/**"
+                    "node_modules/rxjs/**",
+                    "node_modules/text-mask-core/**/*"
                 ],
                 namedExports: {
                     "node_modules/primeng/primeng.js": [

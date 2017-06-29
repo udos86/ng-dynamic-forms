@@ -39,7 +39,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Disabling / Enabling Form Controls](#disabling--enabling-form-controls)
 - [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
-- [Form Control Autocompletion](#form-control-autocompletion)
+- [Autocompletion](#autocompletion)
 - [A Word to the Community](#a-word-to-the-community)
 - [Appendix](#appendix)
 
@@ -98,17 +98,12 @@ npm install
 npm run build:modules
 ```
 
-**5. Execute AoT compilation**:
-```
-npm run compile:app:aot
-```
-
-**6. Transpile the source code**:
+**5. Transpile the source code**:
 ```
 npm run transpile:app:systemjs
 ```
 
-**7. Run the sample application**:
+**6. Run the sample application**:
 ```
 npm start
 ```
@@ -981,7 +976,7 @@ new DynamicTextAreaModel(
 ```
 
   
-## Form Control Autocompletion
+## Autocompletion
 
 Adding automatic input completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!

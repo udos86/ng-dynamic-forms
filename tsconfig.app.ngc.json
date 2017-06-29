@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
@@ -11,6 +12,11 @@
       "dom"
     ],
     "noImplicitAny": false,
+    "paths": {
+      "@ng2-dynamic-forms/*": [
+        "dist/@ng2-dynamic-forms/*"
+      ]
+    },
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
       "node_modules/@types"

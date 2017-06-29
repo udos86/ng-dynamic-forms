@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,6 +12,11 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "paths": {
+      "@ng2-dynamic-forms/*": [
+        "dist/@ng2-dynamic-forms/*"
+      ]
+    },
     "removeComments": false,
     "sourceMap": true,
     "target": "es5",
