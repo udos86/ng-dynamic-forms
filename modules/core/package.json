@@ -5,6 +5,7 @@
   "main": "./bundles/core.umd.js",
   "module": "./bundles/core.es.js",
   "typings": "./index.d.ts",
+  "types": "./index.d.ts",
   "keywords": [
     "angular",
     "angular 2",

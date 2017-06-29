@@ -5,7 +5,13 @@ const pkg     = require("./package.json"),
 module.exports = {
 
     entry: {
+
         "app": "./example/app/main.aot.js"
+    },
+
+    resolve: {
+
+        modules: ["dist", "node_modules"]
     },
 
     output: {
