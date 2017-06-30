@@ -28,7 +28,7 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: false,
             mangle: {
-                except: ['customValidator']
+                //except: ['customValidator']
             }
         })
 

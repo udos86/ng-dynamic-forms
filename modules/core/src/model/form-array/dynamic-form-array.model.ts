@@ -5,7 +5,7 @@ import {
     ClsConfig
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
-import { isFunction, isNumber } from "../../utils";
+import { Utils } from "../../core.utils";
 
 export class DynamicFormArrayGroupModel {
 
@@ -56,13 +56,13 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         super(config, cls);
 
-        if (!isFunction(config.createGroup)) {
+        if (!Utils.isFunction(config.createGroup)) {
             throw new Error("createGroup function must be specified for DynamicFormArrayModel");
         }
 
         this.asyncValidator = config.asyncValidator || null;
         this.createGroup = config.createGroup;
-        this.initialCount = isNumber(config.initialCount) ? config.initialCount : 1;
+        this.initialCount = Utils.isNumber(config.initialCount) ? config.initialCount : 1;
         this.validator = config.validator || null;
 
         this.origin = this.createGroup();

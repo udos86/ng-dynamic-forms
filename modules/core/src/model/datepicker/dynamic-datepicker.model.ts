@@ -1,6 +1,6 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { isBoolean } from "../../utils";
+import { Utils } from "../../core.utils";
 import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynamic-date-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
@@ -23,6 +23,6 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
         super(config, cls);
 
         this.focusedDate = config.focusedDate || null;
-        this.inline = isBoolean(config.inline) ? config.inline : false;
+        this.inline = Utils.isBoolean(config.inline) ? config.inline : false;
     }
 }

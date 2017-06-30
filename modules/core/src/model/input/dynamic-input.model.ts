@@ -1,7 +1,7 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { isBoolean, isDefined, isNumber, maskToString } from "../../utils";
+import { Utils } from "../../core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -60,11 +60,11 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.inputType = config.inputType || DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;
         this.list = Array.isArray(config.list) ? config.list : null;
         this.mask = config.mask || null;
-        this.max = isDefined(config.max) ? config.max : null;
-        this.min = isDefined(config.min) ? config.min : null;
-        this.multiple = isBoolean(config.multiple) ? config.multiple : null;
+        this.max = Utils.isDefined(config.max) ? config.max : null;
+        this.min = Utils.isDefined(config.min) ? config.min : null;
+        this.multiple = Utils.isBoolean(config.multiple) ? config.multiple : null;
         this.pattern = config.pattern || null;
-        this.step = isNumber(config.step) ? config.step : null;
+        this.step = Utils.isNumber(config.step) ? config.step : null;
 
         if (this.list) {
             this.listId = `${this.id}List`;
@@ -75,7 +75,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         let json: any = super.toJSON();
 
-        if (this.mask !== null) { json.mask = maskToString(this.mask); }
+        if (this.mask !== null) { json.mask = Utils.maskToString(this.mask); }
 
         return json;
     }

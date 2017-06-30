@@ -13,11 +13,13 @@ const TASK_BUNDLE_ROLLUP        = require("./build/tasks/bundle-rollup-stream"),
       TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
       TASK_DOC_TYPESCRIPT       = require("./build/tasks/doc-typescript");
 
-const SRC_PATH     = "./modules",
-      DIST_PATH    = "./dist/@ng2-dynamic-forms",
-      TEST_PATH    = "./test",
-      MODULE_TASKS = [],
-      MODULES      = [
+const SRC_PATH       = "./modules",
+      DIST_BASE_PATH = "./dist",
+      DIST_PATH      = `${DIST_BASE_PATH}/@ng2-dynamic-forms`,
+      NPM_PATH       = "./node_modules",
+      TEST_PATH      = "./test",
+      MODULE_TASKS   = [],
+      MODULES        = [
           "core",
           "ui-basic",
           "ui-bootstrap",
@@ -65,6 +67,9 @@ gulp.task("copy:modules:dist",
 
 gulp.task("copy:modules:test",
     TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
+
+gulp.task("copy:dist:npm",
+    TASK_COPY([`${DIST_BASE_PATH}/**/*.*`], NPM_PATH));
 
 
 gulp.task("preprocess:modules:dist",
@@ -126,6 +131,7 @@ gulp.task("build:modules", function (done) {
     runSequence(
         "build:modules:dist",
         "build:modules:test",
+        "copy:dist:npm",
         done
     );
 });

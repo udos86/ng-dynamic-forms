@@ -20,7 +20,7 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
-import { isDefined } from "../utils";
+import { Utils } from "../core.utils";
 import * as relationUtils from "./dynamic-form-control-relation.utils";
 
 export interface DynamicFormControlEvent {
@@ -92,7 +92,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     ngOnInit(): void {
 
-        if (!isDefined(this.model) || !isDefined(this.group)) {
+        if (!Utils.isDefined(this.model) || !Utils.isDefined(this.group)) {
             throw new Error(`no [model] or [group] input set for DynamicFormControlComponent`);
         }
     }
@@ -110,7 +110,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>,
             messages = [];
 
-        if (isDefined(model.errorMessages)) {
+        if (Utils.isDefined(model.errorMessages)) {
 
             for (let validatorName in this.control.errors) {
 

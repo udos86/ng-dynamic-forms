@@ -1,6 +1,6 @@
-import * as utils from "./utils";
+import { Utils } from "./core.utils";
 
-describe("Utils test suite", () => {
+describe("Core Utils test suite", () => {
 
     let configObject: any;
 
@@ -29,27 +29,27 @@ describe("Utils test suite", () => {
             testValue2 = 5,
             comparables1 = ["test1", "test2", "test3"],
             comparables2 = ["test1", "test2", "test"],
-            comparables3 = [1,2,3,4],
-            comparables4 = [2,3,4,5,6];
+            comparables3 = [1, 2, 3, 4],
+            comparables4 = [2, 3, 4, 5, 6];
 
-        expect(utils.equals<string>(testValue1, ...comparables1)).toBe(false);
-        expect(utils.equals<string>(testValue1, ...comparables2)).toBe(true);
-        expect(utils.equals<number>(testValue2, ...comparables3)).toBe(false);
-        expect(utils.equals<number>(testValue2, ...comparables4)).toBe(true);
+        expect(Utils.equals<string>(testValue1, ...comparables1)).toBe(false);
+        expect(Utils.equals<string>(testValue1, ...comparables2)).toBe(true);
+        expect(Utils.equals<number>(testValue2, ...comparables3)).toBe(false);
+        expect(Utils.equals<number>(testValue2, ...comparables4)).toBe(true);
     });
 
 
     it("tests if getValue is working correctly", () => {
 
-        let valueA = utils.merge(configObject.a, 4);
-        let valueB = utils.merge(configObject.b, false);
-        let valueC = utils.merge(configObject.c, null);
-        let valueD1 = utils.merge(configObject.d, {prop1: 1});
-        let valueD2 = utils.merge(configObject.d, {prop2: 3});
-        let valueE = utils.merge(configObject.e, null);
+        let valueA = Utils.merge(configObject.a, 4);
+        let valueB = Utils.merge(configObject.b, false);
+        let valueC = Utils.merge(configObject.c, null);
+        let valueD1 = Utils.merge(configObject.d, {prop1: 1});
+        let valueD2 = Utils.merge(configObject.d, {prop2: 3});
+        let valueE = Utils.merge(configObject.e, null);
 
-        let valueY = utils.merge(configObject.y, false);
-        let valueZ = utils.merge(configObject.z, null);
+        let valueY = Utils.merge(configObject.y, false);
+        let valueZ = Utils.merge(configObject.z, null);
 
         expect(valueA).toBe(5);
         expect(valueB).toBe(true);
@@ -67,7 +67,7 @@ describe("Utils test suite", () => {
 
     it("tests if getValue recursion is working correctly", () => {
 
-        let valueE = utils.merge(configObject.e, {
+        let valueE = Utils.merge(configObject.e, {
             prop1: 10,
             prop2: {
                 nested1: 21,
@@ -95,9 +95,9 @@ describe("Utils test suite", () => {
         let testString1 = "";
         let testString2 = "test string";
 
-        expect(utils.isEmptyString(testString0)).toBe(true);
-        expect(utils.isEmptyString(testString1)).toBe(true);
-        expect(utils.isEmptyString(testString2)).toBe(false);
+        expect(Utils.isEmptyString(testString0)).toBe(true);
+        expect(Utils.isEmptyString(testString1)).toBe(true);
+        expect(Utils.isEmptyString(testString2)).toBe(false);
     });
 
 
@@ -107,9 +107,9 @@ describe("Utils test suite", () => {
         let testNumber1 = 0;
         let testNumber2 = 42;
 
-        expect(utils.isNumber(testNumber0)).toBe(false);
-        expect(utils.isNumber(testNumber1)).toBe(true);
-        expect(utils.isNumber(testNumber2)).toBe(true);
+        expect(Utils.isNumber(testNumber0)).toBe(false);
+        expect(Utils.isNumber(testNumber1)).toBe(true);
+        expect(Utils.isNumber(testNumber2)).toBe(true);
     });
 
 
@@ -118,10 +118,10 @@ describe("Utils test suite", () => {
         let testValue1 = "test";
         let testValue2 = /[1-9]/;
         let testValue3 = [testValue1, testValue2];
-        let testResult3 = utils.maskToString(testValue3) as string[];
+        let testResult3 = Utils.maskToString(testValue3) as string[];
 
-        expect(utils.maskToString(testValue1)).toEqual(testValue1);
-        expect(utils.maskToString(testValue2)).toEqual(testValue2.toString());
+        expect(Utils.maskToString(testValue1)).toEqual(testValue1);
+        expect(Utils.maskToString(testValue2)).toEqual(testValue2.toString());
 
         expect(testResult3[0]).toEqual(testValue1);
         expect(testResult3[1]).toEqual(testValue2.toString());
@@ -132,10 +132,10 @@ describe("Utils test suite", () => {
         let testValue1 = "test";
         let testValue2 = "/[1-9]/";
         let testValue3 = [testValue1, testValue2];
-        let testResult3 = utils.maskFromString(testValue3) as (string | RegExp)[];
+        let testResult3 = Utils.maskFromString(testValue3) as (string | RegExp)[];
 
-        expect(utils.maskFromString(testValue1)).toEqual(testValue1);
-        expect(utils.maskFromString(testValue2)).toEqual(new RegExp("[1-9]"));
+        expect(Utils.maskFromString(testValue1)).toEqual(testValue1);
+        expect(Utils.maskFromString(testValue2)).toEqual(new RegExp("[1-9]"));
 
         expect(testResult3[0]).toEqual(testValue1);
         expect(testResult3[1]).toEqual(new RegExp("[1-9]"));

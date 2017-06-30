@@ -45,7 +45,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
-import { isFunction, isDefined, isString, maskFromString } from "../utils";
+import { Utils } from "../core.utils";
 
 @Injectable()
 export class DynamicFormService {
@@ -59,7 +59,7 @@ export class DynamicFormService {
 
         let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return isString(value) && regexDateISO.test(value) ? new Date(value) : value;
+        return Utils.isString(value) && regexDateISO.test(value) ? new Date(value) : value;
     }
 
 
@@ -78,12 +78,15 @@ export class DynamicFormService {
     }
 
 
-    getCustomAsyncValidatorFn(validatorName: string): AsyncValidatorFn | null {
+    getCustomAsyncValidatorFn(asyncValidatorName: string): AsyncValidatorFn | null {
 
         let asyncValidatorFn = null;
 
         if (this.NG_ASYNC_VALIDATORS) {
-            asyncValidatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => validatorName === asyncValidatorFn.name);
+
+            asyncValidatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => {
+                return asyncValidatorName === asyncValidatorFn.name;
+            });
         }
 
         return asyncValidatorFn;
@@ -94,11 +97,11 @@ export class DynamicFormService {
 
         let validatorFn: Function | null = (Validators as any)[validatorName] || this.getCustomValidatorFn(validatorName);
 
-        if (!isFunction(validatorFn)) {
+        if (!Utils.isFunction(validatorFn)) {
             throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS`);
         }
 
-        return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
+        return Utils.isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
     }
 
 
@@ -106,23 +109,23 @@ export class DynamicFormService {
 
         let asyncValidatorFn: Function | null = (Validators as any)[asyncValidatorName] || this.getCustomAsyncValidatorFn(asyncValidatorName);
 
-        if (!isFunction(asyncValidatorFn)) {
+        if (!Utils.isFunction(asyncValidatorFn)) {
             throw new Error(`async validator "${asyncValidatorName}" is not provided via NG_ASYNC_VALIDATORS`);
         }
 
-        return isDefined(asyncValidatorArgs) ? asyncValidatorFn(asyncValidatorArgs) : asyncValidatorFn;
+        return Utils.isDefined(asyncValidatorArgs) ? asyncValidatorFn(asyncValidatorArgs) : asyncValidatorFn;
     }
 
 
     getValidators(config: DynamicValidatorsMap): ValidatorFn[] {
 
-        return isDefined(config) ?
+        return Utils.isDefined(config) ?
             Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
     }
 
     getAsyncValidators(config: DynamicValidatorsMap): AsyncValidatorFn[] {
 
-        return isDefined(config) ? Object.keys(config).map(
+        return Utils.isDefined(config) ? Object.keys(config).map(
             asyncValidatorName => this.getAsyncValidatorFn(asyncValidatorName, config[asyncValidatorName])) : [];
     }
 
@@ -344,7 +347,7 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let raw = isString(json) ? JSON.parse(json as string, this.parseJSONReviver) : json,
+        let raw = Utils.isString(json) ? JSON.parse(json as string, this.parseJSONReviver) : json,
             group: DynamicFormControlModel[] = [];
 
         raw.forEach((model: any) => {
@@ -387,7 +390,7 @@ export class DynamicFormService {
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                    if (model["mask"] !== null) { model["mask"] = maskFromString(model["mask"]); }
+                    if (model["mask"] !== null) { model["mask"] = Utils.maskFromString(model["mask"]); }
                     group.push(new DynamicInputModel(model, model.cls));
                     break;
 

@@ -43,7 +43,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
-    isString
+    Utils
 } from "@ng2-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -116,7 +116,7 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
         super.setTemplates();
 
         this.templates
-            .filter(directive => isString(directive.as) && directive.as.startsWith("kendo"))
+            .filter(directive => Utils.isString(directive.as) && directive.as.startsWith("kendo"))
             .forEach(directive => this.setTemplateDirective(directive));
     }
 

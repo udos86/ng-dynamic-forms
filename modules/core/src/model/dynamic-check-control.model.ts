@@ -1,7 +1,7 @@
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { isBoolean } from "../utils";
+import { Utils } from "../core.utils";
 
 export interface DynamicCheckControlModelConfig extends DynamicFormValueControlModelConfig<boolean> {
 
@@ -20,7 +20,7 @@ export abstract class DynamicCheckControlModel extends DynamicFormValueControlMo
         super(config, cls);
 
         this.labelPosition = config.labelPosition || DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER;
-        this.value = isBoolean(this.value) ? this.value : false;
+        this.value = Utils.isBoolean(this.value) ? this.value : false;
     }
 
     get checked(): boolean {
