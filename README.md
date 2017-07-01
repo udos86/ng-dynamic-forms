@@ -1025,29 +1025,29 @@ let model = new DynamicInputModel({
 
 Further on ng2 Dynamic Forms embraces the brand new HTML5 
 [**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
-`AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
+`AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `AutoFillUtils` to help you putting together a valid expression:
 
 > **Note:** Jason Grigsby - [Autofill: What web devs should know, but don’t](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
 
 ```ts
 import {
-    DynamicFormAutoFillService,
+    AutoFillUtils,
     AUTOFILL_TOKEN_BILLING, 
     AUTOFILL_FIELD_NAME, 
     AUTOCOMPLETE_ON
 } from "@ng2-dynamic-forms/core";
 
-export class MyAutoFillExample {
+export class MySample {
 
-    constructor(private autoFillService: DynamicFormAutoFillService) {
+    constructor() {
     
         let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
 
         let model = new DynamicInputModel({
         
-            autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+            autoComplete: AutoFillUtils.validate(expression) ? expression : AUTOCOMPLETE_ON
           
-            //...all remaining properties
+            //...
         });
     }
 }

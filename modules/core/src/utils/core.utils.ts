@@ -28,6 +28,10 @@ export class Utils {
         return typeof value === "object";
     }
 
+    static isString(value: any): boolean {
+        return typeof value === "string";
+    }
+
     static isTrueObject(value: any): boolean {
         return Utils.isDefined(value) && Utils.isObject(value);
     }
@@ -39,32 +43,6 @@ export class Utils {
         }
 
         return false;
-    }
-
-    static isString(value: any): boolean {
-        return typeof value === "string";
-    }
-
-    static merge(baseValue: any, defaultValue: any): any {
-
-        if (!Utils.isDefined(baseValue)) {
-            return defaultValue;
-        }
-
-        if (Utils.isObject(baseValue)) {
-
-            for (let property in baseValue) {
-
-                if (baseValue.hasOwnProperty(property) && Utils.isObject(baseValue[property])) {
-
-                    baseValue[property] = Utils.merge(baseValue[property], defaultValue ? defaultValue[property] : null);
-                }
-            }
-
-            return defaultValue ? Object.assign(defaultValue, baseValue) : baseValue;
-        }
-
-        return baseValue;
     }
 
     static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] {
@@ -95,6 +73,28 @@ export class Utils {
 
             return (mask as string[]).map(value => Utils.maskFromString(value)) as string[];
         }
+    }
+
+    static merge(baseValue: any, defaultValue: any): any {
+
+        if (!Utils.isDefined(baseValue)) {
+            return defaultValue;
+        }
+
+        if (Utils.isObject(baseValue)) {
+
+            for (let property in baseValue) {
+
+                if (baseValue.hasOwnProperty(property) && Utils.isObject(baseValue[property])) {
+
+                    baseValue[property] = Utils.merge(baseValue[property], defaultValue ? defaultValue[property] : null);
+                }
+            }
+
+            return defaultValue ? Object.assign(defaultValue, baseValue) : baseValue;
+        }
+
+        return baseValue;
     }
 
     static parseJSONReviver(key: string, value: any): any {

@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormService } from "./service/dynamic-form.service";
-import { DynamicFormAutoFillService } from "./service/dynamic-form-autofill.service";
 import { DynamicIdDirective } from "./directive/dynamic-id.directive";
 import { DynamicTemplateDirective } from "./directive/dynamic-template.directive";
 
@@ -22,8 +21,7 @@ export class DynamicFormsCoreModule {
             ngModule: DynamicFormsCoreModule,
 
             providers: [
-                DynamicFormService,
-                DynamicFormAutoFillService
+                DynamicFormService
             ]
         };
     }

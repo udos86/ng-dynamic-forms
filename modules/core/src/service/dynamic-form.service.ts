@@ -1,17 +1,19 @@
 import { Injectable, Inject, Optional } from "@angular/core";
 import {
+    AbstractControl,
+    FormArray,
     FormBuilder,
     FormControl,
     FormGroup,
-    FormArray,
-    Validators,
     ValidatorFn,
     AsyncValidatorFn,
+    Validators,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS, AbstractControl, Validator
+    NG_ASYNC_VALIDATORS,
 } from "@angular/forms";
 import {
-    DynamicFormControlModel, DynamicValidatorConfig,
+    DynamicFormControlModel,
+    DynamicValidatorConfig,
     DynamicValidatorsMap
 } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
@@ -48,11 +50,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
-import { Utils } from "../core.utils";
+import { Utils } from "../utils/core.utils";
 
 export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
 
-export type ValidatorsToken = (Validator | Function)[];
+export type ValidatorsToken = (ValidatorFn | AsyncValidatorFn)[];
 
 @Injectable()
 export class DynamicFormService {
@@ -73,7 +75,7 @@ export class DynamicFormService {
 
         } else if (validatorsToken) { // Custom Validators
 
-            validatorFn = validatorsToken.find((validatorFn: any) => validatorFn.name === validatorName);
+            validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);
         }
 
         if (!Utils.isFunction(validatorFn)) {
@@ -81,23 +83,23 @@ export class DynamicFormService {
         }
 
         if (Utils.isDefined(validatorArgs)) {
-            return (validatorFn as ValidatorFactory)(validatorArgs);
+            return (validatorFn as Function)(validatorArgs);
         }
 
         return validatorFn;
     }
 
 
-    getValidators(validatorsMap: DynamicValidatorsMap,
+    getValidators(validatorsConfig: DynamicValidatorsMap,
                   validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[] {
 
         let validatorFns: ValidatorFn[] | AsyncValidatorFn[] = [];
 
-        if (Utils.isTrueObject(validatorsMap)) {
+        if (Utils.isTrueObject(validatorsConfig)) {
 
-            validatorFns = Object.keys(validatorsMap).map(validatorFnKey => {
+            validatorFns = Object.keys(validatorsConfig).map(validatorFnKey => {
 
-                let validatorConfig = validatorsMap[validatorFnKey],
+                let validatorConfig = validatorsConfig[validatorFnKey],
                     validatorName,
                     validatorArgs;
 

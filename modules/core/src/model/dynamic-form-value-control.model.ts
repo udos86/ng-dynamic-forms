@@ -6,7 +6,7 @@ import {
     ClsConfig
 } from "./dynamic-form-control.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { Utils } from "../core.utils";
+import { Utils } from "../utils/core.utils";
 
 export type DynamicFormControlValue = boolean | number | string | Date | Array<boolean | number | string>;
 

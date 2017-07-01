@@ -20,8 +20,8 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
-import { Utils } from "../core.utils";
-import * as relationUtils from "./dynamic-form-control-relation.utils";
+import { Utils } from "../utils/core.utils";
+import { RelationUtils } from "../utils/relation.utils";
 
 export interface DynamicFormControlEvent {
 
@@ -184,13 +184,13 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     protected setControlRelations(): void {
 
-        let relActivation = relationUtils.findActivationRelation(this.model.relation);
+        let relActivation = RelationUtils.findActivationRelation(this.model.relation);
 
         if (relActivation) {
 
             this.updateModelDisabled(relActivation);
 
-            relationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
+            RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
 
                 this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
@@ -200,7 +200,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(relationUtils.isFormControlToBeDisabled(relation, this.group));
+        this.model.disabledUpdates.next(RelationUtils.isFormControlToBeDisabled(relation, this.group));
     }
 
     unsubscribe(): void {

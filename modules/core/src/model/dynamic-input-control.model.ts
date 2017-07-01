@@ -1,8 +1,8 @@
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
-import { AUTOCOMPLETE_ON } from "../service/dynamic-form-autofill.service";
 import { serializable } from "../decorator/serializable.decorator";
-import { Utils } from "../core.utils";
+import { AUTOCOMPLETE_ON } from "../utils/autofill.utils";
+import { Utils } from "../utils/core.utils";
 
 export interface DynamicInputControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
 

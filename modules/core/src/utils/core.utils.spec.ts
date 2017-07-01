@@ -23,7 +23,7 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("tests if equals is working correctly", () => {
+    it("should detect equality correctly", () => {
 
         let testValue1 = "test",
             testValue2 = 5,
@@ -39,17 +39,17 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("tests if getValue is working correctly", () => {
+    it("should merge correctly", () => {
 
-        let valueA = Utils.merge(configObject.a, 4);
-        let valueB = Utils.merge(configObject.b, false);
-        let valueC = Utils.merge(configObject.c, null);
-        let valueD1 = Utils.merge(configObject.d, {prop1: 1});
-        let valueD2 = Utils.merge(configObject.d, {prop2: 3});
-        let valueE = Utils.merge(configObject.e, null);
+        let valueA = Utils.merge(configObject.a, 4),
+            valueB = Utils.merge(configObject.b, false),
+            valueC = Utils.merge(configObject.c, null),
+            valueD1 = Utils.merge(configObject.d, {prop1: 1}),
+            valueD2 = Utils.merge(configObject.d, {prop2: 3}),
+            valueE = Utils.merge(configObject.e, null);
 
-        let valueY = Utils.merge(configObject.y, false);
-        let valueZ = Utils.merge(configObject.z, null);
+        let valueY = Utils.merge(configObject.y, false),
+            valueZ = Utils.merge(configObject.z, null);
 
         expect(valueA).toBe(5);
         expect(valueB).toBe(true);
@@ -65,7 +65,7 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("tests if getValue recursion is working correctly", () => {
+    it("should merge recursively correctly", () => {
 
         let valueE = Utils.merge(configObject.e, {
             prop1: 10,
@@ -89,11 +89,11 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("tests if isEmptyString is working correctly", () => {
+    it("should detect empty strings correctly", () => {
 
-        let testString0 = undefined;
-        let testString1 = "";
-        let testString2 = "test string";
+        let testString0 = undefined,
+            testString1 = "",
+            testString2 = "test string";
 
         expect(Utils.isEmptyString(testString0)).toBe(true);
         expect(Utils.isEmptyString(testString1)).toBe(true);
@@ -101,11 +101,11 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("tests if isNumber is working correctly", () => {
+    it("should detect a number correctly", () => {
 
-        let testNumber0 = undefined;
-        let testNumber1 = 0;
-        let testNumber2 = 42;
+        let testNumber0 = undefined,
+            testNumber1 = 0,
+            testNumber2 = 42;
 
         expect(Utils.isNumber(testNumber0)).toBe(false);
         expect(Utils.isNumber(testNumber1)).toBe(true);
@@ -113,12 +113,36 @@ describe("Core Utils test suite", () => {
     });
 
 
+    it("should detect a non-null object correctly", () => {
+
+        let testObject1 = {},
+            testObject2 = null;
+
+        expect(Utils.isTrueObject(testObject1)).toBe(true);
+        expect(Utils.isTrueObject(testObject2)).toBe(false);
+    });
+
+
+    it("should detect a validator configuration correctly", () => {
+
+        let testConfig1: any = {name: "test"},
+            testConfig2: any = {args: null},
+            testConfig3: any = {name: "test", args: null},
+            testConfig4 = null;
+
+        expect(Utils.isValidatorConfig(testConfig1)).toBe(false);
+        expect(Utils.isValidatorConfig(testConfig2)).toBe(false);
+        expect(Utils.isValidatorConfig(testConfig3)).toBe(true);
+        expect(Utils.isValidatorConfig(testConfig4)).toBe(false);
+    });
+
+
     it("should convert a text mask to string correctly", () => {
 
-        let testValue1 = "test";
-        let testValue2 = /[1-9]/;
-        let testValue3 = [testValue1, testValue2];
-        let testResult3 = Utils.maskToString(testValue3) as string[];
+        let testValue1 = "test",
+            testValue2 = /[1-9]/,
+            testValue3 = [testValue1, testValue2],
+            testResult3 = Utils.maskToString(testValue3) as string[];
 
         expect(Utils.maskToString(testValue1)).toEqual(testValue1);
         expect(Utils.maskToString(testValue2)).toEqual(testValue2.toString());
@@ -129,10 +153,10 @@ describe("Core Utils test suite", () => {
 
     it("should recreate a text mask from string correctly", () => {
 
-        let testValue1 = "test";
-        let testValue2 = "/[1-9]/";
-        let testValue3 = [testValue1, testValue2];
-        let testResult3 = Utils.maskFromString(testValue3) as (string | RegExp)[];
+        let testValue1 = "test",
+            testValue2 = "/[1-9]/",
+            testValue3 = [testValue1, testValue2],
+            testResult3 = Utils.maskFromString(testValue3) as (string | RegExp)[];
 
         expect(Utils.maskFromString(testValue1)).toEqual(testValue1);
         expect(Utils.maskFromString(testValue2)).toEqual(new RegExp("[1-9]"));

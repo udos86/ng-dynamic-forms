@@ -105,31 +105,29 @@ export const AUTOFILL_FIELDS_CONTACT = [
     AUTOFILL_FIELD_TEL_LOCAL_EXTENSION, AUTOFILL_FIELD_EMAIL, AUTOFILL_FIELD_IMPP
 ];
 
-export class DynamicFormAutoFillService {
+export class AutoFillUtils {
 
-    constructor() {}
-
-    isAddressToken(token: string): boolean {
+    static isAddressToken(token: string): boolean {
         return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
     }
 
-    isContactField(token: string): boolean {
+    static isContactField(token: string): boolean {
         return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
     }
 
-    isContactToken(token: string): boolean {
+    static isContactToken(token: string): boolean {
         return AUTOFILL_TOKENS_CONTACT.indexOf(token) > -1;
     }
 
-    isField(token: string): boolean {
+    static isField(token: string): boolean {
         return AUTOFILL_FIELDS.indexOf(token) > -1;
     }
 
-    isSectionToken(token: string): boolean {
+    static isSectionToken(token: string): boolean {
         return token.startsWith("section-");
     }
 
-    validate(tokens: string): boolean {
+    static validate(tokens: string): boolean {
 
         let toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`,
             tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression),

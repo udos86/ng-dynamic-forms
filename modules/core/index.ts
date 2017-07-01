@@ -1,10 +1,9 @@
 export * from "./src/component/dynamic-form-control.component";
-export * from "./src/component/dynamic-form-control-relation.utils";
+
+export * from "./src/decorator/serializable.decorator";
 
 export * from "./src/directive/dynamic-template.directive";
 export * from "./src/directive/dynamic-id.directive";
-
-export * from "./src/decorator/serializable.decorator";
 
 export * from "./src/model/dynamic-form-control.model";
 export * from "./src/model/dynamic-form-value-control.model";
@@ -31,7 +30,9 @@ export * from "./src/model/textarea/dynamic-textarea.model";
 export * from "./src/model/timepicker/dynamic-timepicker.model";
 
 export * from "./src/service/dynamic-form.service";
-export * from "./src/service/dynamic-form-autofill.service";
+
+export * from "./src/utils/autofill.utils";
+export * from "./src/utils/core.utils";
+export * from "./src/utils/relation.utils";
 
 export * from "./src/core.module";
-export * from "./src/core.utils";

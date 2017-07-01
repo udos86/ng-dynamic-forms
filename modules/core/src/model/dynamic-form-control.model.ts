@@ -1,7 +1,7 @@
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { Utils } from "../core.utils";
+import { Utils } from "../utils/core.utils";
 
 export interface DynamicValidatorConfig {
 

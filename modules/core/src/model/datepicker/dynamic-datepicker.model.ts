@@ -1,6 +1,6 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { Utils } from "../../core.utils";
+import { Utils } from "../../utils/core.utils";
 import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynamic-date-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";

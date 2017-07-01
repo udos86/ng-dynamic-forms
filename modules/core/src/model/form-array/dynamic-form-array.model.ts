@@ -5,7 +5,7 @@ import {
     ClsConfig
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
-import { Utils } from "../../core.utils";
+import { Utils } from "../../utils/core.utils";
 
 export class DynamicFormArrayGroupModel {
 
