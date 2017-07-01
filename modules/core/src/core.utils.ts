@@ -28,6 +28,19 @@ export class Utils {
         return typeof value === "object";
     }
 
+    static isTrueObject(value: any): boolean {
+        return Utils.isDefined(value) && Utils.isObject(value);
+    }
+
+    static isValidatorConfig(value: any): boolean {
+
+        if (Utils.isTrueObject(value)) {
+            return value.hasOwnProperty("name") && value.hasOwnProperty("args");
+        }
+
+        return false;
+    }
+
     static isString(value: any): boolean {
         return typeof value === "string";
     }

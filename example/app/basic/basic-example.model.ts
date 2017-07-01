@@ -8,6 +8,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
+import { customValidator } from "../app.module";
 
 export const BASIC_EXAMPLE_MODEL = [
 
@@ -48,7 +49,10 @@ export const BASIC_EXAMPLE_MODEL = [
             required: null,
             minLength: 2,
             maxLength: 5,
-            customValidator: null
+            customValidator: {
+                name: customValidator.name,
+                args: null
+            }
         },
         errorMessages: {
             required: "{{label}} is required",
