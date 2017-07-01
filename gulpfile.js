@@ -136,8 +136,6 @@ gulp.task("build:modules", function (done) {
     runSequence(
         "build:modules:dist",
         "build:modules:test",
-        "clean:dist:npm",
-        "copy:dist:npm",
         done
     );
 });

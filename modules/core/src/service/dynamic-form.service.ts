@@ -8,7 +8,7 @@ import {
     ValidatorFn,
     AsyncValidatorFn,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS, AbstractControl
+    NG_ASYNC_VALIDATORS, AbstractControl, Validator
 } from "@angular/forms";
 import {
     DynamicFormControlModel, DynamicValidatorConfig,
@@ -50,6 +50,10 @@ import {
 } from "../model/timepicker/dynamic-timepicker.model";
 import { Utils } from "../core.utils";
 
+export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
+
+export type ValidatorsToken = (Validator | Function)[];
+
 @Injectable()
 export class DynamicFormService {
 
@@ -59,9 +63,9 @@ export class DynamicFormService {
 
 
     getValidatorFn(validatorName: string, validatorArgs: any = null,
-                   validatorsToken: any = this.NG_VALIDATORS): ValidatorFn | AsyncValidatorFn | never {
+                   validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn | AsyncValidatorFn | never {
 
-        let validatorFn: (args: any) => (ValidatorFn | AsyncValidatorFn) | ValidatorFn | AsyncValidatorFn | null = null;
+        let validatorFn: ValidatorFactory | ValidatorFn | AsyncValidatorFn | null = null;
 
         if (Validators.hasOwnProperty(validatorName)) { // Angular Standard Validators
 
@@ -77,7 +81,7 @@ export class DynamicFormService {
         }
 
         if (Utils.isDefined(validatorArgs)) {
-            return validatorFn(validatorArgs);
+            return (validatorFn as ValidatorFactory)(validatorArgs);
         }
 
         return validatorFn;
@@ -85,7 +89,7 @@ export class DynamicFormService {
 
 
     getValidators(validatorsMap: DynamicValidatorsMap,
-                  validatorsToken: any = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[] {
+                  validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[] {
 
         let validatorFns: ValidatorFn[] | AsyncValidatorFn[] = [];
 

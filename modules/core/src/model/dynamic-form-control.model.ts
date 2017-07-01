@@ -9,7 +9,7 @@ export interface DynamicValidatorConfig {
     args: any;
 }
 
-export type DynamicValidatorsMap = { [validatorName: string]: any | DynamicValidatorConfig };
+export type DynamicValidatorsMap = { [validatorKey: string]: any | DynamicValidatorConfig };
 
 export interface Cls {
 

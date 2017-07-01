@@ -28,13 +28,7 @@ import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
-
-export function customValidator(control: AbstractControl): ValidationErrors | null {
-
-    let hasError = control.value ? (control.value as string).startsWith("abc") : false;
-
-    return hasError ? {customValidator: true} : null;
-}
+import { AppValidators } from "./app.validators";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -84,7 +78,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         },
         {
             provide: NG_VALIDATORS,
-            useValue: customValidator,
+            useValue: AppValidators.customValidator,
             multi: true
         }
     ],
