@@ -645,7 +645,7 @@ Finally **you can determine whether the template is rendered before or after the
 
 ## Custom Validators
 
-Adding built-in Angular validators to any `DynamicFormValueControlModel` is plain an simple! 
+Adding built-in Angular validators to any `DynamicFormValueControlModel` is plain and simple! 
 
 Just reference a function from `Validators` class by it's name in the `validators` or `asyncValidators` configuration object:
 ```ts 
@@ -666,7 +666,7 @@ But what if you'd like to use a custom validator as well?
 
 **At first use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your function**:
 ```ts
-export AppValidators { 
+export class AppValidators { 
 
     static customValidator(control: AbstractControl): ValidationErrors | null {
 
@@ -676,7 +676,8 @@ export AppValidators {
     }
 }
 ```
-```
+
+```ts
 @NgModule({
     // ...
     providers: [
