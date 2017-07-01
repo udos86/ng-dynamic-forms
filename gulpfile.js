@@ -13,10 +13,12 @@ const TASK_BUNDLE_ROLLUP        = require("./build/tasks/bundle-rollup-stream"),
       TASK_TRANSPILE_TYPESCRIPT = require("./build/tasks/transpile-typescript"),
       TASK_DOC_TYPESCRIPT       = require("./build/tasks/doc-typescript");
 
-const SRC_PATH       = "./modules",
+const NPM_SCOPE      = "@ng2-dynamic-forms",
+      SRC_PATH       = "./modules",
       DIST_BASE_PATH = "./dist",
-      DIST_PATH      = `${DIST_BASE_PATH}/@ng2-dynamic-forms`,
-      NPM_PATH       = "./node_modules",
+      DIST_PATH      = `${DIST_BASE_PATH}/${NPM_SCOPE}`,
+      NPM_BASE_PATH  = "./node_modules",
+      NPM_PATH       = `${NPM_BASE_PATH}/${NPM_SCOPE}`,
       TEST_PATH      = "./test",
       MODULE_TASKS   = [],
       MODULES        = [
@@ -56,10 +58,13 @@ gulp.task("lint:modules",
 
 
 gulp.task("clean:dist",
-    TASK_CLEAN([`${DIST_PATH}**/*`]));
+    TASK_CLEAN([`${DIST_BASE_PATH}**/*`]));
 
 gulp.task("clean:test",
     TASK_CLEAN([`${TEST_PATH}/**/*`]));
+
+gulp.task("clean:dist:npm",
+    TASK_CLEAN([`${NPM_PATH}**/*`]));
 
 
 gulp.task("copy:modules:dist",
@@ -69,7 +74,7 @@ gulp.task("copy:modules:test",
     TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
 
 gulp.task("copy:dist:npm",
-    TASK_COPY([`${DIST_BASE_PATH}/**/*.*`], NPM_PATH));
+    TASK_COPY([`${DIST_BASE_PATH}/**/*.*`], NPM_BASE_PATH));
 
 
 gulp.task("preprocess:modules:dist",
@@ -131,6 +136,7 @@ gulp.task("build:modules", function (done) {
     runSequence(
         "build:modules:dist",
         "build:modules:test",
+        "clean:dist:npm",
         "copy:dist:npm",
         done
     );

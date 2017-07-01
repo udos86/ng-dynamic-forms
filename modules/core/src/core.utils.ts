@@ -96,4 +96,11 @@ export class Utils {
             return (mask as string[]).map(value => Utils.maskFromString(value)) as string[];
         }
     }
+
+    static parseJSONReviver(key: string, value: any): any {
+
+        let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+
+        return Utils.isString(value) && regexDateISO.test(value) ? new Date(value) : value;
+    }
 }

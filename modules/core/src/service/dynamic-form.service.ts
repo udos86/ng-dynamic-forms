@@ -58,66 +58,63 @@ export class DynamicFormService {
                 @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
 
 
-    private parseJSONReviver(key: string, value: any): any {
+    getValidatorFn(validatorName: string, validatorArgs: any = null,
+                   validatorsToken: any = this.NG_VALIDATORS): ValidatorFn | AsyncValidatorFn | never {
 
-        let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
-
-        return Utils.isString(value) && regexDateISO.test(value) ? new Date(value) : value;
-    }
-
-
-    getValidatorFn(validatorName: string, validatorArgs?: any,
-                   validatorFnToken: any = this.NG_VALIDATORS): ValidatorFn | AsyncValidatorFn | never {
-
-        let validatorFn: Function | null = null;
+        let validatorFn: (args: any) => (ValidatorFn | AsyncValidatorFn) | ValidatorFn | AsyncValidatorFn | null = null;
 
         if (Validators.hasOwnProperty(validatorName)) { // Angular Standard Validators
 
             validatorFn = (Validators as any)[validatorName];
 
-        } else if (validatorFnToken) { // Custom Validators
+        } else if (validatorsToken) { // Custom Validators
 
-            validatorFn = validatorFnToken.find((validatorFn: any) => validatorFn.name === validatorName);
+            validatorFn = validatorsToken.find((validatorFn: any) => validatorFn.name === validatorName);
         }
 
         if (!Utils.isFunction(validatorFn)) {
             throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
         }
 
-        return Utils.isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
+        if (Utils.isDefined(validatorArgs)) {
+            return validatorFn(validatorArgs);
+        }
+
+        return validatorFn;
     }
 
 
-    getValidators(config: DynamicValidatorsMap,
-                  validatorFnsToken: any = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[]   {
+    getValidators(validatorsMap: DynamicValidatorsMap,
+                  validatorsToken: any = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[] {
 
         let validatorFns: ValidatorFn[] | AsyncValidatorFn[] = [];
 
-        if (Utils.isDefined(config)) {
+        if (Utils.isTrueObject(validatorsMap)) {
 
-            validatorFns = Object.keys(config).map(key => {
+            validatorFns = Object.keys(validatorsMap).map(validatorFnKey => {
 
-                let value = config[key],
+                let validatorConfig = validatorsMap[validatorFnKey],
                     validatorName,
                     validatorArgs;
 
-                if (Utils.isValidatorConfig(value)) {
+                if (Utils.isValidatorConfig(validatorConfig)) {
 
-                    validatorName = (value as DynamicValidatorConfig).name;
-                    validatorArgs = (value as DynamicValidatorConfig).args;
+                    validatorName = (validatorConfig as DynamicValidatorConfig).name;
+                    validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
 
                 } else {
 
-                    validatorName = key;
-                    validatorArgs = value;
+                    validatorName = validatorFnKey;
+                    validatorArgs = validatorConfig;
                 }
 
-                return this.getValidatorFn(validatorName, validatorArgs, validatorFnsToken);
+                return this.getValidatorFn(validatorName, validatorArgs, validatorsToken);
             });
         }
 
         return validatorFns;
     }
+
 
     createFormArray(model: DynamicFormArrayModel): FormArray {
 
@@ -336,7 +333,7 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let raw = Utils.isString(json) ? JSON.parse(json as string, this.parseJSONReviver) : json,
+        let raw = Utils.isString(json) ? JSON.parse(json as string, Utils.parseJSONReviver) : json,
             group: DynamicFormControlModel[] = [];
 
         raw.forEach((model: any) => {
@@ -344,7 +341,7 @@ export class DynamicFormService {
             switch (model.type) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                    model.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
+                    (model as DynamicFormArrayModel).groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
                         groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
                     });
                     model.createGroup = () => this.fromJSON(model.origin);

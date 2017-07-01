@@ -451,6 +451,7 @@ describe("DynamicFormService test suite", () => {
         expect(validators.length === Object.keys(config).length).toBe(true);
     });
 
+
     it("should resolve custom validators from config correctly", () => {
 
         let config: any = {required: null, maxLength: 7, testValidator: null},
@@ -458,6 +459,16 @@ describe("DynamicFormService test suite", () => {
 
         expect(validators.length === Object.keys(config).length).toBe(true);
     });
+
+
+    it("should resolve custom validators from detailed config correctly", () => {
+
+        let config: any = {testValidator: {name: testValidator.name, args: null}},
+            validators = service.getValidators(config);
+
+        expect(validators.length === Object.keys(config).length).toBe(true);
+    });
+
 
     it("should resolve custom async validators from config correctly", inject([NG_ASYNC_VALIDATORS], (NG_ASYNC_VALIDATORS: any) => {
 
