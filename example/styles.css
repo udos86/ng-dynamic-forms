@@ -118,14 +118,14 @@ form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     margin: 0.8rem 0;
 }
 
-.form-array fieldset:not(:last-of-type) .btn-success,
-.form-array fieldset:not(:last-of-type) .button.success,
-.form-array fieldset:first-of-type .btn-default:nth-of-type(2),
-.form-array fieldset:last-of-type .btn-default:nth-of-type(3),
-.form-array fieldset:first-of-type .button.primary:nth-of-type(2),
-.form-array fieldset:last-of-type .button.primary:nth-of-type(3),
-.form-array fieldset:only-of-type .btn-danger,
-.form-array fieldset:only-of-type .button.alert {
+.form-array [role="group"]:not(:last-of-type) .btn-success,
+.form-array [role="group"]:not(:last-of-type) .button.success,
+.form-array [role="group"]:first-of-type .btn-default:nth-of-type(2),
+.form-array [role="group"]:last-of-type .btn-default:nth-of-type(3),
+.form-array [role="group"]:first-of-type .button.primary:nth-of-type(2),
+.form-array [role="group"]:last-of-type .button.primary:nth-of-type(3),
+.form-array [role="group"]:only-of-type .btn-danger,
+.form-array [role="group"]:only-of-type .button.alert {
     display: none;
 }
 

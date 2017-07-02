@@ -48,7 +48,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    filter: EventEmitter<DynamicFormControlEvent>;
+    //filter: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
@@ -236,7 +236,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         if ($event && $event instanceof Event) { // native HTML5 change event
 
-            $event.stopPropagation();
+            ($event as Event).stopPropagation();
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 

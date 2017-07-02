@@ -24,15 +24,18 @@
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
 
-                <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+                <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
+                     [formGroupName]="idx"
+                     [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                    <dynamic-form-foundation-sites-control *ngFor="let controlModel of groupModel.group"
+                    <dynamic-form-foundation-sites-control *ngFor="let itemModel of groupModel.group"
                                                            [bindId]="false"
                                                            [context]="groupModel"
                                                            [group]="control.at(idx)"
-                                                           [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                           [model]="controlModel"
+                                                           [hasErrorMessaging]="itemModel.hasErrorMessages"
+                                                           [model]="itemModel"
                                                            [nestedTemplates]="templates"
+                                                           [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
                                                            (blur)="onFocusChange($event)"
                                                            (change)="onValueChange($event)"
                                                            (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
@@ -40,7 +43,7 @@
                     <ng-template [ngTemplateOutlet]="template?.templateRef"
                                  [ngTemplateOutletContext]="groupModel"></ng-template>
 
-                </fieldset>
+                </div>
 
             </div>
 
@@ -63,7 +66,7 @@
                     [innerHTML]="model.label"></span></label>
 
 
-            <fieldset *ngSwitchCase="3"
+            <div *ngSwitchCase="3" role="group"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -71,15 +74,16 @@
 
                 <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-                <dynamic-form-foundation-sites-control *ngFor="let controlModel of model.group"
+                <dynamic-form-foundation-sites-control *ngFor="let itemModel of model.group"
                                                        [group]="control"
-                                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                       [model]="controlModel"
+                                                       [hasErrorMessaging]="itemModel.hasErrorMessages"
+                                                       [model]="itemModel"
                                                        [nestedTemplates]="templates"
+                                                       [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
                                                        (blur)="onFocusChange($event)"
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
-            </fieldset>
+            </div>
 
 
             <div *ngSwitchCase="4" class="input-group">
@@ -125,7 +129,7 @@
             </div>
 
 
-            <fieldset *ngSwitchCase="5" role="radiogroup"
+            <div *ngSwitchCase="5" role="radiogroup"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
@@ -143,7 +147,7 @@
                            (blur)="onFocusChange($event)"
                            (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
-            </fieldset>
+            </div>
 
 
             <select *ngSwitchCase="6"

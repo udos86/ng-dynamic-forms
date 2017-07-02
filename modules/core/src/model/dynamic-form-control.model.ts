@@ -16,7 +16,9 @@ export interface Cls {
     container?: string;
     control?: string;
     errors?: string;
+    group?: string;
     hint?: string;
+    host?: string;
     label?: string;
 }
 
@@ -54,8 +56,8 @@ export abstract class DynamicFormControlModel {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = Utils.merge(cls.element, {container: "", control: "", errors: "", hint: "", label: ""});
-        this.cls.grid = Utils.merge(cls.grid, {container: "", control: "", errors: "", hint: "", label: ""});
+        this.cls.element = Utils.merge(cls.element, {container: "", control: "", errors: "", group: "", hint: "", host: "", label: ""});
+        this.cls.grid = Utils.merge(cls.grid, {container: "", control: "", errors: "", group: "", hint: "", host: "", label: ""});
 
         this._disabled = Utils.isBoolean(config.disabled) ? config.disabled : false;
         this.errorMessages = config.errorMessages || null;
