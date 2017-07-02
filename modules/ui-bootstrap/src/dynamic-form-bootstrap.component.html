@@ -47,15 +47,17 @@
                  [formArrayName]="model.id"
                  [ngClass]="model.cls.element.control">
 
-                <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+                <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
+                     [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                    <dynamic-form-bootstrap-control *ngFor="let controlModel of groupModel.group"
+                    <dynamic-form-bootstrap-control *ngFor="let item of groupModel.group"
                                                     [bindId]="false"
                                                     [context]="groupModel"
                                                     [group]="control.at(idx)"
-                                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                    [model]="controlModel"
+                                                    [hasErrorMessaging]="item.hasErrorMessages"
+                                                    [model]="item"
                                                     [nestedTemplates]="templates"
+                                                    [ngClass]="[item.cls.element.host, item.cls.grid.host]"
                                                     (blur)="onFocusChange($event)"
                                                     (change)="onValueChange($event)"
                                                     (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
@@ -63,7 +65,7 @@
                     <ng-template [ngTemplateOutlet]="template?.templateRef"
                                  [ngTemplateOutletContext]="groupModel"></ng-template>
 
-                </fieldset>
+                </div>
 
             </div>
 
@@ -82,6 +84,7 @@
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                 [model]="controlModel"
                                                 [nestedTemplates]="templates"
+                                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                 (blur)="onFocusChange($event)"
                                                 (change)="onValueChange($event)"
                                                 (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
@@ -207,7 +210,9 @@
         [class.hidden]="!showErrorMessages"
         [ngClass]="[model.cls.grid.errors]">
 
-        <li *ngFor="let message of errorMessages" class="help-block" [ngClass]="[model.cls.element.errors]">{{message}}</li>
+        <li *ngFor="let message of errorMessages" class="help-block" [ngClass]="[model.cls.element.errors]">
+            {{message}}
+        </li>
 
     </ul>
 

@@ -25,17 +25,16 @@
                  [ngClass]="model.cls.element.control">
 
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                     [formGroupName]="idx"
-                     [ngClass]="[model.cls.element.group, model.cls.grid.group]">
+                     [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                    <dynamic-form-foundation-sites-control *ngFor="let itemModel of groupModel.group"
+                    <dynamic-form-foundation-sites-control *ngFor="let item of groupModel.group"
                                                            [bindId]="false"
                                                            [context]="groupModel"
                                                            [group]="control.at(idx)"
-                                                           [hasErrorMessaging]="itemModel.hasErrorMessages"
-                                                           [model]="itemModel"
+                                                           [hasErrorMessaging]="item.hasErrorMessages"
+                                                           [model]="item"
                                                            [nestedTemplates]="templates"
-                                                           [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
+                                                           [ngClass]="[item.cls.element.host, item.cls.grid.host]"
                                                            (blur)="onFocusChange($event)"
                                                            (change)="onValueChange($event)"
                                                            (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
@@ -129,7 +128,7 @@
             </div>
 
 
-            <div *ngSwitchCase="5" role="radiogroup"
+            <fieldset *ngSwitchCase="5" role="radiogroup"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
@@ -147,7 +146,7 @@
                            (blur)="onFocusChange($event)"
                            (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
 
-            </div>
+            </fieldset>
 
 
             <select *ngSwitchCase="6"
