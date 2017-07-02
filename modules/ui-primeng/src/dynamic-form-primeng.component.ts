@@ -42,7 +42,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    isString
+    Utils
 } from "@ng2-dynamic-forms/core";
 import {
     PrimeNGFormControlType,
@@ -113,7 +113,7 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
         super.setTemplates();
 
         this.templates
-            .filter(directive => isString(directive.as))
+            .filter(directive => Utils.isString(directive.as))
             .forEach(directive => this.setTemplateDirective(directive));
     }
 

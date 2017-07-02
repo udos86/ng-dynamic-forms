@@ -20,8 +20,8 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
-import { isDefined } from "../utils";
-import * as relationUtils from "./dynamic-form-control-relation.utils";
+import { Utils } from "../utils/core.utils";
+import { RelationUtils } from "../utils/relation.utils";
 
 export interface DynamicFormControlEvent {
 
@@ -48,7 +48,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    filter: EventEmitter<DynamicFormControlEvent>;
+    //filter: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
@@ -92,7 +92,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     ngOnInit(): void {
 
-        if (!isDefined(this.model) || !isDefined(this.group)) {
+        if (!Utils.isDefined(this.model) || !Utils.isDefined(this.group)) {
             throw new Error(`no [model] or [group] input set for DynamicFormControlComponent`);
         }
     }
@@ -110,7 +110,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>,
             messages = [];
 
-        if (isDefined(model.errorMessages)) {
+        if (Utils.isDefined(model.errorMessages)) {
 
             for (let validatorName in this.control.errors) {
 
@@ -184,13 +184,13 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     protected setControlRelations(): void {
 
-        let relActivation = relationUtils.findActivationRelation(this.model.relation);
+        let relActivation = RelationUtils.findActivationRelation(this.model.relation);
 
         if (relActivation) {
 
             this.updateModelDisabled(relActivation);
 
-            relationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
+            RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
 
                 this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
@@ -200,7 +200,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(relationUtils.isFormControlToBeDisabled(relation, this.group));
+        this.model.disabledUpdates.next(RelationUtils.isFormControlToBeDisabled(relation, this.group));
     }
 
     unsubscribe(): void {
@@ -236,7 +236,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         if ($event && $event instanceof Event) { // native HTML5 change event
 
-            $event.stopPropagation();
+            ($event as Event).stopPropagation();
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 

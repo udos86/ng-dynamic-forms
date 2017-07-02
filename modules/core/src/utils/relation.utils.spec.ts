@@ -4,9 +4,9 @@ import { DynamicFormService } from "../service/dynamic-form.service";
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import * as utils from "./dynamic-form-control-relation.utils";
+import { RelationUtils } from "./relation.utils";
 
-describe("DynamicFormRelationService test suite", () => {
+describe("FormControlRelation utils test suite", () => {
 
     let controlGroup: FormGroup,
         model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"}),
@@ -91,40 +91,40 @@ describe("DynamicFormRelationService test suite", () => {
 
     beforeEach(inject([DynamicFormService], (formService: DynamicFormService) => {
 
-            controlGroup = formService.createFormGroup([
+        controlGroup = formService.createFormGroup([
 
-                new DynamicSelectModel({
+            new DynamicSelectModel({
 
-                    id: "testSelect",
-                    options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
-                    value: "option-1"
-                }),
+                id: "testSelect",
+                options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
+                value: "option-1"
+            }),
 
-                new DynamicRadioGroupModel({
+            new DynamicRadioGroupModel({
 
-                    id: "testRadioGroup",
-                    options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
-                    value: "option-1"
-                }),
+                id: "testRadioGroup",
+                options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
+                value: "option-1"
+            }),
 
-                model
-            ]);
-        }));
+            model
+        ]);
+    }));
 
     it("should find an activation relation correctly", () => {
 
         model.relation = [rel1];
-        expect(utils.findActivationRelation(model.relation)).toBe(rel1);
+        expect(RelationUtils.findActivationRelation(model.relation)).toBe(rel1);
 
         model.relation = [rel2];
-        expect(utils.findActivationRelation(model.relation)).toBe(rel2);
+        expect(RelationUtils.findActivationRelation(model.relation)).toBe(rel2);
     });
 
     it("should get all related form controls correctly", () => {
 
         model.relation = [rel2];
 
-        expect(utils.getRelatedFormControls(model, controlGroup).length).toBe(2);
+        expect(RelationUtils.getRelatedFormControls(model, controlGroup).length).toBe(2);
     });
 
     it("should throw when model depends on itself", () => {
@@ -139,28 +139,28 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         }];
 
-        expect(() => utils.getRelatedFormControls(model, controlGroup))
+        expect(() => RelationUtils.getRelatedFormControls(model, controlGroup))
             .toThrow(new Error(`FormControl ${model.id} cannot depend on itself`));
     });
 
     it("should check if form control is to be disabled correctly", () => {
 
         model.relation = [rel1];
-        expect(utils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
 
         model.relation = [rel2];
-        expect(utils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
+        expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
 
         model.relation = [rel3];
-        expect(utils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
 
         model.relation = [rel4];
-        expect(utils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
 
         model.relation = [rel5];
-        expect(utils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
+        expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
-        expect(utils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
     });
 });

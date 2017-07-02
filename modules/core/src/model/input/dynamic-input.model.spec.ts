@@ -3,7 +3,7 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT,
     DynamicInputModel
 } from "./dynamic-input.model";
-import { AUTOCOMPLETE_ON } from "../../service/dynamic-form-autofill.service";
+import { AUTOCOMPLETE_ON } from "../../utils/autofill.utils";
 
 describe("DynamicInputModel test suite", () => {
 

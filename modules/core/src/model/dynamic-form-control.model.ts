@@ -1,16 +1,24 @@
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { merge, isBoolean, isDefined, isEmptyString } from "../utils";
+import { Utils } from "../utils/core.utils";
 
-export type DynamicValidatorsMap = {[validatorName: string]: any};
+export interface DynamicValidatorConfig {
+
+    name: string;
+    args: any;
+}
+
+export type DynamicValidatorsMap = { [validatorKey: string]: any | DynamicValidatorConfig };
 
 export interface Cls {
 
     container?: string;
     control?: string;
     errors?: string;
+    group?: string;
     hint?: string;
+    host?: string;
     label?: string;
 }
 
@@ -44,14 +52,14 @@ export abstract class DynamicFormControlModel {
 
     constructor(config: DynamicFormControlModelConfig, cls: ClsConfig = {}) {
 
-        if (isEmptyString(config.id)) {
+        if (Utils.isEmptyString(config.id)) {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = merge(cls.element, {container: "", control: "", errors: "", hint: "", label: ""});
-        this.cls.grid = merge(cls.grid, {container: "", control: "", errors: "", hint: "", label: ""});
+        this.cls.element = Utils.merge(cls.element, {container: "", control: "", errors: "", group: "", hint: "", host: "", label: ""});
+        this.cls.grid = Utils.merge(cls.grid, {container: "", control: "", errors: "", group: "", hint: "", host: "", label: ""});
 
-        this._disabled = isBoolean(config.disabled) ? config.disabled : false;
+        this._disabled = Utils.isBoolean(config.disabled) ? config.disabled : false;
         this.errorMessages = config.errorMessages || null;
         this.id = config.id;
         this.label = config.label || null;
@@ -71,7 +79,7 @@ export abstract class DynamicFormControlModel {
     }
 
     get hasErrorMessages(): boolean {
-        return isDefined(this.errorMessages);
+        return Utils.isDefined(this.errorMessages);
     }
 
     toJSON() {

@@ -38,12 +38,12 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
                 label: "text-right middle font-bold",
             },
             grid: {
-                control: "small-9 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                label: "small-3 cell"
             }
         }
     ),
@@ -75,12 +75,12 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
                 label: "text-right font-bold"
             },
             grid: {
-                control: "small-9 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                label: "small-3 cell"
             }
         }
     ),
@@ -104,13 +104,13 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
                 label: "text-right middle font-bold"
             },
             grid: {
-                control: "small-9 columns",
-                errors: "small-9 small-offset-3 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                errors: "small-9 small-offset-3 cell",
+                label: "small-3 cell"
             }
         }
     ),
@@ -137,12 +137,12 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
                 label: "text-right font-bold"
             },
             grid: {
-                control: "small-9 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                label: "small-3 cell"
             }
         }
     ),
@@ -157,13 +157,13 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
                 control: "small",
                 label: "text-right font-bold"
             },
             grid: {
-                control: "small-9 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                label: "small-3 cell"
             }
         }
     ),
@@ -185,13 +185,13 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
                 label: "text-right font-bold"
             },
             grid: {
-                control: "small-9 columns",
-                errors: "small-9 small-offset-3 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                errors: "small-9 small-offset-3 cell",
+                label: "small-3 cell"
             }
         }
     ),
@@ -202,11 +202,9 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             label: "I do agree"
         },
         {
-            element: {
-                container: "row"
-            },
             grid: {
-                control: "small-offset-3 small-9 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-offset-3 small-9 cell"
             }
         }
     ),
@@ -220,12 +218,12 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                 return [
                     new DynamicInputModel(
                         {
-                            id: "basicArrayGroupInput",
+                            id: "basicArrayGroupInput1",
                             placeholder: "example array group input"
                         },
                         {
                             grid: {
-                                control: "small-8 columns",
+                                host: "small-7 cell",
                             }
                         }
                     )
@@ -234,13 +232,14 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row float-clear form-array",
-                control: "row",
+                container: "form-array",
                 label: "text-right font-bold"
             },
             grid: {
-                control: "small-9 columns",
-                label: "small-3 columns"
+                container: "grid-x grid-padding-x",
+                control: "small-9 cell",
+                group: "grid-x grid-padding-x",
+                label: "small-3 cell"
             }
         }
     )

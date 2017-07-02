@@ -1,3 +1,17 @@
+# 1.4.17
+
+### **Minor Breaking Change**
+
+* `DynamicFormAutoFillService` **has been refactored to a simple utility class** `AutoFillUtils` (see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#autocompletion))
+
+### **Features** 
+
+* **alternate custom validator notation to support production builds with Angular CLI** (closes [#424](https://github.com/udos86/ng2-dynamic-forms/issues/424) - see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#custom-validators))
+* new CSS class config properties `group` and `host` added for more flexible custom layouts
+* support for new Foundation XY Grid 
+* form array groups are now contained by a `<div>` instead of `<fieldset>` due to CSS Flexbox bug
+
+
 # 1.4.16
 
 ### **Minor Breaking Change**

@@ -186,7 +186,7 @@ describe("DynamicFormService test suite", () => {
         let json = JSON.stringify(testModel),
             formModel = service.fromJSON(json);
 
-        expect(Array.isArray(formModel)).toBe(true);
+        expect(Array.isArray(formModel) as boolean).toBe(true);
 
         expect(formModel[0] instanceof DynamicSelectModel).toBe(true);
         expect(formModel[1] instanceof DynamicInputModel).toBe(true);
@@ -451,6 +451,7 @@ describe("DynamicFormService test suite", () => {
         expect(validators.length === Object.keys(config).length).toBe(true);
     });
 
+
     it("should resolve custom validators from config correctly", () => {
 
         let config: any = {required: null, maxLength: 7, testValidator: null},
@@ -459,23 +460,27 @@ describe("DynamicFormService test suite", () => {
         expect(validators.length === Object.keys(config).length).toBe(true);
     });
 
-    it("should resolve custom async validators from config correctly", () => {
 
-        let config: any = {required: null, maxLength: 7, testAsyncValidator: null},
-            validators = service.getAsyncValidators(config);
+    it("should resolve custom validators from detailed config correctly", () => {
+
+        let config: any = {testValidator: {name: testValidator.name, args: null}},
+            validators = service.getValidators(config);
 
         expect(validators.length === Object.keys(config).length).toBe(true);
     });
 
+
+    it("should resolve custom async validators from config correctly", inject([NG_ASYNC_VALIDATORS], (NG_ASYNC_VALIDATORS: any) => {
+
+        let config: any = {required: null, maxLength: 7, testAsyncValidator: null},
+            validators = service.getValidators(config, NG_ASYNC_VALIDATORS);
+
+        expect(validators.length === Object.keys(config).length).toBe(true);
+    }));
+
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
         expect(() => service.getValidatorFn("test", null))
-            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS`));
-    });
-
-    it("should throw when validator is not provided via NG_ASYNC_VALIDATORS", () => {
-
-        expect(() => service.getAsyncValidatorFn("test", null))
-            .toThrow(new Error(`async validator "test" is not provided via NG_ASYNC_VALIDATORS`));
+            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 });

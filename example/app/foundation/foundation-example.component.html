@@ -1,6 +1,6 @@
 <div class="overflow-hidden content-margin" style="width: 50%;">
 
-    <form class="form-horizontal" [formGroup]="formGroup">
+    <form [formGroup]="formGroup">
 
         <dynamic-form-foundation-sites-control *ngFor="let controlModel of formModel"
                                                [group]="formGroup"
@@ -12,7 +12,7 @@
 
             <ng-template modelId="foundationFormArray" let-context="context" let-index="index">
 
-                <div class="small-4 columns">
+                <div class="small-5 cell">
 
                     <button type="button" class="button alert rounded" (click)="remove(context, index)">&#10005;</button>
                     <button type="button" class="button primary rounded" (click)="move(context, index, -1)">&#9650;</button>

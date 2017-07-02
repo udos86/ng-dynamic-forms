@@ -8,7 +8,7 @@
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
 
 ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
-[**dynamic forms cookbook**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
+[**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
 It highly simplifies the implementing of reactive Angular forms by building
 upon a layer of maintainable form control models to **fully automate form UI creation**.
@@ -645,9 +645,9 @@ Finally **you can determine whether the template is rendered before or after the
 
 ## Custom Validators
 
-Adding built-in validators to any `DynamicFormValueControlModel` is dead easy! 
+Adding built-in Angular validators to any `DynamicFormValueControlModel` is plain and simple! 
 
-Just reference a `Validators` function by it's name in the `validators` or `asyncValidators` configuration object and ng2 Dynamic Forms will do the rest:
+Just reference a function from `Validators` class by it's name in the `validators` or `asyncValidators` configuration object:
 ```ts 
 new DynamicInputModel({
 
@@ -660,42 +660,54 @@ new DynamicInputModel({
 })
 ```
 
-So far so good! But what if you'd like to use a custom validator as well?
+So far so good! 
+
+But what if you'd like to use a custom validator as well?
 
 **At first use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your function**:
-```ts 
-export function customValidator(control: AbstractControl): ValidationErrors | null {
+```ts
+export class AppValidators { 
 
-    let hasError = control.value ? (control.value as string).startsWith("abc") : false;
+    static customValidator(control: AbstractControl): ValidationErrors | null {
 
-    return hasError ? {customValidator: true} : null;
+        let hasError = control.value ? (control.value as string).startsWith("abc") : false;
+
+        return hasError ? {customValidator: true} : null;
+    }
 }
+```
 
+```ts
 @NgModule({
     // ...
     providers: [
-        {provide: NG_VALIDATORS, useValue: customValidator, multi: true}
+        {provide: NG_VALIDATORS, useValue: AppValidators.customValidator, multi: true}
     ]
 })
 ``` 
 
 > **Note:** thoughtram.io - [Custom Validators in Angular 2](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html)
 
-**And as if by magic you can now apply your custom validator, too**:
+**You're now ready to apply your custom validator to your model as well**:
 ```ts 
 new DynamicInputModel({
 
     id: "myInput",
     label: "My Input",
     validators: {
-        required: null,
-        minLength: 3,
         customValidator: null
     }
 })
 ```
 
-**CAUTION:** When uglifying your code for production **you need to exclude all custom validator function names from mangling** to avoid a runtime exception: 
+**But beware! There's a catch!**
+
+Internally ng2 Dynamic Forms resolves a declared validator by it's function name.
+
+Though **when uglifying code** for production this **information is irretrievably lost**.
+
+So to **avoid a runtime exception** you actually would have to **exclude all custom validator function names from mangling**:
+
 ```ts 
 plugins: [
     new webpack.optimize.UglifyJsPlugin({
@@ -704,6 +716,23 @@ plugins: [
         }
      })
 ]
+```
+
+However when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** unless running `ng eject`.
+
+That's when **you should make use of the alternate validator notation**:
+```ts 
+new DynamicInputModel({
+
+    id: "myInput",
+    label: "My Input",
+    validators: {
+        customValidator: {
+            name: customValidator.name,
+            args: null
+        }
+    }
+})
 ```
 
 
@@ -996,29 +1025,29 @@ let model = new DynamicInputModel({
 
 Further on ng2 Dynamic Forms embraces the brand new HTML5 
 [**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
-`AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `DynamicFormAutoFillService` to help you putting together a valid expression:
+`AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `AutoFillUtils` to help you putting together a valid expression:
 
 > **Note:** Jason Grigsby - [Autofill: What web devs should know, but don’t](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
 
 ```ts
 import {
-    DynamicFormAutoFillService,
+    AutoFillUtils,
     AUTOFILL_TOKEN_BILLING, 
     AUTOFILL_FIELD_NAME, 
     AUTOCOMPLETE_ON
 } from "@ng2-dynamic-forms/core";
 
-export class MyAutoFillExample {
+export class MySample {
 
-    constructor(private autoFillService: DynamicFormAutoFillService) {
+    constructor() {
     
         let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
 
         let model = new DynamicInputModel({
         
-            autoComplete: autoFillService.validate(expression) ? expression : AUTOCOMPLETE_ON
+            autoComplete: AutoFillUtils.validate(expression) ? expression : AUTOCOMPLETE_ON
           
-            //...all remaining properties
+            //...
         });
     }
 }

@@ -18,14 +18,17 @@
              [formArrayName]="model.id"
              [ngClass]="model.cls.element.control">
 
-            <fieldset *ngFor="let groupModel of model.groups; let idx = index" [formGroupName]="idx">
+            <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
+                 [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
                 <dynamic-form-kendo-control *ngFor="let controlModel of groupModel.group"
                                             [bindId]="false"
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
+                                            [hasErrorMessaging]="item.hasErrorMessages"
                                             [model]="controlModel"
                                             [nestedTemplates]="templates"
+                                            [ngClass]="[item.cls.element.host, item.cls.grid.host]"
                                             (blur)="onFocusChange($event)"
                                             (change)="onValueChange($event)"
                                             (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
@@ -33,7 +36,7 @@
                 <ng-template [ngTemplateOutlet]="template?.templateRef"
                              [ngTemplateOutletContext]="groupModel"></ng-template>
 
-            </fieldset>
+            </div>
 
         </div>
 
@@ -167,8 +170,10 @@
 
             <dynamic-form-kendo-control *ngFor="let controlModel of model.group"
                                         [group]="control"
+                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         [model]="controlModel"
                                         [nestedTemplates]="templates"
+                                        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                         (blur)="onFocusChange($event)"
                                         (change)="onValueChange($event)"
                                         (focus)="onFocusChange($event)"></dynamic-form-kendo-control>
@@ -337,7 +342,8 @@
 
         <li *ngFor="let message of errorMessages" class="k-field-info"
             [ngClass]="[model.cls.element.errors]"
-            style="color: #f31700;">{{message}}</li>
+            style="color: #f31700;">{{message}}
+        </li>
     </ul>
 
 

@@ -1,16 +1,21 @@
 import { Injectable, Inject, Optional } from "@angular/core";
 import {
+    AbstractControl,
+    FormArray,
     FormBuilder,
     FormControl,
     FormGroup,
-    FormArray,
-    Validators,
     ValidatorFn,
     AsyncValidatorFn,
+    Validators,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS, AbstractControl
+    NG_ASYNC_VALIDATORS,
 } from "@angular/forms";
-import { DynamicFormControlModel, DynamicValidatorsMap } from "../model/dynamic-form-control.model";
+import {
+    DynamicFormControlModel,
+    DynamicValidatorConfig,
+    DynamicValidatorsMap
+} from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -45,7 +50,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
-import { isFunction, isDefined, isString, maskFromString } from "../utils";
+import { Utils } from "../utils/core.utils";
+
+export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
+
+export type ValidatorsToken = (ValidatorFn | AsyncValidatorFn)[];
 
 @Injectable()
 export class DynamicFormService {
@@ -55,75 +64,61 @@ export class DynamicFormService {
                 @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
 
 
-    private parseJSONReviver(key: string, value: any): any {
+    getValidatorFn(validatorName: string, validatorArgs: any = null,
+                   validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn | AsyncValidatorFn | never {
 
-        let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+        let validatorFn: ValidatorFactory | ValidatorFn | AsyncValidatorFn | null = null;
 
-        return isString(value) && regexDateISO.test(value) ? new Date(value) : value;
-    }
+        if (Validators.hasOwnProperty(validatorName)) { // Angular Standard Validators
 
+            validatorFn = (Validators as any)[validatorName];
 
-    getCustomValidatorFn(validatorName: string): ValidatorFn | null {
+        } else if (validatorsToken) { // Custom Validators
 
-        let validatorFn = null;
+            validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);
+        }
 
-        if (this.NG_VALIDATORS) {
+        if (!Utils.isFunction(validatorFn)) {
+            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
+        }
 
-            validatorFn = this.NG_VALIDATORS.find(validatorFn => {
-                return validatorName === validatorFn.name || (validatorFn(new FormControl()) as Object).hasOwnProperty(validatorName);
-            });
+        if (Utils.isDefined(validatorArgs)) {
+            return (validatorFn as Function)(validatorArgs);
         }
 
         return validatorFn;
     }
 
 
-    getCustomAsyncValidatorFn(validatorName: string): AsyncValidatorFn | null {
+    getValidators(validatorsConfig: DynamicValidatorsMap,
+                  validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[] {
 
-        let asyncValidatorFn = null;
+        let validatorFns: ValidatorFn[] | AsyncValidatorFn[] = [];
 
-        if (this.NG_ASYNC_VALIDATORS) {
-            asyncValidatorFn = this.NG_ASYNC_VALIDATORS.find(asyncValidatorFn => validatorName === asyncValidatorFn.name);
+        if (Utils.isTrueObject(validatorsConfig)) {
+
+            validatorFns = Object.keys(validatorsConfig).map(validatorFnKey => {
+
+                let validatorConfig = validatorsConfig[validatorFnKey],
+                    validatorName,
+                    validatorArgs;
+
+                if (Utils.isValidatorConfig(validatorConfig)) {
+
+                    validatorName = (validatorConfig as DynamicValidatorConfig).name;
+                    validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
+
+                } else {
+
+                    validatorName = validatorFnKey;
+                    validatorArgs = validatorConfig;
+                }
+
+                return this.getValidatorFn(validatorName, validatorArgs, validatorsToken);
+            });
         }
 
-        return asyncValidatorFn;
-    }
-
-
-    getValidatorFn(validatorName: string, validatorArgs?: any): ValidatorFn | never {
-
-        let validatorFn: Function | null = (Validators as any)[validatorName] || this.getCustomValidatorFn(validatorName);
-
-        if (!isFunction(validatorFn)) {
-            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS`);
-        }
-
-        return isDefined(validatorArgs) ? validatorFn(validatorArgs) : validatorFn;
-    }
-
-
-    getAsyncValidatorFn(asyncValidatorName: string, asyncValidatorArgs?: any): AsyncValidatorFn | never {
-
-        let asyncValidatorFn: Function | null = (Validators as any)[asyncValidatorName] || this.getCustomAsyncValidatorFn(asyncValidatorName);
-
-        if (!isFunction(asyncValidatorFn)) {
-            throw new Error(`async validator "${asyncValidatorName}" is not provided via NG_ASYNC_VALIDATORS`);
-        }
-
-        return isDefined(asyncValidatorArgs) ? asyncValidatorFn(asyncValidatorArgs) : asyncValidatorFn;
-    }
-
-
-    getValidators(config: DynamicValidatorsMap): ValidatorFn[] {
-
-        return isDefined(config) ?
-            Object.keys(config).map(validatorName => this.getValidatorFn(validatorName, config[validatorName])) : [];
-    }
-
-    getAsyncValidators(config: DynamicValidatorsMap): AsyncValidatorFn[] {
-
-        return isDefined(config) ? Object.keys(config).map(
-            asyncValidatorName => this.getAsyncValidatorFn(asyncValidatorName, config[asyncValidatorName])) : [];
+        return validatorFns;
     }
 
 
@@ -137,8 +132,8 @@ export class DynamicFormService {
 
         return this.formBuilder.array(
             formArray,
-            this.getValidators(model.validator)[0] || null,
-            this.getAsyncValidators(model.asyncValidator)[0] || null
+            this.getValidators(model.validator)[0] as ValidatorFn || null,
+            this.getValidators(model.asyncValidator)[0] as AsyncValidatorFn || null
         );
     }
 
@@ -159,8 +154,8 @@ export class DynamicFormService {
 
                 let groupModel = model as DynamicFormGroupModel,
                     groupExtra = {
-                        validator: this.getValidators(groupModel.validator)[0] || null,
-                        asyncValidator: this.getValidators(groupModel.asyncValidator)[0] || null
+                        validator: this.getValidators(groupModel.validator)[0] as ValidatorFn || null,
+                        asyncValidator: this.getValidators(groupModel.asyncValidator)[0] as AsyncValidatorFn || null
                     };
 
                 formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);
@@ -174,8 +169,8 @@ export class DynamicFormService {
                         value: controlModel.value,
                         disabled: controlModel.disabled
                     },
-                    Validators.compose(this.getValidators(controlModel.validators || [])),
-                    Validators.composeAsync(this.getAsyncValidators(controlModel.asyncValidators || []))
+                    Validators.compose(this.getValidators(controlModel.validators) as ValidatorFn[]),
+                    Validators.composeAsync(this.getValidators(controlModel.asyncValidators, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn[])
                 );
             }
         });
@@ -344,7 +339,7 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let raw = isString(json) ? JSON.parse(json as string, this.parseJSONReviver) : json,
+        let raw = Utils.isString(json) ? JSON.parse(json as string, Utils.parseJSONReviver) : json,
             group: DynamicFormControlModel[] = [];
 
         raw.forEach((model: any) => {
@@ -352,7 +347,7 @@ export class DynamicFormService {
             switch (model.type) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                    model.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
+                    (model as DynamicFormArrayModel).groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
                         groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
                     });
                     model.createGroup = () => this.fromJSON(model.origin);
@@ -387,7 +382,7 @@ export class DynamicFormService {
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                    if (model["mask"] !== null) { model["mask"] = maskFromString(model["mask"]); }
+                    if (model["mask"] !== null) { model["mask"] = Utils.maskFromString(model["mask"]); }
                     group.push(new DynamicInputModel(model, model.cls));
                     break;
 
