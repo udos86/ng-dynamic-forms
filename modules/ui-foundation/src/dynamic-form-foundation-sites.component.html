@@ -66,7 +66,7 @@
                     [innerHTML]="model.label"></span></label>
 
 
-            <div *ngSwitchCase="3" role="group"
+            <fieldset *ngSwitchCase="3"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -83,7 +83,7 @@
                                                        (blur)="onFocusChange($event)"
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-form-foundation-sites-control>
-            </div>
+            </fieldset>
 
 
             <div *ngSwitchCase="4" class="input-group">
