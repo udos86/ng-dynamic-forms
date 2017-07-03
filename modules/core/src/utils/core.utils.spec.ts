@@ -122,21 +122,6 @@ describe("Core Utils test suite", () => {
         expect(Utils.isTrueObject(testObject2)).toBe(false);
     });
 
-
-    it("should detect a validator configuration correctly", () => {
-
-        let testConfig1: any = {name: "test"},
-            testConfig2: any = {args: null},
-            testConfig3: any = {name: "test", args: null},
-            testConfig4 = null;
-
-        expect(Utils.isValidatorConfig(testConfig1)).toBe(false);
-        expect(Utils.isValidatorConfig(testConfig2)).toBe(false);
-        expect(Utils.isValidatorConfig(testConfig3)).toBe(true);
-        expect(Utils.isValidatorConfig(testConfig4)).toBe(false);
-    });
-
-
     it("should convert a text mask to string correctly", () => {
 
         let testValue1 = "test",

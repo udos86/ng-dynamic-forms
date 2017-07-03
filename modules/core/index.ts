@@ -34,5 +34,6 @@ export * from "./src/service/dynamic-form.service";
 export * from "./src/utils/autofill.utils";
 export * from "./src/utils/core.utils";
 export * from "./src/utils/relation.utils";
+export * from "./src/utils/validation.utils";
 
 export * from "./src/core.module";

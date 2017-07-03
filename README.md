@@ -728,7 +728,7 @@ new DynamicInputModel({
     label: "My Input",
     validators: {
         customValidator: {
-            name: customValidator.name,
+            name: AppValidators.customValidator.name,
             args: null
         }
     }
