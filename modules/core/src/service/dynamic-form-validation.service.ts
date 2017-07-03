@@ -84,13 +84,39 @@ export class DynamicFormValidationService {
     }
 
 
-    getValidator(validatorName: string, validatorArgs: any = null): ValidatorFn {
+    getValidatorByName(validatorName: string, validatorArgs: any = null): ValidatorFn {
         return this.getValidatorFn(validatorName, validatorArgs) as ValidatorFn;
     }
 
 
-    getAsyncValidator(validatorName: string, validatorArgs: any = null): AsyncValidatorFn {
+    getAsyncValidatorByName(validatorName: string, validatorArgs: any = null): AsyncValidatorFn {
         return this.getValidatorFn(validatorName, validatorArgs, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
+    }
+
+
+    getValidator(validatorConfig: DynamicValidatorsMap): ValidatorFn | null {
+
+        if (validatorConfig) {
+
+            let validatorName = Object.keys(validatorConfig)[0];
+
+            return this.getValidatorFn(validatorName, validatorConfig[validatorName]) as ValidatorFn;
+        }
+
+        return null;
+    }
+
+
+    getAsyncValidator(validatorConfig: DynamicValidatorsMap): AsyncValidatorFn | null {
+
+        if (validatorConfig) {
+
+            let validatorName = Object.keys(validatorConfig)[0];
+
+            return this.getValidatorFn(validatorName, validatorConfig[validatorName], this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
+        }
+
+        return null;
     }
 
 

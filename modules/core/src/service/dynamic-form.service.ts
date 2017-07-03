@@ -54,8 +54,8 @@ export class DynamicFormService {
 
         return this.formBuilder.array(
             formArray,
-            this.validationService.getValidators(model.validator)[0] || null,
-            this.validationService.getAsyncValidators(model.asyncValidator)[0] || null
+            this.validationService.getValidator(model.validator),
+            this.validationService.getAsyncValidator(model.asyncValidator)
         );
     }
 
@@ -76,8 +76,8 @@ export class DynamicFormService {
 
                 let groupModel = model as DynamicFormGroupModel,
                     groupExtra = {
-                        validator: this.validationService.getValidators(groupModel.validator)[0] || null,
-                        asyncValidator: this.validationService.getAsyncValidators(groupModel.asyncValidator)[0] || null
+                        validator: this.validationService.getValidator(groupModel.validator),
+                        asyncValidator: this.validationService.getAsyncValidator(groupModel.asyncValidator)
                     };
 
                 formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);

@@ -34,14 +34,29 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should resolve validator by name correctly", () => {
 
-        expect(service.getValidator("required")).toBeDefined();
-        expect(service.getValidator("testValidator")).toBeDefined();
+        expect(service.getValidatorByName("required")).toBeDefined();
+        expect(service.getValidatorByName("testValidator")).toBeDefined();
     });
 
 
     it("should resolve async validator by name correctly", () => {
 
-        expect(service.getAsyncValidator("testAsyncValidator")).toBeDefined();
+        expect(service.getAsyncValidatorByName("testAsyncValidator")).toBeDefined();
+    });
+
+
+    it("should resolve validator from config correctly", () => {
+
+        expect(service.getValidator(null)).toBeNull();
+        expect(service.getValidator({required: null})).toBeDefined();
+        expect(service.getValidator({testValidator: {name: testValidator.name, args: null}})).toBeDefined();
+    });
+
+
+    it("should resolve async validator from config correctly", () => {
+
+        expect(service.getAsyncValidator(null)).toBeNull();
+        expect(service.getAsyncValidator({testAsyncValidator: null})).toBeDefined();
     });
 
 
@@ -83,7 +98,7 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
-        expect(() => service.getValidator("test", null))
+        expect(() => service.getValidatorByName("test", null))
             .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 
