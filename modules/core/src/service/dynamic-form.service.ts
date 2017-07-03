@@ -51,6 +51,7 @@ import {
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
 import { Utils } from "../utils/core.utils";
+import { ValidationUtils } from "../utils/validation.utils";
 
 export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
 
@@ -103,7 +104,7 @@ export class DynamicFormService {
                     validatorName,
                     validatorArgs;
 
-                if (Utils.isValidatorConfig(validatorConfig)) {
+                if (ValidationUtils.isValidatorConfig(validatorConfig)) {
 
                     validatorName = (validatorConfig as DynamicValidatorConfig).name;
                     validatorArgs = (validatorConfig as DynamicValidatorConfig).args;

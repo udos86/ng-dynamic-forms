@@ -22,6 +22,7 @@ import {
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { Utils } from "../utils/core.utils";
 import { RelationUtils } from "../utils/relation.utils";
+import { ValidationUtils } from "../utils/validation.utils";
 
 export interface DynamicFormControlEvent {
 
@@ -107,45 +108,11 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     get errorMessages(): string[] {
 
-        let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>,
-            messages = [];
-
-        if (Utils.isDefined(model.errorMessages)) {
-
-            for (let validatorName in this.control.errors) {
-
-                let message;
-
-                if (validatorName === "minlength" || validatorName === "maxlength") {
-                    validatorName = validatorName.replace("length", "Length");
-                }
-
-                if (model.errorMessages[validatorName]) {
-
-                    message = model.errorMessages[validatorName]
-                        .replace(/\{\{\s*(.+?)\s*\}\}/mg, (match: string, expression: string) => {
-
-                            let propertySource: any = model,
-                                propertyName: string = expression;
-
-                            if (expression.indexOf("validator.") >= 0) {
-
-                                propertySource = this.control.errors[validatorName];
-                                propertyName = expression.replace("validator.", "");
-                            }
-
-                            return propertySource[propertyName] ? propertySource[propertyName] : null;
-                        });
-
-                } else {
-                    message = `Error on "${validatorName}" validation`;
-                }
-
-                messages.push(message);
-            }
+        if (this.hasErrorMessaging && this.model.hasErrorMessages) {
+            return ValidationUtils.createErrorMessages(this.control, this.model);
         }
 
-        return messages;
+        return [];
     }
 
     get hasHint(): boolean { // needed for AOT
@@ -156,16 +123,16 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return (this.model as DynamicInputModel).list !== null;
     }
 
-    get showErrorMessages(): boolean {
-        return this.control.touched && !this.hasFocus && this.isInvalid;
+    get isInvalid(): boolean {
+        return this.control.touched && this.control.invalid;
     }
 
     get isValid(): boolean {
         return this.control.valid;
     }
 
-    get isInvalid(): boolean {
-        return this.control.touched && this.control.invalid;
+    get showErrorMessages(): boolean {
+        return this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     get templates(): QueryList<DynamicTemplateDirective> {
@@ -211,7 +178,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onControlValueChanges(value: DynamicFormControlValue): void {
 
-        if (this.model instanceof DynamicFormValueControlModel) {
+        if (this.model instanceof DynamicFormValueControlModel
+        ) {
 
             let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
@@ -223,7 +191,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onModelValueUpdates(value: DynamicFormControlValue): void {
 
-        if (this.control.value !== value) {
+        if (this.control.value !== value
+        ) {
             this.control.setValue(value);
         }
     }
@@ -260,7 +229,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
                 }
             );
 
-        } else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
+        }
+        else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
 
             this.change.emit($event as DynamicFormControlEvent);
 
@@ -313,14 +283,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
             emitValue = $event as DynamicFormControlEvent;
 
-            if ((emitValue.$event as FocusEvent).type === "focus") {
-
-                this.focus.emit(emitValue);
-
-            } else {
-
-                this.blur.emit(emitValue);
-            }
+            (emitValue.$event as FocusEvent).type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
         }
     }
 }

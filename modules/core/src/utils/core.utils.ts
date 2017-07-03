@@ -36,15 +36,6 @@ export class Utils {
         return Utils.isDefined(value) && Utils.isObject(value);
     }
 
-    static isValidatorConfig(value: any): boolean {
-
-        if (Utils.isTrueObject(value)) {
-            return value.hasOwnProperty("name") && value.hasOwnProperty("args");
-        }
-
-        return false;
-    }
-
     static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] {
 
         if (Utils.isString(mask)) {
