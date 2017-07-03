@@ -21,6 +21,7 @@ import {
     MdSlideToggle
 } from "@angular/material";
 import {
+    DynamicFormValidationService,
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
@@ -80,8 +81,8 @@ export class DynamicFormMaterialComponent extends DynamicFormControlComponent im
 
     type: MdFormControlType | null;
 
-    constructor() {
-        super();
+    constructor(protected validationService: DynamicFormValidationService) {
+        super(validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

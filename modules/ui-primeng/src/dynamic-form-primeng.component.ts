@@ -22,6 +22,7 @@ import {
     Slider
 } from "primeng/primeng";
 import {
+    DynamicFormValidationService,
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
@@ -81,8 +82,8 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
     suggestions: string[];
     type: PrimeNGFormControlType | null;
 
-    constructor() {
-        super();
+    constructor(protected validationService: DynamicFormValidationService) {
+        super(validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

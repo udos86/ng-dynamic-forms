@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormValidationService,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
@@ -61,8 +62,8 @@ export class DynamicFormFoundationSitesComponent extends DynamicFormControlCompo
 
     type: FoundationSitesFormControlType | null;
 
-    constructor() {
-        super();
+    constructor(protected validationService: DynamicFormValidationService) {
+        super(validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

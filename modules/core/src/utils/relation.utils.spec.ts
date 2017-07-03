@@ -1,6 +1,7 @@
 import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { DynamicFormService } from "../service/dynamic-form.service";
+import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
@@ -85,7 +86,7 @@ describe("FormControlRelation utils test suite", () => {
 
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
-            providers: [DynamicFormService]
+            providers: [DynamicFormService, DynamicFormValidationService]
         });
     });
 

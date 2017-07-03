@@ -8,6 +8,7 @@ import {
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import { DynamicFormService } from "./dynamic-form.service";
+import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
@@ -32,16 +33,10 @@ describe("DynamicFormService test suite", () => {
         service: DynamicFormService;
 
     function testValidator() {
-
-        return {
-            testValidator: {
-                valid: true
-            }
-        };
+        return {testValidator: {valid: true}};
     }
 
     function testAsyncValidator() {
-
         return new Promise<boolean>(resolve => setTimeout(() => resolve(true), 0));
     }
 
@@ -51,6 +46,7 @@ describe("DynamicFormService test suite", () => {
             imports: [ReactiveFormsModule],
             providers: [
                 DynamicFormService,
+                DynamicFormValidationService,
                 {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
                 {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
             ]
@@ -440,47 +436,5 @@ describe("DynamicFormService test suite", () => {
         service.clearFormArray(formArray, model);
 
         expect(formArray.length === 0).toBe(true);
-    });
-
-
-    it("should resolve validators from config correctly", () => {
-
-        let config: any = {required: null, maxLength: 7, minLength: 3},
-            validators = service.getValidators(config);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    });
-
-
-    it("should resolve custom validators from config correctly", () => {
-
-        let config: any = {required: null, maxLength: 7, testValidator: null},
-            validators = service.getValidators(config);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    });
-
-
-    it("should resolve custom validators from detailed config correctly", () => {
-
-        let config: any = {testValidator: {name: testValidator.name, args: null}},
-            validators = service.getValidators(config);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    });
-
-
-    it("should resolve custom async validators from config correctly", inject([NG_ASYNC_VALIDATORS], (NG_ASYNC_VALIDATORS: any) => {
-
-        let config: any = {required: null, maxLength: 7, testAsyncValidator: null},
-            validators = service.getValidators(config, NG_ASYNC_VALIDATORS);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    }));
-
-    it("should throw when validator is not provided via NG_VALIDATORS", () => {
-
-        expect(() => service.getValidatorFn("test", null))
-            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 });
