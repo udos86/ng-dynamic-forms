@@ -12,10 +12,6 @@ export class Utils {
         return value !== undefined && value !== null;
     }
 
-    static isEmptyString(value: string | null | undefined): boolean {
-        return typeof value !== "string" || value.length === 0;
-    }
-
     static isFunction(value: any): boolean {
         return typeof value === "function";
     }
@@ -28,12 +24,20 @@ export class Utils {
         return typeof value === "object";
     }
 
+    static isTrueObject(value: any): boolean {
+        return Utils.isDefined(value) && Utils.isObject(value);
+    }
+
+    static isNonEmptyObject(value: object): boolean {
+        return Utils.isTrueObject(value) && Object.getOwnPropertyNames(value).length === 0;
+    }
+
     static isString(value: any): boolean {
         return typeof value === "string";
     }
 
-    static isTrueObject(value: any): boolean {
-        return Utils.isDefined(value) && Utils.isObject(value);
+    static isEmptyString(value: string | null | undefined): boolean {
+        return !Utils.isString(value) || value.length === 0;
     }
 
     static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] {

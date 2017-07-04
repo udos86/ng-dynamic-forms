@@ -65,7 +65,7 @@ export class DynamicFormValidationService {
                     validatorName,
                     validatorArgs;
 
-                if (ValidationUtils.isValidatorConfig(validatorConfig)) {
+                if (ValidationUtils.isLongValidatorConfig(validatorConfig)) {
 
                     validatorName = (validatorConfig as DynamicValidatorConfig).name;
                     validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
@@ -96,7 +96,7 @@ export class DynamicFormValidationService {
 
     getValidator(validatorConfig: DynamicValidatorsMap): ValidatorFn | null {
 
-        if (validatorConfig) {
+        if (Utils.isNonEmptyObject(validatorConfig)) {
 
             let validatorName = Object.keys(validatorConfig)[0];
 
@@ -109,7 +109,7 @@ export class DynamicFormValidationService {
 
     getAsyncValidator(validatorConfig: DynamicValidatorsMap): AsyncValidatorFn | null {
 
-        if (validatorConfig) {
+        if (Utils.isNonEmptyObject(validatorConfig)) {
 
             let validatorName = Object.keys(validatorConfig)[0];
 
