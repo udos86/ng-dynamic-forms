@@ -246,10 +246,10 @@ describe("DynamicFormService test suite", () => {
         service.addFormGroupControl(formGroup, testModel, newModel1);
         service.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel2);
 
-        expect(formGroup.controls[newModel1.id]).toBeDefined();
+        expect(formGroup.controls[newModel1.id]).toBeTruthy();
         expect(testModel[testModel.length - 1] === newModel1).toBe(true);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeDefined();
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(nestedFormGroupModel.group.length - 1) === newModel2).toBe(true);
     });
 
@@ -265,10 +265,10 @@ describe("DynamicFormService test suite", () => {
         service.insertFormGroupControl(4, formGroup, testModel, newModel1);
         service.insertFormGroupControl(0, nestedFormGroup, nestedFormGroupModel, newModel2);
 
-        expect(formGroup.controls[newModel1.id]).toBeDefined();
+        expect(formGroup.controls[newModel1.id]).toBeTruthy();
         expect(testModel[4] === newModel1).toBe(true);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeDefined();
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(0) === newModel2).toBe(true);
     });
 
@@ -282,12 +282,12 @@ describe("DynamicFormService test suite", () => {
 
         service.moveFormGroupControl(0, 2, testModel);
 
-        expect(formGroup.controls[model1.id]).toBeDefined();
+        expect(formGroup.controls[model1.id]).toBeTruthy();
         expect(testModel[2] === model1).toBe(true);
 
         service.moveFormGroupControl(0, 1, nestedFormGroupModel);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[model2.id]).toBeDefined();
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[model2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(1) === model2).toBe(true);
     });
 
@@ -326,7 +326,7 @@ describe("DynamicFormService test suite", () => {
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray;
 
-        expect(service.createFormArray).toBeDefined();
+        expect(service.createFormArray).toBeTruthy();
 
         formArray = service.createFormArray(model);
 

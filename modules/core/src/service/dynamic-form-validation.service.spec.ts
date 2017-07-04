@@ -34,29 +34,29 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should resolve validator by name correctly", () => {
 
-        expect(service.getValidatorByName("required")).toBeDefined();
-        expect(service.getValidatorByName("testValidator")).toBeDefined();
+        expect(service.getValidatorByName("required")).toBeTruthy();
+        expect(service.getValidatorByName("testValidator")).toBeTruthy();
     });
 
 
     it("should resolve async validator by name correctly", () => {
 
-        expect(service.getAsyncValidatorByName("testAsyncValidator")).toBeDefined();
+        expect(service.getAsyncValidatorByName("testAsyncValidator")).toBeTruthy();
     });
 
 
     it("should resolve validator from config correctly", () => {
 
         expect(service.getValidator(null)).toBeNull();
-        expect(service.getValidator({required: null})).toBeDefined();
-        expect(service.getValidator({testValidator: {name: testValidator.name, args: null}})).toBeDefined();
+        expect(service.getValidator({required: null})).toBeTruthy();
+        expect(service.getValidator({testValidator: {name: testValidator.name, args: null}})).toBeTruthy();
     });
 
 
     it("should resolve async validator from config correctly", () => {
 
         expect(service.getAsyncValidator(null)).toBeNull();
-        expect(service.getAsyncValidator({testAsyncValidator: null})).toBeDefined();
+        expect(service.getAsyncValidator({testAsyncValidator: null})).toBeTruthy();
     });
 
 

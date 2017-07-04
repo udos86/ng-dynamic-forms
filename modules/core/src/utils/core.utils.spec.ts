@@ -123,7 +123,7 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("should detect an empty object correctly", () => {
+    it("should detect a non-empty object correctly", () => {
 
         let testObject1 = {},
             testObject2 = null,

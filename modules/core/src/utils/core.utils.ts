@@ -29,7 +29,7 @@ export class Utils {
     }
 
     static isNonEmptyObject(value: object): boolean {
-        return Utils.isTrueObject(value) && Object.getOwnPropertyNames(value).length === 0;
+        return Utils.isTrueObject(value) && Object.getOwnPropertyNames(value).length > 0;
     }
 
     static isString(value: any): boolean {
