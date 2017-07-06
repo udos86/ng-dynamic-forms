@@ -11,7 +11,7 @@ describe("DynamicFormArrayModel test suite", () => {
         config: any = {
             id: "formArray",
             initialCount: 3,
-            createGroup: () => [new DynamicInputModel({id: "defaultInput"})],
+            groupFactory: () => [new DynamicInputModel({id: "defaultInput"})],
             validator: {required: null}
         };
 
@@ -25,14 +25,14 @@ describe("DynamicFormArrayModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
         expect(model.asyncValidator).toBeNull();
         expect(model.validator).toBeDefined();
-        expect(model.createGroup().length).toEqual(1);
+        expect(model.groupFactory().length).toEqual(1);
         expect(model.removeGroup).toBeDefined();
     });
 
     it("should throw when no createGroup function is specified", () => {
 
         expect(() => new DynamicFormArrayModel({id: "test"}))
-            .toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
+            .toThrow(new Error("group factory function must be specified for DynamicFormArrayModel"));
     });
 
     it("should get the correct group model", () => {

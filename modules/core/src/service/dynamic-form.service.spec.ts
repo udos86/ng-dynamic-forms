@@ -123,7 +123,7 @@ describe("DynamicFormService test suite", () => {
                 {
                     id: "testFormArray",
                     initialCount: 5,
-                    createGroup: () => {
+                    groupFactory: () => {
                         return [
                             new DynamicInputModel({id: "basicArrayGroupInput"})
                         ];

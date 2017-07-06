@@ -34,7 +34,7 @@ describe("DynamicFormIonicComponent test suite", () => {
             new DynamicDatePickerModel({id: "datepicker"}),
             new DynamicEditorModel({id: "editor"}),
             new DynamicFileUploadModel({id: "upload", url: ""}),
-            new DynamicFormArrayModel({id: "formArray", createGroup: () => []}),
+            new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
             new DynamicFormGroupModel({id: "formGroup", group: []}),
             new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),

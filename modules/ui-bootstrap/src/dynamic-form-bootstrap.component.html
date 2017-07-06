@@ -141,18 +141,16 @@
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <div *ngFor="let option of model.options$ | async" class="radio">
+                <div *ngFor="let option of model.options$ | async" class="radio" [ngClass]="model.cls.element.control">
 
                     <label>
 
                         <input type="radio"
                                [formControlName]="model.id"
                                [name]="model.name"
-                               [ngClass]="model.cls.element.control"
                                [value]="option.value"
                                (blur)="onFocusChange($event)"
                                (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
-
                 </div>
 
             </fieldset>
