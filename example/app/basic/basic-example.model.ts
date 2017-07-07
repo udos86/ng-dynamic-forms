@@ -170,7 +170,7 @@ export const BASIC_EXAMPLE_ARRAY_MODEL = [
             id: "basicFormArray",
             initialCount: 2,
             label: "Example Array Model",
-            createGroup: () => {
+            groupFactory: () => {
                 return [
                     new DynamicCheckboxModel({
 

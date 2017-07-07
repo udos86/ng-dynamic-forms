@@ -15,7 +15,7 @@ export class DynamicFormArrayGroupModel {
 
     private _parent: DynamicFormArrayGroupModel | null = null;
 
-    constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number | null = null) {
+    constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number = null) {
 
         this.context = context;
         this.group = group;
@@ -28,6 +28,21 @@ export class DynamicFormArrayGroupModel {
 
     set parent(parent: DynamicFormArrayGroupModel) {
         this._parent = parent;
+    }
+
+    get path(): string[] {
+
+        let path: string[] = [],
+            groupModel: DynamicFormArrayGroupModel = this;
+
+        while (groupModel) {
+
+            path.unshift(groupModel.context.id, groupModel.index.toString());
+
+            groupModel = groupModel.parent;
+        }
+
+        return path;
     }
 
     get(index: number): DynamicFormControlModel {
