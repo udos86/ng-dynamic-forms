@@ -12,13 +12,22 @@ export class DynamicFormArrayGroupModel {
     context: DynamicFormArrayModel;
     @serializable() group: DynamicFormControlModel[];
     @serializable() index: number | null;
-    //parent: DynamicFormArrayGroupModel | null;
+
+    private _parent: DynamicFormArrayGroupModel | null = null;
 
     constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number | null = null) {
 
         this.context = context;
         this.group = group;
         this.index = index;
+    }
+
+    get parent(): DynamicFormArrayGroupModel {
+        return this._parent;
+    }
+
+    set parent(parent: DynamicFormArrayGroupModel) {
+        this._parent = parent;
     }
 
     get(index: number): DynamicFormControlModel {

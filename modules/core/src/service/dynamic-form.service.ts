@@ -52,7 +52,7 @@ export class DynamicFormService {
         };
     }
 
-    createFormArray(model: DynamicFormArrayModel): FormArray {
+    createFormArray(model: DynamicFormArrayModel, parent: any = null): FormArray {
 
         let formArray = [];
 
@@ -61,7 +61,11 @@ export class DynamicFormService {
             let arrayGroupModel = model.get(idx),
                 extra = this.createExtra(model.groupValidator, model.groupAsyncValidator);
 
-            formArray.push(this.createFormGroup(arrayGroupModel.group, extra));
+            if (parent instanceof DynamicFormArrayGroupModel) {
+                arrayGroupModel.parent = parent;
+            }
+
+            formArray.push(this.createFormGroup(arrayGroupModel.group, extra, arrayGroupModel));
         }
 
         return this.formBuilder.array(
@@ -72,7 +76,9 @@ export class DynamicFormService {
     }
 
 
-    createFormGroup(groupModel: DynamicFormControlModel[], extra: { [key: string]: any } | null = null): FormGroup {
+    createFormGroup(groupModel: DynamicFormControlModel[],
+                    extra: { [key: string]: any } | null = null,
+                    parent: any = null): FormGroup {
 
         let formGroup: { [id: string]: AbstractControl; } = {};
 
@@ -82,7 +88,7 @@ export class DynamicFormService {
 
                 let formArrayModel = model as DynamicFormArrayModel;
 
-                formGroup[model.id] = this.createFormArray(formArrayModel);
+                formGroup[model.id] = this.createFormArray(formArrayModel, parent);
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
