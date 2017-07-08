@@ -38,7 +38,6 @@ export class DynamicFormArrayGroupModel {
         while (groupModel) {
 
             path.unshift(groupModel.context.id, groupModel.index.toString());
-
             groupModel = groupModel.parent;
         }
 
@@ -105,7 +104,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         } else {
 
-            for (let i = 0; i < this.initialCount; i += 1) {
+            for (let index = 0; index < this.initialCount; index++) {
                 this.addGroup();
             }
         }

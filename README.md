@@ -380,14 +380,14 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
 ];
 ```
 
-**2. Add the** `createGroup` **property** to the `DynamicFormArrayModel` **and assign a function** to it which **returns
+**2. Add the** `groupFactory` **property** to the `DynamicFormArrayModel` **and assign a function** to it which **returns
 the structure** of a single form array item:
 ```ts
 new DynamicFormArrayModel({
 
     id: "myFormArray",
     initialCount: 5,
-    createGroup: () => {
+    groupFactory: () => {
         return [
             new DynamicInputModel({
   

@@ -43,7 +43,6 @@ export class DynamicFormService {
 
     constructor(private formBuilder: FormBuilder, private validationService: DynamicFormValidationService) {}
 
-
     createExtra(validator: DynamicValidatorsMap, asyncValidator: DynamicValidatorsMap): { [key: string]: any } {
 
         return {
@@ -56,9 +55,9 @@ export class DynamicFormService {
 
         let formArray = [];
 
-        for (let idx = 0; idx < model.size; idx += 1) {
+        for (let index = 0; index < model.size; index++) {
 
-            let arrayGroupModel = model.get(idx),
+            let arrayGroupModel = model.get(index),
                 extra = this.createExtra(model.groupValidator, model.groupAsyncValidator);
 
             if (parent instanceof DynamicFormArrayGroupModel) {
