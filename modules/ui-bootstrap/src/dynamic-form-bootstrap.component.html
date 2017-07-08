@@ -16,7 +16,7 @@
 
     <div *ngIf="type === 2" [ngClass]="model.cls.grid.control">
 
-        <div class="checkbox" [class.disabled]="model.disabled">
+        <div [class.disabled]="model.disabled" [ngClass]="model.cls.element.control || 'checkbox'">
 
             <label>
 
@@ -141,7 +141,7 @@
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <div *ngFor="let option of model.options$ | async" class="radio" [ngClass]="model.cls.element.control">
+                <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.element.control || 'radio'">
 
                     <label>
 
