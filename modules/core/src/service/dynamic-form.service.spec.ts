@@ -365,8 +365,8 @@ describe("DynamicFormService test suite", () => {
             index = 3,
             step = 1;
 
-        (formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 1");
-        (formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
         (model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 1");
         (model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 2");
@@ -375,8 +375,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
-        expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
         expect((model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 2");
         expect((model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 1");
@@ -390,8 +390,8 @@ describe("DynamicFormService test suite", () => {
             index = 3,
             step = -1;
 
-        (formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 1");
-        (formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
         (model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 1");
         (model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 2");
@@ -400,8 +400,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
-        expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
         expect((model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 2");
         expect((model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 1");
