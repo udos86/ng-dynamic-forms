@@ -1,3 +1,15 @@
+# 1.4.18
+
+### **Minor Breaking Change**
+
+* property `createGroup` of `DynamicFormArrayModel` **has been renamed to `groupFactory` (see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#form-arrays))
+
+### **Features** 
+
+* `parent` and `path` getter added to `DynamicFormArrayGroupModel` (closes [#414](https://github.com/udos86/ng2-dynamic-forms/issues/414)
+* Bootstrap CSS class assignment adjusted for checkbox and radio control (closes [#425](https://github.com/udos86/ng2-dynamic-forms/issues/425)
+
+
 # 1.4.17
 
 ### **Minor Breaking Change**

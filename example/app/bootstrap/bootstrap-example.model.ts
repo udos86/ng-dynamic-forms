@@ -215,7 +215,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                     id: "bootstrapFormArray",
                     initialCount: 5,
                     label: "Example Array Model",
-                    createGroup: () => {
+                    groupFactory: () => {
                         return [
                             new DynamicInputModel(
                                 {

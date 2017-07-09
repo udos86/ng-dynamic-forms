@@ -30,6 +30,7 @@ export * from "./src/model/textarea/dynamic-textarea.model";
 export * from "./src/model/timepicker/dynamic-timepicker.model";
 
 export * from "./src/service/dynamic-form.service";
+export * from "./src/service/dynamic-form-validation.service";
 
 export * from "./src/utils/autofill.utils";
 export * from "./src/utils/core.utils";

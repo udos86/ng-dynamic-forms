@@ -27,6 +27,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
     const globals = {
 
         "@angular/animations": "ng.animations",
+        "@angular/cdk": "ng.cdk",
         "@angular/common": "ng.common",
         "@angular/core": "ng.core",
         "@angular/forms": "ng.forms",

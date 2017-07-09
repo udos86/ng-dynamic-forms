@@ -11,7 +11,19 @@ describe("DynamicFormArrayModel test suite", () => {
         config: any = {
             id: "formArray",
             initialCount: 3,
-            createGroup: () => [new DynamicInputModel({id: "defaultInput"})],
+            groupFactory: () => [
+                new DynamicInputModel({
+                    id: "input"
+                }),
+                new DynamicFormArrayModel({
+                    id: "nestedFormArray",
+                    groupFactory: () => [
+                        new DynamicInputModel({
+                            id: "nestedInput"
+                        }),
+                    ]
+                })
+            ],
             validator: {required: null}
         };
 
@@ -25,20 +37,32 @@ describe("DynamicFormArrayModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
         expect(model.asyncValidator).toBeNull();
         expect(model.validator).toBeDefined();
-        expect(model.createGroup().length).toEqual(1);
+        expect(model.groupFactory().length).toEqual(2);
         expect(model.removeGroup).toBeDefined();
     });
 
     it("should throw when no createGroup function is specified", () => {
 
         expect(() => new DynamicFormArrayModel({id: "test"}))
-            .toThrow(new Error("createGroup function must be specified for DynamicFormArrayModel"));
+            .toThrow(new Error("group factory function must be specified for DynamicFormArrayModel"));
     });
 
     it("should get the correct group model", () => {
 
         expect(model.get(0) instanceof DynamicFormArrayGroupModel).toBe(true);
         expect(model.get(1) instanceof DynamicFormArrayGroupModel).toBe(true);
+    });
+
+    it("should resolve array group path", () => {
+
+        let parent = model.get(0),
+            groupModel = (parent.get(1) as DynamicFormArrayModel).get(0);
+
+        expect(groupModel.path).toEqual(["nestedFormArray", "0"]);
+
+        groupModel.parent = parent;
+
+        expect(groupModel.path).toEqual([parent.context.id, parent.index.toString(), "nestedFormArray", "0"]);
     });
 
     it("should add another form array group", () => {

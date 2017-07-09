@@ -1,21 +1,6 @@
-import { Injectable, Inject, Optional } from "@angular/core";
-import {
-    AbstractControl,
-    FormArray,
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    ValidatorFn,
-    AsyncValidatorFn,
-    Validators,
-    NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS,
-} from "@angular/forms";
-import {
-    DynamicFormControlModel,
-    DynamicValidatorConfig,
-    DynamicValidatorsMap
-} from "../model/dynamic-form-control.model";
+import { Injectable } from "@angular/core";
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { DynamicFormControlModel, DynamicValidatorsMap } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -51,132 +36,82 @@ import {
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
 import { Utils } from "../utils/core.utils";
-import { ValidationUtils } from "../utils/validation.utils";
-
-export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
-
-export type ValidatorsToken = (ValidatorFn | AsyncValidatorFn)[];
+import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 
 @Injectable()
 export class DynamicFormService {
 
-    constructor(@Inject(FormBuilder) private formBuilder: FormBuilder,
-                @Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
-                @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
+    constructor(private formBuilder: FormBuilder, private validationService: DynamicFormValidationService) {}
 
+    createExtra(validator: DynamicValidatorsMap, asyncValidator: DynamicValidatorsMap): { [key: string]: any } {
 
-    getValidatorFn(validatorName: string, validatorArgs: any = null,
-                   validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn | AsyncValidatorFn | never {
-
-        let validatorFn: ValidatorFactory | ValidatorFn | AsyncValidatorFn | null = null;
-
-        if (Validators.hasOwnProperty(validatorName)) { // Angular Standard Validators
-
-            validatorFn = (Validators as any)[validatorName];
-
-        } else if (validatorsToken) { // Custom Validators
-
-            validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);
-        }
-
-        if (!Utils.isFunction(validatorFn)) {
-            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
-        }
-
-        if (Utils.isDefined(validatorArgs)) {
-            return (validatorFn as Function)(validatorArgs);
-        }
-
-        return validatorFn;
+        return {
+            validator: this.validationService.getValidator(validator),
+            asyncValidator: this.validationService.getAsyncValidator(asyncValidator)
+        };
     }
 
-
-    getValidators(validatorsConfig: DynamicValidatorsMap,
-                  validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn[] | AsyncValidatorFn[] {
-
-        let validatorFns: ValidatorFn[] | AsyncValidatorFn[] = [];
-
-        if (Utils.isTrueObject(validatorsConfig)) {
-
-            validatorFns = Object.keys(validatorsConfig).map(validatorFnKey => {
-
-                let validatorConfig = validatorsConfig[validatorFnKey],
-                    validatorName,
-                    validatorArgs;
-
-                if (ValidationUtils.isValidatorConfig(validatorConfig)) {
-
-                    validatorName = (validatorConfig as DynamicValidatorConfig).name;
-                    validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
-
-                } else {
-
-                    validatorName = validatorFnKey;
-                    validatorArgs = validatorConfig;
-                }
-
-                return this.getValidatorFn(validatorName, validatorArgs, validatorsToken);
-            });
-        }
-
-        return validatorFns;
-    }
-
-
-    createFormArray(model: DynamicFormArrayModel): FormArray {
+    createFormArray(model: DynamicFormArrayModel, parent: any = null): FormArray {
 
         let formArray = [];
 
-        for (let i = 0; i < model.size; i += 1) {
-            formArray.push(this.createFormGroup(model.get(i).group));
+        for (let index = 0; index < model.size; index++) {
+
+            let arrayGroupModel = model.get(index),
+                extra = this.createExtra(model.groupValidator, model.groupAsyncValidator);
+
+            if (parent instanceof DynamicFormArrayGroupModel) {
+                arrayGroupModel.parent = parent;
+            }
+
+            formArray.push(this.createFormGroup(arrayGroupModel.group, extra, arrayGroupModel));
         }
 
         return this.formBuilder.array(
             formArray,
-            this.getValidators(model.validator)[0] as ValidatorFn || null,
-            this.getValidators(model.asyncValidator)[0] as AsyncValidatorFn || null
+            this.validationService.getValidator(model.validator),
+            this.validationService.getAsyncValidator(model.asyncValidator)
         );
     }
 
 
-    createFormGroup(group: DynamicFormControlModel[], groupExtra: { [key: string]: any } | null = null): FormGroup {
+    createFormGroup(groupModel: DynamicFormControlModel[],
+                    extra: { [key: string]: any } | null = null,
+                    parent: any = null): FormGroup {
 
         let formGroup: { [id: string]: AbstractControl; } = {};
 
-        group.forEach(model => {
+        groupModel.forEach(model => {
 
             if (model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
 
-                let arrayModel = model as DynamicFormArrayModel;
+                let formArrayModel = model as DynamicFormArrayModel;
 
-                formGroup[model.id] = this.createFormArray(arrayModel);
+                formGroup[model.id] = this.createFormArray(formArrayModel, parent);
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
-                let groupModel = model as DynamicFormGroupModel,
-                    groupExtra = {
-                        validator: this.getValidators(groupModel.validator)[0] as ValidatorFn || null,
-                        asyncValidator: this.getValidators(groupModel.asyncValidator)[0] as AsyncValidatorFn || null
-                    };
+                let formGroupModel = model as DynamicFormGroupModel,
+                    extra = this.createExtra(formGroupModel.validator, formGroupModel.asyncValidator);
 
-                formGroup[model.id] = this.createFormGroup(groupModel.group, groupExtra);
+                formGroup[model.id] = this.createFormGroup(formGroupModel.group, extra);
 
             } else {
 
-                let controlModel = model as DynamicFormValueControlModel<DynamicFormControlValue>;
+                let formControlModel = model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
-                formGroup[controlModel.id] = new FormControl(
+                formGroup[formControlModel.id] = new FormControl(
                     {
-                        value: controlModel.value,
-                        disabled: controlModel.disabled
+                        value: formControlModel.value,
+                        disabled: formControlModel.disabled
                     },
-                    Validators.compose(this.getValidators(controlModel.validators) as ValidatorFn[]),
-                    Validators.composeAsync(this.getValidators(controlModel.asyncValidators, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn[])
+                    Validators.compose(this.validationService.getValidators(formControlModel.validators)),
+                    Validators.composeAsync(this.validationService.getAsyncValidators(formControlModel.asyncValidators))
                 );
             }
         });
 
-        return this.formBuilder.group(formGroup, groupExtra);
+        return this.formBuilder.group(formGroup, extra);
     }
 
 
@@ -348,11 +283,17 @@ export class DynamicFormService {
             switch (model.type) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                    (model as DynamicFormArrayModel).groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
+                    let formArrayModel = model as DynamicFormArrayModel;
+
+                    formArrayModel.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
                         groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
                     });
-                    model.createGroup = () => this.fromJSON(model.origin);
-                    group.push(new DynamicFormArrayModel(model, model.cls));
+
+                    formArrayModel.groupFactory = () => {
+                        return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);
+                    };
+
+                    group.push(new DynamicFormArrayModel(formArrayModel, formArrayModel.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
@@ -383,7 +324,12 @@ export class DynamicFormService {
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                    if (model["mask"] !== null) { model["mask"] = Utils.maskFromString(model["mask"]); }
+                    let inputModel = model as DynamicInputModel;
+
+                    if (inputModel.mask !== null) {
+                        inputModel.mask = Utils.maskFromString(inputModel.mask as string);
+                    }
+
                     group.push(new DynamicInputModel(model, model.cls));
                     break;
 

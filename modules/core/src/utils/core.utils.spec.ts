@@ -113,7 +113,7 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("should detect a non-null object correctly", () => {
+    it("should detect a true, non-null object correctly", () => {
 
         let testObject1 = {},
             testObject2 = null;
@@ -121,6 +121,19 @@ describe("Core Utils test suite", () => {
         expect(Utils.isTrueObject(testObject1)).toBe(true);
         expect(Utils.isTrueObject(testObject2)).toBe(false);
     });
+
+
+    it("should detect a non-empty object correctly", () => {
+
+        let testObject1 = {},
+            testObject2 = null,
+            testObject3 = {"test": 42};
+
+        expect(Utils.isNonEmptyObject(testObject1)).toBe(false);
+        expect(Utils.isNonEmptyObject(testObject2)).toBe(false);
+        expect(Utils.isNonEmptyObject(testObject3)).toBe(true);
+    });
+
 
     it("should convert a text mask to string correctly", () => {
 
@@ -135,6 +148,7 @@ describe("Core Utils test suite", () => {
         expect(testResult3[0]).toEqual(testValue1);
         expect(testResult3[1]).toEqual(testValue2.toString());
     });
+
 
     it("should recreate a text mask from string correctly", () => {
 

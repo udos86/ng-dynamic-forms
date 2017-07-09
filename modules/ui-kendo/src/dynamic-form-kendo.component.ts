@@ -20,6 +20,7 @@ import {
 } from "@progress/kendo-angular-inputs";
 import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
+    DynamicFormValidationService,
     DynamicFormControlComponent,
     DynamicFormControlModel,
     DynamicFormArrayGroupModel,
@@ -84,8 +85,8 @@ export class DynamicFormKendoComponent extends DynamicFormControlComponent imple
 
     type: KendoFormControlType | null;
 
-    constructor() {
-        super();
+    constructor(protected validationService: DynamicFormValidationService) {
+        super(validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

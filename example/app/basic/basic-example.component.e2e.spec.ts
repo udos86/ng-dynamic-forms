@@ -24,7 +24,7 @@ describe("BasicExampleComponent", () => {
 
             label.getAttribute("for").then(attr => {
 
-                let model = <DynamicFormControlModel> new DynamicFormService(null, null, null).findById(attr, BASIC_EXAMPLE_MODEL);
+                let model = <DynamicFormControlModel> new DynamicFormService(null, null).findById(attr, BASIC_EXAMPLE_MODEL);
 
                 if (model) {
                     label.getText().then(text => expect(text).toBe(model.label));
@@ -36,7 +36,7 @@ describe("BasicExampleComponent", () => {
     xit("test if textarea form control is rendered correctly", () => {
 
         let textarea = element(by.name("basicTextArea"));
-        let model = <DynamicTextAreaModel> new DynamicFormService(null, null, null).findById("basicTextArea", BASIC_EXAMPLE_MODEL);
+        let model = <DynamicTextAreaModel> new DynamicFormService(null, null).findById("basicTextArea", BASIC_EXAMPLE_MODEL);
 
         textarea.getAttribute("cols").then(cols => expect(parseInt(cols)).toEqual(model.cols));
         textarea.getAttribute("placeholder").then(placeholder => expect(placeholder).toEqual(model.placeholder));

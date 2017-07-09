@@ -214,7 +214,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             id: "foundationFormArray",
             initialCount: 5,
             label: "Example Array Model",
-            createGroup: () => {
+            groupFactory: () => {
                 return [
                     new DynamicInputModel(
                         {

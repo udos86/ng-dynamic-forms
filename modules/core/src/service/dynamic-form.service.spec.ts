@@ -8,6 +8,7 @@ import {
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import { DynamicFormService } from "./dynamic-form.service";
+import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
@@ -32,16 +33,10 @@ describe("DynamicFormService test suite", () => {
         service: DynamicFormService;
 
     function testValidator() {
-
-        return {
-            testValidator: {
-                valid: true
-            }
-        };
+        return {testValidator: {valid: true}};
     }
 
     function testAsyncValidator() {
-
         return new Promise<boolean>(resolve => setTimeout(() => resolve(true), 0));
     }
 
@@ -51,6 +46,7 @@ describe("DynamicFormService test suite", () => {
             imports: [ReactiveFormsModule],
             providers: [
                 DynamicFormService,
+                DynamicFormValidationService,
                 {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
                 {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
             ]
@@ -127,9 +123,10 @@ describe("DynamicFormService test suite", () => {
                 {
                     id: "testFormArray",
                     initialCount: 5,
-                    createGroup: () => {
+                    groupFactory: () => {
                         return [
-                            new DynamicInputModel({id: "basicArrayGroupInput"})
+                            new DynamicInputModel({id: "testFormArrayGroupInput"}),
+                            new DynamicFormArrayModel({id: "testNestedFormArray", groupFactory: () => []})
                         ];
                     }
                 }
@@ -250,10 +247,10 @@ describe("DynamicFormService test suite", () => {
         service.addFormGroupControl(formGroup, testModel, newModel1);
         service.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel2);
 
-        expect(formGroup.controls[newModel1.id]).toBeDefined();
+        expect(formGroup.controls[newModel1.id]).toBeTruthy();
         expect(testModel[testModel.length - 1] === newModel1).toBe(true);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeDefined();
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(nestedFormGroupModel.group.length - 1) === newModel2).toBe(true);
     });
 
@@ -269,10 +266,10 @@ describe("DynamicFormService test suite", () => {
         service.insertFormGroupControl(4, formGroup, testModel, newModel1);
         service.insertFormGroupControl(0, nestedFormGroup, nestedFormGroupModel, newModel2);
 
-        expect(formGroup.controls[newModel1.id]).toBeDefined();
+        expect(formGroup.controls[newModel1.id]).toBeTruthy();
         expect(testModel[4] === newModel1).toBe(true);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeDefined();
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(0) === newModel2).toBe(true);
     });
 
@@ -286,12 +283,12 @@ describe("DynamicFormService test suite", () => {
 
         service.moveFormGroupControl(0, 2, testModel);
 
-        expect(formGroup.controls[model1.id]).toBeDefined();
+        expect(formGroup.controls[model1.id]).toBeTruthy();
         expect(testModel[2] === model1).toBe(true);
 
         service.moveFormGroupControl(0, 1, nestedFormGroupModel);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[model2.id]).toBeDefined();
+        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[model2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(1) === model2).toBe(true);
     });
 
@@ -330,7 +327,7 @@ describe("DynamicFormService test suite", () => {
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray;
 
-        expect(service.createFormArray).toBeDefined();
+        expect(service.createFormArray).toBeTruthy();
 
         formArray = service.createFormArray(model);
 
@@ -368,8 +365,8 @@ describe("DynamicFormService test suite", () => {
             index = 3,
             step = 1;
 
-        (formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 1");
-        (formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
         (model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 1");
         (model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 2");
@@ -378,8 +375,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
-        expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
         expect((model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 2");
         expect((model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 1");
@@ -393,8 +390,8 @@ describe("DynamicFormService test suite", () => {
             index = 3,
             step = -1;
 
-        (formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 1");
-        (formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
         (model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 1");
         (model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 2");
@@ -403,8 +400,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect((formArray.at(index) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 2");
-        expect((formArray.at(index + step) as FormGroup).controls["basicArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
         expect((model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 2");
         expect((model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 1");
@@ -440,47 +437,5 @@ describe("DynamicFormService test suite", () => {
         service.clearFormArray(formArray, model);
 
         expect(formArray.length === 0).toBe(true);
-    });
-
-
-    it("should resolve validators from config correctly", () => {
-
-        let config: any = {required: null, maxLength: 7, minLength: 3},
-            validators = service.getValidators(config);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    });
-
-
-    it("should resolve custom validators from config correctly", () => {
-
-        let config: any = {required: null, maxLength: 7, testValidator: null},
-            validators = service.getValidators(config);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    });
-
-
-    it("should resolve custom validators from detailed config correctly", () => {
-
-        let config: any = {testValidator: {name: testValidator.name, args: null}},
-            validators = service.getValidators(config);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    });
-
-
-    it("should resolve custom async validators from config correctly", inject([NG_ASYNC_VALIDATORS], (NG_ASYNC_VALIDATORS: any) => {
-
-        let config: any = {required: null, maxLength: 7, testAsyncValidator: null},
-            validators = service.getValidators(config, NG_ASYNC_VALIDATORS);
-
-        expect(validators.length === Object.keys(config).length).toBe(true);
-    }));
-
-    it("should throw when validator is not provided via NG_VALIDATORS", () => {
-
-        expect(() => service.getValidatorFn("test", null))
-            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 });

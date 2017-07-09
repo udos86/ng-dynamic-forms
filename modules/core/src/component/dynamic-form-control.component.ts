@@ -22,7 +22,7 @@ import {
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { Utils } from "../utils/core.utils";
 import { RelationUtils } from "../utils/relation.utils";
-import { ValidationUtils } from "../utils/validation.utils";
+import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 
 export interface DynamicFormControlEvent {
 
@@ -56,7 +56,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     abstract type: number | string | null;
 
-    constructor() { }
+    constructor(protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
 
@@ -109,7 +109,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     get errorMessages(): string[] {
 
         if (this.hasErrorMessaging && this.model.hasErrorMessages) {
-            return ValidationUtils.createErrorMessages(this.control, this.model);
+            return this.validationService.createErrorMessages(this.control, this.model);
         }
 
         return [];
