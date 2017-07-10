@@ -21,7 +21,7 @@
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                  [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                <dynamic-form-kendo-control *ngFor="let controlModel of groupModel.group"
+                <dynamic-form-kendo-control *ngFor="let item of groupModel.group"
                                             [bindId]="false"
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
