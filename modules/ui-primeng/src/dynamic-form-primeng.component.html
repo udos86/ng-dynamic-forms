@@ -66,8 +66,7 @@
                                                   (change)="onValueChange($event)"
                                                   (focus)="onFocusChange($event)"></dynamic-form-primeng-control>
 
-                    <ng-template [ngTemplateOutlet]="template?.templateRef"
-                                 [ngTemplateOutletContext]="groupModel"></ng-template>
+                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 

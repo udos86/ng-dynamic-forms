@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import {
     DynamicFormControlModel,
-    DynamicFormControlPath,
+    DynamicPathable,
     DynamicValidatorsMap
 } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
@@ -77,7 +77,7 @@ export class DynamicFormService {
 
     createFormGroup(groupModel: DynamicFormControlModel[],
                     extra: { [key: string]: any } | null = null,
-                    parent: DynamicFormControlPath = null): FormGroup {
+                    parent: DynamicPathable = null): FormGroup {
 
         let formGroup: { [id: string]: AbstractControl; } = {};
 
@@ -117,14 +117,14 @@ export class DynamicFormService {
     }
 
 
-    getPathSegment(model: DynamicFormControlPath): string {
+    getPathSegment(model: DynamicPathable): string {
 
         return model instanceof DynamicFormArrayGroupModel ?
             model.index.toString() : (model as DynamicFormControlModel).id;
     }
 
 
-    getPath(model: DynamicFormControlModel | DynamicFormArrayGroupModel): string[] {
+    getPath(model: DynamicPathable): string[] {
 
         let path = [this.getPathSegment(model)],
             parent = model.parent;

@@ -3,6 +3,13 @@ import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { Utils } from "../utils/core.utils";
 
+export interface DynamicPathable {
+
+    id?: string;
+    index?: number;
+    parent: DynamicPathable;
+}
+
 export interface DynamicValidatorConfig {
 
     name: string;
@@ -41,13 +48,6 @@ export function createEmptyClsConfig(): Cls {
     };
 }
 
-export interface DynamicFormControlPath {
-
-    id?: string;
-    index?: number;
-    parent: DynamicFormControlPath;
-}
-
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
@@ -57,7 +57,7 @@ export interface DynamicFormControlModelConfig {
     relation?: DynamicFormControlRelationGroup[];
 }
 
-export abstract class DynamicFormControlModel implements DynamicFormControlPath {
+export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() cls: any = {};
     @serializable("disabled") _disabled: boolean;
@@ -66,7 +66,7 @@ export abstract class DynamicFormControlModel implements DynamicFormControlPath 
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() name: string;
-    parent: DynamicFormControlPath | null = null;
+    parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
 
     abstract readonly type: string;

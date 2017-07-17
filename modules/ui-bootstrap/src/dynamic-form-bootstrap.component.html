@@ -62,8 +62,7 @@
                                                     (change)="onValueChange($event)"
                                                     (focus)="onFocusChange($event)"></dynamic-form-bootstrap-control>
 
-                    <ng-template [ngTemplateOutlet]="template?.templateRef"
-                                 [ngTemplateOutletContext]="groupModel"></ng-template>
+                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -218,6 +217,7 @@
     <ng-template *ngIf="type !== 1 && template?.align === 'END'"
                  [ngTemplateOutlet]="template.templateRef"
                  [ngTemplateOutletContext]="model"></ng-template>
+
 
     <ng-content></ng-content>
 

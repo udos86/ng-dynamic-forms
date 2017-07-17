@@ -1,21 +1,23 @@
 import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
-    DynamicFormControlPath,
+    DynamicPathable,
     DynamicValidatorsMap,
     ClsConfig,
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
 import { Utils } from "../../utils/core.utils";
 
-export class DynamicFormArrayGroupModel implements DynamicFormControlPath {
+export class DynamicFormArrayGroupModel implements DynamicPathable {
 
+    $implicit: DynamicFormArrayGroupModel;
     context: DynamicFormArrayModel;
     @serializable() group: DynamicFormControlModel[];
     @serializable() index: number | null;
 
     constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number = null) {
 
+        this.$implicit = this;
         this.context = context;
         this.group = group;
         this.index = index;
