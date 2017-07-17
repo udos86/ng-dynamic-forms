@@ -60,6 +60,7 @@
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs",
         "text-mask-core": "npm:text-mask-core",
+        "tslib": "npm:tslib/tslib.js"
     };
 
     var packages = {

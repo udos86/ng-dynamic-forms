@@ -71,6 +71,8 @@ module.exports = function (config) {
             {pattern: "node_modules/primeng/**/*.js", included: false, watched: false},
             {pattern: "node_modules/primeng/**/*.js.map", included: false, watched: false},
 
+            {pattern: "node_modules/tslib/**/*.js", included: false, watched: false},
+
             {pattern: "dist/@ng2-dynamic-forms/**/*.js", included: false, watched: false},
             {pattern: "dist/@ng2-dynamic-forms/**/*.js.map", included: false, watched: false},
 

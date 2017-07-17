@@ -53,18 +53,6 @@ describe("DynamicFormArrayModel test suite", () => {
         expect(model.get(1) instanceof DynamicFormArrayGroupModel).toBe(true);
     });
 
-    it("should resolve array group path", () => {
-
-        let parent = model.get(0),
-            groupModel = (parent.get(1) as DynamicFormArrayModel).get(0);
-
-        expect(groupModel.path).toEqual(["nestedFormArray", "0"]);
-
-        groupModel.parent = parent;
-
-        expect(groupModel.path).toEqual([parent.context.id, parent.index.toString(), "nestedFormArray", "0"]);
-    });
-
     it("should add another form array group", () => {
 
         model.addGroup();

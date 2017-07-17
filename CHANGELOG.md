@@ -1,3 +1,15 @@
+# 1.4.19
+
+### **Minor Breaking Change**
+
+* **path resolving for nested form arrays from `1.4.17` has been removed in favor of a more global approach due to impasses**
+
+### **Features** 
+
+* `parent` property added for `DynamicFormControlModel` via new interface `DynamicFormControlPath`
+* `getPath()` method added to `DynamicFormService` (see [#414](https://github.com/udos86/ng2-dynamic-forms/issues/414))
+
+
 # 1.4.18
 
 ### **Minor Breaking Change**
