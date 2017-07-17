@@ -40,6 +40,7 @@ describe("DynamicFormService test suite", () => {
         return new Promise<boolean>(resolve => setTimeout(() => resolve(true), 0));
     }
 
+
     beforeEach(() => {
 
         TestBed.configureTestingModule({
@@ -126,7 +127,11 @@ describe("DynamicFormService test suite", () => {
                     groupFactory: () => {
                         return [
                             new DynamicInputModel({id: "testFormArrayGroupInput"}),
-                            new DynamicFormArrayModel({id: "testNestedFormArray", groupFactory: () => []})
+                            new DynamicFormArrayModel({
+                                id: "testNestedFormArray", groupFactory: () => [
+                                    new DynamicInputModel({id: "testNestedFormArrayGroupInput"})
+                                ]
+                            })
                         ];
                     }
                 }
@@ -156,9 +161,11 @@ describe("DynamicFormService test suite", () => {
         ];
     });
 
+
     beforeEach(inject([DynamicFormService], (formService: DynamicFormService) => service = formService));
 
-    it("should create create a form group correctly", () => {
+
+    it("should create create a form group", () => {
 
         let formGroup = service.createFormGroup(testModel);
 
@@ -178,7 +185,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should parse dynamic form JSON correctly", () => {
+    it("should parse dynamic form JSON", () => {
 
         let json = JSON.stringify(testModel),
             formModel = service.fromJSON(json);
@@ -210,7 +217,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should find a dynamic form control model by id correctly", () => {
+    it("should find a dynamic form control model by id", () => {
 
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
@@ -228,11 +235,23 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should find a nested dynamic form control model by id correctly", () => {
+    it("should find a nested dynamic form control model by id", () => {
 
         expect(service.findById("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("nestedTestInput", testModel) instanceof DynamicFormControlModel).toBe(true);
+    });
+
+
+    it("should resolve array group path", () => {
+
+        service.createFormGroup(testModel);
+
+        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+            nestedModel = (model.get(0).get(1) as DynamicFormArrayModel).get(0);
+
+        expect(service.getPath(model)).toEqual(["testFormArray"]);
+        expect(service.getPath(nestedModel)).toEqual(["testFormArray", "0", "testNestedFormArray", "0"]);
     });
 
 
@@ -268,9 +287,11 @@ describe("DynamicFormService test suite", () => {
 
         expect(formGroup.controls[newModel1.id]).toBeTruthy();
         expect(testModel[4] === newModel1).toBe(true);
+        expect(service.getPath(testModel[4])).toEqual(["newInput1"]);
 
         expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(0) === newModel2).toBe(true);
+        expect(service.getPath(nestedFormGroupModel.get(0))).toEqual(["testFormGroup", "newInput2"]);
     });
 
 
@@ -322,7 +343,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should create a form array correctly", () => {
+    it("should create a form array", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray;
@@ -336,7 +357,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should add a form array group correctly", () => {
+    it("should add a form array group", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
@@ -347,7 +368,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should insert a form array group correctly", () => {
+    it("should insert a form array group", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
@@ -358,7 +379,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should move up a form array group correctly", () => {
+    it("should move up a form array group", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model),
@@ -383,7 +404,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should move down a form array group correctly", () => {
+    it("should move down a form array group", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model),
@@ -418,7 +439,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should remove a form array group correctly", () => {
+    it("should remove a form array group", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
@@ -429,7 +450,7 @@ describe("DynamicFormService test suite", () => {
     });
 
 
-    it("should clear a form array correctly", () => {
+    it("should clear a form array", () => {
 
         let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);

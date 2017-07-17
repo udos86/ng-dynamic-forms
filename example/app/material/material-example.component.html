@@ -7,19 +7,7 @@
                                        [model]="controlModel"
                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                        [showCharacterHint]="controlModel.type === 'INPUT'"
-                                       (change)="onChange($event)">
-
-            <ng-template *ngIf="controlModel.type === 'ARRAY'" let-index="index">
-
-                <div>
-
-                    <button md-mini-fab (click)="add()">Add Item</button>
-
-                </div>
-
-            </ng-template>
-
-        </dynamic-form-material-control>
+                                       (change)="onChange($event)"></dynamic-form-material-control>
 
     </form>
 

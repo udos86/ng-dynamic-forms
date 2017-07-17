@@ -1,3 +1,20 @@
+# 1.4.19
+
+### **Minor Breaking Change**
+
+* **path resolving for nested form arrays from `1.4.17` has been removed in favor of a more global approach due to impasses**
+
+### **Bugfixes**
+
+* Kendo form array template bug fixed (closes [#437](https://github.com/udos86/ng2-dynamic-forms/issues/437))
+
+### **Features** 
+
+* `parent` property added for `DynamicFormControlModel` via newly introduced interface `DynamicPathable`
+* `getPath()` method added to `DynamicFormService` (see [#414](https://github.com/udos86/ng2-dynamic-forms/issues/414))
+* a `DynamicFormArrayGroupModel` can now directly be referenced by a local default template variable (see updated [README.md](https://github.com/udos86/ng2-dynamic-forms#form-arrays))
+
+
 # 1.4.18
 
 ### **Minor Breaking Change**

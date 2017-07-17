@@ -27,12 +27,6 @@ describe("DynamicFormGroupModel test suite", () => {
         expect(model.validator).toBeDefined();
     });
 
-    it("should throw when no group array is specified", () => {
-
-        expect(() => new DynamicFormGroupModel({id: "test"}))
-            .toThrow(new Error("group array must be specified for DynamicFormGroupModel"));
-    });
-
     it("should get the correct DynamicFormControlModel of group", () => {
 
         expect(model.get(0) === model.group[0]).toBe(true);

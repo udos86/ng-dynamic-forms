@@ -1,47 +1,30 @@
 import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
+    DynamicPathable,
     DynamicValidatorsMap,
-    ClsConfig
+    ClsConfig,
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
 import { Utils } from "../../utils/core.utils";
 
-export class DynamicFormArrayGroupModel {
+export class DynamicFormArrayGroupModel implements DynamicPathable {
 
+    $implicit: DynamicFormArrayGroupModel;
     context: DynamicFormArrayModel;
     @serializable() group: DynamicFormControlModel[];
     @serializable() index: number | null;
 
-    private _parent: DynamicFormArrayGroupModel | null = null;
-
     constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number = null) {
 
+        this.$implicit = this;
         this.context = context;
         this.group = group;
         this.index = index;
     }
 
-    get parent(): DynamicFormArrayGroupModel {
-        return this._parent;
-    }
-
-    set parent(parent: DynamicFormArrayGroupModel) {
-        this._parent = parent;
-    }
-
-    get path(): string[] {
-
-        let path: string[] = [],
-            groupModel: DynamicFormArrayGroupModel = this;
-
-        while (groupModel) {
-
-            path.unshift(groupModel.context.id, groupModel.index.toString());
-            groupModel = groupModel.parent;
-        }
-
-        return path;
+    get parent(): DynamicFormArrayModel {
+        return this.context;
     }
 
     get(index: number): DynamicFormControlModel {

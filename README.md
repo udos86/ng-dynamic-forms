@@ -438,7 +438,7 @@ Alright, works like a charm!
 
 But what if we want to append an additional remove `<button>` for each array group?
 
-Particularly for this case you can add a `<ng-template>` and **declare some custom content** that is **rendered equally for all array groups**:
+Particularly for this case you can add a `<ng-template>` and **declare some custom content** that is **rendered equally for all form array groups**:
 ```ts
 <form [formGroup]="formGroup">
 
@@ -446,10 +446,9 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
                                 [group]="formGroup" 
                                 [model]="controlModel">
     
-        <ng-template modelId="myFormArray" let-context="context" let-index="index">
+        <ng-template modelId="myFormArray">
 
-            <button type="button" (click)="removeItem(context, index)">Remove Item</button>
-            <button type="button" (click)="insertItem(context, index + 1)">Add Item</button>
+            <button type="button" (click)="onClick()">Label</button>
 
         </ng-template>
                                 
@@ -458,13 +457,33 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
 </form>       
 ```
 
-Whenever a `<ng-template>` is set for a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
-the associated** `DynamicFormArrayGroup`. 
+Whenever a `<ng-template>` is applied to a `DynamicFormArrayModel`, `NgTemplateOutletContext` **is internally bound to 
+the associated** `DynamicFormArrayGroupModel`. 
 
-That means you can **access the group index and it's context** `DynamicFormArrayModel` 
-**by declaring some local template variables** `let-context="context"` and `let-index="index"`.
+That means **you can access the group object and it's properties by either declaring a local default template variable** or individual local template variables.
 
 > see chapter on [Custom Templates](#custom-templates)
+
+```ts
+<form [formGroup]="formGroup">
+
+    <dynamic-form-basic-control *ngFor="let controlModel of formModel" 
+                                [group]="formGroup" 
+                                [model]="controlModel">
+    
+        <ng-template modelId="myFormArray" let-group let-index="index" let-context="context">
+
+            <button type="button" (click)="removeItem(context, index)">Remove Item</button>
+            <button type="button" (click)="insertItem(group.context, group.index + 1)">Add Item</button>
+
+        </ng-template>
+                                
+    </dynamic-form-basic-control>
+
+</form>       
+```
+
+
 
 This is extremely useful when you'd like to implement a remove or insert function:
 ```ts

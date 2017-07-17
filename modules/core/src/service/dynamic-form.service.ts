@@ -1,6 +1,10 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { DynamicFormControlModel, DynamicValidatorsMap } from "../model/dynamic-form-control.model";
+import {
+    DynamicFormControlModel,
+    DynamicPathable,
+    DynamicValidatorsMap
+} from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -51,20 +55,16 @@ export class DynamicFormService {
         };
     }
 
-    createFormArray(model: DynamicFormArrayModel, parent: any = null): FormArray {
+    createFormArray(model: DynamicFormArrayModel): FormArray {
 
         let formArray = [];
 
         for (let index = 0; index < model.size; index++) {
 
-            let arrayGroupModel = model.get(index),
+            let groupModel = model.get(index),
                 extra = this.createExtra(model.groupValidator, model.groupAsyncValidator);
 
-            if (parent instanceof DynamicFormArrayGroupModel) {
-                arrayGroupModel.parent = parent;
-            }
-
-            formArray.push(this.createFormGroup(arrayGroupModel.group, extra, arrayGroupModel));
+            formArray.push(this.createFormGroup(groupModel.group, extra, groupModel));
         }
 
         return this.formBuilder.array(
@@ -77,24 +77,26 @@ export class DynamicFormService {
 
     createFormGroup(groupModel: DynamicFormControlModel[],
                     extra: { [key: string]: any } | null = null,
-                    parent: any = null): FormGroup {
+                    parent: DynamicPathable = null): FormGroup {
 
         let formGroup: { [id: string]: AbstractControl; } = {};
 
         groupModel.forEach(model => {
 
+            model.parent = parent;
+
             if (model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
 
                 let formArrayModel = model as DynamicFormArrayModel;
 
-                formGroup[model.id] = this.createFormArray(formArrayModel, parent);
+                formGroup[model.id] = this.createFormArray(formArrayModel);
 
             } else if (model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP) {
 
                 let formGroupModel = model as DynamicFormGroupModel,
                     extra = this.createExtra(formGroupModel.validator, formGroupModel.asyncValidator);
 
-                formGroup[model.id] = this.createFormGroup(formGroupModel.group, extra);
+                formGroup[model.id] = this.createFormGroup(formGroupModel.group, extra, formGroupModel);
 
             } else {
 
@@ -112,6 +114,28 @@ export class DynamicFormService {
         });
 
         return this.formBuilder.group(formGroup, extra);
+    }
+
+
+    getPathSegment(model: DynamicPathable): string {
+
+        return model instanceof DynamicFormArrayGroupModel ?
+            model.index.toString() : (model as DynamicFormControlModel).id;
+    }
+
+
+    getPath(model: DynamicPathable): string[] {
+
+        let path = [this.getPathSegment(model)],
+            parent = model.parent;
+
+        while (parent) {
+
+            path.unshift(this.getPathSegment(parent));
+            parent = parent.parent;
+        }
+
+        return path;
     }
 
 
@@ -152,7 +176,8 @@ export class DynamicFormService {
                            groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
                            ...controlModels: DynamicFormControlModel[]): void {
 
-        let controls = this.createFormGroup(controlModels).controls;
+        let parent = groupModel instanceof DynamicFormGroupModel ? groupModel : null,
+            controls = this.createFormGroup(controlModels, null, parent).controls;
 
         Object.keys(controls).forEach((controlName, idx) => {
 

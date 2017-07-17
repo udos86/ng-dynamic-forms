@@ -3,6 +3,13 @@ import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { Utils } from "../utils/core.utils";
 
+export interface DynamicPathable {
+
+    id?: string;
+    index?: number;
+    parent: DynamicPathable;
+}
+
 export interface DynamicValidatorConfig {
 
     name: string;
@@ -28,6 +35,19 @@ export interface ClsConfig {
     grid?: Cls;
 }
 
+export function createEmptyClsConfig(): Cls {
+
+    return {
+        container: "",
+        control: "",
+        errors: "",
+        group: "",
+        hint: "",
+        host: "",
+        label: ""
+    };
+}
+
 export interface DynamicFormControlModelConfig {
 
     disabled?: boolean;
@@ -37,7 +57,7 @@ export interface DynamicFormControlModelConfig {
     relation?: DynamicFormControlRelationGroup[];
 }
 
-export abstract class DynamicFormControlModel {
+export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() cls: any = {};
     @serializable("disabled") _disabled: boolean;
@@ -46,6 +66,7 @@ export abstract class DynamicFormControlModel {
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() name: string;
+    parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
 
     abstract readonly type: string;
@@ -56,8 +77,8 @@ export abstract class DynamicFormControlModel {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = Utils.merge(cls.element, {container: "", control: "", errors: "", group: "", hint: "", host: "", label: ""});
-        this.cls.grid = Utils.merge(cls.grid, {container: "", control: "", errors: "", group: "", hint: "", host: "", label: ""});
+        this.cls.element = Utils.merge(cls.element, createEmptyClsConfig());
+        this.cls.grid = Utils.merge(cls.grid, createEmptyClsConfig());
 
         this._disabled = Utils.isBoolean(config.disabled) ? config.disabled : false;
         this.errorMessages = config.errorMessages || null;
@@ -70,12 +91,12 @@ export abstract class DynamicFormControlModel {
         this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);
     }
 
-    set disabled(value: boolean) {
-        this._disabled = value;
-    }
-
     get disabled(): boolean {
         return this._disabled;
+    }
+
+    set disabled(value: boolean) {
+        this._disabled = value;
     }
 
     get hasErrorMessages(): boolean {
