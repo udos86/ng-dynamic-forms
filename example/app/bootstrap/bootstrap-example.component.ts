@@ -47,6 +47,7 @@ export class BootstrapExampleComponent implements OnInit {
 
     insert(context: DynamicFormArrayModel, index: number) {
         this.formService.insertFormArrayGroup(index, this.arrayControl, context);
+        console.log(this.formModel);
     }
 
     remove(context: DynamicFormArrayModel, index: number) {

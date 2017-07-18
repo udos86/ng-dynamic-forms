@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.4.19",
+  "version": "1.4.20",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "compile:app:aot": "ngc -p tsconfig.app.ngc.json",
@@ -73,7 +73,7 @@
     "@angular/compiler-cli": "^4.3.0",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.53",
-    "@types/node": "^8.0.13",
+    "@types/node": "^8.0.14",
     "codelyzer": "^3.1.2",
     "dateformat": "^2.0.0",
     "del": "^3.0.0",

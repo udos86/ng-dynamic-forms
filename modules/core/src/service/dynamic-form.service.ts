@@ -214,13 +214,17 @@ export class DynamicFormService {
 
     addFormArrayGroup(formArray: FormArray, model: DynamicFormArrayModel): void {
 
-        formArray.push(this.createFormGroup(model.addGroup().group));
+        let groupModel = model.addGroup();
+
+        formArray.push(this.createFormGroup(groupModel.group, null, groupModel));
     }
 
 
     insertFormArrayGroup(index: number, formArray: FormArray, model: DynamicFormArrayModel): void {
 
-        formArray.insert(index, this.createFormGroup(model.insertGroup(index).group));
+        let groupModel = model.insertGroup(index);
+
+        formArray.insert(index, this.createFormGroup(groupModel.group, null, groupModel));
     }
 
 
