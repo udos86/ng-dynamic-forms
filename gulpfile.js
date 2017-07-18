@@ -116,6 +116,7 @@ gulp.task("build:modules:dist", function (done) {
         "inline:ng2-templates:dist",
         ...MODULE_TASKS,
         "remove:moduleId:dist",
+        "copy:dist:npm",
         done
     );
 });
