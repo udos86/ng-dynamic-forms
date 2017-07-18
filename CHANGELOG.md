@@ -1,3 +1,10 @@
+# 1.4.20
+
+### **Bugfixes**
+
+* flaws in path resolving and Kendo UI template finally fixed
+
+
 # 1.4.19
 
 ### **Minor Breaking Change**
