@@ -9,12 +9,14 @@ export interface DynamicDatePickerModelConfig extends DynamicDateControlModelCon
 
     focusedDate?: string | Date;
     inline?: boolean;
+    toggleIcon?: string;
 }
 
 export class DynamicDatePickerModel extends DynamicDateControlModel {
 
     @serializable() focusedDate: string | Date | null;
     @serializable() inline: boolean;
+    @serializable() toggleIcon: string | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
 
@@ -24,5 +26,6 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
 
         this.focusedDate = config.focusedDate || null;
         this.inline = Utils.isBoolean(config.inline) ? config.inline : false;
+        this.toggleIcon = Utils.isString(config.toggleIcon) ? config.toggleIcon : null;
     }
 }

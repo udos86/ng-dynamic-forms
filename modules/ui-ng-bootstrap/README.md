@@ -34,6 +34,7 @@ export class AppModule {}
 
 |                                             Control                                             	|            Model            	| Required Property 	|
 |:-----------------------------------------------------------------------------------------------:	|:---------------------------:	|:-----------------:	|
+|              **[Calendar](https://ng-bootstrap.github.io/#/components/datepicker)**             	| `DynamicDatePickerModel`    	|   `inline: true`  	|
 |    **[Checkbox](https://v4-alpha.getbootstrap.com/components/forms/#checkboxes-and-radios)**    	| `DynamicCheckboxModel`      	|         –         	|
 | **[Checkbox Group](https://v4-alpha.getbootstrap.com/components/forms/#checkboxes-and-radios)** 	| `DynamicCheckboxGroupModel` 	|         –         	|
 |             **[DatePicker](https://ng-bootstrap.github.io/#/components/datepicker)**            	| `DynamicDatePickerModel`    	|         –         	|
@@ -41,4 +42,4 @@ export class AppModule {}
 |   **[Radio Group](https://v4-alpha.getbootstrap.com/components/forms/#checkboxes-and-radios)**  	| `DynamicRadioGroupModel`    	|         –         	|
 |         **[Select](https://v4-alpha.getbootstrap.com/components/forms/#form-controls)**         	| `DynamicSelectModel`        	|         –         	|
 |        **[TextArea](https://v4-alpha.getbootstrap.com/components/forms/#form-controls)**        	| `DynamicTextAreaModel`      	|         –         	|
-|             **[TimePicker](https://ng-bootstrap.github.io/#/components/timepicker)**            	| `DynamicTimePickerModel`    	|         –         	|       	| `DynamicTextAreaModel`      	|         –         	|
+|             **[TimePicker](https://ng-bootstrap.github.io/#/components/timepicker)**            	| `DynamicTimePickerModel`    	|         –         	|
