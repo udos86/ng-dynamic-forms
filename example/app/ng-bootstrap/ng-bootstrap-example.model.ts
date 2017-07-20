@@ -66,8 +66,10 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicDatePickerModel(
         {
             id: "ngbCalendar",
-            inline: true,
-            label: "Ngb Calendar"
+            inline: false,
+            label: "Ngb Calendar",
+            placeholder: "Ngb Datepicker",
+            toggleIcon: "../../assets/calendar-icon.svg"
         },
         {
             element: {

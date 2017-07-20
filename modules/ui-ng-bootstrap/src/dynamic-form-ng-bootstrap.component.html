@@ -81,6 +81,23 @@
                             [startDate]="model.focusedDate"></ngb-datepicker>
 
 
+            <div *ngSwitchCase="4" class="input-group">
+
+                <input ngbDatepicker class="form-control"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [placeholder]="model.placeholder"
+                       #datepicker="ngbDatepicker">
+
+                <div class="input-group-addon" (click)="datepicker.toggle()">
+                    <img [src]="model.toggleIcon" style="cursor: pointer;"/>
+                </div>
+
+            </div>
+
+
             <fieldset *ngSwitchCase="5"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"

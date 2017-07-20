@@ -176,11 +176,13 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             placeholder: "example Textarea",
             validators: {
                 required: null,
-                pattern: "[a-c]+"
+                pattern: "[a-c]+",
+                customValidator: null
             },
             errorMessages: {
                 required: "{{label}} is required",
-                pattern: "{{label}} does not match pattern {{validator.requiredPattern}}"
+                pattern: "{{label}} does not match pattern {{validator.requiredPattern}}",
+                customValidator: "Test Test"
             }
         },
         {

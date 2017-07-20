@@ -1,11 +1,8 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
 
-export class AppValidators {
+export function customValidator(control: AbstractControl): ValidationErrors | null {
 
-    static customValidator(control: AbstractControl): ValidationErrors | null {
+    let hasError = control.value ? (control.value as string).startsWith("abc") : false;
 
-        let hasError = control.value ? (control.value as string).startsWith("abc") : false;
-
-        return hasError ? {customValidator: true} : null;
-    }
+    return hasError ? {customValidator: true} : null;
 }

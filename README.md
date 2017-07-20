@@ -685,14 +685,11 @@ But what if you'd like to use a custom validator as well?
 
 **At first use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your function**:
 ```ts
-export class AppValidators { 
+export function customValidator(control: AbstractControl): ValidationErrors | null {
 
-    static customValidator(control: AbstractControl): ValidationErrors | null {
+    let hasError = control.value ? (control.value as string).startsWith("abc") : false;
 
-        let hasError = control.value ? (control.value as string).startsWith("abc") : false;
-
-        return hasError ? {customValidator: true} : null;
-    }
+    return hasError ? {customValidator: true} : null;
 }
 ```
 
@@ -700,7 +697,7 @@ export class AppValidators {
 @NgModule({
     // ...
     providers: [
-        {provide: NG_VALIDATORS, useValue: AppValidators.customValidator, multi: true}
+        {provide: NG_VALIDATORS, useValue: customValidator, multi: true}
     ]
 })
 ``` 
@@ -747,7 +744,7 @@ new DynamicInputModel({
     label: "My Input",
     validators: {
         customValidator: {
-            name: AppValidators.customValidator.name,
+            name: customValidator.name,
             args: null
         }
     }

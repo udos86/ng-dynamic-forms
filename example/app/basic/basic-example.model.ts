@@ -8,7 +8,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
-import { AppValidators } from "../app.validators";
+import { customValidator } from "../app.validators";
 
 export const BASIC_EXAMPLE_MODEL = [
 
@@ -50,7 +50,7 @@ export const BASIC_EXAMPLE_MODEL = [
             minLength: 2,
             maxLength: 5,
             customValidator: {
-                name: AppValidators.customValidator.name,
+                name: customValidator.name,
                 args: null
             }
         },
