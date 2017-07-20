@@ -28,7 +28,7 @@ import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
-import { AppValidators } from "./app.validators";
+import { customValidator } from "./app.validators";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -78,7 +78,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         },
         {
             provide: NG_VALIDATORS,
-            useValue: AppValidators.customValidator,
+            useValue: customValidator,
             multi: true
         }
     ],

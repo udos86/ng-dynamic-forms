@@ -12,9 +12,9 @@ describe("Validation Utils test suite", () => {
             testConfig3: any = {name: "test", args: null},
             testConfig4 = null;
 
-        expect(ValidationUtils.isLongValidatorConfig(testConfig1)).toBe(false);
-        expect(ValidationUtils.isLongValidatorConfig(testConfig2)).toBe(false);
-        expect(ValidationUtils.isLongValidatorConfig(testConfig3)).toBe(true);
-        expect(ValidationUtils.isLongValidatorConfig(testConfig4)).toBe(false);
+        expect(ValidationUtils.isExpandedValidatorConfig(testConfig1)).toBe(false);
+        expect(ValidationUtils.isExpandedValidatorConfig(testConfig2)).toBe(false);
+        expect(ValidationUtils.isExpandedValidatorConfig(testConfig3)).toBe(true);
+        expect(ValidationUtils.isExpandedValidatorConfig(testConfig4)).toBe(false);
     });
 });

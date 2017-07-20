@@ -65,7 +65,7 @@ export class DynamicFormValidationService {
                     validatorName,
                     validatorArgs;
 
-                if (ValidationUtils.isLongValidatorConfig(validatorConfig)) {
+                if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
 
                     validatorName = (validatorConfig as DynamicValidatorConfig).name;
                     validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
