@@ -19,6 +19,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
             id: "primeSelect",
             label: "Prime Select",
             multiple: false,
+            filterable: true,
             options: [
                 {
                     label: "Option 1",

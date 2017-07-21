@@ -123,6 +123,7 @@
 
             <p-dropdown *ngSwitchCase="6" #pDropdown
                         [dynamicId]="bindId && model.id"
+                        [filter]="model.filterable"
                         [formControlName]="model.id"
                         [options]="model.options"
                         [tabindex]="model.tabIndex"
@@ -203,6 +204,7 @@
 
             <p-multiSelect *ngSwitchCase="11" #pMultiSelect
                            [dynamicId]="bindId && model.id"
+                           [filter]="model.filterable"
                            [formControlName]="model.id"
                            [options]="model.options"
                            [tabindex]="model.tabIndex"
