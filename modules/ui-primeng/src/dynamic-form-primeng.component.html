@@ -211,7 +211,14 @@
                            (onChange)="onValueChange($event)"></p-multiSelect>
 
 
-            <p-slider *ngSwitchCase="13" #pSlider
+            <p-rating *ngSwitchCase="13" #pRating
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [stars]="model.max"
+                      (onRate)="onValueChange($event)"></p-rating>
+
+
+            <p-slider *ngSwitchCase="14" #pSlider
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -219,7 +226,7 @@
                       [step]="model.step"></p-slider>
 
 
-            <textarea *ngSwitchCase="14" pInputTextarea #pInputTextarea
+            <textarea *ngSwitchCase="15" pInputTextarea #pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"

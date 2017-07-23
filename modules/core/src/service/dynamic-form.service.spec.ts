@@ -19,6 +19,7 @@ import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.mo
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
+import { DynamicRatingModel } from "../model/rating/dynamic-rating.model";
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicSliderModel } from "../model/slider/dynamic-slider.model";
@@ -157,7 +158,9 @@ describe("DynamicFormService test suite", () => {
 
             new DynamicEditorModel({id: "testEditor"}),
 
-            new DynamicTimePickerModel({id: "testTimePicker"})
+            new DynamicTimePickerModel({id: "testTimePicker"}),
+
+            new DynamicRatingModel({id: "testRating"})
         ];
     });
 
@@ -182,6 +185,7 @@ describe("DynamicFormService test suite", () => {
         expect(formGroup.get("testFileUpload") instanceof FormControl).toBe(true);
         expect(formGroup.get("testEditor") instanceof FormControl).toBe(true);
         expect(formGroup.get("testTimePicker") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testRating") instanceof FormControl).toBe(true);
     });
 
 
@@ -207,6 +211,7 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[11] instanceof DynamicFileUploadModel).toBe(true);
         expect(formModel[12] instanceof DynamicEditorModel).toBe(true);
         expect(formModel[13] instanceof DynamicTimePickerModel).toBe(true);
+        expect(formModel[14] instanceof DynamicRatingModel).toBe(true);
     });
 
 
@@ -232,6 +237,7 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testFileUpload", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testEditor", testModel) instanceof DynamicEditorModel).toBe(true);
         expect(service.findById("testTimePicker", testModel) instanceof DynamicTimePickerModel).toBe(true);
+        expect(service.findById("testRating", testModel) instanceof DynamicRatingModel).toBe(true);
     });
 
 

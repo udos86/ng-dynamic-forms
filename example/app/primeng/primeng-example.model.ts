@@ -5,6 +5,7 @@ import {
     DynamicEditorModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
@@ -247,6 +248,24 @@ export const PRIMENG_EXAMPLE_MODEL = [
             min: 0,
             max: 10,
             step: 1,
+            value: 3
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                container: "ui-grid-row",
+                control: "ui-grid-col-9",
+                label: "ui-grid-col-3"
+            }
+        }
+    ),
+
+    new DynamicRatingModel(
+        {
+            id: "primeRating",
+            label: "Prime Rating",
             value: 3
         },
         {

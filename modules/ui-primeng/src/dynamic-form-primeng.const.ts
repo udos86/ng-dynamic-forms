@@ -12,12 +12,13 @@ export const enum PrimeNGFormControlType {
     InputSwitch = 10, //"INPUT_SWITCH",
     MultiSelect = 11, //"MULTI_SELECT",
     RadioGroup = 12, //"RADIO_GROUP",
-    Slider = 13, //"SLIDER",
-    TextArea = 14, //"TEXTAREA"
+    Rating = 13, // "RATING",
+    Slider = 14, //"SLIDER",
+    TextArea = 15, //"TEXTAREA"
 }
 
 export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pDropdown,pEditor,pInputText,
-    pInputSwitch,pMultiSelect,pSlider,pInputTextarea`;
+    pInputSwitch,pMultiSelect,pRating,pSlider,pInputTextarea`;
 
 export const PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
 

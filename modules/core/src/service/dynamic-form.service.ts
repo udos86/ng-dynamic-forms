@@ -27,6 +27,7 @@ import {
     DynamicFileUploadModel
 } from "../model/file-upload/dynamic-file-upload.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_INPUT, DynamicInputModel } from "../model/input/dynamic-input.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_RATING, DynamicRatingModel } from "../model/rating/dynamic-rating.model";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DynamicRadioGroupModel
@@ -364,6 +365,10 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
                     group.push(new DynamicRadioGroupModel(model, model.cls));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_RATING:
+                    group.push(new DynamicRatingModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:

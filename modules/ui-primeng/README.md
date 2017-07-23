@@ -1,4 +1,4 @@
-# ng2 Dynamic Forms Bootstrap UI
+# ng2 Dynamic Forms Prime NG UI
 
 ## Installation
 ```

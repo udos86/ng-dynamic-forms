@@ -19,6 +19,7 @@ import {
     Editor,
     InputSwitch,
     MultiSelect,
+    Rating,
     Slider
 } from "primeng/primeng";
 import {
@@ -38,6 +39,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_RATING,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
@@ -54,7 +56,7 @@ import {
 } from "./dynamic-form-primeng.const";
 
 export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputSwitch |
-    MultiSelect | Slider;
+    MultiSelect | Rating |  Slider;
 
 @Component({
 
@@ -158,6 +160,9 @@ export class DynamicFormPrimeNGComponent extends DynamicFormControlComponent imp
 
             case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
                 return PrimeNGFormControlType.RadioGroup;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_RATING:
+                return PrimeNGFormControlType.Rating;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
                 let selectModel = model as DynamicSelectModel<any>;
