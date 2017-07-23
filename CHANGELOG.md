@@ -1,3 +1,12 @@
+# 1.4.21
+
+### **Features** 
+
+* **initial support for Rating controls** in Prime NG UI package via newly introduced model `DynamicRatingModel` 
+* `filterable` support for dropdown and multiselect controls in Prime NG UI package (closes [#448](https://github.com/udos86/ng2-dynamic-forms/issues/448)) 
+* enhanced datepicker support in NG Bootstrap UI package (closes [#447](https://github.com/udos86/ng2-dynamic-forms/issues/447))
+
+
 # 1.4.20
 
 ### **Bugfixes**
