@@ -23,15 +23,15 @@ export default {
         includePaths(
             {
                 include: {
-                    "@ng2-dynamic-forms/core": "dist/@ng2-dynamic-forms/core/index.js",
-                    "@ng2-dynamic-forms/ui-basic": "dist/@ng2-dynamic-forms/ui-basic/index.js",
-                    "@ng2-dynamic-forms/ui-bootstrap": "dist/@ng2-dynamic-forms/ui-bootstrap/index.js",
-                    "@ng2-dynamic-forms/ui-foundation": "dist/@ng2-dynamic-forms/ui-foundation/index.js",
-                    "@ng2-dynamic-forms/ui-ionic": "dist/@ng2-dynamic-forms/ui-ionic/index.js",
-                    "@ng2-dynamic-forms/ui-kendo": "dist/@ng2-dynamic-forms/ui-kendo/index.js",
-                    "@ng2-dynamic-forms/ui-material": "dist/@ng2-dynamic-forms/ui-material/index.js",
-                    "@ng2-dynamic-forms/ui-ng-bootstrap": "dist/@ng2-dynamic-forms/ui-ng-bootstrap/index.js",
-                    "@ng2-dynamic-forms/ui-primeng": "dist/@ng2-dynamic-forms/ui-primeng/index.js"
+                    "@ng2-dynamic-forms/core": "dist/@ng2-dynamic-forms/core/public_api.js",
+                    "@ng2-dynamic-forms/ui-basic": "dist/@ng2-dynamic-forms/ui-basic/public_api.js",
+                    "@ng2-dynamic-forms/ui-bootstrap": "dist/@ng2-dynamic-forms/ui-bootstrap/public_api.js",
+                    "@ng2-dynamic-forms/ui-foundation": "dist/@ng2-dynamic-forms/ui-foundation/public_api.js",
+                    "@ng2-dynamic-forms/ui-ionic": "dist/@ng2-dynamic-forms/ui-ionic/public_api.js",
+                    "@ng2-dynamic-forms/ui-kendo": "dist/@ng2-dynamic-forms/ui-kendo/public_api.js",
+                    "@ng2-dynamic-forms/ui-material": "dist/@ng2-dynamic-forms/ui-material/public_api.js",
+                    "@ng2-dynamic-forms/ui-ng-bootstrap": "dist/@ng2-dynamic-forms/ui-ng-bootstrap/public_api.js",
+                    "@ng2-dynamic-forms/ui-primeng": "dist/@ng2-dynamic-forms/ui-primeng/public_api.js"
                 }
             }
         ),
@@ -72,6 +72,7 @@ export default {
                         "MultiSelect",
                         "MultiSelectModule",
                         "RadioButtonModule",
+                        "RatingModule",
                         "Slider",
                         "SliderModule",
                         "SpinnerModule"

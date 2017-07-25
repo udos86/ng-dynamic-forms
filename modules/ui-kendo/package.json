@@ -4,7 +4,7 @@
   "description": "Kendo UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-kendo.umd.js",
   "module": "./bundles/ui-kendo.es.js",
-  "typings": "./index.d.ts",
+  "typings": "./public_api.d.ts",
   "keywords": [
     "angular",
     "angular 2",

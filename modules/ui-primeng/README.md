@@ -45,4 +45,5 @@ export class AppModule {}
 | **[InputTextArea](https://www.primefaces.org/primeng/#/inputtextarea)** 	| `DynamicTextAreaModel`                             	|         –         	|
 |   **[MultiSelect](https://www.primefaces.org/primeng/#/multiselect)**   	| `DynamicSelectModel`                               	|  `multiple: true` 	|
 |   **[Radio Group](https://www.primefaces.org/primeng/#/radiobutton)**   	| `DynamicRadioGroupModel`                           	|         –         	|
+|        **[Rating](https://www.primefaces.org/primeng/#/rating)**        	| `DynamicRatingModel`                               	|         –         	|
 |        **[Slider](https://www.primefaces.org/primeng/#/slider)**        	| `DynamicSliderModel`                               	|         –         	|

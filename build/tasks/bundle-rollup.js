@@ -68,7 +68,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             "rxjs/Subscription": "Rx"
         };
 
-        const srcPath = path.join(entryRootPath, moduleName, "index.js");
+        const srcPath = path.join(entryRootPath, moduleName, "public_api.js");
 
         const destPath = path.join(dest, moduleName, "bundles");
 

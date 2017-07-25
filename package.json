@@ -18,7 +18,9 @@
     "transpile:app:watch": "tsc -p tsconfig.app.json -m commonjs -watch",
     "watch:modules": "gulp watch:modules",
     "webdriver:start": "webdriver-manager start",
-    "webdriver:update": "webdriver-manager update"
+    "webdriver:update": "webdriver-manager update",
+    "fesm": "ngc -p tsconfig.modules.fesm.json",
+    "fesm5": "ngc -p tsconfig.modules.fesm5.json"
   },
   "repository": {
     "type": "git",
@@ -73,7 +75,7 @@
     "@angular/compiler-cli": "^4.3.1",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.53",
-    "@types/node": "^8.0.15",
+    "@types/node": "^8.0.16",
     "codelyzer": "^3.1.2",
     "dateformat": "^2.0.0",
     "del": "^3.0.0",
@@ -115,6 +117,6 @@
     "typedoc": "^0.7.1",
     "typescript": "^2.4.2",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^3.3.0"
+    "webpack": "^3.4.0"
   }
 }

@@ -4,7 +4,7 @@
   "description": "Bootstrap UI package for ng2 Dynamic Forms",
   "main": "./bundles/ui-bootstrap.umd.js",
   "module": "./bundles/ui-bootstrap.es.js",
-  "typings": "./index.d.ts",
+  "typings": "./public_api.d.ts",
   "keywords": [
     "angular",
     "angular 2",
