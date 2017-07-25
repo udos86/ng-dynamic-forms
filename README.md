@@ -282,14 +282,12 @@ varies among UI packages. **See the following compatibility table**:
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
 
 
-
-
 ## Form Groups
 
 In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
 Luckily ng2 Dynamic Forms supports nesting of form groups out of the box!
  
-**1. Just create a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
+**1. Declare a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
  ```ts
 export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
  
@@ -353,10 +351,10 @@ ngOnInit() {
 
 **3. To manipulate existing** `DynamicFormGroupModel`s **you can simply use** `DynamicFormService`:
 
-* `addFormGroupControl`
-* `insertFormGroupControl`
-* `moveFormGroupControl`
-* `removeFormGroupControl`
+* `addFormGroupControl(...)`
+* `insertFormGroupControl(...)`
+* `moveFormGroupControl(...)`
+* `removeFormGroupControl(...)`
 
 
 ## Form Arrays
@@ -395,7 +393,7 @@ new DynamicFormArrayModel({
 })
 ```
 
-**3. As usual, create a** `FormGroup` **via** `DynamicFormService` **and bind it to your component template**:
+**3. Create a** `FormGroup` **via** `DynamicFormService` **and bind it to your component template**:
 ```ts
 this.formGroup = this.formService.createFormGroup(this.formModel);
 ```
@@ -478,8 +476,6 @@ That means **you can access the group object and it's properties by either decla
 
 </form>       
 ```
-
-
 
 This is extremely useful when you'd like to implement a remove or insert function:
 ```ts
@@ -677,9 +673,7 @@ new DynamicInputModel({
 
 So far so good! 
 
-But what if you'd like to use a custom validator as well?
-
-**At first use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your function**:
+But what if you'd like to introduce some custom validator as well?
 ```ts
 export function customValidator(control: AbstractControl): ValidationErrors | null {
 
@@ -689,6 +683,7 @@ export function customValidator(control: AbstractControl): ValidationErrors | nu
 }
 ```
 
+**Just use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your validator function**:
 ```ts
 @NgModule({
     // ...
@@ -700,7 +695,7 @@ export function customValidator(control: AbstractControl): ValidationErrors | nu
 
 > **Note:** thoughtram.io - [Custom Validators in Angular 2](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html)
 
-**You're now ready to apply your custom validator to your model as well**:
+**You're now ready to apply your custom validator to your model**:
 ```ts 
 new DynamicInputModel({
 

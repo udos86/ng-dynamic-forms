@@ -19,8 +19,7 @@
     "watch:modules": "gulp watch:modules",
     "webdriver:start": "webdriver-manager start",
     "webdriver:update": "webdriver-manager update",
-    "fesm": "ngc -p tsconfig.modules.fesm.json",
-    "fesm5": "ngc -p tsconfig.modules.fesm5.json"
+    "xxx": "ngc -p tsconfig.modules.fesm5.json"
   },
   "repository": {
     "type": "git",
@@ -48,7 +47,7 @@
     "@angular/platform-browser": "^4.3.1",
     "@angular/platform-browser-dynamic": "^4.3.1",
     "@angular/router": "^4.3.1",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.28",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.29",
     "@progress/kendo-angular-dateinputs": "^1.0.5",
     "@progress/kendo-angular-dropdowns": "^1.1.2",
     "@progress/kendo-angular-inputs": "^1.0.7",
@@ -110,7 +109,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-stream": "^1.23.1",
-    "run-sequence": "^2.0.0",
+    "run-sequence": "^2.1.0",
     "systemjs": "^0.20.16",
     "systemjs-builder": "^0.16.9",
     "tslint": "^5.5.0",
