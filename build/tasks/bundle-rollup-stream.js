@@ -60,7 +60,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
 
         return {
 
-            entry: path.join(entryRootPath, moduleName, "index.js"),
+            entry: path.join(entryRootPath, moduleName, "public_api.js"),
             format: format,
             banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
             context: "this",

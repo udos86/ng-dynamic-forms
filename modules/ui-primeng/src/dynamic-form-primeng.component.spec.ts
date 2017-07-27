@@ -15,6 +15,7 @@ import {
     InputTextareaModule,
     MultiSelectModule,
     RadioButtonModule,
+    RatingModule,
     SliderModule,
     SpinnerModule
 } from "primeng/primeng";
@@ -31,6 +32,7 @@ import {
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
@@ -57,6 +59,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
             new DynamicFormGroupModel({id: "formGroup", group: []}),
             new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicRatingModel({id: "rating"}),
             new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
             new DynamicSliderModel({id: "slider"}),
             new DynamicSwitchModel({id: "switch"}),
@@ -89,6 +92,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 InputTextareaModule,
                 MultiSelectModule,
                 RadioButtonModule,
+                RatingModule,
                 SliderModule,
                 SpinnerModule
             ],
@@ -225,18 +229,20 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.RadioGroup);
 
-        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.Dropdown);
+        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.Rating);
 
-        (formModel[9] as DynamicSelectModel<string>).multiple = true;
-        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.MultiSelect);
+        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.Dropdown);
 
-        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.Slider);
+        (formModel[10] as DynamicSelectModel<string>).multiple = true;
+        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.MultiSelect);
 
-        expect(testFn(formModel[11])).toEqual(PrimeNGFormControlType.InputSwitch);
+        expect(testFn(formModel[11])).toEqual(PrimeNGFormControlType.Slider);
 
-        expect(testFn(formModel[12])).toEqual(PrimeNGFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(PrimeNGFormControlType.InputSwitch);
 
-        expect(testFn(formModel[13])).toEqual(PrimeNGFormControlType.Calendar);
+        expect(testFn(formModel[13])).toEqual(PrimeNGFormControlType.TextArea);
+
+        expect(testFn(formModel[14])).toEqual(PrimeNGFormControlType.Calendar);
     });
 
     xit("should determine correct template directives", async(() => {

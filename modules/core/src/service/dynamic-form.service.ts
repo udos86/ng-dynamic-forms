@@ -31,6 +31,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DynamicRadioGroupModel
 } from "../model/radio/dynamic-radio-group.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_RATING, DynamicRatingModel } from "../model/rating/dynamic-rating.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SLIDER, DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
@@ -364,6 +365,10 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
                     group.push(new DynamicRadioGroupModel(model, model.cls));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_RATING:
+                    group.push(new DynamicRatingModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:

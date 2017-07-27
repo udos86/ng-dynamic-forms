@@ -15,6 +15,7 @@ import {
     InputTextareaModule,
     MultiSelectModule,
     RadioButtonModule,
+    RatingModule,
     SliderModule,
     SpinnerModule
 } from "primeng/primeng";
@@ -36,6 +37,7 @@ import {
         InputTextareaModule,
         MultiSelectModule,
         RadioButtonModule,
+        RatingModule,
         SliderModule,
         SpinnerModule
     ],
