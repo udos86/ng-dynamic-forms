@@ -72,16 +72,37 @@
 
 
             <ngb-datepicker *ngSwitchCase="2"
-                            [disabled]="model.disabled"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
                             [maxDate]="model.max"
                             [minDate]="model.min"
-                            [ngClass]="[model.cls.element.control]"
+                            [ngClass]="model.cls.element.control"
                             [startDate]="model.focusedDate"></ngb-datepicker>
 
 
-            <div *ngSwitchCase="4" class="input-group">
+            <div *ngSwitchCase="4" class="btn-group" data-toggle="buttons"
+                 [dynamicId]="bindId && model.id"
+                 [formGroupName]="model.id"
+                 [ngClass]="model.cls.element.control">
+
+                <label *ngFor="let controlModel of model.group" ngbButtonLabel [ngClass]="controlModel.cls.element.control">
+
+                    <input type="checkbox" ngbButton
+                           [attr.tabindex]="controlModel.tabIndex"
+                           [checked]="controlModel.checked"
+                           [dynamicId]="bindId && controlModel.id"
+                           [formControlName]="controlModel.id"
+                           [name]="controlModel.name"
+                           [required]="controlModel.required"
+                           [value]="controlModel.value"
+                           (blur)="onFocusChange($event)"
+                           (change)="onValueChange($event)"
+                           (focus)="onFocusChange($event)"/><span [ngClass]="controlModel.cls.element.label"
+                                                                  [innerHTML]="controlModel.label"></span></label>
+            </div>
+
+
+            <div *ngSwitchCase="5" class="input-group">
 
                 <input ngbDatepicker class="form-control"
                        [dynamicId]="bindId && model.id"
@@ -98,7 +119,7 @@
             </div>
 
 
-            <fieldset *ngSwitchCase="5"
+            <fieldset *ngSwitchCase="6"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
@@ -119,7 +140,7 @@
             </fieldset>
 
 
-            <div *ngSwitchCase="6" [class.input-group]="model.prefix || model.suffix">
+            <div *ngSwitchCase="7" [class.input-group]="model.prefix || model.suffix">
 
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
 
@@ -162,7 +183,7 @@
             </div>
 
 
-            <div *ngSwitchCase="7" ngbRadioGroup role="radiogroup"
+            <div *ngSwitchCase="8" ngbRadioGroup role="radiogroup"
                  [attr.tabindex]="model.tabIndex"
                  [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
@@ -170,10 +191,9 @@
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <label *ngFor="let option of model.options$ | async" class="btn btn-primary"
-                       [ngClass]="model.cls.element.control">
+                <label *ngFor="let option of model.options$ | async" ngbButtonLabel [ngClass]="model.cls.element.control">
 
-                    <input type="radio"
+                    <input type="radio" ngbButton
                            [disabled]="option.disabled"
                            [name]="model.name"
                            [value]="option.value"
@@ -184,7 +204,7 @@
             </div>
 
 
-            <select *ngSwitchCase="8" class="form-control"
+            <select *ngSwitchCase="9" class="form-control"
                     [attr.tabindex]="model.tabIndex"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -203,7 +223,7 @@
             </select>
 
 
-            <textarea *ngSwitchCase="9" class="form-control"
+            <textarea *ngSwitchCase="10" class="form-control"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
@@ -223,12 +243,11 @@
                       (focus)="onFocusChange($event)"></textarea>
 
 
-            <ngb-timepicker *ngSwitchCase="10"
-                            [disabled]="model.disabled"
+            <ngb-timepicker *ngSwitchCase="11"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
                             [meridian]="model.meridian"
-                            [ngClass]="[model.cls.element.control]"
+                            [ngClass]="model.cls.element.control"
                             [seconds]="model.showSeconds"
                             [spinners]="true"></ngb-timepicker>
 
