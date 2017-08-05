@@ -10,8 +10,7 @@
 ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
-It highly simplifies the implementing of reactive Angular forms by building
-upon a layer of maintainable form control models to **fully automate form UI creation**.
+It highly simplifies building reactive Angular forms by resting upon maintainable form control models to **fully automate form UI creation**.
 
 Therefore it provides a set of **dynamic UI components** with out of the box support for 
 **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 

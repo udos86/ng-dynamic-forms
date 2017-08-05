@@ -1,3 +1,13 @@
+# 1.4.22
+
+### **Features** 
+* **NG Bootstrap UI template improvements**: 
+    * initial support for native checkbox group via `DynamiCheckboxGroupModel`
+    * radio group is working again (closes [#457](https://github.com/udos86/ng2-dynamic-forms/issues/457))
+    * CSS class `btn-primary` is not applied automatically anymore 
+* update to NG Bootstrap alpha.30
+
+
 # 1.4.21
 
 ### **Features** 

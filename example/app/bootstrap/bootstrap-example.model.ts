@@ -15,12 +15,12 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicFormGroupModel({
 
         id: "bootstrapFormGroup1",
-        legend: "Bootstrap Form Group 1",
+        legend: "Form Group 1",
         group: [
             new DynamicSelectModel<string>(
                 {
                     id: "bootstrapSelect",
-                    label: "Example Select",
+                    label: "Select",
                     options: Observable.of([
                         {
                             label: "Option 1",
@@ -57,7 +57,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 {
                     hint: "Just a sample help text",
                     id: "bootstrapInput",
-                    label: "Example Input",
+                    label: "Input",
                     maxLength: 51,
                     placeholder: "example input",
                     prefix: "Prefix",
@@ -87,7 +87,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
             new DynamicCheckboxGroupModel(
                 {
                     id: "bootstrapCheckboxGroup",
-                    label: "Example Checkbox Group",
+                    label: "Checkbox Group",
                     group: [
                         new DynamicCheckboxModel(
                             {
@@ -122,12 +122,12 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicFormGroupModel({
 
         id: "bootstrapFormGroup2",
-        legend: "Bootstrap Form Group 2",
+        legend: "Form Group 2",
         group: [
             new DynamicRadioGroupModel<string>(
                 {
                     id: "bootstrapRadioGroup",
-                    label: "Example Radio Group",
+                    label: "Radio Group",
                     options: [
                         {
                             label: "Option 1",
@@ -163,7 +163,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
             new DynamicTextAreaModel(
                 {
                     id: "bootstrapTextArea",
-                    label: "Example Textarea",
+                    label: "Textarea",
                     rows: 5,
                     placeholder: "example Textarea",
                     relation: [
@@ -214,7 +214,7 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
                 {
                     id: "bootstrapFormArray",
                     initialCount: 5,
-                    label: "Example Array Model",
+                    label: "Form Array",
                     groupFactory: () => {
                         return [
                             new DynamicInputModel(

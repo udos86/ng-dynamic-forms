@@ -16,7 +16,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "kendoDropDownList",
-            label: "Kendo DropDownList",
+            label: "DropDownList",
             options: [
                 {
                     label: "Option 1",
@@ -43,7 +43,7 @@ export const KENDO_EXAMPLE_MODEL = [
         {
             autoUpload: true,
             id: "kendoUpload",
-            label: "Kendo Upload",
+            label: "Upload",
             multiple: true,
             removeUrl: "removeUrl",
             url: "saveUrl"
@@ -54,7 +54,7 @@ export const KENDO_EXAMPLE_MODEL = [
         {
             id: "kendoTextBox",
             hint: "Just a hint",
-            label: "Kendo TextBox",
+            label: "TextBox",
             placeholder: "Kendo TextBox",
             validators: {
                 required: null
@@ -70,7 +70,7 @@ export const KENDO_EXAMPLE_MODEL = [
             id: "kendoDatePicker",
             //focusedDate: new Date(2010, 11, 11),
             inline: false,
-            label: "Kendo DatePicker",
+            label: "DatePicker",
             value: new Date()
         }
     ),
@@ -78,7 +78,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicCheckboxGroupModel(
         {
             id: "kendoCheckboxGroup",
-            legend: "Kendo Checkbox Group",
+            legend: "Checkbox Group",
             group: [
                 new DynamicCheckboxModel(
                     {
@@ -99,7 +99,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicRadioGroupModel<string>(
         {
             id: "kendoRadioGroup",
-            legend: "Kendo Radio Group",
+            legend: "Radio Group",
             options: [
                 {
                     label: "Option 1",
@@ -121,7 +121,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoAutocomplete",
-            label: "Kendo Autocomplete",
+            label: "Autocomplete",
             list: ["Football", "Basketball", "Baseball", "Hockey", "Rugby", "Volleyball"],
             placeholder: "Kendo Autocomplete"
         }
@@ -130,7 +130,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSliderModel(
         {
             id: "kendoSlider",
-            label: "Kendo Slider",
+            label: "Slider",
             min: 0,
             max: 10,
             step: 1,
@@ -141,7 +141,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoNumericTextBox",
-            label: "Kendo NumericTextBox",
+            label: "NumericTextBox",
             inputType: "number",
             min: 0,
             max: 100,
@@ -153,7 +153,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "kendoMultiSelect",
-            label: "Kendo MultiSelect",
+            label: "MultiSelect",
             multiple: true,
             options: [
                 {
@@ -189,7 +189,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoDateInput",
-            label: "Kendo DateInput",
+            label: "DateInput",
             placeholder: "Kendo DateInput",
             inputType: "date"
         }
@@ -198,7 +198,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicSwitchModel(
         {
             id: "kendoSwitch",
-            label: "Kendo Switch",
+            label: "Switch",
             offLabel: "Off",
             onLabel: "On",
             value: true
@@ -208,7 +208,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "kendoMaskedTextBox",
-            label: "Kendo MaskedTextBox",
+            label: "MaskedTextBox",
             mask: "0000-00-00",
             value: "2017-01-01"
         }
@@ -217,7 +217,7 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicTextAreaModel(
         {
             id: "kendoTextArea",
-            label: "Kendo TextArea",
+            label: "TextArea",
             rows: 5,
             placeholder: "Kendo TextArea"
         }

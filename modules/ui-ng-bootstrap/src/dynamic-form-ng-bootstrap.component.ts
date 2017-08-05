@@ -34,13 +34,14 @@ export const enum NGBootstrapFormControlType {
     Array = 1, //"ARRAY",
     Calendar = 2, //"CALENDAR",
     Checkbox = 3, //"CHECKBOX",
-    DatePicker = 4, //"DATEPICKER",
-    Group = 5, //"GROUP",
-    Input = 6, //"INPUT",
-    RadioGroup = 7, //"RADIO_GROUP",
-    Select = 8, //"SELECT",
-    TextArea = 9, //"TEXTAREA",
-    TimePicker = 10, //"TIMEPICKER"
+    CheckboxGroup = 4, // "CHECKBOX_GROUP",
+    DatePicker = 5, //"DATEPICKER",
+    Group = 6, //"GROUP",
+    Input = 7, //"INPUT",
+    RadioGroup = 8, //"RADIO_GROUP",
+    Select = 9, //"SELECT",
+    TextArea = 10, //"TEXTAREA",
+    TimePicker = 11, //"TIMEPICKER"
 }
 
 @Component({
@@ -90,13 +91,15 @@ export class DynamicFormNGBootstrapComponent extends DynamicFormControlComponent
                 return NGBootstrapFormControlType.Checkbox;
 
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                return NGBootstrapFormControlType.Group;
+                return NGBootstrapFormControlType.CheckboxGroup;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
                 let datepickerModel = model as DynamicDatePickerModel;
 
                 return datepickerModel.inline ? NGBootstrapFormControlType.Calendar : NGBootstrapFormControlType.DatePicker;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+                return NGBootstrapFormControlType.Group;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 return NGBootstrapFormControlType.Input;

@@ -14,7 +14,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "foundationSelect",
-            label: "Example Select",
+            label: "Select",
             options: [
                 {
                     label: "Option 1",
@@ -51,7 +51,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicRadioGroupModel<string>(
         {
             id: "foundationRadioGroup",
-            label: "Example Radio Group",
+            label: "Radio Group",
             options: [
                 {
                     label: "Option 1",
@@ -89,7 +89,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             hint: "Just a sample help text",
             id: "foundationInput",
-            label: "Example Input",
+            label: "Input",
             mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/],
             maxLength: 51,
             //placeholder: "example input",
@@ -118,6 +118,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicCheckboxGroupModel(
         {
             id: "foundationCheckboxGroup",
+            label: "Checkbox Group",
             group: [
                 new DynamicCheckboxModel(
                     {
@@ -132,8 +133,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                         label: "Checkbox 2"
                     }
                 )
-            ],
-            label: "Example Checkbox Group"
+            ]
         },
         {
             element: {
@@ -150,7 +150,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicSwitchModel(
         {
             id: "foundationSwitch",
-            label: "Example Switch",
+            label: "Switch",
             offLabel: "Off",
             onLabel: "On",
             value: false
@@ -171,7 +171,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
     new DynamicTextAreaModel(
         {
             id: "foundationTextArea",
-            label: "Example Textarea",
+            label: "Textarea",
             rows: 5,
             placeholder: "example Textarea",
             validators: {
@@ -215,7 +215,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
         {
             id: "foundationFormArray",
             initialCount: 5,
-            label: "Example Array Model",
+            label: "Form Array",
             groupFactory: () => {
                 return [
                     new DynamicInputModel(

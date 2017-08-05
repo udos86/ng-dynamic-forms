@@ -1,10 +1,12 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
-    DynamicTextAreaModel, DynamicDatePickerModel, DynamicTimePickerModel
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
@@ -12,7 +14,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>(
         {
             id: "ngbSelect",
-            label: "Ngb Select",
+            label: "Select",
             options: [
                 {
                     label: "Option 1",
@@ -49,7 +51,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
         {
             id: "ngbFileInput",
             inputType: "file",
-            label: "Ngb File Input"
+            label: "File Input"
         },
         {
             element: {
@@ -65,11 +67,64 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
 
     new DynamicDatePickerModel(
         {
-            id: "ngbCalendar",
+            id: "ngbDatepicker",
             inline: false,
-            label: "Ngb Calendar",
+            label: "Datepicker",
             placeholder: "Ngb Datepicker",
             toggleIcon: "../../assets/calendar-icon.svg"
+        },
+        {
+            element: {
+                container: "row",
+                label: "col-form-label"
+            },
+            grid: {
+                control: "col-sm-9",
+                label: "col-sm-3"
+            }
+        }
+    ),
+
+    new DynamicCheckboxGroupModel(
+        {
+            id: "ngbCheckboxGroup",
+            label: "Checkbox Group",
+            group: [
+                new DynamicCheckboxModel(
+                    {
+                        id: "ngbCheckbox1",
+                        label: "One"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "ngbCheckbox2",
+                        label: "Two",
+                        value: true
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "ngbCheckbox3",
+                        label: "Three"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                )
+            ]
         },
         {
             element: {
@@ -87,7 +142,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
         {
             id: "ngbInput",
             hint: "Just a hint",
-            label: "Ngb Input",
+            label: "Input",
             placeholder: "Ngb input",
             prefix: "Prefix",
             suffix: "Suffix",
@@ -115,7 +170,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicTimePickerModel(
         {
             id: "ngbTimePicker",
-            label: "Ngb TimePicker"
+            label: "TimePicker"
         },
         {
             element: {
@@ -132,7 +187,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicRadioGroupModel<string>(
         {
             id: "ngbRadioGroup",
-            label: "Ngb Radio Group",
+            label: "Radio Group",
             options: [
                 {
                     label: "Option 1",
@@ -156,6 +211,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
         {
             element: {
                 container: "row",
+                control: "btn-primary",
                 label: "col-form-label"
             },
             grid: {
@@ -168,7 +224,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
     new DynamicTextAreaModel(
         {
             id: "ngbTextArea",
-            label: "Ngb Textarea",
+            label: "Textarea",
             rows: 5,
             placeholder: "Ngb Textarea"
         },
