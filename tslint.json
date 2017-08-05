@@ -6,7 +6,7 @@
     "component-selector": [
       true,
       "element",
-      "dynamic-form",
+      "dynamic",
       "kebab-case"
     ],
     "quotemark": [
@@ -21,7 +21,7 @@
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-attribute-parameter-decorator": true,
-    "no-input-rename": true,
+    "no-input-rename": false,
     "no-output-rename": true,
     "no-forward-ref": false,
     "use-life-cycle-interface": true,

@@ -1,2 +1,2 @@
-export * from "./dynamic-form-ng-bootstrap.component";
-export * from "./ui-ng-bootstrap.module";
+export * from "./dynamic-ng-bootstrap-form-control.component";
+export * from "./dynamic-ng-bootstrap-form-ui.module";

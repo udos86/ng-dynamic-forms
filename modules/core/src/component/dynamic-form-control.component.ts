@@ -42,9 +42,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    nestedTemplates: QueryList<DynamicTemplateDirective> | null = null;
 
     contentTemplates: QueryList<DynamicTemplateDirective>;
+    inputTemplates: QueryList<DynamicTemplateDirective> | null = null;
     template: DynamicTemplateDirective;
 
     blur: EventEmitter<DynamicFormControlEvent>;
@@ -136,7 +136,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get templates(): QueryList<DynamicTemplateDirective> {
-        return this.nestedTemplates ? this.nestedTemplates : this.contentTemplates;
+        return this.inputTemplates ? this.inputTemplates : this.contentTemplates;
     }
 
     protected setTemplates(): void {

@@ -1,2 +1,2 @@
-export * from "./dynamic-form-ionic.component";
-export * from "./ui-ionic.module";
+export * from "./dynamic-ionic-form-control.component";
+export * from "./dynamic-ionic-form-ui.module";
