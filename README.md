@@ -10,13 +10,11 @@
 ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
-It highly simplifies building reactive Angular forms by resting upon maintainable form control models to **fully automate form UI creation**.
+It **fully automates form UI creation** by introducing a set of maintainable **form control models** and **dynamic form control components** 
 
-Therefore it provides a set of **dynamic UI components** with out of the box support for 
-**[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
+**Out of the box support** is provided for all popular UI libraries including **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
 **[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
-
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/example/index.aot.html) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 
@@ -26,7 +24,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Getting Started](#getting-started)
 - [Running the Example](#running-the-example)
 - [Basic Usage](#basic-usage)
-- [UI Components](#ui-components)
+- [UI Modules](#ui-modules)
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
@@ -104,26 +102,20 @@ npm start
 
 ## Basic Usage
 
-**1. Import the ng2 Dynamic Forms core** `NgModule` **and a corresponding UI** `NgModule`:
+**1. Import the** `DynamicFormsCoreModule` **via** `forRoot()` **and a UI module**:
 ```ts
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
 
-// ..all remaining imports
+// ...
 
 @NgModule({
     imports: [
         DynamicFormsCoreModule.forRoot(), 
         DynamicFormsBootstrapUIModule, 
-        BrowserModule,  
-        ReactiveFormsModule
-        // ...all remaining imports
-    ],
-    declarations: [AppComponent, MyDynamicFormComponent],
-    bootstrap: [AppComponent]
+        // ...
+    ]
+    // ...
 })
 
 export class AppModule {}
@@ -138,7 +130,7 @@ import {
     DynamicRadioGroupModel
 } from "@ng2-dynamic-forms/core";
 
-export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicInputModel({
 
@@ -179,12 +171,12 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
 
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
 ```ts
-import { MY_DYNAMIC_FORM_MODEL } from "./my-dynamic-form.model";
+import { MY_FORM_MODEL } from "./my-dynamic-form.model";
 import { DynamicFormControlModel, DynamicFormService } from "@ng2-dynamic-forms/core";
 
 export class MyDynamicFormComponent implements OnInit {
 
-    formModel: DynamicFormControlModel[] = MY_DYNAMIC_FORM_MODEL;
+    formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {}
@@ -195,8 +187,8 @@ export class MyDynamicFormComponent implements OnInit {
 }
 ```
 
-**4. Add the** `DynamicFormControlComponent` **to your template
-and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
+**4. Add** `DynamicFormControlComponent`s **via** `*ngFor` **to your template
+and set the** `[group]` **and** `[model]` **bindings**:
 ```ts
 <form [formGroup]="formGroup">
 
@@ -207,7 +199,7 @@ and bind it's** `FormGroup` **and** `DynamicFormControlModel`:
 ```
 
 
-## UI Components
+## UI Modules
 
 ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
@@ -244,7 +236,7 @@ Right afterwards **just import the corresponding** `NgModule`:
 export class AppModule {}
 ```
 
-Every UI `NgModule` declares a specific `DynamicFormControlComponent` that **can easily be added to
+All UI modules declare a specific `DynamicFormControlComponent` that **can easily be added to
 your component** `template`:
 ```ts
 <form [formGroup]="formGroup">
@@ -288,7 +280,7 @@ Luckily ng2 Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Declare a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
  ```ts
-export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormControlModel[] = [
  
     new DynamicFormGroupModel({
  
@@ -297,15 +289,13 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
         group: [
             new DynamicInputModel({
                 
-                id: "group1Input1",
-                label: "Example Group Input 1-1",
-                value: "Test 1-1"
+                id: "input1",
+                label: "Nested Input 1"
             }),
             new DynamicInputModel({
                 
-                id: "group1Input2",
-                label: "Example Group Input 1-2",
-                value: "Test 1-2"
+                id: "input2",
+                label: "Nested Input 2"
             })
         ]
     }),
@@ -317,15 +307,13 @@ export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
         group: [
             new DynamicInputModel({
                     
-                id: "group2Input1",
-                label: "Example Group Input 2-1",
-                value: "Test 2-1"
+                id: "input3",
+                label: "Nested Input 3"
             }),
             new DynamicInputModel({
                 
-                id: "group2Input2",
-                label: "Example Group Input 2-2",
-                value: "Test 2-2"
+                id: "input4",
+                label: "Nested Input 4"
             })
         ]
     })
@@ -365,7 +353,7 @@ Fortunately, ng2 Dynamic Forms is capable of managing such nested form structure
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts
-export const MY_DYNAMIC_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormArrayModel({
         id: "myFormArray"
@@ -383,7 +371,6 @@ new DynamicFormArrayModel({
     groupFactory: () => {
         return [
             new DynamicInputModel({
-  
                 id: "formArrayInput",
                 label: "Form Array Input"
             })
