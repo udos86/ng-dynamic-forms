@@ -15,7 +15,7 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicSelectModel<string>({
 
         id: "basicSelect",
-        label: "Example Select",
+        label: "Select",
         options: [
             {
                 label: "Option 1",
@@ -38,7 +38,7 @@ export const BASIC_EXAMPLE_MODEL = [
 
         id: "basicInput",
         hint: "Just a hint",
-        label: "Example Input",
+        label: "Input",
         list: ["One", "Two", "Three", "Four", "Five"],
         //mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
         maxLength: 51,
@@ -63,7 +63,7 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicCheckboxGroupModel({
 
         id: "basicCheckboxGroup",
-        legend: "Example Checkbox Group",
+        legend: "Checkbox Group",
         group: [
             new DynamicCheckboxModel(
                 {
@@ -83,7 +83,7 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicRadioGroupModel<string>({
 
         id: "basicRadioGroup",
-        legend: "Example Radio Group",
+        legend: "Radio Group",
         options: [
             {
                 label: "Option 1",
@@ -109,7 +109,7 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicTextAreaModel({
 
         id: "basicTextArea",
-        label: "Example Textarea",
+        label: "Textarea",
         rows: 5,
         placeholder: "example Textarea"
     }),
@@ -117,19 +117,19 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicFormGroupModel({
 
         id: "basicFormGroup1",
-        legend: "Nested Form Group 1",
+        legend: "Form Group 1",
         group: [
             new DynamicInputModel(
                 {
                     id: "basicGroupInput1-1",
-                    label: "Example Group Input 1-1",
+                    label: "Nested Input 1-1",
                     value: "Test 1-1"
                 }
             ),
             new DynamicInputModel(
                 {
                     id: "basicGroupInput1-2",
-                    label: "Example Group Input 1-2",
+                    label: "Nested Input 1-2",
                     value: "Test 1-2"
                 }
             )]
@@ -138,19 +138,19 @@ export const BASIC_EXAMPLE_MODEL = [
     new DynamicFormGroupModel({
 
         id: "basicFormGroup2",
-        legend: "Nested Form Group 2",
+        legend: "Form Group 2",
         group: [
             new DynamicInputModel(
                 {
                     id: "basicGroupInput2-1",
-                    label: "Example Group Input 2-1",
+                    label: "Nested Input 2-1",
                     value: "Test 2-1"
                 }
             ),
             new DynamicInputModel(
                 {
                     id: "basicGroupInput2-2",
-                    label: "Example Group Input 2-2",
+                    label: "Nested Input 2-2",
                     value: "Test 2-2"
                 }
             )]
@@ -169,7 +169,7 @@ export const BASIC_EXAMPLE_ARRAY_MODEL = [
         {
             id: "basicFormArray",
             initialCount: 2,
-            label: "Example Array Model",
+            label: "Form Array",
             groupFactory: () => {
                 return [
                     new DynamicCheckboxModel({

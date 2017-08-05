@@ -175,7 +175,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
 
         expect(testFn(formModel[0])).toEqual(NGBootstrapFormControlType.Checkbox);
 
-        expect(testFn(formModel[1])).toEqual(NGBootstrapFormControlType.Group);
+        expect(testFn(formModel[1])).toEqual(NGBootstrapFormControlType.CheckboxGroup);
 
         expect(testFn(formModel[2])).toEqual(NGBootstrapFormControlType.DatePicker);
 
