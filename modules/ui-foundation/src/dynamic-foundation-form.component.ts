@@ -27,7 +27,6 @@ import { DynamicFoundationFormControlComponent } from "./dynamic-foundation-form
 export class DynamicFoundationFormComponent extends DynamicFormComponent {
 
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel[];
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

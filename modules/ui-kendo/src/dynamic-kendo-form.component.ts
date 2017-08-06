@@ -1,4 +1,13 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
@@ -11,13 +20,13 @@ import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.c
 @Component({
 
     moduleId: module.id,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "dynamic-kendo-form",
     templateUrl: "./dynamic-kendo-form.component.html"
 })
 export class DynamicKendoFormComponent extends DynamicFormComponent {
 
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel[];
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

@@ -57,7 +57,7 @@ import {
 } from "./dynamic-primeng-form.const";
 
 export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputSwitch |
-    MultiSelect | Rating |  Slider;
+    MultiSelect | Rating | Slider;
 
 @Component({
 
@@ -85,9 +85,8 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     suggestions: string[];
     type: PrimeNGFormControlType | null;
 
-    constructor(
-        protected changeDetectorRef: ChangeDetectorRef,
-        protected validationService: DynamicFormValidationService) {
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, validationService);
     }

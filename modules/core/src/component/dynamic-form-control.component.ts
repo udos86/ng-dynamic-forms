@@ -36,9 +36,9 @@ export interface DynamicFormControlEvent {
 
 export enum DynamicFormControlEventType {
 
-    blur = 0,
-    change = 1,
-    focus = 2
+    Blur = 0,
+    Change = 1,
+    Focus = 2
 }
 
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {

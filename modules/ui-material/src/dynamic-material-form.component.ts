@@ -1,4 +1,13 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
@@ -11,13 +20,13 @@ import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-con
 @Component({
 
     moduleId: module.id,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "dynamic-material-form",
     templateUrl: "./dynamic-material-form.component.html"
 })
 export class DynamicMaterialFormComponent extends DynamicFormComponent {
 
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel[];
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

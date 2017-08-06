@@ -82,9 +82,8 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     type: MdFormControlType | null;
 
-    constructor(
-        protected changeDetectorRef: ChangeDetectorRef,
-        protected validationService: DynamicFormValidationService) {
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, validationService);
     }

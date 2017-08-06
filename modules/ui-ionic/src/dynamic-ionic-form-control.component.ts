@@ -78,9 +78,8 @@ export class DynamicIonicFormControlComponent extends DynamicFormControlComponen
 
     type: IonicFormControlType | undefined;
 
-    constructor(
-        protected changeDetectorRef: ChangeDetectorRef,
-        protected validationService: DynamicFormValidationService) {
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, validationService);
     }

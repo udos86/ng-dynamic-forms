@@ -1,4 +1,13 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
@@ -11,13 +20,13 @@ import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.c
 @Component({
 
     moduleId: module.id,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "dynamic-ionic-form",
     templateUrl: "./dynamic-ionic-form.component.html"
 })
 export class DynamicIonicFormComponent extends DynamicFormComponent {
 
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel[];
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

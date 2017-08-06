@@ -11,7 +11,6 @@ import { DynamicTemplateDirective } from "../directive/dynamic-template.directiv
 export abstract class DynamicFormComponent {
 
     group: FormGroup;
-    hasErrorMessaging: boolean;
     model: DynamicFormControlModel[];
 
     components: QueryList<DynamicFormControlComponent>;
@@ -25,15 +24,15 @@ export abstract class DynamicFormComponent {
 
         switch (type) {
 
-            case DynamicFormControlEventType.blur:
+            case DynamicFormControlEventType.Blur:
                 this.blur.emit($event);
                 break;
 
-            case DynamicFormControlEventType.change:
+            case DynamicFormControlEventType.Change:
                 this.change.emit($event);
                 break;
 
-            case DynamicFormControlEventType.focus:
+            case DynamicFormControlEventType.Focus:
                 this.focus.emit($event);
                 break;
         }

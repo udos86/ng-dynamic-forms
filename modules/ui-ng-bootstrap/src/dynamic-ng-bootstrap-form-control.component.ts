@@ -69,9 +69,8 @@ export class DynamicNGBootstrapFormControlComponent extends DynamicFormControlCo
 
     type: NGBootstrapFormControlType | null;
 
-    constructor(
-        protected changeDetectorRef: ChangeDetectorRef,
-        protected validationService: DynamicFormValidationService) {
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, validationService);
     }

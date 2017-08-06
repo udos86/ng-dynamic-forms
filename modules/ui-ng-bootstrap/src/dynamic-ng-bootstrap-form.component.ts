@@ -1,4 +1,13 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
@@ -11,13 +20,13 @@ import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-f
 @Component({
 
     moduleId: module.id,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "dynamic-ng-bootstrap-form",
     templateUrl: "./dynamic-ng-bootstrap-form.component.html"
 })
 export class DynamicNGBootstrapFormComponent extends DynamicFormComponent {
 
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel[];
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
