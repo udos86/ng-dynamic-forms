@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-control.component";
+import { DynamicBootstrapFormComponent } from "./dynamic-bootstrap-form.component";
 
 @NgModule({
 
@@ -14,11 +15,13 @@ import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-c
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicBootstrapFormControlComponent
+        DynamicBootstrapFormControlComponent,
+        DynamicBootstrapFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicBootstrapFormControlComponent
+        DynamicBootstrapFormControlComponent,
+        DynamicBootstrapFormComponent
     ]
 })
 

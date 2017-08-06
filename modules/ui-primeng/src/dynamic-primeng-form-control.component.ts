@@ -1,4 +1,5 @@
 import {
+    ChangeDetectorRef,
     Component,
     ContentChildren,
     EventEmitter,
@@ -84,8 +85,11 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     suggestions: string[];
     type: PrimeNGFormControlType | null;
 
-    constructor(protected validationService: DynamicFormValidationService) {
-        super(validationService);
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) {
+
+        super(changeDetectorRef, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

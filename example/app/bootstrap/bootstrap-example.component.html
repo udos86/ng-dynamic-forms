@@ -2,12 +2,12 @@
 
     <form class="form-horizontal" [formGroup]="formGroup">
 
-        <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel"
-                                        [group]="formGroup"
-                                        [model]="controlModel"
-                                        (blur)="onBlur($event)"
-                                        (change)="onChange($event)"
-                                        (focus)="onFocus($event)">
+        <dynamic-bootstrap-form [model]="formModel"
+                                [group]="formGroup"
+                                [hasErrorMessaging]="true"
+                                (blur)="onBlur($event)"
+                                (change)="onChange($event)"
+                                (focus)="onFocus($event)">
 
             <ng-template modelId="bootstrapFormArray" let-context="context" let-index="index">
 
@@ -22,7 +22,7 @@
 
             </ng-template>
 
-        </dynamic-form-bootstrap-control>
+        </dynamic-bootstrap-form>
 
     </form>
 

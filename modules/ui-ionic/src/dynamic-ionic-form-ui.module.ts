@@ -5,6 +5,7 @@ import { IonicModule } from "ionic-angular";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
+import { DynamicIonicFormComponent } from "./dynamic-ionic-form.component";
 
 @NgModule({
 
@@ -16,11 +17,13 @@ import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.c
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicIonicFormControlComponent
+        DynamicIonicFormControlComponent,
+        DynamicIonicFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicIonicFormControlComponent
+        DynamicIonicFormControlComponent,
+        DynamicIonicFormComponent
     ]
 })
 

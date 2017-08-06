@@ -7,6 +7,7 @@ import { InputsModule } from "@progress/kendo-angular-inputs";
 import { UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
+import { DynamicKendoFormComponent } from "./dynamic-kendo-form.component";
 
 @NgModule({
 
@@ -20,11 +21,13 @@ import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.c
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicKendoFormControlComponent
+        DynamicKendoFormControlComponent,
+        DynamicKendoFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicKendoFormControlComponent
+        DynamicKendoFormControlComponent,
+        DynamicKendoFormComponent
     ]
 })
 

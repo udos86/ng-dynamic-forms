@@ -21,7 +21,7 @@
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                  [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                <dynamic-form-basic-control *ngFor="let item of groupModel.group"
+                <dynamic-basic-form-control *ngFor="let item of groupModel.group"
                                             [bindId]="false"
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
@@ -31,7 +31,7 @@
                                             [ngClass]="[item.cls.element.host, item.cls.grid.host]"
                                             (blur)="onFocusChange($event)"
                                             (change)="onValueChange($event)"
-                                            (focus)="onFocusChange($event)"></dynamic-form-basic-control>
+                                            (focus)="onFocusChange($event)"></dynamic-basic-form-control>
 
                 <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
@@ -65,7 +65,7 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <dynamic-form-basic-control *ngFor="let controlModel of model.group"
+            <dynamic-basic-form-control *ngFor="let controlModel of model.group"
                                         [group]="control"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         [model]="controlModel"
@@ -73,7 +73,7 @@
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                         (blur)="onFocusChange($event)"
                                         (change)="onValueChange($event)"
-                                        (focus)="onFocusChange($event)"></dynamic-form-basic-control>
+                                        (focus)="onFocusChange($event)"></dynamic-basic-form-control>
         </fieldset>
 
 

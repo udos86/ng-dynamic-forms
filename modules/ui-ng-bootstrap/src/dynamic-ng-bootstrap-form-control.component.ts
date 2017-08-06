@@ -1,4 +1,5 @@
 import {
+    ChangeDetectorRef,
     Component,
     ContentChildren,
     EventEmitter,
@@ -68,8 +69,11 @@ export class DynamicNGBootstrapFormControlComponent extends DynamicFormControlCo
 
     type: NGBootstrapFormControlType | null;
 
-    constructor(protected validationService: DynamicFormValidationService) {
-        super(validationService);
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) {
+
+        super(changeDetectorRef, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

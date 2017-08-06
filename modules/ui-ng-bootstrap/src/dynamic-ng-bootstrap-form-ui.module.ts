@@ -5,6 +5,7 @@ import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-form-control.component";
+import { DynamicNGBootstrapFormComponent } from "./dynamic-ng-bootstrap-form.component";
 
 @NgModule({
 
@@ -18,11 +19,13 @@ import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-f
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicNGBootstrapFormControlComponent
+        DynamicNGBootstrapFormControlComponent,
+        DynamicNGBootstrapFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicNGBootstrapFormControlComponent
+        DynamicNGBootstrapFormControlComponent,
+        DynamicNGBootstrapFormComponent
     ]
 })
 

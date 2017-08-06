@@ -1,4 +1,5 @@
 import {
+    ChangeDetectorRef,
     Component,
     ContentChildren,
     EventEmitter,
@@ -81,8 +82,11 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     type: MdFormControlType | null;
 
-    constructor(protected validationService: DynamicFormValidationService) {
-        super(validationService);
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) {
+
+        super(changeDetectorRef, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

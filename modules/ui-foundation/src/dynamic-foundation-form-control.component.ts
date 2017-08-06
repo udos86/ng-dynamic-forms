@@ -1,4 +1,5 @@
 import {
+    ChangeDetectorRef,
     Component,
     ContentChildren,
     EventEmitter,
@@ -62,8 +63,11 @@ export class DynamicFoundationFormControlComponent extends DynamicFormControlCom
 
     type: FoundationFormControlType | null;
 
-    constructor(protected validationService: DynamicFormValidationService) {
-        super(validationService);
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) {
+
+        super(changeDetectorRef, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
@@ -33,6 +34,13 @@ export interface DynamicFormControlEvent {
     model: DynamicFormControlModel;
 }
 
+export enum DynamicFormControlEventType {
+
+    blur = 0,
+    change = 1,
+    focus = 2
+}
+
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
@@ -56,7 +64,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     abstract type: number | string | null;
 
-    constructor(protected validationService: DynamicFormValidationService) { }
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
 
@@ -99,7 +109,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     ngAfterViewInit(): void {
-        setTimeout(() => this.setTemplates(), 0); // setTimeout to trigger change detection
+
+        this.setTemplates();
+        this.changeDetectorRef.detectChanges();
     }
 
     ngOnDestroy(): void {

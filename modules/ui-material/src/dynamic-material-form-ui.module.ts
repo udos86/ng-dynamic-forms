@@ -13,6 +13,7 @@ import {
 } from "@angular/material";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
+import { DynamicMaterialFormComponent } from "./dynamic-material-form.component";
 
 @NgModule({
 
@@ -30,11 +31,13 @@ import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-con
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicMaterialFormControlComponent
+        DynamicMaterialFormControlComponent,
+        DynamicMaterialFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicMaterialFormControlComponent
+        DynamicMaterialFormControlComponent,
+        DynamicMaterialFormComponent
     ]
 })
 export class DynamicFormsMaterialUIModule {

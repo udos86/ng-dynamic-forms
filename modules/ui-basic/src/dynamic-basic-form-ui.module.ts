@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
+import { DynamicBasicFormComponent } from "./dynamic-basic-form.component";
 
 @NgModule({
 
@@ -14,11 +15,13 @@ import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.c
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicBasicFormControlComponent
+        DynamicBasicFormControlComponent,
+        DynamicBasicFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicBasicFormControlComponent
+        DynamicBasicFormControlComponent,
+        DynamicBasicFormComponent
     ]
 })
 

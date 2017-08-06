@@ -2,28 +2,31 @@
 
     <form [formGroup]="formGroup">
 
-        <dynamic-form-foundation-sites-control *ngFor="let controlModel of formModel"
-                                               [group]="formGroup"
-                                               [model]="controlModel"
-                                               [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                               (blur)="onBlur($event)"
-                                               (change)="onChange($event)"
-                                               (focus)="onFocus($event)">
+        <dynamic-foundation-form [group]="formGroup"
+                                 [model]="formModel"
+                                 [hasErrorMessaging]="true"
+                                 (blur)="onBlur($event)"
+                                 (change)="onChange($event)"
+                                 (focus)="onFocus($event)">
 
             <ng-template modelId="foundationFormArray" let-context="context" let-index="index">
 
                 <div class="small-5 cell">
 
-                    <button type="button" class="button alert rounded" (click)="remove(context, index)">&#10005;</button>
-                    <button type="button" class="button primary rounded" (click)="move(context, index, -1)">&#9650;</button>
-                    <button type="button" class="button primary rounded" (click)="move(context, index, 1)">&#9660;</button>
-                    <button type="button" class="button success rounded" (click)="insert(context, index + 1)">&#43;</button>
+                    <button type="button" class="button alert rounded" (click)="remove(context, index)">&#10005;
+                    </button>
+                    <button type="button" class="button primary rounded" (click)="move(context, index, -1)">&#9650;
+                    </button>
+                    <button type="button" class="button primary rounded" (click)="move(context, index, 1)">&#9660;
+                    </button>
+                    <button type="button" class="button success rounded" (click)="insert(context, index + 1)">&#43;
+                    </button>
 
                 </div>
 
             </ng-template>
 
-        </dynamic-form-foundation-sites-control>
+        </dynamic-foundation-form>
 
     </form>
 

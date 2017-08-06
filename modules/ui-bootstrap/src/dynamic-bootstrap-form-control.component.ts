@@ -1,4 +1,6 @@
 import {
+    AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ContentChildren,
     EventEmitter,
@@ -43,7 +45,7 @@ export const enum BootstrapFormControlType {
     selector: "dynamic-bootstrap-form-control,dynamic-form-bootstrap-control",
     templateUrl: "./dynamic-bootstrap-form-control.component.html"
 })
-export class DynamicBootstrapFormControlComponent extends DynamicFormControlComponent implements OnChanges {
+export class DynamicBootstrapFormControlComponent extends DynamicFormControlComponent implements AfterViewInit, OnChanges {
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() bindId: boolean = true;
@@ -61,8 +63,11 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
 
     type: BootstrapFormControlType | null;
 
-    constructor(protected validationService: DynamicFormValidationService) {
-        super(validationService);
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) {
+
+        super(changeDetectorRef, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

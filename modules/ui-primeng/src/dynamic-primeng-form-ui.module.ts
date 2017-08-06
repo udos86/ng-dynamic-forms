@@ -19,6 +19,7 @@ import {
     SliderModule,
     SpinnerModule
 } from "primeng/primeng";
+import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
 
 @NgModule({
 
@@ -42,11 +43,13 @@ import {
         SpinnerModule
     ],
     declarations: [
-        DynamicPrimeNGFormControlComponent
+        DynamicPrimeNGFormControlComponent,
+        DynamicPrimeNGFormComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicPrimeNGFormControlComponent
+        DynamicPrimeNGFormControlComponent,
+        DynamicPrimeNGFormComponent
     ]
 })
 
