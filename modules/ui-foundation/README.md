@@ -21,12 +21,23 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicFoundationFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-foundation-sites-control *ngFor="let controlModel of myFormModel"
-                                           [group]="myFormGroup"
-                                           [model]="controlModel"></dynamic-form-foundation-sites-control>
+    <dynamic-foundation-form [group]="myFormGroup"
+                             [model]="myFormModel"></dynamic-foundation-form>
+</form>
+```
+
+with **`DynamicFoundationFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-foundation-form-control *ngFor="let controlModel of myFormModel"
+                                     [group]="myFormGroup"
+                                     [model]="controlModel"></dynamic-foundation-form-control>
 </form>
 ```
 

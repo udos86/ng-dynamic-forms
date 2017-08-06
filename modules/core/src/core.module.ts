@@ -8,9 +8,18 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
 
 @NgModule({
 
-    imports: [CommonModule, ReactiveFormsModule],
-    declarations: [DynamicIdDirective, DynamicTemplateDirective],
-    exports: [DynamicIdDirective, DynamicTemplateDirective]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule
+    ],
+    declarations: [
+        DynamicIdDirective,
+        DynamicTemplateDirective
+    ],
+    exports: [
+        DynamicIdDirective,
+        DynamicTemplateDirective
+    ]
 })
 
 export class DynamicFormsCoreModule {

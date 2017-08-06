@@ -21,12 +21,23 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicBootstrapFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of myFormModel"
+    <dynamic-bootstrap-form [group]="myFormGroup"
+                            [model]="myFormModel"></dynamic-bootstrap-form>
+</form>
+```
+
+with **`DynamicBootstrapFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of myFormModel"
                                     [group]="myFormGroup"
-                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+                                    [model]="controlModel"></dynamic-bootstrap-form-control>
 </form>
 ```
 

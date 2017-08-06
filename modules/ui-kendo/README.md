@@ -21,12 +21,23 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicKendoFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-kendo-control *ngFor="let controlModel of myFormModel"
+    <dynamic-kendo-form [group]="myFormGroup"
+                        [model]="myFormModel"></dynamic-kendo-form>
+</form>
+```
+
+with **`DynamicKendoFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-kendo-form-control *ngFor="let controlModel of myFormModel"
                                 [group]="myFormGroup"
-                                [model]="controlModel"></dynamic-form-kendo-control>
+                                [model]="controlModel"></dynamic-kendo-form-control>
 </form>
 ```
 

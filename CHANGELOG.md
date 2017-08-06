@@ -1,8 +1,16 @@
 # 1.4.23
 
+### **Non-Breaking Changes** 
+
+* **new `DynamicFormControlComponent` selectors have been added** 
+    * word order has been changed, e.g. `<dynamic-form-bootstrap-control>` becomes `<dynamic-bootstrap-form-control>`
+    * old selectors will still work but should be considered deprecated
+    * consult **README.md** of UI packages for usage
+
 ### **Features** 
 
 * **Introducing the all new `DynamicFormComponent`**
+    * available for all UI packages, e.g `<dynamic-bootstrap-form>`
     * makes form markup even more straightforward
     * internally uses `ChangeDetectionStrategy.OnPush`
     * is now preferred over manually adding `DynamicFormControlComponents` via `*ngFor`  
