@@ -3,6 +3,7 @@
                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                [model]="controlModel"
                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                               [showCharacterHint]="controlModel.type === 'INPUT'"
                                [templates]="templates"
                                (blur)="onEvent($event, 0)"
                                (change)="onEvent($event, 1)"

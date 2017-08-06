@@ -1,13 +1,12 @@
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
 
 <div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
 
     <form class="form-horizontal" [formGroup]="formGroup">
 
-        <dynamic-form-ng-bootstrap-control *ngFor="let controlModel of formModel"
-                                           [hasErrorMessaging]="true"
-                                           [group]="formGroup"
-                                           [model]="controlModel"></dynamic-form-ng-bootstrap-control>
+        <dynamic-ng-bootstrap-form [group]="formGroup"
+                                   [model]="formModel"></dynamic-ng-bootstrap-form>
 
     </form>
 

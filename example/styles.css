@@ -139,22 +139,22 @@ dynamic-form-material-example fieldset {
     border: none;
 }
 
-dynamic-form-kendo-control {
+dynamic-kendo-form-control {
     display: block;
     margin-bottom: 3rem;
     text-align: center;
 }
 
-dynamic-form-kendo-control .k-widget {
+dynamic-kendo-form-control .k-widget {
     margin: 0 auto;
 }
 
-dynamic-form-kendo-control ul {
+dynamic-kendo-form-control ul {
     list-style-type: none;
     text-align: left;
 }
 
-dynamic-form-material-control .md-list-item {
+dynamic-material-form-control .md-list-item {
     justify-content: center;
 }
 
