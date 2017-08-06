@@ -343,7 +343,7 @@ ngOnInit() {
 </form>
 ```
 
-**3. To manipulate existing** `DynamicFormGroupModel`s **you can simply use** `DynamicFormService`:
+**3. To manipulate an existing** `DynamicFormGroupModel` **you can simply use** `DynamicFormService`:
 
 * `addFormGroupControl(...)`
 * `insertFormGroupControl(...)`
@@ -504,7 +504,9 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 </form>
 ```
 
-Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
+Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). 
+
+But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
 
 Don't worry!
 

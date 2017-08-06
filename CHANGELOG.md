@@ -1,3 +1,14 @@
+# 1.4.23
+
+### **Features** 
+
+* **Introducing the all new `DynamicFormComponent`**
+    * makes form markup even more straightforward
+    * internally uses `ChangeDetectionStrategy.OnPush`
+    * is now preferred over manually adding `DynamicFormControlComponents` via `*ngFor`  
+    * consult updated [**sample code**](https://github.com/udos86/ng2-dynamic-forms/tree/master/example), [**README.md**](https://github.com/udos86/ng2-dynamic-forms/blob/master/README.md) and [**API docs**](http://ng2-dynamic-forms.udos86.de/docs/) for how to use it
+ 
+
 # 1.4.22
 
 ### **Features** 
