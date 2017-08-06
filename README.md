@@ -106,7 +106,6 @@ npm start
 ```ts
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
-
 // ...
 
 @NgModule({
@@ -245,7 +244,7 @@ your component `template`:
 </form>
 ```
 
-Alternatively you can **directly make use of a specific** `DynamicFormControlComponent`:
+Alternatively you can **directly make use of a specific** `DynamicFormControlComponent` to gain more control:
 ```ts
 <form [formGroup]="formGroup">
 
@@ -741,7 +740,7 @@ Avoiding a library too opinionated in the beginning, NG2 Dynamic Forms has origi
 
 However, due to its very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature**: 
 
-**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
+**Just add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
 ```ts 
 new DynamicInputModel({
 
@@ -756,24 +755,28 @@ new DynamicInputModel({
         }
 })
 ```
-Error message template allows the following placeholders: 
+**Note:** Error message templates allow the following placeholders: 
 
-* `{{ propertyName }}` where propertyName is property of model, for example `{{ label }}`.
-* `{{ validator.propertyName }}` where propertyName is property of object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
+* `{{ propertyName }}` where `propertyName` is a property of the model, for example `{{ label }}`.
+* `{{ validator.propertyName }}` where `propertyName` is a property of the object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
 
-**2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of to** `true`:
+**Error messaging is automatically enabled whenever** `errorMessages` **are declared on a** `DynamicFormControlModel`. 
+
+It can also be **manually enabled or disabled** by binding the `hasErrorMessaging` property of any `DynamicFormControlComponent`:
 ```ts
 
 <form [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel"
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"
                                     [group]="formGroup"
                                     [model]="controlModel"
-                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
+                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-bootstrap-form-control>
 </form>
 ```
 
-**Still you are completely free to implement your own validation messaging. Follow the recommended approach below**:
+**Still you are completely free to implement your own validation messaging.** 
+
+Follow the recommended approach below:
 
 **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
 ```ts 
@@ -782,7 +785,7 @@ import { FormControl } from "@angular/forms";
  
 @Component({
 
-    selector: "my-validation-message",
+    selector: "validation-message",
     templateUrl: "./my-validation-message.html"
 })
  
@@ -799,7 +802,7 @@ export class MyValidationMessage {
 <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
 ```
 
-**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
+**3. Define some validators** for your `DynamicFormControlModel`:
 ```ts
 new DynamicInputModel({
     
@@ -813,20 +816,20 @@ new DynamicInputModel({
 ```
 
 **4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
-and **bind the internal** `FormControl` **reference via local template variables**:
+and **bind the** `FormControl` **reference via a local template variable**:
 ```ts
 <form [formGroup]="formGroup">
 
-    <div *ngFor="let controlModel of formModel">
+    <ng-container *ngFor="let controlModel of formModel">
     
-        <dynamic-form-basic-control [group]="formGroup" 
-                                    [model]="controlModel" #componentRef>
+        <dynamic-bootstrap-form-control [group]="formGroup" 
+                                        [model]="controlModel" #componentRef>
         
-            <my-validation-message [control]="componentRef.control"></my-validation-message>
+            <validation-message [control]="componentRef.control"></validation-message>
                                     
-        </dynamic-form-basic-control>
+        </dynamic-bootstrap-form-control>
         
-    </div>
+    </ng-container>
     
 </form>
 ```
