@@ -2,11 +2,9 @@
 
     <form [formGroup]="formGroup" class="k-form">
 
-        <dynamic-form-kendo-control *ngFor="let controlModel of formModel"
-                                    [group]="formGroup"
-                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                    [model]="controlModel"
-                                    (change)="onChange($event)">
+        <dynamic-kendo-form [group]="formGroup"
+                            [model]="formModel"
+                            (change)="onChange($event)">
 
             <ng-template modelId="kendoDropDownList" as="kendoDropDownListFooterTemplate">
 
@@ -20,7 +18,7 @@
 
             </ng-template>
 
-        </dynamic-form-kendo-control>
+        </dynamic-kendo-form>
 
     </form>
 

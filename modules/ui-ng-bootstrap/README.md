@@ -21,15 +21,25 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicNGBootstrapFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-ng-bootstrap-control *ngFor="let controlModel of myFormModel"
-                                       [group]="myFormGroup"
-                                       [model]="controlModel"></dynamic-form-ng-bootstrap-control>
+    <dynamic-ng-bootstrap-form [group]="myFormGroup"
+                               [model]="myFormModel"></dynamic-ng-bootstrap-form>
 </form>
 ```
 
+with **`DynamicNGBootstrapFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of myFormModel"
+                                       [group]="myFormGroup"
+                                       [model]="controlModel"></dynamic-ng-bootstrap-form-control>
+</form>
+```
 ## Form Controls
 
 |                                             Control                                             	|            Model            	| Required Property 	|

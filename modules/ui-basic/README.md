@@ -21,12 +21,23 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicBasicFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-basic-control *ngFor="let controlModel of myFormModel"
+    <dynamic-basic-form [group]="myFormGroup"
+                        [model]="myFormModel"></dynamic-basic-form>
+</form>
+```
+
+with **`DynamicBasicFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-basic-form-control *ngFor="let controlModel of myFormModel"
                                 [group]="myFormGroup"
-                                [model]="controlModel"></dynamic-form-basic-control>
+                                [model]="controlModel"></dynamic-basic-form-control>
 </form>
 ```
 

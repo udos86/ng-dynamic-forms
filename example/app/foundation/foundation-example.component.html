@@ -2,13 +2,11 @@
 
     <form [formGroup]="formGroup">
 
-        <dynamic-form-foundation-sites-control *ngFor="let controlModel of formModel"
-                                               [group]="formGroup"
-                                               [model]="controlModel"
-                                               [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                               (blur)="onBlur($event)"
-                                               (change)="onChange($event)"
-                                               (focus)="onFocus($event)">
+        <dynamic-foundation-form [group]="formGroup"
+                                 [model]="formModel"
+                                 (blur)="onBlur($event)"
+                                 (change)="onChange($event)"
+                                 (focus)="onFocus($event)">
 
             <ng-template modelId="foundationFormArray" let-context="context" let-index="index">
 
@@ -23,7 +21,7 @@
 
             </ng-template>
 
-        </dynamic-form-foundation-sites-control>
+        </dynamic-foundation-form>
 
     </form>
 

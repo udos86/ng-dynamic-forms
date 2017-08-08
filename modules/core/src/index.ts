@@ -1,3 +1,4 @@
+export * from "./component/dynamic-form-component";
 export * from "./component/dynamic-form-control.component";
 
 export * from "./decorator/serializable.decorator";

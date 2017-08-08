@@ -22,12 +22,23 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicMaterialFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-material-control *ngFor="let controlModel of myFormModel"
+    <dynamic-material-form [group]="myFormGroup"
+                           [model]="myFormModel"></dynamic-material-form>
+</form>
+```
+
+with **`DynamicMaterialFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-material-form-control *ngFor="let controlModel of myFormModel"
                                    [group]="myFormGroup"
-                                   [model]="controlModel"></dynamic-form-material-control>
+                                   [model]="controlModel"></dynamic-material-form-control>
 </form>
 ```
 

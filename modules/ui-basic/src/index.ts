@@ -1,2 +1,3 @@
-export * from "./dynamic-form-basic.component";
-export * from "./ui-basic.module";
+export * from "./dynamic-basic-form.component";
+export * from "./dynamic-basic-form-control.component";
+export * from "./dynamic-basic-form-ui.module";

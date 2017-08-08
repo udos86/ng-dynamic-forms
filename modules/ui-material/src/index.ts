@@ -1,3 +1,4 @@
-export * from "./dynamic-form-material.component";
-export * from "./dynamic-form-material.const";
-export * from "./ui-material.module";
+export * from "./dynamic-material-form.component";
+export * from "./dynamic-material-form.const";
+export * from "./dynamic-material-form-control.component";
+export * from "./dynamic-material-form-ui.module";

@@ -1,3 +1,4 @@
-export * from "./dynamic-form-primeng.component";
-export * from "./dynamic-form-primeng.const";
-export * from "./ui-primeng.module";
+export * from "./dynamic-primeng-form.component";
+export * from "./dynamic-primeng-form.const";
+export * from "./dynamic-primeng-form-control.component";
+export * from "./dynamic-primeng-form-ui.module";

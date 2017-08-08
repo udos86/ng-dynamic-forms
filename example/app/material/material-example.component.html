@@ -2,12 +2,9 @@
 
     <form class="text-center" [formGroup]="formGroup">
 
-        <dynamic-form-material-control *ngFor="let controlModel of formModel"
-                                       [group]="formGroup"
-                                       [model]="controlModel"
-                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                       [showCharacterHint]="controlModel.type === 'INPUT'"
-                                       (change)="onChange($event)"></dynamic-form-material-control>
+        <dynamic-material-form [group]="formGroup"
+                               [model]="formModel"
+                               (change)="onChange($event)"></dynamic-material-form>
 
     </form>
 

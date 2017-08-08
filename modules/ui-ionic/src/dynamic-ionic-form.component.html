@@ -1,0 +1,8 @@
+<dynamic-ionic-form-control *ngFor="let controlModel of model"
+                            [group]="group"
+                            [model]="controlModel"
+                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                            [templates]="templates"
+                            (blur)="onEvent($event, 0)"
+                            (change)="onEvent($event, 1)"
+                            (focus)="onEvent($event, 2)"></dynamic-ionic-form-control>

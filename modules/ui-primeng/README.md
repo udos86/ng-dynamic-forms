@@ -21,15 +21,25 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicPrimeNGFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-primeng-control *ngFor="let controlModel of myFormModel"
-                                  [group]="myFormGroup"
-                                  [model]="controlModel"></dynamic-form-primeng-control>
+    <dynamic-primeng-form [group]="myFormGroup"
+                          [model]="myFormModel"></dynamic-primeng-form>
 </form>
 ```
 
+with **`DynamicPrimeNGFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-primeng-form-control *ngFor="let controlModel of myFormModel"
+                                  [group]="myFormGroup"
+                                  [model]="controlModel"></dynamic-primeng-form-control>
+</form>
+```
 ## Form Controls
 
 |                                 Control                                 	|                        Model                       	| Required Property 	|

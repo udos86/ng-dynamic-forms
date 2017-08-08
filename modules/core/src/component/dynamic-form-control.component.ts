@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
@@ -33,6 +34,13 @@ export interface DynamicFormControlEvent {
     model: DynamicFormControlModel;
 }
 
+export enum DynamicFormControlEventType {
+
+    Blur = 0,
+    Change = 1,
+    Focus = 2
+}
+
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
@@ -42,9 +50,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     model: DynamicFormControlModel;
-    nestedTemplates: QueryList<DynamicTemplateDirective> | null = null;
 
     contentTemplates: QueryList<DynamicTemplateDirective>;
+    inputTemplates: QueryList<DynamicTemplateDirective> | null = null;
     template: DynamicTemplateDirective;
 
     blur: EventEmitter<DynamicFormControlEvent>;
@@ -56,7 +64,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     abstract type: number | string | null;
 
-    constructor(protected validationService: DynamicFormValidationService) { }
+    constructor(
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
 
@@ -99,7 +109,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     ngAfterViewInit(): void {
-        setTimeout(() => this.setTemplates(), 0); // setTimeout to trigger change detection
+
+        this.setTemplates();
+        this.changeDetectorRef.detectChanges();
     }
 
     ngOnDestroy(): void {
@@ -136,7 +148,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get templates(): QueryList<DynamicTemplateDirective> {
-        return this.nestedTemplates ? this.nestedTemplates : this.contentTemplates;
+        return this.inputTemplates ? this.inputTemplates : this.contentTemplates;
     }
 
     protected setTemplates(): void {

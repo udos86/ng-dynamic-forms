@@ -1,13 +1,13 @@
-<img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo ng2 Dynamic Forms" style="float:left;" />
+<img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo Ng2 Dynamic Forms" style="float:left;" />
 
-# ng2 Dynamic Forms
+# Ng2 Dynamic Forms
 
 [![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng2-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng2-dynamic-forms)
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
 
-ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
+Ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
 It **fully automates form UI creation** by introducing a set of maintainable **form control models** and **dynamic form control components** 
@@ -102,11 +102,10 @@ npm start
 
 ## Basic Usage
 
-**1. Import the** `DynamicFormsCoreModule` **via** `forRoot()` **and a UI module**:
+**1. Import** `DynamicFormsCoreModule` **via** `forRoot()` **and a UI module**:
 ```ts
 import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
 import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
-
 // ...
 
 @NgModule({
@@ -187,21 +186,20 @@ export class MyDynamicFormComponent implements OnInit {
 }
 ```
 
-**4. Add** `DynamicFormControlComponent`s **via** `*ngFor` **to your template
-and set the** `[group]` **and** `[model]` **bindings**:
+**4. Add a** `DynamicFormComponent` **to your template and bind its** `[group]` **and** `[model]` **property**:
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel"></dynamic-bootstrap-form>
+                            
 </form>
 ```
 
 
 ## UI Modules
 
-ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
+Ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
 * **[Basic](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-basic)**
 * **[Bootstrap](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-bootstrap)**
@@ -213,13 +211,12 @@ ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a va
 * **[PrimeNG](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
-package and it's peer dependencies**:
+package and its peer dependencies**:
 ```
 npm install @ng2-dynamic-forms/ui-<library-name> --save
 ```
 
-Right afterwards **just import the corresponding** `NgModule`:
-
+**Now just import the UI module**:
 ```ts
 @NgModule({
 
@@ -236,14 +233,24 @@ Right afterwards **just import the corresponding** `NgModule`:
 export class AppModule {}
 ```
 
-All UI modules declare a specific `DynamicFormControlComponent` that **can easily be added to
-your component** `template`:
+For creating the form markup all UI modules come with a `DynamicFormComponent` that **can easily be added** to
+your component `template`:
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel"></dynamic-bootstrap-form>
+                               
+</form>
+```
+
+Alternatively you can **directly make use of a specific** `DynamicFormControlComponent` to gain more control:
+```ts
+<form [formGroup]="formGroup">
+
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel" 
                                     [group]="formGroup"
-                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+                                    [model]="controlModel"></dynamic-bootstrap-form-control>
 </form>
 ```
 
@@ -276,7 +283,7 @@ varies among UI packages. **See the following compatibility table**:
 ## Form Groups
 
 In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
-Luckily ng2 Dynamic Forms supports nesting of form groups out of the box!
+Luckily Ng2 Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Declare a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
  ```ts
@@ -320,7 +327,7 @@ export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 ];  
  ```
  
-**2. Create a** `FormGroup` **and apply a** `DynamicFormControlComponent`:
+**2. Create a** `FormGroup` **and add a** `DynamicFormComponent`:
 ```ts
 ngOnInit() {
     this.formGroup = this.formService.createFormGroup(this.formModel);
@@ -330,13 +337,13 @@ ngOnInit() {
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel"></dynamic-bootstrap-form>
+                            
 </form>
 ```
 
-**3. To manipulate existing** `DynamicFormGroupModel`s **you can simply use** `DynamicFormService`:
+**3. To manipulate an existing** `DynamicFormGroupModel` **you can simply use** `DynamicFormService`:
 
 * `addFormGroupControl(...)`
 * `insertFormGroupControl(...)`
@@ -347,9 +354,10 @@ ngOnInit() {
 ## Form Arrays
 
 Sometimes forms need to allow the user to dynamically add multiple items of the same kind to it, e.g. addresses, products and so on.
+
 Particularly for this reason Angular provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
 
-Fortunately, ng2 Dynamic Forms is capable of managing such nested form structures!  
+Fortunately, Ng2 Dynamic Forms is capable of managing such nested form structures!  
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts
@@ -387,9 +395,8 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-basic-control *ngFor="let controlModel of formModel" 
-                                [group]="formGroup" 
-                                [model]="controlModel"></dynamic-form-basic-control>
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel"></dynamic-bootstrap-form>
 
     <button type="button" (click)="addItem()">Add item</button>
     <button type="button" (click)="clear()">Remove all items</button>
@@ -422,9 +429,8 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-basic-control *ngFor="let controlModel of formModel" 
-                                [group]="formGroup" 
-                                [model]="controlModel">
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
     
         <ng-template modelId="myFormArray">
 
@@ -432,7 +438,7 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
 
         </ng-template>
                                 
-    </dynamic-form-basic-control>
+    </dynamic-bootstrap-form>
 
 </form>       
 ```
@@ -447,9 +453,8 @@ That means **you can access the group object and it's properties by either decla
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-basic-control *ngFor="let controlModel of formModel" 
-                                [group]="formGroup" 
-                                [model]="controlModel">
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
     
         <ng-template modelId="myFormArray" let-group let-index="index" let-context="context">
 
@@ -458,7 +463,7 @@ That means **you can access the group object and it's properties by either decla
 
         </ng-template>
                                 
-    </dynamic-form-basic-control>
+    </dynamic-bootstrap-form>
 
 </form>       
 ```
@@ -482,10 +487,10 @@ this.formService.moveFormArrayGroup(index, -1, this.arrayControl, context);
 
 ## Form Layouts
 
-When using a ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS library
+When using a Ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS library
 (like `form-group` or `form-control`) are automatically put in place for you in the template of the corresponding `DynamicFormControlComponent`.
 
-Apart from that, ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
+Apart from that, Ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
 So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal)...
 
@@ -493,17 +498,19 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 ```ts
 <form class="form-horizontal" [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel"></dynamic-form-bootstrap-control>
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel"></dynamic-bootstrap-form>
+   
 </form>
 ```
 
-Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
+Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). 
+
+But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
 
 Don't worry!
 
-By providing the `cls` and it's nested `grid` and `element` configuration objects, ng2 Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
+By providing the `cls` and it's nested `grid` and `element` configuration objects, Ng2 Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
 
 We can just pass it as a second constructor parameter of every `DynamicFormControlModel`, i.e. separation of model and style information remains intact:
 ```ts
@@ -526,7 +533,7 @@ new DynamicInputModel(
 
 ## Custom Templates
 
-As mentioned above, ng2 Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
+As mentioned above, Ng2 Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
 
 However there are situations where you would like to add custom markup for some of your form controls, as well. 
 
@@ -534,9 +541,8 @@ In order to do so, just **put a** `<ng-template>` **inside your dynamic form con
 ```ts
 <form [formGroup]="formGroup">
     
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel">
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
                                     
         <ng-template modelId="myInput">
         
@@ -544,27 +550,25 @@ In order to do so, just **put a** `<ng-template>` **inside your dynamic form con
             
         </ng-template>
         
-    </dynamic-form-bootstrap-control>
+    </dynamic-bootstrap-form>
     
 </form>
 ```
 
 Alternatively **you can also apply** `modelType` **instead of** `modelId` **to reuse a template** for several form controls of the same type:
-
 ```ts
 <form [formGroup]="formGroup">
     
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel">
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
                                     
         <ng-template modelType="ARRAY">
         
             <p>Just some custom markup</p>
             
         </ng-template>
-        
-    </dynamic-form-bootstrap-control>
+
+    </dynamic-bootstrap-form>
     
 </form>
 ```
@@ -576,17 +580,16 @@ can use local template variables to reference your models' properties**:
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel">
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
                                     
         <ng-template modelId="myInput" let-id="id">
         
             <p>Just some custom markup for {{ id }}</p>
             
         </ng-template>                                               
-                                    
-    </dynamic-form-bootstrap-control>
+    
+    </dynamic-bootstrap-form>
     
 </form>
 ```
@@ -597,24 +600,23 @@ Some UI libraries, e.g. Kendo UI, allow detailed customizing of form controls vi
 
 And you surely don't want to miss out on such a feature, do you?
 
-**That's why ng2 Dynamic Forms can even master this!**
+**That's why Ng2 Dynamic Forms can even master this!**
 
 All you have to do is to **add a** `as` **attribute to your template** and specifiy the use of it:
 
 ```ts
 <form [formGroup]="formGroup">
 
-    <dynamic-form-kendo-control *ngFor="let controlModel of formModel" 
-                                [group]="formGroup"
-                                [model]="controlModel">
-                                    
+    <dynamic-kendo-form [group]="formGroup"
+                        [model]="formModel">
+                        
         <ng-template modelId="myDropDownList" as="kendoDropDownListHeaderTemplate">
         
             <p>My Header Template</p>
             
         </ng-template>                                               
                                     
-    </dynamic-form-kendo-control>
+    </dynamic-kendo-form>
     
 </form>
 ```
@@ -624,17 +626,16 @@ Finally **you can determine whether the template is rendered before or after the
 ```ts
 <form [formGroup]="formGroup">
     
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
-                                    [model]="controlModel">
-                                    
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
+                            
         <ng-template modelId="myInput" align="START">
         
             <p>Just some custom markup</p>
             
         </ng-template>
         
-    </dynamic-form-bootstrap-control>
+    </dynamic-bootstrap-form>
     
 </form>
 ```
@@ -695,7 +696,7 @@ new DynamicInputModel({
 
 **But beware! There's a catch!**
 
-Internally ng2 Dynamic Forms resolves a declared validator by it's function name.
+Internally Ng2 Dynamic Forms resolves a declared validator by it's function name.
 
 Though **when uglifying code** for production this **information is irretrievably lost**.
 
@@ -731,16 +732,17 @@ new DynamicInputModel({
 
 ## Validation Messaging
 
-Delivering meaningful validation information to the user is an essential part of good form design. Yet HTML5 already comes up 
-with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
+Delivering meaningful validation information to the user is an essential part of good form design. 
+
+Yet HTML5 already comes up with some [native functionality](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
 you very likely want to use [Angular mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
 to gain much more control over validation logic and it's corresponding message output.
 
-Avoiding a library too opinionated in the beginning, ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
+Avoiding a library too opinionated in the beginning, Ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
 
-However, due to it's very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature**: 
+However, due to its very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature**: 
 
-**1. Add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
+**Just add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
 ```ts 
 new DynamicInputModel({
 
@@ -755,24 +757,28 @@ new DynamicInputModel({
         }
 })
 ```
-Error message template allows the following placeholders: 
+**Note:** Error message templates allow the following placeholders: 
 
-* `{{ propertyName }}` where propertyName is property of model, for example `{{ label }}`.
-* `{{ validator.propertyName }}` where propertyName is property of object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
+* `{{ propertyName }}` where `propertyName` is a property of the model, for example `{{ label }}`.
+* `{{ validator.propertyName }}` where `propertyName` is a property of the object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
 
-**2. Enable error messaging by binding the** `@Input() hasErrorMessaging` **property of to** `true`:
+**Error messaging is automatically enabled whenever** `errorMessages` **are declared on a** `DynamicFormControlModel`. 
+
+It can also be **manually enabled or disabled** by binding the `hasErrorMessaging` property of any `DynamicFormControlComponent`:
 ```ts
 
 <form [formGroup]="formGroup">
 
-    <dynamic-form-bootstrap-control *ngFor="let controlModel of formModel"
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"
                                     [group]="formGroup"
                                     [model]="controlModel"
-                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-form-bootstrap-control>
+                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-bootstrap-form-control>
 </form>
 ```
 
-**Still you are completely free to implement your own validation messaging. Follow the recommended approach below**:
+**Still you are completely free to implement your own validation messaging.** 
+
+Follow the recommended approach below:
 
 **1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
 ```ts 
@@ -781,7 +787,7 @@ import { FormControl } from "@angular/forms";
  
 @Component({
 
-    selector: "my-validation-message",
+    selector: "validation-message",
     templateUrl: "./my-validation-message.html"
 })
  
@@ -798,7 +804,7 @@ export class MyValidationMessage {
 <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
 ```
 
-**3. Define some** `Validators` **for your** `DynamicFormControlModel`:
+**3. Define some validators** for your `DynamicFormControlModel`:
 ```ts
 new DynamicInputModel({
     
@@ -812,20 +818,20 @@ new DynamicInputModel({
 ```
 
 **4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
-and **bind the internal** `FormControl` **reference via local template variables**:
+and **bind the** `FormControl` **reference via a local template variable**:
 ```ts
 <form [formGroup]="formGroup">
 
-    <div *ngFor="let controlModel of formModel">
+    <ng-container *ngFor="let controlModel of formModel">
     
-        <dynamic-form-basic-control [group]="formGroup" 
-                                    [model]="controlModel" #componentRef>
+        <dynamic-bootstrap-form-control [group]="formGroup" 
+                                        [model]="controlModel" #componentRef>
         
-            <my-validation-message [control]="componentRef.control"></my-validation-message>
+            <validation-message [control]="componentRef.control"></validation-message>
                                     
-        </dynamic-form-basic-control>
+        </dynamic-bootstrap-form-control>
         
-    </div>
+    </ng-container>
     
 </form>
 ```
@@ -845,7 +851,7 @@ storeForm() {
 }
 ```
 
-Since a `DynamicFormControlModel` in ng2 Dynamic Forms **relies on prototypical inheritance** and thus is not represented by a simple JavaScript object literal, 
+Since a `DynamicFormControlModel` in Ng2 Dynamic Forms **relies on prototypical inheritance** and thus is not represented by a simple JavaScript object literal, 
 recreating a form from JSON unfortunately becomes more complex. 
 
 The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
@@ -863,14 +869,14 @@ restoreForm() {
 
 ## Updating Form Models
 
-One of the benefits of using ng2 Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
+One of the benefits of using Ng2 Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
 
 Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms,
 changing one of it's properties will immediately trigger an update of the user interface.
 
 But there's one major exception!
 
-ng2 Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
+Ng2 Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
 
 So what if we actually want to update the value of an arbitrary form control at runtime?
 
@@ -905,7 +911,7 @@ Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/ang
 
 That means changing the corresponding `disabled` property of a `DynamicFormControlModel` at runtime won't have any effect.
 
-But similar to [updating values](#updating-form-models) ng2 Dynamic Forms helps you out here 
+But similar to [updating values](#updating-form-models) Ng2 Dynamic Forms helps you out here 
 by providing a `Rx.Subject` named `disabledUpdates`. 
 
 It can be used to programmatically switch the activation state of a form control through a `DynamicFormControlModel`:
@@ -918,7 +924,7 @@ this.inputModel.disabledUpdates.next(true);
 
 Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
 
-Since Angular does not deliver an appropriate feature by default, ng2 Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
+Since Angular does not deliver an appropriate feature by default, Ng2 Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
 
 That's why most UI packages demand one additional peer dependency to be installed:
 ```
@@ -947,7 +953,7 @@ So let's pretend we need to have our textarea `myTextArea` disabled as soon as t
 
 Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
 
-**Using ng2 Dynamic Forms however, you can easily define relations between form controls by declaration**: 
+**Using Ng2 Dynamic Forms however, you can easily define relations between form controls by declaration**: 
 ```ts
 new DynamicTextAreaModel(
     {
@@ -1001,7 +1007,9 @@ new DynamicTextAreaModel(
 ## Autocompletion
 
 Adding automatic input completion can be key factor to good user experience (especially on mobile devices) and should always 
-be considered when designing forms. That's why ng2 Dynamic Forms keeps you covered here, as well!
+be considered when designing forms. 
+
+That's why Ng2 Dynamic Forms keeps you covered here, as well!
 
 Following HTML5 [standard behavior](http://www.w3schools.com/tags/att_form_autocomplete.asp), the `autocomplete` attribute is always bound to `on` for any `DynamicFormTextInputControl` form element by default. 
 Nevertheless you can completely disable this feature by explicitly setting the corresponding model property to `off`:
@@ -1016,7 +1024,7 @@ let model = new DynamicInputModel({
 });
 ```
 
-Further on ng2 Dynamic Forms embraces the brand new HTML5 
+Further on Ng2 Dynamic Forms embraces the brand new HTML5 
 [**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
 `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `AutoFillUtils` to help you putting together a valid expression:
 
@@ -1060,9 +1068,9 @@ new DynamicInputModel({
 
 ## A Word to the Community
 
-**Thank you very much for the great feedback so far and everyone giving ng2 Dynamic Forms a try!**
+**Thank you very much for the great feedback so far and everyone giving Ng2 Dynamic Forms a try!**
 
-Angular is a fantastic framework and I'm convinced that ng2 Dynamic Forms is a high-quality library that will 
+Angular is a fantastic framework and I'm convinced that Ng2 Dynamic Forms is a high-quality library that will 
 save you lots of time when building reactive forms with it.
 
 **If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng2-dynamic-forms/blob/master/CONTRIBUTE.md) **before**!

@@ -21,12 +21,23 @@ export class AppModule {}
 ```
 
 ## Usage
+
+with **`DynamicIonicFormComponent`**:
 ```ts
 <form [formGroup]="myFormGroup">
 
-    <dynamic-form-ionic-control *ngFor="let controlModel of myFormModel"
+    <dynamic-ionic-form [group]="myFormGroup"
+                        [model]="myFormModel"></dynamic-ionic-form>
+</form>
+```
+
+with **`DynamicIonicFormControlComponent`**:
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-ionic-form-control *ngFor="let controlModel of myFormModel"
                                 [group]="myFormGroup"
-                                [model]="controlModel"></dynamic-form-ionic-control>
+                                [model]="controlModel"></dynamic-ionic-form-control>
 </form>
 ```
 

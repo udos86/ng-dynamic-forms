@@ -1,2 +1,3 @@
-export * from "./dynamic-form-bootstrap.component";
-export * from "./ui-bootstrap.module";
+export * from "./dynamic-bootstrap-form.component";
+export * from "./dynamic-bootstrap-form-control.component";
+export * from "./dynamic-bootstrap-form-ui.module";
