@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ContentChildren,
-    EventEmitter,
-    Input,
-    Output,
-    QueryList,
-    ViewChildren
-} from "@angular/core";
+import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
@@ -20,7 +11,6 @@ import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-c
 @Component({
 
     moduleId: module.id,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "dynamic-bootstrap-form",
     templateUrl: "./dynamic-bootstrap-form.component.html"
 })
