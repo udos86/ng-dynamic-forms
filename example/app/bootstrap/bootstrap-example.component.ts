@@ -4,8 +4,7 @@ import {
     DynamicFormService,
     DynamicFormControlModel,
     DynamicFormArrayModel,
-    DynamicInputModel,
-    DynamicFormGroupModel
+    DynamicInputModel
 } from "@ng2-dynamic-forms/core";
 import { BOOTSTRAP_EXAMPLE_MODEL } from "./bootstrap-example.model";
 
@@ -69,9 +68,6 @@ export class BootstrapExampleComponent implements OnInit {
         //console.log(JSON.stringify(this.exampleModel));
         //this.arrayModel.get(1).group[0].valueUpdates.next("This is just a test");
         //this.formService.moveFormArrayGroup(2, -1, this.arrayControl, this.arrayModel);
-
-
-        this.arrayModel.label = "FUCK AS HELL";
         /*
         this.formService.addFormGroupControl(
             this.formGroup,
@@ -81,14 +77,12 @@ export class BootstrapExampleComponent implements OnInit {
                 group: [new DynamicInputModel({id: "newInput"})]
             })
         );
-        /*
         this.formService.addFormGroupControl(
             this.formGroup.get("bootstrapFormGroup3") as FormGroup,
             this.formModel[2] as DynamicFormGroupModel,
             new DynamicInputModel({id: "newInput"})
         );
         */
-
         //this.exampleModel.add({label: "Option 5", value: "option-5"});
     }
 
