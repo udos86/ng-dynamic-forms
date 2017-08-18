@@ -18,7 +18,8 @@
     "transpile:app:watch": "tsc -p tsconfig.app.json -m commonjs -watch",
     "watch:modules": "gulp watch:modules",
     "webdriver:start": "webdriver-manager start",
-    "webdriver:update": "webdriver-manager update"
+    "webdriver:update": "webdriver-manager update",
+    "xxx": "ngc -p ./modules/ui-basic/tsconfig.json"
   },
   "repository": {
     "type": "git",
