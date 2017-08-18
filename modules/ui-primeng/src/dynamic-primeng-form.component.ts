@@ -10,7 +10,6 @@ import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-contr
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-primeng-form",
     templateUrl: "./dynamic-primeng-form.component.html"
 })

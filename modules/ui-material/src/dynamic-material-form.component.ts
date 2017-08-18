@@ -10,7 +10,6 @@ import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-con
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-material-form",
     templateUrl: "./dynamic-material-form.component.html"
 })

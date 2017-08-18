@@ -10,7 +10,6 @@ import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-f
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-ng-bootstrap-form",
     templateUrl: "./dynamic-ng-bootstrap-form.component.html"
 })

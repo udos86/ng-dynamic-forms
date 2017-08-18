@@ -41,7 +41,6 @@ export const enum BootstrapFormControlType {
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-bootstrap-form-control,dynamic-form-bootstrap-control",
     templateUrl: "./dynamic-bootstrap-form-control.component.html"
 })

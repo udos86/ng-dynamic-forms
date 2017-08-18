@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.fesm5.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@ng2-dynamic-forms/*": [
+        "dist/@ng2-dynamic-forms/*"
+      ]
+    }
+  },
+  "files": [
+    "./public_api.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "@ng2-dynamic-forms/ui-primeng",
+    "flatModuleOutFile": "ui-primeng.js",
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  }
+}

@@ -48,7 +48,6 @@ export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-material-form-control,dynamic-form-material-control",
     templateUrl: "./dynamic-material-form-control.component.html"
 })

@@ -63,7 +63,6 @@ export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponen
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-kendo-form-control,dynamic-form-kendo-control",
     templateUrl: "./dynamic-kendo-form-control.component.html"
 })
