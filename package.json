@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.4.23",
+  "version": "1.4.24",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "compile:app:aot": "ngc -p tsconfig.app.ngc.json",

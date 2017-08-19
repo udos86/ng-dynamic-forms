@@ -2,7 +2,7 @@
 
 ### **Features** 
 
-* `indeterminare` support added for `DynamicCheckboxModel` in UI templates
+* `indeterminated` support added for `DynamicCheckboxModel` in most UI templates
 * update to NG Bootstrap beta.1
 
 
