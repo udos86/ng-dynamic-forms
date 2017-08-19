@@ -1,3 +1,11 @@
+# 1.4.24
+
+### **Features** 
+
+* `indeterminare` support added for `DynamicCheckboxModel` in UI templates
+* update to NG Bootstrap beta.1
+
+
 # 1.4.23
 
 ### **Non-Breaking Changes** 
