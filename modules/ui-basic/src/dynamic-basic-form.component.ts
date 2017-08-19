@@ -10,7 +10,6 @@ import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.c
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-basic-form",
     templateUrl: "./dynamic-basic-form.component.html"
 })

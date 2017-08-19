@@ -61,7 +61,6 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-primeng-form-control,dynamic-form-primeng-control",
     templateUrl: "./dynamic-primeng-form-control.component.html"
 })

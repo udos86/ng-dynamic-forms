@@ -95,7 +95,12 @@ System.config({
             defaultExtension: "js"
         },
         "test": {
-            defaultExtension: "js"
+            defaultExtension: "js",
+            meta: {
+                "./*.js": {
+                    loader: "systemjs-angular-loader.js"
+                }
+            }
         },
         "text-mask-core": {
             defaultExtension: "js"

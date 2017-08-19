@@ -10,7 +10,6 @@ import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.c
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-ionic-form",
     templateUrl: "./dynamic-ionic-form.component.html"
 })

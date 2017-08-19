@@ -40,7 +40,6 @@ export const enum BasicFormControlType {
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-basic-form-control,dynamic-form-basic-control",
     templateUrl: "./dynamic-basic-form-control.component.html"
 })

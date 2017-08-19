@@ -10,7 +10,6 @@ import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.c
 
 @Component({
 
-    moduleId: module.id,
     selector: "dynamic-kendo-form",
     templateUrl: "./dynamic-kendo-form.component.html"
 })

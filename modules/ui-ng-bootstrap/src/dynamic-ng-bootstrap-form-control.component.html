@@ -25,6 +25,7 @@
                        [checked]="model.checked"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
+                       [indeterminate]="model.indeterminate"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
                        [required]="model.required"
@@ -183,7 +184,7 @@
             </div>
 
 
-            <div *ngSwitchCase="8" ngbRadioGroup role="radiogroup"
+            <div *ngSwitchCase="8" ngbRadioGroup class="btn-group" role="radiogroup"
                  [attr.tabindex]="model.tabIndex"
                  [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
