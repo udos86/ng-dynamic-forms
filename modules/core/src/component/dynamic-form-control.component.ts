@@ -136,7 +136,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get isInvalid(): boolean {
-        return this.control.touched && this.control.invalid;
+        return this.control.invalid;
     }
 
     get isValid(): boolean {
@@ -144,7 +144,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get showErrorMessages(): boolean {
-        return this.control.touched && !this.hasFocus && this.isInvalid;
+        return this.hasErrorMessaging && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     get templates(): QueryList<DynamicTemplateDirective> {
