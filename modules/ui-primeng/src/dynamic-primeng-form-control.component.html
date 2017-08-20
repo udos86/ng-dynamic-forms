@@ -95,9 +95,9 @@
                         [showSeconds]="model.showSeconds"
                         [tabindex]="model.tabIndex"
                         [timeOnly]="model.type === 'TIMEPICKER'"
-                        [yearNavigator]="false"></p-calendar
+                        [yearNavigator]="false"
                         (onBlur)="onFocusChange($event)"
-                        (onFocus)="onFocusChange($event)">
+                        (onFocus)="onFocusChange($event)"></p-calendar>
 
 
             <p-checkbox *ngSwitchCase="4" #pCheckbox

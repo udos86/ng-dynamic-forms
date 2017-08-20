@@ -1,6 +1,6 @@
 {
   "name": "ng2-dynamic-forms",
-  "version": "1.4.24",
+  "version": "1.4.25",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "compile:app:aot": "ngc -p tsconfig.app.ngc.json",
@@ -110,7 +110,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-stream": "^1.23.1",
     "run-sequence": "^2.1.0",
-    "systemjs": "^0.20.17",
+    "systemjs": "^0.20.18",
     "systemjs-builder": "^0.16.9",
     "tslint": "^5.6.0",
     "typedoc": "^0.8.0",

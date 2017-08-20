@@ -1,3 +1,10 @@
+# 1.4.25
+
+### **Features** 
+
+* error messaging template improvements
+
+
 # 1.4.24
 
 ### **Features** 
