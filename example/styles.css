@@ -154,6 +154,11 @@ dynamic-kendo-form-control ul {
     text-align: left;
 }
 
+dynamic-material-form-control {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
 dynamic-material-form-control .md-list-item {
     justify-content: center;
 }
