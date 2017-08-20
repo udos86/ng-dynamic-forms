@@ -1,5 +1,4 @@
 <div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
-     [class.has-danger]="hasErrorMessaging && !hasFocus && isInvalid"
      [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
@@ -23,6 +22,7 @@
                 <input type="checkbox" class="form-check-input"
                        [attr.tabindex]="model.tabIndex"
                        [checked]="model.checked"
+                       [class.is-invalid]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [indeterminate]="model.indeterminate"
@@ -106,6 +106,7 @@
             <div *ngSwitchCase="5" class="input-group">
 
                 <input ngbDatepicker class="form-control"
+                       [class.is-invalid]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [name]="model.name"
@@ -156,6 +157,7 @@
                        [autofocus]="model.autoFocus"
                        [class.form-control]="model.inputType !== 'file'"
                        [class.form-control-file]="model.inputType === 'file'"
+                       [class.is-invalid]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [maxlength]="model.maxLength"
@@ -207,6 +209,7 @@
 
             <select *ngSwitchCase="9" class="form-control"
                     [attr.tabindex]="model.tabIndex"
+                    [class.is-invalid]="showErrorMessages"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
@@ -226,6 +229,7 @@
 
             <textarea *ngSwitchCase="10" class="form-control"
                       [attr.tabindex]="model.tabIndex"
+                      [class.is-invalid]="showErrorMessages"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
                       [formControlName]="model.id"
@@ -252,19 +256,17 @@
                             [seconds]="model.showSeconds"
                             [spinners]="true"></ngb-timepicker>
 
+            <small *ngIf="model.hint" class="text-muted"
+                   [innerHTML]="model.hint"
+                   [ngClass]="model.cls.element.hint"></small>
 
-            <div *ngIf="hasErrorMessaging"
-                 [hidden]="!showErrorMessages"
-                 [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
-                <p *ngFor="let message of errorMessages" class="form-control-feedback">{{message}}</p>
+            <div *ngIf="showErrorMessages" [ngClass]="model.cls.grid.errors">
+
+                <small *ngFor="let message of errorMessages" class="invalid-feedback" style="display: block;"
+                       [ngClass]="model.cls.element.errors">{{message}}</small>
 
             </div>
-
-
-            <span *ngIf="model.hint" class="form-text text-muted"
-                  [innerHTML]="model.hint"
-                  [ngClass]="model.cls.element.hint"></span>
 
         </ng-container>
 

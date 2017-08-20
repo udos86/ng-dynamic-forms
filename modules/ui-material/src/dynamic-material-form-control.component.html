@@ -142,9 +142,9 @@
                 <span *ngIf="model.prefix" mdPrefix [innerHTML]="model.prefix"></span>
                 <span *ngIf="model.suffix" mdSuffix [innerHTML]="model.suffix"></span>
 
-                <md-error *ngFor="let message of errorMessages"
-                          [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
-                </md-error>
+                <ng-container *ngIf="showErrorMessages">
+                    <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
+                </ng-container>
 
             </md-input-container>
 
@@ -239,21 +239,20 @@
 
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
-            <md-error *ngFor="let message of errorMessages"
-                      [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
-            </md-error>
+
+            <ng-container *ngIf="showErrorMessages">
+                <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
+            </ng-container>
 
         </md-input-container>
 
     </ng-container>
 
 
-    <md-list *ngIf="hasErrorMessaging && type !== 5 && type !== 10"
-             [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <md-list *ngIf="showErrorMessages && type !== 5 && type !== 10" [ngClass]="model.cls.grid.errors">
 
         <md-list-item *ngFor="let message of errorMessages"
-                      [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
-        </md-list-item>
+                      [ngClass]="model.cls.element.errors">{{message}}</md-list-item>
 
     </md-list>
 

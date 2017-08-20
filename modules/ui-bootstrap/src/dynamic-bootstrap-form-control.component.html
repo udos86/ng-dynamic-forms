@@ -1,9 +1,9 @@
 <div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
-     [class.has-error]="hasErrorMessaging && !hasFocus && isInvalid"
+     [class.has-error]="showErrorMessages"
      [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="type !== 2 && model.label !== null"
+    <label *ngIf="type !== 2 && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
@@ -195,20 +195,16 @@
                       (focus)="onFocusChange($event)"></textarea>
 
 
-            <span *ngIf="model.hint" class="help-block"
-                  [innerHTML]="model.hint"
-                  [ngClass]="model.cls.element.hint"></span>
+            <span *ngIf="model.hint" class="help-block" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
 
         </ng-container>
 
     </div>
 
 
-    <ul *ngIf="hasErrorMessaging" class="has-error"
-        [class.hidden]="!showErrorMessages"
-        [ngClass]="[model.cls.grid.errors]">
+    <ul *ngIf="showErrorMessages" class="has-error" [ngClass]="model.cls.grid.errors">
 
-        <li *ngFor="let message of errorMessages" class="help-block" [ngClass]="[model.cls.element.errors]">
+        <li *ngFor="let message of errorMessages" class="help-block" [ngClass]="model.cls.element.errors">
             {{message}}
         </li>
 

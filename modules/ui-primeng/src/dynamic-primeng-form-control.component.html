@@ -23,13 +23,7 @@
                                [name]="model.name"
                                [value]="option.value"></p-radioButton>
             </div>
-            <!--
-            <div [ngClass]="model.cls.grid.label">
 
-                <label [attr.for]="model.id" [innerHTML]="option.label" [ngClass]="model.cls.element.label"></label>
-
-            </div>
-            -->
         </div>
 
     </fieldset>
@@ -80,7 +74,9 @@
                             [placeholder]="model.placeholder"
                             [suggestions]="suggestions"
                             [tabindex]="model.tabIndex"
+                            (onBlur)="onFocusChange($event)"
                             (change)="onValueChange($event)"
+                            (onFocus)="onFocusChange($event)"
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
 
@@ -99,7 +95,9 @@
                         [showSeconds]="model.showSeconds"
                         [tabindex]="model.tabIndex"
                         [timeOnly]="model.type === 'TIMEPICKER'"
-                        [yearNavigator]="false"></p-calendar>
+                        [yearNavigator]="false"></p-calendar
+                        (onBlur)="onFocusChange($event)"
+                        (onFocus)="onFocusChange($event)">
 
 
             <p-checkbox *ngSwitchCase="4" #pCheckbox
@@ -110,7 +108,8 @@
                         [name]="model.name"
                         [ngClass]="model.cls.element.control"
                         [tabindex]="model.tabIndex"
-                        [value]="model.value"></p-checkbox>
+                        [value]="model.value"
+                        (onChange)="onValueChange($event)"></p-checkbox>
 
 
             <p-chips *ngSwitchCase="5" #pChips
@@ -127,7 +126,9 @@
                         [formControlName]="model.id"
                         [options]="model.options"
                         [tabindex]="model.tabIndex"
-                        (onChange)="onValueChange($event)"></p-dropdown>
+                        (onBlur)="onFocusChange($event)"
+                        (onChange)="onValueChange($event)"
+                        (onFocus)="onFocusChange($event)"></p-dropdown>
 
 
             <p-editor *ngSwitchCase="7" #pEditor
@@ -208,7 +209,9 @@
                            [formControlName]="model.id"
                            [options]="model.options"
                            [tabindex]="model.tabIndex"
-                           (onChange)="onValueChange($event)"></p-multiSelect>
+                           (onBlur)="onFocusChange($event)"
+                           (onChange)="onValueChange($event)"
+                           (onFocus)="onFocusChange($event)"></p-multiSelect>
 
 
             <p-rating *ngSwitchCase="13" #pRating
@@ -223,7 +226,8 @@
                       [formControlName]="model.id"
                       [min]="model.min"
                       [max]="model.max"
-                      [step]="model.step"></p-slider>
+                      [step]="model.step"
+                      (onChange)="onValueChange($event)"></p-slider>
 
 
             <textarea *ngSwitchCase="15" pInputTextarea #pInputTextarea
@@ -247,22 +251,11 @@
 
         </div>
 
-        <!--
-        <div *ngIf="type === 4" [ngClass]="model.cls.grid.label">
 
-            <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+        <ul *ngIf="showErrorMessages" [ngClass]="model.cls.grid.errors">
 
-        </div>
-        -->
-
-        <ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
-
-            <li class="ui-message ui-messages-error ui-corner-all"
-                [class.ui-helper-hidden]="!showErrorMessages"
-                [ngClass]="model.cls.element.errors">
-
+            <li class="ui-message ui-messages-error ui-corner-all" [ngClass]="model.cls.element.errors">
                 <span *ngFor="let message of errorMessages">{{message}}</span>
-
             </li>
 
         </ul>

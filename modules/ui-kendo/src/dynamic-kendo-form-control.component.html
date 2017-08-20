@@ -1,6 +1,6 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="type !== 4 && type !== 10"
+    <label *ngIf="model.label && type !== 4 && type !== 10"
            [attr.for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
@@ -339,12 +339,13 @@
     </ng-container>
 
 
-    <ul *ngIf="hasErrorMessaging" [class.k-hidden]="!showErrorMessages" [ngClass]="[model.cls.grid.errors]">
+    <ul *ngIf="showErrorMessages" [ngClass]="model.cls.grid.errors">
 
         <li *ngFor="let message of errorMessages" class="k-field-info"
-            [ngClass]="[model.cls.element.errors]"
+            [ngClass]="model.cls.element.errors"
             style="color: #f31700;">{{message}}
         </li>
+
     </ul>
 
 

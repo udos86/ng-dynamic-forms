@@ -1,10 +1,9 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <div *ngIf="type !== 2 && model.label !== null"
-         [ngClass]="model.cls.grid.label">
+    <div *ngIf="model.label && type !== 2" [ngClass]="model.cls.grid.label">
 
         <label [attr.for]="model.id"
-               [class.is-invalid-label]="hasErrorMessaging && !hasFocus && isInvalid"
+               [class.is-invalid-label]="showErrorMessages"
                [innerHTML]="model.label"
                [ngClass]="model.cls.element.label"></label>
     </div>
@@ -99,7 +98,7 @@
                        [attr.step]="model.step"
                        [attr.tabindex]="model.tabIndex"
                        [autofocus]="model.autoFocus"
-                       [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
+                       [class.is-invalid-input]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [maxlength]="model.maxLength"
@@ -194,7 +193,7 @@
 
             <textarea *ngSwitchCase="8"
                       [attr.tabindex]="model.tabIndex"
-                      [class.is-invalid-input]="hasErrorMessaging && !hasFocus && isInvalid"
+                      [class.is-invalid-input]="showErrorMessages"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -218,11 +217,9 @@
 
     </div>
 
-    <ul *ngIf="hasErrorMessaging" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
-        <li *ngFor="let message of errorMessages" class="form-error"
-            [class.is-visible]="showErrorMessages">{{message}}
-        </li>
+        <li *ngFor="let message of errorMessages" class="form-error">{{message}}</li>
 
     </ul>
 
