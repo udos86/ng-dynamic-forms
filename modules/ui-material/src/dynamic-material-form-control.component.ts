@@ -2,6 +2,7 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChildren,
+    ElementRef,
     EventEmitter,
     Input,
     OnChanges,
@@ -15,7 +16,8 @@ import {
     MdAutocomplete,
     MdCheckbox,
     MdDatepicker,
-    MdInputContainer,
+    MdFormField,
+    MdInput,
     MdRadioGroup,
     MdSelect,
     MdSlider,
@@ -43,11 +45,10 @@ import {
 } from "@ng2-dynamic-forms/core";
 import { MdFormControlType, MD_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
 
-export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdInputContainer |
-    MdRadioGroup | MdSelect | MdSlider | MdSlideToggle;
+export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdFormField | MdRadioGroup |
+    MdSelect | MdSlider | MdSlideToggle;
 
 @Component({
-
     selector: "dynamic-material-form-control,dynamic-form-material-control",
     templateUrl: "./dynamic-material-form-control.component.html"
 })
@@ -78,6 +79,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     @ViewChild(MD_VIEW_CHILD_SELECTOR) mdViewChild: MdFormControlComponent | undefined;
+    @ViewChild(MdInput) mdInput: MdInput | undefined;
 
     type: MdFormControlType | null;
 
@@ -96,13 +98,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 
     get characterCount(): number | null {
-
-        if (this.mdViewChild instanceof MdInputContainer) {
-            return (this.mdViewChild as MdInputContainer)._mdInputChild.value.length;
-
-        } else {
-            return null;
-        }
+        return this.mdInput ? this.mdInput.value.length : null;
     }
 
     static getFormControlType(model: DynamicFormControlModel): MdFormControlType | null {

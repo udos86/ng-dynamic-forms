@@ -1,3 +1,10 @@
+# 1.4.26
+
+### **Features** 
+
+* **support for Material beta.10** (closes [#479](https://github.com/udos86/ng2-dynamic-forms/issues/479) and [#480](https://github.com/udos86/ng2-dynamic-forms/issues/480))
+
+
 # 1.4.25
 
 ### **Features** 

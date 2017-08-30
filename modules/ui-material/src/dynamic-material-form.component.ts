@@ -9,7 +9,6 @@ import {
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
 
 @Component({
-
     selector: "dynamic-material-form",
     templateUrl: "./dynamic-material-form.component.html"
 })

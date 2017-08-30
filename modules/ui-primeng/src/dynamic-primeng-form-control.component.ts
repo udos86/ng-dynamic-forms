@@ -60,7 +60,6 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
     MultiSelect | Rating | Slider;
 
 @Component({
-
     selector: "dynamic-primeng-form-control,dynamic-form-primeng-control",
     templateUrl: "./dynamic-primeng-form-control.component.html"
 })

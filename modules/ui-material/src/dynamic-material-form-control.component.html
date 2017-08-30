@@ -54,35 +54,31 @@
                                                            [innerHTML]="model.label"></span></md-checkbox>
 
 
-        <ng-container *ngSwitchCase="3">
+        <md-form-field *ngSwitchCase="3" [ngClass]="model.cls.element.control">
 
-            <md-input-container>
+            <input mdInput
+                   [autofocus]="model.autoFocus"
+                   [dynamicId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [max]="model.max"
+                   [mdDatepicker]="mdDatepicker"
+                   [min]="model.min"
+                   [name]="model.name"
+                   [placeholder]="model.placeholder"
+                   [readonly]="model.readOnly"
+                   [required]="model.required"
+                   (blur)="onFocusChange($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocusChange($event)"/>
 
-                <input mdInput
-                       [autofocus]="model.autoFocus"
-                       [dynamicId]="bindId && model.id"
-                       [formControlName]="model.id"
-                       [max]="model.max"
-                       [mdDatepicker]="mdDatepicker"
-                       [min]="model.min"
-                       [name]="model.name"
-                       [ngClass]="model.cls.element.control"
-                       [placeholder]="model.placeholder"
-                       [readonly]="model.readOnly"
-                       [required]="model.required"
-                       (blur)="onFocusChange($event)"
-                       (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
-
-                <button mdSuffix [mdDatepickerToggle]="mdDatepicker"></button>
-
-            </md-input-container>
+            <md-datepicker-toggle mdSuffix [for]="mdDatepicker"></md-datepicker-toggle>
 
             <md-datepicker #mdDatepicker
                            [startAt]="model.focusedDate"
                            [touchUi]="true"
                            (selectedChanged)="onValueChange($event)"></md-datepicker>
-        </ng-container>
+
+        </md-form-field>
 
 
         <fieldset *ngSwitchCase="4"
@@ -107,7 +103,9 @@
 
         <ng-container *ngSwitchCase="5">
 
-            <md-input-container #mdInput>
+            <md-form-field #mdInput>
+
+                <span *ngIf="model.prefix" mdPrefix [innerHTML]="model.prefix"></span>
 
                 <input mdInput
                        [attr.accept]="model.accept"
@@ -136,17 +134,14 @@
                        (change)="onValueChange($event)"
                        (focus)="onFocusChange($event)"/>
 
+                <span *ngIf="model.suffix" mdSuffix [innerHTML]="model.suffix"></span>
+
                 <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
                 <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-                <span *ngIf="model.prefix" mdPrefix [innerHTML]="model.prefix"></span>
-                <span *ngIf="model.suffix" mdSuffix [innerHTML]="model.suffix"></span>
+                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
 
-                <ng-container *ngIf="showErrorMessages">
-                    <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
-                </ng-container>
-
-            </md-input-container>
+            </md-form-field>
 
             <md-autocomplete #mdAutocomplete="mdAutocomplete">
 
@@ -216,35 +211,33 @@
         </md-slide-toggle>
 
 
-        <md-input-container *ngSwitchCase="10" #mdTextarea>
+        <md-form-field *ngSwitchCase="10" #mdTextarea>
 
-        <textarea mdInput
-                  [attr.tabindex]="model.tabIndex"
-                  [dynamicId]="bindId && model.id"
-                  [cols]="model.cols"
-                  [formControlName]="model.id"
-                  [maxlength]="model.maxLength"
-                  [minlength]="model.minLength"
-                  [name]="model.name"
-                  [ngClass]="model.cls.element.control"
-                  [placeholder]="model.placeholder"
-                  [readonly]="model.readOnly"
-                  [required]="model.required"
-                  [rows]="model.rows"
-                  [spellcheck]="model.spellCheck"
-                  [wrap]="model.wrap"
-                  (blur)="onFocusChange($event)"
-                  (change)="onValueChange($event)"
-                  (focus)="onFocusChange($event)"></textarea>
+            <textarea mdInput
+                      [attr.tabindex]="model.tabIndex"
+                      [dynamicId]="bindId && model.id"
+                      [cols]="model.cols"
+                      [formControlName]="model.id"
+                      [maxlength]="model.maxLength"
+                      [minlength]="model.minLength"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readOnly"
+                      [required]="model.required"
+                      [rows]="model.rows"
+                      [spellcheck]="model.spellCheck"
+                      [wrap]="model.wrap"
+                      (blur)="onFocusChange($event)"
+                      (change)="onValueChange($event)"
+                      (focus)="onFocusChange($event)"></textarea>
 
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-            <ng-container *ngIf="showErrorMessages">
-                <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
-            </ng-container>
+            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
 
-        </md-input-container>
+        </md-form-field>
 
     </ng-container>
 
@@ -252,7 +245,8 @@
     <md-list *ngIf="showErrorMessages && type !== 5 && type !== 10" [ngClass]="model.cls.grid.errors">
 
         <md-list-item *ngFor="let message of errorMessages"
-                      [ngClass]="model.cls.element.errors">{{message}}</md-list-item>
+                      [ngClass]="model.cls.element.errors">{{message}}
+        </md-list-item>
 
     </md-list>
 
