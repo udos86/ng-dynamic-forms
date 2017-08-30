@@ -41,7 +41,6 @@ export const enum FoundationFormControlType {
 }
 
 @Component({
-
     selector: "dynamic-foundation-form-control,dynamic-form-foundation-sites-control",
     templateUrl: "./dynamic-foundation-form-control.component.html"
 })

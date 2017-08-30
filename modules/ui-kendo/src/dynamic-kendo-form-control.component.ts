@@ -62,7 +62,6 @@ export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponen
     NumericTextBoxComponent | SliderComponent | SwitchComponent | UploadComponent;
 
 @Component({
-
     selector: "dynamic-kendo-form-control,dynamic-form-kendo-control",
     templateUrl: "./dynamic-kendo-form-control.component.html"
 })

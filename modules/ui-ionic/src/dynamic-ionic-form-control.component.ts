@@ -48,7 +48,6 @@ export const enum IonicFormControlType {
 }
 
 @Component({
-
     selector: "dynamic-ionic-form-control,dynamic-form-ionic-control",
     templateUrl: "./dynamic-ionic-form-control.component.html"
 })

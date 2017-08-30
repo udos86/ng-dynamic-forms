@@ -9,7 +9,6 @@ import {
 import { DynamicFoundationFormControlComponent } from "./dynamic-foundation-form-control.component";
 
 @Component({
-
     selector: "dynamic-foundation-form",
     templateUrl: "./dynamic-foundation-form.component.html"
 })

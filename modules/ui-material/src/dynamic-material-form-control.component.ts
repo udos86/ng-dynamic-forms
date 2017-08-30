@@ -49,7 +49,6 @@ export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<
     MdSelect | MdSlider | MdSlideToggle;
 
 @Component({
-
     selector: "dynamic-material-form-control,dynamic-form-material-control",
     templateUrl: "./dynamic-material-form-control.component.html"
 })

@@ -40,7 +40,6 @@ export const enum BootstrapFormControlType {
 }
 
 @Component({
-
     selector: "dynamic-bootstrap-form-control,dynamic-form-bootstrap-control",
     templateUrl: "./dynamic-bootstrap-form-control.component.html"
 })

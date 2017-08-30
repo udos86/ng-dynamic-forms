@@ -9,7 +9,6 @@ import {
 import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
 
 @Component({
-
     selector: "dynamic-ionic-form",
     templateUrl: "./dynamic-ionic-form.component.html"
 })

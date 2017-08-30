@@ -35,7 +35,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     value: "option-4"
                 }
             ],
-            placeholder: "Select an option"
+            placeholder: "Material Select"
         }
     ),
 
@@ -45,7 +45,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
             id: "materialInput",
             list: ["Football", "Basketball", "Baseball", "Hockey"],
             maxLength: 51,
-            placeholder: "example input",
+            placeholder: "Material Input",
             validators: {
                 required: null
             },
@@ -146,7 +146,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
             id: "materialTextArea",
             //label: "Example Textarea",
             rows: 1,
-            placeholder: "example Textarea",
+            placeholder: "Material Textarea",
             validators: {
                 required: null
             },

@@ -46,7 +46,6 @@ export const enum NGBootstrapFormControlType {
 }
 
 @Component({
-
     selector: "dynamic-ng-bootstrap-form-control,dynamic-form-ng-bootstrap-control",
     templateUrl: "./dynamic-ng-bootstrap-form-control.component.html"
 })

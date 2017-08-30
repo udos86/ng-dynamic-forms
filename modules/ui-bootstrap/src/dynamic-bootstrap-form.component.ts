@@ -9,7 +9,6 @@ import {
 import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-control.component";
 
 @Component({
-
     selector: "dynamic-bootstrap-form",
     templateUrl: "./dynamic-bootstrap-form.component.html"
 })

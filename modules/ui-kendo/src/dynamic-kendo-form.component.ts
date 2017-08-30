@@ -9,7 +9,6 @@ import {
 import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
 
 @Component({
-
     selector: "dynamic-kendo-form",
     templateUrl: "./dynamic-kendo-form.component.html"
 })
