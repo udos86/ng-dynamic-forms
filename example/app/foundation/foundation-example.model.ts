@@ -177,7 +177,10 @@ export const FOUNDATION_EXAMPLE_MODEL = [
             validators: {
                 required: null,
                 pattern: "[a-c]+",
-                customValidator: null
+                customValidator: {
+                    name: "customValidator",
+                    args: null
+                }
             },
             errorMessages: {
                 required: "{{label}} is required",

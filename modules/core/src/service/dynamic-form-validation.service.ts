@@ -1,11 +1,13 @@
 import { Injectable, Inject, Optional } from "@angular/core";
 import {
     AbstractControl,
-    ValidatorFn,
     AsyncValidatorFn,
+    FormControl,
+    FormGroup,
+    ValidatorFn,
     Validators,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS
+    NG_ASYNC_VALIDATORS, FormArray
 } from "@angular/forms";
 import {
     DynamicFormControlModel,
@@ -83,6 +85,22 @@ export class DynamicFormValidationService {
         return validatorFns;
     }
 
+    private parseErrorMessageTemplate(template: string, model: DynamicFormControlModel, error: any = null): string {
+
+        return template.replace(/{{\s*(.+?)\s*}}/mg, (match: string, expression: string) => {
+
+            let propertySource: any = model,
+                propertyName: string = expression;
+
+            if (expression.indexOf("validator.") >= 0 && error) {
+
+                propertySource = error;
+                propertyName = expression.replace("validator.", "");
+            }
+
+            return propertySource[propertyName] ? propertySource[propertyName] : null;
+        });
+    }
 
     getValidatorByName(validatorName: string, validatorArgs: any = null): ValidatorFn {
         return this.getValidatorFn(validatorName, validatorArgs) as ValidatorFn;
@@ -132,31 +150,36 @@ export class DynamicFormValidationService {
 
     createErrorMessages(control: AbstractControl, model: DynamicFormControlModel): string[] {
 
-        return Object.keys(control.errors || {}).map(errorCode => {
+        let messages: string[] = [];
 
-            let error = control.getError(errorCode),
-                message = `Validation error: ${errorCode}`,
-                messageKey = Utils.equals(errorCode, "minlength", "maxlength") ? errorCode.replace("length", "Length") : errorCode;
+        if (control instanceof FormControl) {
+
+            Object.keys(control.errors || {}).forEach(errorCode => {
+
+                let messageKey = Utils.equals(errorCode, "minlength", "maxlength") ?
+                    errorCode.replace("length", "Length") : errorCode;
+
+                if (model.errorMessages.hasOwnProperty(messageKey)) {
+
+                    let error = control.getError(errorCode),
+                        template = model.errorMessages[messageKey] as string;
+
+                    messages.push(this.parseErrorMessageTemplate(template, model, error));
+                }
+            });
+
+        } else if (control instanceof FormGroup || control instanceof FormArray) {
+
+            let messageKey = Object.keys(model.errorMessages)[0] as string;
 
             if (model.errorMessages.hasOwnProperty(messageKey)) {
 
-                message = (model.errorMessages[messageKey] as string).replace(/{{\s*(.+?)\s*}}/mg,
-                    (match: string, expression: string) => {
+                let template = model.errorMessages[messageKey] as string;
 
-                        let propertySource: any = model,
-                            propertyName: string = expression;
-
-                        if (expression.indexOf("validator.") >= 0) {
-
-                            propertySource = error;
-                            propertyName = expression.replace("validator.", "");
-                        }
-
-                        return propertySource[propertyName] ? propertySource[propertyName] : null;
-                    });
+                messages.push(this.parseErrorMessageTemplate(template, model));
             }
+        }
 
-            return message;
-        });
+        return messages;
     }
 }

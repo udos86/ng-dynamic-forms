@@ -1,3 +1,10 @@
+# 1.4.27
+
+### **Bugfixes** 
+
+* error messages working again on `FormGroup`s (closes [#475](https://github.com/udos86/ng2-dynamic-forms/issues/475))
+
+
 # 1.4.26
 
 ### **Features** 

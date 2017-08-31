@@ -9,6 +9,7 @@ import {
     DynamicFormGroupModel
 } from "@ng2-dynamic-forms/core";
 import { Observable } from "rxjs/Observable";
+import { Validators } from "@angular/forms";
 
 export const BOOTSTRAP_EXAMPLE_MODEL = [
 
@@ -16,6 +17,12 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
 
         id: "bootstrapFormGroup1",
         legend: "Form Group 1",
+        validator: {
+            required: null
+        },
+        errorMessages: {
+            required: "error on {{ id }}"
+        },
         group: [
             new DynamicSelectModel<string>(
                 {
