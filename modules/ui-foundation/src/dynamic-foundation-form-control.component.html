@@ -219,7 +219,7 @@
 
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
-        <li *ngFor="let message of errorMessages" class="form-error">{{message}}</li>
+        <li *ngFor="let message of errorMessages" class="form-error is-visible">{{message}}</li>
 
     </ul>
 
