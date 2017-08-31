@@ -8,6 +8,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
 } from "@ng2-dynamic-forms/core";
+import { customValidator } from "../app.validators";
 
 export const FOUNDATION_EXAMPLE_MODEL = [
 
@@ -178,7 +179,7 @@ export const FOUNDATION_EXAMPLE_MODEL = [
                 required: null,
                 pattern: "[a-c]+",
                 customValidator: {
-                    name: "customValidator",
+                    name: customValidator.name,
                     args: null
                 }
             },
