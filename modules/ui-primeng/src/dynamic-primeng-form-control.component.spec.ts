@@ -249,8 +249,8 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         let testFn = DynamicPrimeNGFormControlComponent.getTemplateDirectives;
 
-        let fixture1 = TestBed.createComponent(DynamicPrimeNGFormControlComponent),
-            component1 = fixture1.componentInstance;
+        let fixture1: ComponentFixture<DynamicPrimeNGFormControlComponent> = TestBed.createComponent(DynamicPrimeNGFormControlComponent),
+            component1: DynamicPrimeNGFormControlComponent = fixture1.componentInstance;
 
         (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
 
