@@ -49,7 +49,7 @@
     "@angular/router": "^4.3.6",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.3",
     "@progress/kendo-angular-dateinputs": "^1.1.0",
-    "@progress/kendo-angular-dropdowns": "^1.1.3",
+    "@progress/kendo-angular-dropdowns": "^1.2.0",
     "@progress/kendo-angular-inputs": "^1.1.1",
     "@progress/kendo-angular-intl": "^1.2.2",
     "@progress/kendo-angular-l10n": "^1.0.3",
@@ -61,7 +61,7 @@
     "@telerik/kendo-intl": "^1.2.0",
     "angular2-text-mask": "^8.0.3",
     "bootstrap": "^3.3.7",
-    "core-js": "^2.5.0",
+    "core-js": "^2.5.1",
     "foundation-sites": "^6.4.3",
     "hammerjs": "^2.0.8",
     "ionic-angular": "^3.6.0",
@@ -114,7 +114,7 @@
     "systemjs": "^0.20.18",
     "tslint": "^5.7.0",
     "typedoc": "^0.8.0",
-    "typescript": "^2.4.2",
+    "typescript": "^2.5.2",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^3.5.5"
   }
