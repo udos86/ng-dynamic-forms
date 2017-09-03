@@ -1,4 +1,4 @@
-<div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
+<div [class.form-group]="(type !== 6 && asBootstrapFormGroup) || model.cls.element.container.includes('form-group')"
      [formGroup]="group"
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
@@ -13,35 +13,7 @@
                  [ngTemplateOutletContext]="model"></ng-template>
 
 
-    <div *ngIf="type === 3" [ngClass]="model.cls.grid.control">
-
-        <div class="form-check" [class.disabled]="model.disabled">
-
-            <label class="form-check-label">
-
-                <input type="checkbox" class="form-check-input"
-                       [attr.tabindex]="model.tabIndex"
-                       [checked]="model.checked"
-                       [class.is-invalid]="showErrorMessages"
-                       [dynamicId]="bindId && model.id"
-                       [formControlName]="model.id"
-                       [indeterminate]="model.indeterminate"
-                       [name]="model.name"
-                       [ngClass]="model.cls.element.control"
-                       [required]="model.required"
-                       [value]="model.value"
-                       (blur)="onFocusChange($event)"
-                       (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
-                                                              [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
-            </label>
-
-        </div>
-
-    </div>
-
-
-    <div *ngIf="type !== 3" [ngClass]="model.cls.grid.control">
+    <div [ngClass]="model.cls.grid.control">
 
         <ng-container [ngSwitch]="type">
 
@@ -81,12 +53,37 @@
                             [startDate]="model.focusedDate"></ngb-datepicker>
 
 
+            <div *ngSwitchCase="3" class="form-check" [class.disabled]="model.disabled">
+
+                <label class="form-check-label">
+
+                    <input type="checkbox" class="form-check-input"
+                           [attr.tabindex]="model.tabIndex"
+                           [checked]="model.checked"
+                           [class.is-invalid]="showErrorMessages"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [indeterminate]="model.indeterminate"
+                           [name]="model.name"
+                           [ngClass]="model.cls.element.control"
+                           [required]="model.required"
+                           [value]="model.value"
+                           (blur)="onFocusChange($event)"
+                           (change)="onValueChange($event)"
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
+                                                                  [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
+                </label>
+
+            </div>
+
+
             <div *ngSwitchCase="4" class="btn-group" data-toggle="buttons"
                  [dynamicId]="bindId && model.id"
                  [formGroupName]="model.id"
                  [ngClass]="model.cls.element.control">
 
-                <label *ngFor="let controlModel of model.group" ngbButtonLabel [ngClass]="controlModel.cls.element.control">
+                <label *ngFor="let controlModel of model.group" ngbButtonLabel
+                       [ngClass]="controlModel.cls.element.control">
 
                     <input type="checkbox" ngbButton
                            [attr.tabindex]="controlModel.tabIndex"
@@ -121,16 +118,13 @@
             </div>
 
 
-            <fieldset *ngSwitchCase="6"
-                      [dynamicId]="bindId && model.id"
-                      [formGroupName]="model.id"
-                      [name]="model.name"
-                      [ngClass]="model.cls.element.control">
-
-                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+            <div *ngSwitchCase="6"
+                 [dynamicId]="bindId && model.id"
+                 [formGroupName]="model.id"
+                 [ngClass]="model.cls.element.control">
 
                 <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of model.group"
-                                                   [asBootstrapFormGroup]="false"
+                                                   [asBootstrapFormGroup]="true"
                                                    [group]="control"
                                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
@@ -139,7 +133,7 @@
                                                    (blur)="onFocusChange($event)"
                                                    (change)="onValueChange($event)"
                                                    (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
-            </fieldset>
+            </div>
 
 
             <div *ngSwitchCase="7" [class.input-group]="model.prefix || model.suffix">
@@ -194,7 +188,8 @@
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <label *ngFor="let option of model.options$ | async" ngbButtonLabel [ngClass]="model.cls.element.control">
+                <label *ngFor="let option of model.options$ | async" ngbButtonLabel
+                       [ngClass]="model.cls.element.control">
 
                     <input type="radio" ngbButton
                            [disabled]="option.disabled"
@@ -264,7 +259,8 @@
             <div *ngIf="showErrorMessages" [ngClass]="model.cls.grid.errors">
 
                 <small *ngFor="let message of errorMessages" class="invalid-feedback" style="display: block;"
-                       [ngClass]="model.cls.element.errors">{{message}}</small>
+                       [ngClass]="model.cls.element.errors">{{message}}
+                </small>
 
             </div>
 

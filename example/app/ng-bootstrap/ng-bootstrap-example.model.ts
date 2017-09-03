@@ -1,126 +1,185 @@
 import {
     DynamicCheckboxModel,
-    DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
+    DynamicFormControlModel,
+    DynamicFormGroupModel,
     DynamicInputModel,
-    DynamicSelectModel,
     DynamicRadioGroupModel,
-    DynamicTextAreaModel,
-    DynamicTimePickerModel
+    DynamicSelectModel,
+    DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
-export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
+export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
 
-    new DynamicSelectModel<string>(
+    new DynamicRadioGroupModel(
         {
-            id: "ngbSelect",
-            label: "Select",
+            id: "sex",
+            label: "Sex",
             options: [
                 {
-                    label: "Option 1",
-                    value: "option-1",
+                    label: "Female",
+                    value: "female"
                 },
                 {
-                    label: "Option 2",
-                    value: "option-2"
+                    label: "Male",
+                    value: "male"
                 },
-                {
-                    label: "Option 3",
-                    value: "option-3"
-                },
-                {
-                    label: "Option 4",
-                    value: "option-4"
-                }
             ],
-            value: "option-3"
+            value: "female"
         },
         {
             element: {
-                container: "row",
+                control: "btn-primary",
+                label: "col-form-label"
+            }
+        }
+    ),
+
+    new DynamicSelectModel(
+        {
+            id: "degree",
+            label: "Degree",
+            options: [
+                {
+                    label: "Bachelor of Arts (B.A.)",
+                    value: "BA"
+                },
+                {
+                    label: "Bachelor of Science (B.S.)",
+                    value: "BS"
+                },
+                {
+                    label: "Master of Arts (M.A.)",
+                    value: "MA"
+                },
+                {
+                    label: "Master of Science (M.S.)",
+                    value: "MS"
+                },
+                {
+                    label: "Doctor of Philosophy (Ph.D.)",
+                    value: "PhD"
+                }
+            ],
+            value: "BA"
+        },
+        {
+            element: {
                 label: "col-form-label"
             },
             grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
             }
         }
     ),
 
     new DynamicInputModel(
         {
-            id: "ngbFileInput",
-            inputType: "file",
-            label: "File Input"
+            id: "firstName",
+            hint: "Just a hint",
+            label: "First Name",
+            placeholder: "First Name",
+            prefix: "Prefix",
+            suffix: "Suffix",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "Field is required"
+            }
         },
         {
             element: {
-                container: "row",
                 label: "col-form-label"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "lastName",
+            label: "Last Name",
+            placeholder: "Last Name",
+            validators: {
+                required: null
             },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+            errorMessages: {
+                required: "Field is required"
+            }
+        },
+        {
+            element: {
+                label: "col-form-label"
             }
         }
     ),
 
     new DynamicDatePickerModel(
         {
-            id: "ngbDatepicker",
+            id: "birthday",
             inline: false,
-            label: "Datepicker",
-            placeholder: "Ngb Datepicker",
+            label: "Date of Birth",
+            placeholder: "Date of Birth",
             toggleIcon: "../../assets/calendar-icon.svg"
         },
         {
             element: {
-                container: "row",
                 label: "col-form-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
             }
         }
     ),
 
-    new DynamicCheckboxGroupModel(
+    new DynamicInputModel(
         {
-            id: "ngbCheckboxGroup",
-            label: "Checkbox Group",
+            id: "email",
+            label: "E-Mail",
+            placeholder: "E-Mail",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "Field {{ id }} is required"
+            }
+        },
+        {
+            element: {
+                label: "col-form-label"
+            }
+        }
+    ),
+
+    new DynamicFormGroupModel(
+        {
+            id: "street",
             group: [
-                new DynamicCheckboxModel(
+
+                new DynamicInputModel(
                     {
-                        id: "ngbCheckbox1",
-                        label: "One"
+                        id: "streetName",
+                        label: "Street Name",
+                        placeholder: "Street Name"
                     },
                     {
                         element: {
-                            control: "btn-primary"
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-9"
                         }
                     }
                 ),
-                new DynamicCheckboxModel(
+
+                new DynamicInputModel(
                     {
-                        id: "ngbCheckbox2",
-                        label: "Two",
-                        value: true
+                        id: "streetNumber",
+                        label: "Street Number",
+                        placeholder: "Number"
                     },
                     {
                         element: {
-                            control: "btn-primary"
-                        }
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "ngbCheckbox3",
-                        label: "Three"
-                    },
-                    {
-                        element: {
-                            control: "btn-primary"
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-3"
                         }
                     }
                 )
@@ -128,130 +187,90 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL = [
         },
         {
             element: {
-                container: "row",
-                label: "col-form-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+                control: "form-row"
             }
         }
     ),
 
-    new DynamicInputModel(
+    new DynamicFormGroupModel(
         {
-            id: "ngbInput",
-            hint: "Just a hint",
-            label: "Input",
-            placeholder: "Ngb input",
-            prefix: "Prefix",
-            suffix: "Suffix",
-            validators: {
-                required: null,
-                maxLength: 5
-            },
-            errorMessages: {
-                required: "{{label}} is required",
-                maxLength: "Max character count is 5"
-            }
-        },
-        {
-            element: {
-                container: "row",
-                label: "col-form-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            }
-        }
-    ),
+            id: "address",
+            group: [
 
-    new DynamicTimePickerModel(
-        {
-            id: "ngbTimePicker",
-            label: "TimePicker"
-        },
-        {
-            element: {
-                container: "row",
-                label: "col-form-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
-            }
-        }
-    ),
+                new DynamicInputModel(
+                    {
+                        id: "zipCode",
+                        label: "Zip Code",
+                        placeholder: "ZIP"
+                    },
+                    {
+                        element: {
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-2"
+                        }
+                    }
+                ),
 
-    new DynamicRadioGroupModel<string>(
-        {
-            id: "ngbRadioGroup",
-            label: "Radio Group",
-            options: [
-                {
-                    label: "Option 1",
-                    value: "option-1",
-                },
-                {
-                    label: "Option 2",
-                    value: "option-2"
-                },
-                {
-                    label: "Option 3",
-                    value: "option-3"
-                },
-                {
-                    label: "Option 4",
-                    value: "option-4"
-                }
-            ],
-            value: "option-3"
+                new DynamicInputModel(
+                    {
+                        id: "state",
+                        label: "State",
+                        placeholder: "State"
+                    },
+                    {
+                        element: {
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-4"
+                        }
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "city",
+                        label: "City",
+                        placeholder: "City"
+                    },
+                    {
+                        element: {
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-6"
+                        }
+                    }
+                )
+            ]
         },
         {
             element: {
-                container: "row",
-                control: "btn-primary",
-                label: "col-form-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
+                control: "form-row"
             }
         }
     ),
 
     new DynamicTextAreaModel(
         {
-            id: "ngbTextArea",
-            label: "Textarea",
-            rows: 5,
-            placeholder: "Ngb Textarea"
+            id: "bio",
+            label: "Bio",
+            placeholder: "Bio",
+            rows: 5
         },
         {
             element: {
-                container: "row",
                 label: "col-form-label"
-            },
-            grid: {
-                control: "col-sm-9",
-                label: "col-sm-3"
             }
         }
     ),
 
     new DynamicCheckboxModel(
         {
-            id: "ngbCheckbox",
-            label: "I do agree"
-        },
-        {
-            element: {
-                container: "row",
-            },
-            grid: {
-                control: "offset-sm-3 col-sm-9",
-            }
+            id: "confirm",
+            label: "I confirm that the information given above is correct"
         }
     )
 ];

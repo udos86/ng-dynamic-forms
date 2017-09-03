@@ -107,11 +107,11 @@ md-slide-toggle {
     display: block;
 }
 
-.form-row label, md-input, md-radio-button {
+md-input, md-radio-button {
     margin: 0 1rem;
 }
 
-.form-row, dynamic-form-material-control > div {
+dynamic-form-material-control > div {
     margin-bottom: 1.6rem;
 }
 
