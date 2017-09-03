@@ -65,22 +65,23 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
 })
 export class DynamicPrimeNGFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-
     @ViewChild(PRIME_NG_VIEW_CHILD_SELECTOR) pViewChild: PrimeNGFormControlComponent | undefined;
 
     suggestions: string[];
+
     type: PrimeNGFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
@@ -149,7 +150,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 let inputModel = model as DynamicInputModel;
 
-                if (inputModel.list) {
+                if (Array.isArray(inputModel.list)) {
                     return PrimeNGFormControlType.AutoComplete;
 
                 } else if (inputModel.multiple) {

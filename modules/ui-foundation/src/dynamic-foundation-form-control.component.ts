@@ -46,18 +46,18 @@ export const enum FoundationFormControlType {
 })
 export class DynamicFoundationFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     type: FoundationFormControlType | null;
 

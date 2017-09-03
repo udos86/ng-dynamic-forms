@@ -1,5 +1,6 @@
 import {
     DynamicCheckboxModel,
+    DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
     DynamicFormControlModel,
     DynamicFormGroupModel,
@@ -67,8 +68,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
             element: {
                 label: "col-form-label"
             },
-            grid: {
-            }
+            grid: {}
         }
     ),
 
@@ -78,13 +78,11 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
             hint: "Just a hint",
             label: "First Name",
             placeholder: "First Name",
-            prefix: "Prefix",
-            suffix: "Suffix",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "Field is required"
+                required: "{{ label }} is required"
             }
         },
         {
@@ -103,7 +101,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 required: null
             },
             errorMessages: {
-                required: "Field is required"
+                required: "{{ label }} is required"
             }
         },
         {
@@ -123,7 +121,11 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
         },
         {
             element: {
+                container: "p-0",
                 label: "col-form-label"
+            },
+            grid: {
+                container: "col-sm-5"
             }
         }
     ),
@@ -133,11 +135,13 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
             id: "email",
             label: "E-Mail",
             placeholder: "E-Mail",
+            prefix: "Prefix",
+            suffix: "Suffix",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "Field {{ id }} is required"
+                required: "{{ label }} is required"
             }
         },
         {
@@ -149,7 +153,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormGroupModel(
         {
-            id: "street",
+            id: "addressStreet",
             group: [
 
                 new DynamicInputModel(
@@ -194,7 +198,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormGroupModel(
         {
-            id: "address",
+            id: "addressLocation",
             group: [
 
                 new DynamicInputModel(
@@ -250,6 +254,71 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
             element: {
                 control: "form-row"
             }
+        }
+    ),
+
+
+    new DynamicCheckboxGroupModel(
+        {
+            id: "interests",
+            label: "Interests",
+            group: [
+                new DynamicCheckboxModel(
+                    {
+                        id: "interestMusic",
+                        label: "Music"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "interestSports",
+                        label: "Sports",
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "interestLiterature",
+                        label: "Literature"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "interestPhotography",
+                        label: "Photography"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "interestTraveling",
+                        label: "Traveling"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
+                        }
+                    }
+                )
+            ]
         }
     ),
 
