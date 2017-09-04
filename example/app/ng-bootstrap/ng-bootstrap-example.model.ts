@@ -175,6 +175,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
+                        inputType: "number",
                         label: "Street Number",
                         placeholder: "Number"
                     },
@@ -325,8 +326,8 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
     new DynamicTextAreaModel(
         {
             id: "bio",
-            label: "Bio",
-            placeholder: "Bio",
+            label: "Short Bio",
+            placeholder: "Short Bio",
             rows: 5
         },
         {
@@ -339,7 +340,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
     new DynamicCheckboxModel(
         {
             id: "confirm",
-            label: "I confirm that the information given above is correct"
+            label: "I confirm the information given above"
         }
     )
 ];

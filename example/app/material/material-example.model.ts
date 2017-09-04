@@ -1,7 +1,7 @@
 import {
     DynamicCheckboxModel,
-    DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
+    DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
@@ -12,40 +12,72 @@ import {
 
 export const MATERIAL_EXAMPLE_MODEL = [
 
-    new DynamicSelectModel<string>(
+    new DynamicRadioGroupModel<string>(
         {
-            id: "materialSelect",
-            //label: "Example Select",
-            multiple: true,
+            id: "sex",
             options: [
                 {
-                    label: "Option 1",
-                    value: "option-1",
+                    label: "Female",
+                    value: "female",
                 },
                 {
-                    label: "Option 2",
-                    value: "option-2"
-                },
-                {
-                    label: "Option 3",
-                    value: "option-3"
-                },
-                {
-                    label: "Option 4",
-                    value: "option-4"
+                    disabled: true,
+                    label: "Male",
+                    value: "male"
                 }
             ],
-            placeholder: "Material Select"
+            value: "female"
+        }
+    ),
+
+    new DynamicSelectModel<string>(
+        {
+            id: "degree",
+            placeholder: "Degree",
+            options: [
+                {
+                    label: "Bachelor of Arts (B.A.)",
+                    value: "BA"
+                },
+                {
+                    label: "Bachelor of Science (B.S.)",
+                    value: "BS"
+                },
+                {
+                    label: "Master of Arts (M.A.)",
+                    value: "MA"
+                },
+                {
+                    label: "Master of Science (M.S.)",
+                    value: "MS"
+                },
+                {
+                    label: "Doctor of Philosophy (Ph.D.)",
+                    value: "PhD"
+                }
+            ]
         }
     ),
 
     new DynamicInputModel(
         {
-            hint: "Just a hint",
-            id: "materialInput",
-            list: ["Football", "Basketball", "Baseball", "Hockey"],
-            maxLength: 51,
-            placeholder: "Material Input",
+            id: "firstName",
+            maxLength: 25,
+            placeholder: "First Name",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "Field is required"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "lastName",
+            maxLength: 50,
+            placeholder: "Last Name",
             validators: {
                 required: null
             },
@@ -57,82 +89,140 @@ export const MATERIAL_EXAMPLE_MODEL = [
 
     new DynamicDatePickerModel(
         {
-            id: "materialDatepicker",
-            placeholder: "Material Datepicker",
-            value: new Date()
+            id: "birthday",
+            placeholder: "Date of Birth"
         }
     ),
 
-    new DynamicCheckboxGroupModel(
+    new DynamicInputModel(
         {
-            id: "materialCheckboxGroup",
+            id: "email",
+            hint: "Just a hint",
+            placeholder: "E-Mail",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "Field {{ is }} required"
+            }
+        }
+    ),
+
+    new DynamicFormGroupModel(
+        {
+            id: "addressStreet",
             group: [
-                new DynamicCheckboxModel(
+
+                new DynamicInputModel(
                     {
-                        id: "materialCheckbox1",
-                        label: "Checkbox 1"
+                        id: "streetName",
+                        placeholder: "Street Name"
                     }
                 ),
-                new DynamicCheckboxModel(
+
+                new DynamicInputModel(
                     {
-                        id: "materialCheckbox2",
-                        label: "Checkbox 2"
+                        id: "streetNumber",
+                        placeholder: "Street Number",
+                        inputType: "number"
                     }
                 )
             ]
         }
     ),
 
-    new DynamicSwitchModel(
+    new DynamicFormGroupModel(
         {
-            id: "materialSwitch",
-            offLabel: "Off",
-            onLabel: "On",
-            value: false
+            id: "addressLocation",
+            group: [
+
+                new DynamicInputModel(
+                    {
+                        id: "zipCode",
+                        placeholder: "ZIP"
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "state",
+                        hint: "Autocomplete",
+                        placeholder: "State",
+                        list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "city",
+                        placeholder: "City"
+                    }
+                )
+            ]
         }
     ),
 
-    new DynamicRadioGroupModel<string>(
+    new DynamicSelectModel<string>(
         {
-            id: "materialRadioGroup",
-            //label: "Example Option",
+            id: "interests",
+            placeholder: "Interests",
+            multiple: true,
             options: [
-                {
-                    label: "Option 1",
-                    value: "option-1",
-                },
-                {
-                    disabled: true,
-                    label: "Option 2",
-                    value: "option-2"
-                },
-                {
-                    label: "Option 3",
-                    value: "option-3"
-                },
-                {
-                    label: "Option 4",
-                    value: "option-4"
-                }
-            ],
-            relation: [
-                {
-                    action: "DISABLE",
-                    when: [
-                        {
-                            id: "materialSwitch",
-                            value: true
-                        }
-                    ]
-                }
-            ],
-            value: "option-3"
+                    {
+                        label: "Music",
+                        value: "interestMusic"
+                    },
+                    {
+                        label: "Sports",
+                        value: "interestSports"
+                    },
+
+                    {
+                        label: "Literature",
+                        value: "interestLiterature"
+                    },
+                    {
+                        label: "Photography",
+                        value: "interestPhotography"
+                    },
+                    {
+                        label: "Traveling",
+                        value: "interestTraveling"
+                    }
+            ]
+        }
+    ),
+
+    new DynamicTextAreaModel(
+        {
+            id: "bio",
+            rows: 3,
+            placeholder: "Short Bio"
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "newsletter",
+            offLabel: "Subscribe to newsletter",
+            onLabel: "Subscribe to newsletter",
+            value: true
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "advertising",
+            offLabel: "Receive personalized ads",
+            onLabel: "Receive personalized ads",
+            value: false
         }
     ),
 
     new DynamicSliderModel(
         {
-            id: "materialSlider",
+            id: "rating",
+            label: "Rating",
             min: 0,
             max: 10,
             step: 1,
@@ -141,25 +231,10 @@ export const MATERIAL_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicTextAreaModel(
-        {
-            id: "materialTextArea",
-            //label: "Example Textarea",
-            rows: 1,
-            placeholder: "Material Textarea",
-            validators: {
-                required: null
-            },
-            errorMessages: {
-                required: "Field is required"
-            }
-        }
-    ),
-
     new DynamicCheckboxModel(
         {
-            id: "materialCheckbox",
-            label: "I do agree"
+            id: "confirm",
+            label: "I confirm the information given above"
         }
     )
 ];

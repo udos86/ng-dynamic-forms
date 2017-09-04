@@ -89,7 +89,7 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <dynamic-form-material-control *ngFor="let controlModel of model.group"
+            <dynamic-material-form-control *ngFor="let controlModel of model.group"
                                            [group]="control"
                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                            [model]="controlModel"
@@ -97,7 +97,7 @@
                                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                            (blur)="onFocusChange($event)"
                                            (change)="onValueChange($event)"
-                                           (focus)="onFocusChange($event)"></dynamic-form-material-control>
+                                           (focus)="onFocusChange($event)"></dynamic-material-form-control>
         </fieldset>
 
 

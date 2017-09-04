@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Http, BaseRequestOptions } from "@angular/http";
-import { MdNativeDateModule } from "@angular/material";
+import { MdCardModule, MdNativeDateModule } from "@angular/material";
 import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -42,6 +42,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         ReactiveFormsModule,
         AppRoutingModule,
         MdNativeDateModule,
+        MdCardModule,
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),
         DynamicFormsCoreModule.forRoot(),

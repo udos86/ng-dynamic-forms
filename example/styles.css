@@ -37,6 +37,10 @@ pre {
     margin: 4rem auto;
 }
 
+.display-inline {
+    display: inline;
+}
+
 .float-left {
     float: left;
 }
@@ -108,7 +112,11 @@ md-slide-toggle {
 }
 
 md-input, md-radio-button {
-    margin: 0 1rem;
+    margin-right: 1rem;
+}
+
+md-select {
+    width: 200px;
 }
 
 dynamic-form-material-control > div {
@@ -156,7 +164,12 @@ dynamic-kendo-form-control ul {
 
 dynamic-material-form-control {
     display: block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+fieldset > dynamic-material-form-control {
+    display: inline-block;
+    margin-right: 1rem;
 }
 
 dynamic-material-form-control .md-list-item {
