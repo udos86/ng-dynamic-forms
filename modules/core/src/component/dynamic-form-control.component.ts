@@ -64,9 +64,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     abstract type: number | string | null;
 
-    constructor(
-        protected changeDetectorRef: ChangeDetectorRef,
-        protected validationService: DynamicFormValidationService) { }
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
 
@@ -295,7 +294,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
             emitValue = $event as DynamicFormControlEvent;
 
-            (emitValue.$event as FocusEvent).type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
+            if (emitValue.$event && emitValue.$event instanceof FocusEvent) {
+
+                emitValue.$event.type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
+            }
         }
     }
 }

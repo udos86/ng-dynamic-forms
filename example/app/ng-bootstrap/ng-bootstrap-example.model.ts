@@ -7,68 +7,95 @@ import {
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicTextAreaModel
+    DynamicTextAreaModel,
+    DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
 export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
 
-    new DynamicRadioGroupModel(
+    new DynamicFormGroupModel(
         {
-            id: "sex",
-            label: "Sex",
-            options: [
-                {
-                    label: "Female",
-                    value: "female"
-                },
-                {
-                    label: "Male",
-                    value: "male"
-                },
-            ],
-            value: "female"
+            id: "stay",
+            group: [
+
+                new DynamicDatePickerModel(
+                    {
+                        id: "arrivalDate",
+                        inline: false,
+                        label: "Arrival",
+                        placeholder: "Date of Arrival",
+                        toggleIcon: "../../assets/calendar-icon.svg"
+                    },
+                    {
+                        element: {
+                            container: "p-0",
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-4"
+                        }
+                    }
+                ),
+
+                new DynamicDatePickerModel(
+                    {
+                        id: "departureDate",
+                        inline: false,
+                        label: "Departure",
+                        placeholder: "Date of Departure",
+                        toggleIcon: "../../assets/calendar-icon.svg"
+                    },
+                    {
+                        element: {
+                            container: "p-0",
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-4"
+                        }
+                    }
+                ),
+            ]
         },
         {
             element: {
-                control: "btn-primary",
-                label: "col-form-label"
+                control: "form-row"
             }
         }
     ),
 
     new DynamicSelectModel(
         {
-            id: "degree",
-            label: "Degree",
+            id: "room",
+            label: "Room",
+            placeholder: "Select Room",
             options: [
                 {
-                    label: "Bachelor of Arts (B.A.)",
-                    value: "BA"
+                    label: "Single Room",
+                    value: "single-room"
                 },
                 {
-                    label: "Bachelor of Science (B.S.)",
-                    value: "BS"
+                    label: "Double Room",
+                    value: "double-room"
                 },
                 {
-                    label: "Master of Arts (M.A.)",
-                    value: "MA"
+                    label: "Business Suite",
+                    value: "business-suite"
                 },
                 {
-                    label: "Master of Science (M.S.)",
-                    value: "MS"
+                    label: "Presidential Suite",
+                    value: "presidential-suite"
                 },
                 {
-                    label: "Doctor of Philosophy (Ph.D.)",
-                    value: "PhD"
+                    label: "Storeroom",
+                    value: "storeroom"
                 }
-            ],
-            value: "BA"
+            ]
         },
         {
             element: {
                 label: "col-form-label"
-            },
-            grid: {}
+            }
         }
     ),
 
@@ -107,25 +134,6 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
         {
             element: {
                 label: "col-form-label"
-            }
-        }
-    ),
-
-    new DynamicDatePickerModel(
-        {
-            id: "birthday",
-            inline: false,
-            label: "Date of Birth",
-            placeholder: "Date of Birth",
-            toggleIcon: "../../assets/calendar-icon.svg"
-        },
-        {
-            element: {
-                container: "p-0",
-                label: "col-form-label"
-            },
-            grid: {
-                container: "col-sm-5"
             }
         }
     ),
@@ -258,16 +266,15 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
         }
     ),
 
-
     new DynamicCheckboxGroupModel(
         {
-            id: "interests",
-            label: "Interests",
+            id: "extras",
+            label: "Extras",
             group: [
                 new DynamicCheckboxModel(
                     {
-                        id: "interestMusic",
-                        label: "Music"
+                        id: "extraBreakfast",
+                        label: "Breakfast"
                     },
                     {
                         element: {
@@ -277,8 +284,8 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "interestSports",
-                        label: "Sports",
+                        id: "extraTV",
+                        label: "TV",
                     },
                     {
                         element: {
@@ -288,8 +295,8 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "interestLiterature",
-                        label: "Literature"
+                        id: "extraWiFi",
+                        label: "WiFi"
                     },
                     {
                         element: {
@@ -299,8 +306,8 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "interestPhotography",
-                        label: "Photography"
+                        id: "extraParking",
+                        label: "Parking Lot"
                     },
                     {
                         element: {
@@ -310,8 +317,8 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "interestTraveling",
-                        label: "Traveling"
+                        id: "extraBalcony",
+                        label: "Balcony"
                     },
                     {
                         element: {
@@ -323,11 +330,56 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
         }
     ),
 
+    new DynamicRadioGroupModel(
+        {
+            id: "payment",
+            label: "Payment Method",
+            options: [
+                {
+                    label: "Credit Card",
+                    value: "cc"
+                },
+                {
+                    label: "PayPal",
+                    value: "paypal"
+                },
+                {
+                    label: "Cash",
+                    value: "cash"
+                },
+                {
+                    label: "Bitcoin",
+                    value: "bitcoin"
+                }
+            ],
+            value: "cc"
+        },
+        {
+            element: {
+                control: "btn-primary",
+                label: "col-form-label"
+            }
+        }
+    ),
+
+    new DynamicTimePickerModel(
+        {
+            id: "arrivalTime",
+            label: "Estimated Arrival Time"
+        },
+        {
+            element: {
+                container: "pt-2 mb-0",
+                label: "col-form-label"
+            }
+        }
+    ),
+
     new DynamicTextAreaModel(
         {
-            id: "bio",
-            label: "Short Bio",
-            placeholder: "Short Bio",
+            id: "notes",
+            label: "Notes",
+            placeholder: "Additional Notes",
             rows: 5
         },
         {

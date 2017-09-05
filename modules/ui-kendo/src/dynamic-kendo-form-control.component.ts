@@ -11,7 +11,12 @@ import {
     ViewChild
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { CalendarComponent, DateInputComponent, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
+import {
+    CalendarComponent,
+    DateInputComponent,
+    DatePickerComponent,
+    TimePickerComponent
+} from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
     MaskedTextBoxComponent,
@@ -59,7 +64,7 @@ import {
 
 export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponent | DateInputComponent |
     DatePickerComponent | DropDownListComponent | MaskedTextBoxComponent | MultiSelectComponent |
-    NumericTextBoxComponent | SliderComponent | SwitchComponent | UploadComponent;
+    NumericTextBoxComponent | SliderComponent | SwitchComponent | TimePickerComponent | UploadComponent;
 
 @Component({
     selector: "dynamic-kendo-form-control,dynamic-form-kendo-control",

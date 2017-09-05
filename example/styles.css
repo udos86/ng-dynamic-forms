@@ -147,14 +147,22 @@ dynamic-form-material-example fieldset {
     border: none;
 }
 
-dynamic-kendo-form-control {
-    display: block;
-    margin-bottom: 3rem;
-    text-align: center;
+dynamic-kendo-form-control div[role="group"] {
+    display: flex;
 }
 
-dynamic-kendo-form-control .k-widget {
-    margin: 0 auto;
+dynamic-kendo-form-control div[role="group"] > dynamic-kendo-form-control {
+    margin-right: 1rem;
+    margin-bottom: 0;
+}
+
+dynamic-kendo-form-control label:not(.k-form-field):not(.k-checkbox-label):not(.k-radio-label) {
+    padding: 4px 0;
+}
+
+dynamic-kendo-form-control {
+    display: block;
+    margin-bottom: 2rem;
 }
 
 dynamic-kendo-form-control ul {

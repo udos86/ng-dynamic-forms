@@ -57,7 +57,7 @@
     "@progress/kendo-angular-resize-sensor": "^1.0.4",
     "@progress/kendo-angular-upload": "^1.2.0",
     "@progress/kendo-date-math": "^1.0.3",
-    "@progress/kendo-theme-default": "^2.40.2",
+    "@progress/kendo-theme-default": "^2.41.0",
     "@telerik/kendo-intl": "^1.2.0",
     "angular2-text-mask": "^8.0.3",
     "bootstrap": "^3.3.7",

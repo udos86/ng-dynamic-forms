@@ -2,15 +2,10 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { CalendarComponent, DateInputsModule, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
-import {
-    AutoCompleteComponent,
-    DropDownListComponent,
-    DropDownsModule,
-    MultiSelectComponent
-} from "@progress/kendo-angular-dropdowns";
+import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
+import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
-import { UploadComponent, UploadModule } from "@progress/kendo-angular-upload";
+import { UploadModule } from "@progress/kendo-angular-upload";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -30,7 +25,7 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
-import { DynamicKendoFormControlComponent, KendoFormControlComponent } from "./dynamic-kendo-form-control.component";
+import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
     KENDO_CALENDAR_TEMPLATE_DIRECTIVES,

@@ -55,11 +55,11 @@ with **`DynamicKendoFormControlComponent`**:
 |  **[MaskedTextBox](http://www.telerik.com/kendo-angular-ui/components/inputs/maskedtextbox/)**  	| `DynamicInputModel`         	|         `mask`        	|
 |   **[MultiSelect](http://www.telerik.com/kendo-angular-ui/components/dropdowns/multiselect/)**  	| `DynamicSelectModel`        	|    `multiple: true`   	|
 | **[NumericTextBox](http://www.telerik.com/kendo-angular-ui/components/inputs/numerictextbox/)** 	| `DynamicInputModel`         	| `inputType: "number"` 	|
-| **[Radio Button](http://www.telerik.com/kendo-angular-ui/components/forms/#toc-radiobuttons)**  	| `DynamicRadioGroupModel`    	|           –           	|
+|  **[Radio Button](http://www.telerik.com/kendo-angular-ui/components/forms/#toc-radiobuttons)** 	| `DynamicRadioGroupModel`    	|           –           	|
 |         **[Slider](http://www.telerik.com/kendo-angular-ui/components/inputs/slider/)**         	| `DynamicSliderModel`        	|           –           	|
 |         **[Switch](http://www.telerik.com/kendo-angular-ui/components/inputs/switch/)**         	| `DynamicSwitchModel`        	|           –           	|
 |      **[TextArea](http://www.telerik.com/kendo-angular-ui/components/forms/#toc-textarea)**     	| `DynamicTextAreaModel`      	|           –           	|
 |       **[TextBox](http://www.telerik.com/kendo-angular-ui/components/forms/#toc-textbox)**      	| `DynamicInputModel`         	|           –           	|
+|   **[TimePicker](http://www.telerik.com/kendo-angular-ui/components/dateinputs/timepicker/)**   	| `DynamicTimePickerModel`    	|           –           	|
 |             **[Upload](http://www.telerik.com/kendo-angular-ui/components/upload/)**            	| `DynamicFileUploadModel`    	|           –           	|
-
 
