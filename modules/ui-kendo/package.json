@@ -34,7 +34,7 @@
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@ng2-dynamic-forms/core": "^1.4.27",
-    "@progress/kendo-angular-dateinputs": "^1.0.0",
+    "@progress/kendo-angular-dateinputs": "^1.1.0",
     "@progress/kendo-angular-dropdowns": "^1.0.0",
     "@progress/kendo-angular-inputs": "^1.0.0",
     "@progress/kendo-angular-intl": "^1.0.0",

@@ -2,8 +2,15 @@
 
     <label *ngIf="model.label && type !== 4 && type !== 10"
            [attr.for]="model.id"
-           [innerHTML]="model.label"
-           [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
+           [ngClass]="[model.cls.element.label, model.cls.grid.label]">
+
+        <span [innerHTML]="model.label"></span>
+        
+        <span *ngIf="type === 11 && model.hint" class="k-field-info" 
+              [innerHTML]="model.hint"
+              [ngClass]="model.cls.element.hint"></span>
+
+    </label>
 
 
     <ng-template *ngIf="type !== 1 && template?.align === 'START'"

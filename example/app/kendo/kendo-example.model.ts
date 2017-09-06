@@ -8,7 +8,6 @@ import {
     DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicSwitchModel,
-    DynamicSliderModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
@@ -95,6 +94,39 @@ export const KENDO_EXAMPLE_MODEL = [
             },
             errorMessages: {
                 required: "{{label}} is required"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "email",
+            label: "E-Mail",
+            placeholder: "E-Mail",
+            validators: {
+                required: null,
+                email: null
+            },
+            errorMessages: {
+                required: "{{label}} is required",
+                email: "{{label}} is not valid"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "phone",
+            inputType: "tel",
+            label: "Phone Number",
+            placeholder: "Phone Number",
+            hint: "Add your country code first",
+            mask: "+(99) 0000000000000",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "Field is required"
             }
         }
     ),
@@ -226,26 +258,6 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicSliderModel(
-        {
-            id: "kendoSlider",
-            label: "Slider",
-
-            step: 1,
-            value: 3
-        }
-    ),
-
-    new DynamicSwitchModel(
-        {
-            id: "kendoSwitch",
-            label: "Switch",
-            offLabel: "Off",
-            onLabel: "On",
-            value: true
-        }
-    ),
-
     new DynamicTimePickerModel(
         {
             id:"arrivalTime",
@@ -267,10 +279,49 @@ export const KENDO_EXAMPLE_MODEL = [
 
     new DynamicTextAreaModel(
         {
-            id: "notes",
-            label: "Notes",
+            id: "note",
+            label: "Personal Note",
             rows: 5,
-            placeholder: "Additional Notes"
+            placeholder: "Personal Note"
         }
     ),
+
+    new DynamicSwitchModel(
+        {
+            id: "reminder",
+            label: "Send me a reminder",
+            offLabel: " ",
+            onLabel: " ",
+            value: false
+        },
+        {
+            element: {
+                container: "display-flex",
+                label: "order-1"
+            }
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "newsletter",
+            label: "Subscribe to newsletter",
+            offLabel: " ",
+            onLabel: " ",
+            value: true
+        },
+        {
+            element: {
+                container: "display-flex",
+                label: "order-1"
+            }
+        }
+    ),
+
+    new DynamicCheckboxModel(
+        {
+            id: "confirm",
+            label: "I confirm the information given above"
+        }
+    )
 ];

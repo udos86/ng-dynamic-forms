@@ -12,48 +12,59 @@ import {
 
 export const MATERIAL_EXAMPLE_MODEL = [
 
-    new DynamicRadioGroupModel<string>(
+    new DynamicFormGroupModel(
         {
-            id: "sex",
-            options: [
-                {
-                    label: "Female",
-                    value: "female",
-                },
-                {
-                    disabled: true,
-                    label: "Male",
-                    value: "male"
-                }
-            ],
-            value: "female"
+            id: "stay",
+            group: [
+
+                new DynamicDatePickerModel(
+                    {
+                        id: "arrivalDate",
+                        inline: false,
+                        placeholder: "Date of Arrival"
+                    }
+                ),
+
+                new DynamicDatePickerModel(
+                    {
+                        id: "departureDate",
+                        inline: false,
+                        placeholder: "Date of Departure"
+                    }
+                ),
+            ]
+        },
+        {
+            element: {
+                host: "material-form-group"
+            }
         }
     ),
 
     new DynamicSelectModel<string>(
         {
-            id: "degree",
-            placeholder: "Degree",
+            id: "room",
+            placeholder: "Room",
             options: [
                 {
-                    label: "Bachelor of Arts (B.A.)",
-                    value: "BA"
+                    label: "Single Room",
+                    value: "single-room"
                 },
                 {
-                    label: "Bachelor of Science (B.S.)",
-                    value: "BS"
+                    label: "Double Room",
+                    value: "double-room"
                 },
                 {
-                    label: "Master of Arts (M.A.)",
-                    value: "MA"
+                    label: "Business Suite",
+                    value: "business-suite"
                 },
                 {
-                    label: "Master of Science (M.S.)",
-                    value: "MS"
+                    label: "Presidential Suite",
+                    value: "presidential-suite"
                 },
                 {
-                    label: "Doctor of Philosophy (Ph.D.)",
-                    value: "PhD"
+                    label: "Storeroom",
+                    value: "storeroom"
                 }
             ]
         }
@@ -87,23 +98,33 @@ export const MATERIAL_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicDatePickerModel(
+    new DynamicInputModel(
         {
-            id: "birthday",
-            placeholder: "Date of Birth"
+            id: "email",
+            placeholder: "E-Mail",
+            validators: {
+                required: null,
+                email: null
+            },
+            errorMessages: {
+                required: "Field is required",
+                email: "Field has no valid email"
+            }
         }
     ),
 
     new DynamicInputModel(
         {
-            id: "email",
-            hint: "Just a hint",
-            placeholder: "E-Mail",
+            id: "phone",
+            inputType: "tel",
+            placeholder: "Phone Number",
+            hint: "Add your country code first",
+            prefix: "+",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "Field {{ is }} required"
+                required: "Field is required"
             }
         }
     ),
@@ -128,6 +149,11 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     }
                 )
             ]
+        },
+        {
+            element: {
+                host: "material-form-group"
+            }
         }
     ),
 
@@ -159,45 +185,84 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     }
                 )
             ]
+        },
+        {
+            element: {
+                host: "material-form-group"
+            }
         }
     ),
 
     new DynamicSelectModel<string>(
         {
-            id: "interests",
-            placeholder: "Interests",
+            id: "extras",
+            placeholder: "Extras",
             multiple: true,
             options: [
-                    {
-                        label: "Music",
-                        value: "interestMusic"
-                    },
-                    {
-                        label: "Sports",
-                        value: "interestSports"
-                    },
-
-                    {
-                        label: "Literature",
-                        value: "interestLiterature"
-                    },
-                    {
-                        label: "Photography",
-                        value: "interestPhotography"
-                    },
-                    {
-                        label: "Traveling",
-                        value: "interestTraveling"
-                    }
+                {
+                    label: "Breakfast",
+                    value: "extraBreakfast"
+                },
+                {
+                    label: "TV",
+                    value: "extraTV",
+                },
+                {
+                    label: "WiFi",
+                    value: "extraWiFi"
+                },
+                {
+                    label: "Parking Lot",
+                    value: "extraParking"
+                },
+                {
+                    label: "Balcony",
+                    value: "extraBalcony"
+                }
             ]
+        }
+    ),
+
+    new DynamicRadioGroupModel<string>(
+        {
+            id: "payment",
+            legend: "Payment Method",
+            options: [
+                {
+                    label: "Credit Card",
+                    value: "cc"
+                },
+                {
+                    label: "PayPal",
+                    value: "paypal"
+                },
+                {
+                    label: "Cash",
+                    value: "cash"
+                },
+                {
+                    label: "Bitcoin",
+                    value: "bitcoin"
+                }
+            ],
+            value: "cc"
         }
     ),
 
     new DynamicTextAreaModel(
         {
-            id: "bio",
+            id: "note",
             rows: 3,
-            placeholder: "Short Bio"
+            placeholder: "Personal Note"
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "reminder",
+            offLabel: "Send me a reminder",
+            onLabel: "Send me a reminder",
+            value: false
         }
     ),
 
@@ -207,27 +272,6 @@ export const MATERIAL_EXAMPLE_MODEL = [
             offLabel: "Subscribe to newsletter",
             onLabel: "Subscribe to newsletter",
             value: true
-        }
-    ),
-
-    new DynamicSwitchModel(
-        {
-            id: "advertising",
-            offLabel: "Receive personalized ads",
-            onLabel: "Receive personalized ads",
-            value: false
-        }
-    ),
-
-    new DynamicSliderModel(
-        {
-            id: "rating",
-            label: "Rating",
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 3,
-            vertical: false
         }
     ),
 

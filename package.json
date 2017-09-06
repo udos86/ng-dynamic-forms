@@ -48,18 +48,18 @@
     "@angular/platform-browser-dynamic": "^4.3.6",
     "@angular/router": "^4.3.6",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.3",
-    "@progress/kendo-angular-dateinputs": "^1.1.0",
+    "@progress/kendo-angular-dateinputs": "^1.2.0",
     "@progress/kendo-angular-dropdowns": "^1.2.0",
     "@progress/kendo-angular-inputs": "^1.2.0",
     "@progress/kendo-angular-intl": "^1.2.2",
     "@progress/kendo-angular-l10n": "^1.0.3",
     "@progress/kendo-angular-popup": "^1.2.0",
     "@progress/kendo-angular-resize-sensor": "^1.0.4",
-    "@progress/kendo-angular-upload": "^1.2.0",
+    "@progress/kendo-angular-upload": "^1.2.1",
     "@progress/kendo-date-math": "^1.0.3",
     "@progress/kendo-theme-default": "^2.41.0",
     "@telerik/kendo-intl": "^1.2.0",
-    "angular2-text-mask": "^8.0.3",
+    "angular2-text-mask": "^8.0.4",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.1",
     "foundation-sites": "^6.4.3",
@@ -116,6 +116,6 @@
     "typedoc": "^0.8.0",
     "typescript": "^2.5.2",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.6"
   }
 }

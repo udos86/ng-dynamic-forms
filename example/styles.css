@@ -41,6 +41,14 @@ pre {
     display: inline;
 }
 
+.display-flex {
+    display: flex;
+}
+
+.order-1 {
+    order: 1;
+}
+
 .float-left {
     float: left;
 }
@@ -119,9 +127,6 @@ md-select {
     width: 200px;
 }
 
-dynamic-form-material-control > div {
-    margin-bottom: 1.6rem;
-}
 
 form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     display: inline-block !important;
@@ -143,12 +148,12 @@ dynamic-form-material-example fieldset {
     border: none;
 }
 
-dynamic-form-material-example fieldset {
-    border: none;
-}
-
 dynamic-kendo-form-control div[role="group"] {
     display: flex;
+}
+
+dynamic-kendo-form-control kendo-switch {
+    margin-right: 0.25rem;
 }
 
 dynamic-kendo-form-control div[role="group"] > dynamic-kendo-form-control {
@@ -172,7 +177,15 @@ dynamic-kendo-form-control ul {
 
 dynamic-material-form-control {
     display: block;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+dynamic-material-form-control md-select {
+    margin-bottom: 1.5rem;
+}
+
+dynamic-material-form-control.material-form-group {
+    margin-bottom: 0;
 }
 
 fieldset > dynamic-material-form-control {

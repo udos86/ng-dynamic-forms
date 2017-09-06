@@ -102,7 +102,6 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
     new DynamicInputModel(
         {
             id: "firstName",
-            hint: "Just a hint",
             label: "First Name",
             placeholder: "First Name",
             validators: {
@@ -143,18 +142,35 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
             id: "email",
             label: "E-Mail",
             placeholder: "E-Mail",
-            prefix: "Prefix",
-            suffix: "Suffix",
             validators: {
-                required: null
+                required: null,
+                email: null
             },
             errorMessages: {
-                required: "{{ label }} is required"
+                required: "{{ label }} is required",
+                email: "{{ label }} is not valid"
             }
         },
         {
             element: {
                 label: "col-form-label"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "phone",
+            inputType: "tel",
+            label: "Phone Number",
+            placeholder: "Phone Number",
+            hint: "Add your country code first",
+            prefix: "+",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "{{ label }} is required"
             }
         }
     ),
@@ -378,8 +394,8 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
     new DynamicTextAreaModel(
         {
             id: "notes",
-            label: "Notes",
-            placeholder: "Additional Notes",
+            label: "Personal Note",
+            placeholder: "Personal Note",
             rows: 5
         },
         {
