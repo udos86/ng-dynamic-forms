@@ -21,7 +21,8 @@ import {
     InputSwitch,
     MultiSelect,
     Rating,
-    Slider
+    Slider,
+    Spinner
 } from "primeng/primeng";
 import {
     DynamicFormValidationService,
@@ -39,6 +40,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_RATING,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -57,7 +59,7 @@ import {
 } from "./dynamic-primeng-form.const";
 
 export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputSwitch |
-    MultiSelect | Rating | Slider;
+    MultiSelect | Rating | Slider | Spinner;
 
 @Component({
     selector: "dynamic-primeng-form-control,dynamic-form-primeng-control",
@@ -100,7 +102,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        if (this.pViewChild) {
+        if (this.pViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
 
             let templateDirectives: any = DynamicPrimeNGFormControlComponent.getTemplateDirectives(this.pViewChild);
 
@@ -150,7 +152,10 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 let inputModel = model as DynamicInputModel;
 
-                if (Array.isArray(inputModel.list)) {
+                if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return PrimeNGFormControlType.Spinner;
+
+                } else if (Array.isArray(inputModel.list)) {
                     return PrimeNGFormControlType.AutoComplete;
 
                 } else if (inputModel.multiple) {

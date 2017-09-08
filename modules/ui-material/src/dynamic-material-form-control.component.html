@@ -81,13 +81,10 @@
         </md-form-field>
 
 
-        <fieldset *ngSwitchCase="4"
-                  [dynamicId]="bindId && model.id"
-                  [formGroupName]="model.id"
-                  [name]="model.name"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
-
-            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+        <div *ngSwitchCase="4" role="group"
+             [dynamicId]="bindId && model.id"
+             [formGroupName]="model.id"
+             [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <dynamic-material-form-control *ngFor="let controlModel of model.group"
                                            [group]="control"
@@ -98,7 +95,7 @@
                                            (blur)="onFocusChange($event)"
                                            (change)="onValueChange($event)"
                                            (focus)="onFocusChange($event)"></dynamic-material-form-control>
-        </fieldset>
+        </div>
 
 
         <ng-container *ngSwitchCase="5">
@@ -139,7 +136,8 @@
                 <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
                 <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
+                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
+                </md-error>
 
             </md-form-field>
 
@@ -235,7 +233,8 @@
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
+            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
+            </md-error>
 
         </md-form-field>
 

@@ -202,8 +202,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onModelValueUpdates(value: DynamicFormControlValue): void {
 
-        if (this.control.value !== value
-        ) {
+        if (this.control.value !== value) {
             this.control.setValue(value);
         }
     }

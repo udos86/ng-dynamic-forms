@@ -105,7 +105,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        if (this.kendoViewChild) {
+        if (this.kendoViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
 
             let templateDirectives: any = DynamicKendoFormControlComponent.getTemplateDirectives(this.kendoViewChild);
 

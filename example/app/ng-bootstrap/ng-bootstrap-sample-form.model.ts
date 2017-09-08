@@ -11,7 +11,7 @@ import {
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
-export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
+export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormGroupModel(
         {
@@ -54,7 +54,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                             host: "col-sm-4"
                         }
                     }
-                ),
+                )
             ]
         },
         {
@@ -64,37 +64,71 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
         }
     ),
 
-    new DynamicSelectModel(
+    new DynamicFormGroupModel(
         {
             id: "room",
-            label: "Room",
-            placeholder: "Select Room",
-            options: [
-                {
-                    label: "Single Room",
-                    value: "single-room"
-                },
-                {
-                    label: "Double Room",
-                    value: "double-room"
-                },
-                {
-                    label: "Business Suite",
-                    value: "business-suite"
-                },
-                {
-                    label: "Presidential Suite",
-                    value: "presidential-suite"
-                },
-                {
-                    label: "Storeroom",
-                    value: "storeroom"
-                }
+            group: [
+
+                new DynamicSelectModel(
+                    {
+                        id: "roomSize",
+                        label: "Room Size",
+                        options: [
+                            {
+                                label: "Single Room",
+                                value: "single-room"
+                            },
+                            {
+                                label: "Double Room",
+                                value: "double-room"
+                            },
+                            {
+                                label: "Business Suite",
+                                value: "business-suite"
+                            },
+                            {
+                                label: "Presidential Suite",
+                                value: "presidential-suite"
+                            },
+                            {
+                                label: "Storeroom",
+                                value: "storeroom"
+                            }
+                        ]
+                    },
+                    {
+                        element: {
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-6"
+                        }
+                    }
+                ),
+                new DynamicInputModel(
+                    {
+                        id: "roomQuantity",
+                        inputType: "number",
+                        label: "Quantity",
+                        hint: "Maximum: 5",
+                        max: 5,
+                        min: 0,
+                        placeholder: "Quantity"
+                    },
+                    {
+                        element: {
+                            label: "col-form-label"
+                        },
+                        grid: {
+                            host: "col-sm-2"
+                        }
+                    }
+                )
             ]
         },
         {
             element: {
-                label: "col-form-label"
+                control: "form-row"
             }
         }
     ),
@@ -191,7 +225,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                             label: "col-form-label"
                         },
                         grid: {
-                            host: "col-sm-9"
+                            host: "col-sm-10"
                         }
                     }
                 ),
@@ -199,7 +233,6 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
-                        inputType: "number",
                         label: "Street Number",
                         placeholder: "Number"
                     },
@@ -208,7 +241,7 @@ export const NG_BOOTSTRAP_EXAMPLE_MODEL: DynamicFormControlModel[] = [
                             label: "col-form-label"
                         },
                         grid: {
-                            host: "col-sm-3"
+                            host: "col-sm-2"
                         }
                     }
                 )

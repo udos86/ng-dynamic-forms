@@ -1,20 +1,11 @@
 <div class="overflow-hidden content-margin content-padding" style="width: 50%;">
 
-    <form [formGroup]="formGroup" class="ui-grid ui-grid-responsive">
+    <form [formGroup]="formGroup" class="ui-fluid">
 
-        <dynamic-form-primeng-control *ngFor="let controlModel of formModel" class="form-row"
-                                      [group]="formGroup"
-                                      [model]="controlModel"
-                                      [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                      (change)="onChange($event)">
+        <dynamic-primeng-form [group]="formGroup"
+                              [model]="formModel"
+                              (change)="onChange($event)"></dynamic-primeng-form>
 
-            <ng-template modelId="primeSelect" as="itemTemplate" let-item>
-
-                <p>{{ item }}</p>
-
-            </ng-template>
-
-        </dynamic-form-primeng-control>
     </form>
 
     <pre>{{formGroup.value | json}}</pre>

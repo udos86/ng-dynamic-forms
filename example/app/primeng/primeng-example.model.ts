@@ -3,6 +3,7 @@ import {
     DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
     DynamicEditorModel,
+    DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicRatingModel,
@@ -15,72 +16,141 @@ import {
 
 export const PRIMENG_EXAMPLE_MODEL = [
 
-    new DynamicSelectModel<string>(
+    new DynamicFormGroupModel(
         {
-            id: "primeSelect",
-            label: "Prime Select",
-            multiple: false,
-            filterable: true,
-            options: [
-                {
-                    label: "Option 1",
-                    value: "option-1",
-                },
-                {
-                    label: "Option 2",
-                    value: "option-2"
-                },
-                {
-                    label: "Option 3",
-                    value: "option-3"
-                }
-            ],
-            value: "option-3"
+            id: "stay",
+            group: [
+
+                new DynamicDatePickerModel(
+                    {
+                        id: "arrival",
+                        format: "mm/dd/yy",
+                        inline: false,
+                        label: "Arrival",
+                        placeholder: "Date of Arrival"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-4"
+                        }
+                    }
+                ),
+
+                new DynamicDatePickerModel(
+                    {
+                        id: "departure",
+                        format: "mm/dd/yy",
+                        inline: false,
+                        label: "Departure",
+                        placeholder: "Date of Departure"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-4"
+                        }
+                    }
+                )
+            ]
         },
         {
             element: {
-                label: "ui-widget"
+                host: "primeng-form-group"
             },
             grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
+                control: "ui-g"
             }
         }
     ),
 
-    new DynamicDatePickerModel(
+    new DynamicFormGroupModel(
         {
-            id: "primeDatepicker",
-            format: "mm/dd/yy",
-            inline: false,
-            label: "Prime Datepicker"
+            id: "room",
+            group: [
+
+                new DynamicSelectModel<string>(
+                    {
+                        id: "roomSize",
+                        label: "Room Size",
+                        placeholder: "Room Size",
+                        options: [
+                            {
+                                label: "Single Room",
+                                value: "single-room"
+                            },
+                            {
+                                label: "Double Room",
+                                value: "double-room"
+                            },
+                            {
+                                label: "Business Suite",
+                                value: "business-suite"
+                            },
+                            {
+                                label: "Presidential Suite",
+                                value: "presidential-suite"
+                            },
+                            {
+                                label: "Storeroom",
+                                value: "storeroom"
+                            }
+                        ]
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-4",
+                        }
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "roomQuantity",
+                        inputType: "number",
+                        label: "Quantity",
+                        placeholder: "Quantity",
+                        max: 5,
+                        min: 0
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-2",
+                        }
+                    }
+                )
+            ]
         },
         {
             element: {
-                label: "ui-widget"
+                host: "primeng-form-group"
             },
             grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
+                control: "ui-g"
             }
         }
     ),
 
     new DynamicInputModel(
         {
-            id: "primeInput",
-            label: "Prime Input",
-            list: ["One", "Two", "Three", "Four", "Five"],
-            maxLength: 51,
-            multiple: true,
-            placeholder: "Prime input",
+            id: "firstName",
+            label: "First Name",
+            placeholder: "First Name",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "{{label}} is required"
+                required: "{{ label }} is required"
             }
         },
         {
@@ -88,116 +158,337 @@ export const PRIMENG_EXAMPLE_MODEL = [
                 label: "ui-widget"
             },
             grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-4",
-                errors: "ui-grid-col-5",
-                label: "ui-grid-col-3"
+                host: "ui-g",
+                container: "ui-g-7"
             }
         }
     ),
 
-    new DynamicEditorModel(
+    new DynamicInputModel(
         {
-            id: "primeEditor",
-            value: "Prime Editor"
+            id: "lastName",
+            label: "Last Name",
+            placeholder: "Last Name",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "{{ label }} is required"
+            }
         },
         {
             element: {
                 label: "ui-widget"
             },
             grid: {
-                container: "ui-grid-row"
+                host: "ui-g",
+                container: "ui-g-7"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "email",
+            label: "E-Mail",
+            placeholder: "E-Mail",
+            validators: {
+                required: null,
+                email: null
+            },
+            errorMessages: {
+                required: "{{ label }} is required",
+                email: "email is not valid"
+            }
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                host: "ui-g",
+                container: "ui-g-7"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "phone",
+            label: "Phone Number",
+            placeholder: "Phone Number",
+            mask: "(99) 999-9999",
+            validators: {
+                required: null
+            },
+            errorMessages: {
+                required: "{{ label }} is required"
+            }
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                host: "ui-g",
+                container: "ui-g-7"
+            }
+        }
+    ),
+
+    new DynamicFormGroupModel(
+        {
+            id: "addressStreet",
+            group: [
+
+                new DynamicInputModel(
+                    {
+                        id: "streetName",
+                        label: "Street Name",
+                        placeholder: "Street Name"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-7"
+                        }
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "streetNumber",
+                        label: "Number",
+                        placeholder: "Number"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-2",
+                        }
+                    }
+                )
+            ]
+        },
+        {
+            element: {
+                host: "primeng-form-group"
+            },
+            grid: {
+                control: "ui-g"
+            }
+        }
+    ),
+
+    new DynamicFormGroupModel(
+        {
+            id: "addressLocation",
+            group: [
+
+                new DynamicInputModel(
+                    {
+                        id: "zipCode",
+                        label: "ZIP",
+                        placeholder: "ZIP"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-2"
+                        }
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "state",
+                        label: "State",
+                        placeholder: "State",
+                        list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-4",
+                        }
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "city",
+                        label: "City",
+                        placeholder: "City"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget"
+                        },
+                        grid: {
+                            host: "ui-g-5",
+                        }
+                    }
+                )
+            ]
+        },
+        {
+            element: {
+                host: "primeng-form-group"
+            },
+            grid: {
+                control: "ui-g"
             }
         }
     ),
 
     new DynamicCheckboxGroupModel(
         {
-            id: "primeCheckboxGroup",
-            legend: "Prime Checkbox Group",
+            id: "extras",
+            label: "Extras",
             group: [
                 new DynamicCheckboxModel(
                     {
-                        id: "primeCheckboxGroup1",
-                        label: "Checkbox 1"
+                        id: "extraBreakfast",
+                        label: "Breakfast"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "ui-widget",
                         },
                         grid: {
-                            container: "ui-grid-row"
+                            host: "ui-g-3"
                         }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
-                        id: "primeCheckboxGroup2",
-                        label: "Checkbox 2",
-                        value: true
+                        id: "extraTV",
+                        label: "TV",
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "ui-widget",
                         },
                         grid: {
-                            container: "ui-grid-row"
+                            host: "ui-g-3"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "extraWiFi",
+                        label: "WiFi"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget",
+                        },
+                        grid: {
+                            host: "ui-g-3"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "extraParking",
+                        label: "Parking Lot"
+                    },
+                    {
+                        element: {
+                            label: "ui-widget",
+                        },
+                        grid: {
+                            host: "ui-g-3"
                         }
                     }
                 )
             ]
-        }
-    ),
-
-    new DynamicTimePickerModel(
-        {
-            id: "primeTimePicker",
-            label: "Prime Timepicker",
-            showSeconds: true
         },
         {
             element: {
+                host: "primeng-form-group",
                 label: "ui-widget"
             },
             grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
+                control: "ui-g"
             }
         }
     ),
 
     new DynamicRadioGroupModel<string>(
         {
-            id: "primeRadioGroup",
-            legend: "Prime Radio Group",
+            id: "payment",
+            label: "Payment Method",
             options: [
                 {
-                    label: "Option 1",
-                    value: "option-1",
+                    label: "Credit Card",
+                    value: "cc"
                 },
                 {
-                    disabled: true,
-                    label: "Option 2",
-                    value: "option-2"
+                    label: "PayPal",
+                    value: "paypal"
                 },
                 {
-                    label: "Option 3",
-                    value: "option-3"
+                    label: "Cash",
+                    value: "cash"
                 },
                 {
-                    label: "Option 4",
-                    value: "option-4"
+                    label: "Bitcoin",
+                    value: "bitcoin"
                 }
             ],
-            value: "option-3"
+            value: "cc"
+        },
+        {
+            element: {
+                label: "ui-widget",
+                control: "ui-g-3"
+            },
+            grid: {
+                control: "ui-g"
+            }
+        }
+    ),
+
+    new DynamicTimePickerModel(
+        {
+            id: "arrivalTime",
+            label: "Estimated Arrival Time",
+            showSeconds: false
         },
         {
             element: {
                 label: "ui-widget"
             },
             grid: {
-                container: "ui-grid-row"
+                host: "ui-g",
+                container: "ui-g-4"
+            }
+        }
+    ),
+
+    new DynamicTextAreaModel(
+        {
+            id: "note",
+            label: "Personal Note",
+            rows: 5,
+            placeholder: "Personal Note",
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                host: "ui-g",
+                container: "ui-g-8"
             }
         }
     ),
@@ -213,84 +504,30 @@ export const PRIMENG_EXAMPLE_MODEL = [
         {
             element: {
                 label: "ui-widget"
-            },
-            grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
-            }
-        }
-    ),
-
-    new DynamicTextAreaModel(
-        {
-            id: "primeTextArea",
-            label: "Prime Textarea",
-            rows: 5,
-            placeholder: "Prime Textarea",
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
-            }
-        }
-    ),
-
-    new DynamicSliderModel(
-        {
-            id: "primeSlider",
-            label: "Prime Slider",
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 3
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
             }
         }
     ),
 
     new DynamicRatingModel(
         {
-            id: "primeRating",
-            label: "Prime Rating",
-            value: 3
+            id: "feedback",
+            label: "How did you like this form?"
         },
         {
             element: {
                 label: "ui-widget"
-            },
-            grid: {
-                container: "ui-grid-row",
-                control: "ui-grid-col-9",
-                label: "ui-grid-col-3"
             }
         }
     ),
 
     new DynamicCheckboxModel(
         {
-            id: "primeCheckbox",
-            label: "I do agree"
+            id: "confirm",
+            label: "I confirm the information given above"
         },
         {
             element: {
                 label: "ui-widget"
-            },
-            grid: {
-                container: "ui-grid-row"
             }
         }
     )

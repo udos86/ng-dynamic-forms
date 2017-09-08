@@ -188,13 +188,26 @@ dynamic-material-form-control.material-form-group {
     margin-bottom: 0;
 }
 
-fieldset > dynamic-material-form-control {
+dynamic-material-form-control div[role="group"] > dynamic-material-form-control {
     display: inline-block;
     margin-right: 1rem;
 }
 
 dynamic-material-form-control .md-list-item {
     justify-content: center;
+}
+
+dynamic-primeng-form-control {
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+dynamic-primeng-form-control.primeng-form-group {
+    margin-bottom: 0;
+}
+
+dynamic-primeng-form-control .ui-dropdown{
+    width: 100% !important;
 }
 
 [src="../../assets/calendar-icon.svg"] {

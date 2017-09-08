@@ -40,31 +40,54 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicSelectModel<string>(
+    new DynamicFormGroupModel(
         {
             id: "room",
-            label: "Room",
-            options: [
-                {
-                    label: "Single Room",
-                    value: "single-room"
-                },
-                {
-                    label: "Double Room",
-                    value: "double-room"
-                },
-                {
-                    label: "Business Suite",
-                    value: "business-suite"
-                },
-                {
-                    label: "Presidential Suite",
-                    value: "presidential-suite"
-                },
-                {
-                    label: "Storeroom",
-                    value: "storeroom"
-                }
+            group: [
+
+                new DynamicSelectModel<string>(
+                    {
+                        id: "roomSize",
+                        label: "Room Size",
+                        options: [
+                            {
+                                label: "Single Room",
+                                value: "single-room"
+                            },
+                            {
+                                label: "Double Room",
+                                value: "double-room"
+                            },
+                            {
+                                label: "Business Suite",
+                                value: "business-suite"
+                            },
+                            {
+                                label: "Presidential Suite",
+                                value: "presidential-suite"
+                            },
+                            {
+                                label: "Storeroom",
+                                value: "storeroom"
+                            }
+                        ],
+                        value: "single-room"
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "roomQuantity",
+                        inputType: "number",
+                        label: "Quantity",
+                        placeholder: "Quantity",
+                        hint: "Maximum: 5",
+                        min: 0,
+                        max: 5,
+                        step: 1,
+                        value: 1
+                    }
+                )
             ]
         }
     ),
@@ -72,7 +95,6 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "firstName",
-            hint: "Just a hint",
             label: "First Name",
             placeholder: "First Name",
             validators: {
@@ -147,13 +169,8 @@ export const KENDO_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
-                        inputType: "number",
                         label: "Street Number",
-                        placeholder: "Number",
-                        min: 0,
-                        max: 999,
-                        step: 1,
-                        value: 1
+                        placeholder: "Number"
                     }
                 )
             ]

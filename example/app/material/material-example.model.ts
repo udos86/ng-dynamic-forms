@@ -41,32 +41,56 @@ export const MATERIAL_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicSelectModel<string>(
+    new DynamicFormGroupModel(
         {
             id: "room",
-            placeholder: "Room",
-            options: [
-                {
-                    label: "Single Room",
-                    value: "single-room"
-                },
-                {
-                    label: "Double Room",
-                    value: "double-room"
-                },
-                {
-                    label: "Business Suite",
-                    value: "business-suite"
-                },
-                {
-                    label: "Presidential Suite",
-                    value: "presidential-suite"
-                },
-                {
-                    label: "Storeroom",
-                    value: "storeroom"
-                }
+            group: [
+
+                new DynamicSelectModel<string>(
+                    {
+                        id: "roomSize",
+                        placeholder: "Room Size",
+                        options: [
+                            {
+                                label: "Single Room",
+                                value: "single-room"
+                            },
+                            {
+                                label: "Double Room",
+                                value: "double-room"
+                            },
+                            {
+                                label: "Business Suite",
+                                value: "business-suite"
+                            },
+                            {
+                                label: "Presidential Suite",
+                                value: "presidential-suite"
+                            },
+                            {
+                                label: "Storeroom",
+                                value: "storeroom"
+                            }
+                        ]
+                    }
+                ),
+
+                new DynamicInputModel(
+                    {
+                        id: "roomQuantity",
+                        inputType: "number",
+                        placeholder: "Room Quantity",
+                        hint: "Maximum: 5",
+                        max: 5,
+                        min: 0
+                    }
+                )
             ]
+        },
+        {
+            element: {
+                host: "material-form-group"
+            }
         }
     ),
 
@@ -144,8 +168,7 @@ export const MATERIAL_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
-                        placeholder: "Street Number",
-                        inputType: "number"
+                        placeholder: "Street Number"
                     }
                 )
             ]
@@ -226,7 +249,6 @@ export const MATERIAL_EXAMPLE_MODEL = [
     new DynamicRadioGroupModel<string>(
         {
             id: "payment",
-            legend: "Payment Method",
             options: [
                 {
                     label: "Credit Card",

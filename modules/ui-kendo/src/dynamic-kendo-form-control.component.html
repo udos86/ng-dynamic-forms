@@ -6,7 +6,7 @@
 
         <span [innerHTML]="model.label"></span>
         
-        <span *ngIf="type === 11 && model.hint" class="k-field-info" 
+        <span *ngIf="(type === 11 || type === 13) && model.hint" class="k-field-info"
               [innerHTML]="model.hint"
               [ngClass]="model.cls.element.hint"></span>
 
