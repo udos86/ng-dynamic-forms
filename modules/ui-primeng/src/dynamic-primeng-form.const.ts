@@ -9,16 +9,18 @@ export const enum PrimeNGFormControlType {
     Editor = 7, //"EDITOR",
     Group = 8, //"GROUP",
     Input = 9, //"INPUT",
-    InputSwitch = 10, //"INPUT_SWITCH",
-    MultiSelect = 11, //"MULTI_SELECT",
-    RadioGroup = 12, //"RADIO_GROUP",
-    Rating = 13, // "RATING",
-    Slider = 14, //"SLIDER",
-    TextArea = 15, //"TEXTAREA"
+    InputMask = 10, //"INPUT_MASK",
+    InputSwitch = 11, //"INPUT_SWITCH",
+    MultiSelect = 12, //"MULTI_SELECT",
+    RadioGroup = 13, //"RADIO_GROUP",
+    Rating = 14, // "RATING",
+    Slider = 15, //"SLIDER",
+    Spinner = 16, //"SPINNER,
+    TextArea = 17, //"TEXTAREA"
 }
 
-export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pDropdown,pEditor,pInputText,
-    pInputSwitch,pMultiSelect,pRating,pSlider,pInputTextarea`;
+export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pDropdown,pEditor,pInputMask,
+pInputSwitch,pInputText,pMultiSelect,pRating,pSlider,pSpinner,pInputTextarea`;
 
 export const PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
 

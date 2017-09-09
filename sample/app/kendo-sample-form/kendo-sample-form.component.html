@@ -1,0 +1,21 @@
+<div class="content-margin" style="width: 50%;">
+
+    <form [formGroup]="formGroup" class="k-form">
+
+        <dynamic-kendo-form [group]="formGroup"
+                            [model]="formModel"
+                            (change)="onChange($event)">
+
+            <ng-template modelId="kendoDropDownList" as="kendoDropDownListHeaderTemplate">
+
+                <p><b>Select your room</b></p>
+
+            </ng-template>
+
+        </dynamic-kendo-form>
+
+    </form>
+
+    <pre>{{formGroup.value | json}}</pre>
+
+</div>

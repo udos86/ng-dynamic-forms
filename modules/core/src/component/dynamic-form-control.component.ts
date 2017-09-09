@@ -64,9 +64,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     abstract type: number | string | null;
 
-    constructor(
-        protected changeDetectorRef: ChangeDetectorRef,
-        protected validationService: DynamicFormValidationService) { }
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
 
@@ -128,7 +127,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get hasHint(): boolean { // needed for AOT
-        return (this.model as DynamicInputModel).hint !== null;
+        return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
     }
 
     get hasList(): boolean { // needed for AOT
@@ -203,8 +202,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onModelValueUpdates(value: DynamicFormControlValue): void {
 
-        if (this.control.value !== value
-        ) {
+        if (this.control.value !== value) {
             this.control.setValue(value);
         }
     }
@@ -295,7 +293,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
             emitValue = $event as DynamicFormControlEvent;
 
-            (emitValue.$event as FocusEvent).type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
+            if (emitValue.$event && emitValue.$event instanceof FocusEvent) {
+
+                emitValue.$event.type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
+            }
         }
     }
 }

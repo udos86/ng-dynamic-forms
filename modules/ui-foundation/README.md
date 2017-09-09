@@ -52,3 +52,7 @@ with **`DynamicFoundationFormControlComponent`**:
 |             **[Select](http://foundation.zurb.com/sites/docs/forms.html#select-menus)**             	| `DynamicSelectModel`        	|         –         	|
 |                   **[Switch](http://foundation.zurb.com/sites/docs/switch.html)**                   	| `DynamicSwitchModel`        	|         –         	|
 |             **[TextArea](http://foundation.zurb.com/sites/docs/forms.html#text-areas)**             	| `DynamicTextAreaModel`      	|         –         	|
+
+## Sample
+
+[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#foundation-sample-form) 

@@ -1,0 +1,13 @@
+<div class="overflow-hidden content-margin content-padding" style="width: 50%;">
+
+    <form [formGroup]="formGroup" class="ui-fluid">
+
+        <dynamic-primeng-form [group]="formGroup"
+                              [model]="formModel"
+                              (change)="onChange($event)"></dynamic-primeng-form>
+
+    </form>
+
+    <pre>{{formGroup.value | json}}</pre>
+
+</div>

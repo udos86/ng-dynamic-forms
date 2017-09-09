@@ -1,0 +1,17 @@
+<div class="content-margin" style="width: 50%;">
+
+    <md-card>
+
+        <form [formGroup]="formGroup">
+
+            <dynamic-material-form [group]="formGroup"
+                                   [model]="formModel"
+                                   (change)="onChange($event)"></dynamic-material-form>
+
+        </form>
+
+    </md-card>
+
+    <pre>{{formGroup.value | json}}</pre>
+
+</div>

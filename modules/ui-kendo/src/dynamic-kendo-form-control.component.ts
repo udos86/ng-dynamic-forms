@@ -11,7 +11,12 @@ import {
     ViewChild
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { CalendarComponent, DateInputComponent, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
+import {
+    CalendarComponent,
+    DateInputComponent,
+    DatePickerComponent,
+    TimePickerComponent
+} from "@progress/kendo-angular-dateinputs";
 import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
     MaskedTextBoxComponent,
@@ -59,7 +64,7 @@ import {
 
 export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponent | DateInputComponent |
     DatePickerComponent | DropDownListComponent | MaskedTextBoxComponent | MultiSelectComponent |
-    NumericTextBoxComponent | SliderComponent | SwitchComponent | UploadComponent;
+    NumericTextBoxComponent | SliderComponent | SwitchComponent | TimePickerComponent | UploadComponent;
 
 @Component({
     selector: "dynamic-kendo-form-control,dynamic-form-kendo-control",
@@ -67,18 +72,18 @@ export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponen
 })
 export class DynamicKendoFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
 
     @ViewChild(KENDO_VIEW_CHILD_SELECTOR) kendoViewChild: KendoFormControlComponent | undefined;
 
@@ -100,7 +105,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        if (this.kendoViewChild) {
+        if (this.kendoViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
 
             let templateDirectives: any = DynamicKendoFormControlComponent.getTemplateDirectives(this.kendoViewChild);
 

@@ -18,10 +18,12 @@ import {
     Chips,
     Dropdown,
     Editor,
+    InputMask,
     InputSwitch,
     MultiSelect,
     Rating,
-    Slider
+    Slider,
+    Spinner
 } from "primeng/primeng";
 import {
     DynamicFormValidationService,
@@ -39,6 +41,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_RATING,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -56,8 +59,8 @@ import {
     PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
 } from "./dynamic-primeng-form.const";
 
-export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputSwitch |
-    MultiSelect | Rating | Slider;
+export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputMask |
+    InputSwitch | MultiSelect | Rating | Slider | Spinner;
 
 @Component({
     selector: "dynamic-primeng-form-control,dynamic-form-primeng-control",
@@ -65,22 +68,23 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
 })
 export class DynamicPrimeNGFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
+    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-
     @ViewChild(PRIME_NG_VIEW_CHILD_SELECTOR) pViewChild: PrimeNGFormControlComponent | undefined;
 
     suggestions: string[];
+
     type: PrimeNGFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
@@ -99,7 +103,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
     protected setTemplateDirective(directive: DynamicTemplateDirective): void {
 
-        if (this.pViewChild) {
+        if (this.pViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
 
             let templateDirectives: any = DynamicPrimeNGFormControlComponent.getTemplateDirectives(this.pViewChild);
 
@@ -149,7 +153,13 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 let inputModel = model as DynamicInputModel;
 
-                if (inputModel.list) {
+                if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
+                    return PrimeNGFormControlType.Spinner;
+
+                } else if (inputModel.mask) {
+                    return PrimeNGFormControlType.InputMask;
+
+                } else if (Array.isArray(inputModel.list)) {
                     return PrimeNGFormControlType.AutoComplete;
 
                 } else if (inputModel.multiple) {

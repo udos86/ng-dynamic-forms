@@ -10,6 +10,7 @@ import {
     ChipsModule,
     DropdownModule,
     EditorModule,
+    InputMaskModule,
     InputSwitchModule,
     InputTextModule,
     InputTextareaModule,
@@ -87,6 +88,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 ChipsModule,
                 DropdownModule,
                 EditorModule,
+                InputMaskModule,
                 InputSwitchModule,
                 InputTextModule,
                 InputTextareaModule,
@@ -226,6 +228,12 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
         expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.AutoComplete);
+
+        (formModel[7] as DynamicInputModel).mask = "+(99) 999-9999";
+        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.InputMask);
+
+        (formModel[7] as DynamicInputModel).inputType = "number";
+        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Spinner);
 
         expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.RadioGroup);
 

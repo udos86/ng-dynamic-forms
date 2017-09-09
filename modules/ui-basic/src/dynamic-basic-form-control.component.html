@@ -119,16 +119,16 @@
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
+                  [ngClass]="model.cls.element.control"
                   (change)="onValueChange($event)">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <label *ngFor="let option of model.options$ | async">
+            <label *ngFor="let option of model.options$ | async" [ngClass]="model.cls.element.option">
 
                 <input type="radio"
                        [formControlName]="model.id"
                        [name]="model.name"
-                       [ngClass]="model.cls.element.control"
                        [value]="option.value"
                        (blur)="onFocusChange($event)"
                        (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
@@ -184,7 +184,6 @@
     <ul *ngIf="showErrorMessages" [ngClass]="model.cls.element.errors">
 
         <li *ngFor="let message of errorMessages">{{message}}</li>
-
     </ul>
 
 

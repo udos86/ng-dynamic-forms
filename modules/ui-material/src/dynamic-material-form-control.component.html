@@ -81,15 +81,12 @@
         </md-form-field>
 
 
-        <fieldset *ngSwitchCase="4"
-                  [dynamicId]="bindId && model.id"
-                  [formGroupName]="model.id"
-                  [name]="model.name"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+        <div *ngSwitchCase="4" role="group"
+             [dynamicId]="bindId && model.id"
+             [formGroupName]="model.id"
+             [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
-            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-            <dynamic-form-material-control *ngFor="let controlModel of model.group"
+            <dynamic-material-form-control *ngFor="let controlModel of model.group"
                                            [group]="control"
                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                            [model]="controlModel"
@@ -97,8 +94,8 @@
                                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                            (blur)="onFocusChange($event)"
                                            (change)="onValueChange($event)"
-                                           (focus)="onFocusChange($event)"></dynamic-form-material-control>
-        </fieldset>
+                                           (focus)="onFocusChange($event)"></dynamic-material-form-control>
+        </div>
 
 
         <ng-container *ngSwitchCase="5">
@@ -139,7 +136,8 @@
                 <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
                 <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
+                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
+                </md-error>
 
             </md-form-field>
 
@@ -164,6 +162,7 @@
             <md-radio-button *ngFor="let option of model.options$ | async"
                              [labelPosition]="'after'"
                              [name]="model.name"
+                             [ngClass]="model.cls.element.option"
                              [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
 
         </md-radio-group>
@@ -178,6 +177,7 @@
                    (change)="onValueChange($event)">
 
             <md-option *ngFor="let option of model.options$ | async"
+                       [ngClass]="model.cls.element.option"
                        [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
 
         </md-select>
@@ -235,20 +235,18 @@
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
+            <ng-container *ngIf="showErrorMessages">
+                <md-error *ngFor="let message of errorMessages">{{ message }}</md-error>
+            </ng-container>
 
         </md-form-field>
 
     </ng-container>
 
 
-    <md-list *ngIf="showErrorMessages && type !== 5 && type !== 10" [ngClass]="model.cls.grid.errors">
-
-        <md-list-item *ngFor="let message of errorMessages"
-                      [ngClass]="model.cls.element.errors">{{message}}
-        </md-list-item>
-
-    </md-list>
+    <ng-container *ngIf="type !== 5 && type !== 10 && showErrorMessages">
+        <md-error *ngFor="let message of errorMessages">{{ message }}</md-error>
+    </ng-container>
 
 
     <ng-template *ngIf="type !== 1 && template?.align === 'END'"

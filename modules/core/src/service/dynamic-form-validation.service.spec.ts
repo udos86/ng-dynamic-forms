@@ -1,7 +1,8 @@
 import { TestBed, inject } from "@angular/core/testing";
-import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
+import { ReactiveFormsModule, FormControl, FormGroup, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 
 describe("DynamicFormValidationService test suite", () => {
@@ -103,10 +104,16 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should create error messages correctly", () => {
+    it("should create form control error messages correctly", () => {
 
         let errorMessages,
             testControl: FormControl = new FormControl(),
+            testGroupModel: DynamicFormGroupModel = new DynamicFormGroupModel({
+                id: "testGroupModel",
+                errorMessages: {
+                    required: "Group is required",
+                }
+            }),
             testModel: DynamicFormControlModel = new DynamicInputModel({
                 id: "testModel",
                 errorMessages: {
@@ -136,5 +143,22 @@ describe("DynamicFormValidationService test suite", () => {
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(1);
         expect(errorMessages[0]).toEqual("Field has a custom error: 42");
+    });
+
+
+    it("should create form group error messages correctly", () => {
+
+        let errorMessages,
+            testControl: FormGroup = new FormGroup({}),
+            testModel: DynamicFormGroupModel = new DynamicFormGroupModel({
+                id: "testGroupModel",
+                errorMessages: {
+                    required: "Group is required",
+                }
+            });
+
+        errorMessages = service.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(1);
+        expect(errorMessages[0]).toEqual("Group is required");
     });
 });

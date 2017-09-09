@@ -1,0 +1,10 @@
+<div class="overflow-hidden content-margin content-padding" style="width: 50%;">
+
+    <form [formGroup]="formGroup">
+
+        <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel" class="form-row"
+                                        [group]="formGroup"
+                                        [model]="controlModel"></dynamic-bootstrap-form-control>
+    </form>
+
+</div>
