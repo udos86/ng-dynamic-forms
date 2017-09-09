@@ -28,11 +28,11 @@
     ]
   },
   "files": [
-    "example/app/app.module.ts",
-    "example/app/main.aot.ts"
+    "sample/app/app.module.ts",
+    "sample/app/main.aot.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "example/aot",
+    "genDir": "sample/aot",
     "skipMetadataEmit": true
   }
 }

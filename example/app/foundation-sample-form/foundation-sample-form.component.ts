@@ -6,20 +6,18 @@ import {
     DynamicFormControlModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
-import { FOUNDATION_EXAMPLE_MODEL } from "./foundation-example.model";
+import { FOUNDATION_SAMPLE_FORM_MODEL } from "./foundation-sample-form.model";
 
 @Component({
-
     moduleId: module.id,
-    selector: "dynamic-form-foundation-example",
+    selector: "dynamic-foundation-sample-form",
     styleUrls: ["../../../node_modules/foundation-sites/dist/css/foundation.css"],
-    templateUrl: "./foundation-example.component.html",
+    templateUrl: "./foundation-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })
+export class FoundationSampleFormComponent implements OnInit {
 
-export class FoundationExampleComponent implements OnInit {
-
-    formModel: DynamicFormControlModel[] = FOUNDATION_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = FOUNDATION_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
 
     checkboxControl: FormControl;

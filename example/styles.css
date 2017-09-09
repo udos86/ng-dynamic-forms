@@ -180,6 +180,10 @@ dynamic-material-form-control div[role="group"] > dynamic-material-form-control 
     margin-right: 1rem;
 }
 
+dynamic-material-form-control div[role="group"] + md-error {
+    font-size: 75%;
+}
+
 dynamic-material-form-control .md-list-item {
     justify-content: center;
 }
@@ -191,7 +195,7 @@ dynamic-primeng-form-control {
     margin-bottom: 1.25rem;
 }
 
-dynamic-primeng-form-control.primeng-form-group {
+dynamic-primeng-form-control div[role="group"] > dynamic-primeng-form-control {
     margin-bottom: 0;
 }
 

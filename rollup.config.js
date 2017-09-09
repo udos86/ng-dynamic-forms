@@ -5,11 +5,11 @@ import includePaths from "rollup-plugin-includepaths";
 
 export default {
 
-    entry: "./example/app/main.aot.js",
-    dest: "./example/dist/bundle.aot.js",
+    entry: "./sample/app/main.aot.js",
+    dest: "./sample/dist/bundle.aot.js",
     format: "iife",
     sourceMap: false,
-    sourceMapFile: "./example/dist/bundle.aot.js.map",
+    sourceMapFile: "./sample/dist/bundle.aot.js.map",
     onwarn: function (warning) {
         // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
         if (warning.code === "THIS_IS_UNDEFINED" || warning.code === "MISSING_EXPORT") {

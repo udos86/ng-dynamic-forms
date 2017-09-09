@@ -1,11 +1,11 @@
 import { RouterModule, Route } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { AsyncExampleComponent } from "./async-example.component";
+import { AsyncSampleFormComponent } from "./async-sample-form.component";
 
 const ASYNC_ROUTES: Route[] = [
     {
         path: "",
-        component: AsyncExampleComponent
+        component: AsyncSampleFormComponent
     }
 ];
 
@@ -15,5 +15,5 @@ const ASYNC_ROUTES: Route[] = [
     exports: [RouterModule]
 })
 
-export class AsyncExampleRoutingModule {
+export class AsyncSampleFormRoutingModule {
 }

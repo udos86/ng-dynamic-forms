@@ -6,20 +6,18 @@ import {
     DynamicFormArrayModel,
     DynamicInputModel
 } from "@ng2-dynamic-forms/core";
-import { BOOTSTRAP_EXAMPLE_MODEL } from "./bootstrap-example.model";
+import { BOOTSTRAP_SAMPLE_FORM_MODEL } from "./bootstrap-sample-form.model";
 
 @Component({
-
     moduleId: module.id,
-    selector: "dynamic-form-bootstrap-example",
+    selector: "dynamic-bootstrap-sample-form",
     styleUrls: ["../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
-    templateUrl: "./bootstrap-example.component.html",
+    templateUrl: "./bootstrap-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })
+export class BootstrapSampleFormComponent implements OnInit {
 
-export class BootstrapExampleComponent implements OnInit {
-
-    formModel: DynamicFormControlModel[] = BOOTSTRAP_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = BOOTSTRAP_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
 
     exampleControl: FormControl;

@@ -1,22 +1,19 @@
 import { Component } from "@angular/core";
 import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
-import { ASYNC_EXAMPLE_MODEL } from "./async-example.model";
+import { ASYNC_SAMPLE_FORM_MODEL } from "./async-sample-form.model";
 import { FormGroup } from "@angular/forms";
 
 @Component({
-
     moduleId: module.id,
-    selector: "async-example-component",
-    templateUrl: "./async-example.component.html"
+    selector: "dynamic-async-sample-form",
+    templateUrl: "./async-sample-form.component.html"
 })
+export class AsyncSampleFormComponent {
 
-export class AsyncExampleComponent {
-
-    formModel: DynamicFormControlModel[] = ASYNC_EXAMPLE_MODEL;
+    formModel: DynamicFormControlModel[] = ASYNC_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {
-
         this.formGroup = this.formService.createFormGroup(this.formModel);
     }
 }

@@ -10,7 +10,7 @@ import {
 } from "@ng2-dynamic-forms/core";
 import { customValidator } from "../app.validators";
 
-export const FOUNDATION_EXAMPLE_MODEL = [
+export const FOUNDATION_SAMPLE_FORM_MODEL = [
 
     new DynamicSelectModel<string>(
         {

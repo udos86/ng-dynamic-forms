@@ -63,3 +63,7 @@ with **`DynamicKendoFormControlComponent`**:
 |   **[TimePicker](http://www.telerik.com/kendo-angular-ui/components/dateinputs/timepicker/)**   	| `DynamicTimePickerModel`    	|           –           	|
 |             **[Upload](http://www.telerik.com/kendo-angular-ui/components/upload/)**            	| `DynamicFileUploadModel`    	|           –           	|
 
+## Sample
+
+[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#kendo-sample-form) 
+

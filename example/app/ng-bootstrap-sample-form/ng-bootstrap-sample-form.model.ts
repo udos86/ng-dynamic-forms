@@ -2,17 +2,16 @@ import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
+    DynamicFormControlModel,
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
-    DynamicRatingModel,
     DynamicSelectModel,
-    DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
-export const PRIMENG_EXAMPLE_MODEL = [
+export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicFormGroupModel(
         {
@@ -21,36 +20,38 @@ export const PRIMENG_EXAMPLE_MODEL = [
 
                 new DynamicDatePickerModel(
                     {
-                        id: "arrival",
-                        format: "mm/dd/yy",
+                        id: "arrivalDate",
                         inline: false,
                         label: "Arrival",
-                        placeholder: "Date of Arrival"
+                        placeholder: "Date of Arrival",
+                        toggleIcon: "../../assets/calendar-icon.svg"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            container: "p-0",
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-4"
+                            host: "col-sm-4"
                         }
                     }
                 ),
 
                 new DynamicDatePickerModel(
                     {
-                        id: "departure",
-                        format: "mm/dd/yy",
+                        id: "departureDate",
                         inline: false,
                         label: "Departure",
-                        placeholder: "Date of Departure"
+                        placeholder: "Date of Departure",
+                        toggleIcon: "../../assets/calendar-icon.svg"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            container: "p-0",
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-4"
+                            host: "col-sm-4"
                         }
                     }
                 )
@@ -58,10 +59,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                host: "primeng-form-group"
-            },
-            grid: {
-                control: "ui-g"
+                control: "form-row"
             }
         }
     ),
@@ -71,11 +69,10 @@ export const PRIMENG_EXAMPLE_MODEL = [
             id: "room",
             group: [
 
-                new DynamicSelectModel<string>(
+                new DynamicSelectModel(
                     {
                         id: "roomSize",
                         label: "Room Size",
-                        placeholder: "Room Size",
                         options: [
                             {
                                 label: "Single Room",
@@ -97,33 +94,36 @@ export const PRIMENG_EXAMPLE_MODEL = [
                                 label: "Storeroom",
                                 value: "storeroom"
                             }
-                        ]
+                        ],
+                        value: "single-room"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-4",
+                            host: "col-sm-6"
                         }
                     }
                 ),
-
                 new DynamicInputModel(
                     {
                         id: "roomQuantity",
                         inputType: "number",
                         label: "Quantity",
                         placeholder: "Quantity",
+                        hint: "Maximum: 5",
                         max: 5,
-                        min: 0
+                        min: 0,
+                        value: 1
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            container: "text-center",
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-2",
+                            host: "col-sm-2"
                         }
                     }
                 )
@@ -131,10 +131,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                host: "primeng-form-group"
-            },
-            grid: {
-                control: "ui-g"
+                control: "form-row"
             }
         }
     ),
@@ -153,11 +150,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
+                label: "col-form-label"
             }
         }
     ),
@@ -176,11 +169,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
+                label: "col-form-label"
             }
         }
     ),
@@ -199,11 +188,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
+                label: "col-form-label"
             }
         }
     ),
@@ -211,23 +196,16 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "phone",
+            inputType: "tel",
             label: "Phone Number",
             placeholder: "Phone Number",
-            mask: "+(99) 999-9999",
+            hint: "Add your country code first",
+            prefix: "+",
             validators: {
                 required: null
             },
             errorMessages: {
                 required: "{{ label }} is required"
-            }
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
             }
         }
     ),
@@ -245,10 +223,10 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-7"
+                            host: "col-sm-10"
                         }
                     }
                 ),
@@ -256,15 +234,15 @@ export const PRIMENG_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
-                        label: "Number",
+                        label: "Street Number",
                         placeholder: "Number"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-2",
+                            host: "col-sm-2"
                         }
                     }
                 )
@@ -272,10 +250,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                host: "primeng-form-group"
-            },
-            grid: {
-                control: "ui-g"
+                control: "form-row"
             }
         }
     ),
@@ -288,15 +263,15 @@ export const PRIMENG_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "zipCode",
-                        label: "ZIP",
+                        label: "Zip Code",
                         placeholder: "ZIP"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-2"
+                            host: "col-sm-2"
                         }
                     }
                 ),
@@ -305,15 +280,14 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     {
                         id: "state",
                         label: "State",
-                        placeholder: "State",
-                        list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+                        placeholder: "State"
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-4",
+                            host: "col-sm-4"
                         }
                     }
                 ),
@@ -326,10 +300,10 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     },
                     {
                         element: {
-                            label: "ui-widget"
+                            label: "col-form-label"
                         },
                         grid: {
-                            host: "ui-g-5",
+                            host: "col-sm-6"
                         }
                     }
                 )
@@ -337,10 +311,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                host: "primeng-form-group"
-            },
-            grid: {
-                control: "ui-g"
+                control: "form-row"
             }
         }
     ),
@@ -357,10 +328,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     },
                     {
                         element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
+                            control: "btn-primary"
                         }
                     }
                 ),
@@ -371,10 +339,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     },
                     {
                         element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
+                            control: "btn-primary"
                         }
                     }
                 ),
@@ -385,10 +350,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     },
                     {
                         element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
+                            control: "btn-primary"
                         }
                     }
                 ),
@@ -399,28 +361,26 @@ export const PRIMENG_EXAMPLE_MODEL = [
                     },
                     {
                         element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
+                            control: "btn-primary"
+                        }
+                    }
+                ),
+                new DynamicCheckboxModel(
+                    {
+                        id: "extraBalcony",
+                        label: "Balcony"
+                    },
+                    {
+                        element: {
+                            control: "btn-primary"
                         }
                     }
                 )
             ]
-        },
-        {
-            element: {
-                host: "primeng-form-group",
-                label: "ui-widget"
-            },
-            grid: {
-                label: "ui-g",
-                control: "ui-g"
-            }
         }
     ),
 
-    new DynamicRadioGroupModel<string>(
+    new DynamicRadioGroupModel(
         {
             id: "payment",
             label: "Payment Method",
@@ -446,12 +406,8 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "ui-g",
-                control: "ui-g",
-                option: "ui-g-3"
+                label: "col-form-label",
+                option: "btn-primary"
             }
         }
     ),
@@ -459,87 +415,39 @@ export const PRIMENG_EXAMPLE_MODEL = [
     new DynamicTimePickerModel(
         {
             id: "arrivalTime",
-            label: "Estimated Arrival Time",
-            showSeconds: false
+            label: "Estimated Arrival Time"
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-4"
+                container: "pt-2 mb-0",
+                label: "col-form-label"
             }
         }
     ),
 
     new DynamicTextAreaModel(
         {
-            id: "note",
+            id: "notes",
             label: "Personal Note",
-            rows: 5,
             placeholder: "Personal Note",
+            rows: 5
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-8"
+                label: "col-form-label"
             }
         }
     ),
 
-    new DynamicSwitchModel(
+    new DynamicInputModel(
         {
-            id: "reminder",
-            label: "Send me a reminder",
-            offLabel: "Off",
-            onLabel: "On",
-            value: false
+            id: "attachments",
+            inputType: "file",
+            label: "Attachments"
         },
         {
             element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "order-1",
-                container: "ui-g"
-            }
-        }
-    ),
-
-    new DynamicSwitchModel(
-        {
-            id: "newsletter",
-            label: "Subscribe to newsletter",
-            offLabel: "Off",
-            onLabel: "On",
-            value: true
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "order-1",
-                container: "ui-g"
-            }
-        }
-    ),
-
-    new DynamicRatingModel(
-        {
-            id: "feedback",
-            label: "How did you like this form?"
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                container: "ui-g"
+                label: "col-form-label"
             }
         }
     ),
@@ -548,11 +456,6 @@ export const PRIMENG_EXAMPLE_MODEL = [
         {
             id: "confirm",
             label: "I confirm the information given above"
-        },
-        {
-            element: {
-                label: "ui-widget"
-            }
         }
     )
 ];

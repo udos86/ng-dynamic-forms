@@ -56,3 +56,7 @@ with **`DynamicMaterialFormControlComponent`**:
 |       **[Slider](https://material.angular.io/components/component/slider)**       	| `DynamicSliderModel`        	|         –         	|
 |  **[SlideToggle](https://material.angular.io/components/component/slide-toggle)** 	| `DynamicSwitchModel`        	|         –         	|
 |       **[Textarea](https://material.angular.io/components/component/input)**      	| `DynamicTextAreaModel`      	|         –         	|
+
+## Sample
+
+[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#material-sample-form) 

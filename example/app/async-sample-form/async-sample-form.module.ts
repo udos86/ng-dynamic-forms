@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
-import { AsyncExampleRoutingModule } from "./async-example.routing.module";
+import { AsyncSampleFormRoutingModule } from "./async-sample-form.routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { AsyncExampleComponent } from "./async-example.component";
+import { AsyncSampleFormComponent } from "./async-sample-form.component";
 
 @NgModule({
 
     imports: [
-        AsyncExampleRoutingModule,
+        AsyncSampleFormRoutingModule,
         CommonModule,
         ReactiveFormsModule,
         DynamicFormsBootstrapUIModule
     ],
-    declarations: [AsyncExampleComponent]
+    declarations: [AsyncSampleFormComponent]
 })
 
 export class AsyncExampleModule {

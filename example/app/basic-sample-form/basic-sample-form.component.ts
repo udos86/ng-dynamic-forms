@@ -6,16 +6,14 @@ import {
     DynamicFormControlModel,
     DynamicFormArrayModel
 } from "@ng2-dynamic-forms/core";
-import { BASIC_EXAMPLE_MODEL, BASIC_EXAMPLE_ARRAY_MODEL } from "./basic-example.model";
+import { BASIC_SAMPLE_FORM_MODEL, BASIC_SAMPLE_FORM_ARRAY_MODEL } from "./basic-sample-form.model";
 
 @Component({
-
     moduleId: module.id,
-    selector: "dynamic-form-basic-example",
-    templateUrl: "./basic-example.component.html"
+    selector: "dynamic-basic-sample-form",
+    templateUrl: "./basic-sample-form.component.html"
 })
-
-export class BasicExampleComponent implements OnInit {
+export class BasicSampleFormComponent implements OnInit {
 
     formModel1: DynamicFormControlModel[];
     formModel2: DynamicFormControlModel[];
@@ -31,11 +29,11 @@ export class BasicExampleComponent implements OnInit {
 
     constructor(private formService: DynamicFormService) {
 
-        //this.formModel1 = BASIC_EXAMPLE_MODEL;
-        //this.formModel2 = BASIC_EXAMPLE_ARRAY_MODEL;
+        //this.formModel1 = BASIC_SAMPLE_FORM_MODEL;
+        //this.formModel2 = BASIC_SAMPLE_FORM_ARRAY_MODEL;
 
-        this.formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_EXAMPLE_MODEL));
-        this.formModel2 = this.formService.fromJSON(JSON.stringify(BASIC_EXAMPLE_ARRAY_MODEL));
+        this.formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_MODEL));
+        this.formModel2 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_ARRAY_MODEL));
 
         this.formGroup1 = this.formService.createFormGroup(this.formModel1);
         this.formGroup2 = this.formService.createFormGroup(this.formModel2);

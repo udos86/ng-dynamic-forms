@@ -10,7 +10,7 @@ import {
 } from "@ng2-dynamic-forms/core";
 import { customValidator } from "../app.validators";
 
-export const BASIC_EXAMPLE_MODEL = [
+export const BASIC_SAMPLE_FORM_MODEL = [
 
     new DynamicSelectModel<string>({
 
@@ -163,7 +163,7 @@ export const BASIC_EXAMPLE_MODEL = [
     })
 ];
 
-export const BASIC_EXAMPLE_ARRAY_MODEL = [
+export const BASIC_SAMPLE_FORM_ARRAY_MODEL = [
 
     new DynamicFormArrayModel(
         {

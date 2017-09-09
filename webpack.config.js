@@ -5,18 +5,16 @@ const pkg     = require("./package.json"),
 module.exports = {
 
     entry: {
-
-        "app": "./example/app/main.aot.js"
+        "app": "./sample/app/main.aot.js"
     },
 
     resolve: {
-
         modules: ["dist", "node_modules"]
     },
 
     output: {
 
-        path: path.resolve(__dirname, "./example/dist"),
+        path: path.resolve(__dirname, "./sample/dist"),
 
         filename: "bundle.aot.js"
     },

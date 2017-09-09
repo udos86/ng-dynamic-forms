@@ -11,7 +11,7 @@ import {
 import { Observable } from "rxjs/Observable";
 import { Validators } from "@angular/forms";
 
-export const BOOTSTRAP_EXAMPLE_MODEL = [
+export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
     new DynamicFormGroupModel({
 

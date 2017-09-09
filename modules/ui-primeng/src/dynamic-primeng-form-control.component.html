@@ -277,12 +277,12 @@
 
         </div>
 
-
-        <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
-            <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
-        </ul>
-
     </ng-container>
+
+    
+    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+        <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
+    </ul>
 
 
     <ng-template *ngIf="type !== 1 && template?.align === 'END'"

@@ -16,4 +16,12 @@ example/dist
 example/fonts
 example/images
 
+sample/aot/
+sample/app/**/*.js
+sample/app/**/*.js.map
+sample/app/**/*.d.ts
+sample/dist
+sample/fonts
+sample/images
+
 node_modules/

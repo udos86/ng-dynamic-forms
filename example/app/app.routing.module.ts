@@ -1,101 +1,91 @@
 import { RouterModule, Route } from "@angular/router";
-import { BasicExampleComponent } from "./basic/basic-example.component";
-import { BootstrapExampleComponent } from "./bootstrap/bootstrap-example.component";
-import { FoundationExampleComponent } from "./foundation/foundation-example.component";
-import { KendoExampleComponent } from "./kendo/kendo-example.component";
-import { MaterialExampleComponent } from "./material/material-example.component";
-import { NGBootstrapExampleComponent } from "./ng-bootstrap/ng-bootstrap-example.component";
-import { PrimeNGExampleComponent } from "./primeng/primeng-example.component";
+import { BasicSampleFormComponent } from "./basic-sample-form/basic-sample-form.component";
+import { BootstrapSampleFormComponent } from "./bootstrap-sample-form/bootstrap-sample-form.component";
+import { FoundationSampleFormComponent } from "./foundation-sample-form/foundation-sample-form.component";
+import { KendoSampleFormComponent } from "./kendo-sample-form/kendo-sample-form.component";
+import { MaterialSampleFormComponent } from "./material-sample-form/material-sample-form.component";
+import { NGBootstrapSampleFormComponent } from "./ng-bootstrap-sample-form/ng-bootstrap-sample-form.component";
+import { PrimeNGSampleFormComponent } from "./primeng-sample-form/primeng-sample-form.component";
 import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Route[] = [
     {
         path: "",
-        redirectTo: "/example-bootstrap",
+        redirectTo: "/ng-bootstrap-sample-form",
         pathMatch: "full"
     },
-
     {
-        path: "example-basic",
-        component: BasicExampleComponent,
+        path: "basic-sample-form",
+        component: BasicSampleFormComponent,
         data: {
             title: "Basic UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/basic/basic-example.model.ts",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/basic-sample-form/basic-sample-form.model.ts",
             bgColor: "gray"
         }
     },
-
     {
-        path: "example-bootstrap",
-        component: BootstrapExampleComponent,
+        path: "bootstrap-sample-form",
+        component: BootstrapSampleFormComponent,
         data: {
             title: "Bootstrap UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/bootstrap/bootstrap-example.model.ts",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/bootstrap-sample-form/bootstrap-sample-form.model.ts",
             bgColor: "#6f5499"
         }
     },
-
     {
-        path: "example-foundation",
-        component: FoundationExampleComponent,
+        path: "foundation-sample-form",
+        component: FoundationSampleFormComponent,
         data: {
             title: "Foundation UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/foundation/foundation-example.model.ts",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/foundation-sample-form/foundation-sample-form.model.ts",
             bgColor: "#2199e8"
         }
     },
-
     {
-        path: "example-material",
-        component: MaterialExampleComponent,
-        data: {
-            title: "Material UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/material/material-example.model.ts",
-            bgColor: "#009688"
-        }
-    },
-
-    {
-        path: "example-ng-bootstrap",
-        component: NGBootstrapExampleComponent,
-        data: {
-            title: "NG Bootstrap UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/ng-bootstrap/ng-bootstrap-example.model.ts",
-            bgColor: "#1b95e0"
-        }
-    },
-
-    {
-        path: "example-kendo",
-        component: KendoExampleComponent,
+        path: "kendo-sample-form",
+        component: KendoSampleFormComponent,
         data: {
             title: "Kendo UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/kendo/kendo-example.model.ts",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/kendo-sample-form/kendo-sample-form.model.ts",
             bgColor: "#ff5747"
         }
     },
-
     {
-        path: "example-primeng",
-        component: PrimeNGExampleComponent,
+        path: "material-sample-form",
+        component: MaterialSampleFormComponent,
+        data: {
+            title: "Material UI",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/material-sample-form/material-sample-form.model.ts",
+            bgColor: "#009688"
+        }
+    },
+    {
+        path: "ng-bootstrap-sample-form",
+        component: NGBootstrapSampleFormComponent,
+        data: {
+            title: "NG Bootstrap UI",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/ng-bootstrap-sample-form/ng-bootstrap-sample-form.model.ts",
+            bgColor: "#1b95e0"
+        }
+    },
+    {
+        path: "primeng-sample-form",
+        component: PrimeNGSampleFormComponent,
         data: {
             title: "Prime NG UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/example/app/primeng/primeng-example.model.ts",
+            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/primeng-sample-form/primeng-sample-form.model.ts",
             bgColor: "#DB2226"
         }
     },
-
     {
-        path: "example-async",
-        loadChildren: "app/async/async-example.module#AsyncExampleModule"
+        path: "async-sample-form",
+        loadChildren: "app/async-sample-form/async-sample-form.module#AsyncSampleFormModule"
     }
 ];
 
 @NgModule({
-
     imports: [RouterModule.forRoot(APP_ROUTES)],
     exports: [RouterModule]
 })
-
 export class AppRoutingModule {
 }

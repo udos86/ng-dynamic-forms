@@ -2,20 +2,27 @@ import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
-    DynamicFormControlModel,
+    DynamicFileUploadModel,
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
+    DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng2-dynamic-forms/core";
 
-export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
+export const KENDO_SAMPLE_FORM_MODEL = [
 
     new DynamicFormGroupModel(
         {
             id: "stay",
+            validator: {
+                customDateRangeValidator: null
+            },
+            errorMessages: {
+                customDateRangeValidator: "Invalid period of time selected"
+            },
             group: [
 
                 new DynamicDatePickerModel(
@@ -23,17 +30,7 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "arrivalDate",
                         inline: false,
                         label: "Arrival",
-                        placeholder: "Date of Arrival",
-                        toggleIcon: "../../assets/calendar-icon.svg"
-                    },
-                    {
-                        element: {
-                            container: "p-0",
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-4"
-                        }
+                        placeholder: "Date of Arrival"
                     }
                 ),
 
@@ -42,25 +39,10 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "departureDate",
                         inline: false,
                         label: "Departure",
-                        placeholder: "Date of Departure",
-                        toggleIcon: "../../assets/calendar-icon.svg"
-                    },
-                    {
-                        element: {
-                            container: "p-0",
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-4"
-                        }
+                        placeholder: "Date of Departure"
                     }
-                )
+                ),
             ]
-        },
-        {
-            element: {
-                control: "form-row"
-            }
         }
     ),
 
@@ -69,7 +51,7 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
             id: "room",
             group: [
 
-                new DynamicSelectModel(
+                new DynamicSelectModel<string>(
                     {
                         id: "roomSize",
                         label: "Room Size",
@@ -96,16 +78,9 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                             }
                         ],
                         value: "single-room"
-                    },
-                    {
-                        element: {
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-6"
-                        }
                     }
                 ),
+
                 new DynamicInputModel(
                     {
                         id: "roomQuantity",
@@ -113,26 +88,13 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         label: "Quantity",
                         placeholder: "Quantity",
                         hint: "Maximum: 5",
-                        max: 5,
                         min: 0,
+                        max: 5,
+                        step: 1,
                         value: 1
-                    },
-                    {
-                        element: {
-                            container: "text-center",
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-2"
-                        }
                     }
                 )
             ]
-        },
-        {
-            element: {
-                control: "form-row"
-            }
         }
     ),
 
@@ -145,12 +107,7 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                 required: null
             },
             errorMessages: {
-                required: "{{ label }} is required"
-            }
-        },
-        {
-            element: {
-                label: "col-form-label"
+                required: "{{label}} is required"
             }
         }
     ),
@@ -164,12 +121,7 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                 required: null
             },
             errorMessages: {
-                required: "{{ label }} is required"
-            }
-        },
-        {
-            element: {
-                label: "col-form-label"
+                required: "{{label}} is required"
             }
         }
     ),
@@ -183,12 +135,7 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                 email: null
             },
             errorMessages: {
-                email: "{{ label }} is not valid"
-            }
-        },
-        {
-            element: {
-                label: "col-form-label"
+                email: "{{label}} is not valid"
             }
         }
     ),
@@ -200,12 +147,12 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
             label: "Phone Number",
             placeholder: "Phone Number",
             hint: "Add your country code first",
-            prefix: "+",
+            mask: "+(99) 0000000000000",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "{{ label }} is required"
+                required: "Field is required"
             }
         }
     ),
@@ -220,14 +167,6 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "streetName",
                         label: "Street Name",
                         placeholder: "Street Name"
-                    },
-                    {
-                        element: {
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-10"
-                        }
                     }
                 ),
 
@@ -236,22 +175,9 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "streetNumber",
                         label: "Street Number",
                         placeholder: "Number"
-                    },
-                    {
-                        element: {
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-2"
-                        }
                     }
                 )
             ]
-        },
-        {
-            element: {
-                control: "form-row"
-            }
         }
     ),
 
@@ -265,14 +191,6 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "zipCode",
                         label: "Zip Code",
                         placeholder: "ZIP"
-                    },
-                    {
-                        element: {
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-2"
-                        }
                     }
                 ),
 
@@ -280,15 +198,8 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                     {
                         id: "state",
                         label: "State",
+                        list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
                         placeholder: "State"
-                    },
-                    {
-                        element: {
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-4"
-                        }
                     }
                 ),
 
@@ -297,93 +208,55 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "city",
                         label: "City",
                         placeholder: "City"
-                    },
-                    {
-                        element: {
-                            label: "col-form-label"
-                        },
-                        grid: {
-                            host: "col-sm-6"
-                        }
                     }
                 )
             ]
-        },
-        {
-            element: {
-                control: "form-row"
-            }
         }
     ),
 
     new DynamicCheckboxGroupModel(
         {
             id: "extras",
-            label: "Extras",
+            legend: "Extras",
             group: [
                 new DynamicCheckboxModel(
                     {
                         id: "extraBreakfast",
                         label: "Breakfast"
-                    },
-                    {
-                        element: {
-                            control: "btn-primary"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraTV",
                         label: "TV",
-                    },
-                    {
-                        element: {
-                            control: "btn-primary"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraWiFi",
                         label: "WiFi"
-                    },
-                    {
-                        element: {
-                            control: "btn-primary"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraParking",
                         label: "Parking Lot"
-                    },
-                    {
-                        element: {
-                            control: "btn-primary"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraBalcony",
                         label: "Balcony"
-                    },
-                    {
-                        element: {
-                            control: "btn-primary"
-                        }
                     }
                 )
             ]
         }
     ),
 
-    new DynamicRadioGroupModel(
+    new DynamicRadioGroupModel<string>(
         {
             id: "payment",
-            label: "Payment Method",
+            legend: "Payment Method",
             options: [
                 {
                     label: "Credit Card",
@@ -403,51 +276,66 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                 }
             ],
             value: "cc"
-        },
-        {
-            element: {
-                label: "col-form-label",
-                option: "btn-primary"
-            }
         }
     ),
 
     new DynamicTimePickerModel(
         {
-            id: "arrivalTime",
-            label: "Estimated Arrival Time"
-        },
-        {
-            element: {
-                container: "pt-2 mb-0",
-                label: "col-form-label"
-            }
+            id:"arrivalTime",
+            label: "Estimated Arrival Time",
+            placeholder: "Time",
+            format: "HH:mm"
         }
     ),
 
     new DynamicTextAreaModel(
         {
-            id: "notes",
+            id: "note",
             label: "Personal Note",
-            placeholder: "Personal Note",
-            rows: 5
+            rows: 5,
+            placeholder: "Personal Note"
+        }
+    ),
+
+    new DynamicFileUploadModel(
+        {
+            autoUpload: true,
+            id: "attachments",
+            label: "Attachments",
+            multiple: true,
+            removeUrl: "removeUrl",
+            url: "saveUrl"
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "reminder",
+            label: "Send me a reminder",
+            offLabel: " ",
+            onLabel: " ",
+            value: false
         },
         {
             element: {
-                label: "col-form-label"
+                container: "display-flex",
+                label: "order-1"
             }
         }
     ),
 
-    new DynamicInputModel(
+    new DynamicSwitchModel(
         {
-            id: "attachments",
-            inputType: "file",
-            label: "Attachments"
+            id: "newsletter",
+            label: "Subscribe to newsletter",
+            offLabel: " ",
+            onLabel: " ",
+            value: true
         },
         {
             element: {
-                label: "col-form-label"
+                container: "display-flex",
+                label: "order-1"
             }
         }
     ),

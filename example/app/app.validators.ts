@@ -7,7 +7,15 @@ export function customValidator(control: AbstractControl): ValidationErrors | nu
     return hasError ? {customValidator: true} : null;
 }
 
-export function customGroupValidator(group: FormGroup): ValidationErrors | null {
+export function customDateRangeValidator(group: FormGroup): ValidationErrors | null {
 
-    return {customGroupValidator: true};
+    let dateArrival = group.get("arrivalDate").value as Date,
+        dateDeparture = group.get("departureDate").value as Date,
+        hasError = false;
+
+    if (dateArrival && dateDeparture) {
+        hasError = dateArrival >= dateDeparture || dateDeparture <= dateArrival;
+    }
+
+    return hasError ? {customDateRangeValidator: true} : null;
 }

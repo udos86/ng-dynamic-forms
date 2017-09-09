@@ -1,10 +1,10 @@
-let indexPath = "./example/index.jit.html";
+let indexPath = "./sample/index.jit.html";
 
 module.exports = {
 
     server: {
 
-        baseDir: [".", "example"],
+        baseDir: [".", "sample"],
 
         middleware: {
             1: require("connect-history-api-fallback")({index: indexPath})

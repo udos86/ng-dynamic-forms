@@ -86,7 +86,7 @@
     "gulp-replace": "^0.6.1",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-tslint": "^8.1.2",
-    "gulp-typedoc": "^2.0.3",
+    "gulp-typedoc": "^2.1.0",
     "gulp-typescript": "^3.2.2",
     "gulp-util": "^3.0.8",
     "html-minifier": "^3.5.3",

@@ -1,27 +1,25 @@
 import {
     DynamicCheckboxModel,
-    DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
-    DynamicFileUploadModel,
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
+    DynamicSliderModel,
     DynamicSwitchModel,
-    DynamicTextAreaModel,
-    DynamicTimePickerModel
+    DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
 
-export const KENDO_EXAMPLE_MODEL = [
+export const MATERIAL_SAMPLE_FORM_MODEL = [
 
     new DynamicFormGroupModel(
         {
             id: "stay",
             validator: {
-                customGroupValidator: null
+                customDateRangeValidator: null
             },
             errorMessages: {
-                customGroupValidator: "Form Group Validator"
+                customDateRangeValidator: "Invalid period of time selected"
             },
             group: [
 
@@ -29,7 +27,6 @@ export const KENDO_EXAMPLE_MODEL = [
                     {
                         id: "arrivalDate",
                         inline: false,
-                        label: "Arrival",
                         placeholder: "Date of Arrival"
                     }
                 ),
@@ -38,7 +35,6 @@ export const KENDO_EXAMPLE_MODEL = [
                     {
                         id: "departureDate",
                         inline: false,
-                        label: "Departure",
                         placeholder: "Date of Departure"
                     }
                 ),
@@ -54,7 +50,7 @@ export const KENDO_EXAMPLE_MODEL = [
                 new DynamicSelectModel<string>(
                     {
                         id: "roomSize",
-                        label: "Room Size",
+                        placeholder: "Room Size",
                         options: [
                             {
                                 label: "Single Room",
@@ -76,8 +72,7 @@ export const KENDO_EXAMPLE_MODEL = [
                                 label: "Storeroom",
                                 value: "storeroom"
                             }
-                        ],
-                        value: "single-room"
+                        ]
                     }
                 ),
 
@@ -85,13 +80,10 @@ export const KENDO_EXAMPLE_MODEL = [
                     {
                         id: "roomQuantity",
                         inputType: "number",
-                        label: "Quantity",
-                        placeholder: "Quantity",
+                        placeholder: "Room Quantity",
                         hint: "Maximum: 5",
-                        min: 0,
                         max: 5,
-                        step: 1,
-                        value: 1
+                        min: 0
                     }
                 )
             ]
@@ -101,13 +93,13 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "firstName",
-            label: "First Name",
+            maxLength: 25,
             placeholder: "First Name",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "{{label}} is required"
+                required: "Field is required"
             }
         }
     ),
@@ -115,13 +107,13 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "lastName",
-            label: "Last Name",
+            maxLength: 50,
             placeholder: "Last Name",
             validators: {
                 required: null
             },
             errorMessages: {
-                required: "{{label}} is required"
+                required: "Field is required"
             }
         }
     ),
@@ -129,13 +121,12 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicInputModel(
         {
             id: "email",
-            label: "E-Mail",
             placeholder: "E-Mail",
             validators: {
                 email: null
             },
             errorMessages: {
-                email: "{{label}} is not valid"
+                email: "Field has no valid email"
             }
         }
     ),
@@ -144,10 +135,9 @@ export const KENDO_EXAMPLE_MODEL = [
         {
             id: "phone",
             inputType: "tel",
-            label: "Phone Number",
             placeholder: "Phone Number",
             hint: "Add your country code first",
-            mask: "+(99) 0000000000000",
+            prefix: "+",
             validators: {
                 required: null
             },
@@ -165,7 +155,6 @@ export const KENDO_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "streetName",
-                        label: "Street Name",
                         placeholder: "Street Name"
                     }
                 ),
@@ -173,11 +162,15 @@ export const KENDO_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
-                        label: "Street Number",
-                        placeholder: "Number"
+                        placeholder: "Street Number"
                     }
                 )
             ]
+        },
+        {
+            element: {
+                host: "material-form-group"
+            }
         }
     ),
 
@@ -189,7 +182,6 @@ export const KENDO_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "zipCode",
-                        label: "Zip Code",
                         placeholder: "ZIP"
                     }
                 ),
@@ -197,16 +189,15 @@ export const KENDO_EXAMPLE_MODEL = [
                 new DynamicInputModel(
                     {
                         id: "state",
-                        label: "State",
-                        list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-                        placeholder: "State"
+                        hint: "Autocomplete",
+                        placeholder: "State",
+                        list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
                     }
                 ),
 
                 new DynamicInputModel(
                     {
                         id: "city",
-                        label: "City",
                         placeholder: "City"
                     }
                 )
@@ -214,41 +205,32 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicCheckboxGroupModel(
+    new DynamicSelectModel<string>(
         {
             id: "extras",
-            legend: "Extras",
-            group: [
-                new DynamicCheckboxModel(
-                    {
-                        id: "extraBreakfast",
-                        label: "Breakfast"
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "extraTV",
-                        label: "TV",
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "extraWiFi",
-                        label: "WiFi"
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "extraParking",
-                        label: "Parking Lot"
-                    }
-                ),
-                new DynamicCheckboxModel(
-                    {
-                        id: "extraBalcony",
-                        label: "Balcony"
-                    }
-                )
+            placeholder: "Extras",
+            multiple: true,
+            options: [
+                {
+                    label: "Breakfast",
+                    value: "extraBreakfast"
+                },
+                {
+                    label: "TV",
+                    value: "extraTV",
+                },
+                {
+                    label: "WiFi",
+                    value: "extraWiFi"
+                },
+                {
+                    label: "Parking Lot",
+                    value: "extraParking"
+                },
+                {
+                    label: "Balcony",
+                    value: "extraBalcony"
+                }
             ]
         }
     ),
@@ -256,7 +238,6 @@ export const KENDO_EXAMPLE_MODEL = [
     new DynamicRadioGroupModel<string>(
         {
             id: "payment",
-            legend: "Payment Method",
             options: [
                 {
                     label: "Credit Card",
@@ -279,64 +260,29 @@ export const KENDO_EXAMPLE_MODEL = [
         }
     ),
 
-    new DynamicTimePickerModel(
-        {
-            id:"arrivalTime",
-            label: "Estimated Arrival Time",
-            placeholder: "Time",
-            format: "HH:mm"
-        }
-    ),
-
     new DynamicTextAreaModel(
         {
             id: "note",
-            label: "Personal Note",
-            rows: 5,
+            rows: 3,
             placeholder: "Personal Note"
-        }
-    ),
-
-    new DynamicFileUploadModel(
-        {
-            autoUpload: true,
-            id: "attachments",
-            label: "Attachments",
-            multiple: true,
-            removeUrl: "removeUrl",
-            url: "saveUrl"
         }
     ),
 
     new DynamicSwitchModel(
         {
             id: "reminder",
-            label: "Send me a reminder",
-            offLabel: " ",
-            onLabel: " ",
+            offLabel: "Send me a reminder",
+            onLabel: "Send me a reminder",
             value: false
-        },
-        {
-            element: {
-                container: "display-flex",
-                label: "order-1"
-            }
         }
     ),
 
     new DynamicSwitchModel(
         {
             id: "newsletter",
-            label: "Subscribe to newsletter",
-            offLabel: " ",
-            onLabel: " ",
+            offLabel: "Subscribe to newsletter",
+            onLabel: "Subscribe to newsletter",
             value: true
-        },
-        {
-            element: {
-                container: "display-flex",
-                label: "order-1"
-            }
         }
     ),
 
