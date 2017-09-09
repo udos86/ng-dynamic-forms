@@ -1,3 +1,10 @@
+# 1.4.29
+
+### **Bugfixes** 
+
+* `DynamicValidationService` now correctly resolves alternate validator notation
+
+
 # 1.4.28
 
 ### **Features** 

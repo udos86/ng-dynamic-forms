@@ -97,6 +97,15 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
+    it("should resolve a custom async validator from detailed config correctly", () => {
+
+        let config: any = {testAsyncValidator: {name: testAsyncValidator.name, args: null}},
+            validator = service.getAsyncValidator(config);
+
+        expect(typeof validator === "function").toBe(true);
+    });
+
+
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
         expect(() => service.getValidatorByName("test", null))

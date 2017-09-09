@@ -112,26 +112,54 @@ export class DynamicFormValidationService {
     }
 
 
-    getValidator(validatorConfig: DynamicValidatorsMap): ValidatorFn | null {
+    getValidator(validatorsConfig: DynamicValidatorsMap): ValidatorFn | null {
 
-        if (Utils.isNonEmptyObject(validatorConfig)) {
+        if (Utils.isNonEmptyObject(validatorsConfig)) {
 
-            let validatorName = Object.keys(validatorConfig)[0];
+            let validatorFnKey = Object.keys(validatorsConfig)[0],
+                validatorConfig = validatorsConfig[validatorFnKey],
+                validatorName,
+                validatorArgs;
 
-            return this.getValidatorFn(validatorName, validatorConfig[validatorName]) as ValidatorFn;
+            if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
+
+                validatorName = (validatorConfig as DynamicValidatorConfig).name;
+                validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
+
+            } else {
+
+                validatorName = validatorFnKey;
+                validatorArgs = validatorConfig;
+            }
+
+            return this.getValidatorFn(validatorName, validatorArgs) as ValidatorFn;
         }
 
         return null;
     }
 
 
-    getAsyncValidator(validatorConfig: DynamicValidatorsMap): AsyncValidatorFn | null {
+    getAsyncValidator(validatorsConfig: DynamicValidatorsMap): AsyncValidatorFn | null {
 
-        if (Utils.isNonEmptyObject(validatorConfig)) {
+        if (Utils.isNonEmptyObject(validatorsConfig)) {
 
-            let validatorName = Object.keys(validatorConfig)[0];
+            let validatorFnKey = Object.keys(validatorsConfig)[0],
+                validatorConfig = validatorsConfig[validatorFnKey],
+                validatorName,
+                validatorArgs;
 
-            return this.getValidatorFn(validatorName, validatorConfig[validatorName], this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
+            if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
+
+                validatorName = (validatorConfig as DynamicValidatorConfig).name;
+                validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
+
+            } else {
+
+                validatorName = validatorFnKey;
+                validatorArgs = validatorConfig;
+            }
+
+            return this.getValidatorFn(validatorName, validatorArgs, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
         }
 
         return null;
