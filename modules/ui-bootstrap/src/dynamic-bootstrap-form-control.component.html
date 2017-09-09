@@ -203,12 +203,9 @@
     </div>
 
 
-    <ul *ngIf="showErrorMessages" class="has-error" [ngClass]="model.cls.grid.errors">
+    <ul *ngIf="showErrorMessages" class="has-error" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
 
-        <li *ngFor="let message of errorMessages" class="help-block" [ngClass]="model.cls.element.errors">
-            {{message}}
-        </li>
-
+        <li *ngFor="let message of errorMessages" class="help-block">{{ message }}</li>
     </ul>
 
 

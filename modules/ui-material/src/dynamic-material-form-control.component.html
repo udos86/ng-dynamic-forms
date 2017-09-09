@@ -235,21 +235,18 @@
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
-            </md-error>
+            <ng-container *ngIf="showErrorMessages">
+                <md-error *ngFor="let message of errorMessages">{{ message }}</md-error>
+            </ng-container>
 
         </md-form-field>
 
     </ng-container>
 
 
-    <md-list *ngIf="showErrorMessages && type !== 5 && type !== 10" [ngClass]="model.cls.grid.errors">
-
-        <md-list-item *ngFor="let message of errorMessages"
-                      [ngClass]="model.cls.element.errors">{{message}}
-        </md-list-item>
-
-    </md-list>
+    <ng-container *ngIf="type !== 5 && type !== 10 && showErrorMessages">
+        <md-error *ngFor="let message of errorMessages">{{ message }}</md-error>
+    </ng-container>
 
 
     <ng-template *ngIf="type !== 1 && template?.align === 'END'"

@@ -257,12 +257,8 @@
                    [ngClass]="model.cls.element.hint"></small>
 
 
-            <div *ngIf="showErrorMessages" [ngClass]="model.cls.grid.errors">
-
-                <small *ngFor="let message of errorMessages" class="invalid-feedback" style="display: block;"
-                       [ngClass]="model.cls.element.errors">{{message}}
-                </small>
-
+            <div *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+                <small *ngFor="let message of errorMessages" class="invalid-feedback">{{ message }}</small>
             </div>
 
         </ng-container>

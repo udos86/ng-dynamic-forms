@@ -17,12 +17,6 @@ export const BOOTSTRAP_EXAMPLE_MODEL = [
 
         id: "bootstrapFormGroup1",
         legend: "Form Group 1",
-        validator: {
-            required: null
-        },
-        errorMessages: {
-            required: "error on {{ id }}"
-        },
         group: [
             new DynamicSelectModel<string>(
                 {

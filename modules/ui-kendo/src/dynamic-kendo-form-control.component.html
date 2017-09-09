@@ -9,7 +9,6 @@
         <span *ngIf="(type === 11 || type === 13) && model.hint" class="k-field-info"
               [innerHTML]="model.hint"
               [ngClass]="model.cls.element.hint"></span>
-
     </label>
 
 
@@ -359,13 +358,8 @@
     </ng-container>
 
 
-    <ul *ngIf="showErrorMessages" [ngClass]="model.cls.grid.errors">
-
-        <li *ngFor="let message of errorMessages" class="k-field-info"
-            [ngClass]="model.cls.element.errors"
-            style="color: #f31700;">{{message}}
-        </li>
-
+    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+        <li *ngFor="let message of errorMessages" class="k-field-info">{{ message }}</li>
     </ul>
 
 

@@ -15,6 +15,12 @@ export const MATERIAL_EXAMPLE_MODEL = [
     new DynamicFormGroupModel(
         {
             id: "stay",
+            validator: {
+                customGroupValidator: null
+            },
+            errorMessages: {
+                customGroupValidator: "Form Group Validator"
+            },
             group: [
 
                 new DynamicDatePickerModel(
@@ -33,11 +39,6 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     }
                 ),
             ]
-        },
-        {
-            element: {
-                host: "material-form-group"
-            }
         }
     ),
 
@@ -86,11 +87,6 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     }
                 )
             ]
-        },
-        {
-            element: {
-                host: "material-form-group"
-            }
         }
     ),
 
@@ -206,11 +202,6 @@ export const MATERIAL_EXAMPLE_MODEL = [
                     }
                 )
             ]
-        },
-        {
-            element: {
-                host: "material-form-group"
-            }
         }
     ),
 

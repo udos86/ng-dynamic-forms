@@ -78,19 +78,6 @@ pre {
     color: white;
 }
 
-.live-edit {
-
-    background-color: whitesmoke;
-    resize: none;
-    font-family: Consolas, "Courier New", "Helvetica Neue", Helvetica, Arial;
-}
-
-.live-edit:focus {
-
-    box-shadow: none;
-    outline: none;
-}
-
 .overflow-hidden {
     overflow: hidden;
 }
@@ -99,34 +86,13 @@ pre {
     border-radius: 50% !important;
 }
 
-.text-center {
-    text-align: center;
-}
-
-kendo-calendar {
-    margin: 0 auto;
-}
-
-md-input {
-    vertical-align: middle;
-}
-
-md-slide-toggle {
-    display: inline-block !important;
-}
-
 .form-row {
     display: block;
 }
 
-md-input, md-radio-button {
-    margin-right: 1rem;
+.text-center {
+    text-align: center;
 }
-
-md-select {
-    width: 200px;
-}
-
 
 form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     display: inline-block !important;
@@ -144,8 +110,10 @@ form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     display: none;
 }
 
-dynamic-form-material-example fieldset {
-    border: none;
+
+/* KENDO */
+kendo-calendar {
+    margin: 0 auto;
 }
 
 dynamic-kendo-form-control div[role="group"] {
@@ -175,6 +143,28 @@ dynamic-kendo-form-control ul {
     text-align: left;
 }
 
+dynamic-kendo-form-control li.k-field-info {
+    color: #f31700 !important;
+}
+
+
+/* MATERIAL */
+md-input {
+    vertical-align: middle;
+}
+
+md-input, md-radio-button {
+    margin-right: 1rem;
+}
+
+md-select {
+    width: 200px;
+}
+
+md-slide-toggle {
+    display: inline-block !important;
+}
+
 dynamic-material-form-control {
     display: block;
     margin-bottom: 1rem;
@@ -184,12 +174,9 @@ dynamic-material-form-control md-select {
     margin-bottom: 1.5rem;
 }
 
-dynamic-material-form-control.material-form-group {
-    margin-bottom: 0;
-}
-
 dynamic-material-form-control div[role="group"] > dynamic-material-form-control {
     display: inline-block;
+    margin-bottom: 0;
     margin-right: 1rem;
 }
 
@@ -197,6 +184,8 @@ dynamic-material-form-control .md-list-item {
     justify-content: center;
 }
 
+
+/* PRIME NG */
 dynamic-primeng-form-control {
     display: block;
     margin-bottom: 1.25rem;
