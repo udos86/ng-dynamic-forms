@@ -5,10 +5,10 @@ import {
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicSelectModel,
-    DynamicSliderModel,
     DynamicSwitchModel,
     DynamicTextAreaModel
 } from "@ng2-dynamic-forms/core";
+import { customDateRangeValidator } from "../app.validators";
 
 export const MATERIAL_SAMPLE_FORM_MODEL = [
 
@@ -16,7 +16,10 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
         {
             id: "stay",
             validator: {
-                customDateRangeValidator: null
+                customDateRangeValidator: {
+                    name: customDateRangeValidator.name,
+                    args: null
+                }
             },
             errorMessages: {
                 customDateRangeValidator: "Invalid period of time selected"
