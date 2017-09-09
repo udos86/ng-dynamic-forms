@@ -127,11 +127,9 @@ export const MATERIAL_EXAMPLE_MODEL = [
             id: "email",
             placeholder: "E-Mail",
             validators: {
-                required: null,
                 email: null
             },
             errorMessages: {
-                required: "Field is required",
                 email: "Field has no valid email"
             }
         }

@@ -96,7 +96,7 @@
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
-                  [ngClass]="model.cls.element.control">
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -171,7 +171,7 @@
         <div *ngSwitchCase="9" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
-             [ngClass]="model.cls.element.control">
+             [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <dynamic-kendo-form-control *ngFor="let controlModel of model.group"
                                         [group]="control"
@@ -264,7 +264,8 @@
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
-        <fieldset *ngSwitchCase="14" class="k-form-field" role="radiogroup">
+        <fieldset *ngSwitchCase="14" class="k-form-field" role="radiogroup"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -274,7 +275,7 @@
                        [formControlName]="model.id"
                        [id]="'option' + idx + model.id"
                        [name]="model.name"
-                       [ngClass]="model.cls.element.control"
+                       [ngClass]="[model.cls.element.option, model.cls.grid.option]"
                        [value]="option.value"
                        (blur)="onFocusChange($event)"
                        (focus)="onFocusChange($event)"/>

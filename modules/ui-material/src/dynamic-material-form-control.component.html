@@ -162,6 +162,7 @@
             <md-radio-button *ngFor="let option of model.options$ | async"
                              [labelPosition]="'after'"
                              [name]="model.name"
+                             [ngClass]="model.cls.element.option"
                              [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
 
         </md-radio-group>
@@ -176,6 +177,7 @@
                    (change)="onValueChange($event)">
 
             <md-option *ngFor="let option of model.options$ | async"
+                       [ngClass]="model.cls.element.option"
                        [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
 
         </md-select>

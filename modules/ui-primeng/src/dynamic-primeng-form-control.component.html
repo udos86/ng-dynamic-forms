@@ -30,24 +30,25 @@
     </div>
 
 
-    <div *ngIf="type === 12" role="radiogroup"
+    <div *ngIf="type === 13" role="radiogroup"
          [attr.tabindex]="model.tabIndex"
          [dynamicId]="bindId && model.id"
-         [ngClass]="model.cls.grid.control"
+         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
          (change)="onValueChange($event)">
 
-        <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.element.control">
+        <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.grid.option">
 
             <p-radioButton [formControlName]="model.id"
                            [label]="option.label"
                            [name]="model.name"
+                           [ngClass]="model.cls.element.option"
                            [value]="option.value"></p-radioButton>
         </div>
 
     </div>
 
 
-    <ng-container *ngIf="type !== 8 && type !== 12">
+    <ng-container *ngIf="type !== 8 && type !== 13">
 
         <div [ngClass]="model.cls.grid.control" [ngSwitch]="type">
 
@@ -188,7 +189,20 @@
             </ng-container>
 
 
-            <p-inputSwitch *ngSwitchCase="10" #pInputSwitch
+            <p-inputMask *ngSwitchCase="10" #pInputMask
+                         [dynamicId]="bindId && model.id"
+                         [formControlName]="model.id"
+                         [mask]="model.mask"
+                         [ngClass]="model.cls.element.control"
+                         [placeholder]="model.placeholder"
+                         [readonly]="model.readOnly"
+                         [tabindex]="model.tabIndex"
+                         (onBlur)="onFocusChange($event)"
+                         (onChange)="onValueChange($event)"
+                         (onFocus)="onFocusChange($event)"></p-inputMask>
+
+
+            <p-inputSwitch *ngSwitchCase="11" #pInputSwitch
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [ngClass]="model.cls.element.control"
@@ -198,7 +212,7 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
 
-            <p-multiSelect *ngSwitchCase="11" #pMultiSelect
+            <p-multiSelect *ngSwitchCase="12" #pMultiSelect
                            [dynamicId]="bindId && model.id"
                            [filter]="model.filterable"
                            [formControlName]="model.id"
@@ -210,7 +224,7 @@
                            (onFocus)="onFocusChange($event)"></p-multiSelect>
 
 
-            <p-rating *ngSwitchCase="13" #pRating
+            <p-rating *ngSwitchCase="14" #pRating
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
@@ -218,7 +232,7 @@
                       (onRate)="onValueChange($event)"></p-rating>
 
 
-            <p-slider *ngSwitchCase="14" #pSlider
+            <p-slider *ngSwitchCase="15" #pSlider
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
@@ -228,7 +242,7 @@
                       (onChange)="onValueChange($event)"></p-slider>
 
 
-            <p-spinner *ngSwitchCase="15" #pSpinner
+            <p-spinner *ngSwitchCase="16" #pSpinner
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [min]="model.min"
@@ -242,7 +256,7 @@
                        (onFocus)="onFocusChange($event)"></p-spinner>
 
 
-            <textarea *ngSwitchCase="16" pInputTextarea #pInputTextarea
+            <textarea *ngSwitchCase="17" pInputTextarea #pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"

@@ -94,7 +94,8 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                                 label: "Storeroom",
                                 value: "storeroom"
                             }
-                        ]
+                        ],
+                        value: "single-room"
                     },
                     {
                         element: {
@@ -110,13 +111,15 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
                         id: "roomQuantity",
                         inputType: "number",
                         label: "Quantity",
+                        placeholder: "Quantity",
                         hint: "Maximum: 5",
                         max: 5,
                         min: 0,
-                        placeholder: "Quantity"
+                        value: 1
                     },
                     {
                         element: {
+                            container: "text-center",
                             label: "col-form-label"
                         },
                         grid: {
@@ -177,11 +180,9 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
             label: "E-Mail",
             placeholder: "E-Mail",
             validators: {
-                required: null,
                 email: null
             },
             errorMessages: {
-                required: "{{ label }} is required",
                 email: "{{ label }} is not valid"
             }
         },
@@ -405,8 +406,8 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
         },
         {
             element: {
-                control: "btn-primary",
-                label: "col-form-label"
+                label: "col-form-label",
+                option: "btn-primary"
             }
         }
     ),
@@ -430,6 +431,19 @@ export const NG_BOOTSTRAP_FORM_MODEL: DynamicFormControlModel[] = [
             label: "Personal Note",
             placeholder: "Personal Note",
             rows: 5
+        },
+        {
+            element: {
+                label: "col-form-label"
+            }
+        }
+    ),
+
+    new DynamicInputModel(
+        {
+            id: "attachments",
+            inputType: "file",
+            label: "Attachments"
         },
         {
             element: {

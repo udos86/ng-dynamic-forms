@@ -137,11 +137,12 @@
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
+                      [ngClass]="model.cls.element.control"
                       (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.element.control || 'radio'">
+                <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.element.option || 'radio'">
 
                     <label>
 

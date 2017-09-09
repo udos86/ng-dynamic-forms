@@ -2,13 +2,11 @@ import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
-    DynamicEditorModel,
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
     DynamicRatingModel,
     DynamicSelectModel,
-    DynamicSliderModel,
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
@@ -193,12 +191,10 @@ export const PRIMENG_EXAMPLE_MODEL = [
             label: "E-Mail",
             placeholder: "E-Mail",
             validators: {
-                required: null,
                 email: null
             },
             errorMessages: {
-                required: "{{ label }} is required",
-                email: "email is not valid"
+                email: "{{ label }} is not valid"
             }
         },
         {
@@ -217,7 +213,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
             id: "phone",
             label: "Phone Number",
             placeholder: "Phone Number",
-            mask: "(99) 999-9999",
+            mask: "+(99) 999-9999",
             validators: {
                 required: null
             },
@@ -418,6 +414,7 @@ export const PRIMENG_EXAMPLE_MODEL = [
                 label: "ui-widget"
             },
             grid: {
+                label: "ui-g",
                 control: "ui-g"
             }
         }
@@ -449,11 +446,12 @@ export const PRIMENG_EXAMPLE_MODEL = [
         },
         {
             element: {
-                label: "ui-widget",
-                control: "ui-g-3"
+                label: "ui-widget"
             },
             grid: {
-                control: "ui-g"
+                label: "ui-g",
+                control: "ui-g",
+                option: "ui-g-3"
             }
         }
     ),
@@ -495,8 +493,8 @@ export const PRIMENG_EXAMPLE_MODEL = [
 
     new DynamicSwitchModel(
         {
-            id: "primeSwitch",
-            label: "Prime Switch",
+            id: "reminder",
+            label: "Send me a reminder",
             offLabel: "Off",
             onLabel: "On",
             value: false
@@ -504,6 +502,29 @@ export const PRIMENG_EXAMPLE_MODEL = [
         {
             element: {
                 label: "ui-widget"
+            },
+            grid: {
+                label: "order-1",
+                container: "ui-g"
+            }
+        }
+    ),
+
+    new DynamicSwitchModel(
+        {
+            id: "newsletter",
+            label: "Subscribe to newsletter",
+            offLabel: "Off",
+            onLabel: "On",
+            value: true
+        },
+        {
+            element: {
+                label: "ui-widget"
+            },
+            grid: {
+                label: "order-1",
+                container: "ui-g"
             }
         }
     ),
@@ -516,6 +537,9 @@ export const PRIMENG_EXAMPLE_MODEL = [
         {
             element: {
                 label: "ui-widget"
+            },
+            grid: {
+                container: "ui-g"
             }
         }
     ),

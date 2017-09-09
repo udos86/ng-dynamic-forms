@@ -27,6 +27,7 @@ export interface Cls {
     hint?: string;
     host?: string;
     label?: string;
+    option?: string;
 }
 
 export interface ClsConfig {
@@ -44,7 +45,8 @@ export function createEmptyClsConfig(): Cls {
         group: "",
         hint: "",
         host: "",
-        label: ""
+        label: "",
+        option: ""
     };
 }
 

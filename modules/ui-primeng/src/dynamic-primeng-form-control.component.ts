@@ -18,6 +18,7 @@ import {
     Chips,
     Dropdown,
     Editor,
+    InputMask,
     InputSwitch,
     MultiSelect,
     Rating,
@@ -58,8 +59,8 @@ import {
     PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
 } from "./dynamic-primeng-form.const";
 
-export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputSwitch |
-    MultiSelect | Rating | Slider | Spinner;
+export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputMask |
+    InputSwitch | MultiSelect | Rating | Slider | Spinner;
 
 @Component({
     selector: "dynamic-primeng-form-control,dynamic-form-primeng-control",
@@ -154,6 +155,9 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
                 if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
                     return PrimeNGFormControlType.Spinner;
+
+                } else if (inputModel.mask) {
+                    return PrimeNGFormControlType.InputMask;
 
                 } else if (Array.isArray(inputModel.list)) {
                     return PrimeNGFormControlType.AutoComplete;

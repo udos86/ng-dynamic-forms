@@ -126,11 +126,9 @@ export const KENDO_EXAMPLE_MODEL = [
             label: "E-Mail",
             placeholder: "E-Mail",
             validators: {
-                required: null,
                 email: null
             },
             errorMessages: {
-                required: "{{label}} is required",
                 email: "{{label}} is not valid"
             }
         }
@@ -279,18 +277,8 @@ export const KENDO_EXAMPLE_MODEL = [
         {
             id:"arrivalTime",
             label: "Estimated Arrival Time",
+            placeholder: "Time",
             format: "HH:mm"
-        }
-    ),
-
-    new DynamicFileUploadModel(
-        {
-            autoUpload: true,
-            id: "attachements",
-            label: "Attachements",
-            multiple: true,
-            removeUrl: "removeUrl",
-            url: "saveUrl"
         }
     ),
 
@@ -300,6 +288,17 @@ export const KENDO_EXAMPLE_MODEL = [
             label: "Personal Note",
             rows: 5,
             placeholder: "Personal Note"
+        }
+    ),
+
+    new DynamicFileUploadModel(
+        {
+            autoUpload: true,
+            id: "attachments",
+            label: "Attachments",
+            multiple: true,
+            removeUrl: "removeUrl",
+            url: "saveUrl"
         }
     ),
 

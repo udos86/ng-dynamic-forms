@@ -18,7 +18,7 @@ nav a {
 pre {
     display: block;
     padding: 10px;
-    margin: 0 0 10px;
+    margin: 50px 0 0 0;
     font-size: 13px;
     line-height: 1.42857143;
     color: #333;
@@ -208,6 +208,10 @@ dynamic-primeng-form-control.primeng-form-group {
 
 dynamic-primeng-form-control .ui-dropdown{
     width: 100% !important;
+}
+
+dynamic-primeng-form-control div.order-1{
+    padding: 4px;
 }
 
 [src="../../assets/calendar-icon.svg"] {
