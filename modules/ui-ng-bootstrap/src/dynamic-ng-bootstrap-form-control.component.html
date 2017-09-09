@@ -252,9 +252,8 @@
                             [seconds]="model.showSeconds"
                             [spinners]="true"></ngb-timepicker>
 
-            <small *ngIf="model.hint" class="text-muted"
-                   [innerHTML]="model.hint"
-                   [ngClass]="model.cls.element.hint"></small>
+
+            <small *ngIf="hasHint" class="text-muted" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></small>
 
 
             <div *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">

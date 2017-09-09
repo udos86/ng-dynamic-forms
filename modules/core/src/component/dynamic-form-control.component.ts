@@ -127,7 +127,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get hasHint(): boolean { // needed for AOT
-        return (this.model as DynamicInputModel).hint !== null;
+        return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
     }
 
     get hasList(): boolean { // needed for AOT

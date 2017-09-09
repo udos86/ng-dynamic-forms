@@ -4,7 +4,7 @@
 
 * `options` property added to `ClsConfig` for applying CSS classes to a single option in a radio groups
 * **brand new sample forms for Material, Kendo, ng-bootstrap and Prime NG**
-* minor template improvements for Material, Kendo, ng-bootstrap and Prime NG
+* major template improvements for Material, Kendo, ng-bootstrap and Prime NG
 * initial support for Spinner and InputMask in `ui-primeng`
 * update to ng-bootstrap `beta.4` 
 
