@@ -10,5 +10,4 @@ script:
 after_success:
   - if [ -n "$TRAVIS_TAG" ]; then
       echo "tag build"
-      # ./publish.sh
     fi
