@@ -145,6 +145,7 @@ dynamic-kendo-form-control ul {
 
 dynamic-kendo-form-control li.k-field-info {
     color: #f31700 !important;
+    margin-top: 12px !important;
 }
 
 
@@ -207,7 +208,7 @@ dynamic-primeng-form-control div.order-1{
     padding: 4px;
 }
 
-[src="../../assets/calendar-icon.svg"] {
+[src="./assets/calendar-icon.svg"] {
     height: 1rem;
     width: 1.2rem;
 }

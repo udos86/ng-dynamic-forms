@@ -24,7 +24,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
                         inline: false,
                         label: "Arrival",
                         placeholder: "Date of Arrival",
-                        toggleIcon: "../../assets/calendar-icon.svg"
+                        toggleIcon: "./assets/calendar-icon.svg"
                     },
                     {
                         element: {
@@ -43,7 +43,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
                         inline: false,
                         label: "Departure",
                         placeholder: "Date of Departure",
-                        toggleIcon: "../../assets/calendar-icon.svg"
+                        toggleIcon: "./assets/calendar-icon.svg"
                     },
                     {
                         element: {
