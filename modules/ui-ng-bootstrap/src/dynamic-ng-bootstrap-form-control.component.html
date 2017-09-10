@@ -25,14 +25,14 @@
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                      [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                    <dynamic-ng-bootstrap-form-control *ngFor="let item of groupModel.group"
+                    <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
                                                        [context]="groupModel"
                                                        [group]="control.at(idx)"
-                                                       [hasErrorMessaging]="item.hasErrorMessages"
-                                                       [model]="item"
+                                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                       [model]="controlModel"
                                                        [templates]="templates"
-                                                       [ngClass]="[item.cls.element.host, item.cls.grid.host]"
+                                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                        (blur)="onFocusChange($event)"
                                                        (change)="onValueChange($event)"
                                                        (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
@@ -172,9 +172,7 @@
                 <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
 
                 <datalist *ngIf="model.list" [id]="model.listId">
-
                     <option *ngFor="let option of model.list" [value]="option">
-
                 </datalist>
 
             </div>
@@ -217,8 +215,7 @@
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}
-                </option>
+                        [ngValue]="option.value">{{option.label}}</option>
 
             </select>
 

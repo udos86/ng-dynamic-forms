@@ -20,6 +20,10 @@ export abstract class DynamicFormComponent {
     change: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
 
+    trackByFn(index: number, model: DynamicFormControlModel): string {
+        return model.id;
+    }
+
     onEvent($event: DynamicFormControlEvent, type: DynamicFormControlEventType) {
 
         switch (type) {
