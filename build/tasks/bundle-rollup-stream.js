@@ -60,12 +60,12 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
 
         return {
 
-            entry: path.join(entryRootPath, moduleName, "public_api.js"),
+            input: path.join(entryRootPath, moduleName, "public_api.js"),
             format: format,
             banner: `/*!\n${pkg.name} ${pkg.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`,
             context: "this",
             external: Object.keys(globals),
-            moduleName: `${globalsName}.${toCamelCase(moduleName)}`,
+            name: `${globalsName}.${toCamelCase(moduleName)}`,
             globals,
             plugins: minify ? [uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}})] : []
         };
