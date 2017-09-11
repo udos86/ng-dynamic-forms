@@ -26,14 +26,14 @@
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                      [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
-                    <dynamic-foundation-form-control *ngFor="let item of groupModel.group"
+                    <dynamic-foundation-form-control *ngFor="let controlModel of groupModel.group"
                                                      [bindId]="false"
                                                      [context]="groupModel"
                                                      [group]="control.at(idx)"
-                                                     [hasErrorMessaging]="item.hasErrorMessages"
-                                                     [model]="item"
+                                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                     [model]="controlModel"
                                                      [templates]="templates"
-                                                     [ngClass]="[item.cls.element.host, item.cls.grid.host]"
+                                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                      (blur)="onFocusChange($event)"
                                                      (change)="onValueChange($event)"
                                                      (focus)="onFocusChange($event)"></dynamic-foundation-form-control>

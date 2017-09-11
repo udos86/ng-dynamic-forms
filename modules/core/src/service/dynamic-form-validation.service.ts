@@ -2,12 +2,13 @@ import { Injectable, Inject, Optional } from "@angular/core";
 import {
     AbstractControl,
     AsyncValidatorFn,
+    FormArray,
     FormControl,
     FormGroup,
     ValidatorFn,
     Validators,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS, FormArray
+    NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import {
     DynamicFormControlModel,
@@ -21,11 +22,37 @@ export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
 
 export type ValidatorsToken = (ValidatorFn | AsyncValidatorFn)[];
 
+export interface ValidatorFnParams {
+
+    validatorName: string;
+    validatorArgs: any;
+}
+
 @Injectable()
 export class DynamicFormValidationService {
 
     constructor(@Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
                 @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
+
+
+    private getValidatorFnParams(validatorFnKey: string, validatorConfig: any): ValidatorFnParams {
+
+        let validatorName,
+            validatorArgs = null;
+
+        if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
+
+            validatorName = (validatorConfig as DynamicValidatorConfig).name;
+            validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
+
+        } else {
+
+            validatorName = validatorFnKey;
+            validatorArgs = validatorConfig;
+        }
+
+        return {validatorName, validatorArgs};
+    }
 
 
     private getValidatorFn(validatorName: string, validatorArgs: any = null,
@@ -59,31 +86,19 @@ export class DynamicFormValidationService {
 
         let validatorFns: ValidatorFn[] | AsyncValidatorFn[] = [];
 
-        if (Utils.isTrueObject(validatorsConfig)) {
+        if (Utils.isNonEmptyObject(validatorsConfig)) {
 
             validatorFns = Object.keys(validatorsConfig).map(validatorFnKey => {
 
-                let validatorConfig = validatorsConfig[validatorFnKey],
-                    validatorName,
-                    validatorArgs;
+                let params = this.getValidatorFnParams(validatorFnKey, validatorsConfig[validatorFnKey]);
 
-                if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
-
-                    validatorName = (validatorConfig as DynamicValidatorConfig).name;
-                    validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
-
-                } else {
-
-                    validatorName = validatorFnKey;
-                    validatorArgs = validatorConfig;
-                }
-
-                return this.getValidatorFn(validatorName, validatorArgs, validatorsToken);
+                return this.getValidatorFn(params.validatorName, params.validatorArgs, validatorsToken);
             });
         }
 
         return validatorFns;
     }
+
 
     private parseErrorMessageTemplate(template: string, model: DynamicFormControlModel, error: any = null): string {
 
@@ -102,37 +117,16 @@ export class DynamicFormValidationService {
         });
     }
 
-    getValidatorByName(validatorName: string, validatorArgs: any = null): ValidatorFn {
-        return this.getValidatorFn(validatorName, validatorArgs) as ValidatorFn;
-    }
 
-
-    getAsyncValidatorByName(validatorName: string, validatorArgs: any = null): AsyncValidatorFn {
-        return this.getValidatorFn(validatorName, validatorArgs, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
-    }
-
-
-    getValidator(validatorsConfig: DynamicValidatorsMap): ValidatorFn | null {
+    getValidator(validatorsConfig: DynamicValidatorsMap, validatorsToken: ValidatorsToken = this.NG_VALIDATORS): ValidatorFn | null {
 
         if (Utils.isNonEmptyObject(validatorsConfig)) {
 
             let validatorFnKey = Object.keys(validatorsConfig)[0],
-                validatorConfig = validatorsConfig[validatorFnKey],
-                validatorName,
-                validatorArgs;
+                params = this.getValidatorFnParams(validatorFnKey, validatorsConfig[validatorFnKey]);
 
-            if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
-
-                validatorName = (validatorConfig as DynamicValidatorConfig).name;
-                validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
-
-            } else {
-
-                validatorName = validatorFnKey;
-                validatorArgs = validatorConfig;
-            }
-
-            return this.getValidatorFn(validatorName, validatorArgs) as ValidatorFn;
+            return this.getValidatorFn(
+                params.validatorName, params.validatorArgs, validatorsToken) as ValidatorFn;
         }
 
         return null;
@@ -140,29 +134,17 @@ export class DynamicFormValidationService {
 
 
     getAsyncValidator(validatorsConfig: DynamicValidatorsMap): AsyncValidatorFn | null {
+        return this.getValidator(validatorsConfig, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
+    }
 
-        if (Utils.isNonEmptyObject(validatorsConfig)) {
 
-            let validatorFnKey = Object.keys(validatorsConfig)[0],
-                validatorConfig = validatorsConfig[validatorFnKey],
-                validatorName,
-                validatorArgs;
+    getValidatorByName(validatorName: string, validatorArgs: any = null): ValidatorFn {
+        return this.getValidatorFn(validatorName, validatorArgs) as ValidatorFn;
+    }
 
-            if (ValidationUtils.isExpandedValidatorConfig(validatorConfig)) {
 
-                validatorName = (validatorConfig as DynamicValidatorConfig).name;
-                validatorArgs = (validatorConfig as DynamicValidatorConfig).args;
-
-            } else {
-
-                validatorName = validatorFnKey;
-                validatorArgs = validatorConfig;
-            }
-
-            return this.getValidatorFn(validatorName, validatorArgs, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
-        }
-
-        return null;
+    getAsyncValidatorByName(validatorName: string, validatorArgs: any = null): AsyncValidatorFn {
+        return this.getValidatorFn(validatorName, validatorArgs, this.NG_ASYNC_VALIDATORS) as AsyncValidatorFn;
     }
 
 

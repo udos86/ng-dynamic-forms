@@ -1,4 +1,4 @@
-<dynamic-kendo-form-control *ngFor="let controlModel of model"
+<dynamic-kendo-form-control *ngFor="let controlModel of model; trackBy: trackByFn"
                             [group]="group"
                             [hasErrorMessaging]="controlModel.hasErrorMessages"
                             [model]="controlModel"

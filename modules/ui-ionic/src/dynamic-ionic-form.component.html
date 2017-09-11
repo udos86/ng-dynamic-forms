@@ -1,4 +1,4 @@
-<dynamic-ionic-form-control *ngFor="let controlModel of model"
+<dynamic-ionic-form-control *ngFor="let controlModel of model; trackBy: trackByFn"
                             [group]="group"
                             [model]="controlModel"
                             [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
