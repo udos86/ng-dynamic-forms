@@ -9,9 +9,9 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
+    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
+            <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 
     <div *ngIf="type === 2" [ngClass]="model.cls.grid.control">
@@ -204,10 +204,8 @@
     </ul>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'END'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
-
-    <ng-content></ng-content>
+    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 </div>

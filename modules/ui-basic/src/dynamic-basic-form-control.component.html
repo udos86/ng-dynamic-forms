@@ -1,14 +1,14 @@
-<div [formGroup]="group" [ngClass]="model.cls.element.container">
+<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="model.label && type !== 2"
+    <label *ngIf="type !== 2 && model.label"
            [attr.for]="model.id"
            [innerHTML]="model.label"
-           [ngClass]="model.cls.element.label"></label>
+           [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
+    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 
     <ng-container [ngSwitch]="type">
@@ -16,7 +16,7 @@
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
-             [ngClass]="model.cls.element.control">
+             [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                  [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
@@ -40,7 +40,7 @@
         </div>
 
 
-        <label *ngSwitchCase="2">
+        <label *ngSwitchCase="2" [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <input type="checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -49,7 +49,6 @@
                    [formControlName]="model.id"
                    [indeterminate]="model.indeterminate"
                    [name]="model.name"
-                   [ngClass]="model.cls.element.control"
                    [required]="model.required"
                    [value]="model.value"
                    (blur)="onFocusChange($event)"
@@ -62,7 +61,7 @@
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
-                  [ngClass]="model.cls.element.control">
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -94,7 +93,7 @@
                    [maxlength]="model.maxLength"
                    [minlength]="model.minLength"
                    [name]="model.name"
-                   [ngClass]="model.cls.element.control"
+                   [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                    [pattern]="model.pattern"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -107,9 +106,7 @@
                    (focus)="onFocusChange($event)"/>
 
             <datalist *ngIf="hasList" [id]="model.listId">
-
                 <option *ngFor="let option of model.list" [value]="option">
-
             </datalist>
 
         </ng-container>
@@ -119,7 +116,7 @@
                   [attr.tabindex]="model.tabIndex"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
-                  [ngClass]="model.cls.element.control"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   (change)="onValueChange($event)">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
@@ -132,7 +129,6 @@
                        [value]="option.value"
                        (blur)="onFocusChange($event)"
                        (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
-
         </fieldset>
 
 
@@ -141,7 +137,7 @@
                 [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
                 [name]="model.name"
-                [ngClass]="model.cls.element.control"
+                [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                 [required]="model.required"
                 (blur)="onFocusChange($event)"
                 (change)="onValueChange($event)"
@@ -150,8 +146,7 @@
             <option *ngFor="let option of model.options$ | async"
                     [attr.name]="model.name"
                     [disabled]="!!option.disabled"
-                    [ngValue]="option.value">{{option.label}}
-            </option>
+                    [ngValue]="option.value">{{option.label}}</option>
 
         </select>
 
@@ -164,7 +159,7 @@
                   [maxlength]="model.maxLength"
                   [minlength]="model.minLength"
                   [name]="model.name"
-                  [ngClass]="model.cls.element.control"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
                   [required]="model.required"
@@ -178,20 +173,16 @@
     </ng-container>
 
 
-    <div *ngIf="hasHint" [ngClass]="model.cls.element.hint"><span [innerHTML]="model.hint"></span></div>
+    <div *ngIf="hasHint" [ngClass]="[model.cls.element.hint, model.cls.grid.hint]"><span [innerHTML]="model.hint"></span></div>
 
 
-    <ul *ngIf="showErrorMessages" [ngClass]="model.cls.element.errors">
-
+    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages">{{message}}</li>
     </ul>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'END'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
-
-
-    <ng-content></ng-content>
+    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 </div>

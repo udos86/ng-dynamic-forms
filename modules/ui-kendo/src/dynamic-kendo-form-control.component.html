@@ -1,6 +1,6 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <label *ngIf="model.label && type !== 4 && type !== 10"
+    <label *ngIf="type !== 4 && type !== 10 && model.label"
            [attr.for]="model.id"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]">
 
@@ -12,9 +12,9 @@
     </label>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
+    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
+            <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 
     <ng-container [ngSwitch]="type">
@@ -70,7 +70,7 @@
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
 
-        <label *ngSwitchCase="4" class="k-form-field">
+        <label *ngSwitchCase="4" class="k-form-field" [ngClass]="model.cls.grid.control">
 
             <input type="checkbox" class="k-checkbox"
                    [attr.tabindex]="model.tabIndex"
@@ -184,7 +184,7 @@
         </div>
 
 
-        <label *ngSwitchCase="10" class="k-form-field">
+        <label *ngSwitchCase="10" class="k-form-field" [ngClass]="model.cls.grid.control">
 
             <span>
                 <span [innerHTML]="model.label" [ngClass]="model.cls.element.label"></span>
@@ -318,7 +318,7 @@
                   [maxlength]="model.maxLength"
                   [minlength]="model.minLength"
                   [name]="model.name"
-                  [ngClass]="model.cls.element.control"
+                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
                   [required]="model.required"
@@ -363,10 +363,8 @@
     </ul>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'END'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
-
-    <ng-content></ng-content>
+    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
+            <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 </div>

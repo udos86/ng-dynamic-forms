@@ -1,16 +1,13 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-
-    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
-
-
     <div *ngIf="type !== 4 && model.label" [ngClass]="model.cls.grid.label">
-
         <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
-
     </div>
+
+
+    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 
     <div *ngIf="type === 8" role="group"
@@ -181,9 +178,7 @@
                        (focus)="onFocusChange($event)"/>
 
                 <datalist *ngIf="model.list" [id]="model.listId">
-
                     <option *ngFor="let option of model.list" [value]="option">
-
                 </datalist>
 
             </ng-container>
@@ -285,10 +280,8 @@
     </ul>
 
 
-    <ng-template *ngIf="type !== 1 && template?.align === 'END'"
-                 [ngTemplateOutlet]="template.templateRef"
-                 [ngTemplateOutletContext]="model"></ng-template>
-
-    <ng-content></ng-content>
+    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
 
 </div>
