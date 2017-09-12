@@ -32,10 +32,10 @@
   },
   "exclude": [
     "dist",
+    "node_modules",
+    "packages",
     "sample/aot",
     "sample/dist",
-    "modules",
-    "node_modules",
     "test"
   ]
 }

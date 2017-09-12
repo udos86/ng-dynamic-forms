@@ -32,7 +32,7 @@
   },
   "exclude": [
     "sample",
-    "modules",
-    "node_modules"
+    "node_modules",
+    "packages"
   ]
 }

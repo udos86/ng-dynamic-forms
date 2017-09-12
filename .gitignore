@@ -2,11 +2,13 @@
 .DS_STORE
 npm-debug.log
 
+@ng2-dynamic-forms/
+
 coverage/
 dist/
 docs/
+node_modules/
 test/
-@ng2-dynamic-forms/
 
 sample/aot/
 sample/app/**/*.js
@@ -16,4 +18,3 @@ sample/dist
 sample/fonts
 sample/images
 
-node_modules/

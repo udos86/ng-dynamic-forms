@@ -14,14 +14,14 @@ const TASK_BUNDLE_ROLLUP        = require("./build/tasks/bundle-rollup-stream"),
       TASK_DOC_TYPESCRIPT       = require("./build/tasks/doc-typescript");
 
 const NPM_SCOPE      = "@ng2-dynamic-forms",
-      SRC_PATH       = "./modules",
+      SRC_PATH       = "./packages",
       DIST_BASE_PATH = "./dist",
       DIST_PATH      = `${DIST_BASE_PATH}/${NPM_SCOPE}`,
       NPM_BASE_PATH  = "./node_modules",
       NPM_PATH       = `${NPM_BASE_PATH}/${NPM_SCOPE}`,
       TEST_PATH      = "./test",
-      MODULE_TASKS   = [],
-      MODULES        = [
+      PACKAGE_TASKS   = [],
+      PACKAGES        = [
           "core",
           "ui-basic",
           "ui-bootstrap",
@@ -33,13 +33,13 @@ const NPM_SCOPE      = "@ng2-dynamic-forms",
           "ui-primeng"
       ];
 
-MODULES.forEach(moduleName => {
+PACKAGES.forEach(packageName => {
 
-    let taskName = `bundle:${moduleName}`;
+    let taskName = `bundle:${packageName}`;
 
-    gulp.task(taskName, TASK_BUNDLE_ROLLUP(DIST_PATH, moduleName, "ng2DF", pkg, DIST_PATH));
+    gulp.task(taskName, TASK_BUNDLE_ROLLUP(DIST_PATH, packageName, "ng2DF", pkg, DIST_PATH));
 
-    MODULE_TASKS.push(taskName);
+    PACKAGE_TASKS.push(taskName);
 });
 
 
@@ -53,7 +53,7 @@ gulp.task("increment:version:patch",
     TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
 
 
-gulp.task("lint:modules",
+gulp.task("lint:packages",
     TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
 
@@ -67,17 +67,17 @@ gulp.task("clean:dist:npm",
     TASK_CLEAN([`${NPM_PATH}**/*`]));
 
 
-gulp.task("copy:modules:dist",
+gulp.task("copy:packages:dist",
     TASK_COPY([`${SRC_PATH}/**/*.*`], DIST_PATH));
 
-gulp.task("copy:modules:test",
+gulp.task("copy:packages:test",
     TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
 
 gulp.task("copy:dist:npm",
     TASK_COPY([`${DIST_BASE_PATH}/**/*.*`], NPM_BASE_PATH));
 
 
-gulp.task("preprocess:modules:dist",
+gulp.task("preprocess:packages:dist",
     TASK_PREPROCESS(`${DIST_PATH}/**/*.js`, DIST_PATH));
 
 gulp.task("inline:ng2-templates:dist",
@@ -87,63 +87,63 @@ gulp.task("remove:moduleId:dist",
     TASK_REMOVE_MODULE_ID([`${DIST_PATH}/**/*`], DIST_PATH));
 
 
-gulp.task("transpile:modules:dist",
-    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.modules.json", "es2015"));
+gulp.task("transpile:packages:dist",
+    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.packages.json", "es2015"));
 
-gulp.task("transpile:modules:debug",
-    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.modules.json", "commonjs"));
+gulp.task("transpile:packages:debug",
+    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.packages.json", "commonjs"));
 
-gulp.task("transpile:modules:test",
-    TASK_TRANSPILE_TYPESCRIPT([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.modules.json", "commonjs"));
+gulp.task("transpile:packages:test",
+    TASK_TRANSPILE_TYPESCRIPT([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.packages.json", "commonjs"));
 
 
-gulp.task("build:modules:debug", function (done) {
+gulp.task("build:packages:debug", function (done) {
 
     runSequence(
-        "transpile:modules:debug",
+        "transpile:packages:debug",
         done
     );
 });
 
-gulp.task("build:modules:dist", function (done) {
+gulp.task("build:packages:dist", function (done) {
 
     runSequence(
-        "lint:modules",
+        "lint:packages",
         "clean:dist",
-        "copy:modules:dist",
-        "transpile:modules:dist",
-        "preprocess:modules:dist",
+        "copy:packages:dist",
+        "transpile:packages:dist",
+        "preprocess:packages:dist",
         "inline:ng2-templates:dist",
-        ...MODULE_TASKS,
+        ...PACKAGE_TASKS,
         "remove:moduleId:dist",
         "copy:dist:npm",
         done
     );
 });
 
-gulp.task("build:modules:test", function (done) {
+gulp.task("build:packages:test", function (done) {
 
     runSequence(
         "clean:test",
-        "copy:modules:test",
-        "transpile:modules:test",
+        "copy:packages:test",
+        "transpile:packages:test",
         done
     );
 });
 
 
-gulp.task("build:modules", function (done) {
+gulp.task("build:packages", function (done) {
 
     runSequence(
-        "build:modules:dist",
+        "build:packages:dist",
         "copy:dist:npm",
-        "build:modules:test",
+        "build:packages:test",
         done
     );
 });
 
 
-gulp.task("doc:modules",
+gulp.task("doc:packages",
     TASK_DOC_TYPESCRIPT([`${SRC_PATH}/*/src/**/!(*.spec).ts`], {
             externalPattern: `${DIST_PATH}/**/*.*`,
             excludeExternals: true,
@@ -160,6 +160,6 @@ gulp.task("doc:modules",
     ));
 
 
-gulp.task("watch:modules", function () {
-    gulp.watch([`${SRC_PATH}/**/*.*`], ["build:modules"]);
+gulp.task("watch:packages", function () {
+    gulp.watch([`${SRC_PATH}/**/*.*`], ["build:packages"]);
 });

@@ -11,7 +11,7 @@ module.exports = function (config) {
                 throw new util.PluginError("webpack", error);
             }
 
-            util.log("bundle:modules", stats.toString({
+            util.log("bundle:packages", stats.toString({
                 chunks: false,
                 colors: true,
                 hash: false,
