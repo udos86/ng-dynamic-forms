@@ -2,8 +2,8 @@
 
 ### **Announcements** 
 
-* **This will be probably the last patch version before Angular 5**
-* **Starting with Angular 5 ng2 Dynamic Forms will be released under new name ngx-dynamic-forms** 
+* This is probably the last patch version before Angular 5
+* Starting with Angular 5 ng2 Dynamic Forms will be released under new name ngx-dynamic-forms
 
 ### **Features** 
 
