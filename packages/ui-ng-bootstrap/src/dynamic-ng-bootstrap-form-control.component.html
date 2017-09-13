@@ -1,0 +1,268 @@
+<div [class.form-group]="(type !== 6 && asBootstrapFormGroup) || model.cls.element.container.includes('form-group')"
+     [formGroup]="group"
+     [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+
+    <label *ngIf="type !== 3 && model.label"
+           [attr.for]="model.id"
+           [innerHTML]="model.label"
+           [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
+
+
+    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
+
+
+    <div [ngClass]="model.cls.grid.control">
+
+        <ng-container [ngSwitch]="type">
+
+            <div *ngSwitchCase="1"
+                 [dynamicId]="bindId && model.id"
+                 [formArrayName]="model.id"
+                 [ngClass]="model.cls.element.control">
+
+                <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
+                     [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
+
+                    <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of groupModel.group"
+                                                       [bindId]="false"
+                                                       [context]="groupModel"
+                                                       [group]="control.at(idx)"
+                                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                       [model]="controlModel"
+                                                       [templates]="templates"
+                                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                                       (blur)="onFocusChange($event)"
+                                                       (change)="onValueChange($event)"
+                                                       (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
+
+                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+
+                </div>
+
+            </div>
+
+
+            <ngb-datepicker *ngSwitchCase="2"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [maxDate]="model.max"
+                            [minDate]="model.min"
+                            [ngClass]="model.cls.element.control"
+                            [startDate]="model.focusedDate"></ngb-datepicker>
+
+
+            <div *ngSwitchCase="3" class="form-check" [class.disabled]="model.disabled">
+
+                <label class="form-check-label">
+
+                    <input type="checkbox" class="form-check-input"
+                           [attr.tabindex]="model.tabIndex"
+                           [checked]="model.checked"
+                           [class.is-invalid]="showErrorMessages"
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [indeterminate]="model.indeterminate"
+                           [name]="model.name"
+                           [ngClass]="model.cls.element.control"
+                           [required]="model.required"
+                           [value]="model.value"
+                           (blur)="onFocusChange($event)"
+                           (change)="onValueChange($event)"
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
+                                                                  [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
+                </label>
+
+            </div>
+
+
+            <div *ngSwitchCase="4" class="btn-group" data-toggle="buttons"
+                 [dynamicId]="bindId && model.id"
+                 [formGroupName]="model.id"
+                 [ngClass]="model.cls.element.control">
+
+                <label *ngFor="let controlModel of model.group" ngbButtonLabel
+                       [ngClass]="controlModel.cls.element.control">
+
+                    <input type="checkbox" ngbButton
+                           [attr.tabindex]="controlModel.tabIndex"
+                           [checked]="controlModel.checked"
+                           [dynamicId]="bindId && controlModel.id"
+                           [formControlName]="controlModel.id"
+                           [name]="controlModel.name"
+                           [required]="controlModel.required"
+                           [value]="controlModel.value"
+                           (blur)="onFocusChange($event)"
+                           (change)="onValueChange($event)"
+                           (focus)="onFocusChange($event)"/><span [ngClass]="controlModel.cls.element.label"
+                                                                  [innerHTML]="controlModel.label"></span></label>
+            </div>
+
+
+            <div *ngSwitchCase="5" class="input-group">
+
+                <input ngbDatepicker class="form-control"
+                       [class.is-invalid]="showErrorMessages"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [placeholder]="model.placeholder"
+                       #datepicker="ngbDatepicker">
+
+                <div class="input-group-addon" (click)="datepicker.toggle()">
+                    <img [src]="model.toggleIcon" style="cursor: pointer;"/>
+                </div>
+
+            </div>
+
+
+            <div *ngSwitchCase="6" role="group"
+                 [dynamicId]="bindId && model.id"
+                 [formGroupName]="model.id"
+                 [ngClass]="model.cls.element.control">
+
+                <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of model.group"
+                                                   [asBootstrapFormGroup]="true"
+                                                   [group]="control"
+                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                   [model]="controlModel"
+                                                   [templates]="templates"
+                                                   [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                                   (blur)="onFocusChange($event)"
+                                                   (change)="onValueChange($event)"
+                                                   (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
+            </div>
+
+
+            <div *ngSwitchCase="7" [class.input-group]="model.prefix || model.suffix">
+
+                <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
+
+                <input [attr.accept]="model.accept"
+                       [attr.autoComplete]="model.autoComplete"
+                       [attr.list]="model.listId"
+                       [attr.max]="model.max"
+                       [attr.min]="model.min"
+                       [attr.multiple]="model.multiple"
+                       [attr.step]="model.step"
+                       [attr.tabindex]="model.tabIndex"
+                       [autofocus]="model.autoFocus"
+                       [class.form-control]="model.inputType !== 'file'"
+                       [class.form-control-file]="model.inputType === 'file'"
+                       [class.is-invalid]="showErrorMessages"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [maxlength]="model.maxLength"
+                       [minlength]="model.minLength"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [pattern]="model.pattern"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required"
+                       [spellcheck]="model.spellCheck"
+                       [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
+                       [type]="model.inputType"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
+
+                <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
+
+                <datalist *ngIf="model.list" [id]="model.listId">
+                    <option *ngFor="let option of model.list" [value]="option">
+                </datalist>
+
+            </div>
+
+
+            <div *ngSwitchCase="8" ngbRadioGroup class="btn-group" role="radiogroup"
+                 [attr.tabindex]="model.tabIndex"
+                 [dynamicId]="bindId && model.id"
+                 [formControlName]="model.id"
+                 [ngClass]="model.cls.element.control"
+                 (change)="onValueChange($event)">
+
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+                <label *ngFor="let option of model.options$ | async" ngbButtonLabel
+                       [ngClass]="[model.cls.element.option, model.cls.grid.option]">
+
+                    <input type="radio" ngbButton
+                           [disabled]="option.disabled"
+                           [name]="model.name"
+                           [value]="option.value"
+                           (blur)="onFocusChange($event)"
+                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
+                </label>
+
+            </div>
+
+
+            <select *ngSwitchCase="9" class="form-control"
+                    [attr.tabindex]="model.tabIndex"
+                    [class.is-invalid]="showErrorMessages"
+                    [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    [name]="model.name"
+                    [ngClass]="model.cls.element.control"
+                    [required]="model.required"
+                    (blur)="onFocusChange($event)"
+                    (change)="onValueChange($event)"
+                    (focus)="onFocusChange($event)">
+
+                <option *ngFor="let option of model.options$ | async"
+                        [attr.name]="model.name"
+                        [ngValue]="option.value">{{option.label}}</option>
+
+            </select>
+
+
+            <textarea *ngSwitchCase="10" class="form-control"
+                      [attr.tabindex]="model.tabIndex"
+                      [class.is-invalid]="showErrorMessages"
+                      [dynamicId]="bindId && model.id"
+                      [cols]="model.cols"
+                      [formControlName]="model.id"
+                      [maxlength]="model.maxLength"
+                      [minlength]="model.minLength"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readOnly"
+                      [required]="model.required"
+                      [rows]="model.rows"
+                      [spellcheck]="model.spellCheck"
+                      [wrap]="model.wrap"
+                      (blur)="onFocusChange($event)"
+                      (change)="onValueChange($event)"
+                      (focus)="onFocusChange($event)"></textarea>
+
+
+            <ngb-timepicker *ngSwitchCase="11"
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [meridian]="model.meridian"
+                            [ngClass]="model.cls.element.control"
+                            [seconds]="model.showSeconds"
+                            [spinners]="true"></ngb-timepicker>
+
+
+            <small *ngIf="hasHint" class="text-muted" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></small>
+
+
+            <div *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+                <small *ngFor="let message of errorMessages" class="invalid-feedback d-block">{{ message }}</small>
+            </div>
+
+        </ng-container>
+
+    </div>
+
+    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
+
+</div>

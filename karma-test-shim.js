@@ -4,8 +4,8 @@ function isSpecFile(filePath) {
     return filePath.startsWith("/base/test/") && filePath.slice(-8) === ".spec.js";
 }
 
-function toImportPromise(module) {
-    return System.import(module);
+function importModule(modulePath) {
+    return System.import(modulePath);
 }
 
 window.Error.stackTraceLimit = Infinity;
@@ -131,14 +131,12 @@ Promise.all([
 
     return ngCoreTesting.TestBed.initTestEnvironment(
         ngPlatformBrowserDynamicTesting.BrowserDynamicTestingModule,
-        ngPlatformBrowserDynamicTesting.platformBrowserDynamicTesting()
-    );
+        ngPlatformBrowserDynamicTesting.platformBrowserDynamicTesting());
 
 }).then(function () {
 
     return Promise.all(Object.keys(karma.files)
                              .filter(isSpecFile)
-                             .map(toImportPromise)
-    );
+                             .map(importModule));
 
 }).then(karma.start, karma.error);

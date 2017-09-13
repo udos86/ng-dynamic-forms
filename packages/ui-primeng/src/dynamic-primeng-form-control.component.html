@@ -1,0 +1,287 @@
+<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+
+    <div *ngIf="type !== 4 && model.label" [ngClass]="model.cls.grid.label">
+        <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+    </div>
+
+
+    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
+
+
+    <div *ngIf="type === 8" role="group"
+         [dynamicId]="bindId && model.id"
+         [formGroupName]="model.id"
+         [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+
+        <dynamic-primeng-form-control *ngFor="let controlModel of model.group"
+                                      [group]="control"
+                                      [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                      [model]="controlModel"
+                                      [templates]="templates"
+                                      [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                      (blur)="onFocusChange($event)"
+                                      (change)="onValueChange($event)"
+                                      (focus)="onFocusChange($event)"></dynamic-primeng-form-control>
+    </div>
+
+
+    <div *ngIf="type === 13" role="radiogroup"
+         [attr.tabindex]="model.tabIndex"
+         [dynamicId]="bindId && model.id"
+         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+         (change)="onValueChange($event)">
+
+        <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.grid.option">
+
+            <p-radioButton [formControlName]="model.id"
+                           [label]="option.label"
+                           [name]="model.name"
+                           [ngClass]="model.cls.element.option"
+                           [value]="option.value"></p-radioButton>
+        </div>
+
+    </div>
+
+
+    <ng-container *ngIf="type !== 8 && type !== 13">
+
+        <div [ngClass]="model.cls.grid.control" [ngSwitch]="type">
+
+            <div *ngSwitchCase="1"
+                 [dynamicId]="bindId && model.id"
+                 [formArrayName]="model.id"
+                 [ngClass]="model.cls.element.control">
+
+                <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
+                     [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
+
+                    <dynamic-primeng-form-control *ngFor="let controlModel of groupModel.group"
+                                                  [bindId]="false"
+                                                  [context]="groupModel"
+                                                  [group]="control.at(idx)"
+                                                  [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                  [model]="controlModel"
+                                                  [templates]="templates"
+                                                  [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                                  (blur)="onFocusChange($event)"
+                                                  (change)="onValueChange($event)"
+                                                  (focus)="onFocusChange($event)"></dynamic-primeng-form-control>
+
+                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+
+                </div>
+
+            </div>
+
+
+            <p-autoComplete *ngSwitchCase="2" #pAutoComplete
+                            [dynamicId]="bindId && model.id"
+                            [formControlName]="model.id"
+                            [multiple]="model.multiple"
+                            [ngClass]="model.cls.element.control"
+                            [placeholder]="model.placeholder"
+                            [suggestions]="suggestions"
+                            [tabindex]="model.tabIndex"
+                            (onBlur)="onFocusChange($event)"
+                            (change)="onValueChange($event)"
+                            (onFocus)="onFocusChange($event)"
+                            (completeMethod)="onAutoComplete($event)"></p-autoComplete>
+
+
+            <p-calendar *ngSwitchCase="3" #pCalendar
+                        [dateFormat]="model.format"
+                        [defaultDate]="model.focusedDate"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [inline]="model.inline"
+                        [maxDate]="model.max"
+                        [minDate]="model.min"
+                        [monthNavigator]="false"
+                        [ngClass]="model.cls.element.control"
+                        [placeholder]="model.placeholder"
+                        [showIcon]="true"
+                        [showSeconds]="model.showSeconds"
+                        [tabindex]="model.tabIndex"
+                        [timeOnly]="model.type === 'TIMEPICKER'"
+                        [yearNavigator]="false"
+                        (onBlur)="onFocusChange($event)"
+                        (onFocus)="onFocusChange($event)"></p-calendar>
+
+
+            <p-checkbox *ngSwitchCase="4" #pCheckbox
+                        binary="true"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [label]="model.label"
+                        [name]="model.name"
+                        [ngClass]="model.cls.element.control"
+                        [tabindex]="model.tabIndex"
+                        [value]="model.value"
+                        (onChange)="onValueChange($event)"></p-checkbox>
+
+
+            <p-chips *ngSwitchCase="5" #pChips
+                     [dynamicId]="bindId && model.id"
+                     [formControlName]="model.id"
+                     [ngClass]="model.cls.element.control"
+                     [tabindex]="model.tabIndex"
+                     (change)="onValueChange($event)"></p-chips>
+
+
+            <p-dropdown *ngSwitchCase="6" #pDropdown
+                        [dynamicId]="bindId && model.id"
+                        [filter]="model.filterable"
+                        [formControlName]="model.id"
+                        [ngClass]="model.cls.element.control"
+                        [options]="model.options"
+                        [tabindex]="model.tabIndex"
+                        (onBlur)="onFocusChange($event)"
+                        (onChange)="onValueChange($event)"
+                        (onFocus)="onFocusChange($event)"></p-dropdown>
+
+
+            <p-editor *ngSwitchCase="7" #pEditor
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [ngClass]="model.cls.element.control"
+                      (onTextChange)="onValueChange($event)"></p-editor>
+
+
+            <ng-container *ngSwitchCase="9">
+
+                <input pInputText #pInputText
+                       [attr.accept]="model.accept"
+                       [attr.autoComplete]="model.autoComplete"
+                       [attr.list]="model.listId"
+                       [attr.max]="model.max"
+                       [attr.min]="model.min"
+                       [attr.multiple]="model.multiple"
+                       [attr.step]="model.step"
+                       [attr.tabindex]="model.tabIndex"
+                       [autofocus]="model.autoFocus"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [maxlength]="model.maxLength"
+                       [minlength]="model.minLength"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [pattern]="model.pattern"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required"
+                       [spellcheck]="model.spellCheck"
+                       [type]="model.inputType"
+                       (blur)="onFocusChange($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocusChange($event)"/>
+
+                <datalist *ngIf="model.list" [id]="model.listId">
+                    <option *ngFor="let option of model.list" [value]="option">
+                </datalist>
+
+            </ng-container>
+
+
+            <p-inputMask *ngSwitchCase="10" #pInputMask
+                         [dynamicId]="bindId && model.id"
+                         [formControlName]="model.id"
+                         [mask]="model.mask"
+                         [ngClass]="model.cls.element.control"
+                         [placeholder]="model.placeholder"
+                         [readonly]="model.readOnly"
+                         [tabindex]="model.tabIndex"
+                         (onBlur)="onFocusChange($event)"
+                         (onChange)="onValueChange($event)"
+                         (onFocus)="onFocusChange($event)"></p-inputMask>
+
+
+            <p-inputSwitch *ngSwitchCase="11" #pInputSwitch
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [ngClass]="model.cls.element.control"
+                           [onLabel]="model.onLabel"
+                           [offLabel]="model.offLabel"
+                           [tabindex]="model.tabIndex"
+                           (onChange)="onValueChange($event)"></p-inputSwitch>
+
+
+            <p-multiSelect *ngSwitchCase="12" #pMultiSelect
+                           [dynamicId]="bindId && model.id"
+                           [filter]="model.filterable"
+                           [formControlName]="model.id"
+                           [ngClass]="model.cls.element.control"
+                           [options]="model.options"
+                           [tabindex]="model.tabIndex"
+                           (onBlur)="onFocusChange($event)"
+                           (onChange)="onValueChange($event)"
+                           (onFocus)="onFocusChange($event)"></p-multiSelect>
+
+
+            <p-rating *ngSwitchCase="14" #pRating
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [ngClass]="model.cls.element.control"
+                      [stars]="model.max"
+                      (onRate)="onValueChange($event)"></p-rating>
+
+
+            <p-slider *ngSwitchCase="15" #pSlider
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [min]="model.min"
+                      [max]="model.max"
+                      [ngClass]="model.cls.element.control"
+                      [step]="model.step"
+                      (onChange)="onValueChange($event)"></p-slider>
+
+
+            <p-spinner *ngSwitchCase="16" #pSpinner
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [min]="model.min"
+                       [max]="model.max"
+                       [ngClass]="model.cls.element.control"
+                       [placeholder]="model.placeholder"
+                       [step]="model.step || 1"
+                       [tabindex]="model.tabIndex"
+                       (onBlur)="onFocusChange($event)"
+                       (onChange)="onValueChange($event)"
+                       (onFocus)="onFocusChange($event)"></p-spinner>
+
+
+            <textarea *ngSwitchCase="17" pInputTextarea #pInputTextarea
+                      [attr.tabindex]="model.tabIndex"
+                      [cols]="model.cols"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [maxlength]="model.maxLength"
+                      [minlength]="model.minLength"
+                      [name]="model.name"
+                      [ngClass]="model.cls.element.control"
+                      [placeholder]="model.placeholder"
+                      [readonly]="model.readOnly"
+                      [required]="model.required"
+                      [rows]="model.rows"
+                      [spellcheck]="model.spellCheck"
+                      [wrap]="model.wrap"
+                      (blur)="onFocusChange($event)"
+                      (change)="onValueChange($event)"
+                      (focus)="onFocusChange($event)"></textarea>
+
+        </div>
+
+    </ng-container>
+
+    
+    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+        <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
+    </ul>
+
+
+    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    </ng-container>
+
+</div>

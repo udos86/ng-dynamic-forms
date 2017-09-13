@@ -1,3 +1,19 @@
+# 1.4.30
+
+### **Announcements** 
+
+* **This will be probably the last patch version before Angular 5**
+* **Starting with Angular 5 ng2 Dynamic Forms will be released under new name ngx-dynamic-forms** 
+
+### **Features** 
+
+* Minor template improvements:
+    * full support for grid classes in Basic, Material and Kendo
+    * class `k-required` is now automatically added to error messages in Kendo for color styling
+    * `<ng-content>` has been removed as it has little benefit and never been officially documented 
+* Library code now passes `noUnusedParameters` and `strictNullChecks` TypeScript transpiler checks (closes [#497](https://github.com/udos86/ng2-dynamic-forms/issues/497))
+                                                                                                   
+
 # 1.4.29
 
 ### **Bugfixes** 
