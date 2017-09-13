@@ -60,11 +60,11 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.inputType = config.inputType || DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;
         this.list = Array.isArray(config.list) ? config.list : null;
         this.mask = config.mask || null;
-        this.max = Utils.isDefined(config.max) ? config.max : null;
-        this.min = Utils.isDefined(config.min) ? config.min : null;
-        this.multiple = Utils.isBoolean(config.multiple) ? config.multiple : null;
+        this.max = config.max !== undefined ? config.max : null;
+        this.min = config.min !== undefined ? config.min : null;
+        this.multiple = typeof config.multiple === "boolean" ? config.multiple : null;
         this.pattern = config.pattern || null;
-        this.step = Utils.isNumber(config.step) ? config.step : null;
+        this.step = typeof config.step === "number" ? config.step : null;
 
         if (this.list) {
             this.listId = `${this.id}List`;

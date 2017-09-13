@@ -20,6 +20,6 @@ export class DynamicCheckboxModel extends DynamicCheckControlModel {
 
         super(config, cls);
 
-        this.indeterminate = Utils.isBoolean(config.indeterminate) ? config.indeterminate : false;
+        this.indeterminate = typeof config.indeterminate === "boolean" ? config.indeterminate : false;
     }
 }

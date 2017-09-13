@@ -2,7 +2,6 @@ import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 import { AUTOCOMPLETE_ON } from "../utils/autofill.utils";
-import { Utils } from "../utils/core.utils";
 
 export interface DynamicInputControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
 
@@ -34,13 +33,13 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
         super(config, cls);
 
         this.autoComplete = config.autoComplete || AUTOCOMPLETE_ON;
-        this.autoFocus = Utils.isBoolean(config.autoFocus) ? config.autoFocus : false;
-        this.maxLength = Utils.isNumber(config.maxLength) ? config.maxLength : null;
-        this.minLength = Utils.isNumber(config.minLength) ? config.minLength : null;
+        this.autoFocus = typeof config.autoFocus === "boolean" ? config.autoFocus : false;
+        this.maxLength = typeof config.maxLength === "number" ? config.maxLength : null;
+        this.minLength = typeof config.minLength === "number" ? config.minLength : null;
         this.placeholder = config.placeholder || "";
         this.prefix = config.prefix || null;
-        this.readOnly = Utils.isBoolean(config.readOnly) ? config.readOnly : false;
-        this.spellCheck = Utils.isBoolean(config.spellCheck) ? config.spellCheck : false;
+        this.readOnly = typeof config.readOnly === "boolean" ? config.readOnly : false;
+        this.spellCheck = typeof config.spellCheck === "boolean" ? config.spellCheck : false;
         this.suffix = config.suffix || null;
     }
 }

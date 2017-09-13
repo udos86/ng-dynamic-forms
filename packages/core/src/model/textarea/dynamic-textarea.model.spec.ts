@@ -48,7 +48,7 @@ describe("DynamicTextAreaModel test suite", () => {
 
         expect(json.id).toEqual(model.id);
         expect(json.cols).toBe(model.cols);
-        expect(Object.keys(json.validators).length).toBe(Object.keys(model.validators).length);
+        expect(Object.keys(json.validators).length).toBe(Object.keys(model.validators as any).length);
         expect(json.value).toBe(model.value);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA);
     });

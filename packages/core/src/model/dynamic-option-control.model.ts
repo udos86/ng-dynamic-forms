@@ -4,7 +4,6 @@ import "rxjs/add/operator/map";
 import { ClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { Utils } from "../utils/core.utils";
 
 export interface DynamicFormOptionConfig<T> {
 
@@ -21,7 +20,7 @@ export class DynamicFormOption<T> {
 
     constructor(config: DynamicFormOptionConfig<T>) {
 
-        this.disabled = Utils.isBoolean(config.disabled) ? config.disabled : false;
+        this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.label = config.label || null;
         this.value = config.value;
     }
@@ -30,7 +29,7 @@ export class DynamicFormOption<T> {
         return this.label;
     }
 
-    set text(text: string) {
+    set text(text: string | null) {
         this.label = text;
     }
 

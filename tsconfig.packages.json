@@ -12,6 +12,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "noUnusedParameters": true,
     "paths": {
       "@ng2-dynamic-forms/*": [
         "dist/@ng2-dynamic-forms/*"
@@ -19,6 +20,7 @@
     },
     "removeComments": false,
     "sourceMap": true,
+    "strictNullChecks": false,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"

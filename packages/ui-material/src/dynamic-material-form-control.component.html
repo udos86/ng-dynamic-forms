@@ -136,9 +136,7 @@
                 <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
                 <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-                <ng-container *ngIf="showErrorMessages">
-                    <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
-                </ng-container>
+                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
 
             </md-form-field>
 
@@ -236,9 +234,7 @@
             <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
             <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
 
-            <ng-container *ngIf="showErrorMessages">
-                <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
-            </ng-container>
+            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
 
         </md-form-field>
 

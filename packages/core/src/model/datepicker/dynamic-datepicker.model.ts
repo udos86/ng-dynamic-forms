@@ -25,7 +25,7 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
         super(config, cls);
 
         this.focusedDate = config.focusedDate || null;
-        this.inline = Utils.isBoolean(config.inline) ? config.inline : false;
-        this.toggleIcon = Utils.isString(config.toggleIcon) ? config.toggleIcon : null;
+        this.inline = typeof config.inline === "boolean" ? config.inline : false;
+        this.toggleIcon = typeof config.toggleIcon === "string" ? config.toggleIcon : null;
     }
 }

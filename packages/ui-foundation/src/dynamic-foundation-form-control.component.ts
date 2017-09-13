@@ -50,7 +50,7 @@ export class DynamicFoundationFormControlComponent extends DynamicFormControlCom
     @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
-    @Input() context: DynamicFormArrayGroupModel = null;
+    @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;

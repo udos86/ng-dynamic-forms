@@ -49,8 +49,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
-    Utils
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER
 } from "@ng2-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -76,7 +75,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
-    @Input() context: DynamicFormArrayGroupModel = null;
+    @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
@@ -123,7 +122,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
         super.setTemplates();
 
         this.templates
-            .filter(directive => Utils.isString(directive.as) && directive.as.startsWith("kendo"))
+            .filter(directive => typeof directive.as === "string" && directive.as.startsWith("kendo"))
             .forEach(directive => this.setTemplateDirective(directive));
     }
 

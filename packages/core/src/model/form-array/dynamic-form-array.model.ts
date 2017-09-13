@@ -6,16 +6,15 @@ import {
     ClsConfig,
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
-import { Utils } from "../../utils/core.utils";
 
 export class DynamicFormArrayGroupModel implements DynamicPathable {
 
     $implicit: DynamicFormArrayGroupModel;
     context: DynamicFormArrayModel;
     @serializable() group: DynamicFormControlModel[];
-    @serializable() index: number | null;
+    @serializable() index: number;
 
-    constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number = null) {
+    constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number = -1) {
 
         this.$implicit = this;
         this.context = context;
@@ -52,9 +51,9 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     @serializable() asyncValidator: DynamicValidatorsMap | null;
-    @serializable() groupAsyncValidator?: DynamicValidatorsMap | null;
+    @serializable() groupAsyncValidator: DynamicValidatorsMap | null;
     groupFactory: () => DynamicFormControlModel[];
-    @serializable() groupValidator?: DynamicValidatorsMap | null;
+    @serializable() groupValidator: DynamicValidatorsMap | null;
     @serializable() groups: DynamicFormArrayGroupModel[] = [];
     @serializable() initialCount: number;
     @serializable() validator: DynamicValidatorsMap | null;
@@ -67,16 +66,17 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         super(config, cls);
 
-        if (!Utils.isFunction(config.groupFactory)) {
+        if (typeof config.groupFactory === "function") {
+            this.groupFactory = config.groupFactory;
+        } else {
             throw new Error("group factory function must be specified for DynamicFormArrayModel");
         }
 
         this.asyncValidator = config.asyncValidator || null;
         this.groupAsyncValidator = config.groupAsyncValidator || null;
-        this.groupFactory = config.groupFactory;
         this.groupPrototype = this.groupFactory();
         this.groupValidator = config.groupValidator || null;
-        this.initialCount = Utils.isNumber(config.initialCount) ? config.initialCount : 1;
+        this.initialCount = typeof config.initialCount === "number" ? config.initialCount : 1;
         this.validator = config.validator || null;
 
         if (Array.isArray(config.groups)) {

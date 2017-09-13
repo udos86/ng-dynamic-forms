@@ -6,7 +6,6 @@ import {
     ClsConfig
 } from "./dynamic-form-control.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { Utils } from "../utils/core.utils";
 
 export type DynamicFormControlValue = boolean | number | string | Date | Array<boolean | number | string>;
 
@@ -36,7 +35,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         this.asyncValidators = config.asyncValidators || null;
         this.hint = config.hint || null;
-        this.required = Utils.isBoolean(config.required) ? config.required : false;
+        this.required = typeof config.required === "boolean" ? config.required : false;
         this.tabIndex = config.tabIndex || null;
         this.validators = config.validators || null;
         this._value = config.value || null;
@@ -45,11 +44,11 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.valueUpdates.subscribe((value: T) => this.value = value);
     }
 
-    set value(value: T) {
+    set value(value: T | null) {
         this._value = value;
     }
 
-    get value(): T {
+    get value(): T | null {
         return this._value;
     }
 }

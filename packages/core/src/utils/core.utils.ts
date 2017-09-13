@@ -37,10 +37,10 @@ export class Utils {
     }
 
     static isEmptyString(value: string | null | undefined): boolean {
-        return !Utils.isString(value) || value.length === 0;
+        return typeof value !== "string" || value.length === 0;
     }
 
-    static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] {
+    static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] | never {
 
         if (Utils.isString(mask)) {
 
@@ -53,12 +53,15 @@ export class Utils {
         } else if (Array.isArray(mask)) {
 
             return mask.map(value => Utils.maskToString(value)) as string[];
+
+        } else {
+            throw new Error("Invalid mask parameter");
         }
     }
 
-    static maskFromString(mask: string | string[]): string | RegExp | (string | RegExp)[] {
+    static maskFromString(mask: string | string[]): string | RegExp | (string | RegExp)[] | never {
 
-        if (Utils.isString(mask)) {
+        if (typeof mask === "string") {
 
             let isRegExp = (mask as string).startsWith("/") && (mask as string).endsWith("/");
 
@@ -67,6 +70,9 @@ export class Utils {
         } else if (Array.isArray(mask)) {
 
             return (mask as string[]).map(value => Utils.maskFromString(value)) as string[];
+
+        } else {
+            throw new Error("Invalid mask parameter");
         }
     }
 
@@ -92,7 +98,7 @@ export class Utils {
         return baseValue;
     }
 
-    static parseJSONReviver(key: string, value: any): any {
+    static parseJSONReviver(_key: string, value: any): any {
 
         let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 

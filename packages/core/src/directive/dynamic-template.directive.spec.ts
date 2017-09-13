@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-import { Component, DebugElement } from "@angular/core";
+import { Component, DebugElement, TemplateRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END } from "./dynamic-template.directive";
 
@@ -20,7 +20,7 @@ describe("DynamicTemplateDirective test suite", () => {
 
     beforeEach(() => {
 
-        directive = new DynamicTemplateDirective(null);
+        directive = new DynamicTemplateDirective({} as TemplateRef<any>);
 
         fixture = TestBed.configureTestingModule({
 

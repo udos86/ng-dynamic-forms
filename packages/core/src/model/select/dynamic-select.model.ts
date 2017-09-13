@@ -1,7 +1,6 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { Utils } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
@@ -24,8 +23,8 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
         super(config, cls);
 
-        this.filterable = Utils.isBoolean(config.filterable) ? config.filterable : false;
-        this.multiple = Utils.isBoolean(config.multiple) ? config.multiple : false;
+        this.filterable = typeof config.filterable === "boolean" ? config.filterable : false;
+        this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
         this.placeholder = config.placeholder || "";
     }
 

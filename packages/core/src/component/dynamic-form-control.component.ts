@@ -164,14 +164,16 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         let relActivation = RelationUtils.findActivationRelation(this.model.relation);
 
-        if (relActivation) {
+        if (relActivation !== null) {
 
-            this.updateModelDisabled(relActivation);
+            let rel = relActivation as DynamicFormControlRelationGroup;
+
+            this.updateModelDisabled(rel);
 
             RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
 
-                this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(relActivation)));
-                this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(relActivation)));
+                this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(rel)));
+                this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(rel)));
             });
         }
     }
@@ -258,7 +260,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         }
     }
 
-    onFilterChange($event: any | DynamicFormControlEvent): void {
+    onFilterChange(_$event: any | DynamicFormControlEvent): void {
         // TODO
     }
 

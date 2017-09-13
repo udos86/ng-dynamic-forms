@@ -57,7 +57,7 @@ export class DynamicIonicFormControlComponent extends DynamicFormControlComponen
     @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
-    @Input() context: DynamicFormArrayGroupModel = null;
+    @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
@@ -74,7 +74,7 @@ export class DynamicIonicFormControlComponent extends DynamicFormControlComponen
     @ViewChild(Select) ionSelect: Select | undefined;
     @ViewChild(Toggle) ionToggle: Toggle | undefined;
 
-    type: IonicFormControlType | undefined;
+    type: IonicFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected validationService: DynamicFormValidationService) {

@@ -16,6 +16,6 @@ export abstract class DynamicFileControlModel extends DynamicFormValueControlMod
 
         super(config, cls);
 
-        this.multiple = Utils.isBoolean(config.multiple) ? config.multiple : false;
+        this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
     }
 }

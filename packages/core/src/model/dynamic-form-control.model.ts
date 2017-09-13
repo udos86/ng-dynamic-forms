@@ -6,8 +6,8 @@ import { Utils } from "../utils/core.utils";
 export interface DynamicPathable {
 
     id?: string;
-    index?: number;
-    parent: DynamicPathable;
+    index?: number | null;
+    parent: DynamicPathable | null;
 }
 
 export interface DynamicValidatorConfig {
@@ -75,16 +75,17 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     constructor(config: DynamicFormControlModelConfig, cls: ClsConfig = {}) {
 
-        if (Utils.isEmptyString(config.id)) {
+        if (typeof config.id === "string" && config.id.length > 0) {
+            this.id = config.id;
+        } else {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
         this.cls.element = Utils.merge(cls.element, createEmptyClsConfig());
         this.cls.grid = Utils.merge(cls.grid, createEmptyClsConfig());
 
-        this._disabled = Utils.isBoolean(config.disabled) ? config.disabled : false;
+        this._disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.errorMessages = config.errorMessages || null;
-        this.id = config.id;
         this.label = config.label || null;
         this.name = this.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];

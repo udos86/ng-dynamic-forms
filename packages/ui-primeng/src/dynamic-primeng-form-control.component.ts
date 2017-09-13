@@ -72,7 +72,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
-    @Input() context: DynamicFormArrayGroupModel = null;
+    @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
     @Input() model: DynamicFormControlModel;
@@ -125,8 +125,12 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
             .forEach(directive => this.setTemplateDirective(directive));
     }
 
-    onAutoComplete($event: any): void {
-        this.suggestions = (this.model as DynamicInputModel).list.map(item => item);
+    onAutoComplete(_$event: any): void {
+        let inputModel = this.model as DynamicInputModel;
+
+        if(Array.isArray(inputModel.list)) {
+            this.suggestions = inputModel.list.map(item => item);
+        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): PrimeNGFormControlType | null {

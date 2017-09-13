@@ -48,12 +48,12 @@ export class DynamicFormService {
 
     constructor(private formBuilder: FormBuilder, private validationService: DynamicFormValidationService) {}
 
-    createExtra(validator: DynamicValidatorsMap, asyncValidator: DynamicValidatorsMap): { [key: string]: any } {
+    createExtra(validatorConfig: DynamicValidatorsMap | null, asyncValidatorConfig: DynamicValidatorsMap | null): { [key: string]: any } {
 
-        return {
-            validator: this.validationService.getValidator(validator),
-            asyncValidator: this.validationService.getAsyncValidator(asyncValidator)
-        };
+        let asyncValidator = asyncValidatorConfig !== null ? this.validationService.getAsyncValidator(asyncValidatorConfig) : null,
+            validator = validatorConfig !== null ? this.validationService.getValidator(validatorConfig) : null;
+
+        return {asyncValidator, validator};
     }
 
 
@@ -71,15 +71,15 @@ export class DynamicFormService {
 
         return this.formBuilder.array(
             formArray,
-            this.validationService.getValidator(model.validator),
-            this.validationService.getAsyncValidator(model.asyncValidator)
+            this.validationService.getValidator(model.validator || {}),
+            this.validationService.getAsyncValidator(model.asyncValidator || {})
         );
     }
 
 
     createFormGroup(groupModel: DynamicFormControlModel[],
                     extra: { [key: string]: any } | null = null,
-                    parent: DynamicPathable = null): FormGroup {
+                    parent: DynamicPathable | null = null): FormGroup {
 
         let formGroup: { [id: string]: AbstractControl; } = {};
 
@@ -109,8 +109,8 @@ export class DynamicFormService {
                         value: formControlModel.value,
                         disabled: formControlModel.disabled
                     },
-                    Validators.compose(this.validationService.getValidators(formControlModel.validators)),
-                    Validators.composeAsync(this.validationService.getAsyncValidators(formControlModel.asyncValidators))
+                    Validators.compose(this.validationService.getValidators(formControlModel.validators || {})),
+                    Validators.composeAsync(this.validationService.getAsyncValidators(formControlModel.asyncValidators || {}))
                 );
             }
         });
@@ -324,7 +324,7 @@ export class DynamicFormService {
                         return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);
                     };
 
-                    group.push(new DynamicFormArrayModel(formArrayModel, formArrayModel.cls));
+                    group.push(new DynamicFormArrayModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:

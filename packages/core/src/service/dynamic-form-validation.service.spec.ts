@@ -48,7 +48,7 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should resolve validator from config correctly", () => {
 
-        expect(service.getValidator(null)).toBeNull();
+        expect(service.getValidator({})).toBeNull();
         expect(service.getValidator({required: null})).toBeTruthy();
         expect(service.getValidator({testValidator: {name: testValidator.name, args: null}})).toBeTruthy();
     });
@@ -56,7 +56,7 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should resolve async validator from config correctly", () => {
 
-        expect(service.getAsyncValidator(null)).toBeNull();
+        expect(service.getAsyncValidator({})).toBeNull();
         expect(service.getAsyncValidator({testAsyncValidator: null})).toBeTruthy();
     });
 
@@ -139,7 +139,7 @@ describe("DynamicFormValidationService test suite", () => {
 
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(1);
-        expect(errorMessages[0]).toEqual(testModel.errorMessages["required"]);
+        expect(errorMessages[0]).toEqual((testModel.errorMessages as any)["required"]);
 
         testControl.setErrors({custom1: true});
 

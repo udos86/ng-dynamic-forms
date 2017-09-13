@@ -11,11 +11,13 @@ import {
 
 export class RelationUtils {
 
-    static findActivationRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup {
+    static findActivationRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup | null {
 
-        return relGroups.find(rel => {
+        let rel = relGroups.find(rel => {
             return rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE;
         });
+
+        return rel !== undefined ? rel : null;
     }
 
     static getRelatedFormControls(model: DynamicFormControlModel, controlGroup: FormGroup): FormControl[] {
