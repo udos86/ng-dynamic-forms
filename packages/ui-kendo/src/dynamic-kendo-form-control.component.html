@@ -359,7 +359,7 @@
 
 
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
-        <li *ngFor="let message of errorMessages" class="k-field-info">{{ message }}</li>
+        <li *ngFor="let message of errorMessages" class="k-field-info k-required">{{ message }}</li>
     </ul>
 
 

@@ -40,7 +40,7 @@ export class Utils {
         return typeof value !== "string" || value.length === 0;
     }
 
-    static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] | never {
+    static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] | null {
 
         if (Utils.isString(mask)) {
 
@@ -53,13 +53,12 @@ export class Utils {
         } else if (Array.isArray(mask)) {
 
             return mask.map(value => Utils.maskToString(value)) as string[];
-
-        } else {
-            throw new Error("Invalid mask parameter");
         }
+
+        return null;
     }
 
-    static maskFromString(mask: string | string[]): string | RegExp | (string | RegExp)[] | never {
+    static maskFromString(mask: string | string[]): string | RegExp | (string | RegExp)[] | null {
 
         if (typeof mask === "string") {
 
@@ -70,10 +69,9 @@ export class Utils {
         } else if (Array.isArray(mask)) {
 
             return (mask as string[]).map(value => Utils.maskFromString(value)) as string[];
-
-        } else {
-            throw new Error("Invalid mask parameter");
         }
+
+        return null;
     }
 
     static merge(baseValue: any, defaultValue: any): any {

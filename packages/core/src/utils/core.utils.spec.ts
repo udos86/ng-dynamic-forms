@@ -101,6 +101,18 @@ describe("Core Utils test suite", () => {
     });
 
 
+    it("should detect a function correctly", () => {
+
+        let testFn0 = undefined,
+            testFn1 = () => {},
+            testFn2 = function () {};
+
+        expect(Utils.isFunction(testFn0)).toBe(false);
+        expect(Utils.isFunction(testFn1)).toBe(true);
+        expect(Utils.isFunction(testFn2)).toBe(true);
+    });
+
+
     it("should detect a number correctly", () => {
 
         let testNumber0 = undefined,
@@ -147,6 +159,8 @@ describe("Core Utils test suite", () => {
 
         expect(testResult3[0]).toEqual(testValue1);
         expect(testResult3[1]).toEqual(testValue2.toString());
+
+        expect(Utils.maskToString({} as string)).toBeNull();
     });
 
 
@@ -162,5 +176,7 @@ describe("Core Utils test suite", () => {
 
         expect(testResult3[0]).toEqual(testValue1);
         expect(testResult3[1]).toEqual(new RegExp("[1-9]"));
+
+        expect(Utils.maskFromString({} as string)).toBeNull();
     });
 });
