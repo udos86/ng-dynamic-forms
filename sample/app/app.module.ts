@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
-import { LocationStrategy, HashLocationStrategy } from "@angular/common";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { ReactiveFormsModule, NG_VALIDATORS } from "@angular/forms";
+import { Http, BaseRequestOptions } from "@angular/http";
 import { MdCardModule, MdNativeDateModule } from "@angular/material";
+import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { ReactiveFormsModule, NG_VALIDATORS } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
@@ -30,6 +30,10 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { customValidator, customDateRangeValidator } from "./app.validators";
 
+export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
+    return new Http(mockBackend, baseRequestOptions);
+}
+
 @NgModule({
 
     imports: [
@@ -48,8 +52,7 @@ import { customValidator, customDateRangeValidator } from "./app.validators";
         DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
         DynamicFormsNGBootstrapUIModule,
-        DynamicFormsPrimeNGUIModule,
-        HttpClientTestingModule
+        DynamicFormsPrimeNGUIModule
     ],
     declarations: [
         BasicSampleFormComponent,
@@ -63,6 +66,13 @@ import { customValidator, customDateRangeValidator } from "./app.validators";
         AppComponent
     ],
     providers: [
+        BaseRequestOptions,
+        MockBackend,
+        {
+            provide: Http,
+            deps: [MockBackend, BaseRequestOptions],
+            useFactory: mockBackendFactory
+        },
         {
             provide: LocationStrategy,
             useClass: HashLocationStrategy
