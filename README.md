@@ -1,13 +1,13 @@
-<img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo Ng2 Dynamic Forms" style="float:left;" />
+<img src="http://udos86.de/logo_ng2_dynamic_forms@2x.png" width="96" height="96" alt="Logo NG Dynamic Forms" style="float:left;" />
 
-# Ng2 Dynamic Forms
+# NG Dynamic Forms
 
-[![npm version](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng2-dynamic-forms%2Fcore)
-[![Build Status](https://travis-ci.org/udos86/ng2-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng2-dynamic-forms)
-[![Coverage Status](https://coveralls.io/repos/github/udos86/ng2-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng2-dynamic-forms)
+[![npm version](https://badge.fury.io/js/%40ng-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng-dynamic-forms%2Fcore)
+[![Build Status](https://travis-ci.org/udos86/ng-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng-dynamic-forms)
+[![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
 
-Ng2 Dynamic Forms is a **rapid form development library** based on the official Angular
+NG Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
 It **fully automates form UI creation** by introducing a set of maintainable **form control models** and **dynamic form control components** 
@@ -45,12 +45,12 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 
 **1. Install the core package**:
 ```
-npm install @ng2-dynamic-forms/core --save
+npm install @ng-dynamic-forms/core --save
 ```
   
 **2. Choose your [UI library](#ui-modules-and-components)** and **install the appropriate package**:
 ```
-npm install @ng2-dynamic-forms/ui-bootstrap --save
+npm install @ng-dynamic-forms/ui-bootstrap --save
 ```
 
 **3.** When using **SystemJS**, update your configuration to **import the corresponding UMD bundles**:
@@ -65,18 +65,18 @@ System.config({
 
         // ...all the rest (Angular, RxJS, etc.)
 
-        "@ng2-dynamic-forms/core": "npm:@ng2-dynamic-forms/core/bundles/core.umd.js",
-        "@ng2-dynamic-forms/ui-bootstrap": "npm:@ng2-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
+        "@ng-dynamic-forms/core": "npm:@ng-dynamic-forms/core/bundles/core.umd.js",
+        "@ng-dynamic-forms/ui-bootstrap": "npm:@ng-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
     }
 });
 ```
 
 
-## Running the Example
+## Running the Sample
 
 **1. Clone the Git repository**:
 ```
-git clone https://github.com/udos86/ng2-dynamic-forms.git
+git clone https://github.com/udos86/ng-dynamic-forms.git
 ```
 
 **2. Install the npm dependencies**:
@@ -91,10 +91,10 @@ npm run build:modules
 
 **4. Transpile the source code**:
 ```
-npm run transpile:app:systemjs
+npm run transpile:sample:commonjs
 ```
 
-**5. Run the sample application**:
+**5. Run the application**:
 ```
 npm start
 ```
@@ -104,8 +104,8 @@ npm start
 
 **1. Import** `DynamicFormsCoreModule` **via** `forRoot()` **and a UI module**:
 ```ts
-import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
-import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 // ...
 
 @NgModule({
@@ -127,7 +127,7 @@ import {
     DynamicCheckboxModel,
     DynamicInputModel,
     DynamicRadioGroupModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 
 export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 
@@ -171,7 +171,7 @@ export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
 ```ts
 import { MY_FORM_MODEL } from "./my-dynamic-form.model";
-import { DynamicFormControlModel, DynamicFormService } from "@ng2-dynamic-forms/core";
+import { DynamicFormControlModel, DynamicFormService } from "@ng-dynamic-forms/core";
 
 export class MyDynamicFormComponent implements OnInit {
 
@@ -199,21 +199,21 @@ export class MyDynamicFormComponent implements OnInit {
 
 ## UI Modules
 
-Ng2 Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
+NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **[Basic](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-basic)**
-* **[Bootstrap](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-bootstrap)**
-* **[Foundation](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-foundation)**
-* **[Ionic](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-ionic)**
-* **[Kendo UI](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-kendo)**
-* **[Material](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-material)**
-* **[NG Bootstrap](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-ng-bootstrap)**
-* **[PrimeNG](https://github.com/udos86/ng2-dynamic-forms/tree/master/modules/ui-primeng)**
+* **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-basic)**
+* **[Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-bootstrap)**
+* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-foundation)**
+* **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-ionic)**
+* **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-kendo)**
+* **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-material)**
+* **[NG Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-ng-bootstrap)**
+* **[PrimeNG](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and its peer dependencies**:
 ```
-npm install @ng2-dynamic-forms/ui-<library-name> --save
+npm install @ng-dynamic-forms/ui-<library-name> --save
 ```
 
 **Now just import the UI module**:
@@ -283,7 +283,7 @@ varies among UI packages. **See the following compatibility table**:
 ## Form Groups
 
 In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
-Luckily Ng2 Dynamic Forms supports nesting of form groups out of the box!
+Luckily NG Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Declare a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
  ```ts
@@ -357,7 +357,7 @@ Sometimes forms need to allow the user to dynamically add multiple items of the 
 
 Particularly for this reason Angular provides so called [**Form Arrays**](https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2).
 
-Fortunately, Ng2 Dynamic Forms is capable of managing such nested form structures!  
+Fortunately, NG Dynamic Forms is capable of managing such nested form structures!  
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```ts
@@ -487,10 +487,10 @@ this.formService.moveFormArrayGroup(index, -1, this.arrayControl, context);
 
 ## Form Layouts
 
-When using a Ng2 Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS library
+When using a NG Dynamic Forms UI package, e.g. `ui-bootstrap`, **all essential** form classes of the underlying CSS library
 (like `form-group` or `form-control`) are automatically put in place for you in the template of the corresponding `DynamicFormControlComponent`.
 
-Apart from that, Ng2 Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
+Apart from that, NG Dynamic Forms does not make any further presumptions about optional CSS classes and leaves advanced layouting all up to you. That's **solid** yet **unobtrusive**.
 
 So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal)...
 
@@ -510,7 +510,7 @@ But since all the template logic for the form controls is capsuled in the scope 
 
 Don't worry!
 
-By providing the `cls` and it's nested `grid` and `element` configuration objects, Ng2 Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
+By providing the `cls` and it's nested `grid` and `element` configuration objects, NG Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
 
 We can just pass it as a second constructor parameter of every `DynamicFormControlModel`, i.e. separation of model and style information remains intact:
 ```ts
@@ -533,7 +533,7 @@ new DynamicInputModel(
 
 ## Custom Templates
 
-As mentioned above, Ng2 Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
+As mentioned above, NG Dynamic Forms already gives you a lot of freedom in adjusting your form layout via CSS classes. 
 
 However there are situations where you would like to add custom markup for some of your form controls, as well. 
 
@@ -600,7 +600,7 @@ Some UI libraries, e.g. Kendo UI, allow detailed customizing of form controls vi
 
 And you surely don't want to miss out on such a feature, do you?
 
-**That's why Ng2 Dynamic Forms can even master this!**
+**That's why NG Dynamic Forms can even master this!**
 
 All you have to do is to **add a** `as` **attribute to your template** and specifiy the use of it:
 
@@ -696,7 +696,7 @@ new DynamicInputModel({
 
 **But beware! There's a catch!**
 
-Internally Ng2 Dynamic Forms resolves a declared validator by it's function name.
+Internally NG Dynamic Forms resolves a declared validator by it's function name.
 
 Though **when uglifying code** for production this **information is irretrievably lost**.
 
@@ -738,7 +738,7 @@ Yet HTML5 already comes up with some [native functionality](https://developer.mo
 you very likely want to use [Angular mechanisms](http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html) 
 to gain much more control over validation logic and it's corresponding message output.
 
-Avoiding a library too opinionated in the beginning, Ng2 Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
+Avoiding a library too opinionated in the beginning, NG Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
 
 However, due to its very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature**: 
 
@@ -851,7 +851,7 @@ storeForm() {
 }
 ```
 
-Since a `DynamicFormControlModel` in Ng2 Dynamic Forms **relies on prototypical inheritance** and thus is not represented by a simple JavaScript object literal, 
+Since a `DynamicFormControlModel` in NG Dynamic Forms **relies on prototypical inheritance** and thus is not represented by a simple JavaScript object literal, 
 recreating a form from JSON unfortunately becomes more complex. 
 
 The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
@@ -869,14 +869,14 @@ restoreForm() {
 
 ## Updating Form Models
 
-One of the benefits of using Ng2 Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
+One of the benefits of using NG Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
 
 Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms,
 changing one of it's properties will immediately trigger an update of the user interface.
 
 But there's one major exception!
 
-Ng2 Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
+NG Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
 
 So what if we actually want to update the value of an arbitrary form control at runtime?
 
@@ -911,7 +911,7 @@ Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/ang
 
 That means changing the corresponding `disabled` property of a `DynamicFormControlModel` at runtime won't have any effect.
 
-But similar to [updating values](#updating-form-models) Ng2 Dynamic Forms helps you out here 
+But similar to [updating values](#updating-form-models) NG Dynamic Forms helps you out here 
 by providing a `Rx.Subject` named `disabledUpdates`. 
 
 It can be used to programmatically switch the activation state of a form control through a `DynamicFormControlModel`:
@@ -924,7 +924,7 @@ this.inputModel.disabledUpdates.next(true);
 
 Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
 
-Since Angular does not deliver an appropriate feature by default, Ng2 Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
+Since Angular does not deliver an appropriate feature by default, NG Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
 
 That's why most UI packages demand one additional peer dependency to be installed:
 ```
@@ -953,7 +953,7 @@ So let's pretend we need to have our textarea `myTextArea` disabled as soon as t
 
 Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
 
-**Using Ng2 Dynamic Forms however, you can easily define relations between form controls by declaration**: 
+**Using NG Dynamic Forms however, you can easily define relations between form controls by declaration**: 
 ```ts
 new DynamicTextAreaModel(
     {
@@ -1009,12 +1009,12 @@ new DynamicTextAreaModel(
 Adding automatic input completion can be key factor to good user experience (especially on mobile devices) and should always 
 be considered when designing forms. 
 
-That's why Ng2 Dynamic Forms keeps you covered here, as well!
+That's why NG Dynamic Forms keeps you covered here, as well!
 
 Following HTML5 [standard behavior](http://www.w3schools.com/tags/att_form_autocomplete.asp), the `autocomplete` attribute is always bound to `on` for any `DynamicFormTextInputControl` form element by default. 
 Nevertheless you can completely disable this feature by explicitly setting the corresponding model property to `off`:
 ```ts
-import { AUTOCOMPLETE_OFF } from "@ng2-dynamic-forms/core";
+import { AUTOCOMPLETE_OFF } from "@ng-dynamic-forms/core";
 
 let model = new DynamicInputModel({
     
@@ -1024,7 +1024,7 @@ let model = new DynamicInputModel({
 });
 ```
 
-Further on Ng2 Dynamic Forms embraces the brand new HTML5 
+Further on NG Dynamic Forms embraces the brand new HTML5 
 [**autofill detail tokens**](https://html.spec.whatwg.org/multipage/forms.html#autofill) by providing 
 `AUTOFILL_<TOKEN_NAME|FIELD_NAME>` string constants and `AutoFillUtils` to help you putting together a valid expression:
 
@@ -1036,7 +1036,7 @@ import {
     AUTOFILL_TOKEN_BILLING, 
     AUTOFILL_FIELD_NAME, 
     AUTOCOMPLETE_ON
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 
 export class MySample {
 
@@ -1068,12 +1068,12 @@ new DynamicInputModel({
 
 ## A Word to the Community
 
-**Thank you very much for the great feedback so far and everyone giving Ng2 Dynamic Forms a try!**
+**Thank you very much for the great feedback so far and everyone giving NG Dynamic Forms a try!**
 
-Angular is a fantastic framework and I'm convinced that Ng2 Dynamic Forms is a high-quality library that will 
+Angular is a fantastic framework and I'm convinced that NG Dynamic Forms is a high-quality library that will 
 save you lots of time when building reactive forms with it.
 
-**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng2-dynamic-forms/blob/master/CONTRIBUTE.md) **before**!
+**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng-dynamic-forms/blob/master/CONTRIBUTE.md) **before**!
 
 
 ## Appendix

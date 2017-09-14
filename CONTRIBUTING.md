@@ -6,7 +6,7 @@ Please follow this little instructions for a successful contribution:
 
 **1.** **Create a new issue** and give a detailed bug report or feature proposal.
 
-**2.** [**Fork**](https://help.github.com/articles/fork-a-repo/) the ng2 Dynamic Forms repository. 
+**2.** [**Fork**](https://help.github.com/articles/fork-a-repo/) the NG Dynamic Forms repository. 
 
 **3.** **Switch to branch** `udos86:development` and **checkout a new feature branch** based on it.
 
