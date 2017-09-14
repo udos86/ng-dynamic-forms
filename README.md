@@ -7,6 +7,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
 
+&#x1F534; **Please Note: @ng2-dynamic-forms scope has been renamed to @ng-dynamic-forms** &#x1F534;
+
+
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
 
