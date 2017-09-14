@@ -1,12 +1,15 @@
 # 1.4.31
 
-### **Announcements** 
+### **Announcement** 
 
-**!!! IMPORTANT !!!**
-
-**@ng2-dynamic-forms scope has been renamed to @ng-dynamic-forms**
-
-**Please update your dependencies as soon as possible for a seamless transition**
+:bangbang:**@ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
+***
+**Please update your dependencies**:
+```
+npm uninstall @ng2-dynamic-forms/core @ng2-dynamic-forms/ui-<package_name> -S
+npm install @ng-dynamic-forms/core @ng-dynamic-forms/ui-<package_name> -S
+```
+***
 
 
 # 1.4.30
