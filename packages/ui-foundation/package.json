@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-foundation",
-  "version": "1.4.30",
-  "description": "Foundation UI package for ng2 Dynamic Forms",
+  "name": "@ng-dynamic-forms/ui-foundation",
+  "version": "1.4.31",
+  "description": "Foundation UI package for ng Dynamic Forms",
   "main": "./bundles/ui-foundation.umd.js",
   "module": "./bundles/ui-foundation.es.js",
   "typings": "./public_api.d.ts",
@@ -11,29 +11,29 @@
     "dynamic forms",
     "forms",
     "foundation",
-    "ng2 dynamic forms",
+    "ng dynamic forms",
     "reactive forms",
     "ui"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
+    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "author": {
     "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
-    "url": "https://github.com/udos86/ng2-dynamic-forms"
+    "url": "https://github.com/udos86/ng-dynamic-forms"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
+    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
   },
-  "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
+  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng2-dynamic-forms/core": "^1.4.30",
+    "@ng-dynamic-forms/core": "^1.4.31",
     "angular2-text-mask": "^8.0.1",
     "foundation-sites": "^6.3.1",
     "rxjs": "^5.2.0"

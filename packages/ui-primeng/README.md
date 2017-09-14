@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Prime NG UI
+# NG Dynamic Forms Prime NG UI
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/ui-primeng -S
+npm install @ng-dynamic-forms/ui-primeng -S
 ```
 
 ## Import

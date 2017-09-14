@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel } from "@ng-dynamic-forms/core";
 import { ASYNC_SAMPLE_FORM_MODEL } from "./async-sample-form.model";
 import { FormGroup } from "@angular/forms";
 

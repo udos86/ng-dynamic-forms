@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Material UI
+# NG Dynamic Forms Material UI
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/ui-material -S
+npm install @ng-dynamic-forms/ui-material -S
 ```
 
 ## Import

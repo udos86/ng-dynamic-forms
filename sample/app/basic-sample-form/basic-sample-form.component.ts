@@ -5,7 +5,7 @@ import {
     DynamicCheckboxModel,
     DynamicFormControlModel,
     DynamicFormArrayModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { BASIC_SAMPLE_FORM_MODEL, BASIC_SAMPLE_FORM_ARRAY_MODEL } from "./basic-sample-form.model";
 
 @Component({

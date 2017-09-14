@@ -1,9 +1,15 @@
-# 1.4.30
+# 1.4.31
 
 ### **Announcements** 
 
-* This is probably the last patch version before Angular 5
-* Starting with Angular 5 ng2 Dynamic Forms will be released under new name ngx-dynamic-forms
+**!!! IMPORTANT !!!**
+
+**@ng2-dynamic-forms scope has been renamed to @ng-dynamic-forms**
+
+**Please update your dependencies as soon as possible for a seamless transition**
+
+
+# 1.4.30
 
 ### **Features** 
 

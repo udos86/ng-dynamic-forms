@@ -21,7 +21,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { BasicFormControlType, DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
 
 describe("DynamicFormBasicComponent test suite", () => {

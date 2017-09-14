@@ -41,7 +41,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { MdFormControlType, MD_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
 
 export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdFormField | MdRadioGroup |

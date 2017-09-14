@@ -5,7 +5,7 @@ import {
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicTemplateDirective
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-form-control.component";
 
 @Component({

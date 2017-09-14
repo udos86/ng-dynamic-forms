@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
-import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-control.component";
 import {
     AutoCompleteModule,

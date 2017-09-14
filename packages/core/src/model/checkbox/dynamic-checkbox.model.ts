@@ -1,7 +1,6 @@
 import { ClsConfig } from "../dynamic-form-control.model";
 import { DynamicCheckControlModel, DynamicCheckControlModelConfig } from "../dynamic-check-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { Utils } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX = "CHECKBOX";
 

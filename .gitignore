@@ -2,7 +2,7 @@
 .DS_STORE
 npm-debug.log
 
-@ng2-dynamic-forms/
+@ng-dynamic-forms/
 
 coverage/
 dist/

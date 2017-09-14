@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Bootstrap UI
+# NG Dynamic Forms Bootstrap UI
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/ui-bootstrap -S
+npm install @ng-dynamic-forms/ui-bootstrap -S
 ```
 
 ## Import

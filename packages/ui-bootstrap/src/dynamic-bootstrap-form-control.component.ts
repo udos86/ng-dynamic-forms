@@ -26,7 +26,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 
 export const enum BootstrapFormControlType {
 

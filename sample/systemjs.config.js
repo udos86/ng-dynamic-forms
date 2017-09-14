@@ -1,7 +1,7 @@
 (function (context) {
 
     var paths = {
-        "lib:": "../dist/@ng2-dynamic-forms/",
+        "lib:": "../dist/@ng-dynamic-forms/",
         "npm:": "../node_modules/"
     };
 
@@ -41,14 +41,14 @@
         "@angular/router/testing": "npm:@angular/router/bundles/router-testing.umd.js",
         "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
         //"@ng2-dynamic-forms": "lib",
-        "@ng2-dynamic-forms/core": "lib:core/bundles/core.umd.js",
-        "@ng2-dynamic-forms/ui-basic": "lib:ui-basic/bundles/ui-basic.umd.js",
-        "@ng2-dynamic-forms/ui-bootstrap": "lib:ui-bootstrap/bundles/ui-bootstrap.umd.js",
-        "@ng2-dynamic-forms/ui-foundation": "lib:ui-foundation/bundles/ui-foundation.umd.js",
-        "@ng2-dynamic-forms/ui-kendo": "lib:ui-kendo/bundles/ui-kendo.umd.js",
-        "@ng2-dynamic-forms/ui-material": "lib:ui-material/bundles/ui-material.umd.js",
-        "@ng2-dynamic-forms/ui-ng-bootstrap": "lib:ui-ng-bootstrap/bundles/ui-ng-bootstrap.umd.js",
-        "@ng2-dynamic-forms/ui-primeng": "lib:ui-primeng/bundles/ui-primeng.umd.js",
+        "@ng-dynamic-forms/core": "lib:core/bundles/core.umd.js",
+        "@ng-dynamic-forms/ui-basic": "lib:ui-basic/bundles/ui-basic.umd.js",
+        "@ng-dynamic-forms/ui-bootstrap": "lib:ui-bootstrap/bundles/ui-bootstrap.umd.js",
+        "@ng-dynamic-forms/ui-foundation": "lib:ui-foundation/bundles/ui-foundation.umd.js",
+        "@ng-dynamic-forms/ui-kendo": "lib:ui-kendo/bundles/ui-kendo.umd.js",
+        "@ng-dynamic-forms/ui-material": "lib:ui-material/bundles/ui-material.umd.js",
+        "@ng-dynamic-forms/ui-ng-bootstrap": "lib:ui-ng-bootstrap/bundles/ui-ng-bootstrap.umd.js",
+        "@ng-dynamic-forms/ui-primeng": "lib:ui-primeng/bundles/ui-primeng.umd.js",
         "@progress": "npm:@progress",
         "@progress/kendo-angular-dateinputs": "npm:@progress/kendo-angular-dateinputs/dist/npm/main.js",
         "@progress/kendo-angular-dropdowns": "npm:@progress/kendo-angular-dropdowns/dist/npm/main.js",
@@ -101,18 +101,18 @@
         }
     };
     /*
-    var ng2DynamicFormsPackageNames = [
-        "@ng2-dynamic-forms/core",
-        "@ng2-dynamic-forms/ui-basic",
-        "@ng2-dynamic-forms/ui-bootstrap",
-        "@ng2-dynamic-forms/ui-foundation",
-        "@ng2-dynamic-forms/ui-kendo",
-        "@ng2-dynamic-forms/ui-material",
-        "@ng2-dynamic-forms/ui-ng-bootstrap",
-        "@ng2-dynamic-forms/ui-primeng"
+    var NGDynamicFormsPackageNames = [
+        "@ng-dynamic-forms/core",
+        "@ng-dynamic-forms/ui-basic",
+        "@ng-dynamic-forms/ui-bootstrap",
+        "@ng-dynamic-forms/ui-foundation",
+        "@ng-dynamic-forms/ui-kendo",
+        "@ng-dynamic-forms/ui-material",
+        "@ng-dynamic-forms/ui-ng-bootstrap",
+        "@ng-dynamic-forms/ui-primeng"
     ];
 
-    ng2DynamicFormsPackageNames.forEach(function (packageName) {
+    NGDynamicFormsPackageNames.forEach(function (packageName) {
 
         packages[packageName] = {
             main: "index.js",

@@ -33,7 +33,7 @@ module.exports = function (pkg, src, type, dest) {
 
         let regExVersionString   = /(\d+).(\d+).(\d+)/,
             regExVersionField    = /("version":\s)"\d+.\d+.\d+"/,
-            regExDependencyField = /("@ng2-dynamic-forms\/[a-z\-]+":\s)"\^\d+.\d+.\d+"/g,
+            regExDependencyField = /("@ng-dynamic-forms\/[a-z\-]+":\s)"\^\d+.\d+.\d+"/g,
             newVersionString     = pkg.version.replace(regExVersionString, replaceVersionString);
 
         util.log(`Incrementing version to ${util.colors.magenta(newVersionString)}`);

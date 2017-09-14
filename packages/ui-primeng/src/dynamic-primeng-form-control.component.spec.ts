@@ -39,7 +39,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-control.component";
 import {
     PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,

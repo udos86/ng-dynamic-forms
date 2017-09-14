@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
+import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { AsyncSampleFormRoutingModule } from "./async-sample-form.routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
