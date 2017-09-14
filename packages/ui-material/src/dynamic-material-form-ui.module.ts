@@ -11,7 +11,7 @@ import {
     MdSliderModule,
     MdSlideToggleModule
 } from "@angular/material";
-import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
 import { DynamicMaterialFormComponent } from "./dynamic-material-form.component";
 

@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-material",
+  "name": "@ng-dynamic-forms/ui-material",
   "version": "1.4.30",
-  "description": "Material UI package for ng2 Dynamic Forms",
+  "description": "Material UI package for ng Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "module": "./bundles/ui-material.es.js",
   "typings": "./public_api.d.ts",
@@ -11,7 +11,7 @@
     "dynamic forms",
     "forms",
     "material",
-    "ng2 dynamic forms",
+    "ng dynamic forms",
     "reactive forms",
     "ui"
   ],
@@ -34,7 +34,7 @@
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/material": "^2.0.0-beta.10",
-    "@ng2-dynamic-forms/core": "^1.4.30",
+    "@ng-dynamic-forms/core": "^1.4.30",
     "rxjs": "^5.2.0"
   }
 }

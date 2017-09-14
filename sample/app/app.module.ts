@@ -8,14 +8,14 @@ import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { DynamicFormsCoreModule } from "@ng2-dynamic-forms/core";
-import { DynamicFormsBasicUIModule } from "@ng2-dynamic-forms/ui-basic";
-import { DynamicFormsBootstrapUIModule } from "@ng2-dynamic-forms/ui-bootstrap";
-import { DynamicFormsFoundationUIModule } from "@ng2-dynamic-forms/ui-foundation";
-import { DynamicFormsKendoUIModule } from "@ng2-dynamic-forms/ui-kendo";
-import { DynamicFormsMaterialUIModule } from "@ng2-dynamic-forms/ui-material";
-import { DynamicFormsNGBootstrapUIModule } from "@ng2-dynamic-forms/ui-ng-bootstrap";
-import { DynamicFormsPrimeNGUIModule } from "@ng2-dynamic-forms/ui-primeng";
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
+import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
+import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
+import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
+import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
+import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
 import { BasicSampleFormComponent } from "./basic-sample-form/basic-sample-form.component";
 import { BootstrapSampleFormComponent } from "./bootstrap-sample-form/bootstrap-sample-form.component";

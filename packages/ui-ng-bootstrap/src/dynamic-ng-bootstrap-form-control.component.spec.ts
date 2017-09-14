@@ -22,7 +22,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import {
     DynamicNGBootstrapFormControlComponent,
     NGBootstrapFormControlType

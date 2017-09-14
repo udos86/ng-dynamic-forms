@@ -23,7 +23,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlComponent, IonicFormControlType } from "./dynamic-ionic-form-control.component";
 
 describe("DynamicFormIonicComponent test suite", () => {

@@ -5,7 +5,7 @@ import {
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicTemplateDirective
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { DynamicFoundationFormControlComponent } from "./dynamic-foundation-form-control.component";
 
 @Component({

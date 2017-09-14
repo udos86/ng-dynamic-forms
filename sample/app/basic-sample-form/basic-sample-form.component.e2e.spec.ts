@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { browser, by, element, } from "protractor";
 import { BASIC_SAMPLE_FORM_MODEL } from "./basic-sample-form.model";
-import { DynamicFormControlModel, DynamicTextAreaModel, DynamicFormService } from "@ng2-dynamic-forms/core";
+import { DynamicFormControlModel, DynamicTextAreaModel, DynamicFormService } from "@ng-dynamic-forms/core";
 
 describe("BasicExampleComponent", () => {
 
@@ -14,7 +14,7 @@ describe("BasicExampleComponent", () => {
 
         BASIC_SAMPLE_FORM_MODEL.forEach(model => {
 
-            expect(element(by.name(model.id))).toBeDefined();
+            expect(element(by.name(model["id"]))).toBeDefined();
         });
     });
 

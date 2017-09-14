@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Ionic UI
+# NG Dynamic Forms Ionic UI
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/ui-ionic -S
+npm install @ng-dynamic-forms/ui-ionic -S
 ```
 
 ## Import

@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": "../..",
     "paths": {
-      "@ng2-dynamic-forms/*": [
-        "dist/@ng2-dynamic-forms/*"
+      "@ng-dynamic-forms/*": [
+        "dist/@ng-dynamic-forms/*"
       ]
     }
   },
@@ -13,7 +13,7 @@
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
-    "flatModuleId": "@ng2-dynamic-forms/ui-ionic",
+    "flatModuleId": "@ng-dynamic-forms/ui-ionic",
     "flatModuleOutFile": "ui-ionic.js",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true

@@ -1,4 +1,4 @@
-import { DynamicSelectModel } from "@ng2-dynamic-forms/core";
+import { DynamicSelectModel } from "@ng-dynamic-forms/core";
 
 export const ASYNC_SAMPLE_FORM_MODEL = [
 

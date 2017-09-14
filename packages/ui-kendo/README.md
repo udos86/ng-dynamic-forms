@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Kendo UI
+# NG Dynamic Forms Kendo UI
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/ui-kendo -S
+npm install @ng-dynamic-forms/ui-kendo -S
 ```
 
 ## Import

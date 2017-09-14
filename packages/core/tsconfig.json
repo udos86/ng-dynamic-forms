@@ -5,7 +5,7 @@
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
-    "flatModuleId": "@ng2-dynamic-forms/core",
+    "flatModuleId": "@ng-dynamic-forms/core",
     "flatModuleOutFile": "core.js",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true

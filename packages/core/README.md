@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Core
+# NG Dynamic Forms Core
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/core -S
+npm install @ng-dynamic-forms/core -S
 ```
 
 ## Import

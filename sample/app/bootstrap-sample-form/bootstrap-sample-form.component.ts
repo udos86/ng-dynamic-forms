@@ -5,7 +5,7 @@ import {
     DynamicFormControlModel,
     DynamicFormArrayModel,
     DynamicInputModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { BOOTSTRAP_SAMPLE_FORM_MODEL } from "./bootstrap-sample-form.model";
 
 @Component({

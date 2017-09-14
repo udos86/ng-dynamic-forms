@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-primeng",
+  "name": "@ng-dynamic-forms/ui-primeng",
   "version": "1.4.30",
-  "description": "PrimeNG UI package for ng2 Dynamic Forms",
+  "description": "PrimeNG UI package for ng Dynamic Forms",
   "main": "./bundles/ui-primeng.umd.js",
   "module": "./bundles/ui-primeng.es.js",
   "typings": "./public_api.d.ts",
@@ -10,7 +10,7 @@
     "angular 2",
     "dynamic forms",
     "forms",
-    "ng2 dynamic forms",
+    "ng dynamic forms",
     "prime ng",
     "reactive forms",
     "ui"
@@ -33,7 +33,7 @@
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng2-dynamic-forms/core": "^1.4.30",
+    "@ng-dynamic-forms/core": "^1.4.30",
     "primeng": "^4.0.0",
     "rxjs": "^5.2.0"
   },

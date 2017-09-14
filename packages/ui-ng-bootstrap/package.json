@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-ng-bootstrap",
+  "name": "@ng-dynamic-forms/ui-ng-bootstrap",
   "version": "1.4.30",
-  "description": "NG Bootstrap UI package for ng2 Dynamic Forms",
+  "description": "NG Bootstrap UI package for ng Dynamic Forms",
   "main": "./bundles/ui-ng-bootstrap.umd.js",
   "module": "./bundles/ui-ng-bootstrap.es.js",
   "typings": "./public_api.d.ts",
@@ -12,7 +12,7 @@
     "ng-bootstrap",
     "dynamic forms",
     "forms",
-    "ng2 dynamic forms",
+    "ng dynamic forms",
     "reactive forms",
     "ui"
   ],
@@ -35,7 +35,7 @@
     "@angular/forms": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.4",
-    "@ng2-dynamic-forms/core": "^1.4.30",
+    "@ng-dynamic-forms/core": "^1.4.30",
     "angular2-text-mask": "^8.0.1",
     "bootstrap": "^4.0.0-beta",
     "rxjs": "^5.2.0"

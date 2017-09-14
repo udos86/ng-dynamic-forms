@@ -1,8 +1,8 @@
-# ng2 Dynamic Forms Basic UI
+# NG Dynamic Forms Basic UI
 
 ## Installation
 ```
-npm install @ng2-dynamic-forms/ui-basic -S
+npm install @ng-dynamic-forms/ui-basic -S
 ```
 
 ## Import

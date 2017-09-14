@@ -9,7 +9,7 @@ import {
     DynamicSelectModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 
 export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
 

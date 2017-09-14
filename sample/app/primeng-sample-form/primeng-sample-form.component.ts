@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel } from "@ng-dynamic-forms/core";
 import { PRIME_NG_SAMPLE_FORM_MODEL } from "./primeng-sample-form.model";
 
 @Component({

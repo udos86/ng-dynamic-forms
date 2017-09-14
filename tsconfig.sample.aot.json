@@ -13,8 +13,8 @@
     ],
     "noImplicitAny": false,
     "paths": {
-      "@ng2-dynamic-forms/*": [
-        "dist/@ng2-dynamic-forms/*"
+      "@ng-dynamic-forms/*": [
+        "dist/@ng-dynamic-forms/*"
       ]
     },
     "suppressImplicitAnyIndexErrors": true,

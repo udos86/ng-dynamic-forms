@@ -14,8 +14,8 @@
     "noImplicitAny": true,
     "noUnusedParameters": true,
     "paths": {
-      "@ng2-dynamic-forms/*": [
-        "dist/@ng2-dynamic-forms/*"
+      "@ng-dynamic-forms/*": [
+        "dist/@ng-dynamic-forms/*"
       ]
     },
     "removeComments": false,

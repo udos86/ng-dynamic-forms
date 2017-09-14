@@ -10,7 +10,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { customDateRangeValidator } from "../app.validators";
 
 export const KENDO_SAMPLE_FORM_MODEL = [

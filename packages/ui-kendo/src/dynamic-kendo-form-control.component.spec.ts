@@ -24,7 +24,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,

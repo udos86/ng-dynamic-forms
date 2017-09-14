@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-basic",
+  "name": "@ng-dynamic-forms/ui-basic",
   "version": "1.4.30",
-  "description": "Basic UI package for ng2 Dynamic Forms",
+  "description": "Basic UI package for ng Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
   "module": "./bundles/ui-basic.es.js",
   "typings": "./public_api.d.ts",
@@ -10,7 +10,7 @@
     "angular 2",
     "dynamic forms",
     "forms",
-    "ng2 dynamic forms",
+    "ng dynamic forms",
     "reactive forms",
     "ui"
   ],
@@ -32,7 +32,7 @@
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng2-dynamic-forms/core": "^1.4.30",
+    "@ng-dynamic-forms/core": "^1.4.30",
     "angular2-text-mask": "^8.0.1",
     "rxjs": "^5.2.0"
   }

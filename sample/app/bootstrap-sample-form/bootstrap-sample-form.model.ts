@@ -7,9 +7,8 @@ import {
     DynamicTextAreaModel,
     DynamicFormArrayModel,
     DynamicFormGroupModel
-} from "@ng2-dynamic-forms/core";
+} from "@ng-dynamic-forms/core";
 import { Observable } from "rxjs/Observable";
-import { Validators } from "@angular/forms";
 
 export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 

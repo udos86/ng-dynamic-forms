@@ -1,7 +1,7 @@
 {
-  "name": "@ng2-dynamic-forms/ui-kendo",
+  "name": "@ng-dynamic-forms/ui-kendo",
   "version": "1.4.30",
-  "description": "Kendo UI package for ng2 Dynamic Forms",
+  "description": "Kendo UI package for ng Dynamic Forms",
   "main": "./bundles/ui-kendo.umd.js",
   "module": "./bundles/ui-kendo.es.js",
   "typings": "./public_api.d.ts",
@@ -10,7 +10,7 @@
     "angular 2",
     "dynamic forms",
     "forms",
-    "ng2 dynamic forms",
+    "ng dynamic forms",
     "reactive forms",
     "kendo",
     "ui"
@@ -33,7 +33,7 @@
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng2-dynamic-forms/core": "^1.4.30",
+    "@ng-dynamic-forms/core": "^1.4.30",
     "@progress/kendo-angular-dateinputs": "^1.1.0",
     "@progress/kendo-angular-dropdowns": "^1.0.0",
     "@progress/kendo-angular-inputs": "^1.0.0",

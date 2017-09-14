@@ -75,8 +75,8 @@ module.exports = function (config) {
 
             {pattern: "node_modules/tslib/**/*.js", included: false, watched: false},
 
-            {pattern: "dist/@ng2-dynamic-forms/**/*.js", included: false, watched: false},
-            {pattern: "dist/@ng2-dynamic-forms/**/*.js.map", included: false, watched: false},
+            {pattern: "dist/@ng-dynamic-forms/**/*.js", included: false, watched: false},
+            {pattern: "dist/@ng-dynamic-forms/**/*.js.map", included: false, watched: false},
 
             {pattern: "test/**/*.*", included: false, watched: true},
 
