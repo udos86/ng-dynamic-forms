@@ -19,7 +19,7 @@ const APP_ROUTES: Route[] = [
         component: BasicSampleFormComponent,
         data: {
             title: "Basic UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/basic-sample-form/basic-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/basic-sample-form/basic-sample-form.model.ts",
             bgColor: "gray"
         }
     },
@@ -28,7 +28,7 @@ const APP_ROUTES: Route[] = [
         component: BootstrapSampleFormComponent,
         data: {
             title: "Bootstrap UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/bootstrap-sample-form/bootstrap-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/bootstrap-sample-form/bootstrap-sample-form.model.ts",
             bgColor: "#6f5499"
         }
     },
@@ -37,7 +37,7 @@ const APP_ROUTES: Route[] = [
         component: FoundationSampleFormComponent,
         data: {
             title: "Foundation UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/foundation-sample-form/foundation-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/foundation-sample-form/foundation-sample-form.model.ts",
             bgColor: "#2199e8"
         }
     },
@@ -46,7 +46,7 @@ const APP_ROUTES: Route[] = [
         component: KendoSampleFormComponent,
         data: {
             title: "Kendo UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/kendo-sample-form/kendo-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/kendo-sample-form/kendo-sample-form.model.ts",
             bgColor: "#ff5747"
         }
     },
@@ -55,7 +55,7 @@ const APP_ROUTES: Route[] = [
         component: MaterialSampleFormComponent,
         data: {
             title: "Material UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/material-sample-form/material-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/material-sample-form/material-sample-form.model.ts",
             bgColor: "#009688"
         }
     },
@@ -64,7 +64,7 @@ const APP_ROUTES: Route[] = [
         component: NGBootstrapSampleFormComponent,
         data: {
             title: "NG Bootstrap UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/ng-bootstrap-sample-form/ng-bootstrap-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/ng-bootstrap-sample-form/ng-bootstrap-sample-form.model.ts",
             bgColor: "#1b95e0"
         }
     },
@@ -73,7 +73,7 @@ const APP_ROUTES: Route[] = [
         component: PrimeNGSampleFormComponent,
         data: {
             title: "Prime NG UI",
-            href: "https://github.com/udos86/ng2-dynamic-forms/blob/master/sample/app/primeng-sample-form/primeng-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/primeng-sample-form/primeng-sample-form.model.ts",
             bgColor: "#DB2226"
         }
     },
