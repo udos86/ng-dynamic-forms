@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
 
-:bangbang:**09/14/2017: @ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
+:bangbang:09-14-2017: **@ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
 ***
 **Please update your dependencies**:
 ```
