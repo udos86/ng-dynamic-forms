@@ -1,7 +1,7 @@
 {
   "name": "@ng-dynamic-forms/ui-material",
   "version": "1.4.31",
-  "description": "Material UI package for ng Dynamic Forms",
+  "description": "Material UI package for NG Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "module": "./bundles/ui-material.es.js",
   "typings": "./public_api.d.ts",

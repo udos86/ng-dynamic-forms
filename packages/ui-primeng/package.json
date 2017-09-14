@@ -1,7 +1,7 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
   "version": "1.4.31",
-  "description": "PrimeNG UI package for ng Dynamic Forms",
+  "description": "PrimeNG UI package for NG Dynamic Forms",
   "main": "./bundles/ui-primeng.umd.js",
   "module": "./bundles/ui-primeng.es.js",
   "typings": "./public_api.d.ts",
