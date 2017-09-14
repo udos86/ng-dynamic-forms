@@ -7,8 +7,14 @@
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
 
-&#x1F534; **Please Note: @ng2-dynamic-forms scope has been renamed to @ng-dynamic-forms** &#x1F534;
-
+:bangbang:**09/14/2017: @ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
+***
+**Please update your dependencies**:
+```
+npm uninstall @ng2-dynamic-forms/core @ng2-dynamic-forms/ui-<package_name> -S
+npm install @ng-dynamic-forms/core @ng-dynamic-forms/ui-<package_name> -S
+```
+***
 
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
@@ -20,7 +26,6 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
                                                                                           
 See what's possible by exploring the [**live demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html) 
 and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
-
 
 ## Table of Contents
 
@@ -48,12 +53,12 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 
 **1. Install the core package**:
 ```
-npm install @ng-dynamic-forms/core --save
+npm install @ng-dynamic-forms/core -S
 ```
   
 **2. Choose your [UI library](#ui-modules-and-components)** and **install the appropriate package**:
 ```
-npm install @ng-dynamic-forms/ui-bootstrap --save
+npm install @ng-dynamic-forms/ui-bootstrap -S
 ```
 
 **3.** When using **SystemJS**, update your configuration to **import the corresponding UMD bundles**:
@@ -216,7 +221,7 @@ NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a var
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and its peer dependencies**:
 ```
-npm install @ng-dynamic-forms/ui-<library-name> --save
+npm install @ng-dynamic-forms/ui-<library-name> -S
 ```
 
 **Now just import the UI module**:
