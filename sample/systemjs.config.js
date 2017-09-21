@@ -68,8 +68,10 @@
         "angular2-text-mask": "npm:angular2-text-mask/dist/angular2TextMask.js",
         "app": "app",
         "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
+        "ngx-bootstrap": "npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs",
+        "text-mask-addons": "npm:text-mask-addons",
         "text-mask-core": "npm:text-mask-core",
         "tslib": "npm:tslib/tslib.js"
     };
@@ -85,15 +87,14 @@
         "@telerik": {
             defaultExtension: "js"
         },
-        "ng-semantic": {
-            main: "ng-semantic.js",
-            defaultExtension: "js"
-        },
         "primeng": {
             defaultExtension: "js"
         },
         "rxjs": {
             main: "Rx.js",
+            defaultExtension: "js"
+        },
+        "text-mask-addons": {
             defaultExtension: "js"
         },
         "text-mask-core": {

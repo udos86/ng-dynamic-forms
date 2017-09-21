@@ -102,14 +102,13 @@
 
             <div *ngSwitchCase="5" class="input-group">
 
-                <input ngbDatepicker class="form-control"
+                <input ngbDatepicker class="form-control" #datepicker="ngbDatepicker"
                        [class.is-invalid]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
-                       [placeholder]="model.placeholder"
-                       #datepicker="ngbDatepicker">
+                       [placeholder]="model.placeholder">
 
                 <div class="input-group-addon" (click)="datepicker.toggle()">
                     <img [src]="model.toggleIcon" style="cursor: pointer;"/>
