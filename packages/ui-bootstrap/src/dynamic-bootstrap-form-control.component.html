@@ -10,7 +10,7 @@
 
 
     <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-            <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
 
@@ -91,6 +91,27 @@
             </fieldset>
 
 
+            <!--div *ngSwitchCase="99" class="input-group">
+
+                <input bsDatepicker class="form-control" #bsDatepicker="bsDatepicker"
+                       [autofocus]="model.autoFocus"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [maxDate]="model.max"
+                       [minDate]="model.min"
+                       [name]="model.name"
+                       [ngClass]="model.cls.element.control"
+                       [placeholder]="model.placeholder"
+                       [readonly]="model.readOnly"
+                       [required]="model.required">
+
+                <div class="input-group-btn">
+                    <button class="btn" (click)="bsDatepicker.toggle()">Open<!--img [src]="model.toggleIcon"/--></button>
+                </div>
+
+            </div-->
+
+
             <div *ngSwitchCase="4" [class.input-group]="model.prefix || model.suffix">
 
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
@@ -168,7 +189,8 @@
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{ option.label }}</option>
+                        [ngValue]="option.value">{{ option.label }}
+                </option>
 
             </select>
 

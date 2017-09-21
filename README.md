@@ -99,7 +99,7 @@ npm run build:modules
 
 **4. Transpile the source code**:
 ```
-npm run transpile:sample:commonjs
+npm run watch:sample
 ```
 
 **5. Run the application**:

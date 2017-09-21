@@ -21,22 +21,26 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng-dynamic-forms/core";
 
 export const enum BootstrapFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
+    DatePicker = 99, //"DATEPICKER,
     Group = 3, //"GROUP",
     Input = 4, //"INPUT",
     RadioGroup = 5, //"RADIO_GROUP",
     Select = 6, //"SELECT",
-    TextArea = 7, //"TEXTAREA"
+    TextArea = 7, //"TEXTAREA",
+    TimePicker = 10 //"TIMEPICKER"
 }
 
 @Component({
@@ -89,6 +93,10 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return BootstrapFormControlType.Group;
 
+            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+                return null;
+                //return BootstrapFormControlType.DatePicker;
+
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 return BootstrapFormControlType.Input;
 
@@ -100,6 +108,10 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
 
             case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
                 return BootstrapFormControlType.TextArea;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+                return null;
+                //return BootstrapFormControlType.TimePicker;
 
             default:
                 return null;
