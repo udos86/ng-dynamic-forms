@@ -94,7 +94,7 @@ npm install
 
 **3. Build the library**:
 ```
-npm run build:modules
+npm run build:packages
 ```
 
 **4. Transpile the source code**:
