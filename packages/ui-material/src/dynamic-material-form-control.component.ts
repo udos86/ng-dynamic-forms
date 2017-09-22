@@ -12,15 +12,15 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    MdAutocomplete,
-    MdCheckbox,
-    MdDatepicker,
-    MdFormField,
-    MdInput,
-    MdRadioGroup,
-    MdSelect,
-    MdSlider,
-    MdSlideToggle
+    MatAutocomplete,
+    MatCheckbox,
+    MatDatepicker,
+    MatFormField,
+    MatInput,
+    MatRadioGroup,
+    MatSelect,
+    MatSlider,
+    MatSlideToggle
 } from "@angular/material";
 import {
     DynamicFormValidationService,
@@ -42,10 +42,10 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng-dynamic-forms/core";
-import { MdFormControlType, MD_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
+import { MatFormControlType, MAT_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
 
-export type MdFormControlComponent = MdAutocomplete | MdCheckbox | MdDatepicker<Date> | MdFormField | MdRadioGroup |
-    MdSelect | MdSlider | MdSlideToggle;
+export type MatFormControlComponent = MatAutocomplete | MatCheckbox | MatDatepicker<Date> | MatFormField |
+    MatRadioGroup | MatSelect | MatSlider | MatSlideToggle;
 
 @Component({
     selector: "dynamic-material-form-control,dynamic-form-material-control",
@@ -77,10 +77,10 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild(MD_VIEW_CHILD_SELECTOR) mdViewChild: MdFormControlComponent | undefined;
-    @ViewChild(MdInput) mdInput: MdInput | undefined;
+    @ViewChild(MAT_VIEW_CHILD_SELECTOR) matViewChild: MatFormControlComponent | undefined;
+    @ViewChild(MatInput) matInput: MatInput | undefined;
 
-    type: MdFormControlType | null;
+    type: MatFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected validationService: DynamicFormValidationService) {
@@ -97,43 +97,43 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 
     get characterCount(): number | null {
-        return this.mdInput ? this.mdInput.value.length : null;
+        return this.matInput ? this.matInput.value.length : null;
     }
 
-    static getFormControlType(model: DynamicFormControlModel): MdFormControlType | null {
+    static getFormControlType(model: DynamicFormControlModel): MatFormControlType | null {
 
         switch (model.type) {
 
             case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                return MdFormControlType.Array;
+                return MatFormControlType.Array;
 
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                return MdFormControlType.Checkbox;
+                return MatFormControlType.Checkbox;
 
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                return MdFormControlType.Group;
+                return MatFormControlType.Group;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                return MdFormControlType.DatePicker;
+                return MatFormControlType.DatePicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                return MdFormControlType.Input;
+                return MatFormControlType.Input;
 
             case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                return MdFormControlType.RadioGroup;
+                return MatFormControlType.RadioGroup;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                return MdFormControlType.Select;
+                return MatFormControlType.Select;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                return MdFormControlType.Slider;
+                return MatFormControlType.Slider;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                return MdFormControlType.SlideToggle;
+                return MatFormControlType.SlideToggle;
 
             case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                return MdFormControlType.TextArea;
+                return MatFormControlType.TextArea;
 
             default:
                 return null;

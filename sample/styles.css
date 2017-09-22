@@ -153,19 +153,19 @@ dynamic-kendo-form-control ul {
 
 
 /* MATERIAL */
-md-input {
+mat-input {
     vertical-align: middle;
 }
 
-md-input, md-radio-button {
+mat-input, mat-radio-button {
     margin-right: 1rem;
 }
 
-md-select {
+mat-select {
     width: 200px;
 }
 
-md-slide-toggle {
+mat-slide-toggle {
     display: inline-block !important;
 }
 
