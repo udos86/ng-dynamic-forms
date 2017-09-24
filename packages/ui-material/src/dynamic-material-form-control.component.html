@@ -86,6 +86,8 @@
              [formGroupName]="model.id"
              [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
             <dynamic-material-form-control *ngFor="let controlModel of model.group"
                                            [group]="control"
                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
