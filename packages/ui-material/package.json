@@ -4,7 +4,7 @@
   "description": "Material UI package for NG Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "module": "./bundles/ui-material.es.js",
-  "typings": "./public_api.d.ts",
+  "typings": "./ui-material.d.ts",
   "keywords": [
     "angular",
     "angular 2",

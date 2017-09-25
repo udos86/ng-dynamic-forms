@@ -41,6 +41,7 @@
         "@angular/router": "npm:@angular/router/bundles/router.umd.js",
         "@angular/router/testing": "npm:@angular/router/bundles/router-testing.umd.js",
         "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
+        "@ng-bootstrap/ng-bootstrap/index": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
         //"@ng2-dynamic-forms": "lib",
         "@ng-dynamic-forms/core": "lib:core/bundles/core.umd.js",
         "@ng-dynamic-forms/ui-basic": "lib:ui-basic/bundles/ui-basic.umd.js",

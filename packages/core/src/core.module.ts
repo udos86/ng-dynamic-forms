@@ -7,7 +7,6 @@ import { DynamicIdDirective } from "./directive/dynamic-id.directive";
 import { DynamicTemplateDirective } from "./directive/dynamic-template.directive";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule
@@ -21,7 +20,6 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
         DynamicTemplateDirective
     ]
 })
-
 export class DynamicFormsCoreModule {
 
     static forRoot(): ModuleWithProviders {

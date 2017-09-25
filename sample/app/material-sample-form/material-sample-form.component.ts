@@ -22,6 +22,6 @@ export class MaterialSampleFormComponent implements OnInit {
     }
 
     onChange($event) {
-        console.log(`Material change event on: `, $event);
+        console.log(`Material change event on: ${$event.model.id}: `, $event);
     }
 }

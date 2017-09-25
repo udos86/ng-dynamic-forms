@@ -4,7 +4,7 @@
   "description": "Ionic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-ionic.umd.js",
   "module": "./bundles/ui-ionic.es.js",
-  "typings": "./public_api.d.ts",
+  "typings": "./ui-ionic.d.ts",
   "keywords": [
     "angular",
     "angular 2",

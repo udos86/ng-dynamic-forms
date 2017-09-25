@@ -8,7 +8,6 @@ import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.c
 import { DynamicIonicFormComponent } from "./dynamic-ionic-form.component";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -26,6 +25,5 @@ import { DynamicIonicFormComponent } from "./dynamic-ionic-form.component";
         DynamicIonicFormComponent
     ]
 })
-
 export class DynamicFormsIonicUIModule {
 }
