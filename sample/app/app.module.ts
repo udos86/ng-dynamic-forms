@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Http, BaseRequestOptions } from "@angular/http";
-import { MdCardModule, MdNativeDateModule } from "@angular/material";
+import { MatCardModule, MatNativeDateModule, MATERIAL_COMPATIBILITY_MODE } from "@angular/material";
 import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -42,8 +42,8 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         BrowserAnimationsModule,
         ReactiveFormsModule,
         AppRoutingModule,
-        MdNativeDateModule,
-        MdCardModule,
+        MatNativeDateModule,
+        MatCardModule,
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),
         //BsDatepickerModule.forRoot(),
@@ -88,6 +88,10 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
             provide: NG_VALIDATORS,
             useValue: customDateRangeValidator,
             multi: true
+        },
+        {
+            provide: MATERIAL_COMPATIBILITY_MODE,
+            useValue: true
         }
     ],
     bootstrap: [AppComponent]

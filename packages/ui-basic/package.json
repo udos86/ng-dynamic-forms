@@ -4,7 +4,7 @@
   "description": "Basic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
   "module": "./bundles/ui-basic.es.js",
-  "typings": "./public_api.d.ts",
+  "typings": "./ui-basic.d.ts",
   "keywords": [
     "angular",
     "angular 2",

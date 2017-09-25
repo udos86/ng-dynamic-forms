@@ -7,7 +7,6 @@ import { DynamicFoundationFormControlComponent } from "./dynamic-foundation-form
 import { DynamicFoundationFormComponent } from "./dynamic-foundation-form.component";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -24,6 +23,5 @@ import { DynamicFoundationFormComponent } from "./dynamic-foundation-form.compon
         DynamicFoundationFormComponent
     ]
 })
-
 export class DynamicFormsFoundationUIModule {
 }

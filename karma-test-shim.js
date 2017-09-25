@@ -37,6 +37,7 @@ System.config({
         "@angular/cdk/portal": "npm:@angular/cdk/bundles/cdk-portal.umd.js",
         "@angular/cdk/rxjs": "npm:@angular/cdk/bundles/cdk-rxjs.umd.js",
         "@angular/cdk/scrolling": "npm:@angular/cdk/bundles/cdk-scrolling.umd.js",
+        "@angular/cdk/stepper": "npm:@angular/cdk/bundles/cdk-stepper.umd.js",
         "@angular/cdk/table": "npm:@angular/cdk/bundles/cdk-table.umd.js",
         "@angular/core": "npm:@angular/core/bundles/core.umd.js",
         "@angular/core/testing": "npm:@angular/core/bundles/core-testing.umd.js",

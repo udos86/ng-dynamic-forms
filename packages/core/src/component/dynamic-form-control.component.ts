@@ -241,8 +241,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
                 }
             );
 
-        }
-        else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
+        } else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
 
             this.change.emit($event as DynamicFormControlEvent);
 

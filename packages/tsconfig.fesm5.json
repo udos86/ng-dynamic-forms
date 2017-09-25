@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "../",
+    "paths": {
+      "@ng-dynamic-forms/*": [
+        "dist/@ng-dynamic-forms/*"
+      ]
+    },
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -13,7 +19,7 @@
     "outDir": "../dist/@ng-dynamic-forms",
     "removeComments": false,
     "rootDir": ".",
-    "sourceMap": true,
+    "sourceMap": false,
     "target": "es5",
     "typeRoots": [],
     "types": []

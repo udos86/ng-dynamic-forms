@@ -4,14 +4,15 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import {
-    MdAutocompleteModule,
-    MdCheckboxModule,
-    MdDatepickerModule,
-    MdInputModule,
-    MdRadioModule,
-    MdSelectModule,
-    MdSliderModule,
-    MdSlideToggleModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MATERIAL_COMPATIBILITY_MODE
 } from "@angular/material";
 import {
     DynamicFormsCoreModule,
@@ -33,7 +34,7 @@ import {
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
-import { MdFormControlType } from "./dynamic-material-form.const";
+import { MatFormControlType } from "./dynamic-material-form.const";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
@@ -67,17 +68,18 @@ describe("DynamicFormMaterialComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                MdAutocompleteModule,
-                MdCheckboxModule,
-                MdDatepickerModule,
-                MdInputModule,
-                MdRadioModule,
-                MdSelectModule,
-                MdSliderModule,
-                MdSlideToggleModule,
+                MatAutocompleteModule,
+                MatCheckboxModule,
+                MatDatepickerModule,
+                MatInputModule,
+                MatRadioModule,
+                MatSelectModule,
+                MatSliderModule,
+                MatSlideToggleModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicMaterialFormControlComponent]
+            declarations: [DynamicMaterialFormControlComponent],
+            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
 
         }).compileComponents().then(() => {
 
@@ -134,7 +136,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
 
-        expect(component.type).toEqual(MdFormControlType.Input);
+        expect(component.type).toEqual(MatFormControlType.Input);
     });
 
     it("should have an input element", () => {
@@ -192,31 +194,31 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         let testFn = DynamicMaterialFormControlComponent.getFormControlType;
 
-        expect(testFn(formModel[0])).toEqual(MdFormControlType.Checkbox);
+        expect(testFn(formModel[0])).toEqual(MatFormControlType.Checkbox);
 
-        expect(testFn(formModel[1])).toEqual(MdFormControlType.Group);
+        expect(testFn(formModel[1])).toEqual(MatFormControlType.Group);
 
-        expect(testFn(formModel[2])).toEqual(MdFormControlType.DatePicker);
+        expect(testFn(formModel[2])).toEqual(MatFormControlType.DatePicker);
 
         expect(testFn(formModel[3])).toBeNull();
 
         expect(testFn(formModel[4])).toBeNull();
 
-        expect(testFn(formModel[5])).toEqual(MdFormControlType.Array);
+        expect(testFn(formModel[5])).toEqual(MatFormControlType.Array);
 
-        expect(testFn(formModel[6])).toEqual(MdFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(MatFormControlType.Group);
 
-        expect(testFn(formModel[7])).toEqual(MdFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(MatFormControlType.Input);
 
-        expect(testFn(formModel[8])).toEqual(MdFormControlType.RadioGroup);
+        expect(testFn(formModel[8])).toEqual(MatFormControlType.RadioGroup);
 
-        expect(testFn(formModel[9])).toEqual(MdFormControlType.Select);
+        expect(testFn(formModel[9])).toEqual(MatFormControlType.Select);
 
-        expect(testFn(formModel[10])).toEqual(MdFormControlType.Slider);
+        expect(testFn(formModel[10])).toEqual(MatFormControlType.Slider);
 
-        expect(testFn(formModel[11])).toEqual(MdFormControlType.SlideToggle);
+        expect(testFn(formModel[11])).toEqual(MatFormControlType.SlideToggle);
 
-        expect(testFn(formModel[12])).toEqual(MdFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(MatFormControlType.TextArea);
 
         expect(testFn(formModel[13])).toBeNull();
     });

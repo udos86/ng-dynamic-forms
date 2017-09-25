@@ -1,4 +1,4 @@
-export const enum MdFormControlType {
+export const enum MatFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
@@ -12,5 +12,5 @@ export const enum MdFormControlType {
     TextArea = 10, //"TEXTAREA"
 }
 
-export const MD_VIEW_CHILD_SELECTOR = `mdAutocomplete,mdCheckbox,mdDatepicker,mdInput,mdRadioGroup,mdSelect,
-    mdSlider,mdSlideToggle,mdTextarea`;
+export const MAT_VIEW_CHILD_SELECTOR = `matAutocomplete,matCheckbox,matDatepicker,matInput,matRadioGroup,matSelect,
+    matSlider,matSlideToggle,matTextarea`;
