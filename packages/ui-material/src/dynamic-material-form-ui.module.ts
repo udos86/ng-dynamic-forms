@@ -16,7 +16,6 @@ import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-con
 import { DynamicMaterialFormComponent } from "./dynamic-material-form.component";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule,

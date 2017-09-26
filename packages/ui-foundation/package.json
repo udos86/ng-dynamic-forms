@@ -4,7 +4,7 @@
   "description": "Foundation UI package for NG Dynamic Forms",
   "main": "./bundles/ui-foundation.umd.js",
   "module": "./bundles/ui-foundation.es.js",
-  "typings": "./public_api.d.ts",
+  "typings": "./ui-foundation.d.ts",
   "keywords": [
     "angular",
     "angular 2",

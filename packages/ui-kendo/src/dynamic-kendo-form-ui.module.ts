@@ -10,7 +10,6 @@ import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.c
 import { DynamicKendoFormComponent } from "./dynamic-kendo-form.component";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -30,6 +29,5 @@ import { DynamicKendoFormComponent } from "./dynamic-kendo-form.component";
         DynamicKendoFormComponent
     ]
 })
-
 export class DynamicFormsKendoUIModule {
 }

@@ -8,7 +8,6 @@ import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-f
 import { DynamicNGBootstrapFormComponent } from "./dynamic-ng-bootstrap-form.component";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -28,6 +27,5 @@ import { DynamicNGBootstrapFormComponent } from "./dynamic-ng-bootstrap-form.com
         DynamicNGBootstrapFormComponent
     ]
 })
-
 export class DynamicFormsNGBootstrapUIModule {
 }

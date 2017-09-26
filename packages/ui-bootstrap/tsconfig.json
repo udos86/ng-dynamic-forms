@@ -1,13 +1,5 @@
 {
   "extends": "../tsconfig.fesm5.json",
-  "compilerOptions": {
-    "baseUrl": "../..",
-    "paths": {
-      "@ng-dynamic-forms/*": [
-        "dist/@ng-dynamic-forms/*"
-      ]
-    }
-  },
   "files": [
     "./public_api.ts"
   ],

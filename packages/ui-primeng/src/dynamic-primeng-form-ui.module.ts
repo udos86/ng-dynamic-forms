@@ -23,7 +23,6 @@ import {
 import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
 
 @NgModule({
-
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -54,6 +53,5 @@ import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
         DynamicPrimeNGFormComponent
     ]
 })
-
 export class DynamicFormsPrimeNGUIModule {
 }
