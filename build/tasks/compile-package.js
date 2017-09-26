@@ -1,8 +1,8 @@
 const run = require("gulp-run");
 
-module.exports = function (packageName) {
+module.exports = function (pathTsConfig) {
 
     return function () {
-        return run(`npm run compile:package:${packageName}`).exec();
+        return run(`ngc -p ${pathTsConfig}`).exec();
     };
 };

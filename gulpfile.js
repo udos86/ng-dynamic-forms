@@ -1,9 +1,8 @@
 const gulp        = require("gulp"),
-      del         = require("del"),
       runSequence = require("run-sequence"),
       pkg         = require("./package.json");
 
-const TASK_BUNDLE_ROLLUP        = require("./build/tasks/bundle-rollup-stream"),
+const TASK_BUNDLE_PACKAGE       = require("./build/tasks/bundle-package"),
       TASK_CLEAN                = require("./build/tasks/clean"),
       TASK_COPY                 = require("./build/tasks/copy"),
       TASK_COMPILE_PACKAGE      = require("./build/tasks/compile-package"),
@@ -34,6 +33,10 @@ const NPM_SCOPE      = "@ng-dynamic-forms",
           "ui-primeng"
       ];
 
+
+/**
+ * Tasks for building single packages
+ */
 PACKAGES_NAMES.forEach(packageName => {
 
     const PACKAGE_SRC_PATH  = `${SRC_PATH}/${packageName}`,
@@ -57,7 +60,7 @@ PACKAGES_NAMES.forEach(packageName => {
         TASK_CLEAN([`${PACKAGE_DIST_PATH}/**/*`]));
 
     gulp.task(TASK_NAME_COMPILE,
-        TASK_COMPILE_PACKAGE(packageName));
+        TASK_COMPILE_PACKAGE(`${PACKAGE_SRC_PATH}/tsconfig.json`));
 
     gulp.task(TASK_NAME_COPY,
         TASK_COPY([`${PACKAGE_SRC_PATH}/package.json`, `${PACKAGE_SRC_PATH}/README.md`, `${PACKAGE_SRC_PATH}/**/*.html`], PACKAGE_DIST_PATH));
@@ -69,14 +72,13 @@ PACKAGES_NAMES.forEach(packageName => {
         TASK_INLINE_NG2_TEMPLATES([`${PACKAGE_DIST_PATH}/**/*.js`], PACKAGE_DIST_PATH));
 
     gulp.task(TASK_NAME_BUNDLE,
-        TASK_BUNDLE_ROLLUP(DIST_PATH, packageName, "ng2DF", pkg, DIST_PATH));
+        TASK_BUNDLE_PACKAGE(`${PACKAGE_SRC_PATH}/rollup.config.js`));
 
     gulp.task(TASK_NAME_REMOVE_MODULE_ID,
         TASK_REMOVE_MODULE_ID([`${PACKAGE_DIST_PATH}/**/*`], PACKAGE_DIST_PATH));
 
-    gulp.task(TASK_NAME_CLEANUP, function () {
-        return del([`${PACKAGE_DIST_PATH}/*.js`, `${PACKAGE_DIST_PATH}/src/**/*.js`]);
-    });
+    gulp.task(TASK_NAME_CLEANUP,
+        TASK_CLEAN([`${PACKAGE_DIST_PATH}/*.js?(.map)`, `${PACKAGE_DIST_PATH}/src/**/*.js?(.map)`]));
 
 
     gulp.task(TASK_NAME_BUILD, done => {
@@ -95,22 +97,14 @@ PACKAGES_NAMES.forEach(packageName => {
     });
 });
 
-gulp.task("build-debug:packages", function (done) {
-    runSequence("transpile:packages:debug", done);
-});
-
 gulp.task("build:packages", function (done) {
     runSequence(...PACKAGES_NAMES.map(packageName => `build:${packageName}`), done);
 });
 
-gulp.task("transpile:packages:debug",
-    TASK_TRANSPILE_TYPESCRIPT([`${DIST_PATH}/**/*.ts`], DIST_PATH, "./tsconfig.packages.json", "commonjs"));
 
-gulp.task("watch:packages", function () {
-    gulp.watch([`${SRC_PATH}/**/*.*`], ["build:packages"]);
-});
-
-
+/**
+ * Tasks for building unit tests
+ */
 gulp.task("clean:tests",
     TASK_CLEAN([`${TEST_PATH}/**/*`]));
 
@@ -130,18 +124,37 @@ gulp.task("build", function (done) {
 });
 
 
+/**
+ * Tasks for incrementing version number
+ */
+gulp.task("increment:version:major",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
+
+gulp.task("increment:version:minor",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MINOR", SRC_PATH));
+
+gulp.task("increment:version:patch",
+    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
+
+
+/**
+ * Miscellaneous Tasks
+ */
 gulp.task("lint:packages",
     TASK_LINT_TYPESCRIPT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
 gulp.task("clean:dist",
     TASK_CLEAN([`${DIST_BASE_PATH}/**/*`]));
 
-gulp.task("clean:node_modules",
+gulp.task("clean:npm-dist",
     TASK_CLEAN([`${NPM_PATH}/**/*`]));
 
-gulp.task("copy:node_modules",
+gulp.task("copy:npm-dist",
     TASK_COPY([`${DIST_BASE_PATH}/**/*.*`], NPM_BASE_PATH));
 
+gulp.task("watch:packages", function () {
+    gulp.watch([`${SRC_PATH}/**/*.*`], ["build:packages"]);
+});
 
 gulp.task("build:doc",
     TASK_DOC_TYPESCRIPT([`${SRC_PATH}/*/src/**/!(*.spec).ts`], {
@@ -158,13 +171,3 @@ gulp.task("build:doc",
             theme: "minimal"
         }
     ));
-
-
-gulp.task("increment:version:major",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
-
-gulp.task("increment:version:minor",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MINOR", SRC_PATH));
-
-gulp.task("increment:version:patch",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
