@@ -4,7 +4,7 @@
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "main": "./bundles/ui-primeng.umd.js",
   "module": "./bundles/ui-primeng.es.js",
-  "typings": "./public_api.d.ts",
+  "typings": "./ui-primeng.d.ts",
   "keywords": [
     "angular",
     "angular 2",

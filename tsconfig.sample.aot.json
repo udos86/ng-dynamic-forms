@@ -28,7 +28,6 @@
     ]
   },
   "files": [
-    "sample/app/app.module.ts",
     "sample/app/main.aot.ts"
   ],
   "angularCompilerOptions": {

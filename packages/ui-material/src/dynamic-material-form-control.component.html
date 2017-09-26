@@ -40,28 +40,28 @@
         </div>
 
 
-        <md-checkbox *ngSwitchCase="2" #mdCheckbox
-                     [checked]="model.checked"
-                     [dynamicId]="bindId && model.id"
-                     [formControlName]="model.id"
-                     [indeterminate]="model.indeterminate"
-                     [labelPosition]="model.labelPosition"
-                     [name]="model.name"
-                     [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                     (blur)="onFocusChange($event)"
-                     (change)="onValueChange($event)"
-                     (focus)="onFocusChange($event)"><span [ngClass]="model.cls.element.label"
-                                                           [innerHTML]="model.label"></span></md-checkbox>
+        <mat-checkbox *ngSwitchCase="2" #matCheckbox
+                      [checked]="model.checked"
+                      [dynamicId]="bindId && model.id"
+                      [formControlName]="model.id"
+                      [indeterminate]="model.indeterminate"
+                      [labelPosition]="model.labelPosition"
+                      [name]="model.name"
+                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      (blur)="onFocusChange($event)"
+                      (change)="onValueChange($event)"
+                      (focus)="onFocusChange($event)"><span [ngClass]="model.cls.element.label"
+                                                            [innerHTML]="model.label"></span></mat-checkbox>
 
 
-        <md-form-field *ngSwitchCase="3" [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+        <mat-form-field *ngSwitchCase="3" [ngClass]="[model.cls.element.control, model.cls.grid.control]">
 
-            <input mdInput
+            <input matInput
                    [autofocus]="model.autoFocus"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [max]="model.max"
-                   [mdDatepicker]="mdDatepicker"
+                   [matDatepicker]="matDatepicker"
                    [min]="model.min"
                    [name]="model.name"
                    [placeholder]="model.placeholder"
@@ -71,14 +71,14 @@
                    (change)="onValueChange($event)"
                    (focus)="onFocusChange($event)"/>
 
-            <md-datepicker-toggle mdSuffix [for]="mdDatepicker"></md-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
-            <md-datepicker #mdDatepicker
-                           [startAt]="model.focusedDate"
-                           [touchUi]="true"
-                           (selectedChanged)="onValueChange($event)"></md-datepicker>
+            <mat-datepicker #matDatepicker
+                            [startAt]="model.focusedDate"
+                            [touchUi]="true"
+                            (selectedChanged)="onValueChange($event)"></mat-datepicker>
 
-        </md-form-field>
+        </mat-form-field>
 
 
         <div *ngSwitchCase="4" role="group"
@@ -102,11 +102,11 @@
 
         <ng-container *ngSwitchCase="5">
 
-            <md-form-field #mdInput [ngClass]="model.cls.grid.control">
+            <mat-form-field #matInput [ngClass]="model.cls.grid.control">
 
-                <span *ngIf="model.prefix" mdPrefix [innerHTML]="model.prefix"></span>
+                <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
-                <input mdInput
+                <input matInput
                        [attr.accept]="model.accept"
                        [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
@@ -119,7 +119,7 @@
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [maxlength]="model.maxLength"
-                       [mdAutocomplete]="mdAutocomplete"
+                       [matAutocomplete]="matAutocomplete"
                        [minlength]="model.minLength"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
@@ -133,88 +133,89 @@
                        (change)="onValueChange($event)"
                        (focus)="onFocusChange($event)"/>
 
-                <span *ngIf="model.suffix" mdSuffix [innerHTML]="model.suffix"></span>
+                <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
 
-                <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
-                <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
+                <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
+                <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
 
-                <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
+                <mat-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
+                </mat-error>
 
-            </md-form-field>
+            </mat-form-field>
 
-            <md-autocomplete #mdAutocomplete="mdAutocomplete">
+            <mat-autocomplete #matAutocomplete="matAutocomplete">
 
-                <md-option *ngFor="let option of model.list" [value]="option">{{ option }}</md-option>
+                <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
 
-            </md-autocomplete>
+            </mat-autocomplete>
 
         </ng-container>
 
 
-        <md-radio-group *ngSwitchCase="6" #mdRadioGroup
-                        [dynamicId]="bindId && model.id"
-                        [formControlName]="model.id"
-                        [name]="model.name"
-                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                        (blur)="onFocusChange($event)"
-                        (change)="onValueChange($event)"
-                        (focus)="onFocusChange($event)">
-
-            <md-radio-button *ngFor="let option of model.options$ | async"
-                             [labelPosition]="'after'"
-                             [name]="model.name"
-                             [ngClass]="model.cls.element.option"
-                             [value]="option.value"><span [innerHTML]="option.label"></span></md-radio-button>
-
-        </md-radio-group>
-
-
-        <md-select *ngSwitchCase="7" #mdSelect
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [multiple]="model.multiple"
-                   [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                   [placeholder]="model.placeholder"
-                   (change)="onValueChange($event)">
-
-            <md-option *ngFor="let option of model.options$ | async"
-                       [ngClass]="model.cls.element.option"
-                       [value]="option.value"><span [innerHTML]="option.label"></span></md-option>
-
-        </md-select>
-
-
-        <md-slider *ngSwitchCase="8" #mdSlider
-                   [dynamicId]="bindId && model.id"
-                   [formControlName]="model.id"
-                   [min]="model.min"
-                   [max]="model.max"
-                   [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                   [step]="model.step"
-                   [thumbLabel]="true"
-                   tickInterval="1"
-                   [vertical]="model.vertical"
-                   (change)="onValueChange($event)"></md-slider>
-
-
-        <md-slide-toggle *ngSwitchCase="9" #mdSlideToggle
-                         [checked]="model.checked"
+        <mat-radio-group *ngSwitchCase="6" #matRadioGroup
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
-                         [labelPosition]="model.labelPosition"
                          [name]="model.name"
                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                         (change)="onValueChange($event)">
+                         (blur)="onFocusChange($event)"
+                         (change)="onValueChange($event)"
+                         (focus)="onFocusChange($event)">
+
+            <mat-radio-button *ngFor="let option of model.options$ | async"
+                              [labelPosition]="'after'"
+                              [name]="model.name"
+                              [ngClass]="model.cls.element.option"
+                              [value]="option.value"><span [innerHTML]="option.label"></span></mat-radio-button>
+
+        </mat-radio-group>
+
+
+        <mat-select *ngSwitchCase="7" #matSelect
+                    [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    [multiple]="model.multiple"
+                    [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                    [placeholder]="model.placeholder"
+                    (change)="onValueChange($event)">
+
+            <mat-option *ngFor="let option of model.options$ | async"
+                        [ngClass]="model.cls.element.option"
+                        [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
+
+        </mat-select>
+
+
+        <mat-slider *ngSwitchCase="8" #matSlider
+                    [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    [min]="model.min"
+                    [max]="model.max"
+                    [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                    [step]="model.step"
+                    [thumbLabel]="true"
+                    tickInterval="1"
+                    [vertical]="model.vertical"
+                    (change)="onValueChange($event)"></mat-slider>
+
+
+        <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle
+                          [checked]="model.checked"
+                          [dynamicId]="bindId && model.id"
+                          [formControlName]="model.id"
+                          [labelPosition]="model.labelPosition"
+                          [name]="model.name"
+                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                          (change)="onValueChange($event)">
 
             <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>
             <span *ngIf="model.checked" [innerHTML]="model.onLabel"></span>
 
-        </md-slide-toggle>
+        </mat-slide-toggle>
 
 
-        <md-form-field *ngSwitchCase="10" #mdTextarea [ngClass]="model.cls.grid.control">
+        <mat-form-field *ngSwitchCase="10" #matTextarea [ngClass]="model.cls.grid.control">
 
-            <textarea mdInput
+            <textarea matInput
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
@@ -233,18 +234,19 @@
                       (change)="onValueChange($event)"
                       (focus)="onFocusChange($event)"></textarea>
 
-            <md-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></md-hint>
-            <md-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</md-hint>
+            <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
+            <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
 
-            <md-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span></md-error>
+            <mat-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
+            </mat-error>
 
-        </md-form-field>
+        </mat-form-field>
 
     </ng-container>
 
 
     <ng-container *ngIf="type !== 5 && type !== 10 && showErrorMessages">
-        <md-error *ngFor="let message of errorMessages">{{message}}</md-error>
+        <mat-error *ngFor="let message of errorMessages">{{message}}</mat-error>
     </ng-container>
 
 
