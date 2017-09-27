@@ -7,17 +7,18 @@ const format  = utils.getRollupFormat(process.argv),
       globals = {
           "@angular/core": "ng.core",
           "@angular/forms": "ng.forms",
-          "rxjs/Observable": "Rx.Observable",
-          "rxjs/Subject": "Rx.Subject",
-          "rxjs/Subscription": "Rx.Subscription",
-          "rxjs/add/observable/of": "rxjs/add/observable/of",
-          "rxjs/add/operator/map": "rxjs/add/operator/map"
+          "@ng-dynamic-forms/core": "ngDF.core",
+          "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs",
+          "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns",
+          "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs",
+          "@progress/kendo-angular-upload": "progress/kendo-angular-upload",
+          "angular2-text-mask": "angular2-text-mask"
       };
 
 export default {
-    input: "./dist/@ng-dynamic-forms/core/public_api.js",
+    input: "./dist/@ng-dynamic-forms/ui-kendo/public_api.js",
     output: {
-        file: `./dist/@ng-dynamic-forms/core/bundles/core.${format}.${minify ? "min." : ""}js`,
+        file: `./dist/@ng-dynamic-forms/ui-kendo/bundles/ui-kendo.${format}.${minify ? "min." : ""}js`,
         format: format
     },
     banner: utils.getBanner(pkg),
@@ -25,7 +26,7 @@ export default {
     exports: "named",
     external: Object.keys(globals),
     globals: globals,
-    name: "ngDF.core",
+    name: "ngDF.uiKendo",
     plugins: utils.getRollupPlugins(minify),
     sourcemap: true
 };

@@ -9,6 +9,7 @@
     "build:packages": "gulp build",
     "gulp": "gulp",
     "lint:packages": "tslint -c ./tslint.json './packages/**/*.ts'",
+    "rollup": "rollup",
     "start": "lite-server -c bs-config.js",
     "tests:e2e": "protractor protractor.conf.js",
     "tests:unit": "karma start karma.conf.js --browsers PhantomJS --single-run",
