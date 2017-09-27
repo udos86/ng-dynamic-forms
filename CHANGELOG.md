@@ -4,7 +4,7 @@
 
 * NG Dynamic Forms now matches [**Angular Package Format**](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit)
     * this resolves multiple flaws when using AoT build with Angular CLI or `@angular/compiler-cli`
-    * no TypeScript source code is delivered any more in packages
+    * neither TypeScript nor JavaScript source code files are published in packages
 * **update to @angular/material** `beta.11` 
     * "md" prefix has been replaced by "mat"
     * see Material [**CHANGELOG.md**](https://github.com/angular/material2/blob/master/CHANGELOG.md) and [**#7253**](https://github.com/angular/material2/issues/7253) on how to upgrade properly  

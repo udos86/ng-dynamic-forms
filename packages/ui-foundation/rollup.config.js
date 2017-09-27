@@ -1,6 +1,6 @@
-const path  = require("path"),
-      utils = require(path.join(__dirname, "../../build/utils")),
-      pkg   = require(path.join(__dirname, "package.json"));
+const path        = require("path"),
+      utils       = require(path.join(__dirname, "../../build/utils")),
+      packageJson = require(path.join(__dirname, "package.json"));
 
 const format  = utils.getRollupFormat(process.argv),
       minify  = utils.hasMinifyFlag(process.argv),
@@ -12,17 +12,17 @@ const format  = utils.getRollupFormat(process.argv),
       };
 
 export default {
-    input: "./dist/@ng-dynamic-forms/ui-foundation/public_api.js",
+    input: utils.getRollupInputPath(packageJson),
     output: {
-        file: `./dist/@ng-dynamic-forms/ui-foundation/bundles/ui-foundation.${format}.${minify ? "min." : ""}js`,
+        file: utils.getRollupOutputPath(packageJson, format, minify),
         format: format
     },
-    banner: utils.getBanner(pkg),
+    banner: utils.getBanner(packageJson),
     context: "this",
     exports: "named",
     external: Object.keys(globals),
     globals: globals,
-    name: "ngDF.uiFoundation",
+    name: "ngDF.foundationUI",
     plugins: utils.getRollupPlugins(minify),
     sourcemap: true
 };
