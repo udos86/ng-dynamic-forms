@@ -5,6 +5,8 @@ const dateFormat = require("dateformat"),
       path       = require("path"),
       rollup     = require("rollup-stream"),
       source     = require("vinyl-source-stream"),
+      buffer     = require('vinyl-buffer'),
+      sourcemaps = require("gulp-sourcemaps"),
       uglify     = require("rollup-plugin-uglify");
 
 module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
@@ -36,6 +38,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         "@angular/platform-browser": "ng.platformBrowser",
         "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
         "@angular/router": "ng.router",
+        "@ng-bootstrap/ng-bootstrap": "@ng-bootstrap/ng-bootstrap",
         "@ng-bootstrap/ng-bootstrap/index": "@ng-bootstrap/ng-bootstrap",
         "@ng-dynamic-forms/core": "ngDF.core",
         "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs", // TODO
@@ -44,6 +47,7 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
         "@progress/kendo-angular-upload": "progress/kendo-angular-upload", // TODO
         "angular2-text-mask": "angular2-text-mask", // TODO
         "ionic-angular": "ionic-angular", // TODO
+        "ionic-angular/index": "ionic-angular",
         "ngx-bootstrap": "ngx-bootstrap", // TODO
         "primeng/primeng": "primeng/primeng",
         "rxjs/Observable": "Rx.Observable",
@@ -59,6 +63,12 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
 
     function rollupConfig(format, minify) {
 
+        let plugins = [];
+
+        if (minify) {
+            plugins.push(uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}}));
+        }
+
         return {
 
             input: path.join(entryRootPath, moduleName, "public_api.js"),
@@ -68,7 +78,8 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
             external: Object.keys(globals),
             name: `${globalsName}.${toCamelCase(moduleName)}`,
             globals,
-            plugins: minify ? [uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}})] : []
+            sourcemap: true,
+            plugins
         };
     }
 
@@ -81,6 +92,9 @@ module.exports = function (entryRootPath, moduleName, globalsName, pkg, dest) {
 
             return rollup(rollupConfig(target.format, target.minify))
                 .pipe(source(bundleName))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true}))
+                .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest(bundlePath));
         });
 
