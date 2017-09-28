@@ -21,7 +21,7 @@ const utils = {
     getRollupOutputPath: (packageJson, format, minify) => {
 
         let pkgNameSplit  = packageJson.name.split("/"),
-            bundleFolder  = format === "umd" ? "bundles" : "@ng-dynamic-forms",
+            bundleFolder  = format === "umd" ? "bundles" : "bundles"/*"@ng-dynamic-forms"*/,
             fileExtension = minify ? "min." : "";
 
         return `./dist/${packageJson.name}/${bundleFolder}/${pkgNameSplit[pkgNameSplit.length - 1]}.${format}.${fileExtension}js`;

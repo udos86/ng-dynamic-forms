@@ -3,7 +3,7 @@
   "version": "1.4.32",
   "description": "Kendo UI package for NG Dynamic Forms",
   "main": "./bundles/ui-kendo.umd.js",
-  "module": "./@ng-dynamic-forms/ui-kendo.es.js",
+  "module": "./bundles/ui-kendo.es.js",
   "typings": "./ui-kendo.d.ts",
   "keywords": [
     "angular",
