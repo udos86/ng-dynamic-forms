@@ -3,7 +3,7 @@
   "version": "1.4.32",
   "description": "Material UI package for NG Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
-  "module": "./@ng-dynamic-forms/ui-material.es.js",
+  "module": "./bundles/ui-material.es.js",
   "typings": "./ui-material.d.ts",
   "keywords": [
     "angular",

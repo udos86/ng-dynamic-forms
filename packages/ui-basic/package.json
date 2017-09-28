@@ -3,7 +3,7 @@
   "version": "1.4.32",
   "description": "Basic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
-  "module": "./@ng-dynamic-forms/ui-basic.es.js",
+  "module": "./bundles/ui-basic.es.js",
   "typings": "./ui-basic.d.ts",
   "keywords": [
     "angular",
