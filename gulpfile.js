@@ -2,17 +2,17 @@ const gulp        = require("gulp"),
       runSequence = require("run-sequence"),
       pkg         = require("./package.json");
 
-const TASK_BUNDLE_PACKAGE      = require("./build/tasks/bundle-package"),
+const TASK_BUNDLE              = require("./build/tasks/bundle"),
       TASK_CLEAN               = require("./build/tasks/clean"),
       TASK_COPY                = require("./build/tasks/copy"),
-      TASK_COMPILE_PACKAGE     = require("./build/tasks/compile-package"),
-      TASK_INCREMENT_VERSION   = require("./build/tasks/increment-version"),
+      TASK_NGC                 = require("./build/tasks/ngc"),
+      TASK_DELETE_LINES        = require("./build/tasks/delete-lines"),
       TASK_INLINE_NG_TEMPLATES = require("./build/tasks/inline-ng-templates"),
-      TASK_LINT_TS             = require("./build/tasks/lint-typescript"),
       TASK_PREPROCESS          = require("./build/tasks/preprocess"),
-      TASK_REMOVE_MODULE_ID    = require("./build/tasks/remove-module-id"),
-      TASK_TRANSPILE_TS        = require("./build/tasks/transpile-typescript"),
-      TASK_TYPEDOC             = require("./build/tasks/doc-typescript");
+      TASK_TRANSPILE           = require("./build/tasks/transpile"),
+      TASK_TSLINT              = require("./build/tasks/tslint"),
+      TASK_TYPEDOC             = require("./build/tasks/typedoc"),
+      TASK_VERSION             = require("./build/tasks/version");
 
 const NPM_SCOPE      = "@ng-dynamic-forms",
       SRC_PATH       = "./packages",
@@ -54,13 +54,13 @@ PACKAGES_NAMES.forEach(packageName => {
           TASK_NAME_BUILD               = `build:${packageName}`;
 
     gulp.task(TASK_NAME_LINT,
-        TASK_LINT_TS([`${PACKAGE_SRC_PATH}/**/*.ts`], "./tslint.json"));
+        TASK_TSLINT([`${PACKAGE_SRC_PATH}/**/*.ts`], "./tslint.json"));
 
     gulp.task(TASK_NAME_CLEAN,
         TASK_CLEAN([`${PACKAGE_DIST_PATH}/**/*`]));
 
     gulp.task(TASK_NAME_COMPILE,
-        TASK_COMPILE_PACKAGE(`${PACKAGE_SRC_PATH}/tsconfig.json`));
+        TASK_NGC(`${PACKAGE_SRC_PATH}/tsconfig.json`));
 
     gulp.task(TASK_NAME_COPY,
         TASK_COPY([`${PACKAGE_SRC_PATH}/package.json`, `${PACKAGE_SRC_PATH}/**/*.@(html|md)`], PACKAGE_DIST_PATH));
@@ -72,10 +72,10 @@ PACKAGES_NAMES.forEach(packageName => {
         TASK_INLINE_NG_TEMPLATES([`${PACKAGE_DIST_PATH}/**/*.js`], PACKAGE_DIST_PATH));
 
     gulp.task(TASK_NAME_BUNDLE,
-        TASK_BUNDLE_PACKAGE(`${PACKAGE_SRC_PATH}/rollup.config.js`));
+        TASK_BUNDLE(`${PACKAGE_SRC_PATH}/rollup.config.js`));
 
     gulp.task(TASK_NAME_REMOVE_MODULE_ID,
-        TASK_REMOVE_MODULE_ID([`${PACKAGE_DIST_PATH}/**/*`], PACKAGE_DIST_PATH));
+        TASK_DELETE_LINES([`${PACKAGE_DIST_PATH}/**/*`], PACKAGE_DIST_PATH, [/moduleId: module.id/]));
 
     gulp.task(TASK_NAME_CLEANUP,
         TASK_CLEAN([`${PACKAGE_DIST_PATH}/*.js?(.map)`, `${PACKAGE_DIST_PATH}/src/**/*.js?(.map)`]));
@@ -112,7 +112,7 @@ gulp.task("copy:tests",
     TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
 
 gulp.task("transpile:tests",
-    TASK_TRANSPILE_TS([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.packages.json", "commonjs"));
+    TASK_TRANSPILE([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.packages.json", "commonjs"));
 
 gulp.task("build:tests", done => {
     runSequence("clean:tests", "copy:tests", "transpile:tests", done);
@@ -127,21 +127,21 @@ gulp.task("build", done => {
 /**
  * Tasks for incrementing version number
  */
-gulp.task("increment:version:major",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
+gulp.task("version:major",
+    TASK_VERSION(pkg, ["./package.json", "./package-lock.json", `${SRC_PATH}/**/package.json`], "MAJOR", SRC_PATH));
 
-gulp.task("increment:version:minor",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "MINOR", SRC_PATH));
+gulp.task("version:minor",
+    TASK_VERSION(pkg, ["./package.json", "./package-lock.json", `${SRC_PATH}/**/package.json`], "MINOR", SRC_PATH));
 
-gulp.task("increment:version:patch",
-    TASK_INCREMENT_VERSION(pkg, ["./package.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
+gulp.task("version:patch",
+    TASK_VERSION(pkg, ["./package.json", "./package-lock.json", `${SRC_PATH}/**/package.json`], "PATCH", SRC_PATH));
 
 
 /**
  * Miscellaneous Tasks
  */
 gulp.task("lint:packages",
-    TASK_LINT_TS([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
+    TASK_TSLINT([`${SRC_PATH}/**/*.ts`], "./tslint.json"));
 
 gulp.task("clean:dist",
     TASK_CLEAN([`${DIST_BASE_PATH}/**/*`]));
