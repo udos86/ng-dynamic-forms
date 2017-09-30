@@ -1,8 +1,8 @@
-const resolve = require("rollup-plugin-node-resolve");
-const sourcemaps = require("rollup-plugin-sourcemaps");
-const uglify = require("rollup-plugin-uglify");
-const dateFormat = require("dateformat");
-const license = require("fs").readFileSync("./LICENSE", "utf8");
+const resolve    = require("rollup-plugin-node-resolve"),
+      sourcemaps = require("rollup-plugin-sourcemaps"),
+      uglify     = require("rollup-plugin-uglify"),
+      dateFormat = require("dateformat"),
+      license    = require("fs").readFileSync("./LICENSE", "utf8");
 
 const utils = {
 
@@ -21,7 +21,7 @@ const utils = {
     getRollupOutputPath: (packageJson, format, minify) => {
 
         let pkgNameSplit  = packageJson.name.split("/"),
-            bundleFolder  = format === "umd" ? "bundles" : "bundles"/*"@ng-dynamic-forms"*/,
+            bundleFolder  = format === "umd" ? "bundles" : "@ng-dynamic-forms",
             fileExtension = minify ? "min." : "";
 
         return `./dist/${packageJson.name}/${bundleFolder}/${pkgNameSplit[pkgNameSplit.length - 1]}.${format}.${fileExtension}js`;

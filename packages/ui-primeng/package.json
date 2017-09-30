@@ -3,7 +3,7 @@
   "version": "1.4.32",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "main": "./bundles/ui-primeng.umd.js",
-  "module": "./bundles/ui-primeng.es.js",
+  "module": "./@ng-dynamic-forms/ui-primeng.es.js",
   "typings": "./ui-primeng.d.ts",
   "keywords": [
     "angular",

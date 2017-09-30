@@ -11,11 +11,9 @@ export default {
     sourceMap: false,
     sourceMapFile: "./sample/dist/bundle.aot.js.map",
     onwarn: function (warning) {
-        // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
         if (warning.code === "THIS_IS_UNDEFINED" || warning.code === "MISSING_EXPORT") {
             return;
         }
-
         console.error(warning);
     },
     plugins: [

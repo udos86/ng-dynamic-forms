@@ -174,7 +174,7 @@ dynamic-material-form-control {
     margin-bottom: 1rem;
 }
 
-dynamic-material-form-control md-select {
+dynamic-material-form-control mat-select {
     margin-bottom: 1.5rem;
 }
 
@@ -184,11 +184,11 @@ dynamic-material-form-control div[role="group"] > dynamic-material-form-control 
     margin-right: 1rem;
 }
 
-dynamic-material-form-control div[role="group"] + md-error {
+dynamic-material-form-control div[role="group"] + mat-error {
     font-size: 75%;
 }
 
-dynamic-material-form-control .md-list-item {
+dynamic-material-form-control .mat-list-item {
     justify-content: center;
 }
 
