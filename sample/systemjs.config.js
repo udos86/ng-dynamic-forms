@@ -42,7 +42,6 @@
         "@angular/router/testing": "npm:@angular/router/bundles/router-testing.umd.js",
         "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
         "@ng-bootstrap/ng-bootstrap/index": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
-        //"@ng2-dynamic-forms": "lib",
         "@ng-dynamic-forms/core": "lib:core/bundles/core.umd.js",
         "@ng-dynamic-forms/ui-basic": "lib:ui-basic/bundles/ui-basic.umd.js",
         "@ng-dynamic-forms/ui-bootstrap": "lib:ui-bootstrap/bundles/ui-bootstrap.umd.js",
@@ -103,26 +102,6 @@
             defaultExtension: "js"
         }
     };
-    /*
-    var NGDynamicFormsPackageNames = [
-        "@ng-dynamic-forms/core",
-        "@ng-dynamic-forms/ui-basic",
-        "@ng-dynamic-forms/ui-bootstrap",
-        "@ng-dynamic-forms/ui-foundation",
-        "@ng-dynamic-forms/ui-kendo",
-        "@ng-dynamic-forms/ui-material",
-        "@ng-dynamic-forms/ui-ng-bootstrap",
-        "@ng-dynamic-forms/ui-primeng"
-    ];
-
-    NGDynamicFormsPackageNames.forEach(function (packageName) {
-
-        packages[packageName] = {
-            main: "index.js",
-            defaultExtension: "js"
-        };
-    });
-    */
 
     var config = {
         paths: paths,

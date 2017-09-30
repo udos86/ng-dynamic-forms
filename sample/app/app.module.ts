@@ -18,13 +18,13 @@ import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
-import { BasicSampleFormComponent } from "./basic-sample-form/basic-sample-form.component";
-import { BootstrapSampleFormComponent } from "./bootstrap-sample-form/bootstrap-sample-form.component";
-import { FoundationSampleFormComponent } from "./foundation-sample-form/foundation-sample-form.component";
-import { KendoSampleFormComponent } from "./kendo-sample-form/kendo-sample-form.component";
-import { MaterialSampleFormComponent } from "./material-sample-form/material-sample-form.component";
-import { NGBootstrapSampleFormComponent } from "./ng-bootstrap-sample-form/ng-bootstrap-sample-form.component";
-import { PrimeNGSampleFormComponent } from "./primeng-sample-form/primeng-sample-form.component";
+import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
+import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
+import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
+import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
+import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
+import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
+import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';

@@ -3,7 +3,7 @@
   "version": "1.4.32",
   "description": "Foundation UI package for NG Dynamic Forms",
   "main": "./bundles/ui-foundation.umd.js",
-  "module": "./bundles/ui-foundation.es.js",
+  "module": "./@ng-dynamic-forms/ui-foundation.es.js",
   "typings": "./ui-foundation.d.ts",
   "keywords": [
     "angular",

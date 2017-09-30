@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.org/udos86/ng-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng-dynamic-forms)
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
 [![Downloads](http://img.shields.io/npm/dm/@ng2-dynamic-forms/core.svg)](https://npmjs.org/package/@ng2-dynamic-forms/core)
-
+***
 :bangbang:09-14-2017: **@ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
 ***
 **Please update your dependencies**:
@@ -45,7 +45,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
 - [Autocompletion](#autocompletion)
-- [A Word to the Community](#a-word-to-the-community)
+- [FAQ](#faq)
 - [Appendix](#appendix)
 
 
@@ -1074,14 +1074,31 @@ new DynamicInputModel({
 ```
 
 
-## A Word to the Community
+## FAQ
 
-**Thank you very much for the great feedback so far and everyone giving NG Dynamic Forms a try!**
+> **Why should I give NG Dynamic Forms a try?**
 
-Angular is a fantastic framework and I'm convinced that NG Dynamic Forms is a high-quality library that will 
-save you lots of time when building reactive forms with it.
+It will keep all your Angular forms highly maintainable and thus is probably going to save you a significant amount of time. 
 
-**If you would like to contribute some code please have look at the** [**contribution guide**](https://github.com/udos86/ng-dynamic-forms/blob/master/CONTRIBUTE.md) **before**!
+> **When should I use NG Dynamic Forms?**
+
+Whenever your Angular application is driven by several complex forms. 
+
+> **When should I not use NG Dynamic Forms?**
+
+Whenever you need to implement only simple forms or extremely individual form layouts / form control configurations.  
+
+> **Does NG Dynamic Forms support custom form controls?**
+
+No, not out of the box. You'd have to create your own UI package in order to achieve this.
+
+> **Are there any other dynamic forms libraries for Angular?**
+
+Very few, namely [ng-formly](https://github.com/formly-js/ng-formly) and [angular-formio](https://github.com/formio/angular-formio).
+
+> **How can I support this project besides contributing issues or code?**
+
+[Star](https://github.com/udos86/ng-dynamic-forms/stargazers) the repository.
 
 
 ## Appendix

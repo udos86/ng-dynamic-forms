@@ -16,11 +16,9 @@ const format  = utils.getRollupFormat(process.argv),
       };
 
 export default {
+
     input: utils.getRollupInputPath(packageJson),
-    output: {
-        file: utils.getRollupOutputPath(packageJson, format, minify),
-        format: format
-    },
+    output: {file: utils.getRollupOutputPath(packageJson, format, minify), format: format},
     banner: utils.getBanner(packageJson),
     context: "this",
     exports: "named",
