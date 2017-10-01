@@ -15,7 +15,10 @@ const utils = {
     },
 
     getRollupInputPath: packageJson => {
-        return `./dist/${packageJson.name}/public_api.js`;
+
+        let pkgNameSplit = packageJson.name.split("/");
+
+        return `./dist/${packageJson.name}/src/${pkgNameSplit[pkgNameSplit.length - 1]}.js`;
     },
 
     getRollupOutputPath: (packageJson, format, minify) => {
@@ -40,6 +43,37 @@ const utils = {
 
     getRollupFormat: argv => {
         return argv[argv.indexOf("-f") + 1];
+    },
+
+    getRollupGlobals: () => {
+
+        return {
+            "@angular/animations": "ng.animations",
+            "@angular/common": "ng.common",
+            "@angular/core": "ng.core",
+            "@angular/forms": "ng.forms",
+            "@angular/material": "ng.material",
+            "@angular/http": "ng.http",
+            "@angular/platform-browser": "ng.platformBrowser",
+            "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
+            "@angular/router": "ng.router",
+            "@ng-bootstrap/ng-bootstrap": "@ng-bootstrap/ng-bootstrap",
+            "@ng-bootstrap/ng-bootstrap/index": "@ng-bootstrap/ng-bootstrap",
+            "@ng-dynamic-forms/core": "ngDF.core",
+            "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs",
+            "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns",
+            "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs",
+            "@progress/kendo-angular-upload": "progress/kendo-angular-upload",
+            "angular2-text-mask": "angular2-text-mask",
+            "ionic-angular": "ionic-angular",
+            "ionic-angular/index": "ionic-angular",
+            "primeng/primeng": "primeng/primeng",
+            "rxjs/Observable": "Rx.Observable",
+            "rxjs/Subject": "Rx.Subject",
+            "rxjs/Subscription": "Rx.Subscription",
+            "rxjs/add/observable/of": "rxjs/add/observable/of",
+            "rxjs/add/operator/map": "rxjs/add/operator/map"
+        };
     }
 };
 

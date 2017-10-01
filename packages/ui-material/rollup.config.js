@@ -4,13 +4,7 @@ const path        = require("path"),
 
 const format  = utils.getRollupFormat(process.argv),
       minify  = utils.hasMinifyFlag(process.argv),
-      globals = {
-          "@angular/core": "ng.core",
-          "@angular/forms": "ng.forms",
-          "@angular/material": "ng.material",
-          "@ng-dynamic-forms/core": "ngDF.core",
-          "angular2-text-mask": "angular2-text-mask"
-      };
+      globals = utils.getRollupGlobals();
 
 export default {
 

@@ -1,3 +1,10 @@
+# 1.4.33
+
+### **Bugfixes** 
+
+* **major bundling bug fixed causing `@angular/common` to be bundled with `*.es.js` files**
+
+
 # 1.4.32
 
 ### **Features** 

@@ -4,16 +4,7 @@ const path        = require("path"),
 
 const format  = utils.getRollupFormat(process.argv),
       minify  = utils.hasMinifyFlag(process.argv),
-      globals = {
-          "@angular/core": "ng.core",
-          "@angular/forms": "ng.forms",
-          "@ng-dynamic-forms/core": "ngDF.core",
-          "@progress/kendo-angular-dateinputs": "progress/kendo-angular-dateinputs",
-          "@progress/kendo-angular-dropdowns": "progress/kendo-angular-dropdowns",
-          "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs",
-          "@progress/kendo-angular-upload": "progress/kendo-angular-upload",
-          "angular2-text-mask": "angular2-text-mask"
-      };
+      globals = utils.getRollupGlobals();
 
 export default {
 

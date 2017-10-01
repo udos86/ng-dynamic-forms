@@ -4,15 +4,7 @@ const path        = require("path"),
 
 const format  = utils.getRollupFormat(process.argv),
       minify  = utils.hasMinifyFlag(process.argv),
-      globals = {
-          "@angular/core": "ng.core",
-          "@angular/forms": "ng.forms",
-          "rxjs/Observable": "Rx.Observable",
-          "rxjs/Subject": "Rx.Subject",
-          "rxjs/Subscription": "Rx.Subscription",
-          "rxjs/add/observable/of": "rxjs/add/observable/of",
-          "rxjs/add/operator/map": "rxjs/add/operator/map"
-      };
+      globals = utils.getRollupGlobals();
 
 export default {
 
