@@ -1,4 +1,4 @@
-export const enum PrimeNGFormControlType {
+export enum PrimeNGFormControlType {
 
     Array = 1, //"ARRAY",
     AutoComplete = 2, //"AUTOCOMPLETE",
@@ -17,6 +17,10 @@ export const enum PrimeNGFormControlType {
     Slider = 15, //"SLIDER",
     Spinner = 16, //"SPINNER,
     TextArea = 17, //"TEXTAREA"
+}
+
+export enum PrimeNGFormControlEvent {
+    
 }
 
 export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pDropdown,pEditor,pInputMask,

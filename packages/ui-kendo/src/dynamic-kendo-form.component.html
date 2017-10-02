@@ -6,4 +6,5 @@
                             [templates]="templates"
                             (blur)="onEvent($event, 0)"
                             (change)="onEvent($event, 1)"
-                            (focus)="onEvent($event, 2)"></dynamic-kendo-form-control>
+                            (focus)="onEvent($event, 2)"
+                            (kendoEvent)="onKendoEvent($event)"></dynamic-kendo-form-control>

@@ -1,4 +1,4 @@
-export const enum KendoFormControlType {
+export enum KendoFormControlType {
 
     Array = 1, //"ARRAY",
     AutoComplete = 2, //"AUTOCOMPLETE",
@@ -19,6 +19,14 @@ export const enum KendoFormControlType {
     TextArea = 17, //"TEXTAREA",
     TimePicker = 18, //"TIMEPICKER",
     Upload = 19, //"UPLOAD"
+}
+
+export enum KendoFormControlEvent {
+
+    close = 1,
+    filterChange = 2,
+    open = 3,
+    selectionChange = 4
 }
 
 export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
