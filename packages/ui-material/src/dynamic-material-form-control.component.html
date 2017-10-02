@@ -169,6 +169,7 @@
 
 
         <mat-select *ngSwitchCase="7" #matSelect
+                    [required]="model.required"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [multiple]="model.multiple"
