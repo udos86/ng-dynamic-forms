@@ -20,8 +20,13 @@ export class DynamicMaterialFormComponent extends DynamicFormComponent {
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() matEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
     @ViewChildren(DynamicMaterialFormControlComponent) components: QueryList<DynamicMaterialFormControlComponent>;
+
+    onMatEvent($event: DynamicFormControlEvent) {
+        this.matEvent.emit($event);
+    }
 }

@@ -32,6 +32,7 @@ export interface DynamicFormControlEvent {
     control: FormControl;
     group: FormGroup;
     model: DynamicFormControlModel;
+    type?: string;
 }
 
 export enum DynamicFormControlEventType {
@@ -150,6 +151,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.inputTemplates ? this.inputTemplates : this.contentTemplates;
     }
 
+    protected getEvent($event: any): DynamicFormControlEvent {
+        return {$event, context: this.context, control: this.control, group: this.group, model: this.model};
+    }
+
     protected setTemplates(): void {
 
         this.templates.forEach((template: DynamicTemplateDirective) => {
@@ -231,72 +236,46 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
                 }
             }
 
-            this.change.emit(
-                {
-                    $event: $event as Event,
-                    context: this.context,
-                    control: this.control,
-                    group: this.group,
-                    model: this.model
-                }
-            );
+            this.change.emit(this.getEvent($event as Event));
 
-        } else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
+        } else if ($event && $event.hasOwnProperty("$event")) { // event bypass
 
             this.change.emit($event as DynamicFormControlEvent);
 
-        } else {
+        } else { // custom library change event
 
-            this.change.emit(
-                {
-                    $event: $event,
-                    context: this.context,
-                    control: this.control,
-                    group: this.group,
-                    model: this.model
-                }
-            );
+            this.change.emit(this.getEvent($event));
         }
-    }
-
-    onFilterChange(_$event: any | DynamicFormControlEvent): void {
-        // TODO
     }
 
     onFocusChange($event: FocusEvent | DynamicFormControlEvent): void {
 
-        let emitValue;
+        let event;
 
         if ($event instanceof FocusEvent) {
 
             $event.stopPropagation();
 
-            emitValue = {
-                $event: $event,
-                context: this.context,
-                control: this.control,
-                group: this.group,
-                model: this.model
-            };
+            event = this.getEvent($event);
 
             if ($event.type === "focus") {
 
                 this.hasFocus = true;
-                this.focus.emit(emitValue);
+                this.focus.emit(event);
 
             } else {
 
                 this.hasFocus = false;
-                this.blur.emit(emitValue);
+                this.blur.emit(event);
             }
 
         } else {
 
-            emitValue = $event as DynamicFormControlEvent;
+            event = $event as DynamicFormControlEvent;
 
-            if (emitValue.$event && emitValue.$event instanceof FocusEvent) {
+            if (event.$event && event.$event instanceof FocusEvent) {
 
-                emitValue.$event.type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
+                event.$event.type === "focus" ? this.focus.emit(event) : this.blur.emit(event);
             }
         }
     }

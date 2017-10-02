@@ -1,4 +1,4 @@
-export const enum MatFormControlType {
+export enum MatFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
@@ -10,6 +10,15 @@ export const enum MatFormControlType {
     Slider = 8, //"SLIDER",
     SlideToggle = 9, //"SLIDE_TOGGLE",
     TextArea = 10, //"TEXTAREA"
+}
+
+export enum MatFormControlEvent {
+
+    input = 1,
+    dateInput = 2,
+    indeterminateChange = 3,
+    onClose = 4,
+    onOpen = 5
 }
 
 export const MAT_VIEW_CHILD_SELECTOR = `matAutocomplete,matCheckbox,matDatepicker,matInput,matRadioGroup,matSelect,
