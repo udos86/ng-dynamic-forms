@@ -52,7 +52,6 @@ import {
     Utils
 } from "@ng-dynamic-forms/core";
 import {
-    PrimeNGFormControlEvent,
     PrimeNGFormControlType,
     PRIME_NG_VIEW_CHILD_SELECTOR,
     PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -133,10 +132,6 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
         if(Array.isArray(inputModel.list)) {
             this.suggestions = inputModel.list.map(item => item);
         }
-    }
-
-    onPrimeNGEvent($event: any, type: number): void {
-        this.onCustomEvent($event, PrimeNGFormControlEvent[type]);
     }
 
     static getFormControlType(model: DynamicFormControlModel): PrimeNGFormControlType | null {
