@@ -22,7 +22,7 @@
     "use-host-property-decorator": true,
     "no-attribute-parameter-decorator": true,
     "no-input-rename": false,
-    "no-output-rename": true,
+    "no-output-rename": false,
     "no-forward-ref": false,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,

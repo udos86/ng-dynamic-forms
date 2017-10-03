@@ -1,4 +1,4 @@
-export const enum KendoFormControlType {
+export enum KendoFormControlType {
 
     Array = 1, //"ARRAY",
     AutoComplete = 2, //"AUTOCOMPLETE",

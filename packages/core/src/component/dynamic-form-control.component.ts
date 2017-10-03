@@ -32,13 +32,15 @@ export interface DynamicFormControlEvent {
     control: FormControl;
     group: FormGroup;
     model: DynamicFormControlModel;
+    type?: string;
 }
 
 export enum DynamicFormControlEventType {
 
-    Blur = 0,
-    Change = 1,
-    Focus = 2
+    Blur = 1,
+    Change = 2,
+    Focus = 3,
+    Custom = 4
 }
 
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
@@ -57,8 +59,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    //filter: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
+    customEvent: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
 
@@ -150,6 +152,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.inputTemplates ? this.inputTemplates : this.contentTemplates;
     }
 
+    protected getEvent($event: any): DynamicFormControlEvent {
+        return {$event, context: this.context, control: this.control, group: this.group, model: this.model};
+    }
+
     protected setTemplates(): void {
 
         this.templates.forEach((template: DynamicTemplateDirective) => {
@@ -231,73 +237,59 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
                 }
             }
 
-            this.change.emit(
-                {
-                    $event: $event as Event,
-                    context: this.context,
-                    control: this.control,
-                    group: this.group,
-                    model: this.model
-                }
-            );
+            this.change.emit(this.getEvent($event as Event));
 
-        } else if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("control") && $event.hasOwnProperty("model")) {
+        } else if ($event && $event.hasOwnProperty("$event")) { // event bypass
 
             this.change.emit($event as DynamicFormControlEvent);
 
-        } else {
+        } else { // custom library value change event
 
-            this.change.emit(
-                {
-                    $event: $event,
-                    context: this.context,
-                    control: this.control,
-                    group: this.group,
-                    model: this.model
-                }
-            );
+            this.change.emit(this.getEvent($event));
         }
-    }
-
-    onFilterChange(_$event: any | DynamicFormControlEvent): void {
-        // TODO
     }
 
     onFocusChange($event: FocusEvent | DynamicFormControlEvent): void {
 
-        let emitValue;
+        let event;
 
         if ($event instanceof FocusEvent) {
 
             $event.stopPropagation();
 
-            emitValue = {
-                $event: $event,
-                context: this.context,
-                control: this.control,
-                group: this.group,
-                model: this.model
-            };
+            event = this.getEvent($event);
 
             if ($event.type === "focus") {
 
                 this.hasFocus = true;
-                this.focus.emit(emitValue);
+                this.focus.emit(event);
 
             } else {
 
                 this.hasFocus = false;
-                this.blur.emit(emitValue);
+                this.blur.emit(event);
             }
 
         } else {
 
-            emitValue = $event as DynamicFormControlEvent;
+            event = $event as DynamicFormControlEvent;
 
-            if (emitValue.$event && emitValue.$event instanceof FocusEvent) {
+            if (event.$event && event.$event instanceof FocusEvent) {
 
-                emitValue.$event.type === "focus" ? this.focus.emit(emitValue) : this.blur.emit(emitValue);
+                event.$event.type === "focus" ? this.focus.emit(event) : this.blur.emit(event);
             }
+        }
+    }
+
+    onCustomEvent($event: any, type: string | null = null): void {
+
+        if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("type")) { // child event bypass
+
+            this.customEvent.emit($event as DynamicFormControlEvent);
+
+        } else { // native UI library custom event
+
+            this.customEvent.emit({...this.getEvent($event), type} as DynamicFormControlEvent);
         }
     }
 }

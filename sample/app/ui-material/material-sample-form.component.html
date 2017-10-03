@@ -6,7 +6,8 @@
 
             <dynamic-material-form [group]="formGroup"
                                    [model]="formModel"
-                                   (change)="onChange($event)"></dynamic-material-form>
+                                   (change)="onChange($event)"
+                                   (matEvent)="onMatEvent($event)"></dynamic-material-form>
 
         </form>
 

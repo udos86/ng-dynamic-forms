@@ -1,4 +1,4 @@
-export const enum MatFormControlType {
+export enum MatFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",

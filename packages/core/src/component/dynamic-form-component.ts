@@ -19,6 +19,7 @@ export abstract class DynamicFormComponent {
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
+    customEvent: EventEmitter<DynamicFormControlEvent>;
 
     trackByFn(_index: number, model: DynamicFormControlModel): string {
         return model.id;
@@ -38,6 +39,10 @@ export abstract class DynamicFormComponent {
 
             case DynamicFormControlEventType.Focus:
                 this.focus.emit($event);
+                break;
+
+            case DynamicFormControlEventType.Custom:
+                this.customEvent.emit($event);
                 break;
         }
     }

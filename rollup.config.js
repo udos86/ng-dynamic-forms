@@ -1,37 +1,32 @@
 import nodeResolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
-import includePaths from "rollup-plugin-includepaths";
 //import uglify from "rollup-plugin-uglify"
 
 export default {
 
-    entry: "./sample/app/main.aot.js",
-    dest: "./sample/dist/bundle.aot.js",
-    format: "iife",
-    sourceMap: false,
-    sourceMapFile: "./sample/dist/bundle.aot.js.map",
-    onwarn: function (warning) {
-        if (warning.code === "THIS_IS_UNDEFINED" || warning.code === "MISSING_EXPORT") {
-            return;
-        }
-        console.error(warning);
+    input: "./sample/app/main.aot.js",
+
+    output: {
+
+        file: "./sample/dist/bundle.aot.js",
+
+        format: "iife"
     },
+
+    context: "this",
+
+    sourcemap: false,
+
+    sourcemapFile: "./sample/dist/bundle.aot.js.map",
+
+    onwarn: function (warning) {
+
+        if (warning.code === "THIS_IS_UNDEFINED" || warning.code === "MISSING_EXPORT") {
+
+        }
+    },
+
     plugins: [
-
-        includePaths({
-
-            include: {
-                "@ng-dynamic-forms/core": "dist/@ng-dynamic-forms/core/public_api.js",
-                "@ng-dynamic-forms/ui-basic": "dist/@ng-dynamic-forms/ui-basic/public_api.js",
-                "@ng-dynamic-forms/ui-bootstrap": "dist/@ng-dynamic-forms/ui-bootstrap/public_api.js",
-                "@ng-dynamic-forms/ui-foundation": "dist/@ng-dynamic-forms/ui-foundation/public_api.js",
-                "@ng-dynamic-forms/ui-ionic": "dist/@ng-dynamic-forms/ui-ionic/public_api.js",
-                "@ng-dynamic-forms/ui-kendo": "dist/@ng-dynamic-forms/ui-kendo/public_api.js",
-                "@ng-dynamic-forms/ui-material": "dist/@ng-dynamic-forms/ui-material/public_api.js",
-                "@ng-dynamic-forms/ui-ng-bootstrap": "dist/@ng-dynamic-forms/ui-ng-bootstrap/public_api.js",
-                "@ng-dynamic-forms/ui-primeng": "dist/@ng-dynamic-forms/ui-primeng/public_api.js"
-            }
-        }),
 
         nodeResolve({
 
@@ -63,6 +58,8 @@ export default {
                     "DropdownModule",
                     "Editor",
                     "EditorModule",
+                    "InputMask",
+                    "InputMaskModule",
                     "InputSwitch",
                     "InputSwitchModule",
                     "InputTextModule",
