@@ -8,6 +8,8 @@ export const DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END = "END";
 })
 export class DynamicTemplateDirective {
 
+    @Input() pre: boolean = false;
+    @Input() post: boolean = false;
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END;
     @Input() as: string | null = null;
     @Input() modelId: string;
