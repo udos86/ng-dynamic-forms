@@ -675,7 +675,7 @@ All you have to do is to **add a** `as` **attribute to your template** and speci
 </form>
 ```
 
-You can create a pre-template or a post-template by using the `pre` or `post` property:
+Apply templating before and after and input or group.  You can create a pre-template or a post-template by using the `pre` or `post` property:
 
 **PRE**
 ```ts
@@ -702,7 +702,7 @@ You can create a pre-template or a post-template by using the `pre` or `post` pr
     <dynamic-bootstrap-form [group]="formGroup"
                             [model]="formModel">
                             
-        <ng-template modelId="myInput" [pre]="true">
+        <ng-template modelId="myInput" [post]="true">
         
             <p>Just some custom markup</p>
             
