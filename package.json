@@ -75,7 +75,7 @@
     "@angular/compiler-cli": "^4.4.4",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.6.0",
-    "@types/node": "^8.0.31",
+    "@types/node": "^8.0.32",
     "codelyzer": "^3.2.0",
     "dateformat": "^3.0.2",
     "del": "^3.0.0",
