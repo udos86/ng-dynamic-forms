@@ -32,7 +32,7 @@
                                                (blur)="onFocusChange($event)"
                                                (change)="onValueChange($event)"
                                                (focus)="onFocusChange($event)"
-                                               (matEvent)="onMatEvent($event)"></dynamic-material-form-control>
+                                               (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
                 <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
@@ -52,8 +52,11 @@
                       (blur)="onFocusChange($event)"
                       (change)="onValueChange($event)"
                       (focus)="onFocusChange($event)"
-                      (indeterminateChange)="onMatEvent($event, 3)"><span [ngClass]="model.cls.element.label"
-                                                            [innerHTML]="model.label"></span></mat-checkbox>
+                      (indeterminateChange)="onMatEvent($event, 'indeterminateChange')">
+
+            <span [ngClass]="model.cls.element.label"[innerHTML]="model.label"></span>
+
+        </mat-checkbox>
 
 
         <mat-form-field *ngSwitchCase="3" [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -71,7 +74,7 @@
                    [required]="model.required"
                    (blur)="onFocusChange($event)"
                    (dateChange)="onValueChange($event)"
-                   (dateInput)="onMatEvent($event, 2)"
+                   (dateInput)="onCustomEvent($event, 'dateInput')"
                    (focus)="onFocusChange($event)"/>
 
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
@@ -95,7 +98,7 @@
                                            (blur)="onFocusChange($event)"
                                            (change)="onValueChange($event)"
                                            (focus)="onFocusChange($event)"
-                                           (matEvent)="onMatEvent($event)"></dynamic-material-form-control>
+                                           (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
         </div>
 
 
@@ -175,9 +178,10 @@
                     [multiple]="model.multiple"
                     [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                     [placeholder]="model.placeholder"
+                    [required]="model.required"
                     (change)="onValueChange($event)"
-                    (onClose)="onMatEvent($event, 3)"
-                    (onOpen)="onMatEvent($event, 4)">
+                    (onClose)="onCustomEvent($event, 'onClose')"
+                    (onOpen)="onCustomEvent($event, 'onOpen')">
 
             <mat-option *ngFor="let option of model.options$ | async"
                         [ngClass]="model.cls.element.option"
@@ -197,7 +201,7 @@
                     tickInterval="1"
                     [vertical]="model.vertical"
                     (change)="onValueChange($event)"
-                    (input)="onMatEvent($event, 1)"></mat-slider>
+                    (input)="onCustomEvent($event, 'input')"></mat-slider>
 
 
         <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle

@@ -37,9 +37,10 @@ export interface DynamicFormControlEvent {
 
 export enum DynamicFormControlEventType {
 
-    Blur = 0,
-    Change = 1,
-    Focus = 2
+    Blur = 1,
+    Change = 2,
+    Focus = 3,
+    Custom = 4
 }
 
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
@@ -58,8 +59,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    //filter: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
+    customEvent: EventEmitter<DynamicFormControlEvent>;
 
     private subscriptions: Subscription[] = [];
 
@@ -242,7 +243,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
             this.change.emit($event as DynamicFormControlEvent);
 
-        } else { // custom library change event
+        } else { // custom library value change event
 
             this.change.emit(this.getEvent($event));
         }
@@ -277,6 +278,18 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
                 event.$event.type === "focus" ? this.focus.emit(event) : this.blur.emit(event);
             }
+        }
+    }
+
+    onCustomEvent($event: any, type: string | null = null): void {
+
+        if ($event && $event.hasOwnProperty("$event") && $event.hasOwnProperty("type")) { // child event bypass
+
+            this.customEvent.emit($event as DynamicFormControlEvent);
+
+        } else { // native UI library custom event
+
+            this.customEvent.emit({...this.getEvent($event), type} as DynamicFormControlEvent);
         }
     }
 }

@@ -52,6 +52,7 @@ import {
     Utils
 } from "@ng-dynamic-forms/core";
 import {
+    PrimeNGFormControlEvent,
     PrimeNGFormControlType,
     PRIME_NG_VIEW_CHILD_SELECTOR,
     PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -80,6 +81,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("pEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild(PRIME_NG_VIEW_CHILD_SELECTOR) pViewChild: PrimeNGFormControlComponent | undefined;
 
@@ -131,6 +133,10 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
         if(Array.isArray(inputModel.list)) {
             this.suggestions = inputModel.list.map(item => item);
         }
+    }
+
+    onPrimeNGEvent($event: any, type: number): void {
+        this.onCustomEvent($event, PrimeNGFormControlEvent[type]);
     }
 
     static getFormControlType(model: DynamicFormControlModel): PrimeNGFormControlType | null {

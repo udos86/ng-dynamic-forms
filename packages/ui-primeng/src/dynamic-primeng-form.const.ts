@@ -20,7 +20,22 @@ export enum PrimeNGFormControlType {
 }
 
 export enum PrimeNGFormControlEvent {
-    
+
+    onAdd = 1,
+    onCancel = 2,
+    onClear = 3,
+    onClearClick = 4,
+    onClose = 5,
+    onComplete = 6,
+    onDropdownClick = 7,
+    onInput = 8,
+    onRemove = 9,
+    onResize = 10,
+    onSelect = 11,
+    onSelectionChange = 12,
+    onSlideEnd = 13,
+    onTodayClick = 14,
+    onUnselect = 15
 }
 
 export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pDropdown,pEditor,pInputMask,

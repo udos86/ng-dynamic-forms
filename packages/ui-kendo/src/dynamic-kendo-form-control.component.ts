@@ -58,7 +58,6 @@ import {
     KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
     KENDO_UPLOAD_TEMPLATE_DIRECTIVES,
     KENDO_VIEW_CHILD_SELECTOR,
-    KendoFormControlEvent,
     KendoFormControlType
 } from "./dynamic-kendo-form.const";
 
@@ -84,7 +83,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output() kendoEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("kendoEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild(KENDO_VIEW_CHILD_SELECTOR) kendoViewChild: KendoFormControlComponent | undefined;
 
@@ -135,18 +134,6 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     onBlur($event: null): void {
 
         this.blur.emit(this.getEvent($event));
-    }
-
-    onKendoEvent($event: any, type: number): void {
-
-        if ($event && $event.hasOwnProperty("type")) { // child event bypass
-
-            this.kendoEvent.emit($event as DynamicFormControlEvent);
-
-        } else { // native Kendo event
-
-            this.kendoEvent.emit({...this.getEvent($event), type: KendoFormControlEvent[type]});
-        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {
