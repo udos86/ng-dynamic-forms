@@ -23,7 +23,8 @@
                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                       (blur)="onFocusChange($event)"
                                       (change)="onValueChange($event)"
-                                      (focus)="onFocusChange($event)"></dynamic-primeng-form-control>
+                                      (focus)="onFocusChange($event)"
+                                      (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
     </div>
 
 
@@ -39,7 +40,8 @@
                            [label]="option.label"
                            [name]="model.name"
                            [ngClass]="model.cls.element.option"
-                           [value]="option.value"></p-radioButton>
+                           [value]="option.value"
+                           (click)="onValueChange($event)"></p-radioButton>
         </div>
 
     </div>
@@ -71,8 +73,9 @@
                                                   [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                   (blur)="onFocusChange($event)"
                                                   (change)="onValueChange($event)"
-                                                  (focus)="onFocusChange($event)"></dynamic-primeng-form-control>
-                                                  
+                                                  (focus)="onFocusChange($event)"
+                                                  (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
+      
                     <ng-container *ngIf="postTemplate?.align === 'END' || postTemplate?.post">
                         <ng-container *ngTemplateOutlet="postTemplate?.templateRef; context: model"></ng-container>
                     </ng-container>
@@ -91,7 +94,11 @@
                             [tabindex]="model.tabIndex"
                             (onBlur)="onFocusChange($event)"
                             (change)="onValueChange($event)"
+                            (onClear)="onCustomEvent($event, 'onClear')"
+                            (onDropdownClick)="onCustomEvent($event, 'onDropdownClick')"
                             (onFocus)="onFocusChange($event)"
+                            (onSelect)="onCustomEvent($event, 'onSelect')"
+                            (onUnselect)="onCustomEvent($event, 'onUnselect')"
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
 
@@ -112,7 +119,12 @@
                         [timeOnly]="model.type === 'TIMEPICKER'"
                         [yearNavigator]="false"
                         (onBlur)="onFocusChange($event)"
-                        (onFocus)="onFocusChange($event)"></p-calendar>
+                        (onClearClick)="onCustomEvent($event, 'onClearClick')"
+                        (onClose)="onCustomEvent($event, 'onClose')"
+                        (onFocus)="onFocusChange($event)"
+                        (onInput)="onValueChange($event)"
+                        (onSelect)="onValueChange($event)"
+                        (onTodayClick)="onCustomEvent($event, 'onTodayClick')"></p-calendar>
 
 
             <p-checkbox *ngSwitchCase="4" #pCheckbox
@@ -132,7 +144,9 @@
                      [formControlName]="model.id"
                      [ngClass]="model.cls.element.control"
                      [tabindex]="model.tabIndex"
-                     (change)="onValueChange($event)"></p-chips>
+                     (change)="onValueChange($event)"
+                     (onAdd)="onCustomEvent($event, 'onAdd')"
+                     (onRemove)="onCustomEvent($event, 'onRemove')"></p-chips>
 
 
             <p-dropdown *ngSwitchCase="6" #pDropdown
@@ -151,6 +165,7 @@
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
+                      (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
                       (onTextChange)="onValueChange($event)"></p-editor>
 
 
@@ -197,8 +212,9 @@
                          [placeholder]="model.placeholder"
                          [readonly]="model.readOnly"
                          [tabindex]="model.tabIndex"
+                         (change)="onValueChange($event)"
                          (onBlur)="onFocusChange($event)"
-                         (onChange)="onValueChange($event)"
+                         (onComplete)="onCustomEvent($event, 'onComplete')"
                          (onFocus)="onFocusChange($event)"></p-inputMask>
 
 
@@ -229,6 +245,7 @@
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
                       [stars]="model.max"
+                      (onCancel)="onCustomEvent($event, 'onCancel')"
                       (onRate)="onValueChange($event)"></p-rating>
 
 
@@ -239,7 +256,8 @@
                       [max]="model.max"
                       [ngClass]="model.cls.element.control"
                       [step]="model.step"
-                      (onChange)="onValueChange($event)"></p-slider>
+                      (onChange)="onValueChange($event)"
+                      (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
 
 
             <p-spinner *ngSwitchCase="16" #pSpinner
@@ -273,7 +291,8 @@
                       [wrap]="model.wrap"
                       (blur)="onFocusChange($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusChange($event)"></textarea>
+                      (focus)="onFocusChange($event)"
+                      (onResize)="onCustomEvent($event, 'onResize')"></textarea>
 
         </div>
 

@@ -42,7 +42,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng-dynamic-forms/core";
-import { MatFormControlType, MatFormControlEvent, MAT_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
+import { MatFormControlType, MAT_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
 
 export type MatFormControlComponent = MatAutocomplete | MatCheckbox | MatDatepicker<Date> | MatFormField |
     MatRadioGroup | MatSelect | MatSlider | MatSlideToggle;
@@ -76,7 +76,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output() matEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild(MAT_VIEW_CHILD_SELECTOR) matViewChild: MatFormControlComponent | undefined;
     @ViewChild(MatInput) matInput: MatInput | undefined;
@@ -99,18 +99,6 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     get characterCount(): number | null {
         return this.matInput ? this.matInput.value.length : null;
-    }
-
-    onMatEvent($event: any, type: number) {
-
-        if ($event && $event.hasOwnProperty("type")) { // child event bypass
-
-            this.matEvent.emit($event as DynamicFormControlEvent);
-
-        } else { // native Material event
-
-            this.matEvent.emit({...this.getEvent($event), type: MatFormControlEvent[type]});
-        }
     }
 
     static getFormControlType(model: DynamicFormControlModel): MatFormControlType | null {

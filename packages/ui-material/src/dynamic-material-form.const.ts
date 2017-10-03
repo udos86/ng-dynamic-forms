@@ -12,14 +12,5 @@ export enum MatFormControlType {
     TextArea = 10, //"TEXTAREA"
 }
 
-export enum MatFormControlEvent {
-
-    input = 1,
-    dateInput = 2,
-    indeterminateChange = 3,
-    onClose = 4,
-    onOpen = 5
-}
-
 export const MAT_VIEW_CHILD_SELECTOR = `matAutocomplete,matCheckbox,matDatepicker,matInput,matRadioGroup,matSelect,
     matSlider,matSlideToggle,matTextarea`;

@@ -21,14 +21,6 @@ export enum KendoFormControlType {
     Upload = 19, //"UPLOAD"
 }
 
-export enum KendoFormControlEvent {
-
-    close = 1,
-    filterChange = 2,
-    open = 3,
-    selectionChange = 4
-}
-
 export const KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = {
 
     footerTemplate: "kendoAutoCompleteFooterTemplate",

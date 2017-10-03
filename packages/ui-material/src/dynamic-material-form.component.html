@@ -5,7 +5,7 @@
                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                [showCharacterHint]="controlModel.type === 'INPUT'"
                                [templates]="templates"
-                               (blur)="onEvent($event, 0)"
-                               (change)="onEvent($event, 1)"
-                               (focus)="onEvent($event, 2)"
-                               (matEvent)="onMatEvent($event)"></dynamic-material-form-control>
+                               (blur)="onEvent($event, 1)"
+                               (change)="onEvent($event, 2)"
+                               (focus)="onEvent($event, 3)"
+                               (matEvent)="onEvent($event, 4)"></dynamic-material-form-control>

@@ -19,10 +19,6 @@ export enum PrimeNGFormControlType {
     TextArea = 17, //"TEXTAREA"
 }
 
-export enum PrimeNGFormControlEvent {
-    
-}
-
 export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pDropdown,pEditor,pInputMask,
 pInputSwitch,pInputText,pMultiSelect,pRating,pSlider,pSpinner,pInputTextarea`;
 
