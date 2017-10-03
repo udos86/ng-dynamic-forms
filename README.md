@@ -629,6 +629,44 @@ All you have to do is to **add a** `as` **attribute to your template** and speci
 </form>
 ```
 
+You can create a pre-template or a post-template by using the `pre` or `post` property:
+
+**PRE**
+```ts
+<form [formGroup]="formGroup">
+    
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
+                            
+        <ng-template modelId="myInput" [pre]="true">
+        
+            <p>Just some custom markup</p>
+            
+        </ng-template>
+        
+    </dynamic-bootstrap-form>
+    
+</form>
+```
+
+**POST**
+```ts
+<form [formGroup]="formGroup">
+    
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [model]="formModel">
+                            
+        <ng-template modelId="myInput" [pre]="true">
+        
+            <p>Just some custom markup</p>
+            
+        </ng-template>
+        
+    </dynamic-bootstrap-form>
+    
+</form>
+```
+
 Finally **you can determine whether the template is rendered before or after the actual form control** by using the `align` property:
 
 ```ts

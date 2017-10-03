@@ -54,7 +54,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     contentTemplates: QueryList<DynamicTemplateDirective>;
     inputTemplates: QueryList<DynamicTemplateDirective> | null = null;
-    template: DynamicTemplateDirective;
+    preTemplate: DynamicTemplateDirective;
+    postTemplate: DynamicTemplateDirective;
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
@@ -159,8 +160,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         this.templates.forEach((template: DynamicTemplateDirective) => {
 
-            if (template.as === null && (template.modelType === this.model.type || template.modelId === this.model.id)) {
-                this.template = template;
+            if ((template.pre || template.align === "START") && template.as === null && (template.modelType === this.model.type || template.modelId === this.model.id)) {
+                this.preTemplate = template;
+            } else if ((template.post || template.align === "END") && template.as === null && (template.modelType === this.model.type || template.modelId === this.model.id)) {
+                this.postTemplate = template;
             }
         });
     }
