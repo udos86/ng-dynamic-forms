@@ -29,4 +29,8 @@ export class PrimeNGSampleFormComponent implements OnInit {
     onChange($event) {
         console.log(`PrimeNG change event on ${$event.model.id}: `, $event);
     }
+
+    onPEvent($event) {
+        console.log(`PrimeNG ${$event.type} event on ${$event.model.id}: `, $event);
+    }
 }

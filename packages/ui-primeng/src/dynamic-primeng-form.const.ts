@@ -1,4 +1,4 @@
-export const enum PrimeNGFormControlType {
+export enum PrimeNGFormControlType {
 
     Array = 1, //"ARRAY",
     AutoComplete = 2, //"AUTOCOMPLETE",

@@ -22,6 +22,11 @@ export class KendoSampleFormComponent implements OnInit {
     }
 
     onChange($event) {
-        console.log(`Kendo change event on: ${$event}: `, $event);
+        console.log(`Kendo change event on: ${$event.model.id}: `, $event);
     }
+
+    onKendoEvent($event) {
+        console.log(`Kendo ${$event.type} event on: ${$event.model.id}: `, $event);
+    }
+
 }

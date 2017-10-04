@@ -3,8 +3,8 @@ const path        = require("path"),
       packageJson = require(path.join(__dirname, "package.json"));
 
 const format  = utils.getRollupFormat(process.argv),
-      minify  = utils.hasMinifyFlag(process.argv),
-      globals = utils.getRollupGlobals();
+      globals = utils.getRollupGlobals(),
+      minify  = utils.hasMinifyFlag(process.argv);
 
 export default {
 

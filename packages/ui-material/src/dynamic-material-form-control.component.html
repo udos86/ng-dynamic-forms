@@ -31,7 +31,8 @@
                                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                (blur)="onFocusChange($event)"
                                                (change)="onValueChange($event)"
-                                               (focus)="onFocusChange($event)"></dynamic-material-form-control>
+                                               (focus)="onFocusChange($event)"
+                                               (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
                 <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
@@ -50,8 +51,12 @@
                       [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                       (blur)="onFocusChange($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusChange($event)"><span [ngClass]="model.cls.element.label"
-                                                            [innerHTML]="model.label"></span></mat-checkbox>
+                      (focus)="onFocusChange($event)"
+                      (indeterminateChange)="onMatEvent($event, 'indeterminateChange')">
+
+            <span [ngClass]="model.cls.element.label"[innerHTML]="model.label"></span>
+
+        </mat-checkbox>
 
 
         <mat-form-field *ngSwitchCase="3" [ngClass]="[model.cls.element.control, model.cls.grid.control]">
@@ -68,15 +73,13 @@
                    [readonly]="model.readOnly"
                    [required]="model.required"
                    (blur)="onFocusChange($event)"
-                   (change)="onValueChange($event)"
+                   (dateChange)="onValueChange($event)"
+                   (dateInput)="onCustomEvent($event, 'dateInput')"
                    (focus)="onFocusChange($event)"/>
 
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
-            <mat-datepicker #matDatepicker
-                            [startAt]="model.focusedDate"
-                            [touchUi]="true"
-                            (selectedChanged)="onValueChange($event)"></mat-datepicker>
+            <mat-datepicker #matDatepicker [startAt]="model.focusedDate" [touchUi]="true"></mat-datepicker>
 
         </mat-form-field>
 
@@ -94,7 +97,8 @@
                                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                            (blur)="onFocusChange($event)"
                                            (change)="onValueChange($event)"
-                                           (focus)="onFocusChange($event)"></dynamic-material-form-control>
+                                           (focus)="onFocusChange($event)"
+                                           (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
         </div>
 
 
@@ -141,7 +145,7 @@
 
             </mat-form-field>
 
-            <mat-autocomplete #matAutocomplete="matAutocomplete">
+            <mat-autocomplete #matAutocomplete="matAutocomplete" (optionSelected)="onValueChange($event)">
 
                 <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
 
@@ -174,7 +178,10 @@
                     [multiple]="model.multiple"
                     [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                     [placeholder]="model.placeholder"
-                    (change)="onValueChange($event)">
+                    [required]="model.required"
+                    (change)="onValueChange($event)"
+                    (onClose)="onCustomEvent($event, 'onClose')"
+                    (onOpen)="onCustomEvent($event, 'onOpen')">
 
             <mat-option *ngFor="let option of model.options$ | async"
                         [ngClass]="model.cls.element.option"
@@ -193,7 +200,8 @@
                     [thumbLabel]="true"
                     tickInterval="1"
                     [vertical]="model.vertical"
-                    (change)="onValueChange($event)"></mat-slider>
+                    (change)="onValueChange($event)"
+                    (input)="onCustomEvent($event, 'input')"></mat-slider>
 
 
         <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle
@@ -251,5 +259,7 @@
     <ng-container *ngIf="type !== 1 && template?.align === 'END'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
+
+    <ng-content></ng-content>
 
 </div>
