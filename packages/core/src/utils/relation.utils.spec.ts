@@ -238,21 +238,23 @@ describe("FormControlRelation utils test suite", () => {
     it("should check if form control is to be hidden correctly", () => {
         
         model.relation = [rel6];
-        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+        let toBeHidden = RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup);
+        expect(toBeHidden).toBe(false);
 
         model.relation = [rel7];
-        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(true);
+        toBeHidden = RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup);
+        expect(toBeHidden).toBe(true);
 
         model.relation = [rel8];
-        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+        toBeHidden = RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup);
+        expect(toBeHidden).toBe(false);
 
         model.relation = [rel9];
-        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+        toBeHidden = RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup);
+        expect(toBeHidden).toBe(false);
 
         model.relation = [rel10];
-        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(true);
-
-        model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
-        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+        toBeHidden = RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup);
+        expect(toBeHidden).toBe(true);
     });
 });

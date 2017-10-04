@@ -85,7 +85,6 @@ export class RelationUtils {
     static isFormControlToBeHidden(relGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean{
         return relGroup.when.reduce((toBeHidden: boolean, rel: DynamicFormControlRelation, index: number) => {
             let control = formGroup.get(rel.id);
-
             if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_HIDDEN) {
                 
                 if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeHidden) {
@@ -95,8 +94,7 @@ export class RelationUtils {
                 if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeHidden) {
                     return true;
                 }
-
-                return rel.value === control.value || rel.status === control.status;
+                return rel.value === control.value;
             }
                 
             if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_VISIBLE) {
@@ -108,9 +106,9 @@ export class RelationUtils {
                 if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeHidden) {
                     return false;
                 }
-
-                return !(rel.value === control.value || rel.status === control.status);
+                return !(rel.value === control.value);
             }
+            return false;
         }, false);
     }
 }
