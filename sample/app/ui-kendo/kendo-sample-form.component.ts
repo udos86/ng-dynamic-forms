@@ -21,8 +21,16 @@ export class KendoSampleFormComponent implements OnInit {
         this.formGroup = this.formService.createFormGroup(this.formModel);
     }
 
+    onBlur($event) {
+        console.log(`Kendo blur event on: ${$event.model.id}: `, $event);
+    }
+
     onChange($event) {
         console.log(`Kendo change event on: ${$event.model.id}: `, $event);
+    }
+
+    onFocus($event) {
+        console.log(`Kendo focus event on: ${$event.model.id}: `, $event);
     }
 
     onKendoEvent($event) {

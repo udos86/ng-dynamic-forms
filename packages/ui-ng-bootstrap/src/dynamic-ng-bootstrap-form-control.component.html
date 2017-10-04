@@ -33,9 +33,9 @@
                                                        [model]="controlModel"
                                                        [templates]="templates"
                                                        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                       (blur)="onFocusChange($event)"
+                                                       (blur)="onBlurEvent($event)"
                                                        (change)="onValueChange($event)"
-                                                       (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
+                                                       (focus)="onFocusEvent($event)"></dynamic-ng-bootstrap-form-control>
 
                     <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
@@ -68,10 +68,10 @@
                            [ngClass]="model.cls.element.control"
                            [required]="model.required"
                            [value]="model.value"
-                           (blur)="onFocusChange($event)"
+                           (blur)="onBlurEvent($event)"
                            (change)="onValueChange($event)"
-                           (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
-                                                                  [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
+                           (focus)="onFocusEvent($event)"/><span [innerHTML]="model.label"
+                                                                 [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
                 </label>
 
             </div>
@@ -93,10 +93,10 @@
                            [name]="controlModel.name"
                            [required]="controlModel.required"
                            [value]="controlModel.value"
-                           (blur)="onFocusChange($event)"
+                           (blur)="onBlurEvent($event)"
                            (change)="onValueChange($event)"
-                           (focus)="onFocusChange($event)"/><span [ngClass]="controlModel.cls.element.label"
-                                                                  [innerHTML]="controlModel.label"></span></label>
+                           (focus)="onFocusEvent($event)"/><span [ngClass]="controlModel.cls.element.label"
+                                                                 [innerHTML]="controlModel.label"></span></label>
             </div>
 
 
@@ -129,9 +129,9 @@
                                                    [model]="controlModel"
                                                    [templates]="templates"
                                                    [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                   (blur)="onFocusChange($event)"
+                                                   (blur)="onBlurEvent($event)"
                                                    (change)="onValueChange($event)"
-                                                   (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
+                                                   (focus)="onFocusEvent($event)"></dynamic-ng-bootstrap-form-control>
             </div>
 
 
@@ -164,9 +164,9 @@
                        [spellcheck]="model.spellCheck"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
 
@@ -193,8 +193,8 @@
                            [disabled]="option.disabled"
                            [name]="model.name"
                            [value]="option.value"
-                           (blur)="onFocusChange($event)"
-                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span>
+                           (blur)="onBlurEvent($event)"
+                           (focus)="onFocusEvent($event)"/><span [innerHTML]="option.label"></span>
                 </label>
 
             </div>
@@ -208,13 +208,14 @@
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
-                    (blur)="onFocusChange($event)"
+                    (blur)="onBlurEvent($event)"
                     (change)="onValueChange($event)"
-                    (focus)="onFocusChange($event)">
+                    (focus)="onFocusEvent($event)">
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}</option>
+                        [ngValue]="option.value">{{option.label}}
+                </option>
 
             </select>
 
@@ -235,9 +236,9 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onFocusChange($event)"
+                      (blur)="onBlurEvent($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusChange($event)"></textarea>
+                      (focus)="onFocusEvent($event)"></textarea>
 
 
             <ngb-timepicker *ngSwitchCase="11"
@@ -249,7 +250,8 @@
                             [spinners]="true"></ngb-timepicker>
 
 
-            <small *ngIf="hasHint" class="text-muted" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></small>
+            <small *ngIf="hasHint" class="text-muted" [innerHTML]="model.hint"
+                   [ngClass]="model.cls.element.hint"></small>
 
 
             <div *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">

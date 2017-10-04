@@ -127,15 +127,6 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
             .forEach(directive => this.setTemplateDirective(directive));
     }
 
-    onFocus($event: null): void {
-        this.focus.emit(this.getEvent($event));
-    }
-
-    onBlur($event: null): void {
-
-        this.blur.emit(this.getEvent($event));
-    }
-
     static getFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {
 
         switch (model.type) {
