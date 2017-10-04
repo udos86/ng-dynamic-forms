@@ -4,7 +4,6 @@
       crossorigin="anonymous"/>
 
 <div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
-    <span>Valid: {{formGroup.valid}}</span>
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-ng-bootstrap-form [group]="formGroup"
@@ -13,6 +12,6 @@
     </form>
     <!--button (click)="test()" type="button">Test</button-->
 
-    <!--<pre>{{formGroup.value | json}}</pre>-->
+    <pre>{{formGroup.value | json}}</pre>
 
 </div>
