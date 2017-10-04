@@ -21,9 +21,9 @@
                                       [model]="controlModel"
                                       [templates]="templates"
                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                      (blur)="onFocusChange($event)"
+                                      (blur)="onBlurEvent($event)"
                                       (change)="onValueChange($event)"
-                                      (focus)="onFocusChange($event)"
+                                      (focus)="onFocusEvent($event)"
                                       (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
     </div>
 
@@ -67,9 +67,9 @@
                                                   [model]="controlModel"
                                                   [templates]="templates"
                                                   [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                  (blur)="onFocusChange($event)"
+                                                  (blur)="onBlurEvent($event)"
                                                   (change)="onValueChange($event)"
-                                                  (focus)="onFocusChange($event)"
+                                                  (focus)="onFocusEvent($event)"
                                                   (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
 
                     <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
@@ -188,9 +188,9 @@
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
                        [type]="model.inputType"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <datalist *ngIf="model.list" [id]="model.listId">
                     <option *ngFor="let option of model.list" [value]="option">
@@ -284,16 +284,16 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onFocusChange($event)"
+                      (blur)="onBlurEvent($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusChange($event)"
+                      (focus)="onFocusEvent($event)"
                       (onResize)="onCustomEvent($event, 'onResize')"></textarea>
 
         </div>
 
     </ng-container>
 
-    
+
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
     </ul>
