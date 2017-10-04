@@ -4,7 +4,9 @@
 
         <dynamic-kendo-form [group]="formGroup"
                             [model]="formModel"
+                            (blur)="onBlur($event)"
                             (change)="onChange($event)"
+                            (focus)="onFocus($event)"
                             (kendoEvent)="onKendoEvent($event)">
 
             <ng-template modelId="kendoDropDownList" as="kendoDropDownListHeaderTemplate">

@@ -102,7 +102,8 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(component.focus).toBeDefined();
 
         expect(component.onValueChange).toBeDefined();
-        expect(component.onFocusChange).toBeDefined();
+        expect(component.onBlurEvent).toBeDefined();
+        expect(component.onFocusEvent).toBeDefined();
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
@@ -116,14 +117,22 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    xit("should listen to native focus and blur events", () => {
+    xit("should listen to native blur events", () => {
 
-        spyOn(component, "onFocusChange");
+        spyOn(component, "onBlurEvent");
 
-        testElement.triggerEventHandler("focus", null);
         testElement.triggerEventHandler("blur", null);
 
-        expect(component.onFocusChange).toHaveBeenCalledTimes(2);
+        expect(component.onBlurEvent).toHaveBeenCalled();
+    });
+
+    xit("should listen to native focus events", () => {
+
+        spyOn(component, "onFocusEvent");
+
+        testElement.triggerEventHandler("focus", null);
+
+        expect(component.onFocusEvent).toHaveBeenCalled();
     });
 
     xit("should listen to native change event", () => {

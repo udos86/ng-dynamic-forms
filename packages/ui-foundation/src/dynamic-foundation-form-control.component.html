@@ -10,7 +10,7 @@
 
 
     <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-            <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
 
@@ -34,9 +34,9 @@
                                                      [model]="controlModel"
                                                      [templates]="templates"
                                                      [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                     (blur)="onFocusChange($event)"
+                                                     (blur)="onBlurEvent($event)"
                                                      (change)="onValueChange($event)"
-                                                     (focus)="onFocusChange($event)"></dynamic-foundation-form-control>
+                                                     (focus)="onFocusEvent($event)"></dynamic-foundation-form-control>
 
                     <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
@@ -57,9 +57,9 @@
                        [ngClass]="model.cls.element.control"
                        [required]="model.required"
                        [value]="model.value"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span
+                       (focus)="onFocusEvent($event)"/><span
                     [ngClass]="[model.cls.element.label, model.cls.grid.label]"
                     [innerHTML]="model.label"></span></label>
 
@@ -78,9 +78,9 @@
                                                  [model]="itemModel"
                                                  [templates]="templates"
                                                  [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
-                                                 (blur)="onFocusChange($event)"
+                                                 (blur)="onBlurEvent($event)"
                                                  (change)="onValueChange($event)"
-                                                 (focus)="onFocusChange($event)"></dynamic-foundation-form-control>
+                                                 (focus)="onFocusEvent($event)"></dynamic-foundation-form-control>
             </fieldset>
 
 
@@ -112,9 +112,9 @@
                        [spellcheck]="model.spellCheck"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
 
@@ -142,8 +142,8 @@
                            [formControlName]="model.id"
                            [name]="model.name"
                            [value]="option.value"
-                           (blur)="onFocusChange($event)"
-                           (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
+                           (blur)="onBlurEvent($event)"
+                           (focus)="onFocusEvent($event)"/><span [innerHTML]="option.label"></span></label>
 
             </fieldset>
 
@@ -155,13 +155,14 @@
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
-                    (blur)="onFocusChange($event)"
+                    (blur)="onBlurEvent($event)"
                     (change)="onValueChange($event)"
-                    (focus)="onFocusChange($event)">
+                    (focus)="onFocusEvent($event)">
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}</option>
+                        [ngValue]="option.value">{{option.label}}
+                </option>
 
             </select>
 
@@ -176,9 +177,9 @@
                        [name]="model.name"
                        [required]="model.required"
                        [value]="model.value"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <label class="switch-paddle" [attr.for]="model.id">
 
@@ -206,9 +207,9 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onFocusChange($event)"
+                      (blur)="onBlurEvent($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusChange($event)"></textarea>
+                      (focus)="onFocusEvent($event)"></textarea>
 
         </ng-container>
 
@@ -222,7 +223,7 @@
 
 
     <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-            <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
     <ng-content></ng-content>

@@ -2,12 +2,6 @@ language: node_js
 sudo: false
 node_js:
   - "node"
-before_install:
-  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 script:
   - npm run build:packages
   - npm run tests:unit
-after_success:
-  - if [ -n "$TRAVIS_TAG" ]; then
-      echo "tag build"
-    fi

@@ -65,6 +65,7 @@ export class DynamicIonicFormControlComponent extends DynamicFormControlComponen
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("ionEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild(Checkbox) ionCheckbox: Checkbox | undefined;
     @ViewChild(DateTime) ionDateTime: DateTime | undefined;
