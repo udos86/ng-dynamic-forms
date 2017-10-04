@@ -189,6 +189,12 @@ describe("FormControlRelation utils test suite", () => {
 
         model.relation = [rel2];
         expect(RelationUtils.findActivationRelation(model.relation)).toBe(rel2);
+
+        model.relation = [rel6];
+        expect(RelationUtils.findActivationRelation(model.relation)).toBe(rel6);
+
+        model.relation = [rel7];
+        expect(RelationUtils.findActivationRelation(model.relation)).toBe(rel7);
     });
 
     it("should get all related form controls correctly", () => {
