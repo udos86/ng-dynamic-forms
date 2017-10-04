@@ -80,6 +80,76 @@ describe("FormControlRelation utils test suite", () => {
                     value: "option-3"
                 }
             ]
+        },
+        rel6 = {
+            action: "HIDDEN",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel7 = {
+            action: "VISIBLE",
+            connective: "AND",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-3"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-2",
+                }
+            ]
+        },
+        rel8 = {
+            action: "HIDDEN",
+            connective: "AND",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel9 = {
+            action: "VISIBLE",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-1"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-2",
+                }
+            ]
+        },
+        rel10 = {
+            action: "HIDDEN",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-1"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
         };
 
     beforeEach(() => {
@@ -163,5 +233,26 @@ describe("FormControlRelation utils test suite", () => {
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
         expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+    });
+
+    it("should check if form control is to be hidden correctly", () => {
+        
+        model.relation = [rel6];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel7];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(true);
+
+        model.relation = [rel8];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel9];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel10];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(true);
+
+        model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
     });
 });
