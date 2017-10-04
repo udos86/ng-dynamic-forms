@@ -1,6 +1,7 @@
 <div [class.form-group]="(type !== 6 && asBootstrapFormGroup) || model.cls.element.container.includes('form-group')"
      [formGroup]="group"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
+     *ngIf="!model.hidden">
 
     <label *ngIf="type !== 3 && model.label"
            [attr.for]="model.id"
@@ -11,7 +12,6 @@
     <ng-container *ngIf="type !== 1 && template?.align === 'START'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
-
 
     <div [ngClass]="model.cls.grid.control">
 
@@ -43,7 +43,6 @@
 
             </div>
 
-
             <ngb-datepicker *ngSwitchCase="2"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
@@ -53,6 +52,7 @@
                             [startDate]="model.focusedDate"></ngb-datepicker>
 
 
+            
             <div *ngSwitchCase="3" class="form-check" [class.disabled]="model.disabled">
 
                 <label class="form-check-label">
@@ -76,7 +76,6 @@
 
             </div>
 
-
             <div *ngSwitchCase="4" class="btn-group" data-toggle="buttons"
                  [dynamicId]="bindId && model.id"
                  [formGroupName]="model.id"
@@ -99,7 +98,6 @@
                                                                   [innerHTML]="controlModel.label"></span></label>
             </div>
 
-
             <div *ngSwitchCase="5" class="input-group">
 
                 <input ngbDatepicker class="form-control" #datepicker="ngbDatepicker"
@@ -116,8 +114,8 @@
 
             </div>
 
-
-            <div *ngSwitchCase="6" role="group"
+            <div *ngSwitchCase="6"
+                 role="group"
                  [dynamicId]="bindId && model.id"
                  [formGroupName]="model.id"
                  [ngClass]="model.cls.element.control">
@@ -133,7 +131,6 @@
                                                    (change)="onValueChange($event)"
                                                    (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
             </div>
-
 
             <div *ngSwitchCase="7" [class.input-group]="model.prefix || model.suffix">
 
@@ -176,7 +173,6 @@
 
             </div>
 
-
             <div *ngSwitchCase="8" ngbRadioGroup class="btn-group" role="radiogroup"
                  [attr.tabindex]="model.tabIndex"
                  [dynamicId]="bindId && model.id"
@@ -199,7 +195,6 @@
 
             </div>
 
-
             <select *ngSwitchCase="9" class="form-control"
                     [attr.tabindex]="model.tabIndex"
                     [class.is-invalid]="showErrorMessages"
@@ -217,7 +212,6 @@
                         [ngValue]="option.value">{{option.label}}</option>
 
             </select>
-
 
             <textarea *ngSwitchCase="10" class="form-control"
                       [attr.tabindex]="model.tabIndex"

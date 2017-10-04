@@ -1,4 +1,4 @@
-<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]" *ngIf="!model.hidden">
 
     <label *ngIf="type !== 4 && type !== 10 && model.label"
            [attr.for]="model.id"

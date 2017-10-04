@@ -1,7 +1,8 @@
 <div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
      [class.has-error]="showErrorMessages"
      [formGroup]="group"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
+     *ngIf="!model.hidden">
 
     <label *ngIf="type !== 2 && model.label"
            [attr.for]="model.id"

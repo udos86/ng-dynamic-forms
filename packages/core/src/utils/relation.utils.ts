@@ -5,6 +5,8 @@ import {
     DynamicFormControlRelationGroup,
     DYNAMIC_FORM_CONTROL_ACTION_DISABLE,
     DYNAMIC_FORM_CONTROL_ACTION_ENABLE,
+    DYNAMIC_FORM_CONTROL_ACTION_VISIBLE,
+    DYNAMIC_FORM_CONTROL_ACTION_HIDDEN,
     DYNAMIC_FORM_CONTROL_CONNECTIVE_AND,
     DYNAMIC_FORM_CONTROL_CONNECTIVE_OR
 } from "../model/dynamic-form-control-relation.model";
@@ -14,7 +16,10 @@ export class RelationUtils {
     static findActivationRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup | null {
 
         let rel = relGroups.find(rel => {
-            return rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE;
+            return rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE 
+            || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE
+            || rel.action === DYNAMIC_FORM_CONTROL_ACTION_HIDDEN
+            || rel.action === DYNAMIC_FORM_CONTROL_ACTION_VISIBLE;
         });
 
         return rel !== undefined ? rel : null;
@@ -74,6 +79,38 @@ export class RelationUtils {
 
             return false;
 
+        }, false);
+    }
+
+    static isFormControlToBeHidden(relGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean{
+        return relGroup.when.reduce((toBeHidden: boolean, rel: DynamicFormControlRelation, index: number) => {
+            let control = formGroup.get(rel.id);
+
+            if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_HIDDEN) {
+                
+                if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeHidden) {
+                    return false;
+                }
+
+                if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeHidden) {
+                    return true;
+                }
+
+                return rel.value === control.value || rel.status === control.status;
+            }
+                
+            if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_VISIBLE) {
+
+                if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && toBeHidden) {
+                    return true;
+                }
+
+                if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeHidden) {
+                    return false;
+                }
+
+                return !(rel.value === control.value || rel.status === control.status);
+            }
         }, false);
     }
 }
