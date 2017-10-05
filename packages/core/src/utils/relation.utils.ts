@@ -94,7 +94,7 @@ export class RelationUtils {
                 if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeHidden) {
                     return true;
                 }
-                return rel.value === control.value;
+                return rel.value === control.value || rel.status === control.status;
             }
                 
             if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_VISIBLE) {
@@ -106,7 +106,7 @@ export class RelationUtils {
                 if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeHidden) {
                     return false;
                 }
-                return !(rel.value === control.value);
+                return !(rel.value === control.value || rel.status === control.status);
             }
             return false;
         }, false);

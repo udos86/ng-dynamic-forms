@@ -279,5 +279,8 @@ describe("FormControlRelation utils test suite", () => {
         model.relation = [rel10];
         toBeHidden = RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup);
         expect(toBeHidden).toBe(true);
+
+        model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
+        expect(RelationUtils.isFormControlToBeHidden(model.relation[0], controlGroup)).toBe(false);
     });
 });
