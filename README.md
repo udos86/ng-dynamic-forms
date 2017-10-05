@@ -9,12 +9,7 @@
 ***
 :bangbang:09-14-2017: **@ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
 ***
-**Please update your dependencies**:
-```
-npm uninstall @ng2-dynamic-forms/core @ng2-dynamic-forms/ui-<package_name> -S
-npm install @ng-dynamic-forms/core @ng-dynamic-forms/ui-<package_name> -S
-```
-***
+
 
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).

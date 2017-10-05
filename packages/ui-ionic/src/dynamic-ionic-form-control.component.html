@@ -27,7 +27,8 @@
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                         (blur)="onFocusChange($event)"
                                         (change)="onValueChange($event)"
-                                        (focus)="onFocusChange($event)"></dynamic-ionic-form-control>
+                                        (focus)="onFocusChange($event)"
+                                        (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
                                         
             <ng-container *ngIf="postTemplate?.align === 'END' || postTemplate?.post">
                 <ng-container *ngTemplateOutlet="postTemplate?.templateRef; context: model"></ng-container>
@@ -54,7 +55,8 @@
                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                     (blur)="onFocusChange($event)"
                                     (change)="onValueChange($event)"
-                                    (focus)="onFocusChange($event)"></dynamic-ionic-form-control>
+                                    (focus)="onFocusChange($event)"
+                                    (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
     </fieldset>
 
 
@@ -90,7 +92,9 @@
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
-                      (ionChange)="onValueChange($event)"></ion-checkbox>
+                      (ionBlur)="onBlurEvent($event)"
+                      (ionChange)="onValueChange($event)"
+                      (ionFocus)="onFocusEvent($event)"></ion-checkbox>
 
 
         <ion-datetime *ngSwitchCase="3"
@@ -102,7 +106,10 @@
                       [min]="model.min"
                       [ngClass]="model.cls.element.control"
                       [placeholder]="model.placeholder"
-                      (ionChange)="onValueChange($event)"></ion-datetime>
+                      (ionBlur)="onBlurEvent($event)"
+                      (ionCancel)="onCustomEvent($event, 'ionCancel')"
+                      (ionChange)="onValueChange($event)"
+                      (ionFocus)="onFocusEvent($event)"></ion-datetime>
 
 
         <ion-input *ngSwitchCase="5"
@@ -117,7 +124,10 @@
                    [readonly]="model.readOnly"
                    [step]="model.step"
                    [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
-                   [type]="model.inputType"></ion-input>
+                   [type]="model.inputType"
+                   (ionBlur)="onBlurEvent($event)"
+                   (ionChange)="onValueChange($event)"
+                   (ionFocus)="onFocusEvent($event)"></ion-input>
 
 
         <ion-range *ngSwitchCase="7"
@@ -130,7 +140,9 @@
                    [pin]="true"
                    [snaps]="true"
                    [step]="model.step"
-                   (ionChange)="onValueChange($event)"></ion-range>
+                   (ionBlur)="onBlurEvent($event)"
+                   (ionChange)="onValueChange($event)"
+                   (ionFocus)="onFocusEvent($event)"></ion-range>
 
 
         <ion-select *ngSwitchCase="8"
@@ -140,7 +152,9 @@
                     [multiple]="model.multiple"
                     [ngClass]="model.cls.element.control"
                     [placeholder]="model.placeholder"
-                    (ionChange)="onValueChange($event)">
+                    (ionBlur)="onBlurEvent($event)"
+                    (ionChange)="onValueChange($event)"
+                    (ionFocus)="onFocusEvent($event)">
 
             <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{option.label}}
             </ion-option>
@@ -155,7 +169,10 @@
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
                       [placeholder]="model.placeholder"
-                      [readonly]="model.readOnly"></ion-textarea>
+                      [readonly]="model.readOnly"
+                      (ionBlur)="onBlurEvent($event)"
+                      (ionChange)="onValueChange($event)"
+                      (ionFocus)="onFocusEvent($event)"></ion-textarea>
 
 
         <ion-toggle *ngSwitchCase="10"
@@ -164,7 +181,9 @@
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [ngClass]="model.cls.element.control"
-                    (ionChange)="onValueChange($event)"></ion-toggle>
+                    (ionBlur)="onBlurEvent($event)"
+                    (ionChange)="onValueChange($event)"
+                    (ionFocus)="onFocusEvent($event)"></ion-toggle>
 
     </ion-item>
 

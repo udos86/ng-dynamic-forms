@@ -22,7 +22,7 @@ export default {
     onwarn: function (warning) {
 
         if (warning.code === "THIS_IS_UNDEFINED" || warning.code === "MISSING_EXPORT") {
-            
+
         }
     },
 

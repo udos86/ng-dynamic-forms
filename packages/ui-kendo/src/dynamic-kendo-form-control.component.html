@@ -39,9 +39,9 @@
                                             [model]="controlModel"
                                             [templates]="templates"
                                             [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                            (blur)="onFocusChange($event)"
+                                            (blur)="onBlurEvent($event)"
                                             (change)="onValueChange($event)"
-                                            (focus)="onFocusChange($event)"
+                                            (focus)="onFocusEvent($event)"
                                             (kendoEvent)="onCustomEvent($event)"></dynamic-kendo-form-control>
 
                 <ng-container *ngIf="postTemplate?.align === 'END' || postTemplate?.post">
@@ -59,10 +59,10 @@
                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                             [placeholder]="model.placeholder"
                             [tabIndex]="model.tabIndex"
-                            (blur)="onBlur($event)"
+                            (blur)="onBlurEvent($event)"
                             (close)="onCustomEvent($event, 'close')"
                             (filterChange)="onCustomEvent($event, 'filterChange')"
-                            (focus)="onFocus($event)"
+                            (focus)="onFocusEvent($event)"
                             (open)="onCustomEvent($event, 'open')"
                             (valueChange)="onValueChange($event)"></kendo-autocomplete>
 
@@ -91,9 +91,9 @@
                    [ngClass]="model.cls.element.control"
                    [required]="model.required"
                    [value]="model.value"
-                   (blur)="onFocusChange($event)"
+                   (blur)="onBlurEvent($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
+                   (focus)="onFocusEvent($event)"/>
 
             <label class="k-checkbox-label" [for]="model.id" [innerHTML]="model.label"></label>
 
@@ -120,9 +120,9 @@
                        [ngClass]="controlModel.cls.element.control"
                        [required]="controlModel.required"
                        [value]="controlModel.value"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <label class="k-checkbox-label" [for]="controlModel.id" [innerHTML]="controlModel.label"></label>
 
@@ -140,8 +140,8 @@
                          [rangeValidation]="true"
                          [spinners]="true"
                          [tabIndex]="model.tabIndex"
-                         (blur)="onBlur($event)"
-                         (focus)="onFocus($event)"
+                         (blur)="onBlurEvent($event)"
+                         (focus)="onFocusEvent($event)"
                          (valueChange)="onValueChange($event)"></kendo-dateinput>
 
 
@@ -155,9 +155,9 @@
                           [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                           [rangeValidation]="true"
                           [tabIndex]="model.tabIndex"
-                          (blur)="onBlur($event)"
+                          (blur)="onBlurEvent($event)"
                           (close)="onCustomEvent($event, 'close')"
-                          (focus)="onFocus($event)"
+                          (focus)="onFocusEvent($event)"
                           (open)="onCustomEvent($event, 'open')"
                           (valueChange)="onValueChange($event)"></kendo-datepicker>
 
@@ -172,10 +172,10 @@
                             [textField]="'label'"
                             [valueField]="'value'"
                             [valuePrimitive]="true"
-                            (blur)="onBlur($event)"
+                            (blur)="onBlurEvent($event)"
                             (close)="onCustomEvent($event, 'close')"
                             (filterChange)="onCustomEvent($event, 'filterChange')"
-                            (focus)="onFocus($event)"
+                            (focus)="onFocusEvent($event)"
                             (open)="onCustomEvent($event, 'open')"
                             (selectionChange)="onCustomEvent($event, 'selectionChange')"
                             (valueChange)="onValueChange($event)"></kendo-dropdownlist>
@@ -192,9 +192,9 @@
                                         [model]="controlModel"
                                         [templates]="templates"
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                        (blur)="onFocusChange($event)"
+                                        (blur)="onBlurEvent($event)"
                                         (change)="onValueChange($event)"
-                                        (focus)="onFocusChange($event)"
+                                        (focus)="onFocusEvent($event)"
                                         (kendoEvent)="onCustomEvent($event)"></dynamic-kendo-form-control>
         </div>
 
@@ -229,9 +229,9 @@
                    [required]="model.required"
                    [spellcheck]="model.spellCheck"
                    [type]="model.inputType"
-                   (blur)="onFocusChange($event)"
+                   (blur)="onBlurEvent($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
+                   (focus)="onFocusEvent($event)"/>
         </label>
 
 
@@ -242,8 +242,8 @@
                              [maskValidation]="true"
                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                              [tabIndex]="model.tabIndex"
-                             (blur)="onBlur($event)"
-                             (focus)="onFocus($event)"
+                             (blur)="onBlurEvent($event)"
+                             (focus)="onFocusEvent($event)"
                              (valueChange)="onValueChange($event)"></kendo-maskedtextbox>
 
 
@@ -257,10 +257,10 @@
                            [textField]="'label'"
                            [valueField]="'value'"
                            [valuePrimitive]="true"
-                           (blur)="onBlur($event)"
+                           (blur)="onBlurEvent($event)"
                            (close)="onCustomEvent($event, 'close')"
                            (filterChange)="onCustomEvent($event, 'filterChange')"
-                           (focus)="onFocus($event)"
+                           (focus)="onFocusEvent($event)"
                            (open)="onCustomEvent($event, 'open')"
                            (valueChange)="onValueChange($event)"></kendo-multiselect>
 
@@ -276,8 +276,8 @@
                               [spinners]="true"
                               [step]="model.step"
                               [tabIndex]="model.tabIndex"
-                              (blur)="onBlur($event)"
-                              (focus)="onFocus($event)"
+                              (blur)="onBlurEvent($event)"
+                              (focus)="onFocusEvent($event)"
                               (valueChange)="onValueChange($event)"></kendo-numerictextbox>
 
 
@@ -294,9 +294,9 @@
                        [name]="model.name"
                        [ngClass]="[model.cls.element.option, model.cls.grid.option]"
                        [value]="option.value"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <label class="k-radio-label" [for]="'option' + idx + model.id" [innerHTML]="option.label"></label>
 
@@ -344,9 +344,9 @@
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
-                  (blur)="onFocusChange($event)"
+                  (blur)="onBlurEvent($event)"
                   (change)="onValueChange($event)"
-                  (focus)="onFocusChange($event)"></textarea>
+                  (focus)="onFocusEvent($event)"></textarea>
 
 
         <kendo-timepicker *ngSwitchCase="18" #kendoTimePicker
@@ -358,9 +358,9 @@
                           [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                           [rangeValidation]="true"
                           [tabIndex]="model.tabIndex"
-                          (blur)="onBlur($event)"
+                          (blur)="onBlurEvent($event)"
                           (close)="onCustomEvent($event, 'close')"
-                          (focus)="onFocus($event)"
+                          (focus)="onFocusEvent($event)"
                           (open)="onCustomEvent($event, 'open')"
                           (valueChange)="onValueChange($event)"></kendo-timepicker>
 

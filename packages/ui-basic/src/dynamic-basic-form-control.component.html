@@ -33,7 +33,7 @@
                                             [model]="controlModel"
                                             [templates]="templates"
                                             [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                            (blur)="onFocusChange($event)"
+                                            (blur)="onBlurEvent($event)"
                                             (change)="onValueChange($event)"
                                             (focus)="onFocusChange($event)"></dynamic-basic-form-control>
                                             
@@ -57,10 +57,10 @@
                    [name]="model.name"
                    [required]="model.required"
                    [value]="model.value"
-                   (blur)="onFocusChange($event)"
+                   (blur)="onBlurEvent($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/><span [ngClass]="model.cls.element.label"
-                                                          [innerHTML]="model.label"></span></label>
+                   (focus)="onFocusEvent($event)"/><span [ngClass]="model.cls.element.label"
+                                                         [innerHTML]="model.label"></span></label>
 
 
         <fieldset *ngSwitchCase="3"
@@ -77,9 +77,9 @@
                                         [model]="controlModel"
                                         [templates]="templates"
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                        (blur)="onFocusChange($event)"
+                                        (blur)="onBlurEvent($event)"
                                         (change)="onValueChange($event)"
-                                        (focus)="onFocusChange($event)"></dynamic-basic-form-control>
+                                        (focus)="onFocusEvent($event)"></dynamic-basic-form-control>
         </fieldset>
 
 
@@ -107,9 +107,9 @@
                    [spellcheck]="model.spellCheck"
                    [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                    [type]="model.inputType"
-                   (blur)="onFocusChange($event)"
+                   (blur)="onBlurEvent($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocusChange($event)"/>
+                   (focus)="onFocusEvent($event)"/>
 
             <datalist *ngIf="hasList" [id]="model.listId">
                 <option *ngFor="let option of model.list" [value]="option">
@@ -133,8 +133,8 @@
                        [formControlName]="model.id"
                        [name]="model.name"
                        [value]="option.value"
-                       (blur)="onFocusChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
+                       (blur)="onBlurEvent($event)"
+                       (focus)="onFocusEvent($event)"/><span [innerHTML]="option.label"></span></label>
         </fieldset>
 
 
@@ -145,14 +145,15 @@
                 [name]="model.name"
                 [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                 [required]="model.required"
-                (blur)="onFocusChange($event)"
+                (blur)="onBlurEvent($event)"
                 (change)="onValueChange($event)"
-                (focus)="onFocusChange($event)">
+                (focus)="onFocusEvent($event)">
 
             <option *ngFor="let option of model.options$ | async"
                     [attr.name]="model.name"
                     [disabled]="!!option.disabled"
-                    [ngValue]="option.value">{{option.label}}</option>
+                    [ngValue]="option.value">{{option.label}}
+            </option>
 
         </select>
 
@@ -172,14 +173,15 @@
                   [rows]="model.rows"
                   [spellcheck]="model.spellCheck"
                   [wrap]="model.wrap"
-                  (blur)="onFocusChange($event)"
+                  (blur)="onBlurEvent($event)"
                   (change)="onValueChange($event)"
-                  (focus)="onFocusChange($event)"></textarea>
+                  (focus)="onFocusEvent($event)"></textarea>
 
     </ng-container>
 
 
-    <div *ngIf="hasHint" [ngClass]="[model.cls.element.hint, model.cls.grid.hint]"><span [innerHTML]="model.hint"></span></div>
+    <div *ngIf="hasHint" [ngClass]="[model.cls.element.hint, model.cls.grid.hint]"><span
+            [innerHTML]="model.hint"></span></div>
 
 
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">

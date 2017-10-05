@@ -30,10 +30,10 @@
                        [ngClass]="model.cls.element.control"
                        [required]="model.required"
                        [value]="model.value"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/><span [innerHTML]="model.label"
-                                                              [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span></label>
+                       (focus)="onFocusEvent($event)"/><span [innerHTML]="model.label"
+                                                             [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span></label>
         </div>
 
     </div>
@@ -63,9 +63,9 @@
                                                     [model]="controlModel"
                                                     [templates]="templates"
                                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                    (blur)="onFocusChange($event)"
+                                                    (blur)="onBlurEvent($event)"
                                                     (change)="onValueChange($event)"
-                                                    (focus)="onFocusChange($event)"></dynamic-bootstrap-form-control>
+                                                    (focus)="onFocusEvent($event)"></dynamic-bootstrap-form-control>
 
                     <ng-container *ngIf="postTemplate?.align === 'END' || postTemplate?.post">
                         <ng-container *ngTemplateOutlet="postTemplate?.templateRef; context: model"></ng-container>
@@ -91,9 +91,9 @@
                                                 [model]="controlModel"
                                                 [templates]="templates"
                                                 [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                (blur)="onFocusChange($event)"
+                                                (blur)="onBlurEvent($event)"
                                                 (change)="onValueChange($event)"
-                                                (focus)="onFocusChange($event)"></dynamic-bootstrap-form-control>
+                                                (focus)="onFocusEvent($event)"></dynamic-bootstrap-form-control>
             </fieldset>
 
             <!--
@@ -145,9 +145,9 @@
                        [spellcheck]="model.spellCheck"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
-                       (blur)="onFocusChange($event)"
+                       (blur)="onBlurEvent($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusChange($event)"/>
+                       (focus)="onFocusEvent($event)"/>
 
                 <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
 
@@ -175,8 +175,8 @@
                                [formControlName]="model.id"
                                [name]="model.name"
                                [value]="option.value"
-                               (blur)="onFocusChange($event)"
-                               (focus)="onFocusChange($event)"/><span [innerHTML]="option.label"></span></label>
+                               (blur)="onBlurEvent($event)"
+                               (focus)="onFocusEvent($event)"/><span [innerHTML]="option.label"></span></label>
                 </div>
 
             </fieldset>
@@ -189,9 +189,9 @@
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
-                    (blur)="onFocusChange($event)"
+                    (blur)="onBlurEvent($event)"
                     (change)="onValueChange($event)"
-                    (focus)="onFocusChange($event)">
+                    (focus)="onFocusEvent($event)">
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
@@ -216,9 +216,9 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onFocusChange($event)"
+                      (blur)="onBlurEvent($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusChange($event)"></textarea>
+                      (focus)="onFocusEvent($event)"></textarea>
 
             <span *ngIf="hasHint" class="help-block" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
 
