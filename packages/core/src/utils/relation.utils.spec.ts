@@ -202,12 +202,29 @@ describe("FormControlRelation utils test suite", () => {
         model.relation = [rel2];
 
         expect(RelationUtils.getRelatedFormControls(model, controlGroup).length).toBe(2);
+
+        model.relation = [rel7];
+        
+        expect(RelationUtils.getRelatedFormControls(model, controlGroup).length).toBe(2);
     });
 
     it("should throw when model depends on itself", () => {
 
         model.relation = [{
             action: "DISABLE",
+            when: [
+                {
+                    id: "testTextArea",
+                    value: "test"
+                }
+            ]
+        }];
+
+        expect(() => RelationUtils.getRelatedFormControls(model, controlGroup))
+            .toThrow(new Error(`FormControl ${model.id} cannot depend on itself`));
+
+        model.relation = [{
+            action: "HIDDEN",
             when: [
                 {
                     id: "testTextArea",
