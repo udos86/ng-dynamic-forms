@@ -55,7 +55,6 @@
 
 
     <ion-list *ngIf="type === 6" radio-group
-              [disabled]="model.disabled"
               [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
               [ngClass]="model.cls.element.control"
@@ -82,7 +81,6 @@
 
         <ion-checkbox *ngSwitchCase="2"
                       [checked]="model.checked"
-                      [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
@@ -92,7 +90,6 @@
 
 
         <ion-datetime *ngSwitchCase="3"
-                      [disabled]="model.disabled"
                       [displayFormat]="model.format"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -108,7 +105,6 @@
 
         <ion-input *ngSwitchCase="5"
                    clearInput="true"
-                   [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [max]="model.max"
@@ -125,7 +121,6 @@
 
 
         <ion-range *ngSwitchCase="7"
-                   [disabled]="model.disabled"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [max]="model.max"
@@ -140,7 +135,6 @@
 
 
         <ion-select *ngSwitchCase="8"
-                    [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [multiple]="model.multiple"
@@ -158,7 +152,6 @@
 
         <ion-textarea *ngSwitchCase="9"
                       clearInput="true"
-                      [disabled]="model.disabled"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
@@ -171,7 +164,6 @@
 
         <ion-toggle *ngSwitchCase="10"
                     [checked]="model.checked"
-                    [disabled]="model.disabled"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [ngClass]="model.cls.element.control"

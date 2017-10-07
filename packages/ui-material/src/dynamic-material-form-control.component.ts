@@ -101,6 +101,10 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         return this.matInput ? this.matInput.value.length : null;
     }
 
+    get asMatFormField(): boolean {
+        return this.type === 5 || this.type === 7 || this.type === 10;
+    }
+
     static getFormControlType(model: DynamicFormControlModel): MatFormControlType | null {
 
         switch (model.type) {
