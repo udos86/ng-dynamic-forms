@@ -8,8 +8,8 @@
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    <ng-container *ngIf="type !== 1 && (preTemplate?.align === 'START' || preTemplate?.pre)">
+        <ng-container *ngTemplateOutlet="preTemplate?.templateRef; context: model"></ng-container>
     </ng-container>
 
 
@@ -25,6 +25,10 @@
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                      [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
 
+                     <ng-container *ngIf="preTemplate?.align === 'START' || preTemplate?.pre">
+                        <ng-container *ngTemplateOutlet="preTemplate?.templateRef; context: model"></ng-container>
+                    </ng-container>
+
                     <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of groupModel.group"
                                                        [bindId]="false"
                                                        [context]="groupModel"
@@ -35,10 +39,11 @@
                                                        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                        (blur)="onBlurEvent($event)"
                                                        (change)="onValueChange($event)"
-                                                       (focus)="onFocusEvent($event)"></dynamic-ng-bootstrap-form-control>
-
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
-
+                                                       (focus)="onFocusChange($event)"></dynamic-ng-bootstrap-form-control>
+                                                       
+                    <ng-container *ngIf="postTemplate?.align === 'END' || postTemplate?.post">
+                        <ng-container *ngTemplateOutlet="postTemplate?.templateRef; context: model"></ng-container>
+                    </ng-container>
                 </div>
 
             </div>
@@ -262,8 +267,8 @@
 
     </div>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
+    <ng-container *ngIf="type !== 1 && (postTemplate?.align === 'END' || postTemplate?.post)">
+        <ng-container *ngTemplateOutlet="postTemplate?.templateRef; context: model"></ng-container>
     </ng-container>
 
     <ng-content></ng-content>
