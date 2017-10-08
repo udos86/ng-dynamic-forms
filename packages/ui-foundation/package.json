@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-foundation",
-  "version": "1.4.33",
+  "version": "1.4.34",
   "description": "Foundation UI package for NG Dynamic Forms",
   "main": "./bundles/ui-foundation.umd.js",
   "module": "./@ng-dynamic-forms/ui-foundation.es.js",
@@ -33,7 +33,7 @@
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@ng-dynamic-forms/core": "^1.4.33",
+    "@ng-dynamic-forms/core": "^1.4.34",
     "angular2-text-mask": "^8.0.1",
     "foundation-sites": "^6.3.1",
     "rxjs": "^5.2.0"

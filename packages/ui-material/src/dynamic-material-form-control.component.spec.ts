@@ -145,6 +145,11 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
+    it("should detect material form fields", () => {
+
+        expect(component.asMatFormField).toBe(true);
+    });
+
     it("should listen to native blur events", () => {
 
         spyOn(component, "onBlurEvent");
