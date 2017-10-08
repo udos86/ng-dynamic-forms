@@ -57,6 +57,16 @@ with **`DynamicMaterialFormControlComponent`**:
 |  **[SlideToggle](https://material.angular.io/components/component/slide-toggle)** 	| `DynamicSwitchModel`        	|         –         	|
 |       **[Textarea](https://material.angular.io/components/component/input)**      	| `DynamicTextAreaModel`      	|         –         	|
 
+## Custom UI Events
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-material-form [group]="myFormGroup"
+                           [model]="myFormModel"
+                           (marEvent)="onMatEvent($event)"></dynamic-material-form>
+</form>
+```
+
 ## Sample
 
 [**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#material-sample-form) 

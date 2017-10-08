@@ -63,6 +63,16 @@ with **`DynamicKendoFormControlComponent`**:
 |   **[TimePicker](http://www.telerik.com/kendo-angular-ui/components/dateinputs/timepicker/)**   	| `DynamicTimePickerModel`    	|           –           	|
 |             **[Upload](http://www.telerik.com/kendo-angular-ui/components/upload/)**            	| `DynamicFileUploadModel`    	|           –           	|
 
+## Custom UI Events
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-kendo-form [group]="myFormGroup"
+                        [model]="myFormModel"
+                        (kendoEvent)="onKendoEvent($event)"></dynamic-kendo-form>
+</form>
+```
+
 ## Sample
 
 [**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#kendo-sample-form) 

@@ -54,3 +54,13 @@ with **`DynamicIonicFormControlComponent`**:
 |      **[Select](http://ionicframework.com/docs/components/#select)**      	| `DynamicSelectModel`                               	|         –         	|
 |     **[TextArea](http://ionicframework.com/docs/components/#inputs)**     	| `DynamicTextAreaModel`                             	|         –         	|
 |      **[Toggle](http://ionicframework.com/docs/components/#toggle)**      	| `DynamicSwitchModel`                               	|         –         	|
+
+## Custom UI Events
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-ionic-form [group]="myFormGroup"
+                        [model]="myFormModel"
+                        (ionEvent)="onIonEvent($event)"></dynamic-ionic-form>
+</form>
+```
