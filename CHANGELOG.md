@@ -1,8 +1,8 @@
 # 1.4.34
 
-**This will be the last release before Angular 5.**
+This will be the last release before Angular 5.
 
-**There'll be a major version incrementation to `5.0.0` to fully stay in sync with Angular version numbers in the future.**
+There'll be a major version incrementation to `5.0.0` to fully stay in sync with Angular version numbers in the future.
 
 ### **Features** 
 

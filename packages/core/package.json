@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/core",
-  "version": "1.4.33",
+  "version": "1.4.34",
   "description": "A rapid form development library for Angular 2.x and higher",
   "main": "./bundles/core.umd.js",
   "module": "./@ng-dynamic-forms/core.es.js",
