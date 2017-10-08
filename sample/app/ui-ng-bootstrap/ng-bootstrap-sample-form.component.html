@@ -4,14 +4,12 @@
       crossorigin="anonymous"/>
 
 <div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
-
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-ng-bootstrap-form [group]="formGroup"
                                    [model]="formModel"></dynamic-ng-bootstrap-form>
 
     </form>
-
     <!--button (click)="test()" type="button">Test</button-->
 
     <pre>{{formGroup.value | json}}</pre>

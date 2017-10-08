@@ -25,6 +25,7 @@ describe("DynamicSelectModel test suite", () => {
     it("should initialize correctly", () => {
 
         expect(model.disabled).toBe(false);
+        expect(model.hidden).toBe(false);
         expect(model.filterable).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();

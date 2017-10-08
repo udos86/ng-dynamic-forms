@@ -9,9 +9,15 @@ import {
     SimpleChange,
     SimpleChanges
 } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { 
+    DYNAMIC_FORM_CONTROL_ACTION_DISABLE,
+    DYNAMIC_FORM_CONTROL_ACTION_ENABLE,
+    DYNAMIC_FORM_CONTROL_ACTION_VISIBLE,
+    DYNAMIC_FORM_CONTROL_ACTION_HIDDEN
+} from "../model/dynamic-form-control-relation.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
 import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
@@ -173,20 +179,47 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         if (relActivation !== null) {
 
             let rel = relActivation as DynamicFormControlRelationGroup;
+            if(rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE){
+                this.updateModelDisabled(rel);
 
-            this.updateModelDisabled(rel);
+                RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
 
-            RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
+                    this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(rel)));
+                    this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(rel)));
+                });
+            }
 
-                this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(rel)));
-                this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(rel)));
-            });
+            if(rel.action === DYNAMIC_FORM_CONTROL_ACTION_HIDDEN || rel.action === DYNAMIC_FORM_CONTROL_ACTION_VISIBLE){
+                this.updateModelHidden(rel);
+                
+                RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
+
+                    this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelHidden(rel)));
+                    this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelHidden(rel)));
+                });
+            }
+
         }
     }
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
         this.model.disabledUpdates.next(RelationUtils.isFormControlToBeDisabled(relation, this.group));
+    }
+
+    updateModelHidden(relation: DynamicFormControlRelationGroup): void {
+        let hidden = RelationUtils.isFormControlToBeHidden(relation, this.group);
+        if(hidden){
+            this.control.clearValidators();
+            this.control.clearAsyncValidators();
+        }
+        else{
+            let formControlModel = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
+            this.control.setValidators(Validators.compose(this.validationService.getValidators(formControlModel.validators || {})));
+            this.control.setAsyncValidators(Validators.composeAsync(this.validationService.getAsyncValidators(formControlModel.asyncValidators || {})));
+        }
+        this.control.reset();
+        this.model.hiddenUpdates.next(hidden);
     }
 
     unsubscribe(): void {
@@ -218,7 +251,6 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     onModelDisabledUpdates(value: boolean): void {
         value ? this.control.disable() : this.control.enable();
     }
-
 
     onValueChange($event: Event | DynamicFormControlEvent | any): void {
 
