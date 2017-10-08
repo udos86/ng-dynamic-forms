@@ -537,16 +537,15 @@ new DynamicInputModel(
 
 ## Form Control Events
 
-When developing forms it's often useful to keep track of certain event that occur on a specific form control. 
+When developing forms it's often useful to keep track of certain events that occur on a specific form control. 
 
-With NG Dynamic Forms you can directly bind to the three most common events, `blur`, `change` and `focus`, both on `DynamicFormControlComponent` and `DynamicFormComponent`:
+With NG Dynamic Forms you can directly bind the three most common events, `blur`, `change` and `focus`, both on `DynamicFormControlComponent` and `DynamicFormComponent`:
 ```ts
 <dynamic-material-form [group]="formGroup"
                        [model]="formModel"
                        (blur)="onBlur($event)"
                        (change)="onChange($event)"
                        (focus)="onFocus($event)"></dynamic-material-form>
-
 ```
 ```ts
 <form [formGroup]="myFormGroup">
@@ -558,9 +557,9 @@ With NG Dynamic Forms you can directly bind to the three most common events, `bl
 </form>
 ```
 
-The object passed to your handler function gives you any control and model information needed for a proper event processing.
+The object passed to your handler function gives you any control and model information needed for further processing.
 
-The `$event` property even grants access to the original event that has been raised:
+The `$event` property even grants access to the original event:
 
 ```ts
 interface DynamicFormControlEvent {
@@ -578,7 +577,7 @@ But when using a UI library usually there are a bunch of additional events provi
 
 Of course, NG Dynamic Forms won't also let you down here.
 
-All custom UI events are pooled by an individual `@Output` utilizing the respective library prefix.    
+All custom UI events are pooled by an individual `@Output()` utilizing the respective library prefix.    
 ```ts
 <dynamic-material-form [group]="formGroup"
                        [model]="formModel"
