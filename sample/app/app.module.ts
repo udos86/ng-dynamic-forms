@@ -5,7 +5,7 @@ import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
-import { ReactiveFormsModule, NG_VALIDATORS } from "@angular/forms";
+import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 //import { BsDatepickerModule } from "ngx-bootstrap";
 
@@ -29,7 +29,7 @@ import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.com
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
-import { customValidator, customDateRangeValidator } from "./app.validators";
+import { customValidator, customDateRangeValidator, customAsyncFormGroupValidator } from "./app.validators";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -87,6 +87,11 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         {
             provide: NG_VALIDATORS,
             useValue: customDateRangeValidator,
+            multi: true
+        },
+        {
+            provide: NG_ASYNC_VALIDATORS,
+            useValue: customAsyncFormGroupValidator,
             multi: true
         },
         {

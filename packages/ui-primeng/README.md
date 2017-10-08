@@ -60,6 +60,16 @@ with **`DynamicPrimeNGFormControlComponent`**:
 |        **[Slider](https://www.primefaces.org/primeng/#/slider)**        	| `DynamicSliderModel`                               	|           –           	|
 |       **[Spinner](https://www.primefaces.org/primeng/#/spinner)**       	| `DynamicInputModel`                                	| `inputType: "number"` 	|
 
+## Custom UI Events
+```ts
+<form [formGroup]="myFormGroup">
+
+    <dynamic-primeng-form [group]="myFormGroup"
+                          [model]="myFormModel"
+                          (pEvent)="onPEvent($event)"></dynamic-primeng-form>
+</form>
+```
+
 ## Sample
 
 [**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#primeng-sample-form) 

@@ -1,3 +1,15 @@
+# 1.4.34
+
+**This will be the last release before Angular 5.**
+
+**There'll be a major version incrementation to `5.0.0` to fully stay in sync with Angular version numbers in the future.**
+
+### **Features** 
+
+* **major event handling enhancements** (see new chapter on [Form Control Events](https://github.com/udos86/ng-dynamic-forms/tree/development#form-control-events)) 
+* **update to @angular/material** `beta.12` 
+
+
 # 1.4.33
 
 ### **Bugfixes** 

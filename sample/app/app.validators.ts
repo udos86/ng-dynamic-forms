@@ -19,3 +19,11 @@ export function customDateRangeValidator(group: FormGroup): ValidationErrors | n
 
     return hasError ? {customDateRangeValidator: true} : null;
 }
+
+export function customAsyncFormGroupValidator(formGroup: FormGroup): Promise<ValidationErrors | null> {
+
+    return new Promise((resolve, reject) => {
+        console.log("async validation");
+        resolve(null);
+    });
+}

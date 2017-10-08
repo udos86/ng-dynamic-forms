@@ -174,10 +174,6 @@ dynamic-material-form-control {
     margin-bottom: 1rem;
 }
 
-dynamic-material-form-control mat-select {
-    margin-bottom: 1.5rem;
-}
-
 dynamic-material-form-control div[role="group"] > dynamic-material-form-control {
     display: inline-block;
     margin-bottom: 0;
