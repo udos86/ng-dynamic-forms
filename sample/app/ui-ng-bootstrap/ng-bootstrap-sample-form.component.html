@@ -8,7 +8,20 @@
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-ng-bootstrap-form [group]="formGroup"
-                                   [model]="formModel"></dynamic-ng-bootstrap-form>
+                                   [model]="formModel">
+                                   
+            <ng-template modelId="stay" [pre]="true">
+   
+                <p>Before (Pre)</p>
+   
+            </ng-template>  
+            <ng-template modelId="stay" [post]="true">
+   
+                <p>After (Post)</p>
+   
+            </ng-template>
+
+        </dynamic-ng-bootstrap-form>
 
     </form>
 
