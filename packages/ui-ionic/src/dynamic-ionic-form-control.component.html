@@ -1,4 +1,4 @@
-<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]" *ngIf="!model.hidden">
 
     <ng-container *ngIf="type !== 1 && template?.align === 'START'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>

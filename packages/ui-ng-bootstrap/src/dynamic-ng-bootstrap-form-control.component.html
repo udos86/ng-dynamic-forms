@@ -1,6 +1,7 @@
 <div [class.form-group]="(type !== 6 && asBootstrapFormGroup) || model.cls.element.container.includes('form-group')"
      [formGroup]="group"
-     [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+     [ngClass]="[model.cls.element.container, model.cls.grid.container]"
+     *ngIf="!model.hidden">
 
     <label *ngIf="type !== 3 && model.label"
            [attr.for]="model.id"
@@ -52,7 +53,7 @@
                             [ngClass]="model.cls.element.control"
                             [startDate]="model.focusedDate"></ngb-datepicker>
 
-
+ 
             <div *ngSwitchCase="3" class="form-check" [class.disabled]="model.disabled">
 
                 <label class="form-check-label">
@@ -99,7 +100,7 @@
                                                                  [innerHTML]="controlModel.label"></span></label>
             </div>
 
-
+ 
             <div *ngSwitchCase="5" class="input-group">
 
                 <input ngbDatepicker class="form-control" #datepicker="ngbDatepicker"
@@ -114,9 +115,9 @@
                     <img [src]="model.toggleIcon" style="cursor: pointer;"/>
                 </div>
 
-            </div>
-
-
+            </div>            
+            
+            
             <div *ngSwitchCase="6" role="group"
                  [dynamicId]="bindId && model.id"
                  [formGroupName]="model.id"
@@ -134,7 +135,7 @@
                                                    (focus)="onFocusEvent($event)"></dynamic-ng-bootstrap-form-control>
             </div>
 
-
+            
             <div *ngSwitchCase="7" [class.input-group]="model.prefix || model.suffix">
 
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
@@ -176,7 +177,7 @@
 
             </div>
 
-
+            
             <div *ngSwitchCase="8" ngbRadioGroup class="btn-group" role="radiogroup"
                  [attr.tabindex]="model.tabIndex"
                  [dynamicId]="bindId && model.id"
@@ -199,7 +200,7 @@
 
             </div>
 
-
+            
             <select *ngSwitchCase="9" class="form-control"
                     [attr.tabindex]="model.tabIndex"
                     [class.is-invalid]="showErrorMessages"
@@ -219,7 +220,7 @@
 
             </select>
 
-
+            
             <textarea *ngSwitchCase="10" class="form-control"
                       [attr.tabindex]="model.tabIndex"
                       [class.is-invalid]="showErrorMessages"

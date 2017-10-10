@@ -8,6 +8,7 @@ import { serializable, serialize } from "../decorator/serializable.decorator";
 export interface DynamicFormOptionConfig<T> {
 
     disabled?: boolean;
+    hidden?:boolean;
     label?: string;
     value: T;
 }
@@ -15,12 +16,14 @@ export interface DynamicFormOptionConfig<T> {
 export class DynamicFormOption<T> {
 
     @serializable() disabled: boolean;
+    @serializable() hidden: boolean;
     @serializable() label: string | null;
     @serializable() value: T;
 
     constructor(config: DynamicFormOptionConfig<T>) {
 
         this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
+        this.hidden = typeof config.hidden === "boolean" ? config.hidden : false;
         this.label = config.label || null;
         this.value = config.value;
     }
