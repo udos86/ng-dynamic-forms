@@ -147,7 +147,12 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
     it("should detect material form fields", () => {
 
-        expect(component.asMatFormField).toBe(true);
+        expect(component.hasMatFormField).toBe(true);
+    });
+
+    it("should generate a character hint", () => {
+
+        expect(component.characterHint).toEqual("0 / 51");
     });
 
     it("should listen to native blur events", () => {

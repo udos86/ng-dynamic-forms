@@ -1,6 +1,5 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-import { Component, DebugElement, TemplateRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
+import { Component, TemplateRef } from "@angular/core";
 import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END } from "./dynamic-template.directive";
 
 @Component({
@@ -15,8 +14,7 @@ class TestComponent {
 describe("DynamicTemplateDirective test suite", () => {
 
     let directive: DynamicTemplateDirective,
-        fixture: ComponentFixture<TestComponent>,
-        directives: DebugElement[];
+        fixture: ComponentFixture<TestComponent>;
 
     beforeEach(() => {
 
@@ -29,8 +27,6 @@ describe("DynamicTemplateDirective test suite", () => {
         }).createComponent(TestComponent);
 
         fixture.detectChanges();
-
-        directives = fixture.debugElement.queryAll(By.directive(DynamicTemplateDirective));
     });
 
     it("should be initialized correctly", () => {
