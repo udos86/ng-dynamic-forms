@@ -82,6 +82,10 @@
 
             <mat-datepicker #matDatepicker [startAt]="model.focusedDate" [touchUi]="true"></mat-datepicker>
 
+            <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+            </ng-container>
+
         </mat-form-field>
 
 
@@ -139,10 +143,11 @@
                 <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
 
                 <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
-                <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
+                <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 
-                <mat-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
-                </mat-error>
+                <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                    <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+                </ng-container>
 
             </mat-form-field>
 
@@ -190,6 +195,10 @@
                             [ngClass]="model.cls.element.option"
                             [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
             </mat-select>
+
+            <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+            </ng-container>
 
         </mat-form-field>
 
@@ -245,18 +254,19 @@
                       (focus)="onFocusEvent($event)"></textarea>
 
             <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
-            <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
+            <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 
-            <mat-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
-            </mat-error>
+            <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+            </ng-container>
 
         </mat-form-field>
 
     </ng-container>
 
 
-    <ng-container *ngIf="type !== 5 && type !== 10 && showErrorMessages">
-        <mat-error *ngFor="let message of errorMessages">{{message}}</mat-error>
+    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
+        <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
     </ng-container>
 
 
