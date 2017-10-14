@@ -31,6 +31,9 @@ describe("DynamicTemplateDirective test suite", () => {
 
     it("should be initialized correctly", () => {
 
+        expect(directive.pre).toEqual(false);
+        expect(directive.post).toEqual(false);
+        expect(directive.align).toEqual(DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END);
         expect(directive.align).toEqual(DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END);
         expect(directive.as).toBeNull();
         expect(directive.modelId).toBeUndefined();
