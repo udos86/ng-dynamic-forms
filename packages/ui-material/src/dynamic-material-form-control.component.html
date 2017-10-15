@@ -11,7 +11,7 @@
 
     <ng-container [ngSwitch]="type">
 
-        <!------ FORM ARRAY ------------------------------------------------------------------------------------------->
+        <!-- FORM ARRAY ----------------------------------------------------------------------------------------------->
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
@@ -39,7 +39,7 @@
 
         </div>
 
-        <!------ CHECKBOX --------------------------------------------------------------------------------------------->
+        <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <mat-checkbox *ngSwitchCase="2" #matCheckbox
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
@@ -57,7 +57,7 @@
 
         </mat-checkbox>
 
-        <!------ DATEPICKER ------------------------------------------------------------------------------------------->
+        <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="3" [ngClass]="model.cls.grid.control">
 
             <input matInput
@@ -87,7 +87,7 @@
 
         </mat-form-field>
 
-        <!--- FORM GROUP ---------------------------------------------------------------------------------------------->
+        <!-- FORM GROUP ----------------------------------------------------------------------------------------------->
         <div *ngSwitchCase="4" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
@@ -105,7 +105,7 @@
                                            (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
         </div>
 
-        <!--- INPUT --------------------------------------------------------------------------------------------------->
+        <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ng-container *ngSwitchCase="5">
 
             <mat-form-field [ngClass]="model.cls.grid.control">
@@ -158,7 +158,7 @@
 
         </ng-container>
 
-        <!--- RADIO GROUP --------------------------------------------------------------------------------------------->
+        <!-- RADIO GROUP ---------------------------------------------------------------------------------------------->
         <mat-radio-group *ngSwitchCase="6" #matRadioGroup
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
@@ -176,7 +176,7 @@
 
         </mat-radio-group>
 
-        <!--- SELECT -------------------------------------------------------------------------------------------------->
+        <!-- SELECT --------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="7" [ngClass]="model.cls.grid.control">
 
             <mat-select #matSelect
@@ -201,7 +201,7 @@
 
         </mat-form-field>
 
-        <!--- SLIDER -------------------------------------------------------------------------------------------------->
+        <!-- SLIDER --------------------------------------------------------------------------------------------------->
         <mat-slider *ngSwitchCase="8" #matSlider
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -215,7 +215,7 @@
                     (change)="onValueChange($event)"
                     (input)="onCustomEvent($event, 'input')"></mat-slider>
 
-        <!------ SLIDE TOGGLE ----------------------------------------------------------------------------------------->
+        <!-- SLIDE TOGGLE --------------------------------------------------------------------------------------------->
         <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle
                           [checked]="model.checked"
                           [dynamicId]="bindId && model.id"
@@ -230,7 +230,7 @@
 
         </mat-slide-toggle>
 
-        <!------ TEXTAREA --------------------------------------------------------------------------------------------->
+        <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="10" [ngClass]="model.cls.grid.control">
 
             <textarea matInput
@@ -267,7 +267,6 @@
     <ng-container *ngIf="!hasMatFormField && showErrorMessages">
         <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
     </ng-container>
-
 
     <ng-container *ngIf="type !== 1 && template?.align === 'END'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>

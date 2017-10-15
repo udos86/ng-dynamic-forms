@@ -4,7 +4,7 @@
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
-    <!------ FORM ARRAY ----------------------------------------------------------------------------------------------->
+    <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 1"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
@@ -32,7 +32,7 @@
 
     </div>
 
-    <!------ FORM GROUP ----------------------------------------------------------------------------------------------->
+    <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
     <fieldset *ngIf="type === 4"
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
@@ -53,7 +53,7 @@
                                     (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
     </fieldset>
 
-    <!------ RADIO GROUP ---------------------------------------------------------------------------------------------->
+    <!-- RADIO GROUP -------------------------------------------------------------------------------------------------->
     <ion-list *ngIf="type === 6" radio-group
               [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
@@ -78,7 +78,7 @@
                    [innerHTML]="model.label"
                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"></ion-label>
 
-        <!------ CHECKBOX --------------------------------------------------------------------------------------------->
+        <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <ion-checkbox *ngSwitchCase="2"
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
@@ -88,7 +88,7 @@
                       (ionChange)="onValueChange($event)"
                       (ionFocus)="onFocus($event)"></ion-checkbox>
 
-        <!------ DATETIME --------------------------------------------------------------------------------------------->
+        <!-- DATETIME ------------------------------------------------------------------------------------------------->
         <ion-datetime *ngSwitchCase="3"
                       [displayFormat]="model.format"
                       [dynamicId]="bindId && model.id"
@@ -102,7 +102,7 @@
                       (ionChange)="onValueChange($event)"
                       (ionFocus)="onFocus($event)"></ion-datetime>
 
-        <!------ INPUT ------------------------------------------------------------------------------------------------>
+        <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ion-input *ngSwitchCase="5"
                    clearInput="true"
                    [dynamicId]="bindId && model.id"
@@ -119,7 +119,7 @@
                    (ionChange)="onValueChange($event)"
                    (ionFocus)="onFocus($event)"></ion-input>
 
-        <!------ RANGE ------------------------------------------------------------------------------------------------>
+        <!-- RANGE ---------------------------------------------------------------------------------------------------->
         <ion-range *ngSwitchCase="7"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -133,7 +133,7 @@
                    (ionChange)="onValueChange($event)"
                    (ionFocus)="onFocus($event)"></ion-range>
 
-        <!------ SELECT ----------------------------------------------------------------------------------------------->
+        <!-- SELECT --------------------------------------------------------------------------------------------------->
         <ion-select *ngSwitchCase="8"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -148,7 +148,7 @@
 
         </ion-select>
 
-        <!------ TEXTAREA --------------------------------------------------------------------------------------------->
+        <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
         <ion-textarea *ngSwitchCase="9"
                       clearInput="true"
                       [dynamicId]="bindId && model.id"
@@ -160,7 +160,7 @@
                       (ionChange)="onValueChange($event)"
                       (ionFocus)="onFocus($event)"></ion-textarea>
 
-        <!------ TOGGLE ----------------------------------------------------------------------------------------------->
+        <!-- TOGGLE --------------------------------------------------------------------------------------------------->
         <ion-toggle *ngSwitchCase="10"
                     [checked]="model.checked"
                     [dynamicId]="bindId && model.id"
