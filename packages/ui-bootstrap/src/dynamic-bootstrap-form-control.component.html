@@ -13,7 +13,7 @@
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
-    <!------ CHECKBOX ------------------------------------------------------------------------------------------------->
+    <!-- CHECKBOX ----------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 2" [ngClass]="model.cls.grid.control">
 
         <div [class.disabled]="model.disabled" [ngClass]="model.cls.element.control || 'checkbox'">
@@ -43,7 +43,7 @@
 
         <ng-container [ngSwitch]="type">
 
-            <!------ FORM ARRAY --------------------------------------------------------------------------------------->
+            <!-- FORM ARRAY ------------------------------------------------------------------------------------------->
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
@@ -70,7 +70,7 @@
 
             </div>
 
-            <!------ FORM GROUP --------------------------------------------------------------------------------------->
+            <!-- FORM GROUP ------------------------------------------------------------------------------------------->
             <fieldset *ngSwitchCase="3"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
@@ -113,7 +113,7 @@
             </div>
             -->
 
-            <!------ INPUT -------------------------------------------------------------------------------------------->
+            <!-- INPUT ------------------------------------------------------------------------------------------------>
             <div *ngSwitchCase="4" [class.input-group]="model.prefix || model.suffix">
 
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
@@ -153,7 +153,7 @@
 
             </div>
 
-            <!------ RADIO GROUP -------------------------------------------------------------------------------------->
+            <!-- RADIO GROUP ------------------------------------------------------------------------------------------>
             <fieldset *ngSwitchCase="5" role="radiogroup"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
@@ -177,7 +177,7 @@
 
             </fieldset>
 
-            <!------ SELECT ------------------------------------------------------------------------------------------->
+            <!-- SELECT ----------------------------------------------------------------------------------------------->
             <select *ngSwitchCase="6" class="form-control"
                     [attr.tabindex]="model.tabIndex"
                     [dynamicId]="bindId && model.id"
@@ -195,7 +195,7 @@
 
             </select>
 
-            <!------ TEXTAREA ----------------------------------------------------------------------------------------->
+            <!-- TEXTAREA --------------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="7" class="form-control"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
@@ -215,7 +215,7 @@
                       (change)="onValueChange($event)"
                       (focus)="onFocus($event)"></textarea>
 
-            <span *ngIf="hasHint" class="help-block" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
+            <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
 
         </ng-container>
 
