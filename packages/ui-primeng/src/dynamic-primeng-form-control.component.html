@@ -9,7 +9,7 @@
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
-
+    <!------ FORM GROUP ----------------------------------------------------------------------------------------------->
     <div *ngIf="type === 8" role="group"
          [dynamicId]="bindId && model.id"
          [formGroupName]="model.id"
@@ -21,13 +21,13 @@
                                       [model]="controlModel"
                                       [templates]="templates"
                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                      (blur)="onBlurEvent($event)"
-                                      (change)="onValueChange($event)"
-                                      (focus)="onFocusEvent($event)"
+                                      (dfBlur)="onBlurEvent($event)"
+                                      (dfChange)="onValueChange($event)"
+                                      (dfFocus)="onFocus($event)"
                                       (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
     </div>
 
-
+    <!------ RADIO GROUP ---------------------------------------------------------------------------------------------->
     <div *ngIf="type === 13" role="radiogroup"
          [attr.tabindex]="model.tabIndex"
          [dynamicId]="bindId && model.id"
@@ -51,6 +51,7 @@
 
         <div [ngClass]="model.cls.grid.control" [ngSwitch]="type">
 
+            <!------ FORM ARRAY --------------------------------------------------------------------------------------->
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
@@ -67,9 +68,9 @@
                                                   [model]="controlModel"
                                                   [templates]="templates"
                                                   [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                  (blur)="onBlurEvent($event)"
-                                                  (change)="onValueChange($event)"
-                                                  (focus)="onFocusEvent($event)"
+                                                  (dfBlur)="onBlur($event)"
+                                                  (dfChange)="onValueChange($event)"
+                                                  (dfFocus)="onFocus($event)"
                                                   (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
 
                     <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
@@ -78,7 +79,7 @@
 
             </div>
 
-
+            <!------ AUTOCOMPLETE ------------------------------------------------------------------------------------->
             <p-autoComplete *ngSwitchCase="2" #pAutoComplete
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
@@ -87,16 +88,16 @@
                             [placeholder]="model.placeholder"
                             [suggestions]="suggestions"
                             [tabindex]="model.tabIndex"
-                            (onBlur)="onBlurEvent($event)"
+                            (onBlur)="onBlur($event)"
                             (change)="onValueChange($event)"
                             (onClear)="onCustomEvent($event, 'onClear')"
                             (onDropdownClick)="onCustomEvent($event, 'onDropdownClick')"
-                            (onFocus)="onFocusEvent($event)"
+                            (onFocus)="onFocus($event)"
                             (onSelect)="onCustomEvent($event, 'onSelect')"
                             (onUnselect)="onCustomEvent($event, 'onUnselect')"
                             (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
-
+            <!------ CALENDAR ----------------------------------------------------------------------------------------->
             <p-calendar *ngSwitchCase="3" #pCalendar
                         [dateFormat]="model.format"
                         [defaultDate]="model.focusedDate"
@@ -113,15 +114,15 @@
                         [tabindex]="model.tabIndex"
                         [timeOnly]="model.type === 'TIMEPICKER'"
                         [yearNavigator]="false"
-                        (onBlur)="onBlurEvent($event)"
+                        (onBlur)="onBlur($event)"
                         (onClearClick)="onCustomEvent($event, 'onClearClick')"
                         (onClose)="onCustomEvent($event, 'onClose')"
-                        (onFocus)="onFocusEvent($event)"
+                        (onFocus)="onFocus($event)"
                         (onInput)="onValueChange($event)"
                         (onSelect)="onValueChange($event)"
                         (onTodayClick)="onCustomEvent($event, 'onTodayClick')"></p-calendar>
 
-
+            <!------ CHECKBOX ----------------------------------------------------------------------------------------->
             <p-checkbox *ngSwitchCase="4" #pCheckbox
                         binary="true"
                         [dynamicId]="bindId && model.id"
@@ -133,7 +134,7 @@
                         [value]="model.value"
                         (onChange)="onValueChange($event)"></p-checkbox>
 
-
+            <!------ CHIPS -------------------------------------------------------------------------------------------->
             <p-chips *ngSwitchCase="5" #pChips
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
@@ -143,7 +144,7 @@
                      (onAdd)="onCustomEvent($event, 'onAdd')"
                      (onRemove)="onCustomEvent($event, 'onRemove')"></p-chips>
 
-
+            <!------ DROPDOWN ----------------------------------------------------------------------------------------->
             <p-dropdown *ngSwitchCase="6" #pDropdown
                         [dynamicId]="bindId && model.id"
                         [filter]="model.filterable"
@@ -151,11 +152,11 @@
                         [ngClass]="model.cls.element.control"
                         [options]="model.options"
                         [tabindex]="model.tabIndex"
-                        (onBlur)="onBlurEvent($event)"
+                        (onBlur)="onBlur($event)"
                         (onChange)="onValueChange($event)"
-                        (onFocus)="onFocusEvent($event)"></p-dropdown>
+                        (onFocus)="onFocus($event)"></p-dropdown>
 
-
+            <!------ EDITOR ------------------------------------------------------------------------------------------->
             <p-editor *ngSwitchCase="7" #pEditor
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -163,7 +164,7 @@
                       (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
                       (onTextChange)="onValueChange($event)"></p-editor>
 
-
+            <!------ INPUT -------------------------------------------------------------------------------------------->
             <ng-container *ngSwitchCase="9">
 
                 <input pInputText #pInputText
@@ -188,17 +189,17 @@
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
                        [type]="model.inputType"
-                       (blur)="onBlurEvent($event)"
+                       (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusEvent($event)"/>
+                       (focus)="onFocus($event)"/>
 
-                <datalist *ngIf="model.list" [id]="model.listId">
+                <datalist *ngIf="hasList" [id]="model.listId">
                     <option *ngFor="let option of model.list" [value]="option">
                 </datalist>
 
             </ng-container>
 
-
+            <!------ INPUT MASK --------------------------------------------------------------------------------------->
             <p-inputMask *ngSwitchCase="10" #pInputMask
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
@@ -208,11 +209,11 @@
                          [readonly]="model.readOnly"
                          [tabindex]="model.tabIndex"
                          (change)="onValueChange($event)"
-                         (onBlur)="onBlurEvent($event)"
+                         (onBlur)="onBlur($event)"
                          (onComplete)="onCustomEvent($event, 'onComplete')"
-                         (onFocus)="onFocusEvent($event)"></p-inputMask>
+                         (onFocus)="onFocus($event)"></p-inputMask>
 
-
+            <!------ INPUT SWITCH ------------------------------------------------------------------------------------->
             <p-inputSwitch *ngSwitchCase="11" #pInputSwitch
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
@@ -222,7 +223,7 @@
                            [tabindex]="model.tabIndex"
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
-
+            <!------ MULTI SELECT ------------------------------------------------------------------------------------->
             <p-multiSelect *ngSwitchCase="12" #pMultiSelect
                            [dynamicId]="bindId && model.id"
                            [filter]="model.filterable"
@@ -230,11 +231,11 @@
                            [ngClass]="model.cls.element.control"
                            [options]="model.options"
                            [tabindex]="model.tabIndex"
-                           (onBlur)="onBlurEvent($event)"
+                           (onBlur)="onBlur($event)"
                            (onChange)="onValueChange($event)"
-                           (onFocus)="onFocusEvent($event)"></p-multiSelect>
+                           (onFocus)="onFocus($event)"></p-multiSelect>
 
-
+            <!------ RATING ------------------------------------------------------------------------------------------->
             <p-rating *ngSwitchCase="14" #pRating
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -243,7 +244,7 @@
                       (onCancel)="onCustomEvent($event, 'onCancel')"
                       (onRate)="onValueChange($event)"></p-rating>
 
-
+            <!------ SLIDER ------------------------------------------------------------------------------------------->
             <p-slider *ngSwitchCase="15" #pSlider
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -254,7 +255,7 @@
                       (onChange)="onValueChange($event)"
                       (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
 
-
+            <!------ SPINNER ------------------------------------------------------------------------------------------>
             <p-spinner *ngSwitchCase="16" #pSpinner
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -264,11 +265,11 @@
                        [placeholder]="model.placeholder"
                        [step]="model.step || 1"
                        [tabindex]="model.tabIndex"
-                       (onBlur)="onBlurEvent($event)"
+                       (onBlur)="onBlur($event)"
                        (onChange)="onValueChange($event)"
-                       (onFocus)="onFocusEvent($event)"></p-spinner>
+                       (onFocus)="onFocus($event)"></p-spinner>
 
-
+            <!------ TEXTAREA ----------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="17" pInputTextarea #pInputTextarea
                       [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
@@ -284,9 +285,9 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onBlurEvent($event)"
+                      (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusEvent($event)"
+                      (focus)="onFocus($event)"
                       (onResize)="onCustomEvent($event, 'onResize')"></textarea>
 
         </div>
@@ -297,7 +298,6 @@
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
     </ul>
-
 
     <ng-container *ngIf="type !== 1 && template?.align === 'END'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>

@@ -128,7 +128,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return [];
     }
 
-    get hasHint(): boolean { // needed for AOT
+    get showHint(): boolean { // needed for AOT
         return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
     }
 
@@ -152,7 +152,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.inputTemplates ? this.inputTemplates : this.contentTemplates;
     }
 
-    protected getEvent($event: any, type: string): DynamicFormControlEvent {
+    protected createEvent($event: any, type: string): DynamicFormControlEvent {
         return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
     }
 
@@ -224,8 +224,6 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         if ($event && $event instanceof Event) { // native HTML5 change event
 
-            ($event as Event).stopPropagation();
-
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
                 let model = this.model as DynamicInputModel;
@@ -238,7 +236,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
                 }
             }
 
-            this.change.emit(this.getEvent($event as Event, "change"));
+            this.change.emit(this.createEvent($event as Event, "change"));
 
         } else if ($event && $event.hasOwnProperty("$event")) { // event bypass
 
@@ -246,43 +244,35 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         } else { // custom library value change event
 
-            this.change.emit(this.getEvent($event, "change"));
+            this.change.emit(this.createEvent($event, "change"));
         }
     }
 
 
-    onBlurEvent($event: FocusEvent | DynamicFormControlEvent | any): void {
+    onBlur($event: FocusEvent | DynamicFormControlEvent | any): void {
 
-        if ($event && $event.hasOwnProperty("$event")) {
+        if ($event && $event.hasOwnProperty("$event")) { // event bypass
 
             this.blur.emit($event as DynamicFormControlEvent);
 
-        } else {
-
-            if ($event instanceof FocusEvent) {
-                $event.stopPropagation();
-            }
+        } else { // native HTML 5 or UI library blur event
 
             this.hasFocus = false;
-            this.blur.emit(this.getEvent($event, "blur"));
+            this.blur.emit(this.createEvent($event, "blur"));
         }
     }
 
 
-    onFocusEvent($event: FocusEvent | DynamicFormControlEvent | any): void {
+    onFocus($event: FocusEvent | DynamicFormControlEvent | any): void {
 
-        if ($event && $event.hasOwnProperty("$event")) {
+        if ($event && $event.hasOwnProperty("$event")) { // event bypass
 
             this.focus.emit($event as DynamicFormControlEvent);
 
-        } else {
-
-            if ($event instanceof FocusEvent) {
-                $event.stopPropagation();
-            }
+        } else { // native HTML 5 or UI library focus event
 
             this.hasFocus = true;
-            this.focus.emit(this.getEvent($event, "focus"));
+            this.focus.emit(this.createEvent($event, "focus"));
         }
     }
 
@@ -295,7 +285,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         } else { // native UI library custom event
 
-            this.customEvent.emit(this.getEvent($event, type));
+            this.customEvent.emit(this.createEvent($event, type));
         }
     }
 }

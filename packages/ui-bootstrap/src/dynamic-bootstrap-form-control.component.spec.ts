@@ -104,8 +104,8 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         expect(component.focus).toBeDefined();
 
         expect(component.onValueChange).toBeDefined();
-        expect(component.onBlurEvent).toBeDefined();
-        expect(component.onFocusEvent).toBeDefined();
+        expect(component.onBlur).toBeDefined();
+        expect(component.onFocus).toBeDefined();
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
@@ -121,20 +121,20 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
     it("should listen to native blur events", () => {
 
-        spyOn(component, "onBlurEvent");
+        spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
 
-        expect(component.onBlurEvent).toHaveBeenCalled();
+        expect(component.onBlur).toHaveBeenCalled();
     });
 
     it("should listen to native focus events", () => {
 
-        spyOn(component, "onFocusEvent");
+        spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
 
-        expect(component.onFocusEvent).toHaveBeenCalled();
+        expect(component.onFocus).toHaveBeenCalled();
     });
 
     it("should listen to native change event", () => {
