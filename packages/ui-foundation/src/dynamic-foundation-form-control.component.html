@@ -18,6 +18,7 @@
 
         <ng-container [ngSwitch]="type">
 
+            <!------ FORM ARRAY --------------------------------------------------------------------------------------->
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
@@ -34,9 +35,9 @@
                                                      [model]="controlModel"
                                                      [templates]="templates"
                                                      [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                                     (blur)="onBlurEvent($event)"
-                                                     (change)="onValueChange($event)"
-                                                     (focus)="onFocusEvent($event)"></dynamic-foundation-form-control>
+                                                     (dfBlur)="onBlur($event)"
+                                                     (dfChange)="onValueChange($event)"
+                                                     (dfFocus)="onFocus($event)"></dynamic-foundation-form-control>
 
                     <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
 
@@ -44,7 +45,7 @@
 
             </div>
 
-
+            <!------ CHECKBOX ----------------------------------------------------------------------------------------->
             <label *ngSwitchCase="2">
 
                 <input type="checkbox"
@@ -57,13 +58,13 @@
                        [ngClass]="model.cls.element.control"
                        [required]="model.required"
                        [value]="model.value"
-                       (blur)="onBlurEvent($event)"
+                       (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusEvent($event)"/><span
+                       (focus)="onFocus($event)"/><span
                     [ngClass]="[model.cls.element.label, model.cls.grid.label]"
                     [innerHTML]="model.label"></span></label>
 
-
+            <!------ FORM GROUP --------------------------------------------------------------------------------------->
             <fieldset *ngSwitchCase="3"
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
@@ -78,12 +79,12 @@
                                                  [model]="itemModel"
                                                  [templates]="templates"
                                                  [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
-                                                 (blur)="onBlurEvent($event)"
-                                                 (change)="onValueChange($event)"
-                                                 (focus)="onFocusEvent($event)"></dynamic-foundation-form-control>
+                                                 (dfBlur)="onBlur($event)"
+                                                 (dfChange)="onValueChange($event)"
+                                                 (dfFocus)="onFocus($event)"></dynamic-foundation-form-control>
             </fieldset>
 
-
+            <!------ INPUT -------------------------------------------------------------------------------------------->
             <div *ngSwitchCase="4" class="input-group">
 
                 <span *ngIf="model.prefix" class="input-group-label" [innerHTML]="model.prefix"></span>
@@ -112,21 +113,19 @@
                        [spellcheck]="model.spellCheck"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
-                       (blur)="onBlurEvent($event)"
+                       (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusEvent($event)"/>
+                       (focus)="onFocus($event)"/>
 
                 <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
 
-                <datalist *ngIf="model.list" [id]="model.listId">
-
+                <datalist *ngIf="hasList" [id]="model.listId">
                     <option *ngFor="let option of model.list" [value]="option">
-
                 </datalist>
 
             </div>
 
-
+            <!------ RADIO GROUP -------------------------------------------------------------------------------------->
             <fieldset *ngSwitchCase="5" role="radiogroup"
                       [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
@@ -142,12 +141,12 @@
                            [formControlName]="model.id"
                            [name]="model.name"
                            [value]="option.value"
-                           (blur)="onBlurEvent($event)"
-                           (focus)="onFocusEvent($event)"/><span [innerHTML]="option.label"></span></label>
+                           (blur)="onBlur($event)"
+                           (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span></label>
 
             </fieldset>
 
-
+            <!------ SELECT ------------------------------------------------------------------------------------------->
             <select *ngSwitchCase="6"
                     [attr.tabindex]="model.tabIndex"
                     [dynamicId]="bindId && model.id"
@@ -155,18 +154,17 @@
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
-                    (blur)="onBlurEvent($event)"
+                    (blur)="onBlur($event)"
                     (change)="onValueChange($event)"
-                    (focus)="onFocusEvent($event)">
+                    (focus)="onFocus($event)">
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{option.label}}
-                </option>
+                        [ngValue]="option.value">{{ option.label }}</option>
 
             </select>
 
-
+            <!------ SWITCH ------------------------------------------------------------------------------------------->
             <div *ngSwitchCase="7" class="switch" [ngClass]="model.cls.element.control">
 
                 <input type="checkbox" class="switch-input"
@@ -177,20 +175,20 @@
                        [name]="model.name"
                        [required]="model.required"
                        [value]="model.value"
-                       (blur)="onBlurEvent($event)"
+                       (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusEvent($event)"/>
+                       (focus)="onFocus($event)"/>
 
-                <label class="switch-paddle" [attr.for]="model.id">
+                <label class="switch-paddle" [for]="model.id">
 
-                    <span class="switch-active" aria-hidden="true">{{model.onLabel}}</span>
-                    <span class="switch-inactive" aria-hidden="true">{{model.offLabel}}</span>
+                    <span class="switch-active" aria-hidden="true">{{ model.onLabel }}</span>
+                    <span class="switch-inactive" aria-hidden="true">{{ model.offLabel }}</span>
 
                 </label>
 
             </div>
 
-
+            <!------ TEXTAREA ----------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="8"
                       [attr.tabindex]="model.tabIndex"
                       [class.is-invalid-input]="showErrorMessages"
@@ -207,9 +205,9 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onBlurEvent($event)"
+                      (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusEvent($event)"></textarea>
+                      (focus)="onFocus($event)"></textarea>
 
         </ng-container>
 
@@ -217,10 +215,10 @@
 
     </div>
 
+
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="form-error is-visible">{{ message }}</li>
     </ul>
-
 
     <ng-container *ngIf="type !== 1 && template?.align === 'END'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>

@@ -6,9 +6,9 @@
                                     [group]="formGroup1"
                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                     [model]="controlModel"
-                                    (blur)="onBlur($event)"
-                                    (change)="onChange($event)"
-                                    (focus)="onFocus($event)"></dynamic-form-basic-control>
+                                    (dfBlur)="onBlur($event)"
+                                    (dfChange)="onChange($event)"
+                                    (dfFocus)="onFocus($event)"></dynamic-form-basic-control>
     </form>
 
     <pre>{{formGroup1.value | json}}</pre>
@@ -19,9 +19,9 @@
         <dynamic-form-basic-control *ngFor="let controlModel of formModel2" class="form-row"
                                     [group]="formGroup2"
                                     [model]="controlModel"
-                                    (blur)="onBlur($event)"
-                                    (change)="onChange($event)"
-                                    (focus)="onFocus($event)">
+                                    (dfBlur)="onBlur($event)"
+                                    (dfChange)="onChange($event)"
+                                    (dfFocus)="onFocus($event)">
 
             <ng-template modelId="basicFormArray" let-index="index">
 

@@ -6,9 +6,9 @@
 
         <dynamic-bootstrap-form [model]="formModel"
                                 [group]="formGroup"
-                                (blur)="onBlur($event)"
-                                (change)="onChange($event)"
-                                (focus)="onFocus($event)">
+                                (dfBlur)="onBlur($event)"
+                                (dfChange)="onChange($event)"
+                                (dfFocus)="onFocus($event)">
 
             <ng-template modelId="bootstrapFormArray" let-context="context" let-index="index">
 
