@@ -3,7 +3,7 @@
                             [model]="controlModel"
                             [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                             [templates]="templates"
-                            (blur)="onEvent($event, 1)"
-                            (change)="onEvent($event, 2)"
-                            (focus)="onEvent($event, 3)"
+                            (dfBlur)="onEvent($event, 1)"
+                            (dfChange)="onEvent($event, 2)"
+                            (dfFocus)="onEvent($event, 3)"
                             (ionEvent)="onEvent($event, 4)"></dynamic-ionic-form-control>

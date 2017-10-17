@@ -4,7 +4,7 @@
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
-
+    <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 1"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
@@ -21,9 +21,9 @@
                                         [model]="controlModel"
                                         [templates]="templates"
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                        (blur)="onFocusChange($event)"
-                                        (change)="onValueChange($event)"
-                                        (focus)="onFocusChange($event)"
+                                        (dfBlur)="onBlur($event)"
+                                        (dfChange)="onValueChange($event)"
+                                        (dfFocus)="onFocus($event)"
                                         (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
 
             <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
@@ -32,7 +32,7 @@
 
     </div>
 
-
+    <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
     <fieldset *ngIf="type === 4"
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
@@ -47,13 +47,13 @@
                                     [model]="controlModel"
                                     [templates]="templates"
                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                    (blur)="onFocusChange($event)"
-                                    (change)="onValueChange($event)"
-                                    (focus)="onFocusChange($event)"
+                                    (dfBlur)="onBlur($event)"
+                                    (dfChange)="onValueChange($event)"
+                                    (dfFocus)="onFocus($event)"
                                     (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
     </fieldset>
 
-
+    <!-- RADIO GROUP -------------------------------------------------------------------------------------------------->
     <ion-list *ngIf="type === 6" radio-group
               [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
@@ -78,17 +78,17 @@
                    [innerHTML]="model.label"
                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"></ion-label>
 
-
+        <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <ion-checkbox *ngSwitchCase="2"
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="model.cls.element.control"
-                      (ionBlur)="onBlurEvent($event)"
+                      (ionBlur)="onBlur($event)"
                       (ionChange)="onValueChange($event)"
-                      (ionFocus)="onFocusEvent($event)"></ion-checkbox>
+                      (ionFocus)="onFocus($event)"></ion-checkbox>
 
-
+        <!-- DATETIME ------------------------------------------------------------------------------------------------->
         <ion-datetime *ngSwitchCase="3"
                       [displayFormat]="model.format"
                       [dynamicId]="bindId && model.id"
@@ -97,12 +97,12 @@
                       [min]="model.min"
                       [ngClass]="model.cls.element.control"
                       [placeholder]="model.placeholder"
-                      (ionBlur)="onBlurEvent($event)"
+                      (ionBlur)="onBlur($event)"
                       (ionCancel)="onCustomEvent($event, 'ionCancel')"
                       (ionChange)="onValueChange($event)"
-                      (ionFocus)="onFocusEvent($event)"></ion-datetime>
+                      (ionFocus)="onFocus($event)"></ion-datetime>
 
-
+        <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ion-input *ngSwitchCase="5"
                    clearInput="true"
                    [dynamicId]="bindId && model.id"
@@ -115,11 +115,11 @@
                    [step]="model.step"
                    [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                    [type]="model.inputType"
-                   (ionBlur)="onBlurEvent($event)"
+                   (ionBlur)="onBlur($event)"
                    (ionChange)="onValueChange($event)"
-                   (ionFocus)="onFocusEvent($event)"></ion-input>
+                   (ionFocus)="onFocus($event)"></ion-input>
 
-
+        <!-- RANGE ---------------------------------------------------------------------------------------------------->
         <ion-range *ngSwitchCase="7"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
@@ -129,27 +129,26 @@
                    [pin]="true"
                    [snaps]="true"
                    [step]="model.step"
-                   (ionBlur)="onBlurEvent($event)"
+                   (ionBlur)="onBlur($event)"
                    (ionChange)="onValueChange($event)"
-                   (ionFocus)="onFocusEvent($event)"></ion-range>
+                   (ionFocus)="onFocus($event)"></ion-range>
 
-
+        <!-- SELECT --------------------------------------------------------------------------------------------------->
         <ion-select *ngSwitchCase="8"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [multiple]="model.multiple"
                     [ngClass]="model.cls.element.control"
                     [placeholder]="model.placeholder"
-                    (ionBlur)="onBlurEvent($event)"
+                    (ionBlur)="onBlur($event)"
                     (ionChange)="onValueChange($event)"
-                    (ionFocus)="onFocusEvent($event)">
+                    (ionFocus)="onFocus($event)">
 
-            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{option.label}}
-            </ion-option>
+            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}</ion-option>
 
         </ion-select>
 
-
+        <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
         <ion-textarea *ngSwitchCase="9"
                       clearInput="true"
                       [dynamicId]="bindId && model.id"
@@ -157,19 +156,19 @@
                       [ngClass]="model.cls.element.control"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
-                      (ionBlur)="onBlurEvent($event)"
+                      (ionBlur)="onBlur($event)"
                       (ionChange)="onValueChange($event)"
-                      (ionFocus)="onFocusEvent($event)"></ion-textarea>
+                      (ionFocus)="onFocus($event)"></ion-textarea>
 
-
+        <!-- TOGGLE --------------------------------------------------------------------------------------------------->
         <ion-toggle *ngSwitchCase="10"
                     [checked]="model.checked"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [ngClass]="model.cls.element.control"
-                    (ionBlur)="onBlurEvent($event)"
+                    (ionBlur)="onBlur($event)"
                     (ionChange)="onValueChange($event)"
-                    (ionFocus)="onFocusEvent($event)"></ion-toggle>
+                    (ionFocus)="onFocus($event)"></ion-toggle>
 
     </ion-item>
 

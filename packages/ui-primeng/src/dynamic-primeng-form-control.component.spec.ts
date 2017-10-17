@@ -41,12 +41,7 @@ import {
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-control.component";
-import {
-    PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
-    PRIME_NG_CHIPS_TEMPLATE_DIRECTIVES,
-    PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
-    PrimeNGFormControlType
-} from "./dynamic-primeng-form.const";
+import { PrimeNGFormControlType } from "./dynamic-primeng-form.const";
 
 describe("DynamicFormPrimeNGComponent test suite", () => {
 
@@ -144,8 +139,8 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.focus).toBeDefined();
 
         expect(component.onValueChange).toBeDefined();
-        expect(component.onBlurEvent).toBeDefined();
-        expect(component.onFocusEvent).toBeDefined();
+        expect(component.onBlur).toBeDefined();
+        expect(component.onFocus).toBeDefined();
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
@@ -160,20 +155,20 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
     it("should listen to native blur events", () => {
 
-        spyOn(component, "onBlurEvent");
+        spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
 
-        expect(component.onBlurEvent).toHaveBeenCalled();
+        expect(component.onBlur).toHaveBeenCalled();
     });
 
     it("should listen to native focus events", () => {
 
-        spyOn(component, "onFocusEvent");
+        spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
 
-        expect(component.onFocusEvent).toHaveBeenCalled();
+        expect(component.onFocus).toHaveBeenCalled();
     });
 
     it("should listen to native change event", () => {
@@ -261,21 +256,4 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         expect(testFn(formModel[14])).toEqual(PrimeNGFormControlType.Calendar);
     });
-
-    xit("should determine correct template directives", async(() => {
-
-        let testFn = DynamicPrimeNGFormControlComponent.getTemplateDirectives;
-
-        let fixture1: ComponentFixture<DynamicPrimeNGFormControlComponent> = TestBed.createComponent(DynamicPrimeNGFormControlComponent),
-            component1: DynamicPrimeNGFormControlComponent = fixture1.componentInstance;
-
-        (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
-
-        component1.group = formGroup;
-        component1.model = formModel[7];
-
-        fixture1.detectChanges();
-
-        //expect(testFn(component1.pViewChild)).toEqual(PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES);
-    }));
 });

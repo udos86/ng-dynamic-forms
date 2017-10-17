@@ -4,9 +4,9 @@
 
         <dynamic-foundation-form [group]="formGroup"
                                  [model]="formModel"
-                                 (blur)="onBlur($event)"
-                                 (change)="onChange($event)"
-                                 (focus)="onFocus($event)">
+                                 (dfBlur)="onBlur($event)"
+                                 (dfChange)="onChange($event)"
+                                 (dfFocus)="onFocus($event)">
 
             <ng-template modelId="foundationFormArray" let-context="context" let-index="index">
 

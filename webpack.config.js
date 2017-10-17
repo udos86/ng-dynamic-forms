@@ -1,5 +1,4 @@
-const pkg     = require("./package.json"),
-      path    = require("path"),
+const path    = require("path"),
       webpack = require("webpack");
 
 module.exports = {

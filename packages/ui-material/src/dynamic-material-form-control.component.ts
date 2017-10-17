@@ -29,6 +29,7 @@ import {
     DynamicFormArrayGroupModel,
     DynamicFormControlEvent,
     DynamicTemplateDirective,
+    DynamicInputControlModel,
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -73,9 +74,9 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         this._showCharacterCount = value;
     }
 
-    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild(MAT_VIEW_CHILD_SELECTOR) matViewChild: MatFormControlComponent | undefined;
@@ -101,8 +102,12 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         return this.matInput ? this.matInput.value.length : null;
     }
 
-    get asMatFormField(): boolean {
-        return this.type === 5 || this.type === 7 || this.type === 10;
+    get characterHint(): string {
+        return `${this.characterCount} / ${(this.model as DynamicInputControlModel<string>).maxLength}`;
+    }
+
+    get hasMatFormField(): boolean {
+        return this.type === 3 || this.type === 5 || this.type === 7 || this.type === 10;
     }
 
     static getFormControlType(model: DynamicFormControlModel): MatFormControlType | null {

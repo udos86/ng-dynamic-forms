@@ -1,7 +1,4 @@
 import { ValidationUtils } from "./validation.utils";
-import { FormControl } from "@angular/forms";
-import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicInputModel } from "../model/input/dynamic-input.model";
 
 describe("Validation Utils test suite", () => {
 

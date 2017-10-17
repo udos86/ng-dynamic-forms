@@ -5,14 +5,13 @@
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-
     <ng-container *ngIf="type !== 1 && template?.align === 'START'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
     </ng-container>
 
-
     <ng-container [ngSwitch]="type">
 
+        <!-- FORM ARRAY ----------------------------------------------------------------------------------------------->
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
@@ -29,9 +28,9 @@
                                                [model]="controlModel"
                                                [templates]="templates"
                                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                               (blur)="onBlurEvent($event)"
-                                               (change)="onValueChange($event)"
-                                               (focus)="onFocusEvent($event)"
+                                               (ngBlur)="onBlur($event)"
+                                               (ngChange)="onValueChange($event)"
+                                               (ngFocus)="onFocus($event)"
                                                (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
                 <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
@@ -40,7 +39,7 @@
 
         </div>
 
-
+        <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <mat-checkbox *ngSwitchCase="2" #matCheckbox
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
@@ -49,17 +48,17 @@
                       [labelPosition]="model.labelPosition"
                       [name]="model.name"
                       [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                      (blur)="onBlurEvent($event)"
+                      (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusEvent($event)"
+                      (focus)="onFocus($event)"
                       (indeterminateChange)="onMatEvent($event, 'indeterminateChange')">
 
             <span [ngClass]="model.cls.element.label" [innerHTML]="model.label"></span>
 
         </mat-checkbox>
 
-
-        <mat-form-field *ngSwitchCase="3" [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+        <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
+        <mat-form-field *ngSwitchCase="3" [ngClass]="model.cls.grid.control">
 
             <input matInput
                    [autofocus]="model.autoFocus"
@@ -72,18 +71,22 @@
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
                    [required]="model.required"
-                   (blur)="onBlurEvent($event)"
+                   (blur)="onBlur($event)"
                    (dateChange)="onValueChange($event)"
                    (dateInput)="onCustomEvent($event, 'dateInput')"
-                   (focus)="onFocusEvent($event)"/>
+                   (focus)="onFocus($event)"/>
 
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
             <mat-datepicker #matDatepicker [startAt]="model.focusedDate" [touchUi]="true"></mat-datepicker>
 
+            <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+            </ng-container>
+
         </mat-form-field>
 
-
+        <!-- FORM GROUP ----------------------------------------------------------------------------------------------->
         <div *ngSwitchCase="4" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
@@ -95,13 +98,13 @@
                                            [model]="controlModel"
                                            [templates]="templates"
                                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                           (blur)="onBlurEvent($event)"
-                                           (change)="onValueChange($event)"
-                                           (focus)="onFocusEvent($event)"
+                                           (dfBlur)="onBlur($event)"
+                                           (dfChange)="onValueChange($event)"
+                                           (dfFocus)="onFocus($event)"
                                            (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
         </div>
 
-
+        <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ng-container *ngSwitchCase="5">
 
             <mat-form-field #matInput [ngClass]="model.cls.grid.control">
@@ -131,17 +134,18 @@
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
                        [type]="model.inputType"
-                       (blur)="onBlurEvent($event)"
+                       (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
-                       (focus)="onFocusEvent($event)"/>
+                       (focus)="onFocus($event)"/>
 
                 <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
 
-                <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
-                <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
+                <mat-hint *ngIf="showHint" align="start" [innerHTML]="model.hint"></mat-hint>
+                <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 
-                <mat-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
-                </mat-error>
+                <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                    <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+                </ng-container>
 
             </mat-form-field>
 
@@ -153,15 +157,15 @@
 
         </ng-container>
 
-
+        <!-- RADIO GROUP ---------------------------------------------------------------------------------------------->
         <mat-radio-group *ngSwitchCase="6" #matRadioGroup
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [name]="model.name"
                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                         (blur)="onBlurEvent($event)"
+                         (blur)="onBlur($event)"
                          (change)="onValueChange($event)"
-                         (focus)="onFocusEvent($event)">
+                         (focus)="onFocus($event)">
 
             <mat-radio-button *ngFor="let option of model.options$ | async"
                               [labelPosition]="'after'"
@@ -171,25 +175,31 @@
 
         </mat-radio-group>
 
+        <!-- SELECT --------------------------------------------------------------------------------------------------->
+        <mat-form-field *ngSwitchCase="7" [ngClass]="model.cls.grid.control">
 
-        <mat-select *ngSwitchCase="7" #matSelect
-                    [dynamicId]="bindId && model.id"
-                    [formControlName]="model.id"
-                    [multiple]="model.multiple"
-                    [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-                    [placeholder]="model.placeholder"
-                    [required]="model.required"
-                    (change)="onValueChange($event)"
-                    (onClose)="onCustomEvent($event, 'onClose')"
-                    (onOpen)="onCustomEvent($event, 'onOpen')">
+            <mat-select #matSelect
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [multiple]="model.multiple"
+                        [ngClass]="model.cls.element.control"
+                        [placeholder]="model.placeholder"
+                        [required]="model.required"
+                        (change)="onValueChange($event)"
+                        (onClose)="onCustomEvent($event, 'onClose')"
+                        (onOpen)="onCustomEvent($event, 'onOpen')">
 
             <mat-option *ngFor="let option of model.options$ | async"
                         [ngClass]="model.cls.element.option"
                         [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
 
-        </mat-select>
+            <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+            </ng-container>
 
+        </mat-form-field>
 
+        <!-- SLIDER --------------------------------------------------------------------------------------------------->
         <mat-slider *ngSwitchCase="8" #matSlider
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
@@ -203,7 +213,7 @@
                     (change)="onValueChange($event)"
                     (input)="onCustomEvent($event, 'input')"></mat-slider>
 
-
+        <!-- SLIDE TOGGLE --------------------------------------------------------------------------------------------->
         <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle
                           [checked]="model.checked"
                           [dynamicId]="bindId && model.id"
@@ -218,8 +228,8 @@
 
         </mat-slide-toggle>
 
-
-        <mat-form-field *ngSwitchCase="10" #matTextarea [ngClass]="model.cls.grid.control">
+        <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
+        <mat-form-field *ngSwitchCase="10" [ngClass]="model.cls.grid.control">
 
             <textarea matInput
                       [attr.tabindex]="model.tabIndex"
@@ -236,25 +246,25 @@
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
                       [wrap]="model.wrap"
-                      (blur)="onBlurEvent($event)"
+                      (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
-                      (focus)="onFocusEvent($event)"></textarea>
+                      (focus)="onFocus($event)"></textarea>
 
-            <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
-            <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
+            <mat-hint *ngIf="showHint" align="start" [innerHTML]="model.hint"></mat-hint>
+            <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 
-            <mat-error *ngFor="let message of errorMessages"><span *ngIf="showErrorMessages">{{message}}</span>
-            </mat-error>
+            <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+            </ng-container>
 
         </mat-form-field>
 
     </ng-container>
 
 
-    <ng-container *ngIf="type !== 5 && type !== 10 && showErrorMessages">
-        <mat-error *ngFor="let message of errorMessages">{{message}}</mat-error>
+    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
+        <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
     </ng-container>
-
 
     <ng-container *ngIf="type !== 1 && template?.align === 'END'">
         <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>

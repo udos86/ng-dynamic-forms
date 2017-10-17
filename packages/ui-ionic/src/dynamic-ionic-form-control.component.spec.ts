@@ -1,13 +1,7 @@
-import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { By } from "@angular/platform-browser";
-import { IonicModule } from "ionic-angular";
-import { TextMaskModule } from "angular2-text-mask";
+import { FormGroup, FormControl } from "@angular/forms";
 import {
-    DynamicFormsCoreModule,
-    DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicDatePickerModel,
@@ -102,8 +96,8 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(component.focus).toBeDefined();
 
         expect(component.onValueChange).toBeDefined();
-        expect(component.onBlurEvent).toBeDefined();
-        expect(component.onFocusEvent).toBeDefined();
+        expect(component.onBlur).toBeDefined();
+        expect(component.onFocus).toBeDefined();
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
@@ -119,20 +113,20 @@ describe("DynamicFormIonicComponent test suite", () => {
 
     xit("should listen to native blur events", () => {
 
-        spyOn(component, "onBlurEvent");
+        spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
 
-        expect(component.onBlurEvent).toHaveBeenCalled();
+        expect(component.onBlur).toHaveBeenCalled();
     });
 
     xit("should listen to native focus events", () => {
 
-        spyOn(component, "onFocusEvent");
+        spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
 
-        expect(component.onFocusEvent).toHaveBeenCalled();
+        expect(component.onFocus).toHaveBeenCalled();
     });
 
     xit("should listen to native change event", () => {

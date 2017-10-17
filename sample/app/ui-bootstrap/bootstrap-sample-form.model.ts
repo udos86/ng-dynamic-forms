@@ -1,7 +1,6 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
-    DynamicDatePickerModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
