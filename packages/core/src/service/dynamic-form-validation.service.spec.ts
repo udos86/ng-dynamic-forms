@@ -33,31 +33,16 @@ describe("DynamicFormValidationService test suite", () => {
         (validationService: DynamicFormValidationService) => service = validationService));
 
 
-    it("should resolve validator by name correctly", () => {
+    it("should resolve a validator by name correctly", () => {
 
-        expect(service.getValidatorByName("required")).toBeTruthy();
-        expect(service.getValidatorByName("testValidator")).toBeTruthy();
+        expect(service.getValidator("required")).toBeTruthy();
+        expect(service.getValidator("testValidator")).toBeTruthy();
     });
 
 
-    it("should resolve async validator by name correctly", () => {
+    it("should resolve a async validator by name correctly", () => {
 
-        expect(service.getAsyncValidatorByName("testAsyncValidator")).toBeTruthy();
-    });
-
-
-    it("should resolve validator from config correctly", () => {
-
-        expect(service.getValidator({})).toBeNull();
-        expect(service.getValidator({required: null})).toBeTruthy();
-        expect(service.getValidator({testValidator: {name: testValidator.name, args: null}})).toBeTruthy();
-    });
-
-
-    it("should resolve async validator from config correctly", () => {
-
-        expect(service.getAsyncValidator({})).toBeNull();
-        expect(service.getAsyncValidator({testAsyncValidator: null})).toBeTruthy();
+        expect(service.getAsyncValidator("testAsyncValidator")).toBeTruthy();
     });
 
 
@@ -97,18 +82,10 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should resolve a custom async validator from detailed config correctly", () => {
-
-        let config: any = {testAsyncValidator: {name: testAsyncValidator.name, args: null}},
-            validator = service.getAsyncValidator(config);
-
-        expect(typeof validator === "function").toBe(true);
-    });
-
 
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
-        expect(() => service.getValidatorByName("test", null))
+        expect(() => service.getValidator("test", null))
             .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 

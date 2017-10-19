@@ -1,10 +1,8 @@
-import { Utils } from "./core.utils";
-
 export class ValidationUtils {
 
-    static isExpandedValidatorConfig(value: any): boolean {
+    static isDynamicValidatorDescriptor(value: any): boolean {
 
-        if (Utils.isTrueObject(value)) {
+        if (value && typeof value === "object") {
             return value.hasOwnProperty("name") && value.hasOwnProperty("args");
         }
 

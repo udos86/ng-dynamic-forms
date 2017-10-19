@@ -9,9 +9,9 @@ describe("Validation Utils test suite", () => {
             testConfig3: any = {name: "test", args: null},
             testConfig4 = null;
 
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig1)).toBe(false);
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig2)).toBe(false);
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig3)).toBe(true);
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig4)).toBe(false);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testConfig1)).toBe(false);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testConfig2)).toBe(false);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testConfig3)).toBe(true);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testConfig4)).toBe(false);
     });
 });

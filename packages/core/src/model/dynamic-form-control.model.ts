@@ -10,13 +10,13 @@ export interface DynamicPathable {
     parent: DynamicPathable | null;
 }
 
-export interface DynamicValidatorConfig {
+export interface DynamicValidatorDescriptor {
 
     name: string;
     args: any;
 }
 
-export type DynamicValidatorsMap = { [validatorKey: string]: any | DynamicValidatorConfig };
+export type DynamicValidatorsConfig = { [validatorKey: string]: any | DynamicValidatorDescriptor };
 
 export interface Cls {
 
@@ -52,24 +52,28 @@ export function createEmptyClsConfig(): Cls {
 
 export interface DynamicFormControlModelConfig {
 
+    asyncValidators?: DynamicValidatorsConfig;
     disabled?: boolean;
-    errorMessages?: DynamicValidatorsMap;
+    errorMessages?: DynamicValidatorsConfig;
     id?: string;
     label?: string;
     relation?: DynamicFormControlRelationGroup[];
+    validators?: DynamicValidatorsConfig;
 }
 
 export abstract class DynamicFormControlModel implements DynamicPathable {
 
+    @serializable() asyncValidators: DynamicValidatorsConfig | null;
     @serializable() cls: any = {};
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
-    @serializable() errorMessages: DynamicValidatorsMap | null;
+    @serializable() errorMessages: DynamicValidatorsConfig | null;
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() name: string;
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
+    @serializable() validators: DynamicValidatorsConfig | null;
 
     abstract readonly type: string;
 
@@ -84,12 +88,14 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.cls.element = Utils.merge(cls.element, createEmptyClsConfig());
         this.cls.grid = Utils.merge(cls.grid, createEmptyClsConfig());
 
-        this._disabled = typeof config.disabled === "boolean" ? config.disabled : false;
+        this.asyncValidators = config.asyncValidators || null;
         this.errorMessages = config.errorMessages || null;
         this.label = config.label || null;
         this.name = this.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];
+        this.validators = config.validators || null;
 
+        this._disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
         this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);
     }
