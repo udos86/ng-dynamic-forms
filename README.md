@@ -138,16 +138,16 @@ export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicInputModel({
 
-        id: "exampleInput",
-        label: "Example Input",
+        id: "sampleInput",
+        label: "Sample Input",
         maxLength: 42,
-        placeholder: "example input"
+        placeholder: "Sample input"
     }),
 
     new DynamicRadioGroupModel<string>({
 
-        id: "exampleRadioGroup",
-        label: "Example Radio Group",
+        id: "sampleRadioGroup",
+        label: "Sample Radio Group",
         options: [
             {
                 label: "Option 1",
@@ -167,7 +167,7 @@ export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 
     new DynamicCheckboxModel({
 
-        id: "exampleCheckbox",
+        id: "sampleCheckbox",
         label: "I do agree"
     })
 ];
@@ -288,7 +288,8 @@ varies among UI packages. **See the following compatibility table**:
 ## Form Groups
 
 In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
-Luckily NG Dynamic Forms supports nesting of form groups out of the box!
+
+Thus NG Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Declare a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
  ```ts
@@ -700,7 +701,7 @@ Finally **you can determine whether the template is rendered before or after the
 
 ## Custom Validators
 
-Adding built-in Angular validators to any `DynamicFormValueControlModel` is plain and simple! 
+Adding built-in Angular validators to any `DynamicFormControlModel` is plain and simple! 
 
 Just reference a function from `Validators` class by it's name in the `validators` or `asyncValidators` configuration object:
 ```ts 
@@ -1125,7 +1126,7 @@ new DynamicInputModel({
 
 ## FAQ
 
-> **Why should I give NG Dynamic Forms a try?**
+> **Why should I try NG Dynamic Forms?**
 
 It will keep all your Angular forms highly maintainable and thus is probably going to save you a significant amount of time. 
 
@@ -1135,11 +1136,11 @@ Whenever your Angular application is driven by several complex forms.
 
 > **When should I not use NG Dynamic Forms?**
 
-Whenever you need to implement only simple forms or extremely individual form layouts / form control configurations.  
+Whenever you need to implement really simple forms or extremely individual form layouts / form control configurations.  
 
 > **Does NG Dynamic Forms support custom form controls?**
 
-No, not out of the box. You'd have to create your own UI package in order to achieve this.
+No, not out of the box. You'd have to create your own UI template / package in order to achieve this.
 
 > **Are there any other dynamic forms libraries for Angular?**
 
