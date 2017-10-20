@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynamic-date-control.model";
 
@@ -19,9 +19,9 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
 
-    constructor(config: DynamicDatePickerModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicDatePickerModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.focusedDate = config.focusedDate || null;
         this.inline = typeof config.inline === "boolean" ? config.inline : false;

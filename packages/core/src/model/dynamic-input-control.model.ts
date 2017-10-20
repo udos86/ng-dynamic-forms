@@ -1,4 +1,4 @@
-import { ClsConfig } from "./dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 import { AUTOCOMPLETE_ON } from "../utils/autofill.utils";
@@ -28,9 +28,9 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
     @serializable() spellCheck: boolean;
     @serializable() suffix: string | null;
 
-    constructor(config: DynamicInputControlModelConfig<T>, cls?: ClsConfig) {
+    constructor(config: DynamicInputControlModelConfig<T>, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.autoComplete = config.autoComplete || AUTOCOMPLETE_ON;
         this.autoFocus = typeof config.autoFocus === "boolean" ? config.autoFocus : false;

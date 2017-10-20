@@ -10,13 +10,9 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
-import {
-    DynamicFormControlModel,
-    DynamicValidatorDescriptor,
-    DynamicValidatorsConfig
-} from "../model/dynamic-form-control.model";
+import { DynamicFormControlModel, DynamicValidatorsConfig } from "../model/dynamic-form-control.model";
 import { Utils } from "../utils/core.utils";
-import { ValidationUtils } from "../utils/validation.utils";
+import { ValidationUtils, DynamicValidatorDescriptor } from "../utils/validation.utils";
 
 export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
 

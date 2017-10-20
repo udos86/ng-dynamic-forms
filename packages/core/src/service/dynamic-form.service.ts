@@ -41,6 +41,7 @@ import {
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
 import { Utils } from "../utils/core.utils";
+import { ValidationUtils, FORM_HOOK_CHANGE } from "../utils/validation.utils";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 
 @Injectable()
@@ -49,14 +50,17 @@ export class DynamicFormService {
     constructor(private formBuilder: FormBuilder, private validationService: DynamicFormValidationService) {}
 
 
-    createOptions(validatorsConfig: DynamicValidatorsConfig | null,
-                  asyncValidatorsConfig: DynamicValidatorsConfig | null): any /*AbstractControlOptions*/ {
+    createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
+                                 asyncValidatorsConfig: DynamicValidatorsConfig | null = null,
+                                 updateOnConfig: string | null = null): any/*AbstractControlOptions*/ {
 
         return {
 
             asyncValidators: Validators.composeAsync(this.validationService.getAsyncValidators(asyncValidatorsConfig)),
 
-            validators: Validators.compose(this.validationService.getValidators(validatorsConfig))
+            validators: Validators.compose(this.validationService.getValidators(validatorsConfig)),
+
+            updateOn: ValidationUtils.isFormHook(updateOnConfig) ? updateOnConfig : FORM_HOOK_CHANGE
         };
     }
 
@@ -64,14 +68,15 @@ export class DynamicFormService {
     createFormArray(model: DynamicFormArrayModel): FormArray {
 
         let formArray = [],
-            options = this.createOptions(model.validators, model.asyncValidators);
+            options = this.createAbstractControlOptions(model.validators, model.asyncValidators, model.updateOn);
 
         for (let index = 0; index < model.size; index++) {
 
             let groupModel = model.get(index),
-                options = this.createOptions(model.groupValidators, model.groupAsyncValidators);
+                groupOptions = this.createAbstractControlOptions(
+                    model.groupValidators, model.groupAsyncValidators, model.updateOn);
 
-            formArray.push(this.createFormGroup(groupModel.group, options, groupModel));
+            formArray.push(this.createFormGroup(groupModel.group, groupOptions, groupModel));
         }
 
         return this.formBuilder.array(formArray, options);
@@ -79,7 +84,7 @@ export class DynamicFormService {
 
 
     createFormGroup(groupModel: DynamicFormControlModel[],
-                    options: any /*AbstractControlOptions*/ | null = null,
+                    options: any/*AbstractControlOptions*/ | null = null,
                     parent: DynamicPathable | null = null): FormGroup {
 
         let formGroup: { [id: string]: AbstractControl; } = {};
@@ -101,22 +106,24 @@ export class DynamicFormService {
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
 
                     let formGroupModel = model as DynamicFormGroupModel,
-                        options = this.createOptions(formGroupModel.validators, formGroupModel.asyncValidators);
+                        formGroupOptions = this.createAbstractControlOptions(
+                            formGroupModel.validators, formGroupModel.asyncValidators, formGroupModel.updateOn);
 
-                    formGroup[model.id] = this.createFormGroup(formGroupModel.group, options, formGroupModel);
+                    formGroup[model.id] = this.createFormGroup(formGroupModel.group, formGroupOptions, formGroupModel);
                     break;
 
                 default:
 
                     let formControlModel = model as DynamicFormValueControlModel<DynamicFormControlValue>,
-                        options = this.createOptions(formControlModel.validators, formControlModel.asyncValidators);
+                        formControlOptions = this.createAbstractControlOptions(
+                            formControlModel.validators, formControlModel.asyncValidators, formControlModel.updateOn);
 
                     formGroup[formControlModel.id] = new FormControl(
                         {
                             value: formControlModel.value,
                             disabled: formControlModel.disabled
                         },
-                        options
+                        formControlOptions
                     );
             }
         });

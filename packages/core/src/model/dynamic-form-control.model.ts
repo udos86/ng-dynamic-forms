@@ -2,6 +2,10 @@ import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation
 import { Subject } from "rxjs/Subject";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { Utils } from "../utils/core.utils";
+import { DynamicClsConfig, DynamicClsConfigFactory } from "../utils/cls.utils";
+import { DynamicValidatorDescriptor } from "../utils/validation.utils";
+
+export type DynamicValidatorsConfig = { [validatorKey: string]: any | DynamicValidatorDescriptor };
 
 export interface DynamicPathable {
 
@@ -10,44 +14,10 @@ export interface DynamicPathable {
     parent: DynamicPathable | null;
 }
 
-export interface DynamicValidatorDescriptor {
+export interface DynamicFormControlClsConfig {
 
-    name: string;
-    args: any;
-}
-
-export type DynamicValidatorsConfig = { [validatorKey: string]: any | DynamicValidatorDescriptor };
-
-export interface Cls {
-
-    container?: string;
-    control?: string;
-    errors?: string;
-    group?: string;
-    hint?: string;
-    host?: string;
-    label?: string;
-    option?: string;
-}
-
-export interface ClsConfig {
-
-    element?: Cls;
-    grid?: Cls;
-}
-
-export function createEmptyClsConfig(): Cls {
-
-    return {
-        container: "",
-        control: "",
-        errors: "",
-        group: "",
-        hint: "",
-        host: "",
-        label: "",
-        option: ""
-    };
+    element?: DynamicClsConfig;
+    grid?: DynamicClsConfig;
 }
 
 export interface DynamicFormControlModelConfig {
@@ -58,6 +28,7 @@ export interface DynamicFormControlModelConfig {
     id?: string;
     label?: string;
     relation?: DynamicFormControlRelationGroup[];
+    updateOn?: string;
     validators?: DynamicValidatorsConfig;
 }
 
@@ -73,11 +44,12 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() name: string;
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
+    @serializable() updateOn: string | null;
     @serializable() validators: DynamicValidatorsConfig | null;
 
     abstract readonly type: string;
 
-    constructor(config: DynamicFormControlModelConfig, cls: ClsConfig = {}) {
+    constructor(config: DynamicFormControlModelConfig, clsConfig: DynamicFormControlClsConfig = {}) {
 
         if (typeof config.id === "string" && config.id.length > 0) {
             this.id = config.id;
@@ -85,14 +57,15 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
             throw new Error("string id must be specified for DynamicFormControlModel");
         }
 
-        this.cls.element = Utils.merge(cls.element, createEmptyClsConfig());
-        this.cls.grid = Utils.merge(cls.grid, createEmptyClsConfig());
+        this.cls.element = Utils.merge(clsConfig.element, DynamicClsConfigFactory.create());
+        this.cls.grid = Utils.merge(clsConfig.grid, DynamicClsConfigFactory.create());
 
         this.asyncValidators = config.asyncValidators || null;
         this.errorMessages = config.errorMessages || null;
         this.label = config.label || null;
         this.name = this.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];
+        this.updateOn = typeof config.updateOn === "string" ? config.updateOn : null;
         this.validators = config.validators || null;
 
         this._disabled = typeof config.disabled === "boolean" ? config.disabled : false;

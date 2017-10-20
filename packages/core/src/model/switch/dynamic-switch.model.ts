@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicCheckControlModel, DynamicCheckControlModelConfig } from "../dynamic-check-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -17,9 +17,9 @@ export class DynamicSwitchModel extends DynamicCheckControlModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SWITCH;
 
-    constructor(config: DynamicSwitchModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicSwitchModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.offLabel = config.offLabel || null;
         this.onLabel = config.onLabel || null;

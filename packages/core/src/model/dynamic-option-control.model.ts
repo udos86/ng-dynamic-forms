@@ -1,7 +1,7 @@
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/of";
 import "rxjs/add/operator/map";
-import { ClsConfig } from "./dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 
@@ -48,9 +48,9 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     @serializable("options") _options: DynamicFormOption<T>[] = [];
     options$: Observable<DynamicFormOption<T>[]>;
 
-    constructor(config: DynamicOptionControlModelConfig<T>, cls?: ClsConfig) {
+    constructor(config: DynamicOptionControlModelConfig<T>, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.options = config.options;
     }

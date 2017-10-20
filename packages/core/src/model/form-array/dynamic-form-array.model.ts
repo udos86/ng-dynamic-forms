@@ -3,7 +3,7 @@ import {
     DynamicFormControlModelConfig,
     DynamicPathable,
     DynamicValidatorsConfig,
-    ClsConfig,
+    DynamicFormControlClsConfig
 } from "../dynamic-form-control.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
 
@@ -58,9 +58,9 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     readonly origin: DynamicFormControlModel[]; // deprecated - only for backwards compatibility;
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
-    constructor(config: DynamicFormArrayModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFormArrayModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         if (typeof config.groupFactory === "function") {
             this.groupFactory = config.groupFactory;
