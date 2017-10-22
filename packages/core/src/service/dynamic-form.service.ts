@@ -89,7 +89,7 @@ export class DynamicFormService {
                     options: any/*AbstractControlOptions*/ | null = null,
                     parent: DynamicPathable | null = null): FormGroup {
 
-        let controls: { [id: string]: AbstractControl; } = {};
+        let controls: { [controlId: string]: AbstractControl; } = {};
 
         groupModel.forEach(model => {
 
@@ -317,10 +317,10 @@ export class DynamicFormService {
 
     fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
 
-        let raw = Utils.isString(json) ? JSON.parse(json as string, Utils.parseJSONReviver) : json,
-            group: DynamicFormControlModel[] = [];
+        let rawFormModel = typeof json === "string" ? JSON.parse(json, Utils.parseJSONReviver) : json,
+            formModel: DynamicFormControlModel[] = [];
 
-        raw.forEach((model: any) => {
+        rawFormModel.forEach((model: any) => {
 
             switch (model.type) {
 
@@ -335,34 +335,34 @@ export class DynamicFormService {
                         return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);
                     };
 
-                    group.push(new DynamicFormArrayModel(model, model.cls));
+                    formModel.push(new DynamicFormArrayModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                    group.push(new DynamicCheckboxModel(model, model.cls));
+                    formModel.push(new DynamicCheckboxModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
                     model.group = this.fromJSON(model.group) as DynamicCheckboxModel[];
-                    group.push(new DynamicCheckboxGroupModel(model, model.cls));
+                    formModel.push(new DynamicCheckboxGroupModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                    group.push(new DynamicDatePickerModel(model, model.cls));
+                    formModel.push(new DynamicDatePickerModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
-                    group.push(new DynamicEditorModel(model, model.cls));
+                    formModel.push(new DynamicEditorModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
                     model.value = null;
-                    group.push(new DynamicFileUploadModel(model, model.cls));
+                    formModel.push(new DynamicFileUploadModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                     model.group = this.fromJSON(model.group);
-                    group.push(new DynamicFormGroupModel(model, model.cls));
+                    formModel.push(new DynamicFormGroupModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
@@ -372,35 +372,35 @@ export class DynamicFormService {
                         inputModel.mask = Utils.maskFromString(inputModel.mask as string);
                     }
 
-                    group.push(new DynamicInputModel(model, model.cls));
+                    formModel.push(new DynamicInputModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                    group.push(new DynamicRadioGroupModel(model, model.cls));
+                    formModel.push(new DynamicRadioGroupModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RATING:
-                    group.push(new DynamicRatingModel(model, model.cls));
+                    formModel.push(new DynamicRatingModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                    group.push(new DynamicSelectModel(model, model.cls));
+                    formModel.push(new DynamicSelectModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                    group.push(new DynamicSliderModel(model, model.cls));
+                    formModel.push(new DynamicSliderModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                    group.push(new DynamicSwitchModel(model, model.cls));
+                    formModel.push(new DynamicSwitchModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                    group.push(new DynamicTextAreaModel(model, model.cls));
+                    formModel.push(new DynamicTextAreaModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-                    group.push(new DynamicTimePickerModel(model, model.cls));
+                    formModel.push(new DynamicTimePickerModel(model, model.cls));
                     break;
 
                 default:
@@ -408,6 +408,6 @@ export class DynamicFormService {
             }
         });
 
-        return group;
+        return formModel;
     }
 }

@@ -44,7 +44,8 @@ export class DynamicFormValidationService {
         }
 
         if (validatorArgs !== null) {
-            return (validatorFn as Function)(validatorArgs);
+
+            return (validatorFn as ValidatorFactory)(validatorArgs);
         }
 
         return validatorFn as ValidatorFn | AsyncValidatorFn;

@@ -82,7 +82,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     }
 
     get hasErrorMessages(): boolean {
-        return Utils.isDefined(this.errorMessages);
+        return typeof this.errorMessages === "object" && this.errorMessages !== null;
     }
 
     toJSON() {

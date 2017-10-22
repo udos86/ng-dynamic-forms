@@ -13,16 +13,6 @@ export interface DynamicClsConfig {
 export class DynamicClsConfigFactory {
 
     static create(): DynamicClsConfig {
-
-        return {
-            container: "",
-            control: "",
-            errors: "",
-            group: "",
-            hint: "",
-            host: "",
-            label: "",
-            option: ""
-        };
+        return {container: "", control: "", errors: "", group: "", hint: "", host: "", label: "", option: ""};
     }
 }
