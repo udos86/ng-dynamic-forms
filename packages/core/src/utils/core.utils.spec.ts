@@ -23,22 +23,6 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("should detect equality correctly", () => {
-
-        let testValue1 = "test",
-            testValue2 = 5,
-            comparables1 = ["test1", "test2", "test3"],
-            comparables2 = ["test1", "test2", "test"],
-            comparables3 = [1, 2, 3, 4],
-            comparables4 = [2, 3, 4, 5, 6];
-
-        expect(Utils.equals<string>(testValue1, ...comparables1)).toBe(false);
-        expect(Utils.equals<string>(testValue1, ...comparables2)).toBe(true);
-        expect(Utils.equals<number>(testValue2, ...comparables3)).toBe(false);
-        expect(Utils.equals<number>(testValue2, ...comparables4)).toBe(true);
-    });
-
-
     it("should merge correctly", () => {
 
         let valueA = Utils.merge(configObject.a, 4),

@@ -116,12 +116,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get errorMessages(): string[] {
-
-        if (this.hasErrorMessaging && this.model.hasErrorMessages) {
-            return this.validationService.createErrorMessages(this.control, this.model);
-        }
-
-        return [];
+        return this.validationService.createErrorMessages(this.control, this.model);
     }
 
     get showHint(): boolean { // needed for AOT

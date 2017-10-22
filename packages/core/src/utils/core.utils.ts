@@ -1,9 +1,5 @@
 export class Utils {
 
-    static equals<T>(value: T, ...comparables: T[]): boolean {
-        return !!(comparables.find(comparable => value === comparable));
-    }
-
     static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] | null {
 
         if (typeof mask === "string") {

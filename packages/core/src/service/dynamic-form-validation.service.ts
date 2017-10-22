@@ -2,16 +2,12 @@ import { Injectable, Inject, Optional } from "@angular/core";
 import {
     AbstractControl,
     AsyncValidatorFn,
-    FormArray,
-    FormControl,
-    FormGroup,
     ValidatorFn,
     Validators,
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import { DynamicFormControlModel, DynamicValidatorsConfig } from "../model/dynamic-form-control.model";
-import { Utils } from "../utils/core.utils";
 import { ValidationUtils, DynamicValidatorDescriptor } from "../utils/validation.utils";
 
 export type ValidatorFactory = (args: any) => ValidatorFn | AsyncValidatorFn;
@@ -120,37 +116,26 @@ export class DynamicFormValidationService {
 
         let messages: string[] = [];
 
-        if (model.errorMessages !== null) {
+        if (typeof model.errorMessages === "object" && model.errorMessages !== null) {
 
-            let errorMessages = model.errorMessages as DynamicValidatorsConfig;
+            let messagesConfig = model.errorMessages as DynamicValidatorsConfig;
 
-            if (control instanceof FormControl) {
+            Object.keys(control.errors || {}).forEach(validationErrorKey => {
 
-                Object.keys(control.errors || {}).forEach(errorCode => {
+                let messageKey = validationErrorKey;
 
-                    let messageKey = Utils.equals(errorCode, "minlength", "maxlength") ?
-                        errorCode.replace("length", "Length") : errorCode;
-
-                    if (errorMessages.hasOwnProperty(messageKey)) {
-
-                        let error = control.getError(errorCode),
-                            template = errorMessages[messageKey] as string;
-
-                        messages.push(this.parseErrorMessageTemplate(template, model, error));
-                    }
-                });
-
-            } else if (control instanceof FormGroup || control instanceof FormArray) {
-
-                let messageKey = Object.keys(errorMessages)[0] as string;
-
-                if (errorMessages.hasOwnProperty(messageKey)) {
-
-                    let template = errorMessages[messageKey] as string;
-
-                    messages.push(this.parseErrorMessageTemplate(template, model));
+                if (validationErrorKey === "minlength" || validationErrorKey === "maxlength") {
+                    messageKey.replace("length", "Length");
                 }
-            }
+
+                if (messagesConfig.hasOwnProperty(messageKey)) {
+
+                    let validationError = control.getError(validationErrorKey),
+                        messageTemplate = messagesConfig[messageKey] as string;
+
+                    messages.push(this.parseErrorMessageTemplate(messageTemplate, model, validationError));
+                }
+            });
         }
 
         return messages;
