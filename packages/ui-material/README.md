@@ -63,7 +63,7 @@ with **`DynamicMaterialFormControlComponent`**:
 
     <dynamic-material-form [group]="myFormGroup"
                            [model]="myFormModel"
-                           (marEvent)="onMatEvent($event)"></dynamic-material-form>
+                           (matEvent)="onMatEvent($event)"></dynamic-material-form>
 </form>
 ```
 
