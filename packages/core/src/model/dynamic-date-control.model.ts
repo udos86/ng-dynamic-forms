@@ -1,4 +1,4 @@
-import { ClsConfig } from "./dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 
@@ -17,9 +17,9 @@ export abstract class DynamicDateControlModel extends DynamicFormValueControlMod
     @serializable() min: string | Date | null;
     @serializable() placeholder: string | null;
 
-    constructor(config: DynamicDateControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicDateControlModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.format = config.format || null;
         this.max = config.max || null;

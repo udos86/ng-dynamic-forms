@@ -2,16 +2,16 @@ import { ValidationUtils } from "./validation.utils";
 
 describe("Validation Utils test suite", () => {
 
-    it("should detect a validator configuration correctly", () => {
+    it("should check a validator configuration", () => {
 
-        let testConfig1: any = {name: "test"},
-            testConfig2: any = {args: null},
-            testConfig3: any = {name: "test", args: null},
-            testConfig4 = null;
+        let testValue1: any = {name: "test"},
+            testValue2: any = {args: null},
+            testValue3: any = {name: "test", args: null},
+            testValue4 = null;
 
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig1)).toBe(false);
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig2)).toBe(false);
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig3)).toBe(true);
-        expect(ValidationUtils.isExpandedValidatorConfig(testConfig4)).toBe(false);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testValue1)).toBe(false);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testValue2)).toBe(false);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testValue3)).toBe(true);
+        expect(ValidationUtils.isDynamicValidatorDescriptor(testValue4)).toBe(false);
     });
 });

@@ -3,7 +3,10 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlEvent,
-    DynamicFormControlEventType
+    DYNAMIC_FORM_CONTROL_EVENT_TYPE_BLUR,
+    DYNAMIC_FORM_CONTROL_EVENT_TYPE_CHANGE,
+    DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS,
+    DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM
 } from "./dynamic-form-control.component";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
@@ -25,23 +28,23 @@ export abstract class DynamicFormComponent {
         return model.id;
     }
 
-    onEvent($event: DynamicFormControlEvent, type: DynamicFormControlEventType) {
+    onEvent($event: DynamicFormControlEvent, type: string) {
 
         switch (type) {
 
-            case DynamicFormControlEventType.Blur:
+            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_BLUR:
                 this.blur.emit($event);
                 break;
 
-            case DynamicFormControlEventType.Change:
+            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_CHANGE:
                 this.change.emit($event);
                 break;
 
-            case DynamicFormControlEventType.Focus:
+            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS:
                 this.focus.emit($event);
                 break;
 
-            case DynamicFormControlEventType.Custom:
+            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM:
                 this.customEvent.emit($event);
                 break;
         }

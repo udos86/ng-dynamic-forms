@@ -24,7 +24,9 @@ describe("DynamicFormArrayModel test suite", () => {
                     ]
                 })
             ],
-            validator: {required: null}
+            validators: {
+                required: null
+            }
         };
 
     beforeEach(() => model = new DynamicFormArrayModel(config));
@@ -35,8 +37,6 @@ describe("DynamicFormArrayModel test suite", () => {
         expect(model.size).toBe(model.initialCount);
         expect(model.id).toEqual(config.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
-        expect(model.asyncValidator).toBeNull();
-        expect(model.validator).toBeDefined();
         expect(model.groupFactory().length).toEqual(2);
         expect(model.removeGroup).toBeDefined();
     });
@@ -64,11 +64,10 @@ describe("DynamicFormArrayModel test suite", () => {
 
         let json = JSON.parse(JSON.stringify(model));
 
-        expect(json.asyncValidators).toBeUndefined();
+        expect(json.asyncValidators).toBeNull();
         expect(json.id).toEqual(model.id);
         expect(json.groups.length).toEqual(model.size);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
-        expect(Object.keys(json.validator)[0]).toEqual("required");
-        expect(json.validators).toBeUndefined();
+        expect(Object.keys(json.validators)[0]).toEqual("required");
     });
 });

@@ -1,5 +1,5 @@
 import { TestBed, inject } from "@angular/core/testing";
-import { ReactiveFormsModule, FormControl, FormGroup, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
+import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
@@ -33,31 +33,16 @@ describe("DynamicFormValidationService test suite", () => {
         (validationService: DynamicFormValidationService) => service = validationService));
 
 
-    it("should resolve validator by name correctly", () => {
+    it("should resolve a validator by name correctly", () => {
 
-        expect(service.getValidatorByName("required")).toBeTruthy();
-        expect(service.getValidatorByName("testValidator")).toBeTruthy();
+        expect(service.getValidator("required")).toBeTruthy();
+        expect(service.getValidator("testValidator")).toBeTruthy();
     });
 
 
-    it("should resolve async validator by name correctly", () => {
+    it("should resolve a async validator by name correctly", () => {
 
-        expect(service.getAsyncValidatorByName("testAsyncValidator")).toBeTruthy();
-    });
-
-
-    it("should resolve validator from config correctly", () => {
-
-        expect(service.getValidator({})).toBeNull();
-        expect(service.getValidator({required: null})).toBeTruthy();
-        expect(service.getValidator({testValidator: {name: testValidator.name, args: null}})).toBeTruthy();
-    });
-
-
-    it("should resolve async validator from config correctly", () => {
-
-        expect(service.getAsyncValidator({})).toBeNull();
-        expect(service.getAsyncValidator({testAsyncValidator: null})).toBeTruthy();
+        expect(service.getAsyncValidator("testAsyncValidator")).toBeTruthy();
     });
 
 
@@ -97,23 +82,15 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should resolve a custom async validator from detailed config correctly", () => {
-
-        let config: any = {testAsyncValidator: {name: testAsyncValidator.name, args: null}},
-            validator = service.getAsyncValidator(config);
-
-        expect(typeof validator === "function").toBe(true);
-    });
-
 
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
-        expect(() => service.getValidatorByName("test", null))
+        expect(() => service.getValidator("test", null))
             .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
 
 
-    it("should create form control error messages correctly", () => {
+    it("should create error messages correctly", () => {
 
         let errorMessages,
             testControl: FormControl = new FormControl(),
@@ -152,22 +129,5 @@ describe("DynamicFormValidationService test suite", () => {
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(1);
         expect(errorMessages[0]).toEqual("Field has a custom error: 42");
-    });
-
-
-    it("should create form group error messages correctly", () => {
-
-        let errorMessages,
-            testControl: FormGroup = new FormGroup({}),
-            testModel: DynamicFormGroupModel = new DynamicFormGroupModel({
-                id: "testGroupModel",
-                errorMessages: {
-                    required: "Group is required",
-                }
-            });
-
-        errorMessages = service.createErrorMessages(testControl, testModel);
-        expect(errorMessages.length).toBe(1);
-        expect(errorMessages[0]).toEqual("Group is required");
     });
 });

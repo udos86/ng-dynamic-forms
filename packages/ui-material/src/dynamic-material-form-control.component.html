@@ -28,9 +28,9 @@
                                                [model]="controlModel"
                                                [templates]="templates"
                                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                               (ngBlur)="onBlur($event)"
-                                               (ngChange)="onValueChange($event)"
-                                               (ngFocus)="onFocus($event)"
+                                               (dfBlur)="onBlur($event)"
+                                               (dfChange)="onValueChange($event)"
+                                               (dfFocus)="onFocus($event)"
                                                (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
                 <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>

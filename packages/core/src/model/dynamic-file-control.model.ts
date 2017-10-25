@@ -1,4 +1,4 @@
-import { ClsConfig } from "./dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "./dynamic-form-value-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 
@@ -11,9 +11,9 @@ export abstract class DynamicFileControlModel extends DynamicFormValueControlMod
 
     @serializable() multiple: boolean;
 
-    constructor(config: DynamicFileControlModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFileControlModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
     }
