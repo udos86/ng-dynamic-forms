@@ -1,5 +1,6 @@
-import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
+import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs/Subject";
+import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { Utils } from "../utils/core.utils";
 import { DynamicClsConfig, DynamicClsConfigFactory } from "../utils/cls.utils";
@@ -28,7 +29,7 @@ export interface DynamicFormControlModelConfig {
     id?: string;
     label?: string;
     relation?: DynamicFormControlRelationGroup[];
-    updateOn?: string;
+    updateOn?: FormHooks;
     validators?: DynamicValidatorsConfig;
 }
 
@@ -44,7 +45,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() name: string;
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
-    @serializable() updateOn: string | null;
+    @serializable() updateOn: FormHooks | null;
     @serializable() validators: DynamicValidatorsConfig | null;
 
     abstract readonly type: string;

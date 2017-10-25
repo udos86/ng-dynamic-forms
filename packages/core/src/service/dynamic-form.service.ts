@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AbstractControl, FormArray, /*FormBuilder,*/ FormControl, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
 import {
     DynamicFormControlModel,
     DynamicPathable,
@@ -41,26 +42,25 @@ import {
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
 import { Utils } from "../utils/core.utils";
-import { ValidationUtils, FORM_HOOK_CHANGE } from "../utils/validation.utils";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 
 @Injectable()
 export class DynamicFormService {
 
-    constructor(/*private formBuilder: FormBuilder, */private validationService: DynamicFormValidationService) {}
+    constructor(private validationService: DynamicFormValidationService) {}
 
 
     createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
                                  asyncValidatorsConfig: DynamicValidatorsConfig | null = null,
-                                 updateOnConfig: string | null = null): any/*AbstractControlOptions*/ {
+                                 updateOn: FormHooks | null = null): AbstractControlOptions {
 
         return {
 
-            asyncValidators: Validators.composeAsync(this.validationService.getAsyncValidators(asyncValidatorsConfig)),
+            asyncValidators: this.validationService.getAsyncValidators(asyncValidatorsConfig),
 
-            validators: Validators.compose(this.validationService.getValidators(validatorsConfig)),
+            validators: this.validationService.getValidators(validatorsConfig),
 
-            updateOn: ValidationUtils.isFormHook(updateOnConfig) ? updateOnConfig : FORM_HOOK_CHANGE
+            updateOn: updateOn === null ? "change" : updateOn
         };
     }
 
@@ -80,13 +80,12 @@ export class DynamicFormService {
             controls.push(this.createFormGroup(groupModel.group, groupOptions, groupModel));
         }
 
-        //return this.formBuilder.array(formArray, options);
         return new FormArray(controls, options);
     }
 
 
     createFormGroup(groupModel: DynamicFormControlModel[],
-                    options: any/*AbstractControlOptions*/ | null = null,
+                    options: AbstractControlOptions | null = null,
                     parent: DynamicPathable | null = null): FormGroup {
 
         let controls: { [controlId: string]: AbstractControl; } = {};
@@ -125,7 +124,6 @@ export class DynamicFormService {
             }
         });
 
-        //return this.formBuilder.group(formGroup, options);
         return new FormGroup(controls, options);
     }
 

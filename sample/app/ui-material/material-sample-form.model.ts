@@ -15,7 +15,7 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
     new DynamicFormGroupModel(
         {
             id: "stay",
-            validator: {
+            validators: {
                 customDateRangeValidator: {
                     name: customDateRangeValidator.name,
                     args: null

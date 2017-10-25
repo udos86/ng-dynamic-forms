@@ -14,19 +14,4 @@ describe("Validation Utils test suite", () => {
         expect(ValidationUtils.isDynamicValidatorDescriptor(testValue3)).toBe(true);
         expect(ValidationUtils.isDynamicValidatorDescriptor(testValue4)).toBe(false);
     });
-
-    it("should check a form hook", () => {
-
-        let testValue1 = "test",
-            testValue2 = "blur",
-            testValue3 = "change",
-            testValue4 = "submit",
-            testValue5 = null;
-
-        expect(ValidationUtils.isFormHook(testValue1)).toBe(false);
-        expect(ValidationUtils.isFormHook(testValue2)).toBe(true);
-        expect(ValidationUtils.isFormHook(testValue3)).toBe(true);
-        expect(ValidationUtils.isFormHook(testValue4)).toBe(true);
-        expect(ValidationUtils.isFormHook(testValue5)).toBe(false);
-    });
 });

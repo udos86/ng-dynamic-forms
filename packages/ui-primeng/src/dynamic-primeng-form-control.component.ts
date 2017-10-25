@@ -48,8 +48,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    Utils
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng-dynamic-forms/core";
 import {
     PrimeNGFormControlType,
@@ -122,7 +121,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
         super.setTemplates();
 
         this.templates
-            .filter(directive => Utils.isString(directive.as))
+            .filter(directive => typeof directive.as === "string")
             .forEach(directive => this.setTemplateDirective(directive));
     }
 
