@@ -3,15 +3,11 @@
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label *ngIf="type !== 3 && model.label"
-           [attr.for]="model.id"
+           [for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
-
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <div [ngClass]="model.cls.grid.control">
 
@@ -32,13 +28,13 @@
                                                        [group]="control.at(idx)"
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
-                                                       [templates]="templates"
+                                                       [templates]="templateList"
                                                        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                        (dfBlur)="onBlur($event)"
                                                        (dfChange)="onValueChange($event)"
                                                        (dfFocus)="onFocusEvent($event)"></dynamic-ng-bootstrap-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -128,7 +124,7 @@
                                                    [group]="control"
                                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
-                                                   [templates]="templates"
+                                                   [templates]="templateList"
                                                    [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                    (dfBlur)="onBlur($event)"
                                                    (dfChange)="onValueChange($event)"
@@ -215,7 +211,8 @@
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{ option.label }}</option>
+                        [ngValue]="option.value">{{ option.label }}
+                </option>
 
             </select>
 
@@ -260,9 +257,7 @@
 
     </div>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

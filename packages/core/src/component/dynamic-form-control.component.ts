@@ -14,13 +14,20 @@ import { Subscription } from "rxjs/Subscription";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
-import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
+import {
+    DynamicFormArrayGroupModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY
+} from "../model/form-array/dynamic-form-array.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
+import {
+    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
+    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
+    DynamicTemplateDirective
+} from "../directive/dynamic-template.directive";
 import { RelationUtils } from "../utils/relation.utils";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 
@@ -39,6 +46,8 @@ export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_CHANGE = "change";
 export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS = "focus";
 export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM = "custom";
 
+export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
+
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
     bindId: boolean;
@@ -49,9 +58,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     hasFocus: boolean;
     model: DynamicFormControlModel;
 
-    contentTemplates: QueryList<DynamicTemplateDirective>;
-    inputTemplates: QueryList<DynamicTemplateDirective> | null = null;
-    template: DynamicTemplateDirective;
+    contentTemplateList: QueryList<DynamicTemplateDirective>;
+    inputTemplateList: QueryList<DynamicTemplateDirective> | null = null;
+    templates: DynamicTemplateDirective[] = [];
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
@@ -139,8 +148,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.hasErrorMessaging && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
-    get templates(): QueryList<DynamicTemplateDirective> {
-        return this.inputTemplates ? this.inputTemplates : this.contentTemplates;
+    get templateList(): QueryList<DynamicTemplateDirective> {
+        return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
     }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
@@ -149,10 +158,22 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     protected setTemplates(): void {
 
-        this.templates.forEach((template: DynamicTemplateDirective) => {
+        this.templateList.forEach((template: DynamicTemplateDirective) => {
 
             if ((template.modelType === this.model.type || template.modelId === this.model.id) && template.as === null) {
-                this.template = template;
+
+                if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
+
+                    this.templates[DynamicFormControlComponentTemplatePosition.array] = template;
+
+                } else if (template.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START) {
+
+                    this.templates[DynamicFormControlComponentTemplatePosition.start] = template;
+
+                } else if (template.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END) {
+
+                    this.templates[DynamicFormControlComponentTemplatePosition.end] = template;
+                }
             }
         });
     }

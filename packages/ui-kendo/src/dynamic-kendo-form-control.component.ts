@@ -71,8 +71,8 @@ export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponen
 })
 export class DynamicKendoFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
@@ -122,9 +122,9 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
 
         super.setTemplates();
 
-        this.templates
-            .filter(directive => typeof directive.as === "string" && directive.as.startsWith("kendo"))
-            .forEach(directive => this.setTemplateDirective(directive));
+        this.templateList
+            .filter(template => typeof template.as === "string" && template.as.startsWith("kendo"))
+            .forEach(template => this.setTemplateDirective(template));
     }
 
     static getFormControlType(model: DynamicFormControlModel): KendoFormControlType | null {

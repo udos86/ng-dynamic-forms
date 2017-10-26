@@ -17,7 +17,6 @@ describe("DynamicRatingModel test suite", () => {
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.max).toBe(config.max);
-        expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RATING);
         expect(model.value).toBe(config.value);
     });

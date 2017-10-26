@@ -18,7 +18,6 @@ describe("DynamicSwitchModel test suite", () => {
         expect(model.labelPosition).toEqual(DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER);
         expect(model.offLabel).toBeNull();
         expect(model.onLabel).toBeNull();
-        expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SWITCH);
         expect(model.value).toBe(false);
     });

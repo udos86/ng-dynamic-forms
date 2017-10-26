@@ -19,7 +19,6 @@ describe("DynamicFileUploadModel test suite", () => {
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.multiple).toBe(false);
-        expect(model.name).toEqual(model.id);
         expect(model.removeUrl).toBeNull();
         expect(model.showFileList).toBe(true);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD);

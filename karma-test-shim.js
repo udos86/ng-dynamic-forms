@@ -76,7 +76,7 @@ System.config({
         "@progress/kendo-angular-resize-sensor": "npm:@progress/kendo-angular-resize-sensor/dist/npm/main.js",
         "@progress/kendo-angular-upload": "npm:@progress/kendo-angular-upload/dist/npm/main.js",
         "@progress/kendo-date-math": "npm:@progress/kendo-date-math/dist/npm/main.js",
-        "@progress/kendo-popup-common": "npm:@progress/kendo-angular-popup/dist/npm/main.js",
+        "@progress/kendo-popup-common": "npm:@progress/kendo-popup-common/dist/npm/main.js",
         "@telerik": "npm:@telerik",
         "@telerik/kendo-draggable": "npm:@telerik/kendo-draggable/dist/npm/main.js",
         "@telerik/kendo-dropdowns-common": "npm:@telerik/kendo-dropdowns-common/dist/npm/main.js",

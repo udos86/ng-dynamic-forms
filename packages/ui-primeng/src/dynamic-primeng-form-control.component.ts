@@ -67,8 +67,8 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
 })
 export class DynamicPrimeNGFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
@@ -120,9 +120,9 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
         super.setTemplates();
 
-        this.templates
-            .filter(directive => typeof directive.as === "string")
-            .forEach(directive => this.setTemplateDirective(directive));
+        this.templateList
+            .filter(template => typeof template.as === "string")
+            .forEach(template => this.setTemplateDirective(template));
     }
 
     onAutoComplete(_$event: any): void {

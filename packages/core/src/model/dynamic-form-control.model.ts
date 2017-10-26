@@ -26,7 +26,7 @@ export interface DynamicFormControlModelConfig {
     asyncValidators?: DynamicValidatorsConfig;
     disabled?: boolean;
     errorMessages?: DynamicValidatorsConfig;
-    id?: string;
+    id: string;
     label?: string;
     relation?: DynamicFormControlRelationGroup[];
     updateOn?: FormHooks;
@@ -42,7 +42,6 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() errorMessages: DynamicValidatorsConfig | null;
     @serializable() id: string;
     @serializable() label: string | null;
-    @serializable() name: string;
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
     @serializable() updateOn: FormHooks | null;
@@ -52,22 +51,16 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     constructor(config: DynamicFormControlModelConfig, clsConfig: DynamicFormControlClsConfig = {}) {
 
-        if (typeof config.id === "string" && config.id.length > 0) {
-            this.id = config.id;
-        } else {
-            throw new Error("string id must be specified for DynamicFormControlModel");
-        }
-
-        this.cls.element = Utils.merge(clsConfig.element, DynamicClsConfigFactory.create());
-        this.cls.grid = Utils.merge(clsConfig.grid, DynamicClsConfigFactory.create());
-
         this.asyncValidators = config.asyncValidators || null;
         this.errorMessages = config.errorMessages || null;
+        this.id = config.id;
         this.label = config.label || null;
-        this.name = this.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];
         this.updateOn = typeof config.updateOn === "string" ? config.updateOn : null;
         this.validators = config.validators || null;
+
+        this.cls.element = Utils.merge(clsConfig.element, DynamicClsConfigFactory.create());
+        this.cls.grid = Utils.merge(clsConfig.grid, DynamicClsConfigFactory.create());
 
         this._disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();

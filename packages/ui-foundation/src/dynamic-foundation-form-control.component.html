@@ -2,17 +2,13 @@
 
     <div *ngIf="type !== 2 && model.label" [ngClass]="model.cls.grid.label">
 
-        <label [attr.for]="model.id"
-               [class.is-invalid-label]="showErrorMessages"
+        <label [class.is-invalid-label]="showErrorMessages"
+               [for]="model.id"
                [innerHTML]="model.label"
                [ngClass]="model.cls.element.label"></label>
     </div>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
-
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <div [ngClass]="model.cls.grid.control">
 
@@ -33,13 +29,13 @@
                                                      [group]="control.at(idx)"
                                                      [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                      [model]="controlModel"
-                                                     [templates]="templates"
+                                                     [templates]="templateList"
                                                      [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                      (dfBlur)="onBlur($event)"
                                                      (dfChange)="onValueChange($event)"
                                                      (dfFocus)="onFocus($event)"></dynamic-foundation-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -77,7 +73,7 @@
                                                  [group]="control"
                                                  [hasErrorMessaging]="itemModel.hasErrorMessages"
                                                  [model]="itemModel"
-                                                 [templates]="templates"
+                                                 [templates]="templateList"
                                                  [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
                                                  (dfBlur)="onBlur($event)"
                                                  (dfChange)="onValueChange($event)"
@@ -160,7 +156,8 @@
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{ option.label }}</option>
+                        [ngValue]="option.value">{{ option.label }}
+                </option>
 
             </select>
 
@@ -215,14 +212,11 @@
 
     </div>
 
-
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="form-error is-visible">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

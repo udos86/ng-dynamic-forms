@@ -11,11 +11,7 @@
               [ngClass]="model.cls.element.hint"></span>
     </label>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
-
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <ng-container [ngSwitch]="type">
 
@@ -34,14 +30,14 @@
                                             [group]="control.at(idx)"
                                             [hasErrorMessaging]="controlModel.hasErrorMessages"
                                             [model]="controlModel"
-                                            [templates]="templates"
+                                            [templates]="templateList"
                                             [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                             (dfBlur)="onBlur($event)"
                                             (dfChange)="onValueChange($event)"
                                             (dfFocus)="onFocus($event)"
                                             (kendoEvent)="onCustomEvent($event)"></dynamic-kendo-form-control>
 
-                <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
             </div>
 
@@ -186,7 +182,7 @@
                                         [group]="control"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         [model]="controlModel"
-                                        [templates]="templates"
+                                        [templates]="templateList"
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
@@ -372,15 +368,12 @@
                       [tabIndex]="model.tabIndex"></kendo-upload>
 
     </ng-container>
-
-
+    
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="k-field-info k-required">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

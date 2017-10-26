@@ -1,15 +1,11 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label *ngIf="type !== 2 && model.label"
-           [attr.for]="model.id"
+           [for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
-
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <ng-container [ngSwitch]="type">
 
@@ -28,13 +24,13 @@
                                             [group]="control.at(idx)"
                                             [hasErrorMessaging]="controlModel.hasErrorMessages"
                                             [model]="controlModel"
-                                            [templates]="templates"
+                                            [templates]="templateList"
                                             [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                             (dfBlur)="onBlur($event)"
                                             (dfChange)="onValueChange($event)"
                                             (dfFocus)="onFocus($event)"></dynamic-basic-form-control>
 
-                <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
             </div>
 
@@ -55,7 +51,7 @@
                    (blur)="onBlur($event)"
                    (change)="onValueChange($event)"
                    (focus)="onFocus($event)"/><span [ngClass]="model.cls.element.label"
-                                                         [innerHTML]="model.label"></span></label>
+                                                    [innerHTML]="model.label"></span></label>
 
         <!-- FORM GROUP ----------------------------------------------------------------------------------------------->
         <fieldset *ngSwitchCase="3"
@@ -70,7 +66,7 @@
                                         [group]="control"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         [model]="controlModel"
-                                        [templates]="templates"
+                                        [templates]="templateList"
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
@@ -174,16 +170,14 @@
 
     </ng-container>
 
-
-    <div *ngIf="showHint" [ngClass]="[model.cls.element.hint, model.cls.grid.hint]"><span [innerHTML]="model.hint"></span></div>
+    <div *ngIf="showHint" [ngClass]="[model.cls.element.hint, model.cls.grid.hint]"><span
+            [innerHTML]="model.hint"></span></div>
 
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

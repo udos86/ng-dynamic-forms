@@ -22,7 +22,6 @@ describe("DynamicDatepickerModel test suite", () => {
         expect(model.format).toBeNull();
         expect(model.max).toBeNull();
         expect(model.min).toBeNull();
-        expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER);
         expect(model.value).toBe(config.value);
     });

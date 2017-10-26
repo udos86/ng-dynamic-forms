@@ -1,13 +1,10 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <div *ngIf="type !== 4 && model.label" [ngClass]="model.cls.grid.label">
-        <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+        <label [for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
     </div>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 8" role="group"
@@ -19,7 +16,7 @@
                                       [group]="control"
                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                       [model]="controlModel"
-                                      [templates]="templates"
+                                      [templates]="templateList"
                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                       (dfBlur)="onBlurEvent($event)"
                                       (dfChange)="onValueChange($event)"
@@ -66,14 +63,14 @@
                                                   [group]="control.at(idx)"
                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                   [model]="controlModel"
-                                                  [templates]="templates"
+                                                  [templates]="templateList"
                                                   [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                   (dfBlur)="onBlur($event)"
                                                   (dfChange)="onValueChange($event)"
                                                   (dfFocus)="onFocus($event)"
                                                   (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -294,14 +291,11 @@
 
     </ng-container>
 
-
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

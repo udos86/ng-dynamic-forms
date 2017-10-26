@@ -1,17 +1,15 @@
 <div [class.form-group]="asBootstrapFormGroup || model.cls.element.container.includes('form-group')"
      [class.has-error]="showErrorMessages"
      [formGroup]="group"
+
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label *ngIf="type !== 2 && model.label"
-           [attr.for]="model.id"
+           [for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <!-- CHECKBOX ----------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 2" [ngClass]="model.cls.grid.control">
@@ -33,7 +31,7 @@
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
                        (focus)="onFocus($event)"/><span [innerHTML]="model.label"
-                                                             [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span></label>
+                                                        [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span></label>
         </div>
 
     </div>
@@ -58,13 +56,13 @@
                                                     [group]="control.at(idx)"
                                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                     [model]="controlModel"
-                                                    [templates]="templates"
+                                                    [templates]="templateList"
                                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                     (dfBlur)="onBlur($event)"
                                                     (dfChange)="onValueChange($event)"
                                                     (dfFocus)="onFocus($event)"></dynamic-bootstrap-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -84,7 +82,7 @@
                                                 [group]="control"
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                 [model]="controlModel"
-                                                [templates]="templates"
+                                                [templates]="templateList"
                                                 [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                 (dfBlur)="onBlur($event)"
                                                 (dfChange)="onValueChange($event)"
@@ -191,7 +189,8 @@
 
                 <option *ngFor="let option of model.options$ | async"
                         [attr.name]="model.name"
-                        [ngValue]="option.value">{{ option.label }}</option>
+                        [ngValue]="option.value">{{ option.label }}
+                </option>
 
             </select>
 
@@ -215,20 +214,18 @@
                       (change)="onValueChange($event)"
                       (focus)="onFocus($event)"></textarea>
 
-            <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
+            <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint"
+                  [ngClass]="model.cls.element.hint"></span>
 
         </ng-container>
 
     </div>
 
-
     <ul *ngIf="showErrorMessages" class="has-error" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="help-block">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

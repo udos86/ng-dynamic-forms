@@ -29,7 +29,6 @@ describe("DynamicSelectModel test suite", () => {
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.multiple).toBe(config.multiple);
-        expect(model.name).toEqual(model.id);
         expect(model.options.length).toBe(config.options.length);
         expect(model.options$ instanceof Observable).toBe(true);
         expect(model.placeholder).toEqual("");

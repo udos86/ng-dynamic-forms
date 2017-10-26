@@ -104,6 +104,7 @@ describe("DynamicFormValidationService test suite", () => {
                 id: "testModel",
                 errorMessages: {
                     required: "Field is required",
+                    minLength: 5,
                     custom1: "Field {{ id }} has a custom error",
                     custom2: "Field has a custom error: {{ validator.param }}"
                 }
@@ -112,7 +113,7 @@ describe("DynamicFormValidationService test suite", () => {
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(0);
 
-        testControl.setErrors({required: true});
+        testControl.setErrors({required: true, minlength: 5});
 
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(1);
