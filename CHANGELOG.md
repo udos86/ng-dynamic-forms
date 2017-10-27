@@ -1,3 +1,25 @@
+# 5.0.0
+
+### **Breaking Changes**
+
+* **blur, focus and change event outputs have been prefixed** with `df` to avoid interference with any native events bubbling up
+* `asyncValidator` and `validator` properties from `DynamicFormGroupModel` and `DynamicFormArrayModel` 
+have been removed and replaced by `asyncValidators` and `validators`
+* `groupAsyncValidator` and `groupValidator` properties from `DynamicFormArrayModel` 
+have been removed and replaced by `groupAsyncValidators` and `groupValidators`
+* `getAsyncValidator()` and `getValidator()` function signatures from `DynamicFormValidationService` have been changed
+* `createFormGroup()` function signature from `DynamicFormService` has changed in order to support `AbstractControlOptions`
+
+### **Features** 
+
+* **update to Angular 5**
+* support for multiple validators on `FormArray` and `FormGroup` via `AbstractControlOptions`
+* support for `FormHooks` via new property `updateOn` on `DynamicFormControlModel` 
+* support for `AbstractControlOptions` via `createFormGroup()` from `DynamicFormService`
+* support for applying both a start **and** end template to a `DynamicFormControlComponent` instead of either / or  
+
+***
+
 # 1.4.34
 
 This will be the last release before Angular 5.
@@ -8,7 +30,6 @@ There'll be a major version incrementation to `5.0.0` to fully stay in sync with
 
 * **major event handling enhancements** (see new chapter on [Form Control Events](https://github.com/udos86/ng-dynamic-forms/tree/development#form-control-events)) 
 * **update to @angular/material** `beta.12` 
-
 
 # 1.4.33
 

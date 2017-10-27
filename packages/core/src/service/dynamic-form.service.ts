@@ -98,9 +98,7 @@ export class DynamicFormService {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
 
-                    let arrayModel = model as DynamicFormArrayModel;
-
-                    controls[model.id] = this.createFormArray(arrayModel);
+                    controls[model.id] = this.createFormArray(model as DynamicFormArrayModel);
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
@@ -120,7 +118,7 @@ export class DynamicFormService {
                         controlOptions = this.createAbstractControlOptions(
                             controlModel.validators, controlModel.asyncValidators, controlModel.updateOn);
 
-                    controls[controlModel.id] = new FormControl(controlState, controlOptions);
+                    controls[model.id] = new FormControl(controlState, controlOptions);
             }
         });
 
