@@ -34,26 +34,26 @@ export class Utils {
         return null;
     }
 
-    static merge(baseValue: any, defaultValue: any): any {
+    static merge(value: any, baseValue: any = null): any {
 
-        if (baseValue === undefined || baseValue === null) {
-            return defaultValue;
+        if (value === undefined || value === null) {
+            return baseValue;
         }
 
-        if (typeof baseValue === "object") {
+        if (typeof value === "object") {
 
-            for (let property in baseValue) {
+            for (let property in value) {
 
-                if (baseValue.hasOwnProperty(property) && typeof (baseValue[property] === "object")) {
+                if (value.hasOwnProperty(property) && typeof value[property] === "object") {
 
-                    baseValue[property] = Utils.merge(baseValue[property], defaultValue ? defaultValue[property] : null);
+                    value[property] = Utils.merge(value[property], baseValue ? baseValue[property] : null);
                 }
             }
 
-            return defaultValue ? Object.assign(defaultValue, baseValue) : baseValue;
+            return baseValue !== null ? Object.assign(baseValue, value) : value;
         }
 
-        return baseValue;
+        return value;
     }
 
     static parseJSONReviver(_key: string, value: any): any {
