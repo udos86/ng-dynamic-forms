@@ -18,6 +18,10 @@ have been removed and replaced by `groupAsyncValidators` and `groupValidators`
 * support for `FormHooks` via new property `updateOn` on `DynamicFormControlModel` 
 * support for applying both a start **and** end template to a `DynamicFormControlComponent` instead of either / or (closes [#531](https://github.com/udos86/ng2-dynamic-forms/issues/531)) 
 
+### **Bugfixes** 
+
+* `DynamicDateControlModel` now accepts date values of type `object` in order to support proprietary date representations, e.g. `NgbDateStruct` in NG Bootstrap (closes [#556](https://github.com/udos86/ng2-dynamic-forms/issues/556))
+
 ***
 
 # 1.4.34

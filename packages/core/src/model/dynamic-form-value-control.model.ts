@@ -6,7 +6,7 @@ import {
 } from "./dynamic-form-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 
-export type DynamicFormControlValue = boolean | number | string | Date | Array<boolean | number | string>;
+export type DynamicFormControlValue = boolean | number | string | object | Date | Array<boolean | number | string | object>;
 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
