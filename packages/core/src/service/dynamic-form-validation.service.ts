@@ -112,7 +112,9 @@ export class DynamicFormValidationService {
     }
 
 
-    setValidators(validatorsConfig: DynamicValidatorsConfig | null, control: AbstractControl, model: DynamicFormControlModel): void {
+    updateValidators(validatorsConfig: DynamicValidatorsConfig | null,
+                     control: AbstractControl,
+                     model: DynamicFormControlModel): void {
 
         model.validators = validatorsConfig;
 
@@ -126,7 +128,9 @@ export class DynamicFormValidationService {
     }
 
 
-    setAsyncValidators(asyncValidatorsConfig: DynamicValidatorsConfig | null, control: AbstractControl, model: DynamicFormControlModel): void {
+    updateAsyncValidators(asyncValidatorsConfig: DynamicValidatorsConfig | null,
+                          control: AbstractControl,
+                          model: DynamicFormControlModel): void {
 
         model.asyncValidators = asyncValidatorsConfig;
 

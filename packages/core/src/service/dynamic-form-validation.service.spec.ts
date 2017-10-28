@@ -2,7 +2,6 @@ import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 
 describe("DynamicFormValidationService test suite", () => {
@@ -82,13 +81,11 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
         expect(() => service.getValidator("test", null))
             .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
     });
-
 
 
     it("should update validators on control and model", () => {
@@ -100,12 +97,12 @@ describe("DynamicFormValidationService test suite", () => {
         expect(control["validator"]).toBeNull();
         expect(model.validators).toBeNull();
 
-        service.setValidators(config, control, model);
+        service.updateValidators(config, control, model);
 
         expect(typeof control["validator"] === "function").toBe(true);
         expect((model.validators as object).hasOwnProperty("testValidator")).toBe(true);
 
-        service.setValidators(null, control, model);
+        service.updateValidators(null, control, model);
 
         expect(control["validator"]).toBeNull();
         expect(model.validators).toBeNull();
@@ -121,12 +118,12 @@ describe("DynamicFormValidationService test suite", () => {
         expect(control["asyncValidator"]).toBeNull();
         expect(model.asyncValidators).toBeNull();
 
-        service.setAsyncValidators(config, control, model);
+        service.updateAsyncValidators(config, control, model);
 
         expect(typeof control["asyncValidator"] === "function").toBe(true);
         expect((model.asyncValidators as object).hasOwnProperty("testAsyncValidator")).toBe(true);
 
-        service.setAsyncValidators(null, control, model);
+        service.updateAsyncValidators(null, control, model);
 
         expect(control["asyncValidator"]).toBeNull();
         expect(model.asyncValidators).toBeNull();
@@ -137,12 +134,6 @@ describe("DynamicFormValidationService test suite", () => {
 
         let errorMessages,
             testControl: FormControl = new FormControl(),
-            testGroupModel: DynamicFormGroupModel = new DynamicFormGroupModel({
-                id: "testGroupModel",
-                errorMessages: {
-                    required: "Group is required",
-                }
-            }),
             testModel: DynamicFormControlModel = new DynamicInputModel({
                 id: "testModel",
                 errorMessages: {

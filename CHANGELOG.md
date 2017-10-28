@@ -17,6 +17,7 @@ have been removed and replaced by `groupAsyncValidators` and `groupValidators`
 * support for multiple `asyncValidators` and `validators` on `FormArray` and `FormGroup`
 * support for `FormHooks` via new property `updateOn` on `DynamicFormControlModel` 
 * support for applying both a start **and** end template to a `DynamicFormControlComponent` instead of either / or (closes [#531](https://github.com/udos86/ng2-dynamic-forms/issues/531)) 
+* support for updating `validators` and `asyncValidators` at runtime via new `updateValidators()` and `updateAsyncValidators()` functions on `DynamicFormValidationService` (closes [#342](https://github.com/udos86/ng2-dynamic-forms/issues/342)) 
 
 ### **Bugfixes** 
 
