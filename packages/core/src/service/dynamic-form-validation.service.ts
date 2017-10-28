@@ -112,6 +112,34 @@ export class DynamicFormValidationService {
     }
 
 
+    setValidators(validatorsConfig: DynamicValidatorsConfig | null, control: AbstractControl, model: DynamicFormControlModel): void {
+
+        model.validators = validatorsConfig;
+
+        if (validatorsConfig === null) {
+
+            control.clearValidators();
+
+        } else {
+            control.setValidators(this.getValidators(validatorsConfig));
+        }
+    }
+
+
+    setAsyncValidators(asyncValidatorsConfig: DynamicValidatorsConfig | null, control: AbstractControl, model: DynamicFormControlModel): void {
+
+        model.asyncValidators = asyncValidatorsConfig;
+
+        if (asyncValidatorsConfig === null) {
+
+            control.clearAsyncValidators();
+
+        } else {
+            control.setAsyncValidators(this.getAsyncValidators(asyncValidatorsConfig));
+        }
+    }
+
+
     createErrorMessages(control: AbstractControl, model: DynamicFormControlModel): string[] {
 
         let messages: string[] = [];

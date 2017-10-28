@@ -90,6 +90,49 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
+
+    it("should update validators on control and model", () => {
+
+        let config: any = {testValidator: null},
+            control: FormControl = new FormControl(),
+            model: DynamicFormControlModel = new DynamicInputModel({id: "input"});
+
+        expect(control["validator"]).toBeNull();
+        expect(model.validators).toBeNull();
+
+        service.setValidators(config, control, model);
+
+        expect(typeof control["validator"] === "function").toBe(true);
+        expect((model.validators as object).hasOwnProperty("testValidator")).toBe(true);
+
+        service.setValidators(null, control, model);
+
+        expect(control["validator"]).toBeNull();
+        expect(model.validators).toBeNull();
+    });
+
+
+    it("should update async validators on control and model", () => {
+
+        let config: any = {testAsyncValidator: null},
+            control: FormControl = new FormControl(),
+            model: DynamicFormControlModel = new DynamicInputModel({id: "input"});
+
+        expect(control["asyncValidator"]).toBeNull();
+        expect(model.asyncValidators).toBeNull();
+
+        service.setAsyncValidators(config, control, model);
+
+        expect(typeof control["asyncValidator"] === "function").toBe(true);
+        expect((model.asyncValidators as object).hasOwnProperty("testAsyncValidator")).toBe(true);
+
+        service.setAsyncValidators(null, control, model);
+
+        expect(control["asyncValidator"]).toBeNull();
+        expect(model.asyncValidators).toBeNull();
+    });
+
+
     it("should create error messages correctly", () => {
 
         let errorMessages,

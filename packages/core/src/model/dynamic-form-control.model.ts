@@ -62,7 +62,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.cls.element = Utils.merge(clsConfig.element, DynamicClsConfigFactory.create());
         this.cls.grid = Utils.merge(clsConfig.grid, DynamicClsConfigFactory.create());
 
-        this._disabled = typeof config.disabled === "boolean" ? config.disabled : false;
+        this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
         this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);
     }

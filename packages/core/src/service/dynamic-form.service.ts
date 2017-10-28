@@ -50,7 +50,7 @@ export class DynamicFormService {
     constructor(private validationService: DynamicFormValidationService) {}
 
 
-    createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
+    private createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
                                  asyncValidatorsConfig: DynamicValidatorsConfig | null = null,
                                  updateOn: FormHooks | null = null): AbstractControlOptions {
 
