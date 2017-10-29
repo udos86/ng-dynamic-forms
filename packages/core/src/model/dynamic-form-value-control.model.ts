@@ -32,7 +32,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.required = typeof config.required === "boolean" ? config.required : false;
         this.tabIndex = config.tabIndex || null;
 
-        this._value = config.value || null;
+        this.value = config.value || null;
         this.valueUpdates = new Subject<T>();
         this.valueUpdates.subscribe((value: T) => this.value = value);
     }

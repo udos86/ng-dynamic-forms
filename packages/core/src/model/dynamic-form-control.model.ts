@@ -4,9 +4,14 @@ import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { Utils } from "../utils/core.utils";
 import { DynamicClsConfig, DynamicClsConfigFactory } from "../utils/cls.utils";
-import { DynamicValidatorDescriptor } from "../utils/validation.utils";
 
 export type DynamicValidatorsConfig = { [validatorKey: string]: any | DynamicValidatorDescriptor };
+
+export interface DynamicValidatorDescriptor {
+
+    name: string;
+    args: any;
+}
 
 export interface DynamicPathable {
 
@@ -81,5 +86,14 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     toJSON() {
         return serialize(this);
+    }
+
+    static isValidatorDescriptor(value: any): boolean {
+
+        if (value !== null && typeof value === "object") {
+            return value.hasOwnProperty("name") && value.hasOwnProperty("args");
+        }
+
+        return false;
     }
 }
