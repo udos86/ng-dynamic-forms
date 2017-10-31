@@ -23,18 +23,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/udos86/ng2-dynamic-forms.git"
+    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "author": {
     "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
-    "url": "https://github.com/udos86/ng2-dynamic-forms"
+    "url": "https://github.com/udos86/ng-dynamic-forms"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/udos86/ng2-dynamic-forms/issues"
+    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
   },
-  "homepage": "https://github.com/udos86/ng2-dynamic-forms#readme",
+  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "dependencies": {
     "@angular/animations": "^5.0.0-rc.9",
     "@angular/cdk": "^2.0.0-beta.12",

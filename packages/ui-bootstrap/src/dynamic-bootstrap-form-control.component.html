@@ -19,7 +19,6 @@
             <label>
 
                 <input type="checkbox"
-                       [attr.tabindex]="model.tabIndex"
                        [checked]="model.checked"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -27,6 +26,7 @@
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
                        [required]="model.required"
+                       [tabindex]="model.tabIndex"
                        [value]="model.value"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -118,13 +118,12 @@
 
                 <input class="form-control"
                        [attr.accept]="model.accept"
-                       [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
                        [attr.max]="model.max"
                        [attr.min]="model.min"
                        [attr.multiple]="model.multiple"
                        [attr.step]="model.step"
-                       [attr.tabindex]="model.tabIndex"
+                       [autocomplete]="model.autoComplete"
                        [autofocus]="model.autoFocus"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -137,6 +136,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [tabindex]="model.tabIndex"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
                        (blur)="onBlur($event)"
@@ -153,10 +153,10 @@
 
             <!-- RADIO GROUP ------------------------------------------------------------------------------------------>
             <fieldset *ngSwitchCase="5" role="radiogroup"
-                      [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
                       [ngClass]="model.cls.element.control"
+                      [tabindex]="model.tabIndex"
                       (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
@@ -177,26 +177,24 @@
 
             <!-- SELECT ----------------------------------------------------------------------------------------------->
             <select *ngSwitchCase="6" class="form-control"
-                    [attr.tabindex]="model.tabIndex"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
+                    [tabindex]="model.tabIndex"
                     (blur)="onBlur($event)"
                     (change)="onValueChange($event)"
                     (focus)="onFocus($event)">
 
                 <option *ngFor="let option of model.options$ | async"
-                        [attr.name]="model.name"
-                        [ngValue]="option.value">{{ option.label }}
-                </option>
+                        [disabled]="option.disabled"
+                        [ngValue]="option.value">{{ option.label }}</option>
 
             </select>
 
             <!-- TEXTAREA --------------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="7" class="form-control"
-                      [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
                       [formControlName]="model.id"
@@ -209,13 +207,13 @@
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
+                      [tabindex]="model.tabIndex"
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
                       (focus)="onFocus($event)"></textarea>
 
-            <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint"
-                  [ngClass]="model.cls.element.hint"></span>
+            <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
 
         </ng-container>
 
