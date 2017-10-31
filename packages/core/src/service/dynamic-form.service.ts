@@ -60,22 +60,22 @@ export class DynamicFormService {
 
             validators: this.validationService.getValidators(validatorsConfig),
 
-            updateOn: updateOn === null ? "change" : updateOn
+            updateOn: this.validationService.isFormHook(updateOn) ? updateOn : "change"
         };
     }
 
 
-    createFormArray(arrayModel: DynamicFormArrayModel): FormArray {
+    createFormArray(model: DynamicFormArrayModel): FormArray {
 
         let controls: AbstractControl[] = [],
             options = this.createAbstractControlOptions(
-                arrayModel.validators, arrayModel.asyncValidators, arrayModel.updateOn);
+                model.validators, model.asyncValidators, model.updateOn);
 
-        for (let index = 0; index < arrayModel.size; index++) {
+        for (let index = 0; index < model.size; index++) {
 
-            let groupModel = arrayModel.get(index),
+            let groupModel = model.get(index),
                 groupOptions = this.createAbstractControlOptions(
-                    arrayModel.groupValidators, arrayModel.groupAsyncValidators, arrayModel.updateOn);
+                    model.groupValidators, model.groupAsyncValidators, model.updateOn);
 
             controls.push(this.createFormGroup(groupModel.group, groupOptions, groupModel));
         }
@@ -84,13 +84,13 @@ export class DynamicFormService {
     }
 
 
-    createFormGroup(groupModel: DynamicFormControlModel[],
+    createFormGroup(model: DynamicFormControlModel[],
                     options: AbstractControlOptions | null = null,
                     parent: DynamicPathable | null = null): FormGroup {
 
         let controls: { [controlId: string]: AbstractControl; } = {};
 
-        groupModel.forEach(model => {
+        model.forEach(model => {
 
             model.parent = parent;
 
@@ -149,32 +149,30 @@ export class DynamicFormService {
 
 
     addFormGroupControl(formGroup: FormGroup,
-                        groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
+                        model: DynamicFormControlModel[] | DynamicFormGroupModel,
                         ...controlModels: DynamicFormControlModel[]): void {
 
-        if (groupModel instanceof DynamicFormGroupModel) {
+        if (model instanceof DynamicFormGroupModel) {
 
-            this.insertFormGroupControl(groupModel.size(), formGroup, groupModel, ...controlModels);
+            this.insertFormGroupControl(model.size(), formGroup, model, ...controlModels);
 
         } else {
 
-            let formModel = groupModel as DynamicFormControlModel[];
+            let formModel = model as DynamicFormControlModel[];
             this.insertFormGroupControl(formModel.length, formGroup, formModel, ...controlModels);
         }
     }
 
 
-    moveFormGroupControl(index: number,
-                         step: number,
-                         groupModel: DynamicFormControlModel[] | DynamicFormGroupModel): void {
+    moveFormGroupControl(index: number, step: number, model: DynamicFormControlModel[] | DynamicFormGroupModel): void {
 
-        if (groupModel instanceof DynamicFormGroupModel) {
+        if (model instanceof DynamicFormGroupModel) {
 
-            groupModel.move(index, step);
+            model.move(index, step);
 
         } else {
 
-            let formModel = groupModel as DynamicFormControlModel[];
+            let formModel = model as DynamicFormControlModel[];
             formModel.splice(index + step, 0, ...formModel.splice(index, 1));
         }
     }
@@ -182,21 +180,21 @@ export class DynamicFormService {
 
     insertFormGroupControl(index: number,
                            formGroup: FormGroup,
-                           groupModel: DynamicFormControlModel[] | DynamicFormGroupModel,
+                           model: DynamicFormControlModel[] | DynamicFormGroupModel,
                            ...controlModels: DynamicFormControlModel[]): void {
 
-        let parent = groupModel instanceof DynamicFormGroupModel ? groupModel : null,
+        let parent = model instanceof DynamicFormGroupModel ? model : null,
             controls = this.createFormGroup(controlModels, null, parent).controls;
 
         Object.keys(controls).forEach((controlName, idx) => {
 
             let controlModel = controlModels[idx];
 
-            if (groupModel instanceof DynamicFormGroupModel) {
-                groupModel.insert(index, controlModel);
+            if (model instanceof DynamicFormGroupModel) {
+                model.insert(index, controlModel);
 
             } else {
-                (groupModel as DynamicFormControlModel[]).splice(index, 0, controlModel);
+                (model as DynamicFormControlModel[]).splice(index, 0, controlModel);
             }
 
             formGroup.addControl(controlName, controls[controlName]);
@@ -204,19 +202,17 @@ export class DynamicFormService {
     }
 
 
-    removeFormGroupControl(index: number,
-                           formGroup: FormGroup,
-                           groupModel: DynamicFormControlModel[] | DynamicFormGroupModel): void {
+    removeFormGroupControl(index: number, formGroup: FormGroup, model: DynamicFormControlModel[] | DynamicFormGroupModel): void {
 
-        if (groupModel instanceof DynamicFormGroupModel) {
+        if (model instanceof DynamicFormGroupModel) {
 
-            formGroup.removeControl(groupModel.get(index).id);
-            groupModel.remove(index);
+            formGroup.removeControl(model.get(index).id);
+            model.remove(index);
 
         } else {
 
-            formGroup.removeControl(groupModel[index].id);
-            (groupModel as DynamicFormControlModel[]).splice(index, 1);
+            formGroup.removeControl(model[index].id);
+            (model as DynamicFormControlModel[]).splice(index, 1);
         }
     }
 
@@ -287,7 +283,7 @@ export class DynamicFormService {
     }
 
 
-    findById(id: string, groupModel: DynamicFormControlModel[]): DynamicFormControlModel | null {
+    findById(id: string, model: DynamicFormControlModel[]): DynamicFormControlModel | null {
 
         let result = null,
             findByIdFn = (id: string, groupModel: DynamicFormControlModel[]): void => {
@@ -305,7 +301,7 @@ export class DynamicFormService {
                 }
             };
 
-        findByIdFn(id, groupModel);
+        findByIdFn(id, model);
 
         return result;
     }

@@ -118,7 +118,6 @@
                        [attr.min]="model.min"
                        [attr.multiple]="model.multiple"
                        [attr.step]="model.step"
-                       [attr.tabindex]="model.tabIndex"
                        [autofocus]="model.autoFocus"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -132,6 +131,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [tabindex]="model.tabIndex"
                        [type]="model.inputType"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -232,7 +232,6 @@
         <mat-form-field *ngSwitchCase="10" [ngClass]="model.cls.grid.control">
 
             <textarea matInput
-                      [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
                       [formControlName]="model.id"
@@ -245,6 +244,7 @@
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
+                      [tabindex]="model.tabIndex"
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"

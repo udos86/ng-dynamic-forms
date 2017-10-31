@@ -175,4 +175,9 @@ export class DynamicFormValidationService {
 
         return messages;
     }
+
+
+    isFormHook(value: any): boolean {
+        return typeof value === "string" && ["blur", "change", "submit"].indexOf(value) !== -1;
+    }
 }

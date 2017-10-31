@@ -36,7 +36,7 @@ import {
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
 import { MatFormControlType } from "./dynamic-material-form.const";
 
-xdescribe("DynamicFormMaterialComponent test suite", () => {
+describe("DynamicFormMaterialComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),

@@ -47,6 +47,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() errorMessages: DynamicValidatorsConfig | null;
     @serializable() id: string;
     @serializable() label: string | null;
+    name: string;
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
     @serializable() updateOn: FormHooks | null;
@@ -60,6 +61,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.errorMessages = config.errorMessages || null;
         this.id = config.id;
         this.label = config.label || null;
+        this.name = config.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];
         this.updateOn = typeof config.updateOn === "string" ? config.updateOn : null;
         this.validators = config.validators || null;

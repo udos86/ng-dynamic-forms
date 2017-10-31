@@ -52,6 +52,6 @@ with **`DynamicBasicFormControlComponent`**:
 |         **[Select](https://www.w3.org/wiki/HTML/Elements/select)**         	|     `DynamicSelectModel`    	|         –         	|
 |       **[TextArea](https://www.w3.org/wiki/HTML/Elements/textarea)**       	|    `DynamicTextAreaModel`   	|         –         	|
 
-## Sample
+## Samples
 
-[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#basic-sample-form) 
+* [**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#basic-sample-form) 

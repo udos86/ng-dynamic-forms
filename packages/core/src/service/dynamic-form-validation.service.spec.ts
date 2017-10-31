@@ -32,7 +32,7 @@ describe("DynamicFormValidationService test suite", () => {
         (validationService: DynamicFormValidationService) => service = validationService));
 
 
-    it("should resolve a validator by name correctly", () => {
+    it("should resolve a validator by name", () => {
 
         expect(service.getValidator("required")).toBeTruthy();
         expect(service.getValidator("testValidator")).toBeTruthy();
@@ -45,7 +45,7 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should resolve validators from config correctly", () => {
+    it("should resolve validators from config", () => {
 
         let config: any = {required: null, maxLength: 7, minLength: 3},
             validators = service.getValidators(config);
@@ -54,7 +54,7 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should resolve custom validators from config correctly", () => {
+    it("should resolve custom validators from config", () => {
 
         let config: any = {required: null, maxLength: 7, testValidator: null},
             validators = service.getValidators(config);
@@ -63,7 +63,7 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should resolve custom validators from detailed config correctly", () => {
+    it("should resolve custom validators from detailed config", () => {
 
         let config: any = {testValidator: {name: testValidator.name, args: null}},
             validators = service.getValidators(config);
@@ -72,7 +72,7 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should resolve custom async validators from config correctly", () => {
+    it("should resolve custom async validators from config", () => {
 
         let config: any = {testAsyncValidator: null},
             validators = service.getAsyncValidators(config);
@@ -130,7 +130,7 @@ describe("DynamicFormValidationService test suite", () => {
     });
 
 
-    it("should create error messages correctly", () => {
+    it("should create error messages", () => {
 
         let errorMessages,
             testControl: FormControl = new FormControl(),
@@ -164,5 +164,15 @@ describe("DynamicFormValidationService test suite", () => {
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(1);
         expect(errorMessages[0]).toEqual("Field has a custom error: 42");
+    });
+
+
+    it("should check form hooks", () => {
+
+        expect(service.isFormHook(null)).toBe(false);
+        expect(service.isFormHook("blur")).toBe(true);
+        expect(service.isFormHook("focus")).toBe(false);
+        expect(service.isFormHook("change")).toBe(true);
+        expect(service.isFormHook("submit")).toBe(true);
     });
 });
