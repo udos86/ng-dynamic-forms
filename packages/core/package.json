@@ -29,10 +29,10 @@
   },
   "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0",
-    "@angular/forms": "^4.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/forms": "^5.0.0",
     "core-js": "^2.4.1",
-    "rxjs": "^5.2.0"
+    "rxjs": "^5.5.0"
   }
 }

@@ -75,5 +75,5 @@ with **`DynamicKendoFormControlComponent`**:
 
 ## Sample
 
-[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#kendo-sample-form) 
+[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#kendo-sample-form) 
 

@@ -72,4 +72,4 @@ with **`DynamicPrimeNGFormControlComponent`**:
 
 ## Sample
 
-[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#primeng-sample-form) 
+[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#primeng-sample-form) 

@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0",
-    "@angular/forms": "^4.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/forms": "^5.0.0",
     "@ng-dynamic-forms/core": "^5.0.0",
     "@progress/kendo-angular-dateinputs": "^1.1.0",
     "@progress/kendo-angular-dropdowns": "^1.0.0",
@@ -43,6 +43,6 @@
     "@progress/kendo-angular-upload": "^1.0.0",
     "@progress/kendo-date-math": "^1.0.0",
     "@progress/kendo-theme-default": "^2.32.12",
-    "rxjs": "^5.2.0"
+    "rxjs": "^5.5.0"
   }
 }

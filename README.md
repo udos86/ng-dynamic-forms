@@ -94,7 +94,7 @@ npm install
 npm run build:packages
 ```
 
-**4. Transpile the source code**:
+**4. Transpile the sample code**:
 ```
 npm run watch:sample
 ```
@@ -126,7 +126,7 @@ import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 export class AppModule {}
 ```
 
-**2. Define your dynamic form model**:
+**2. Define your form model**:
 ```ts
 import {
     DynamicFormControlModel,
@@ -238,7 +238,7 @@ export class AppModule {}
 ```
 
 For creating the form markup all UI modules come with a `DynamicFormComponent` that **can easily be added** to
-your component `template`:
+your component template:
 ```ts
 <form [formGroup]="formGroup">
 
@@ -248,7 +248,7 @@ your component `template`:
 </form>
 ```
 
-Alternatively you can **directly make use of a specific** `DynamicFormControlComponent` to gain more control:
+Alternatively you can **directly make use of a specific** `DynamicFormControlComponent` to gain more control over rendering:
 ```ts
 <form [formGroup]="formGroup">
 
@@ -290,7 +290,7 @@ In order to improve clarity it's often considered good practice to group forms i
 
 Thus NG Dynamic Forms supports nesting of form groups out of the box!
  
-**1. Declare a** `DynamicFormGroupModel` **within your** `Array<DynamicFormControlModel>` **and add it's models to the** `group` **array**:
+**1. Declare a** `DynamicFormGroupModel` within your form model and **add it's models to the** `group` **array**:
  ```ts
 export const MY_FORM_MODEL: DynamicFormControlModel[] = [
  

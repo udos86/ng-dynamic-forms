@@ -55,4 +55,4 @@ with **`DynamicFoundationFormControlComponent`**:
 
 ## Sample
 
-[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#foundation-sample-form) 
+[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#foundation-sample-form) 
