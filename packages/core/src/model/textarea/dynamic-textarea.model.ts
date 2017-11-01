@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -22,9 +22,9 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
 
-    constructor(config: DynamicTextAreaModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicTextAreaModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.cols = typeof config.cols === "number" ? config.cols : 20;
         this.rows = typeof config.rows === "number" ? config.rows : 2;

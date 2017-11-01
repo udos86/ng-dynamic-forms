@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "../dynamic-form-value-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -15,9 +15,9 @@ export class DynamicRatingModel extends DynamicFormValueControlModel<number> {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_RATING;
 
-    constructor(config: DynamicRatingModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicRatingModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.max = typeof config.max === "number" ? config.max : 10;
     }

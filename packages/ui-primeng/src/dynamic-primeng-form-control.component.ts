@@ -48,8 +48,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    Utils
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng-dynamic-forms/core";
 import {
     PrimeNGFormControlType,
@@ -68,8 +67,8 @@ export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | C
 })
 export class DynamicPrimeNGFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
@@ -121,9 +120,9 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
         super.setTemplates();
 
-        this.templates
-            .filter(directive => Utils.isString(directive.as))
-            .forEach(directive => this.setTemplateDirective(directive));
+        this.templateList
+            .filter(template => typeof template.as === "string")
+            .forEach(template => this.setTemplateDirective(template));
     }
 
     onAutoComplete(_$event: any): void {

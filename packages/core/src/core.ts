@@ -37,6 +37,5 @@ export * from "./service/dynamic-form-validation.service";
 export * from "./utils/autofill.utils";
 export * from "./utils/core.utils";
 export * from "./utils/relation.utils";
-export * from "./utils/validation.utils";
 
 export * from "./core.module";

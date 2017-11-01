@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicCheckControlModel, DynamicCheckControlModelConfig } from "../dynamic-check-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -15,9 +15,9 @@ export class DynamicCheckboxModel extends DynamicCheckControlModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
 
-    constructor(config: DynamicCheckboxModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicCheckboxModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.indeterminate = typeof config.indeterminate === "boolean" ? config.indeterminate : false;
     }

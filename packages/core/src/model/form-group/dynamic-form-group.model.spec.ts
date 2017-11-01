@@ -11,7 +11,9 @@ describe("DynamicFormGroupModel test suite", () => {
                     id: "input"
                 })
             ],
-            validator: {required: null}
+            validators: {
+                required: null
+            }
         };
 
     beforeEach(() => model = new DynamicFormGroupModel(config));
@@ -23,8 +25,6 @@ describe("DynamicFormGroupModel test suite", () => {
         expect(model.size() === model.group.length).toBe(true);
         expect(model.legend).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
-        expect(model.asyncValidator).toBeNull();
-        expect(model.validator).toBeDefined();
     });
 
     it("should get the correct DynamicFormControlModel of group", () => {
@@ -56,6 +56,6 @@ describe("DynamicFormGroupModel test suite", () => {
 
         expect(json.id).toEqual(model.id);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
-        expect(Object.keys(json.validator)[0]).toEqual("required");
+        expect(Object.keys(json.validators)[0]).toEqual("required");
     });
 });

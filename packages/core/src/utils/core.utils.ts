@@ -1,48 +1,8 @@
 export class Utils {
 
-    static equals<T>(value: T, ...comparables: T[]): boolean {
-        return !!(comparables.find(comparable => value === comparable));
-    }
-
-    static isBoolean(value: any): boolean {
-        return typeof value === "boolean";
-    }
-
-    static isDefined(value: any): boolean {
-        return value !== undefined && value !== null;
-    }
-
-    static isFunction(value: any): boolean {
-        return typeof value === "function";
-    }
-
-    static isNumber(value: any): boolean {
-        return typeof value === "number";
-    }
-
-    static isObject(value: any): boolean {
-        return typeof value === "object";
-    }
-
-    static isTrueObject(value: any): boolean {
-        return Utils.isDefined(value) && Utils.isObject(value);
-    }
-
-    static isNonEmptyObject(value: object): boolean {
-        return Utils.isTrueObject(value) && Object.getOwnPropertyNames(value).length > 0;
-    }
-
-    static isString(value: any): boolean {
-        return typeof value === "string";
-    }
-
-    static isEmptyString(value: string | null | undefined): boolean {
-        return typeof value !== "string" || value.length === 0;
-    }
-
     static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] | null {
 
-        if (Utils.isString(mask)) {
+        if (typeof mask === "string") {
 
             return mask as string;
 
@@ -74,32 +34,32 @@ export class Utils {
         return null;
     }
 
-    static merge(baseValue: any, defaultValue: any): any {
+    static merge(value: any, baseValue: any = null): any {
 
-        if (!Utils.isDefined(baseValue)) {
-            return defaultValue;
+        if (value === undefined || value === null) {
+            return baseValue;
         }
 
-        if (Utils.isObject(baseValue)) {
+        if (typeof value === "object") {
 
-            for (let property in baseValue) {
+            for (let property in value) {
 
-                if (baseValue.hasOwnProperty(property) && Utils.isObject(baseValue[property])) {
+                if (value.hasOwnProperty(property) && typeof value[property] === "object") {
 
-                    baseValue[property] = Utils.merge(baseValue[property], defaultValue ? defaultValue[property] : null);
+                    value[property] = Utils.merge(value[property], baseValue ? baseValue[property] : null);
                 }
             }
 
-            return defaultValue ? Object.assign(defaultValue, baseValue) : baseValue;
+            return baseValue !== null ? Object.assign(baseValue, value) : value;
         }
 
-        return baseValue;
+        return value;
     }
 
     static parseJSONReviver(_key: string, value: any): any {
 
         let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return Utils.isString(value) && regexDateISO.test(value) ? new Date(value) : value;
+        return typeof value === "string" && regexDateISO.test(value) ? new Date(value) : value;
     }
 }

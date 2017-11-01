@@ -1,13 +1,10 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <div *ngIf="type !== 4 && model.label" [ngClass]="model.cls.grid.label">
-        <label [attr.for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+        <label [for]="model.id" [innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
     </div>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 8" role="group"
@@ -19,9 +16,9 @@
                                       [group]="control"
                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
                                       [model]="controlModel"
-                                      [templates]="templates"
+                                      [templates]="templateList"
                                       [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                      (dfBlur)="onBlurEvent($event)"
+                                      (dfBlur)="onBlur($event)"
                                       (dfChange)="onValueChange($event)"
                                       (dfFocus)="onFocus($event)"
                                       (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
@@ -29,16 +26,15 @@
 
     <!-- RADIO GROUP -------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 13" role="radiogroup"
-         [attr.tabindex]="model.tabIndex"
          [dynamicId]="bindId && model.id"
          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
-         (change)="onValueChange($event)">
+         [tabindex]="model.tabIndex">
 
         <div *ngFor="let option of model.options$ | async" [ngClass]="model.cls.grid.option">
 
             <p-radioButton [formControlName]="model.id"
                            [label]="option.label"
-                           [name]="model.name"
+                           [name]="model.id"
                            [ngClass]="model.cls.element.option"
                            [value]="option.value"
                            (click)="onValueChange($event)"></p-radioButton>
@@ -66,14 +62,14 @@
                                                   [group]="control.at(idx)"
                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                   [model]="controlModel"
-                                                  [templates]="templates"
+                                                  [templates]="templateList"
                                                   [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                   (dfBlur)="onBlur($event)"
                                                   (dfChange)="onValueChange($event)"
                                                   (dfFocus)="onFocus($event)"
                                                   (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -169,13 +165,12 @@
 
                 <input pInputText #pInputText
                        [attr.accept]="model.accept"
-                       [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
                        [attr.max]="model.max"
                        [attr.min]="model.min"
                        [attr.multiple]="model.multiple"
                        [attr.step]="model.step"
-                       [attr.tabindex]="model.tabIndex"
+                       [autocomplete]="model.autoComplete"
                        [autofocus]="model.autoFocus"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -188,6 +183,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [tabindex]="model.tabIndex"
                        [type]="model.inputType"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -271,7 +267,6 @@
 
             <!-- TEXTAREA --------------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="17" pInputTextarea #pInputTextarea
-                      [attr.tabindex]="model.tabIndex"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -284,6 +279,7 @@
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
+                      [tabindex]="model.tabIndex"
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
@@ -294,14 +290,11 @@
 
     </ng-container>
 
-
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

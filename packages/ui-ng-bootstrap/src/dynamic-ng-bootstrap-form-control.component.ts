@@ -51,8 +51,8 @@ export const enum NGBootstrapFormControlType {
 })
 export class DynamicNGBootstrapFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() bindId: boolean = true;

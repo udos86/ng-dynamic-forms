@@ -1,8 +1,6 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 1"
@@ -19,14 +17,14 @@
                                         [group]="control.at(idx)"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
                                         [model]="controlModel"
-                                        [templates]="templates"
+                                        [templates]="templateList"
                                         [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
                                         (dfFocus)="onFocus($event)"
                                         (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
 
-            <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+            <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
         </div>
 
@@ -45,7 +43,7 @@
                                     [group]="control"
                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                     [model]="controlModel"
-                                    [templates]="templates"
+                                    [templates]="templateList"
                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                     (dfBlur)="onBlur($event)"
                                     (dfChange)="onValueChange($event)"
@@ -144,7 +142,8 @@
                     (ionChange)="onValueChange($event)"
                     (ionFocus)="onFocus($event)">
 
-            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}</ion-option>
+            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}
+            </ion-option>
 
         </ion-select>
 
@@ -171,11 +170,8 @@
                     (ionFocus)="onFocus($event)"></ion-toggle>
 
     </ion-item>
-
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

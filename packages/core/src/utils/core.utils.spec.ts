@@ -23,22 +23,6 @@ describe("Core Utils test suite", () => {
     });
 
 
-    it("should detect equality correctly", () => {
-
-        let testValue1 = "test",
-            testValue2 = 5,
-            comparables1 = ["test1", "test2", "test3"],
-            comparables2 = ["test1", "test2", "test"],
-            comparables3 = [1, 2, 3, 4],
-            comparables4 = [2, 3, 4, 5, 6];
-
-        expect(Utils.equals<string>(testValue1, ...comparables1)).toBe(false);
-        expect(Utils.equals<string>(testValue1, ...comparables2)).toBe(true);
-        expect(Utils.equals<number>(testValue2, ...comparables3)).toBe(false);
-        expect(Utils.equals<number>(testValue2, ...comparables4)).toBe(true);
-    });
-
-
     it("should merge correctly", () => {
 
         let valueA = Utils.merge(configObject.a, 4),
@@ -86,64 +70,6 @@ describe("Core Utils test suite", () => {
 
         expect(valueE.prop3).toBeDefined();
         expect(valueE.prop3).toBe(100);
-    });
-
-
-    it("should detect empty strings correctly", () => {
-
-        let testString0 = undefined,
-            testString1 = "",
-            testString2 = "test string";
-
-        expect(Utils.isEmptyString(testString0)).toBe(true);
-        expect(Utils.isEmptyString(testString1)).toBe(true);
-        expect(Utils.isEmptyString(testString2)).toBe(false);
-    });
-
-
-    it("should detect a function correctly", () => {
-
-        let testFn0 = undefined,
-            testFn1 = () => {},
-            testFn2 = function () {};
-
-        expect(Utils.isFunction(testFn0)).toBe(false);
-        expect(Utils.isFunction(testFn1)).toBe(true);
-        expect(Utils.isFunction(testFn2)).toBe(true);
-    });
-
-
-    it("should detect a number correctly", () => {
-
-        let testNumber0 = undefined,
-            testNumber1 = 0,
-            testNumber2 = 42;
-
-        expect(Utils.isNumber(testNumber0)).toBe(false);
-        expect(Utils.isNumber(testNumber1)).toBe(true);
-        expect(Utils.isNumber(testNumber2)).toBe(true);
-    });
-
-
-    it("should detect a true, non-null object correctly", () => {
-
-        let testObject1 = {},
-            testObject2 = null;
-
-        expect(Utils.isTrueObject(testObject1)).toBe(true);
-        expect(Utils.isTrueObject(testObject2)).toBe(false);
-    });
-
-
-    it("should detect a non-empty object correctly", () => {
-
-        let testObject1 = {},
-            testObject2 = null,
-            testObject3 = {"test": 42};
-
-        expect(Utils.isNonEmptyObject(testObject1)).toBe(false);
-        //expect(Utils.isNonEmptyObject(testObject2)).toBe(false);
-        expect(Utils.isNonEmptyObject(testObject3)).toBe(true);
     });
 
 

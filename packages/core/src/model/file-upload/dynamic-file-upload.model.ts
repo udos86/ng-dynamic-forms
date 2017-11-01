@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicFileControlModelConfig, DynamicFileControlModel } from "../dynamic-file-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -27,9 +27,9 @@ export class DynamicFileUploadModel extends DynamicFileControlModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD;
 
-    constructor(config: DynamicFileUploadModelConfig, cls?: ClsConfig) {
+    constructor(config: DynamicFileUploadModelConfig, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.accept = Array.isArray(config.accept) ? config.accept : null;
         this.autoUpload = typeof config.autoUpload === "boolean" ? config.autoUpload : true;

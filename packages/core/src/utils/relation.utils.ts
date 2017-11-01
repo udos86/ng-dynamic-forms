@@ -40,7 +40,9 @@ export class RelationUtils {
         return controls;
     }
 
-    static isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGroup, formGroup: FormGroup): boolean {
+    static isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGroup, _formGroup: FormGroup): boolean {
+
+        let formGroup: FormGroup = _formGroup;
 
         return relGroup.when.reduce((toBeDisabled: boolean, rel: DynamicFormControlRelation, index: number) => {
 

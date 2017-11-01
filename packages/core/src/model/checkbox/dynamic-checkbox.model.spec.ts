@@ -19,7 +19,6 @@ describe("DynamicCheckboxModel test suite", () => {
         expect(model.indeterminate).toBe(false);
         expect(model.label).toBeNull();
         expect(model.labelPosition).toEqual(DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER);
-        expect(model.name).toEqual(model.id);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
         expect(model.validators).toBeNull();
         expect(model.value).toBe(config.value);

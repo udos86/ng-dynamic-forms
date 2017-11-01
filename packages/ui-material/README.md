@@ -63,10 +63,10 @@ with **`DynamicMaterialFormControlComponent`**:
 
     <dynamic-material-form [group]="myFormGroup"
                            [model]="myFormModel"
-                           (marEvent)="onMatEvent($event)"></dynamic-material-form>
+                           (matEvent)="onMatEvent($event)"></dynamic-material-form>
 </form>
 ```
 
 ## Sample
 
-[**Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#material-sample-form) 
+[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#material-sample-form) 

@@ -22,7 +22,6 @@ describe("DynamicTimePickerModel test suite", () => {
         expect(model.max).toBeNull();
         expect(model.meridian).toBe(false);
         expect(model.min).toBeNull();
-        expect(model.name).toEqual(model.id);
         expect(model.showSeconds).toBe(false);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER);
         expect(model.value).toBe(config.value);

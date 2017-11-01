@@ -32,7 +32,6 @@ module.exports = function (config) {
             "karma-coverage",
             "karma-coveralls",
             "karma-jasmine",
-            "karma-phantomjs-launcher",
             "karma-remap-istanbul",
             "karma-sourcemap-loader"
         ],
@@ -134,7 +133,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ["PhantomJS"],
+        browsers: ["ChromeHeadless"],
 
 
         // Continuous Integration mode

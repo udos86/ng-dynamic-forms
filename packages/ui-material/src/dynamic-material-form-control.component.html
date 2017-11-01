@@ -1,13 +1,11 @@
 <div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label *ngIf="model.label && type !== 2"
-           [attr.for]="model.id"
+           [for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <ng-container [ngSwitch]="type">
 
@@ -26,14 +24,14 @@
                                                [group]="control.at(idx)"
                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                [model]="controlModel"
-                                               [templates]="templates"
+                                               [templates]="templateList"
                                                [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
-                                               (ngBlur)="onBlur($event)"
-                                               (ngChange)="onValueChange($event)"
-                                               (ngFocus)="onFocus($event)"
+                                               (dfBlur)="onBlur($event)"
+                                               (dfChange)="onValueChange($event)"
+                                               (dfFocus)="onFocus($event)"
                                                (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
-                <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
             </div>
 
@@ -97,7 +95,7 @@
                                            [group]="control"
                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
                                            [model]="controlModel"
-                                           [templates]="templates"
+                                           [templates]="templateList"
                                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                            (dfBlur)="onBlur($event)"
                                            (dfChange)="onValueChange($event)"
@@ -114,13 +112,12 @@
 
                 <input matInput
                        [attr.accept]="model.accept"
-                       [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
                        [attr.max]="model.max"
                        [attr.min]="model.min"
                        [attr.multiple]="model.multiple"
                        [attr.step]="model.step"
-                       [attr.tabindex]="model.tabIndex"
+                       [autocomplete]="model.autoComplete"
                        [autofocus]="model.autoFocus"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -134,6 +131,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [tabindex]="model.tabIndex"
                        [type]="model.inputType"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -234,7 +232,6 @@
         <mat-form-field *ngSwitchCase="10" [ngClass]="model.cls.grid.control">
 
             <textarea matInput
-                      [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
                       [formControlName]="model.id"
@@ -247,6 +244,7 @@
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
+                      [tabindex]="model.tabIndex"
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
@@ -263,14 +261,11 @@
 
     </ng-container>
 
-
     <ng-container *ngIf="!hasMatFormField && showErrorMessages">
         <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
     </ng-container>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

@@ -3,15 +3,11 @@
      [ngClass]="[model.cls.element.container, model.cls.grid.container]">
 
     <label *ngIf="type !== 3 && model.label"
-           [attr.for]="model.id"
+           [for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[model.cls.element.label, model.cls.grid.label]"></label>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
-
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <div [ngClass]="model.cls.grid.control">
 
@@ -32,13 +28,13 @@
                                                        [group]="control.at(idx)"
                                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                        [model]="controlModel"
-                                                       [templates]="templates"
+                                                       [templates]="templateList"
                                                        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                        (dfBlur)="onBlur($event)"
                                                        (dfChange)="onValueChange($event)"
-                                                       (dfFocus)="onFocusEvent($event)"></dynamic-ng-bootstrap-form-control>
+                                                       (dfFocus)="onFocus($event)"></dynamic-ng-bootstrap-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -59,7 +55,6 @@
                 <label class="form-check-label">
 
                     <input type="checkbox" class="form-check-input"
-                           [attr.tabindex]="model.tabIndex"
                            [checked]="model.checked"
                            [class.is-invalid]="showErrorMessages"
                            [dynamicId]="bindId && model.id"
@@ -68,10 +63,11 @@
                            [name]="model.name"
                            [ngClass]="model.cls.element.control"
                            [required]="model.required"
+                           [tabindex]="model.tabIndex"
                            [value]="model.value"
                            (blur)="onBlur($event)"
                            (change)="onValueChange($event)"
-                           (focus)="onFocusEvent($event)"/><span [innerHTML]="model.label"
+                           (focus)="onFocus($event)"/><span [innerHTML]="model.label"
                                                                  [ngClass]="[model.cls.element.label, model.cls.grid.label]"></span>
                 </label>
 
@@ -87,16 +83,16 @@
                        [ngClass]="controlModel.cls.element.control">
 
                     <input type="checkbox" ngbButton
-                           [attr.tabindex]="controlModel.tabIndex"
                            [checked]="controlModel.checked"
                            [dynamicId]="bindId && controlModel.id"
                            [formControlName]="controlModel.id"
                            [name]="controlModel.name"
                            [required]="controlModel.required"
+                           [tabindex]="controlModel.tabIndex"
                            [value]="controlModel.value"
                            (blur)="onBlur($event)"
                            (change)="onValueChange($event)"
-                           (focus)="onFocusEvent($event)"/><span [ngClass]="controlModel.cls.element.label"
+                           (focus)="onFocus($event)"/><span [ngClass]="controlModel.cls.element.label"
                                                                  [innerHTML]="controlModel.label"></span></label>
             </div>
 
@@ -128,7 +124,7 @@
                                                    [group]="control"
                                                    [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                    [model]="controlModel"
-                                                   [templates]="templates"
+                                                   [templates]="templateList"
                                                    [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                    (dfBlur)="onBlur($event)"
                                                    (dfChange)="onValueChange($event)"
@@ -141,13 +137,12 @@
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
 
                 <input [attr.accept]="model.accept"
-                       [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
                        [attr.max]="model.max"
                        [attr.min]="model.min"
                        [attr.multiple]="model.multiple"
                        [attr.step]="model.step"
-                       [attr.tabindex]="model.tabIndex"
+                       [autocomplete]="model.autoComplete"
                        [autofocus]="model.autoFocus"
                        [class.form-control]="model.inputType !== 'file'"
                        [class.form-control-file]="model.inputType === 'file'"
@@ -163,6 +158,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [tabindex]="model.tabIndex"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
                        (blur)="onBlur($event)"
@@ -179,10 +175,10 @@
 
             <!-- RADIO GROUP ------------------------------------------------------------------------------------------>
             <div *ngSwitchCase="8" ngbRadioGroup class="btn-group" role="radiogroup"
-                 [attr.tabindex]="model.tabIndex"
                  [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
                  [ngClass]="model.cls.element.control"
+                 [tabindex]="model.tabIndex"
                  (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
@@ -202,26 +198,25 @@
 
             <!-- SELECT ----------------------------------------------------------------------------------------------->
             <select *ngSwitchCase="9" class="form-control"
-                    [attr.tabindex]="model.tabIndex"
                     [class.is-invalid]="showErrorMessages"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
+                    [tabindex]="model.tabIndex"
                     (blur)="onBlur($event)"
                     (change)="onValueChange($event)"
                     (focus)="onFocus($event)">
 
                 <option *ngFor="let option of model.options$ | async"
-                        [attr.name]="model.name"
+                        [disabled]="option.disabled"
                         [ngValue]="option.value">{{ option.label }}</option>
 
             </select>
 
             <!-- TEXTAREA --------------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="10" class="form-control"
-                      [attr.tabindex]="model.tabIndex"
                       [class.is-invalid]="showErrorMessages"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
@@ -235,6 +230,7 @@
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
+                      [tabindex]="model.tabIndex"
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
@@ -260,9 +256,7 @@
 
     </div>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

@@ -2,17 +2,13 @@
 
     <div *ngIf="type !== 2 && model.label" [ngClass]="model.cls.grid.label">
 
-        <label [attr.for]="model.id"
-               [class.is-invalid-label]="showErrorMessages"
+        <label [class.is-invalid-label]="showErrorMessages"
+               [for]="model.id"
                [innerHTML]="model.label"
                [ngClass]="model.cls.element.label"></label>
     </div>
 
-
-    <ng-container *ngIf="type !== 1 && template?.align === 'START'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
-
+    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <div [ngClass]="model.cls.grid.control">
 
@@ -33,13 +29,13 @@
                                                      [group]="control.at(idx)"
                                                      [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                      [model]="controlModel"
-                                                     [templates]="templates"
+                                                     [templates]="templateList"
                                                      [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                                      (dfBlur)="onBlur($event)"
                                                      (dfChange)="onValueChange($event)"
                                                      (dfFocus)="onFocus($event)"></dynamic-foundation-form-control>
 
-                    <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+                    <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
 
                 </div>
 
@@ -49,7 +45,6 @@
             <label *ngSwitchCase="2">
 
                 <input type="checkbox"
-                       [attr.tabindex]="model.tabIndex"
                        [checked]="model.checked"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
@@ -57,6 +52,7 @@
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
                        [required]="model.required"
+                       [tabindex]="model.tabIndex"
                        [value]="model.value"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -77,7 +73,7 @@
                                                  [group]="control"
                                                  [hasErrorMessaging]="itemModel.hasErrorMessages"
                                                  [model]="itemModel"
-                                                 [templates]="templates"
+                                                 [templates]="templateList"
                                                  [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
                                                  (dfBlur)="onBlur($event)"
                                                  (dfChange)="onValueChange($event)"
@@ -91,13 +87,12 @@
 
                 <input class="input-group-field"
                        [attr.accept]="model.accept"
-                       [attr.autoComplete]="model.autoComplete"
                        [attr.list]="model.listId"
                        [attr.max]="model.max"
                        [attr.min]="model.min"
                        [attr.multiple]="model.multiple"
                        [attr.step]="model.step"
-                       [attr.tabindex]="model.tabIndex"
+                       [autocomplete]="model.autoComplete"
                        [autofocus]="model.autoFocus"
                        [class.is-invalid-input]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
@@ -111,6 +106,7 @@
                        [readonly]="model.readOnly"
                        [required]="model.required"
                        [spellcheck]="model.spellCheck"
+                       [tabindex]="model.tabIndex"
                        [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                        [type]="model.inputType"
                        (blur)="onBlur($event)"
@@ -127,10 +123,10 @@
 
             <!-- RADIO GROUP ------------------------------------------------------------------------------------------>
             <fieldset *ngSwitchCase="5" role="radiogroup"
-                      [attr.tabindex]="model.tabIndex"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
                       [ngClass]="model.cls.element.control"
+                      [tabindex]="model.tabIndex"
                       (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
@@ -148,18 +144,18 @@
 
             <!-- SELECT ----------------------------------------------------------------------------------------------->
             <select *ngSwitchCase="6"
-                    [attr.tabindex]="model.tabIndex"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
                     [ngClass]="model.cls.element.control"
                     [required]="model.required"
+                    [tabindex]="model.tabIndex"
                     (blur)="onBlur($event)"
                     (change)="onValueChange($event)"
                     (focus)="onFocus($event)">
 
                 <option *ngFor="let option of model.options$ | async"
-                        [attr.name]="model.name"
+                        [disabled]="option.disabled"
                         [ngValue]="option.value">{{ option.label }}</option>
 
             </select>
@@ -168,12 +164,12 @@
             <div *ngSwitchCase="7" class="switch" [ngClass]="model.cls.element.control">
 
                 <input type="checkbox" class="switch-input"
-                       [attr.tabindex]="model.tabIndex"
                        [checked]="model.checked"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [name]="model.name"
                        [required]="model.required"
+                       [tabindex]="model.tabIndex"
                        [value]="model.value"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -190,7 +186,6 @@
 
             <!-- TEXTAREA --------------------------------------------------------------------------------------------->
             <textarea *ngSwitchCase="8"
-                      [attr.tabindex]="model.tabIndex"
                       [class.is-invalid-input]="showErrorMessages"
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
@@ -204,6 +199,7 @@
                       [required]="model.required"
                       [rows]="model.rows"
                       [spellcheck]="model.spellCheck"
+                      [tabindex]="model.tabIndex"
                       [wrap]="model.wrap"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
@@ -215,14 +211,11 @@
 
     </div>
 
-
     <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
         <li *ngFor="let message of errorMessages" class="form-error is-visible">{{ message }}</li>
     </ul>
 
-    <ng-container *ngIf="type !== 1 && template?.align === 'END'">
-        <ng-container *ngTemplateOutlet="template?.templateRef; context: model"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

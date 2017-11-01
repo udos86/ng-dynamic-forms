@@ -1,4 +1,4 @@
-import { ClsConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -19,9 +19,9 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
 
-    constructor(config: DynamicSelectModelConfig<T>, cls?: ClsConfig) {
+    constructor(config: DynamicSelectModelConfig<T>, clsConfig?: DynamicFormControlClsConfig) {
 
-        super(config, cls);
+        super(config, clsConfig);
 
         this.filterable = typeof config.filterable === "boolean" ? config.filterable : false;
         this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;

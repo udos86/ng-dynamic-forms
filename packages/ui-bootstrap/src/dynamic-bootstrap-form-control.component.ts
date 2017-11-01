@@ -49,8 +49,8 @@ export const enum BootstrapFormControlType {
 })
 export class DynamicBootstrapFormControlComponent extends DynamicFormControlComponent implements AfterViewInit, OnChanges {
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplates: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() bindId: boolean = true;
