@@ -40,6 +40,7 @@ with **`DynamicPrimeNGFormControlComponent`**:
                                   [model]="controlModel"></dynamic-primeng-form-control>
 </form>
 ```
+
 ## Form Controls
 
 |                                 Control                                 	|                        Model                       	|   Required Property   	|
@@ -70,6 +71,7 @@ with **`DynamicPrimeNGFormControlComponent`**:
 </form>
 ```
 
-## Sample
+## Resources
 
-[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#primeng-sample-form) 
+* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/ui-primeng/)
+* [**Live Sample**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#primeng-sample-form) 

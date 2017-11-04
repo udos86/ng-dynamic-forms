@@ -19,3 +19,7 @@ npm install @ng-dynamic-forms/core -S
 
 export class AppModule {}
 ```
+
+## Resources
+
+* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/core/) 

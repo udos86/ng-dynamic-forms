@@ -40,6 +40,7 @@ with **`DynamicNGBootstrapFormControlComponent`**:
                                        [model]="controlModel"></dynamic-ng-bootstrap-form-control>
 </form>
 ```
+
 ## Form Controls
 
 |                                             Control                                             	|            Model            	| Required Property 	|
@@ -54,6 +55,7 @@ with **`DynamicNGBootstrapFormControlComponent`**:
 |        **[TextArea](https://v4-alpha.getbootstrap.com/components/forms/#form-controls)**        	| `DynamicTextAreaModel`      	|         –         	|
 |             **[TimePicker](https://ng-bootstrap.github.io/#/components/timepicker)**            	| `DynamicTimePickerModel`    	|         –         	|
 
-## Sample
+## Resources
 
-[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#ng-bootstrap-sample-form) 
+* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/ui-ng-bootstrap/)
+* [**Live Sample**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#ng-bootstrap-sample-form) 

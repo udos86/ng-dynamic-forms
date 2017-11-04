@@ -64,3 +64,7 @@ with **`DynamicIonicFormControlComponent`**:
                         (ionEvent)="onIonEvent($event)"></dynamic-ionic-form>
 </form>
 ```
+
+## Resources
+
+* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/ui-ionic/)
