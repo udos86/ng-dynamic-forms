@@ -5,8 +5,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es6",
-      "es2015",
+      "es2017",
       "dom"
     ],
     "module": "commonjs",
@@ -32,9 +31,8 @@
       "q"
     ]
   },
-  "exclude": [
-    "sample",
-    "node_modules",
-    "packages"
+  "include": [
+    "test/**/*.spec.ts",
+    "test/**/*.d.ts"
   ]
 }

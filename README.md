@@ -42,6 +42,7 @@ and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/)!
 - [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
 - [Autocompletion](#autocompletion)
+- [AOT Compilation](#aot-compilation)
 - [FAQ](#faq)
 - [Appendix](#appendix)
 
@@ -1124,6 +1125,13 @@ new DynamicInputModel({
 ```
 
 
+## Aot Compilation
+
+[Ahead-of-Time (AOT) Compilation](https://angular.io/guide/aot-compiler) significantly improves the overall performance of any Angular application.
+
+Since NG Dynamic Forms bundle files **fully match** [Angular Package Format](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit) **all packages fit in seamlessly** with your AoT build - whether your'e using the Angular CLI `--aot` flag , `@ngtools/webpack` plugin or directly `@angular/compiler-cli`. 
+
+
 ## FAQ
 
 > **Why should I use NG Dynamic Forms?**
@@ -1148,7 +1156,7 @@ No, not out of the box. You'd have to create your own UI template / package in o
 
 > **Are there any other dynamic forms libraries for Angular?**
 
-Very few, namely [ng-formly](https://github.com/formly-js/ng-formly) and [angular-formio](https://github.com/formio/angular-formio).
+Yes, namely [ng-formly](https://github.com/formly-js/ng-formly), [ngx-forms](https://github.com/ngx-plus/ngx-forms) and [angular-formio](https://github.com/formio/angular-formio).
 
 > **How can I support this project besides contributing issues or code?**
 

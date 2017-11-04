@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "..",
+    "baseUrl": ".",
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
@@ -8,19 +8,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es2015",
+      "es2017",
       "dom"
     ],
     "noImplicitAny": false,
     "outDir": "aot",
     "paths": {
       "@ng-dynamic-forms/*": [
-        "dist/@ng-dynamic-forms/*"
+        "../dist/@ng-dynamic-forms/*"
       ]
     },
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
-      "node_modules/@types"
+      "../node_modules/@types"
     ],
     "types": [
       "hammerjs",
