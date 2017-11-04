@@ -1125,11 +1125,13 @@ new DynamicInputModel({
 ```
 
 
-## Aot Compilation
+## AOT Compilation
 
 [Ahead-of-Time (AOT) Compilation](https://angular.io/guide/aot-compiler) significantly improves the overall performance of any Angular application.
 
-Since NG Dynamic Forms bundle files **fully match** [Angular Package Format](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit) **all packages fit in seamlessly** with your AoT build - whether your'e using the Angular CLI `--aot` flag , `@ngtools/webpack` plugin or directly `@angular/compiler-cli`. 
+Since NG Dynamic Forms bundle files **fully match** [**Angular Package Format**](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit) **all packages fit in seamlessly** with your AoT build - whether your'e using the Angular CLI `--aot` flag , `@ngtools/webpack` plugin or directly `@angular/compiler-cli`. 
+
+Yet, **no guarantee can be given for any peer dependency** to properly integrate with AOT. 
 
 
 ## FAQ
