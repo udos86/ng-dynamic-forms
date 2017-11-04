@@ -1,6 +1,7 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicDatePickerModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
@@ -17,7 +18,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
         id: "bootstrapFormGroup1",
         legend: "Form Group 1",
         group: [
-            /*
+
             new DynamicDatePickerModel(
                 {
                     id: "bootstrapDatepicker",
@@ -35,7 +36,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     }
                 }
             ),
-            */
+
             new DynamicSelectModel<string>(
                 {
                     id: "bootstrapSelect",

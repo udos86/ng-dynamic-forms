@@ -8,18 +8,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es2015",
+      "es2017",
       "dom"
     ],
     "noImplicitAny": false,
+    "outDir": "aot",
     "paths": {
       "@ng-dynamic-forms/*": [
-        "dist/@ng-dynamic-forms/*"
+        "../dist/@ng-dynamic-forms/*"
       ]
     },
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
-      "node_modules/@types"
+      "../node_modules/@types"
     ],
     "types": [
       "hammerjs",
@@ -28,10 +29,10 @@
     ]
   },
   "files": [
-    "sample/app/main.aot.ts"
+    "app/app.module.ts",
+    "app/main.aot.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "sample/aot",
     "skipMetadataEmit": true
   }
 }

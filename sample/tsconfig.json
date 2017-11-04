@@ -5,36 +5,33 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es6",
-      "es2015",
+      "es2017",
       "dom"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noUnusedParameters": true,
+    "noImplicitAny": false,
     "paths": {
       "@ng-dynamic-forms/*": [
-        "dist/@ng-dynamic-forms/*"
+        "../dist/@ng-dynamic-forms/*"
       ]
     },
     "removeComments": false,
     "sourceMap": true,
-    "strictNullChecks": false,
     "target": "es5",
     "typeRoots": [
-      "node_modules/@types"
+      "../node_modules/@types"
     ],
     "types": [
       "hammerjs",
       "jasmine",
       "node",
-      "q"
+      "protractor"
     ]
   },
   "exclude": [
-    "sample",
-    "node_modules",
-    "packages"
+    "aot",
+    "dist",
+    "app/main.aot.ts"
   ]
 }

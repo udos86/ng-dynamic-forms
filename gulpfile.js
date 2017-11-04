@@ -112,7 +112,7 @@ gulp.task("copy:tests",
     TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
 
 gulp.task("transpile:tests",
-    TASK_TRANSPILE([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.packages.json", "commonjs"));
+    TASK_TRANSPILE([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.tests.json", "commonjs"));
 
 gulp.task("build:tests", done => {
     runSequence("clean:tests", "copy:tests", "transpile:tests", done);

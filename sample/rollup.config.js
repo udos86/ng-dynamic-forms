@@ -4,11 +4,11 @@ import commonjs from "rollup-plugin-commonjs";
 
 export default {
 
-    input: "./sample/app/main.aot.js",
+    input: "./aot/app/main.aot.js",
 
     output: {
 
-        file: "./sample/dist/bundle.aot.js",
+        file: "./dist/bundle.aot.js",
 
         format: "iife"
     },
@@ -17,7 +17,7 @@ export default {
 
     sourcemap: false,
 
-    sourcemapFile: "./sample/dist/bundle.aot.js.map",
+    sourcemapFile: "./dist/bundle.aot.js.map",
 
     onwarn: function (warning) {
 
@@ -37,10 +37,10 @@ export default {
         commonjs({
 
             include: [
-                "node_modules/angular2-text-mask/**/*",
-                "node_modules/primeng/**/*",
-                "node_modules/rxjs/**",
-                "node_modules/text-mask-core/**/*"
+                "../node_modules/angular2-text-mask/**/*",
+                "../node_modules/primeng/**/*",
+                "../node_modules/rxjs/**",
+                "../node_modules/text-mask-core/**/*"
             ],
 
             namedExports: {

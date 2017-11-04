@@ -3,8 +3,10 @@ const path    = require("path"),
 
 module.exports = {
 
+    context: __dirname,
+
     entry: {
-        "app": "./sample/app/main.aot.js"
+        "app": "./aot/app/main.aot.js"
     },
 
     resolve: {
@@ -13,7 +15,7 @@ module.exports = {
 
     output: {
 
-        path: path.resolve(__dirname, "./sample/dist"),
+        path: path.resolve(__dirname, "./dist"),
 
         filename: "bundle.aot.js"
     },

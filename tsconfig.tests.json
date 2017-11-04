@@ -5,13 +5,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es6",
-      "es2015",
+      "es2017",
       "dom"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
     "paths": {
       "@ng-dynamic-forms/*": [
         "dist/@ng-dynamic-forms/*"
@@ -19,6 +19,7 @@
     },
     "removeComments": false,
     "sourceMap": true,
+    "strictNullChecks": false,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -27,15 +28,11 @@
       "hammerjs",
       "jasmine",
       "node",
-      "protractor"
+      "q"
     ]
   },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "packages",
-    "sample/aot",
-    "sample/dist",
-    "test"
+  "include": [
+    "test/**/*.spec.ts",
+    "test/**/*.d.ts"
   ]
 }
