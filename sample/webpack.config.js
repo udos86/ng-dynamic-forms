@@ -6,7 +6,7 @@ module.exports = {
     context: __dirname,
 
     entry: {
-        "app": "./aot/sample/app/main.aot.js"
+        "app": "./aot/app/main.aot.js"
     },
 
     resolve: {

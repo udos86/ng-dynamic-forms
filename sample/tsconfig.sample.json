@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "..",
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -31,11 +31,7 @@
     ]
   },
   "exclude": [
-    "dist",
-    "node_modules",
-    "packages",
-    "sample/aot",
-    "sample/dist",
-    "test"
+    "aot",
+    "dist"
   ]
 }
