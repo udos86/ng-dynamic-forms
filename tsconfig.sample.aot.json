@@ -12,6 +12,7 @@
       "dom"
     ],
     "noImplicitAny": false,
+    "outDir": "sample/aot",
     "paths": {
       "@ng-dynamic-forms/*": [
         "dist/@ng-dynamic-forms/*"
@@ -28,10 +29,10 @@
     ]
   },
   "files": [
+    "sample/app/app.module.ts",
     "sample/app/main.aot.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "sample/aot",
     "skipMetadataEmit": true
   }
 }

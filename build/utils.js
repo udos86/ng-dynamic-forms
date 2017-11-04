@@ -68,11 +68,17 @@ const utils = {
             "ionic-angular": "ionic-angular",
             "ionic-angular/index": "ionic-angular",
             "primeng/primeng": "primeng/primeng",
+            "rxjs/BehaviorSubject": "Rx.BehaviorSubject",
             "rxjs/Observable": "Rx.Observable",
             "rxjs/Subject": "Rx.Subject",
             "rxjs/Subscription": "Rx.Subscription",
             "rxjs/add/observable/of": "rxjs/add/observable/of",
-            "rxjs/add/operator/map": "rxjs/add/operator/map"
+            "rxjs/add/operator/map": "rxjs/add/operator/map",
+            "rxjs/operator/map": "rxjs/operator/map",
+            "rxjs/operator/distinctUntilChanged": "rxjs/operator/distinctUntilChanged",
+            "rxjs/operator/observeOn": "rxjs/operator/observeOn",
+            "rxjs/operator/scan": "rxjs/operator/scan",
+            "rxjs/scheduler/queue": "rxjs/scheduler/queue"
         };
     }
 };

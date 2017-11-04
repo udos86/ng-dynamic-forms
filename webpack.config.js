@@ -4,7 +4,7 @@ const path    = require("path"),
 module.exports = {
 
     entry: {
-        "app": "./sample/app/main.aot.js"
+        "app": "./sample/aot/sample/app/main.aot.js"
     },
 
     resolve: {

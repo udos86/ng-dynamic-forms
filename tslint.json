@@ -35,6 +35,6 @@
     "directive-class-suffix": true,
     "import-destructuring-spacing": true,
     "no-access-missing-member": false,
-    "no-on-prefix-output-name": true
+    "no-output-on-prefix": true
   }
 }

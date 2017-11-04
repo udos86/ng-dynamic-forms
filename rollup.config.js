@@ -4,7 +4,7 @@ import commonjs from "rollup-plugin-commonjs";
 
 export default {
 
-    input: "./sample/app/main.aot.js",
+    input: "./sample/aot/sample/app/main.aot.js",
 
     output: {
 
