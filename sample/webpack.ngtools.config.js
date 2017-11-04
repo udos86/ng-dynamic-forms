@@ -3,8 +3,10 @@ const path                  = require("path"),
 
 module.exports = {
 
+    context: __dirname,
+
     entry: {
-        "app": "./sample/app/main.jit.js"
+        "app": "./app/main.jit.js"
     },
 
     resolve: {
@@ -13,7 +15,7 @@ module.exports = {
 
     output: {
 
-        path: path.resolve(__dirname, "./sample/dist"),
+        path: path.resolve(__dirname, "./dist"),
 
         filename: "bundle.aot.js"
     },
@@ -44,9 +46,9 @@ module.exports = {
 
         new AngularCompilerPlugin({
 
-            tsConfigPath: "./tsconfig.sample.json",
+            tsConfigPath: path.resolve(__dirname, "./tsconfig.sample.json"),
 
-            entryModule: "./sample/app/app.module#AppModule"
+            entryModule: "./app/app.module#AppModule"
         })
     ]
 };

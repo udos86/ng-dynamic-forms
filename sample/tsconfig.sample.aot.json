@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "..",
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
@@ -12,7 +12,7 @@
       "dom"
     ],
     "noImplicitAny": false,
-    "outDir": "sample/aot",
+    "outDir": "aot",
     "paths": {
       "@ng-dynamic-forms/*": [
         "dist/@ng-dynamic-forms/*"
@@ -29,8 +29,8 @@
     ]
   },
   "files": [
-    "sample/app/app.module.ts",
-    "sample/app/main.aot.ts"
+    "app/app.module.ts",
+    "app/main.aot.ts"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": true

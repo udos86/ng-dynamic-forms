@@ -3,10 +3,10 @@
   "version": "5.0.0",
   "description": "A rapid form development library for Angular",
   "scripts": {
-    "aot-compile:sample": "ngc -p tsconfig.sample.aot.json",
+    "aot-compile:sample": "ngc -p ./sample/tsconfig.sample.aot.json",
     "bundle:sample:rollup": "rollup -c rollup.config.js",
-    "bundle:sample:webpack": "webpack --config ./webpack.config.js",
-    "build:sample:webpack": "webpack --config ./webpack.ngtools.config.js",
+    "bundle:sample:webpack": "webpack --config ./sample/webpack.config.js",
+    "build:sample:webpack": "webpack --config ./sample/webpack.ngtools.config.js",
     "build:packages": "gulp build",
     "gulp": "gulp",
     "lint:packages": "tslint -c ./tslint.json './packages/**/*.ts'",

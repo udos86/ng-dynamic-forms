@@ -13,15 +13,15 @@ have been removed and replaced by `groupAsyncValidators` and `groupValidators`
 
 ### **Features** 
 
-* **upgrade to Angular 5** (closes [#496](https://github.com/udos86/ng2-dynamic-forms/issues/496))
+* **upgrade to Angular 5** (closes [#496](https://github.com/udos86/ng-dynamic-forms/issues/496))
 * support for multiple `asyncValidators` and `validators` on `FormArray` and `FormGroup`
 * support for `FormHooks` via new property `updateOn` on `DynamicFormControlModel` 
-* support for applying both a start **and** end template to a `DynamicFormControlComponent` instead of either / or (closes [#531](https://github.com/udos86/ng2-dynamic-forms/issues/531)) 
-* support for updating `validators` and `asyncValidators` at runtime via new `updateValidators()` and `updateAsyncValidators()` functions on `DynamicFormValidationService` (closes [#342](https://github.com/udos86/ng2-dynamic-forms/issues/342)) 
+* support for applying both a start **and** end template to a `DynamicFormControlComponent` instead of either / or
+* support for updating `validators` and `asyncValidators` at runtime via new `updateValidators()` and `updateAsyncValidators()` functions on `DynamicFormValidationService` (closes [#342](https://github.com/udos86/ng-dynamic-forms/issues/342)) 
 
 ### **Bugfixes** 
 
-* `DynamicDateControlModel` now accepts date values of type `object` in order to support proprietary date representations, e.g. `NgbDateStruct` in NG Bootstrap (closes [#556](https://github.com/udos86/ng2-dynamic-forms/issues/556))
+* `DynamicDateControlModel` now accepts date values of type `object` in order to support proprietary date representations, e.g. `NgbDateStruct` in NG Bootstrap (closes [#556](https://github.com/udos86/ng-dynamic-forms/issues/556))
 
 ***
 
