@@ -52,6 +52,7 @@ with **`DynamicBootstrapFormControlComponent`**:
 |            **[Select](http://getbootstrap.com/css/#selects)**            	| `DynamicSelectModel`        	|         –         	|
 |           **[TextArea](http://getbootstrap.com/css/#textarea)**          	| `DynamicTextAreaModel`      	|         –         	|
 
-## Sample
+## Resources
 
-[**Official Live Demo**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#bootstrap-sample-form) 
+* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/ui-bootstrap/)
+* [**Live Sample**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#bootstrap-sample-form) 

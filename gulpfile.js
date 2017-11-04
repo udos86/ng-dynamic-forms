@@ -51,6 +51,7 @@ PACKAGES_NAMES.forEach(packageName => {
           TASK_NAME_BUNDLE              = `bundle:${packageName}`,
           TASK_NAME_REMOVE_MODULE_ID    = `remove-module-id:${packageName}`,
           TASK_NAME_CLEANUP             = `cleanup:${packageName}`,
+          TASK_NAME_DOC                 = `doc:${packageName}`,
           TASK_NAME_BUILD               = `build:${packageName}`;
 
     gulp.task(TASK_NAME_LINT,
@@ -80,6 +81,23 @@ PACKAGES_NAMES.forEach(packageName => {
     gulp.task(TASK_NAME_CLEANUP,
         TASK_CLEAN([`${PACKAGE_DIST_PATH}/*.js?(.map)`, `${PACKAGE_DIST_PATH}/src/**/*.js?(.map)`]));
 
+    gulp.task(TASK_NAME_DOC,
+        TASK_TYPEDOC([`${PACKAGE_SRC_PATH}/src/**/!(*.spec).ts`], {
+            exclude: `**/*+(${packageName}|module).ts`,
+            excludeExternals: true,
+            experimentalDecorators: true,
+            externalPattern: `${PACKAGE_DIST_PATH}/**/*.*`,
+            ignoreCompilerErrors: true,
+            includeDeclarations: true,
+            module: "commonjs",
+            name: `@ng-dynamic-forms/${packageName}`,
+            out: `docs/${packageName}`,
+            readme: "none",
+            target: "es6",
+            theme: "minimal"
+        })
+    );
+
     gulp.task(TASK_NAME_BUILD, done => {
         runSequence(
             TASK_NAME_LINT,
@@ -99,6 +117,10 @@ PACKAGES_NAMES.forEach(packageName => {
 
 gulp.task("build:packages", done => {
     runSequence(...PACKAGES_NAMES.map(packageName => `build:${packageName}`), done)
+});
+
+gulp.task("doc:packages", done => {
+    runSequence(...PACKAGES_NAMES.map(packageName => `doc:${packageName}`), done)
 });
 
 
@@ -155,19 +177,3 @@ gulp.task("copy:npm-dist",
 gulp.task("watch:packages", () => {
     gulp.watch([`${SRC_PATH}/**/*.*`], ["build:packages"]);
 });
-
-gulp.task("build:doc",
-    TASK_TYPEDOC([`${SRC_PATH}/*/src/**/!(*.spec).ts`], {
-        externalPattern: `${DIST_PATH}/**/*.*`,
-        excludeExternals: true,
-        experimentalDecorators: true,
-        ignoreCompilerErrors: true,
-        includeDeclarations: true,
-        module: "commonjs",
-        name: "ng Dynamic Forms",
-        out: "docs/",
-        readme: "none",
-        target: "es6",
-        theme: "minimal"
-    })
-);
