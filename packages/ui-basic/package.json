@@ -34,6 +34,6 @@
     "@angular/forms": "^5.0.0",
     "@ng-dynamic-forms/core": "^5.0.0",
     "angular2-text-mask": "^8.0.1",
-    "rxjs": "^5.5.0"
+    "rxjs": "^5.5.2"
   }
 }

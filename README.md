@@ -1119,7 +1119,7 @@ new DynamicInputModel({
     
     id: "myInput",
     label: "My Input",
-    list: ["One", "Two", "Three", "Four", "Five"]
+    list: ["Alabama", "Alaska", "Arizona", "Arkansas"]
 })
 ```
 
