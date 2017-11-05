@@ -35,7 +35,7 @@
     "@angular/forms": "^5.0.0",
     "@ng-dynamic-forms/core": "^5.0.0",
     "primeng": "^4.0.0",
-    "rxjs": "^5.5.0"
+    "rxjs": "^5.5.2"
   },
   "optionalDependencies": {
     "quill": "^1.2.3"
