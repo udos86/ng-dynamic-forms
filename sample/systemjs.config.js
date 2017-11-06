@@ -67,7 +67,7 @@
         "@telerik/kendo-inputs-common": "npm:@telerik/kendo-inputs-common/dist/npm/main.js",
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
         "angular2-text-mask": "npm:angular2-text-mask/dist/angular2TextMask.js",
-        "app": "app",
+        "app": "./",
         "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
         "ngx-bootstrap": "npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js",
         "primeng": "npm:primeng",

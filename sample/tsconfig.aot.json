@@ -30,7 +30,8 @@
   },
   "files": [
     "app/app.module.ts",
-    "app/main.aot.ts"
+    "app/main.aot.ts",
+    "app/main.jit.ts"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": true

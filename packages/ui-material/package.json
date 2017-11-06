@@ -33,7 +33,7 @@
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
-    "@angular/material": "^2.0.0-beta.12",
+    "@angular/material": "^5.0.0-rc0",
     "@ng-dynamic-forms/core": "^5.0.0",
     "rxjs": "^5.5.2"
   }

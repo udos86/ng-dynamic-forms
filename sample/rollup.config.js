@@ -8,7 +8,7 @@ export default {
 
     output: {
 
-        file: "./dist/bundle.aot.js",
+        file: "./dist/bundle.js",
 
         format: "iife"
     },
@@ -17,7 +17,7 @@ export default {
 
     sourcemap: false,
 
-    sourcemapFile: "./dist/bundle.aot.js.map",
+    sourcemapFile: "./dist/bundle.js.map",
 
     onwarn: function (warning) {
 
