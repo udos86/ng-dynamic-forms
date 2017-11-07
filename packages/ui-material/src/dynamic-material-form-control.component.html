@@ -185,8 +185,8 @@
                         [placeholder]="model.placeholder"
                         [required]="model.required"
                         (change)="onValueChange($event)"
-                        (onClose)="onCustomEvent($event, 'onClose')"
-                        (onOpen)="onCustomEvent($event, 'onOpen')">
+                        (closed)="onCustomEvent($event, 'closed')"
+                        (opened)="onCustomEvent($event, 'opened')">
 
                 <mat-option *ngFor="let option of model.options$ | async"
                             [ngClass]="model.cls.element.option"

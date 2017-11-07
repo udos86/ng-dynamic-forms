@@ -16,5 +16,5 @@ import { AsyncSampleFormComponent } from "./async-sample-form.component";
     declarations: [AsyncSampleFormComponent]
 })
 
-export class AsyncExampleModule {
+export class AsyncSampleFormModule {
 }

@@ -1,28 +1,46 @@
 const path    = require("path"),
-      webpack = require("webpack");
+      webpack = require("webpack"),
+      ProgressPlugin = require("webpack/lib/ProgressPlugin");
 
 module.exports = {
 
     context: __dirname,
 
-    entry: {
-        "app": "./aot/app/main.aot.js"
-    },
-
     resolve: {
-        modules: ["dist", "node_modules"]
+
+        extensions: [".ts", ".js"],
+
+        modules: ["../dist", "../node_modules"],
+
+        mainFields: ["browser", "module", "main"]
     },
 
     output: {
 
         path: path.resolve(__dirname, "./dist"),
 
-        filename: "bundle.aot.js"
+        filename: "bundle.js"
     },
 
-    //devtool: "source-map",
+    module: {
+
+        rules: [
+            {
+                test: /\.(html|css)$/,
+                loader: "raw-loader",
+            },
+            {
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                loader: 'file-loader'
+            }
+        ]
+    },
 
     plugins: [
+
+        new webpack.NoEmitOnErrorsPlugin(),
+
+        new ProgressPlugin(),
 
         new webpack.optimize.UglifyJsPlugin({
 

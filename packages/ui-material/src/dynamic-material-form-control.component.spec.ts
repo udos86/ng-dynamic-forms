@@ -11,8 +11,7 @@ import {
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,
-    MatSlideToggleModule,
-    MATERIAL_COMPATIBILITY_MODE
+    MatSlideToggleModule
 } from "@angular/material";
 import {
     DynamicFormsCoreModule,
@@ -78,8 +77,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
                 MatSlideToggleModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicMaterialFormControlComponent],
-            providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+            declarations: [DynamicMaterialFormControlComponent]
 
         }).compileComponents().then(() => {
 

@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.aot.json",
+  "exclude": [],
+  "angularCompilerOptions": {
+    "skipMetadataEmit": true
+  }
+}

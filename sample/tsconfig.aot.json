@@ -27,12 +27,5 @@
       "node",
       "q"
     ]
-  },
-  "files": [
-    "app/app.module.ts",
-    "app/main.aot.ts"
-  ],
-  "angularCompilerOptions": {
-    "skipMetadataEmit": true
   }
 }
