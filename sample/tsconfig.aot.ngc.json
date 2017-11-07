@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.aot.json",
+  "files": [
+    "./main.aot.ts",
+    "./app/app.module.ts"
+  ],
+  "angularCompilerOptions": {
+    "skipMetadataEmit": true
+  }
+}

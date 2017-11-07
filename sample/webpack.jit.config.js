@@ -4,7 +4,7 @@ const config = require('./webpack.config.js'),
 module.exports = merge(config, {
 
     entry: {
-        "app": "./main.jit.js" //"./aot/app/main.aot.js",
+        "app": "./main.jit.ts",
     },
 
     modules: {

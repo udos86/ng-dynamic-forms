@@ -1,3 +1,11 @@
+# 5.0.1
+
+### **Features** 
+
+* **upgrade to Angular Material `5.0.0-rc0`**
+
+***
+
 # 5.0.0
 
 ### **Breaking Changes**

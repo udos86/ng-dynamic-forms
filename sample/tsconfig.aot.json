@@ -27,9 +27,5 @@
       "node",
       "q"
     ]
-  },
-  "exclude": [],
-  "angularCompilerOptions": {
-    "skipMetadataEmit": true
   }
 }
