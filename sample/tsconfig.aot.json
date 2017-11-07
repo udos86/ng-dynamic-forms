@@ -28,11 +28,7 @@
       "q"
     ]
   },
-  "files": [
-    "app/app.module.ts",
-    "app/main.aot.ts",
-    "app/main.jit.ts"
-  ],
+  "exclude": [],
   "angularCompilerOptions": {
     "skipMetadataEmit": true
   }

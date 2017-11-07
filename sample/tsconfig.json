@@ -32,6 +32,6 @@
   "exclude": [
     "aot",
     "dist",
-    "app/main.aot.ts"
+    "main.aot.ts"
   ]
 }

@@ -25,11 +25,11 @@ module.exports = merge(config, {
 
         new AngularCompilerPlugin({
 
-            tsConfigPath: "./tsconfig.aot.json",
+            tsConfigPath: path.resolve(__dirname, "./tsconfig.aot.json"),
 
-            mainPath: "./main.jit.ts",
+            mainPath: path.resolve(__dirname, "./main.jit.ts"),
 
-            entryModule: "./app/app.module#AppModule",
+            entryModule: path.resolve(__dirname, "./app/app.module#AppModule"),
 
             sourceMap: true
         })
