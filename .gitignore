@@ -12,6 +12,12 @@ sample/aot/
 sample/app/**/*.js
 sample/app/**/*.js.map
 sample/app/**/*.d.ts
+sample/main.aot.js
+sample/main.aot.js.map
+sample/main.aot.d.ts
+sample/main.jit.js
+sample/main.jit.js.map
+sample/main.jit.d.ts
 sample/dist
 sample/fonts
 sample/images
