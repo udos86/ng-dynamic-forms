@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "declaration": true,
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
@@ -32,6 +32,7 @@
   "exclude": [
     "aot",
     "dist",
-    "main.aot.ts"
+    "main.aot.ts",
+    "node_modules"
   ]
 }

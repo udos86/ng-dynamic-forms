@@ -53,7 +53,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 npm install @ng-dynamic-forms/core -S
 ```
   
-**2. Choose your [UI library](#ui-modules-and-components)** and **install the appropriate package**:
+**2. Choose your [UI library](#ui-modules)** and **install the appropriate package**:
 ```
 npm install @ng-dynamic-forms/ui-bootstrap -S
 ```
