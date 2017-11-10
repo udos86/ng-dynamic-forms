@@ -7,12 +7,16 @@ module.exports = merge(config, {
         "app": "./main.jit.ts",
     },
 
-    modules: {
+    module: {
 
         rules: [
             {
                 test: /\.ts$/,
-                loaders: ["awesome-typescript-loader", "angular2-template-loader?keepUrl=true"],
+                loaders: [
+                    "ts-loader?configFile=sample/tsconfig.jit.json",
+                    "angular2-template-loader?keepUrl=true",
+                    "angular-router-loader"
+                ],
                 exclude: [/\.(spec|e2e)\.ts$/]
             }
         ]
