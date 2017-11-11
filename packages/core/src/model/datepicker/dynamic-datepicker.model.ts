@@ -1,19 +1,23 @@
 import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynamic-date-control.model";
+import {
+    DynamicDateControlModel,
+    DynamicDateControlModelConfig,
+    DynamicDateControlValue
+} from "../dynamic-date-control.model";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 
 export interface DynamicDatePickerModelConfig extends DynamicDateControlModelConfig {
 
-    focusedDate?: string | Date;
+    focusedDate?: DynamicDateControlValue;
     inline?: boolean;
     toggleIcon?: string;
 }
 
 export class DynamicDatePickerModel extends DynamicDateControlModel {
 
-    @serializable() focusedDate: string | Date | null;
+    @serializable() focusedDate: DynamicDateControlValue;
     @serializable() inline: boolean;
     @serializable() toggleIcon: string | null;
 
