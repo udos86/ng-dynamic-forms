@@ -1,3 +1,11 @@
+# 5.0.2
+
+### **Features** 
+
+* `min`, `max` and `focusedDate` support for `DynamicDatePickerModel` in `ui-ng-bootsrap` (closes [#570](https://github.com/udos86/ng-dynamic-forms/issues/570), [#576](https://github.com/udos86/ng-dynamic-forms/issues/576))
+
+***
+
 # 5.0.1
 
 ### **Features** 

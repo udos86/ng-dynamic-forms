@@ -103,9 +103,12 @@
                        [class.is-invalid]="showErrorMessages"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
+                       [maxDate]="model.max"
+                       [minDate]="model.min"
                        [name]="model.name"
                        [ngClass]="model.cls.element.control"
-                       [placeholder]="model.placeholder">
+                       [placeholder]="model.placeholder"
+                       [startDate]="model.focusedDate">
 
                 <div class="input-group-addon" (click)="datepicker.toggle()">
                     <img [src]="model.toggleIcon" style="cursor: pointer;"/>
