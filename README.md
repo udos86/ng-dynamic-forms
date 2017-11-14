@@ -207,14 +207,14 @@ export class MyDynamicFormComponent implements OnInit {
 
 NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-basic)**
-* **[Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-bootstrap)**
-* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-foundation)**
-* **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-ionic)**
-* **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-kendo)**
-* **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-material)**
-* **[NG Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-ng-bootstrap)**
-* **[PrimeNG](https://github.com/udos86/ng-dynamic-forms/tree/master/modules/ui-primeng)**
+* **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-basic)**
+* **[Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/packages/modules/ui-bootstrap)**
+* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/packages/modules/ui-foundation)**
+* **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ionic)**
+* **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-kendo)**
+* **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-material)**
+* **[NG Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ng-bootstrap)**
+* **[PrimeNG](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and its peer dependencies**:
