@@ -208,8 +208,8 @@ export class MyDynamicFormComponent implements OnInit {
 NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
 * **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-basic)**
-* **[Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/packages/modules/ui-bootstrap)**
-* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/packages/modules/ui-foundation)**
+* **[Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-bootstrap)**
+* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-foundation)**
 * **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ionic)**
 * **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-kendo)**
 * **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-material)**
