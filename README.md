@@ -25,7 +25,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Running the Example](#running-the-example)
+- [Running the Example](#running-the-sample)
 - [Basic Usage](#basic-usage)
 - [UI Modules](#ui-modules)
 - [Form Groups](#form-groups)
@@ -89,7 +89,7 @@ git clone https://github.com/udos86/ng-dynamic-forms.git
 npm install
 ```
 
-**3. Build the library**:
+**3. Build the library packages**:
 ```
 npm run build:packages
 ```
