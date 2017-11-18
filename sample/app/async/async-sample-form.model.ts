@@ -1,25 +1,20 @@
-import { DynamicSelectModel } from "@ng-dynamic-forms/core";
+import { DynamicInputModel } from "@ng-dynamic-forms/core";
+import { customValidator } from "../app.validators";
 
 export const ASYNC_SAMPLE_FORM_MODEL = [
 
-    new DynamicSelectModel<string>({
+    new DynamicInputModel({
 
-        id: "asyncSelect",
-        label: "Example Select",
-        options: [
-            {
-                label: "Option 1",
-                value: "option-1",
-            },
-            {
-                label: "Option 2",
-                value: "option-2"
-            },
-            {
-                label: "Option 3",
-                value: "option-3"
+        id: "asyncInput",
+        label: "Sample Async Input",
+        validators: {
+            customValidator: {
+                name: customValidator.name,
+                args: null
             }
-        ],
-        value: "option-3"
+        },
+        errorMessages: {
+            customValidator: "Invalid"
+        }
     })
 ];
