@@ -8,7 +8,7 @@ module.exports = merge(config, {
     context: __dirname,
 
     entry: {
-        "app": "./main.jit.ts"
+        "app": "./main.ts"
     },
 
     module: {

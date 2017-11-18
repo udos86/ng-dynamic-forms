@@ -125,6 +125,7 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
     "webpack-merge": "^4.1.1"
   }
 }

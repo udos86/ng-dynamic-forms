@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.aot.json",
   "files": [
-    "./main.aot.ts",
+    "./main.aot.ngc.ts",
     "./app/app.module.ts"
   ],
   "angularCompilerOptions": {

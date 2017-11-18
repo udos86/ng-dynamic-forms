@@ -4,7 +4,7 @@ const config = require('./webpack.config.js'),
 module.exports = merge(config, {
 
     entry: {
-        "app": "./main.jit.ts",
+        "app": "./main.ts",
     },
 
     module: {

@@ -32,7 +32,7 @@
   "exclude": [
     "aot",
     "dist",
-    "main.aot.ts",
+    "main.aot.ngc.ts",
     "node_modules"
   ]
 }

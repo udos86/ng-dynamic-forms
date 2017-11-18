@@ -4,6 +4,6 @@ const config = require('./webpack.config.js'),
 module.exports = merge(config, {
 
     entry: {
-        "app": "./aot/sample/main.aot.js"
+        "app": "./aot/sample/main.aot.ngc.js"
     }
 });
