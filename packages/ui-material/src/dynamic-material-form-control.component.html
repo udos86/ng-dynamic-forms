@@ -77,7 +77,10 @@
 
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
-            <mat-datepicker #matDatepicker [startAt]="model.focusedDate" [touchUi]="true"></mat-datepicker>
+            <mat-datepicker #matDatepicker [startAt]="model.focusedDate"
+                                           [touchUi]="true"
+                                           (closed)="onCustomEvent($event, 'closed')"
+                                           (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
 
             <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
                 <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
@@ -207,6 +210,7 @@
                     [max]="model.max"
                     [ngClass]="[model.cls.element.control, model.cls.grid.control]"
                     [step]="model.step"
+                    [tabIndex]="model.tabIndex"
                     [thumbLabel]="true"
                     tickInterval="1"
                     [vertical]="model.vertical"

@@ -7,10 +7,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
 [![DeepScan Grade](https://deepscan.io/api/projects/562/branches/912/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=562&bid=912)
 [![Downloads](http://img.shields.io/npm/dm/@ng-dynamic-forms/core.svg)](https://npmjs.org/package/@ng-dynamic-forms/core)
-***
-:bangbang:09-14-2017: **@ng2-dynamic-forms has been renamed to @ng-dynamic-forms**:bangbang:
-***
-
 
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
 [**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html).
@@ -25,7 +21,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Running the Example](#running-the-sample)
+- [Running the Sample](#running-the-sample)
 - [Basic Usage](#basic-usage)
 - [UI Modules](#ui-modules)
 - [Form Groups](#form-groups)

@@ -4,7 +4,7 @@ import uglify from "rollup-plugin-uglify";
 
 export default {
 
-    input: "./aot/sample/main.aot.js",
+    input: "./aot/sample/main.aot.ngc.js",
 
     output: {
 
