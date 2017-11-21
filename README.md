@@ -25,7 +25,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Running the Example](#running-the-sample)
+- [Running the Sample](#running-the-sample)
 - [Basic Usage](#basic-usage)
 - [UI Modules](#ui-modules)
 - [Form Groups](#form-groups)

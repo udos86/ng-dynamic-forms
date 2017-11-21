@@ -1,15 +1,15 @@
-## I'm submitting a...
+## I'm submitting a
 <!-- Check one of the following options with "x" -->
 <pre><code>
-[ ] Bug
+[ ] Bug / Regression
 [ ] Feature Request / Proposal
 [ ] Question
 </code></pre>
 
-## I'm using...
+## I'm using
 <!-- Check one of the following options with "x" -->
 <pre><code>
-NG Dynamic Forms Version: X.Y.Z
+NG Dynamic Forms Version: `X.Y.Z`
 
 [ ] Basic UI
 [ ] Bootstrap UI  
