@@ -42,7 +42,7 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
     groupAsyncValidators?: DynamicValidatorsConfig;
     groupFactory?: () => DynamicFormControlModel[];
     groupValidators?: DynamicValidatorsConfig;
-    groups?: DynamicFormArrayGroupModel[];
+    groups?: DynamicFormArrayGroupModel[] | null;
     initialCount?: number;
 }
 
