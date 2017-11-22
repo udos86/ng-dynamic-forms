@@ -3,6 +3,7 @@
 ### **Features** 
 
 * **upgrade to Angular Material `5.0.0-rc1`**
+* **upgrade to Prime NG `5.0.0`**
 
 ***
 
