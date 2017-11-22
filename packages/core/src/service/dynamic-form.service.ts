@@ -307,7 +307,7 @@ export class DynamicFormService {
     }
 
 
-    fromJSON(json: string | Object[]): DynamicFormControlModel[] | never {
+    fromJSON(json: string | object[]): DynamicFormControlModel[] | never {
 
         let rawFormModel = typeof json === "string" ? JSON.parse(json, Utils.parseJSONReviver) : json,
             formModel: DynamicFormControlModel[] = [];
