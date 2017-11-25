@@ -28,7 +28,11 @@ import {
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
     DynamicTemplateDirective
 } from "../directive/dynamic-template.directive";
-import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
+import {
+    DynamicFormControlLayout,
+    DynamicFormLayout,
+    DynamicFormLayoutService
+} from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
 
@@ -155,9 +159,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
     }
 
-    getClass(context: string, place: string, id: string = this.model.id): string {
+    getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
 
-        let controlLayout = (this.layout && this.layout[id]) || this.model.cls;
+        let controlLayout = (this.layout && this.layout[model.id]) || model.cls as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }

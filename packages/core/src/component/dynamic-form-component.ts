@@ -10,7 +10,12 @@ import {
 } from "./dynamic-form-control.component";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
-import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
+import { DynamicFormService } from "../service/dynamic-form.service";
+import {
+    DynamicFormControlLayout,
+    DynamicFormLayout,
+    DynamicFormLayoutService
+} from "../service/dynamic-form-layout.service";
 
 export abstract class DynamicFormComponent {
 
@@ -26,10 +31,17 @@ export abstract class DynamicFormComponent {
     focus: EventEmitter<DynamicFormControlEvent>;
     customEvent: EventEmitter<DynamicFormControlEvent>;
 
-    constructor(protected layoutService: DynamicFormLayoutService) {}
+    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {}
 
     trackByFn(_index: number, model: DynamicFormControlModel): string {
         return model.id;
+    }
+
+    getClass(model: DynamicFormControlModel, context: string, place: string): string {
+
+        let controlLayout = this.layoutService.findById(model.id, this.layout) || model.cls as DynamicFormControlLayout;
+
+        return this.layoutService.getClass(controlLayout, context, place);
     }
 
     onEvent($event: DynamicFormControlEvent, type: string) {

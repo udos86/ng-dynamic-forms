@@ -6,6 +6,7 @@ import {
     DynamicFormControlModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
+    DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
@@ -29,7 +30,7 @@ export class DynamicIonicFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicIonicFormControlComponent) components: QueryList<DynamicIonicFormControlComponent>;
 
-    constructor(protected layoutService: DynamicFormLayoutService) {
-        super(layoutService);
+    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
+        super(formService, layoutService);
     }
 }

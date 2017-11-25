@@ -29,18 +29,22 @@ export class DynamicFormLayoutService {
 
     findById(id: string, formLayout: DynamicFormLayout): DynamicFormControlLayout | null {
 
-        for (let key of Object.keys(formLayout)) {
+        if (formLayout !== null && typeof formLayout === "object") {
 
-            if (key === id) {
-                return formLayout[key];
+            for (let key of Object.keys(formLayout)) {
+
+                if (key === id) {
+                    return formLayout[key];
+                }
             }
         }
+
         return null;
     }
 
-    getClass(layout: DynamicFormControlLayout, context: string, place: string): string {
+    getClass(layout: DynamicFormControlLayout | null, context: string, place: string): string {
 
-        if (layout && layout.hasOwnProperty(context) && layout[context].hasOwnProperty(place)) {
+        if (layout !== null && layout.hasOwnProperty(context) && layout[context].hasOwnProperty(place)) {
             return layout[context][place];
         }
 

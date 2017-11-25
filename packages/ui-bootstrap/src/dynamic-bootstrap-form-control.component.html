@@ -57,7 +57,7 @@
                                                     [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                     [model]="controlModel"
                                                     [templates]="templateList"
-                                                    [ngClass]="[getClass('element','host',controlModel.id), getClass('grid','host',controlModel.id)]"
+                                                    [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
                                                     (dfBlur)="onBlur($event)"
                                                     (dfChange)="onValueChange($event)"
                                                     (dfFocus)="onFocus($event)"></dynamic-bootstrap-form-control>
@@ -83,7 +83,7 @@
                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
                                                 [model]="controlModel"
                                                 [templates]="templateList"
-                                                [ngClass]="[getClass('element','host',controlModel.id), getClass('grid','host',controlModel.id)]"
+                                                [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
                                                 (dfBlur)="onBlur($event)"
                                                 (dfChange)="onValueChange($event)"
                                                 (dfFocus)="onFocus($event)"></dynamic-bootstrap-form-control>

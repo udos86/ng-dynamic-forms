@@ -2,8 +2,6 @@ import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs/Subject";
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { Utils } from "../utils/core.utils";
-import { DynamicClsConfig, DynamicClsConfigFactory } from "../utils/cls.utils";
 
 export type DynamicValidatorsConfig = { [validatorKey: string]: any | DynamicValidatorDescriptor };
 
@@ -18,6 +16,18 @@ export interface DynamicPathable {
     id?: string;
     index?: number | null;
     parent: DynamicPathable | null;
+}
+
+export interface DynamicClsConfig {
+
+    container?: string;
+    control?: string;
+    errors?: string;
+    group?: string;
+    hint?: string;
+    host?: string;
+    label?: string;
+    option?: string;
 }
 
 export interface DynamicFormControlClsConfig {
@@ -41,7 +51,7 @@ export interface DynamicFormControlModelConfig {
 export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() asyncValidators: DynamicValidatorsConfig | null;
-    @serializable() cls: any = {};
+    @serializable() cls: DynamicFormControlClsConfig | null;
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
@@ -55,9 +65,10 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     abstract readonly type: string;
 
-    constructor(config: DynamicFormControlModelConfig, clsConfig: DynamicFormControlClsConfig = {}) {
+    constructor(config: DynamicFormControlModelConfig, clsConfig: DynamicFormControlClsConfig | null = null) {
 
         this.asyncValidators = config.asyncValidators || null;
+        this.cls = clsConfig;
         this.errorMessages = config.errorMessages || null;
         this.id = config.id;
         this.label = config.label || null;
@@ -65,9 +76,6 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.relation = Array.isArray(config.relation) ? config.relation : [];
         this.updateOn = typeof config.updateOn === "string" ? config.updateOn : null;
         this.validators = config.validators || null;
-
-        this.cls.element = Utils.merge(clsConfig.element, DynamicClsConfigFactory.create());
-        this.cls.grid = Utils.merge(clsConfig.grid, DynamicClsConfigFactory.create());
 
         this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();

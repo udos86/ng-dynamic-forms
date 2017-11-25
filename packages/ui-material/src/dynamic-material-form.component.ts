@@ -6,6 +6,7 @@ import {
     DynamicFormControlModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
+    DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
@@ -29,7 +30,7 @@ export class DynamicMaterialFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicMaterialFormControlComponent) components: QueryList<DynamicMaterialFormControlComponent>;
 
-    constructor(protected layoutService: DynamicFormLayoutService) {
-        super(layoutService);
+    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
+        super(formService, layoutService);
     }
 }
