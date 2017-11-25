@@ -543,7 +543,7 @@ export const MY_FORM_LAYOUT = {
     }
 ```
 
-To reference this `DynamicFormLayout` in we now just create another component class member:
+To reference this `DynamicFormLayout` we now just create another component class member:
 ```ts
 import { MY_FORM_LAYOUT } from "./my-dynamic-form.layout";
 
@@ -572,7 +572,7 @@ Finally we pass the form layout to our `DynamicFormComponent` via input binding:
 </form>
 ```
 
-Using this approach we are able to strictly decouple layout information from pure form models for improving maintainability.
+Using this approach we are able to strictly decouple layout information from pure form models.
 
 
 ## Form Control Events
