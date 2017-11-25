@@ -27,7 +27,7 @@ export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 @Injectable()
 export class DynamicFormLayoutService {
 
-    findById(id: string, formLayout: DynamicFormLayout): DynamicFormControlLayout | null {
+    findById(id: string, formLayout: DynamicFormLayout | null): DynamicFormControlLayout | null {
 
         if (formLayout !== null && typeof formLayout === "object") {
 
