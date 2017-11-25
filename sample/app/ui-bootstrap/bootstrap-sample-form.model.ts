@@ -1,7 +1,7 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
-    DynamicDatePickerModel,
+    //DynamicDatePickerModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
@@ -60,16 +60,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         }
                     ]),
                     value: "option-3"
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        label: "col-sm-3"
-                    }
                 }
             ),
 
@@ -89,17 +79,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     errorMessages: {
                         required: "{{ label }} is required",
                         maxLength: "Max character count is 5"
-                    }
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        errors: "col-sm-offset-3 col-sm-9",
-                        label: "col-sm-3"
                     }
                 }
             ),
@@ -124,16 +103,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                             }
                         )
                     ]
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        label: "col-sm-3"
-                    }
                 }
             )
         ]
@@ -167,16 +136,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         }
                     ],
                     value: "option-3"
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        label: "col-sm-3"
-                    }
                 }
             ),
 
@@ -202,16 +161,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                             ]
                         }
                     ],
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        label: "col-sm-3"
-                    }
                 }
             ),
 
@@ -219,14 +168,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 {
                     id: "bootstrapCheckbox",
                     label: "I do agree"
-                },
-                {
-                    element: {
-                        container: "form-group"
-                    },
-                    grid: {
-                        control: "col-sm-offset-3 col-sm-9"
-                    }
                 }
             ),
 
@@ -241,24 +182,9 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                                 {
                                     id: "bootstrapArrayGroupInput",
                                     placeholder: "example array group input"
-                                },
-                                {
-                                    grid: {
-                                        container: "col-sm-8"
-                                    }
                                 }
                             )
                         ];
-                    }
-                },
-                {
-                    element: {
-                        container: "form-group form-array",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        label: "col-sm-3"
                     }
                 }
             )]

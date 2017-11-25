@@ -319,12 +319,6 @@ export const KENDO_SAMPLE_FORM_MODEL = [
             offLabel: " ",
             onLabel: " ",
             value: false
-        },
-        {
-            element: {
-                container: "display-flex",
-                label: "order-1"
-            }
         }
     ),
 
@@ -335,12 +329,6 @@ export const KENDO_SAMPLE_FORM_MODEL = [
             offLabel: " ",
             onLabel: " ",
             value: true
-        },
-        {
-            element: {
-                container: "display-flex",
-                label: "order-1"
-            }
         }
     ),
 

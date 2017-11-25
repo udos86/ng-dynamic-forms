@@ -35,14 +35,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                         inline: false,
                         label: "Arrival",
                         placeholder: "Date of Arrival"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-4"
-                        }
                     }
                 ),
                 new DynamicDatePickerModel(
@@ -52,22 +44,9 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                         inline: false,
                         label: "Departure",
                         placeholder: "Date of Departure"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-4"
-                        }
                     }
                 )
             ]
-        },
-        {
-            grid: {
-                control: "ui-g"
-            }
         }
     ),
 
@@ -75,7 +54,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         {
             id: "room",
             group: [
-
                 new DynamicSelectModel<string>(
                     {
                         id: "roomSize",
@@ -103,17 +81,8 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                                 value: "storeroom"
                             }
                         ]
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-4",
-                        }
                     }
                 ),
-
                 new DynamicInputModel(
                     {
                         id: "roomQuantity",
@@ -122,22 +91,9 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                         placeholder: "Quantity",
                         max: 5,
                         min: 0
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-2",
-                        }
                     }
                 )
             ]
-        },
-        {
-            grid: {
-                control: "ui-g"
-            }
         }
     ),
 
@@ -151,15 +107,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             },
             errorMessages: {
                 required: "{{ label }} is required"
-            }
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
             }
         }
     ),
@@ -175,15 +122,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             errorMessages: {
                 required: "{{ label }} is required"
             }
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
-            }
         }
     ),
 
@@ -197,15 +135,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             },
             errorMessages: {
                 email: "{{ label }} is not valid"
-            }
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
             }
         }
     ),
@@ -222,15 +151,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             errorMessages: {
                 required: "{{ label }} is required"
             }
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-7"
-            }
         }
     ),
 
@@ -238,44 +158,21 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         {
             id: "addressStreet",
             group: [
-
                 new DynamicInputModel(
                     {
                         id: "streetName",
                         label: "Street Name",
                         placeholder: "Street Name"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-7"
-                        }
                     }
                 ),
-
                 new DynamicInputModel(
                     {
                         id: "streetNumber",
                         label: "Number",
                         placeholder: "Number"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-2",
-                        }
                     }
                 )
             ]
-        },
-        {
-            grid: {
-                control: "ui-g"
-            }
         }
     ),
 
@@ -283,61 +180,29 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         {
             id: "addressLocation",
             group: [
-
                 new DynamicInputModel(
                     {
                         id: "zipCode",
                         label: "ZIP",
                         placeholder: "ZIP"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-2"
-                        }
                     }
                 ),
-
                 new DynamicInputModel(
                     {
                         id: "state",
                         label: "State",
                         placeholder: "State",
                         list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-4",
-                        }
                     }
                 ),
-
                 new DynamicInputModel(
                     {
                         id: "city",
                         label: "City",
                         placeholder: "City"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget"
-                        },
-                        grid: {
-                            host: "ui-g-5",
-                        }
                     }
                 )
             ]
-        },
-        {
-            grid: {
-                control: "ui-g"
-            }
         }
     ),
 
@@ -350,68 +215,27 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                     {
                         id: "extraBreakfast",
                         label: "Breakfast"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraTV",
                         label: "TV",
-                    },
-                    {
-                        element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraWiFi",
                         label: "WiFi"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
-                        }
                     }
                 ),
                 new DynamicCheckboxModel(
                     {
                         id: "extraParking",
                         label: "Parking Lot"
-                    },
-                    {
-                        element: {
-                            label: "ui-widget",
-                        },
-                        grid: {
-                            host: "ui-g-3"
-                        }
                     }
                 )
             ]
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "ui-g",
-                control: "ui-g"
-            }
         }
     ),
 
@@ -438,16 +262,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 }
             ],
             value: "cc"
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "ui-g",
-                control: "ui-g",
-                option: "ui-g-3"
-            }
         }
     ),
 
@@ -456,15 +270,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             id: "arrivalTime",
             label: "Estimated Arrival Time",
             showSeconds: false
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-4"
-            }
         }
     ),
 
@@ -474,15 +279,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             label: "Personal Note",
             rows: 5,
             placeholder: "Personal Note",
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                host: "ui-g",
-                container: "ui-g-8"
-            }
         }
     ),
 
@@ -493,15 +289,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             offLabel: "Off",
             onLabel: "On",
             value: false
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "order-1",
-                container: "ui-g"
-            }
         }
     ),
 
@@ -512,15 +299,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             offLabel: "Off",
             onLabel: "On",
             value: true
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                label: "order-1",
-                container: "ui-g"
-            }
         }
     ),
 
@@ -528,14 +306,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         {
             id: "feedback",
             label: "How did you like this form?"
-        },
-        {
-            element: {
-                label: "ui-widget"
-            },
-            grid: {
-                container: "ui-g"
-            }
         }
     ),
 
@@ -543,11 +313,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         {
             id: "confirm",
             label: "I confirm the information given above"
-        },
-        {
-            element: {
-                label: "ui-widget"
-            }
         }
     )
 ];

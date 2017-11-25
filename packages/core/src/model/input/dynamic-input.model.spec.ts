@@ -36,19 +36,6 @@ describe("DynamicInputModel test suite", () => {
         expect(model.autoFocus).toBe(false);
     });
 
-    it("tests if correct default cls properties aree set", () => {
-
-        expect(model.cls).toBeDefined();
-        expect(model.cls.element.container).toEqual("");
-        expect(model.cls.element.control).toEqual("");
-        expect(model.cls.element.errors).toEqual("");
-        expect(model.cls.element.label).toEqual("");
-        expect(model.cls.grid.container).toEqual("");
-        expect(model.cls.grid.control).toEqual("");
-        expect(model.cls.grid.errors).toEqual("");
-        expect(model.cls.grid.label).toEqual("");
-    });
-
     it("tests if correct default hint property is set", () => {
 
         expect(model.hint).toBeNull();

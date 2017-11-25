@@ -169,11 +169,6 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
                     }
                 )
             ]
-        },
-        {
-            element: {
-                host: "material-form-group"
-            }
         }
     ),
 

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
 import { KENDO_SAMPLE_FORM_MODEL } from "./kendo-sample-form.model";
+import { KENDO_SAMPLE_FORM_LAYOUT } from "./kendo-sample-form.layout";
 
 @Component({
     moduleId: module.id,
@@ -14,6 +15,7 @@ export class KendoSampleFormComponent implements OnInit {
 
     formModel: DynamicFormControlModel[] = KENDO_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
+    formLayout: DynamicFormLayout = KENDO_SAMPLE_FORM_LAYOUT;
 
     constructor(private formService: DynamicFormService) {}
 

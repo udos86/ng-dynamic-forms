@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import {
-    DynamicFormService,
-    DynamicFormControlModel,
     DynamicFormArrayModel,
+    DynamicFormControlModel,
+    DynamicFormLayout,
+    DynamicFormService,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 import { BOOTSTRAP_SAMPLE_FORM_MODEL } from "./bootstrap-sample-form.model";
+import { BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./bootstrap-sample-form.layout";
 
 @Component({
     moduleId: module.id,
@@ -19,6 +21,7 @@ export class BootstrapSampleFormComponent implements OnInit {
 
     formModel: DynamicFormControlModel[] = BOOTSTRAP_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
+    formLayout: DynamicFormLayout = BOOTSTRAP_SAMPLE_FORM_LAYOUT;
 
     exampleControl: FormControl;
     exampleModel: DynamicInputModel;

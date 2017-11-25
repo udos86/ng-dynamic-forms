@@ -3,6 +3,7 @@
     <form [formGroup]="formGroup" class="ui-fluid">
 
         <dynamic-primeng-form [group]="formGroup"
+                              [layout]="formLayout"
                               [model]="formModel"
                               (dfChange)="onChange($event)"
                               (pEvent)="onPEvent($event)"></dynamic-primeng-form>

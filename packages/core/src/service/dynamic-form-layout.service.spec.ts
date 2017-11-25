@@ -15,10 +15,10 @@ describe("DynamicFormLayoutService test suite", () => {
     });
 
     beforeEach(inject([DynamicFormLayoutService],
-        (validationService: DynamicFormLayoutService) => service = validationService));
+        (layoutService: DynamicFormLayoutService) => service = layoutService));
 
 
-    it("should resolve a validator by name", () => {
+    it("should", () => {
 
     });
 });

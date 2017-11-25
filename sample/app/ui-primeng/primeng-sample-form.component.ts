@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
 import { PRIME_NG_SAMPLE_FORM_MODEL } from "./primeng-sample-form.model";
+import { PRIME_NG_SAMPLE_FORM_LAYOUT } from "./primeng-sample-form.layout";
 
 @Component({
     moduleId: module.id,
@@ -19,6 +20,7 @@ export class PrimeNGSampleFormComponent implements OnInit {
 
     formModel: DynamicFormControlModel[] = PRIME_NG_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
+    formLayout: DynamicFormLayout = PRIME_NG_SAMPLE_FORM_LAYOUT;
 
     constructor(private formService: DynamicFormService) {}
 
