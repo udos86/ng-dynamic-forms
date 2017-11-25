@@ -1,3 +1,15 @@
+# 5.1.0
+
+### **Features** 
+
+* **All new approach to custom form layouts** (see updated [README.md](https://github.com/udos86/ng-dynamic-forms#form-layouts))
+
+### **Deprecation** 
+
+* **using** `clsConfig` **for providing layout information is now deprecated** - switching to `DynamicFormLayout`s is highly encouraged
+
+***
+
 # 5.0.3
 
 ### **Features** 
