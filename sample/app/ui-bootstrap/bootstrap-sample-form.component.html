@@ -5,6 +5,7 @@
     <form class="form-horizontal" [formGroup]="formGroup">
 
         <dynamic-bootstrap-form [model]="formModel"
+                                [layout]="formLayout"
                                 [group]="formGroup"
                                 (dfBlur)="onBlur($event)"
                                 (dfChange)="onChange($event)"

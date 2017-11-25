@@ -1,14 +1,14 @@
-<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
 
     <label *ngIf="type !== 4 && type !== 10 && model.label"
            [for]="model.id"
-           [ngClass]="[model.cls.element.label, model.cls.grid.label]">
+           [ngClass]="[getClass('element','label'), getClass('grid','label')]">
 
         <span [innerHTML]="model.label"></span>
 
         <span *ngIf="(type === 11 || type === 13) && model.hint" class="k-field-info"
               [innerHTML]="model.hint"
-              [ngClass]="model.cls.element.hint"></span>
+              [ngClass]="getClass('element','hint')"></span>
     </label>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
@@ -19,19 +19,20 @@
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
-             [ngClass]="model.cls.element.control">
+             [ngClass]="getClass('element','control')">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                 [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
+                 [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
 
                 <dynamic-kendo-form-control *ngFor="let controlModel of groupModel.group"
                                             [bindId]="false"
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
                                             [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                            [layout]="layout"
                                             [model]="controlModel"
                                             [templates]="templateList"
-                                            [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                            [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
                                             (dfBlur)="onBlur($event)"
                                             (dfChange)="onValueChange($event)"
                                             (dfFocus)="onFocus($event)"
@@ -48,7 +49,7 @@
                             [data]="model.list"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
-                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                             [placeholder]="model.placeholder"
                             [tabIndex]="model.tabIndex"
                             (blur)="onBlur($event)"
@@ -65,13 +66,13 @@
                         [formControlName]="model.id"
                         [max]="model.max"
                         [min]="model.min"
-                        [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                        [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                         [rangeValidation]="true"
                         [tabIndex]="model.tabIndex"
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
         <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
-        <label *ngSwitchCase="4" class="k-form-field" [ngClass]="model.cls.grid.control">
+        <label *ngSwitchCase="4" class="k-form-field" [ngClass]="getClass('grid','control')">
 
             <input type="checkbox" class="k-checkbox"
                    [checked]="model.checked"
@@ -79,7 +80,7 @@
                    [formControlName]="model.id"
                    [indeterminate]="model.indeterminate"
                    [name]="model.name"
-                   [ngClass]="model.cls.element.control"
+                   [ngClass]="getClass('element','control')"
                    [required]="model.required"
                    [tabindex]="model.tabIndex"
                    [value]="model.value"
@@ -96,7 +97,7 @@
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+                  [ngClass]="[getClass('element','control'), getClass('grid','control')]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -108,7 +109,7 @@
                        [formControlName]="controlModel.id"
                        [indeterminate]="model.indeterminate"
                        [name]="controlModel.name"
-                       [ngClass]="controlModel.cls.element.control"
+                       [ngClass]="getClass('element','control',controlModel)"
                        [required]="controlModel.required"
                        [tabindex]="controlModel.tabIndex"
                        [value]="controlModel.value"
@@ -128,7 +129,7 @@
                          [formControlName]="model.id"
                          [max]="model.max"
                          [min]="model.min"
-                         [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                         [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                          [rangeValidation]="true"
                          [spinners]="true"
                          [tabIndex]="model.tabIndex"
@@ -144,7 +145,7 @@
                           [formControlName]="model.id"
                           [max]="model.max"
                           [min]="model.min"
-                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                          [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                           [rangeValidation]="true"
                           [tabIndex]="model.tabIndex"
                           (blur)="onBlur($event)"
@@ -159,7 +160,7 @@
                             [dynamicId]="bindId && model.id"
                             [filterable]="model.filterable"
                             [formControlName]="model.id"
-                            [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                            [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                             [tabIndex]="model.tabIndex"
                             [textField]="'label'"
                             [valueField]="'value'"
@@ -176,14 +177,15 @@
         <div *ngSwitchCase="9" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
-             [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+             [ngClass]="[getClass('element','control'), getClass('grid','control')]">
 
             <dynamic-kendo-form-control *ngFor="let controlModel of model.group"
                                         [group]="control"
                                         [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                        [layout]="layout"
                                         [model]="controlModel"
                                         [templates]="templateList"
-                                        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                        [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
                                         (dfFocus)="onFocus($event)"
@@ -191,11 +193,11 @@
         </div>
 
         <!-- TEXTBOX -------------------------------------------------------------------------------------------------->
-        <label *ngSwitchCase="10" class="k-form-field" [ngClass]="model.cls.grid.control">
+        <label *ngSwitchCase="10" class="k-form-field" [ngClass]="getClass('grid','control')">
 
             <span>
-                <span [innerHTML]="model.label" [ngClass]="model.cls.element.label"></span>
-                <span *ngIf="showHint" class="k-field-info" [innerHTML]="model.hint" [ngClass]="model.cls.element.hint"></span>
+                <span [innerHTML]="model.label" [ngClass]="getClass('element','label')"></span>
+                <span *ngIf="showHint" class="k-field-info" [innerHTML]="model.hint" [ngClass]="getClass('element','hint')"></span>
             </span>
 
             <input class="k-textbox"
@@ -212,7 +214,7 @@
                    [maxlength]="model.maxLength"
                    [minlength]="model.minLength"
                    [name]="model.name"
-                   [ngClass]="model.cls.element.control"
+                   [ngClass]="getClass('element','control')"
                    [pattern]="model.pattern"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -231,7 +233,7 @@
                              [formControlName]="model.id"
                              [mask]="model.mask"
                              [maskValidation]="true"
-                             [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                             [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                              [tabIndex]="model.tabIndex"
                              (blur)="onBlur($event)"
                              (focus)="onFocus($event)"
@@ -242,7 +244,7 @@
                            [data]="model.options"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
-                           [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                           [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                            [placeholder]="model.placeholder"
                            [tabIndex]="model.tabIndex"
                            [textField]="'label'"
@@ -263,7 +265,7 @@
                               [formControlName]="model.id"
                               [max]="model.max"
                               [min]="model.min"
-                              [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                              [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                               [spinners]="true"
                               [step]="model.step"
                               [tabIndex]="model.tabIndex"
@@ -273,7 +275,7 @@
 
         <!-- RADIO GROUP ---------------------------------------------------------------------------------------------->
         <fieldset *ngSwitchCase="14" class="k-form-field" role="radiogroup"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]">
+                  [ngClass]="[getClass('element','control'), getClass('grid','control')]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -283,7 +285,7 @@
                        [formControlName]="model.id"
                        [id]="'option' + idx + model.id"
                        [name]="model.name"
-                       [ngClass]="[model.cls.element.option, model.cls.grid.option]"
+                       [ngClass]="[getClass('element','option'), getClass('grid','option')]"
                        [value]="option.value"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
@@ -301,7 +303,7 @@
                       [formControlName]="model.id"
                       [min]="model.min"
                       [max]="model.max"
-                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                       [showButtons]="true"
                       [smallStep]="model.step"
                       [tabIndex]="model.tabIndex"
@@ -313,7 +315,7 @@
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
-                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                       [offLabel]="model.offLabel"
                       [onLabel]="model.onLabel"
                       [tabIndex]="model.tabIndex"
@@ -327,7 +329,7 @@
                   [maxlength]="model.maxLength"
                   [minlength]="model.minLength"
                   [name]="model.name"
-                  [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                  [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
                   [required]="model.required"
@@ -346,7 +348,7 @@
                           [formControlName]="model.id"
                           [max]="model.max"
                           [min]="model.min"
-                          [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                          [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                           [rangeValidation]="true"
                           [tabIndex]="model.tabIndex"
                           (blur)="onBlur($event)"
@@ -361,7 +363,7 @@
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [multiple]="model.multiple"
-                      [ngClass]="[model.cls.element.control, model.cls.grid.control]"
+                      [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                       [removeUrl]="model.removeUrl"
                       [saveUrl]="model.url"
                       [showFileList]="model.showFileList"
@@ -369,7 +371,7 @@
 
     </ng-container>
     
-    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element','errors'), getClass('grid','errors')]">
         <li *ngFor="let message of errorMessages" class="k-field-info k-required">{{ message }}</li>
     </ul>
 

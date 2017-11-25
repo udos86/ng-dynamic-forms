@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
 import { MATERIAL_SAMPLE_FORM_MODEL } from "./material-sample-form.model";
+import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
 
 @Component({
     moduleId: module.id,
@@ -14,6 +15,7 @@ export class MaterialSampleFormComponent implements OnInit {
 
     formModel: DynamicFormControlModel[] = MATERIAL_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
+    formLayout: DynamicFormLayout = MATERIAL_SAMPLE_FORM_LAYOUT;
 
     constructor(private formService: DynamicFormService) {}
 

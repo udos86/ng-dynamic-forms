@@ -1,16 +1,16 @@
-<div [formGroup]="group" [ngClass]="[model.cls.element.container, model.cls.grid.container]">
+<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
 
-    <div *ngIf="type !== 2 && model.label" [ngClass]="model.cls.grid.label">
+    <div *ngIf="type !== 2 && model.label" [ngClass]="getClass('grid','label')">
 
         <label [class.is-invalid-label]="showErrorMessages"
                [for]="model.id"
                [innerHTML]="model.label"
-               [ngClass]="model.cls.element.label"></label>
+               [ngClass]="getClass('element','label')"></label>
     </div>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
-    <div [ngClass]="model.cls.grid.control">
+    <div [ngClass]="getClass('grid','control')">
 
         <ng-container [ngSwitch]="type">
 
@@ -18,19 +18,20 @@
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
-                 [ngClass]="model.cls.element.control">
+                 [ngClass]="getClass('element','control')">
 
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                     [formGroupName]="idx" [ngClass]="[model.cls.element.group, model.cls.grid.group]">
+                     [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
 
                     <dynamic-foundation-form-control *ngFor="let controlModel of groupModel.group"
                                                      [bindId]="false"
                                                      [context]="groupModel"
                                                      [group]="control.at(idx)"
                                                      [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                     [layout]="layout"
                                                      [model]="controlModel"
                                                      [templates]="templateList"
-                                                     [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+                                                     [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
                                                      (dfBlur)="onBlur($event)"
                                                      (dfChange)="onValueChange($event)"
                                                      (dfFocus)="onFocus($event)"></dynamic-foundation-form-control>
@@ -50,14 +51,14 @@
                        [formControlName]="model.id"
                        [indeterminate]="model.indeterminate"
                        [name]="model.name"
-                       [ngClass]="model.cls.element.control"
+                       [ngClass]="getClass('element','control')"
                        [required]="model.required"
                        [tabindex]="model.tabIndex"
                        [value]="model.value"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
                        (focus)="onFocus($event)"/><span
-                    [ngClass]="[model.cls.element.label, model.cls.grid.label]"
+                    [ngClass]="[getClass('element','label'), getClass('grid','label')]"
                     [innerHTML]="model.label"></span></label>
 
             <!-- FORM GROUP ------------------------------------------------------------------------------------------->
@@ -65,16 +66,17 @@
                       [dynamicId]="bindId && model.id"
                       [formGroupName]="model.id"
                       [name]="model.name"
-                      [ngClass]="model.cls.element.control">
+                      [ngClass]="getClass('element','control')">
 
                 <legend *ngIf="model.legend">{{model.legend}}</legend>
 
-                <dynamic-foundation-form-control *ngFor="let itemModel of model.group"
+                <dynamic-foundation-form-control *ngFor="let controlModel of model.group"
                                                  [group]="control"
-                                                 [hasErrorMessaging]="itemModel.hasErrorMessages"
-                                                 [model]="itemModel"
+                                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                 [layout]="layout"
+                                                 [model]="controlModel"
                                                  [templates]="templateList"
-                                                 [ngClass]="[itemModel.cls.element.host, itemModel.cls.grid.host]"
+                                                 [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
                                                  (dfBlur)="onBlur($event)"
                                                  (dfChange)="onValueChange($event)"
                                                  (dfFocus)="onFocus($event)"></dynamic-foundation-form-control>
@@ -100,7 +102,7 @@
                        [maxlength]="model.maxLength"
                        [minlength]="model.minLength"
                        [name]="model.name"
-                       [ngClass]="model.cls.element.control"
+                       [ngClass]="getClass('element','control')"
                        [pattern]="model.pattern"
                        [placeholder]="model.placeholder"
                        [readonly]="model.readOnly"
@@ -125,13 +127,13 @@
             <fieldset *ngSwitchCase="5" role="radiogroup"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
-                      [ngClass]="model.cls.element.control"
+                      [ngClass]="getClass('element','control')"
                       [tabindex]="model.tabIndex"
                       (change)="onValueChange($event)">
 
                 <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-                <label *ngFor="let option of model.options$ | async" [ngClass]="model.cls.element.option">
+                <label *ngFor="let option of model.options$ | async" [ngClass]="getClass('element','option')">
 
                     <input type="radio"
                            [formControlName]="model.id"
@@ -147,7 +149,7 @@
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
-                    [ngClass]="model.cls.element.control"
+                    [ngClass]="getClass('element','control')"
                     [required]="model.required"
                     [tabindex]="model.tabIndex"
                     (blur)="onBlur($event)"
@@ -161,7 +163,7 @@
             </select>
 
             <!-- SWITCH ----------------------------------------------------------------------------------------------->
-            <div *ngSwitchCase="7" class="switch" [ngClass]="model.cls.element.control">
+            <div *ngSwitchCase="7" class="switch" [ngClass]="getClass('element','control')">
 
                 <input type="checkbox" class="switch-input"
                        [checked]="model.checked"
@@ -193,7 +195,7 @@
                       [maxlength]="model.maxLength"
                       [minlength]="model.minLength"
                       [name]="model.name"
-                      [ngClass]="model.cls.element.control"
+                      [ngClass]="getClass('element','control')"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
                       [required]="model.required"
@@ -207,11 +209,11 @@
 
         </ng-container>
 
-        <p *ngIf="showHint" class="help-text" [ngClass]="model.cls.element.hint" [innerHTML]="model.hint"></p>
+        <p *ngIf="showHint" class="help-text" [ngClass]="getClass('element','hint')" [innerHTML]="model.hint"></p>
 
     </div>
 
-    <ul *ngIf="showErrorMessages" [ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element','errors'), getClass('grid','errors')]">
         <li *ngFor="let message of errorMessages" class="form-error is-visible">{{ message }}</li>
     </ul>
 

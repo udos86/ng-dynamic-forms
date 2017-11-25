@@ -51,8 +51,8 @@ export class DynamicFormService {
 
 
     private createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
-                                 asyncValidatorsConfig: DynamicValidatorsConfig | null = null,
-                                 updateOn: FormHooks | null = null): AbstractControlOptions {
+                                         asyncValidatorsConfig: DynamicValidatorsConfig | null = null,
+                                         updateOn: FormHooks | null = null): AbstractControlOptions {
 
         return {
 
@@ -319,9 +319,11 @@ export class DynamicFormService {
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
                     let formArrayModel = model as DynamicFormArrayModel;
 
-                    formArrayModel.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
-                        groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
-                    });
+                    if (Array.isArray(formArrayModel.groups)) {
+                        formArrayModel.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
+                            groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
+                        });
+                    }
 
                     formArrayModel.groupFactory = () => {
                         return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);

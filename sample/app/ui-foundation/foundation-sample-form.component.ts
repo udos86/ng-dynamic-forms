@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import {
-    DynamicFormService,
     DynamicCheckboxModel,
+    DynamicFormArrayModel,
     DynamicFormControlModel,
-    DynamicFormArrayModel
+    DynamicFormLayout,
+    DynamicFormService,
 } from "@ng-dynamic-forms/core";
 import { FOUNDATION_SAMPLE_FORM_MODEL } from "./foundation-sample-form.model";
+import { FOUNDATION_SAMPLE_FORM_LAYOUT } from "./foundation-sample-form.layout";
 
 @Component({
     moduleId: module.id,
@@ -19,6 +21,7 @@ export class FoundationSampleFormComponent implements OnInit {
 
     formModel: DynamicFormControlModel[] = FOUNDATION_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
+    formLayout: DynamicFormLayout = FOUNDATION_SAMPLE_FORM_LAYOUT;
 
     checkboxControl: FormControl;
     checkboxModel: DynamicCheckboxModel;

@@ -36,16 +36,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
                 }
             ],
             value: "option-3"
-        },
-        {
-            element: {
-                label: "text-right middle font-bold",
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                label: "small-3 cell"
-            }
         }
     ),
 
@@ -73,16 +63,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
                 }
             ],
             value: "option-3"
-        },
-        {
-            element: {
-                label: "text-right font-bold"
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                label: "small-3 cell"
-            }
         }
     ),
 
@@ -101,17 +81,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
             },
             errorMessages: {
                 required: "{{label}} is required"
-            }
-        },
-        {
-            element: {
-                label: "text-right middle font-bold"
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                errors: "small-9 small-offset-3 cell",
-                label: "small-3 cell"
             }
         }
     ),
@@ -135,16 +104,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
                     }
                 )
             ]
-        },
-        {
-            element: {
-                label: "text-right font-bold"
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                label: "small-3 cell"
-            }
         }
     ),
 
@@ -155,17 +114,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
             offLabel: "Off",
             onLabel: "On",
             value: false
-        },
-        {
-            element: {
-                control: "small",
-                label: "text-right font-bold"
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                label: "small-3 cell"
-            }
         }
     ),
 
@@ -188,17 +136,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
                 pattern: "{{label}} does not match pattern {{validator.requiredPattern}}",
                 customValidator: "Test Test"
             }
-        },
-        {
-            element: {
-                label: "text-right font-bold"
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                errors: "small-9 small-offset-3 cell",
-                label: "small-3 cell"
-            }
         }
     ),
 
@@ -206,12 +143,6 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
         {
             id: "foundationCheckbox",
             label: "I do agree"
-        },
-        {
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-offset-3 small-9 cell"
-            }
         }
     ),
 
@@ -224,28 +155,11 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
                 return [
                     new DynamicInputModel(
                         {
-                            id: "basicArrayGroupInput1",
+                            id: "foundationFormArrayGroupInput",
                             placeholder: "example array group input"
-                        },
-                        {
-                            grid: {
-                                host: "small-7 cell",
-                            }
                         }
                     )
                 ];
-            }
-        },
-        {
-            element: {
-                container: "form-array",
-                label: "text-right font-bold"
-            },
-            grid: {
-                container: "grid-x grid-padding-x",
-                control: "small-9 cell",
-                group: "grid-x grid-padding-x",
-                label: "small-3 cell"
             }
         }
     )

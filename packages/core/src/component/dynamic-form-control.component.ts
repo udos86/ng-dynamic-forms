@@ -28,8 +28,13 @@ import {
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
     DynamicTemplateDirective
 } from "../directive/dynamic-template.directive";
-import { RelationUtils } from "../utils/relation.utils";
+import {
+    DynamicFormControlLayout,
+    DynamicFormLayout,
+    DynamicFormLayoutService
+} from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
+import { RelationUtils } from "../utils/relation.utils";
 
 export interface DynamicFormControlEvent {
 
@@ -56,6 +61,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     group: FormGroup;
     hasErrorMessaging: boolean = false;
     hasFocus: boolean;
+    layout: DynamicFormLayout;
     model: DynamicFormControlModel;
 
     contentTemplateList: QueryList<DynamicTemplateDirective>;
@@ -72,6 +78,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     abstract type: number | string | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -107,20 +114,20 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         }
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
 
         if (!this.model && !this.group) {
             throw new Error(`no [model] or [group] input set for DynamicFormControlComponent`);
         }
     }
 
-    ngAfterViewInit(): void {
+    ngAfterViewInit() {
 
         this.setTemplates();
         this.changeDetectorRef.detectChanges();
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy() {
         this.unsubscribe();
     }
 
@@ -150,6 +157,13 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     get templateList(): QueryList<DynamicTemplateDirective> {
         return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
+    }
+
+    getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
+
+        let controlLayout = (this.layout && this.layout[model.id]) || model.cls as DynamicFormControlLayout;
+
+        return this.layoutService.getClass(controlLayout, context, place);
     }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {

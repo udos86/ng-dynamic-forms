@@ -507,19 +507,32 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 
 Now we need to position the `<label>` and the `form-control` using the Bootstrap [grid system](http://getbootstrap.com/css/#grid). 
 
-But since all the template logic for the form controls is capsuled in the scope of the `DynamicFormBootstrapComponent` we cannot directly attach those necessary CSS classes to markup. 
+But since all the template logic for the form controls is capsuled in the component scope we cannot directly attach those necessary CSS classes to markup. 
 
 Don't worry!
 
-By providing the `cls` and it's nested `grid` and `element` configuration objects, NG Dynamic Forms allows us to optionally define additional CSS classes for every `DynamicFormControlModel`, which are then intelligently appended within the `DynamicFormControlComponent` template.
+Arbitrary CSS classes can be provided for any form control by binding a `DynamicFormLayout` to a `DynamicFormControlComponent`. 
 
-We can just pass it as a second constructor parameter of every `DynamicFormControlModel`, i.e. separation of model and style information remains intact:
+A `DynamicFormLayout` is a simple object literal that associates a CSS class configuration object with a model id.
+
+By differentiating between `element` and `grid `context NG Dynamic Forms can automatically apply the 
+CSS class strings in the component template based on [position identifiers](http://ng2-dynamic-forms.udos86.de/docs/core/interfaces/_service_dynamic_form_layout_service_.dynamicformcontrollayoutconfig.html):
 ```ts
-new DynamicInputModel(
-    {
-        // ... all model configuration properties
+export const MY_FORM_LAYOUT = {
+    
+    "myFormControlModelId": {
+    
+        element: {
+            label: "control-label"
+        },
+        grid: {
+            control: "col-sm-9",
+            label: "col-sm-3"
+        }
     },
-    {
+    
+    "myOtherFormControlModelId": {
+        
         element: {
             label: "control-label"
         },
@@ -528,8 +541,38 @@ new DynamicInputModel(
             label: "col-sm-3"
         }
     }
-)
 ```
+
+To reference this `DynamicFormLayout` in we now just create another component class member:
+```ts
+import { MY_FORM_LAYOUT } from "./my-dynamic-form.layout";
+
+export class MyDynamicFormComponent implements OnInit {
+
+    formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+    formGroup: FormGroup;
+    formLayout: DynamicFormLayout = MY_FORM_LAYOUT;
+
+    constructor(private formService: DynamicFormService) {}
+
+    ngOnInit() {
+        this.formGroup = this.formService.createFormGroup(this.formModel);
+    }
+}
+```
+
+Finally we pass the form layout to our `DynamicFormComponent` via input binding:
+```ts
+<form [formGroup]="formGroup">
+
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [layout]="formLayout"
+                            [model]="formModel"></dynamic-bootstrap-form>
+                               
+</form>
+```
+
+Using this approach we are able to strictly decouple layout information from pure form models for improving maintainability.
 
 
 ## Form Control Events
