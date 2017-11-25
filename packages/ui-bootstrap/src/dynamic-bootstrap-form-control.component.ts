@@ -12,11 +12,13 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormValidationService,
-    DynamicFormControlModel,
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
     DynamicFormControlEvent,
+    DynamicFormControlModel,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
     DynamicTemplateDirective,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -57,6 +59,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
+    @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
     @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
@@ -66,9 +69,10 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     type: BootstrapFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, validationService);
+        super(changeDetectorRef, layoutService, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

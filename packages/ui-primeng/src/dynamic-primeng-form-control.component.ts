@@ -26,11 +26,13 @@ import {
     Spinner
 } from "primeng/primeng";
 import {
-    DynamicFormValidationService,
-    DynamicFormControlComponent,
-    DynamicFormControlModel,
     DynamicFormArrayGroupModel,
+    DynamicFormControlComponent,
     DynamicFormControlEvent,
+    DynamicFormControlModel,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
@@ -74,6 +76,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
+    @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
     @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
@@ -88,9 +91,10 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     type: PrimeNGFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, validationService);
+        super(changeDetectorRef, layoutService, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

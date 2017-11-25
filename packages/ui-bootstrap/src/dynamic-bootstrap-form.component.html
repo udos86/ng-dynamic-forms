@@ -1,6 +1,7 @@
 <dynamic-bootstrap-form-control *ngFor="let controlModel of model; trackBy: trackByFn"
                                 [group]="group"
                                 [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                [layout]="layout"
                                 [model]="controlModel"
                                 [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
                                 [templates]="templates"

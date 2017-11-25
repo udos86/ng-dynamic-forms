@@ -26,11 +26,13 @@ import {
 } from "@progress/kendo-angular-inputs";
 import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
-    DynamicFormValidationService,
-    DynamicFormControlComponent,
-    DynamicFormControlModel,
     DynamicFormArrayGroupModel,
+    DynamicFormControlComponent,
     DynamicFormControlEvent,
+    DynamicFormControlModel,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
@@ -78,6 +80,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
+    @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
     @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
@@ -90,9 +93,10 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     type: KendoFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, validationService);
+        super(changeDetectorRef, layoutService, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {

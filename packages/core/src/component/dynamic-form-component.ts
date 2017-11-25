@@ -10,11 +10,13 @@ import {
 } from "./dynamic-form-control.component";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
+import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 
 export abstract class DynamicFormComponent {
 
     group: FormGroup;
     model: DynamicFormControlModel[];
+    layout: DynamicFormLayout;
 
     components: QueryList<DynamicFormControlComponent>;
     templates: QueryList<DynamicTemplateDirective>;
@@ -23,6 +25,8 @@ export abstract class DynamicFormComponent {
     change: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
     customEvent: EventEmitter<DynamicFormControlEvent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService) {}
 
     trackByFn(_index: number, model: DynamicFormControlModel): string {
         return model.id;

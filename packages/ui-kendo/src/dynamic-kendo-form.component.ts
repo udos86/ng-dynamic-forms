@@ -4,7 +4,9 @@ import {
     DynamicFormComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicTemplateDirective
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
 
@@ -16,6 +18,7 @@ export class DynamicKendoFormComponent extends DynamicFormComponent {
 
     @Input() group: FormGroup;
     @Input() model: DynamicFormControlModel[];
+    @Input() layout: DynamicFormLayout;
 
     @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
@@ -25,4 +28,8 @@ export class DynamicKendoFormComponent extends DynamicFormComponent {
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
     @ViewChildren(DynamicKendoFormControlComponent) components: QueryList<DynamicKendoFormControlComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService) {
+        super(layoutService);
+    }
 }

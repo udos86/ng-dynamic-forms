@@ -23,11 +23,13 @@ import {
     MatSlideToggle
 } from "@angular/material";
 import {
-    DynamicFormValidationService,
-    DynamicFormControlComponent,
-    DynamicFormControlModel,
     DynamicFormArrayGroupModel,
+    DynamicFormControlComponent,
     DynamicFormControlEvent,
+    DynamicFormControlModel,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
     DynamicTemplateDirective,
     DynamicInputControlModel,
     DynamicInputModel,
@@ -63,6 +65,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() hasErrorMessaging: boolean = false;
+    @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
     @Input()
@@ -85,9 +88,10 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     type: MatFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, validationService);
+        super(changeDetectorRef, layoutService, validationService);
     }
 
     ngOnChanges(changes: SimpleChanges) {
