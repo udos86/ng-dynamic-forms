@@ -33,7 +33,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Validation Messaging](#validation-messaging)
 - [JSON Export / Import](#json-export--import)
 - [Updating Form Models](#updating-form-models)
-- [Disabling Form Controls](#disabling--form-controls)
+- [Disabling Form Controls](#disabling-form-controls)
 - [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
 - [Autocompletion](#autocompletion)
