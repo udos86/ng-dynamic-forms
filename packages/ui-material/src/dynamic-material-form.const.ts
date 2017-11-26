@@ -2,6 +2,7 @@ export enum MatFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
+    Chips = 99, //"CHIPS",
     DatePicker = 3, //"DATEPICKER",
     Group = 4, //"GROUP",
     Input = 5, //"INPUT",

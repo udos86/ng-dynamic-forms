@@ -79,9 +79,9 @@
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
             <mat-datepicker #matDatepicker [startAt]="model.focusedDate"
-                                           [touchUi]="true"
-                                           (closed)="onCustomEvent($event, 'closed')"
-                                           (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
+                            [touchUi]="true"
+                            (closed)="onCustomEvent($event, 'closed')"
+                            (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
 
             <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
                 <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
@@ -262,6 +262,30 @@
             <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
                 <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
             </ng-container>
+
+        </mat-form-field>
+
+        <!-- CHIPS ---------------------------------------------------------------------------------------------------->
+        <mat-form-field *ngSwitchCase="99" [ngClass]="getClass('grid','control')">
+
+            <mat-chip-list #matChipList
+                [dynamicId]="bindId && model.id"
+                [formControlName]="model.id"
+                [multiple]="true">
+
+                <mat-chip *ngFor="let chip of chipList" [selectable]="selectable" removable="true">
+                    <span>{{ chip }}</span>
+                    <mat-icon matChipRemove></mat-icon>
+                </mat-chip>
+
+                <input matInput
+                       [placeholder]="model.placeholder"
+                       [matChipInputFor]="matChipList"
+                       [matChipInputAddOnBlur]="true"
+                       [matChipInputSeparatorKeyCodes]="[13, 188]"
+                       (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
+
+            </mat-chip-list>
 
         </mat-form-field>
 

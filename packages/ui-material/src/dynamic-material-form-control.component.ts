@@ -14,6 +14,7 @@ import { FormGroup } from "@angular/forms";
 import {
     MatAutocomplete,
     MatCheckbox,
+    MatChipInputEvent,
     MatDatepicker,
     MatFormField,
     MatInput,
@@ -87,6 +88,8 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     type: MatFormControlType | null;
 
+    private chipList: string[] = ["Hello", "Chips"];
+
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
@@ -114,6 +117,18 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         return this.type === 3 || this.type === 5 || this.type === 7 || this.type === 10;
     }
 
+    onChipInputTokenEnd($event: MatChipInputEvent): void {
+
+        let input = $event.input,
+            value = $event.value;
+
+        this.chipList.push(value);
+
+        if (input) {
+            input.value = "";
+        }
+    }
+
     static getFormControlType(model: DynamicFormControlModel): MatFormControlType | null {
 
         switch (model.type) {
@@ -132,7 +147,9 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
                 return MatFormControlType.DatePicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                return MatFormControlType.Input;
+                let inputModel = model as DynamicInputModel;
+
+                return inputModel.multiple ? MatFormControlType.Chips : MatFormControlType.Input;
 
             case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
                 return MatFormControlType.RadioGroup;

@@ -65,18 +65,16 @@ export const BASIC_SAMPLE_FORM_MODEL = [
         id: "basicCheckboxGroup",
         legend: "Checkbox Group",
         group: [
-            new DynamicCheckboxModel(
-                {
-                    id: "checkboxGroup1",
-                    label: "Checkbox 1"
-                }
-            ),
-            new DynamicCheckboxModel(
-                {
-                    id: "checkboxGroup2",
-                    label: "Checkbox 2"
-                }
-            )
+            new DynamicCheckboxModel({
+
+                id: "checkboxGroup1",
+                label: "Checkbox 1"
+            }),
+            new DynamicCheckboxModel({
+
+                id: "checkboxGroup2",
+                label: "Checkbox 2"
+            })
         ]
     }),
 
@@ -119,20 +117,19 @@ export const BASIC_SAMPLE_FORM_MODEL = [
         id: "basicFormGroup1",
         legend: "Form Group 1",
         group: [
-            new DynamicInputModel(
-                {
-                    id: "basicGroupInput1-1",
-                    label: "Nested Input 1-1",
-                    value: "Test 1-1"
-                }
-            ),
-            new DynamicInputModel(
-                {
-                    id: "basicGroupInput1-2",
-                    label: "Nested Input 1-2",
-                    value: "Test 1-2"
-                }
-            )]
+            new DynamicInputModel({
+
+                id: "basicGroupInput1-1",
+                label: "Nested Input 1-1",
+                value: "Test 1-1"
+            }),
+            new DynamicInputModel({
+
+                id: "basicGroupInput1-2",
+                label: "Nested Input 1-2",
+                value: "Test 1-2"
+            })
+        ]
     }),
 
     new DynamicFormGroupModel({
@@ -140,20 +137,19 @@ export const BASIC_SAMPLE_FORM_MODEL = [
         id: "basicFormGroup2",
         legend: "Form Group 2",
         group: [
-            new DynamicInputModel(
-                {
-                    id: "basicGroupInput2-1",
-                    label: "Nested Input 2-1",
-                    value: "Test 2-1"
-                }
-            ),
-            new DynamicInputModel(
-                {
-                    id: "basicGroupInput2-2",
-                    label: "Nested Input 2-2",
-                    value: "Test 2-2"
-                }
-            )]
+            new DynamicInputModel({
+
+                id: "basicGroupInput2-1",
+                label: "Nested Input 2-1",
+                value: "Test 2-1"
+            }),
+            new DynamicInputModel({
+
+                id: "basicGroupInput2-2",
+                label: "Nested Input 2-2",
+                value: "Test 2-2"
+            })
+        ]
     }),
 
     new DynamicCheckboxModel({
@@ -165,49 +161,49 @@ export const BASIC_SAMPLE_FORM_MODEL = [
 
 export const BASIC_SAMPLE_FORM_ARRAY_MODEL = [
 
-    new DynamicFormArrayModel(
-        {
-            id: "basicFormArray",
-            initialCount: 2,
-            label: "Form Array",
-            groupFactory: () => {
-                return [
-                    new DynamicCheckboxModel({
+    new DynamicFormArrayModel({
 
-                        label: "Mon",
-                        id: "monday"
-                    }),
-                    new DynamicCheckboxModel({
+        id: "basicFormArray",
+        initialCount: 2,
+        label: "Form Array",
+        groupFactory: () => {
+            return [
+                new DynamicCheckboxModel({
 
-                        label: "Tue",
-                        id: "tuesday"
-                    }),
-                    new DynamicCheckboxModel({
+                    label: "Mon",
+                    id: "monday"
+                }),
+                new DynamicCheckboxModel({
 
-                        label: "Wen",
-                        id: "wednesday"
-                    }),
-                    new DynamicCheckboxModel({
+                    label: "Tue",
+                    id: "tuesday"
+                }),
+                new DynamicCheckboxModel({
 
-                        label: "Thu",
-                        id: "thursday"
-                    }),
-                    new DynamicCheckboxModel({
+                    label: "Wen",
+                    id: "wednesday"
+                }),
+                new DynamicCheckboxModel({
 
-                        label: "Fri",
-                        id: "friday"
-                    }),
-                    new DynamicCheckboxModel({
+                    label: "Thu",
+                    id: "thursday"
+                }),
+                new DynamicCheckboxModel({
 
-                        label: "Sat",
-                        id: "saturday"
-                    }),
-                    new DynamicCheckboxModel({
+                    label: "Fri",
+                    id: "friday"
+                }),
+                new DynamicCheckboxModel({
 
-                        label: "Sun",
-                        id: "sunday"
-                    })
-                ];
-            }
-        })
+                    label: "Sat",
+                    id: "saturday"
+                }),
+                new DynamicCheckboxModel({
+
+                    label: "Sun",
+                    id: "sunday"
+                })
+            ];
+        }
+    })
 ];
