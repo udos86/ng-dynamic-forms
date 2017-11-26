@@ -97,7 +97,7 @@
     "gulp-typedoc": "^2.1.1",
     "gulp-typescript": "^3.2.3",
     "gulp-util": "^3.0.8",
-    "html-minifier": "^3.5.6",
+    "html-minifier": "^3.5.7",
     "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^1.7.1",
