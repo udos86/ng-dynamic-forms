@@ -33,7 +33,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Validation Messaging](#validation-messaging)
 - [JSON Export / Import](#json-export--import)
 - [Updating Form Models](#updating-form-models)
-- [Disabling / Enabling Form Controls](#disabling--enabling-form-controls)
+- [Disabling Form Controls](#disabling--form-controls)
 - [Text Masks](#text-masks)
 - [Related Form Controls](#related-form-controls)
 - [Autocompletion](#autocompletion)
@@ -541,6 +541,7 @@ export const MY_FORM_LAYOUT = {
             label: "col-sm-3"
         }
     }
+};
 ```
 
 To reference this `DynamicFormLayout` we now just create another component class member:
@@ -1002,7 +1003,7 @@ let currentValue = this.inputModel.value;
 ```
 
 
-## Disabling / Enabling Form Controls
+## Disabling Form Controls
 
 Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) property bindings of the `disabled` attribute in reactive forms. 
 
