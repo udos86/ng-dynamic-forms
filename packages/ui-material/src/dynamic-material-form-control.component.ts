@@ -28,6 +28,7 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
+    DynamicFormValueControlModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -88,7 +89,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     type: MatFormControlType | null;
 
-    private chipList: string[] = ["Hello", "Chips"];
+    private chipList: string[] = null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected layoutService: DynamicFormLayoutService,
@@ -101,7 +102,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         super.ngOnChanges(changes);
 
         if (changes["model"]) {
-            this.type = DynamicMaterialFormControlComponent.getFormControlType(this.model);
+            this.updateFormControlType();
         }
     }
 
@@ -120,12 +121,31 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     onChipInputTokenEnd($event: MatChipInputEvent): void {
 
         let input = $event.input,
-            value = $event.value;
+            value = $event.value.trim();
 
-        this.chipList.push(value);
+        if (value.length > 0) {
 
-        if (input) {
+            this.chipList.push(value);
+            this.control.patchValue(this.chipList);
+        }
+
+        if (input instanceof HTMLInputElement) {
             input.value = "";
+        }
+    }
+
+    onChipRemoved(chip: string, index: number): void {
+
+        this.chipList.splice(index, 1);
+        this.control.patchValue(this.chipList);
+    }
+
+    updateFormControlType(): void {
+
+        this.type = DynamicMaterialFormControlComponent.getFormControlType(this.model);
+
+        if (this.type === MatFormControlType.Chips) {
+            this.chipList = (this.model as DynamicFormValueControlModel<string[]>).value;
         }
     }
 

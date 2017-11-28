@@ -11,15 +11,7 @@ import {
 import { customDateRangeValidator } from "../app.validators";
 
 export const MATERIAL_SAMPLE_FORM_MODEL = [
-    /*
-    new DynamicInputModel({
 
-        id: "chips",
-        placeholder: "Chips",
-        multiple: true,
-        value: ["Hello", "Chips"]
-    }),
-    */
     new DynamicFormGroupModel({
 
         id: "stay",
@@ -245,6 +237,14 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
         id: "note",
         rows: 3,
         placeholder: "Personal Note"
+    }),
+
+    new DynamicInputModel({
+
+        id: "tags",
+        placeholder: "Tags",
+        multiple: true,
+        value: ["hotel", "booking"]
     }),
 
     new DynamicSwitchModel({

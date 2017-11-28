@@ -269,13 +269,17 @@
         <mat-form-field *ngSwitchCase="99" [ngClass]="getClass('grid','control')">
 
             <mat-chip-list #matChipList
-                [dynamicId]="bindId && model.id"
-                [formControlName]="model.id"
-                [multiple]="true">
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [multiple]="true">
 
-                <mat-chip *ngFor="let chip of chipList" [selectable]="selectable" removable="true">
+                <mat-chip *ngFor="let chip of chipList; let index = index"
+                          [selectable]="false"
+                          (removed)="onChipRemoved(chip, index)">
+
                     <span>{{ chip }}</span>
-                    <mat-icon matChipRemove></mat-icon>
+                    <mat-icon matChipRemove>x</mat-icon>
+
                 </mat-chip>
 
                 <input matInput

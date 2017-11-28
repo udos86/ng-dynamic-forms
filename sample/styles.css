@@ -169,6 +169,10 @@ mat-slide-toggle {
     display: inline-block !important;
 }
 
+mat-form-field.mat-form-field-type-mat-chip-list {
+    width: 100%;
+}
+
 dynamic-material-form-control {
     display: block;
     margin-bottom: 1rem;
