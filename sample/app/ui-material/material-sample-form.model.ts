@@ -48,6 +48,7 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
 
                 id: "roomSize",
                 placeholder: "Room Size",
+                hint: "Choose a room type",
                 options: [
                     {
                         label: "Single Room",
