@@ -56,11 +56,11 @@ export class DynamicFormService {
 
         return {
 
-            asyncValidators: this.validationService.getAsyncValidators(asyncValidatorsConfig),
+            asyncValidators: asyncValidatorsConfig !== null ?this.validationService.getAsyncValidators(asyncValidatorsConfig): null,
 
-            validators: this.validationService.getValidators(validatorsConfig),
+            validators: validatorsConfig !== null ? this.validationService.getValidators(validatorsConfig): null,
 
-            updateOn: this.validationService.isFormHook(updateOn) ? updateOn : "change"
+            updateOn: updateOn !== null && this.validationService.isFormHook(updateOn) ? updateOn : "change"
         };
     }
 
