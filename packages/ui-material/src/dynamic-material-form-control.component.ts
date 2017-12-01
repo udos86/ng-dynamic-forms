@@ -58,6 +58,7 @@ export type MatFormControlComponent = MatAutocomplete | MatCheckbox | MatDatepic
 })
 export class DynamicMaterialFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
+    private chipList: string[] | null = null;
     private _showCharacterCount: boolean = false;
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
@@ -89,8 +90,6 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     type: MatFormControlType | null;
 
-    private chipList: string[] | null = null;
-
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
@@ -115,7 +114,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 
     get hasMatFormField(): boolean {
-        return this.type === 3 || this.type === 5 || this.type === 7 || this.type === 10;
+        return this.type === 3 || this.type === 4 || this.type === 6 || this.type === 8 || this.type === 11;
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {

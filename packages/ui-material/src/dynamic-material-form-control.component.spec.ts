@@ -231,6 +231,9 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         expect(testFn(formModel[7])).toEqual(MatFormControlType.Input);
 
+        (formModel[7] as DynamicInputModel).multiple = true;
+        expect(testFn(formModel[7])).toEqual(MatFormControlType.Chips);
+
         expect(testFn(formModel[8])).toEqual(MatFormControlType.RadioGroup);
 
         expect(testFn(formModel[9])).toEqual(MatFormControlType.Select);

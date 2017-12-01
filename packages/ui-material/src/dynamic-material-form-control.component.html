@@ -56,8 +56,36 @@
 
         </mat-checkbox>
 
-        <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
+        <!-- CHIPS ---------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="3" [ngClass]="getClass('grid','control')">
+
+            <mat-chip-list #matChipList
+                           [dynamicId]="bindId && model.id"
+                           [formControlName]="model.id"
+                           [multiple]="true">
+
+                <mat-chip *ngFor="let chip of chipList; let index = index"
+                          [selectable]="false"
+                          (removed)="onChipRemoved(chip, index)">
+
+                    <span>{{ chip }}</span>
+                    <mat-icon matChipRemove>x</mat-icon>
+
+                </mat-chip>
+
+                <input matInput
+                       [placeholder]="model.placeholder"
+                       [matChipInputFor]="matChipList"
+                       [matChipInputAddOnBlur]="true"
+                       [matChipInputSeparatorKeyCodes]="[13, 188]"
+                       (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
+
+            </mat-chip-list>
+
+        </mat-form-field>
+
+        <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
+        <mat-form-field *ngSwitchCase="4" [ngClass]="getClass('grid','control')">
 
             <input matInput
                    [autofocus]="model.autoFocus"
@@ -90,7 +118,7 @@
         </mat-form-field>
 
         <!-- FORM GROUP ----------------------------------------------------------------------------------------------->
-        <div *ngSwitchCase="4" role="group"
+        <div *ngSwitchCase="5" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
              [ngClass]="[getClass('element','control'), getClass('grid','control')]">
@@ -109,7 +137,7 @@
         </div>
 
         <!-- INPUT ---------------------------------------------------------------------------------------------------->
-        <ng-container *ngSwitchCase="5">
+        <ng-container *ngSwitchCase="6">
 
             <mat-form-field [ngClass]="getClass('grid','control')">
 
@@ -162,7 +190,7 @@
         </ng-container>
 
         <!-- RADIO GROUP ---------------------------------------------------------------------------------------------->
-        <mat-radio-group *ngSwitchCase="6" #matRadioGroup
+        <mat-radio-group *ngSwitchCase="7" #matRadioGroup
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [name]="model.name"
@@ -180,7 +208,7 @@
         </mat-radio-group>
 
         <!-- SELECT --------------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="7" [ngClass]="getClass('grid','control')">
+        <mat-form-field *ngSwitchCase="8" [ngClass]="getClass('grid','control')">
 
             <mat-select #matSelect
                         [dynamicId]="bindId && model.id"
@@ -207,7 +235,7 @@
         </mat-form-field>
 
         <!-- SLIDER --------------------------------------------------------------------------------------------------->
-        <mat-slider *ngSwitchCase="8" #matSlider
+        <mat-slider *ngSwitchCase="9" #matSlider
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [min]="model.min"
@@ -222,7 +250,7 @@
                     (input)="onCustomEvent($event, 'input')"></mat-slider>
 
         <!-- SLIDE TOGGLE --------------------------------------------------------------------------------------------->
-        <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle
+        <mat-slide-toggle *ngSwitchCase="10" #matSlideToggle
                           [checked]="model.checked"
                           [dynamicId]="bindId && model.id"
                           [formControlName]="model.id"
@@ -237,7 +265,7 @@
         </mat-slide-toggle>
 
         <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="10" [ngClass]="getClass('grid','control')">
+        <mat-form-field *ngSwitchCase="11" [ngClass]="getClass('grid','control')">
 
             <textarea matInput
                       [dynamicId]="bindId && model.id"
@@ -264,34 +292,6 @@
             <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
                 <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
             </ng-container>
-
-        </mat-form-field>
-
-        <!-- CHIPS ---------------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="99" [ngClass]="getClass('grid','control')">
-
-            <mat-chip-list #matChipList
-                           [dynamicId]="bindId && model.id"
-                           [formControlName]="model.id"
-                           [multiple]="true">
-
-                <mat-chip *ngFor="let chip of chipList; let index = index"
-                          [selectable]="false"
-                          (removed)="onChipRemoved(chip, index)">
-
-                    <span>{{ chip }}</span>
-                    <mat-icon matChipRemove>x</mat-icon>
-
-                </mat-chip>
-
-                <input matInput
-                       [placeholder]="model.placeholder"
-                       [matChipInputFor]="matChipList"
-                       [matChipInputAddOnBlur]="true"
-                       [matChipInputSeparatorKeyCodes]="[13, 188]"
-                       (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
-
-            </mat-chip-list>
 
         </mat-form-field>
 
