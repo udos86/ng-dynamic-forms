@@ -1,8 +1,10 @@
-const resolve    = require("rollup-plugin-node-resolve"),
-      sourcemaps = require("rollup-plugin-sourcemaps"),
-      uglify     = require("rollup-plugin-uglify"),
-      dateFormat = require("dateformat"),
-      license    = require("fs").readFileSync("./LICENSE", "utf8");
+const alias           = require("rollup-plugin-alias"),
+      resolve         = require("rollup-plugin-node-resolve"),
+      sourcemaps      = require("rollup-plugin-sourcemaps"),
+      uglify          = require("rollup-plugin-uglify"),
+      dateFormat      = require("dateformat"),
+      license         = require("fs").readFileSync("./LICENSE", "utf8"),
+      rxjsPathMapping = require("rxjs/_esm2015/path-mapping")();
 
 const utils = {
 
@@ -32,7 +34,7 @@ const utils = {
 
     getRollupPlugins: minify => {
 
-        const plugins = [resolve(), sourcemaps()];
+        const plugins = [alias(rxjsPathMapping), resolve(), sourcemaps()];
 
         if (minify) {
             plugins.push(uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}}));
