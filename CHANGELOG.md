@@ -9,7 +9,7 @@
 
 ### **Bugfixes** 
 
-* packages now pass `stricNullChecks` again (closes [#614](https://github.com/udos86/ng-dynamic-forms/issues/614))
+* packages now pass `strictNullChecks` again (closes [#614](https://github.com/udos86/ng-dynamic-forms/issues/614))
 
 ***
 
