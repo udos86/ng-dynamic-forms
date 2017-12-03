@@ -49,6 +49,7 @@ with **`DynamicMaterialFormControlComponent`**:
 | **[Autocomplete](https://material.angular.io/components/component/autocomplete)** 	| `DynamicInputModel`         	|       `list`      	|
 |     **[Checkbox](https://material.angular.io/components/component/checkbox)**     	| `DynamicCheckboxModel`      	|         –         	|
 |  **[Checkbox Group](https://material.angular.io/components/component/checkbox)**  	| `DynamicCheckboxGroupModel` 	|         –         	|
+|        **[Chips](https://material.angular.io/components/component/chips)**        	| `DynamicInputModel`         	|  `multiple: true` 	|
 |   **[Datepicker](https://material.angular.io/components/component/datepicker)**   	| `DynamicDatePickerModel`    	|         –         	|
 |        **[Input](https://material.angular.io/components/component/input)**        	| `DynamicInputModel`         	|         –         	|
 |     **[Radio Group](https://material.angular.io/components/component/radio)**     	| `DynamicRadioGroupModel`    	|         –         	|

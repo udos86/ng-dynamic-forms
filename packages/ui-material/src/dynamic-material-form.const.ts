@@ -2,15 +2,15 @@ export enum MatFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
-    Chips = 99, //"CHIPS",
-    DatePicker = 3, //"DATEPICKER",
-    Group = 4, //"GROUP",
-    Input = 5, //"INPUT",
-    RadioGroup = 6, //"RADIO_GROUP",
-    Select = 7, //"SELECT",
-    Slider = 8, //"SLIDER",
-    SlideToggle = 9, //"SLIDE_TOGGLE",
-    TextArea = 10, //"TEXTAREA"
+    Chips = 3, //"CHIPS",
+    DatePicker = 4, //"DATEPICKER",
+    Group = 5, //"GROUP",
+    Input = 6, //"INPUT",
+    RadioGroup = 7, //"RADIO_GROUP",
+    Select = 8, //"SELECT",
+    Slider = 9, //"SLIDER",
+    SlideToggle = 10, //"SLIDE_TOGGLE",
+    TextArea = 11 //"TEXTAREA"
 }
 
 export const MAT_VIEW_CHILD_SELECTOR = `matAutocomplete,matCheckbox,matDatepicker,matInput,matRadioGroup,matSelect,

@@ -298,7 +298,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         }
     }
 
-    onCustomEvent($event: any, type: string | null = null): void {
+    onCustomEvent($event: any, type: string): void {
 
         if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // child event bypass
 

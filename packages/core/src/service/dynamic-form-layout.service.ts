@@ -11,7 +11,7 @@ export interface DynamicFormControlLayoutConfig {
     label?: string;
     option?: string;
 
-    [key: string]: string;
+    [key: string]: string | undefined;
 }
 
 export interface DynamicFormControlLayout {
@@ -19,7 +19,7 @@ export interface DynamicFormControlLayout {
     element?: DynamicFormControlLayoutConfig;
     grid?: DynamicFormControlLayoutConfig;
 
-    [key: string]: DynamicFormControlLayoutConfig;
+    [key: string]: DynamicFormControlLayoutConfig | undefined;
 }
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
@@ -44,8 +44,13 @@ export class DynamicFormLayoutService {
 
     getClass(layout: DynamicFormControlLayout | null, context: string, place: string): string {
 
-        if (layout !== null && layout.hasOwnProperty(context) && layout[context].hasOwnProperty(place)) {
-            return layout[context][place];
+        if (layout !== null && layout.hasOwnProperty(context)) {
+
+            let config = layout[context] as DynamicFormControlLayoutConfig;
+
+            if (config.hasOwnProperty(place)) {
+                return config[place] as string;
+            }
         }
 
         return "";

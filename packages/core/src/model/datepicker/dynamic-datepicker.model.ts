@@ -17,7 +17,7 @@ export interface DynamicDatePickerModelConfig extends DynamicDateControlModelCon
 
 export class DynamicDatePickerModel extends DynamicDateControlModel {
 
-    @serializable() focusedDate: DynamicDateControlValue;
+    @serializable() focusedDate: DynamicDateControlValue | null;
     @serializable() inline: boolean;
     @serializable() toggleIcon: string | null;
 

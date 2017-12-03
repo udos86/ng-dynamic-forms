@@ -16,10 +16,12 @@
     "module": "es2015",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "noUnusedParameters": true,
     "outDir": "../dist/@ng-dynamic-forms",
     "removeComments": false,
     "rootDir": ".",
     "sourceMap": true,
+    "strictNullChecks": true,
     "target": "es5",
     "typeRoots": [],
     "types": []

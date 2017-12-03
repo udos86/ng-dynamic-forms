@@ -28,6 +28,7 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
+    DynamicFormValueControlModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -57,6 +58,7 @@ export type MatFormControlComponent = MatAutocomplete | MatCheckbox | MatDatepic
 })
 export class DynamicMaterialFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
+    private chipList: string[] | null = null;
     private _showCharacterCount: boolean = false;
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
@@ -88,8 +90,6 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     type: MatFormControlType | null;
 
-    private chipList: string[] = ["Hello", "Chips"];
-
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
@@ -101,7 +101,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         super.ngOnChanges(changes);
 
         if (changes["model"]) {
-            this.type = DynamicMaterialFormControlComponent.getFormControlType(this.model);
+            this.updateFormControlType();
         }
     }
 
@@ -114,18 +114,40 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 
     get hasMatFormField(): boolean {
-        return this.type === 3 || this.type === 5 || this.type === 7 || this.type === 10;
+        return this.type === 3 || this.type === 4 || this.type === 6 || this.type === 8 || this.type === 11;
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
 
         let input = $event.input,
-            value = $event.value;
+            value = $event.value.trim();
 
-        this.chipList.push(value);
+        if (Array.isArray(this.chipList) && value.length > 0) {
 
-        if (input) {
+            this.chipList.push(value);
+            this.control.patchValue(this.chipList);
+        }
+
+        if (input instanceof HTMLInputElement) {
             input.value = "";
+        }
+    }
+
+    onChipRemoved(_chip: string, index: number): void {
+
+        if (Array.isArray(this.chipList)) {
+
+            this.chipList.splice(index, 1);
+            this.control.patchValue(this.chipList);
+        }
+    }
+
+    updateFormControlType(): void {
+
+        this.type = DynamicMaterialFormControlComponent.getFormControlType(this.model);
+
+        if (this.type === MatFormControlType.Chips) {
+            this.chipList = (this.model as DynamicFormValueControlModel<string[]>).value || [];
         }
     }
 

@@ -1,3 +1,18 @@
+# 5.1.1
+
+### **Features** 
+
+* **initial Chips support in Material UI package**
+* `hint` support for Select in Material UI package (closes [#608](https://github.com/udos86/ng-dynamic-forms/issues/608))
+* upgrade to Angular Material `5.0.0-rc.2`
+* upgrade to NG Bootstrap `beta.6`
+
+### **Bugfixes** 
+
+* packages now pass `strictNullChecks` again (closes [#614](https://github.com/udos86/ng-dynamic-forms/issues/614))
+
+***
+
 # 5.1.0
 
 ### **Features** 
@@ -14,7 +29,7 @@
 
 ### **Features** 
 
-* **upgrade to Angular Material `5.0.0-rc1`**
+* **upgrade to Angular Material `5.0.0-rc.1`**
 * **upgrade to Prime NG `5.0.0`**
 
 ***
