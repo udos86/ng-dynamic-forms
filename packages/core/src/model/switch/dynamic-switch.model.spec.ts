@@ -1,4 +1,3 @@
-import { DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER } from "../dynamic-check-control.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "./dynamic-switch.model";
 
 describe("DynamicSwitchModel test suite", () => {
@@ -15,7 +14,7 @@ describe("DynamicSwitchModel test suite", () => {
         expect(model.disabled).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
-        expect(model.labelPosition).toEqual(DYNAMIC_CHECK_CONTROL_LABEL_POSITION_AFTER);
+        expect(model.labelPosition).toBeNull();
         expect(model.offLabel).toBeNull();
         expect(model.onLabel).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SWITCH);
