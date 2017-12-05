@@ -119,17 +119,16 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
 
-        let input = $event.input,
-            value = $event.value.trim();
+        let inputElement = $event.input, inputValue = $event.value.trim();
 
-        if (Array.isArray(this.chipList) && value.length > 0) {
+        if (Array.isArray(this.chipList) && inputValue.length > 0) {
 
-            this.chipList.push(value);
+            this.chipList.push(inputValue);
             this.control.patchValue(this.chipList);
         }
 
-        if (input instanceof HTMLInputElement) {
-            input.value = "";
+        if (inputElement instanceof HTMLInputElement) {
+            inputElement.value = "";
         }
     }
 
