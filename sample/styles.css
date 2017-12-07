@@ -110,6 +110,9 @@ form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     display: none;
 }
 
+dynamic-basic-form-control {
+    margin-bottom: 1.25rem;
+}
 
 /* KENDO */
 kendo-calendar {

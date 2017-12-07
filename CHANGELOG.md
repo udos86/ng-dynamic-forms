@@ -1,3 +1,13 @@
+# 5.1.2
+
+### **Features** 
+
+* `name` property can now be configured on any `DynamicFormControlModel` (closes [#600](https://github.com/udos86/ng-dynamic-forms/issues/600))
+* upgrade to Angular Material `5.0.0`
+* Material UI template improvements 
+
+***
+
 # 5.1.1
 
 ### **Features** 

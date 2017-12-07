@@ -44,7 +44,7 @@
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [indeterminate]="model.indeterminate"
-                      [labelPosition]="model.labelPosition"
+                      [labelPosition]="model.labelPosition || 'after'"
                       [name]="model.name"
                       [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                       (blur)="onBlur($event)"
@@ -69,7 +69,7 @@
                           (removed)="onChipRemoved(chip, index)">
 
                     <span>{{ chip }}</span>
-                    <mat-icon matChipRemove>x</mat-icon>
+                    <mat-icon matChipRemove>cancel</mat-icon>
 
                 </mat-chip>
 
@@ -86,6 +86,8 @@
 
         <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="4" [ngClass]="getClass('grid','control')">
+
+            <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
             <input matInput
                    [autofocus]="model.autoFocus"
@@ -104,6 +106,10 @@
                    (dateInput)="onCustomEvent($event, 'dateInput')"
                    (focus)="onFocus($event)"/>
 
+            <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
+
+            <mat-hint *ngIf="showHint" align="start" [innerHTML]="model.hint"></mat-hint>
+
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
             <mat-datepicker #matDatepicker [startAt]="model.focusedDate"
@@ -112,7 +118,7 @@
                             (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
 
             <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
-                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+                <mat-error *ngIf="hasErrorMessaging">{{ message }}</mat-error>
             </ng-container>
 
         </mat-form-field>
@@ -176,15 +182,13 @@
                 <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 
                 <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
-                    <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+                    <mat-error *ngIf="hasErrorMessaging">{{ message }}</mat-error>
                 </ng-container>
 
             </mat-form-field>
 
             <mat-autocomplete #matAutocomplete="matAutocomplete" (optionSelected)="onValueChange($event)">
-
                 <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
-
             </mat-autocomplete>
 
         </ng-container>
@@ -210,6 +214,8 @@
         <!-- SELECT --------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="8" [ngClass]="getClass('grid','control')">
 
+            <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
+
             <mat-select #matSelect
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
@@ -225,6 +231,8 @@
                             [ngClass]="getClass('element','option')"
                             [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
             </mat-select>
+
+            <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
 
             <mat-hint *ngIf="showHint" align="start" [innerHTML]="model.hint"></mat-hint>
 
@@ -254,7 +262,7 @@
                           [checked]="model.checked"
                           [dynamicId]="bindId && model.id"
                           [formControlName]="model.id"
-                          [labelPosition]="model.labelPosition"
+                          [labelPosition]="model.labelPosition || 'after'"
                           [name]="model.name"
                           [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                           (change)="onValueChange($event)">
@@ -290,14 +298,14 @@
             <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 
             <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
-                <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+                <mat-error *ngIf="hasErrorMessaging">{{ message }}</mat-error>
             </ng-container>
 
         </mat-form-field>
 
     </ng-container>
 
-    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
+    <ng-container *ngIf="!hasMatFormField && hasErrorMessaging">
         <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
     </ng-container>
 
