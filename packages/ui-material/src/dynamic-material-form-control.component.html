@@ -57,7 +57,10 @@
         </mat-checkbox>
 
         <!-- CHIPS ---------------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="3" [ngClass]="getClass('grid','control')">
+        <mat-form-field *ngSwitchCase="3"
+                        [color]="model.getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid','control')"
+                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
 
             <mat-chip-list #matChipList
                            [dynamicId]="bindId && model.id"
@@ -85,7 +88,10 @@
         </mat-form-field>
 
         <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="4" [ngClass]="getClass('grid','control')">
+        <mat-form-field *ngSwitchCase="4"
+                        [color]="model.getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid','control')"
+                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
 
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -112,8 +118,11 @@
 
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
-            <mat-datepicker #matDatepicker [startAt]="model.focusedDate"
-                            [touchUi]="true"
+            <mat-datepicker #matDatepicker
+                            [opened]="model.getCustom('opened', false)"
+                            [startAt]="model.focusedDate"
+                            [startView]="model.getCustom('startView', 'month')"
+                            [touchUi]="model.getCustom('touchUi', false)"
                             (closed)="onCustomEvent($event, 'closed')"
                             (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
 
@@ -145,7 +154,9 @@
         <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ng-container *ngSwitchCase="6">
 
-            <mat-form-field [ngClass]="getClass('grid','control')">
+            <mat-form-field [color]="model.getCustom('color', 'primary')"
+                            [ngClass]="getClass('grid','control')"
+                            [floatLabel]="model.getCustom('floatLabel', 'auto')">
 
                 <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -212,7 +223,10 @@
         </mat-radio-group>
 
         <!-- SELECT --------------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="8" [ngClass]="getClass('grid','control')">
+        <mat-form-field *ngSwitchCase="8"
+                        [color]="model.getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid','control')"
+                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
 
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -246,13 +260,14 @@
         <mat-slider *ngSwitchCase="9" #matSlider
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
+                    [invert]="model.getCustom('invert', false)"
                     [min]="model.min"
                     [max]="model.max"
                     [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                     [step]="model.step"
                     [tabIndex]="model.tabIndex"
-                    [thumbLabel]="true"
-                    tickInterval="1"
+                    [thumbLabel]="model.getCustom('thumbLabel', true)"
+                    [tickInterval]="model.getCustom('tickInterval', 1)"
                     [vertical]="model.vertical"
                     (change)="onValueChange($event)"
                     (input)="onCustomEvent($event, 'input')"></mat-slider>
@@ -273,13 +288,15 @@
         </mat-slide-toggle>
 
         <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
-        <mat-form-field *ngSwitchCase="11" [ngClass]="getClass('grid','control')">
+        <mat-form-field *ngSwitchCase="11"
+                        [color]="model.getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid','control')"
+                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
 
             <textarea matInput
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
                       [formControlName]="model.id"
-                      [maxlength]="model.maxLength"
                       [minlength]="model.minLength"
                       [name]="model.name"
                       [ngClass]="getClass('element','control')"

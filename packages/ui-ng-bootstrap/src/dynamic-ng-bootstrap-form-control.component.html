@@ -43,12 +43,19 @@
 
             <!-- CALENDAR --------------------------------------------------------------------------------------------->
             <ngb-datepicker *ngSwitchCase="2"
+                            [displayMonths]="model.getCustom('displayMonths', 1)"
                             [dynamicId]="bindId && model.id"
+                            [firstDayOfWeek]="model.getCustom('firstDayOfWeek', 1)"
                             [formControlName]="model.id"
                             [maxDate]="model.max"
                             [minDate]="model.min"
+                            [navigation]="model.getCustom('navigation', 'select')"
                             [ngClass]="getClass('element','control')"
-                            [startDate]="model.focusedDate"></ngb-datepicker>
+                            [outsideDays]="model.getCustom('outsideDays', 'visible')"
+                            [showWeekdays]="model.getCustom('showWeekdays', true)"
+                            [showWeekNumbers]="model.getCustom('showWeekNumbers', false)"
+                            [startDate]="model.focusedDate"
+                            (select)="onValueChange($event)"></ngb-datepicker>
 
             <!-- CHECKBOX --------------------------------------------------------------------------------------------->
             <div *ngSwitchCase="3" class="form-check" [class.disabled]="model.disabled">
@@ -102,14 +109,24 @@
 
                 <input ngbDatepicker class="form-control" #datepicker="ngbDatepicker"
                        [class.is-invalid]="showErrorMessages"
+                       [displayMonths]="model.getCustom('displayMonths', 1)"
                        [dynamicId]="bindId && model.id"
+                       [firstDayOfWeek]="model.getCustom('firstDayOfWeek', 1)"
                        [formControlName]="model.id"
                        [maxDate]="model.max"
                        [minDate]="model.min"
                        [name]="model.name"
+                       [navigation]="model.getCustom('navigation', 'select')"
                        [ngClass]="getClass('element','control')"
+                       [outsideDays]="model.getCustom('outsideDays', 'visible')"
                        [placeholder]="model.placeholder"
-                       [startDate]="model.focusedDate">
+                       [placement]="model.getCustom('placement', 'bottom-left')"
+                       [showWeekdays]="model.getCustom('showWeekdays', true)"
+                       [showWeekNumbers]="model.getCustom('showWeekNumbers', false)"
+                       [startDate]="model.focusedDate"
+                       (blur)="onBlur($event)"
+                       (change)="onValueChange($event)"
+                       (focus)="onFocus($event)">
 
                 <div class="input-group-addon" (click)="datepicker.toggle()">
                     <img [src]="model.toggleIcon" style="cursor: pointer;"/>
@@ -245,10 +262,14 @@
             <ngb-timepicker *ngSwitchCase="11"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
+                            [hourStep]="model.getCustom('hourStep', 1)"
                             [meridian]="model.meridian"
+                            [minuteStep]="model.getCustom('minuteStep', 1)"
                             [ngClass]="getClass('element','control')"
                             [seconds]="model.showSeconds"
-                            [spinners]="true"></ngb-timepicker>
+                            [secondStep]="model.getCustom('secondStep', 1)"
+                            [size]="model.getCustom('size', 'medium')"
+                            [spinners]="model.getCustom('spinners', true)"></ngb-timepicker>
 
             <small *ngIf="showHint" class="text-muted" [innerHTML]="model.hint"
                    [ngClass]="getClass('element','hint')"></small>

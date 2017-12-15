@@ -79,11 +79,18 @@
 
             <!-- AUTOCOMPLETE ----------------------------------------------------------------------------------------->
             <p-autoComplete *ngSwitchCase="2" #pAutoComplete
+                            [autoHighlight]="model.getCustom('autoHighlight', false)"
+                            [delay]="model.getCustom('delay', 300)"
+                            [dropdown]="model.getCustom('dropdown', false)"
                             [dynamicId]="bindId && model.id"
+                            [emptyMessage]="model.getCustom('emptyMessage', null)"
+                            [forceSelection]="model.getCustom('forceSelection', false)"
                             [formControlName]="model.id"
+                            [minLength]="model.getCustom('minLength', 1)"
                             [multiple]="model.multiple"
                             [ngClass]="getClass('element','control')"
                             [placeholder]="model.placeholder"
+                            [scrollHeight]="model.getCustom('scrollHeight', '200px')"
                             [suggestions]="suggestions"
                             [tabindex]="model.tabIndex"
                             (onBlur)="onBlur($event)"
@@ -99,19 +106,35 @@
             <p-calendar *ngSwitchCase="3" #pCalendar
                         [dateFormat]="model.format"
                         [defaultDate]="model.focusedDate"
+                        [disabledDates]="model.getCustom('disabledDates', null)"
+                        [disabledDays]="model.getCustom('disabledDays', null)"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
+                        [hourFormat]="model.getCustom('hourFormat', '24')"
+                        [icon]="model.getCustom('icon', 'fa-calendar')"
                         [inline]="model.inline"
                         [maxDate]="model.max"
+                        [maxDateCount]="model.getCustom('maxDateCount', null)"
                         [minDate]="model.min"
-                        [monthNavigator]="false"
+                        [monthNavigator]="model.getCustom('monthNavigator', false)"
                         [ngClass]="getClass('element','control')"
                         [placeholder]="model.placeholder"
-                        [showIcon]="true"
+                        [selectionMode]="model.getCustom('selectionMode', 'single')"
+                        [selectOtherMonths]="model.getCustom('selectOtherMonths', false)"
+                        [shortYearCutoff]="model.getCustom('shortYearCutoff', '+10')"
+                        [showButtonBar]="model.getCustom('showButtonBar', false)"
+                        [showIcon]="model.getCustom('showIcon', true)"
+                        [showOnFocus]="model.getCustom('showOnFocus', true)"
+                        [showOtherMonths]="model.getCustom('showOtherMonths', true)"
                         [showSeconds]="model.showSeconds"
+                        [stepHour]="model.getCustom('stepHour', 1)"
+                        [stepMinute]="model.getCustom('stepMinute', 1)"
+                        [stepSecond]="model.getCustom('stepSecond', 1)"
                         [tabindex]="model.tabIndex"
                         [timeOnly]="model.type === 'TIMEPICKER'"
-                        [yearNavigator]="false"
+                        [utc]="model.getCustom('utc', false)"
+                        [yearNavigator]="model.getCustom('yearNavigator', false)"
+                        [yearRange]="model.getCustom('yearRange', null)"
                         (onBlur)="onBlur($event)"
                         (onClearClick)="onCustomEvent($event, 'onClearClick')"
                         (onClose)="onCustomEvent($event, 'onClose')"
@@ -134,6 +157,7 @@
 
             <!-- CHIPS ------------------------------------------------------------------------------------------------>
             <p-chips *ngSwitchCase="5" #pChips
+                     [allowDuplicate]="model.getCustom('allowDuplicate', true)"
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
                      [ngClass]="getClass('element','control')"
@@ -144,11 +168,18 @@
 
             <!-- DROPDOWN --------------------------------------------------------------------------------------------->
             <p-dropdown *ngSwitchCase="6" #pDropdown
+                        [autoWidth]="model.getCustom('autoWidth', true)"
+                        [dropdownIcon]="model.getCustom('dropdownIcon', 'fa fa-fw fa-caret-down')"
                         [dynamicId]="bindId && model.id"
+                        [editable]="model.getCustom('editable', false)"
                         [filter]="model.filterable"
+                        [filterBy]="model.getCustom('filterBy', null)"
+                        [filterPlaceholder]="model.getCustom('filterPlaceholder', null)"
                         [formControlName]="model.id"
                         [ngClass]="getClass('element','control')"
                         [options]="model.options"
+                        [resetFilterOnHide]="model.getCustom('resetFilterOnHide', false)"
+                        [scrollHeight]="model.getCustom('scrollHeight', '200px')"
                         [tabindex]="model.tabIndex"
                         (onBlur)="onBlur($event)"
                         (onChange)="onValueChange($event)"
@@ -157,6 +188,7 @@
             <!-- EDITOR ----------------------------------------------------------------------------------------------->
             <p-editor *ngSwitchCase="7" #pEditor
                       [dynamicId]="bindId && model.id"
+                      [formats]="model.getCustom('formats', null)"
                       [formControlName]="model.id"
                       [ngClass]="getClass('element','control')"
                       (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
@@ -199,12 +231,14 @@
 
             <!-- INPUT MASK ------------------------------------------------------------------------------------------->
             <p-inputMask *ngSwitchCase="10" #pInputMask
+                         [autoClear]="model.getCustom('autoClear', true)"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [mask]="model.mask"
                          [ngClass]="getClass('element','control')"
                          [placeholder]="model.placeholder"
                          [readonly]="model.readOnly"
+                         [slotChar]="model.getCustom('slotChar', '_')"
                          [tabindex]="model.tabIndex"
                          (change)="onValueChange($event)"
                          (onBlur)="onBlur($event)"
@@ -223,11 +257,20 @@
 
             <!-- MULTI SELECT ----------------------------------------------------------------------------------------->
             <p-multiSelect *ngSwitchCase="12" #pMultiSelect
+                           [defaultLabel]="model.getCustom('defaultLabel', 'Choose')"
+                           [displaySelectedLabel]="model.getCustom('displaySelectedLabel', true)"
+                           [dropdownIcon]="model.getCustom('dropdownIcon', 'fa fa-fw fa-caret-down')"
                            [dynamicId]="bindId && model.id"
                            [filter]="model.filterable"
                            [formControlName]="model.id"
+                           [maxSelectedLabels]="model.getCustom('maxSelectedLabels', 3)"
                            [ngClass]="getClass('element','control')"
                            [options]="model.options"
+                           [overlayVisible]="model.getCustom('overlayVisible', false)"
+                           [resetFilterOnHide]="model.getCustom('resetFilterOnHide', false)"
+                           [scrollHeight]="model.getCustom('scrollHeight', '200px')"
+                           [selectedItemsLabel]="model.getCustom('selectedItemsLabel', '{0} items selected')"
+                           [showToggleAll]="model.getCustom('showToggleAll', true)"
                            [tabindex]="model.tabIndex"
                            (onBlur)="onBlur($event)"
                            (onChange)="onValueChange($event)"
@@ -235,8 +278,12 @@
 
             <!-- RATING ----------------------------------------------------------------------------------------------->
             <p-rating *ngSwitchCase="14" #pRating
+                      [cancel]="model.getCustom('cancel', true)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
+                      [iconCancelClass]="model.getCustom('iconCancelClass', 'fa-ban')"
+                      [iconOffClass]="model.getCustom('iconOffClass', 'fa-star-o')"
+                      [iconOnClass]="model.getCustom('iconOnClass', 'fa-star')"
                       [ngClass]="getClass('element','control')"
                       [stars]="model.max"
                       (onCancel)="onCustomEvent($event, 'onCancel')"
@@ -244,18 +291,23 @@
 
             <!-- SLIDER ----------------------------------------------------------------------------------------------->
             <p-slider *ngSwitchCase="15" #pSlider
+                      [animate]="model.getCustom('animate', false)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
                       [max]="model.max"
                       [ngClass]="getClass('element','control')"
+                      [orientation]="model.vertical ? 'vertical' : 'horizontal'"
+                      [range]="model.getCustom('range', false)"
                       [step]="model.step"
                       (onChange)="onValueChange($event)"
                       (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
 
             <!-- SPINNER ---------------------------------------------------------------------------------------------->
             <p-spinner *ngSwitchCase="16" #pSpinner
+                       [decimalSeparator]="model.getCustom('decimalSeparator', '.')"
                        [dynamicId]="bindId && model.id"
+                       [formatInput]="model.getCustom('formatInput', true)"
                        [formControlName]="model.id"
                        [min]="model.min"
                        [max]="model.max"
@@ -263,6 +315,7 @@
                        [placeholder]="model.placeholder"
                        [step]="model.step || 1"
                        [tabindex]="model.tabIndex"
+                       [thousandSeparator]="model.getCustom('thousandSeparator', ',')"
                        (onBlur)="onBlur($event)"
                        (onChange)="onValueChange($event)"
                        (onFocus)="onFocus($event)"></p-spinner>
