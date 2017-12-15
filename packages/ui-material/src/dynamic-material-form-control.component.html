@@ -1,9 +1,9 @@
-<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
     <label *ngIf="model.label && type !== 2"
            [for]="model.id"
            [innerHTML]="model.label"
-           [ngClass]="[getClass('element','label'), getClass('grid','label')]"></label>
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
@@ -13,10 +13,10 @@
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
-             [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                 [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
+                 [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
                 <dynamic-material-form-control *ngFor="let controlModel of groupModel.group"
                                                [bindId]="false"
@@ -26,7 +26,7 @@
                                                [layout]="layout"
                                                [model]="controlModel"
                                                [templates]="templateList"
-                                               [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                               [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                                (dfBlur)="onBlur($event)"
                                                (dfChange)="onValueChange($event)"
                                                (dfFocus)="onFocus($event)"
@@ -46,21 +46,21 @@
                       [indeterminate]="model.indeterminate"
                       [labelPosition]="model.labelPosition || 'after'"
                       [name]="model.name"
-                      [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                       (blur)="onBlur($event)"
                       (change)="onValueChange($event)"
                       (focus)="onFocus($event)"
                       (indeterminateChange)="onMatEvent($event, 'indeterminateChange')">
 
-            <span [ngClass]="getClass('element','label')" [innerHTML]="model.label"></span>
+            <span [ngClass]="getClass('element', 'label')" [innerHTML]="model.label"></span>
 
         </mat-checkbox>
 
         <!-- CHIPS ---------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="3"
-                        [color]="model.getCustom('color', 'primary')"
-                        [ngClass]="getClass('grid','control')"
-                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
+                        [color]="getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid', 'control')"
+                        [floatLabel]="getCustom('floatLabel', 'auto')">
 
             <mat-chip-list #matChipList
                            [dynamicId]="bindId && model.id"
@@ -89,9 +89,9 @@
 
         <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="4"
-                        [color]="model.getCustom('color', 'primary')"
-                        [ngClass]="getClass('grid','control')"
-                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
+                        [color]="getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid', 'control')"
+                        [floatLabel]="getCustom('floatLabel', 'auto')">
 
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -103,7 +103,7 @@
                    [matDatepicker]="matDatepicker"
                    [min]="model.min"
                    [name]="model.name"
-                   [ngClass]="getClass('element','control')"
+                   [ngClass]="getClass('element', 'control')"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
                    [required]="model.required"
@@ -119,10 +119,10 @@
             <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
 
             <mat-datepicker #matDatepicker
-                            [opened]="model.getCustom('opened', false)"
+                            [opened]="getCustom('opened', false)"
                             [startAt]="model.focusedDate"
-                            [startView]="model.getCustom('startView', 'month')"
-                            [touchUi]="model.getCustom('touchUi', false)"
+                            [startView]="getCustom('startView', 'month')"
+                            [touchUi]="getCustom('touchUi', false)"
                             (closed)="onCustomEvent($event, 'closed')"
                             (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
 
@@ -136,7 +136,7 @@
         <div *ngSwitchCase="5" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
-             [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
             <dynamic-material-form-control *ngFor="let controlModel of model.group"
                                            [group]="control"
@@ -144,7 +144,7 @@
                                            [layout]="layout"
                                            [model]="controlModel"
                                            [templates]="templateList"
-                                           [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                           [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                            (dfBlur)="onBlur($event)"
                                            (dfChange)="onValueChange($event)"
                                            (dfFocus)="onFocus($event)"
@@ -154,9 +154,9 @@
         <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ng-container *ngSwitchCase="6">
 
-            <mat-form-field [color]="model.getCustom('color', 'primary')"
+            <mat-form-field [color]="getCustom('color', 'primary')"
                             [ngClass]="getClass('grid','control')"
-                            [floatLabel]="model.getCustom('floatLabel', 'auto')">
+                            [floatLabel]="getCustom('floatLabel', 'auto')">
 
                 <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -175,7 +175,7 @@
                        [matAutocomplete]="matAutocomplete"
                        [minlength]="model.minLength"
                        [name]="model.name"
-                       [ngClass]="getClass('element','control')"
+                       [ngClass]="getClass('element', 'control')"
                        [pattern]="model.pattern"
                        [placeholder]="model.placeholder"
                        [readonly]="model.readOnly"
@@ -209,7 +209,7 @@
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [name]="model.name"
-                         [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                          (blur)="onBlur($event)"
                          (change)="onValueChange($event)"
                          (focus)="onFocus($event)">
@@ -217,16 +217,16 @@
             <mat-radio-button *ngFor="let option of model.options$ | async"
                               [labelPosition]="'after'"
                               [name]="model.name"
-                              [ngClass]="getClass('element','option')"
+                              [ngClass]="getClass('element', 'option')"
                               [value]="option.value"><span [innerHTML]="option.label"></span></mat-radio-button>
 
         </mat-radio-group>
 
         <!-- SELECT --------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="8"
-                        [color]="model.getCustom('color', 'primary')"
+                        [color]="getCustom('color', 'primary')"
                         [ngClass]="getClass('grid','control')"
-                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
+                        [floatLabel]="getCustom('floatLabel', 'auto')">
 
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -234,7 +234,7 @@
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
                         [multiple]="model.multiple"
-                        [ngClass]="getClass('element','control')"
+                        [ngClass]="getClass('element', 'control')"
                         [placeholder]="model.placeholder"
                         [required]="model.required"
                         (change)="onValueChange($event)"
@@ -260,14 +260,14 @@
         <mat-slider *ngSwitchCase="9" #matSlider
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
-                    [invert]="model.getCustom('invert', false)"
+                    [invert]="getCustom('invert', false)"
                     [min]="model.min"
                     [max]="model.max"
-                    [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                    [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                     [step]="model.step"
                     [tabIndex]="model.tabIndex"
-                    [thumbLabel]="model.getCustom('thumbLabel', true)"
-                    [tickInterval]="model.getCustom('tickInterval', 1)"
+                    [thumbLabel]="getCustom('thumbLabel', true)"
+                    [tickInterval]="getCustom('tickInterval', 1)"
                     [vertical]="model.vertical"
                     (change)="onValueChange($event)"
                     (input)="onCustomEvent($event, 'input')"></mat-slider>
@@ -289,9 +289,9 @@
 
         <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="11"
-                        [color]="model.getCustom('color', 'primary')"
-                        [ngClass]="getClass('grid','control')"
-                        [floatLabel]="model.getCustom('floatLabel', 'auto')">
+                        [color]="getCustom('color', 'primary')"
+                        [ngClass]="getClass('grid', 'control')"
+                        [floatLabel]="getCustom('floatLabel', 'auto')">
 
             <textarea matInput
                       [dynamicId]="bindId && model.id"
@@ -299,7 +299,7 @@
                       [formControlName]="model.id"
                       [minlength]="model.minLength"
                       [name]="model.name"
-                      [ngClass]="getClass('element','control')"
+                      [ngClass]="getClass('element', 'control')"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
                       [required]="model.required"

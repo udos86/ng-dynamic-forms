@@ -3,7 +3,7 @@
                                [hasErrorMessaging]="controlModel.hasErrorMessages"
                                [layout]="layout"
                                [model]="controlModel"
-                               [ngClass]="[getClass(controlModel,'element','host'), getClass(controlModel,'grid','host')]"
+                               [ngClass]="[getClass(controlModel, 'element', 'host'), getClass(controlModel, 'grid', 'host')]"
                                [showCharacterHint]="controlModel.type === 'INPUT'"
                                [templates]="templates"
                                (dfBlur)="onEvent($event, 'blur')"

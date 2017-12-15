@@ -48,8 +48,4 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     get value(): T | null {
         return this._value;
     }
-
-    getCustom(key: string, defaultValue: any = null): any {
-        return this.custom !== null && this.custom.hasOwnProperty(key) ? this.custom[key] : defaultValue;
-    }
 }
