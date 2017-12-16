@@ -581,9 +581,9 @@ Using this approach we are able to strictly decouple layout information from pur
 
 ## Form Control Configuration
 
-No matter which UI library you're using, Usually there is a set of basic properties that apply universally to a certain type of form control. 
+No matter which UI library you're using, usually there is a set of basic properties that apply universally to a certain type of form control. 
 
-So when picking a slider component, you'll always find an `@Input()` to control its minimum and maximum value as well as its orientation.
+So, when picking a slider component, you'll always find an `@Input()` to control its minimum and maximum value, as well as its orientation.
 
 Whenever that's the case NG Dynamic Forms directly provides an abstract configuration property on the corresponding `DynamicFormControlModel`:
 ```ts
@@ -598,11 +598,11 @@ new DynamicSliderModel({
 
 Furthermore, very often there are additional component features that are completely library-specific.  
 
-So when using Material there is a unique `@Input()` for inverting a slider component.
+So, when using Material there is a unique `@Input()` for inverting a slider component.
 
 NG Dynamic Forms gives you the freedom to utilize such an individual parameter, as well.  
 
-All you need to do is to attach the `other` configuration object to your `DynamicFormValueControlModel`: 
+All you need to do is to attach the `additional` configuration object to your `DynamicFormValueControlModel`: 
 ```ts
 new DynamicSliderModel({
 

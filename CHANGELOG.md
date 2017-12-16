@@ -2,7 +2,7 @@
 
 ### **Features** 
 
-* `custom` property for added to `DynamicFormValueControlModel` for configuring additional UI component inputs
+* `additional` property added to `DynamicFormValueControlModel` for individually configuring UI components
 * upgrade to NG Bootstrap `beta.7`
 
 ***
