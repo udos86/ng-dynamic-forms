@@ -1,7 +1,7 @@
-<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
-    <div *ngIf="type !== 4 && model.label" [ngClass]="getClass('grid','label')">
-        <label [for]="model.id" [innerHTML]="model.label" [ngClass]="getClass('element','label')"></label>
+    <div *ngIf="type !== 4 && model.label" [ngClass]="getClass('grid', 'label')">
+        <label [for]="model.id" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
     </div>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
@@ -18,7 +18,7 @@
                                       [layout]="layout"
                                       [model]="controlModel"
                                       [templates]="templateList"
-                                      [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                      [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                       (dfBlur)="onBlur($event)"
                                       (dfChange)="onValueChange($event)"
                                       (dfFocus)="onFocus($event)"
@@ -28,15 +28,15 @@
     <!-- RADIO GROUP -------------------------------------------------------------------------------------------------->
     <div *ngIf="type === 13" role="radiogroup"
          [dynamicId]="bindId && model.id"
-         [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
          [tabindex]="model.tabIndex">
 
-        <div *ngFor="let option of model.options$ | async" [ngClass]="getClass('grid','option')">
+        <div *ngFor="let option of model.options$ | async" [ngClass]="getClass('grid', 'option')">
 
             <p-radioButton [formControlName]="model.id"
                            [label]="option.label"
                            [name]="model.id"
-                           [ngClass]="getClass('element','option')"
+                           [ngClass]="getClass('element', 'option')"
                            [value]="option.value"
                            (click)="onValueChange($event)"></p-radioButton>
         </div>
@@ -46,16 +46,16 @@
 
     <ng-container *ngIf="type !== 8 && type !== 13">
 
-        <div [ngClass]="getClass('grid','control')" [ngSwitch]="type">
+        <div [ngClass]="getClass('grid', 'control')" [ngSwitch]="type">
 
             <!-- FORM ARRAY ------------------------------------------------------------------------------------------->
             <div *ngSwitchCase="1"
                  [dynamicId]="bindId && model.id"
                  [formArrayName]="model.id"
-                 [ngClass]="getClass('element','control')">
+                 [ngClass]="getClass('element', 'control')">
 
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                     [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
+                     [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
                     <dynamic-primeng-form-control *ngFor="let controlModel of groupModel.group"
                                                   [bindId]="false"
@@ -65,7 +65,7 @@
                                                   [layout]="layout"
                                                   [model]="controlModel"
                                                   [templates]="templateList"
-                                                  [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                                  [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                                   (dfBlur)="onBlur($event)"
                                                   (dfChange)="onValueChange($event)"
                                                   (dfFocus)="onFocus($event)"
@@ -79,11 +79,18 @@
 
             <!-- AUTOCOMPLETE ----------------------------------------------------------------------------------------->
             <p-autoComplete *ngSwitchCase="2" #pAutoComplete
+                            [autoHighlight]="getAdditional('autoHighlight', false)"
+                            [delay]="getAdditional('delay', 300)"
+                            [dropdown]="getAdditional('dropdown', false)"
                             [dynamicId]="bindId && model.id"
+                            [emptyMessage]="getAdditional('emptyMessage', null)"
+                            [forceSelection]="getAdditional('forceSelection', false)"
                             [formControlName]="model.id"
+                            [minLength]="getAdditional('minLength', 1)"
                             [multiple]="model.multiple"
-                            [ngClass]="getClass('element','control')"
+                            [ngClass]="getClass('element', 'control')"
                             [placeholder]="model.placeholder"
+                            [scrollHeight]="getAdditional('scrollHeight', '200px')"
                             [suggestions]="suggestions"
                             [tabindex]="model.tabIndex"
                             (onBlur)="onBlur($event)"
@@ -97,21 +104,38 @@
 
             <!-- CALENDAR --------------------------------------------------------------------------------------------->
             <p-calendar *ngSwitchCase="3" #pCalendar
-                        [dateFormat]="model.format"
+                        [dateFormat]="model.format || 'mm/dd/yy'"
                         [defaultDate]="model.focusedDate"
+                        [disabledDates]="getAdditional('disabledDates')"
+                        [disabledDays]="getAdditional('disabledDays')"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
+                        [hourFormat]="getAdditional('hourFormat', '24')"
+                        [icon]="getAdditional('icon', 'fa-calendar')"
                         [inline]="model.inline"
+                        [locale]="getAdditional('locale', { firstDayOfWeek: 0, dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], today: 'Today', clear: 'Clear' })"
                         [maxDate]="model.max"
+                        [maxDateCount]="getAdditional('maxDateCount')"
                         [minDate]="model.min"
-                        [monthNavigator]="false"
-                        [ngClass]="getClass('element','control')"
+                        [monthNavigator]="getAdditional('monthNavigator', false)"
+                        [ngClass]="getClass('element', 'control')"
                         [placeholder]="model.placeholder"
-                        [showIcon]="true"
+                        [selectionMode]="getAdditional('selectionMode', 'single')"
+                        [selectOtherMonths]="getAdditional('selectOtherMonths', false)"
+                        [shortYearCutoff]="getAdditional('shortYearCutoff', '+10')"
+                        [showButtonBar]="getAdditional('showButtonBar', false)"
+                        [showIcon]="getAdditional('showIcon', true)"
+                        [showOnFocus]="getAdditional('showOnFocus', true)"
+                        [showOtherMonths]="getAdditional('showOtherMonths', true)"
                         [showSeconds]="model.showSeconds"
+                        [stepHour]="getAdditional('stepHour', 1)"
+                        [stepMinute]="getAdditional('stepMinute', 1)"
+                        [stepSecond]="getAdditional('stepSecond', 1)"
                         [tabindex]="model.tabIndex"
                         [timeOnly]="model.type === 'TIMEPICKER'"
-                        [yearNavigator]="false"
+                        [utc]="getAdditional('utc', false)"
+                        [yearNavigator]="getAdditional('yearNavigator', false)"
+                        [yearRange]="getAdditional('yearRange')"
                         (onBlur)="onBlur($event)"
                         (onClearClick)="onCustomEvent($event, 'onClearClick')"
                         (onClose)="onCustomEvent($event, 'onClose')"
@@ -134,9 +158,10 @@
 
             <!-- CHIPS ------------------------------------------------------------------------------------------------>
             <p-chips *ngSwitchCase="5" #pChips
+                     [allowDuplicate]="getAdditional('allowDuplicate', true)"
                      [dynamicId]="bindId && model.id"
                      [formControlName]="model.id"
-                     [ngClass]="getClass('element','control')"
+                     [ngClass]="getClass('element', 'control')"
                      [tabindex]="model.tabIndex"
                      (change)="onValueChange($event)"
                      (onAdd)="onCustomEvent($event, 'onAdd')"
@@ -144,11 +169,18 @@
 
             <!-- DROPDOWN --------------------------------------------------------------------------------------------->
             <p-dropdown *ngSwitchCase="6" #pDropdown
+                        [autoWidth]="getAdditional('autoWidth', true)"
+                        [dropdownIcon]="getAdditional('dropdownIcon', 'fa fa-fw fa-caret-down')"
                         [dynamicId]="bindId && model.id"
+                        [editable]="getAdditional('editable', false)"
                         [filter]="model.filterable"
+                        [filterBy]="getAdditional('filterBy', null)"
+                        [filterPlaceholder]="getAdditional('filterPlaceholder', null)"
                         [formControlName]="model.id"
-                        [ngClass]="getClass('element','control')"
+                        [ngClass]="getClass('element', 'control')"
                         [options]="model.options"
+                        [resetFilterOnHide]="getAdditional('resetFilterOnHide', false)"
+                        [scrollHeight]="getAdditional('scrollHeight', '200px')"
                         [tabindex]="model.tabIndex"
                         (onBlur)="onBlur($event)"
                         (onChange)="onValueChange($event)"
@@ -157,6 +189,7 @@
             <!-- EDITOR ----------------------------------------------------------------------------------------------->
             <p-editor *ngSwitchCase="7" #pEditor
                       [dynamicId]="bindId && model.id"
+                      [formats]="getAdditional('formats', null)"
                       [formControlName]="model.id"
                       [ngClass]="getClass('element','control')"
                       (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
@@ -179,7 +212,7 @@
                        [maxlength]="model.maxLength"
                        [minlength]="model.minLength"
                        [name]="model.name"
-                       [ngClass]="getClass('element','control')"
+                       [ngClass]="getClass('element', 'control')"
                        [pattern]="model.pattern"
                        [placeholder]="model.placeholder"
                        [readonly]="model.readOnly"
@@ -199,12 +232,14 @@
 
             <!-- INPUT MASK ------------------------------------------------------------------------------------------->
             <p-inputMask *ngSwitchCase="10" #pInputMask
+                         [autoClear]="getAdditional('autoClear', true)"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
                          [mask]="model.mask"
-                         [ngClass]="getClass('element','control')"
+                         [ngClass]="getClass('element', 'control')"
                          [placeholder]="model.placeholder"
                          [readonly]="model.readOnly"
+                         [slotChar]="getAdditional('slotChar', '_')"
                          [tabindex]="model.tabIndex"
                          (change)="onValueChange($event)"
                          (onBlur)="onBlur($event)"
@@ -215,7 +250,7 @@
             <p-inputSwitch *ngSwitchCase="11" #pInputSwitch
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
-                           [ngClass]="getClass('element','control')"
+                           [ngClass]="getClass('element', 'control')"
                            [onLabel]="model.onLabel"
                            [offLabel]="model.offLabel"
                            [tabindex]="model.tabIndex"
@@ -223,11 +258,20 @@
 
             <!-- MULTI SELECT ----------------------------------------------------------------------------------------->
             <p-multiSelect *ngSwitchCase="12" #pMultiSelect
+                           [defaultLabel]="getAdditional('defaultLabel', 'Choose')"
+                           [displaySelectedLabel]="getAdditional('displaySelectedLabel', true)"
+                           [dropdownIcon]="getAdditional('dropdownIcon', 'fa fa-fw fa-caret-down')"
                            [dynamicId]="bindId && model.id"
                            [filter]="model.filterable"
                            [formControlName]="model.id"
-                           [ngClass]="getClass('element','control')"
+                           [maxSelectedLabels]="getAdditional('maxSelectedLabels', 3)"
+                           [ngClass]="getClass('element', 'control')"
                            [options]="model.options"
+                           [overlayVisible]="getAdditional('overlayVisible', false)"
+                           [resetFilterOnHide]="getAdditional('resetFilterOnHide', false)"
+                           [scrollHeight]="getAdditional('scrollHeight', '200px')"
+                           [selectedItemsLabel]="getAdditional('selectedItemsLabel', '{0} items selected')"
+                           [showToggleAll]="getAdditional('showToggleAll', true)"
                            [tabindex]="model.tabIndex"
                            (onBlur)="onBlur($event)"
                            (onChange)="onValueChange($event)"
@@ -235,34 +279,44 @@
 
             <!-- RATING ----------------------------------------------------------------------------------------------->
             <p-rating *ngSwitchCase="14" #pRating
+                      [cancel]="getAdditional('cancel', true)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
-                      [ngClass]="getClass('element','control')"
+                      [iconCancelClass]="getAdditional('iconCancelClass', 'fa-ban')"
+                      [iconOffClass]="getAdditional('iconOffClass', 'fa-star-o')"
+                      [iconOnClass]="getAdditional('iconOnClass', 'fa-star')"
+                      [ngClass]="getClass('element', 'control')"
                       [stars]="model.max"
                       (onCancel)="onCustomEvent($event, 'onCancel')"
                       (onRate)="onValueChange($event)"></p-rating>
 
             <!-- SLIDER ----------------------------------------------------------------------------------------------->
             <p-slider *ngSwitchCase="15" #pSlider
+                      [animate]="getAdditional('animate', false)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [min]="model.min"
                       [max]="model.max"
-                      [ngClass]="getClass('element','control')"
+                      [ngClass]="getClass('element', 'control')"
+                      [orientation]="model.vertical ? 'vertical' : 'horizontal'"
+                      [range]="getAdditional('range', false)"
                       [step]="model.step"
                       (onChange)="onValueChange($event)"
                       (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
 
             <!-- SPINNER ---------------------------------------------------------------------------------------------->
             <p-spinner *ngSwitchCase="16" #pSpinner
+                       [decimalSeparator]="getAdditional('decimalSeparator', '.')"
                        [dynamicId]="bindId && model.id"
+                       [formatInput]="getAdditional('formatInput', true)"
                        [formControlName]="model.id"
                        [min]="model.min"
                        [max]="model.max"
-                       [ngClass]="getClass('element','control')"
+                       [ngClass]="getClass('element', 'control')"
                        [placeholder]="model.placeholder"
                        [step]="model.step || 1"
                        [tabindex]="model.tabIndex"
+                       [thousandSeparator]="getAdditional('thousandSeparator', ',')"
                        (onBlur)="onBlur($event)"
                        (onChange)="onValueChange($event)"
                        (onFocus)="onFocus($event)"></p-spinner>
@@ -275,7 +329,7 @@
                       [maxlength]="model.maxLength"
                       [minlength]="model.minLength"
                       [name]="model.name"
-                      [ngClass]="getClass('element','control')"
+                      [ngClass]="getClass('element', 'control')"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
                       [required]="model.required"
@@ -292,7 +346,7 @@
 
     </ng-container>
 
-    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element','errors'), getClass('grid','errors')]">
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
         <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
     </ul>
 

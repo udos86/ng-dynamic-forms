@@ -280,7 +280,10 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicRatingModel({
 
         id: "feedback",
-        label: "How did you like this form?"
+        label: "How did you like this form?",
+        custom: {
+            cancel: false
+        }
     }),
 
     new DynamicCheckboxModel({

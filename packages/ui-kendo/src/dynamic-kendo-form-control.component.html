@@ -1,14 +1,14 @@
-<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
     <label *ngIf="type !== 4 && type !== 10 && model.label"
            [for]="model.id"
-           [ngClass]="[getClass('element','label'), getClass('grid','label')]">
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
 
         <span [innerHTML]="model.label"></span>
 
         <span *ngIf="(type === 11 || type === 13) && model.hint" class="k-field-info"
               [innerHTML]="model.hint"
-              [ngClass]="getClass('element','hint')"></span>
+              [ngClass]="getClass('element', 'hint')"></span>
     </label>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
@@ -19,10 +19,10 @@
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
-             [ngClass]="getClass('element','control')">
+             [ngClass]="getClass('element', 'control')">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                 [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
+                 [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
                 <dynamic-kendo-form-control *ngFor="let controlModel of groupModel.group"
                                             [bindId]="false"
@@ -32,7 +32,7 @@
                                             [layout]="layout"
                                             [model]="controlModel"
                                             [templates]="templateList"
-                                            [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                            [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                             (dfBlur)="onBlur($event)"
                                             (dfChange)="onValueChange($event)"
                                             (dfFocus)="onFocus($event)"
@@ -49,8 +49,10 @@
                             [data]="model.list"
                             [dynamicId]="bindId && model.id"
                             [formControlName]="model.id"
-                            [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                            [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                             [placeholder]="model.placeholder"
+                            [popupSettings]="getAdditional('popupSettings', {})"
+                            [suggest]="getAdditional('suggest', false)"
                             [tabIndex]="model.tabIndex"
                             (blur)="onBlur($event)"
                             (close)="onCustomEvent($event, 'close')"
@@ -61,18 +63,23 @@
 
         <!-- CALENDAR ------------------------------------------------------------------------------------------------->
         <kendo-calendar *ngSwitchCase="3" #kendoCalendar
+                        [activeView]="getAdditional('activeView', 'month')"
+                        [bottomView]="getAdditional('bottomView', 'month')"
                         [dynamicId]="bindId && model.id"
                         [focusedDate]="model.focusedDate"
                         [formControlName]="model.id"
                         [max]="model.max"
                         [min]="model.min"
-                        [ngClass]="[getClass('element','control'), getClass('grid','control')]"
-                        [rangeValidation]="true"
+                        [navigation]="getAdditional('navigation', true)"
+                        [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                        [rangeValidation]="getAdditional('rangeValidation', true)"
                         [tabIndex]="model.tabIndex"
+                        [topView]="getAdditional('topView', 'century')"
+                        [weekNumber]="getAdditional('weekNumber', false)"
                         (valueChange)="onValueChange($event)"></kendo-calendar>
 
         <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
-        <label *ngSwitchCase="4" class="k-form-field" [ngClass]="getClass('grid','control')">
+        <label *ngSwitchCase="4" class="k-form-field" [ngClass]="getClass('grid', 'control')">
 
             <input type="checkbox" class="k-checkbox"
                    [checked]="model.checked"
@@ -80,7 +87,7 @@
                    [formControlName]="model.id"
                    [indeterminate]="model.indeterminate"
                    [name]="model.name"
-                   [ngClass]="getClass('element','control')"
+                   [ngClass]="getClass('element', 'control')"
                    [required]="model.required"
                    [tabindex]="model.tabIndex"
                    [value]="model.value"
@@ -97,7 +104,7 @@
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
-                  [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -109,7 +116,7 @@
                        [formControlName]="controlModel.id"
                        [indeterminate]="model.indeterminate"
                        [name]="controlModel.name"
-                       [ngClass]="getClass('element','control',controlModel)"
+                       [ngClass]="getClass('element', 'control', controlModel)"
                        [required]="controlModel.required"
                        [tabindex]="controlModel.tabIndex"
                        [value]="controlModel.value"
@@ -126,12 +133,14 @@
         <!-- DATEINPUT ------------------------------------------------------------------------------------------------>
         <kendo-dateinput *ngSwitchCase="6" #kendoDateInput
                          [dynamicId]="bindId && model.id"
+                         [format]="getAdditional('format', 'd')"
+                         [formatPlaceholder]="getAdditional('formatPlaceholder', 'wide')"
                          [formControlName]="model.id"
                          [max]="model.max"
                          [min]="model.min"
-                         [ngClass]="[getClass('element','control'), getClass('grid','control')]"
-                         [rangeValidation]="true"
-                         [spinners]="true"
+                         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                         [rangeValidation]="getAdditional('rangeValidation', true)"
+                         [spinners]="getAdditional('spinners', true)"
                          [tabIndex]="model.tabIndex"
                          (blur)="onBlur($event)"
                          (focus)="onFocus($event)"
@@ -139,15 +148,21 @@
 
         <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
         <kendo-datepicker *ngSwitchCase="7" #kendoDatePicker
+                          [activeView]="getAdditional('activeView', 'month')"
+                          [bottomView]="getAdditional('bottomView', 'month')"
                           [dynamicId]="bindId && model.id"
                           [focusedDate]="model.focusedDate"
-                          [format]="model.format"
+                          [format]="model.format || 'd'"
                           [formControlName]="model.id"
                           [max]="model.max"
                           [min]="model.min"
-                          [ngClass]="[getClass('element','control'), getClass('grid','control')]"
-                          [rangeValidation]="true"
+                          [navigation]="getAdditional('navigation', true)"
+                          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                          [popupSettings]="getAdditional('popupSettings', {})"
+                          [rangeValidation]="getAdditional('rangeValidation', true)"
                           [tabIndex]="model.tabIndex"
+                          [topView]="getAdditional('topView', 'century')"
+                          [weekNumber]="getAdditional('weekNumber', false)"
                           (blur)="onBlur($event)"
                           (close)="onCustomEvent($event, 'close')"
                           (focus)="onFocus($event)"
@@ -157,10 +172,13 @@
         <!-- DROPDOWNLIST --------------------------------------------------------------------------------------------->
         <kendo-dropdownlist *ngSwitchCase="8" #kendoDropDownList
                             [data]="model.options"
+                            [delay]="getAdditional('delay', 500)"
                             [dynamicId]="bindId && model.id"
                             [filterable]="model.filterable"
                             [formControlName]="model.id"
-                            [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                            [ignoreCase]="getAdditional('ignoreCase', true)"
+                            [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                            [popupSettings]="getAdditional('popupSettings', {})"
                             [tabIndex]="model.tabIndex"
                             [textField]="'label'"
                             [valueField]="'value'"
@@ -231,9 +249,12 @@
         <kendo-maskedtextbox *ngSwitchCase="11" #kendoMaskedTextBox
                              [dynamicId]="bindId && model.id"
                              [formControlName]="model.id"
+                             [includeLiterals]="getAdditional('includeLiterals', false)"
                              [mask]="model.mask"
-                             [maskValidation]="true"
-                             [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                             [maskValidation]="getAdditional('maskValidation', true)"
+                             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                             [prompt]="getAdditional('prompt', '_')"
+                             [promptPlaceholder]="getAdditional('promptPlaceholder', '')"
                              [tabIndex]="model.tabIndex"
                              (blur)="onBlur($event)"
                              (focus)="onFocus($event)"
@@ -241,11 +262,14 @@
 
         <!-- MULTI SELECT --------------------------------------------------------------------------------------------->
         <kendo-multiselect *ngSwitchCase="12" #kendoMultiSelect
+                           [autoClose]="getAdditional('autoClose', true)"
+                           [clearButton]="getAdditional('clearButton', true)"
                            [data]="model.options"
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
-                           [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                           [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                            [placeholder]="model.placeholder"
+                           [popupSettings]="getAdditional('popupSettings', {})"
                            [tabIndex]="model.tabIndex"
                            [textField]="'label'"
                            [valueField]="'value'"
@@ -259,14 +283,17 @@
 
         <!-- NUMERIC TEXTBOX ------------------------------------------------------------------------------------------>
         <kendo-numerictextbox *ngSwitchCase="13" #kendoNumericTextBox
-                              [autoCorrect]="model.autoComplete"
+                              [autoCorrect]="getAdditional('autoCorrect', false)"
+                              [decimals]="getAdditional('decimals')"
                               [dynamicId]="bindId && model.id"
-                              [format]="'n0'"
+                              [format]="getAdditional('format', 'n0')"
                               [formControlName]="model.id"
                               [max]="model.max"
                               [min]="model.min"
-                              [ngClass]="[getClass('element','control'), getClass('grid','control')]"
-                              [spinners]="true"
+                              [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                              [placeholder]="model.placeholder"
+                              [rangeValidation]="getAdditional('rangeValidation', true)"
+                              [spinners]="getAdditional('spinners', true)"
                               [step]="model.step"
                               [tabIndex]="model.tabIndex"
                               (blur)="onBlur($event)"
@@ -304,9 +331,10 @@
                       [min]="model.min"
                       [max]="model.max"
                       [ngClass]="[getClass('element','control'), getClass('grid','control')]"
-                      [showButtons]="true"
+                      [showButtons]="getAdditional('showButtons', true)"
                       [smallStep]="model.step"
                       [tabIndex]="model.tabIndex"
+                      [tickPlacement]="getAdditional('tickPlacement', 'both')"
                       [vertical]="model.vertical"
                       (valueChange)="onValueChange($event)"></kendo-slider>
 
@@ -315,7 +343,7 @@
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
-                      [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                       [offLabel]="model.offLabel"
                       [onLabel]="model.onLabel"
                       [tabIndex]="model.tabIndex"
@@ -329,7 +357,7 @@
                   [maxlength]="model.maxLength"
                   [minlength]="model.minLength"
                   [name]="model.name"
-                  [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
                   [required]="model.required"
@@ -343,13 +371,18 @@
 
         <!-- TIMEPICKER ----------------------------------------------------------------------------------------------->
         <kendo-timepicker *ngSwitchCase="18" #kendoTimePicker
+                          [cancelButton]="getAdditional('cancelButton', true)"
                           [dynamicId]="bindId && model.id"
                           [format]="model.format"
                           [formControlName]="model.id"
+                          [formatPlaceholder]="getAdditional('formatPlaceholder', 'wide')"
                           [max]="model.max"
                           [min]="model.min"
-                          [ngClass]="[getClass('element','control'), getClass('grid','control')]"
-                          [rangeValidation]="true"
+                          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                          [nowButton]="getAdditional('nowButton', true)"
+                          [popupSettings]="getAdditional('popupSettings', {})"
+                          [rangeValidation]="getAdditional('rangeValidation', true)"
+                          [steps]="getAdditional('steps', {})"
                           [tabIndex]="model.tabIndex"
                           (blur)="onBlur($event)"
                           (close)="onCustomEvent($event, 'close')"
@@ -359,19 +392,27 @@
 
         <!-- UPLOAD --------------------------------------------------------------------------------------------------->
         <kendo-upload *ngSwitchCase="19" #kendoUpload
+                      [accept]="getAdditional('accept')"
                       [autoUpload]="model.autoUpload"
+                      [batch]="getAdditional('batch', false)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [multiple]="model.multiple"
-                      [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                      [removeField]="getAdditional('removeField', 'fileNames')"
+                      [removeMethod]="getAdditional('removeMethod', 'POST')"
                       [removeUrl]="model.removeUrl"
+                      [responseType]="getAdditional('responseType', 'json')"
+                      [saveField]="getAdditional('saveField', 'files')"
+                      [saveMethod]="getAdditional('saveMethod', 'POST')"
                       [saveUrl]="model.url"
                       [showFileList]="model.showFileList"
-                      [tabIndex]="model.tabIndex"></kendo-upload>
+                      [tabIndex]="model.tabIndex"
+                      [withCredentials]="getAdditional('withCredentials', true)"></kendo-upload>
 
     </ng-container>
     
-    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element','errors'), getClass('grid','errors')]">
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
         <li *ngFor="let message of errorMessages" class="k-field-info k-required">{{ message }}</li>
     </ul>
 

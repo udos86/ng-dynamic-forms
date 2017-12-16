@@ -27,6 +27,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Form Groups](#form-groups)
 - [Form Arrays](#form-arrays)
 - [Form Layouts](#form-layouts)
+- [Form Control Configuration](#form-control-configuration)
 - [Form Control Events](#form-control-events)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
@@ -278,6 +279,8 @@ varies among UI packages. **See the following compatibility table**:
 **\*\*)** file upload controls can be achieved using a `DynamicInputModel` with `inputType: "file"`
 
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
+
+
 
 
 ## Form Groups
@@ -574,6 +577,44 @@ Finally we pass the form layout to our `DynamicFormComponent` via input binding:
 ```
 
 Using this approach we are able to strictly decouple layout information from pure form models.
+
+
+## Form Control Configuration
+
+No matter which UI library you're using, usually there is a set of basic properties that apply universally to a certain type of form control. 
+
+So, when picking e.g. a slider component, you'll always find an `@Input()` to control its minimum / maximum value and its orientation.
+
+Whenever that's the case NG Dynamic Forms directly provides an abstract configuration property on the corresponding `DynamicFormControlModel`:
+```ts
+new DynamicSliderModel({
+
+    id: "mySlider",
+    min: 0,
+    max: 10,
+    vertical: true
+})
+```
+
+Furthermore, very often there are additional component features that are totally library-specific.  
+
+So, when using e.g. Material there is a unique `@Input()` for inverting a slider component.
+
+NG Dynamic Forms gives you the freedom to utilize such an individual parameter, as well.  
+
+All you need to do is to put it in the `additional` configuration object of your `DynamicFormValueControlModel`: 
+```ts
+new DynamicSliderModel({
+
+    id: "mySlider",
+    min: 0,
+    max: 10,
+    vertical: true
+    other: {
+        invert: true
+    }
+})
+```
 
 
 ## Form Control Events

@@ -108,6 +108,9 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
         },
         errorMessages: {
             required: "Field is required"
+        },
+        custom: {
+            color: "accent"
         }
     }),
 

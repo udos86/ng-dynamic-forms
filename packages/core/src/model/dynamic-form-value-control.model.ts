@@ -6,10 +6,12 @@ import {
 } from "./dynamic-form-control.model";
 import { serializable } from "../decorator/serializable.decorator";
 
-export type DynamicFormControlValue = boolean | number | string | object | Date | Array<boolean | number | string | object>;
+export type DynamicFormControlValue = boolean | number | string | object | Date |
+    Array<boolean | number | string | object>;
 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
+    additional?: { [key: string]: any };
     hint?: string;
     required?: boolean;
     tabIndex?: number;
@@ -18,6 +20,7 @@ export interface DynamicFormValueControlModelConfig<T> extends DynamicFormContro
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
+    @serializable() additional: { [key: string]: any } | null;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
@@ -28,6 +31,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         super(config, clsConfig);
 
+        this.additional = typeof config.additional === "object" && config.additional !== null ? config.additional : null;
         this.hint = config.hint || null;
         this.required = typeof config.required === "boolean" ? config.required : false;
         this.tabIndex = config.tabIndex || null;
