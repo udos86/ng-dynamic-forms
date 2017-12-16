@@ -2,7 +2,8 @@
 
 ### **Features** 
 
-* `additional` property added to `DynamicFormValueControlModel` for individually configuring UI components
+* `additional` property added to `DynamicFormValueControlModel` for individually configuring UI components 
+(see [**new chapter on form component configuration**](https://github.com/udos86/ng-dynamic-forms/tree/master#form-control-configuration))
 * upgrade to NG Bootstrap `beta.7`
 
 ***
