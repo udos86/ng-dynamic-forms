@@ -583,7 +583,7 @@ Using this approach we are able to strictly decouple layout information from pur
 
 No matter which UI library you're using, usually there is a set of basic properties that apply universally to a certain type of form control. 
 
-So, when picking a slider component, you'll always find an `@Input()` to control its minimum / maximum value and as its orientation.
+So, when picking e.g. a slider component, you'll always find an `@Input()` to control its minimum / maximum value and its orientation.
 
 Whenever that's the case NG Dynamic Forms directly provides an abstract configuration property on the corresponding `DynamicFormControlModel`:
 ```ts
