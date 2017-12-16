@@ -166,11 +166,11 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.layoutService.getClass(controlLayout, context, place);
     }
 
-    getCustom(key: string, defaultValue: any = null): any {
+    getOther(key: string, defaultValue: any = null): any {
 
         let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
 
-        return model.custom !== null && model.custom.hasOwnProperty(key) ? model.custom[key] : defaultValue;
+        return model.other !== null && model.other.hasOwnProperty(key) ? model.other[key] : defaultValue;
     }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {

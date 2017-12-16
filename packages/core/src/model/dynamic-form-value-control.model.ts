@@ -12,7 +12,7 @@ export type DynamicFormControlValue = boolean | number | string | object | Date 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
     hint?: string;
-    custom?: { [key: string]: any };
+    other?: { [key: string]: any };
     required?: boolean;
     tabIndex?: number;
     value?: T;
@@ -20,8 +20,8 @@ export interface DynamicFormValueControlModelConfig<T> extends DynamicFormContro
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
 
-    @serializable() custom: { [key: string]: any } | null;
     @serializable() hint: string | null;
+    @serializable() other: { [key: string]: any } | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
     @serializable("value") _value: T | null;
@@ -31,8 +31,8 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         super(config, clsConfig);
 
-        this.custom = typeof config.custom === "object" && config.custom !== null ? config.custom : null;
         this.hint = config.hint || null;
+        this.other = typeof config.other === "object" && config.other !== null ? config.other : null;
         this.required = typeof config.required === "boolean" ? config.required : false;
         this.tabIndex = config.tabIndex || null;
 
