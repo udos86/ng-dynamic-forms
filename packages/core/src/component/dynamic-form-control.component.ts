@@ -11,6 +11,7 @@ import {
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
+import { DynamicFormControlLayout } from "../model/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlRelationGroup } from "../model/dynamic-form-control-relation.model";
@@ -28,11 +29,7 @@ import {
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
     DynamicTemplateDirective
 } from "../directive/dynamic-template.directive";
-import {
-    DynamicFormControlLayout,
-    DynamicFormLayout,
-    DynamicFormLayoutService
-} from "../service/dynamic-form-layout.service";
+import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
 

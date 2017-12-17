@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/map";
+import { of } from "rxjs/observable/of";
+import { map } from "rxjs/operators";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
@@ -56,7 +56,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     }
 
     private updateOptions$(): void {
-        this.options$ = Observable.of(this.options);
+        this.options$ = of(this.options);
     }
 
     set options(options: any) {
@@ -71,13 +71,14 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
         } else if (options instanceof Observable) {
 
-            this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).map(optionsConfig => {
+            this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
+                map(optionsConfig => {
 
-                let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
-                this._options = options;
+                    let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
+                    this._options = options;
 
-                return options;
-            });
+                    return options;
+                }));
 
         } else {
 

@@ -4,7 +4,7 @@ const alias           = require("rollup-plugin-alias"),
       uglify          = require("rollup-plugin-uglify"),
       dateFormat      = require("dateformat"),
       license         = require("fs").readFileSync("./LICENSE", "utf8"),
-      rxjsPathMapping = require("rxjs/_esm2015/path-mapping")();
+      rxjsPathMapping = require("rxjs/_esm5/path-mapping")();
 
 const utils = {
 
