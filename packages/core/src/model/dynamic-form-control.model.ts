@@ -1,23 +1,10 @@
 import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs/Subject";
-import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
-import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
+import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
+import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
+import { DynamicFormControlRelationGroup } from "./misc/dynamic-form-control-relation.model";
+import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-
-export type DynamicValidatorsConfig = { [validatorKey: string]: any | DynamicValidatorDescriptor };
-
-export interface DynamicValidatorDescriptor {
-
-    name: string;
-    args: any;
-}
-
-export interface DynamicPathable {
-
-    id?: string;
-    index?: number | null;
-    parent: DynamicPathable | null;
-}
 
 export interface DynamicFormControlModelConfig {
 
@@ -80,14 +67,5 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     toJSON() {
         return serialize(this);
-    }
-
-    static isValidatorDescriptor(value: any): boolean {
-
-        if (value !== null && typeof value === "object") {
-            return value.hasOwnProperty("name") && value.hasOwnProperty("args");
-        }
-
-        return false;
     }
 }

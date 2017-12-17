@@ -1,10 +1,7 @@
-import {
-    DynamicFormControlModel,
-    DynamicFormControlModelConfig,
-    DynamicPathable,
-    DynamicValidatorsConfig
-} from "../dynamic-form-control.model";
-import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
+import { DynamicFormControlModel, DynamicFormControlModelConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
+import { DynamicPathable } from "../misc/dynamic-form-control-path.model";
+import { DynamicValidatorsConfig } from "../misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
 
 export class DynamicFormArrayGroupModel implements DynamicPathable {

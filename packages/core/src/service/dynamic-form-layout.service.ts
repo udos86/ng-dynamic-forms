@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
-import { DynamicFormControlLayoutConfig, DynamicFormControlLayout } from "../model/dynamic-form-control-layout.model";
+import {
+    DynamicFormControlLayoutConfig,
+    DynamicFormControlLayout
+} from "../model/misc/dynamic-form-control-layout.model";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 

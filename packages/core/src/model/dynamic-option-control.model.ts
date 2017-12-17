@@ -2,7 +2,7 @@ import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 import { map } from "rxjs/operators";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
-import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
+import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 
 export interface DynamicFormOptionConfig<T> {

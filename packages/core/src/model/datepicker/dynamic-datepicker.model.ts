@@ -1,10 +1,10 @@
-import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
-import { serializable } from "../../decorator/serializable.decorator";
 import {
     DynamicDateControlModel,
     DynamicDateControlModelConfig,
     DynamicDateControlValue
 } from "../dynamic-date-control.model";
+import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
+import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 

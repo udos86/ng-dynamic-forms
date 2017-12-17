@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
-import {
-    DynamicFormControlModel,
-    DynamicPathable,
-    DynamicValidatorsConfig
-} from "../model/dynamic-form-control.model";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -45,8 +41,10 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
-import { Utils } from "../utils/core.utils";
+import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
+import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
+import { Utils } from "../utils/core.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
 

@@ -7,11 +7,12 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import {
-    DynamicFormControlModel,
     DynamicValidatorDescriptor,
-    DynamicValidatorsConfig
-} from "../model/dynamic-form-control.model";
+    DynamicValidatorsConfig,
+    isValidatorDescriptor
+} from "../model/misc/dynamic-form-control-validation.model";
 
 export type Validator = ValidatorFn | AsyncValidatorFn;
 
@@ -64,7 +65,7 @@ export class DynamicFormValidationService {
 
                 let validatorConfigValue = validatorsConfig[validatorConfigKey];
 
-                if (DynamicFormControlModel.isValidatorDescriptor(validatorConfigValue)) {
+                if (isValidatorDescriptor(validatorConfigValue)) {
 
                     let descriptor = validatorConfigValue as DynamicValidatorDescriptor;
 
