@@ -48,6 +48,16 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
+    "roomColor": {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g",
+            container: "ui-g-7"
+        }
+    },
+
     "firstName": {
         element: {
             label: "ui-widget"

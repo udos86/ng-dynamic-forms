@@ -7,7 +7,7 @@
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
-    <div *ngIf="type === 8" role="group"
+    <div *ngIf="type === 9" role="group"
          [dynamicId]="bindId && model.id"
          [formGroupName]="model.id"
          [ngClass]="[getClass('element','control'), getClass('grid','control')]">
@@ -26,7 +26,7 @@
     </div>
 
     <!-- RADIO GROUP -------------------------------------------------------------------------------------------------->
-    <div *ngIf="type === 13" role="radiogroup"
+    <div *ngIf="type === 14" role="radiogroup"
          [dynamicId]="bindId && model.id"
          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
          [tabindex]="model.tabIndex">
@@ -44,7 +44,7 @@
     </div>
 
 
-    <ng-container *ngIf="type !== 8 && type !== 13">
+    <ng-container *ngIf="type !== 9 && type !== 14">
 
         <div [ngClass]="getClass('grid', 'control')" [ngSwitch]="type">
 
@@ -144,16 +144,6 @@
                         (onSelect)="onValueChange($event)"
                         (onTodayClick)="onCustomEvent($event, 'onTodayClick')"></p-calendar>
 
-            <!-- COLORPICKER ------------------------------------------------------------------------------------------>
-            <p-colorPicker *ngSwitchCase="99" #pColorPicker
-                           [dynamicId]="bindId && model.id"
-                           [format]="model.format || 'hex'"
-                           [formControlName]="model.id"
-                           [inline]="model.inline"
-                           [ngClass]="getClass('element','control')"
-                           [tabindex]="model.tabIndex"
-                           (onChange)="onValueChange($event)"></p-colorPicker>
-
             <!-- CHECKBOX --------------------------------------------------------------------------------------------->
             <p-checkbox *ngSwitchCase="4" #pCheckbox
                         binary="true"
@@ -177,8 +167,18 @@
                      (onAdd)="onCustomEvent($event, 'onAdd')"
                      (onRemove)="onCustomEvent($event, 'onRemove')"></p-chips>
 
+            <!-- COLORPICKER ------------------------------------------------------------------------------------------>
+            <p-colorPicker *ngSwitchCase="6" #pColorPicker
+                           [dynamicId]="bindId && model.id"
+                           [format]="model.format || 'hex'"
+                           [formControlName]="model.id"
+                           [inline]="model.inline"
+                           [ngClass]="getClass('element','control')"
+                           [tabindex]="model.tabIndex"
+                           (onChange)="onValueChange($event)"></p-colorPicker>
+
             <!-- DROPDOWN --------------------------------------------------------------------------------------------->
-            <p-dropdown *ngSwitchCase="6" #pDropdown
+            <p-dropdown *ngSwitchCase="7" #pDropdown
                         [autoWidth]="getAdditional('autoWidth', true)"
                         [dropdownIcon]="getAdditional('dropdownIcon', 'fa fa-fw fa-caret-down')"
                         [dynamicId]="bindId && model.id"
@@ -197,7 +197,7 @@
                         (onFocus)="onFocus($event)"></p-dropdown>
 
             <!-- EDITOR ----------------------------------------------------------------------------------------------->
-            <p-editor *ngSwitchCase="7" #pEditor
+            <p-editor *ngSwitchCase="8" #pEditor
                       [dynamicId]="bindId && model.id"
                       [formats]="getAdditional('formats', null)"
                       [formControlName]="model.id"
@@ -206,7 +206,7 @@
                       (onTextChange)="onValueChange($event)"></p-editor>
 
             <!-- INPUT ------------------------------------------------------------------------------------------------>
-            <ng-container *ngSwitchCase="9">
+            <ng-container *ngSwitchCase="10">
 
                 <input pInputText #pInputText
                        [attr.accept]="model.accept"
@@ -241,7 +241,7 @@
             </ng-container>
 
             <!-- INPUT MASK ------------------------------------------------------------------------------------------->
-            <p-inputMask *ngSwitchCase="10" #pInputMask
+            <p-inputMask *ngSwitchCase="11" #pInputMask
                          [autoClear]="getAdditional('autoClear', true)"
                          [dynamicId]="bindId && model.id"
                          [formControlName]="model.id"
@@ -257,7 +257,7 @@
                          (onFocus)="onFocus($event)"></p-inputMask>
 
             <!-- INPUT SWITCH ----------------------------------------------------------------------------------------->
-            <p-inputSwitch *ngSwitchCase="11" #pInputSwitch
+            <p-inputSwitch *ngSwitchCase="12" #pInputSwitch
                            [dynamicId]="bindId && model.id"
                            [formControlName]="model.id"
                            [ngClass]="getClass('element', 'control')"
@@ -267,7 +267,7 @@
                            (onChange)="onValueChange($event)"></p-inputSwitch>
 
             <!-- MULTI SELECT ----------------------------------------------------------------------------------------->
-            <p-multiSelect *ngSwitchCase="12" #pMultiSelect
+            <p-multiSelect *ngSwitchCase="13" #pMultiSelect
                            [defaultLabel]="getAdditional('defaultLabel', 'Choose')"
                            [displaySelectedLabel]="getAdditional('displaySelectedLabel', true)"
                            [dropdownIcon]="getAdditional('dropdownIcon', 'fa fa-fw fa-caret-down')"
@@ -288,7 +288,7 @@
                            (onFocus)="onFocus($event)"></p-multiSelect>
 
             <!-- RATING ----------------------------------------------------------------------------------------------->
-            <p-rating *ngSwitchCase="14" #pRating
+            <p-rating *ngSwitchCase="15" #pRating
                       [cancel]="getAdditional('cancel', true)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -301,7 +301,7 @@
                       (onRate)="onValueChange($event)"></p-rating>
 
             <!-- SLIDER ----------------------------------------------------------------------------------------------->
-            <p-slider *ngSwitchCase="15" #pSlider
+            <p-slider *ngSwitchCase="16" #pSlider
                       [animate]="getAdditional('animate', false)"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
@@ -315,7 +315,7 @@
                       (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
 
             <!-- SPINNER ---------------------------------------------------------------------------------------------->
-            <p-spinner *ngSwitchCase="16" #pSpinner
+            <p-spinner *ngSwitchCase="17" #pSpinner
                        [decimalSeparator]="getAdditional('decimalSeparator', '.')"
                        [dynamicId]="bindId && model.id"
                        [formatInput]="getAdditional('formatInput', true)"
@@ -332,7 +332,7 @@
                        (onFocus)="onFocus($event)"></p-spinner>
 
             <!-- TEXTAREA --------------------------------------------------------------------------------------------->
-            <textarea *ngSwitchCase="17" pInputTextarea #pInputTextarea
+            <textarea *ngSwitchCase="18" pInputTextarea #pInputTextarea
                       [cols]="model.cols"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"

@@ -1,6 +1,7 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicColorPickerModel,
     DynamicDatePickerModel,
     DynamicFormGroupModel,
     DynamicInputModel,
@@ -91,6 +92,13 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 min: 0
             })
         ]
+    }),
+
+    new DynamicColorPickerModel({
+
+        id: "roomColor",
+        label: "Room Color",
+        value: "#FFFFFF"
     }),
 
     new DynamicInputModel({
@@ -281,7 +289,7 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
 
         id: "feedback",
         label: "How did you like this form?",
-        custom: {
+        additional: {
             cancel: false
         }
     }),
