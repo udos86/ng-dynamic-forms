@@ -1,26 +1,5 @@
 import { Injectable } from "@angular/core";
-
-export interface DynamicFormControlLayoutConfig {
-
-    container?: string;
-    control?: string;
-    errors?: string;
-    group?: string;
-    hint?: string;
-    host?: string;
-    label?: string;
-    option?: string;
-
-    [key: string]: string | undefined;
-}
-
-export interface DynamicFormControlLayout {
-
-    element?: DynamicFormControlLayoutConfig;
-    grid?: DynamicFormControlLayoutConfig;
-
-    [key: string]: DynamicFormControlLayoutConfig | undefined;
-}
+import { DynamicFormControlLayoutConfig, DynamicFormControlLayout} from "../model/dynamic-form-control-layout.model";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 

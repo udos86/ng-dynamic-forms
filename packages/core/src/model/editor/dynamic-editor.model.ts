@@ -1,5 +1,5 @@
-import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_EDITOR = "EDITOR";
@@ -11,8 +11,8 @@ export class DynamicEditorModel extends DynamicInputControlModel<string> {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_EDITOR;
 
-    constructor(config: DynamicEditorModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicEditorModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
     }
 }

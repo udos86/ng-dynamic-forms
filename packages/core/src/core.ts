@@ -13,6 +13,7 @@ export * from "./model/dynamic-date-control.model";
 export * from "./model/dynamic-file-control.model";
 export * from "./model/dynamic-input-control.model";
 export * from "./model/dynamic-option-control.model";
+export * from "./model/dynamic-form-control-layout.model";
 export * from "./model/dynamic-form-control-relation.model";
 
 export * from "./model/checkbox/dynamic-checkbox.model";

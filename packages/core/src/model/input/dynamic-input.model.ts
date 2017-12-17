@@ -1,5 +1,5 @@
-import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 import { Utils } from "../../utils/core.utils";
 
@@ -52,9 +52,9 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
-    constructor(config: DynamicInputModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicInputModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.accept = config.accept || null;
         this.inputType = config.inputType || DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;

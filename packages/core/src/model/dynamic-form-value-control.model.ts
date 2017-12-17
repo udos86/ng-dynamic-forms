@@ -1,9 +1,6 @@
 import { Subject } from "rxjs/Subject";
-import {
-    DynamicFormControlModel,
-    DynamicFormControlModelConfig,
-    DynamicFormControlClsConfig
-} from "./dynamic-form-control.model";
+import { DynamicFormControlModel, DynamicFormControlModelConfig } from "./dynamic-form-control.model";
+import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
 
 export type DynamicFormControlValue = boolean | number | string | object | Date |
@@ -27,9 +24,9 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     @serializable("value") _value: T | null;
     valueUpdates: Subject<T>;
 
-    constructor(config: DynamicFormValueControlModelConfig<T>, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicFormValueControlModelConfig<T>, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.additional = typeof config.additional === "object" && config.additional !== null ? config.additional : null;
         this.hint = config.hint || null;

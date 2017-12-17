@@ -1,5 +1,5 @@
-import { DynamicFormControlClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
+import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
 
 export interface DynamicCheckControlModelConfig extends DynamicFormValueControlModelConfig<boolean> {
@@ -11,9 +11,9 @@ export abstract class DynamicCheckControlModel extends DynamicFormValueControlMo
 
     @serializable() labelPosition: string | null;
 
-    constructor(config: DynamicCheckControlModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicCheckControlModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.labelPosition = config.labelPosition || null;
         this.value = typeof this.value === "boolean" ? this.value : false;
