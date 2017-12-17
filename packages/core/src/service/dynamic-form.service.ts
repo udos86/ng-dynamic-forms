@@ -19,6 +19,10 @@ import {
 } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import {
+    DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER,
+    DynamicColorPickerModel
+} from "../model/colorpicker/dynamic-colorpicker.model";
+import {
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DynamicDatePickerModel
 } from "../model/datepicker/dynamic-datepicker.model";
@@ -335,6 +339,10 @@ export class DynamicFormService {
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
                     model.group = this.fromJSON(model.group) as DynamicCheckboxModel[];
                     formModel.push(new DynamicCheckboxGroupModel(model, model.cls));
+                    break;
+
+                case DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER:
+                    formModel.push(new DynamicColorPickerModel(model, model.cls));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:

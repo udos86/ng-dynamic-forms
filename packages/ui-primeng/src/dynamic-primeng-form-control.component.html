@@ -144,6 +144,18 @@
                         (onSelect)="onValueChange($event)"
                         (onTodayClick)="onCustomEvent($event, 'onTodayClick')"></p-calendar>
 
+            <!-- COLORPICKER ------------------------------------------------------------------------------------------>
+            <p-colorPicker *ngSwitchCase="99" #pColorPicker
+                           [dynamicId]="bindId && model.id"
+                           [format]="model.format || 'hex'"
+                           [formControlName]="model.id"
+                           [inline]="model.inline"
+                           [label]="model.label"
+                           [name]="model.name"
+                           [ngClass]="getClass('element','control')"
+                           [tabindex]="model.tabIndex"
+                           (onChange)="onValueChange($event)"></p-colorPicker>
+
             <!-- CHECKBOX --------------------------------------------------------------------------------------------->
             <p-checkbox *ngSwitchCase="4" #pCheckbox
                         binary="true"

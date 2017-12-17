@@ -8,6 +8,7 @@ import {
     CalendarModule,
     CheckboxModule,
     ChipsModule,
+    ColorPickerModule,
     DropdownModule,
     EditorModule,
     InputMaskModule,
@@ -25,6 +26,7 @@ import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicColorPickerModel,
     DynamicDatePickerModel,
     DynamicEditorModel,
     DynamicFileUploadModel,
@@ -48,6 +50,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
             new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicColorPickerModel({id: "colorpicker"}),
             new DynamicDatePickerModel({id: "datepicker"}),
             new DynamicEditorModel({id: "editor"}),
             new DynamicFileUploadModel({id: "upload", url: ""}),
@@ -62,7 +65,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[7] as DynamicInputModel,
+        testModel = formModel[8] as DynamicInputModel,
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicPrimeNGFormControlComponent>,
         component: DynamicPrimeNGFormControlComponent,
@@ -81,6 +84,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
                 CalendarModule,
                 CheckboxModule,
                 ChipsModule,
+                ColorPickerModule,
                 DropdownModule,
                 EditorModule,
                 InputMaskModule,
@@ -215,45 +219,47 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         expect(testFn(formModel[1])).toEqual(PrimeNGFormControlType.Group);
 
-        expect(testFn(formModel[2])).toEqual(PrimeNGFormControlType.Calendar);
+        expect(testFn(formModel[2])).toEqual(PrimeNGFormControlType.ColorPicker);
 
-        expect(testFn(formModel[3])).toEqual(PrimeNGFormControlType.Editor);
+        expect(testFn(formModel[3])).toEqual(PrimeNGFormControlType.Calendar);
 
-        expect(testFn(formModel[4])).toBeNull();
+        expect(testFn(formModel[4])).toEqual(PrimeNGFormControlType.Editor);
 
-        expect(testFn(formModel[5])).toEqual(PrimeNGFormControlType.Array);
+        expect(testFn(formModel[5])).toBeNull();
 
-        expect(testFn(formModel[6])).toEqual(PrimeNGFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(PrimeNGFormControlType.Array);
 
-        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Group);
 
-        (formModel[7] as DynamicInputModel).multiple = true;
-        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Chips);
+        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.Input);
 
-        (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
-        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.AutoComplete);
+        (formModel[8] as DynamicInputModel).multiple = true;
+        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.Chips);
 
-        (formModel[7] as DynamicInputModel).mask = "+(99) 999-9999";
-        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.InputMask);
+        (formModel[8] as DynamicInputModel).list = ["test1", "test2", "test3"];
+        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.AutoComplete);
 
-        (formModel[7] as DynamicInputModel).inputType = "number";
-        expect(testFn(formModel[7])).toEqual(PrimeNGFormControlType.Spinner);
+        (formModel[8] as DynamicInputModel).mask = "+(99) 999-9999";
+        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.InputMask);
 
-        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.RadioGroup);
+        (formModel[8] as DynamicInputModel).inputType = "number";
+        expect(testFn(formModel[8])).toEqual(PrimeNGFormControlType.Spinner);
 
-        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.Rating);
+        expect(testFn(formModel[9])).toEqual(PrimeNGFormControlType.RadioGroup);
 
-        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.Dropdown);
+        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.Rating);
 
-        (formModel[10] as DynamicSelectModel<string>).multiple = true;
-        expect(testFn(formModel[10])).toEqual(PrimeNGFormControlType.MultiSelect);
+        expect(testFn(formModel[11])).toEqual(PrimeNGFormControlType.Dropdown);
 
-        expect(testFn(formModel[11])).toEqual(PrimeNGFormControlType.Slider);
+        (formModel[11] as DynamicSelectModel<string>).multiple = true;
+        expect(testFn(formModel[11])).toEqual(PrimeNGFormControlType.MultiSelect);
 
-        expect(testFn(formModel[12])).toEqual(PrimeNGFormControlType.InputSwitch);
+        expect(testFn(formModel[12])).toEqual(PrimeNGFormControlType.Slider);
 
-        expect(testFn(formModel[13])).toEqual(PrimeNGFormControlType.TextArea);
+        expect(testFn(formModel[13])).toEqual(PrimeNGFormControlType.InputSwitch);
 
-        expect(testFn(formModel[14])).toEqual(PrimeNGFormControlType.Calendar);
+        expect(testFn(formModel[14])).toEqual(PrimeNGFormControlType.TextArea);
+
+        expect(testFn(formModel[15])).toEqual(PrimeNGFormControlType.Calendar);
     });
 });
