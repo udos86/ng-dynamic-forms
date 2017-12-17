@@ -2,9 +2,9 @@ import {
     DynamicFormControlModel,
     DynamicFormControlModelConfig,
     DynamicPathable,
-    DynamicValidatorsConfig,
-    DynamicFormControlClsConfig
+    DynamicValidatorsConfig
 } from "../dynamic-form-control.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
 
 export class DynamicFormArrayGroupModel implements DynamicPathable {
@@ -58,9 +58,9 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     readonly origin: DynamicFormControlModel[]; // deprecated - only for backwards compatibility;
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
-    constructor(config: DynamicFormArrayModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicFormArrayModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         if (typeof config.groupFactory === "function") {
             this.groupFactory = config.groupFactory;

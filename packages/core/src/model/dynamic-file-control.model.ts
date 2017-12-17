@@ -1,5 +1,5 @@
-import { DynamicFormControlClsConfig } from "./dynamic-form-control.model";
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "./dynamic-form-value-control.model";
+import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
 
 export interface DynamicFileControlModelConfig extends DynamicFormValueControlModelConfig<File | File[]> {
@@ -11,9 +11,9 @@ export abstract class DynamicFileControlModel extends DynamicFormValueControlMod
 
     @serializable() multiple: boolean;
 
-    constructor(config: DynamicFileControlModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicFileControlModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
     }

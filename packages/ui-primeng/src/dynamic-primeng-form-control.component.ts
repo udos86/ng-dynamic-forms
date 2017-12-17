@@ -16,6 +16,7 @@ import {
     Calendar,
     Checkbox,
     Chips,
+    ColorPicker,
     Dropdown,
     Editor,
     InputMask,
@@ -39,8 +40,9 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
+    DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
@@ -60,8 +62,8 @@ import {
     PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
 } from "./dynamic-primeng-form.const";
 
-export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | Dropdown | Editor | InputMask |
-    InputSwitch | MultiSelect | Rating | Slider | Spinner;
+export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | ColorPicker | Dropdown | Editor |
+    InputMask | InputSwitch | MultiSelect | Rating | Slider | Spinner;
 
 @Component({
     selector: "dynamic-primeng-form-control,dynamic-form-primeng-control",
@@ -150,6 +152,9 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
             case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                 return PrimeNGFormControlType.Group;
+
+            case DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER:
+                return PrimeNGFormControlType.ColorPicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:

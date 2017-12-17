@@ -88,7 +88,7 @@
     "file-loader": "^1.1.6",
     "gulp": "^3.9.1",
     "gulp-delete-lines": "^0.0.7",
-    "gulp-inline-ng2-template": "^4.0.0",
+    "gulp-inline-ng2-template": "^4.1.0",
     "gulp-preprocess": "^2.0.0",
     "gulp-replace": "^0.6.1",
     "gulp-run": "^1.7.1",

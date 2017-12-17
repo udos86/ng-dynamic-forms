@@ -1,5 +1,5 @@
-import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP = "RADIO_GROUP";
@@ -15,9 +15,9 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
 
-    constructor(config: DynamicRadioGroupModelConfig<T>, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicRadioGroupModelConfig<T>, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.legend = config.legend || null;
     }

@@ -1,6 +1,6 @@
-import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
 import { DynamicFormGroupModel, DynamicFormGroupModelConfig } from "../form-group/dynamic-form-group.model";
 import { DynamicCheckboxModel } from "./dynamic-checkbox.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
@@ -11,8 +11,8 @@ export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
 
-    constructor(config: DynamicFormGroupModelConfig, clsConfig?: DynamicFormControlClsConfig) {
-        super(config, clsConfig);
+    constructor(config: DynamicFormGroupModelConfig, layout?: DynamicFormControlLayout) {
+        super(config, layout);
     }
 
     check(...indices: number[]): void {

@@ -1,8 +1,5 @@
-import {
-    DynamicFormControlModel,
-    DynamicFormControlModelConfig,
-    DynamicFormControlClsConfig
-} from "../dynamic-form-control.model";
+import { DynamicFormControlModel, DynamicFormControlModelConfig } from "../dynamic-form-control.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
@@ -20,9 +17,9 @@ export class DynamicFormGroupModel extends DynamicFormControlModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
 
-    constructor(config: DynamicFormGroupModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicFormGroupModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.group = Array.isArray(config.group) ? config.group : [];
         this.legend = config.legend || null;

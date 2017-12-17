@@ -1,6 +1,6 @@
-import { DynamicFormControlClsConfig } from "../dynamic-form-control.model";
-import { serializable } from "../../decorator/serializable.decorator";
 import { DynamicDateControlModel, DynamicDateControlModelConfig } from "../dynamic-date-control.model";
+import { DynamicFormControlLayout } from "../dynamic-form-control-layout.model";
+import { serializable } from "../../decorator/serializable.decorator";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER = "TIMEPICKER";
 
@@ -17,9 +17,9 @@ export class DynamicTimePickerModel extends DynamicDateControlModel {
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER;
 
-    constructor(config: DynamicTimePickerModelConfig, clsConfig?: DynamicFormControlClsConfig) {
+    constructor(config: DynamicTimePickerModelConfig, layout?: DynamicFormControlLayout) {
 
-        super(config, clsConfig);
+        super(config, layout);
 
         this.meridian = typeof config.meridian === "boolean" ? config.meridian : false;
         this.showSeconds = typeof config.showSeconds === "boolean" ? config.showSeconds : false;

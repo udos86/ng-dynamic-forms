@@ -1,5 +1,6 @@
 import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs/Subject";
+import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
 import { DynamicFormControlRelationGroup } from "./dynamic-form-control-relation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 
@@ -18,24 +19,6 @@ export interface DynamicPathable {
     parent: DynamicPathable | null;
 }
 
-export interface DynamicClsConfig {
-
-    container?: string;
-    control?: string;
-    errors?: string;
-    group?: string;
-    hint?: string;
-    host?: string;
-    label?: string;
-    option?: string;
-}
-
-export interface DynamicFormControlClsConfig {
-
-    element?: DynamicClsConfig;
-    grid?: DynamicClsConfig;
-}
-
 export interface DynamicFormControlModelConfig {
 
     asyncValidators?: DynamicValidatorsConfig;
@@ -52,7 +35,7 @@ export interface DynamicFormControlModelConfig {
 export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() asyncValidators: DynamicValidatorsConfig | null;
-    @serializable() cls: DynamicFormControlClsConfig | null;
+    @serializable() cls: DynamicFormControlLayout | null;
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
@@ -66,10 +49,10 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     abstract readonly type: string;
 
-    constructor(config: DynamicFormControlModelConfig, clsConfig: DynamicFormControlClsConfig | null = null) {
+    constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
 
         this.asyncValidators = config.asyncValidators || null;
-        this.cls = clsConfig;
+        this.cls = layout;
         this.errorMessages = config.errorMessages || null;
         this.id = config.id;
         this.label = config.label || null;
