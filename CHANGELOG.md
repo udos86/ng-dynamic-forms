@@ -1,3 +1,11 @@
+# 5.2.1
+
+### **Features** 
+
+* initial support for color picker components via `DynamicColorPickerModel`
+
+***
+
 # 5.2.0
 
 ### **Features** 

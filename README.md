@@ -262,6 +262,7 @@ varies among UI packages. **See the following compatibility table**:
 |----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
 | Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
 | Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Colorpicker    	|   ****   	|     ****     	|      ****     	|   ****   	|   ****   	|     ****    	|       ****      	|      ✓     	|
 | Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
 | Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
 | File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
@@ -280,7 +281,7 @@ varies among UI packages. **See the following compatibility table**:
 
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
 
-
+**\*\*\*\*)** color picker controls can be achieved using a `DynamicInputModel` with `inputType: "color"`
 
 
 ## Form Groups
