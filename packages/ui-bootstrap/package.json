@@ -9,6 +9,7 @@
     "angular",
     "angular 2",
     "bootstrap",
+    "ngx-bootstrap",
     "dynamic forms",
     "forms",
     "ng dynamic forms",
@@ -34,8 +35,9 @@
     "@angular/forms": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@ng-dynamic-forms/core": "^5.2.0",
-    "bootstrap": "^3.3.7",
     "angular2-text-mask": "^8.0.1",
+    "bootstrap": "^3.3.7",
+    "ngx-bootstrap": "^2.0.0-rc.0",
     "rxjs": "^5.5.2"
   }
 }

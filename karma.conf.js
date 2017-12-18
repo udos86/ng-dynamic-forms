@@ -69,6 +69,8 @@ module.exports = function (config) {
 
             {pattern: "node_modules/ionic-angular/**/*.js", included: false, watched: false},
 
+            {pattern: "node_modules/ngx-bootstrap/**/*.js", included: false, watched: false},
+
             {pattern: "node_modules/primeng/**/*.js", included: false, watched: false},
             {pattern: "node_modules/primeng/**/*.js.map", included: false, watched: false},
 
