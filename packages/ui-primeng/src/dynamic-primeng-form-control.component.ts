@@ -92,8 +92,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
     type: PrimeNGFormControlType | null;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, layoutService, validationService);

@@ -91,27 +91,32 @@
                                                 (dfFocus)="onFocus($event)"></dynamic-bootstrap-form-control>
             </fieldset>
 
-            <!--
+            <!-- DATEPICKER ------------------------------------------------------------------------------------------->
             <div *ngSwitchCase="99" class="input-group">
 
                 <input bsDatepicker class="form-control" #bsDatepicker="bsDatepicker"
                        [autofocus]="model.autoFocus"
+                       [bsConfig]="getAdditional('bsConfig', {containerClass: getAdditional('containerClass', 'theme-green'), showWeekNumbers: getAdditional('showWeekNumbers', true)})"
                        [dynamicId]="bindId && model.id"
                        [formControlName]="model.id"
                        [maxDate]="model.max"
                        [minDate]="model.min"
                        [name]="model.name"
                        [ngClass]="getClass('element','control')"
+                       [outsideClick]="getAdditional('outsideClick', true)"
                        [placeholder]="model.placeholder"
+                       [placement]="getAdditional('placement', 'bottom')"
                        [readonly]="model.readOnly"
-                       [required]="model.required">
+                       [required]="model.required"
+                       (bsValueChange)="onValueChange($event)"
+                       (onHidden)="onCustomEvent($event, 'onHidden')"
+                       (onShown)="onCustomEvent($event, 'onShown')">
 
-                <div class="input-group-btn">
-                    <button class="btn" (click)="bsDatepicker.toggle()"><img [src]="model.toggleIcon" /></button>
+                <div *ngIf="model.toggleLabel" class="input-group-btn">
+                    <button class="btn" (click)="bsDatepicker.toggle()">{{ model.toggleLabel }}</button>
                 </div>
 
             </div>
-            -->
 
             <!-- INPUT ------------------------------------------------------------------------------------------------>
             <div *ngSwitchCase="4" [class.input-group]="model.prefix || model.suffix">
@@ -215,6 +220,22 @@
                       (focus)="onFocus($event)"></textarea>
 
             <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint" [ngClass]="getClass('element','hint')"></span>
+
+            <!-- TIMEPICKER ------------------------------------------------------------------------------------------->
+            <timepicker *ngSwitchCase="10"
+                        [arrowkeys]="getAdditional('arrowkeys', true)"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [hourStep]="getAdditional('hourStep', 1)"
+                        [max]="model.max"
+                        [min]="model.min"
+                        [mousewheel]="getAdditional('mousewheel', true)"
+                        [minuteStep]="getAdditional('minuteStep', 1)"
+                        [ngClass]="getClass('element', 'control')"
+                        [secondsStep]="getAdditional('secondsStep', 1)"
+                        [showMeridian]="model.meridian"
+                        [showSeconds]="model.showSeconds"
+                        [showSpinners]="getAdditional('spinners', true)"></timepicker>
 
         </ng-container>
 

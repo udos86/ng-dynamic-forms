@@ -1,11 +1,12 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
-    //DynamicDatePickerModel,
+    DynamicDatePickerModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
     DynamicTextAreaModel,
+    DynamicTimePickerModel,
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng-dynamic-forms/core";
@@ -18,25 +19,19 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
         id: "bootstrapFormGroup1",
         legend: "Form Group 1",
         group: [
-            /*
-            new DynamicDatePickerModel(
-                {
-                    id: "bootstrapDatepicker",
-                    label: "Datepicker"
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        errors: "col-sm-offset-3 col-sm-9",
-                        label: "col-sm-3"
-                    }
+
+            new DynamicDatePickerModel({
+
+                id: "bootstrapDatepicker",
+                label: "Datepicker",
+                toggleLabel: "Open",
+                placeholder: "Pick a date",
+                value: new Date(),
+                additional: {
+                    containerClass: "theme-red"
                 }
-            ),
-            */
+            }),
+
             new DynamicSelectModel<string>({
 
                 id: "bootstrapSelect",
@@ -79,6 +74,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     required: "{{ label }} is required",
                     maxLength: "Max character count is 5"
                 }
+            }),
+
+            new DynamicTimePickerModel({
+
+                id: "bootstrapTimepicker",
+                label: "Timepicker",
+                meridian: true,
+                showSeconds: false,
+                value: new Date()
             }),
 
             new DynamicCheckboxGroupModel({

@@ -74,8 +74,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     abstract type: number | string | null;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {

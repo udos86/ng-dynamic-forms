@@ -92,8 +92,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
 
     type: KendoFormControlType | null;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, layoutService, validationService);

@@ -64,8 +64,7 @@ export class DynamicFoundationFormControlComponent extends DynamicFormControlCom
 
     type: FoundationFormControlType | null;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, layoutService, validationService);

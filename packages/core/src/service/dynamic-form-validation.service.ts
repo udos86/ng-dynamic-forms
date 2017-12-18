@@ -10,8 +10,7 @@ import {
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import {
     DynamicValidatorDescriptor,
-    DynamicValidatorsConfig,
-    isValidatorDescriptor
+    DynamicValidatorsConfig
 } from "../model/misc/dynamic-form-control-validation.model";
 
 export type Validator = ValidatorFn | AsyncValidatorFn;
@@ -65,7 +64,7 @@ export class DynamicFormValidationService {
 
                 let validatorConfigValue = validatorsConfig[validatorConfigKey];
 
-                if (isValidatorDescriptor(validatorConfigValue)) {
+                if (this.isValidatorDescriptor(validatorConfigValue)) {
 
                     let descriptor = validatorConfigValue as DynamicValidatorDescriptor;
 
@@ -180,5 +179,15 @@ export class DynamicFormValidationService {
 
     isFormHook(value: any): boolean {
         return typeof value === "string" && ["blur", "change", "submit"].indexOf(value) !== -1;
+    }
+
+
+    isValidatorDescriptor(value: any): boolean {
+
+        if (value !== null && typeof value === "object") {
+            return value.hasOwnProperty("name") && value.hasOwnProperty("args");
+        }
+
+        return false;
     }
 }
