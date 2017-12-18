@@ -36,13 +36,13 @@ export const enum BootstrapFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
-    DatePicker = 99, //"DATEPICKER,
-    Group = 3, //"GROUP",
-    Input = 4, //"INPUT",
-    RadioGroup = 5, //"RADIO_GROUP",
-    Select = 6, //"SELECT",
-    TextArea = 7, //"TEXTAREA",
-    TimePicker = 10 //"TIMEPICKER"
+    DatePicker = 3, //"DATEPICKER,
+    Group = 4, //"GROUP",
+    Input = 5, //"INPUT",
+    RadioGroup = 6, //"RADIO_GROUP",
+    Select = 7, //"SELECT",
+    TextArea = 8, //"TEXTAREA",
+    TimePicker = 9 //"TIMEPICKER"
 }
 
 @Component({

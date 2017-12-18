@@ -69,30 +69,8 @@
 
             </div>
 
-            <!-- FORM GROUP ------------------------------------------------------------------------------------------->
-            <fieldset *ngSwitchCase="3"
-                      [dynamicId]="bindId && model.id"
-                      [formGroupName]="model.id"
-                      [name]="model.name"
-                      [ngClass]="getClass('element','control')">
-
-                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-                <dynamic-bootstrap-form-control *ngFor="let controlModel of model.group"
-                                                [asBootstrapFormGroup]="false"
-                                                [group]="control"
-                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
-                                                [layout]="layout"
-                                                [model]="controlModel"
-                                                [templates]="templateList"
-                                                [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
-                                                (dfBlur)="onBlur($event)"
-                                                (dfChange)="onValueChange($event)"
-                                                (dfFocus)="onFocus($event)"></dynamic-bootstrap-form-control>
-            </fieldset>
-
             <!-- DATEPICKER ------------------------------------------------------------------------------------------->
-            <div *ngSwitchCase="99" class="input-group">
+            <div *ngSwitchCase="3" class="input-group">
 
                 <input bsDatepicker class="form-control" #bsDatepicker="bsDatepicker"
                        [autofocus]="model.autoFocus"
@@ -118,8 +96,30 @@
 
             </div>
 
+            <!-- FORM GROUP ------------------------------------------------------------------------------------------->
+            <fieldset *ngSwitchCase="4"
+                      [dynamicId]="bindId && model.id"
+                      [formGroupName]="model.id"
+                      [name]="model.name"
+                      [ngClass]="getClass('element','control')">
+
+                <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+                <dynamic-bootstrap-form-control *ngFor="let controlModel of model.group"
+                                                [asBootstrapFormGroup]="false"
+                                                [group]="control"
+                                                [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                [layout]="layout"
+                                                [model]="controlModel"
+                                                [templates]="templateList"
+                                                [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                                (dfBlur)="onBlur($event)"
+                                                (dfChange)="onValueChange($event)"
+                                                (dfFocus)="onFocus($event)"></dynamic-bootstrap-form-control>
+            </fieldset>
+
             <!-- INPUT ------------------------------------------------------------------------------------------------>
-            <div *ngSwitchCase="4" [class.input-group]="model.prefix || model.suffix">
+            <div *ngSwitchCase="5" [class.input-group]="model.prefix || model.suffix">
 
                 <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
 
@@ -159,7 +159,7 @@
             </div>
 
             <!-- RADIO GROUP ------------------------------------------------------------------------------------------>
-            <fieldset *ngSwitchCase="5" role="radiogroup"
+            <fieldset *ngSwitchCase="6" role="radiogroup"
                       [dynamicId]="bindId && model.id"
                       [name]="model.name"
                       [ngClass]="getClass('element','control')"
@@ -182,7 +182,7 @@
             </fieldset>
 
             <!-- SELECT ----------------------------------------------------------------------------------------------->
-            <select *ngSwitchCase="6" class="form-control"
+            <select *ngSwitchCase="7" class="form-control"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
                     [name]="model.name"
@@ -200,7 +200,7 @@
             </select>
 
             <!-- TEXTAREA --------------------------------------------------------------------------------------------->
-            <textarea *ngSwitchCase="7" class="form-control"
+            <textarea *ngSwitchCase="8" class="form-control"
                       [dynamicId]="bindId && model.id"
                       [cols]="model.cols"
                       [formControlName]="model.id"
@@ -222,7 +222,7 @@
             <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint" [ngClass]="getClass('element','hint')"></span>
 
             <!-- TIMEPICKER ------------------------------------------------------------------------------------------->
-            <timepicker *ngSwitchCase="10"
+            <timepicker *ngSwitchCase="9"
                         [arrowkeys]="getAdditional('arrowkeys', true)"
                         [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
