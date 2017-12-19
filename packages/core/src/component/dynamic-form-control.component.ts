@@ -157,7 +157,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
 
-        let controlLayout = (this.layout && this.layout[model.id]) || model.cls as DynamicFormControlLayout;
+        let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }
