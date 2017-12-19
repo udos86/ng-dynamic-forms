@@ -611,7 +611,7 @@ new DynamicSliderModel({
     min: 0,
     max: 10,
     vertical: true
-    other: {
+    additional: {
         invert: true
     }
 })
