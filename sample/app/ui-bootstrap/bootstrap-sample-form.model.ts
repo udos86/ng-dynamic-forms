@@ -10,7 +10,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng-dynamic-forms/core";
-import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
 
 export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
@@ -22,7 +22,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicDatePickerModel({
 
-                id: "bootstrapDatepicker",
+                id: "bootstrapDatePicker",
                 label: "Datepicker",
                 toggleLabel: "Open",
                 placeholder: "Pick a date",
@@ -36,7 +36,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
                 id: "bootstrapSelect",
                 label: "Select",
-                options: Observable.of([
+                options: of([
                     {
                         label: "Option 1",
                         value: "option-1",
@@ -74,15 +74,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     required: "{{ label }} is required",
                     maxLength: "Max character count is 5"
                 }
-            }),
-
-            new DynamicTimePickerModel({
-
-                id: "bootstrapTimepicker",
-                label: "Timepicker",
-                meridian: true,
-                showSeconds: false,
-                value: new Date()
             }),
 
             new DynamicCheckboxGroupModel({
@@ -159,6 +150,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         ]
                     }
                 ],
+            }),
+
+            new DynamicTimePickerModel({
+
+                id: "bootstrapTimePicker",
+                label: "Timepicker",
+                meridian: true,
+                showSeconds: false,
+                value: new Date()
             }),
 
             new DynamicCheckboxModel({

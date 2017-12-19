@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",
@@ -80,7 +80,7 @@
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.8.2",
     "@types/node": "^8.5.1",
-    "angular-router-loader": "^0.8.0",
+    "angular-router-loader": "^0.8.1",
     "angular2-template-loader": "^0.6.2",
     "codelyzer": "^4.0.2",
     "dateformat": "^3.0.2",
@@ -111,7 +111,7 @@
     "merge-stream": "^1.0.1",
     "protractor": "^5.2.2",
     "raw-loader": "^0.5.1",
-    "rollup": "^0.52.2",
+    "rollup": "^0.52.3",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",

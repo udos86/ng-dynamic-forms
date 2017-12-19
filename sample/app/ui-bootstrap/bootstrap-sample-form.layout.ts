@@ -12,7 +12,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapDatepicker": {
+    "bootstrapDatePicker": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -31,17 +31,6 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         grid: {
             control: "col-sm-9",
             errors: "col-sm-offset-3 col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bootstrapTimepicker": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
             label: "col-sm-3"
         }
     },
@@ -69,6 +58,17 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
     },
 
     "bootstrapTextArea": {
+        element: {
+            container: "form-group",
+            label: "control-label"
+        },
+        grid: {
+            control: "col-sm-9",
+            label: "col-sm-3"
+        }
+    },
+
+    "bootstrapTimePicker": {
         element: {
             container: "form-group",
             label: "control-label"
