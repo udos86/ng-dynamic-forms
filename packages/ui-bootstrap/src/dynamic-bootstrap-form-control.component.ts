@@ -36,13 +36,13 @@ export const enum BootstrapFormControlType {
 
     Array = 1, //"ARRAY",
     Checkbox = 2, //"CHECKBOX",
-    DatePicker = 99, //"DATEPICKER,
-    Group = 3, //"GROUP",
-    Input = 4, //"INPUT",
-    RadioGroup = 5, //"RADIO_GROUP",
-    Select = 6, //"SELECT",
-    TextArea = 7, //"TEXTAREA",
-    TimePicker = 10 //"TIMEPICKER"
+    DatePicker = 3, //"DATEPICKER,
+    Group = 4, //"GROUP",
+    Input = 5, //"INPUT",
+    RadioGroup = 6, //"RADIO_GROUP",
+    Select = 7, //"SELECT",
+    TextArea = 8, //"TEXTAREA",
+    TimePicker = 9 //"TIMEPICKER"
 }
 
 @Component({
@@ -65,11 +65,11 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("bsEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     type: BootstrapFormControlType | null;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
         super(changeDetectorRef, layoutService, validationService);
@@ -98,8 +98,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
                 return BootstrapFormControlType.Group;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                return null;
-                //return BootstrapFormControlType.DatePicker;
+                return BootstrapFormControlType.DatePicker;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
                 return BootstrapFormControlType.Input;
@@ -114,8 +113,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
                 return BootstrapFormControlType.TextArea;
 
             case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-                return null;
-                //return BootstrapFormControlType.TimePicker;
+                return BootstrapFormControlType.TimePicker;
 
             default:
                 return null;

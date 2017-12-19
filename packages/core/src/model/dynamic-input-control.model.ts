@@ -1,5 +1,5 @@
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
-import { DynamicFormControlLayout } from "./dynamic-form-control-layout.model";
+import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
 import { AUTOCOMPLETE_ON } from "../utils/autofill.utils";
 

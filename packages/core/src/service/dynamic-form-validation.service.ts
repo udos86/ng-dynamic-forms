@@ -7,11 +7,11 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import {
-    DynamicFormControlModel,
     DynamicValidatorDescriptor,
     DynamicValidatorsConfig
-} from "../model/dynamic-form-control.model";
+} from "../model/misc/dynamic-form-control-validation.model";
 
 export type Validator = ValidatorFn | AsyncValidatorFn;
 
@@ -64,7 +64,7 @@ export class DynamicFormValidationService {
 
                 let validatorConfigValue = validatorsConfig[validatorConfigKey];
 
-                if (DynamicFormControlModel.isValidatorDescriptor(validatorConfigValue)) {
+                if (this.isValidatorDescriptor(validatorConfigValue)) {
 
                     let descriptor = validatorConfigValue as DynamicValidatorDescriptor;
 
@@ -179,5 +179,15 @@ export class DynamicFormValidationService {
 
     isFormHook(value: any): boolean {
         return typeof value === "string" && ["blur", "change", "submit"].indexOf(value) !== -1;
+    }
+
+
+    isValidatorDescriptor(value: any): boolean {
+
+        if (value !== null && typeof value === "object") {
+            return value.hasOwnProperty("name") && value.hasOwnProperty("args");
+        }
+
+        return false;
     }
 }

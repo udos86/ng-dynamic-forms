@@ -14,7 +14,7 @@ NG Dynamic Forms is a **rapid form development library** based on the official A
 It **fully automates form UI creation** by introducing a set of maintainable **form control models** and **dynamic form control components** 
 
 **Out of the box support** is provided for all popular UI libraries including **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
-**[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
+**[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
 [**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html) live in action!
 
@@ -205,7 +205,7 @@ export class MyDynamicFormComponent implements OnInit {
 NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
 * **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-basic)**
-* **[Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-bootstrap)**
+* **[Bootstrap / ngx-bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-bootstrap)**
 * **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-foundation)**
 * **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ionic)**
 * **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-kendo)**
@@ -262,7 +262,8 @@ varies among UI packages. **See the following compatibility table**:
 |----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
 | Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
 | Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Datepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+| Colorpicker    	|   ****   	|     ****     	|      ****     	|   ****   	|   ****   	|     ****    	|       ****      	|      ✓     	|
+| Datepicker     	|     *    	|       ✓      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
 | Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
 | File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
 | Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
@@ -272,7 +273,7 @@ varies among UI packages. **See the following compatibility table**:
 | Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
 | Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
 | Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Timepicker     	|     *    	|       *      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+| Timepicker     	|     *    	|       ✓      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
 
 **\*)** datetime controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
@@ -280,7 +281,7 @@ varies among UI packages. **See the following compatibility table**:
 
 **\*\*\*)** slider controls can be achieved using a `DynamicInputModel` with `inputType: "range"`
 
-
+**\*\*\*\*)** color picker controls can be achieved using a `DynamicInputModel` with `inputType: "color"`
 
 
 ## Form Groups

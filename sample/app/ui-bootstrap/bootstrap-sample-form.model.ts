@@ -1,15 +1,16 @@
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
-    //DynamicDatePickerModel,
+    DynamicDatePickerModel,
     DynamicInputModel,
     DynamicSelectModel,
     DynamicRadioGroupModel,
     DynamicTextAreaModel,
+    DynamicTimePickerModel,
     DynamicFormArrayModel,
     DynamicFormGroupModel
 } from "@ng-dynamic-forms/core";
-import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
 
 export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
@@ -18,30 +19,24 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
         id: "bootstrapFormGroup1",
         legend: "Form Group 1",
         group: [
-            /*
-            new DynamicDatePickerModel(
-                {
-                    id: "bootstrapDatepicker",
-                    label: "Datepicker"
-                },
-                {
-                    element: {
-                        container: "form-group",
-                        label: "control-label"
-                    },
-                    grid: {
-                        control: "col-sm-9",
-                        errors: "col-sm-offset-3 col-sm-9",
-                        label: "col-sm-3"
-                    }
+
+            new DynamicDatePickerModel({
+
+                id: "bootstrapDatePicker",
+                label: "Datepicker",
+                toggleLabel: "Open",
+                placeholder: "Pick a date",
+                value: new Date(),
+                additional: {
+                    containerClass: "theme-red"
                 }
-            ),
-            */
+            }),
+
             new DynamicSelectModel<string>({
 
                 id: "bootstrapSelect",
                 label: "Select",
-                options: Observable.of([
+                options: of([
                     {
                         label: "Option 1",
                         value: "option-1",
@@ -155,6 +150,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         ]
                     }
                 ],
+            }),
+
+            new DynamicTimePickerModel({
+
+                id: "bootstrapTimePicker",
+                label: "Timepicker",
+                meridian: true,
+                showSeconds: false,
+                value: new Date()
             }),
 
             new DynamicCheckboxModel({

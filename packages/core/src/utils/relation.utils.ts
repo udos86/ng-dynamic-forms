@@ -7,7 +7,7 @@ import {
     DYNAMIC_FORM_CONTROL_ACTION_ENABLE,
     DYNAMIC_FORM_CONTROL_CONNECTIVE_AND,
     DYNAMIC_FORM_CONTROL_CONNECTIVE_OR
-} from "../model/dynamic-form-control-relation.model";
+} from "../model/misc/dynamic-form-control-relation.model";
 
 export class RelationUtils {
 

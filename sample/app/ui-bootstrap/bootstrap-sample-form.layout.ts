@@ -12,6 +12,17 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
+    "bootstrapDatePicker": {
+        element: {
+            container: "form-group",
+            label: "control-label"
+        },
+        grid: {
+            control: "col-sm-9",
+            label: "col-sm-3"
+        }
+    },
+
     "bootstrapInput": {
         element: {
             container: "form-group",
@@ -47,6 +58,17 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
     },
 
     "bootstrapTextArea": {
+        element: {
+            container: "form-group",
+            label: "control-label"
+        },
+        grid: {
+            control: "col-sm-9",
+            label: "col-sm-3"
+        }
+    },
+
+    "bootstrapTimePicker": {
         element: {
             container: "form-group",
             label: "control-label"

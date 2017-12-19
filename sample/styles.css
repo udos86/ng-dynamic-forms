@@ -94,6 +94,13 @@ pre {
     text-align: center;
 }
 
+[bsdatepicker] + .input-group-btn .btn {
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
 form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
     display: inline-block !important;
     margin: 0.8rem 0;

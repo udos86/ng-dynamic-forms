@@ -5,19 +5,19 @@ export enum PrimeNGFormControlType {
     Calendar = 3, //"CALENDAR",
     Checkbox = 4, //"CHECKBOX",
     Chips = 5, //"CHIPS",
-    ColorPicker = 99, //COLOR_PICKER
-    Dropdown = 6, //"DROPDOWN",
-    Editor = 7, //"EDITOR",
-    Group = 8, //"GROUP",
-    Input = 9, //"INPUT",
-    InputMask = 10, //"INPUT_MASK",
-    InputSwitch = 11, //"INPUT_SWITCH",
-    MultiSelect = 12, //"MULTI_SELECT",
-    RadioGroup = 13, //"RADIO_GROUP",
-    Rating = 14, // "RATING",
-    Slider = 15, //"SLIDER",
-    Spinner = 16, //"SPINNER,
-    TextArea = 17, //"TEXTAREA"
+    ColorPicker = 6, //COLOR_PICKER
+    Dropdown = 7, //"DROPDOWN",
+    Editor = 8, //"EDITOR",
+    Group = 9, //"GROUP",
+    Input = 10, //"INPUT",
+    InputMask = 11, //"INPUT_MASK",
+    InputSwitch = 12, //"INPUT_SWITCH",
+    MultiSelect = 13, //"MULTI_SELECT",
+    RadioGroup = 14, //"RADIO_GROUP",
+    Rating = 15, // "RATING",
+    Slider = 16, //"SLIDER",
+    Spinner = 17, //"SPINNER,
+    TextArea = 18, //"TEXTAREA"
 }
 
 export const PRIME_NG_VIEW_CHILD_SELECTOR = `pAutoComplete,pCalendar,pCheckbox,pChips,pColorPicker,pDropdown,pEditor,

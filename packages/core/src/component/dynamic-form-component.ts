@@ -8,8 +8,8 @@ import {
     DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS,
     DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM
 } from "./dynamic-form-control.component";
-import { DynamicFormControlLayout } from "../model/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormService } from "../service/dynamic-form.service";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";

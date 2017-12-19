@@ -1,3 +1,12 @@
+# 5.3.0
+
+### **Features** 
+
+* **initial support for** [**ngx-bootstrap**](https://valor-software.com/ngx-bootstrap/#/) (`ngx-bootstrap` is now a peer dependency of `@ng-dynamic-forms/ui-bootstrap`)
+* **initial support for Prime NG color picker via new** `DynamicColorPickerModel`
+
+***
+
 # 5.2.0
 
 ### **Features** 

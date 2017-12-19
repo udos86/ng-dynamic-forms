@@ -87,6 +87,8 @@ System.config({
         "@telerik/kendo-intl": "npm:@telerik/kendo-intl/dist/npm/main.js",
         "angular2-text-mask": "npm:angular2-text-mask/dist/angular2TextMask.js",
         "ionic-angular": "npm:ionic-angular/bundles/ionic.umd.js",
+        "ngx-bootstrap/datepicker": "npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js",
+        "ngx-bootstrap/timepicker": "npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs",
         "text-mask-core": "npm:text-mask-core",

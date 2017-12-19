@@ -13,8 +13,6 @@ export * from "./model/dynamic-date-control.model";
 export * from "./model/dynamic-file-control.model";
 export * from "./model/dynamic-input-control.model";
 export * from "./model/dynamic-option-control.model";
-export * from "./model/dynamic-form-control-layout.model";
-export * from "./model/dynamic-form-control-relation.model";
 
 export * from "./model/checkbox/dynamic-checkbox.model";
 export * from "./model/checkbox/dynamic-checkbox-group.model";
@@ -32,6 +30,11 @@ export * from "./model/slider/dynamic-slider.model";
 export * from "./model/switch/dynamic-switch.model";
 export * from "./model/textarea/dynamic-textarea.model";
 export * from "./model/timepicker/dynamic-timepicker.model";
+
+export * from "./model/misc/dynamic-form-control-layout.model";
+export * from "./model/misc/dynamic-form-control-path.model";
+export * from "./model/misc/dynamic-form-control-relation.model";
+export * from "./model/misc/dynamic-form-control-validation.model";
 
 export * from "./service/dynamic-form.service";
 export * from "./service/dynamic-form-layout.service";

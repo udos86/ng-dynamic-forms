@@ -129,7 +129,8 @@
                        (focus)="onFocus($event)">
 
                 <div class="input-group-addon" (click)="datepicker.toggle()">
-                    <img [src]="model.toggleIcon" style="cursor: pointer;"/>
+                    <img *ngIf="model.toggleIcon" [src]="model.toggleIcon" style="cursor: pointer;" />
+                    <span *ngIf="model.toggleLabel">{{ model.toggleLabel }}</span>
                 </div>
 
             </div>

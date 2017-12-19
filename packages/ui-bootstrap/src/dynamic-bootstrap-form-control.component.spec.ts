@@ -2,6 +2,8 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import { TimepickerModule } from "ngx-bootstrap/timepicker";
 import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
@@ -56,7 +58,13 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, DynamicFormsCoreModule.forRoot(), TextMaskModule],
+            imports: [
+                ReactiveFormsModule,
+                DynamicFormsCoreModule.forRoot(),
+                TextMaskModule,
+                BsDatepickerModule.forRoot(),
+                TimepickerModule.forRoot()
+            ],
             declarations: [DynamicBootstrapFormControlComponent]
 
         }).compileComponents().then(() => {
@@ -181,7 +189,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         expect(testFn(formModel[1])).toEqual(BootstrapFormControlType.Group);
 
-        expect(testFn(formModel[2])).toBeNull();
+        expect(testFn(formModel[2])).toEqual(BootstrapFormControlType.DatePicker);
 
         expect(testFn(formModel[3])).toBeNull();
 
@@ -203,6 +211,6 @@ describe("DynamicFormBootstrapComponent test suite", () => {
 
         expect(testFn(formModel[12])).toEqual(BootstrapFormControlType.TextArea);
 
-        expect(testFn(formModel[13])).toBeNull();
+        expect(testFn(formModel[13])).toEqual(BootstrapFormControlType.TimePicker);
     });
 });
