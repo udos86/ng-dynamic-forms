@@ -52,7 +52,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     @serializable() initialCount: number;
 
     @serializable() readonly groupPrototype: DynamicFormControlModel[]; // only to recreate model from JSON
-    readonly origin: DynamicFormControlModel[]; // deprecated - only for backwards compatibility;
+    /*@deprecated*/ readonly origin: DynamicFormControlModel[];
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
     constructor(config: DynamicFormArrayModelConfig, layout?: DynamicFormControlLayout) {

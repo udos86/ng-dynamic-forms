@@ -22,27 +22,29 @@ export interface DynamicFormControlModelConfig {
 export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() asyncValidators: DynamicValidatorsConfig | null;
-    @serializable() cls: DynamicFormControlLayout | null;
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
     @serializable() id: string;
     @serializable() label: string | null;
+    @serializable() layout: DynamicFormControlLayout | null;
     @serializable() name: string;
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
     @serializable() updateOn: FormHooks | null;
     @serializable() validators: DynamicValidatorsConfig | null;
 
+    /*@deprecated*/ readonly cls: DynamicFormControlLayout | null;
+
     abstract readonly type: string;
 
     constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
 
         this.asyncValidators = config.asyncValidators || null;
-        this.cls = layout;
         this.errorMessages = config.errorMessages || null;
         this.id = config.id;
         this.label = config.label || null;
+        this.layout = layout;
         this.name = config.name || config.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];
         this.updateOn = typeof config.updateOn === "string" ? config.updateOn : null;
