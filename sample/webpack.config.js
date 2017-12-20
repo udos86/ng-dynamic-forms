@@ -1,6 +1,7 @@
-const path    = require("path"),
-      webpack = require("webpack"),
-      ProgressPlugin = require("webpack/lib/ProgressPlugin");
+const path            = require("path"),
+      webpack         = require("webpack"),
+      rxjsPathMapping = require("rxjs/_esm5/path-mapping"),
+      ProgressPlugin  = require("webpack/lib/ProgressPlugin");
 
 module.exports = {
 
@@ -12,7 +13,9 @@ module.exports = {
 
         modules: ["../dist", "../node_modules"],
 
-        mainFields: ["browser", "module", "main"]
+        mainFields: ["browser", "module", "main"],
+
+        alias: rxjsPathMapping()
     },
 
     output: {
