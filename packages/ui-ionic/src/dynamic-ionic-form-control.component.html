@@ -1,4 +1,4 @@
-<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
@@ -6,10 +6,10 @@
     <div *ngIf="type === 1"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
-         [ngClass]="getClass('element','control')">
+         [ngClass]="getClass('element', 'control')">
 
         <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-             [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
+             [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
             <dynamic-ionic-form-control *ngFor="let controlModel of groupModel.group"
                                         [bindId]="false"
@@ -19,7 +19,7 @@
                                         [layout]="layout"
                                         [model]="controlModel"
                                         [templates]="templateList"
-                                        [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                        [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
                                         (dfFocus)="onFocus($event)"
@@ -36,7 +36,7 @@
               [dynamicId]="bindId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
-              [ngClass]="getClass('element','control')">
+              [ngClass]="getClass('element', 'control')">
 
         <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
@@ -46,7 +46,7 @@
                                     [layout]="layout"
                                     [model]="controlModel"
                                     [templates]="templateList"
-                                    [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                    [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
                                     (dfBlur)="onBlur($event)"
                                     (dfChange)="onValueChange($event)"
                                     (dfFocus)="onFocus($event)"
@@ -57,14 +57,14 @@
     <ion-list *ngIf="type === 6" radio-group
               [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
-              [ngClass]="getClass('element','control')"
+              [ngClass]="getClass('element', 'control')"
               (ionChange)="onValueChange($event)">
 
-        <ion-list-header *ngIf="model.label !== null">{{model.label}}</ion-list-header>
+        <ion-list-header *ngIf="model.label !== null">{{ model.label }}</ion-list-header>
 
-        <ion-item *ngFor="let option of model.options$ | async" [ngClass]="getClass('element','option')">
+        <ion-item *ngFor="let option of model.options$ | async" [ngClass]="getClass('element', 'option')">
 
-            <ion-label>{{option.label}}</ion-label>
+            <ion-label>{{ option.label }}</ion-label>
             <ion-radio [value]="option.value"></ion-radio>
 
         </ion-item>
@@ -76,26 +76,29 @@
 
         <ion-label *ngIf="model.label !== null"
                    [innerHTML]="model.label"
-                   [ngClass]="[getClass('element','label'), getClass('grid','label')]"></ion-label>
+                   [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
         <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <ion-checkbox *ngSwitchCase="2"
                       [checked]="model.checked"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
-                      [ngClass]="getClass('element','control')"
+                      [ngClass]="getClass('element', 'control')"
                       (ionBlur)="onBlur($event)"
                       (ionChange)="onValueChange($event)"
                       (ionFocus)="onFocus($event)"></ion-checkbox>
 
         <!-- DATETIME ------------------------------------------------------------------------------------------------->
         <ion-datetime *ngSwitchCase="3"
-                      [displayFormat]="model.format"
+                      [cancelText]="getAdditional('cancelText', 'Cancel')"
+                      [doneText]="getAdditional('doneText', 'Done')"
+                      [displayFormat]="model.format || 'MMM D, YYYY'"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [max]="model.max"
                       [min]="model.min"
-                      [ngClass]="getClass('element','control')"
+                      [ngClass]="getClass('element', 'control')"
+                      [pickerFormat]="getAdditional('pickerFormat', 'MMM D, YYYY')"
                       [placeholder]="model.placeholder"
                       (ionBlur)="onBlur($event)"
                       (ionCancel)="onCustomEvent($event, 'ionCancel')"
@@ -104,12 +107,14 @@
 
         <!-- INPUT ---------------------------------------------------------------------------------------------------->
         <ion-input *ngSwitchCase="5"
-                   clearInput="true"
+                   [autocomplete]="model.autocomplete"
+                   [autocorrect]="getAdditional('autocorrect', 'off')"
+                   [clearInput]="getAdditional('clearInput', true)"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [max]="model.max"
                    [min]="model.min"
-                   [ngClass]="getClass('element','control')"
+                   [ngClass]="getClass('element', 'control')"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
                    [step]="model.step"
@@ -121,13 +126,15 @@
 
         <!-- RANGE ---------------------------------------------------------------------------------------------------->
         <ion-range *ngSwitchCase="7"
+                   [debounce]="getAdditional('debounce', 0)"
+                   [dualKnobs]="getAdditional('dualKnobs', false)"
                    [dynamicId]="bindId && model.id"
                    [formControlName]="model.id"
                    [max]="model.max"
                    [min]="model.min"
-                   [ngClass]="getClass('element','control')"
-                   [pin]="true"
-                   [snaps]="true"
+                   [ngClass]="getClass('element', 'control')"
+                   [pin]="getAdditional('pin', true)"
+                   [snaps]="getAdditional('snaps', true)"
                    [step]="model.step"
                    (ionBlur)="onBlur($event)"
                    (ionChange)="onValueChange($event)"
@@ -135,17 +142,19 @@
 
         <!-- SELECT --------------------------------------------------------------------------------------------------->
         <ion-select *ngSwitchCase="8"
+                    [cancelText]="getAdditional('cancelText', 'Cancel')"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
+                    [interface]="getAdditional('interface', 'alert')"
                     [multiple]="model.multiple"
-                    [ngClass]="getClass('element','control')"
+                    [ngClass]="getClass('element', 'control')"
+                    [okText]="getAdditional('okText', 'OK')"
                     [placeholder]="model.placeholder"
                     (ionBlur)="onBlur($event)"
                     (ionChange)="onValueChange($event)"
                     (ionFocus)="onFocus($event)">
 
-            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}
-            </ion-option>
+            <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}</ion-option>
 
         </ion-select>
 
@@ -154,7 +163,7 @@
                       clearInput="true"
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
-                      [ngClass]="getClass('element','control')"
+                      [ngClass]="getClass('element', 'control')"
                       [placeholder]="model.placeholder"
                       [readonly]="model.readOnly"
                       (ionBlur)="onBlur($event)"
@@ -166,7 +175,7 @@
                     [checked]="model.checked"
                     [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
-                    [ngClass]="getClass('element','control')"
+                    [ngClass]="getClass('element', 'control')"
                     (ionBlur)="onBlur($event)"
                     (ionChange)="onValueChange($event)"
                     (ionFocus)="onFocus($event)"></ion-toggle>

@@ -24,18 +24,18 @@ export class NGBootstrapSampleFormComponent implements OnInit {
     }
 
     onBlur($event) {
-        console.log(`Material blur event on: ${$event.model.id}: `, $event);
+        console.log(`NG Bootstrap blur event on: ${$event.model.id}: `, $event);
     }
 
     onChange($event) {
-        console.log(`Material change event on: ${$event.model.id}: `, $event);
+        console.log(`NG Bootstrap change event on: ${$event.model.id}: `, $event);
     }
 
     onFocus($event) {
-        console.log(`Material focus event on: ${$event.model.id}: `, $event);
+        console.log(`NG Bootstrap focus event on: ${$event.model.id}: `, $event);
     }
 
     onNgbEvent($event) {
-        console.log(`Material ${$event.type} event on: ${$event.model.id}: `, $event);
+        console.log(`NG Bootstrap ${$event.type} event on: ${$event.model.id}: `, $event);
     }
 }

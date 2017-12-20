@@ -312,6 +312,8 @@ export class DynamicFormService {
 
         rawFormModel.forEach((model: any) => {
 
+            let layout = model.layout || model.cls || null;
+
             switch (model.type) {
 
                 case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
@@ -327,38 +329,38 @@ export class DynamicFormService {
                         return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);
                     };
 
-                    formModel.push(new DynamicFormArrayModel(model, model.cls));
+                    formModel.push(new DynamicFormArrayModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                    formModel.push(new DynamicCheckboxModel(model, model.cls));
+                    formModel.push(new DynamicCheckboxModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
                     model.group = this.fromJSON(model.group) as DynamicCheckboxModel[];
-                    formModel.push(new DynamicCheckboxGroupModel(model, model.cls));
+                    formModel.push(new DynamicCheckboxGroupModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER:
-                    formModel.push(new DynamicColorPickerModel(model, model.cls));
+                    formModel.push(new DynamicColorPickerModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                    formModel.push(new DynamicDatePickerModel(model, model.cls));
+                    formModel.push(new DynamicDatePickerModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
-                    formModel.push(new DynamicEditorModel(model, model.cls));
+                    formModel.push(new DynamicEditorModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
                     model.value = null;
-                    formModel.push(new DynamicFileUploadModel(model, model.cls));
+                    formModel.push(new DynamicFileUploadModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
                     model.group = this.fromJSON(model.group);
-                    formModel.push(new DynamicFormGroupModel(model, model.cls));
+                    formModel.push(new DynamicFormGroupModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
@@ -368,35 +370,35 @@ export class DynamicFormService {
                         inputModel.mask = Utils.maskFromString(inputModel.mask as string);
                     }
 
-                    formModel.push(new DynamicInputModel(model, model.cls));
+                    formModel.push(new DynamicInputModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                    formModel.push(new DynamicRadioGroupModel(model, model.cls));
+                    formModel.push(new DynamicRadioGroupModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_RATING:
-                    formModel.push(new DynamicRatingModel(model, model.cls));
+                    formModel.push(new DynamicRatingModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                    formModel.push(new DynamicSelectModel(model, model.cls));
+                    formModel.push(new DynamicSelectModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                    formModel.push(new DynamicSliderModel(model, model.cls));
+                    formModel.push(new DynamicSliderModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                    formModel.push(new DynamicSwitchModel(model, model.cls));
+                    formModel.push(new DynamicSwitchModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                    formModel.push(new DynamicTextAreaModel(model, model.cls));
+                    formModel.push(new DynamicTextAreaModel(model, layout));
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-                    formModel.push(new DynamicTimePickerModel(model, model.cls));
+                    formModel.push(new DynamicTimePickerModel(model, layout));
                     break;
 
                 default:
