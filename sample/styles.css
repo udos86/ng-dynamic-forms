@@ -202,6 +202,11 @@ dynamic-material-form-control .mat-list-item {
     justify-content: center;
 }
 
+/* NG Bootstrap */
+
+dynamic-ng-bootstrap-form-control ngb-datepicker {
+    display: inline-block !important;
+}
 
 /* PRIME NG */
 dynamic-primeng-form-control {
