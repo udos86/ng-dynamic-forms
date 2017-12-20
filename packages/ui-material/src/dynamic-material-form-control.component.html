@@ -93,7 +93,9 @@
                         [ngClass]="getClass('grid', 'control')"
                         [floatLabel]="getAdditional('floatLabel', 'auto')">
 
-            <ng-container *ngIf="model.label" ngProjectAs="mat-label"><mat-label>{{ model.label }}<mat-label></ng-container>
+            <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+                <mat-label>{{ model.label }}</mat-label>
+            </ng-container>
 
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -160,7 +162,9 @@
                             [ngClass]="getClass('grid','control')"
                             [floatLabel]="getAdditional('floatLabel', 'auto')">
 
-                <ng-container *ngIf="model.label" ngProjectAs="mat-label"><mat-label>{{ model.label }}<mat-label></ng-container>
+                <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+                    <mat-label>{{ model.label }}</mat-label>
+                </ng-container>
 
                 <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -232,7 +236,9 @@
                         [ngClass]="getClass('grid', 'control')"
                         [floatLabel]="getAdditional('floatLabel', 'auto')">
 
-            <ng-container *ngIf="model.label" ngProjectAs="mat-label"><mat-label>{{ model.label }}<mat-label></ng-container>
+            <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+                <mat-label>{{ model.label }}</mat-label>
+            </ng-container>
 
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
@@ -299,7 +305,9 @@
                         [ngClass]="getClass('grid', 'control')"
                         [floatLabel]="getAdditional('floatLabel', 'auto')">
 
-            <ng-container *ngIf="model.label" ngProjectAs="mat-label"><mat-label>{{ model.label }}<mat-label></ng-container>
+            <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+                <mat-label>{{ model.label }}</mat-label>
+            </ng-container>
 
             <textarea matInput
                       [cols]="model.cols"
