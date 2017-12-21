@@ -32,7 +32,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
-- [JSON Export/Import](#json-export--import)
+- [JSON Export & Import](#json-export-&-import)
 - [JSON Form Models](#json-form-models)
 - [Updating Form Models](#updating-form-models)
 - [Disabling Form Controls](#disabling-form-controls)
@@ -813,7 +813,7 @@ export function myCustomValidator(control: AbstractControl): ValidationErrors | 
 }
 ```
 
-**Just use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your validator function**:
+Just **provide your validator functions via default** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token**:
 ```ts
 @NgModule({
     // ...
@@ -839,11 +839,11 @@ new DynamicInputModel({
 
 **But beware! There's a catch!**
 
-Internally NG Dynamic Forms resolves a declared validator by it's function name.
+Internally NG Dynamic Forms resolves a provided validator by it's function name.
 
 Though **when uglifying code** for production this **information is irretrievably lost**.
 
-So to **avoid a runtime exception** you actually would have to **exclude all custom validator function names from mangling**:
+In order to **avoid a runtime exception** you actually would have to **exclude all custom validator function names from mangling**:
 ```ts 
 plugins: [
     new webpack.optimize.UglifyJsPlugin({
@@ -856,9 +856,9 @@ plugins: [
 
 However this is not considered to be a best practice as it prevents aggressive bundle minification!
 
-And especially when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** unless running `ng eject`.
+Moreover when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** at all unless running `ng eject`.
 
-To entirely save you from all this issues NG Dynamic Forms comes up with **a special** `InjectionToken` **named** `DYNAMIC_FORM_VALIDATORS` to which **you should additionally provide** any custom validator function:
+To entirely save you from all this issues NG Dynamic Forms comes up with **a special** `InjectionToken<Map<string, Validator | ValidatorFactory>>` **named** `DYNAMIC_FORM_VALIDATORS` to which **you should additionally provide** any custom validator function:
 ```ts 
 providers: [
     {
@@ -1030,7 +1030,7 @@ Depending on your general set-up or individual preferences sometimes it's more s
 
 Fortunately, **this is perfectly fine and supported**, as well. 
 
-To specify a single form control model just **assign the mandatory** `type` **property**: 
+To specify a single JSON form control model just **assign the mandatory** `type` **property**: 
 ```ts
 [
     {
