@@ -307,10 +307,10 @@ export class DynamicFormService {
 
     fromJSON(json: string | object[]): DynamicFormControlModel[] | never {
 
-        let jsonFormModel = typeof json === "string" ? JSON.parse(json, Utils.parseJSONReviver) : json,
+        let formModelJson = typeof json === "string" ? JSON.parse(json, Utils.parseJSONReviver) : json,
             formModel: DynamicFormControlModel[] = [];
 
-        jsonFormModel.forEach((model: any) => {
+        formModelJson.forEach((model: any) => {
 
             let layout = model.layout || model.cls || null;
 

@@ -1,7 +1,11 @@
-# 5.4.0 - Xmas 2017 Special Edition
+# 5.4.0 - Special Xmas Gift Edition
 
 ### **Features** 
 
+* new `InjectionToken` `DYNAMIC_FORM_VALIDATORS` for entirely avoiding any mangling issues when using custom validators
+(see updated chapter on [**Custom Validators**](https://github.com/udos86/ng-dynamic-forms#custom-validators))
+* official support for JSON form models (see new chapter on [**JSON Form Models**](https://github.com/udos86/ng-dynamic-forms#json-form-models))
+* major accessibility improvements for Material template (closes [#630](https://github.com/udos86/ng-dynamic-forms/issues/630))
 
 ***
 

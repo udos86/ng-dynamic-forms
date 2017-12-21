@@ -50,12 +50,11 @@ export class DynamicFormValidationService {
             }
         }
 
-        if (validatorFn === undefined) { // throw when no validator function could be resolved
+        if (validatorFn === undefined) { // throw when no validator could be resolved
             throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS, NG_ASYNC_VALIDATORS or DYNAMIC_FORM_VALIDATORS`);
         }
 
         if (validatorArgs !== null) {
-
             return (validatorFn as ValidatorFactory)(validatorArgs);
         }
 
@@ -89,7 +88,7 @@ export class DynamicFormValidationService {
     }
 
 
-    private parseErrorMessageTemplate(template: string, model: DynamicFormControlModel, error: any = null): string {
+    private parseErrorMessageConfig(template: string, model: DynamicFormControlModel, error: any = null): string {
 
         return template.replace(/{{\s*(.+?)\s*}}/mg, (_match: string, expression: string) => {
 
@@ -178,7 +177,7 @@ export class DynamicFormValidationService {
                     let validationError = control.getError(validationErrorKey),
                         messageTemplate = messagesConfig[messageKey] as string;
 
-                    messages.push(this.parseErrorMessageTemplate(messageTemplate, model, validationError));
+                    messages.push(this.parseErrorMessageConfig(messageTemplate, model, validationError));
                 }
             });
         }
