@@ -79,7 +79,7 @@
     "@ngtools/webpack": "^1.9.1",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.8.2",
-    "@types/node": "^8.5.1",
+    "@types/node": "^8.5.2",
     "angular-router-loader": "^0.8.1",
     "angular2-template-loader": "^0.6.2",
     "codelyzer": "^4.0.2",

@@ -9,7 +9,7 @@ import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { DynamicFormsCoreModule, DYNAMIC_FORM_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -29,7 +29,12 @@ import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.com
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
-import { customValidator, customDateRangeValidator, customAsyncFormGroupValidator } from "./app.validators";
+import {
+    customValidator,
+    customDateRangeValidator,
+    customForbiddenValidator,
+    customAsyncFormGroupValidator
+} from "./app.validators";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -93,6 +98,15 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
             provide: NG_ASYNC_VALIDATORS,
             useValue: customAsyncFormGroupValidator,
             multi: true
+        },
+        {
+            provide: DYNAMIC_FORM_VALIDATORS,
+            useValue: new Map<string, Validator | ValidatorFactory>([
+                ["customValidator", customValidator],
+                ["customDateRangeValidator", customDateRangeValidator],
+                ["customForbiddenValidator", customForbiddenValidator],
+                ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
+            ])
         }
     ],
     bootstrap: [AppComponent]
