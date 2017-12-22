@@ -1,7 +1,7 @@
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { Utils } from "../../utils/core.utils";
+import { JSONUtils } from "../../utils/json.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -75,7 +75,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         let json: any = super.toJSON();
 
-        if (this.mask !== null) { json.mask = Utils.maskToString(this.mask); }
+        if (this.mask !== null) { json.mask = JSONUtils.maskToString(this.mask); }
 
         return json;
     }

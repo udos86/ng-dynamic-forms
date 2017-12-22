@@ -858,7 +858,7 @@ However this is not considered to be a best practice as it prevents aggressive b
 
 Moreover when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** at all unless running `ng eject`.
 
-To entirely save you from all this issues NG Dynamic Forms comes up with **a special** `InjectionToken<Map<string, Validator | ValidatorFactory>>` **named** `DYNAMIC_FORM_VALIDATORS` to which **you should additionally provide** any custom validator function:
+To entirely save you from all this issues NG Dynamic Forms comes up with **a special** `InjectionToken<Map<string, Validator | ValidatorFactory>>` **named** `DYNAMIC_VALIDATORS` to which **you should additionally provide** any custom validator function:
 ```ts 
 providers: [
     {
@@ -867,7 +867,7 @@ providers: [
         multi: true
     },
     {
-        provide: DYNAMIC_FORM_VALIDATORS,
+        provide: DYNAMIC_VALIDATORS,
         useValue: new Map<string, Validator | ValidatorFactory>([
             ["myCustomValidator", myCustomValidator]
         ])

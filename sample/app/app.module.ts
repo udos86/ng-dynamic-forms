@@ -9,7 +9,7 @@ import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { DynamicFormsCoreModule, DYNAMIC_FORM_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
+import { DynamicFormsCoreModule, DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -100,7 +100,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
             multi: true
         },
         {
-            provide: DYNAMIC_FORM_VALIDATORS,
+            provide: DYNAMIC_VALIDATORS,
             useValue: new Map<string, Validator | ValidatorFactory>([
                 ["customValidator", customValidator],
                 ["customDateRangeValidator", customDateRangeValidator],

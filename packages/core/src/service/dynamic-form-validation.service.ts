@@ -21,14 +21,14 @@ export type ValidatorsToken = Validator[];
 
 export type ValidatorsMap = Map<string, Validator | ValidatorFactory>;
 
-export const DYNAMIC_FORM_VALIDATORS = new InjectionToken<ValidatorsMap>("DYNAMIC_FORM_VALIDATORS");
+export const DYNAMIC_VALIDATORS = new InjectionToken<ValidatorsMap>("DYNAMIC_VALIDATORS");
 
 @Injectable()
 export class DynamicFormValidationService {
 
     constructor(@Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
                 @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[],
-                @Optional() @Inject(DYNAMIC_FORM_VALIDATORS) private DYNAMIC_FORM_VALIDATORS: Map<string, (Validator | ValidatorFactory)>) {}
+                @Optional() @Inject(DYNAMIC_VALIDATORS) private DYNAMIC_VALIDATORS: Map<string, Validator | ValidatorFactory>) {}
 
 
     private getValidatorFn(validatorName: string, validatorArgs: any = null,
@@ -42,8 +42,8 @@ export class DynamicFormValidationService {
 
         } else { // Custom Validators
 
-            if (this.DYNAMIC_FORM_VALIDATORS && this.DYNAMIC_FORM_VALIDATORS.has(validatorName)) {
-                validatorFn = this.DYNAMIC_FORM_VALIDATORS.get(validatorName);
+            if (this.DYNAMIC_VALIDATORS && this.DYNAMIC_VALIDATORS.has(validatorName)) {
+                validatorFn = this.DYNAMIC_VALIDATORS.get(validatorName);
 
             } else if (validatorsToken) {
                 validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);

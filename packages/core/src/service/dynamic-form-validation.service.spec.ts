@@ -2,7 +2,7 @@ import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, ValidationErrors } from "@angular/forms";
 import {
     DynamicFormValidationService,
-    DYNAMIC_FORM_VALIDATORS,
+    DYNAMIC_VALIDATORS,
     Validator,
     ValidatorFactory
 } from "./dynamic-form-validation.service";
@@ -44,7 +44,7 @@ describe("DynamicFormValidationService test suite", () => {
                     multi: true
                 },
                 {
-                    provide: DYNAMIC_FORM_VALIDATORS,
+                    provide: DYNAMIC_VALIDATORS,
                     useValue: new Map<string, Validator | ValidatorFactory>([
                         ["testValidatorFactory", testValidatorFactory]
                     ])

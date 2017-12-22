@@ -8,7 +8,6 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
-import { customDateRangeValidator } from "../app.validators";
 
 export const MATERIAL_SAMPLE_FORM_MODEL = [
 
@@ -16,10 +15,7 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
 
         id: "stay",
         validators: {
-            customDateRangeValidator: {
-                name: customDateRangeValidator.name,
-                args: null
-            }
+            customDateRangeValidator: null
         },
         errorMessages: {
             customDateRangeValidator: "Invalid period of time selected"
@@ -185,6 +181,7 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
     }),
 
     new DynamicSelectModel<string>({
+
         id: "extras",
         placeholder: "Extras",
         multiple: true,
