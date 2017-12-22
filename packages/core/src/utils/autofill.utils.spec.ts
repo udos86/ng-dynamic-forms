@@ -1,6 +1,6 @@
 import { AutoFillUtils } from "./autofill.utils";
 
-describe("DynamicFormAutoFillService test suite", () => {
+describe("Autofill utils test suite", () => {
 
     it("should validate autofill expressions correctly", () => {
 

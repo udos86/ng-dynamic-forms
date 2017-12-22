@@ -1,26 +1,6 @@
 import { JSONUtils } from "./json.utils";
 
-describe("JSON Utils test suite", () => {
-
-    let configObject: any;
-
-    beforeEach(() => {
-
-        configObject = {
-            a: 5,
-            b: true,
-            c: "test",
-            d: {
-                prop1: 2
-            },
-            e: {
-                prop1: 1,
-                prop2: {
-                    nested1: 42
-                }
-            }
-        };
-    });
+describe("JSON utils test suite", () => {
 
     it("should convert a text mask to string correctly", () => {
 
