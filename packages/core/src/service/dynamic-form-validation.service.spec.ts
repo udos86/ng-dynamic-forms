@@ -1,6 +1,11 @@
 import { TestBed, inject } from "@angular/core/testing";
-import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
-import { DynamicFormValidationService } from "./dynamic-form-validation.service";
+import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, ValidationErrors } from "@angular/forms";
+import {
+    DynamicFormValidationService,
+    DYNAMIC_VALIDATORS,
+    Validator,
+    ValidatorFactory
+} from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 
@@ -8,8 +13,14 @@ describe("DynamicFormValidationService test suite", () => {
 
     let service: DynamicFormValidationService;
 
-    function testValidator() {
+    function testValidator(): ValidationErrors | null {
         return {testValidator: {valid: true}};
+    }
+
+    function testValidatorFactory(): () => ValidationErrors | null {
+        return (): ValidationErrors | null => {
+            return {testValidatorFactory: {valid: true}};
+        };
     }
 
     function testAsyncValidator() {
@@ -22,8 +33,22 @@ describe("DynamicFormValidationService test suite", () => {
             imports: [ReactiveFormsModule],
             providers: [
                 DynamicFormValidationService,
-                {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
-                {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
+                {
+                    provide: NG_VALIDATORS,
+                    useValue: testValidator,
+                    multi: true
+                },
+                {
+                    provide: NG_ASYNC_VALIDATORS,
+                    useValue: testAsyncValidator,
+                    multi: true
+                },
+                {
+                    provide: DYNAMIC_VALIDATORS,
+                    useValue: new Map<string, Validator | ValidatorFactory>([
+                        ["testValidatorFactory", testValidatorFactory]
+                    ])
+                }
             ]
         });
     });
@@ -36,6 +61,7 @@ describe("DynamicFormValidationService test suite", () => {
 
         expect(service.getValidator("required")).toBeTruthy();
         expect(service.getValidator("testValidator")).toBeTruthy();
+        expect(service.getValidator("testValidatorFactory")).toBeTruthy();
     });
 
 
@@ -56,7 +82,7 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should resolve custom validators from config", () => {
 
-        let config: any = {required: null, maxLength: 7, testValidator: null},
+        let config: any = {required: null, maxLength: 7, testValidator: null, testValidatorFactory: "test"},
             validators = service.getValidators(config);
 
         expect(validators.length === Object.keys(config).length).toBe(true);
@@ -84,7 +110,7 @@ describe("DynamicFormValidationService test suite", () => {
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
 
         expect(() => service.getValidator("test", null))
-            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`));
+            .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS, NG_ASYNC_VALIDATORS or DYNAMIC_FORM_VALIDATORS`));
     });
 
 

@@ -11,6 +11,7 @@ import { DynamicFormService } from "./dynamic-form.service";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
+import { DynamicColorPickerModel } from "../model/colorpicker/dynamic-colorpicker.model";
 import { DynamicDateControlModel } from "../model/dynamic-date-control.model";
 import { DynamicDatePickerModel } from "../model/datepicker/dynamic-datepicker.model";
 import { DynamicEditorModel } from "../model/editor/dynamic-editor.model";
@@ -40,7 +41,6 @@ describe("DynamicFormService test suite", () => {
     function testAsyncValidator() {
         return new Promise<boolean>(resolve => setTimeout(() => resolve(true), 0));
     }
-
 
     beforeEach(() => {
 
@@ -160,7 +160,9 @@ describe("DynamicFormService test suite", () => {
 
             new DynamicTimePickerModel({id: "testTimePicker"}),
 
-            new DynamicRatingModel({id: "testRating"})
+            new DynamicRatingModel({id: "testRating"}),
+
+            new DynamicColorPickerModel({id: "testColorPicker"}),
         ];
     });
 
@@ -186,6 +188,7 @@ describe("DynamicFormService test suite", () => {
         expect(formGroup.get("testEditor") instanceof FormControl).toBe(true);
         expect(formGroup.get("testTimePicker") instanceof FormControl).toBe(true);
         expect(formGroup.get("testRating") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testColorPicker") instanceof FormControl).toBe(true);
     });
 
 
@@ -212,6 +215,7 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[12] instanceof DynamicEditorModel).toBe(true);
         expect(formModel[13] instanceof DynamicTimePickerModel).toBe(true);
         expect(formModel[14] instanceof DynamicRatingModel).toBe(true);
+        expect(formModel[15] instanceof DynamicColorPickerModel).toBe(true);
     });
 
 
@@ -238,6 +242,7 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testEditor", testModel) instanceof DynamicEditorModel).toBe(true);
         expect(service.findById("testTimePicker", testModel) instanceof DynamicTimePickerModel).toBe(true);
         expect(service.findById("testRating", testModel) instanceof DynamicRatingModel).toBe(true);
+        expect(service.findById("testColorPicker", testModel) instanceof DynamicColorPickerModel).toBe(true);
     });
 
 

@@ -7,7 +7,7 @@ import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { RelationUtils } from "./relation.utils";
 
-describe("FormControlRelation utils test suite", () => {
+describe("Relation utils test suite", () => {
 
     let controlGroup: FormGroup,
         model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"}),

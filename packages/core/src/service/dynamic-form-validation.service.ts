@@ -1,4 +1,4 @@
-import { Injectable, Inject, Optional } from "@angular/core";
+import { InjectionToken, Injectable, Inject, Optional } from "@angular/core";
 import {
     AbstractControl,
     AsyncValidatorFn,
@@ -19,11 +19,16 @@ export type ValidatorFactory = (args: any) => Validator;
 
 export type ValidatorsToken = Validator[];
 
+export type ValidatorsMap = Map<string, Validator | ValidatorFactory>;
+
+export const DYNAMIC_VALIDATORS = new InjectionToken<ValidatorsMap>("DYNAMIC_VALIDATORS");
+
 @Injectable()
 export class DynamicFormValidationService {
 
     constructor(@Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
-                @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[]) {}
+                @Optional() @Inject(NG_ASYNC_VALIDATORS) private NG_ASYNC_VALIDATORS: AsyncValidatorFn[],
+                @Optional() @Inject(DYNAMIC_VALIDATORS) private DYNAMIC_VALIDATORS: Map<string, Validator | ValidatorFactory>) {}
 
 
     private getValidatorFn(validatorName: string, validatorArgs: any = null,
@@ -35,17 +40,21 @@ export class DynamicFormValidationService {
 
             validatorFn = (Validators as any)[validatorName];
 
-        } else if (validatorsToken) { // Custom Validators
+        } else { // Custom Validators
 
-            validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);
+            if (this.DYNAMIC_VALIDATORS && this.DYNAMIC_VALIDATORS.has(validatorName)) {
+                validatorFn = this.DYNAMIC_VALIDATORS.get(validatorName);
+
+            } else if (validatorsToken) {
+                validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);
+            }
         }
 
-        if (validatorFn === undefined) {
-            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS or NG_ASYNC_VALIDATORS`);
+        if (validatorFn === undefined) { // throw when no validator could be resolved
+            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS, NG_ASYNC_VALIDATORS or DYNAMIC_FORM_VALIDATORS`);
         }
 
         if (validatorArgs !== null) {
-
             return (validatorFn as ValidatorFactory)(validatorArgs);
         }
 
@@ -79,7 +88,7 @@ export class DynamicFormValidationService {
     }
 
 
-    private parseErrorMessageTemplate(template: string, model: DynamicFormControlModel, error: any = null): string {
+    private parseErrorMessageConfig(template: string, model: DynamicFormControlModel, error: any = null): string {
 
         return template.replace(/{{\s*(.+?)\s*}}/mg, (_match: string, expression: string) => {
 
@@ -168,7 +177,7 @@ export class DynamicFormValidationService {
                     let validationError = control.getError(validationErrorKey),
                         messageTemplate = messagesConfig[messageKey] as string;
 
-                    messages.push(this.parseErrorMessageTemplate(messageTemplate, model, validationError));
+                    messages.push(this.parseErrorMessageConfig(messageTemplate, model, validationError));
                 }
             });
         }

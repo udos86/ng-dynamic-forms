@@ -44,7 +44,7 @@ import {
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
-import { Utils } from "../utils/core.utils";
+import { JSONUtils } from "../utils/json.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
 
@@ -307,10 +307,10 @@ export class DynamicFormService {
 
     fromJSON(json: string | object[]): DynamicFormControlModel[] | never {
 
-        let rawFormModel = typeof json === "string" ? JSON.parse(json, Utils.parseJSONReviver) : json,
+        let formModelJSON = typeof json === "string" ? JSON.parse(json, JSONUtils.parseReviver) : json,
             formModel: DynamicFormControlModel[] = [];
 
-        rawFormModel.forEach((model: any) => {
+        formModelJSON.forEach((model: any) => {
 
             let layout = model.layout || model.cls || null;
 
@@ -367,7 +367,7 @@ export class DynamicFormService {
                     let inputModel = model as DynamicInputModel;
 
                     if (inputModel.mask !== null) {
-                        inputModel.mask = Utils.maskFromString(inputModel.mask as string);
+                        inputModel.mask = JSONUtils.maskFromString(inputModel.mask as string);
                     }
 
                     formModel.push(new DynamicInputModel(model, layout));

@@ -32,7 +32,8 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
-- [JSON Export / Import](#json-export--import)
+- [JSON Export & Import](#json-export-&-import)
+- [JSON Form Models](#json-form-models)
 - [Updating Form Models](#updating-form-models)
 - [Disabling Form Controls](#disabling-form-controls)
 - [Text Masks](#text-masks)
@@ -812,7 +813,7 @@ export function myCustomValidator(control: AbstractControl): ValidationErrors | 
 }
 ```
 
-**Just use the** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token to provide your validator function**:
+Just **provide your validator functions via default** `NG_VALIDATORS` **or** `NG_ASYNC_VALIDATORS` **token**:
 ```ts
 @NgModule({
     // ...
@@ -838,12 +839,11 @@ new DynamicInputModel({
 
 **But beware! There's a catch!**
 
-Internally NG Dynamic Forms resolves a declared validator by it's function name.
+Internally NG Dynamic Forms resolves a provided validator by it's function name.
 
 Though **when uglifying code** for production this **information is irretrievably lost**.
 
-So to **avoid a runtime exception** you actually would have to **exclude all custom validator function names from mangling**:
-
+In order to **avoid a runtime exception** you actually would have to **exclude all custom validator function names from mangling**:
 ```ts 
 plugins: [
     new webpack.optimize.UglifyJsPlugin({
@@ -854,9 +854,28 @@ plugins: [
 ]
 ```
 
-However when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** unless running `ng eject`.
+However this is not considered to be a best practice as it prevents aggressive bundle minification!
 
-That's when **you should make use of the alternate validator notation**:
+Moreover when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** at all unless running `ng eject`.
+
+To entirely save you from all this issues NG Dynamic Forms comes up with **a special** `InjectionToken<Map<string, Validator | ValidatorFactory>>` **named** `DYNAMIC_VALIDATORS` to which **you should additionally provide** any custom validator function:
+```ts 
+providers: [
+    {
+        provide: NG_VALIDATORS,
+        useValue: myCustomValidator,
+        multi: true
+    },
+    {
+        provide: DYNAMIC_VALIDATORS,
+        useValue: new Map<string, Validator | ValidatorFactory>([
+            ["myCustomValidator", myCustomValidator]
+        ])
+    }
+]
+```
+
+Another suitable solution for most situations would be to **make use of the alternate validator notation**:
 ```ts 
 new DynamicInputModel({
 
@@ -975,13 +994,12 @@ and **bind the** `FormControl` **reference via a local template variable**:
     
 </form>
 ```
- 
- 
+  
 ## JSON Export / Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
 
-That's why all `DynamicFormControlModel`s have been preprared to **export properly to JSON**: 
+That's why all `DynamicFormControlModel`s have been prepared to **properly export to JSON**: 
 ```ts
 storeForm() {
     
@@ -991,10 +1009,7 @@ storeForm() {
 }
 ```
 
-Since a `DynamicFormControlModel` in NG Dynamic Forms **relies on prototypical inheritance** and thus is not represented by a simple JavaScript object literal, 
-recreating a form from JSON unfortunately becomes more complex. 
-
-The good news is, that `DynamicFormService` **offers the function** `fromJSON()` **to make things short and easy**:
+In order to recreate a form from JSON just make use of the corresponding function provided by `DynamicFormService`:
 ```ts
 restoreForm() {
 
@@ -1003,6 +1018,65 @@ restoreForm() {
     // ...load JSON from localStorage or server
     
     this.formModel = this.formService.fromJSON(json);
+}
+```
+
+
+## JSON Form Models
+
+By default NG Dynamic Forms **embraces prototypical inheritance** and forces you to use constructor functions when modelling a form.
+
+Depending on your general set-up or individual preferences sometimes it's more suitable to provide a form model in plain JSON, though. 
+
+Fortunately, **this is perfectly fine and supported**, as well. 
+
+To specify a single JSON form control model just **assign the mandatory** `type` **property**: 
+```ts
+[
+    {
+        "type": "INPUT",
+        "id": "sampleInput",
+        "label": "Sample Input",
+        "maxLength": 42,
+        "placeholder": "Sample input"
+    },
+    {
+        "type": "RADIO_GROUP",
+        "id": "sampleRadioGroup",
+        "label": "Sample Radio Group",
+        "options": [
+            {
+                "label": "Option 1",
+                "value": "option-1",
+            },
+            {
+                "label": "Option 2",
+                "value": "option-2"
+            },
+            {
+                "label": "Option 3",
+                "value": "option-3"
+            }
+        ],
+        "value": "option-3"    
+    }
+    {
+        "type": "CHECKBOX",
+        "id": "sampleCheckbox",
+        "label": "I do agree"
+    }
+]
+```
+
+After having asynchronously loaded the JSON form model into your application **don't forget to transform it** via `fromJSON()` **before creating** a `FormGroup`. 
+```ts
+ngOnInit() {
+
+    this.http.get<object[]>('./app/my-dynamic-form.model.json').subscribe(formModelJson => {
+
+        this.formModel = this.formService.fromJSON(formModelJson);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
+    });
 }
 ```
 

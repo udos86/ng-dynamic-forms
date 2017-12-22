@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidationErrors } from "@angular/forms";
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function customValidator(control: AbstractControl): ValidationErrors | null {
 
@@ -18,6 +18,18 @@ export function customDateRangeValidator(group: FormGroup): ValidationErrors | n
     }
 
     return hasError ? {customDateRangeValidator: true} : null;
+}
+
+export function customForbiddenValidator(forbiddenValue: string): ValidatorFn {
+
+    return (control: AbstractControl): ValidationErrors | null => {
+
+        if (control && control.value === forbiddenValue) {
+            return { forbidden: true };
+        }
+
+        return null;
+    }
 }
 
 export function customAsyncFormGroupValidator(formGroup: FormGroup): Promise<ValidationErrors | null> {
