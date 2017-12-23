@@ -14,6 +14,7 @@ describe("DynamicColorPickerModel test suite", () => {
 
         expect(model.disabled).toBe(false);
         expect(model.format).toBeNull();
+        expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.inline).toBe(false);
         expect(model.label).toBeNull();

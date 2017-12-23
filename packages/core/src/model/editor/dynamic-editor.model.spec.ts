@@ -15,6 +15,7 @@ describe("DynamicEditorModel test suite", () => {
         expect(model.disabled).toBe(false);
         expect(model.errorMessages).toBeNull();
         expect(model.hasErrorMessages).toBe(false);
+        expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_EDITOR);
