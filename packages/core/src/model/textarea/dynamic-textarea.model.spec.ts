@@ -36,12 +36,6 @@ describe("DynamicTextAreaModel test suite", () => {
         expect(model.disabled).toBe(true);
     });
 
-    it("should set hidden property correctly", () => {
-        
-        model.hiddenUpdates.next(true);
-
-        expect(model.hidden).toBe(true);
-    });
 
     it("should serialize correctly", () => {
 

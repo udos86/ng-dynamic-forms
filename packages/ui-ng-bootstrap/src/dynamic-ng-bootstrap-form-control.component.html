@@ -22,15 +22,16 @@
                 <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                      [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
-                    <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of groupModel.group"
+                    <dynamic-ng-bootstrap-form-control *ngFor="let _model of groupModel.group"
                                                        [bindId]="false"
                                                        [context]="groupModel"
                                                        [group]="control.at(idx)"
-                                                       [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                       [hasErrorMessaging]="_model.hasErrorMessages"
+                                                       [hidden]="_model.hidden"
                                                        [layout]="layout"
-                                                       [model]="controlModel"
+                                                       [model]="_model"
                                                        [templates]="templateList"
-                                                       [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
+                                                       [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                                        (dfBlur)="onBlur($event)"
                                                        (dfChange)="onValueChange($event)"
                                                        (dfFocus)="onFocus($event)"></dynamic-ng-bootstrap-form-control>
@@ -75,8 +76,9 @@
                            [value]="model.value"
                            (blur)="onBlur($event)"
                            (change)="onValueChange($event)"
-                           (focus)="onFocus($event)"/><span [innerHTML]="model.label"
-                                                                 [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></span>
+                           (focus)="onFocus($event)"/><span
+                           [innerHTML]="model.label"
+                           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></span>
                 </label>
 
             </div>
@@ -87,21 +89,23 @@
                  [formGroupName]="model.id"
                  [ngClass]="getClass('element', 'control')">
 
-                <label *ngFor="let controlModel of model.group" ngbButtonLabel
-                       [ngClass]="getClass('element', 'control', controlModel)">
+                <label *ngFor="let checkboxModel of model.group" ngbButtonLabel
+                       [hidden]="checkboxModel.hidden"
+                       [ngClass]="getClass('element', 'control', checkboxModel)">
 
                     <input type="checkbox" ngbButton
-                           [checked]="controlModel.checked"
-                           [dynamicId]="bindId && controlModel.id"
-                           [formControlName]="controlModel.id"
-                           [name]="controlModel.name"
-                           [required]="controlModel.required"
-                           [tabindex]="controlModel.tabIndex"
-                           [value]="controlModel.value"
+                           [checked]="checkboxModel.checked"
+                           [dynamicId]="bindId && checkboxModel.id"
+                           [formControlName]="checkboxModel.id"
+                           [name]="checkboxModel.name"
+                           [required]="checkboxModel.required"
+                           [tabindex]="checkboxModel.tabIndex"
+                           [value]="checkboxModel.value"
                            (blur)="onBlur($event)"
                            (change)="onValueChange($event)"
-                           (focus)="onFocus($event)"/><span [ngClass]="getClass('element','label',controlModel)"
-                                                                 [innerHTML]="controlModel.label"></span></label>
+                           (focus)="onFocus($event)"/><span
+                           [ngClass]="getClass('element', 'label', checkboxModel)"
+                           [innerHTML]="checkboxModel.label"></span></label>
             </div>
 
             <!-- DATEPICKER ------------------------------------------------------------------------------------------->
@@ -141,14 +145,15 @@
                  [formGroupName]="model.id"
                  [ngClass]="getClass('element','control')">
 
-                <dynamic-ng-bootstrap-form-control *ngFor="let controlModel of model.group"
+                <dynamic-ng-bootstrap-form-control *ngFor="let _model of model.group"
                                                    [asBootstrapFormGroup]="true"
                                                    [group]="control"
-                                                   [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                                   [hasErrorMessaging]="_model.hasErrorMessages"
+                                                   [hidden]="_model.hidden"
                                                    [layout]="layout"
-                                                   [model]="controlModel"
+                                                   [model]="_model"
                                                    [templates]="templateList"
-                                                   [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
+                                                   [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                                    (dfBlur)="onBlur($event)"
                                                    (dfChange)="onValueChange($event)"
                                                    (dfFocus)="onFocus($event)"></dynamic-ng-bootstrap-form-control>
