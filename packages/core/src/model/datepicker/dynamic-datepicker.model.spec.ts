@@ -17,6 +17,7 @@ describe("DynamicDatepickerModel test suite", () => {
 
         expect(model.disabled).toBe(false);
         expect(model.focusedDate).toBeNull();
+        expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.format).toBeNull();
