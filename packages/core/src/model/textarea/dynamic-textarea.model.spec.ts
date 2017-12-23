@@ -18,6 +18,7 @@ describe("DynamicTextAreaModel test suite", () => {
 
         expect(model.cols).toBe(20);
         expect(model.disabled).toBe(false);
+        expect(model.hidden).toBe(false);
         expect(model.errorMessages).toBeNull();
         expect(model.hasErrorMessages).toBe(false);
         expect(model.id).toEqual(config.id);
@@ -33,6 +34,13 @@ describe("DynamicTextAreaModel test suite", () => {
         model.disabledUpdates.next(true);
 
         expect(model.disabled).toBe(true);
+    });
+
+    it("should set hidden property correctly", () => {
+        
+        model.hiddenUpdates.next(true);
+
+        expect(model.hidden).toBe(true);
     });
 
     it("should serialize correctly", () => {
