@@ -14,12 +14,6 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
     new DynamicFormGroupModel({
 
         id: "stay",
-        validators: {
-            customDateRangeValidator: null
-        },
-        errorMessages: {
-            customDateRangeValidator: "Invalid period of time selected"
-        },
         group: [
             new DynamicDatePickerModel({
 
@@ -33,7 +27,13 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
                 inline: false,
                 placeholder: "Date of Departure"
             })
-        ]
+        ],
+        validators: {
+            customDateRangeValidator: null
+        },
+        errorMessages: {
+            customDateRangeValidator: "Invalid period of time selected"
+        }
     }),
 
     new DynamicFormGroupModel({
