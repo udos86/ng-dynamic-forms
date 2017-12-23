@@ -13,6 +13,7 @@ describe("DynamicEditorModel test suite", () => {
     it("should initialize correctly", () => {
 
         expect(model.disabled).toBe(false);
+        expect(model.hidden).toBe(false);
         expect(model.errorMessages).toBeNull();
         expect(model.hasErrorMessages).toBe(false);
         expect(model.id).toEqual(config.id);
