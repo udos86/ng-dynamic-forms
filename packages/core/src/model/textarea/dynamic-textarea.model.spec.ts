@@ -18,9 +18,9 @@ describe("DynamicTextAreaModel test suite", () => {
 
         expect(model.cols).toBe(20);
         expect(model.disabled).toBe(false);
-        expect(model.hidden).toBe(false);
         expect(model.errorMessages).toBeNull();
         expect(model.hasErrorMessages).toBe(false);
+        expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.rows).toBe(2);
