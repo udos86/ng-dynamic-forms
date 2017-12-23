@@ -32,7 +32,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Validation Messaging](#validation-messaging)
-- [JSON Export & Import](#json-export-&-import)
+- [JSON Export & Import](#json-export--import)
 - [JSON Form Models](#json-form-models)
 - [Updating Form Models](#updating-form-models)
 - [Disabling Form Controls](#disabling-form-controls)
@@ -995,7 +995,7 @@ and **bind the** `FormControl` **reference via a local template variable**:
 </form>
 ```
   
-## JSON Export / Import
+## JSON Export & Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
 
