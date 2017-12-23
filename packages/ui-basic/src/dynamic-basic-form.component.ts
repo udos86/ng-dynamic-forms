@@ -17,9 +17,9 @@ import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.c
 })
 export class DynamicBasicFormComponent extends DynamicFormComponent {
 
-    @Input() group: FormGroup;
-    @Input() model: DynamicFormControlModel[];
-    @Input() layout: DynamicFormLayout;
+    @Input("group") formGroup: FormGroup;
+    @Input("model") formModel: DynamicFormControlModel[];
+    @Input("layout") formLayout: DynamicFormLayout;
 
     @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

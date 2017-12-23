@@ -55,11 +55,11 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
         this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
-        this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);
+        this.disabledUpdates.subscribe(disabled => this.disabled = disabled);
 
         this.hidden = typeof config.hidden === "boolean" ? config.hidden : false;
         this.hiddenUpdates = new Subject<boolean>();
-        this.hiddenUpdates.subscribe((value: boolean) => this.hidden = value);
+        this.hiddenUpdates.subscribe(hidden => this.hidden = hidden);
     }
 
     get disabled(): boolean {
