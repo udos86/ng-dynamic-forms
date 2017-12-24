@@ -1,4 +1,4 @@
-import { ComponentFixture } from "@angular/core/testing";
+//import { ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import {
@@ -43,10 +43,10 @@ describe("DynamicFormIonicComponent test suite", () => {
             new DynamicTimePickerModel({id: "timepicker"})
         ],
         testModel = formModel[8],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicFormControlComponent>,
+        //formGroup: FormGroup,
+        //fixture: ComponentFixture<DynamicIonicFormControlComponent>,
         component: DynamicIonicFormControlComponent,
-        debugElement: DebugElement,
+        //debugElement: DebugElement,
         testElement: DebugElement;
     /*
     beforeEach(async(() => {
