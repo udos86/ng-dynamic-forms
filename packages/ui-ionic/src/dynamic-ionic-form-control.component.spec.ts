@@ -1,9 +1,10 @@
-import { ComponentFixture } from "@angular/core/testing";
+//import { ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicColorPickerModel,
     DynamicDatePickerModel,
     DynamicEditorModel,
     DynamicFileUploadModel,
@@ -12,6 +13,7 @@ import {
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
@@ -25,6 +27,7 @@ describe("DynamicFormIonicComponent test suite", () => {
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
             new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicColorPickerModel({id: "colorpicker"}),
             new DynamicDatePickerModel({id: "datepicker"}),
             new DynamicEditorModel({id: "editor"}),
             new DynamicFileUploadModel({id: "upload", url: ""}),
@@ -32,17 +35,18 @@ describe("DynamicFormIonicComponent test suite", () => {
             new DynamicFormGroupModel({id: "formGroup", group: []}),
             new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicRatingModel({id: "rating"}),
             new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
             new DynamicSliderModel({id: "slider"}),
             new DynamicSwitchModel({id: "switch"}),
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[7] as DynamicInputModel,
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicFormControlComponent>,
+        testModel = formModel[8],
+        //formGroup: FormGroup,
+        //fixture: ComponentFixture<DynamicIonicFormControlComponent>,
         component: DynamicIonicFormControlComponent,
-        debugElement: DebugElement,
+        //debugElement: DebugElement,
         testElement: DebugElement;
     /*
     beforeEach(async(() => {
@@ -155,7 +159,7 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         component.ngOnInit();
 
-        testModel.valueUpdates.next("test");
+        (testModel as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -179,28 +183,32 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         expect(testFn(formModel[1])).toEqual(IonicFormControlType.Group);
 
-        expect(testFn(formModel[2])).toEqual(IonicFormControlType.DateTime);
+        expect(testFn(formModel[2])).toBeNull();
 
-        expect(testFn(formModel[3])).toBeNull();
+        expect(testFn(formModel[3])).toEqual(IonicFormControlType.DateTime);
 
         expect(testFn(formModel[4])).toBeNull();
 
-        expect(testFn(formModel[5])).toEqual(IonicFormControlType.Array);
+        expect(testFn(formModel[5])).toBeNull();
 
-        expect(testFn(formModel[6])).toEqual(IonicFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(IonicFormControlType.Array);
 
-        expect(testFn(formModel[7])).toEqual(IonicFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(IonicFormControlType.Group);
 
-        expect(testFn(formModel[8])).toEqual(IonicFormControlType.RadioGroup);
+        expect(testFn(formModel[8])).toEqual(IonicFormControlType.Input);
 
-        expect(testFn(formModel[9])).toEqual(IonicFormControlType.Select);
+        expect(testFn(formModel[9])).toEqual(IonicFormControlType.RadioGroup);
 
-        expect(testFn(formModel[10])).toEqual(IonicFormControlType.Range);
+        expect(testFn(formModel[10])).toBeNull();
 
-        expect(testFn(formModel[11])).toEqual(IonicFormControlType.Toggle);
+        expect(testFn(formModel[11])).toEqual(IonicFormControlType.Select);
 
-        expect(testFn(formModel[12])).toEqual(IonicFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(IonicFormControlType.Range);
 
-        expect(testFn(formModel[13])).toEqual(IonicFormControlType.DateTime);
+        expect(testFn(formModel[13])).toEqual(IonicFormControlType.Toggle);
+
+        expect(testFn(formModel[14])).toEqual(IonicFormControlType.TextArea);
+
+        expect(testFn(formModel[15])).toEqual(IonicFormControlType.DateTime);
     });
 });

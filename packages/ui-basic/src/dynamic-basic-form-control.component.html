@@ -1,9 +1,9 @@
-<div [formGroup]="group" [ngClass]="[getClass('element','container'), getClass('grid','container')]">
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
     <label *ngIf="type !== 2 && model.label"
            [for]="model.id"
            [innerHTML]="model.label"
-           [ngClass]="[getClass('element','label'), getClass('grid','label')]"></label>
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
@@ -13,20 +13,21 @@
         <div *ngSwitchCase="1"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"
-             [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                 [formGroupName]="idx" [ngClass]="[getClass('element','group'), getClass('grid','group')]">
+                 [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
-                <dynamic-basic-form-control *ngFor="let controlModel of groupModel.group"
+                <dynamic-basic-form-control *ngFor="let _model of groupModel.group"
                                             [bindId]="false"
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
-                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                            [hasErrorMessaging]="_model.hasErrorMessages"
+                                            [hidden]="_model.hidden"
                                             [layout]="layout"
-                                            [model]="controlModel"
+                                            [model]="_model"
                                             [templates]="templateList"
-                                            [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                            [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                             (dfBlur)="onBlur($event)"
                                             (dfChange)="onValueChange($event)"
                                             (dfFocus)="onFocus($event)"></dynamic-basic-form-control>
@@ -38,7 +39,7 @@
         </div>
 
         <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
-        <label *ngSwitchCase="2" [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+        <label *ngSwitchCase="2" [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
             <input type="checkbox"
                    [checked]="model.checked"
@@ -51,24 +52,25 @@
                    [value]="model.value"
                    (blur)="onBlur($event)"
                    (change)="onValueChange($event)"
-                   (focus)="onFocus($event)"/><span [ngClass]="getClass('element','label')" [innerHTML]="model.label"></span></label>
+                   (focus)="onFocus($event)"/><span [ngClass]="getClass('element', 'label')" [innerHTML]="model.label"></span></label>
 
         <!-- FORM GROUP ----------------------------------------------------------------------------------------------->
         <fieldset *ngSwitchCase="3"
                   [dynamicId]="bindId && model.id"
                   [formGroupName]="model.id"
                   [name]="model.name"
-                  [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <dynamic-basic-form-control *ngFor="let controlModel of model.group"
+            <dynamic-basic-form-control *ngFor="let _model of model.group"
                                         [group]="control"
-                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                        [hasErrorMessaging]="_model.hasErrorMessages"
+                                        [hidden]="_model.hidden"
                                         [layout]="layout"
-                                        [model]="controlModel"
+                                        [model]="_model"
                                         [templates]="templateList"
-                                        [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
                                         (dfFocus)="onFocus($event)"></dynamic-basic-form-control>
@@ -90,7 +92,7 @@
                    [maxlength]="model.maxLength"
                    [minlength]="model.minLength"
                    [name]="model.name"
-                   [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                   [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                    [pattern]="model.pattern"
                    [placeholder]="model.placeholder"
                    [readonly]="model.readOnly"
@@ -113,13 +115,13 @@
         <fieldset *ngSwitchCase="5" role="radiogroup"
                   [dynamicId]="bindId && model.id"
                   [name]="model.name"
-                  [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                   [tabindex]="model.tabIndex"
                   (change)="onValueChange($event)">
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <label *ngFor="let option of model.options$ | async" [ngClass]="getClass('element','option')">
+            <label *ngFor="let option of model.options$ | async" [ngClass]="getClass('element', 'option')">
 
                 <input type="radio"
                        [formControlName]="model.id"
@@ -134,7 +136,7 @@
                 [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
                 [name]="model.name"
-                [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                 [required]="model.required"
                 [tabindex]="model.tabIndex"
                 (blur)="onBlur($event)"
@@ -155,7 +157,7 @@
                   [maxlength]="model.maxLength"
                   [minlength]="model.minLength"
                   [name]="model.name"
-                  [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"
                   [required]="model.required"
@@ -169,10 +171,10 @@
 
     </ng-container>
 
-    <div *ngIf="showHint" [ngClass]="[getClass('element','hint'), getClass('grid','hint')]"><span
+    <div *ngIf="showHint" [ngClass]="[getClass('element', 'hint'), getClass('grid', 'hint')]"><span
             [innerHTML]="model.hint"></span></div>
 
-    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element','errors'), getClass('grid','errors')]">
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
         <li *ngFor="let message of errorMessages">{{ message }}</li>
     </ul>
 

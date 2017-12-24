@@ -65,7 +65,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[8] as DynamicInputModel,
+        testModel = formModel[8],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicPrimeNGFormControlComponent>,
         component: DynamicPrimeNGFormControlComponent,
@@ -197,7 +197,7 @@ describe("DynamicFormPrimeNGComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        testModel.valueUpdates.next("test");
+        (testModel as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });

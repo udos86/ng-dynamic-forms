@@ -16,9 +16,9 @@ import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-
 
 export abstract class DynamicFormComponent {
 
-    group: FormGroup;
-    model: DynamicFormControlModel[];
-    layout: DynamicFormLayout;
+    formGroup: FormGroup;
+    formModel: DynamicFormControlModel[];
+    formLayout: DynamicFormLayout;
 
     components: QueryList<DynamicFormControlComponent>;
     templates: QueryList<DynamicTemplateDirective>;
@@ -36,7 +36,7 @@ export abstract class DynamicFormComponent {
 
     getClass(model: DynamicFormControlModel, context: string, place: string): string {
 
-        let controlLayout = this.layoutService.findById(model.id, this.layout) || model.layout as DynamicFormControlLayout;
+        let controlLayout = this.layoutService.findById(model.id, this.formLayout) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }

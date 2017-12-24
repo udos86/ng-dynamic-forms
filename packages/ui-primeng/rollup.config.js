@@ -9,13 +9,16 @@ const format  = utils.getRollupFormat(process.argv),
 export default {
 
     input: utils.getRollupInputPath(packageJson),
-    output: {file: utils.getRollupOutputPath(packageJson, format, minify), format: format},
+    output: {
+        file: utils.getRollupOutputPath(packageJson, format, minify),
+        format: format,
+        name: "ngDF.primengUI",
+        globals: globals,
+        sourcemap: true
+    },
     banner: utils.getBanner(packageJson),
     context: "this",
     exports: "named",
     external: Object.keys(globals),
-    globals: globals,
-    name: "ngDF.primengUI",
-    plugins: utils.getRollupPlugins(minify),
-    sourcemap: true
+    plugins: utils.getRollupPlugins(minify)
 };

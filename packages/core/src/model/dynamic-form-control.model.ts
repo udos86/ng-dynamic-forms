@@ -11,6 +11,7 @@ export interface DynamicFormControlModelConfig {
     asyncValidators?: DynamicValidatorsConfig;
     disabled?: boolean;
     errorMessages?: DynamicValidatorsConfig;
+    hidden?: boolean;
     id: string;
     label?: string;
     name?: string;
@@ -25,6 +26,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
+    @serializable() hidden: boolean;
     @serializable() id: string;
     @serializable() label: string | null;
     @serializable() layout: DynamicFormControlLayout | null;
@@ -42,6 +44,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
         this.asyncValidators = config.asyncValidators || null;
         this.errorMessages = config.errorMessages || null;
+        this.hidden = typeof config.hidden === "boolean" ? config.hidden : false;
         this.id = config.id;
         this.label = config.label || null;
         this.layout = layout;
@@ -52,7 +55,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
         this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
-        this.disabledUpdates.subscribe((value: boolean) => this.disabled = value);
+        this.disabledUpdates.subscribe(disabled => this.disabled = disabled);
     }
 
     get disabled(): boolean {

@@ -14,6 +14,7 @@ describe("DynamicCheckboxModel test suite", () => {
 
         expect(model.asyncValidators).toBeNull();
         expect(model.disabled).toBe(false);
+        expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.indeterminate).toBe(false);
         expect(model.label).toBeNull();

@@ -24,15 +24,16 @@
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                  [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
 
-                <dynamic-kendo-form-control *ngFor="let controlModel of groupModel.group"
+                <dynamic-kendo-form-control *ngFor="let _model of groupModel.group"
                                             [bindId]="false"
                                             [context]="groupModel"
                                             [group]="control.at(idx)"
-                                            [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                            [hasErrorMessaging]="_model.hasErrorMessages"
+                                            [hidden]="_model.hidden"
                                             [layout]="layout"
-                                            [model]="controlModel"
+                                            [model]="_model"
                                             [templates]="templateList"
-                                            [ngClass]="[getClass('element', 'host', controlModel), getClass('grid', 'host', controlModel)]"
+                                            [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                             (dfBlur)="onBlur($event)"
                                             (dfChange)="onValueChange($event)"
                                             (dfFocus)="onFocus($event)"
@@ -108,23 +109,23 @@
 
             <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-            <ng-container *ngFor="let controlModel of model.group">
+            <ng-container *ngFor="let checkboxModel of model.group">
 
                 <input type="checkbox" class="k-checkbox"
-                       [checked]="controlModel.checked"
-                       [dynamicId]="bindId && controlModel.id"
-                       [formControlName]="controlModel.id"
-                       [indeterminate]="model.indeterminate"
-                       [name]="controlModel.name"
-                       [ngClass]="getClass('element', 'control', controlModel)"
-                       [required]="controlModel.required"
-                       [tabindex]="controlModel.tabIndex"
-                       [value]="controlModel.value"
+                       [checked]="checkboxModel.checked"
+                       [dynamicId]="bindId && checkboxModel.id"
+                       [formControlName]="checkboxModel.id"
+                       [indeterminate]="checkboxModel.indeterminate"
+                       [name]="checkboxModel.name"
+                       [ngClass]="getClass('element', 'control', checkboxModel)"
+                       [required]="checkboxModel.required"
+                       [tabindex]="checkboxModel.tabIndex"
+                       [value]="checkboxModel.value"
                        (blur)="onBlur($event)"
                        (change)="onValueChange($event)"
                        (focus)="onFocus($event)"/>
 
-                <label class="k-checkbox-label" [for]="controlModel.id" [innerHTML]="controlModel.label"></label>
+                <label class="k-checkbox-label" [for]="checkboxModel.id" [innerHTML]="checkboxModel.label"></label>
 
             </ng-container>
 
@@ -195,15 +196,16 @@
         <div *ngSwitchCase="9" role="group"
              [dynamicId]="bindId && model.id"
              [formGroupName]="model.id"
-             [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
-            <dynamic-kendo-form-control *ngFor="let controlModel of model.group"
+            <dynamic-kendo-form-control *ngFor="let _model of model.group"
                                         [group]="control"
-                                        [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                        [hasErrorMessaging]="_model.hasErrorMessages"
+                                        [hidden]="_model.hidden"
                                         [layout]="layout"
-                                        [model]="controlModel"
+                                        [model]="_model"
                                         [templates]="templateList"
-                                        [ngClass]="[getClass('element','host',controlModel), getClass('grid','host',controlModel)]"
+                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                         (dfBlur)="onBlur($event)"
                                         (dfChange)="onValueChange($event)"
                                         (dfFocus)="onFocus($event)"

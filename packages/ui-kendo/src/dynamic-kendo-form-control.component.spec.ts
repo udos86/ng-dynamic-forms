@@ -11,6 +11,7 @@ import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicColorPickerModel,
     DynamicDatePickerModel,
     DynamicEditorModel,
     DynamicFileUploadModel,
@@ -19,6 +20,7 @@ import {
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
@@ -33,6 +35,7 @@ describe("DynamicFormKendoComponent test suite", () => {
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
             new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicColorPickerModel({id: "colorpicker"}),
             new DynamicDatePickerModel({id: "datepicker"}),
             new DynamicEditorModel({id: "editor"}),
             new DynamicFileUploadModel({id: "upload", url: ""}),
@@ -40,13 +43,14 @@ describe("DynamicFormKendoComponent test suite", () => {
             new DynamicFormGroupModel({id: "formGroup", group: []}),
             new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicRatingModel({id: "rating"}),
             new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
             new DynamicSliderModel({id: "slider"}),
             new DynamicSwitchModel({id: "switch"}),
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[9] as DynamicSelectModel<string>,
+        testModel = formModel[11],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicKendoFormControlComponent>,
         component: DynamicKendoFormControlComponent,
@@ -165,7 +169,7 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        testModel.valueUpdates.next("Two");
+        (testModel as DynamicSelectModel<string>).valueUpdates.next("Two");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -187,47 +191,51 @@ describe("DynamicFormKendoComponent test suite", () => {
 
         expect(testFn(formModel[1])).toEqual(KendoFormControlType.CheckboxGroup);
 
-        expect(testFn(formModel[2])).toEqual(KendoFormControlType.DatePicker);
+        expect(testFn(formModel[2])).toBeNull();
 
-        (formModel[2] as DynamicDatePickerModel).inline = true;
-        expect(testFn(formModel[2])).toEqual(KendoFormControlType.Calendar);
+        expect(testFn(formModel[3])).toEqual(KendoFormControlType.DatePicker);
 
-        expect(testFn(formModel[3])).toBeNull();
+        (formModel[3] as DynamicDatePickerModel).inline = true;
+        expect(testFn(formModel[3])).toEqual(KendoFormControlType.Calendar);
 
-        expect(testFn(formModel[4])).toEqual(KendoFormControlType.Upload);
+        expect(testFn(formModel[4])).toBeNull();
 
-        expect(testFn(formModel[5])).toEqual(KendoFormControlType.Array);
+        expect(testFn(formModel[5])).toEqual(KendoFormControlType.Upload);
 
-        expect(testFn(formModel[6])).toEqual(KendoFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(KendoFormControlType.Array);
 
-        expect(testFn(formModel[7])).toEqual(KendoFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(KendoFormControlType.Group);
 
-        (formModel[7] as DynamicInputModel).list = ["test1", "test2", "test3"];
-        expect(testFn(formModel[7])).toEqual(KendoFormControlType.AutoComplete);
+        expect(testFn(formModel[8])).toEqual(KendoFormControlType.Input);
 
-        (formModel[7] as DynamicInputModel).mask = "0000-0000-0000-0000";
-        expect(testFn(formModel[7])).toEqual(KendoFormControlType.MaskedTextBox);
+        (formModel[8] as DynamicInputModel).list = ["test1", "test2", "test3"];
+        expect(testFn(formModel[8])).toEqual(KendoFormControlType.AutoComplete);
 
-        (formModel[7] as DynamicInputModel).inputType = "date";
-        expect(testFn(formModel[7])).toEqual(KendoFormControlType.DateInput);
+        (formModel[8] as DynamicInputModel).mask = "0000-0000-0000-0000";
+        expect(testFn(formModel[8])).toEqual(KendoFormControlType.MaskedTextBox);
 
-        (formModel[7] as DynamicInputModel).inputType = "number";
-        (formModel[7] as DynamicInputModel).mask = null;
-        expect(testFn(formModel[7])).toEqual(KendoFormControlType.NumericTextBox);
+        (formModel[8] as DynamicInputModel).inputType = "date";
+        expect(testFn(formModel[8])).toEqual(KendoFormControlType.DateInput);
 
-        expect(testFn(formModel[8])).toEqual(KendoFormControlType.RadioGroup);
+        (formModel[8] as DynamicInputModel).inputType = "number";
+        (formModel[8] as DynamicInputModel).mask = null;
+        expect(testFn(formModel[8])).toEqual(KendoFormControlType.NumericTextBox);
 
-        expect(testFn(formModel[9])).toEqual(KendoFormControlType.DropDownList);
+        expect(testFn(formModel[9])).toEqual(KendoFormControlType.RadioGroup);
 
-        (formModel[9] as DynamicSelectModel<string>).multiple = true;
-        expect(testFn(formModel[9])).toEqual(KendoFormControlType.MultiSelect);
+        expect(testFn(formModel[10])).toBeNull();
 
-        expect(testFn(formModel[10])).toEqual(KendoFormControlType.Slider);
+        expect(testFn(formModel[11])).toEqual(KendoFormControlType.DropDownList);
 
-        expect(testFn(formModel[11])).toEqual(KendoFormControlType.Switch);
+        (formModel[11] as DynamicSelectModel<string>).multiple = true;
+        expect(testFn(formModel[11])).toEqual(KendoFormControlType.MultiSelect);
 
-        expect(testFn(formModel[12])).toEqual(KendoFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(KendoFormControlType.Slider);
 
-        expect(testFn(formModel[13])).toEqual(KendoFormControlType.TimePicker);
+        expect(testFn(formModel[13])).toEqual(KendoFormControlType.Switch);
+
+        expect(testFn(formModel[14])).toEqual(KendoFormControlType.TextArea);
+
+        expect(testFn(formModel[15])).toEqual(KendoFormControlType.TimePicker);
     });
 });

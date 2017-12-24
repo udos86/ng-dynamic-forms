@@ -51,7 +51,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 npm install @ng-dynamic-forms/core -S
 ```
   
-**2. Choose your [UI library](#ui-modules)** and **install the appropriate package**:
+**2. Choose your [UI library](#ui-modules)** and **install the appropriate package and its peer dependencies**:
 ```
 npm install @ng-dynamic-forms/ui-bootstrap -S
 ```
@@ -80,19 +80,20 @@ System.config({
 **1. Clone the Git repository**:
 ```
 git clone https://github.com/udos86/ng-dynamic-forms.git
+cd ng-dynamic-forms
 ```
 
-**2. Install the npm dependencies**:
+**2. Install the dependencies**:
 ```
 npm install
 ```
 
-**3. Build the library packages**:
+**3. Build the packages**:
 ```
 npm run build:packages
 ```
 
-**4. Transpile the sample code**:
+**4. Transpile the code**:
 ```
 npm run watch:sample
 ```

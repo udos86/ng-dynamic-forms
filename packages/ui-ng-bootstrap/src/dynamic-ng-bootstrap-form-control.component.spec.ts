@@ -9,6 +9,7 @@ import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicColorPickerModel,
     DynamicDatePickerModel,
     DynamicEditorModel,
     DynamicFileUploadModel,
@@ -17,6 +18,7 @@ import {
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
@@ -33,6 +35,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
             new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicColorPickerModel({id: "colorpicker"}),
             new DynamicDatePickerModel({id: "datepicker"}),
             new DynamicEditorModel({id: "editor"}),
             new DynamicFileUploadModel({id: "upload", url: ""}),
@@ -40,13 +43,14 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
             new DynamicFormGroupModel({id: "formGroup", group: []}),
             new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicRatingModel({id: "rating"}),
             new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
             new DynamicSliderModel({id: "slider"}),
             new DynamicSwitchModel({id: "switch"}),
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[7] as DynamicInputModel,
+        testModel = formModel[8],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicNGBootstrapFormControlComponent>,
         component: DynamicNGBootstrapFormControlComponent,
@@ -167,7 +171,7 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        testModel.valueUpdates.next("test");
+        (testModel as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -189,31 +193,35 @@ describe("DynamicFormNGBootstrapComponent test suite", () => {
 
         expect(testFn(formModel[1])).toEqual(NGBootstrapFormControlType.CheckboxGroup);
 
-        expect(testFn(formModel[2])).toEqual(NGBootstrapFormControlType.DatePicker);
+        expect(testFn(formModel[2])).toBeNull();
 
-        (formModel[2] as DynamicDatePickerModel).inline = true;
-        expect(testFn(formModel[2])).toEqual(NGBootstrapFormControlType.Calendar);
+        expect(testFn(formModel[3])).toEqual(NGBootstrapFormControlType.DatePicker);
 
-        expect(testFn(formModel[3])).toBeNull();
+        (formModel[3] as DynamicDatePickerModel).inline = true;
+        expect(testFn(formModel[3])).toEqual(NGBootstrapFormControlType.Calendar);
 
         expect(testFn(formModel[4])).toBeNull();
 
-        expect(testFn(formModel[5])).toEqual(NGBootstrapFormControlType.Array);
+        expect(testFn(formModel[5])).toBeNull();
 
-        expect(testFn(formModel[6])).toEqual(NGBootstrapFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(NGBootstrapFormControlType.Array);
 
-        expect(testFn(formModel[7])).toEqual(NGBootstrapFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(NGBootstrapFormControlType.Group);
 
-        expect(testFn(formModel[8])).toEqual(NGBootstrapFormControlType.RadioGroup);
+        expect(testFn(formModel[8])).toEqual(NGBootstrapFormControlType.Input);
 
-        expect(testFn(formModel[9])).toEqual(NGBootstrapFormControlType.Select);
+        expect(testFn(formModel[9])).toEqual(NGBootstrapFormControlType.RadioGroup);
 
         expect(testFn(formModel[10])).toBeNull();
 
-        expect(testFn(formModel[11])).toBeNull();
+        expect(testFn(formModel[11])).toEqual(NGBootstrapFormControlType.Select);
 
-        expect(testFn(formModel[12])).toEqual(NGBootstrapFormControlType.TextArea);
+        expect(testFn(formModel[12])).toBeNull();
 
-        expect(testFn(formModel[13])).toEqual(NGBootstrapFormControlType.TimePicker);
+        expect(testFn(formModel[13])).toBeNull();
+
+        expect(testFn(formModel[14])).toEqual(NGBootstrapFormControlType.TextArea);
+
+        expect(testFn(formModel[15])).toEqual(NGBootstrapFormControlType.TimePicker);
     });
 });
