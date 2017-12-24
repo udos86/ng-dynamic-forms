@@ -20,6 +20,7 @@ import {
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
+    DynamicColorPickerModel,
     DynamicDatePickerModel,
     DynamicEditorModel,
     DynamicFileUploadModel,
@@ -28,6 +29,7 @@ import {
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicSliderModel,
     DynamicSwitchModel,
@@ -42,6 +44,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
             new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+            new DynamicColorPickerModel({id: "colorpicker"}),
             new DynamicDatePickerModel({id: "datepicker"}),
             new DynamicEditorModel({id: "editor"}),
             new DynamicFileUploadModel({id: "upload", url: ""}),
@@ -49,13 +52,14 @@ describe("DynamicFormMaterialComponent test suite", () => {
             new DynamicFormGroupModel({id: "formGroup", group: []}),
             new DynamicInputModel({id: "input", maxLength: 51}),
             new DynamicRadioGroupModel({id: "radioGroup"}),
+            new DynamicRatingModel({id: "rating"}),
             new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
             new DynamicSliderModel({id: "slider"}),
             new DynamicSwitchModel({id: "switch"}),
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[7] as DynamicInputModel,
+        testModel = formModel[8],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicMaterialFormControlComponent>,
         component: DynamicMaterialFormControlComponent,
@@ -197,7 +201,7 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        testModel.valueUpdates.next("test");
+        (testModel  as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -219,31 +223,35 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         expect(testFn(formModel[1])).toEqual(MatFormControlType.Group);
 
-        expect(testFn(formModel[2])).toEqual(MatFormControlType.DatePicker);
+        expect(testFn(formModel[2])).toBeNull();
 
-        expect(testFn(formModel[3])).toBeNull();
+        expect(testFn(formModel[3])).toEqual(MatFormControlType.DatePicker);
 
         expect(testFn(formModel[4])).toBeNull();
 
-        expect(testFn(formModel[5])).toEqual(MatFormControlType.Array);
+        expect(testFn(formModel[5])).toBeNull();
 
-        expect(testFn(formModel[6])).toEqual(MatFormControlType.Group);
+        expect(testFn(formModel[6])).toEqual(MatFormControlType.Array);
 
-        expect(testFn(formModel[7])).toEqual(MatFormControlType.Input);
+        expect(testFn(formModel[7])).toEqual(MatFormControlType.Group);
 
-        (formModel[7] as DynamicInputModel).multiple = true;
-        expect(testFn(formModel[7])).toEqual(MatFormControlType.Chips);
+        expect(testFn(formModel[8])).toEqual(MatFormControlType.Input);
 
-        expect(testFn(formModel[8])).toEqual(MatFormControlType.RadioGroup);
+        (formModel[8] as DynamicInputModel).multiple = true;
+        expect(testFn(formModel[8])).toEqual(MatFormControlType.Chips);
 
-        expect(testFn(formModel[9])).toEqual(MatFormControlType.Select);
+        expect(testFn(formModel[9])).toEqual(MatFormControlType.RadioGroup);
 
-        expect(testFn(formModel[10])).toEqual(MatFormControlType.Slider);
+        expect(testFn(formModel[10])).toBeNull();
 
-        expect(testFn(formModel[11])).toEqual(MatFormControlType.SlideToggle);
+        expect(testFn(formModel[11])).toEqual(MatFormControlType.Select);
 
-        expect(testFn(formModel[12])).toEqual(MatFormControlType.TextArea);
+        expect(testFn(formModel[12])).toEqual(MatFormControlType.Slider);
 
-        expect(testFn(formModel[13])).toBeNull();
+        expect(testFn(formModel[13])).toEqual(MatFormControlType.SlideToggle);
+
+        expect(testFn(formModel[14])).toEqual(MatFormControlType.TextArea);
+
+        expect(testFn(formModel[15])).toBeNull();
     });
 });
