@@ -1,3 +1,11 @@
+# 5.4.1
+
+### **Features** 
+
+* `hidden` property added to `DynamicFormControlModel` for hiding form controls 
+
+***
+
 # 5.4.0 - Special Xmas Gift Edition
 
 ### **Features** 
