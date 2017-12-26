@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",
@@ -94,10 +94,10 @@
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.2",
     "gulp-tslint": "^8.1.2",
-    "gulp-typedoc": "^2.1.1",
+    "gulp-typedoc": "^2.1.2",
     "gulp-typescript": "^3.2.3",
     "gulp-util": "^3.0.8",
-    "html-minifier": "^3.5.7",
+    "html-minifier": "^3.5.8",
     "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^1.7.1",
