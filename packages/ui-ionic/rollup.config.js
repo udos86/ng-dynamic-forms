@@ -14,11 +14,11 @@ export default {
         format: format,
         name: "ngDF.ionicUI",
         globals: globals,
-        sourcemap: true
+        sourcemap: true,
+        exports: "named",
+        banner: utils.getBanner(packageJson)
     },
-    banner: utils.getBanner(packageJson),
     context: "this",
-    exports: "named",
     external: Object.keys(globals),
     plugins: utils.getRollupPlugins(minify)
 };
