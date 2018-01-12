@@ -4,6 +4,8 @@ node_js:
   - "node"
 addons:
   chrome: stable
+before_install:
+  - google-chrome-stable --headless --disable-gpu --no-sandbox
 script:
   - npm run build:packages
   - npm run tests:unit
