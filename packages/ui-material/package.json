@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-material",
-  "version": "5.4.1",
+  "version": "5.4.2",
   "description": "Material UI package for NG Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
   "module": "./@ng-dynamic-forms/ui-material.es.js",
@@ -34,7 +34,7 @@
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/material": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.1",
+    "@ng-dynamic-forms/core": "^5.4.2",
     "rxjs": "^5.5.2"
   }
 }

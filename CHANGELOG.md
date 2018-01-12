@@ -1,3 +1,16 @@
+# 5.4.2
+
+### **Features** 
+
+* `maxLength` attribute added to Material textarea control
+* upgrade to NG Bootstrap `beta.9`
+
+### **Bugfixes** 
+
+* minlength and maxlength error messages are now created correctly (closes [#647](https://github.com/udos86/ng-dynamic-forms/issues/647))
+
+***
+
 # 5.4.1
 
 ### **Features** 

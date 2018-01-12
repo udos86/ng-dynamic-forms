@@ -162,9 +162,10 @@ describe("DynamicFormValidationService test suite", () => {
             testControl: FormControl = new FormControl(),
             testModel: DynamicFormControlModel = new DynamicInputModel({
                 id: "testModel",
+                minLength: 5,
                 errorMessages: {
                     required: "Field is required",
-                    minLength: 5,
+                    minLength: "Field must contain at least {{ minLength }} characters",
                     custom1: "Field {{ id }} has a custom error",
                     custom2: "Field has a custom error: {{ validator.param }}"
                 }
@@ -176,8 +177,9 @@ describe("DynamicFormValidationService test suite", () => {
         testControl.setErrors({required: true, minlength: 5});
 
         errorMessages = service.createErrorMessages(testControl, testModel);
-        expect(errorMessages.length).toBe(1);
+        expect(errorMessages.length).toBe(2);
         expect(errorMessages[0]).toEqual((testModel.errorMessages as any)["required"]);
+        expect(errorMessages[1]).toEqual("Field must contain at least 5 characters");
 
         testControl.setErrors({custom1: true});
 

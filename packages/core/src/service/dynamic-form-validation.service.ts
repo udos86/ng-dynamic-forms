@@ -169,7 +169,7 @@ export class DynamicFormValidationService {
                 let messageKey = validationErrorKey;
 
                 if (validationErrorKey === "minlength" || validationErrorKey === "maxlength") {
-                    messageKey.replace("length", "Length");
+                    messageKey = messageKey.replace("length", "Length");
                 }
 
                 if (messagesConfig.hasOwnProperty(messageKey)) {
