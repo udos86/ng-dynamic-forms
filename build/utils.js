@@ -69,6 +69,8 @@ const utils = {
             "angular2-text-mask": "angular2-text-mask",
             "ionic-angular": "ionic-angular",
             "ionic-angular/index": "ionic-angular",
+            "ngx-bootstrap/datepicker": "ngx-bootstrap.umd",
+            "ngx-bootstrap/timepicker": "ngx-bootstrap.umd",
             "primeng/primeng": "primeng/primeng",
             "rxjs/BehaviorSubject": "Rx.BehaviorSubject",
             "rxjs/Observable": "Rx.Observable",

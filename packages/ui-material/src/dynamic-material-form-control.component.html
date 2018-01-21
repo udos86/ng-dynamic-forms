@@ -162,7 +162,8 @@
 
             <mat-form-field [color]="getAdditional('color', 'primary')"
                             [ngClass]="getClass('grid','control')"
-                            [floatLabel]="getAdditional('floatLabel', 'auto')">
+                            [floatLabel]="getAdditional('floatLabel', 'auto')"
+                            [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}">
 
                 <ng-container *ngIf="model.label" ngProjectAs="mat-label">
                     <mat-label>{{ model.label }}</mat-label>
