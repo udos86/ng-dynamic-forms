@@ -6,7 +6,6 @@ const TASK_BUNDLE              = require("./build/tasks/bundle"),
       TASK_CLEAN               = require("./build/tasks/clean"),
       TASK_COPY                = require("./build/tasks/copy"),
       TASK_NGC                 = require("./build/tasks/ngc"),
-      TASK_DELETE_LINES        = require("./build/tasks/delete-lines"),
       TASK_INLINE_NG_TEMPLATES = require("./build/tasks/inline-ng-templates"),
       TASK_PREPROCESS          = require("./build/tasks/preprocess"),
       TASK_TRANSPILE           = require("./build/tasks/transpile"),
@@ -39,18 +38,21 @@ const NPM_SCOPE      = "@ng-dynamic-forms",
  */
 PACKAGES_NAMES.forEach(packageName => {
 
-    const PACKAGE_SRC_PATH  = `${SRC_PATH}/${packageName}`,
-          PACKAGE_DIST_PATH = `${DIST_PATH}/${packageName}`;
+    const PACKAGE_SRC_PATH        = `${SRC_PATH}/${packageName}`,
+          PACKAGE_TMP_ES5_PATH    = `${DIST_BASE_PATH}/es5/${packageName}`,
+          PACKAGE_TMP_ES2015_PATH = `${DIST_BASE_PATH}/es2015/${packageName}`,
+          PACKAGE_DIST_PATH       = `${DIST_PATH}/${packageName}`;
 
     const TASK_NAME_LINT                = `lint:${packageName}`,
           TASK_NAME_CLEAN               = `clean:${packageName}`,
-          TASK_NAME_COMPILE             = `compile:${packageName}`,
+          TASK_NAME_COMPILE_ES5         = `compile-es5:${packageName}`,
+          TASK_NAME_COMPILE_ES2015      = `compile-es2015:${packageName}`,
           TASK_NAME_COPY                = `copy:${packageName}`,
+          TASK_NAME_COPY_ASSETS_ES5     = `copy-assets-es5:${packageName}`,
+          TASK_NAME_COPY_ASSETS_ES2015  = `copy-assets-es2015:${packageName}`,
           TASK_NAME_PREPROCESS          = `preprocess:${packageName}`,
           TASK_NAME_INLINE_NG_TEMPLATES = `inline-ng-templates:${packageName}`,
           TASK_NAME_BUNDLE              = `bundle:${packageName}`,
-          TASK_NAME_REMOVE_MODULE_ID    = `remove-module-id:${packageName}`,
-          TASK_NAME_CLEANUP             = `cleanup:${packageName}`,
           TASK_NAME_DOC                 = `doc:${packageName}`,
           TASK_NAME_BUILD               = `build:${packageName}`;
 
@@ -60,26 +62,29 @@ PACKAGES_NAMES.forEach(packageName => {
     gulp.task(TASK_NAME_CLEAN,
         TASK_CLEAN([`${PACKAGE_DIST_PATH}/**/*`]));
 
-    gulp.task(TASK_NAME_COMPILE,
-        TASK_NGC(`${PACKAGE_SRC_PATH}/tsconfig.json`));
+    gulp.task(TASK_NAME_COMPILE_ES5,
+        TASK_NGC(`${PACKAGE_SRC_PATH}/tsconfig.fesm5.json`));
+
+    gulp.task(TASK_NAME_COMPILE_ES2015,
+        TASK_NGC(`${PACKAGE_SRC_PATH}/tsconfig.fesm2015.json`));
+
+    gulp.task(TASK_NAME_COPY_ASSETS_ES5,
+        TASK_COPY([`${PACKAGE_SRC_PATH}/**/*.@(html|css)`], PACKAGE_TMP_ES5_PATH));
+
+    gulp.task(TASK_NAME_COPY_ASSETS_ES2015,
+        TASK_COPY([`${PACKAGE_SRC_PATH}/**/*.@(html|css)`], PACKAGE_TMP_ES2015_PATH));
 
     gulp.task(TASK_NAME_COPY,
-        TASK_COPY([`${PACKAGE_SRC_PATH}/package.json`, `${PACKAGE_SRC_PATH}/**/*.@(html|md)`], PACKAGE_DIST_PATH));
+        TASK_COPY([`${PACKAGE_SRC_PATH}/package.json`, `${PACKAGE_SRC_PATH}/README.md`, `${PACKAGE_TMP_ES2015_PATH}/**/*.@(d.ts|metadata.json)`], PACKAGE_DIST_PATH));
 
     gulp.task(TASK_NAME_PREPROCESS,
-        TASK_PREPROCESS(`${PACKAGE_DIST_PATH}/**/*.js`, PACKAGE_DIST_PATH));
+        TASK_PREPROCESS([`${PACKAGE_TMP_ES5_PATH}/**/*.js`, `${PACKAGE_TMP_ES2015_PATH}/**/*.js`]));
 
     gulp.task(TASK_NAME_INLINE_NG_TEMPLATES,
-        TASK_INLINE_NG_TEMPLATES([`${PACKAGE_DIST_PATH}/**/*.js`], PACKAGE_DIST_PATH));
+        TASK_INLINE_NG_TEMPLATES([`${PACKAGE_TMP_ES5_PATH}/**/*.js`, `${PACKAGE_TMP_ES2015_PATH}/**/*.js`]));
 
     gulp.task(TASK_NAME_BUNDLE,
         TASK_BUNDLE(`${PACKAGE_SRC_PATH}/rollup.config.js`));
-
-    gulp.task(TASK_NAME_REMOVE_MODULE_ID,
-        TASK_DELETE_LINES([`${PACKAGE_DIST_PATH}/**/*`], PACKAGE_DIST_PATH, [/moduleId: module.id/]));
-
-    gulp.task(TASK_NAME_CLEANUP,
-        TASK_CLEAN([`${PACKAGE_DIST_PATH}/*.js?(.map)`, `${PACKAGE_DIST_PATH}/src/**/*.js?(.map)`]));
 
     gulp.task(TASK_NAME_DOC,
         TASK_TYPEDOC([`${PACKAGE_SRC_PATH}/src/**/!(*.spec).ts`], {
@@ -102,13 +107,14 @@ PACKAGES_NAMES.forEach(packageName => {
         runSequence(
             TASK_NAME_LINT,
             TASK_NAME_CLEAN,
-            TASK_NAME_COMPILE,
+            TASK_NAME_COMPILE_ES5,
+            TASK_NAME_COMPILE_ES2015,
+            TASK_NAME_COPY_ASSETS_ES5,
+            TASK_NAME_COPY_ASSETS_ES2015,
             TASK_NAME_COPY,
             TASK_NAME_PREPROCESS,
             TASK_NAME_INLINE_NG_TEMPLATES,
             TASK_NAME_BUNDLE,
-            TASK_NAME_REMOVE_MODULE_ID,
-            TASK_NAME_CLEANUP,
             done
         );
     });

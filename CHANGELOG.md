@@ -3,7 +3,7 @@
 ### **Features** 
 
 * initial text mask support for Material UI package (closes [#510](https://github.com/udos86/ng-dynamic-forms/issues/510))
-* `pattern` binding added to ion input (closes [#645](https://github.com/udos86/ng-dynamic-forms/issues/645)))
+* `pattern` binding added to ion input (closes [#645](https://github.com/udos86/ng-dynamic-forms/issues/645))
 * upgrade to ngx-bootstrap `2.0.0`
 
 ***
