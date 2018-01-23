@@ -3,7 +3,8 @@
   "version": "5.4.3",
   "description": "Basic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
-  "module": "./@ng-dynamic-forms/ui-basic.es.js",
+  "module": "./es5/ui-basic.js",
+  "es2015": "./esm2015/ui-basic.js",
   "typings": "./ui-basic.d.ts",
   "keywords": [
     "angular",

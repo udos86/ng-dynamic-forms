@@ -1,8 +1,12 @@
 {
-  "extends": "../tsconfig.fesm5.json",
+  "extends": "../tsconfig.json",
   "files": [
     "./public_api.ts"
   ],
+  "compilerOptions": {
+    "target": "es2015",
+    "outDir": "../../dist/es2015"
+  },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
     "flatModuleId": "@ng-dynamic-forms/ui-material",

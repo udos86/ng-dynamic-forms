@@ -4,13 +4,14 @@ const path        = require("path"),
 
 const format  = utils.getRollupFormat(process.argv),
       globals = utils.getRollupGlobals(),
+      target  = utils.getTarget(process.argv),
       minify  = utils.hasMinifyFlag(process.argv);
 
 export default {
 
-    input: utils.getRollupInputPath(packageJson),
+    input: utils.getRollupInputPath(packageJson, target),
     output: {
-        file: utils.getRollupOutputPath(packageJson, format, minify),
+        file: utils.getRollupOutputPath(packageJson, format, target, minify),
         format: format,
         name: "ngDF.bootstrapUI",
         globals: globals,

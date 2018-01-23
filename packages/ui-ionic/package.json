@@ -3,7 +3,8 @@
   "version": "5.4.3",
   "description": "Ionic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-ionic.umd.js",
-  "module": "./@ng-dynamic-forms/ui-ionic.es.js",
+  "module": "./esm5/ui-ionic.js",
+  "es2015": "./esm2015/ui-ionic.js",
   "typings": "./ui-ionic.d.ts",
   "keywords": [
     "angular",

@@ -3,7 +3,8 @@
   "version": "5.4.3",
   "description": "Foundation UI package for NG Dynamic Forms",
   "main": "./bundles/ui-foundation.umd.js",
-  "module": "./@ng-dynamic-forms/ui-foundation.es.js",
+  "module": "./esm5/ui-foundation.js",
+  "es2015": "./esm2015/ui-foundation.js",
   "typings": "./ui-foundation.d.ts",
   "keywords": [
     "angular",

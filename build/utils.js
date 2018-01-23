@@ -12,24 +12,29 @@ const utils = {
         return !!argv.includes("--minify");
     },
 
+    getTarget: argv => {
+        return argv[argv.indexOf("--target") + 1];
+    },
+
     getBanner: packageJson => {
         return `/*!\n${packageJson.name} ${packageJson.version} ${dateFormat(Date.now(), "UTC:yyyy-mm-dd HH:MM")} UTC\n${license}\n*/`;
     },
 
-    getRollupInputPath: packageJson => {
+    getRollupInputPath: (packageJson, target) => {
 
-        let pkgNameSplit = packageJson.name.split("/");
+        let moduleName = packageJson.name.split("/").pop();
 
-        return `./dist/${packageJson.name}/src/${pkgNameSplit[pkgNameSplit.length - 1]}.js`;
+        return `./dist/${target}/${moduleName}/src/${moduleName}.js`;
     },
 
-    getRollupOutputPath: (packageJson, format, minify) => {
+    getRollupOutputPath: (packageJson, format, target, minify) => {
 
-        let pkgNameSplit  = packageJson.name.split("/"),
-            bundleFolder  = format === "umd" ? "bundles" : "@ng-dynamic-forms",
+        let moduleName  = packageJson.name.split("/").pop(),
+            bundleFolder  = format === "umd" ? "bundles" : `${target.slice(0, 2)}m${target.slice(2)}`,
+            formatExtension = format === "umd" ? ".umd" : "",
             fileExtension = minify ? "min." : "";
 
-        return `./dist/${packageJson.name}/${bundleFolder}/${pkgNameSplit[pkgNameSplit.length - 1]}.${format}.${fileExtension}js`;
+        return `./dist/${packageJson.name}/${bundleFolder}/${moduleName}${formatExtension}.${fileExtension}js`;
     },
 
     getRollupPlugins: minify => {

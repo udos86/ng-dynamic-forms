@@ -3,7 +3,8 @@
   "version": "5.4.3",
   "description": "Bootstrap UI package for NG Dynamic Forms",
   "main": "./bundles/ui-bootstrap.umd.js",
-  "module": "./@ng-dynamic-forms/ui-bootstrap.es.js",
+  "module": "./esm5/ui-bootstrap.js",
+  "es2015": "./esm2015/ui-bootstrap.js",
   "typings": "./ui-bootstrap.d.ts",
   "keywords": [
     "angular",

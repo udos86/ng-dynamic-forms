@@ -3,7 +3,8 @@
   "version": "5.4.3",
   "description": "Material UI package for NG Dynamic Forms",
   "main": "./bundles/ui-material.umd.js",
-  "module": "./@ng-dynamic-forms/ui-material.es.js",
+  "module": "./esm5/ui-material.js",
+  "es2015": "./esm2015/ui-material.js",
   "typings": "./ui-material.d.ts",
   "keywords": [
     "angular",

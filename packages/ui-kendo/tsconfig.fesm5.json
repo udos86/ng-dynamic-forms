@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "files": [
+    "./public_api.ts"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../../dist/es5"
+  },
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "@ng-dynamic-forms/ui-kendo",
+    "flatModuleOutFile": "ui-kendo.js",
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  }
+}
