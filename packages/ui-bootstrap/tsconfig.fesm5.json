@@ -1,11 +1,11 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../../tsconfig.json",
   "files": [
     "./public_api.ts"
   ],
   "compilerOptions": {
     "target": "es5",
-    "outDir": "../../dist/es5"
+    "outDir": "."
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

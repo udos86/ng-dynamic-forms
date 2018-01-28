@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-ionic",
-  "version": "5.4.3",
+  "version": "5.4.4",
   "description": "Ionic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-ionic.umd.js",
   "module": "./esm5/ui-ionic.js",
@@ -34,7 +34,7 @@
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.3",
+    "@ng-dynamic-forms/core": "^5.4.4",
     "angular2-text-mask": "^8.0.1",
     "ionic-angular": "^3.0.1",
     "rxjs": "^5.5.2"

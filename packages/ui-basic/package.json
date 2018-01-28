@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-basic",
-  "version": "5.4.3",
+  "version": "5.4.4",
   "description": "Basic UI package for NG Dynamic Forms",
   "main": "./bundles/ui-basic.umd.js",
   "module": "./es5/ui-basic.js",
@@ -33,7 +33,7 @@
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.3",
+    "@ng-dynamic-forms/core": "^5.4.4",
     "angular2-text-mask": "^8.0.1",
     "rxjs": "^5.5.2"
   }

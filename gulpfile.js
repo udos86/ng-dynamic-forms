@@ -45,13 +45,13 @@ PACKAGES_NAMES.forEach(packageName => {
 
     const TASK_NAME_LINT                = `lint:${packageName}`,
           TASK_NAME_CLEAN               = `clean:${packageName}`,
+          TASK_NAME_COPY_ES5            = `copy-es5:${packageName}`,
+          TASK_NAME_COPY_ES2015         = `copy-es2015:${packageName}`,
+          TASK_NAME_INLINE_NG_TEMPLATES = `inline-ng-templates:${packageName}`,
           TASK_NAME_COMPILE_ES5         = `compile-es5:${packageName}`,
           TASK_NAME_COMPILE_ES2015      = `compile-es2015:${packageName}`,
-          TASK_NAME_COPY                = `copy:${packageName}`,
-          TASK_NAME_COPY_ASSETS_ES5     = `copy-assets-es5:${packageName}`,
-          TASK_NAME_COPY_ASSETS_ES2015  = `copy-assets-es2015:${packageName}`,
           TASK_NAME_PREPROCESS          = `preprocess:${packageName}`,
-          TASK_NAME_INLINE_NG_TEMPLATES = `inline-ng-templates:${packageName}`,
+          TASK_NAME_COPY                = `copy:${packageName}`,
           TASK_NAME_BUNDLE              = `bundle:${packageName}`,
           TASK_NAME_DOC                 = `doc:${packageName}`,
           TASK_NAME_BUILD               = `build:${packageName}`;
@@ -62,26 +62,26 @@ PACKAGES_NAMES.forEach(packageName => {
     gulp.task(TASK_NAME_CLEAN,
         TASK_CLEAN([`${PACKAGE_DIST_PATH}/**/*`]));
 
+    gulp.task(TASK_NAME_COPY_ES5,
+        TASK_COPY([`${PACKAGE_SRC_PATH}/**/*`], PACKAGE_TMP_ES5_PATH));
+
+    gulp.task(TASK_NAME_COPY_ES2015,
+        TASK_COPY([`${PACKAGE_SRC_PATH}/**/*`], PACKAGE_TMP_ES2015_PATH));
+
+    gulp.task(TASK_NAME_INLINE_NG_TEMPLATES,
+        TASK_INLINE_NG_TEMPLATES([`${PACKAGE_TMP_ES5_PATH}/**/*.ts`, `${PACKAGE_TMP_ES2015_PATH}/**/*.ts`]));
+
     gulp.task(TASK_NAME_COMPILE_ES5,
-        TASK_NGC(`${PACKAGE_SRC_PATH}/tsconfig.fesm5.json`));
+        TASK_NGC(`${PACKAGE_TMP_ES5_PATH}/tsconfig.fesm5.json`));
 
     gulp.task(TASK_NAME_COMPILE_ES2015,
-        TASK_NGC(`${PACKAGE_SRC_PATH}/tsconfig.fesm2015.json`));
-
-    gulp.task(TASK_NAME_COPY_ASSETS_ES5,
-        TASK_COPY([`${PACKAGE_SRC_PATH}/**/*.@(html|css)`], PACKAGE_TMP_ES5_PATH));
-
-    gulp.task(TASK_NAME_COPY_ASSETS_ES2015,
-        TASK_COPY([`${PACKAGE_SRC_PATH}/**/*.@(html|css)`], PACKAGE_TMP_ES2015_PATH));
-
-    gulp.task(TASK_NAME_COPY,
-        TASK_COPY([`${PACKAGE_SRC_PATH}/package.json`, `${PACKAGE_SRC_PATH}/README.md`, `${PACKAGE_TMP_ES2015_PATH}/**/*.@(d.ts|metadata.json)`], PACKAGE_DIST_PATH));
+        TASK_NGC(`${PACKAGE_TMP_ES2015_PATH}/tsconfig.fesm2015.json`));
 
     gulp.task(TASK_NAME_PREPROCESS,
         TASK_PREPROCESS([`${PACKAGE_TMP_ES5_PATH}/**/*.js`, `${PACKAGE_TMP_ES2015_PATH}/**/*.js`]));
 
-    gulp.task(TASK_NAME_INLINE_NG_TEMPLATES,
-        TASK_INLINE_NG_TEMPLATES([`${PACKAGE_TMP_ES5_PATH}/**/*.js`, `${PACKAGE_TMP_ES2015_PATH}/**/*.js`]));
+    gulp.task(TASK_NAME_COPY,
+        TASK_COPY([`${PACKAGE_TMP_ES2015_PATH}/package.json`, `${PACKAGE_TMP_ES2015_PATH}/README.md`, `${PACKAGE_TMP_ES2015_PATH}/**/*.@(d.ts|metadata.json)`], PACKAGE_DIST_PATH));
 
     gulp.task(TASK_NAME_BUNDLE,
         TASK_BUNDLE(`${PACKAGE_SRC_PATH}/rollup.config.js`));
@@ -107,13 +107,13 @@ PACKAGES_NAMES.forEach(packageName => {
         runSequence(
             TASK_NAME_LINT,
             TASK_NAME_CLEAN,
+            TASK_NAME_COPY_ES5,
+            TASK_NAME_COPY_ES2015,
+            TASK_NAME_INLINE_NG_TEMPLATES,
             TASK_NAME_COMPILE_ES5,
             TASK_NAME_COMPILE_ES2015,
-            TASK_NAME_COPY_ASSETS_ES5,
-            TASK_NAME_COPY_ASSETS_ES2015,
-            TASK_NAME_COPY,
             TASK_NAME_PREPROCESS,
-            TASK_NAME_INLINE_NG_TEMPLATES,
+            TASK_NAME_COPY,
             TASK_NAME_BUNDLE,
             done
         );
