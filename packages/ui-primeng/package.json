@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "5.4.3",
+  "version": "5.4.4",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "main": "./bundles/ui-primeng.umd.js",
   "module": "./esm5/ui-primeng.js",
@@ -34,7 +34,7 @@
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.3",
+    "@ng-dynamic-forms/core": "^5.4.4",
     "primeng": "^5.0.0",
     "rxjs": "^5.5.2"
   },

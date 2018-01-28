@@ -1,3 +1,12 @@
+# 5.4.4
+
+### **Features** 
+
+* full support for Angular Package Format v5.0
+* upgrade to NG Bootstrap `1.0.0` stable
+
+***
+
 # 5.4.3
 
 ### **Features** 

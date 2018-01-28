@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-bootstrap",
-  "version": "5.4.3",
+  "version": "5.4.4",
   "description": "Bootstrap UI package for NG Dynamic Forms",
   "main": "./bundles/ui-bootstrap.umd.js",
   "module": "./esm5/ui-bootstrap.js",
@@ -35,7 +35,7 @@
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/common": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.3",
+    "@ng-dynamic-forms/core": "^5.4.4",
     "angular2-text-mask": "^8.0.1",
     "bootstrap": "^3.3.7",
     "ngx-bootstrap": "^2.0.0",
