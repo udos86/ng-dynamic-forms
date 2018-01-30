@@ -7,3 +7,4 @@ addons:
 script:
   - npm run build:packages
   - npm run tests:unit
+  - npm run build:sample
