@@ -29,10 +29,10 @@ const utils = {
 
     getRollupOutputPath: (packageJson, format, target, minify) => {
 
-        let moduleName  = packageJson.name.split("/").pop(),
-            bundleFolder  = format === "umd" ? "bundles" : `${target.slice(0, 2)}m${target.slice(2)}`,
+        let moduleName      = packageJson.name.split("/").pop(),
+            bundleFolder    = format === "umd" ? "bundles" : `${target.slice(0, 2)}m${target.slice(2)}`,
             formatExtension = format === "umd" ? ".umd" : "",
-            fileExtension = minify ? "min." : "";
+            fileExtension   = minify ? "min." : "";
 
         return `./dist/${packageJson.name}/${bundleFolder}/${moduleName}${formatExtension}.${fileExtension}js`;
     },
@@ -88,6 +88,31 @@ const utils = {
             "rxjs/operator/observeOn": "rxjs/operator/observeOn",
             "rxjs/operator/scan": "rxjs/operator/scan",
             "rxjs/scheduler/queue": "rxjs/scheduler/queue"
+        };
+    },
+
+    getRollupConfig(packageJson, name) {
+
+        const format  = utils.getRollupFormat(process.argv),
+              globals = utils.getRollupGlobals(),
+              target  = utils.getTarget(process.argv),
+              minify  = utils.hasMinifyFlag(process.argv);
+
+        return {
+
+            input: utils.getRollupInputPath(packageJson, target),
+            output: {
+                file: utils.getRollupOutputPath(packageJson, format, target, minify),
+                format: format,
+                name: name,
+                globals: globals,
+                sourcemap: true,
+                exports: "named",
+                banner: utils.getBanner(packageJson)
+            },
+            context: "this",
+            external: Object.keys(globals),
+            plugins: utils.getRollupPlugins(minify),
         };
     }
 };
