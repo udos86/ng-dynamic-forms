@@ -2,16 +2,16 @@ const gulp        = require("gulp"),
       runSequence = require("run-sequence"),
       pkg         = require("./package.json");
 
-const TASK_BUNDLE              = require("./build/tasks/bundle"),
-      TASK_CLEAN               = require("./build/tasks/clean"),
-      TASK_COPY                = require("./build/tasks/copy"),
-      TASK_NGC                 = require("./build/tasks/ngc"),
-      TASK_INLINE_NG_TEMPLATES = require("./build/tasks/inline-ng-templates"),
-      TASK_PREPROCESS          = require("./build/tasks/preprocess"),
-      TASK_TRANSPILE           = require("./build/tasks/transpile"),
-      TASK_TSLINT              = require("./build/tasks/tslint"),
-      TASK_TYPEDOC             = require("./build/tasks/typedoc"),
-      TASK_VERSION             = require("./build/tasks/version");
+const TASK_BUNDLE              = require("./build/gulp/bundle"),
+      TASK_CLEAN               = require("./build/gulp/clean"),
+      TASK_COPY                = require("./build/gulp/copy"),
+      TASK_NGC                 = require("./build/gulp/ngc"),
+      TASK_INLINE_NG_TEMPLATES = require("./build/gulp/inline-ng-templates"),
+      TASK_PREPROCESS          = require("./build/gulp/preprocess"),
+      TASK_TRANSPILE           = require("./build/gulp/transpile"),
+      TASK_TSLINT              = require("./build/gulp/tslint"),
+      TASK_TYPEDOC             = require("./build/gulp/typedoc"),
+      TASK_VERSION             = require("./build/gulp/version");
 
 const NPM_SCOPE      = "@ng-dynamic-forms",
       SRC_PATH       = "./packages",

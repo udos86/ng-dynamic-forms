@@ -2,7 +2,7 @@ const gulp    = require("gulp"),
       replace = require("gulp-replace"),
       util    = require("gulp-util");
 
-module.exports = function (pkg, src, type, dest) {
+module.exports = (pkg, src, type, dest) => {
 
     function replaceVersionString(match, $1, $2, $3) {
 
@@ -29,7 +29,7 @@ module.exports = function (pkg, src, type, dest) {
         return versionString;
     }
 
-    return function () {
+    return () => {
 
         let regExVersionString   = /(\d+).(\d+).(\d+)/,
             regExVersionField    = /("version":\s)"\d+.\d+.\d+"/,
