@@ -77,8 +77,8 @@
     <ion-item *ngIf="type !== 1 && type !== 4 && type !== 6" [ngSwitch]="type">
 
         <ion-label *ngIf="model.label !== null"
-                   [innerHTML]="model.label"
-                   [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
+                   [floating]="model.floating"
+                   [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">{{ model.label | translate}}</ion-label>
 
         <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <ion-checkbox *ngSwitchCase="2"
@@ -101,7 +101,7 @@
                       [min]="model.min"
                       [ngClass]="getClass('element', 'control')"
                       [pickerFormat]="getAdditional('pickerFormat', 'MMM D, YYYY')"
-                      [placeholder]="model.placeholder"
+                      placeholder="{{ model.placeholder | translate}}"
                       (ionBlur)="onBlur($event)"
                       (ionCancel)="onCustomEvent($event, 'ionCancel')"
                       (ionChange)="onValueChange($event)"
@@ -118,7 +118,7 @@
                    [min]="model.min"
                    [ngClass]="getClass('element', 'control')"
                    [pattern]="model.pattern"
-                   [placeholder]="model.placeholder"
+                   placeholder="{{ model.placeholder | translate}}"
                    [readonly]="model.readOnly"
                    [step]="model.step"
                    [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
@@ -152,7 +152,7 @@
                     [multiple]="model.multiple"
                     [ngClass]="getClass('element', 'control')"
                     [okText]="getAdditional('okText', 'OK')"
-                    [placeholder]="model.placeholder"
+                    placeholder="{{ model.placeholder | translate}}"
                     (ionBlur)="onBlur($event)"
                     (ionChange)="onValueChange($event)"
                     (ionFocus)="onFocus($event)">
@@ -167,7 +167,7 @@
                       [dynamicId]="bindId && model.id"
                       [formControlName]="model.id"
                       [ngClass]="getClass('element', 'control')"
-                      [placeholder]="model.placeholder"
+                      placeholder="{{ model.placeholder | translate}}"
                       [readonly]="model.readOnly"
                       (ionBlur)="onBlur($event)"
                       (ionChange)="onValueChange($event)"
