@@ -6,14 +6,15 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
 import { DynamicIonicFormComponent } from "./dynamic-ionic-form.component";
-
+import {TranslateModule} from '@ngx-translate/core'
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         IonicModule,
         TextMaskModule,
-        DynamicFormsCoreModule
+        DynamicFormsCoreModule,
+        TranslateModule,
     ],
     declarations: [
         DynamicIonicFormControlComponent,
