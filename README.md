@@ -195,7 +195,7 @@ export class MyDynamicFormComponent implements OnInit {
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel"></dynamic-bootstrap-form>
                             
 </form>
@@ -241,7 +241,7 @@ your component template:
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel"></dynamic-bootstrap-form>
                                
 </form>
@@ -251,8 +251,8 @@ Alternatively you can **directly make use of a specific** `DynamicFormControlCom
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel" 
-                                    [group]="formGroup"
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"; 
+                                    [group]="formGroup";
                                     [model]="controlModel"></dynamic-bootstrap-form-control>
 </form>
 ```
@@ -344,7 +344,7 @@ ngOnInit() {
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel"></dynamic-bootstrap-form>
                             
 </form>
@@ -402,7 +402,7 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel"></dynamic-bootstrap-form>
 
     <button type="button" (click)="addItem()">Add item</button>
@@ -436,7 +436,7 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel">
     
         <ng-template modelId="myFormArray">
@@ -460,7 +460,7 @@ That means **you can access the group object and it's properties by either decla
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel">
     
         <ng-template modelId="myFormArray" let-group let-index="index" let-context="context">
@@ -505,7 +505,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 ```typescript
 <form class="form-horizontal" [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel"></dynamic-bootstrap-form>
    
 </form>
@@ -522,7 +522,7 @@ Arbitrary CSS classes can be provided for any form control by binding a `Dynamic
 A `DynamicFormLayout` is a simple object literal that associates a CSS class configuration object with a model id.
 
 By differentiating between `element` and `grid `context NG Dynamic Forms can automatically apply the 
-CSS class strings in the component template based on [position identifiers](http://ng2-dynamic-forms.udos86.de/docs/core/interfaces/_service_dynamic_form_layout_service_.dynamicformcontrollayoutconfig.html):
+CSS class strings in the component template based on [position identifiers](http://ng2-dynamic-forms.udos86.de/docs/core/interfaces/_model_misc_dynamic_form_control_layout_model_.dynamicformcontrollayoutconfig.html):
 ```typescript
 export const MY_FORM_LAYOUT = {
     
@@ -572,8 +572,8 @@ Finally we pass the form layout to our `DynamicFormComponent` via input binding:
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [layout]="formLayout"
+    <dynamic-bootstrap-form [group]="formGroup";
+                            [layout]="formLayout";
                             [model]="formModel"></dynamic-bootstrap-form>
                                
 </form>
@@ -629,20 +629,20 @@ With NG Dynamic Forms you can directly listen to the three most common events,
 
 To avoid any interference with native events each corresponding component `@Output()` is prefixed with `df`:
 ```typescript
-<dynamic-material-form [group]="formGroup"
-                       [model]="formModel"
-                       (dfBlur)="onBlur($event)"
-                       (dfChange)="onChange($event)"
+<dynamic-material-form [group]="formGroup";
+                       [model]="formModel";
+                       (dfBlur)="onBlur($event)";
+                       (dfChange)="onChange($event)";
                        (dfFcus)="onFocus($event)"></dynamic-material-form>
 ```
 ```typescript
 <form [formGroup]="myFormGroup">
 
-    <dynamic-material-form-control *ngFor="let controlModel of myFormModel"
-                                   [group]="myFormGroup"
-                                   [model]="controlModel"
-                                   (dfBlur)="onBlur($event)"
-                                   (dfChange)="onChange($event)"
+    <dynamic-material-form-control *ngFor="let controlModel of myFormModel";
+                                   [group]="myFormGroup";
+                                   [model]="controlModel";
+                                   (dfBlur)="onBlur($event)";
+                                   (dfChange)="onChange($event)";
                                    (dfFocus)="onFocus($event)"></dynamic-material-form-control>
 </form>
 ```
@@ -669,8 +669,8 @@ Of course, NG Dynamic Forms won't let you down here.
 
 All custom UI events are pooled by an individual `@Output()` utilizing the respective library prefix.    
 ```typescript
-<dynamic-material-form [group]="formGroup"
-                       [model]="formModel"
+<dynamic-material-form [group]="formGroup";
+                       [model]="formModel";
                        (matEvent)="onMatEvent($event)"></dynamic-material-form>
 ```
 
@@ -685,7 +685,7 @@ In order to do so, just **put a** `<ng-template>` **inside your dynamic form con
 ```typescript
 <form [formGroup]="formGroup">
     
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel">
                                     
         <ng-template modelId="myInput">
@@ -703,7 +703,7 @@ Alternatively **you can also apply** `modelType` **instead of** `modelId` **to r
 ```typescript
 <form [formGroup]="formGroup">
     
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel">
                                     
         <ng-template modelType="ARRAY">
@@ -724,7 +724,7 @@ can use local template variables to reference your models' properties**:
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel">
                                     
         <ng-template modelId="myInput" let-id="id">
@@ -751,7 +751,7 @@ All you have to do is to **add a** `as` **attribute to your template** and speci
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-kendo-form [group]="formGroup"
+    <dynamic-kendo-form [group]="formGroup";
                         [model]="formModel">
                         
         <ng-template modelId="myDropDownList" as="kendoDropDownListHeaderTemplate">
@@ -770,7 +770,7 @@ Finally **you can determine whether the template is rendered before or after the
 ```typescript
 <form [formGroup]="formGroup">
     
-    <dynamic-bootstrap-form [group]="formGroup"
+    <dynamic-bootstrap-form [group]="formGroup";
                             [model]="formModel">
                             
         <ng-template modelId="myInput" align="START">
@@ -930,9 +930,9 @@ It can also be **manually enabled or disabled** by binding the `hasErrorMessagin
 
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"
-                                    [group]="formGroup"
-                                    [model]="controlModel"
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel";
+                                    [group]="formGroup";
+                                    [model]="controlModel";
                                     [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-bootstrap-form-control>
 </form>
 ```
@@ -984,7 +984,7 @@ and **bind the** `FormControl` **reference via a local template variable**:
 
     <ng-container *ngFor="let controlModel of formModel">
     
-        <dynamic-bootstrap-form-control [group]="formGroup" 
+        <dynamic-bootstrap-form-control [group]="formGroup"; 
                                         [model]="controlModel" #componentRef>
         
             <validation-message [control]="componentRef.control"></validation-message>
