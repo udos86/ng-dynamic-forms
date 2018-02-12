@@ -15,6 +15,7 @@ export interface DynamicFormControlModelConfig {
     id: string;
     label?: string;
     name?: string;
+    floating?: boolean;
     relation?: DynamicFormControlRelationGroup[];
     updateOn?: FormHooks;
     validators?: DynamicValidatorsConfig;
