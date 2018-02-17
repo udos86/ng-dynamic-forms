@@ -251,7 +251,7 @@ Alternatively you can **directly make use of a specific** `DynamicFormControlCom
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"; 
+    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel";
                                     [group]="formGroup";
                                     [model]="controlModel"></dynamic-bootstrap-form-control>
 </form>
@@ -984,7 +984,7 @@ and **bind the** `FormControl` **reference via a local template variable**:
 
     <ng-container *ngFor="let controlModel of formModel">
     
-        <dynamic-bootstrap-form-control [group]="formGroup"; 
+        <dynamic-bootstrap-form-control [group]="formGroup";
                                         [model]="controlModel" #componentRef>
         
             <validation-message [control]="componentRef.control"></validation-message>
