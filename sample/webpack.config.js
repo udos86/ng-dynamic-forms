@@ -1,9 +1,12 @@
 const path            = require("path"),
-      webpack         = require("webpack"),
       rxjsPathMapping = require("rxjs/_esm5/path-mapping"),
       ProgressPlugin  = require("webpack/lib/ProgressPlugin");
 
 module.exports = {
+
+    mode: "production",
+
+    devtool: "source-map",
 
     context: __dirname,
 
@@ -41,17 +44,6 @@ module.exports = {
 
     plugins: [
 
-        new webpack.NoEmitOnErrorsPlugin(),
-
-        new ProgressPlugin(),
-
-        new webpack.optimize.UglifyJsPlugin({
-
-            sourceMap: false,
-
-            mangle: {
-                //except: ['customValidator']
-            }
-        })
+        new ProgressPlugin()
     ]
 };
