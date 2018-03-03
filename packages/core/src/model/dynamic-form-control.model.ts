@@ -14,6 +14,8 @@ export interface DynamicFormControlModelConfig {
     hidden?: boolean;
     id: string;
     label?: string;
+    labelTooltip?: string;
+    controlTooltip?: string;
     name?: string;
     relation?: DynamicFormControlRelationGroup[];
     updateOn?: FormHooks;
@@ -29,6 +31,8 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() hidden: boolean;
     @serializable() id: string;
     @serializable() label: string | null;
+    @serializable() labelTooltip: string | null;
+    @serializable() controlTooltip: string | null;
     @serializable() layout: DynamicFormControlLayout | null;
     @serializable() name: string;
     parent: DynamicPathable | null = null;
@@ -47,6 +51,8 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.hidden = typeof config.hidden === "boolean" ? config.hidden : false;
         this.id = config.id;
         this.label = config.label || null;
+        this.labelTooltip = config.labelTooltip || null;
+        this.controlTooltip = config.controlTooltip || null;
         this.layout = layout;
         this.name = config.name || config.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];

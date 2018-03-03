@@ -42,6 +42,8 @@
         <!-- CHECKBOX ------------------------------------------------------------------------------------------------->
         <mat-checkbox *ngSwitchCase="2" #matCheckbox
                       [checked]="model.checked"
+                      [color]="getAdditional('color', 'accent')"
+                      [disableRipple]="getAdditional('disableRipple', false)"
                       [formControlName]="model.id"
                       [id]="bindId ? model.id : null"
                       [indeterminate]="model.indeterminate"
@@ -60,8 +62,9 @@
         <!-- CHIPS ---------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="3"
                         [color]="getAdditional('color', 'primary')"
-                        [ngClass]="getClass('grid', 'control')"
-                        [floatLabel]="getAdditional('floatLabel', 'auto')">
+                        [floatLabel]="getAdditional('floatLabel', 'auto')"
+                        [hideRequiredMarker]="getAdditional('hideRequiredMarker', false)"
+                        [ngClass]="getClass('grid', 'control')">
 
             <mat-chip-list #matChipList
                            [formControlName]="model.id"
@@ -91,8 +94,9 @@
         <!-- DATEPICKER ----------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="4"
                         [color]="getAdditional('color', 'primary')"
-                        [ngClass]="getClass('grid', 'control')"
-                        [floatLabel]="getAdditional('floatLabel', 'auto')">
+                        [floatLabel]="getAdditional('floatLabel', 'auto')"
+                        [hideRequiredMarker]="getAdditional('hideRequiredMarker', false)"
+                        [ngClass]="getClass('grid', 'control')">
 
             <ng-container *ngIf="model.label" ngProjectAs="mat-label">
                 <mat-label>{{ model.label }}</mat-label>
@@ -161,8 +165,9 @@
         <ng-container *ngSwitchCase="6">
 
             <mat-form-field [color]="getAdditional('color', 'primary')"
-                            [ngClass]="getClass('grid','control')"
                             [floatLabel]="getAdditional('floatLabel', 'auto')"
+                            [hideRequiredMarker]="getAdditional('hideRequiredMarker', false)"
+                            [ngClass]="getClass('grid','control')"
                             [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}">
 
                 <ng-container *ngIf="model.label" ngProjectAs="mat-label">
@@ -209,8 +214,12 @@
 
             </mat-form-field>
 
-            <mat-autocomplete #matAutocomplete="matAutocomplete" (optionSelected)="onValueChange($event)">
+            <mat-autocomplete #matAutocomplete="matAutocomplete"
+                              [disableRipple]="getAdditional('disableRipple', false)"
+                              (optionSelected)="onValueChange($event)">
+
                 <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
+
             </mat-autocomplete>
 
         </ng-container>
@@ -219,6 +228,7 @@
         <mat-radio-group *ngSwitchCase="7" #matRadioGroup
                          [formControlName]="model.id"
                          [id]="bindId ? model.id : null"
+                         [labelPosition]="getAdditional('labelPosition', 'after')"
                          [name]="model.name"
                          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                          (blur)="onBlur($event)"
@@ -226,7 +236,6 @@
                          (focus)="onFocus($event)">
 
             <mat-radio-button *ngFor="let option of model.options$ | async"
-                              [labelPosition]="'after'"
                               [name]="model.name"
                               [ngClass]="getClass('element', 'option')"
                               [value]="option.value"><span [innerHTML]="option.label"></span></mat-radio-button>
@@ -246,6 +255,7 @@
             <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
             <mat-select #matSelect
+                        [disableRipple]="getAdditional('disableRipple', false)"
                         [formControlName]="model.id"
                         [id]="bindId ? model.id : null"
                         [multiple]="model.multiple"
@@ -273,6 +283,7 @@
 
         <!-- SLIDER --------------------------------------------------------------------------------------------------->
         <mat-slider *ngSwitchCase="9" #matSlider
+                    [color]="getAdditional('color', 'accent')"
                     [formControlName]="model.id"
                     [id]="bindId ? model.id : null"
                     [invert]="getAdditional('invert', false)"
@@ -290,6 +301,8 @@
         <!-- SLIDE TOGGLE --------------------------------------------------------------------------------------------->
         <mat-slide-toggle *ngSwitchCase="10" #matSlideToggle
                           [checked]="model.checked"
+                          [color]="getAdditional('color', 'accent')"
+                          [disableRipple]="getAdditional('disableRipple', false)"
                           [formControlName]="model.id"
                           [id]="bindId ? model.id : null"
                           [labelPosition]="model.labelPosition || 'after'"
@@ -305,8 +318,9 @@
         <!-- TEXTAREA ------------------------------------------------------------------------------------------------->
         <mat-form-field *ngSwitchCase="11"
                         [color]="getAdditional('color', 'primary')"
-                        [ngClass]="getClass('grid', 'control')"
-                        [floatLabel]="getAdditional('floatLabel', 'auto')">
+                        [floatLabel]="getAdditional('floatLabel', 'auto')"
+                        [hideRequiredMarker]="getAdditional('hideRequiredMarker', false)"
+                        [ngClass]="getClass('grid', 'control')">
 
             <ng-container *ngIf="model.label" ngProjectAs="mat-label">
                 <mat-label>{{ model.label }}</mat-label>
