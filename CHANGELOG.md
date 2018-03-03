@@ -2,8 +2,8 @@
 
 ### **Features**
 
-* Material template improvements (support for `color` and `disableRipple` inputs via `additional`)
 * Properties for future tooltip support added (closes [#700](https://github.com/udos86/ng-dynamic-forms/issues/700))
+* Material template improvements (support for `color` and `disableRipple` inputs via `additional`)
 
 ***
 
