@@ -1,3 +1,12 @@
+# 5.4.6
+
+### **Features**
+
+* NG Bootstrap UI package now fully supports Bootstrap `4.0.0` stable (closes [#687](https://github.com/udos86/ng-dynamic-forms/issues/687))
+* `value` property of `DynamicFormValueControlModel` now accepts `0` (closes [#710](https://github.com/udos86/ng-dynamic-forms/issues/710))
+
+***
+
 # 5.4.5
 
 ### **Features**
