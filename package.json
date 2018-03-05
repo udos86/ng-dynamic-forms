@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "5.4.5",
+  "version": "5.4.6",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",

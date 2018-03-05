@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-kendo",
-  "version": "5.4.5",
+  "version": "5.4.6",
   "description": "Kendo UI package for NG Dynamic Forms",
   "main": "./bundles/ui-kendo.umd.js",
   "module": "./esm5/ui-kendo.js",
@@ -34,7 +34,7 @@
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/forms": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.5",
+    "@ng-dynamic-forms/core": "^5.4.6",
     "@progress/kendo-angular-dateinputs": "^2.0.0",
     "@progress/kendo-angular-dropdowns": "^2.0.0",
     "@progress/kendo-angular-inputs": "^2.0.0",
