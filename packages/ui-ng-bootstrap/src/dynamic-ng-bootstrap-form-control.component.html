@@ -84,7 +84,7 @@
             </div>
 
             <!-- CHECKBOX GROUP --------------------------------------------------------------------------------------->
-            <div *ngSwitchCase="4" class="btn-group" data-toggle="buttons"
+            <div *ngSwitchCase="4" class="btn-group btn-group-toggle" data-toggle="buttons"
                  [dynamicId]="bindId && model.id"
                  [formGroupName]="model.id"
                  [ngClass]="getClass('element', 'control')">
@@ -132,9 +132,11 @@
                        (change)="onValueChange($event)"
                        (focus)="onFocus($event)">
 
-                <div class="input-group-addon" (click)="datepicker.toggle()">
-                    <img *ngIf="model.toggleIcon" [src]="model.toggleIcon" style="cursor: pointer;" />
-                    <span *ngIf="model.toggleLabel">{{ model.toggleLabel }}</span>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" (click)="datepicker.toggle()">
+                        <img *ngIf="model.toggleIcon" [src]="model.toggleIcon" style="cursor: pointer;" />
+                        <span *ngIf="model.toggleLabel">{{ model.toggleLabel }}</span>
+                    </button>
                 </div>
 
             </div>
@@ -162,7 +164,9 @@
             <!-- INPUT ------------------------------------------------------------------------------------------------>
             <div *ngSwitchCase="7" [class.input-group]="model.prefix || model.suffix">
 
-                <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
+                <div *ngIf="model.prefix" class="input-group-prepend">
+                    <span class="input-group-text" [innerHTML]="model.prefix"></span>
+                </div>
 
                 <input [attr.accept]="model.accept"
                        [attr.list]="model.listId"
@@ -193,7 +197,9 @@
                        (change)="onValueChange($event)"
                        (focus)="onFocus($event)"/>
 
-                <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
+                <div *ngIf="model.suffix" class="input-group-append" [innerHTML]="model.suffix">
+                    <span class="input-group-text" [innerHTML]="model.prefix"></span>
+                </div>
 
                 <datalist *ngIf="model.list" [id]="model.listId">
                     <option *ngFor="let option of model.list" [value]="option">
@@ -202,7 +208,7 @@
             </div>
 
             <!-- RADIO GROUP ------------------------------------------------------------------------------------------>
-            <div *ngSwitchCase="8" ngbRadioGroup class="btn-group" role="radiogroup"
+            <div *ngSwitchCase="8" ngbRadioGroup class="btn-group btn-group-toggle" role="radiogroup"
                  [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
                  [ngClass]="getClass('element', 'control')"
