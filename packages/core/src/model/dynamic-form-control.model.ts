@@ -1,6 +1,6 @@
 import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs/Subject";
-import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
+import { DynamicFormControlLayout, DynamicFormControlLayoutConfig } from "./misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
 import { DynamicFormControlRelationGroup } from "./misc/dynamic-form-control-relation.model";
 import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
@@ -74,6 +74,20 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     get hasErrorMessages(): boolean {
         return typeof this.errorMessages === "object" && this.errorMessages !== null;
+    }
+
+    getClass(context: string, place: string): string {
+
+        if (this.layout !== null && this.layout.hasOwnProperty(context)) {
+
+            let config = this.layout[context] as DynamicFormControlLayoutConfig;
+
+            if (config.hasOwnProperty(place)) {
+                return config[place] as string;
+            }
+        }
+
+        return "";
     }
 
     toJSON() {
