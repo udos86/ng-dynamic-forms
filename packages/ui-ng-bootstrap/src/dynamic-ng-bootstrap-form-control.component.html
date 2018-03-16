@@ -197,8 +197,8 @@
                        (change)="onValueChange($event)"
                        (focus)="onFocus($event)"/>
 
-                <div *ngIf="model.suffix" class="input-group-append" [innerHTML]="model.suffix">
-                    <span class="input-group-text" [innerHTML]="model.prefix"></span>
+                <div *ngIf="model.suffix" class="input-group-append">
+                    <span class="input-group-text" [innerHTML]="model.suffix"></span>
                 </div>
 
                 <datalist *ngIf="model.list" [id]="model.listId">
