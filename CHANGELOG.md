@@ -1,3 +1,11 @@
+# 5.4.7
+
+### **Bugfixes**
+
+* NG Bootstrap UI package now correctly shows suffix on input fields
+
+***
+
 # 5.4.6
 
 ### **Features**
