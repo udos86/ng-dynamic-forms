@@ -5,9 +5,8 @@
                                [layout]="formLayout"
                                [model]="model"
                                [ngClass]="[getClass(model, 'element', 'host'), getClass(model, 'grid', 'host')]"
-                               [showCharacterHint]="model.type === 'INPUT'"
                                [templates]="templates"
-                               (dfBlur)="onEvent($event, 'blur')"
-                               (dfChange)="onEvent($event, 'change')"
-                               (dfFocus)="onEvent($event, 'focus')"
+                               (dyfBlur)="onEvent($event, 'blur')"
+                               (dyfChange)="onEvent($event, 'change')"
+                               (dyfFocus)="onEvent($event, 'focus')"
                                (matEvent)="onEvent($event, 'custom')"></dynamic-material-form-control>

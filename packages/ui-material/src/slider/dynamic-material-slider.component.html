@@ -1,0 +1,19 @@
+<ng-container [formGroup]="group">
+
+    <mat-slider #matSlider
+                [color]="model.getAdditional('color', 'accent')"
+                [formControlName]="model.id"
+                [id]="bindId ? model.id : null"
+                [invert]="model.getAdditional('invert', false)"
+                [min]="model.min"
+                [max]="model.max"
+                [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                [step]="model.step"
+                [tabIndex]="model.tabIndex"
+                [thumbLabel]="model.getAdditional('thumbLabel', true)"
+                [tickInterval]="model.getAdditional('tickInterval', 1)"
+                [vertical]="model.vertical"
+                (change)="onChange($event)"
+                (input)="onCustomEvent($event, 'input')"></mat-slider>
+
+</ng-container>

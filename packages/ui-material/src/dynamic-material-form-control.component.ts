@@ -1,6 +1,8 @@
 import {
     ChangeDetectorRef,
     Component,
+    ComponentFactoryResolver,
+    ComponentRef,
     ContentChildren,
     EventEmitter,
     Input,
@@ -8,32 +10,22 @@ import {
     Output,
     QueryList,
     SimpleChanges,
-    ViewChild
+    Type,
+    ViewChild,
+    ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    MatAutocomplete,
-    MatCheckbox,
-    MatChipInputEvent,
-    MatDatepicker,
-    MatFormField,
-    MatInput,
-    MatRadioGroup,
-    MatSelect,
-    MatSlider,
-    MatSlideToggle
-} from "@angular/material";
-import {
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
+    DynamicFormControlCustomEvent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicFormValueControlModel,
+    DynamicFormValueControlComponent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
-    DynamicInputControlModel,
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -47,19 +39,26 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng-dynamic-forms/core";
-import { MatFormControlType, MAT_VIEW_CHILD_SELECTOR } from "./dynamic-material-form.const";
-
-export type MatFormControlComponent = MatAutocomplete | MatCheckbox | MatDatepicker<Date> | MatFormField |
-    MatRadioGroup | MatSelect | MatSlider | MatSlideToggle;
+import { MatFormControlType } from "./dynamic-material-form.const";
+import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
+import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
+import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
+import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
+import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
+import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
+import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider.component";
+import { DynamicMaterialSlideToggleComponent } from "./slide-toggle/dynamic-material-slide-toggle.component";
+import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-textarea.component";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
-    selector: "dynamic-material-form-control,dynamic-form-material-control",
+    selector: "dynamic-material-form-control",
     templateUrl: "./dynamic-material-form-control.component.html"
 })
 export class DynamicMaterialFormControlComponent extends DynamicFormControlComponent implements OnChanges {
 
-    private chipList: string[] | null = null;
-    private _showCharacterCount: boolean = false;
+    private componentRef: ComponentRef<any>;
+    private componentSubscriptions: Subscription[] = [];
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
@@ -71,27 +70,19 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
-    @Input()
-    get showCharacterHint(): boolean {
-        return !!(this._showCharacterCount && (this.model as DynamicInputModel).maxLength && this.characterCount);
-    }
-
-    set showCharacterHint(value: boolean) {
-        this._showCharacterCount = value;
-    }
-
-    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("dyfFBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("dyfFChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output("dyfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild(MAT_VIEW_CHILD_SELECTOR) matViewChild: MatFormControlComponent | undefined;
-    @ViewChild(MatInput) matInput: MatInput | undefined;
+    @ViewChild("formControlViewContainer", {read: ViewContainerRef}) viewContainerRef: ViewContainerRef;
 
     type: MatFormControlType | null;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected layoutService: DynamicFormLayoutService,
+                protected validationService: DynamicFormValidationService,
+                protected componentFactoryResolver: ComponentFactoryResolver) {
 
         super(changeDetectorRef, layoutService, validationService);
     }
@@ -104,87 +95,106 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         }
     }
 
-    get characterCount(): number | null {
-        return this.matInput ? this.matInput.value.length : null;
-    }
-
-    get characterHint(): string {
-        return `${this.characterCount} / ${(this.model as DynamicInputControlModel<string>).maxLength}`;
-    }
-
     get hasMatFormField(): boolean {
         return this.type === 3 || this.type === 4 || this.type === 6 || this.type === 8 || this.type === 11;
     }
 
-    onChipInputTokenEnd($event: MatChipInputEvent): void {
-
-        let inputElement = $event.input, inputValue = $event.value.trim();
-
-        if (Array.isArray(this.chipList) && inputValue.length > 0) {
-
-            this.chipList.push(inputValue);
-            this.control.patchValue(this.chipList);
-        }
-
-        if (inputElement instanceof HTMLInputElement) {
-            inputElement.value = "";
-        }
-    }
-
-    onChipRemoved(_chip: string, index: number): void {
-
-        if (Array.isArray(this.chipList)) {
-
-            this.chipList.splice(index, 1);
-            this.control.patchValue(this.chipList);
-        }
-    }
-
     updateFormControlType(): void {
 
-        this.type = DynamicMaterialFormControlComponent.getFormControlType(this.model);
+        if (this.model.type === "ARRAY") {
+            this.type = 1;
 
-        if (this.type === MatFormControlType.Chips) {
-            this.chipList = (this.model as DynamicFormValueControlModel<string[]>).value || [];
+        } else if (this.model.type === "GROUP") {
+            this.type = 2;
+
+        } else {
+
+            this.type = 3;
+            this.createFormControlComponent();
         }
     }
 
-    static getFormControlType(model: DynamicFormControlModel): MatFormControlType | null {
+    onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
 
-        switch (model.type) {
+        if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // child event bypass
 
-            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                return MatFormControlType.Array;
+            this.customEvent.emit($event as DynamicFormControlEvent);
+
+        } else { // native UI library custom event
+
+            let $customEvent = $event as DynamicFormControlCustomEvent;
+
+            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
+        }
+
+    }
+
+    createFormControlComponent(): void {
+
+        let componentType = this.formControlComponentType;
+
+        if (componentType !== null) {
+
+            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+
+            this.viewContainerRef.clear();
+            this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+
+            let instance = this.componentRef.instance;
+
+            instance.bindId = this.bindId;
+            instance.group = this.group;
+            instance.layout = this.layout;
+            instance.model = this.model as any;
+
+            this.componentSubscriptions.push(instance.blur.subscribe(($event: any) => this.onBlur($event)));
+            this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onValueChange($event)));
+            this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+            this.componentSubscriptions.push(instance.focus.subscribe(($event: any) => this.onFocus($event)));
+        }
+    }
+
+    destroyFormControlComponent(): void {
+
+        if (this.componentRef) {
+
+            this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
+            this.componentSubscriptions = [];
+
+            this.componentRef.destroy();
+        }
+    }
+
+    get formControlComponentType(): Type<DynamicFormValueControlComponent> | null {
+
+        switch (this.model.type) {
 
             case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                return MatFormControlType.Checkbox;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                return MatFormControlType.Group;
+                return DynamicMaterialCheckboxComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                return MatFormControlType.DatePicker;
+                return DynamicMaterialDatePickerComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                let inputModel = model as DynamicInputModel;
 
-                return inputModel.multiple ? MatFormControlType.Chips : MatFormControlType.Input;
+                let inputModel = this.model as DynamicInputModel;
+
+                return inputModel.multiple ? DynamicMaterialChipsComponent : DynamicMaterialInputComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                return MatFormControlType.RadioGroup;
+                return DynamicMaterialRadioGroupComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                return MatFormControlType.Select;
+                return DynamicMaterialSelectComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                return MatFormControlType.Slider;
+                return DynamicMaterialSliderComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                return MatFormControlType.SlideToggle;
+                return DynamicMaterialSlideToggleComponent;
 
             case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                return MatFormControlType.TextArea;
+                return DynamicMaterialTextAreaComponent;
 
             default:
                 return null;

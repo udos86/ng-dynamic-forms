@@ -15,6 +15,3 @@ export enum MatFormControlType {
 
 export const MAT_VIEW_CHILD_SELECTOR = `matAutocomplete,matCheckbox,matDatepicker,matInput,matRadioGroup,matSelect,
     matSlider,matSlideToggle,matTextarea`;
-
-export const MAT_LABEL_POSITION_AFTER = "after";
-export const MAT_LABEL_POSITION_BEFORE = "before";

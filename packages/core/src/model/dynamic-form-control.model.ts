@@ -76,20 +76,6 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         return typeof this.errorMessages === "object" && this.errorMessages !== null;
     }
 
-    getClass(context: string, place: string): string {
-
-        if (this.layout !== null && this.layout.hasOwnProperty(context)) {
-
-            let config = this.layout[context] as DynamicFormControlLayoutConfig;
-
-            if (config.hasOwnProperty(place)) {
-                return config[place] as string;
-            }
-        }
-
-        return "";
-    }
-
     toJSON() {
         return serialize(this);
     }

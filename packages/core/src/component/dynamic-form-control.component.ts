@@ -1,6 +1,6 @@
 import {
     AfterViewInit,
-    ChangeDetectorRef,
+    ChangeDetectorRef, ComponentRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
@@ -51,6 +51,9 @@ export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM = "custom";
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+
+    private componentRef: ComponentRef<any>;
+    private componentSubscriptions: Subscription[] = [];
 
     bindId: boolean;
     context: DynamicFormArrayGroupModel | null;
