@@ -9,7 +9,7 @@
 
 
     <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
-    <div *ngIf="model.type === 'ARRAY'"
+    <div *ngIf="isFormArray"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
@@ -39,7 +39,7 @@
     </div>
 
     <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
-    <div *ngIf="model.type === 'GROUP'" role="group"
+    <div *ngIf="isFormGroup" role="group"
          [dynamicId]="bindId && model.id"
          [formGroupName]="model.id"
          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">

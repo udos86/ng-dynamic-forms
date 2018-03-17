@@ -52,9 +52,6 @@ export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
-    private componentRef: ComponentRef<any>;
-    private componentSubscriptions: Subscription[] = [];
-
     bindId: boolean;
     context: DynamicFormArrayGroupModel | null;
     control: FormControl;
@@ -134,12 +131,20 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.validationService.createErrorMessages(this.control, this.model);
     }
 
-    get showHint(): boolean { // needed for AOT
-        return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
-    }
-
     get hasList(): boolean { // needed for AOT
         return (this.model as DynamicInputModel).list !== null;
+    }
+
+    get isFormArray(): boolean {
+        return this.model.type === "ARRAY";
+    }
+
+    get isFormGroup(): boolean {
+        return this.model.type === "GROUP" || this.model.type === "CHECKBOX_GROUP";
+    }
+
+    get isFormControl(): boolean {
+        return !this.isFormArray && !this.isFormGroup;
     }
 
     get isInvalid(): boolean {
@@ -152,6 +157,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     get showErrorMessages(): boolean {
         return this.hasErrorMessaging && this.control.touched && !this.hasFocus && this.isInvalid;
+    }
+
+    get showHint(): boolean { // needed for AOT
+        return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
     }
 
     get templateList(): QueryList<DynamicTemplateDirective> {

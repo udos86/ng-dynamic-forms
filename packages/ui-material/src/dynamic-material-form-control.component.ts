@@ -88,30 +88,17 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 
     ngOnChanges(changes: SimpleChanges) {
+
         super.ngOnChanges(changes);
 
-        if (changes["model"]) {
-            this.updateFormControlType();
-        }
-    }
-
-    get hasMatFormField(): boolean {
-        return this.type === 3 || this.type === 4 || this.type === 6 || this.type === 8 || this.type === 11;
-    }
-
-    updateFormControlType(): void {
-
-        if (this.model.type === "ARRAY") {
-            this.type = 1;
-
-        } else if (this.model.type === "GROUP") {
-            this.type = 2;
-
-        } else {
-
-            this.type = 3;
+        if (changes["model"] && this.isFormControl) {
             this.createFormControlComponent();
         }
+    }
+
+    // TODO
+    get hasMatFormField(): boolean {
+        return this.type === 3 || this.type === 4 || this.type === 6 || this.type === 8 || this.type === 11;
     }
 
     onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
@@ -126,7 +113,6 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
             this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
         }
-
     }
 
     createFormControlComponent(): void {
