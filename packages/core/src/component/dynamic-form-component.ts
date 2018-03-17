@@ -58,7 +58,6 @@ export abstract class DynamicFormComponent {
                 break;
 
             case DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM:
-                console.log($event);
                 this.customEvent.emit($event);
                 break;
         }

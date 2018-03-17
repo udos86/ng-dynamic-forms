@@ -1,6 +1,6 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
-    <label *ngIf="model.label && !hasMatFormField && type !== 2"
+    <label *ngIf="model.label && !hasMatFormField && model.type !== 'CHECKBOX'"
            [for]="model.id"
            [innerHTML]="model.label"
            [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
@@ -21,15 +21,14 @@
                                            [bindId]="false"
                                            [context]="groupModel"
                                            [group]="control.at(idx)"
-                                           [hasErrorMessaging]="_model.hasErrorMessages"
                                            [hidden]="_model.hidden"
                                            [layout]="layout"
                                            [model]="_model"
                                            [templates]="templateList"
                                            [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                           (dfBlur)="onBlur($event)"
-                                           (dfChange)="onValueChange($event)"
-                                           (dfFocus)="onFocus($event)"
+                                           (dyfBlur)="onBlur($event)"
+                                           (dyfChange)="onValueChange($event)"
+                                           (dyfFocus)="onFocus($event)"
                                            (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
             <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
@@ -52,16 +51,16 @@
                                        [model]="_model"
                                        [templates]="templateList"
                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                       (dfBlur)="onBlur($event)"
-                                       (dfChange)="onValueChange($event)"
-                                       (dfFocus)="onFocus($event)"
+                                       (dyfBlur)="onBlur($event)"
+                                       (dyfChange)="onValueChange($event)"
+                                       (dyfFocus)="onFocus($event)"
                                        (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
     </div>
 
     <!-- DYNAMIC MATERIAL FORM CONTROL -------------------------------------------------------------------------------->
     <ng-container #formControlViewContainer></ng-container>
 
-    <ng-container *ngIf="!hasMatFormField && hasErrorMessaging">
+    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
 
         <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
 

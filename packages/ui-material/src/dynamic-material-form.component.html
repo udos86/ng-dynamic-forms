@@ -1,6 +1,5 @@
 <dynamic-material-form-control *ngFor="let model of formModel; trackBy: trackByFn"
                                [group]="formGroup"
-                               [hasErrorMessaging]="model.hasErrorMessages"
                                [hidden]="model.hidden"
                                [layout]="formLayout"
                                [model]="model"

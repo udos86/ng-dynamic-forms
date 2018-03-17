@@ -1,16 +1,24 @@
 import {
     AfterViewInit,
-    ChangeDetectorRef, ComponentRef,
+    ChangeDetectorRef,
+    ComponentFactoryResolver,
+    ComponentRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
     OnInit,
     QueryList,
     SimpleChange,
-    SimpleChanges
+    SimpleChanges,
+    Type,
+    ViewContainerRef
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
+import {
+    DynamicFormValueControlComponent,
+    DynamicFormControlCustomEvent
+} from "./dynamic-form-value-control.component";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
@@ -56,7 +64,6 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     context: DynamicFormArrayGroupModel | null;
     control: FormControl;
     group: FormGroup;
-    hasErrorMessaging: boolean = false;
     hasFocus: boolean;
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
@@ -70,17 +77,25 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     focus: EventEmitter<DynamicFormControlEvent>;
     customEvent: EventEmitter<DynamicFormControlEvent>;
 
+    viewContainerRef: ViewContainerRef;
+
+    private componentRef: ComponentRef<DynamicFormValueControlComponent>;
+    private componentSubscriptions: Subscription[] = [];
     private subscriptions: Subscription[] = [];
 
-    abstract type: number | string | null;
-
-    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) { }
 
     ngOnChanges(changes: SimpleChanges) {
 
         let groupChange = changes["group"] as SimpleChange,
             modelChange = changes["model"] as SimpleChange;
+
+        if (modelChange && this.isFormControl) {
+            this.createFormControlComponent();
+        }
 
         if (groupChange || modelChange) {
 
@@ -124,6 +139,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     ngOnDestroy() {
+
+        this.destroyFormControlComponent();
         this.unsubscribe();
     }
 
@@ -156,7 +173,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get showErrorMessages(): boolean {
-        return this.hasErrorMessaging && this.control.touched && !this.hasFocus && this.isInvalid;
+        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     get showHint(): boolean { // needed for AOT
@@ -167,6 +184,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
     }
 
+    abstract get formControlComponentType(): Type<DynamicFormValueControlComponent> | null;
+
     getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
 
         let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
@@ -174,11 +193,40 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.layoutService.getClass(controlLayout, context, place);
     }
 
-    getAdditional(key: string, defaultValue: any = null): any {
+    protected createFormControlComponent(): void {
 
-        let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
+        let componentType = this.formControlComponentType;
 
-        return model.additional !== null && model.additional.hasOwnProperty(key) ? model.additional[key] : defaultValue;
+        if (componentType !== null) {
+
+            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+
+            this.viewContainerRef.clear();
+            this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+
+            let instance = this.componentRef.instance;
+
+            instance.bindId = this.bindId;
+            instance.group = this.group;
+            instance.layout = this.layout;
+            instance.model = this.model as any;
+
+            this.componentSubscriptions.push(instance.blur.subscribe(($event: any) => this.onBlur($event)));
+            this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onValueChange($event)));
+            this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+            this.componentSubscriptions.push(instance.focus.subscribe(($event: any) => this.onFocus($event)));
+        }
+    }
+
+    protected destroyFormControlComponent(): void {
+
+        if (this.componentRef) {
+
+            this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
+            this.componentSubscriptions = [];
+
+            this.componentRef.destroy();
+        }
     }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
@@ -313,7 +361,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         }
     }
 
-    onCustomEvent($event: any, type: string): void {
+    onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
 
         if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // child event bypass
 
@@ -321,7 +369,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
         } else { // native UI library custom event
 
-            this.customEvent.emit(this.createDynamicFormControlEvent($event, type));
+            let $customEvent = $event as DynamicFormControlCustomEvent;
+
+            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
         }
     }
 

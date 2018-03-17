@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatChipInputEvent, MatChipList, MatInput } from "@angular/material";
 import {
@@ -14,9 +14,9 @@ import {
     selector: "dynamic-material-chips",
     templateUrl: "./dynamic-material-chips.component.html"
 })
-export class DynamicMaterialChipsComponent extends DynamicFormValueControlComponent implements OnChanges {
+export class DynamicMaterialChipsComponent extends DynamicFormValueControlComponent {
 
-    private chipList: string[];
+    private chipList: string[] = [];
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
@@ -35,13 +35,6 @@ export class DynamicMaterialChipsComponent extends DynamicFormValueControlCompon
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-
-        if (changes["model"]) {
-            this.chipList = this.model.value as string[] || [];
-        }
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {

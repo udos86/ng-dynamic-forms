@@ -1,8 +1,8 @@
 import { MatInput } from "@angular/material";
 import {
+    DynamicFormValueControlComponent,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
     DynamicInputControlModel,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
