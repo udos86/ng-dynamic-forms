@@ -32,7 +32,6 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng-dynamic-forms/core";
-import { MatFormControlType } from "./dynamic-material-form.const";
 import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
 import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
 import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
@@ -55,7 +54,6 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = true;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -65,8 +63,6 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild("formControlViewContainer", {read: ViewContainerRef}) viewContainerRef: ViewContainerRef;
-
-    type: MatFormControlType | null;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
@@ -78,7 +74,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
 
     // TODO
     get hasMatFormField(): boolean {
-        return this.type === 3 || this.type === 4 || this.type === 6 || this.type === 8 || this.type === 11;
+        return false;
     }
 
     get formControlComponentType(): Type<DynamicFormValueControlComponent> | null {

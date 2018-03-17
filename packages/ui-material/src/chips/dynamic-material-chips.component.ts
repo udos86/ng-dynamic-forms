@@ -16,12 +16,22 @@ import {
 })
 export class DynamicMaterialChipsComponent extends DynamicFormValueControlComponent {
 
-    private chipList: string[] = [];
+    private chipList: string[];
+    private _model: DynamicInputModel;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicInputModel;
+
+    @Input()
+    get model(): DynamicInputModel {
+        return this._model;
+    }
+
+    set model(model: DynamicInputModel) {
+        this._model = model;
+        this.chipList = model.value as string[] || [];
+    }
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

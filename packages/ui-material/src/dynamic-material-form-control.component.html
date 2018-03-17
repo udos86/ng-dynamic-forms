@@ -7,7 +7,6 @@
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
-
     <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
     <div *ngIf="isFormArray"
          [dynamicId]="bindId && model.id"
@@ -45,7 +44,6 @@
 
         <dynamic-material-form-control *ngFor="let _model of model.group"
                                        [group]="control"
-                                       [hasErrorMessaging]="_model.hasErrorMessages"
                                        [hidden]="_model.hidden"
                                        [layout]="layout"
                                        [model]="_model"
