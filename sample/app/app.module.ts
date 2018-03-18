@@ -15,7 +15,7 @@ import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
 //import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
-//import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 //import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
@@ -23,7 +23,7 @@ import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
 //import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
-//import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
+import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
 //import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
@@ -58,7 +58,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         DynamicFormsFoundationUIModule,
         //DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
-        //DynamicFormsNGBootstrapUIModule,
+        DynamicFormsNGBootstrapUIModule,
         //DynamicFormsPrimeNGUIModule
     ],
     declarations: [
@@ -67,7 +67,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         FoundationSampleFormComponent,
         //KendoSampleFormComponent,
         MaterialSampleFormComponent,
-        //NGBootstrapSampleFormComponent,
+        NGBootstrapSampleFormComponent,
         //PrimeNGSampleFormComponent,
         ValidationMessageComponent,
         AppComponent

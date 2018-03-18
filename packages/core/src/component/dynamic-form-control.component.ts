@@ -22,10 +22,12 @@ import {
 } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP } from "../model/checkbox/dynamic-checkbox-group.model";
 import {
     DynamicFormArrayGroupModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY
 } from "../model/form-array/dynamic-form-array.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_GROUP } from "../model/form-group/dynamic-form-group.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -142,11 +144,11 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     get isFormArray(): boolean {
-        return this.model.type === "ARRAY";
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
     }
 
     get isFormGroup(): boolean {
-        return this.model.type === "GROUP" || this.model.type === "CHECKBOX_GROUP";
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
     }
 
     get isFormControl(): boolean {

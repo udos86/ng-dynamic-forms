@@ -7,7 +7,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicFoundationSelectComponent } from "./dynamic-foundation-select.component";
 
-describe("DynamicFoundationCheckboxComponent test suite", () => {
+describe("DynamicFoundationSelectComponent test suite", () => {
 
     let testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
         formModel = [testModel],
@@ -59,7 +59,6 @@ describe("DynamicFoundationCheckboxComponent test suite", () => {
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
@@ -72,7 +71,7 @@ describe("DynamicFoundationCheckboxComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an checkbox element", () => {
+    it("should have an select element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });

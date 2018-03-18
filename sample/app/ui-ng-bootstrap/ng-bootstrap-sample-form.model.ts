@@ -88,7 +88,6 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
 
         id: "firstName",
         label: "First Name",
-        hidden: true,
         placeholder: "First Name",
         validators: {
             required: null

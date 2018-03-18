@@ -59,7 +59,6 @@ describe("DynamicFoundationInputComponent test suite", () => {
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
@@ -72,7 +71,7 @@ describe("DynamicFoundationInputComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an checkbox element", () => {
+    it("should have an input element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });

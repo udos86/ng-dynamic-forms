@@ -22,7 +22,6 @@ export class DynamicFoundationTextAreaComponent extends DynamicFormValueControlC
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
-    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     constructor(protected layoutService: DynamicFormLayoutService,

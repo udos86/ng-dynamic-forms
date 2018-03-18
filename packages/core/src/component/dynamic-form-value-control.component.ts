@@ -4,6 +4,7 @@ import { DynamicFormValueControlInterface } from "./dynamic-form-value-control.i
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlValue, DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-group.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
@@ -15,7 +16,7 @@ export abstract class DynamicFormValueControlComponent implements DynamicFormVal
     bindId: boolean;
     group: FormGroup;
     layout: DynamicFormLayout;
-    model: DynamicFormValueControlModel<DynamicFormControlValue>;
+    model: DynamicFormValueControlModel<DynamicFormControlValue> | DynamicCheckboxGroupModel;
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;

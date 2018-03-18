@@ -1,0 +1,17 @@
+<ng-container [formGroup]="group">
+
+    <ngb-datepicker [displayMonths]="model.getAdditional('displayMonths', 1)"
+                    [dynamicId]="bindId && model.id"
+                    [firstDayOfWeek]="model.getAdditional('firstDayOfWeek', 1)"
+                    [formControlName]="model.id"
+                    [maxDate]="model.max"
+                    [minDate]="model.min"
+                    [navigation]="model.getAdditional('navigation', 'select')"
+                    [ngClass]="getClass('element', 'control')"
+                    [outsideDays]="model.getAdditional('outsideDays', 'visible')"
+                    [showWeekdays]="model.getAdditional('showWeekdays', true)"
+                    [showWeekNumbers]="model.getAdditional('showWeekNumbers', false)"
+                    [startDate]="model.focusedDate"
+                    (select)="onChange($event)"></ngb-datepicker>
+
+</ng-container>

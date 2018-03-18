@@ -72,7 +72,7 @@ describe("DynamicBasicInputComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an checkbox element", () => {
+    it("should have an input element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
