@@ -1,7 +1,7 @@
 import { RouterModule, Route } from "@angular/router";
 //import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 //import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
-//import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
+import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
 //import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
 //import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
@@ -32,7 +32,7 @@ const APP_ROUTES: Route[] = [
             href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/bootstrap-sample-form/bootstrap-sample-form.model.ts",
             bgColor: "#6f5499"
         }
-    },
+    },*/
     {
         path: "foundation-sample-form",
         component: FoundationSampleFormComponent,
@@ -41,7 +41,7 @@ const APP_ROUTES: Route[] = [
             href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/foundation-sample-form/foundation-sample-form.model.ts",
             bgColor: "#2199e8"
         }
-    },
+    },/*
     {
         path: "kendo-sample-form",
         component: KendoSampleFormComponent,

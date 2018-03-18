@@ -130,7 +130,7 @@ xdescribe("DynamicFormMaterialComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onValueChange).toBeDefined();
+        expect(component.onChange).toBeDefined();
         expect(component.onBlur).toBeDefined();
         expect(component.onFocus).toBeDefined();
 

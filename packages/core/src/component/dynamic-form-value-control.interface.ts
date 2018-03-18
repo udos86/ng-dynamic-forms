@@ -13,6 +13,6 @@ export interface DynamicFormValueControlInterface {
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;
-    customEvent: EventEmitter<DynamicFormControlCustomEvent>;
+    customEvent?: EventEmitter<DynamicFormControlCustomEvent>;
     focus: EventEmitter<any>;
 }

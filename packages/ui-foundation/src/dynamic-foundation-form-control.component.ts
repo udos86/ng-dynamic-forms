@@ -1,16 +1,21 @@
 import {
     ChangeDetectorRef,
     Component,
+    ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
     Input,
-    OnChanges,
     Output,
-    QueryList,
-    SimpleChanges
+    QueryList, Type, ViewChild, ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
     DynamicFormControlEvent,
@@ -18,35 +23,21 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
+    DynamicFormValueControlInterface,
     DynamicTemplateDirective,
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
-    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
-    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
 } from "@ng-dynamic-forms/core";
-
-export const enum FoundationFormControlType {
-
-    Array = 1, //"ARRAY",
-    Checkbox = 2, //"CHECKBOX",
-    Group = 3, //"GROUP",
-    Input = 4, //"INPUT",
-    RadioGroup = 5, //"RADIO_GROUP",
-    Select = 6, //"SELECT",
-    Switch = 7, //"SWITCH",
-    TextArea = 8, //"TEXTAREA"
-}
+import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundation-textarea.component";
+import { DynamicFoundationSwitchComponent } from "./switch/dynamic-foundation-switch.component";
+import { DynamicFoundationSelectComponent } from "./select/dynamic-foundation-select.component";
+import { DynamicFoundationRadioGroupComponent } from "./radio-group/dynamic-foundation-radio-group.component";
+import { DynamicFoundationInputComponent } from "./input/dynamic-foundation-input.component";
+import { DynamicFoundationCheckboxComponent } from "./checkbox/dynamic-foundation-checkbox.component";
 
 @Component({
-    selector: "dynamic-foundation-form-control,dynamic-form-foundation-sites-control",
+    selector: "dynamic-foundation-form-control",
     templateUrl: "./dynamic-foundation-form-control.component.html"
 })
-export class DynamicFoundationFormControlComponent extends DynamicFormControlComponent implements OnChanges {
+export class DynamicFoundationFormControlComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
@@ -54,61 +45,51 @@ export class DynamicFoundationFormControlComponent extends DynamicFormControlCom
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
-    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    type: FoundationFormControlType | null;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, layoutService, validationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        super.ngOnChanges(changes);
-
-        if (changes["model"]) {
-            this.type = DynamicFoundationFormControlComponent.getFormControlType(this.model);
-        }
+    get componentType(): Type<DynamicFormValueControlInterface> | null {
+        return foundationModelComponentMapper(this.model);
     }
+}
 
-    static getFormControlType(model: DynamicFormControlModel): FoundationFormControlType | null {
+export function foundationModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
-        switch (model.type) {
+    switch (model.type) {
 
-            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                return FoundationFormControlType.Array;
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+            return DynamicFoundationCheckboxComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                return FoundationFormControlType.Checkbox;
+        case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+            return DynamicFoundationInputComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                return FoundationFormControlType.Group;
+        case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+            return DynamicFoundationRadioGroupComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                return FoundationFormControlType.Input;
+        case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+            return DynamicFoundationSelectComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                return FoundationFormControlType.RadioGroup;
+        case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+            return DynamicFoundationSwitchComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                return FoundationFormControlType.Select;
+        case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+            return DynamicFoundationTextAreaComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                return FoundationFormControlType.Switch;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                return FoundationFormControlType.TextArea;
-
-            default:
-                return null;
-        }
+        default:
+            return null;
     }
 }

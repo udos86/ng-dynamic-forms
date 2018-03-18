@@ -199,9 +199,12 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
             instance.model = this.model as any;
 
             this.componentSubscriptions.push(instance.blur.subscribe(($event: any) => this.onBlur($event)));
-            this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onValueChange($event)));
-            this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+            this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onChange($event)));
             this.componentSubscriptions.push(instance.focus.subscribe(($event: any) => this.onFocus($event)));
+
+            if (instance.customEvent !== undefined) {
+                this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+            }
         }
     }
 
@@ -294,7 +297,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         value ? this.control.disable() : this.control.enable();
     }
 
-    onValueChange($event: Event | DynamicFormControlEvent | any): void {
+    onChange($event: Event | DynamicFormControlEvent | any): void {
 
         if ($event && $event instanceof Event) { // native HTML5 change event
 

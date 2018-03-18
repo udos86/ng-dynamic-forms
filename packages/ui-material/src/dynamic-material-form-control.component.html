@@ -28,7 +28,7 @@
                                            [templates]="templateList"
                                            [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                            (blur)="onBlur($event)"
-                                           (change)="onValueChange($event)"
+                                           (change)="onChange($event)"
                                            (focus)="onFocus($event)"
                                            (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
@@ -52,7 +52,7 @@
                                        [templates]="templateList"
                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
                                        (blur)="onBlur($event)"
-                                       (change)="onValueChange($event)"
+                                       (change)="onChange($event)"
                                        (focus)="onFocus($event)"
                                        (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
     </div>
