@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialTextAreaComponent } from "./dynamic-material-textarea.component";
 
-fdescribe("DynamicMaterialTextAreaComponent test suite", () => {
+describe("DynamicMaterialTextAreaComponent test suite", () => {
 
     let testModel = new DynamicTextAreaModel({id: "textarea"}),
         formModel = [testModel],
@@ -73,6 +73,10 @@ fdescribe("DynamicMaterialTextAreaComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
+
+        expect(component.characterCount).toBe(0);
+        expect(component.characterHint).toEqual(`${component.characterCount} / ${testModel.maxLength}`);
+        expect(component.showCharacterHint).toBe(false);
     });
 
     it("should have an input element", () => {

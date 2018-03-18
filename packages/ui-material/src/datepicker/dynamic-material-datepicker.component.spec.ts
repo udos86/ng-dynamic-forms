@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicMaterialDatePickerComponent } from "./dynamic-material-datepicker.component";
 
-fdescribe("DynamicMaterialDatePickerComponent test suite", () => {
+describe("DynamicMaterialDatePickerComponent test suite", () => {
 
     let testModel = new DynamicDatePickerModel({id: "datepicker"}),
         formModel = [testModel],

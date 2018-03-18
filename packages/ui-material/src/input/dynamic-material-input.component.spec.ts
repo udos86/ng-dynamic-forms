@@ -75,6 +75,10 @@ fdescribe("DynamicMaterialInputComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
+
+        expect(component.characterCount).toBe(0);
+        expect(component.characterHint).toEqual(`${component.characterCount} / ${testModel.maxLength}`);
+        expect(component.showCharacterHint).toBe(false);
     });
 
     it("should have an input element", () => {

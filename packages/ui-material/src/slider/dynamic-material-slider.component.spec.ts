@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSliderComponent } from "./dynamic-material-slider.component";
 
-fdescribe("DynamicMaterialSliderComponent test suite", () => {
+describe("DynamicMaterialSliderComponent test suite", () => {
 
     let testModel = new DynamicSliderModel({id: "slider"}),
         formModel = [testModel],

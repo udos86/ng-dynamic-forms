@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialRadioGroupComponent } from "./dynamic-material-radio-group.component";
 
-fdescribe("DynamicMaterialRadioGroupComponent test suite", () => {
+describe("DynamicMaterialRadioGroupComponent test suite", () => {
 
     let testModel = new DynamicRadioGroupModel({id: "radioGroup", options: [{value: "One"}, {value: "Two"}], value: "One"}),
         formModel = [testModel],

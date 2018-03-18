@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSlideToggleComponent } from "./dynamic-material-slide-toggle.component";
 
-fdescribe("DynamicMaterialSlideToggleComponent test suite", () => {
+describe("DynamicMaterialSlideToggleComponent test suite", () => {
 
     let testModel = new DynamicSwitchModel({id: "switch"}),
         formModel = [testModel],

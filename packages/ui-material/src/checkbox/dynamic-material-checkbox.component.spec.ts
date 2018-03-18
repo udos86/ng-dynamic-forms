@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicMaterialCheckboxComponent } from "./dynamic-material-checkbox.component";
 
-fdescribe("DynamicMaterialCheckboxComponent test suite", () => {
+describe("DynamicMaterialCheckboxComponent test suite", () => {
 
     let testModel = new DynamicCheckboxModel({id: "checkbox"}),
         formModel = [testModel],

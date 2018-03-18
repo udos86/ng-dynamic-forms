@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialChipsComponent } from "./dynamic-material-chips.component";
 
-fdescribe("DynamicMaterialChipsComponent test suite", () => {
+describe("DynamicMaterialChipsComponent test suite", () => {
 
     let testModel = new DynamicInputModel({id: "input", multiple: true}),
         formModel = [testModel],
