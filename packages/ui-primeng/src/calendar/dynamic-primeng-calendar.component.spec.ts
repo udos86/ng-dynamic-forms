@@ -3,18 +3,18 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatAutocomplete, MatAutocompleteModule, MatInput, MatInputModule } from "@angular/material";
+import { Calendar, CalendarModule } from "primeng/primeng";
 import { TextMaskModule } from "angular2-text-mask";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
-import { DynamicMaterialInputComponent } from "./dynamic-material-input.component";
+import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { DynamicPrimeNGCalendarComponent } from "./dynamic-primeng-calendar.component";
 
-describe("DynamicMaterialInputComponent test suite", () => {
+describe("DynamicPrimeNGCalendarComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "input", maxLength: 51}),
+    let testModel = new DynamicDatePickerModel({id: "calendar"}),
         formModel = [testModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialInputComponent>,
-        component: DynamicMaterialInputComponent,
+        fixture: ComponentFixture<DynamicPrimeNGCalendarComponent>,
+        component: DynamicPrimeNGCalendarComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -25,16 +25,15 @@ describe("DynamicMaterialInputComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                MatAutocompleteModule,
-                MatInputModule,
+                CalendarModule,
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicMaterialInputComponent]
+            declarations: [DynamicPrimeNGCalendarComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicMaterialInputComponent);
+            fixture = TestBed.createComponent(DynamicPrimeNGCalendarComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -50,7 +49,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id="input"]`));
+        testElement = debugElement.query(By.css(`p-calendar`));
     }));
 
     it("should initialize correctly", () => {
@@ -58,14 +57,12 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
-        expect(component.model instanceof DynamicInputModel).toBe(true);
-        expect(component.matAutocomplete instanceof MatAutocomplete).toBe(true);
-        expect(component.matInput instanceof MatInput).toBe(true);
-        expect(component.controlViewChild instanceof MatInput).toBe(true);
+        expect(component.model instanceof DynamicDatePickerModel).toBe(true);
+        expect(component.pCalendar instanceof Calendar).toBe(true);
+        expect(component.controlViewChild instanceof Calendar).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
@@ -76,13 +73,9 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
-
-        expect(component.characterCount).toBe(0);
-        expect(component.characterHint).toEqual(`${component.characterCount} / ${testModel.maxLength}`);
-        expect(component.showCharacterHint).toBe(false);
     });
 
-    it("should have an input element", () => {
+    it("should have an p-calendar element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
@@ -96,15 +89,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.blur.emit).toHaveBeenCalled();
     });
 
-    it("should listen to native blur events", () => {
-
-        spyOn(component, "onBlur");
-
-        testElement.triggerEventHandler("blur", null);
-
-        expect(component.onBlur).toHaveBeenCalled();
-    });
-
     it("should emit change event", () => {
 
         spyOn(component.change, "emit");
@@ -114,15 +98,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.change.emit).toHaveBeenCalled();
     });
 
-    it("should listen to native change event", () => {
-
-        spyOn(component, "onChange");
-
-        testElement.triggerEventHandler("change", null);
-
-        expect(component.onChange).toHaveBeenCalled();
-    });
-
     it("should emit focus event", () => {
 
         spyOn(component.focus, "emit");
@@ -130,23 +105,5 @@ describe("DynamicMaterialInputComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should listen to native focus events", () => {
-
-        spyOn(component, "onFocus");
-
-        testElement.triggerEventHandler("focus", null);
-
-        expect(component.onFocus).toHaveBeenCalled();
-    });
-
-    it("should emit custom event", () => {
-
-        spyOn(component.customEvent, "emit");
-
-        component.onCustomEvent(null, "eventType");
-
-        expect(component.customEvent.emit).toHaveBeenCalled();
     });
 });

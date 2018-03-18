@@ -59,6 +59,7 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
         expect(component.matSlideToggle instanceof MatSlideToggle).toBe(true);
+        expect(component.controlViewChild instanceof MatSlideToggle).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

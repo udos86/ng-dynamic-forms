@@ -62,7 +62,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormValueControlInterface> | null {
-        return bsModelComponentMapper(this.model);
+        return mapDynamicBootstrapComponentByModel(this.model);
     }
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
@@ -74,7 +74,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     }
 }
 
-export function bsModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
     switch (model.type) {
 

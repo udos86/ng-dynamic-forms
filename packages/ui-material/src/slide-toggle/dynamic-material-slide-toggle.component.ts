@@ -33,4 +33,8 @@ export class DynamicMaterialSlideToggleComponent extends DynamicFormValueControl
 
         super(layoutService, validationService);
     }
+
+    get controlViewChild(): MatSlideToggle {
+        return this.matSlideToggle;
+    }
 }

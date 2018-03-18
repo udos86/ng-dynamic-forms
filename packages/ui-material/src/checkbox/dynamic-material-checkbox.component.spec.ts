@@ -59,6 +59,7 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);
         expect(component.matCheckbox instanceof MatCheckbox).toBe(true);
+        expect(component.controlViewChild instanceof MatCheckbox).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

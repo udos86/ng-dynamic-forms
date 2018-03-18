@@ -22,6 +22,8 @@ import {
     SpinnerModule
 } from "primeng/primeng";
 import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
+import { DynamicPrimeNGAutoCompleteComponent } from "./autocomplete/dynamic-primeng-autocomplete.component";
+import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
 
 @NgModule({
     imports: [
@@ -48,6 +50,10 @@ import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
     declarations: [
         DynamicPrimeNGFormControlComponent,
         DynamicPrimeNGFormComponent
+    ],
+    entryComponents: [
+        DynamicPrimeNGAutoCompleteComponent,
+        DynamicPrimeNGCalendarComponent
     ],
     exports: [
         DynamicFormsCoreModule,

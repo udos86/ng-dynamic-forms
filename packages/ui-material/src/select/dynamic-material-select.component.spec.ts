@@ -59,6 +59,7 @@ describe("DynamicMaterialSelectComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
         expect(component.matSelect instanceof MatSelect).toBe(true);
+        expect(component.controlViewChild instanceof MatSelect).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

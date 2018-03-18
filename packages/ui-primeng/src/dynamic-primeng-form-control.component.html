@@ -80,71 +80,10 @@
             </div>
 
             <!-- AUTOCOMPLETE ----------------------------------------------------------------------------------------->
-            <p-autoComplete *ngSwitchCase="2" #pAutoComplete
-                            [autoHighlight]="getAdditional('autoHighlight', false)"
-                            [delay]="getAdditional('delay', 300)"
-                            [dropdown]="getAdditional('dropdown', false)"
-                            [dynamicId]="bindId && model.id"
-                            [emptyMessage]="getAdditional('emptyMessage', null)"
-                            [forceSelection]="getAdditional('forceSelection', false)"
-                            [formControlName]="model.id"
-                            [minLength]="getAdditional('minLength', 1)"
-                            [multiple]="model.multiple"
-                            [ngClass]="getClass('element', 'control')"
-                            [placeholder]="model.placeholder"
-                            [scrollHeight]="getAdditional('scrollHeight', '200px')"
-                            [suggestions]="suggestions"
-                            [tabindex]="model.tabIndex"
-                            (onBlur)="onBlur($event)"
-                            (change)="onValueChange($event)"
-                            (onClear)="onCustomEvent($event, 'onClear')"
-                            (onDropdownClick)="onCustomEvent($event, 'onDropdownClick')"
-                            (onFocus)="onFocus($event)"
-                            (onSelect)="onCustomEvent($event, 'onSelect')"
-                            (onUnselect)="onCustomEvent($event, 'onUnselect')"
-                            (completeMethod)="onAutoComplete($event)"></p-autoComplete>
+
 
             <!-- CALENDAR --------------------------------------------------------------------------------------------->
-            <p-calendar *ngSwitchCase="3" #pCalendar
-                        [dateFormat]="model.format || 'mm/dd/yy'"
-                        [defaultDate]="model.focusedDate"
-                        [disabledDates]="getAdditional('disabledDates')"
-                        [disabledDays]="getAdditional('disabledDays')"
-                        [dynamicId]="bindId && model.id"
-                        [formControlName]="model.id"
-                        [hourFormat]="getAdditional('hourFormat', '24')"
-                        [icon]="getAdditional('icon', 'fa-calendar')"
-                        [inline]="model.inline"
-                        [locale]="getAdditional('locale', { firstDayOfWeek: 0, dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], today: 'Today', clear: 'Clear' })"
-                        [maxDate]="model.max"
-                        [maxDateCount]="getAdditional('maxDateCount')"
-                        [minDate]="model.min"
-                        [monthNavigator]="getAdditional('monthNavigator', false)"
-                        [ngClass]="getClass('element', 'control')"
-                        [placeholder]="model.placeholder"
-                        [selectionMode]="getAdditional('selectionMode', 'single')"
-                        [selectOtherMonths]="getAdditional('selectOtherMonths', false)"
-                        [shortYearCutoff]="getAdditional('shortYearCutoff', '+10')"
-                        [showButtonBar]="getAdditional('showButtonBar', false)"
-                        [showIcon]="getAdditional('showIcon', true)"
-                        [showOnFocus]="getAdditional('showOnFocus', true)"
-                        [showOtherMonths]="getAdditional('showOtherMonths', true)"
-                        [showSeconds]="model.showSeconds"
-                        [stepHour]="getAdditional('stepHour', 1)"
-                        [stepMinute]="getAdditional('stepMinute', 1)"
-                        [stepSecond]="getAdditional('stepSecond', 1)"
-                        [tabindex]="model.tabIndex"
-                        [timeOnly]="model.type === 'TIMEPICKER'"
-                        [utc]="getAdditional('utc', false)"
-                        [yearNavigator]="getAdditional('yearNavigator', false)"
-                        [yearRange]="getAdditional('yearRange')"
-                        (onBlur)="onBlur($event)"
-                        (onClearClick)="onCustomEvent($event, 'onClearClick')"
-                        (onClose)="onCustomEvent($event, 'onClose')"
-                        (onFocus)="onFocus($event)"
-                        (onInput)="onValueChange($event)"
-                        (onSelect)="onValueChange($event)"
-                        (onTodayClick)="onCustomEvent($event, 'onTodayClick')"></p-calendar>
+
 
             <!-- CHECKBOX --------------------------------------------------------------------------------------------->
             <p-checkbox *ngSwitchCase="4" #pCheckbox

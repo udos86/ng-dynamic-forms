@@ -33,4 +33,8 @@ export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputCo
 
         super(layoutService, validationService);
     }
+
+    get controlViewChild(): MatInput {
+        return this.matInput;
+    }
 }

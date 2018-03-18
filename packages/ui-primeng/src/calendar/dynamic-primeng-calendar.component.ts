@@ -1,33 +1,31 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatAutocomplete, MatInput } from "@angular/material";
+import { Calendar } from "primeng/primeng";
 import {
-    DynamicFormControlCustomEvent,
+    DynamicDatePickerModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicInputModel
+    DynamicFormValueControlComponent,
+    DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-form-input-control.component";
 
 @Component({
-    selector: "dynamic-material-input",
-    templateUrl: "./dynamic-material-input.component.html"
+    selector: "dynamic-primeng-calendar",
+    templateUrl: "./dynamic-primeng-calendar.component.html"
 })
-export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
+export class DynamicPrimeNGCalendarComponent extends DynamicFormValueControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicInputModel;
+    @Input() model: DynamicDatePickerModel | DynamicTimePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
-    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matAutocomplete") matAutocomplete: MatAutocomplete;
-    @ViewChild(MatInput) matInput: MatInput;
+    @ViewChild("pCalendar") pCalendar: Calendar;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
@@ -35,7 +33,7 @@ export class DynamicMaterialInputComponent extends DynamicMaterialFormInputContr
         super(layoutService, validationService);
     }
 
-    get controlViewChild(): MatInput {
-        return this.matInput;
+    get controlViewChild(): Calendar {
+        return this.pCalendar;
     }
 }

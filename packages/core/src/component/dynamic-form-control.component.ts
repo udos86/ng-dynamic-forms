@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     ChangeDetectorRef,
     ComponentFactoryResolver,
     ComponentRef,
@@ -47,7 +46,7 @@ import { DynamicFormValueControlInterface } from "./dynamic-form-value-control.i
 
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
-export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+export abstract class DynamicFormControlComponent implements OnChanges, OnInit, OnDestroy {
 
     bindId: boolean;
     context: DynamicFormArrayGroupModel | null;
@@ -68,9 +67,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     componentViewContainerRef: ViewContainerRef;
 
-    private componentRef: ComponentRef<DynamicFormValueControlInterface>;
-    private componentSubscriptions: Subscription[] = [];
-    private subscriptions: Subscription[] = [];
+    protected componentRef: ComponentRef<DynamicFormValueControlInterface>;
+    protected componentSubscriptions: Subscription[] = [];
+    protected subscriptions: Subscription[] = [];
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
@@ -116,15 +115,9 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     ngOnInit() {
 
-        if (!this.model && !this.group) {
+        if (!(this.model instanceof DynamicFormControlModel) || !(this.group instanceof FormGroup)) {
             throw new Error(`no [model] or [group] input set for DynamicFormControlComponent`);
         }
-    }
-
-    ngAfterViewInit() {
-
-        this.setTemplates();
-        this.changeDetectorRef.detectChanges();
     }
 
     ngOnDestroy() {
@@ -207,6 +200,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
             if (instance.customEvent !== undefined) {
                 this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
+
+            this.setTemplates();
         }
     }
 

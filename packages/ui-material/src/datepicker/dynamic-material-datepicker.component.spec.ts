@@ -62,6 +62,7 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
         expect(component.matDatePicker instanceof MatDatepicker).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);
+        expect(component.controlViewChild instanceof MatDatepicker).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

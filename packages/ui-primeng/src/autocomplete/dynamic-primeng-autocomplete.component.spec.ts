@@ -3,18 +3,18 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatAutocomplete, MatAutocompleteModule, MatInput, MatInputModule } from "@angular/material";
+import { AutoComplete, AutoCompleteModule } from "primeng/primeng";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
-import { DynamicMaterialInputComponent } from "./dynamic-material-input.component";
+import { DynamicPrimeNGAutoCompleteComponent } from "./dynamic-primeng-autocomplete.component";
 
-describe("DynamicMaterialInputComponent test suite", () => {
+describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "input", maxLength: 51}),
+    let testModel = new DynamicInputModel({id: "input", list: ["One", "Two", "Three"]}),
         formModel = [testModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialInputComponent>,
-        component: DynamicMaterialInputComponent,
+        fixture: ComponentFixture<DynamicPrimeNGAutoCompleteComponent>,
+        component: DynamicPrimeNGAutoCompleteComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -25,16 +25,15 @@ describe("DynamicMaterialInputComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                MatAutocompleteModule,
-                MatInputModule,
+                AutoCompleteModule,
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicMaterialInputComponent]
+            declarations: [DynamicPrimeNGAutoCompleteComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicMaterialInputComponent);
+            fixture = TestBed.createComponent(DynamicPrimeNGAutoCompleteComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -50,7 +49,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id="input"]`));
+        testElement = debugElement.query(By.css(`p-autoComplete`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,9 +58,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
-        expect(component.matAutocomplete instanceof MatAutocomplete).toBe(true);
-        expect(component.matInput instanceof MatInput).toBe(true);
-        expect(component.controlViewChild instanceof MatInput).toBe(true);
+        expect(component.pAutoComplete instanceof AutoComplete).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
@@ -76,13 +73,9 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
-
-        expect(component.characterCount).toBe(0);
-        expect(component.characterHint).toEqual(`${component.characterCount} / ${testModel.maxLength}`);
-        expect(component.showCharacterHint).toBe(false);
     });
 
-    it("should have an input element", () => {
+    it("should have an p-autoComplete element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });

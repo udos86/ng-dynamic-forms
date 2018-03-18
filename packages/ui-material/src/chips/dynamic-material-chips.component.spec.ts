@@ -62,6 +62,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.matChipList instanceof MatChipList).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);
+        expect(component.controlViewChild instanceof MatChipList).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

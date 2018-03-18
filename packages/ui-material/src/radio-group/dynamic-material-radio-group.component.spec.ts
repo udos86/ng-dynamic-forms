@@ -59,6 +59,7 @@ describe("DynamicMaterialRadioGroupComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
         //expect(component.matRadioGroup instanceof MatRadioGroup).toBe(true);
+        //expect(component.controlViewChild instanceof MatRadioGroup).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

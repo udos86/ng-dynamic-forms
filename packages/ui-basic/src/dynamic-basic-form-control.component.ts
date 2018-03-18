@@ -66,11 +66,11 @@ export class DynamicBasicFormControlComponent extends DynamicFormControlComponen
     }
 
     get componentType(): Type<DynamicFormValueControlInterface> | null {
-        return basicModelComponentMapper(this.model);
+        return mapDynamicBasicComponentByModel(this.model);
     }
 }
 
-export function basicModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicBasicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
     switch (model.type) {
 

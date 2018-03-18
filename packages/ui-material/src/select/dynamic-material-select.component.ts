@@ -33,4 +33,8 @@ export class DynamicMaterialSelectComponent extends DynamicFormValueControlCompo
 
         super(layoutService, validationService);
     }
+
+    get controlViewChild(): MatSelect {
+        return this.matSelect;
+    }
 }

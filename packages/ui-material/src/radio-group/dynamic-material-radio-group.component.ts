@@ -33,4 +33,8 @@ export class DynamicMaterialRadioGroupComponent extends DynamicFormValueControlC
 
         super(layoutService, validationService);
     }
+    
+    get controlViewChild(): MatRadioGroup {
+        return this.matRadioGroup;
+    }
 }

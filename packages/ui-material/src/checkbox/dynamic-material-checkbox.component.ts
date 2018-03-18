@@ -33,4 +33,8 @@ export class DynamicMaterialCheckboxComponent extends DynamicFormValueControlCom
 
         super(layoutService, validationService);
     }
+
+    get controlViewChild(): MatCheckbox {
+        return this.matCheckbox;
+    }
 }

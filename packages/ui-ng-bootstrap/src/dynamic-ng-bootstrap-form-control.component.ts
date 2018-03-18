@@ -79,11 +79,11 @@ export class DynamicNGBootstrapFormControlComponent extends DynamicFormControlCo
     }
 
     get componentType(): Type<DynamicFormValueControlInterface> | null {
-        return ngbModelComponentMapper(this.model);
+        return mapDynamicNGBootstrapComponentByModel(this.model);
     }
 }
 
-export function ngbModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicNGBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
     switch (model.type) {
 
@@ -94,9 +94,9 @@ export function ngbModelComponentMapper(model: DynamicFormControlModel): Type<Dy
             return DynamicNGBootstrapCheckboxGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-            let datepickerModel = model as DynamicDatePickerModel;
+            let datePickerModel = model as DynamicDatePickerModel;
 
-            return datepickerModel.inline ? DynamicNGBootstrapCalendarComponent : DynamicNGBootstrapDatePickerComponent;
+            return datePickerModel.inline ? DynamicNGBootstrapCalendarComponent : DynamicNGBootstrapDatePickerComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             return DynamicNGBootstrapInputComponent;

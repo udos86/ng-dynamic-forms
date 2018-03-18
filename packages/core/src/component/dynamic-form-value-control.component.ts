@@ -30,6 +30,10 @@ export abstract class DynamicFormValueControlComponent implements DynamicFormVal
         return this.group.get(this.model.id) as FormControl;
     }
 
+    get controlViewChild(): any | null {
+        return null;
+    }
+
     get errorMessages(): string[] {
         return this.validationService.createErrorMessages(this.control, this.model);
     }

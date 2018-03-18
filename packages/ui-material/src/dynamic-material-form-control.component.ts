@@ -73,7 +73,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 
     get componentType(): Type<DynamicFormValueControlInterface> | null {
-        return matModelComponentMapper(this.model);
+        return mapDynamicMaterialComponentByModel(this.model);
     }
 
     get hasMatFormField(): boolean {
@@ -85,7 +85,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 }
 
-export function matModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicMaterialComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
     switch (model.type) {
 
