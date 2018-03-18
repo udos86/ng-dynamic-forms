@@ -5,15 +5,15 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
-import { DynamicBasicSelectComponent } from "./dynamic-basic-select.component";
+import { DynamicBootstrapSelectComponent } from "./dynamic-bootstrap-select.component";
 
-describe("DynamicBasicSelectComponent test suite", () => {
+describe("DynamicBootstrapSelectComponent test suite", () => {
 
     let testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
         formModel = [testModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicSelectComponent>,
-        component: DynamicBasicSelectComponent,
+        fixture: ComponentFixture<DynamicBootstrapSelectComponent>,
+        component: DynamicBootstrapSelectComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -27,11 +27,11 @@ describe("DynamicBasicSelectComponent test suite", () => {
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicBasicSelectComponent]
+            declarations: [DynamicBootstrapSelectComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicBasicSelectComponent);
+            fixture = TestBed.createComponent(DynamicBootstrapSelectComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;

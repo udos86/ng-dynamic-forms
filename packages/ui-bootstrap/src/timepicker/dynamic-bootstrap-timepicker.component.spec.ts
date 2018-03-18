@@ -3,17 +3,18 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
+import { TimepickerComponent, TimepickerModule } from "ngx-bootstrap/timepicker";
 import { TextMaskModule } from "angular2-text-mask";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
-import { DynamicBasicSelectComponent } from "./dynamic-basic-select.component";
+import { DynamicFormsCoreModule, DynamicFormService, DynamicTimePickerModel } from "@ng-dynamic-forms/core";
+import { DynamicBootstrapTimePickerComponent } from "./dynamic-bootstrap-timepicker.component";
 
-describe("DynamicBasicSelectComponent test suite", () => {
+describe("DynamicBootstrapTimePickerComponent test suite", () => {
 
-    let testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+    let testModel = new DynamicTimePickerModel({id: "timepicker"}),
         formModel = [testModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicSelectComponent>,
-        component: DynamicBasicSelectComponent,
+        fixture: ComponentFixture<DynamicBootstrapTimePickerComponent>,
+        component: DynamicBootstrapTimePickerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -24,14 +25,15 @@ describe("DynamicBasicSelectComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
+                TimepickerModule.forRoot(),
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicBasicSelectComponent]
+            declarations: [DynamicBootstrapTimePickerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicBasicSelectComponent);
+            fixture = TestBed.createComponent(DynamicBootstrapTimePickerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -47,7 +49,7 @@ describe("DynamicBasicSelectComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`select[id="select"]`));
+        testElement = debugElement.query(By.css(`timepicker`));
     }));
 
     it("should initialize correctly", () => {
@@ -55,7 +57,8 @@ describe("DynamicBasicSelectComponent test suite", () => {
         expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
-        expect(component.model instanceof DynamicSelectModel).toBe(true);
+        expect(component.model instanceof DynamicTimePickerModel).toBe(true);
+        expect(component.bsTimePicker instanceof TimepickerComponent).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
@@ -71,19 +74,18 @@ describe("DynamicBasicSelectComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an select element", () => {
+    it("should have an timepicker element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    it("should listen to and emit blur event", () => {
+    it("should emit blur event", () => {
 
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
-        testElement.triggerEventHandler("blur", null);
 
-        expect(component.blur.emit).toHaveBeenCalledTimes(2);
+        expect(component.blur.emit).toHaveBeenCalled();
     });
 
     it("should emit change event", () => {
@@ -95,13 +97,12 @@ describe("DynamicBasicSelectComponent test suite", () => {
         expect(component.change.emit).toHaveBeenCalled();
     });
 
-    it("should listen to and emit focus event", () => {
+    it("should emit focus event", () => {
 
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
-        testElement.triggerEventHandler("focus", null);
 
-        expect(component.focus.emit).toHaveBeenCalledTimes(2);
+        expect(component.focus.emit).toHaveBeenCalled();
     });
 });

@@ -1,0 +1,22 @@
+<ng-container [formGroup]="group">
+
+    <textarea class="form-control"
+              [dynamicId]="bindId && model.id"
+              [cols]="model.cols"
+              [formControlName]="model.id"
+              [maxlength]="model.maxLength"
+              [minlength]="model.minLength"
+              [name]="model.name"
+              [ngClass]="getClass('element', 'control')"
+              [placeholder]="model.placeholder"
+              [readonly]="model.readOnly"
+              [required]="model.required"
+              [rows]="model.rows"
+              [spellcheck]="model.spellCheck"
+              [tabindex]="model.tabIndex"
+              [wrap]="model.wrap"
+              (blur)="onBlur($event)"
+              (change)="onChange($event)"
+              (focus)="onFocus($event)"></textarea>
+
+</ng-container>

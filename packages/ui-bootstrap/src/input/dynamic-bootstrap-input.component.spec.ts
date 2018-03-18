@@ -4,16 +4,16 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
-import { DynamicBasicSelectComponent } from "./dynamic-basic-select.component";
+import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
+import { DynamicBootstrapInputComponent } from "./dynamic-bootstrap-input.component";
 
-describe("DynamicBasicSelectComponent test suite", () => {
+describe("DynamicBootstrapInputComponent test suite", () => {
 
-    let testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+    let testModel = new DynamicInputModel({id: "input"}),
         formModel = [testModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicSelectComponent>,
-        component: DynamicBasicSelectComponent,
+        fixture: ComponentFixture<DynamicBootstrapInputComponent>,
+        component: DynamicBootstrapInputComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -27,11 +27,11 @@ describe("DynamicBasicSelectComponent test suite", () => {
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicBasicSelectComponent]
+            declarations: [DynamicBootstrapInputComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicBasicSelectComponent);
+            fixture = TestBed.createComponent(DynamicBootstrapInputComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -47,7 +47,7 @@ describe("DynamicBasicSelectComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`select[id="select"]`));
+        testElement = debugElement.query(By.css(`input[id="input"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -55,10 +55,11 @@ describe("DynamicBasicSelectComponent test suite", () => {
         expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
-        expect(component.model instanceof DynamicSelectModel).toBe(true);
+        expect(component.model instanceof DynamicInputModel).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
+        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
@@ -71,7 +72,7 @@ describe("DynamicBasicSelectComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an select element", () => {
+    it("should have an input element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
@@ -91,6 +92,7 @@ describe("DynamicBasicSelectComponent test suite", () => {
         spyOn(component.change, "emit");
 
         component.onChange(null);
+        testElement.triggerEventHandler("change", null);
 
         expect(component.change.emit).toHaveBeenCalled();
     });

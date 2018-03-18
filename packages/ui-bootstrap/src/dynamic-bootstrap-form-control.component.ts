@@ -1,14 +1,15 @@
 import {
-    AfterViewInit,
     ChangeDetectorRef,
     Component,
+    ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
     Input,
-    OnChanges,
     Output,
     QueryList,
-    SimpleChanges
+    Type,
+    ViewChild,
+    ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
@@ -20,36 +21,28 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicFormValueControlInterface
 } from "@ng-dynamic-forms/core";
-
-export const enum BootstrapFormControlType {
-
-    Array = 1, //"ARRAY",
-    Checkbox = 2, //"CHECKBOX",
-    DatePicker = 3, //"DATEPICKER,
-    Group = 4, //"GROUP",
-    Input = 5, //"INPUT",
-    RadioGroup = 6, //"RADIO_GROUP",
-    Select = 7, //"SELECT",
-    TextArea = 8, //"TEXTAREA",
-    TimePicker = 9 //"TIMEPICKER"
-}
+import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
+import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
+import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
+import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
+import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
+import { DynamicBootstrapTextAreaComponent } from "./textarea/dynamic-bootstrap-textarea.component";
+import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootstrap-timepicker.component";
 
 @Component({
-    selector: "dynamic-bootstrap-form-control,dynamic-form-bootstrap-control",
+    selector: "dynamic-bootstrap-form-control",
     templateUrl: "./dynamic-bootstrap-form-control.component.html"
 })
-export class DynamicBootstrapFormControlComponent extends DynamicFormControlComponent implements AfterViewInit, OnChanges {
+export class DynamicBootstrapFormControlComponent extends DynamicFormControlComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
@@ -58,65 +51,55 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
-    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("bsEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    type: BootstrapFormControlType | null;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
+    get componentType(): Type<DynamicFormValueControlInterface> | null {
+        return bsModelComponentMapper(this.model);
+    }
+
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, layoutService, validationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
+}
 
-    ngOnChanges(changes: SimpleChanges) {
-        super.ngOnChanges(changes);
+export function bsModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
-        if (changes["model"]) {
-            this.type = DynamicBootstrapFormControlComponent.getFormControlType(this.model);
-        }
-    }
+    switch (model.type) {
 
-    static getFormControlType(model: DynamicFormControlModel): BootstrapFormControlType | null {
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+            return DynamicBootstrapCheckboxComponent;
 
-        switch (model.type) {
+        case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+            return DynamicBootstrapDatePickerComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-                return BootstrapFormControlType.Array;
+        case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+            return DynamicBootstrapInputComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                return BootstrapFormControlType.Checkbox;
+        case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+            return DynamicBootstrapRadioGroupComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-                return BootstrapFormControlType.Group;
+        case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+            return DynamicBootstrapSelectComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                return BootstrapFormControlType.DatePicker;
+        case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+            return DynamicBootstrapTextAreaComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                return BootstrapFormControlType.Input;
+        case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+            return DynamicBootstrapTimePickerComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                return BootstrapFormControlType.RadioGroup;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                return BootstrapFormControlType.Select;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                return BootstrapFormControlType.TextArea;
-
-            case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-                return BootstrapFormControlType.TimePicker;
-
-            default:
-                return null;
-        }
+        default:
+            return null;
     }
 }
