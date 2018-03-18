@@ -58,7 +58,7 @@ export abstract class DynamicFormValueControlComponent implements DynamicFormVal
 
     onBlur($event: any) {
 
-        if($event instanceof Event) {
+        if ($event instanceof Event) {
             $event.stopPropagation();
         }
 
@@ -68,7 +68,7 @@ export abstract class DynamicFormValueControlComponent implements DynamicFormVal
 
     onChange($event: any) {
 
-        if($event instanceof Event) {
+        if ($event instanceof Event) {
             $event.stopPropagation();
         }
 
@@ -81,7 +81,7 @@ export abstract class DynamicFormValueControlComponent implements DynamicFormVal
 
     onFocus($event: any) {
 
-        if($event instanceof Event) {
+        if ($event instanceof Event) {
             $event.stopPropagation();
         }
 

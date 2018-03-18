@@ -5,6 +5,11 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
 import { DynamicBasicFormComponent } from "./dynamic-basic-form.component";
+import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
+import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
+import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
+import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
+import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
 
 @NgModule({
 
@@ -15,11 +20,20 @@ import { DynamicBasicFormComponent } from "./dynamic-basic-form.component";
         DynamicFormsCoreModule
     ],
     declarations: [
+        DynamicBasicCheckboxComponent,
+        DynamicBasicInputComponent,
+        DynamicBasicRadioGroupComponent,
+        DynamicBasicSelectComponent,
+        DynamicBasicTextAreaComponent,
         DynamicBasicFormControlComponent,
         DynamicBasicFormComponent
     ],
     entryComponents: [
-
+        DynamicBasicCheckboxComponent,
+        DynamicBasicInputComponent,
+        DynamicBasicRadioGroupComponent,
+        DynamicBasicSelectComponent,
+        DynamicBasicTextAreaComponent
     ],
     exports: [
         DynamicFormsCoreModule,

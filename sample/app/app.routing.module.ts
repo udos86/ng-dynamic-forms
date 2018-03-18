@@ -1,5 +1,5 @@
 import { RouterModule, Route } from "@angular/router";
-//import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
+import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 //import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
 //import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
@@ -14,7 +14,7 @@ const APP_ROUTES: Route[] = [
         redirectTo: "/material-sample-form",
         pathMatch: "full"
     },
-    /*
+
     {
         path: "basic-sample-form",
         component: BasicSampleFormComponent,
@@ -24,6 +24,7 @@ const APP_ROUTES: Route[] = [
             bgColor: "gray"
         }
     },
+    /*
     {
         path: "bootstrap-sample-form",
         component: BootstrapSampleFormComponent,

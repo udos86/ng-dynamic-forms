@@ -10,7 +10,7 @@ import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angula
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { DynamicFormsCoreModule, DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
-//import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
+import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 //import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
 //import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
@@ -18,7 +18,7 @@ import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 //import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 //import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
-//import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
+import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 //import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
 //import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
@@ -53,7 +53,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),
         DynamicFormsCoreModule.forRoot(),
-        //DynamicFormsBasicUIModule,
+        DynamicFormsBasicUIModule,
         //DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,
         //DynamicFormsKendoUIModule,
@@ -62,7 +62,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         //DynamicFormsPrimeNGUIModule
     ],
     declarations: [
-        //BasicSampleFormComponent,
+        BasicSampleFormComponent,
         //BootstrapSampleFormComponent,
         FoundationSampleFormComponent,
         //KendoSampleFormComponent,

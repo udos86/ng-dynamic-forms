@@ -21,8 +21,19 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
-    DynamicFormValueControlInterface
+    DynamicFormValueControlInterface,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT
 } from "@ng-dynamic-forms/core";
+import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
+import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
+import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
+import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
+import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
+
 
 @Component({
     selector: "dynamic-basic-form-control",
@@ -62,6 +73,21 @@ export class DynamicBasicFormControlComponent extends DynamicFormControlComponen
 export function basicModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
     switch (model.type) {
+
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+            return DynamicBasicCheckboxComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+            return DynamicBasicInputComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+            return DynamicBasicRadioGroupComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+            return DynamicBasicSelectComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+            return DynamicBasicTextAreaComponent;
 
         default:
             return null;
