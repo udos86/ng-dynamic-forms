@@ -1,34 +1,31 @@
-<ng-container [formGroup]="group">
+<mat-form-field [color]="model.getAdditional('color', 'primary')"
+                [floatLabel]="model.getAdditional('floatLabel', 'auto')"
+                [formGroup]="group"
+                [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
+                [ngClass]="getClass('grid', 'control')">
 
-    <mat-form-field [color]="model.getAdditional('color', 'primary')"
-                    [floatLabel]="model.getAdditional('floatLabel', 'auto')"
-                    [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
-                    [ngClass]="getClass('grid', 'control')">
+    <mat-chip-list #matChipList
+                   [formControlName]="model.id"
+                   [id]="bindId ? model.id : null"
+                   [multiple]="true">
 
-        <mat-chip-list #matChipList
-                       [formControlName]="model.id"
-                       [id]="bindId ? model.id : null"
-                       [multiple]="true">
+        <mat-chip *ngFor="let chip of chipList; let index = index"
+                  [selectable]="false"
+                  (removed)="onChipRemoved(chip, index)">
 
-            <mat-chip *ngFor="let chip of chipList; let index = index"
-                      [selectable]="false"
-                      (removed)="onChipRemoved(chip, index)">
+            <span>{{ chip }}</span>
 
-                <span>{{ chip }}</span>
+            <mat-icon matChipRemove>cancel</mat-icon>
 
-                <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
 
-            </mat-chip>
+        <input matInput
+               [placeholder]="model.placeholder"
+               [matChipInputFor]="matChipList"
+               [matChipInputAddOnBlur]="true"
+               [matChipInputSeparatorKeyCodes]="[13, 188]"
+               (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
 
-            <input matInput
-                   [placeholder]="model.placeholder"
-                   [matChipInputFor]="matChipList"
-                   [matChipInputAddOnBlur]="true"
-                   [matChipInputSeparatorKeyCodes]="[13, 188]"
-                   (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
+    </mat-chip-list>
 
-        </mat-chip-list>
-
-    </mat-form-field>
-
-</ng-container>
+</mat-form-field>

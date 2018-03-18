@@ -56,20 +56,35 @@ export abstract class DynamicFormValueControlComponent implements DynamicFormVal
         return this.layoutService.getClass(controlLayout, context, place);
     }
 
-    onBlur($event: Event) {
+    onBlur($event: any) {
+
+        if($event instanceof Event) {
+            $event.stopPropagation();
+        }
+
         this._hasFocus = false;
         this.blur.emit($event);
     }
 
-    onChange($event: Event) {
+    onChange($event: any) {
+
+        if($event instanceof Event) {
+            $event.stopPropagation();
+        }
+
         this.change.emit($event);
     }
 
-    onCustomEvent($event: Event, type: string) {
+    onCustomEvent($event: any, type: string) {
         this.customEvent.emit({customEvent: $event, customEvenType: type});
     }
 
-    onFocus($event: Event) {
+    onFocus($event: any) {
+
+        if($event instanceof Event) {
+            $event.stopPropagation();
+        }
+
         this._hasFocus = true;
         this.focus.emit($event);
     }

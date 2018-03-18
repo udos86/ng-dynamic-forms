@@ -18,6 +18,9 @@ import { DynamicBasicFormComponent } from "./dynamic-basic-form.component";
         DynamicBasicFormControlComponent,
         DynamicBasicFormComponent
     ],
+    entryComponents: [
+
+    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicBasicFormControlComponent,

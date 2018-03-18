@@ -24,9 +24,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { BasicFormControlType, DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
+import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
 
-describe("DynamicFormBasicComponent test suite", () => {
+xdescribe("DynamicFormBasicComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -103,15 +103,13 @@ describe("DynamicFormBasicComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onValueChange).toBeDefined();
+        expect(component.onChange).toBeDefined();
         expect(component.onBlur).toBeDefined();
         expect(component.onFocus).toBeDefined();
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
-
-        expect(component.type).toEqual(BasicFormControlType.Input);
     });
 
     it("should have an input element", () => {
@@ -139,11 +137,11 @@ describe("DynamicFormBasicComponent test suite", () => {
 
     it("should listen to native change event", () => {
 
-        spyOn(component, "onValueChange");
+        spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
 
-        expect(component.onValueChange).toHaveBeenCalled();
+        expect(component.onChange).toHaveBeenCalled();
     });
 
     it("should update model value when control value changes", () => {
@@ -171,42 +169,5 @@ describe("DynamicFormBasicComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
-    });
-
-    it("should determine correct form control type", () => {
-
-        let testFn = DynamicBasicFormControlComponent.getFormControlType;
-
-        expect(testFn(formModel[0])).toEqual(BasicFormControlType.Checkbox);
-
-        expect(testFn(formModel[1])).toEqual(BasicFormControlType.Group);
-
-        expect(testFn(formModel[2])).toBeNull();
-
-        expect(testFn(formModel[3])).toBeNull();
-
-        expect(testFn(formModel[4])).toBeNull();
-
-        expect(testFn(formModel[5])).toBeNull();
-
-        expect(testFn(formModel[6])).toEqual(BasicFormControlType.Array);
-
-        expect(testFn(formModel[7])).toEqual(BasicFormControlType.Group);
-
-        expect(testFn(formModel[8])).toEqual(BasicFormControlType.Input);
-
-        expect(testFn(formModel[9])).toEqual(BasicFormControlType.RadioGroup);
-
-        expect(testFn(formModel[10])).toBeNull();
-
-        expect(testFn(formModel[11])).toEqual(BasicFormControlType.Select);
-
-        expect(testFn(formModel[12])).toBeNull();
-
-        expect(testFn(formModel[13])).toBeNull();
-
-        expect(testFn(formModel[14])).toEqual(BasicFormControlType.TextArea);
-
-        expect(testFn(formModel[15])).toBeNull();
     });
 });
