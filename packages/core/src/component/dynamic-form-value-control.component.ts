@@ -1,15 +1,11 @@
 import { EventEmitter } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlValue, DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
-
-export interface DynamicFormControlCustomEvent {
-    customEvent: any;
-    customEvenType: string;
-}
 
 export class DynamicFormValueControlComponent {
 

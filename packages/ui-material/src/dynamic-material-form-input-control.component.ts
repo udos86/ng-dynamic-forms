@@ -7,7 +7,7 @@ import {
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
-export class DynamicMaterialFormFieldComponent extends DynamicFormValueControlComponent {
+export class DynamicMaterialFormInputControlComponent extends DynamicFormValueControlComponent {
 
     matInput: MatInput | undefined;
 

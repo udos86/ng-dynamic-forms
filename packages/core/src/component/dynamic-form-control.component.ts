@@ -15,10 +15,12 @@ import {
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
+import { DynamicFormValueControlComponent } from "./dynamic-form-value-control.component";
 import {
-    DynamicFormValueControlComponent,
-    DynamicFormControlCustomEvent
-} from "./dynamic-form-value-control.component";
+    DynamicFormControlCustomEvent,
+    DynamicFormControlEvent,
+    isDynamicFormControlEvent
+} from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
 import {
@@ -41,21 +43,6 @@ import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
 
-export interface DynamicFormControlEvent {
-
-    $event: Event | FocusEvent | DynamicFormControlEvent | any;
-    context: DynamicFormArrayGroupModel | null;
-    control: FormControl;
-    group: FormGroup;
-    model: DynamicFormControlModel;
-    type: string;
-}
-
-export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_BLUR = "blur";
-export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_CHANGE = "change";
-export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS = "focus";
-export const DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM = "custom";
-
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
 export abstract class DynamicFormControlComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
@@ -77,7 +64,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     focus: EventEmitter<DynamicFormControlEvent>;
     customEvent: EventEmitter<DynamicFormControlEvent>;
 
-    viewContainerRef: ViewContainerRef;
+    componentViewContainerRef: ViewContainerRef;
 
     private componentRef: ComponentRef<DynamicFormValueControlComponent>;
     private componentSubscriptions: Subscription[] = [];
@@ -148,7 +135,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.validationService.createErrorMessages(this.control, this.model);
     }
 
-    get hasList(): boolean { // needed for AOT
+    get hasList(): boolean {
         return (this.model as DynamicInputModel).list !== null;
     }
 
@@ -176,7 +163,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
-    get showHint(): boolean { // needed for AOT
+    get showHint(): boolean {
         return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
     }
 
@@ -184,7 +171,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
     }
 
-    abstract get formControlComponentType(): Type<DynamicFormValueControlComponent> | null;
+    abstract get componentType(): Type<DynamicFormValueControlComponent> | null;
 
     getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
 
@@ -195,14 +182,14 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     protected createFormControlComponent(): void {
 
-        let componentType = this.formControlComponentType;
+        let componentType = this.componentType;
 
         if (componentType !== null) {
 
             let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 
-            this.viewContainerRef.clear();
-            this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+            this.componentViewContainerRef.clear();
+            this.componentRef = this.componentViewContainerRef.createComponent(componentFactory);
 
             let instance = this.componentRef.instance;
 
@@ -325,7 +312,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
             this.change.emit(this.createDynamicFormControlEvent($event as Event, "change"));
 
-        } else if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // event bypass
+        } else if (isDynamicFormControlEvent($event)) { // event bypass
 
             this.change.emit($event as DynamicFormControlEvent);
 
@@ -337,7 +324,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onBlur($event: FocusEvent | DynamicFormControlEvent | any): void {
 
-        if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // event bypass
+        if (isDynamicFormControlEvent($event)) { // event bypass
 
             this.blur.emit($event as DynamicFormControlEvent);
 
@@ -350,7 +337,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onFocus($event: FocusEvent | DynamicFormControlEvent | any): void {
 
-        if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // event bypass
+        if (isDynamicFormControlEvent($event)) { // event bypass
 
             this.focus.emit($event as DynamicFormControlEvent);
 
@@ -363,7 +350,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
 
-        if (DynamicFormControlComponent.isDynamicFormControlEvent($event)) { // child event bypass
+        if (isDynamicFormControlEvent($event)) { // child event bypass
 
             this.customEvent.emit($event as DynamicFormControlEvent);
 
@@ -373,9 +360,5 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
             this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
         }
-    }
-
-    static isDynamicFormControlEvent($event: any): boolean {
-        return $event !== null && typeof $event === "object" && $event.hasOwnProperty("$event");
     }
 }

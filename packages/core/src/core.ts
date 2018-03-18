@@ -1,6 +1,7 @@
 export * from "./component/dynamic-form-component";
 export * from "./component/dynamic-form-control.component";
 export * from "./component/dynamic-form-value-control.component";
+export * from "./component/dynamic-form-control.event";
 
 export * from "./decorator/serializable.decorator";
 

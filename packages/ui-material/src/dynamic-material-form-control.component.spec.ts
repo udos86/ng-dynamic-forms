@@ -38,7 +38,6 @@ import {
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
-import { MatFormControlType } from "./dynamic-material-form.const";
 
 describe("DynamicFormMaterialComponent test suite", () => {
 
@@ -104,13 +103,11 @@ describe("DynamicFormMaterialComponent test suite", () => {
 
         component.group = formGroup;
         component.model = testModel;
-        component.showCharacterHint = false;
 
         component.ngOnChanges({
 
             group: new SimpleChange(null, component.group, true),
-            model: new SimpleChange(null, component.model, true),
-            showCharacterHint: new SimpleChange(null, component.showCharacterHint, true)
+            model: new SimpleChange(null, component.model, true)
         });
 
         fixture.detectChanges();
@@ -124,10 +121,6 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.hasErrorMessaging).toBe(false);
-        expect(component.showCharacterHint).toBe(false);
-
-        expect(component.characterCount).toBe(0);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -144,8 +137,6 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
-
-        expect(component.type).toEqual(MatFormControlType.Input);
     });
 
     it("should have an input element", () => {
@@ -156,11 +147,6 @@ describe("DynamicFormMaterialComponent test suite", () => {
     it("should detect material form fields", () => {
 
         expect(component.hasMatFormField).toBe(true);
-    });
-
-    it("should generate a character hint", () => {
-
-        expect(component.characterHint).toEqual("0 / 51");
     });
 
     it("should listen to native blur events", () => {
@@ -215,45 +201,5 @@ describe("DynamicFormMaterialComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
-    });
-
-    it("should determine correct form control type", () => {
-
-        let testFn = DynamicMaterialFormControlComponent.getFormControlType;
-
-        expect(testFn(formModel[0])).toEqual(MatFormControlType.Checkbox);
-
-        expect(testFn(formModel[1])).toEqual(MatFormControlType.Group);
-
-        expect(testFn(formModel[2])).toBeNull();
-
-        expect(testFn(formModel[3])).toEqual(MatFormControlType.DatePicker);
-
-        expect(testFn(formModel[4])).toBeNull();
-
-        expect(testFn(formModel[5])).toBeNull();
-
-        expect(testFn(formModel[6])).toEqual(MatFormControlType.Array);
-
-        expect(testFn(formModel[7])).toEqual(MatFormControlType.Group);
-
-        expect(testFn(formModel[8])).toEqual(MatFormControlType.Input);
-
-        (formModel[8] as DynamicInputModel).multiple = true;
-        expect(testFn(formModel[8])).toEqual(MatFormControlType.Chips);
-
-        expect(testFn(formModel[9])).toEqual(MatFormControlType.RadioGroup);
-
-        expect(testFn(formModel[10])).toBeNull();
-
-        expect(testFn(formModel[11])).toEqual(MatFormControlType.Select);
-
-        expect(testFn(formModel[12])).toEqual(MatFormControlType.Slider);
-
-        expect(testFn(formModel[13])).toEqual(MatFormControlType.SlideToggle);
-
-        expect(testFn(formModel[14])).toEqual(MatFormControlType.TextArea);
-
-        expect(testFn(formModel[15])).toBeNull();
     });
 });

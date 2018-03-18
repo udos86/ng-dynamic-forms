@@ -13,6 +13,14 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
+    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
+    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
+    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
     DynamicFormControlEvent,
@@ -21,26 +29,18 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormValueControlComponent,
-    DynamicTemplateDirective,
     DynamicInputModel,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
-    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_SELECT,
-    DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
-    DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
-    DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA
+    DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
 import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
-import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
 import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
-import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
-import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
-import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider.component";
-import { DynamicMaterialSlideToggleComponent } from "./slide-toggle/dynamic-material-slide-toggle.component";
 import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-textarea.component";
+import { DynamicMaterialSlideToggleComponent } from "./slide-toggle/dynamic-material-slide-toggle.component";
+import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
+import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider.component";
+import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
+import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
+import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
 
 @Component({
     selector: "dynamic-material-form-control",
@@ -57,59 +57,61 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
-    @Output("dyfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dyfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dyFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("formControlViewContainer", {read: ViewContainerRef}) viewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService,
-) {
+                protected validationService: DynamicFormValidationService,) {
+
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    // TODO
-    get hasMatFormField(): boolean {
-        return false;
+    get componentType(): Type<DynamicFormValueControlComponent> | null {
+        return matModelComponentMapper(this.model);
     }
 
-    get formControlComponentType(): Type<DynamicFormValueControlComponent> | null {
+    get hasMatFormField(): boolean {
+        return this.model.type === "DATEPICKER" || this.model.type === "INPUT" || this.model.type === "SELECT" || this.model.type === "TEXTAREA";
+    }
+}
 
-        switch (this.model.type) {
+export function matModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlComponent> | null {
 
-            case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-                return DynamicMaterialCheckboxComponent;
+    switch (model.type) {
 
-            case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-                return DynamicMaterialDatePickerComponent;
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
+            return DynamicMaterialCheckboxComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+        case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
+            return DynamicMaterialDatePickerComponent;
 
-                let inputModel = this.model as DynamicInputModel;
+        case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
+            let inputModel = model as DynamicInputModel;
 
-                return inputModel.multiple ? DynamicMaterialChipsComponent : DynamicMaterialInputComponent;
+            return inputModel.multiple ? DynamicMaterialChipsComponent : DynamicMaterialInputComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-                return DynamicMaterialRadioGroupComponent;
+        case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
+            return DynamicMaterialRadioGroupComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-                return DynamicMaterialSelectComponent;
+        case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
+            return DynamicMaterialSelectComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-                return DynamicMaterialSliderComponent;
+        case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
+            return DynamicMaterialSliderComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-                return DynamicMaterialSlideToggleComponent;
+        case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
+            return DynamicMaterialSlideToggleComponent;
 
-            case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-                return DynamicMaterialTextAreaComponent;
+        case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
+            return DynamicMaterialTextAreaComponent;
 
-            default:
-                return null;
-        }
+        default:
+            return null;
     }
 }

@@ -8,13 +8,13 @@ import {
     DynamicFormValidationService,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormFieldComponent } from "../dynamic-material-form-field.component";
+import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-form-input-control.component";
 
 @Component({
     selector: "dynamic-material-textarea",
     templateUrl: "./dynamic-material-textarea.component.html"
 })
-export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormFieldComponent {
+export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

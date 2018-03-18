@@ -5,7 +5,7 @@
                                [model]="model"
                                [ngClass]="[getClass(model, 'element', 'host'), getClass(model, 'grid', 'host')]"
                                [templates]="templates"
-                               (dyfBlur)="onEvent($event, 'blur')"
-                               (dyfChange)="onEvent($event, 'change')"
-                               (dyfFocus)="onEvent($event, 'focus')"
+                               (blur)="onEvent($event, 'blur')"
+                               (change)="onEvent($event, 'change')"
+                               (focus)="onEvent($event, 'focus')"
                                (matEvent)="onEvent($event, 'custom')"></dynamic-material-form-control>

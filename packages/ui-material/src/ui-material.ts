@@ -1,3 +1,4 @@
+export * from "./dynamic-material-form-input-control.component";
 export * from "./checkbox/dynamic-material-checkbox.component";
 export * from "./chips/dynamic-material-chips.component";
 export * from "./datepicker/dynamic-material-datepicker.component";

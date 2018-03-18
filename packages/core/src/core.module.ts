@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { DynamicFormService } from "./service/dynamic-form.service";
+import { DynamicFormService, DynamicModelComponentMapper } from "./service/dynamic-form.service";
 import { DynamicFormLayoutService } from "./service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "./service/dynamic-form-validation.service";
 import { DynamicIdDirective } from "./directive/dynamic-id.directive";
@@ -23,8 +23,8 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
 })
 export class DynamicFormsCoreModule {
 
-    static forRoot(): ModuleWithProviders {
-
+    static forRoot(mapper?: DynamicModelComponentMapper): ModuleWithProviders {
+        
         return {
 
             ngModule: DynamicFormsCoreModule,

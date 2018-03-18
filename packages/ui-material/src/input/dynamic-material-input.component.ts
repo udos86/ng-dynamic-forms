@@ -8,13 +8,13 @@ import {
     DynamicFormValidationService,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormFieldComponent } from "../dynamic-material-form-field.component";
+import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-form-input-control.component";
 
 @Component({
     selector: "dynamic-material-input",
     templateUrl: "./dynamic-material-input.component.html"
 })
-export class DynamicMaterialInputComponent extends DynamicMaterialFormFieldComponent {
+export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

@@ -1,13 +1,7 @@
 import { EventEmitter, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    DynamicFormControlComponent,
-    DynamicFormControlEvent,
-    DYNAMIC_FORM_CONTROL_EVENT_TYPE_BLUR,
-    DYNAMIC_FORM_CONTROL_EVENT_TYPE_CHANGE,
-    DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS,
-    DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM
-} from "./dynamic-form-control.component";
+import { DynamicFormControlComponent } from "./dynamic-form-control.component";
+import { DynamicFormControlEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
@@ -45,19 +39,19 @@ export abstract class DynamicFormComponent {
 
         switch (type) {
 
-            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_BLUR:
+            case "blur":
                 this.blur.emit($event);
                 break;
 
-            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_CHANGE:
+            case "change":
                 this.change.emit($event);
                 break;
 
-            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_FOCUS:
+            case "focus":
                 this.focus.emit($event);
                 break;
 
-            case DYNAMIC_FORM_CONTROL_EVENT_TYPE_CUSTOM:
+            case "custom":
                 this.customEvent.emit($event);
                 break;
         }

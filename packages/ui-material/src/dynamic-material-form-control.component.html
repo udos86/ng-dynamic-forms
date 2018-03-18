@@ -7,6 +7,8 @@
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
+    <ng-container #componentViewContainer></ng-container>
+
     <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
     <div *ngIf="isFormArray"
          [dynamicId]="bindId && model.id"
@@ -25,9 +27,9 @@
                                            [model]="_model"
                                            [templates]="templateList"
                                            [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                           (dyfBlur)="onBlur($event)"
-                                           (dyfChange)="onValueChange($event)"
-                                           (dyfFocus)="onFocus($event)"
+                                           (blur)="onBlur($event)"
+                                           (change)="onValueChange($event)"
+                                           (focus)="onFocus($event)"
                                            (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
 
             <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
@@ -49,14 +51,11 @@
                                        [model]="_model"
                                        [templates]="templateList"
                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                       (dyfBlur)="onBlur($event)"
-                                       (dyfChange)="onValueChange($event)"
-                                       (dyfFocus)="onFocus($event)"
+                                       (blur)="onBlur($event)"
+                                       (change)="onValueChange($event)"
+                                       (focus)="onFocus($event)"
                                        (matEvent)="onCustomEvent($event)"></dynamic-material-form-control>
     </div>
-
-    <!-- DYNAMIC MATERIAL FORM CONTROL -------------------------------------------------------------------------------->
-    <ng-container #formControlViewContainer></ng-container>
 
     <ng-container *ngIf="!hasMatFormField && showErrorMessages">
 

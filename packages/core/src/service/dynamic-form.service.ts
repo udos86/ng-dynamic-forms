@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Type } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -47,6 +47,8 @@ import { DynamicFormValidationService } from "./dynamic-form-validation.service"
 import { JSONUtils } from "../utils/json.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
+
+export type DynamicModelComponentMapper = (model: DynamicFormControlModel) => Type<any>;
 
 @Injectable()
 export class DynamicFormService {
@@ -326,7 +328,7 @@ export class DynamicFormService {
                     }
 
                     formArrayModel.groupFactory = () => {
-                        return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);
+                        return this.fromJSON(formArrayModel.groupPrototype);
                     };
 
                     formModel.push(new DynamicFormArrayModel(model, layout));
