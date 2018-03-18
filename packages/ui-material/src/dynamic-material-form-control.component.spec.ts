@@ -149,33 +149,6 @@ describe("DynamicFormMaterialComponent test suite", () => {
         expect(component.hasMatFormField).toBe(true);
     });
 
-    it("should listen to native blur events", () => {
-
-        spyOn(component, "onBlur");
-
-        testElement.triggerEventHandler("blur", null);
-
-        expect(component.onBlur).toHaveBeenCalled();
-    });
-
-    it("should listen to native focus events", () => {
-
-        spyOn(component, "onFocus");
-
-        testElement.triggerEventHandler("focus", null);
-
-        expect(component.onFocus).toHaveBeenCalled();
-    });
-
-    it("should listen to native change event", () => {
-
-        spyOn(component, "onValueChange");
-
-        testElement.triggerEventHandler("change", null);
-
-        expect(component.onValueChange).toHaveBeenCalled();
-    });
-
     it("should update model value when control value changes", () => {
 
         spyOn(component, "onControlValueChanges");

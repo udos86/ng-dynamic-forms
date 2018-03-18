@@ -15,7 +15,6 @@ import {
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
-import { DynamicFormValueControlComponent } from "./dynamic-form-value-control.component";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlEvent,
@@ -42,6 +41,7 @@ import {
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
+import { DynamicFormValueControlInterface } from "./dynamic-form-value-control.interface";
 
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
@@ -66,7 +66,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     componentViewContainerRef: ViewContainerRef;
 
-    private componentRef: ComponentRef<DynamicFormValueControlComponent>;
+    private componentRef: ComponentRef<DynamicFormValueControlInterface>;
     private componentSubscriptions: Subscription[] = [];
     private subscriptions: Subscription[] = [];
 
@@ -131,6 +131,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         this.unsubscribe();
     }
 
+    abstract get componentType(): Type<DynamicFormValueControlInterface> | null;
+
     get errorMessages(): string[] {
         return this.validationService.createErrorMessages(this.control, this.model);
     }
@@ -170,8 +172,6 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     get templateList(): QueryList<DynamicTemplateDirective> {
         return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
     }
-
-    abstract get componentType(): Type<DynamicFormValueControlComponent> | null;
 
     getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
 

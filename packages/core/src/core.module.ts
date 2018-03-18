@@ -23,8 +23,8 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
 })
 export class DynamicFormsCoreModule {
 
-    static forRoot(mapper?: DynamicModelComponentMapper): ModuleWithProviders {
-        
+    static forRoot(/*mapper?: DynamicModelComponentMapper*/): ModuleWithProviders {
+
         return {
 
             ngModule: DynamicFormsCoreModule,

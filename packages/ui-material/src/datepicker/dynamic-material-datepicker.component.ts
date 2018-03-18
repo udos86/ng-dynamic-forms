@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatDatepicker } from "@angular/material";
+import { MatDatepicker, MatInput } from "@angular/material";
 import {
     DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
@@ -27,6 +27,7 @@ export class DynamicMaterialDatePickerComponent extends DynamicFormValueControlC
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("matDatepicker") matDatePicker: MatDatepicker<any>;
+    @ViewChild(MatInput) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

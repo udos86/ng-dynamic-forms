@@ -41,14 +41,15 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
+import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
-import { DynamicFormValidationService } from "./dynamic-form-validation.service";
+import { DynamicFormValueControlInterface } from "../component/dynamic-form-value-control.interface";
 import { JSONUtils } from "../utils/json.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
 
-export type DynamicModelComponentMapper = (model: DynamicFormControlModel) => Type<any>;
+export type DynamicModelComponentMapper = (model: DynamicFormControlModel) => Type<DynamicFormValueControlInterface>;
 
 @Injectable()
 export class DynamicFormService {

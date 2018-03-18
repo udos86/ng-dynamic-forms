@@ -28,7 +28,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormValueControlInterface,
     DynamicInputModel,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
@@ -72,16 +72,20 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControlComponent> | null {
+    get componentType(): Type<DynamicFormValueControlInterface> | null {
         return matModelComponentMapper(this.model);
     }
 
     get hasMatFormField(): boolean {
-        return this.model.type === "DATEPICKER" || this.model.type === "INPUT" || this.model.type === "SELECT" || this.model.type === "TEXTAREA";
+
+        let matFormFieldTypes = [DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER, DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+            DYNAMIC_FORM_CONTROL_TYPE_SELECT, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA];
+
+        return matFormFieldTypes.some(type => this.model.type === type);
     }
 }
 
-export function matModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlComponent> | null {
+export function matModelComponentMapper(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
 
     switch (model.type) {
 
