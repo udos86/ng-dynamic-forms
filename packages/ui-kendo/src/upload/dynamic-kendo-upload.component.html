@@ -1,0 +1,22 @@
+<ng-container [formGroup]="group">
+
+    <kendo-upload #kendoUpload
+                  [accept]="model.getAdditional('accept')"
+                  [autoUpload]="model.autoUpload"
+                  [batch]="model.getAdditional('batch', false)"
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [multiple]="model.multiple"
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                  [removeField]="model.getAdditional('removeField', 'fileNames')"
+                  [removeMethod]="model.getAdditional('removeMethod', 'POST')"
+                  [removeUrl]="model.removeUrl"
+                  [responseType]="model.getAdditional('responseType', 'json')"
+                  [saveField]="model.getAdditional('saveField', 'files')"
+                  [saveMethod]="model.getAdditional('saveMethod', 'POST')"
+                  [saveUrl]="model.url"
+                  [showFileList]="model.showFileList"
+                  [tabIndex]="model.tabIndex"
+                  [withCredentials]="model.getAdditional('withCredentials', true)"></kendo-upload>
+
+</ng-container>

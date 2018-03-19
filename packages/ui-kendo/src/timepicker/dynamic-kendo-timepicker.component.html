@@ -1,0 +1,23 @@
+<ng-container [formGroup]="group">
+
+    <kendo-timepicker #kendoTimePicker
+                      [cancelButton]="model.getAdditional('cancelButton', true)"
+                      [dynamicId]="bindId && model.id"
+                      [format]="model.format"
+                      [formControlName]="model.id"
+                      [formatPlaceholder]="model.getAdditional('formatPlaceholder', 'wide')"
+                      [max]="model.max"
+                      [min]="model.min"
+                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                      [nowButton]="model.getAdditional('nowButton', true)"
+                      [popupSettings]="model.getAdditional('popupSettings', {})"
+                      [rangeValidation]="model.getAdditional('rangeValidation', true)"
+                      [steps]="model.getAdditional('steps', {})"
+                      [tabindex]="model.tabIndex"
+                      (blur)="onBlur($event)"
+                      (close)="onCustomEvent($event, 'close')"
+                      (focus)="onFocus($event)"
+                      (open)="onCustomEvent($event, 'open')"
+                      (valueChange)="onChange($event)"></kendo-timepicker>
+
+</ng-container>

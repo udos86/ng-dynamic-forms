@@ -1,0 +1,23 @@
+<ng-container [formGroup]="group">
+
+    <kendo-multiselect #kendoMultiSelect
+                       [autoClose]="model.getAdditional('autoClose', true)"
+                       [clearButton]="model.getAdditional('clearButton', true)"
+                       [data]="model.options"
+                       [dynamicId]="bindId && model.id"
+                       [formControlName]="model.id"
+                       [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                       [placeholder]="model.placeholder"
+                       [popupSettings]="model.getAdditional('popupSettings', {})"
+                       [tabIndex]="model.tabIndex"
+                       [textField]="'label'"
+                       [valueField]="'value'"
+                       [valuePrimitive]="true"
+                       (blur)="onBlur($event)"
+                       (close)="onCustomEvent($event, 'close')"
+                       (filterChange)="onCustomEvent($event, 'filterChange')"
+                       (focus)="onFocus($event)"
+                       (open)="onCustomEvent($event, 'open')"
+                       (valueChange)="onChange($event)"></kendo-multiselect>
+
+</ng-container>

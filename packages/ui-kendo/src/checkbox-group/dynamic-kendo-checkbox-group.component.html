@@ -1,0 +1,33 @@
+<ng-container [formGroup]="group">
+
+    <fieldset class="k-form-field"
+              [dynamicId]="bindId && model.id"
+              [formGroupName]="model.id"
+              [name]="model.name"
+              [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <ng-container *ngFor="let checkboxModel of model.group">
+
+            <input type="checkbox" class="k-checkbox"
+                   [checked]="checkboxModel.checked"
+                   [dynamicId]="bindId && checkboxModel.id"
+                   [formControlName]="checkboxModel.id"
+                   [indeterminate]="checkboxModel.indeterminate"
+                   [name]="checkboxModel.name"
+                   [ngClass]="getClass('element', 'control', checkboxModel)"
+                   [required]="checkboxModel.required"
+                   [tabindex]="checkboxModel.tabIndex"
+                   [value]="checkboxModel.value"
+                   (blur)="onBlur($event)"
+                   (change)="onChange($event)"
+                   (focus)="onFocus($event)"/>
+
+            <label class="k-checkbox-label" [for]="checkboxModel.id" [innerHTML]="checkboxModel.label"></label>
+
+        </ng-container>
+
+    </fieldset>
+
+</ng-container>

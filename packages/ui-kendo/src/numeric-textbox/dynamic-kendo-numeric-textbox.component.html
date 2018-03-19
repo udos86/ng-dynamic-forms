@@ -1,0 +1,21 @@
+<ng-container [formGroup]="group">
+
+    <kendo-numerictextbox #kendoNumericTextBox
+                          [autoCorrect]="model.getAdditional('autoCorrect', false)"
+                          [decimals]="model.getAdditional('decimals')"
+                          [dynamicId]="bindId && model.id"
+                          [format]="model.getAdditional('format', 'n0')"
+                          [formControlName]="model.id"
+                          [max]="model.max"
+                          [min]="model.min"
+                          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                          [placeholder]="model.placeholder"
+                          [rangeValidation]="model.getAdditional('rangeValidation', true)"
+                          [spinners]="model.getAdditional('spinners', true)"
+                          [step]="model.step"
+                          [tabIndex]="model.tabIndex"
+                          (blur)="onBlur($event)"
+                          (focus)="onFocus($event)"
+                          (valueChange)="onChange($event)"></kendo-numerictextbox>
+
+</ng-container>
