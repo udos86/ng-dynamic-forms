@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatAutocomplete, MatInput } from "@angular/material";
 import {
@@ -12,7 +12,8 @@ import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-fo
 
 @Component({
     selector: "dynamic-material-input",
-    templateUrl: "./dynamic-material-input.component.html"
+    templateUrl: "./dynamic-material-input.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
 

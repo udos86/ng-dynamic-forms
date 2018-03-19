@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatChipInputEvent, MatChipList, MatInput } from "@angular/material";
 import {
@@ -12,7 +12,8 @@ import {
 
 @Component({
     selector: "dynamic-material-chips",
-    templateUrl: "./dynamic-material-chips.component.html"
+    templateUrl: "./dynamic-material-chips.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialChipsComponent extends DynamicFormValueControlComponent {
 

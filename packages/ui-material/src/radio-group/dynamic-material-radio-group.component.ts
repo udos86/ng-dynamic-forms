@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatRadioGroup } from "@angular/material";
 import {
@@ -12,7 +12,8 @@ import {
 
 @Component({
     selector: "dynamic-material-radio-group",
-    templateUrl: "./dynamic-material-radio-group.component.html"
+    templateUrl: "./dynamic-material-radio-group.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialRadioGroupComponent extends DynamicFormValueControlComponent {
 

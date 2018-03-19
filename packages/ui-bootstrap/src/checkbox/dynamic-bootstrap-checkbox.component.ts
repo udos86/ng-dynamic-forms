@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicCheckboxModel,
@@ -10,7 +10,8 @@ import {
 
 @Component({
     selector: "dynamic-bootstrap-checkbox",
-    templateUrl: "./dynamic-bootstrap-checkbox.component.html"
+    templateUrl: "./dynamic-bootstrap-checkbox.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBootstrapCheckboxComponent extends DynamicFormValueControlComponent {
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { AutoComplete } from "primeng/primeng";
 import {
@@ -7,12 +7,17 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormValueControlComponent,
-    DynamicInputModel
+    DynamicInputModel,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
+
+export const PRIME_NG_AUTOCOMPLETE_ITEM_TEMPLATE = "itemTemplate";
+export const PRIME_NG_AUTOCOMPLETE_SELECTED_ITEM_TEMPLATE_ = "selectedItemTemplate";
 
 @Component({
     selector: "dynamic-primeng-autocomplete",
-    templateUrl: "./dynamic-primeng-autocomplete.component.html"
+    templateUrl: "./dynamic-primeng-autocomplete.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicPrimeNGAutoCompleteComponent extends DynamicFormValueControlComponent {
 
@@ -22,6 +27,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicFormValueControl
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;
+    @Input() templates: DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Slider } from "primeng/primeng";
 import {
@@ -12,7 +12,8 @@ import {
 
 @Component({
     selector: "dynamic-primeng-slider",
-    templateUrl: "./dynamic-primeng-slider.component.html"
+    templateUrl: "./dynamic-primeng-slider.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGSliderComponent extends DynamicFormValueControlComponent {
 

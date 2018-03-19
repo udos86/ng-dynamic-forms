@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -11,7 +10,8 @@ import {
 
 @Component({
     selector: "dynamic-foundation-radio-group",
-    templateUrl: "./dynamic-foundation-radio-group.component.html"
+    templateUrl: "./dynamic-foundation-radio-group.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFoundationRadioGroupComponent extends DynamicFormValueControlComponent {
 

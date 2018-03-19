@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Chips } from "primeng/primeng";
 import {
@@ -7,12 +7,16 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormValueControlComponent,
-    DynamicInputModel
+    DynamicInputModel,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
+
+export const PRIME_NG_CHIPS_ITEM_TEMPLATE = "itemTemplate";
 
 @Component({
     selector: "dynamic-primeng-chips",
-    templateUrl: "./dynamic-primeng-chips.component.html"
+    templateUrl: "./dynamic-primeng-chips.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGChipsComponent extends DynamicFormValueControlComponent {
 
@@ -20,6 +24,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicFormValueControlCompone
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;
+    @Input() templates: DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

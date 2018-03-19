@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatCheckbox } from "@angular/material";
 import {
@@ -12,7 +12,8 @@ import {
 
 @Component({
     selector: "dynamic-material-checkbox",
-    templateUrl: "./dynamic-material-checkbox.component.html"
+    templateUrl: "./dynamic-material-checkbox.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialCheckboxComponent extends DynamicFormValueControlComponent {
 

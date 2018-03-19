@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Dropdown } from "primeng/primeng";
 import {
@@ -6,12 +6,16 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormValueControlComponent,
-    DynamicSelectModel
+    DynamicSelectModel,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
+
+export const PRIME_NG_DROPDOWN_ITEM_TEMPLATE = "itemTemplate";
 
 @Component({
     selector: "dynamic-primeng-dropdown",
-    templateUrl: "./dynamic-primeng-dropdown.component.html"
+    templateUrl: "./dynamic-primeng-dropdown.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGDropdownComponent extends DynamicFormValueControlComponent {
 
@@ -19,6 +23,7 @@ export class DynamicPrimeNGDropdownComponent extends DynamicFormValueControlComp
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicSelectModel<string>;
+    @Input() templates: DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

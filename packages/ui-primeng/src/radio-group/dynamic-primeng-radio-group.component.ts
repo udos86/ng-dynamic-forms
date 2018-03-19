@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormLayout,
@@ -10,7 +10,8 @@ import {
 
 @Component({
     selector: "dynamic-primeng-radio-group",
-    templateUrl: "./dynamic-primeng-radio-group.component.html"
+    templateUrl: "./dynamic-primeng-radio-group.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGRadioGroupComponent extends DynamicFormValueControlComponent {
 

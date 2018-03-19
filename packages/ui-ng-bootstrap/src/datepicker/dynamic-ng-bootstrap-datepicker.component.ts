@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { NgbDatepicker } from "@ng-bootstrap/ng-bootstrap";
 import {
@@ -11,7 +11,8 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-datepicker",
-    templateUrl: "./dynamic-ng-bootstrap-datepicker.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-datepicker.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGBootstrapDatePickerComponent extends DynamicFormValueControlComponent {
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatSelect } from "@angular/material";
 import {
@@ -12,7 +12,8 @@ import {
 
 @Component({
     selector: "dynamic-material-select",
-    templateUrl: "./dynamic-material-select.component.html"
+    templateUrl: "./dynamic-material-select.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialSelectComponent extends DynamicFormValueControlComponent {
 

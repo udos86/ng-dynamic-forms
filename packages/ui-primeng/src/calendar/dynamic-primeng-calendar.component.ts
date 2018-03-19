@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Calendar } from "primeng/primeng";
 import {
-    DynamicDatePickerModel, DynamicFormControlCustomEvent,
+    DynamicDatePickerModel, 
+    DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -12,7 +13,8 @@ import {
 
 @Component({
     selector: "dynamic-primeng-calendar",
-    templateUrl: "./dynamic-primeng-calendar.component.html"
+    templateUrl: "./dynamic-primeng-calendar.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGCalendarComponent extends DynamicFormValueControlComponent {
 

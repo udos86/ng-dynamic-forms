@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicCheckboxModel,
-    DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent, DynamicSelectModel,
+    DynamicFormValueControlComponent,
+    DynamicSelectModel,
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-foundation-select",
-    templateUrl: "./dynamic-foundation-select.component.html"
+    templateUrl: "./dynamic-foundation-select.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFoundationSelectComponent extends DynamicFormValueControlComponent {
 

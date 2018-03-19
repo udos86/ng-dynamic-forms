@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormLayout,
@@ -10,7 +10,8 @@ import {
 
 @Component({
     selector: "dynamic-foundation-switch",
-    templateUrl: "./dynamic-foundation-switch.component.html"
+    templateUrl: "./dynamic-foundation-switch.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFoundationSwitchComponent extends DynamicFormValueControlComponent {
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormLayout,
@@ -9,7 +9,8 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-select",
-    templateUrl: "./dynamic-ng-bootstrap-select.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-select.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGBootstrapSelectComponent extends DynamicFormValueControlComponent {
 

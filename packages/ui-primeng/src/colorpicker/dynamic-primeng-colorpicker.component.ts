@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { ColorPicker } from "primeng/primeng";
 import {
@@ -11,7 +11,8 @@ import {
 
 @Component({
     selector: "dynamic-primeng-colorpicker",
-    templateUrl: "./dynamic-primeng-colorpicker.component.html"
+    templateUrl: "./dynamic-primeng-colorpicker.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGColorPickerComponent extends DynamicFormValueControlComponent {
 

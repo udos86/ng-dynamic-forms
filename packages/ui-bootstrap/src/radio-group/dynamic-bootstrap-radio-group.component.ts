@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormLayout,
@@ -10,7 +10,8 @@ import {
 
 @Component({
     selector: "dynamic-bootstrap-radio-group",
-    templateUrl: "./dynamic-bootstrap-radio-group.component.html"
+    templateUrl: "./dynamic-bootstrap-radio-group.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBootstrapRadioGroupComponent extends DynamicFormValueControlComponent {
 

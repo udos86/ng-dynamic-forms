@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { InputSwitch } from "primeng/primeng";
 import {
@@ -11,7 +11,8 @@ import {
 
 @Component({
     selector: "dynamic-primeng-input-switch",
-    templateUrl: "./dynamic-primeng-input-switch.component.html"
+    templateUrl: "./dynamic-primeng-input-switch.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGInputSwitchComponent extends DynamicFormValueControlComponent {
 
