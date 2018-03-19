@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { AutoComplete } from "primeng/primeng";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -8,11 +9,10 @@ import {
     DynamicFormValueControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
-import { AutoComplete } from "primeng/primeng";
 
 @Component({
-    selector: "dynamic-material-input",
-    templateUrl: "./dynamic-material-input.component.html"
+    selector: "dynamic-primeng-autocomplete",
+    templateUrl: "./dynamic-primeng-autocomplete.component.html"
 })
 export class DynamicPrimeNGAutoCompleteComponent extends DynamicFormValueControlComponent {
 
@@ -38,12 +38,8 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicFormValueControl
 
     onAutoComplete(_$event: any): void {
 
-        if(Array.isArray(this.model.list)) {
+        if (Array.isArray(this.model.list)) {
             this.suggestions = this.model.list.map(item => item);
         }
-    }
-
-    get controlViewChild(): AutoComplete {
-        return this.pAutoComplete;
     }
 }

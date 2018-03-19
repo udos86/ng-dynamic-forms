@@ -1,0 +1,11 @@
+<ng-container [formGroup]="group">
+
+    <p-editor #pEditor
+              [dynamicId]="bindId && model.id"
+              [formats]="model.getAdditional('formats', null)"
+              [formControlName]="model.id"
+              [ngClass]="getClass('element','control')"
+              (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
+              (onTextChange)="onChange($event)"></p-editor>
+
+</ng-container>

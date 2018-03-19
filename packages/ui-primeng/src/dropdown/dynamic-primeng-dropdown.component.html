@@ -1,0 +1,21 @@
+<ng-container [formGroup]="group">
+
+    <p-dropdown #pDropdown
+                [autoWidth]="model.getAdditional('autoWidth', true)"
+                [dropdownIcon]="model.getAdditional('dropdownIcon', 'fa fa-fw fa-caret-down')"
+                [dynamicId]="bindId && model.id"
+                [editable]="model.getAdditional('editable', false)"
+                [filter]="model.filterable"
+                [filterBy]="model.getAdditional('filterBy', null)"
+                [filterPlaceholder]="model.getAdditional('filterPlaceholder', null)"
+                [formControlName]="model.id"
+                [ngClass]="getClass('element', 'control')"
+                [options]="model.options"
+                [resetFilterOnHide]="model.getAdditional('resetFilterOnHide', false)"
+                [scrollHeight]="model.getAdditional('scrollHeight', '200px')"
+                [tabindex]="model.tabIndex"
+                (onBlur)="onBlur($event)"
+                (onChange)="onChange($event)"
+                (onFocus)="onFocus($event)"></p-dropdown>
+
+</ng-container>

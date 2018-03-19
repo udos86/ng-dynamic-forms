@@ -3,8 +3,8 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { Calendar, CalendarModule } from "primeng/primeng";
 import { TextMaskModule } from "angular2-text-mask";
+import { Calendar, CalendarModule } from "primeng/primeng";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGCalendarComponent } from "./dynamic-primeng-calendar.component";
 
@@ -59,7 +59,6 @@ describe("DynamicPrimeNGCalendarComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
         expect(component.pCalendar instanceof Calendar).toBe(true);
-        expect(component.controlViewChild instanceof Calendar).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

@@ -24,6 +24,20 @@ import {
 import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
 import { DynamicPrimeNGAutoCompleteComponent } from "./autocomplete/dynamic-primeng-autocomplete.component";
 import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
+import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-checkbox.component";
+import { DynamicPrimeNGChipsComponent } from "./chips/dynamic-primeng-chips.component";
+import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
+import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-dropdown.component";
+import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
+import { DynamicPrimeNGInputComponent } from "./input/dynamic-primeng-input.component";
+import { DynamicPrimeNGInputMaskComponent } from "./input-mask/dynamic-primeng-input-mask.component";
+import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
+import { DynamicPrimeNGMultiSelectComponent } from "./multiselect/dynamic-primeng-multiselect.component";
+import { DynamicPrimeNGRadioGroupComponent } from "./radio-group/dynamic-primeng-radio-group.component";
+import { DynamicPrimeNGRatingComponent } from "./rating/dynamic-primeng-rating.component";
+import { DynamicPrimeNGSliderComponent } from "./slider/dynamic-primeng-slider.component";
+import { DynamicPrimeNGSpinnerComponent } from "./spinner/dynamic-primeng-spinner.component";
+import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-textarea.component";
 
 @NgModule({
     imports: [
@@ -48,12 +62,42 @@ import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-cale
         SpinnerModule
     ],
     declarations: [
+        DynamicPrimeNGAutoCompleteComponent,
+        DynamicPrimeNGCalendarComponent,
+        DynamicPrimeNGCheckboxComponent,
+        DynamicPrimeNGChipsComponent,
+        DynamicPrimeNGColorPickerComponent,
+        DynamicPrimeNGDropdownComponent,
+        DynamicPrimeNGEditorComponent,
+        DynamicPrimeNGInputComponent,
+        DynamicPrimeNGInputMaskComponent,
+        DynamicPrimeNGInputSwitchComponent,
+        DynamicPrimeNGMultiSelectComponent,
+        DynamicPrimeNGRadioGroupComponent,
+        DynamicPrimeNGRatingComponent,
+        DynamicPrimeNGSliderComponent,
+        DynamicPrimeNGSpinnerComponent,
+        DynamicPrimeNGTextAreaComponent,
         DynamicPrimeNGFormControlComponent,
         DynamicPrimeNGFormComponent
     ],
     entryComponents: [
         DynamicPrimeNGAutoCompleteComponent,
-        DynamicPrimeNGCalendarComponent
+        DynamicPrimeNGCalendarComponent,
+        DynamicPrimeNGCheckboxComponent,
+        DynamicPrimeNGChipsComponent,
+        DynamicPrimeNGColorPickerComponent,
+        DynamicPrimeNGDropdownComponent,
+        DynamicPrimeNGEditorComponent,
+        DynamicPrimeNGInputComponent,
+        DynamicPrimeNGInputMaskComponent,
+        DynamicPrimeNGInputSwitchComponent,
+        DynamicPrimeNGMultiSelectComponent,
+        DynamicPrimeNGRadioGroupComponent,
+        DynamicPrimeNGRatingComponent,
+        DynamicPrimeNGSliderComponent,
+        DynamicPrimeNGSpinnerComponent,
+        DynamicPrimeNGTextAreaComponent
     ],
     exports: [
         DynamicFormsCoreModule,

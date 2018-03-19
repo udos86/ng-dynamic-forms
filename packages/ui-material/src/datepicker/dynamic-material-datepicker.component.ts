@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatCheckbox, MatDatepicker, MatInput } from "@angular/material";
+import { MatDatepicker, MatInput } from "@angular/material";
 import {
     DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
@@ -33,9 +33,5 @@ export class DynamicMaterialDatePickerComponent extends DynamicFormValueControlC
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
-    }
-
-    get controlViewChild(): MatDatepicker {
-        return this.matDatePicker;
     }
 }

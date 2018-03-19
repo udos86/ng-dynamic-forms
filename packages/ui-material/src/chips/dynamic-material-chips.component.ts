@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatCheckbox, MatChipInputEvent, MatChipList, MatInput } from "@angular/material";
+import { MatChipInputEvent, MatChipList, MatInput } from "@angular/material";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -69,9 +69,5 @@ export class DynamicMaterialChipsComponent extends DynamicFormValueControlCompon
             this.chipList.splice(index, 1);
             this.control.patchValue(this.chipList);
         }
-    }
-
-    get controlViewChild(): MatChipList {
-        return this.matChipList;
     }
 }

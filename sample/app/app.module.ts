@@ -16,7 +16,7 @@ import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation"
 //import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
-//import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
+import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
@@ -24,7 +24,7 @@ import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample
 //import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
 import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
-//import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
+import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from './app.routing.module';
@@ -59,7 +59,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         //DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
         DynamicFormsNGBootstrapUIModule,
-        //DynamicFormsPrimeNGUIModule
+        DynamicFormsPrimeNGUIModule
     ],
     declarations: [
         BasicSampleFormComponent,
@@ -68,7 +68,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         //KendoSampleFormComponent,
         MaterialSampleFormComponent,
         NGBootstrapSampleFormComponent,
-        //PrimeNGSampleFormComponent,
+        PrimeNGSampleFormComponent,
         ValidationMessageComponent,
         AppComponent
     ],

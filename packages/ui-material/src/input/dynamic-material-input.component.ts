@@ -34,8 +34,4 @@ export class DynamicMaterialInputComponent extends DynamicMaterialFormInputContr
 
         super(layoutService, validationService);
     }
-
-    get controlViewChild(): MatInput {
-        return this.matInput;
-    }
 }

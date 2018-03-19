@@ -1,0 +1,33 @@
+<ng-container [formGroup]="group">
+
+    <input pInputText #pInputText
+           [attr.accept]="model.accept"
+           [attr.list]="model.listId"
+           [attr.max]="model.max"
+           [attr.min]="model.min"
+           [attr.multiple]="model.multiple"
+           [attr.step]="model.step"
+           [autocomplete]="model.autoComplete"
+           [autofocus]="model.autoFocus"
+           [dynamicId]="bindId && model.id"
+           [formControlName]="model.id"
+           [maxlength]="model.maxLength"
+           [minlength]="model.minLength"
+           [name]="model.name"
+           [ngClass]="getClass('element', 'control')"
+           [pattern]="model.pattern"
+           [placeholder]="model.placeholder"
+           [readonly]="model.readOnly"
+           [required]="model.required"
+           [spellcheck]="model.spellCheck"
+           [tabindex]="model.tabIndex"
+           [type]="model.inputType"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)"/>
+
+    <datalist *ngIf="hasList" [id]="model.listId">
+        <option *ngFor="let option of model.list" [value]="option">
+    </datalist>
+
+</ng-container>

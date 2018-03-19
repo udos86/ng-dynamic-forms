@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core
 import { FormGroup } from "@angular/forms";
 import { Calendar } from "primeng/primeng";
 import {
-    DynamicDatePickerModel,
+    DynamicDatePickerModel, DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -23,6 +23,7 @@ export class DynamicPrimeNGCalendarComponent extends DynamicFormValueControlComp
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pCalendar") pCalendar: Calendar;
@@ -31,9 +32,5 @@ export class DynamicPrimeNGCalendarComponent extends DynamicFormValueControlComp
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
-    }
-
-    get controlViewChild(): Calendar {
-        return this.pCalendar;
     }
 }

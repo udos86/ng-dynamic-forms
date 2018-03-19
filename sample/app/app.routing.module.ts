@@ -5,7 +5,7 @@ import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample
 //import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
 import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
-//import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
+import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Route[] = [
@@ -69,7 +69,7 @@ const APP_ROUTES: Route[] = [
             href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/ng-bootstrap-sample-form/ng-bootstrap-sample-form.model.ts",
             bgColor: "#1b95e0"
         }
-    },/*
+    },
     {
         path: "primeng-sample-form",
         component: PrimeNGSampleFormComponent,

@@ -38,13 +38,10 @@ import {
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
-    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -53,15 +50,30 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER, DynamicFormValueControlInterface
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicFormValueControlInterface
 } from "@ng-dynamic-forms/core";
 import {
-    PrimeNGFormControlType,
-    PRIME_NG_VIEW_CHILD_SELECTOR,
     PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
     PRIME_NG_CHIPS_TEMPLATE_DIRECTIVES,
     PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
 } from "./dynamic-primeng-form.const";
+import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-checkbox.component";
+import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
+import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
+import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
+import { DynamicPrimeNGSpinnerComponent } from "./spinner/dynamic-primeng-spinner.component";
+import { DynamicPrimeNGInputMaskComponent } from "./input-mask/dynamic-primeng-input-mask.component";
+import { DynamicPrimeNGAutoCompleteComponent } from "./autocomplete/dynamic-primeng-autocomplete.component";
+import { DynamicPrimeNGChipsComponent } from "./chips/dynamic-primeng-chips.component";
+import { DynamicPrimeNGInputComponent } from "./input/dynamic-primeng-input.component";
+import { DynamicPrimeNGRadioGroupComponent } from "./radio-group/dynamic-primeng-radio-group.component";
+import { DynamicPrimeNGRatingComponent } from "./rating/dynamic-primeng-rating.component";
+import { DynamicPrimeNGMultiSelectComponent } from "./multiselect/dynamic-primeng-multiselect.component";
+import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-dropdown.component";
+import { DynamicPrimeNGSliderComponent } from "./slider/dynamic-primeng-slider.component";
+import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
+import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-textarea.component";
 
 export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | ColorPicker | Dropdown | Editor |
     InputMask | InputSwitch | MultiSelect | Rating | Slider | Spinner;
@@ -97,11 +109,11 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     }
 
     get componentType(): Type<DynamicFormValueControlInterface> | null {
-        return null;
+        return mapDynamicPrimeNGComponentByModel(this.model);
     }
 
-    protected setTemplateDirective(directive: DynamicTemplateDirective): void {
-
+    protected setTemplateDirective(_directive: DynamicTemplateDirective): void {
+        /*
         let controlViewChild = this.componentRef && this.componentRef.instance.controlViewChild;
 
         if (controlViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
@@ -116,6 +128,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
                 }
             });
         }
+        */
     }
 
     protected setTemplates(): void {
@@ -128,68 +141,61 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     }
 }
 
-export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): PrimeNGFormControlType | null {
+export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface>  | null {
 
     switch (model.type) {
 
-        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-            return PrimeNGFormControlType.Array;
-
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-            return PrimeNGFormControlType.Checkbox;
-
-        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-            return PrimeNGFormControlType.Group;
+            return DynamicPrimeNGCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER:
-            return PrimeNGFormControlType.ColorPicker;
+            return DynamicPrimeNGColorPickerComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
         case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-            return PrimeNGFormControlType.Calendar;
+            return DynamicPrimeNGCalendarComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
-            return PrimeNGFormControlType.Editor;
+            return DynamicPrimeNGEditorComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             let inputModel = model as DynamicInputModel;
 
             if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
-                return PrimeNGFormControlType.Spinner;
+                return DynamicPrimeNGSpinnerComponent;
 
             } else if (inputModel.mask) {
-                return PrimeNGFormControlType.InputMask;
+                return DynamicPrimeNGInputMaskComponent;
 
             } else if (Array.isArray(inputModel.list)) {
-                return PrimeNGFormControlType.AutoComplete;
+                return DynamicPrimeNGAutoCompleteComponent;
 
             } else if (inputModel.multiple) {
-                return PrimeNGFormControlType.Chips;
+                return DynamicPrimeNGChipsComponent;
 
             } else {
-                return PrimeNGFormControlType.Input;
+                return DynamicPrimeNGInputComponent;
             }
 
         case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-            return PrimeNGFormControlType.RadioGroup;
+            return DynamicPrimeNGRadioGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_RATING:
-            return PrimeNGFormControlType.Rating;
+            return DynamicPrimeNGRatingComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-            let selectModel = model as DynamicSelectModel<any>;
+            let selectModel = model as DynamicSelectModel<string>;
 
-            return selectModel.multiple ? PrimeNGFormControlType.MultiSelect : PrimeNGFormControlType.Dropdown;
+            return selectModel.multiple ? DynamicPrimeNGMultiSelectComponent : DynamicPrimeNGDropdownComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-            return PrimeNGFormControlType.Slider;
+            return DynamicPrimeNGSliderComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-            return PrimeNGFormControlType.InputSwitch;
+            return DynamicPrimeNGInputSwitchComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-            return PrimeNGFormControlType.TextArea;
+            return DynamicPrimeNGTextAreaComponent;
 
         default:
             return null;

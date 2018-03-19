@@ -1,0 +1,18 @@
+<ng-container [formGroup]="group">
+
+    <p-inputMask #pInputMask
+                 [autoClear]="model.getAdditional('autoClear', true)"
+                 [dynamicId]="bindId && model.id"
+                 [formControlName]="model.id"
+                 [mask]="model.mask"
+                 [ngClass]="getClass('element', 'control')"
+                 [placeholder]="model.placeholder"
+                 [readonly]="model.readOnly"
+                 [slotChar]="model.getAdditional('slotChar', '_')"
+                 [tabindex]="model.tabIndex"
+                 (change)="onChange($event)"
+                 (onBlur)="onBlur($event)"
+                 (onComplete)="onCustomEvent($event, 'onComplete')"
+                 (onFocus)="onFocus($event)"></p-inputMask>
+
+</ng-container>

@@ -1,0 +1,14 @@
+<ng-container [formGroup]="group">
+
+    <p-checkbox #pCheckbox
+                binary="true"
+                [dynamicId]="bindId && model.id"
+                [formControlName]="model.id"
+                [label]="model.label"
+                [name]="model.name"
+                [ngClass]="getClass('element', 'control')"
+                [tabindex]="model.tabIndex"
+                [value]="model.value"
+                (onChange)="onChange($event)"></p-checkbox>
+
+</ng-container>

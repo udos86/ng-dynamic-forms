@@ -33,8 +33,4 @@ export class DynamicMaterialSliderComponent extends DynamicFormValueControlCompo
 
         super(layoutService, validationService);
     }
-
-    get controlViewChild(): MatSlider {
-        return this.matSlider;
-    }
 }

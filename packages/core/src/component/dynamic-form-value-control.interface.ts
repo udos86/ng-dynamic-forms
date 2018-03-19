@@ -16,6 +16,4 @@ export interface DynamicFormValueControlInterface {
     change: EventEmitter<any>;
     customEvent?: EventEmitter<DynamicFormControlCustomEvent>;
     focus: EventEmitter<any>;
-
-    controlViewChild: any | null;
 }

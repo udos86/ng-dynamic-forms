@@ -82,6 +82,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
             modelChange = changes["model"] as SimpleChange;
 
         if (modelChange && this.isFormControl) {
+
+            this.destroyFormControlComponent();
             this.createFormControlComponent();
         }
 
