@@ -6,5 +6,6 @@ export interface DynamicTemplateableFormValueControl {
     readonly templateDirectives: string[];
 
     templateableViewChild: any;
+
     templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 }

@@ -1,6 +1,7 @@
 import {
     ChangeDetectorRef,
-    Component, ComponentFactoryResolver,
+    Component,
+    ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
     Input,
@@ -35,12 +36,10 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicDatePickerModel,
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
-    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -52,14 +51,6 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DynamicFormValueControl
 } from "@ng-dynamic-forms/core";
-import {
-    KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
-    KENDO_CALENDAR_TEMPLATE_DIRECTIVES,
-    KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES,
-    KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES,
-    KENDO_UPLOAD_TEMPLATE_DIRECTIVES,
-    KendoFormControlType
-} from "./dynamic-kendo-form.const";
 
 export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponent | DateInputComponent |
     DatePickerComponent | DropDownListComponent | MaskedTextBoxComponent | MultiSelectComponent |
@@ -95,31 +86,6 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
 
     get componentType(): Type<DynamicFormValueControl> | null {
         return null
-    }
-
-    protected setTemplateDirective(_directive: DynamicTemplateDirective): void {
-        /*
-        if (this.kendoViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
-
-            let templateDirectives: any = DynamicKendoFormControlComponent.getTemplateDirectives(this.kendoViewChild);
-
-            Object.keys(templateDirectives || ({} as any)).forEach((key: string) => {
-
-                if (templateDirectives[key] === directive.as) {
-                    (this.kendoViewChild as any)[key] = directive;
-                }
-            });
-        }
-        */
-    }
-
-    protected setTemplates(): void {
-
-        super.setTemplates();
-
-        this.templateList
-            .filter(template => typeof template.as === "string" && template.as.startsWith("kendo"))
-            .forEach(template => this.setTemplateDirective(template));
     }
 }
 
@@ -179,31 +145,6 @@ export function mapDynamicKendoComponentByModel(model: DynamicFormControlModel):
 
         case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
             return KendoFormControlType.TimePicker;
-
-        default:
-            return null;
-    }
-}
-
-export function mapKendoTemplateDirectivesByComponent(component: KendoFormControlComponent): any | null {
-
-    switch (component.constructor) {
-
-        case AutoCompleteComponent:
-            return KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
-
-        case CalendarComponent:
-        case DatePickerComponent:
-            return KENDO_CALENDAR_TEMPLATE_DIRECTIVES;
-
-        case DropDownListComponent:
-            return KENDO_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
-
-        case MultiSelectComponent:
-            return KENDO_MULTI_SELECT_TEMPLATE_DIRECTIVES;
-
-        case UploadComponent:
-            return KENDO_UPLOAD_TEMPLATE_DIRECTIVES;
 
         default:
             return null;

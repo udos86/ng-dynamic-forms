@@ -1,9 +1,12 @@
 <label [formGroup]="group" class="k-form-field" [ngClass]="getClass('grid','control')">
 
     <span>
+
         <span [innerHTML]="model.label" [ngClass]="getClass('element','label')"></span>
+
         <span *ngIf="showHint" class="k-field-info" [innerHTML]="model.hint"
               [ngClass]="getClass('element','hint')"></span>
+
     </span>
 
     <input class="k-textbox"
@@ -30,5 +33,4 @@
            [type]="model.inputType"
            (blur)="onBlur($event)"
            (change)="onChange($event)"
-           (focus)="onFocus($event)"/>
-</label>
+           (focus)="onFocus($event)"/></label>
