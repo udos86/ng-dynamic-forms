@@ -6,7 +6,7 @@ import { DynamicCheckboxGroupModel } from "../model/checkbox/dynamic-checkbox-gr
 import { DynamicFormLayout } from "../service/dynamic-form-layout.service";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 
-export interface DynamicFormValueControlInterface {
+export interface DynamicFormValueControl {
 
     bindId: boolean;
     group: FormGroup;
@@ -17,6 +17,4 @@ export interface DynamicFormValueControlInterface {
     change: EventEmitter<any>;
     customEvent?: EventEmitter<DynamicFormControlCustomEvent>;
     focus: EventEmitter<any>;
-
-    templates?: QueryList<DynamicTemplateDirective> | null;
 }

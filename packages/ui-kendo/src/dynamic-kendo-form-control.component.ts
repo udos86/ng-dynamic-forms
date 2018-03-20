@@ -49,7 +49,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
-    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER, DynamicFormValueControlInterface
+    DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
+    DynamicFormValueControl
 } from "@ng-dynamic-forms/core";
 import {
     KENDO_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
@@ -92,7 +93,7 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControlInterface> | null {
+    get componentType(): Type<DynamicFormValueControl> | null {
         return null
     }
 

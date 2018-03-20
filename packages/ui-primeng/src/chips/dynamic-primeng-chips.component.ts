@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Chips } from "primeng/primeng";
 import {
@@ -6,8 +6,8 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
     DynamicInputModel,
+    DynamicTemplateableFormValueControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 
@@ -18,13 +18,26 @@ export const PRIME_NG_CHIPS_ITEM_TEMPLATE = "itemTemplate";
     templateUrl: "./dynamic-primeng-chips.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGChipsComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGChipsComponent extends DynamicTemplateableFormValueControlComponent {
+
+    private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+
+    readonly templateDirectives = [PRIME_NG_CHIPS_ITEM_TEMPLATE];
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;
-    @Input() templates: DynamicTemplateDirective[];
+
+    @Input()
+    get templates(): QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] {
+        return this._templates;
+    }
+
+    set templates(templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[]) {
+        this._templates = templates;
+        this.bindTemplates();
+    }
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
@@ -39,7 +52,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicFormValueControlCompone
         super(layoutService, validationService);
     }
 
-    get controlViewChild(): Chips {
+    get templateableViewChild(): Chips {
         return this.pChips;
     }
 }

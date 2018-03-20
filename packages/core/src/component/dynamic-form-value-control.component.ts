@@ -1,6 +1,6 @@
 import { EventEmitter } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { DynamicFormValueControlInterface } from "./dynamic-form-value-control.interface";
+import { DynamicFormValueControl } from "./dynamic-form-value-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlValue, DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -9,7 +9,7 @@ import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-lay
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 
-export abstract class DynamicFormValueControlComponent implements DynamicFormValueControlInterface {
+export abstract class DynamicFormValueControlComponent implements DynamicFormValueControl {
 
     private _hasFocus: boolean = false;
 

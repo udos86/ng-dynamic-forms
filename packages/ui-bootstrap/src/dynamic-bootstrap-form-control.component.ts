@@ -28,7 +28,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    DynamicFormValueControlInterface
+    DynamicFormValueControl
 } from "@ng-dynamic-forms/core";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
@@ -61,7 +61,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
-    get componentType(): Type<DynamicFormValueControlInterface> | null {
+    get componentType(): Type<DynamicFormValueControl> | null {
         return mapDynamicBootstrapComponentByModel(this.model);
     }
 
@@ -74,7 +74,7 @@ export class DynamicBootstrapFormControlComponent extends DynamicFormControlComp
     }
 }
 
-export function mapDynamicBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 

@@ -23,7 +23,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlInterface,
+    DynamicFormValueControl,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
 import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundation-textarea.component";
@@ -62,12 +62,12 @@ export class DynamicFoundationFormControlComponent extends DynamicFormControlCom
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControlInterface> | null {
+    get componentType(): Type<DynamicFormValueControl> | null {
         return mapDynamicFoundationComponentByModel(this.model);
     }
 }
 
-export function mapDynamicFoundationComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicFoundationComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 

@@ -42,7 +42,7 @@ import {
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
-import { DynamicFormValueControlInterface } from "./dynamic-form-value-control.interface";
+import { DynamicFormValueControl } from "./dynamic-form-value-control.interface";
 
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
@@ -67,7 +67,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     componentViewContainerRef: ViewContainerRef;
 
-    protected componentRef: ComponentRef<DynamicFormValueControlInterface>;
+    protected componentRef: ComponentRef<DynamicFormValueControl>;
     protected componentSubscriptions: Subscription[] = [];
     protected subscriptions: Subscription[] = [];
 
@@ -128,7 +128,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         this.unsubscribe();
     }
 
-    abstract get componentType(): Type<DynamicFormValueControlInterface> | null;
+    abstract get componentType(): Type<DynamicFormValueControl> | null;
 
     get errorMessages(): string[] {
         return this.validationService.createErrorMessages(this.control, this.model);

@@ -21,7 +21,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
-    DynamicFormValueControlInterface,
+    DynamicFormValueControl,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
@@ -65,12 +65,12 @@ export class DynamicBasicFormControlComponent extends DynamicFormControlComponen
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControlInterface> | null {
+    get componentType(): Type<DynamicFormValueControl> | null {
         return mapDynamicBasicComponentByModel(this.model);
     }
 }
 
-export function mapDynamicBasicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicBasicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 

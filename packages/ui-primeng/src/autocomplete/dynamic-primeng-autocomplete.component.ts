@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { AutoComplete } from "primeng/primeng";
 import {
@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicTemplateableFormValueControlComponent,
     DynamicInputModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
@@ -19,15 +19,27 @@ export const PRIME_NG_AUTOCOMPLETE_SELECTED_ITEM_TEMPLATE_ = "selectedItemTempla
     templateUrl: "./dynamic-primeng-autocomplete.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DynamicPrimeNGAutoCompleteComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGAutoCompleteComponent extends DynamicTemplateableFormValueControlComponent {
 
-    private suggestions: string[];
+    private _suggestions: string[];
+    private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+
+    readonly templateDirectives = [PRIME_NG_AUTOCOMPLETE_ITEM_TEMPLATE, PRIME_NG_AUTOCOMPLETE_SELECTED_ITEM_TEMPLATE_];
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;
-    @Input() templates: DynamicTemplateDirective[];
+
+    @Input()
+    get templates(): QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] {
+        return this._templates;
+    }
+
+    set templates(templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[]) {
+        this._templates = templates;
+        this.bindTemplates();
+    }
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
@@ -45,7 +57,11 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicFormValueControl
     onAutoComplete(_$event: any): void {
 
         if (Array.isArray(this.model.list)) {
-            this.suggestions = this.model.list.map(item => item);
+            this._suggestions = this.model.list.map(item => item);
         }
+    }
+
+    get templateableViewChild(): AutoComplete {
+        return this.pAutoComplete;
     }
 }

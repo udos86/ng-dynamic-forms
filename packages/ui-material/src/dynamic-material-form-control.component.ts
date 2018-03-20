@@ -28,7 +28,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlInterface,
+    DynamicFormValueControl,
     DynamicInputModel,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
@@ -72,7 +72,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControlInterface> | null {
+    get componentType(): Type<DynamicFormValueControl> | null {
         return mapDynamicMaterialComponentByModel(this.model);
     }
 
@@ -85,7 +85,7 @@ export class DynamicMaterialFormControlComponent extends DynamicFormControlCompo
     }
 }
 
-export function mapDynamicMaterialComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface> | null {
+export function mapDynamicMaterialComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 

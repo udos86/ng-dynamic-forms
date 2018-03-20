@@ -13,21 +13,6 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    AutoComplete,
-    Calendar,
-    Checkbox,
-    Chips,
-    ColorPicker,
-    Dropdown,
-    Editor,
-    InputMask,
-    InputSwitch,
-    MultiSelect,
-    Rating,
-    Slider,
-    Spinner
-} from "primeng/primeng";
-import {
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
     DynamicFormControlEvent,
@@ -51,13 +36,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    DynamicFormValueControlInterface
+    DynamicFormValueControl
 } from "@ng-dynamic-forms/core";
-import {
-    PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES,
-    PRIME_NG_CHIPS_TEMPLATE_DIRECTIVES,
-    PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES
-} from "./dynamic-primeng-form.const";
 import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-checkbox.component";
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
 import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
@@ -74,9 +54,6 @@ import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-drop
 import { DynamicPrimeNGSliderComponent } from "./slider/dynamic-primeng-slider.component";
 import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
 import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-textarea.component";
-
-export type PrimeNGFormControlComponent = AutoComplete | Calendar | Checkbox | Chips | ColorPicker | Dropdown | Editor |
-    InputMask | InputSwitch | MultiSelect | Rating | Slider | Spinner;
 
 @Component({
     selector: "dynamic-primeng-form-control",
@@ -108,40 +85,12 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControlInterface> | null {
+    get componentType(): Type<DynamicFormValueControl> | null {
         return mapDynamicPrimeNGComponentByModel(this.model);
-    }
-
-    protected setTemplateDirective(_directive: DynamicTemplateDirective): void {
-        /*
-        let controlViewChild = this.componentRef && this.componentRef.instance.controlViewChild;
-
-        if (controlViewChild && (directive.modelId === this.model.id || directive.modelType === this.model.type)) {
-
-            let pViewChild = controlViewChild as PrimeNGFormControlComponent,
-                templateDirectives: any = mapPrimeNGTemplateDirectivesByComponent(pViewChild);
-
-            Object.keys(templateDirectives || {}).forEach((key: string) => {
-
-                if (templateDirectives[key] === directive.as) {
-                    (pViewChild)[key] = directive.templateRef;
-                }
-            });
-        }
-        */
-    }
-
-    protected setTemplates(): void {
-
-        super.setTemplates();
-
-        this.templateList
-            .filter(template => typeof template.as === "string")
-            .forEach(template => this.setTemplateDirective(template));
     }
 }
 
-export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControlInterface>  | null {
+export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl>  | null {
 
     switch (model.type) {
 
@@ -196,24 +145,6 @@ export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel
 
         case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
             return DynamicPrimeNGTextAreaComponent;
-
-        default:
-            return null;
-    }
-}
-
-export function mapPrimeNGTemplateDirectivesByComponent(component: PrimeNGFormControlComponent): any | null {
-
-    switch (component.constructor) {
-
-        case AutoComplete:
-            return PRIME_NG_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
-
-        case Chips:
-            return PRIME_NG_CHIPS_TEMPLATE_DIRECTIVES;
-
-        case Dropdown:
-            return PRIME_NG_DROPDOWN_LIST_TEMPLATE_DIRECTIVES;
 
         default:
             return null;
