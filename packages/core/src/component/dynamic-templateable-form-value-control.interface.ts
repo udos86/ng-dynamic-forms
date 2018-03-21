@@ -3,7 +3,7 @@ import { QueryList } from "@angular/core";
 
 export interface DynamicTemplateableFormValueControl {
 
-    readonly templateDirectives: string[];
+    readonly templateDirectives: Map<string, string>;
 
     templateableViewChild: any;
 

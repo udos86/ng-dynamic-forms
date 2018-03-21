@@ -11,7 +11,9 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 
-export const PRIME_NG_CHIPS_ITEM_TEMPLATE = "itemTemplate";
+export const PRIME_CHIPS_TEMPLATE_DIRECTIVES = new Map<string, string>([
+    ["itemTemplate", "itemTemplate"]
+]);
 
 @Component({
     selector: "dynamic-primeng-chips",
@@ -22,7 +24,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicTemplateableFormValueCo
 
     private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
-    readonly templateDirectives = [PRIME_NG_CHIPS_ITEM_TEMPLATE];
+    readonly templateDirectives = PRIME_CHIPS_TEMPLATE_DIRECTIVES;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

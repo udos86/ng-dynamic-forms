@@ -1,35 +1,36 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
+import { MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
-    DynamicDatePickerModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicTemplateableFormValueControlComponent, DynamicTemplateDirective
+    DynamicSelectModel,
+    DynamicTemplateableFormValueControlComponent,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 
 @Component({
-    selector: "dynamic-kendo-calendar",
-    templateUrl: "./dynamic-kendo-calendar.component.html",
+    selector: "dynamic-kendo-multiselect",
+    templateUrl: "./dynamic-kendo-multiselect.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoCalendarComponent extends DynamicTemplateableFormValueControlComponent {
+export class DynamicKendoMultiSelectComponent extends DynamicTemplateableFormValueControlComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicDatePickerModel;
+    @Input() model: DynamicSelectModel<string>;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoCalendar") kendoCalendar: CalendarComponent;
+    @ViewChild("kendoMultiSelect") kendoMultiSelect: MultiSelectComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
@@ -37,7 +38,7 @@ export class DynamicKendoCalendarComponent extends DynamicTemplateableFormValueC
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): CalendarComponent {
-        return this.kendoCalendar;
+    get templateableViewChild(): MultiSelectComponent {
+        return this.kendoMultiSelect;
     }
 }

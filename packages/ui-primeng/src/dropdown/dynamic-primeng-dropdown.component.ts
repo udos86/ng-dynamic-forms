@@ -1,20 +1,17 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { AutoComplete, Dropdown } from "primeng/primeng";
+import { Dropdown } from "primeng/primeng";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
     DynamicSelectModel, DynamicTemplateableFormValueControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
-import {
-    PRIME_NG_AUTOCOMPLETE_ITEM_TEMPLATE,
-    PRIME_NG_AUTOCOMPLETE_SELECTED_ITEM_TEMPLATE_
-} from "../autocomplete/dynamic-primeng-autocomplete.component";
 
-export const PRIME_NG_DROPDOWN_ITEM_TEMPLATE = "itemTemplate";
+export const PRIME_DROPDOWN_TEMPLATE_DIRECTIVES = new Map<string, string>([
+    ["itemTemplate", "itemTemplate"]
+]);
 
 @Component({
     selector: "dynamic-primeng-dropdown",
@@ -25,7 +22,7 @@ export class DynamicPrimeNGDropdownComponent extends DynamicTemplateableFormValu
 
     private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
-    readonly templateDirectives = [PRIME_NG_DROPDOWN_ITEM_TEMPLATE];
+    readonly templateDirectives = PRIME_DROPDOWN_TEMPLATE_DIRECTIVES;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

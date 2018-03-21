@@ -11,8 +11,10 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 
-export const PRIME_NG_AUTOCOMPLETE_ITEM_TEMPLATE = "itemTemplate";
-export const PRIME_NG_AUTOCOMPLETE_SELECTED_ITEM_TEMPLATE_ = "selectedItemTemplate";
+export const PRIME_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = new Map<string, string>([
+    ["itemTemplate", "itemTemplate"],
+    ["selectedItemTemplate", "selectedItemTemplate"]
+]);
 
 @Component({
     selector: "dynamic-primeng-autocomplete",
@@ -24,7 +26,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicTemplateableForm
     private _suggestions: string[];
     private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
-    readonly templateDirectives = [PRIME_NG_AUTOCOMPLETE_ITEM_TEMPLATE, PRIME_NG_AUTOCOMPLETE_SELECTED_ITEM_TEMPLATE_];
+    readonly templateDirectives = PRIME_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

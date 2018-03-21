@@ -7,23 +7,9 @@ import {
     Input,
     Output,
     QueryList,
-    Type,
+    Type, ViewChild, ViewContainerRef,
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    CalendarComponent,
-    DateInputComponent,
-    DatePickerComponent,
-    TimePickerComponent
-} from "@progress/kendo-angular-dateinputs";
-import { AutoCompleteComponent, DropDownListComponent, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
-import {
-    MaskedTextBoxComponent,
-    NumericTextBoxComponent,
-    SliderComponent,
-    SwitchComponent
-} from "@progress/kendo-angular-inputs";
-import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
@@ -51,10 +37,23 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DynamicFormValueControl
 } from "@ng-dynamic-forms/core";
-
-export type KendoFormControlComponent = AutoCompleteComponent | CalendarComponent | DateInputComponent |
-    DatePickerComponent | DropDownListComponent | MaskedTextBoxComponent | MultiSelectComponent |
-    NumericTextBoxComponent | SliderComponent | SwitchComponent | TimePickerComponent | UploadComponent;
+import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
+import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
+import { DynamicKendoCalendarComponent } from "./calendar/dynamic-kendo-calendar.component";
+import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
+import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.component";
+import { DynamicKendoDateInputComponent } from "./dateinput/dynamic-kendo-dateinput.component";
+import { DynamicKendoAutoCompleteComponent } from "./autocomplete/dynamic-kendo-autocomplete.component";
+import { DynamicKendoMaskedTextBoxComponent } from "./masked-textbox/dynamic-kendo-maskedtextbox.component";
+import { DynamicKendoNumericTextBoxComponent } from "./numeric-textbox/dynamic-kendo-numerictextbox.component";
+import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
+import { DynamicKendoRadioGroupComponent } from "./radio-group/dynamic-kendo-radio-group.component";
+import { DynamicKendoMultiSelectComponent } from "./multiselect/dynamic-kendo-multiselect.component";
+import { DynamicKendoDropdownListComponent } from "./dropdownlist/dynamic-kendo-dropdownlist.component";
+import { DynamicKendoSliderComponent } from "./slider/dynamic-kendo-slider.component";
+import { DynamicKendoSwitchComponent } from "./switch/dynamic-kendo-switch.component";
+import { DynamicKendoTextAreaComponent } from "./textarea/dynamic-kendo-textarea.component";
+import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-timepicker.component";
 
 @Component({
     selector: "dynamic-kendo-form-control",
@@ -76,6 +75,8 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("kendoEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
+    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
+
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
@@ -85,66 +86,74 @@ export class DynamicKendoFormControlComponent extends DynamicFormControlComponen
     }
 
     get componentType(): Type<DynamicFormValueControl> | null {
-        return null
+        return mapDynamicKendoComponentByModel(this.model);
+    }
+
+    get hasLabel(): boolean {
+        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX && this.componentType !== DynamicKendoInputComponent && typeof this.model.label === "string";
+    }
+
+    get isTextBox(): boolean {
+        return this.componentType === DynamicKendoMaskedTextBoxComponent || this.componentType === DynamicKendoNumericTextBoxComponent;
     }
 }
 
-export function mapDynamicKendoComponentByModel(model: DynamicFormControlModel): KendoFormControlType | null {
+export function mapDynamicKendoComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-            return KendoFormControlType.Checkbox;
+            return DynamicKendoCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            return KendoFormControlType.CheckboxGroup;
+            return DynamicKendoCheckboxGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             let datepickerModel = model as DynamicDatePickerModel;
 
-            return datepickerModel.inline ? KendoFormControlType.Calendar : KendoFormControlType.DatePicker;
+            return datepickerModel.inline ? DynamicKendoCalendarComponent : DynamicKendoDatePickerComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
-            return KendoFormControlType.Upload;
+            return DynamicKendoUploadComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             let inputModel = model as DynamicInputModel;
 
             if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE) {
-                return KendoFormControlType.DateInput;
+                return DynamicKendoDateInputComponent;
 
             } else if (!inputModel.mask && inputModel.list && inputModel.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
-                return KendoFormControlType.AutoComplete;
+                return DynamicKendoAutoCompleteComponent;
 
             } else if (inputModel.mask && inputModel.inputType !== DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
-                return KendoFormControlType.MaskedTextBox;
+                return DynamicKendoMaskedTextBoxComponent;
 
             } else if (!inputModel.mask && inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
-                return KendoFormControlType.NumericTextBox;
+                return DynamicKendoNumericTextBoxComponent;
 
             } else {
-                return KendoFormControlType.Input;
+                return DynamicKendoInputComponent;
             }
 
         case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-            return KendoFormControlType.RadioGroup;
+            return DynamicKendoRadioGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
             let selectModel = model as DynamicSelectModel<any>;
 
-            return selectModel.multiple ? KendoFormControlType.MultiSelect : KendoFormControlType.DropDownList;
+            return selectModel.multiple ? DynamicKendoMultiSelectComponent : DynamicKendoDropdownListComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-            return KendoFormControlType.Slider;
+            return DynamicKendoSliderComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-            return KendoFormControlType.Switch;
+            return DynamicKendoSwitchComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-            return KendoFormControlType.TextArea;
+            return DynamicKendoTextAreaComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-            return KendoFormControlType.TimePicker;
+            return DynamicKendoTimePickerComponent;
 
         default:
             return null;

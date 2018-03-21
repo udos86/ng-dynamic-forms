@@ -43,6 +43,7 @@ import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
 import { DynamicFormValueControl } from "./dynamic-form-value-control.interface";
+import { DynamicTemplateableFormValueControlComponent } from "./dynamic-templateable-form-value-control.component";
 
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
@@ -194,6 +195,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
             instance.group = this.group;
             instance.layout = this.layout;
             instance.model = this.model as any;
+
+            if (instance instanceof DynamicTemplateableFormValueControlComponent) {
+                instance.templates = this.templateList;
+            }
 
             this.componentSubscriptions.push(instance.blur.subscribe(($event: any) => this.onBlur($event)));
             this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onChange($event)));

@@ -1,13 +1,13 @@
-import { QueryList } from "@angular/core";
+import { AfterViewInit, QueryList } from "@angular/core";
 import { DynamicTemplateableFormValueControl } from "./dynamic-templateable-form-value-control.interface";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValueControlComponent } from "./dynamic-form-value-control.component";
 
-export abstract class DynamicTemplateableFormValueControlComponent extends DynamicFormValueControlComponent implements DynamicTemplateableFormValueControl {
+export abstract class DynamicTemplateableFormValueControlComponent extends DynamicFormValueControlComponent implements DynamicTemplateableFormValueControl, AfterViewInit {
 
-    readonly templateDirectives: string[];
+    readonly templateDirectives: Map<string, string>;
 
     templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
@@ -17,14 +17,19 @@ export abstract class DynamicTemplateableFormValueControlComponent extends Dynam
         super(layoutService, validationService);
     }
 
+    ngAfterViewInit() {
+
+        this.bindTemplates();
+    }
+
     bindTemplate(template: DynamicTemplateDirective) {
 
         if ((template.modelId === this.model.id || template.modelType === this.model.type) && typeof template.as === "string") {
 
-            this.templateDirectives.forEach((key: string) => {
+            this.templateDirectives.forEach((propertyName: string, directiveName: string) => {
 
-                if (key === template.as) {
-                    this.templateableViewChild[key] = template.templateRef;
+                if (directiveName === template.as) {
+                    this.templateableViewChild[propertyName] = template;
                 }
             });
         }
