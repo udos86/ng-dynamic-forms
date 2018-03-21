@@ -8,10 +8,7 @@ import {
     DynamicSelectModel, DynamicTemplateableFormValueControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
-
-export const PRIME_DROPDOWN_TEMPLATE_DIRECTIVES = new Map<string, string>([
-    ["itemTemplate", "itemTemplate"]
-]);
+import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
 
 @Component({
     selector: "dynamic-primeng-dropdown",
@@ -20,24 +17,13 @@ export const PRIME_DROPDOWN_TEMPLATE_DIRECTIVES = new Map<string, string>([
 })
 export class DynamicPrimeNGDropdownComponent extends DynamicTemplateableFormValueControlComponent {
 
-    private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
-
-    readonly templateDirectives = PRIME_DROPDOWN_TEMPLATE_DIRECTIVES;
+    readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicSelectModel<string>;
-
-    @Input()
-    get templates(): QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] {
-        return this._templates;
-    }
-
-    set templates(templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[]) {
-        this._templates = templates;
-        this.bindTemplates();
-    }
+    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

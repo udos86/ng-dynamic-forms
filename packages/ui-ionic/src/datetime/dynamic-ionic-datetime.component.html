@@ -1,0 +1,18 @@
+<ng-container [formGroup]="group">
+
+    <ion-datetime [cancelText]="model.getAdditional('cancelText', 'Cancel')"
+                  [doneText]="model.getAdditional('doneText', 'Done')"
+                  [displayFormat]="model.format || 'MMM D, YYYY'"
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [max]="model.max"
+                  [min]="model.min"
+                  [ngClass]="getClass('element', 'control')"
+                  [pickerFormat]="model.getAdditional('pickerFormat', 'MMM D, YYYY')"
+                  [placeholder]="model.placeholder"
+                  (ionBlur)="onBlur($event)"
+                  (ionCancel)="onCustomEvent($event, 'ionCancel')"
+                  (ionChange)="onChange($event)"
+                  (ionFocus)="onFocus($event)"></ion-datetime>
+
+</ng-container>

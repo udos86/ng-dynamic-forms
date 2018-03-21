@@ -1,0 +1,19 @@
+<ng-container [formGroup]="group">
+
+    <ion-select [cancelText]="model.getAdditional('cancelText', 'Cancel')"
+                [dynamicId]="bindId && model.id"
+                [formControlName]="model.id"
+                [interface]="model.getAdditional('interface', 'alert')"
+                [multiple]="model.multiple"
+                [ngClass]="getClass('element', 'control')"
+                [okText]="model.getAdditional('okText', 'OK')"
+                [placeholder]="model.placeholder"
+                (ionBlur)="onBlur($event)"
+                (ionChange)="onChange($event)"
+                (ionFocus)="onFocus($event)">
+
+        <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}</ion-option>
+
+    </ion-select>
+
+</ng-container>

@@ -1,11 +1,9 @@
 import {
-    ChangeDetectorRef,
     ComponentFactoryResolver,
     ComponentRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
-    OnInit,
     QueryList,
     SimpleChange,
     SimpleChanges,
@@ -34,6 +32,7 @@ import {
 } from "../model/input/dynamic-input.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-control-relation.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP } from "../model/radio/dynamic-radio-group.model";
 import {
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
@@ -47,10 +46,10 @@ import { DynamicTemplateableFormValueControlComponent } from "./dynamic-template
 
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
-export abstract class DynamicFormControlComponent implements OnChanges, OnInit, OnDestroy {
+export abstract class DynamicFormControlComponent implements OnChanges, OnDestroy {
 
     bindId: boolean;
-    context: DynamicFormArrayGroupModel | null;
+    context: DynamicFormArrayGroupModel | null = null;
     control: FormControl;
     group: FormGroup;
     hasFocus: boolean;
@@ -63,8 +62,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    focus: EventEmitter<DynamicFormControlEvent>;
     customEvent: EventEmitter<DynamicFormControlEvent>;
+    focus: EventEmitter<DynamicFormControlEvent>;
 
     componentViewContainerRef: ViewContainerRef;
 
@@ -72,8 +71,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     protected componentSubscriptions: Subscription[] = [];
     protected subscriptions: Subscription[] = [];
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) { }
 
@@ -116,13 +114,6 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
         }
     }
 
-    ngOnInit() {
-
-        if (!(this.model instanceof DynamicFormControlModel) || !(this.group instanceof FormGroup)) {
-            throw new Error(`no [model] or [group] input set for DynamicFormControlComponent`);
-        }
-    }
-
     ngOnDestroy() {
 
         this.destroyFormControlComponent();
@@ -145,6 +136,10 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
 
     get isFormGroup(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
+    }
+
+    get isRadioGroup(): boolean {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
 
     get isFormControl(): boolean {
@@ -179,7 +174,6 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
     }
 
     protected createFormControlComponent(): void {
-
         let componentType = this.componentType;
 
         if (componentType !== null) {
@@ -204,7 +198,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnInit, 
             this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onChange($event)));
             this.componentSubscriptions.push(instance.focus.subscribe(($event: any) => this.onFocus($event)));
 
-            if (instance.customEvent !== undefined) {
+            if (instance.customEvent instanceof EventEmitter) {
                 this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
 

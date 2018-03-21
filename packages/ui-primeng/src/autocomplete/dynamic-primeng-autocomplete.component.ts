@@ -10,11 +10,7 @@ import {
     DynamicInputModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
-
-export const PRIME_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = new Map<string, string>([
-    ["itemTemplate", "itemTemplate"],
-    ["selectedItemTemplate", "selectedItemTemplate"]
-]);
+import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
 
 @Component({
     selector: "dynamic-primeng-autocomplete",
@@ -24,24 +20,14 @@ export const PRIME_AUTOCOMPLETE_TEMPLATE_DIRECTIVES = new Map<string, string>([
 export class DynamicPrimeNGAutoCompleteComponent extends DynamicTemplateableFormValueControlComponent {
 
     private _suggestions: string[];
-    private _templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
-    readonly templateDirectives = PRIME_AUTOCOMPLETE_TEMPLATE_DIRECTIVES;
+    readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;
-
-    @Input()
-    get templates(): QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] {
-        return this._templates;
-    }
-
-    set templates(templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[]) {
-        this._templates = templates;
-        this.bindTemplates();
-    }
+    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

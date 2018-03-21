@@ -1,0 +1,17 @@
+<ng-container [formGroup]="group">
+
+    <ion-range [debounce]="model.getAdditional('debounce', 0)"
+               [dualKnobs]="model.getAdditional('dualKnobs', false)"
+               [dynamicId]="bindId && model.id"
+               [formControlName]="model.id"
+               [max]="model.max"
+               [min]="model.min"
+               [ngClass]="getClass('element', 'control')"
+               [pin]="model.getAdditional('pin', true)"
+               [snaps]="model.getAdditional('snaps', true)"
+               [step]="model.step"
+               (ionBlur)="onBlur($event)"
+               (ionChange)="onChange($event)"
+               (ionFocus)="onFocus($event)"></ion-range>
+
+</ng-container>

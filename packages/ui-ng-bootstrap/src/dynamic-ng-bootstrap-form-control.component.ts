@@ -1,5 +1,4 @@
 import {
-    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
@@ -66,12 +65,11 @@ export class DynamicNGBootstrapFormControlComponent extends DynamicFormControlCo
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
-        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService);
+        super(componentFactoryResolver, layoutService, validationService);
     }
 
     get isFormGroup(): boolean {

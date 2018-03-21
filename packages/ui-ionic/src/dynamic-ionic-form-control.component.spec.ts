@@ -1,4 +1,3 @@
-//import { ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import {
@@ -20,7 +19,7 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicIonicFormControlComponent, IonicFormControlType } from "./dynamic-ionic-form-control.component";
+import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
 
 describe("DynamicFormIonicComponent test suite", () => {
 
@@ -89,7 +88,6 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.hasErrorMessaging).toBe(false);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -99,15 +97,13 @@ describe("DynamicFormIonicComponent test suite", () => {
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onValueChange).toBeDefined();
+        expect(component.onChange).toBeDefined();
         expect(component.onBlur).toBeDefined();
         expect(component.onFocus).toBeDefined();
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
         expect(component.showErrorMessages).toBe(false);
-
-        expect(component.type).toEqual(IonicFormControlType.Input);
     });
 
     xit("should have an input element", () => {
@@ -135,11 +131,11 @@ describe("DynamicFormIonicComponent test suite", () => {
 
     xit("should listen to native change event", () => {
 
-        spyOn(component, "onValueChange");
+        spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
 
-        expect(component.onValueChange).toHaveBeenCalled();
+        expect(component.onChange).toHaveBeenCalled();
     });
 
     xit("should update model value when control value changes", () => {
@@ -173,42 +169,5 @@ describe("DynamicFormIonicComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
-    });
-
-    it("should determine correct form control type", () => {
-
-        let testFn = DynamicIonicFormControlComponent.getFormControlType;
-
-        expect(testFn(formModel[0])).toEqual(IonicFormControlType.Checkbox);
-
-        expect(testFn(formModel[1])).toEqual(IonicFormControlType.Group);
-
-        expect(testFn(formModel[2])).toBeNull();
-
-        expect(testFn(formModel[3])).toEqual(IonicFormControlType.DateTime);
-
-        expect(testFn(formModel[4])).toBeNull();
-
-        expect(testFn(formModel[5])).toBeNull();
-
-        expect(testFn(formModel[6])).toEqual(IonicFormControlType.Array);
-
-        expect(testFn(formModel[7])).toEqual(IonicFormControlType.Group);
-
-        expect(testFn(formModel[8])).toEqual(IonicFormControlType.Input);
-
-        expect(testFn(formModel[9])).toEqual(IonicFormControlType.RadioGroup);
-
-        expect(testFn(formModel[10])).toBeNull();
-
-        expect(testFn(formModel[11])).toEqual(IonicFormControlType.Select);
-
-        expect(testFn(formModel[12])).toEqual(IonicFormControlType.Range);
-
-        expect(testFn(formModel[13])).toEqual(IonicFormControlType.Toggle);
-
-        expect(testFn(formModel[14])).toEqual(IonicFormControlType.TextArea);
-
-        expect(testFn(formModel[15])).toEqual(IonicFormControlType.DateTime);
     });
 });

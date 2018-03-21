@@ -1,0 +1,21 @@
+<ng-container [formGroup]="group">
+
+    <ion-input [autocomplete]="model.autocomplete"
+               [autocorrect]="model.getAdditional('autocorrect', 'off')"
+               [clearInput]="model.getAdditional('clearInput', true)"
+               [dynamicId]="bindId && model.id"
+               [formControlName]="model.id"
+               [max]="model.max"
+               [min]="model.min"
+               [ngClass]="getClass('element', 'control')"
+               [pattern]="model.pattern"
+               [placeholder]="model.placeholder"
+               [readonly]="model.readOnly"
+               [step]="model.step"
+               [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
+               [type]="model.inputType"
+               (ionBlur)="onBlur($event)"
+               (ionChange)="onChange($event)"
+               (ionFocus)="onFocus($event)"></ion-input>
+
+</ng-container>
