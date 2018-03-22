@@ -29,8 +29,8 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                RadioButtonModule,
                 TextMaskModule,
+                RadioButtonModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGRadioGroupComponent]
@@ -107,14 +107,5 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should emit custom event", () => {
-
-        spyOn(component.customEvent, "emit");
-
-        component.onCustomEvent(null, "eventType");
-
-        expect(component.customEvent.emit).toHaveBeenCalled();
     });
 });

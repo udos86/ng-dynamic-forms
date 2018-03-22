@@ -1,6 +1,6 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
@@ -8,7 +8,7 @@ import { NgbButtonsModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicCheckboxGroupModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapCheckboxGroupComponent } from "./dynamic-ng-bootstrap-checkbox-group.component";
 
-describe("DynamicNGBootstrapCheckboxComponent test suite", () => {
+describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
 
     let testModel = new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
         formModel = [testModel],
@@ -25,8 +25,8 @@ describe("DynamicNGBootstrapCheckboxComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                NgbButtonsModule,
                 TextMaskModule,
+                NgbButtonsModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicNGBootstrapCheckboxGroupComponent]
@@ -55,13 +55,12 @@ describe("DynamicNGBootstrapCheckboxComponent test suite", () => {
     it("should initialize correctly", () => {
 
         expect(component.bindId).toBe(true);
-        expect(component.control instanceof FormControl).toBe(true);
+        expect(component.control instanceof FormGroup).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxGroupModel).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
@@ -74,19 +73,18 @@ describe("DynamicNGBootstrapCheckboxComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an checkbox element", () => {
+    it("should have an div.btn-group element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    it("should listen to and emit blur event", () => {
+    it("should emit blur event", () => {
 
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
-        testElement.triggerEventHandler("blur", null);
 
-        expect(component.blur.emit).toHaveBeenCalledTimes(2);
+        expect(component.blur.emit).toHaveBeenCalled();
     });
 
     it("should emit change event", () => {
@@ -98,13 +96,12 @@ describe("DynamicNGBootstrapCheckboxComponent test suite", () => {
         expect(component.change.emit).toHaveBeenCalled();
     });
 
-    it("should listen to and emit focus event", () => {
+    it("should emit focus event", () => {
 
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
-        testElement.triggerEventHandler("focus", null);
 
-        expect(component.focus.emit).toHaveBeenCalledTimes(2);
+        expect(component.focus.emit).toHaveBeenCalled();
     });
 });

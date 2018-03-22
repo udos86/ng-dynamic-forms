@@ -10,7 +10,7 @@ import { DynamicPrimeNGInputMaskComponent } from "./dynamic-primeng-input-mask.c
 
 describe("DynamicPrimeNGInputMaskComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "input", mask: ""}),
+    let testModel = new DynamicInputModel({id: "input", mask: "+(99) 999-9999",}),
         formModel = [testModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicPrimeNGInputMaskComponent>,
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-inputMask`));
+        testElement = debugElement.query(By.css(`p-inputMask[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -89,15 +89,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
         expect(component.blur.emit).toHaveBeenCalled();
     });
 
-    it("should listen to native blur events", () => {
-
-        spyOn(component, "onBlur");
-
-        testElement.triggerEventHandler("blur", null);
-
-        expect(component.onBlur).toHaveBeenCalled();
-    });
-
     it("should emit change event", () => {
 
         spyOn(component.change, "emit");
@@ -107,15 +98,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
         expect(component.change.emit).toHaveBeenCalled();
     });
 
-    it("should listen to native change event", () => {
-
-        spyOn(component, "onChange");
-
-        testElement.triggerEventHandler("change", null);
-
-        expect(component.onChange).toHaveBeenCalled();
-    });
-
     it("should emit focus event", () => {
 
         spyOn(component.focus, "emit");
@@ -123,14 +105,5 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should listen to native focus events", () => {
-
-        spyOn(component, "onFocus");
-
-        testElement.triggerEventHandler("focus", null);
-
-        expect(component.onFocus).toHaveBeenCalled();
     });
 });

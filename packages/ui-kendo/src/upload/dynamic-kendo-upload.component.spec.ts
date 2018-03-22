@@ -8,8 +8,7 @@ import { UploadComponent, UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFileUploadModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicKendoUploadComponent } from "./dynamic-kendo-upload.component";
 
-
-describe("DynamicKendoUploadComponent test suite", () => {
+xdescribe("DynamicKendoUploadComponent test suite", () => {
 
     let testModel = new DynamicFileUploadModel({id: "upload", url: ""}),
         formModel = [testModel],

@@ -3,8 +3,8 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { NgbDatepicker, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { TextMaskModule } from "angular2-text-mask";
+import { NgbDatepicker, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapCalendarComponent } from "./dynamic-ng-bootstrap-calendar.component";
 
@@ -25,8 +25,8 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                NgbDatepickerModule.forRoot(),
                 TextMaskModule,
+                NgbDatepickerModule.forRoot(),
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicNGBootstrapCalendarComponent]
@@ -49,7 +49,7 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`ngb-datepicker`));
+        testElement = debugElement.query(By.css(`ngb-datepicker[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

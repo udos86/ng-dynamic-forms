@@ -25,8 +25,8 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                ChipsModule,
                 TextMaskModule,
+                ChipsModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGChipsComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-chips`));
+        testElement = debugElement.query(By.css(`p-chips[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

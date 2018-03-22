@@ -25,8 +25,8 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                DropdownModule,
                 TextMaskModule,
+                DropdownModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGDropdownComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-dropdown`));
+        testElement = debugElement.query(By.css(`p-dropdown[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -104,14 +104,5 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should emit custom event", () => {
-
-        spyOn(component.customEvent, "emit");
-
-        component.onCustomEvent(null, "eventType");
-
-        expect(component.customEvent.emit).toHaveBeenCalled();
     });
 });

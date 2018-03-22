@@ -47,7 +47,7 @@ describe("DynamicFoundationSwitchComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[type="checkbox"][id="switch"]`));
+        testElement = debugElement.query(By.css(`input[type="checkbox"][id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

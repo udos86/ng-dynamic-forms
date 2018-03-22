@@ -10,7 +10,7 @@ import { DynamicMaterialSlideToggleComponent } from "./dynamic-material-slide-to
 
 describe("DynamicMaterialSlideToggleComponent test suite", () => {
 
-    let testModel = new DynamicSwitchModel({id: "switch"}),
+    let testModel = new DynamicSwitchModel({id: "slideToggle"}),
         formModel = [testModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicMaterialSlideToggleComponent>,
@@ -49,7 +49,7 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`mat-slide-toggle`));
+        testElement = debugElement.query(By.css(`mat-slide-toggle[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,7 +59,6 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
         expect(component.matSlideToggle instanceof MatSlideToggle).toBe(true);
-        expect(component.controlViewChild instanceof MatSlideToggle).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

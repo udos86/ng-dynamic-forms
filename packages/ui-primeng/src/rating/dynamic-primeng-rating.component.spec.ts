@@ -25,8 +25,8 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                RatingModule,
                 TextMaskModule,
+                RatingModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGRatingComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-rating`));
+        testElement = debugElement.query(By.css(`p-rating[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

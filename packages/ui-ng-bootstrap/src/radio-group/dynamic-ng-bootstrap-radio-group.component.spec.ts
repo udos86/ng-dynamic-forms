@@ -29,8 +29,8 @@ describe("DynamicNGBootstrapRadioGroupComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                NgbButtonsModule,
                 TextMaskModule,
+                NgbButtonsModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicNGBootstrapRadioGroupComponent]
@@ -53,7 +53,7 @@ describe("DynamicNGBootstrapRadioGroupComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`fieldset[id="radioGroup"]`));
+        testElement = debugElement.query(By.css(`div[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

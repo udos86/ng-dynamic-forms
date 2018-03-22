@@ -49,7 +49,7 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-inputSwitch`));
+        testElement = debugElement.query(By.css(`p-inputSwitch[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -104,14 +104,5 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should emit custom event", () => {
-
-        spyOn(component.customEvent, "emit");
-
-        component.onCustomEvent(null, "eventType");
-
-        expect(component.customEvent.emit).toHaveBeenCalled();
     });
 });

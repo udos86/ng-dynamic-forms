@@ -25,8 +25,8 @@ describe("DynamicPrimeNGSliderComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                SliderModule,
                 TextMaskModule,
+                SliderModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGSliderComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGSliderComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-slider`));
+        testElement = debugElement.query(By.css(`p-slider[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

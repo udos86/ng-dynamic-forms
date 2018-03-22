@@ -12,9 +12,8 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
 
     let testModel = new DynamicSelectModel({
             id: "select",
-            options: [{value: "One"}, {value: "Two"}],
-            multiple: true,
-            value: "One"
+            options: [{value: "One", label: "One"}, {value: "Two", label: "Two"}],
+            multiple: true
         }),
         formModel = [testModel],
         formGroup: FormGroup,

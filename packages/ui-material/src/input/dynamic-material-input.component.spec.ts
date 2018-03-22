@@ -50,7 +50,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id="input"]`));
+        testElement = debugElement.query(By.css(`input[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -61,7 +61,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.matAutocomplete instanceof MatAutocomplete).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);
-        expect(component.controlViewChild instanceof MatInput).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

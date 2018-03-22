@@ -49,7 +49,7 @@ describe("DynamicBootstrapDatePickerComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id="datepicker"]`));
+        testElement = debugElement.query(By.css(`input[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

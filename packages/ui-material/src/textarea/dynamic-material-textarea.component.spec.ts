@@ -49,7 +49,7 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`textarea[id="textarea"]`));
+        testElement = debugElement.query(By.css(`textarea[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,7 +59,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);
-        expect(component.controlViewChild instanceof MatInput).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

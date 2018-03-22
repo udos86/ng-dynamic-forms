@@ -47,7 +47,7 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`textarea[id="textarea"]`));
+        testElement = debugElement.query(By.css(`textarea[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

@@ -49,7 +49,7 @@ describe("DynamicMaterialSelectComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`mat-select`));
+        testElement = debugElement.query(By.css(`mat-select[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,7 +59,6 @@ describe("DynamicMaterialSelectComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
         expect(component.matSelect instanceof MatSelect).toBe(true);
-        expect(component.controlViewChild instanceof MatSelect).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

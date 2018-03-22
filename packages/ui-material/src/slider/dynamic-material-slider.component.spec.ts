@@ -49,7 +49,7 @@ describe("DynamicMaterialSliderComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`mat-slider`));
+        testElement = debugElement.query(By.css(`mat-slider[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,7 +59,6 @@ describe("DynamicMaterialSliderComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSliderModel).toBe(true);
         expect(component.matSlider instanceof MatSlider).toBe(true);
-        expect(component.controlViewChild instanceof MatSlider).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

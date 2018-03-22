@@ -62,7 +62,6 @@ describe("DynamicKendoCalendarComponent test suite", () => {
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();

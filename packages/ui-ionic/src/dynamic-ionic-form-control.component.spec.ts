@@ -142,8 +142,6 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         spyOn(component, "onControlValueChanges");
 
-        component.ngOnInit();
-
         component.control.setValue("test");
 
         expect(component.onControlValueChanges).toHaveBeenCalled();
@@ -153,8 +151,6 @@ describe("DynamicFormIonicComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        component.ngOnInit();
-
         (testModel as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
@@ -163,8 +159,6 @@ describe("DynamicFormIonicComponent test suite", () => {
     xit("should update control activation when model disabled property changes", () => {
 
         spyOn(component, "onModelDisabledUpdates");
-
-        component.ngOnInit();
 
         testModel.disabledUpdates.next(true);
 

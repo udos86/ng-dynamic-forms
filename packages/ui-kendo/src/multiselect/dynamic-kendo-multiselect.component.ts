@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryL
 import { FormGroup } from "@angular/forms";
 import { MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
+    DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -28,6 +29,7 @@ export class DynamicKendoMultiSelectComponent extends DynamicTemplateableFormVal
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("kendoMultiSelect") kendoMultiSelect: MultiSelectComponent;

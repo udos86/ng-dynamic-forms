@@ -13,7 +13,6 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
     let testModel = new DynamicSelectModel({
             id: "select",
             options: [{value: "One"}, {value: "Two"}],
-            value: "One",
             multiple: true
         }),
         formModel = [testModel],
@@ -54,7 +53,7 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-multiSelect`));
+        testElement = debugElement.query(By.css(`p-multiSelect[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -109,14 +108,5 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should emit custom event", () => {
-
-        spyOn(component.customEvent, "emit");
-
-        component.onCustomEvent(null, "eventType");
-
-        expect(component.customEvent.emit).toHaveBeenCalled();
     });
 });

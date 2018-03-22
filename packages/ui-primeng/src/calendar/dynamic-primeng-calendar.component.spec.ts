@@ -25,8 +25,8 @@ describe("DynamicPrimeNGCalendarComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                CalendarModule,
                 TextMaskModule,
+                CalendarModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGCalendarComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGCalendarComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-calendar`));
+        testElement = debugElement.query(By.css(`p-calendar[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

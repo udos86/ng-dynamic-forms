@@ -49,7 +49,7 @@ describe("DynamicMaterialRadioGroupComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`mat-radio-group`));
+        testElement = debugElement.query(By.css(`mat-radio-group[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,7 +59,6 @@ describe("DynamicMaterialRadioGroupComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
         //expect(component.matRadioGroup instanceof MatRadioGroup).toBe(true);
-        //expect(component.controlViewChild instanceof MatRadioGroup).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

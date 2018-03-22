@@ -25,8 +25,8 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                CheckboxModule,
                 TextMaskModule,
+                CheckboxModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGCheckboxComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-checkbox`));
+        testElement = debugElement.query(By.css(`p-checkbox[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -104,14 +104,5 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should emit custom event", () => {
-
-        spyOn(component.customEvent, "emit");
-
-        component.onCustomEvent(null, "eventType");
-
-        expect(component.customEvent.emit).toHaveBeenCalled();
     });
 });

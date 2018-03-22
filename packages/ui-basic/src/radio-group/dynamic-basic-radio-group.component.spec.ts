@@ -51,7 +51,7 @@ describe("DynamicBasicRadioGroupComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`fieldset[id="radioGroup"]`));
+        testElement = debugElement.query(By.css(`fieldset[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

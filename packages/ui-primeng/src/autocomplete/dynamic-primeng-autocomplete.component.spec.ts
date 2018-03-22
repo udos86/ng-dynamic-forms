@@ -25,8 +25,8 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                AutoCompleteModule,
                 TextMaskModule,
+                AutoCompleteModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGAutoCompleteComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-autoComplete`));
+        testElement = debugElement.query(By.css(`p-autoComplete[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -89,15 +89,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
         expect(component.blur.emit).toHaveBeenCalled();
     });
 
-    it("should listen to native blur events", () => {
-
-        spyOn(component, "onBlur");
-
-        testElement.triggerEventHandler("blur", null);
-
-        expect(component.onBlur).toHaveBeenCalled();
-    });
-
     it("should emit change event", () => {
 
         spyOn(component.change, "emit");
@@ -107,15 +98,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
         expect(component.change.emit).toHaveBeenCalled();
     });
 
-    it("should listen to native change event", () => {
-
-        spyOn(component, "onChange");
-
-        testElement.triggerEventHandler("change", null);
-
-        expect(component.onChange).toHaveBeenCalled();
-    });
-
     it("should emit focus event", () => {
 
         spyOn(component.focus, "emit");
@@ -123,15 +105,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
         component.onFocus(null);
 
         expect(component.focus.emit).toHaveBeenCalled();
-    });
-
-    it("should listen to native focus events", () => {
-
-        spyOn(component, "onFocus");
-
-        testElement.triggerEventHandler("focus", null);
-
-        expect(component.onFocus).toHaveBeenCalled();
     });
 
     it("should emit custom event", () => {

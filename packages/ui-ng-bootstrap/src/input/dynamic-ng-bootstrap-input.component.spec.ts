@@ -47,7 +47,7 @@ describe("DynamicNGBootstrapInputComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id="input"]`));
+        testElement = debugElement.query(By.css(`input[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -59,7 +59,6 @@ describe("DynamicNGBootstrapInputComponent test suite", () => {
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();

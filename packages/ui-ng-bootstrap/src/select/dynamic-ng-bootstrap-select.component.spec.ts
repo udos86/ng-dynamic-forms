@@ -47,7 +47,7 @@ describe("DynamicNGBootstrapSelectComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`select[id="select"]`));
+        testElement = debugElement.query(By.css(`select[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

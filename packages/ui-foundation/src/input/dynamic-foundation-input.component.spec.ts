@@ -47,7 +47,7 @@ describe("DynamicFoundationInputComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id="input"]`));
+        testElement = debugElement.query(By.css(`input[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

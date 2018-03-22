@@ -47,7 +47,7 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[type="checkbox"][id="checkbox"]`));
+        testElement = debugElement.query(By.css(`input[type="checkbox"][id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

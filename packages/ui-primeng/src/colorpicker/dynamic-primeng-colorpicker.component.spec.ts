@@ -25,8 +25,8 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                ColorPickerModule,
                 TextMaskModule,
+                ColorPickerModule,
                 DynamicFormsCoreModule.forRoot()
             ],
             declarations: [DynamicPrimeNGColorPickerComponent]
@@ -49,7 +49,7 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`p-colorPicker`));
+        testElement = debugElement.query(By.css(`p-colorPicker[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

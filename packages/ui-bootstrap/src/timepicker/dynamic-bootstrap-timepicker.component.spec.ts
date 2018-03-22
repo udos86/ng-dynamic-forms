@@ -49,7 +49,7 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`timepicker`));
+        testElement = debugElement.query(By.css(`timepicker[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {

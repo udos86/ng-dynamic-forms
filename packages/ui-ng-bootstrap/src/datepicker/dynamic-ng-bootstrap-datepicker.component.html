@@ -24,8 +24,10 @@
     <div class="input-group-append">
 
         <button class="btn btn-outline-secondary" type="button" (click)="datepicker.toggle()">
+
             <img *ngIf="model.toggleIcon" [src]="model.toggleIcon" style="cursor: pointer;"/>
             <span *ngIf="model.toggleLabel">{{ model.toggleLabel }}</span>
+
         </button>
 
     </div>
