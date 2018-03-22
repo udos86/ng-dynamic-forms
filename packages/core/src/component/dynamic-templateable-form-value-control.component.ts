@@ -24,14 +24,11 @@ export abstract class DynamicTemplateableFormValueControlComponent extends Dynam
 
     bindTemplate(template: DynamicTemplateDirective) {
 
-        if ((template.modelId === this.model.id || template.modelType === this.model.type) && typeof template.as === "string") {
+        if ((template.modelId === this.model.id || template.modelType === this.model.type)) {
 
-            this.templateDirectives.forEach((propertyName: string, directiveName: string) => {
-
-                if (directiveName === template.as) {
-                    this.templateableViewChild[propertyName] = template;
-                }
-            });
+            if (typeof template.as === "string" && this.templateDirectives.has(template.as)) {
+                this.templateableViewChild[this.templateDirectives.get(template.as) as string] = template;
+            }
         }
     }
 

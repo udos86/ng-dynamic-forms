@@ -1,21 +1,19 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
-    <label *ngIf="hasLabel"
-           [for]="model.id"
-           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
+    <label *ngIf="hasLabel" [for]="model.id" [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
 
         <span [innerHTML]="model.label"></span>
 
-        <span *ngIf="isTextBox && model.hint" class="k-field-info"
-              [innerHTML]="model.hint"
+        <span *ngIf="hasHint" class="k-field-info" [innerHTML]="model.hint"
               [ngClass]="getClass('element', 'hint')"></span>
+
     </label>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
 
     <ng-container #componentViewContainer></ng-container>
 
-    <!-- FORM ARRAY ----------------------------------------------------------------------------------------------->
+    <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
     <div *ngIf="isFormArray"
          [dynamicId]="bindId && model.id"
          [formArrayName]="model.id"
@@ -44,7 +42,7 @@
 
     </div>
 
-    <!-- FORM GROUP ----------------------------------------------------------------------------------------------->
+    <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
     <div *ngIf="isFormGroup" role="group"
          [dynamicId]="bindId && model.id"
          [formGroupName]="model.id"

@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <ion-textarea clearInput="true"
+    <ion-textarea #ionTextArea clearInput="true"
                   [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
                   [ngClass]="getClass('element', 'control')"

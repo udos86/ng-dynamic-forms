@@ -75,6 +75,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     @Output("pEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("radioGroupViewContainer", {read: ViewContainerRef}) radioGroupViewContainerRef: ViewContainerRef;
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
@@ -83,12 +84,21 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
         super(componentFactoryResolver, layoutService, validationService);
     }
 
+    protected createFormControlComponent(): void {
+
+        if (this.isRadioGroup) {
+            this.componentViewContainerRef = this.radioGroupViewContainerRef;
+        }
+
+        super.createFormControlComponent();
+    }
+
     get componentType(): Type<DynamicFormValueControl> | null {
         return mapDynamicPrimeNGComponentByModel(this.model);
     }
 }
 
-export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl>  | null {
+export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 

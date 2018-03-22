@@ -1,7 +1,9 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
     <div *ngIf="model.type !== 'CHECKBOX' && model.label" [ngClass]="getClass('grid', 'label')">
+
         <label [for]="model.id" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
+
     </div>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
@@ -25,14 +27,13 @@
                                       (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
     </div>
 
-    <!-- RADIO GROUP -------------------------------------------------------------------------------------------------->
-
+    <ng-container #radioGroupViewContainer></ng-container>
 
     <div [ngClass]="getClass('grid', 'control')">
 
         <ng-container #componentViewContainer></ng-container>
 
-        <!-- FORM ARRAY ------------------------------------------------------------------------------------------->
+        <!-- FORM ARRAY ----------------------------------------------------------------------------------------------->
         <div *ngIf="isFormArray"
              [dynamicId]="bindId && model.id"
              [formArrayName]="model.id"

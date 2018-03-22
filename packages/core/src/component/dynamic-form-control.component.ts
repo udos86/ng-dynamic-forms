@@ -174,6 +174,7 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnDestro
     }
 
     protected createFormControlComponent(): void {
+
         let componentType = this.componentType;
 
         if (componentType !== null) {

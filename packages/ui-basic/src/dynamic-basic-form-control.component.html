@@ -53,9 +53,9 @@
                                     [model]="_model"
                                     [templates]="templateList"
                                     [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                    (dfBlur)="onBlur($event)"
-                                    (dfChange)="onChange($event)"
-                                    (dfFocus)="onFocus($event)"></dynamic-basic-form-control>
+                                    (blur)="onBlur($event)"
+                                    (change)="onChange($event)"
+                                    (focus)="onFocus($event)"></dynamic-basic-form-control>
     </fieldset>
 
     <div *ngIf="showHint" [ngClass]="[getClass('element', 'hint'), getClass('grid', 'hint')]">

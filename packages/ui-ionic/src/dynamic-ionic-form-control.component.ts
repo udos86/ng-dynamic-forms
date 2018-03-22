@@ -1,16 +1,14 @@
 import {
-    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
     Input,
     Output,
-    QueryList, Type,
-    ViewChild
+    QueryList,
+    Type
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Checkbox, DateTime, TextInput, RadioGroup, Range, Select, Toggle } from "ionic-angular";
 import {
     DynamicFormArrayGroupModel,
     DynamicFormControlComponent,
@@ -20,33 +18,25 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
-    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER, DynamicFormValueControl
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicFormValueControl
 } from "@ng-dynamic-forms/core";
-
-export const enum IonicFormControlType {
-
-    Array = 1, //"ARRAY",
-    Checkbox = 2, //"CHECKBOX",
-    DateTime = 3, //"DATETIME",
-    Group = 4, //"GROUP",
-    Input = 5, //"INPUT",
-    RadioGroup = 6, //"RADIO_GROUP",
-    Range = 7, //"RANGE",
-    Select = 8, //"SELECT",
-    TextArea = 9, //"TEXTAREA",
-    Toggle = 10, //"TOGGLE"
-}
+import { DynamicIonicCheckboxComponent } from "./checkbox/dynamic-ionic-checkbox.component";
+import { DynamicIonicDateTimeComponent } from "./datetime/dynamic-ionic-datetime.component";
+import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
+import { DynamicIonicRadioGroupComponent } from "./radio-group/dynamic-ionic-radio-group.component";
+import { DynamicIonicRangeComponent } from "./range/dynamic-ionic-range.component";
+import { DynamicIonicSelectComponent } from "./select/dynamic-ionic-select.component";
+import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.component";
+import { DynamicIonicTextAreaComponent } from "./textarea/dynamic-ionic-textarea.component";
 
 @Component({
     selector: "dynamic-ionic-form-control",
@@ -68,61 +58,46 @@ export class DynamicIonicFormControlComponent extends DynamicFormControlComponen
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("ionEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild(Checkbox) ionCheckbox: Checkbox | undefined;
-    @ViewChild(DateTime) ionDateTime: DateTime | undefined;
-    @ViewChild(TextInput) ionInput: TextInput | undefined;
-    @ViewChild(RadioGroup) ionRadioGroup: RadioGroup | undefined;
-    @ViewChild(Range) ionRange: Range | undefined;
-    @ViewChild(Select) ionSelect: Select | undefined;
-    @ViewChild(Toggle) ionToggle: Toggle | undefined;
-
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
-                protected changeDetectorRef: ChangeDetectorRef, protected layoutService: DynamicFormLayoutService,
+                protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
         super(componentFactoryResolver, layoutService, validationService);
     }
 
     get componentType(): Type<DynamicFormValueControl> | null {
-        return null;
+        return mapDynamicIonicComponentByModel(this.model);
     }
 }
 
-export function mapDynamicIonicComponentByModel(model: DynamicFormControlModel): IonicFormControlType | null {
+export function mapDynamicIonicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
 
     switch (model.type) {
 
-        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
-            return IonicFormControlType.Array;
-
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
-            return IonicFormControlType.Checkbox;
+            return DynamicIonicCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
         case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
-            return IonicFormControlType.DateTime;
-
-        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
-            return IonicFormControlType.Group;
+            return DynamicIonicDateTimeComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-            return IonicFormControlType.Input;
+            return DynamicIonicInputComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
-            return IonicFormControlType.RadioGroup;
+            return DynamicIonicRadioGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-            return IonicFormControlType.Select;
+            return DynamicIonicSelectComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
-            return IonicFormControlType.Range;
+            return DynamicIonicRangeComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SWITCH:
-            return IonicFormControlType.Toggle;
+            return DynamicIonicToggleComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
-            return IonicFormControlType.TextArea;
+            return DynamicIonicTextAreaComponent;
 
         default:
             return null;

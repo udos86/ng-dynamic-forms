@@ -1,6 +1,7 @@
 <ng-container [formGroup]="group">
 
-    <ion-datetime [cancelText]="model.getAdditional('cancelText', 'Cancel')"
+    <ion-datetime #ionDateTime
+                  [cancelText]="model.getAdditional('cancelText', 'Cancel')"
                   [doneText]="model.getAdditional('doneText', 'Done')"
                   [displayFormat]="model.format || 'MMM D, YYYY'"
                   [dynamicId]="bindId && model.id"
