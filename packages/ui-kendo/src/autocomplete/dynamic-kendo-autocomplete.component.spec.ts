@@ -59,6 +59,7 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.kendoAutoComplete instanceof AutoCompleteComponent).toBe(true);
+        expect(component.templateableViewChild instanceof AutoCompleteComponent).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

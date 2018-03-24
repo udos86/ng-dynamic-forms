@@ -62,8 +62,7 @@
                                                (ngbEvent)="onCustomEvent($event)"></dynamic-ng-bootstrap-form-control>
         </div>
 
-        <small *ngIf="showHint" class="text-muted" [innerHTML]="model.hint"
-               [ngClass]="getClass('element', 'hint')"></small>
+        <small *ngIf="hasHint" class="text-muted" [innerHTML]="model.hint" [ngClass]="getClass('element', 'hint')"></small>
 
         <div *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
             <small *ngFor="let message of errorMessages" class="invalid-feedback d-block">{{ message }}</small>

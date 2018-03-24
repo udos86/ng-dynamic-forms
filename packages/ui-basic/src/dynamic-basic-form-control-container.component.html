@@ -58,7 +58,7 @@
                                     (focus)="onFocus($event)"></dynamic-basic-form-control>
     </fieldset>
 
-    <div *ngIf="showHint" [ngClass]="[getClass('element', 'hint'), getClass('grid', 'hint')]">
+    <div *ngIf="hasHint" [ngClass]="[getClass('element', 'hint'), getClass('grid', 'hint')]">
         <span [innerHTML]="model.hint"></span>
     </div>
 

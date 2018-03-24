@@ -59,6 +59,7 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.pChips instanceof Chips).toBe(true);
+        expect(component.templateableViewChild instanceof Chips).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

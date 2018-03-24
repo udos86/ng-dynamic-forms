@@ -4,7 +4,7 @@
 
         <span [innerHTML]="model.label" [ngClass]="getClass('element','label')"></span>
 
-        <span *ngIf="showHint" class="k-field-info" [innerHTML]="model.hint"
+        <span *ngIf="model.hint !== null" class="k-field-info" [innerHTML]="model.hint"
               [ngClass]="getClass('element','hint')"></span>
 
     </span>

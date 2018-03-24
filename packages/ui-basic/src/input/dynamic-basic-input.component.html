@@ -26,7 +26,7 @@
            (change)="onChange($event)"
            (focus)="onFocus($event)"/>
 
-    <datalist *ngIf="hasList" [id]="model.listId">
+    <datalist *ngIf="this.model.hasList" [id]="model.listId">
 
         <option *ngFor="let option of model.list" [value]="option">
 

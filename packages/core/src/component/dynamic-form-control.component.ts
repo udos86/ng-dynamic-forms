@@ -3,11 +3,9 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
-import { DynamicInputModel } from "../model/input/dynamic-input.model";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
 
@@ -42,20 +40,12 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         return this.control.invalid;
     }
 
-    get hasList(): boolean {
-        return (this.model as DynamicInputModel).list !== null;
-    }
-
     get isValid(): boolean {
         return this.control.valid;
     }
 
     get showErrorMessages(): boolean {
         return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
-    }
-
-    get showHint(): boolean {
-        return typeof (this.model as DynamicFormValueControlModel<any>).hint === "string";
     }
 
     getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {

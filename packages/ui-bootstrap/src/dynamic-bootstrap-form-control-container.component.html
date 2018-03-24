@@ -66,8 +66,7 @@
                                             (bsEvent)="onCustomEvent($event)"></dynamic-bootstrap-form-control>
         </fieldset>
 
-        <span *ngIf="showHint" class="help-block" [innerHTML]="model.hint"
-              [ngClass]="getClass('element', 'hint')"></span>
+        <span *ngIf="hasHint" class="help-block" [innerHTML]="model.hint" [ngClass]="getClass('element', 'hint')"></span>
 
     </div>
 

@@ -59,6 +59,7 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFileUploadModel).toBe(true);
         expect(component.kendoUpload instanceof UploadComponent).toBe(true);
+        expect(component.templateableViewChild instanceof UploadComponent).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

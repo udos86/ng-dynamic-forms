@@ -59,6 +59,7 @@ describe("DynamicKendoCalendarComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
         expect(component.kendoCalendar instanceof CalendarComponent).toBe(true);
+        expect(component.templateableViewChild instanceof CalendarComponent).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

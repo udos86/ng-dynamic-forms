@@ -63,6 +63,7 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
         expect(component.kendoMultiSelect instanceof MultiSelectComponent).toBe(true);
+        expect(component.templateableViewChild instanceof MultiSelectComponent).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

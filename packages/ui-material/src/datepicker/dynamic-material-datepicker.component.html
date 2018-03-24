@@ -31,7 +31,7 @@
 
     <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
 
-    <mat-hint *ngIf="showHint" align="start" [innerHTML]="model.hint"></mat-hint>
+    <mat-hint *ngIf="model.hint !== null" align="start" [innerHTML]="model.hint"></mat-hint>
 
 
     <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>

@@ -29,7 +29,7 @@
               (change)="onChange($event)"
               (focus)="onFocus($event)"></textarea>
 
-    <mat-hint *ngIf="showHint" align="start" [innerHTML]="model.hint"></mat-hint>
+    <mat-hint *ngIf="model.hint !== null" align="start" [innerHTML]="model.hint"></mat-hint>
 
     <mat-hint *ngIf="showCharacterHint" align="end">{{ characterHint }}</mat-hint>
 

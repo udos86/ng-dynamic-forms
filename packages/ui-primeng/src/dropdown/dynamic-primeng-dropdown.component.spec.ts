@@ -59,6 +59,7 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
         expect(component.pDropdown instanceof Dropdown).toBe(true);
+        expect(component.templateableViewChild instanceof Dropdown).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

@@ -126,6 +126,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.validationService.createErrorMessages(this.control, this.model);
     }
 
+    get hasHint(): boolean {
+        return typeof (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint === "string";
+    }
+
     get hasLabel(): boolean {
         return typeof this.model.label === "string";
     }
@@ -156,10 +160,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     get showErrorMessages(): boolean {
         return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
-    }
-
-    get showHint(): boolean {
-        return (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint !== null;
     }
 
     get templateList(): QueryList<DynamicTemplateDirective> {

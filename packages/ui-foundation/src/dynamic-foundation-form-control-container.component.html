@@ -63,7 +63,7 @@
                                              (focus)="onFocus($event)"></dynamic-foundation-form-control>
         </fieldset>
 
-        <p *ngIf="showHint" class="help-text" [ngClass]="getClass('element', 'hint')" [innerHTML]="model.hint"></p>
+        <p *ngIf="hasHint" class="help-text" [ngClass]="getClass('element', 'hint')" [innerHTML]="model.hint"></p>
 
     </div>
 

@@ -1,6 +1,6 @@
 import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs/Subject";
-import { DynamicFormControlLayout, DynamicFormControlLayoutConfig } from "./misc/dynamic-form-control-layout.model";
+import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
 import { DynamicFormControlRelationGroup } from "./misc/dynamic-form-control-relation.model";
 import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";

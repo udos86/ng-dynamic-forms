@@ -59,6 +59,7 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.pAutoComplete instanceof AutoComplete).toBe(true);
+        expect(component.templateableViewChild instanceof AutoComplete).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

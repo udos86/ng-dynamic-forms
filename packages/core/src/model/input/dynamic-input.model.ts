@@ -75,6 +75,10 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         return this._listId;
     }
 
+    get hasList(): boolean {
+        return Array.isArray(this.list);
+    }
+
     toJSON() {
 
         let json: any = super.toJSON();
