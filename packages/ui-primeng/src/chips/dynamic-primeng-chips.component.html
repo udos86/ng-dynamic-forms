@@ -1,13 +1,13 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
-<p-chips #pChips
-         [allowDuplicate]="model.getAdditional('allowDuplicate', true)"
-         [dynamicId]="bindId && model.id"
-         [formControlName]="model.id"
-         [ngClass]="getClass('element', 'control')"
-         [tabindex]="model.tabIndex"
-         (change)="onChange($event)"
-         (onAdd)="onCustomEvent($event, 'onAdd')"
-         (onRemove)="onCustomEvent($event, 'onRemove')"></p-chips>
+    <p-chips #pChips
+             [allowDuplicate]="model.getAdditional('allowDuplicate', true)"
+             [dynamicId]="bindId && model.id"
+             [formControlName]="model.id"
+             [ngClass]="getClass('element', 'control')"
+             [tabindex]="model.tabIndex"
+             (change)="onChange($event)"
+             (onAdd)="onCustomEvent($event, 'onAdd')"
+             (onRemove)="onCustomEvent($event, 'onRemove')"></p-chips>
 
-</ng-container>
+</div>

@@ -15,7 +15,7 @@ import {
 } from "@angular/material";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
+import { DynamicMaterialFormControlContainerComponent } from "./dynamic-material-form-control-container.component";
 import { DynamicMaterialFormComponent } from "./dynamic-material-form.component";
 import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
 import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
@@ -54,7 +54,7 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
         DynamicMaterialSlideToggleComponent,
         DynamicMaterialSliderComponent,
         DynamicMaterialTextAreaComponent,
-        DynamicMaterialFormControlComponent,
+        DynamicMaterialFormControlContainerComponent,
         DynamicMaterialFormComponent
     ],
     entryComponents: [
@@ -70,7 +70,7 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicMaterialFormControlComponent,
+        DynamicMaterialFormControlContainerComponent,
         DynamicMaterialFormComponent
     ]
 })

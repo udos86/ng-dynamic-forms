@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { IonicModule } from "ionic-angular";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
+import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 import { DynamicIonicFormComponent } from "./dynamic-ionic-form.component";
 import { DynamicIonicCheckboxComponent } from "./checkbox/dynamic-ionic-checkbox.component";
 import { DynamicIonicDateTimeComponent } from "./datetime/dynamic-ionic-datetime.component";
@@ -32,7 +32,7 @@ import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.compo
         DynamicIonicSelectComponent,
         DynamicIonicTextAreaComponent,
         DynamicIonicToggleComponent,
-        DynamicIonicFormControlComponent,
+        DynamicIonicFormControlContainerComponent,
         DynamicIonicFormComponent
     ],
     entryComponents: [
@@ -47,7 +47,7 @@ import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.compo
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicIonicFormControlComponent,
+        DynamicIonicFormControlContainerComponent,
         DynamicIonicFormComponent
     ]
 })

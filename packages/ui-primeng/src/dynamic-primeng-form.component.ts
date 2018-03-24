@@ -9,7 +9,7 @@ import {
     DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-control.component";
+import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
 
 @Component({
     selector: "dynamic-primeng-form",
@@ -28,7 +28,7 @@ export class DynamicPrimeNGFormComponent extends DynamicFormComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicPrimeNGFormControlComponent) components: QueryList<DynamicPrimeNGFormControlComponent>;
+    @ViewChildren(DynamicPrimeNGFormControlContainerComponent) components: QueryList<DynamicPrimeNGFormControlContainerComponent>;
 
     constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
         super(formService, layoutService);

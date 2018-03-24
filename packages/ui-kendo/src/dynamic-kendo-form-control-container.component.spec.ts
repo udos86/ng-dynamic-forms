@@ -2,9 +2,10 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
-import { TimepickerModule } from "ngx-bootstrap/timepicker";
-import { TextMaskModule } from "angular2-text-mask";
+import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
+import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
+import { InputsModule } from "@progress/kendo-angular-inputs";
+import { UploadModule } from "@progress/kendo-angular-upload";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -26,9 +27,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-control.component";
+import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
 
-xdescribe("DynamicFormBootstrapComponent test suite", () => {
+xdescribe("DynamicKendoFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -48,10 +49,10 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[8],
+        testModel = formModel[11],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBootstrapFormControlComponent>,
-        component: DynamicBootstrapFormControlComponent,
+        fixture: ComponentFixture<DynamicKendoFormControlContainerComponent>,
+        component: DynamicKendoFormControlContainerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -61,16 +62,17 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
             imports: [
                 ReactiveFormsModule,
-                DynamicFormsCoreModule.forRoot(),
-                TextMaskModule,
-                BsDatepickerModule.forRoot(),
-                TimepickerModule.forRoot()
+                DateInputsModule,
+                DropDownsModule,
+                InputsModule,
+                UploadModule,
+                DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicBootstrapFormControlComponent]
+            declarations: [DynamicKendoFormControlContainerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicBootstrapFormControlComponent);
+            fixture = TestBed.createComponent(DynamicKendoFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -92,7 +94,7 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
+        testElement = debugElement.query(By.css(`kendo-dropdownlist`));
     }));
 
     it("should initialize correctly", () => {
@@ -101,7 +103,6 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.asBootstrapFormGroup).toBe(true);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -117,12 +118,6 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
-    });
-
-    it("should have an input element", () => {
-
-        expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to native blur events", () => {
@@ -147,7 +142,7 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
         spyOn(component, "onChange");
 
-        testElement.triggerEventHandler("change", null);
+        testElement.triggerEventHandler("valueChange", null);
 
         expect(component.onChange).toHaveBeenCalled();
     });
@@ -165,7 +160,7 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicInputModel).valueUpdates.next("test");
+        (testModel as DynamicSelectModel<string>).valueUpdates.next("Two");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });

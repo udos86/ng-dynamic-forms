@@ -1,7 +1,7 @@
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { QueryList } from "@angular/core";
 
-export interface DynamicTemplateableFormValueControl {
+export interface DynamicTemplateableFormControl {
 
     readonly templateDirectives: Map<string, string>;
 

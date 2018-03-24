@@ -5,7 +5,7 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-control.component";
+import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstrap-form-control-container.component";
 import { DynamicBootstrapFormComponent } from "./dynamic-bootstrap-form.component";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
@@ -32,7 +32,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         DynamicBootstrapSelectComponent,
         DynamicBootstrapTextAreaComponent,
         DynamicBootstrapTimePickerComponent,
-        DynamicBootstrapFormControlComponent,
+        DynamicBootstrapFormControlContainerComponent,
         DynamicBootstrapFormComponent
     ],
     entryComponents: [
@@ -46,7 +46,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicBootstrapFormControlComponent,
+        DynamicBootstrapFormControlContainerComponent,
         DynamicBootstrapFormComponent
     ]
 })

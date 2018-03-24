@@ -9,7 +9,7 @@ import {
     DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicBootstrapFormControlComponent } from "./dynamic-bootstrap-form-control.component";
+import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstrap-form-control-container.component";
 
 @Component({
     selector: "dynamic-bootstrap-form",
@@ -28,7 +28,7 @@ export class DynamicBootstrapFormComponent extends DynamicFormComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicBootstrapFormControlComponent) components: QueryList<DynamicBootstrapFormControlComponent>;
+    @ViewChildren(DynamicBootstrapFormControlContainerComponent) components: QueryList<DynamicBootstrapFormControlContainerComponent>;
 
     constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
         super(formService, layoutService);

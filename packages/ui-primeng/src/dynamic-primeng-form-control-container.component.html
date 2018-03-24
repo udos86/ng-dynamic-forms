@@ -1,12 +1,14 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
-    <div *ngIf="!isCheckbox && model.label" [ngClass]="getClass('grid', 'label')">
+    <div *ngIf="!isCheckbox && hasLabel" [ngClass]="getClass('grid', 'label')">
 
         <label [for]="model.id" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
 
     </div>
 
     <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
+
+    <ng-container #componentViewContainer></ng-container>
 
     <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
     <div *ngIf="isFormGroup" role="group"
@@ -27,17 +29,10 @@
                                       (pEvent)="onCustomEvent($event)"></dynamic-primeng-form-control>
     </div>
 
-    <ng-container #radioGroupViewContainer></ng-container>
+    <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
+    <div *ngIf="isFormArray" [ngClass]="getClass('grid', 'control')">
 
-    <div [ngClass]="getClass('grid', 'control')">
-
-        <ng-container #componentViewContainer></ng-container>
-
-        <!-- FORM ARRAY ----------------------------------------------------------------------------------------------->
-        <div *ngIf="isFormArray"
-             [dynamicId]="bindId && model.id"
-             [formArrayName]="model.id"
-             [ngClass]="getClass('element', 'control')">
+        <div [dynamicId]="bindId && model.id" [formArrayName]="model.id" [ngClass]="getClass('element', 'control')">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                  [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">

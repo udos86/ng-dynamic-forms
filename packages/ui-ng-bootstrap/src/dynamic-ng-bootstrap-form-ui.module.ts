@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { TextMaskModule } from "angular2-text-mask";
-import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-form-control.component";
+import { DynamicNGBootstrapFormControlContainerComponent } from "./dynamic-ng-bootstrap-form-control-container.component";
 import { DynamicNGBootstrapFormComponent } from "./dynamic-ng-bootstrap-form.component";
 import { DynamicNGBootstrapCalendarComponent } from "./calendar/dynamic-ng-bootstrap-calendar.component";
 import { DynamicNGBootstrapCheckboxComponent } from "./checkbox/dynamic-ng-bootstrap-checkbox.component";
@@ -36,7 +36,7 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
         DynamicNGBootstrapSelectComponent,
         DynamicNGBootstrapTextAreaComponent,
         DynamicNGBootstrapTimePickerComponent,
-        DynamicNGBootstrapFormControlComponent,
+        DynamicNGBootstrapFormControlContainerComponent,
         DynamicNGBootstrapFormComponent
     ],
     entryComponents: [
@@ -52,7 +52,7 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicNGBootstrapFormControlComponent,
+        DynamicNGBootstrapFormControlContainerComponent,
         DynamicNGBootstrapFormComponent
     ]
 })

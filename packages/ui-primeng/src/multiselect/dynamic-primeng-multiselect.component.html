@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-multiSelect #pMultiSelect
                    [defaultLabel]="model.getAdditional('defaultLabel', 'Choose')"
@@ -20,4 +20,4 @@
                    (onChange)="onChange($event)"
                    (onFocus)="onFocus($event)"></p-multiSelect>
 
-</ng-container>
+</div>

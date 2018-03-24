@@ -9,7 +9,7 @@ import {
     DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
+import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
 
 @Component({
     selector: "dynamic-kendo-form",
@@ -28,7 +28,7 @@ export class DynamicKendoFormComponent extends DynamicFormComponent {
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicKendoFormControlComponent) components: QueryList<DynamicKendoFormControlComponent>;
+    @ViewChildren(DynamicKendoFormControlContainerComponent) components: QueryList<DynamicKendoFormControlContainerComponent>;
 
     constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
         super(formService, layoutService);

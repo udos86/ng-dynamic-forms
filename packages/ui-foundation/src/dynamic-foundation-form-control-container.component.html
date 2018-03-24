@@ -1,6 +1,6 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
-    <div *ngIf="model.type !== 'CHECKBOX' && model.label" [ngClass]="getClass('grid', 'label')">
+    <div *ngIf="!isCheckbox && hasLabel" [ngClass]="getClass('grid', 'label')">
 
         <label [class.is-invalid-label]="showErrorMessages"
                [for]="model.id"

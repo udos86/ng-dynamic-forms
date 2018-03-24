@@ -1,26 +1,10 @@
-import { DebugElement, SimpleChange } from "@angular/core";
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import {
-    AutoCompleteModule,
-    CalendarModule,
-    CheckboxModule,
-    ChipsModule,
-    ColorPickerModule,
-    DropdownModule,
-    EditorModule,
-    InputMaskModule,
-    InputSwitchModule,
-    InputTextModule,
-    InputTextareaModule,
-    MultiSelectModule,
-    RadioButtonModule,
-    RatingModule,
-    SliderModule,
-    SpinnerModule
-} from "primeng/primeng";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import { TimepickerModule } from "ngx-bootstrap/timepicker";
+import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -42,9 +26,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-control.component";
+import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstrap-form-control-container.component";
 
-xdescribe("DynamicFormPrimeNGComponent test suite", () => {
+xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -66,8 +50,8 @@ xdescribe("DynamicFormPrimeNGComponent test suite", () => {
         ],
         testModel = formModel[8],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGFormControlComponent>,
-        component: DynamicPrimeNGFormControlComponent,
+        fixture: ComponentFixture<DynamicBootstrapFormControlContainerComponent>,
+        component: DynamicBootstrapFormControlContainerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -77,30 +61,16 @@ xdescribe("DynamicFormPrimeNGComponent test suite", () => {
 
             imports: [
                 ReactiveFormsModule,
-                NoopAnimationsModule,
                 DynamicFormsCoreModule.forRoot(),
-                AutoCompleteModule,
-                CalendarModule,
-                CheckboxModule,
-                ChipsModule,
-                ColorPickerModule,
-                DropdownModule,
-                EditorModule,
-                InputMaskModule,
-                InputSwitchModule,
-                InputTextModule,
-                InputTextareaModule,
-                MultiSelectModule,
-                RadioButtonModule,
-                RatingModule,
-                SliderModule,
-                SpinnerModule
+                TextMaskModule,
+                BsDatepickerModule.forRoot(),
+                TimepickerModule.forRoot()
             ],
-            declarations: [DynamicPrimeNGFormControlComponent]
+            declarations: [DynamicBootstrapFormControlContainerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicPrimeNGFormControlComponent);
+            fixture = TestBed.createComponent(DynamicBootstrapFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -131,6 +101,7 @@ xdescribe("DynamicFormPrimeNGComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
+        expect(component.asBootstrapFormGroup).toBe(true);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -146,6 +117,7 @@ xdescribe("DynamicFormPrimeNGComponent test suite", () => {
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
+        expect(component.showErrorMessages).toBe(false);
     });
 
     it("should have an input element", () => {

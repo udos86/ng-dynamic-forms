@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-autoComplete #pAutoComplete
                     [autoHighlight]="model.getAdditional('autoHighlight', false)"
@@ -24,4 +24,4 @@
                     (onUnselect)="onCustomEvent($event, 'onUnselect')"
                     (completeMethod)="onAutoComplete($event)"></p-autoComplete>
 
-</ng-container>
+</div>

@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-rating #pRating
               [cancel]="model.getAdditional('cancel', true)"
@@ -12,4 +12,4 @@
               (onCancel)="onCustomEvent($event, 'onCancel')"
               (onRate)="onChange($event)"></p-rating>
 
-</ng-container>
+</div>

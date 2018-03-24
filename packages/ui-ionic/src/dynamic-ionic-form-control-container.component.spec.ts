@@ -19,9 +19,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
+import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 
-describe("DynamicFormIonicComponent test suite", () => {
+describe("DynamicIonicFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -44,7 +44,7 @@ describe("DynamicFormIonicComponent test suite", () => {
         testModel = formModel[8],
         //formGroup: FormGroup,
         //fixture: ComponentFixture<DynamicIonicFormControlComponent>,
-        component: DynamicIonicFormControlComponent,
+        component: DynamicIonicFormControlContainerComponent,
         //debugElement: DebugElement,
         testElement: DebugElement;
     /*

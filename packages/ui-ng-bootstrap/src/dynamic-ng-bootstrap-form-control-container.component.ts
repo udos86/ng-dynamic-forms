@@ -13,7 +13,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
-    DynamicFormControlComponent,
+    DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
@@ -44,9 +44,9 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
 
 @Component({
     selector: "dynamic-ng-bootstrap-form-control",
-    templateUrl: "./dynamic-ng-bootstrap-form-control.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-form-control-container.component.html"
 })
-export class DynamicNGBootstrapFormControlComponent extends DynamicFormControlComponent {
+export class DynamicNGBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;

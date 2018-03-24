@@ -6,7 +6,7 @@ import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
 import { UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
+import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
 import { DynamicKendoFormComponent } from "./dynamic-kendo-form.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
 import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
@@ -54,7 +54,7 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoTextAreaComponent,
         DynamicKendoTimePickerComponent,
         DynamicKendoUploadComponent,
-        DynamicKendoFormControlComponent,
+        DynamicKendoFormControlContainerComponent,
         DynamicKendoFormComponent
     ],
     entryComponents: [
@@ -78,7 +78,7 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicKendoFormControlComponent,
+        DynamicKendoFormControlContainerComponent,
         DynamicKendoFormComponent
     ]
 })

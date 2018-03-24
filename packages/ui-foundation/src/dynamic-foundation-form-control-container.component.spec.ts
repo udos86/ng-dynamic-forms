@@ -2,10 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
-import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
-import { InputsModule } from "@progress/kendo-angular-inputs";
-import { UploadModule } from "@progress/kendo-angular-upload";
+import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -27,9 +24,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicKendoFormControlComponent } from "./dynamic-kendo-form-control.component";
+import { DynamicFoundationFormControlContainerComponent } from "./dynamic-foundation-form-control-container.component";
 
-xdescribe("DynamicFormKendoComponent test suite", () => {
+xdescribe("DynamicFoundationFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -49,10 +46,10 @@ xdescribe("DynamicFormKendoComponent test suite", () => {
             new DynamicTextAreaModel({id: "textarea"}),
             new DynamicTimePickerModel({id: "timepicker"})
         ],
-        testModel = formModel[11],
+        testModel = formModel[8],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoFormControlComponent>,
-        component: DynamicKendoFormControlComponent,
+        fixture: ComponentFixture<DynamicFoundationFormControlContainerComponent>,
+        component: DynamicFoundationFormControlContainerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -60,19 +57,12 @@ xdescribe("DynamicFormKendoComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [
-                ReactiveFormsModule,
-                DateInputsModule,
-                DropDownsModule,
-                InputsModule,
-                UploadModule,
-                DynamicFormsCoreModule.forRoot()
-            ],
-            declarations: [DynamicKendoFormControlComponent]
+            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
+            declarations: [DynamicFoundationFormControlContainerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicKendoFormControlComponent);
+            fixture = TestBed.createComponent(DynamicFoundationFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -94,7 +84,7 @@ xdescribe("DynamicFormKendoComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`kendo-dropdownlist`));
+        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
@@ -118,6 +108,12 @@ xdescribe("DynamicFormKendoComponent test suite", () => {
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
+        expect(component.showErrorMessages).toBe(false);
+    });
+
+    it("should have an input element", () => {
+
+        expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to native blur events", () => {
@@ -142,7 +138,7 @@ xdescribe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onChange");
 
-        testElement.triggerEventHandler("valueChange", null);
+        testElement.triggerEventHandler("change", null);
 
         expect(component.onChange).toHaveBeenCalled();
     });
@@ -160,7 +156,7 @@ xdescribe("DynamicFormKendoComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicSelectModel<string>).valueUpdates.next("Two");
+        (testModel as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });

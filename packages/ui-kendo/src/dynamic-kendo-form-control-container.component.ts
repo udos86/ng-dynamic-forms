@@ -11,7 +11,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
-    DynamicFormControlComponent,
+    DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
@@ -56,9 +56,9 @@ import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-time
 
 @Component({
     selector: "dynamic-kendo-form-control",
-    templateUrl: "./dynamic-kendo-form-control.component.html"
+    templateUrl: "./dynamic-kendo-form-control-container.component.html"
 })
-export class DynamicKendoFormControlComponent extends DynamicFormControlComponent {
+export class DynamicKendoFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;

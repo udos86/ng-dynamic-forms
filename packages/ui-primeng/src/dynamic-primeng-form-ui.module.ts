@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicPrimeNGFormControlComponent } from "./dynamic-primeng-form-control.component";
+import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
 import {
     AutoCompleteModule,
     CalendarModule,
@@ -78,7 +78,7 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
         DynamicPrimeNGSliderComponent,
         DynamicPrimeNGSpinnerComponent,
         DynamicPrimeNGTextAreaComponent,
-        DynamicPrimeNGFormControlComponent,
+        DynamicPrimeNGFormControlContainerComponent,
         DynamicPrimeNGFormComponent
     ],
     entryComponents: [
@@ -101,7 +101,7 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicPrimeNGFormControlComponent,
+        DynamicPrimeNGFormControlContainerComponent,
         DynamicPrimeNGFormComponent
     ]
 })

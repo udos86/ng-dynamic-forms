@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <textarea pInputTextarea #pInputTextarea
               [cols]="model.cols"
@@ -20,4 +20,4 @@
               (focus)="onFocus($event)"
               (onResize)="onCustomEvent($event, 'onResize')"></textarea>
 
-</ng-container>
+</div>

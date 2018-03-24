@@ -1,11 +1,11 @@
 import { AfterViewInit, QueryList } from "@angular/core";
-import { DynamicTemplateableFormValueControl } from "./dynamic-templateable-form-value-control.interface";
+import { DynamicTemplateableFormControl } from "./dynamic-templateable-form-control.interface";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
-import { DynamicFormValueControlComponent } from "./dynamic-form-value-control.component";
+import { DynamicFormControlComponent } from "./dynamic-form-control.component";
 
-export abstract class DynamicTemplateableFormValueControlComponent extends DynamicFormValueControlComponent implements DynamicTemplateableFormValueControl, AfterViewInit {
+export abstract class DynamicTemplateableFormControlComponent extends DynamicFormControlComponent implements DynamicTemplateableFormControl, AfterViewInit {
 
     readonly templateDirectives: Map<string, string>;
 

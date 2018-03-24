@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-calendar #pCalendar
                 [dateFormat]="model.format || 'mm/dd/yy'"
@@ -41,4 +41,4 @@
                 (onSelect)="onChange($event)"
                 (onTodayClick)="onCustomEvent($event, 'onTodayClick')"></p-calendar>
 
-</ng-container>
+</div>

@@ -16,7 +16,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DynamicFormArrayGroupModel,
-    DynamicFormControlComponent,
+    DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
@@ -34,9 +34,9 @@ import { DynamicFoundationCheckboxComponent } from "./checkbox/dynamic-foundatio
 
 @Component({
     selector: "dynamic-foundation-form-control",
-    templateUrl: "./dynamic-foundation-form-control.component.html"
+    templateUrl: "./dynamic-foundation-form-control-container.component.html"
 })
-export class DynamicFoundationFormControlComponent extends DynamicFormControlComponent {
+export class DynamicFoundationFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;

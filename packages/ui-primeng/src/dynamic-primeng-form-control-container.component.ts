@@ -13,7 +13,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
-    DynamicFormControlComponent,
+    DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
@@ -56,9 +56,9 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
 
 @Component({
     selector: "dynamic-primeng-form-control",
-    templateUrl: "./dynamic-primeng-form-control.component.html"
+    templateUrl: "./dynamic-primeng-form-control-container.component.html"
 })
-export class DynamicPrimeNGFormControlComponent extends DynamicFormControlComponent {
+export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
@@ -75,22 +75,12 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
     @Output("pEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
-    @ViewChild("radioGroupViewContainer", {read: ViewContainerRef}) radioGroupViewContainerRef: ViewContainerRef;
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
 
         super(componentFactoryResolver, layoutService, validationService);
-    }
-
-    protected createFormControlComponent(): void {
-
-        if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP) {
-            this.componentViewContainerRef = this.radioGroupViewContainerRef;
-        }
-
-        super.createFormControlComponent();
     }
 
     get componentType(): Type<DynamicFormValueControl> | null {

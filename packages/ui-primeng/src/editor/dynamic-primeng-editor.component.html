@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-editor #pEditor
               [dynamicId]="bindId && model.id"
@@ -8,4 +8,4 @@
               (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
               (onTextChange)="onChange($event)"></p-editor>
 
-</ng-container>
+</div>

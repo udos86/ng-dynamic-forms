@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <input pInputText #pInputText
            [attr.accept]="model.accept"
@@ -27,7 +27,9 @@
            (focus)="onFocus($event)"/>
 
     <datalist *ngIf="hasList" [id]="model.listId">
+
         <option *ngFor="let option of model.list" [value]="option">
+
     </datalist>
 
-</ng-container>
+</div>

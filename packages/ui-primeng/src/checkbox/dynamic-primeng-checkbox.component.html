@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-checkbox #pCheckbox
                 binary="true"
@@ -11,4 +11,4 @@
                 [value]="model.value"
                 (onChange)="onChange($event)"></p-checkbox>
 
-</ng-container>
+</div>

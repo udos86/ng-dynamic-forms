@@ -6,12 +6,12 @@ import {
     Input,
     Output,
     QueryList,
-    Type
+    Type, ViewChild, ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
-    DynamicFormControlComponent,
+    DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
@@ -40,9 +40,9 @@ import { DynamicIonicTextAreaComponent } from "./textarea/dynamic-ionic-textarea
 
 @Component({
     selector: "dynamic-ionic-form-control",
-    templateUrl: "./dynamic-ionic-form-control.component.html"
+    templateUrl: "./dynamic-ionic-form-control-container.component.html"
 })
-export class DynamicIonicFormControlComponent extends DynamicFormControlComponent {
+export class DynamicIonicFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
@@ -57,6 +57,8 @@ export class DynamicIonicFormControlComponent extends DynamicFormControlComponen
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("ionEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+
+    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,

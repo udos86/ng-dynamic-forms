@@ -1,7 +1,20 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
+import {
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule
+} from "@angular/material";
 import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
@@ -24,9 +37,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicFoundationFormControlComponent } from "./dynamic-foundation-form-control.component";
+import { DynamicMaterialFormControlContainerComponent } from "./dynamic-material-form-control-container.component";
 
-xdescribe("DynamicFormFoundationSitesComponent test suite", () => {
+xdescribe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -48,8 +61,8 @@ xdescribe("DynamicFormFoundationSitesComponent test suite", () => {
         ],
         testModel = formModel[8],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicFoundationFormControlComponent>,
-        component: DynamicFoundationFormControlComponent,
+        fixture: ComponentFixture<DynamicMaterialFormControlContainerComponent>,
+        component: DynamicMaterialFormControlContainerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -57,12 +70,27 @@ xdescribe("DynamicFormFoundationSitesComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
-            declarations: [DynamicFoundationFormControlComponent]
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MatAutocompleteModule,
+                MatCheckboxModule,
+                MatChipsModule,
+                MatDatepickerModule,
+                MatIconModule,
+                MatInputModule,
+                MatRadioModule,
+                MatSelectModule,
+                MatSliderModule,
+                MatSlideToggleModule,
+                TextMaskModule,
+                DynamicFormsCoreModule.forRoot()
+            ],
+            declarations: [DynamicMaterialFormControlContainerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFoundationFormControlComponent);
+            fixture = TestBed.createComponent(DynamicMaterialFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -116,31 +144,9 @@ xdescribe("DynamicFormFoundationSitesComponent test suite", () => {
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    it("should listen to native blur events", () => {
+    it("should detect material form fields", () => {
 
-        spyOn(component, "onBlur");
-
-        testElement.triggerEventHandler("blur", null);
-
-        expect(component.onBlur).toHaveBeenCalled();
-    });
-
-    it("should listen to native focus events", () => {
-
-        spyOn(component, "onFocus");
-
-        testElement.triggerEventHandler("focus", null);
-
-        expect(component.onFocus).toHaveBeenCalled();
-    });
-
-    it("should listen to native change event", () => {
-
-        spyOn(component, "onChange");
-
-        testElement.triggerEventHandler("change", null);
-
-        expect(component.onChange).toHaveBeenCalled();
+        expect(component.hasMatFormField).toBe(true);
     });
 
     it("should update model value when control value changes", () => {
@@ -156,7 +162,7 @@ xdescribe("DynamicFormFoundationSitesComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicInputModel).valueUpdates.next("test");
+        (testModel  as DynamicInputModel).valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });

@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
@@ -24,9 +25,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
+import { DynamicNGBootstrapFormControlContainerComponent } from "./dynamic-ng-bootstrap-form-control-container.component";
 
-xdescribe("DynamicFormBasicComponent test suite", () => {
+xdescribe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -48,8 +49,8 @@ xdescribe("DynamicFormBasicComponent test suite", () => {
         ],
         testModel = formModel[8],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicFormControlComponent>,
-        component: DynamicBasicFormControlComponent,
+        fixture: ComponentFixture<DynamicNGBootstrapFormControlContainerComponent>,
+        component: DynamicNGBootstrapFormControlContainerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -57,12 +58,19 @@ xdescribe("DynamicFormBasicComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
-            declarations: [DynamicBasicFormControlComponent]
+            imports: [
+                ReactiveFormsModule,
+                NgbButtonsModule,
+                NgbDatepickerModule.forRoot(),
+                NgbTimepickerModule.forRoot(),
+                TextMaskModule,
+                DynamicFormsCoreModule.forRoot()
+            ],
+            declarations: [DynamicNGBootstrapFormControlContainerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicBasicFormControlComponent);
+            fixture = TestBed.createComponent(DynamicNGBootstrapFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -93,7 +101,7 @@ xdescribe("DynamicFormBasicComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.hasErrorMessaging).toBe(false);
+        expect(component.asBootstrapFormGroup).toBe(true);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -126,7 +134,7 @@ xdescribe("DynamicFormBasicComponent test suite", () => {
         expect(component.onBlur).toHaveBeenCalled();
     });
 
-    it("should listen to native focus and blur events", () => {
+    it("should listen to native focus events", () => {
 
         spyOn(component, "onFocus");
 

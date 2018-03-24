@@ -1,9 +1,26 @@
-import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
+import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
-import { TextMaskModule } from "angular2-text-mask";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import {
+    AutoCompleteModule,
+    CalendarModule,
+    CheckboxModule,
+    ChipsModule,
+    ColorPickerModule,
+    DropdownModule,
+    EditorModule,
+    InputMaskModule,
+    InputSwitchModule,
+    InputTextModule,
+    InputTextareaModule,
+    MultiSelectModule,
+    RadioButtonModule,
+    RatingModule,
+    SliderModule,
+    SpinnerModule
+} from "primeng/primeng";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -25,9 +42,9 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicNGBootstrapFormControlComponent } from "./dynamic-ng-bootstrap-form-control.component";
+import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
 
-xdescribe("DynamicFormNGBootstrapComponent test suite", () => {
+xdescribe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -49,8 +66,8 @@ xdescribe("DynamicFormNGBootstrapComponent test suite", () => {
         ],
         testModel = formModel[8],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapFormControlComponent>,
-        component: DynamicNGBootstrapFormControlComponent,
+        fixture: ComponentFixture<DynamicPrimeNGFormControlContainerComponent>,
+        component: DynamicPrimeNGFormControlContainerComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -60,17 +77,30 @@ xdescribe("DynamicFormNGBootstrapComponent test suite", () => {
 
             imports: [
                 ReactiveFormsModule,
-                NgbButtonsModule,
-                NgbDatepickerModule.forRoot(),
-                NgbTimepickerModule.forRoot(),
-                TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                NoopAnimationsModule,
+                DynamicFormsCoreModule.forRoot(),
+                AutoCompleteModule,
+                CalendarModule,
+                CheckboxModule,
+                ChipsModule,
+                ColorPickerModule,
+                DropdownModule,
+                EditorModule,
+                InputMaskModule,
+                InputSwitchModule,
+                InputTextModule,
+                InputTextareaModule,
+                MultiSelectModule,
+                RadioButtonModule,
+                RatingModule,
+                SliderModule,
+                SpinnerModule
             ],
-            declarations: [DynamicNGBootstrapFormControlComponent]
+            declarations: [DynamicPrimeNGFormControlContainerComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicNGBootstrapFormControlComponent);
+            fixture = TestBed.createComponent(DynamicPrimeNGFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -101,7 +131,6 @@ xdescribe("DynamicFormNGBootstrapComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.asBootstrapFormGroup).toBe(true);
 
         expect(component.onControlValueChanges).toBeDefined();
         expect(component.onModelDisabledUpdates).toBeDefined();
@@ -117,7 +146,6 @@ xdescribe("DynamicFormNGBootstrapComponent test suite", () => {
 
         expect(component.isValid).toBe(true);
         expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
     });
 
     it("should have an input element", () => {

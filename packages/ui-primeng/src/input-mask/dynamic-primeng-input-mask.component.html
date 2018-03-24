@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-inputMask #pInputMask
                  [autoClear]="model.getAdditional('autoClear', true)"
@@ -15,4 +15,4 @@
                  (onComplete)="onCustomEvent($event, 'onComplete')"
                  (onFocus)="onFocus($event)"></p-inputMask>
 
-</ng-container>
+</div>

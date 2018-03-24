@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicBasicFormControlComponent } from "./dynamic-basic-form-control.component";
+import { DynamicBasicFormControlContainerComponent } from "./dynamic-basic-form-control-container.component";
 import { DynamicBasicFormComponent } from "./dynamic-basic-form.component";
 import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
 import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
@@ -25,7 +25,7 @@ import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea
         DynamicBasicRadioGroupComponent,
         DynamicBasicSelectComponent,
         DynamicBasicTextAreaComponent,
-        DynamicBasicFormControlComponent,
+        DynamicBasicFormControlContainerComponent,
         DynamicBasicFormComponent
     ],
     entryComponents: [
@@ -37,7 +37,7 @@ import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicBasicFormControlComponent,
+        DynamicBasicFormControlContainerComponent,
         DynamicBasicFormComponent
     ]
 })

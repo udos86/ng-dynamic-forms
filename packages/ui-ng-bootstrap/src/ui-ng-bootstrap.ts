@@ -9,5 +9,5 @@ export * from "./textarea/dynamic-ng-bootstrap-textarea.component";
 export * from "./timepicker/dynamic-ng-bootstrap-timepicker.component";
 
 export * from "./dynamic-ng-bootstrap-form.component";
-export * from "./dynamic-ng-bootstrap-form-control.component";
+export * from "./dynamic-ng-bootstrap-form-control-container.component";
 export * from "./dynamic-ng-bootstrap-form-ui.module";

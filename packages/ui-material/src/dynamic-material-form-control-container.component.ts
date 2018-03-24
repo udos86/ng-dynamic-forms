@@ -21,7 +21,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DynamicFormArrayGroupModel,
-    DynamicFormControlComponent,
+    DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
@@ -43,9 +43,9 @@ import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select
 
 @Component({
     selector: "dynamic-material-form-control",
-    templateUrl: "./dynamic-material-form-control.component.html"
+    templateUrl: "./dynamic-material-form-control-container.component.html"
 })
-export class DynamicMaterialFormControlComponent extends DynamicFormControlComponent {
+export class DynamicMaterialFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;

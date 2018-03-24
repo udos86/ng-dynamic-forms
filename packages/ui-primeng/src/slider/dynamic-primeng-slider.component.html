@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-slider #pSlider
               [animate]="model.getAdditional('animate', false)"
@@ -13,4 +13,4 @@
               (onChange)="onChange($event)"
               (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
 
-</ng-container>
+</div>

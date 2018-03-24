@@ -1,4 +1,4 @@
-<ng-container [formGroup]="group">
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-spinner #pSpinner
                [decimalSeparator]="model.getAdditional('decimalSeparator', '.')"
@@ -16,4 +16,4 @@
                (onChange)="onChange($event)"
                (onFocus)="onFocus($event)"></p-spinner>
 
-</ng-container>
+</div>

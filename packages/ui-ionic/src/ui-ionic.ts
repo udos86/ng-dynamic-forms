@@ -8,5 +8,5 @@ export * from "./textarea/dynamic-ionic-textarea.component";
 export * from "./toggle/dynamic-ionic-toggle.component";
 
 export * from "./dynamic-ionic-form.component";
-export * from "./dynamic-ionic-form-control.component";
+export * from "./dynamic-ionic-form-control-container.component";
 export * from "./dynamic-ionic-form-ui.module";

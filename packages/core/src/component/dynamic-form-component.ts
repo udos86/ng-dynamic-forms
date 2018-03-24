@@ -1,6 +1,6 @@
 import { EventEmitter, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormControlComponent } from "./dynamic-form-control.component";
+import { DynamicFormControlContainerComponent } from "./dynamic-form-control-container.component";
 import { DynamicFormControlEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
@@ -14,7 +14,7 @@ export abstract class DynamicFormComponent {
     formModel: DynamicFormControlModel[];
     formLayout: DynamicFormLayout;
 
-    components: QueryList<DynamicFormControlComponent>;
+    components: QueryList<DynamicFormControlContainerComponent>;
     templates: QueryList<DynamicTemplateDirective>;
 
     blur: EventEmitter<DynamicFormControlEvent>;
