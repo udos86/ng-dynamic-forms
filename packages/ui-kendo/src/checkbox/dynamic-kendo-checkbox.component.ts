@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent
+    DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-kendo-checkbox.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoCheckboxComponent extends DynamicFormValueControlComponent {
+export class DynamicKendoCheckboxComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

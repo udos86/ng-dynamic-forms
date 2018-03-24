@@ -33,7 +33,6 @@ import {
 } from "../model/input/dynamic-input.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-control-relation.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP } from "../model/radio/dynamic-radio-group.model";
 import {
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
@@ -42,8 +41,8 @@ import {
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
-import { DynamicFormValueControl } from "./dynamic-form-value-control.interface";
-import { DynamicTemplateableFormValueControlComponent } from "./dynamic-templateable-form-value-control.component";
+import { DynamicFormControl } from "./dynamic-form-control.interface";
+import { DynamicTemplateableFormControlComponent } from "./dynamic-templateable-form-control.component";
 
 export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
@@ -68,7 +67,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     componentViewContainerRef: ViewContainerRef;
 
-    protected componentRef: ComponentRef<DynamicFormValueControl>;
+    protected componentRef: ComponentRef<DynamicFormControl>;
     protected componentSubscriptions: Subscription[] = [];
     protected subscriptions: Subscription[] = [];
 
@@ -121,7 +120,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         this.unsubscribe();
     }
 
-    abstract get componentType(): Type<DynamicFormValueControl> | null;
+    abstract get componentType(): Type<DynamicFormControl> | null;
 
     get errorMessages(): string[] {
         return this.validationService.createErrorMessages(this.control, this.model);
@@ -192,7 +191,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             instance.layout = this.layout;
             instance.model = this.model as any;
 
-            if (instance instanceof DynamicTemplateableFormValueControlComponent) {
+            if (instance instanceof DynamicTemplateableFormControlComponent) {
                 instance.templates = this.templateList;
             }
 

@@ -8,7 +8,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 
@@ -17,7 +17,7 @@ import {
     templateUrl: "./dynamic-primeng-calendar.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGCalendarComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGCalendarComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

@@ -4,7 +4,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-ng-bootstrap-input.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicNGBootstrapInputComponent extends DynamicFormValueControlComponent {
+export class DynamicNGBootstrapInputComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

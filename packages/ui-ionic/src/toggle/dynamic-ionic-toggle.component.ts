@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicSwitchModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-ionic-toggle.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicIonicToggleComponent extends DynamicFormValueControlComponent {
+export class DynamicIonicToggleComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

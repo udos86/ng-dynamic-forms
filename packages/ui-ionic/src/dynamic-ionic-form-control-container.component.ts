@@ -11,6 +11,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
@@ -26,8 +27,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    DynamicFormValueControl
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./checkbox/dynamic-ionic-checkbox.component";
 import { DynamicIonicDateTimeComponent } from "./datetime/dynamic-ionic-datetime.component";
@@ -67,12 +67,12 @@ export class DynamicIonicFormControlContainerComponent extends DynamicFormContro
         super(componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicIonicComponentByModel(this.model);
     }
 }
 
-export function mapDynamicIonicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicIonicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

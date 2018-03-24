@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-ionic-textarea.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicIonicTextAreaComponent extends DynamicFormValueControlComponent {
+export class DynamicIonicTextAreaComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

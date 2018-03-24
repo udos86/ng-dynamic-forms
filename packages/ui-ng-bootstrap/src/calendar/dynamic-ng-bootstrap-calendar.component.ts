@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent
+    DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-ng-bootstrap-calendar.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicNGBootstrapCalendarComponent extends DynamicFormValueControlComponent {
+export class DynamicNGBootstrapCalendarComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

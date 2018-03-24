@@ -4,7 +4,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-kendo-input.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoInputComponent extends DynamicFormValueControlComponent {
+export class DynamicKendoInputComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicSwitchModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-primeng-input-switch.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGInputSwitchComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGInputSwitchComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

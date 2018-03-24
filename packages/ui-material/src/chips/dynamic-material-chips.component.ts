@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
@@ -15,7 +15,7 @@ import {
     templateUrl: "./dynamic-material-chips.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicMaterialChipsComponent extends DynamicFormValueControlComponent {
+export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
 
     private _chipList: string[];
     private _model: DynamicInputModel;

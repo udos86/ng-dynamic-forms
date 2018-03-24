@@ -4,7 +4,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
 
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-ng-bootstrap-radio-group.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicNGBootstrapRadioGroupComponent extends DynamicFormValueControlComponent {
+export class DynamicNGBootstrapRadioGroupComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-ng-bootstrap-timepicker.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicNGBootstrapTimePickerComponent extends DynamicFormValueControlComponent {
+export class DynamicNGBootstrapTimePickerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

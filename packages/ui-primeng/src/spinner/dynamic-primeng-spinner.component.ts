@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-primeng-spinner.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGSpinnerComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGSpinnerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

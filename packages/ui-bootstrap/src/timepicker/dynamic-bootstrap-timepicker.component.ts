@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewCh
 import { FormGroup } from "@angular/forms";
 import { TimepickerComponent } from "ngx-bootstrap/timepicker";
 import {
+    DynamicFormControlComponent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-bootstrap-timepicker.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicBootstrapTimePickerComponent extends DynamicFormValueControlComponent {
+export class DynamicBootstrapTimePickerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

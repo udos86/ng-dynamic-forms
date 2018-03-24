@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormControlComponent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-bootstrap-input.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicBootstrapInputComponent extends DynamicFormValueControlComponent {
+export class DynamicBootstrapInputComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

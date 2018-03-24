@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-ng-bootstrap-checkbox-group.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormValueControlComponent {
+export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

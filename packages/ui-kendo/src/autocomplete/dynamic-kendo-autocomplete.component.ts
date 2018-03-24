@@ -7,7 +7,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicInputModel,
-    DynamicTemplateableFormValueControlComponent,
+    DynamicTemplateableFormControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
@@ -17,7 +17,7 @@ import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
     templateUrl: "./dynamic-kendo-autocomplete.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoAutoCompleteComponent extends DynamicTemplateableFormValueControlComponent {
+export class DynamicKendoAutoCompleteComponent extends DynamicTemplateableFormControlComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 

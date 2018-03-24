@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormControlComponent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
     DynamicSwitchModel
 } from "@ng-dynamic-forms/core";
 
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-foundation-switch.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicFoundationSwitchComponent extends DynamicFormValueControlComponent {
+export class DynamicFoundationSwitchComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

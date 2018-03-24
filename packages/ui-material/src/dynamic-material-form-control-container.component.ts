@@ -21,13 +21,13 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControl,
     DynamicInputModel,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
@@ -70,7 +70,7 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
         super(componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicMaterialComponentByModel(this.model);
     }
 
@@ -83,7 +83,7 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
     }
 }
 
-export function mapDynamicMaterialComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicMaterialComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

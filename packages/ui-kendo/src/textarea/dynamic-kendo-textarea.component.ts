@@ -4,7 +4,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-kendo-textarea.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoTextAreaComponent extends DynamicFormValueControlComponent {
+export class DynamicKendoTextAreaComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

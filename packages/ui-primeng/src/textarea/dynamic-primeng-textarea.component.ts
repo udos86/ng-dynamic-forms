@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 
@@ -15,7 +15,7 @@ import {
     templateUrl: "./dynamic-primeng-textarea.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGTextAreaComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGTextAreaComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

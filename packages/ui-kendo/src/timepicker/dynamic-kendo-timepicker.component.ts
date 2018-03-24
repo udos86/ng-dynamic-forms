@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 
@@ -15,7 +15,7 @@ import {
     templateUrl: "./dynamic-kendo-timepicker.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoTimePickerComponent extends DynamicFormValueControlComponent {
+export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

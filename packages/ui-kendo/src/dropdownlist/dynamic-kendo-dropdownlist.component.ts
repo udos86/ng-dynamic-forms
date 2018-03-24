@@ -15,7 +15,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicSelectModel,
-    DynamicTemplateableFormValueControlComponent,
+    DynamicTemplateableFormControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
@@ -25,7 +25,7 @@ import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
     templateUrl: "./dynamic-kendo-dropdownlist.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoDropdownListComponent extends DynamicTemplateableFormValueControlComponent {
+export class DynamicKendoDropdownListComponent extends DynamicTemplateableFormControlComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 

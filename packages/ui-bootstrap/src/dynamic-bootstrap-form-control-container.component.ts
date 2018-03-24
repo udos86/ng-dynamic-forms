@@ -13,6 +13,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
@@ -26,8 +27,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    DynamicFormValueControl
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng-dynamic-forms/core";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
@@ -60,7 +60,7 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicBootstrapComponentByModel(this.model);
     }
 
@@ -72,7 +72,7 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
     }
 }
 
-export function mapDynamicBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

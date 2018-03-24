@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicSliderModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-ionic-range.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicIonicRangeComponent extends DynamicFormValueControlComponent {
+export class DynamicIonicRangeComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

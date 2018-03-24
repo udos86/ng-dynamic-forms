@@ -13,6 +13,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
@@ -34,8 +35,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SLIDER,
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    DynamicFormValueControl
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
 } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-checkbox.component";
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
@@ -83,12 +83,12 @@ export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormCont
         super(componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicPrimeNGComponentByModel(this.model);
     }
 }
 
-export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewCh
 import { FormGroup } from "@angular/forms";
 import { BsDatepickerDirective } from "ngx-bootstrap/datepicker";
 import {
-    DynamicDatePickerModel, DynamicFormControlCustomEvent,
+    DynamicDatePickerModel,
+    DynamicFormControlComponent,
+    DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
-    DynamicFormValidationService,
-    DynamicFormValueControlComponent
+    DynamicFormValidationService
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -14,7 +15,7 @@ import {
     templateUrl: "./dynamic-bootstrap-datepicker.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicBootstrapDatePickerComponent extends DynamicFormValueControlComponent {
+export class DynamicBootstrapDatePickerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

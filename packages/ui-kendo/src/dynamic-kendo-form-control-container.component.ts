@@ -11,6 +11,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
@@ -34,7 +35,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
-    DynamicFormValueControl, DynamicFormValueControlModel
+    DynamicFormValueControlModel
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
 import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
@@ -83,7 +84,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
         super(componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicKendoComponentByModel(this.model);
     }
 
@@ -100,7 +101,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 }
 
-export function mapDynamicKendoComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicKendoComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

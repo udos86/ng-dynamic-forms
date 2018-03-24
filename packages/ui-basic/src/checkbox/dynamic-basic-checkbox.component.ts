@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormGroup } from "@angular/forms";
 import {
     DynamicCheckboxModel,
+    DynamicFormControlComponent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -13,7 +13,7 @@ import {
     templateUrl: "./dynamic-basic-checkbox.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicBasicCheckboxComponent extends DynamicFormValueControlComponent {
+export class DynamicBasicCheckboxComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

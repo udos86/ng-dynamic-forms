@@ -16,13 +16,13 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControl,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
 import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundation-textarea.component";
@@ -60,12 +60,12 @@ export class DynamicFoundationFormControlContainerComponent extends DynamicFormC
         super(componentFactoryResolver, layoutService, validationService);
     }
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicFoundationComponentByModel(this.model);
     }
 }
 
-export function mapDynamicFoundationComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicFoundationComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-primeng-colorpicker.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGColorPickerComponent extends DynamicFormValueControlComponent {
+export class DynamicPrimeNGColorPickerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

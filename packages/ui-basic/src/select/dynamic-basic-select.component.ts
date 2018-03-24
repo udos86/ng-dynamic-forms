@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormControlComponent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent, DynamicSelectModel,
+    DynamicSelectModel,
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -12,7 +13,7 @@ import {
     templateUrl: "./dynamic-basic-select.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicBasicSelectComponent extends DynamicFormValueControlComponent {
+export class DynamicBasicSelectComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

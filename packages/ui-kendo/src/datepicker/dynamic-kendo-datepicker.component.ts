@@ -7,7 +7,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent
+    DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,7 +15,7 @@ import {
     templateUrl: "./dynamic-kendo-datepicker.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoDatePickerComponent extends DynamicFormValueControlComponent {
+export class DynamicKendoDatePickerComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

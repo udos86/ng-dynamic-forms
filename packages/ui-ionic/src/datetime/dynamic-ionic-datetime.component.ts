@@ -7,7 +7,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent
+    DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,7 +15,7 @@ import {
     templateUrl: "./dynamic-ionic-datetime.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicIonicDateTimeComponent extends DynamicFormValueControlComponent {
+export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

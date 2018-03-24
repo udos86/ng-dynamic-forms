@@ -6,7 +6,8 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicTemplateableFormValueControlComponent, DynamicTemplateDirective
+    DynamicTemplateableFormControlComponent,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 
@@ -15,7 +16,7 @@ import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
     templateUrl: "./dynamic-kendo-calendar.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoCalendarComponent extends DynamicTemplateableFormValueControlComponent {
+export class DynamicKendoCalendarComponent extends DynamicTemplateableFormControlComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 

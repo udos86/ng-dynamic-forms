@@ -13,6 +13,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayGroupModel,
+    DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
@@ -29,8 +30,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
-    DynamicDatePickerModel,
-    DynamicFormValueControl
+    DynamicDatePickerModel
 } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapCheckboxComponent } from "./checkbox/dynamic-ng-bootstrap-checkbox.component";
 import { DynamicNGBootstrapCheckboxGroupComponent } from "./checkbox-group/dynamic-ng-bootstrap-checkbox-group.component";
@@ -76,12 +76,12 @@ export class DynamicNGBootstrapFormControlContainerComponent extends DynamicForm
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP;
     }
 
-    get componentType(): Type<DynamicFormValueControl> | null {
+    get componentType(): Type<DynamicFormControl> | null {
         return mapDynamicNGBootstrapComponentByModel(this.model);
     }
 }
 
-export function mapDynamicNGBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormValueControl> | null {
+export function mapDynamicNGBootstrapComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

@@ -3,11 +3,11 @@ import { FormGroup } from "@angular/forms";
 import { MatCheckbox } from "@angular/material";
 import {
     DynamicCheckboxModel,
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,7 +15,7 @@ import {
     templateUrl: "./dynamic-material-checkbox.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicMaterialCheckboxComponent extends DynamicFormValueControlComponent {
+export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;

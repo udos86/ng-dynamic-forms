@@ -5,7 +5,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormValueControlComponent,
+    DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,7 @@ import {
     templateUrl: "./dynamic-kendo-numerictextbox.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoNumericTextBoxComponent extends DynamicFormValueControlComponent {
+export class DynamicKendoNumericTextBoxComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
