@@ -68,11 +68,11 @@ export class DynamicIonicFormControlContainerComponent extends DynamicFormContro
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return mapDynamicIonicComponentByModel(this.model);
+        return ionicUIFormControlMapFn(this.model);
     }
 }
 
-export function mapDynamicIonicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
+export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

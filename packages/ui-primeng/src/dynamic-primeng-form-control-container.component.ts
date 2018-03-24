@@ -84,11 +84,11 @@ export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormCont
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return mapDynamicPrimeNGComponentByModel(this.model);
+        return primeNGUIFormControlMapFn(this.model);
     }
 }
 
-export function mapDynamicPrimeNGComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
+export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

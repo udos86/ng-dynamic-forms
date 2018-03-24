@@ -45,7 +45,6 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
     @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
-    @Input() hasErrorMessaging: boolean = false;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -63,11 +62,11 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return mapDynamicBasicComponentByModel(this.model);
+        return basicUIFormControlMapFn(this.model);
     }
 }
 
-export function mapDynamicBasicComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
+export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

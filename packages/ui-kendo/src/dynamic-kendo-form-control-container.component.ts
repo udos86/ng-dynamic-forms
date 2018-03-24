@@ -85,7 +85,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return mapDynamicKendoComponentByModel(this.model);
+        return kendoUIFormControlMapFn(this.model);
     }
 
     get hasHint(): boolean {
@@ -101,7 +101,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 }
 
-export function mapDynamicKendoComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
+export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 

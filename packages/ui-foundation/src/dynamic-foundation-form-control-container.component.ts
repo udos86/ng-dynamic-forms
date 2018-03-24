@@ -61,11 +61,11 @@ export class DynamicFoundationFormControlContainerComponent extends DynamicFormC
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return mapDynamicFoundationComponentByModel(this.model);
+        return foundationUIFormControlMapFn(this.model);
     }
 }
 
-export function mapDynamicFoundationComponentByModel(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
+export function foundationUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
 
