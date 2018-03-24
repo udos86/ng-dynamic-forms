@@ -17,7 +17,7 @@ import {
 })
 export class DynamicMaterialChipsComponent extends DynamicFormValueControlComponent {
 
-    private chipList: string[];
+    private _chipList: string[];
     private _model: DynamicInputModel;
 
     @Input() bindId: boolean = true;
@@ -31,7 +31,7 @@ export class DynamicMaterialChipsComponent extends DynamicFormValueControlCompon
 
     set model(model: DynamicInputModel) {
         this._model = model;
-        this.chipList = model.value as string[] || [];
+        this._chipList = model.value as string[] || [];
     }
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
@@ -46,6 +46,10 @@ export class DynamicMaterialChipsComponent extends DynamicFormValueControlCompon
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
+    }
+
+    get chipList(): string[] {
+        return this._chipList;
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {

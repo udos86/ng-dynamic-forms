@@ -42,14 +42,18 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicTemplateableForm
         super(layoutService, validationService);
     }
 
+    get suggestions(): string[] {
+        return this._suggestions;
+    }
+
+    get templateableViewChild(): AutoComplete {
+        return this.pAutoComplete;
+    }
+
     onAutoComplete(_$event: any): void {
 
         if (Array.isArray(this.model.list)) {
             this._suggestions = this.model.list.map(item => item);
         }
-    }
-
-    get templateableViewChild(): AutoComplete {
-        return this.pAutoComplete;
     }
 }

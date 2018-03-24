@@ -48,7 +48,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() pattern: string | null;
     @serializable() step: number | null;
 
-    private listId: string | null = null;
+    private _listId: string | null = null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
@@ -67,8 +67,12 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.step = typeof config.step === "number" ? config.step : null;
 
         if (this.list) {
-            this.listId = `${this.id}List`;
+            this._listId = `${this.id}List`;
         }
+    }
+
+    get listId(): string | null {
+        return this._listId;
     }
 
     toJSON() {

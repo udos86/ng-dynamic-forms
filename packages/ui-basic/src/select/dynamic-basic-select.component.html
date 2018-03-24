@@ -7,7 +7,7 @@
             [required]="model.required"
             [tabindex]="model.tabIndex"
             (blur)="onBlur($event)"
-            (change)="onValueChange($event)"
+            (change)="onChange($event)"
             (focus)="onFocus($event)">
 
         <option *ngFor="let option of model.options$ | async"

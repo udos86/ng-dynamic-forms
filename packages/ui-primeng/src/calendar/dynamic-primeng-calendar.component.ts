@@ -4,6 +4,7 @@ import { Calendar } from "primeng/primeng";
 import {
     DynamicDatePickerModel, 
     DynamicFormControlCustomEvent,
+    DynamicDateControlValue,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -34,5 +35,17 @@ export class DynamicPrimeNGCalendarComponent extends DynamicFormValueControlComp
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
+    }
+
+    get focusedDate(): DynamicDateControlValue | null {
+        return (this.model as DynamicDatePickerModel).focusedDate || null;
+    }
+
+    get inline(): boolean {
+        return (this.model as DynamicDatePickerModel).inline || false;
+    }
+
+    get showSeconds(): boolean {
+        return (this.model as DynamicTimePickerModel).showSeconds || false;
     }
 }

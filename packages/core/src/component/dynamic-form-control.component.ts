@@ -25,6 +25,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY
 } from "../model/form-array/dynamic-form-array.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_GROUP } from "../model/form-group/dynamic-form-group.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DynamicInputModel,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -126,8 +127,8 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnDestro
         return this.validationService.createErrorMessages(this.control, this.model);
     }
 
-    get hasList(): boolean {
-        return (this.model as DynamicInputModel).list !== null;
+    get isCheckbox(): boolean {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
     get isFormArray(): boolean {
@@ -138,12 +139,12 @@ export abstract class DynamicFormControlComponent implements OnChanges, OnDestro
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
     }
 
-    get isRadioGroup(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
-    }
-
     get isFormControl(): boolean {
         return !this.isFormArray && !this.isFormGroup;
+    }
+
+    get isRadioGroup(): boolean {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP;
     }
 
     get isInvalid(): boolean {

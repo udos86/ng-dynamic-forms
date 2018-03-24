@@ -86,7 +86,7 @@ export class DynamicPrimeNGFormControlComponent extends DynamicFormControlCompon
 
     protected createFormControlComponent(): void {
 
-        if (this.isRadioGroup) {
+        if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP) {
             this.componentViewContainerRef = this.radioGroupViewContainerRef;
         }
 

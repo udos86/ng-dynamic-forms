@@ -78,11 +78,11 @@ const APP_ROUTES: Route[] = [
             href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/primeng-sample-form/primeng-sample-form.model.ts",
             bgColor: "#DB2226"
         }
-    }/*,
+    },
     {
         path: "async-sample-form",
         loadChildren: "./async/async-sample-form.module#AsyncSampleFormModule"
-    }*/
+    }
 ];
 
 @NgModule({
