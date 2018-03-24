@@ -44,12 +44,12 @@ import {
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
-import { DynamicFormValueControl } from "../component/dynamic-form-value-control.interface";
+import { DynamicFormControl } from "../component/dynamic-form-control.interface";
 import { JSONUtils } from "../utils/json.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
 
-export type DynamicModelComponentMapper = (model: DynamicFormControlModel) => Type<DynamicFormValueControl>;
+export type DynamicModelComponentMapper = (model: DynamicFormControlModel) => Type<DynamicFormControl>;
 
 @Injectable()
 export class DynamicFormService {
