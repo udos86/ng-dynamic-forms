@@ -85,7 +85,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return kendoUIFormControlMapFn(this.model);
+        return this.layoutService.getCustomComponentType(this.model) || kendoUIFormControlMapFn(this.model);
     }
 
     get hasHint(): boolean {

@@ -61,7 +61,7 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
     @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormControl> | null {
-        return bootstrapUIFormControlMapFn(this.model);
+        return this.layoutService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
     }
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,

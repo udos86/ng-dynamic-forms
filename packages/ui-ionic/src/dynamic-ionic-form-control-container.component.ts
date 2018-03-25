@@ -68,7 +68,7 @@ export class DynamicIonicFormControlContainerComponent extends DynamicFormContro
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return ionicUIFormControlMapFn(this.model);
+        return this.layoutService.getCustomComponentType(this.model) || ionicUIFormControlMapFn(this.model);
     }
 }
 
