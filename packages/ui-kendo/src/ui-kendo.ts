@@ -18,5 +18,6 @@ export * from "./upload/dynamic-kendo-upload.component";
 
 export * from "./dynamic-kendo-form.component";
 export * from "./dynamic-kendo-form-control-container.component";
+export * from "./dynamic-kendo-templateable-form-control.component";
 export * from "./dynamic-kendo-form.const";
 export * from "./dynamic-kendo-form-ui.module";

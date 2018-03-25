@@ -6,17 +6,17 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicTemplateableFormControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
+import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-templateable-form-control.component";
 
 @Component({
     selector: "dynamic-kendo-upload",
     templateUrl: "./dynamic-kendo-upload.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoUploadComponent extends DynamicTemplateableFormControlComponent {
+export class DynamicKendoUploadComponent extends DynamicKendoTemplateableFormControlComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 

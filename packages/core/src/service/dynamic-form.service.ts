@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
@@ -116,7 +116,7 @@ export class DynamicFormService {
 
                 default:
 
-                    let controlModel = model as DynamicFormValueControlModel<DynamicFormControlValue>,
+                    let controlModel = model as DynamicFormValueControlModel<any>,
                         controlState = {value: controlModel.value, disabled: controlModel.disabled},
                         controlOptions = this.createAbstractControlOptions(controlModel.validators,
                             controlModel.asyncValidators, controlModel.updateOn);

@@ -6,17 +6,17 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicSelectModel,
-    DynamicTemplateableFormControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
+import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-primeng-templateable-form-control.component";
 
 @Component({
     selector: "dynamic-primeng-dropdown",
     templateUrl: "./dynamic-primeng-dropdown.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGDropdownComponent extends DynamicTemplateableFormControlComponent {
+export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGTemplateableFormControlComponent {
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 

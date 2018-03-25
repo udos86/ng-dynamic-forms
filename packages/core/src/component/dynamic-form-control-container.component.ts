@@ -18,7 +18,7 @@ import {
     isDynamicFormControlEvent
 } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP } from "../model/checkbox/dynamic-checkbox-group.model";
 import {
     DynamicFormArrayGroupModel,
@@ -102,7 +102,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
                 if (this.model instanceof DynamicFormValueControlModel) {
 
-                    let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
+                    let model = this.model as DynamicFormValueControlModel<any>;
 
                     this.subscriptions.push(model.valueUpdates.subscribe(value => this.onModelValueUpdates(value)));
                 }
@@ -127,7 +127,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     get hasHint(): boolean {
-        return typeof (this.model as DynamicFormValueControlModel<DynamicFormControlValue>).hint === "string";
+        return typeof (this.model as DynamicFormValueControlModel<any>).hint === "string";
     }
 
     get hasLabel(): boolean {
@@ -273,11 +273,11 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         this.subscriptions = [];
     }
 
-    onControlValueChanges(value: DynamicFormControlValue): void {
+    onControlValueChanges(value: any): void {
 
         if (this.model instanceof DynamicFormValueControlModel) {
 
-            let model = this.model as DynamicFormValueControlModel<DynamicFormControlValue>;
+            let model = this.model as DynamicFormValueControlModel<any>;
 
             if (model.value !== value) {
                 model.valueUpdates.next(value);
@@ -285,7 +285,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    onModelValueUpdates(value: DynamicFormControlValue): void {
+    onModelValueUpdates(value: any): void {
 
         if (this.control.value !== value) {
             this.control.setValue(value);

@@ -6,18 +6,18 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicTemplateableFormControlComponent,
     DynamicInputModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
+import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-primeng-templateable-form-control.component";
 
 @Component({
     selector: "dynamic-primeng-autocomplete",
     templateUrl: "./dynamic-primeng-autocomplete.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DynamicPrimeNGAutoCompleteComponent extends DynamicTemplateableFormControlComponent {
+export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplateableFormControlComponent {
 
     private _suggestions: string[];
 

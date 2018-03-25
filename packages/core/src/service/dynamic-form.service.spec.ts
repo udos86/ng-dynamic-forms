@@ -27,7 +27,7 @@ import { DynamicSliderModel } from "../model/slider/dynamic-slider.model";
 import { DynamicSwitchModel } from "../model/switch/dynamic-switch.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { DynamicTimePickerModel } from "../model/timepicker/dynamic-timepicker.model";
-import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 
 describe("DynamicFormService test suite", () => {
 
@@ -400,8 +400,8 @@ describe("DynamicFormService test suite", () => {
         (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
         (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
-        (model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 1");
-        (model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 2");
+        (model.get(index).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 1");
+        (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 2");
 
         service.moveFormArrayGroup(index, step, formArray, model);
 
@@ -410,8 +410,8 @@ describe("DynamicFormService test suite", () => {
         expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
         expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
-        expect((model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 2");
-        expect((model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 1");
+        expect((model.get(index).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 2");
+        expect((model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 1");
     });
 
 
@@ -425,8 +425,8 @@ describe("DynamicFormService test suite", () => {
         (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
         (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
-        (model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 1");
-        (model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).valueUpdates.next("next test value 2");
+        (model.get(index).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 1");
+        (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 2");
 
         service.moveFormArrayGroup(index, step, formArray, model);
 
@@ -435,8 +435,8 @@ describe("DynamicFormService test suite", () => {
         expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
         expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
-        expect((model.get(index).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 2");
-        expect((model.get(index + step).get(0) as DynamicFormValueControlModel<DynamicFormControlValue>).value).toEqual("next test value 1");
+        expect((model.get(index).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 2");
+        expect((model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 1");
     });
 
 

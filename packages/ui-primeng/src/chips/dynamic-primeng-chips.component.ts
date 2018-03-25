@@ -7,17 +7,17 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicInputModel,
-    DynamicTemplateableFormControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
+import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-primeng-templateable-form-control.component";
 
 @Component({
     selector: "dynamic-primeng-chips",
     templateUrl: "./dynamic-primeng-chips.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicPrimeNGChipsComponent extends DynamicTemplateableFormControlComponent {
+export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGTemplateableFormControlComponent {
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 

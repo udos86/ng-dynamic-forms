@@ -1,4 +1,4 @@
-import { AfterViewInit, QueryList } from "@angular/core";
+import { AfterViewInit, QueryList, TemplateRef } from "@angular/core";
 import { DynamicTemplateableFormControl } from "./dynamic-templateable-form-control.interface";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
@@ -22,12 +22,19 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
         this.bindTemplates();
     }
 
+    abstract get templateableViewChild(): any;
+
+    abstract mapTemplate(template: DynamicTemplateDirective): DynamicTemplateDirective | TemplateRef<any>;
+
     bindTemplate(template: DynamicTemplateDirective) {
 
         if ((template.modelId === this.model.id || template.modelType === this.model.type)) {
 
             if (typeof template.as === "string" && this.templateDirectives.has(template.as)) {
-                this.templateableViewChild[this.templateDirectives.get(template.as) as string] = template;
+
+                let property = this.templateDirectives.get(template.as) as string;
+
+                this.templateableViewChild[property] = this.mapTemplate(template);
             }
         }
     }
@@ -41,6 +48,4 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
             this.templates.forEach(template => this.bindTemplate(template));
         }
     }
-
-    abstract get templateableViewChild(): any;
 }

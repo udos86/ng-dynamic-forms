@@ -7,17 +7,17 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicSelectModel,
-    DynamicTemplateableFormControlComponent,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
+import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-templateable-form-control.component";
 
 @Component({
     selector: "dynamic-kendo-multiselect",
     templateUrl: "./dynamic-kendo-multiselect.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicKendoMultiSelectComponent extends DynamicTemplateableFormControlComponent {
+export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFormControlComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 

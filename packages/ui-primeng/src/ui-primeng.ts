@@ -18,4 +18,5 @@ export * from "./textarea/dynamic-primeng-textarea.component";
 export * from "./dynamic-primeng-form.component";
 export * from "./dynamic-primeng-form.const";
 export * from "./dynamic-primeng-form-control-container.component";
+export * from "./dynamic-primeng-templateable-form-control.component";
 export * from "./dynamic-primeng-form-ui.module";

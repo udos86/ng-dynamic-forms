@@ -3,9 +3,6 @@ import { DynamicFormControlModel, DynamicFormControlModelConfig } from "./dynami
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
 
-export type DynamicFormControlValue = boolean | number | string | object | Date |
-    Array<boolean | number | string | object>;
-
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
     additional?: { [key: string]: any };
