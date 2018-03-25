@@ -203,7 +203,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
 
-            this.setTemplates();
+            this.setContainerTemplates();
         }
     }
 
@@ -222,7 +222,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
     }
 
-    protected setTemplates(): void {
+    protected setContainerTemplates(): void {
 
         this.templateList.forEach((template: DynamicTemplateDirective) => {
 

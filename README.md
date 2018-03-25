@@ -31,6 +31,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Form Control Events](#form-control-events)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
+- [Custom Form Controls](#custom-form-controls)
 - [Validation Messaging](#validation-messaging)
 - [JSON Export & Import](#json-export--import)
 - [JSON Form Models](#json-form-models)
@@ -890,6 +891,9 @@ new DynamicInputModel({
     }
 })
 ```
+
+## Custom Form Controls
+
 
 
 ## Validation Messaging

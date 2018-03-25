@@ -18,7 +18,6 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
     }
 
     ngAfterViewInit() {
-
         this.bindTemplates();
     }
 

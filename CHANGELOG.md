@@ -1,3 +1,16 @@
+# 6.0.0
+
+### **Features**
+
+* initial support for custom form controls
+
+
+### **Breaking Changes**
+
+*
+
+***
+
 # 5.4.7
 
 ### **Bugfixes**
