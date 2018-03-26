@@ -15,7 +15,7 @@ export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControl
 @Injectable()
 export class DynamicFormLayoutService {
 
-    constructor(@Optional() @Inject(DYNAMIC_FORM_CONTROL_MAP_FN) private DYNAMIC_FORM_CONTROL_MAP_FN: any) {
+    constructor(@Inject(DYNAMIC_FORM_CONTROL_MAP_FN) @Optional() private readonly DYNAMIC_FORM_CONTROL_MAP_FN: any) {
         this.DYNAMIC_FORM_CONTROL_MAP_FN = DYNAMIC_FORM_CONTROL_MAP_FN as DynamicFormControlMapFn;
     }
 

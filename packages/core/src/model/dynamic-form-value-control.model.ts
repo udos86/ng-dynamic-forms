@@ -21,7 +21,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
     @serializable("value") _value: T | null;
     valueUpdates: Subject<T>;
 
-    constructor(config: DynamicFormValueControlModelConfig<T>, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicFormValueControlModelConfig<T>, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 

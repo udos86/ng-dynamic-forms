@@ -22,7 +22,7 @@ export abstract class DynamicFormComponent {
     focus: EventEmitter<DynamicFormControlEvent>;
     customEvent: EventEmitter<DynamicFormControlEvent>;
 
-    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {}
+    protected constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {}
 
     trackByFn(_index: number, model: DynamicFormControlModel): string {
         return model.id;

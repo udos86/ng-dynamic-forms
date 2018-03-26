@@ -44,7 +44,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     abstract readonly type: string;
 
-    constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
+    protected constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
 
         this.asyncValidators = config.asyncValidators || null;
         this.errorMessages = config.errorMessages || null;

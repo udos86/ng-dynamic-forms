@@ -48,7 +48,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     @serializable("options") _options: DynamicFormOption<T>[] = [];
     options$: Observable<DynamicFormOption<T>[]>;
 
-    constructor(config: DynamicOptionControlModelConfig<T>, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicOptionControlModelConfig<T>, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 

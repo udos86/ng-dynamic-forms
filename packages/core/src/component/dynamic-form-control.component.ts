@@ -21,8 +21,8 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
     customEvent: EventEmitter<DynamicFormControlCustomEvent>;
     focus: EventEmitter<any>;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {}
+    protected constructor(protected layoutService: DynamicFormLayoutService,
+                          protected validationService: DynamicFormValidationService) {}
 
     get control(): FormControl {
         return this.group.get(this.model.id) as FormControl;

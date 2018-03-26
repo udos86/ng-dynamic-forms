@@ -1,8 +1,6 @@
 import { AfterViewInit, QueryList, TemplateRef } from "@angular/core";
 import { DynamicTemplateableFormControl } from "./dynamic-templateable-form-control.interface";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
-import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
-import { DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormControlComponent } from "./dynamic-form-control.component";
 
 export abstract class DynamicTemplateableFormControlComponent extends DynamicFormControlComponent implements DynamicTemplateableFormControl, AfterViewInit {
@@ -10,12 +8,6 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
     readonly templateDirectives: Map<string, string>;
 
     templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
-
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
-        super(layoutService, validationService);
-    }
 
     ngAfterViewInit() {
         this.bindTemplates();
