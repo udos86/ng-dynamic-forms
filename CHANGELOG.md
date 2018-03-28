@@ -2,12 +2,15 @@
 
 ### **Features**
 
-* initial support for custom form controls
-
+* **Major refactoring to discard static templates in favor of dynamically loading form control components**
+* **Initial support for custom form controls**
 
 ### **Breaking Changes**
 
-*
+* `hasErrorMessaging` input has been removed in favor of just relying on `model.hasErrorMessages`
+* `df` prefix has been removed from outputs in favor of simply using `(blur)`, `(change)` and `(focus)` again
+* `DynamicFormControlValue` type has been removed in favor of simply using `any`
+* `DynamicFormControlComponent` has been renamed to `DynamicFormControlContainerComponent`
 
 ***
 

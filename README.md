@@ -626,15 +626,13 @@ new DynamicSliderModel({
 When developing forms it's often useful to keep track of certain events that occur on a specific form control. 
 
 With NG Dynamic Forms you can directly listen to the three most common events, 
-`blur`, `change` and `focus`, both on `DynamicFormControlComponent` and `DynamicFormComponent`.
-
-To avoid any interference with native events each corresponding component `@Output()` is prefixed with `df`:
+`blur`, `change` and `focus`, both on `DynamicFormControlComponent` and `DynamicFormComponent`:
 ```typescript
 <dynamic-material-form [group]="formGroup"
                        [model]="formModel"
-                       (dfBlur)="onBlur($event)"
-                       (dfChange)="onChange($event)"
-                       (dfFcus)="onFocus($event)"></dynamic-material-form>
+                       (blur)="onBlur($event)"
+                       (change)="onChange($event)"
+                       (focus)="onFocus($event)"></dynamic-material-form>
 ```
 ```typescript
 <form [formGroup]="myFormGroup">
@@ -642,9 +640,9 @@ To avoid any interference with native events each corresponding component `@Outp
     <dynamic-material-form-control *ngFor="let controlModel of myFormModel"
                                    [group]="myFormGroup"
                                    [model]="controlModel"
-                                   (dfBlur)="onBlur($event)"
-                                   (dfChange)="onChange($event)"
-                                   (dfFocus)="onFocus($event)"></dynamic-material-form-control>
+                                   (blur)="onBlur($event)"
+                                   (change)="onChange($event)"
+                                   (focus)="onFocus($event)"></dynamic-material-form-control>
 </form>
 ```
 
@@ -894,6 +892,16 @@ new DynamicInputModel({
 
 ## Custom Form Controls
 
+Beginning with the sixth major release NG Dynamic Forms allows you to easily plugin in your own custom form controls.
+
+At first, create your
+
+Now basically all you need to do is to provide a
+
+
+
+
+
 
 
 ## Validation Messaging
@@ -928,18 +936,6 @@ new DynamicInputModel({
 * `{{ validator.propertyName }}` where `propertyName` is a property of the object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
 
 **Error messaging is automatically enabled whenever** `errorMessages` **are declared on a** `DynamicFormControlModel`. 
-
-It can also be **manually enabled or disabled** by binding the `hasErrorMessaging` property of any `DynamicFormControlComponent`:
-```typescript
-
-<form [formGroup]="formGroup">
-
-    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"
-                                    [group]="formGroup"
-                                    [model]="controlModel"
-                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-bootstrap-form-control>
-</form>
-```
 
 **Still you are completely free to implement your own validation messaging.** 
 
