@@ -892,16 +892,102 @@ new DynamicInputModel({
 
 ## Custom Form Controls
 
-Beginning with the sixth major release NG Dynamic Forms allows you to easily plugin in your own custom form controls.
+Beginning with version `6.0.0` NG Dynamic Forms allows you to easily plugin in your own custom form controls.
 
-At first, create your
+Beforehand follow [**the standard procedure**](https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html) to create your custom form control component:
+```typescript
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
-Now basically all you need to do is to provide a
+@Component({
+  selector: 'my-custom-form-control',
+  templateUrl: './my-custom-form-control.component.html',
+  styleUrls: ['./my-custom-form-control.component.css'],
+  providers: [
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MyCustomFormControlComponent), multi: true }
+  ]
+})
+export class MyCustomFormControlComponent implements ControlValueAccessor {
 
+    //...
+}
+```
 
+Now implement a `DynamicFormControlComponent` and embed your form control into its template:
+```typescript
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { MyCustomFormControlComponent } from "@angular/material";
+import {
+    DynamicFormControlComponent,
+    DynamicFormControlCustomEvent,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
+} from "@ng-dynamic-forms/core";
 
+@Component({
+    selector: "my-custom-dynamic-form-control",
+    templateUrl: "./my-custom-dynamic-form-control.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class MyCustomDynamicFormControlComponent extends DynamicFormControlComponent {
 
+    @Input() bindId: boolean = true;
+    @Input() group: FormGroup;
+    @Input() layout: DynamicFormLayout;
+    @Input() model: /* corresponding DynamicFormControlModel */;
 
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChild(MyCustomFormControlComponent) matCheckbox: MyCustomFormControlComponent;
+
+    constructor(protected layoutService: DynamicFormLayoutService,
+                protected validationService: DynamicFormValidationService) {
+
+        super(layoutService, validationService);
+    }
+}
+```
+
+```html
+<ng-container [formGroup]="group">
+
+    <my-custom-form-control [formControlName]="model.id"
+                            [id]="bindId ? model.id : null"
+                            [name]="model.name"
+                            [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                            (blur)="onBlur($event)"
+                            (change)="onChange($event)"
+                            (focus)="onFocus($event)"></my-custom-form-control>
+
+</ng-container>
+```
+
+Finally add your `DynamicFormControl` to `entryComponents` and provide `DYNAMIC_FORM_CONTROL_MAP_FN` to overwrite the default mapping of a concrete `DynamicFormControlModel` to a corresponding `DynamicFormControlComponent`;
+```typescript
+
+entryComponents: [MyCustomFormControlComponent]
+
+providers: [
+    {
+        provide: DYNAMIC_FORM_CONTROL_MAP_FN,
+        useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
+
+            switch (model.type) {
+
+                case /* ... */:
+                    return MyCustomFormControlComponent;
+
+            }
+
+        }
+    }
+]
+```
 
 
 ## Validation Messaging
