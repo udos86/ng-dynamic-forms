@@ -917,7 +917,6 @@ Now implement a `DynamicFormControlComponent` and embed your form control into i
 ```typescript
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MyCustomFormControlComponent } from "@angular/material";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -925,13 +924,14 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
 } from "@ng-dynamic-forms/core";
+import { MyCustomFormControlComponent } from "...";
 
 @Component({
-    selector: "my-custom-dynamic-form-control",
-    templateUrl: "./my-custom-dynamic-form-control.component.html",
+    selector: "my-dynamic-custom-form-control",
+    templateUrl: "./my-dynamic-custom-form-control.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MyCustomDynamicFormControlComponent extends DynamicFormControlComponent {
+export class MyDynamicCustomFormControlComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
@@ -943,7 +943,7 @@ export class MyCustomDynamicFormControlComponent extends DynamicFormControlCompo
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(MyCustomFormControlComponent) matCheckbox: MyCustomFormControlComponent;
+    @ViewChild(MyCustomFormControlComponent) myCustomFormControlComponent: MyCustomFormControlComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
@@ -967,26 +967,31 @@ export class MyCustomDynamicFormControlComponent extends DynamicFormControlCompo
 </ng-container>
 ```
 
-Finally add your `DynamicFormControl` to `entryComponents` and provide `DYNAMIC_FORM_CONTROL_MAP_FN` to overwrite the default mapping of a concrete `DynamicFormControlModel` to a corresponding `DynamicFormControlComponent`;
+Finally add your `DynamicFormControl` to `entryComponents` in the app module and provide `DYNAMIC_FORM_CONTROL_MAP_FN` to overwrite the default mapping of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
 ```typescript
 
-entryComponents: [MyCustomFormControlComponent]
+@NgModule({
 
-providers: [
-    {
-        provide: DYNAMIC_FORM_CONTROL_MAP_FN,
-        useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
+    /* ... */
 
-            switch (model.type) {
+    entryComponents: [MyDynamicCustomFormControlComponent]
 
-                case /* ... */:
-                    return MyCustomFormControlComponent;
+    providers: [
+        {
+            provide: DYNAMIC_FORM_CONTROL_MAP_FN,
+            useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
+
+                switch (model.type) {
+
+                    case /* corresponding DynamicFormControlModel */:
+                        return MyDynamicCustomFormControlComponent;
+
+                }
 
             }
-
         }
-    }
-]
+    ]
+})
 ```
 
 

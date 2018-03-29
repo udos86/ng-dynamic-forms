@@ -1,4 +1,4 @@
-import { NgModule, Type } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { Http, BaseRequestOptions } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { MatCardModule, MatNativeDateModule } from "@angular/material";
@@ -9,13 +9,7 @@ import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
-import {
-    DynamicFormsCoreModule,
-    DYNAMIC_VALIDATORS,
-    Validator,
-    ValidatorFactory,
-    DYNAMIC_FORM_CONTROL_MAP_FN, DynamicFormControlModel, DynamicFormControlComponent
-} from "@ng-dynamic-forms/core";
+import { DynamicFormsCoreModule, DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -41,7 +35,6 @@ import {
     customForbiddenValidator,
     customAsyncFormGroupValidator
 } from "./app.validators";
-import { DynamicFormControl } from "../../packages/core/src/component/dynamic-form-control.interface";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -114,19 +107,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
                 ["customForbiddenValidator", customForbiddenValidator],
                 ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
             ])
-        },
-        {
-            provide: DYNAMIC_FORM_CONTROL_MAP_FN,
-            useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
-
-                switch (model.type) {
-
-                    case "* ... */":
-                        return null;
-
-                }
-
-            }
         }
     ],
     bootstrap: [AppComponent]
@@ -134,69 +114,3 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
 
 export class AppModule {
 }
-
-
-{
-    DYNAMIC_FORM_CONTROL_MAP_FN,
-        useValue;: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
-
-    switch (model.type) {
-
-        case "* ... */":
-            return null;
-
-    }
-
-}
-}
-
-[
-    BaseRequestOptions,
-    MockBackend,
-    {
-        provide: Http,
-        deps: [MockBackend, BaseRequestOptions],
-        useFactory: mockBackendFactory
-    },
-    {
-        provide: LocationStrategy,
-        useClass: HashLocationStrategy
-    },
-    {
-        provide: NG_VALIDATORS,
-        useValue: customValidator,
-        multi: true
-    },
-    {
-        provide: NG_VALIDATORS,
-        useValue: customDateRangeValidator,
-        multi: true
-    },
-    {
-        provide: NG_ASYNC_VALIDATORS,
-        useValue: customAsyncFormGroupValidator,
-        multi: true
-    },
-    {
-        provide: DYNAMIC_VALIDATORS,
-        useValue: new Map<string, Validator | ValidatorFactory>([
-            ["customValidator", customValidator],
-            ["customDateRangeValidator", customDateRangeValidator],
-            ["customForbiddenValidator", customForbiddenValidator],
-            ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
-        ])
-    },
-    {
-        provide: DYNAMIC_FORM_CONTROL_MAP_FN,
-        useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
-
-            switch (model.type) {
-
-                case "* ... */":
-                    return null;
-
-            }
-
-        }
-    }
-];
