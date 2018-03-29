@@ -890,9 +890,10 @@ new DynamicInputModel({
 })
 ```
 
+
 ## Custom Form Controls
 
-Beginning with version `6.0.0` NG Dynamic Forms allows you to easily plugin in your own custom form controls.
+Starting with version 6 NG Dynamic Forms allows you to easily plugin in your own custom form controls.
 
 Beforehand follow [**the standard procedure**](https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html) to create your custom form control component:
 ```typescript
@@ -913,7 +914,7 @@ export class MyCustomFormControlComponent implements ControlValueAccessor {
 }
 ```
 
-Now implement a `DynamicFormControlComponent` and embed your form control into its template:
+Now **implement a** `DynamicFormControlComponent` and **embed your form control into its template**:
 ```typescript
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -967,9 +968,8 @@ export class MyDynamicCustomFormControlComponent extends DynamicFormControlCompo
 </ng-container>
 ```
 
-Finally add your `DynamicFormControl` to `entryComponents` in the app module and provide `DYNAMIC_FORM_CONTROL_MAP_FN` to overwrite the default mapping of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
+Finally add your `DynamicFormControl` to `entryComponents` in the app module and **provide** `DYNAMIC_FORM_CONTROL_MAP_FN` **to overwrite the default mapping** of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
 ```typescript
-
 @NgModule({
 
     /* ... */
@@ -1397,11 +1397,11 @@ Whenever your Angular application has to display very simple forms only or extre
 
 > **Are there any downsides to using NG Dynamic Forms?**
 
-Certain limitations exist regarding extremely individual form layouts and form control configurations.  
+Certain limitations exist regarding extremely individual form layouts.
 
 > **Does NG Dynamic Forms support custom form controls?**
 
-No, not out of the box. You'd have to create your own UI template / package in order to achieve this.
+Yes, [it does]((#custom-form-controls)).
 
 > **Are there any other dynamic forms libraries for Angular?**
 
