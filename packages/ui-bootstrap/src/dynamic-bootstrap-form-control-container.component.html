@@ -8,63 +8,11 @@
            [innerHTML]="model.label"
            [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
 
-    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="getTemplate('START')?.templateRef; context: model"></ng-container>
 
     <div [ngClass]="getClass('grid', 'control')">
 
         <ng-container #componentViewContainer></ng-container>
-
-        <!-- FORM ARRAY ---------------------------------------------------------------------------------------------->
-        <div *ngIf="isFormArray"
-             [dynamicId]="bindId && model.id"
-             [formArrayName]="model.id"
-             [ngClass]="getClass('element', 'control')">
-
-            <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-                 [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
-
-                <dynamic-bootstrap-form-control *ngFor="let _model of groupModel.group"
-                                                [bindId]="false"
-                                                [context]="groupModel"
-                                                [group]="control.at(idx)"
-                                                [hidden]="_model.hidden"
-                                                [layout]="layout"
-                                                [model]="_model"
-                                                [templates]="templateList"
-                                                [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                                (blur)="onBlur($event)"
-                                                (change)="onChange($event)"
-                                                (focus)="onFocus($event)"
-                                                (bsEvent)="onCustomEvent($event)"></dynamic-bootstrap-form-control>
-
-                <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
-
-            </div>
-
-        </div>
-
-        <!-- FORM GROUP ---------------------------------------------------------------------------------------------->
-        <fieldset *ngIf="isFormGroup"
-                  [dynamicId]="bindId && model.id"
-                  [formGroupName]="model.id"
-                  [name]="model.name"
-                  [ngClass]="getClass('element', 'control')">
-
-            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
-
-            <dynamic-bootstrap-form-control *ngFor="let _model of model.group"
-                                            [asBootstrapFormGroup]="false"
-                                            [group]="control"
-                                            [hidden]="_model.hidden"
-                                            [layout]="layout"
-                                            [model]="_model"
-                                            [templates]="templateList"
-                                            [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                            (blur)="onBlur($event)"
-                                            (change)="onChange($event)"
-                                            (focus)="onFocus($event)"
-                                            (bsEvent)="onCustomEvent($event)"></dynamic-bootstrap-form-control>
-        </fieldset>
 
         <span *ngIf="hasHint" class="help-block" [innerHTML]="model.hint" [ngClass]="getClass('element', 'hint')"></span>
 
@@ -77,7 +25,7 @@
 
     </ul>
 
-    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="getTemplate('END')?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

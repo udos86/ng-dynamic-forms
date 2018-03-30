@@ -19,24 +19,18 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
 
     bindTemplate(template: DynamicTemplateDirective) {
 
-        if ((template.modelId === this.model.id || template.modelType === this.model.type)) {
+        if (typeof template.as === "string" && this.templateDirectives.has(template.as)) {
 
-            if (typeof template.as === "string" && this.templateDirectives.has(template.as)) {
+            let property = this.templateDirectives.get(template.as) as string;
 
-                let property = this.templateDirectives.get(template.as) as string;
-
-                this.templateableViewChild[property] = this.mapTemplate(template);
-            }
+            this.templateableViewChild[property] = this.mapTemplate(template);
         }
     }
 
     bindTemplates(): void {
 
-        if (this.templates instanceof QueryList) {
-            this.templates.forEach(template => this.bindTemplate(template));
-
-        } else if (Array.isArray(this.templates)) {
-            this.templates.forEach(template => this.bindTemplate(template));
-        }
+        this.layoutService
+            .filterTemplates(this.model, this.templates)
+            .forEach(template => this.bindTemplate(template));
     }
 }

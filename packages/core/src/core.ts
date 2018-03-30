@@ -1,3 +1,5 @@
+export * from "./component/dynamic-form-array.component";
+export * from "./component/dynamic-form-group.component";
 export * from "./component/dynamic-form-component";
 export * from "./component/dynamic-form-control-container.component";
 export * from "./component/dynamic-form-control.event";

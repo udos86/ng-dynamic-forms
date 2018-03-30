@@ -1,10 +1,11 @@
-import { Inject, Injectable, InjectionToken, Optional, Type } from "@angular/core";
+import { Inject, Injectable, InjectionToken, Optional, QueryList, Type } from "@angular/core";
 import {
     DynamicFormControlLayoutConfig,
     DynamicFormControlLayout
 } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormControl } from "../component/dynamic-form-control.interface";
+import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
@@ -32,6 +33,22 @@ export class DynamicFormLayoutService {
         }
 
         return null;
+    }
+
+    filterTemplates(model: DynamicFormControlModel, templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined): DynamicTemplateDirective[] {
+
+        const filterCallback: (template: DynamicTemplateDirective) => boolean = (template: DynamicTemplateDirective) => {
+            return template.modelId === model.id || template.modelType === model.type;
+        };
+
+        if (templates instanceof QueryList) {
+            return templates.filter(filterCallback);
+
+        } else if (Array.isArray(templates)) {
+            return templates.filter(filterCallback);
+        }
+
+        return [];
     }
 
     getClass(layout: DynamicFormControlLayout | null, context: string, place: string): string {

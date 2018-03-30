@@ -8,7 +8,7 @@
                [ngClass]="getClass('element', 'label')"></label>
     </div>
 
-    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="getTemplate('START')?.templateRef; context: model"></ng-container>
 
     <div [ngClass]="getClass('grid', 'control')">
 
@@ -71,7 +71,7 @@
         <li *ngFor="let message of errorMessages" class="form-error is-visible">{{ message }}</li>
     </ul>
 
-    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="getTemplate('END')?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

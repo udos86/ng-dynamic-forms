@@ -953,7 +953,7 @@ export class MyDynamicCustomFormControlComponent extends DynamicFormControlCompo
 }
 ```
 
-**Next embed your custom form control into the component template**
+Next **embed your custom form control** into the component template:
 ```html
 <ng-container [formGroup]="group">
 

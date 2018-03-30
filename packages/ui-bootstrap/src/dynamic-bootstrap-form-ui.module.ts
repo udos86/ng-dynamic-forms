@@ -9,6 +9,8 @@ import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstr
 import { DynamicBootstrapFormComponent } from "./dynamic-bootstrap-form.component";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
+import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstrap-form-array.component";
+import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
 import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
 import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
 import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
@@ -27,6 +29,8 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
     declarations: [
         DynamicBootstrapCheckboxComponent,
         DynamicBootstrapDatePickerComponent,
+        DynamicBootstrapFormArrayComponent,
+        DynamicBootstrapFormGroupComponent,
         DynamicBootstrapInputComponent,
         DynamicBootstrapRadioGroupComponent,
         DynamicBootstrapSelectComponent,
@@ -38,6 +42,8 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
     entryComponents: [
         DynamicBootstrapCheckboxComponent,
         DynamicBootstrapDatePickerComponent,
+        DynamicBootstrapFormArrayComponent,
+        DynamicBootstrapFormGroupComponent,
         DynamicBootstrapInputComponent,
         DynamicBootstrapRadioGroupComponent,
         DynamicBootstrapSelectComponent,

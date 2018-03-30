@@ -21,16 +21,20 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER
+    DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
 } from "@ng-dynamic-forms/core";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
+import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstrap-form-array.component";
+import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
 import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
 import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
 import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
@@ -43,8 +47,8 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
 })
 export class DynamicBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective> | undefined;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
 
     @Input() asBootstrapFormGroup: boolean = true;
     @Input() bindId: boolean = true;
@@ -76,11 +80,17 @@ export function bootstrapUIFormControlMapFn(model: DynamicFormControlModel): Typ
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicBootstrapFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicBootstrapCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             return DynamicBootstrapDatePickerComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicBootstrapFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             return DynamicBootstrapInputComponent;

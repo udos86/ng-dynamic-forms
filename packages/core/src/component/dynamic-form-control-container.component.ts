@@ -33,18 +33,11 @@ import {
 } from "../model/input/dynamic-input.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-control-relation.model";
-import {
-    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END,
-    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START,
-    DynamicTemplateDirective
-} from "../directive/dynamic-template.directive";
+import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
-import { DynamicTemplateableFormControlComponent } from "./dynamic-templateable-form-control.component";
-
-export enum DynamicFormControlComponentTemplatePosition {start = 0, end, array}
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
@@ -56,9 +49,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
 
-    contentTemplateList: QueryList<DynamicTemplateDirective>;
-    inputTemplateList: QueryList<DynamicTemplateDirective> | null = null;
-    templates: DynamicTemplateDirective[] = [];
+    contentTemplateList: QueryList<DynamicTemplateDirective> | undefined;
+    inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
@@ -80,7 +72,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         let groupChange = changes["group"] as SimpleChange,
             modelChange = changes["model"] as SimpleChange;
 
-        if (modelChange && this.isFormControl) {
+        if (modelChange) {
 
             this.destroyFormControlComponent();
             this.createFormControlComponent();
@@ -162,8 +154,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
-    get templateList(): QueryList<DynamicTemplateDirective> {
-        return this.inputTemplateList !== null ? this.inputTemplateList : this.contentTemplateList;
+    get templates(): QueryList<DynamicTemplateDirective> | undefined {
+        return this.inputTemplateList !== undefined ? this.inputTemplateList : this.contentTemplateList;
     }
 
     getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
@@ -171,6 +163,18 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
+    }
+
+    getTemplate(align: string): DynamicTemplateDirective | undefined {
+
+        if (this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
+
+            return this.layoutService
+                .filterTemplates(this.model, this.templates)
+                .find(template => template.as === null && template.align === align);
+        }
+
+        return undefined;
     }
 
     protected createFormControlComponent(): void {
@@ -191,8 +195,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             instance.layout = this.layout;
             instance.model = this.model as any;
 
-            if (instance instanceof DynamicTemplateableFormControlComponent) {
-                instance.templates = this.templateList;
+            if (this.templates) {
+                instance.templates = this.templates;
             }
 
             this.componentSubscriptions.push(instance.blur.subscribe(($event: any) => this.onBlur($event)));
@@ -202,8 +206,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             if (instance.customEvent instanceof EventEmitter) {
                 this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
-
-            this.setContainerTemplates();
         }
     }
 
@@ -220,28 +222,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
         return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
-    }
-
-    protected setContainerTemplates(): void {
-
-        this.templateList.forEach((template: DynamicTemplateDirective) => {
-
-            if ((template.modelType === this.model.type || template.modelId === this.model.id) && template.as === null) {
-
-                if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
-
-                    this.templates[DynamicFormControlComponentTemplatePosition.array] = template;
-
-                } else if (template.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START) {
-
-                    this.templates[DynamicFormControlComponentTemplatePosition.start] = template;
-
-                } else if (template.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END) {
-
-                    this.templates[DynamicFormControlComponentTemplatePosition.end] = template;
-                }
-            }
-        });
     }
 
     protected setControlRelations(): void {
