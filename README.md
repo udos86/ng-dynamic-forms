@@ -903,7 +903,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
   selector: 'my-custom-form-control',
   templateUrl: './my-custom-form-control.component.html',
-  styleUrls: ['./my-custom-form-control.component.css'],
   providers: [
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MyCustomFormControlComponent), multi: true }
   ]
@@ -914,7 +913,7 @@ export class MyCustomFormControlComponent implements ControlValueAccessor {
 }
 ```
 
-Now **implement a** `DynamicFormControlComponent` and **embed your form control into its template**:
+Now **implement a new** `DynamicFormControlComponent`:
 ```typescript
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -954,6 +953,7 @@ export class MyDynamicCustomFormControlComponent extends DynamicFormControlCompo
 }
 ```
 
+**Next embed your custom form control into the component template**
 ```html
 <ng-container [formGroup]="group">
 
@@ -968,7 +968,7 @@ export class MyDynamicCustomFormControlComponent extends DynamicFormControlCompo
 </ng-container>
 ```
 
-Finally add your `DynamicFormControl` to `entryComponents` in the app module and **provide** `DYNAMIC_FORM_CONTROL_MAP_FN` **to overwrite the default mapping** of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
+Finally in the app module add your `DynamicFormControl` to `entryComponents` and **provide** `DYNAMIC_FORM_CONTROL_MAP_FN` **to overwrite the default mapping** of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
 ```typescript
 @NgModule({
 
@@ -1401,7 +1401,7 @@ Certain limitations exist regarding extremely individual form layouts.
 
 > **Does NG Dynamic Forms support custom form controls?**
 
-Yes, [it does]((#custom-form-controls)).
+Yes, [it does](#custom-form-controls).
 
 > **Are there any other dynamic forms libraries for Angular?**
 
