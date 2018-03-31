@@ -4,69 +4,19 @@
 
         <span [innerHTML]="model.label"></span>
 
-        <span *ngIf="hasHint" class="k-field-info" [innerHTML]="model.hint"
-              [ngClass]="getClass('element', 'hint')"></span>
+        <span *ngIf="hasHint" class="k-field-info" [innerHTML]="model.hint" [ngClass]="getClass('element', 'hint')"></span>
 
     </label>
 
-    <ng-container *ngTemplateOutlet="templates[0]?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="getTemplate('START')?.templateRef; context: model"></ng-container>
 
     <ng-container #componentViewContainer></ng-container>
-
-    <!-- FORM ARRAY --------------------------------------------------------------------------------------------------->
-    <div *ngIf="isFormArray"
-         [dynamicId]="bindId && model.id"
-         [formArrayName]="model.id"
-         [ngClass]="getClass('element', 'control')">
-
-        <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
-             [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
-
-            <dynamic-kendo-form-control *ngFor="let _model of groupModel.group"
-                                        [bindId]="false"
-                                        [context]="groupModel"
-                                        [group]="control.at(idx)"
-                                        [hidden]="_model.hidden"
-                                        [layout]="layout"
-                                        [model]="_model"
-                                        [templates]="templateList"
-                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                        (blur)="onBlur($event)"
-                                        (change)="onChange($event)"
-                                        (focus)="onFocus($event)"
-                                        (kendoEvent)="onCustomEvent($event)"></dynamic-kendo-form-control>
-
-            <ng-container *ngTemplateOutlet="templates[2]?.templateRef; context: groupModel"></ng-container>
-
-        </div>
-
-    </div>
-
-    <!-- FORM GROUP --------------------------------------------------------------------------------------------------->
-    <div *ngIf="isFormGroup" role="group"
-         [dynamicId]="bindId && model.id"
-         [formGroupName]="model.id"
-         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
-
-        <dynamic-kendo-form-control *ngFor="let _model of model.group"
-                                    [group]="control"
-                                    [hidden]="_model.hidden"
-                                    [layout]="layout"
-                                    [model]="_model"
-                                    [templates]="templateList"
-                                    [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
-                                    (blur)="onBlur($event)"
-                                    (change)="onChange($event)"
-                                    (focus)="onFocus($event)"
-                                    (kendoEvent)="onCustomEvent($event)"></dynamic-kendo-form-control>
-    </div>
-
 
     <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
         <li *ngFor="let message of errorMessages" class="k-field-info k-required">{{ message }}</li>
     </ul>
 
-    <ng-container *ngTemplateOutlet="templates[1]?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="getTemplate('END')?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

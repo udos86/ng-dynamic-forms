@@ -9,7 +9,9 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -31,6 +33,8 @@ import { DynamicFoundationSelectComponent } from "./select/dynamic-foundation-se
 import { DynamicFoundationRadioGroupComponent } from "./radio-group/dynamic-foundation-radio-group.component";
 import { DynamicFoundationInputComponent } from "./input/dynamic-foundation-input.component";
 import { DynamicFoundationCheckboxComponent } from "./checkbox/dynamic-foundation-checkbox.component";
+import { DynamicFoundationFormArrayComponent } from "./form-array/dynamic-foundation-form-array.component";
+import { DynamicFoundationFormGroupComponent } from "./form-group/dynamic-foundation-form-group.component";
 
 @Component({
     selector: "dynamic-foundation-form-control",
@@ -69,8 +73,14 @@ export function foundationUIFormControlMapFn(model: DynamicFormControlModel): Ty
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicFoundationFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicFoundationCheckboxComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicFoundationFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             return DynamicFoundationInputComponent;

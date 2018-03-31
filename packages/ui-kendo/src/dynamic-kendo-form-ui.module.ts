@@ -15,6 +15,8 @@ import { DynamicKendoCalendarComponent } from "./calendar/dynamic-kendo-calendar
 import { DynamicKendoDateInputComponent } from "./dateinput/dynamic-kendo-dateinput.component";
 import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
 import { DynamicKendoDropdownListComponent } from "./dropdownlist/dynamic-kendo-dropdownlist.component";
+import { DynamicKendoFormArrayComponent } from "./form-array/dynamic-kendo-form-array.component";
+import { DynamicKendoFormGroupComponent } from "./form-group/dynamic-kendo-form-group.component";
 import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
 import { DynamicKendoMaskedTextBoxComponent } from "./masked-textbox/dynamic-kendo-maskedtextbox.component";
 import { DynamicKendoMultiSelectComponent } from "./multiselect/dynamic-kendo-multiselect.component";
@@ -44,6 +46,8 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoDateInputComponent,
         DynamicKendoDatePickerComponent,
         DynamicKendoDropdownListComponent,
+        DynamicKendoFormArrayComponent,
+        DynamicKendoFormGroupComponent,
         DynamicKendoInputComponent,
         DynamicKendoMaskedTextBoxComponent,
         DynamicKendoMultiSelectComponent,
@@ -65,6 +69,8 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoDateInputComponent,
         DynamicKendoDatePickerComponent,
         DynamicKendoDropdownListComponent,
+        DynamicKendoFormArrayComponent,
+        DynamicKendoFormGroupComponent,
         DynamicKendoInputComponent,
         DynamicKendoMaskedTextBoxComponent,
         DynamicKendoMultiSelectComponent,
@@ -82,5 +88,4 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoFormComponent
     ]
 })
-export class DynamicFormsKendoUIModule {
-}
+export class DynamicFormsKendoUIModule {}

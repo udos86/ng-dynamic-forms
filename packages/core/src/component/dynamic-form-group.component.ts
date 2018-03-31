@@ -6,5 +6,5 @@ import { DynamicFormGroupModel } from "../model/form-group/dynamic-form-group.mo
 export abstract class DynamicFormGroupComponent extends DynamicFormControlComponent {
 
     model: DynamicFormGroupModel;
-    templates: QueryList<DynamicTemplateDirective>;
+    templates: QueryList<DynamicTemplateDirective> | undefined;
 }

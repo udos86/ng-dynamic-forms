@@ -12,8 +12,10 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -40,6 +42,8 @@ import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider
 import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
 import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
 import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
+import { DynamicMaterialFormArrayComponent } from "./form-array/dynamic-material-form-array.component";
+import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material-form-group.component";
 
 @Component({
     selector: "dynamic-material-form-control",
@@ -87,11 +91,17 @@ export function materialUIFormControlMapFn(model: DynamicFormControlModel): Type
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicMaterialFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicMaterialCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             return DynamicMaterialDatePickerComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicMaterialFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             let inputModel = model as DynamicInputModel;

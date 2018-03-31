@@ -21,17 +21,21 @@ import {
     DynamicFormValidationService,
     DynamicTemplateDirective,
     DynamicFormControl,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
-    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
-    DYNAMIC_FORM_CONTROL_TYPE_INPUT
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP
 } from "@ng-dynamic-forms/core";
 import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
 import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
 import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
 import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
 import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
+import { DynamicBasicFormArrayComponent } from "./form-array/dynamic-basic-form-array.component";
+import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-group.component";
 
 @Component({
     selector: "dynamic-basic-form-control",
@@ -70,8 +74,14 @@ export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicBasicFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicBasicCheckboxComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicBasicFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             return DynamicBasicInputComponent;

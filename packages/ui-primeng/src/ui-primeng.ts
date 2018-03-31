@@ -5,6 +5,8 @@ export * from "./chips/dynamic-primeng-chips.component";
 export * from "./colorpicker/dynamic-primeng-colorpicker.component";
 export * from "./dropdown/dynamic-primeng-dropdown.component";
 export * from "./editor/dynamic-primeng-editor.component";
+export * from "./form-array/dynamic-primeng-form-array.component";
+export * from "./form-group/dynamic-primeng-form-group.component";
 export * from "./input/dynamic-primeng-input.component";
 export * from "./input-mask/dynamic-primeng-input-mask.component";
 export * from "./input-switch/dynamic-primeng-input-switch.component";

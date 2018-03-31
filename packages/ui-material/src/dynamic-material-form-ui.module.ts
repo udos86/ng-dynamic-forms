@@ -20,6 +20,8 @@ import { DynamicMaterialFormComponent } from "./dynamic-material-form.component"
 import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
 import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
 import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
+import { DynamicMaterialFormArrayComponent } from "./form-array/dynamic-material-form-array.component";
+import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material-form-group.component";
 import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
 import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
 import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
@@ -48,6 +50,8 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
         DynamicMaterialCheckboxComponent,
         DynamicMaterialChipsComponent,
         DynamicMaterialDatePickerComponent,
+        DynamicMaterialFormArrayComponent,
+        DynamicMaterialFormGroupComponent,
         DynamicMaterialInputComponent,
         DynamicMaterialRadioGroupComponent,
         DynamicMaterialSelectComponent,
@@ -61,6 +65,8 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
         DynamicMaterialCheckboxComponent,
         DynamicMaterialChipsComponent,
         DynamicMaterialDatePickerComponent,
+        DynamicMaterialFormArrayComponent,
+        DynamicMaterialFormGroupComponent,
         DynamicMaterialInputComponent,
         DynamicMaterialRadioGroupComponent,
         DynamicMaterialSelectComponent,

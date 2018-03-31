@@ -19,8 +19,10 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -31,6 +33,8 @@ import {
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./checkbox/dynamic-ionic-checkbox.component";
 import { DynamicIonicDateTimeComponent } from "./datetime/dynamic-ionic-datetime.component";
+import { DynamicIonicFormArrayComponent } from "./form-array/dynamic-ionic-form-array.component";
+import { DynamicIonicFormGroupComponent } from "./form-group/dynamic-ionic-form-group.component";
 import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
 import { DynamicIonicRadioGroupComponent } from "./radio-group/dynamic-ionic-radio-group.component";
 import { DynamicIonicRangeComponent } from "./range/dynamic-ionic-range.component";
@@ -76,12 +80,18 @@ export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicIonicFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicIonicCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
         case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
             return DynamicIonicDateTimeComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicIonicFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             return DynamicIonicInputComponent;

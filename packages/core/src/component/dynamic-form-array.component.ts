@@ -10,7 +10,7 @@ import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.mo
 export abstract class DynamicFormArrayComponent extends DynamicFormControlComponent {
 
     model: DynamicFormArrayModel;
-    templates: QueryList<DynamicTemplateDirective>;
+    templates: QueryList<DynamicTemplateDirective> | undefined;
 
     get startTemplate(): DynamicTemplateDirective | undefined {
 

@@ -22,10 +22,12 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicDatePickerModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -37,13 +39,15 @@ import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DynamicFormValueControlModel
 } from "@ng-dynamic-forms/core";
+import { DynamicKendoAutoCompleteComponent } from "./autocomplete/dynamic-kendo-autocomplete.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
 import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
 import { DynamicKendoCalendarComponent } from "./calendar/dynamic-kendo-calendar.component";
 import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
 import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.component";
 import { DynamicKendoDateInputComponent } from "./dateinput/dynamic-kendo-dateinput.component";
-import { DynamicKendoAutoCompleteComponent } from "./autocomplete/dynamic-kendo-autocomplete.component";
+import { DynamicKendoFormArrayComponent } from "./form-array/dynamic-kendo-form-array.component";
+import { DynamicKendoFormGroupComponent } from "./form-group/dynamic-kendo-form-group.component";
 import { DynamicKendoMaskedTextBoxComponent } from "./masked-textbox/dynamic-kendo-maskedtextbox.component";
 import { DynamicKendoNumericTextBoxComponent } from "./numeric-textbox/dynamic-kendo-numerictextbox.component";
 import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
@@ -105,6 +109,9 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicKendoFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicKendoCheckboxComponent;
 
@@ -118,6 +125,9 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
             return DynamicKendoUploadComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicKendoFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             let inputModel = model as DynamicInputModel;

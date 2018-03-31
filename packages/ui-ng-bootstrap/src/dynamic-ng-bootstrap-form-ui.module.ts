@@ -15,6 +15,8 @@ import { DynamicNGBootstrapRadioGroupComponent } from "./radio-group/dynamic-ng-
 import { DynamicNGBootstrapSelectComponent } from "./select/dynamic-ng-bootstrap-select.component";
 import { DynamicNGBootstrapTextAreaComponent } from "./textarea/dynamic-ng-bootstrap-textarea.component";
 import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-bootstrap-timepicker.component";
+import { DynamicNGBootstrapFormArrayComponent } from "./form-array/dynamic-ng-bootstrap-form-array.component";
+import { DynamicNGBootstrapFormGroupComponent } from "./form-group/dynamic-ng-bootstrap-form-group.component";
 
 @NgModule({
     imports: [
@@ -31,6 +33,8 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
         DynamicNGBootstrapCheckboxComponent,
         DynamicNGBootstrapCheckboxGroupComponent,
         DynamicNGBootstrapDatePickerComponent,
+        DynamicNGBootstrapFormArrayComponent,
+        DynamicNGBootstrapFormGroupComponent,
         DynamicNGBootstrapInputComponent,
         DynamicNGBootstrapRadioGroupComponent,
         DynamicNGBootstrapSelectComponent,
@@ -44,6 +48,8 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
         DynamicNGBootstrapCheckboxComponent,
         DynamicNGBootstrapCheckboxGroupComponent,
         DynamicNGBootstrapDatePickerComponent,
+        DynamicNGBootstrapFormArrayComponent,
+        DynamicNGBootstrapFormGroupComponent,
         DynamicNGBootstrapInputComponent,
         DynamicNGBootstrapRadioGroupComponent,
         DynamicNGBootstrapSelectComponent,

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList } from "@angular/core";
+import { Component, EventEmitter, Input, Output, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormGroupComponent,
@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-bootstrap-form-group",
-    templateUrl: "./dynamic-bootstrap-form-group.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-bootstrap-form-group.component.html"
 })
 export class DynamicBootstrapFormGroupComponent extends DynamicFormGroupComponent {
 
@@ -20,7 +19,7 @@ export class DynamicBootstrapFormGroupComponent extends DynamicFormGroupComponen
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormGroupModel;
-    @Input() templates: QueryList<DynamicTemplateDirective>;
+    @Input() templates: QueryList<DynamicTemplateDirective> | undefined;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

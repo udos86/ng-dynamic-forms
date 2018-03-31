@@ -5,6 +5,8 @@ export * from "./checkbox-group/dynamic-kendo-checkbox-group.component";
 export * from "./dateinput/dynamic-kendo-dateinput.component";
 export * from "./datepicker/dynamic-kendo-datepicker.component";
 export * from "./dropdownlist/dynamic-kendo-dropdownlist.component";
+export * from "./form-array/dynamic-kendo-form-array.component";
+export * from "./form-group/dynamic-kendo-form-group.component";
 export * from "./input/dynamic-kendo-input.component";
 export * from "./masked-textbox/dynamic-kendo-maskedtextbox.component";
 export * from "./multiselect/dynamic-kendo-multiselect.component";

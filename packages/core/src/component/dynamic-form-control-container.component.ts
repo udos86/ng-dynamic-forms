@@ -19,12 +19,10 @@ import {
 } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP } from "../model/checkbox/dynamic-checkbox-group.model";
 import {
     DynamicFormArrayGroupModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY
 } from "../model/form-array/dynamic-form-array.model";
-import { DYNAMIC_FORM_CONTROL_TYPE_GROUP } from "../model/form-group/dynamic-form-group.model";
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DynamicInputModel,
@@ -128,18 +126,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     get isCheckbox(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
-    }
-
-    get isFormArray(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
-    }
-
-    get isFormGroup(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP || this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
-    }
-
-    get isFormControl(): boolean {
-        return !this.isFormArray && !this.isFormGroup;
     }
 
     get isInvalid(): boolean {

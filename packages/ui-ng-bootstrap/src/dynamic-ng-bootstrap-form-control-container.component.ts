@@ -21,6 +21,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicTemplateDirective,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
@@ -41,6 +42,8 @@ import { DynamicNGBootstrapInputComponent } from "./input/dynamic-ng-bootstrap-i
 import { DynamicNGBootstrapSelectComponent } from "./select/dynamic-ng-bootstrap-select.component";
 import { DynamicNGBootstrapTextAreaComponent } from "./textarea/dynamic-ng-bootstrap-textarea.component";
 import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-bootstrap-timepicker.component";
+import { DynamicNGBootstrapFormArrayComponent } from "./form-array/dynamic-ng-bootstrap-form-array.component";
+import { DynamicNGBootstrapFormGroupComponent } from "./form-group/dynamic-ng-bootstrap-form-group.component";
 
 @Component({
     selector: "dynamic-ng-bootstrap-form-control",
@@ -72,10 +75,6 @@ export class DynamicNGBootstrapFormControlContainerComponent extends DynamicForm
         super(componentFactoryResolver, layoutService, validationService);
     }
 
-    get isFormGroup(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_GROUP;
-    }
-
     get componentType(): Type<DynamicFormControl> | null {
         return this.layoutService.getCustomComponentType(this.model) || ngBootstrapUIFormControlMapFn(this.model);
     }
@@ -84,6 +83,9 @@ export class DynamicNGBootstrapFormControlContainerComponent extends DynamicForm
 export function ngBootstrapUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
 
     switch (model.type) {
+
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicNGBootstrapFormArrayComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicNGBootstrapCheckboxComponent;
@@ -95,6 +97,9 @@ export function ngBootstrapUIFormControlMapFn(model: DynamicFormControlModel): T
             let datePickerModel = model as DynamicDatePickerModel;
 
             return datePickerModel.inline ? DynamicNGBootstrapCalendarComponent : DynamicNGBootstrapDatePickerComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicNGBootstrapFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             return DynamicNGBootstrapInputComponent;

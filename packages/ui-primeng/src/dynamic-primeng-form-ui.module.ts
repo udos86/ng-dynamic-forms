@@ -29,6 +29,8 @@ import { DynamicPrimeNGChipsComponent } from "./chips/dynamic-primeng-chips.comp
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
 import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-dropdown.component";
 import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
+import { DynamicPrimeNGFormArrayComponent } from "./form-array/dynamic-primeng-form-array.component";
+import { DynamicPrimeNGFormGroupComponent } from "./form-group/dynamic-primeng-form-group.component";
 import { DynamicPrimeNGInputComponent } from "./input/dynamic-primeng-input.component";
 import { DynamicPrimeNGInputMaskComponent } from "./input-mask/dynamic-primeng-input-mask.component";
 import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
@@ -69,6 +71,8 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
         DynamicPrimeNGColorPickerComponent,
         DynamicPrimeNGDropdownComponent,
         DynamicPrimeNGEditorComponent,
+        DynamicPrimeNGFormArrayComponent,
+        DynamicPrimeNGFormGroupComponent,
         DynamicPrimeNGInputComponent,
         DynamicPrimeNGInputMaskComponent,
         DynamicPrimeNGInputSwitchComponent,
@@ -89,6 +93,8 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
         DynamicPrimeNGColorPickerComponent,
         DynamicPrimeNGDropdownComponent,
         DynamicPrimeNGEditorComponent,
+        DynamicPrimeNGFormArrayComponent,
+        DynamicPrimeNGFormGroupComponent,
         DynamicPrimeNGInputComponent,
         DynamicPrimeNGInputMaskComponent,
         DynamicPrimeNGInputSwitchComponent,

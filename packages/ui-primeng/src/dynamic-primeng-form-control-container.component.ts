@@ -23,10 +23,12 @@ import {
     DynamicTemplateDirective,
     DynamicInputModel,
     DynamicSelectModel,
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
+    DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -41,6 +43,8 @@ import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-chec
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
 import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
 import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
+import { DynamicPrimeNGFormArrayComponent } from "./form-array/dynamic-primeng-form-array.component";
+import { DynamicPrimeNGFormGroupComponent } from "./form-group/dynamic-primeng-form-group.component";
 import { DynamicPrimeNGSpinnerComponent } from "./spinner/dynamic-primeng-spinner.component";
 import { DynamicPrimeNGInputMaskComponent } from "./input-mask/dynamic-primeng-input-mask.component";
 import { DynamicPrimeNGAutoCompleteComponent } from "./autocomplete/dynamic-primeng-autocomplete.component";
@@ -92,6 +96,9 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
 
     switch (model.type) {
 
+        case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
+            return DynamicPrimeNGFormArrayComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicPrimeNGCheckboxComponent;
 
@@ -104,6 +111,9 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
 
         case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
             return DynamicPrimeNGEditorComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
+            return DynamicPrimeNGFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
             let inputModel = model as DynamicInputModel;

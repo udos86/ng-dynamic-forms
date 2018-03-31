@@ -11,6 +11,8 @@ import { DynamicFoundationInputComponent } from "./input/dynamic-foundation-inpu
 import { DynamicFoundationSelectComponent } from "./select/dynamic-foundation-select.component";
 import { DynamicFoundationSwitchComponent } from "./switch/dynamic-foundation-switch.component";
 import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundation-textarea.component";
+import { DynamicFoundationFormArrayComponent } from "./form-array/dynamic-foundation-form-array.component";
+import { DynamicFoundationFormGroupComponent } from "./form-group/dynamic-foundation-form-group.component";
 
 @NgModule({
     imports: [
@@ -21,6 +23,8 @@ import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundatio
     ],
     declarations: [
         DynamicFoundationCheckboxComponent,
+        DynamicFoundationFormArrayComponent,
+        DynamicFoundationFormGroupComponent,
         DynamicFoundationInputComponent,
         DynamicFoundationRadioGroupComponent,
         DynamicFoundationSelectComponent,
@@ -31,6 +35,8 @@ import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundatio
     ],
     entryComponents: [
         DynamicFoundationCheckboxComponent,
+        DynamicFoundationFormArrayComponent,
+        DynamicFoundationFormGroupComponent,
         DynamicFoundationInputComponent,
         DynamicFoundationRadioGroupComponent,
         DynamicFoundationSelectComponent,

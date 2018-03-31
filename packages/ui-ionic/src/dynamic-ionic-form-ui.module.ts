@@ -8,6 +8,8 @@ import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-
 import { DynamicIonicFormComponent } from "./dynamic-ionic-form.component";
 import { DynamicIonicCheckboxComponent } from "./checkbox/dynamic-ionic-checkbox.component";
 import { DynamicIonicDateTimeComponent } from "./datetime/dynamic-ionic-datetime.component";
+import { DynamicIonicFormArrayComponent } from "./form-array/dynamic-ionic-form-array.component";
+import { DynamicIonicFormGroupComponent } from "./form-group/dynamic-ionic-form-group.component";
 import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
 import { DynamicIonicRadioGroupComponent } from "./radio-group/dynamic-ionic-radio-group.component";
 import { DynamicIonicRangeComponent } from "./range/dynamic-ionic-range.component";
@@ -26,6 +28,8 @@ import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.compo
     declarations: [
         DynamicIonicCheckboxComponent,
         DynamicIonicDateTimeComponent,
+        DynamicIonicFormArrayComponent,
+        DynamicIonicFormGroupComponent,
         DynamicIonicInputComponent,
         DynamicIonicRadioGroupComponent,
         DynamicIonicRangeComponent,
@@ -38,6 +42,8 @@ import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.compo
     entryComponents: [
         DynamicIonicCheckboxComponent,
         DynamicIonicDateTimeComponent,
+        DynamicIonicFormArrayComponent,
+        DynamicIonicFormGroupComponent,
         DynamicIonicInputComponent,
         DynamicIonicRadioGroupComponent,
         DynamicIonicRangeComponent,
