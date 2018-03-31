@@ -25,7 +25,7 @@ export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableF
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;
-    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

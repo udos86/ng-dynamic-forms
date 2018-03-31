@@ -7,7 +7,7 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
 
     readonly templateDirectives: Map<string, string>;
 
-    templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+    templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
     ngAfterViewInit() {
         this.bindTemplates();

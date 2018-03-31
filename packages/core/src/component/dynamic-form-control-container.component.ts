@@ -13,6 +13,7 @@ import {
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import {
+    createDynamicFormControlEvent,
     DynamicFormControlCustomEvent,
     DynamicFormControlEvent,
     isDynamicFormControlEvent
@@ -206,10 +207,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
-        return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
-    }
-
     protected setControlRelations(): void {
 
         let relActivation = RelationUtils.findActivationRelation(this.model.relation);
@@ -278,7 +275,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 }
             }
 
-            this.change.emit(this.createDynamicFormControlEvent($event as Event, "change"));
+            this.change.emit(createDynamicFormControlEvent($event as Event, "change"));
 
         } else if (isDynamicFormControlEvent($event)) { // event bypass
 
@@ -286,7 +283,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // custom library value change event
 
-            this.change.emit(this.createDynamicFormControlEvent($event, "change"));
+            this.change.emit(createDynamicFormControlEvent($event, "change"));
         }
     }
 
@@ -299,7 +296,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         } else { // native HTML 5 or UI library blur event
 
             this.hasFocus = false;
-            this.blur.emit(this.createDynamicFormControlEvent($event, "blur"));
+            this.blur.emit(createDynamicFormControlEvent($event, "blur"));
         }
     }
 
@@ -312,7 +309,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         } else { // native HTML 5 or UI library focus event
 
             this.hasFocus = true;
-            this.focus.emit(this.createDynamicFormControlEvent($event, "focus"));
+            this.focus.emit(createDynamicFormControlEvent($event, "focus"));
         }
     }
 
@@ -326,7 +323,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             let $customEvent = $event as DynamicFormControlCustomEvent;
 
-            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
+            this.customEvent.emit(createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
         }
     }
 }

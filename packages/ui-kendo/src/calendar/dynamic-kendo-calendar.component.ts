@@ -24,7 +24,7 @@ export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormC
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicDatePickerModel;
-    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

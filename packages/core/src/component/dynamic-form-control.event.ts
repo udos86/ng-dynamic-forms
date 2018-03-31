@@ -21,3 +21,7 @@ export interface DynamicFormControlCustomEvent {
 export function isDynamicFormControlEvent($event: any): boolean {
     return $event !== null && typeof $event === "object" && $event.hasOwnProperty("$event");
 }
+
+export function createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
+    return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
+}

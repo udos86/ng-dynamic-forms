@@ -25,7 +25,7 @@ export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFo
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicSelectModel<string>;
-    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
