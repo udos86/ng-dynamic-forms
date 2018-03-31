@@ -15,14 +15,14 @@ export abstract class DynamicFormArrayComponent extends DynamicFormControlCompon
     get startTemplate(): DynamicTemplateDirective | undefined {
 
         return this.layoutService
-            .filterTemplates(this.model, this.templates)
+            .filterTemplatesByModel(this.model, this.templates)
             .find(template => template.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_START);
     }
 
     get endTemplate(): DynamicTemplateDirective | undefined {
 
         return this.layoutService
-            .filterTemplates(this.model, this.templates)
+            .filterTemplatesByModel(this.model, this.templates)
             .find(template => template.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END);
     }
 }

@@ -18,8 +18,7 @@
 
     </div>
 
-    <ul *ngIf="showErrorMessages" class="has-error"
-        [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
+    <ul *ngIf="showErrorMessages" class="has-error" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
 
         <li *ngFor="let message of errorMessages" class="help-block">{{ message }}</li>
 

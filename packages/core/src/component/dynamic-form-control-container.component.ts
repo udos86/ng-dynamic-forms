@@ -13,7 +13,6 @@ import {
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Subscription";
 import {
-    createDynamicFormControlEvent,
     DynamicFormControlCustomEvent,
     DynamicFormControlEvent,
     isDynamicFormControlEvent
@@ -157,7 +156,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         if (this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
 
             return this.layoutService
-                .filterTemplates(this.model, this.templates)
+                .filterTemplatesByModel(this.model, this.templates)
                 .find(template => template.as === null && template.align === align);
         }
 
@@ -225,6 +224,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
+    protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
+        return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
+    }
+
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
         this.model.disabledUpdates.next(RelationUtils.isFormControlToBeDisabled(relation, this.group));
@@ -275,7 +278,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 }
             }
 
-            this.change.emit(createDynamicFormControlEvent($event as Event, "change"));
+            this.change.emit(this.createDynamicFormControlEvent($event as Event, "change"));
 
         } else if (isDynamicFormControlEvent($event)) { // event bypass
 
@@ -283,7 +286,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // custom library value change event
 
-            this.change.emit(createDynamicFormControlEvent($event, "change"));
+            this.change.emit(this.createDynamicFormControlEvent($event, "change"));
         }
     }
 
@@ -296,7 +299,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         } else { // native HTML 5 or UI library blur event
 
             this.hasFocus = false;
-            this.blur.emit(createDynamicFormControlEvent($event, "blur"));
+            this.blur.emit(this.createDynamicFormControlEvent($event, "blur"));
         }
     }
 
@@ -309,7 +312,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         } else { // native HTML 5 or UI library focus event
 
             this.hasFocus = true;
-            this.focus.emit(createDynamicFormControlEvent($event, "focus"));
+            this.focus.emit(this.createDynamicFormControlEvent($event, "focus"));
         }
     }
 
@@ -323,7 +326,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             let $customEvent = $event as DynamicFormControlCustomEvent;
 
-            this.customEvent.emit(createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
+            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
         }
     }
 }

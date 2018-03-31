@@ -30,7 +30,7 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
     bindTemplates(): void {
 
         this.layoutService
-            .filterTemplates(this.model, this.templates)
+            .filterTemplatesByModel(this.model, this.templates)
             .forEach(template => this.bindTemplate(template));
     }
 }
