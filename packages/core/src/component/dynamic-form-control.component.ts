@@ -76,8 +76,16 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         this.change.emit($event);
     }
 
-    onCustomEvent($event: any, type: string) {
-        this.customEvent.emit({customEvent: $event, customEvenType: type});
+    onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {
+
+        if (bypass) {
+
+            this.customEvent.emit($event);
+
+        } else if (typeof type === "string") {
+
+            this.customEvent.emit({customEvent: $event, customEventType: type});
+        }
     }
 
     onFocus($event: any) {

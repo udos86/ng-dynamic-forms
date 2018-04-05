@@ -21,7 +21,7 @@
                                         (blur)="onBlur($event)"
                                         (change)="onChange($event)"
                                         (focus)="onFocus($event)"
-                                        (kendoEvent)="onCustomEvent($event)"></dynamic-kendo-form-control>
+                                        (kendoEvent)="onCustomEvent($event, null, true)"></dynamic-kendo-form-control>
 
             <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: groupModel"></ng-container>
 

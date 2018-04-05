@@ -21,7 +21,7 @@
                                         (blur)="onBlur($event)"
                                         (change)="onChange($event)"
                                         (focus)="onFocus($event)"
-                                        (ionEvent)="onCustomEvent($event)"></dynamic-ionic-form-control>
+                                        (ionEvent)="onCustomEvent($event, null, true)"></dynamic-ionic-form-control>
 
             <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: groupModel"></ng-container>
 

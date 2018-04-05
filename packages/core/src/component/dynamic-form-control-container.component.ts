@@ -15,6 +15,7 @@ import { Subscription } from "rxjs/Subscription";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlEvent,
+    DynamicFormControlEventType,
     isDynamicFormControlEvent
 } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -278,7 +279,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 }
             }
 
-            this.change.emit(this.createDynamicFormControlEvent($event as Event, "change"));
+            this.change.emit(this.createDynamicFormControlEvent($event as Event, DynamicFormControlEventType.Change));
 
         } else if (isDynamicFormControlEvent($event)) { // event bypass
 
@@ -286,7 +287,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // custom library value change event
 
-            this.change.emit(this.createDynamicFormControlEvent($event, "change"));
+            this.change.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Change));
         }
     }
 
@@ -299,7 +300,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         } else { // native HTML 5 or UI library blur event
 
             this.hasFocus = false;
-            this.blur.emit(this.createDynamicFormControlEvent($event, "blur"));
+            this.blur.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Blur));
         }
     }
 
@@ -312,7 +313,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         } else { // native HTML 5 or UI library focus event
 
             this.hasFocus = true;
-            this.focus.emit(this.createDynamicFormControlEvent($event, "focus"));
+            this.focus.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Focus));
         }
     }
 
@@ -326,7 +327,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             let $customEvent = $event as DynamicFormControlCustomEvent;
 
-            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEvenType));
+            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEventType));
         }
     }
 }

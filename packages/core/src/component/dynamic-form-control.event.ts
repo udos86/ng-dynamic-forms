@@ -2,6 +2,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
 
+export enum DynamicFormControlEventType {Blur = "blur", Change = "change", Custom = "custom", Focus = " focus"}
+
 export interface DynamicFormControlEvent {
 
     $event: Event | FocusEvent | DynamicFormControlEvent | any;
@@ -15,7 +17,7 @@ export interface DynamicFormControlEvent {
 export interface DynamicFormControlCustomEvent {
 
     customEvent: any;
-    customEvenType: string;
+    customEventType: string;
 }
 
 export function isDynamicFormControlEvent($event: any): boolean {

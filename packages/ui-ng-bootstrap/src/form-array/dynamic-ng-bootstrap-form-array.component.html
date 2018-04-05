@@ -21,7 +21,7 @@
                                                (blur)="onBlur($event)"
                                                (change)="onChange($event)"
                                                (focus)="onFocus($event)"
-                                               (ngbEvent)="onCustomEvent($event)"></dynamic-ng-bootstrap-form-control>
+                                               (ngbEvent)="onCustomEvent($event, null, true)"></dynamic-ng-bootstrap-form-control>
 
             <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: groupModel"></ng-container>
 
