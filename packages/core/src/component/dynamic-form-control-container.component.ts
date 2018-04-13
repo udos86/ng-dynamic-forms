@@ -11,7 +11,7 @@ import {
     ViewContainerRef
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from "rxjs";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlEvent,

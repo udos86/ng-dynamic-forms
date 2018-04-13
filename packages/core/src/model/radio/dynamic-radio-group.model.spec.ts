@@ -1,6 +1,5 @@
 import { async } from "@angular/core/testing";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/of";
+import { Observable, of } from "rxjs";
 import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel } from "./dynamic-radio-group.model";
 
 describe("DynamicRadioModel test suite", () => {
@@ -8,7 +7,7 @@ describe("DynamicRadioModel test suite", () => {
     let model: DynamicRadioGroupModel<string>,
         config = {
             id: "radio",
-            options: Observable.of([
+            options: of([
                 {
                     value: "1",
                     label: "One"

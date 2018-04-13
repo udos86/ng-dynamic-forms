@@ -21,8 +21,8 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        BsDatepickerModule.forRoot(),
-        TimepickerModule.forRoot(),
+        BsDatepickerModule,
+        TimepickerModule,
         TextMaskModule,
         DynamicFormsCoreModule
     ],

@@ -1,4 +1,4 @@
-import { Subject } from "rxjs/Subject";
+import { Subject } from "rxjs";
 import { DynamicFormControlModel, DynamicFormControlModelConfig } from "./dynamic-form-control.model";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
