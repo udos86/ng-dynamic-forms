@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
-    DynamicFormGroupComponent,
     DynamicFormGroupModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -14,13 +14,13 @@ import {
     selector: "dynamic-ionic-form-group",
     templateUrl: "./dynamic-ionic-form-group.component.html"
 })
-export class DynamicIonicFormGroupComponent extends DynamicFormGroupComponent {
+export class DynamicIonicFormGroupComponent extends DynamicFormControlComponent {
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormGroupModel;
-    @Input() templates: QueryList<DynamicTemplateDirective> | undefined;
+    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();

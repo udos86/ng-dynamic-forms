@@ -48,7 +48,7 @@ export class DynamicKendoDropdownListComponent extends DynamicKendoTemplateableF
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): DropDownListComponent {
+    get viewChild(): DropDownListComponent {
         return this.kendoDropDownList;
     }
 }

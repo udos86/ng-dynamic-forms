@@ -38,7 +38,7 @@ export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormC
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): CalendarComponent {
+    get viewChild(): CalendarComponent {
         return this.kendoCalendar;
     }
 }

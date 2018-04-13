@@ -40,7 +40,7 @@ export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableF
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): AutoCompleteComponent {
+    get viewChild(): AutoCompleteComponent {
         return this.kendoAutoComplete;
     }
 }

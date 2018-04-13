@@ -10,10 +10,13 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
     templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
     ngAfterViewInit() {
-        this.bindTemplates();
+
+        this.layoutService
+            .filterTemplatesByModel(this.model, this.templates)
+            .forEach(template => this.bindTemplate(template));
     }
 
-    abstract get templateableViewChild(): any;
+    abstract get viewChild(): any;
 
     abstract mapTemplate(template: DynamicTemplateDirective): DynamicTemplateDirective | TemplateRef<any>;
 
@@ -23,14 +26,7 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
 
             let property = this.templateDirectives.get(template.as) as string;
 
-            this.templateableViewChild[property] = this.mapTemplate(template);
+            this.viewChild[property] = this.mapTemplate(template);
         }
-    }
-
-    bindTemplates(): void {
-
-        this.layoutService
-            .filterTemplatesByModel(this.model, this.templates)
-            .forEach(template => this.bindTemplate(template));
     }
 }

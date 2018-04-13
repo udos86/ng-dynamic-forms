@@ -4,5 +4,5 @@ export interface DynamicTemplateableFormControl extends DynamicFormControl {
 
     readonly templateDirectives: Map<string, string>;
 
-    templateableViewChild: any;
+    viewChild: any;
 }

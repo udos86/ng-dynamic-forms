@@ -40,7 +40,7 @@ export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFo
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): MultiSelectComponent {
+    get viewChild(): MultiSelectComponent {
         return this.kendoMultiSelect;
     }
 }

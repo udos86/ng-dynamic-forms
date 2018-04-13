@@ -23,6 +23,7 @@ import {
     DynamicFormControl,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
@@ -80,6 +81,7 @@ export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicBasicCheckboxComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicBasicFormGroupComponent;
 

@@ -59,7 +59,7 @@ describe("DynamicKendoDropdownListComponent test suite", () => {
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
         expect(component.kendoDropDownList instanceof DropDownListComponent).toBe(true);
-        expect(component.templateableViewChild instanceof DropDownListComponent).toBe(true);
+        expect(component.viewChild instanceof DropDownListComponent).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

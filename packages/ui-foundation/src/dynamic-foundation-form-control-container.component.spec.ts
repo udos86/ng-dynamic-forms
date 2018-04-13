@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
@@ -24,9 +25,20 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicFoundationFormControlContainerComponent } from "./dynamic-foundation-form-control-container.component";
+import {
+    DynamicFoundationFormControlContainerComponent,
+    foundationUIFormControlMapFn
+} from "./dynamic-foundation-form-control-container.component";
+import { DynamicFoundationCheckboxComponent } from "./checkbox/dynamic-foundation-checkbox.component";
+import { DynamicFoundationFormGroupComponent } from "./form-group/dynamic-foundation-form-group.component";
+import { DynamicFoundationFormArrayComponent } from "./form-array/dynamic-foundation-form-array.component";
+import { DynamicFoundationInputComponent } from "./input/dynamic-foundation-input.component";
+import { DynamicFoundationRadioGroupComponent } from "./radio-group/dynamic-foundation-radio-group.component";
+import { DynamicFoundationSelectComponent } from "./select/dynamic-foundation-select.component";
+import { DynamicFoundationSwitchComponent } from "./switch/dynamic-foundation-switch.component";
+import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundation-textarea.component";
 
-xdescribe("DynamicFoundationFormControlContainerComponent test suite", () => {
+describe("DynamicFoundationFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -55,10 +67,17 @@ xdescribe("DynamicFoundationFormControlContainerComponent test suite", () => {
 
     beforeEach(async(() => {
 
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicFoundationInputComponent]
+            }
+        });
+
         TestBed.configureTestingModule({
 
             imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
-            declarations: [DynamicFoundationFormControlContainerComponent]
+            declarations: [DynamicFoundationFormControlContainerComponent, DynamicFoundationInputComponent]
 
         }).compileComponents().then(() => {
 
@@ -89,26 +108,17 @@ xdescribe("DynamicFoundationFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
-
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
+        expect(component.componentType).toBe(DynamicFoundationInputComponent);
     });
 
     it("should have an input element", () => {
@@ -168,5 +178,25 @@ xdescribe("DynamicFoundationFormControlContainerComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should map a form control model to a form control component", () => {
+
+        expect(foundationUIFormControlMapFn(formModel[0])).toBe(DynamicFoundationCheckboxComponent);
+        expect(foundationUIFormControlMapFn(formModel[1])).toBe(DynamicFoundationFormGroupComponent);
+        expect(foundationUIFormControlMapFn(formModel[2])).toBeNull();
+        expect(foundationUIFormControlMapFn(formModel[3])).toBeNull();
+        expect(foundationUIFormControlMapFn(formModel[4])).toBeNull();
+        expect(foundationUIFormControlMapFn(formModel[5])).toBeNull();
+        expect(foundationUIFormControlMapFn(formModel[6])).toBe(DynamicFoundationFormArrayComponent);
+        expect(foundationUIFormControlMapFn(formModel[7])).toBe(DynamicFoundationFormGroupComponent);
+        expect(foundationUIFormControlMapFn(formModel[8])).toBe(DynamicFoundationInputComponent);
+        expect(foundationUIFormControlMapFn(formModel[9])).toBe(DynamicFoundationRadioGroupComponent);
+        expect(foundationUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(foundationUIFormControlMapFn(formModel[11])).toBe(DynamicFoundationSelectComponent);
+        expect(foundationUIFormControlMapFn(formModel[12])).toBeNull();
+        expect(foundationUIFormControlMapFn(formModel[13])).toBe(DynamicFoundationSwitchComponent);
+        expect(foundationUIFormControlMapFn(formModel[14])).toBe(DynamicFoundationTextAreaComponent);
+        expect(foundationUIFormControlMapFn(formModel[15])).toBeNull();
     });
 });

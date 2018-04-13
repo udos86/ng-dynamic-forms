@@ -3,6 +3,7 @@ import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import {
     MatAutocompleteModule,
     MatCheckboxModule,
@@ -37,9 +38,22 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormControlContainerComponent } from "./dynamic-material-form-control-container.component";
+import {
+    DynamicMaterialFormControlContainerComponent,
+    materialUIFormControlMapFn
+} from "./dynamic-material-form-control-container.component";
+import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
+import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
+import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material-form-group.component";
+import { DynamicMaterialFormArrayComponent } from "./form-array/dynamic-material-form-array.component";
+import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
+import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
+import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
+import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider.component";
+import { DynamicMaterialSlideToggleComponent } from "./slide-toggle/dynamic-material-slide-toggle.component";
+import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-textarea.component";
 
-xdescribe("DynamicMaterialFormControlContainerComponent test suite", () => {
+describe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -68,6 +82,13 @@ xdescribe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
     beforeEach(async(() => {
 
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicMaterialInputComponent]
+            }
+        });
+
         TestBed.configureTestingModule({
 
             imports: [
@@ -86,7 +107,7 @@ xdescribe("DynamicMaterialFormControlContainerComponent test suite", () => {
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicMaterialFormControlContainerComponent]
+            declarations: [DynamicMaterialFormControlContainerComponent, DynamicMaterialInputComponent]
 
         }).compileComponents().then(() => {
 
@@ -117,26 +138,17 @@ xdescribe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
-
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
+        expect(component.componentType).toBe(DynamicMaterialInputComponent);
     });
 
     it("should have an input element", () => {
@@ -174,5 +186,25 @@ xdescribe("DynamicMaterialFormControlContainerComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should map a form control model to a form control component", () => {
+
+        expect(materialUIFormControlMapFn(formModel[0])).toBe(DynamicMaterialCheckboxComponent);
+        expect(materialUIFormControlMapFn(formModel[1])).toBe(DynamicMaterialFormGroupComponent);
+        expect(materialUIFormControlMapFn(formModel[2])).toBeNull();
+        expect(materialUIFormControlMapFn(formModel[3])).toBe(DynamicMaterialDatePickerComponent);
+        expect(materialUIFormControlMapFn(formModel[4])).toBeNull();
+        expect(materialUIFormControlMapFn(formModel[5])).toBeNull();
+        expect(materialUIFormControlMapFn(formModel[6])).toBe(DynamicMaterialFormArrayComponent);
+        expect(materialUIFormControlMapFn(formModel[7])).toBe(DynamicMaterialFormGroupComponent);
+        expect(materialUIFormControlMapFn(formModel[8])).toBe(DynamicMaterialInputComponent);
+        expect(materialUIFormControlMapFn(formModel[9])).toBe(DynamicMaterialRadioGroupComponent);
+        expect(materialUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(materialUIFormControlMapFn(formModel[11])).toBe(DynamicMaterialSelectComponent);
+        expect(materialUIFormControlMapFn(formModel[12])).toBe(DynamicMaterialSliderComponent);
+        expect(materialUIFormControlMapFn(formModel[13])).toBe(DynamicMaterialSlideToggleComponent);
+        expect(materialUIFormControlMapFn(formModel[14])).toBe(DynamicMaterialTextAreaComponent);
+        expect(materialUIFormControlMapFn(formModel[15])).toBeNull();
     });
 });

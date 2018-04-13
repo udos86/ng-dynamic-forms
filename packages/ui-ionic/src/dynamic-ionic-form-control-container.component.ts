@@ -21,6 +21,7 @@ import {
     DynamicTemplateDirective,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
@@ -90,6 +91,7 @@ export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
         case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
             return DynamicIonicDateTimeComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicIonicFormGroupComponent;
 

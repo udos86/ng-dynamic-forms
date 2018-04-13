@@ -38,7 +38,7 @@ export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGTemplateableF
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): Dropdown {
+    get viewChild(): Dropdown {
         return this.pDropdown;
     }
 }

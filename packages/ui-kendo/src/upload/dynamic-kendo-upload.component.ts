@@ -38,7 +38,7 @@ export class DynamicKendoUploadComponent extends DynamicKendoTemplateableFormCon
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): UploadComponent {
+    get viewChild(): UploadComponent {
         return this.kendoUpload;
     }
 }

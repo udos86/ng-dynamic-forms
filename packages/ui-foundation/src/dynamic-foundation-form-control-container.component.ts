@@ -11,6 +11,7 @@ import { FormGroup } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
@@ -79,6 +80,7 @@ export function foundationUIFormControlMapFn(model: DynamicFormControlModel): Ty
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicFoundationCheckboxComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicFoundationFormGroupComponent;
 

@@ -46,7 +46,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplatea
         return this._suggestions;
     }
 
-    get templateableViewChild(): AutoComplete {
+    get viewChild(): AutoComplete {
         return this.pAutoComplete;
     }
 

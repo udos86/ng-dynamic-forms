@@ -40,7 +40,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGTemplateableForm
         super(layoutService, validationService);
     }
 
-    get templateableViewChild(): Chips {
+    get viewChild(): Chips {
         return this.pChips;
     }
 }

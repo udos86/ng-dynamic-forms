@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
@@ -24,9 +25,19 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicBasicFormControlContainerComponent } from "./dynamic-basic-form-control-container.component";
+import {
+    DynamicBasicFormControlContainerComponent,
+    basicUIFormControlMapFn
+} from "./dynamic-basic-form-control-container.component";
+import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
+import { DynamicBasicFormArrayComponent } from "./form-array/dynamic-basic-form-array.component";
+import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-group.component";
+import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
+import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
+import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
+import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
 
-xdescribe("DynamicBasicFormControlContainerComponent test suite", () => {
+describe("DynamicBasicFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -55,10 +66,17 @@ xdescribe("DynamicBasicFormControlContainerComponent test suite", () => {
 
     beforeEach(async(() => {
 
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicBasicInputComponent]
+            }
+        });
+
         TestBed.configureTestingModule({
 
             imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
-            declarations: [DynamicBasicFormControlContainerComponent]
+            declarations: [DynamicBasicFormControlContainerComponent, DynamicBasicInputComponent]
 
         }).compileComponents().then(() => {
 
@@ -89,26 +107,17 @@ xdescribe("DynamicBasicFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
-
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
+        expect(component.componentType).toBe(DynamicBasicInputComponent);
     });
 
     it("should have an input element", () => {
@@ -168,5 +177,25 @@ xdescribe("DynamicBasicFormControlContainerComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should map a form control model to a form control component", () => {
+
+        expect(basicUIFormControlMapFn(formModel[0])).toBe(DynamicBasicCheckboxComponent);
+        expect(basicUIFormControlMapFn(formModel[1])).toBe(DynamicBasicFormGroupComponent);
+        expect(basicUIFormControlMapFn(formModel[2])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[3])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[4])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[5])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[6])).toBe(DynamicBasicFormArrayComponent);
+        expect(basicUIFormControlMapFn(formModel[7])).toBe(DynamicBasicFormGroupComponent);
+        expect(basicUIFormControlMapFn(formModel[8])).toBe(DynamicBasicInputComponent);
+        expect(basicUIFormControlMapFn(formModel[9])).toBe(DynamicBasicRadioGroupComponent);
+        expect(basicUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[11])).toBe(DynamicBasicSelectComponent);
+        expect(basicUIFormControlMapFn(formModel[12])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[13])).toBeNull();
+        expect(basicUIFormControlMapFn(formModel[14])).toBe(DynamicBasicTextAreaComponent);
+        expect(basicUIFormControlMapFn(formModel[15])).toBeNull();
     });
 });

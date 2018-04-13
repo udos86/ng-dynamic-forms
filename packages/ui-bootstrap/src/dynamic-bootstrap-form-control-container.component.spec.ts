@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
 import { TextMaskModule } from "angular2-text-mask";
@@ -26,9 +27,21 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstrap-form-control-container.component";
+import {
+    bootstrapUIFormControlMapFn,
+    DynamicBootstrapFormControlContainerComponent
+} from "./dynamic-bootstrap-form-control-container.component";
+import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
+import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
+import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstrap-form-array.component";
+import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
+import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
+import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
+import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
+import { DynamicBootstrapTextAreaComponent } from "./textarea/dynamic-bootstrap-textarea.component";
+import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootstrap-timepicker.component";
 
-xdescribe("DynamicFormBootstrapComponent test suite", () => {
+describe("DynamicFormBootstrapComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -57,6 +70,13 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
     beforeEach(async(() => {
 
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicBootstrapInputComponent]
+            }
+        });
+
         TestBed.configureTestingModule({
 
             imports: [
@@ -66,7 +86,7 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
                 BsDatepickerModule.forRoot(),
                 TimepickerModule.forRoot()
             ],
-            declarations: [DynamicBootstrapFormControlContainerComponent]
+            declarations: [DynamicBootstrapFormControlContainerComponent, DynamicBootstrapInputComponent]
 
         }).compileComponents().then(() => {
 
@@ -97,27 +117,18 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.asBootstrapFormGroup).toBe(true);
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
-        expect(component.asBootstrapFormGroup).toBe(true);
-
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
+        expect(component.componentType).toBe(DynamicBootstrapInputComponent);
     });
 
     it("should have an input element", () => {
@@ -177,5 +188,25 @@ xdescribe("DynamicFormBootstrapComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should map a form control model to a form control component", () => {
+
+        expect(bootstrapUIFormControlMapFn(formModel[0])).toBe(DynamicBootstrapCheckboxComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[1])).toBe(DynamicBootstrapFormGroupComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[2])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[3])).toBe(DynamicBootstrapDatePickerComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[4])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[5])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[6])).toBe(DynamicBootstrapFormArrayComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[7])).toBe(DynamicBootstrapFormGroupComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[8])).toBe(DynamicBootstrapInputComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[9])).toBe(DynamicBootstrapRadioGroupComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[11])).toBe(DynamicBootstrapSelectComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[12])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[13])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[14])).toBe(DynamicBootstrapTextAreaComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[15])).toBe(DynamicBootstrapTimePickerComponent);
     });
 });

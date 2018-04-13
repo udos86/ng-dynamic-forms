@@ -25,6 +25,7 @@ import {
     DynamicSelectModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER,
     DYNAMIC_FORM_CONTROL_TYPE_EDITOR,
@@ -112,6 +113,7 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
         case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
             return DynamicPrimeNGEditorComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicPrimeNGFormGroupComponent;
 
