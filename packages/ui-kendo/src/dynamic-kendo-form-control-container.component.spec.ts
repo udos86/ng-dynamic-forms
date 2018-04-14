@@ -2,6 +2,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
@@ -27,9 +28,25 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
+import {
+    DynamicKendoFormControlContainerComponent,
+    kendoUIFormControlMapFn
+} from "./dynamic-kendo-form-control-container.component";
+import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
+import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
+import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
+import { DynamicKendoDropdownListComponent } from "./dropdownlist/dynamic-kendo-dropdownlist.component";
+import { DynamicKendoFormArrayComponent } from "./form-array/dynamic-kendo-form-array.component";
+import { DynamicKendoFormGroupComponent } from "./form-group/dynamic-kendo-form-group.component";
+import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
+import { DynamicKendoRadioGroupComponent } from "./radio-group/dynamic-kendo-radio-group.component";
+import { DynamicKendoSliderComponent } from "./slider/dynamic-kendo-slider.component";
+import { DynamicKendoSwitchComponent } from "./switch/dynamic-kendo-switch.component";
+import { DynamicKendoTextAreaComponent } from "./textarea/dynamic-kendo-textarea.component";
+import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-timepicker.component";
+import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.component";
 
-xdescribe("DynamicKendoFormControlContainerComponent test suite", () => {
+describe("DynamicKendoFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -58,6 +75,13 @@ xdescribe("DynamicKendoFormControlContainerComponent test suite", () => {
 
     beforeEach(async(() => {
 
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicKendoDropdownListComponent]
+            }
+        });
+
         TestBed.configureTestingModule({
 
             imports: [
@@ -68,7 +92,7 @@ xdescribe("DynamicKendoFormControlContainerComponent test suite", () => {
                 UploadModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicKendoFormControlContainerComponent]
+            declarations: [DynamicKendoFormControlContainerComponent, DynamicKendoDropdownListComponent]
 
         }).compileComponents().then(() => {
 
@@ -99,25 +123,17 @@ xdescribe("DynamicKendoFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
-
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
+        expect(component.componentType).toBe(DynamicKendoDropdownListComponent);
     });
 
     it("should listen to native blur events", () => {
@@ -172,5 +188,25 @@ xdescribe("DynamicKendoFormControlContainerComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should map a form control model to a form control component", () => {
+
+        expect(kendoUIFormControlMapFn(formModel[0])).toBe(DynamicKendoCheckboxComponent);
+        expect(kendoUIFormControlMapFn(formModel[1])).toBe(DynamicKendoCheckboxGroupComponent);
+        expect(kendoUIFormControlMapFn(formModel[2])).toBeNull();
+        expect(kendoUIFormControlMapFn(formModel[3])).toBe(DynamicKendoDatePickerComponent);
+        expect(kendoUIFormControlMapFn(formModel[4])).toBeNull();
+        expect(kendoUIFormControlMapFn(formModel[5])).toBe(DynamicKendoUploadComponent);
+        expect(kendoUIFormControlMapFn(formModel[6])).toBe(DynamicKendoFormArrayComponent);
+        expect(kendoUIFormControlMapFn(formModel[7])).toBe(DynamicKendoFormGroupComponent);
+        expect(kendoUIFormControlMapFn(formModel[8])).toBe(DynamicKendoInputComponent);
+        expect(kendoUIFormControlMapFn(formModel[9])).toBe(DynamicKendoRadioGroupComponent);
+        expect(kendoUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(kendoUIFormControlMapFn(formModel[11])).toBe(DynamicKendoDropdownListComponent);
+        expect(kendoUIFormControlMapFn(formModel[12])).toBe(DynamicKendoSliderComponent);
+        expect(kendoUIFormControlMapFn(formModel[13])).toBe(DynamicKendoSwitchComponent);
+        expect(kendoUIFormControlMapFn(formModel[14])).toBe(DynamicKendoTextAreaComponent);
+        expect(kendoUIFormControlMapFn(formModel[15])).toBe(DynamicKendoTimePickerComponent);
     });
 });

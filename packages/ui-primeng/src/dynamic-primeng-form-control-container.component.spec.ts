@@ -3,6 +3,7 @@ import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing"
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import {
     AutoCompleteModule,
     CalendarModule,
@@ -42,9 +43,22 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
+import { DynamicPrimeNGFormControlContainerComponent, primeNGUIFormControlMapFn} from "./dynamic-primeng-form-control-container.component";
+import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
+import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-checkbox.component";
+import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
+import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-dropdown.component";
+import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
+import { DynamicPrimeNGFormArrayComponent } from "./form-array/dynamic-primeng-form-array.component";
+import { DynamicPrimeNGFormGroupComponent } from "./form-group/dynamic-primeng-form-group.component";
+import { DynamicPrimeNGInputComponent } from "./input/dynamic-primeng-input.component";
+import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
+import { DynamicPrimeNGRadioGroupComponent } from "./radio-group/dynamic-primeng-radio-group.component";
+import { DynamicPrimeNGRatingComponent } from "./rating/dynamic-primeng-rating.component";
+import { DynamicPrimeNGSliderComponent } from "./slider/dynamic-primeng-slider.component";
+import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-textarea.component";
 
-xdescribe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
+describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -73,6 +87,13 @@ xdescribe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 
     beforeEach(async(() => {
 
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicPrimeNGInputComponent]
+            }
+        });
+
         TestBed.configureTestingModule({
 
             imports: [
@@ -96,7 +117,7 @@ xdescribe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
                 SliderModule,
                 SpinnerModule
             ],
-            declarations: [DynamicPrimeNGFormControlContainerComponent]
+            declarations: [DynamicPrimeNGFormControlContainerComponent, DynamicPrimeNGInputComponent]
 
         }).compileComponents().then(() => {
 
@@ -127,25 +148,17 @@ xdescribe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
-
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
 
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
+        expect(component.componentType).toBe(DynamicPrimeNGInputComponent);
     });
 
     it("should have an input element", () => {
@@ -205,5 +218,25 @@ xdescribe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
         testModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
+    });
+
+    it("should map a form control model to a form control component", () => {
+
+        expect(primeNGUIFormControlMapFn(formModel[0])).toBe(DynamicPrimeNGCheckboxComponent);
+        expect(primeNGUIFormControlMapFn(formModel[1])).toBe(DynamicPrimeNGFormGroupComponent);
+        expect(primeNGUIFormControlMapFn(formModel[2])).toBe(DynamicPrimeNGColorPickerComponent);
+        expect(primeNGUIFormControlMapFn(formModel[3])).toBe(DynamicPrimeNGCalendarComponent);
+        expect(primeNGUIFormControlMapFn(formModel[4])).toBe(DynamicPrimeNGEditorComponent);
+        expect(primeNGUIFormControlMapFn(formModel[5])).toBeNull();
+        expect(primeNGUIFormControlMapFn(formModel[6])).toBe(DynamicPrimeNGFormArrayComponent);
+        expect(primeNGUIFormControlMapFn(formModel[7])).toBe(DynamicPrimeNGFormGroupComponent);
+        expect(primeNGUIFormControlMapFn(formModel[8])).toBe(DynamicPrimeNGInputComponent);
+        expect(primeNGUIFormControlMapFn(formModel[9])).toBe(DynamicPrimeNGRadioGroupComponent);
+        expect(primeNGUIFormControlMapFn(formModel[10])).toBe(DynamicPrimeNGRatingComponent);
+        expect(primeNGUIFormControlMapFn(formModel[11])).toBe(DynamicPrimeNGDropdownComponent);
+        expect(primeNGUIFormControlMapFn(formModel[12])).toBe(DynamicPrimeNGSliderComponent);
+        expect(primeNGUIFormControlMapFn(formModel[13])).toBe(DynamicPrimeNGInputSwitchComponent);
+        expect(primeNGUIFormControlMapFn(formModel[14])).toBe(DynamicPrimeNGTextAreaComponent);
+        expect(primeNGUIFormControlMapFn(formModel[15])).toBe(DynamicPrimeNGCalendarComponent);
     });
 });

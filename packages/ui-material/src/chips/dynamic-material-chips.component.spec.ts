@@ -3,14 +3,20 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatChipList, MatChipsModule, MatIconModule, MatInput, MatInputModule } from "@angular/material";
+import {
+    MatChipList,
+    MatChipsModule,
+    MatIconModule,
+    MatInput,
+    MatInputModule
+} from "@angular/material";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialChipsComponent } from "./dynamic-material-chips.component";
 
 describe("DynamicMaterialChipsComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "input", multiple: true}),
+    let testModel = new DynamicInputModel({id: "input", multiple: true, value: ["One", "Two", "Three"]}),
         formModel = [testModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicMaterialChipsComponent>,
@@ -117,5 +123,22 @@ describe("DynamicMaterialChipsComponent test suite", () => {
         component.onCustomEvent(null, "eventType");
 
         expect(component.customEvent.emit).toHaveBeenCalled();
+    });
+
+    it("should add a chip to chip list", () => {
+
+        let value = "Test";
+
+        component.onChipInputTokenEnd({input: document.createElement("input"), value});
+
+        expect(component.chipList.length).toBe(4);
+        expect(component.chipList[component.chipList.length - 1]).toEqual(value);
+    });
+
+    it("should remove a chip from chip list", () => {
+
+        component.onChipRemoved("One", 0);
+
+        expect(component.chipList.length).toBe(3);
     });
 });

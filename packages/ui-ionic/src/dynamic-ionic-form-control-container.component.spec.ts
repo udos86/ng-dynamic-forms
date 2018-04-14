@@ -21,7 +21,7 @@ import {
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 
-describe("DynamicIonicFormControlContainerComponent test suite", () => {
+xdescribe("DynamicIonicFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
@@ -82,36 +82,25 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
     }));
     */
-    xit("should initialize correctly", () => {
+    it("should initialize correctly", () => {
 
+        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
-        expect(component.onControlValueChanges).toBeDefined();
-        expect(component.onModelDisabledUpdates).toBeDefined();
-        expect(component.onModelValueUpdates).toBeDefined();
-
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
-
-        expect(component.onChange).toBeDefined();
-        expect(component.onBlur).toBeDefined();
-        expect(component.onFocus).toBeDefined();
-
-        expect(component.isValid).toBe(true);
-        expect(component.isInvalid).toBe(false);
-        expect(component.showErrorMessages).toBe(false);
     });
 
-    xit("should have an input element", () => {
+    it("should have an input element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    xit("should listen to native blur events", () => {
+    it("should listen to native blur events", () => {
 
         spyOn(component, "onBlur");
 
@@ -120,7 +109,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         expect(component.onBlur).toHaveBeenCalled();
     });
 
-    xit("should listen to native focus events", () => {
+    it("should listen to native focus events", () => {
 
         spyOn(component, "onFocus");
 
@@ -129,7 +118,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         expect(component.onFocus).toHaveBeenCalled();
     });
 
-    xit("should listen to native change event", () => {
+    it("should listen to native change event", () => {
 
         spyOn(component, "onChange");
 
@@ -138,7 +127,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         expect(component.onChange).toHaveBeenCalled();
     });
 
-    xit("should update model value when control value changes", () => {
+    it("should update model value when control value changes", () => {
 
         spyOn(component, "onControlValueChanges");
 
@@ -147,7 +136,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         expect(component.onControlValueChanges).toHaveBeenCalled();
     });
 
-    xit("should update control value when model value changes", () => {
+    it("should update control value when model value changes", () => {
 
         spyOn(component, "onModelValueUpdates");
 
@@ -156,7 +145,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
 
-    xit("should update control activation when model disabled property changes", () => {
+    it("should update control activation when model disabled property changes", () => {
 
         spyOn(component, "onModelDisabledUpdates");
 

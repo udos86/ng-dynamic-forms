@@ -54,7 +54,8 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
 
-        let inputElement = $event.input, inputValue = $event.value.trim();
+        let inputElement = $event.input,
+            inputValue = $event.value.trim();
 
         if (Array.isArray(this.chipList) && inputValue.length > 0) {
 
@@ -67,9 +68,9 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
         }
     }
 
-    onChipRemoved(_chip: string, index: number): void {
+    onChipRemoved(chip: string, index: number): void {
 
-        if (Array.isArray(this.chipList)) {
+        if (Array.isArray(this.chipList) && this.chipList[index] === chip) {
 
             this.chipList.splice(index, 1);
             this.control.patchValue(this.chipList);
