@@ -43,7 +43,10 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { DynamicPrimeNGFormControlContainerComponent, primeNGUIFormControlMapFn} from "./dynamic-primeng-form-control-container.component";
+import {
+    DynamicPrimeNGFormControlContainerComponent,
+    primeNGUIFormControlMapFn
+} from "./dynamic-primeng-form-control-container.component";
 import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
 import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-checkbox.component";
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
