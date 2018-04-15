@@ -98,10 +98,12 @@ export function materialUIFormControlMapFn(model: DynamicFormControlModel): Type
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicMaterialCheckboxComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            return DynamicMaterialFormGroupComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             return DynamicMaterialDatePickerComponent;
 
-        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicMaterialFormGroupComponent;
 

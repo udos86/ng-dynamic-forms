@@ -81,6 +81,8 @@ export function foundationUIFormControlMapFn(model: DynamicFormControlModel): Ty
             return DynamicFoundationCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            return DynamicFoundationFormGroupComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicFoundationFormGroupComponent;
 

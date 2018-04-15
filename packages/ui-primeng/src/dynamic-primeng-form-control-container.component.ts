@@ -103,17 +103,18 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicPrimeNGCheckboxComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            return DynamicPrimeNGFormGroupComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER:
             return DynamicPrimeNGColorPickerComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-        case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
             return DynamicPrimeNGCalendarComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_EDITOR:
             return DynamicPrimeNGEditorComponent;
 
-        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicPrimeNGFormGroupComponent;
 
@@ -155,6 +156,9 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
 
         case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
             return DynamicPrimeNGTextAreaComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+            return DynamicPrimeNGCalendarComponent;
 
         default:
             return null;

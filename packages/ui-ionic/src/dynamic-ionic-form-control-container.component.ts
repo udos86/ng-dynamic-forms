@@ -87,11 +87,12 @@ export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicIonicCheckboxComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            return DynamicIonicFormGroupComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-        case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
             return DynamicIonicDateTimeComponent;
 
-        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicIonicFormGroupComponent;
 
@@ -112,6 +113,9 @@ export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         case DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA:
             return DynamicIonicTextAreaComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER:
+            return DynamicIonicDateTimeComponent;
 
         default:
             return null;

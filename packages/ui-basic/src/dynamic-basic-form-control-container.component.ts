@@ -82,6 +82,8 @@ export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
             return DynamicBasicCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            return DynamicBasicFormGroupComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicBasicFormGroupComponent;
 

@@ -87,10 +87,12 @@ export function bootstrapUIFormControlMapFn(model: DynamicFormControlModel): Typ
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX:
             return DynamicBootstrapCheckboxComponent;
 
+        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
+            return DynamicBootstrapFormGroupComponent;
+
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             return DynamicBootstrapDatePickerComponent;
 
-        case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
         case DYNAMIC_FORM_CONTROL_TYPE_GROUP:
             return DynamicBootstrapFormGroupComponent;
 
