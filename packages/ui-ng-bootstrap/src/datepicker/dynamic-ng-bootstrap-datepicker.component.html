@@ -1,0 +1,35 @@
+<div [formGroup]="group" class="input-group">
+
+    <input ngbDatepicker class="form-control" #datepicker="ngbDatepicker"
+           [class.is-invalid]="showErrorMessages"
+           [displayMonths]="model.getAdditional('displayMonths', 1)"
+           [dynamicId]="bindId && model.id"
+           [firstDayOfWeek]="model.getAdditional('firstDayOfWeek', 1)"
+           [formControlName]="model.id"
+           [maxDate]="model.max"
+           [minDate]="model.min"
+           [name]="model.name"
+           [navigation]="model.getAdditional('navigation', 'select')"
+           [ngClass]="getClass('element', 'control')"
+           [outsideDays]="model.getAdditional('outsideDays', 'visible')"
+           [placeholder]="model.placeholder"
+           [placement]="model.getAdditional('placement', 'bottom-left')"
+           [showWeekdays]="model.getAdditional('showWeekdays', true)"
+           [showWeekNumbers]="model.getAdditional('showWeekNumbers', false)"
+           [startDate]="model.focusedDate"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)">
+
+    <div class="input-group-append">
+
+        <button class="btn btn-outline-secondary" type="button" (click)="datepicker.toggle()">
+
+            <img *ngIf="model.toggleIcon" [src]="model.toggleIcon" style="cursor: pointer;"/>
+            <span *ngIf="model.toggleLabel">{{ model.toggleLabel }}</span>
+
+        </button>
+
+    </div>
+
+</div>

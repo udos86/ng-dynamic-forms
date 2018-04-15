@@ -1,0 +1,12 @@
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
+
+    <p-colorPicker #pColorPicker
+                   [dynamicId]="bindId && model.id"
+                   [format]="model.format || 'hex'"
+                   [formControlName]="model.id"
+                   [inline]="model.inline"
+                   [ngClass]="getClass('element','control')"
+                   [tabindex]="model.tabIndex"
+                   (onChange)="onChange($event)"></p-colorPicker>
+
+</div>

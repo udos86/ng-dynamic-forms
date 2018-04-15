@@ -5,7 +5,7 @@
                             [model]="model"
                             [ngClass]="[getClass(model,'element','host'), getClass(model,'grid','host')]"
                             [templates]="templates"
-                            (dfBlur)="onEvent($event, 'blur')"
-                            (dfChange)="onEvent($event, 'change')"
-                            (dfFocus)="onEvent($event, 'focus')"
+                            (blur)="onEvent($event, 'blur')"
+                            (change)="onEvent($event, 'change')"
+                            (focus)="onEvent($event, 'focus')"
                             (ionEvent)="onEvent($event, 'custom')"></dynamic-ionic-form-control>

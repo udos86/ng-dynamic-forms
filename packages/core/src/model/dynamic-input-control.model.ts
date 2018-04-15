@@ -28,7 +28,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
     @serializable() spellCheck: boolean;
     @serializable() suffix: string | null;
 
-    constructor(config: DynamicInputControlModelConfig<T>, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicInputControlModelConfig<T>, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 

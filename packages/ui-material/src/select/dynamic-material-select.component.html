@@ -1,0 +1,40 @@
+<mat-form-field [color]="model.getAdditional('color', 'primary')"
+                [ngClass]="getClass('grid', 'control')"
+                [floatLabel]="model.getAdditional('floatLabel', 'auto')"
+                [formGroup]="group">
+
+    <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+
+        <mat-label>{{ model.label }}</mat-label>
+
+    </ng-container>
+
+    <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
+
+    <mat-select #matSelect
+                [disableRipple]="model.getAdditional('disableRipple', false)"
+                [formControlName]="model.id"
+                [id]="bindId ? model.id : null"
+                [multiple]="model.multiple"
+                [ngClass]="getClass('element', 'control')"
+                [placeholder]="model.placeholder"
+                [required]="model.required"
+                (openedChange)="onCustomEvent($event, 'openedChange')"
+                (selectionChange)="onChange($event)">
+
+        <mat-option *ngFor="let option of model.options$ | async"
+                    [ngClass]="getClass('element', 'option')"
+                    [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
+    </mat-select>
+
+    <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
+
+    <mat-hint *ngIf="model.hint !== null" align="start" [innerHTML]="model.hint"></mat-hint>
+
+    <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
+
+        <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
+
+    </ng-container>
+
+</mat-form-field>

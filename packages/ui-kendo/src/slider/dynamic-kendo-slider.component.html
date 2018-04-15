@@ -1,0 +1,16 @@
+<ng-container [formGroup]="group">
+
+    <kendo-slider #kendoSlider
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [min]="model.min"
+                  [max]="model.max"
+                  [ngClass]="[getClass('element','control'), getClass('grid','control')]"
+                  [showButtons]="model.getAdditional('showButtons', true)"
+                  [smallStep]="model.step"
+                  [tabIndex]="model.tabIndex"
+                  [tickPlacement]="model.getAdditional('tickPlacement', 'both')"
+                  [vertical]="model.vertical"
+                  (valueChange)="onChange($event)"></kendo-slider>
+
+</ng-container>

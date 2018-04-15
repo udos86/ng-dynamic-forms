@@ -1,0 +1,19 @@
+<label [formGroup]="group" class="k-form-field" [ngClass]="getClass('grid', 'control')">
+
+    <input type="checkbox" class="k-checkbox"
+           [checked]="model.checked"
+           [dynamicId]="bindId && model.id"
+           [formControlName]="model.id"
+           [indeterminate]="model.indeterminate"
+           [name]="model.name"
+           [ngClass]="getClass('element', 'control')"
+           [required]="model.required"
+           [tabindex]="model.tabIndex"
+           [value]="model.value"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)"/>
+
+    <label class="k-checkbox-label" [for]="model.id" [innerHTML]="model.label"></label>
+
+</label>

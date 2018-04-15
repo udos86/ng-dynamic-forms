@@ -1,0 +1,14 @@
+<ng-container [formGroup]="group">
+
+    <ngb-timepicker [dynamicId]="bindId && model.id"
+                    [formControlName]="model.id"
+                    [hourStep]="model.getAdditional('hourStep', 1)"
+                    [meridian]="model.meridian"
+                    [minuteStep]="model.getAdditional('minuteStep', 1)"
+                    [ngClass]="getClass('element', 'control')"
+                    [seconds]="model.showSeconds"
+                    [secondStep]="model.getAdditional('secondStep', 1)"
+                    [size]="model.getAdditional('size', 'medium')"
+                    [spinners]="model.getAdditional('spinners', true)"></ngb-timepicker>
+
+</ng-container>

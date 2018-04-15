@@ -1,5 +1,5 @@
 import { async } from "@angular/core/testing";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "./dynamic-select.model";
 
 describe("DynamicSelectModel test suite", () => {

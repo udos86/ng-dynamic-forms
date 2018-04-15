@@ -11,7 +11,7 @@ export abstract class DynamicCheckControlModel extends DynamicFormValueControlMo
 
     @serializable() labelPosition: string | null;
 
-    constructor(config: DynamicCheckControlModelConfig, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicCheckControlModelConfig, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 

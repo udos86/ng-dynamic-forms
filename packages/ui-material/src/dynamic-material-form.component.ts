@@ -9,7 +9,7 @@ import {
     DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
+import { DynamicMaterialFormControlContainerComponent } from "./dynamic-material-form-control-container.component";
 
 @Component({
     selector: "dynamic-material-form",
@@ -21,14 +21,14 @@ export class DynamicMaterialFormComponent extends DynamicFormComponent {
     @Input("model") formModel: DynamicFormControlModel[];
     @Input("layout") formLayout: DynamicFormLayout;
 
-    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicMaterialFormControlComponent) components: QueryList<DynamicMaterialFormControlComponent>;
+    @ViewChildren(DynamicMaterialFormControlContainerComponent) components: QueryList<DynamicMaterialFormControlContainerComponent>;
 
     constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
         super(formService, layoutService);

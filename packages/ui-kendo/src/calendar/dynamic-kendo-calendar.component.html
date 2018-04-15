@@ -1,0 +1,19 @@
+<ng-container [formGroup]="group">
+
+    <kendo-calendar #kendoCalendar
+                    [activeView]="model.getAdditional('activeView', 'month')"
+                    [bottomView]="model.getAdditional('bottomView', 'month')"
+                    [dynamicId]="bindId && model.id"
+                    [focusedDate]="model.focusedDate"
+                    [formControlName]="model.id"
+                    [max]="model.max"
+                    [min]="model.min"
+                    [navigation]="model.getAdditional('navigation', true)"
+                    [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                    [rangeValidation]="model.getAdditional('rangeValidation', true)"
+                    [tabindex]="model.tabIndex"
+                    [topView]="model.getAdditional('topView', 'century')"
+                    [weekNumber]="model.getAdditional('weekNumber', false)"
+                    (valueChange)="onChange($event)"></kendo-calendar>
+
+</ng-container>

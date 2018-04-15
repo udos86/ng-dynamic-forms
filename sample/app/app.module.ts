@@ -35,6 +35,7 @@ import {
     customForbiddenValidator,
     customAsyncFormGroupValidator
 } from "./app.validators";
+import { BsDatepickerModule, TimepickerModule } from "ngx-bootstrap";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -50,6 +51,8 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         AppRoutingModule,
         MatNativeDateModule,
         MatCardModule,
+        BsDatepickerModule.forRoot(),
+        TimepickerModule.forRoot(),
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),
         DynamicFormsCoreModule.forRoot(),

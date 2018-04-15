@@ -1,0 +1,22 @@
+<div [formGroup]="group" class="switch" [ngClass]="getClass('element', 'control')">
+
+    <input type="checkbox" class="switch-input"
+           [checked]="model.checked"
+           [dynamicId]="bindId && model.id"
+           [formControlName]="model.id"
+           [name]="model.name"
+           [required]="model.required"
+           [tabindex]="model.tabIndex"
+           [value]="model.value"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)"/>
+
+    <label class="switch-paddle" [for]="model.id">
+
+        <span class="switch-active" aria-hidden="true">{{ model.onLabel }}</span>
+        <span class="switch-inactive" aria-hidden="true">{{ model.offLabel }}</span>
+
+    </label>
+
+</div>

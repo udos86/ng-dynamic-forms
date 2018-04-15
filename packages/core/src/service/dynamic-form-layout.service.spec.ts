@@ -1,6 +1,7 @@
 import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormLayout, DynamicFormLayoutService } from "./dynamic-form-layout.service";
+import { DynamicInputModel } from "../model/input/dynamic-input.model";
 
 describe("DynamicFormLayoutService test suite", () => {
 
@@ -58,5 +59,12 @@ describe("DynamicFormLayoutService test suite", () => {
         expect(service.getClass(formLayout["test1"], "element", "container")).toEqual("");
         expect(service.getClass(formLayout["test2"], "grid", "control")).toEqual("");
         expect(service.getClass(formLayout["test3"], "grid", "control")).toEqual("grid-test-class");
+    });
+
+    it("should return a custom form control component type", () => {
+
+        let model = new DynamicInputModel({id: "input"});
+
+        expect(service.getCustomComponentType(model)).toBe(null);
     });
 });

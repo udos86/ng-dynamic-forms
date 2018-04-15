@@ -19,7 +19,7 @@ export abstract class DynamicDateControlModel extends DynamicFormValueControlMod
     @serializable() min: DynamicDateControlValue | null;
     @serializable() placeholder: string | null;
 
-    constructor(config: DynamicDateControlModelConfig, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicDateControlModelConfig, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 

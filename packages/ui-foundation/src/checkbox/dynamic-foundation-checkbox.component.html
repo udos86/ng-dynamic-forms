@@ -1,0 +1,16 @@
+<label [formGroup]="group">
+
+    <input type="checkbox"
+           [checked]="model.checked"
+           [dynamicId]="bindId && model.id"
+           [formControlName]="model.id"
+           [indeterminate]="model.indeterminate"
+           [name]="model.name"
+           [ngClass]="getClass('element', 'control')"
+           [required]="model.required"
+           [tabindex]="model.tabIndex"
+           [value]="model.value"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)"/><span [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"
+                                            [innerHTML]="model.label"></span></label>

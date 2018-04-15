@@ -1,3 +1,20 @@
+# 6.0.0
+
+### **Features**
+
+* **Major refactoring to discard static templates in favor of dynamically loaded form control components**
+* **Initial support for [Custom Form Controls](https://github.com/udos86/ng-dynamic-forms#custom-form-controls)**
+* update to Angular 6 & RxJS 6
+
+### **Breaking Changes**
+
+* `hasErrorMessaging` input has been removed in favor of just relying on `model.hasErrorMessages`
+* `df` prefix has been removed from outputs in favor of simply using `(blur)`, `(change)` and `(focus)` again
+* `DynamicFormControlValue` type has been removed in favor of simply using `any`
+* `DynamicFormControlComponent` has been renamed to `DynamicFormControlContainerComponent`
+
+***
+
 # 5.4.7
 
 ### **Bugfixes**

@@ -1,0 +1,16 @@
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
+
+    <p-slider #pSlider
+              [animate]="model.getAdditional('animate', false)"
+              [dynamicId]="bindId && model.id"
+              [formControlName]="model.id"
+              [min]="model.min"
+              [max]="model.max"
+              [ngClass]="getClass('element', 'control')"
+              [orientation]="model.vertical ? 'vertical' : 'horizontal'"
+              [range]="model.getAdditional('range', false)"
+              [step]="model.step"
+              (onChange)="onChange($event)"
+              (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
+
+</div>

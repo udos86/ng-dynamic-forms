@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormValueControlModel, DynamicFormControlValue } from "../model/dynamic-form-value-control.model";
+import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
@@ -41,9 +41,9 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicTimePickerModel
 } from "../model/timepicker/dynamic-timepicker.model";
+import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
-import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { JSONUtils } from "../utils/json.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
@@ -116,7 +116,7 @@ export class DynamicFormService {
 
                 default:
 
-                    let controlModel = model as DynamicFormValueControlModel<DynamicFormControlValue>,
+                    let controlModel = model as DynamicFormValueControlModel<any>,
                         controlState = {value: controlModel.value, disabled: controlModel.disabled},
                         controlOptions = this.createAbstractControlOptions(controlModel.validators,
                             controlModel.asyncValidators, controlModel.updateOn);
@@ -326,7 +326,7 @@ export class DynamicFormService {
                     }
 
                     formArrayModel.groupFactory = () => {
-                        return this.fromJSON(formArrayModel.groupPrototype || formArrayModel.origin);
+                        return this.fromJSON(formArrayModel.groupPrototype);
                     };
 
                     formModel.push(new DynamicFormArrayModel(model, layout));
