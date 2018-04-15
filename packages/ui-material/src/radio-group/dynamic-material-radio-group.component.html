@@ -1,0 +1,20 @@
+<ng-container [formGroup]="group">
+
+    <mat-radio-group #matRadioGroup
+                     [formControlName]="model.id"
+                     [id]="bindId ? model.id : null"
+                     [labelPosition]="model.getAdditional('labelPosition', 'after')"
+                     [name]="model.name"
+                     [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                     (blur)="onBlur($event)"
+                     (change)="onChange($event)"
+                     (focus)="onFocus($event)">
+
+        <mat-radio-button *ngFor="let option of model.options$ | async"
+                          [name]="model.name"
+                          [ngClass]="getClass('element', 'option')"
+                          [value]="option.value"><span [innerHTML]="option.label"></span></mat-radio-button>
+
+    </mat-radio-group>
+
+</ng-container>

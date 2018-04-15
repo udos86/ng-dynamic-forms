@@ -1,0 +1,24 @@
+<ng-container [formGroup]="group">
+
+    <kendo-dropdownlist #kendoDropDownList
+                        [data]="model.options"
+                        [delay]="model.getAdditional('delay', 500)"
+                        [dynamicId]="bindId && model.id"
+                        [filterable]="model.filterable"
+                        [formControlName]="model.id"
+                        [ignoreCase]="model.getAdditional('ignoreCase', true)"
+                        [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                        [popupSettings]="model.getAdditional('popupSettings', {})"
+                        [tabIndex]="model.tabIndex"
+                        [textField]="'label'"
+                        [valueField]="'value'"
+                        [valuePrimitive]="true"
+                        (blur)="onBlur($event)"
+                        (close)="onCustomEvent($event, 'close')"
+                        (filterChange)="onCustomEvent($event, 'filterChange')"
+                        (focus)="onFocus($event)"
+                        (open)="onCustomEvent($event, 'open')"
+                        (selectionChange)="onCustomEvent($event, 'selectionChange')"
+                        (valueChange)="onChange($event)"></kendo-dropdownlist>
+
+</ng-container>

@@ -9,7 +9,7 @@ import {
     DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicIonicFormControlComponent } from "./dynamic-ionic-form-control.component";
+import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 
 @Component({
     selector: "dynamic-ionic-form",
@@ -21,14 +21,14 @@ export class DynamicIonicFormComponent extends DynamicFormComponent {
     @Input("model") formModel: DynamicFormControlModel[];
     @Input("layout") formLayout: DynamicFormLayout;
 
-    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("ionEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicIonicFormControlComponent) components: QueryList<DynamicIonicFormControlComponent>;
+    @ViewChildren(DynamicIonicFormControlContainerComponent) components: QueryList<DynamicIonicFormControlContainerComponent>;
 
     constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
         super(formService, layoutService);

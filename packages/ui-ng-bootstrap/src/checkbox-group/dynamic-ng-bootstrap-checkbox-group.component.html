@@ -1,0 +1,26 @@
+<ng-container [formGroup]="group">
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons"
+         [dynamicId]="bindId && model.id"
+         [formGroupName]="model.id"
+         [ngClass]="getClass('element', 'control')">
+
+        <label *ngFor="let checkboxModel of model.group" ngbButtonLabel
+               [hidden]="checkboxModel.hidden"
+               [ngClass]="getClass('element', 'control', checkboxModel)">
+
+            <input type="checkbox" ngbButton
+                   [checked]="checkboxModel.checked"
+                   [dynamicId]="bindId && checkboxModel.id"
+                   [formControlName]="checkboxModel.id"
+                   [name]="checkboxModel.name"
+                   [required]="checkboxModel.required"
+                   [tabindex]="checkboxModel.tabIndex"
+                   [value]="checkboxModel.value"
+                   (blur)="onBlur($event)"
+                   (change)="onChange($event)"
+                   (focus)="onFocus($event)"/><span [ngClass]="getClass('element', 'label', checkboxModel)"
+                                                    [innerHTML]="checkboxModel.label"></span></label>
+    </div>
+
+</ng-container>

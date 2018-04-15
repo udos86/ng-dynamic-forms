@@ -1,11 +1,11 @@
 <dynamic-bootstrap-form-control *ngFor="let model of formModel; trackBy: trackByFn"
                                 [group]="formGroup"
-                                [hasErrorMessaging]="model.hasErrorMessages"
                                 [hidden]="model.hidden"
                                 [layout]="formLayout"
                                 [model]="model"
                                 [ngClass]="[getClass(model,'element','host'), getClass(model,'grid','host')]"
                                 [templates]="templates"
-                                (dfBlur)="onEvent($event, 'blur')"
-                                (dfChange)="onEvent($event, 'change')"
-                                (dfFocus)="onEvent($event, 'focus')"></dynamic-bootstrap-form-control>
+                                (blur)="onEvent($event, 'blur')"
+                                (change)="onEvent($event, 'change')"
+                                (focus)="onEvent($event, 'focus')"
+                                (bsEvent)="onEvent($event, 'custom')"></dynamic-bootstrap-form-control>

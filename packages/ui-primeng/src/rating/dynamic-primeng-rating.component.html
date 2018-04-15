@@ -1,0 +1,15 @@
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
+
+    <p-rating #pRating
+              [cancel]="model.getAdditional('cancel', true)"
+              [dynamicId]="bindId && model.id"
+              [formControlName]="model.id"
+              [iconCancelClass]="model.getAdditional('iconCancelClass', 'fa-ban')"
+              [iconOffClass]="model.getAdditional('iconOffClass', 'fa-star-o')"
+              [iconOnClass]="model.getAdditional('iconOnClass', 'fa-star')"
+              [ngClass]="getClass('element', 'control')"
+              [stars]="model.max"
+              (onCancel)="onCustomEvent($event, 'onCancel')"
+              (onRate)="onChange($event)"></p-rating>
+
+</div>

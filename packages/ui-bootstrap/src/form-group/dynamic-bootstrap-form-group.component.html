@@ -1,0 +1,24 @@
+<ng-container [formGroup]="group">
+
+    <fieldset [dynamicId]="bindId && model.id"
+              [formGroupName]="model.id"
+              [name]="model.name"
+              [ngClass]="getClass('element', 'control')">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <dynamic-bootstrap-form-control *ngFor="let _model of model.group"
+                                        [asBootstrapFormGroup]="false"
+                                        [group]="control"
+                                        [hidden]="_model.hidden"
+                                        [layout]="layout"
+                                        [model]="_model"
+                                        [templates]="templates"
+                                        [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
+                                        (blur)="onBlur($event)"
+                                        (change)="onChange($event)"
+                                        (focus)="onFocus($event)"
+                                        (bsEvent)="onCustomEvent($event, null, true)"></dynamic-bootstrap-form-control>
+    </fieldset>
+
+</ng-container>

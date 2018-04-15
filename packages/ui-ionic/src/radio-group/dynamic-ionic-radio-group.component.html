@@ -1,0 +1,21 @@
+<ng-container [formGroup]="group">
+
+    <ion-list #ionRadioGroup radio-group
+              [dynamicId]="bindId && model.id"
+              [formControlName]="model.id"
+              [ngClass]="getClass('element', 'control')"
+              (ionChange)="onChange($event)">
+
+        <ion-list-header *ngIf="model.label !== null">{{ model.label }}</ion-list-header>
+
+        <ion-item *ngFor="let option of model.options$ | async" [ngClass]="getClass('element', 'option')">
+
+            <ion-label>{{ option.label }}</ion-label>
+
+            <ion-radio [value]="option.value"></ion-radio>
+
+        </ion-item>
+
+    </ion-list>
+
+</ng-container>

@@ -9,6 +9,8 @@ export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelCo
     filterable?: boolean;
     multiple?: boolean;
     placeholder?: string;
+    prefix?: string;
+    suffix?: string;
 }
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
@@ -16,6 +18,8 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
     @serializable() filterable: boolean;
     @serializable() multiple: boolean;
     @serializable() placeholder: string;
+    @serializable() prefix: string | null;
+    @serializable() suffix: string | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
 
@@ -26,6 +30,8 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
         this.filterable = typeof config.filterable === "boolean" ? config.filterable : false;
         this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
         this.placeholder = config.placeholder || "";
+        this.prefix = config.prefix || null;
+        this.suffix = config.suffix || null;
     }
 
     select(...indices: number[]): void {

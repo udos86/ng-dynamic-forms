@@ -11,7 +11,7 @@ export abstract class DynamicFileControlModel extends DynamicFormValueControlMod
 
     @serializable() multiple: boolean;
 
-    constructor(config: DynamicFileControlModelConfig, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicFileControlModelConfig, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 

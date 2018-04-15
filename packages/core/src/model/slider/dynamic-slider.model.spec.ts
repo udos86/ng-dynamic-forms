@@ -8,7 +8,10 @@ describe("DynamicSliderModel test suite", () => {
             min: 0,
             max: 100,
             step: 1,
-            value: 27
+            value: 27,
+            additional: {
+                "test": true
+            }
         };
 
     beforeEach(() => model = new DynamicSliderModel(config));
@@ -25,6 +28,11 @@ describe("DynamicSliderModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SLIDER);
         expect(model.value).toBe(config.value);
         expect(model.vertical).toBe(false);
+    });
+
+    it("should get additional", () => {
+
+        expect(model.getAdditional("test")).toBe(true);
     });
 
     it("should serialize correctly", () => {

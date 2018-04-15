@@ -1,0 +1,34 @@
+<ng-container [formGroup]="group">
+
+    <div [ngClass]="getClass('grid', 'control')">
+
+        <div [dynamicId]="bindId && model.id" [formArrayName]="model.id" [ngClass]="getClass('element', 'control')">
+
+            <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
+                 [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
+
+                <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: groupModel"></ng-container>
+
+                <dynamic-primeng-form-control *ngFor="let _model of groupModel.group"
+                                              [bindId]="false"
+                                              [context]="groupModel"
+                                              [group]="control.at(idx)"
+                                              [hidden]="_model.hidden"
+                                              [layout]="layout"
+                                              [model]="_model"
+                                              [templates]="templates"
+                                              [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
+                                              (blur)="onBlur($event)"
+                                              (change)="onChange($event)"
+                                              (focus)="onFocus($event)"
+                                              (pEvent)="onCustomEvent($event, null, true)"></dynamic-primeng-form-control>
+
+                <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: groupModel"></ng-container>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</ng-container>

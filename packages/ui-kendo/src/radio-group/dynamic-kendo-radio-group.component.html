@@ -1,0 +1,22 @@
+<fieldset [formGroup]="group" class="k-form-field" role="radiogroup"
+          [ngClass]="[getClass('element','control'), getClass('grid','control')]">
+
+    <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+    <ng-container *ngFor="let option of model.options$ | async; let idx = index">
+
+        <input type="radio" class="k-radio"
+               [formControlName]="model.id"
+               [id]="'option' + idx + model.id"
+               [name]="model.name"
+               [ngClass]="[getClass('element','option'), getClass('grid','option')]"
+               [value]="option.value"
+               (blur)="onBlur($event)"
+               (change)="onChange($event)"
+               (focus)="onFocus($event)"/>
+
+        <label class="k-radio-label" [for]="'option' + idx + model.id" [innerHTML]="option.label"></label>
+
+    </ng-container>
+
+</fieldset>

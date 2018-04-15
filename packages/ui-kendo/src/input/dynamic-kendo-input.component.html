@@ -1,0 +1,36 @@
+<label [formGroup]="group" class="k-form-field" [ngClass]="getClass('grid','control')">
+
+    <span>
+
+        <span [innerHTML]="model.label" [ngClass]="getClass('element','label')"></span>
+
+        <span *ngIf="model.hint !== null" class="k-field-info" [innerHTML]="model.hint"
+              [ngClass]="getClass('element','hint')"></span>
+
+    </span>
+
+    <input class="k-textbox"
+           [attr.accept]="model.accept"
+           [attr.list]="model.listId"
+           [attr.max]="model.max"
+           [attr.min]="model.min"
+           [attr.multiple]="model.multiple"
+           [attr.step]="model.step"
+           [autocomplete]="model.autoComplete"
+           [autofocus]="model.autoFocus"
+           [dynamicId]="bindId && model.id"
+           [formControlName]="model.id"
+           [maxlength]="model.maxLength"
+           [minlength]="model.minLength"
+           [name]="model.name"
+           [ngClass]="getClass('element','control')"
+           [pattern]="model.pattern"
+           [placeholder]="model.placeholder"
+           [readonly]="model.readOnly"
+           [required]="model.required"
+           [spellcheck]="model.spellCheck"
+           [tabindex]="model.tabIndex"
+           [type]="model.inputType"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)"/></label>
