@@ -24,6 +24,8 @@
         "@angular/cdk/scrolling": "npm:@angular/cdk/bundles/cdk-scrolling.umd.js",
         "@angular/cdk/stepper": "npm:@angular/cdk/bundles/cdk-stepper.umd.js",
         "@angular/cdk/table": "npm:@angular/cdk/bundles/cdk-table.umd.js",
+        "@angular/cdk/text-field": "npm:@angular/cdk/bundles/cdk-text-field.umd.js",
+        "@angular/cdk/tree": "npm:@angular/cdk/bundles/cdk-tree.umd.js",
         "@angular/common": "npm:@angular/common/bundles/common.umd.js",
         "@angular/common/http": "npm:@angular/common/bundles/common-http.umd.js",
         "@angular/common/testing": "npm:@angular/common/bundles/common-testing.umd.js",

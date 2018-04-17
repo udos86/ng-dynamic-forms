@@ -22,8 +22,8 @@
         <input matInput
                [placeholder]="model.placeholder"
                [matChipInputFor]="matChipList"
-               [matChipInputAddOnBlur]="true"
-               [matChipInputSeparatorKeyCodes]="[13, 188]"
+               [matChipInputAddOnBlur]="model.getAdditional('matChipInputAddOnBlur', true)"
+               [matChipInputSeparatorKeyCodes]="model.getAdditional('matChipInputSeparatorKeyCodes', [13, 188])"
                (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
 
     </mat-chip-list>
