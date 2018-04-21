@@ -320,6 +320,7 @@ export class DynamicFormService {
                     let formArrayModel = model as DynamicFormArrayModel;
 
                     if (Array.isArray(formArrayModel.groups)) {
+
                         formArrayModel.groups.forEach((groupModel: DynamicFormArrayGroupModel) => {
                             groupModel.group = this.fromJSON(groupModel.group) as DynamicFormControlModel[];
                         });

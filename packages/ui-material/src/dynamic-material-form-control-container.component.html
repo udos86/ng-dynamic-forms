@@ -5,7 +5,7 @@
            [innerHTML]="model.label"
            [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
 
-    <ng-container *ngTemplateOutlet="getTemplate('START')?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
 
     <ng-container #componentViewContainer></ng-container>
 
@@ -15,7 +15,7 @@
 
     </ng-container>
 
-    <ng-container *ngTemplateOutlet="getTemplate('END')?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 

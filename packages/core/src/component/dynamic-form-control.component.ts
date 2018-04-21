@@ -1,12 +1,11 @@
-import { EventEmitter, QueryList } from "@angular/core";
+import { EventEmitter } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
-import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
-import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
+import { DynamicFormLayout, DynamicFormLayoutService, DynamicFormControlTemplates } from "../service/dynamic-form-layout.service";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
 
@@ -16,7 +15,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
     group: FormGroup;
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
-    templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+    templates: DynamicFormControlTemplates;
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;

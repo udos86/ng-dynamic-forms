@@ -30,7 +30,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE
 } from "../model/input/dynamic-input.model";
-import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
+import {
+    DynamicFormControlLayout,
+    DynamicFormControlLayoutContext,
+    DynamicFormControlLayoutPlace
+} from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-control-relation.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
@@ -145,23 +149,21 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.inputTemplateList !== undefined ? this.inputTemplateList : this.contentTemplateList;
     }
 
-    getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
+    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
 
         let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }
 
-    getTemplate(align: string): DynamicTemplateDirective | undefined {
+    get startTemplate(): DynamicTemplateDirective | undefined {
+        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY ?
+            this.layoutService.getStartTemplate(this.model, this.templates) : undefined;
+    }
 
-        if (this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY) {
-
-            return this.layoutService
-                .filterTemplatesByModel(this.model, this.templates)
-                .find(template => template.as === null && template.align === align);
-        }
-
-        return undefined;
+    get endTemplate(): DynamicTemplateDirective | undefined {
+        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY ?
+            this.layoutService.getEndTemplate(this.model, this.templates) : undefined;
     }
 
     protected createFormControlComponent(): void {

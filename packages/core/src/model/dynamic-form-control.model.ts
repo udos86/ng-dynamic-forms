@@ -40,8 +40,6 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() updateOn: FormHooks | null;
     @serializable() validators: DynamicValidatorsConfig | null;
 
-    /*@deprecated*/ readonly cls: DynamicFormControlLayout | null;
-
     abstract readonly type: string;
 
     protected constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {

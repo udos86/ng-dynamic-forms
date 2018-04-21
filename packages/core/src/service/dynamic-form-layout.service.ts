@@ -1,15 +1,22 @@
 import { Inject, Injectable, InjectionToken, Optional, QueryList, Type } from "@angular/core";
 import {
+    DynamicFormControlLayout,
     DynamicFormControlLayoutConfig,
-    DynamicFormControlLayout
+    DynamicFormControlLayoutContext,
+    DynamicFormControlLayoutPlace
 } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormControl } from "../component/dynamic-form-control.interface";
-import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
+import {
+    DynamicTemplateDirective,
+    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
+} from "../directive/dynamic-template.directive";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
 export type DynamicFormControlMapFn = (model: DynamicFormControlModel) => Type<DynamicFormControl> | null;
+
+export type DynamicFormControlTemplates = QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 
 export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControlMapFn>("DYNAMIC_FORM_CONTROL_MAP_FN");
 
@@ -35,7 +42,7 @@ export class DynamicFormLayoutService {
         return null;
     }
 
-    filterTemplatesByModel(model: DynamicFormControlModel, templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined): DynamicTemplateDirective[] {
+    filterTemplatesByModel(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] {
 
         const filterCallback: (template: DynamicTemplateDirective) => boolean = (template: DynamicTemplateDirective) => {
             return template.modelId === model.id || template.modelType === model.type;
@@ -51,7 +58,21 @@ export class DynamicFormLayoutService {
         return [];
     }
 
-    getClass(layout: DynamicFormControlLayout | null, context: string, place: string): string {
+    getAlignedTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates, alignment: DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT): DynamicTemplateDirective | undefined {
+
+        return this.filterTemplatesByModel(model, templates)
+            .find(template => template.as === null && template.align === alignment);
+    }
+
+    getStartTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective | undefined {
+        return this.getAlignedTemplate(model, templates, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.Start);
+    }
+
+    getEndTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective | undefined {
+        return this.getAlignedTemplate(model, templates, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End);
+    }
+
+    getClass(layout: DynamicFormControlLayout | null, context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace): string {
 
         if (layout !== null && layout.hasOwnProperty(context)) {
 

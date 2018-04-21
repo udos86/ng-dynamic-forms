@@ -19,3 +19,8 @@ export interface DynamicFormControlLayout {
 
     [key: string]: DynamicFormControlLayoutConfig | undefined;
 }
+
+export type DynamicFormControlLayoutPlace = keyof DynamicFormControlLayoutConfig;
+
+export type DynamicFormControlLayoutContext = keyof DynamicFormControlLayout;
+

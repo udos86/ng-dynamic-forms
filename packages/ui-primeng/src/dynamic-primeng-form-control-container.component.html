@@ -6,7 +6,7 @@
 
     </div>
 
-    <ng-container *ngTemplateOutlet="getTemplate('START')?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
 
     <ng-container #componentViewContainer></ng-container>
 
@@ -14,7 +14,7 @@
         <li *ngFor="let message of errorMessages" class="ui-message ui-messages-error ui-corner-all">{{ message }}</li>
     </ul>
 
-    <ng-container *ngTemplateOutlet="getTemplate('END')?.templateRef; context: model"></ng-container>
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
 
     <ng-content></ng-content>
 
