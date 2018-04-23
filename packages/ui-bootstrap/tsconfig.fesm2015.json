@@ -9,6 +9,7 @@
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
+    "enableResourceInlining": true,
     "flatModuleId": "@ng-dynamic-forms/ui-bootstrap",
     "flatModuleOutFile": "ui-bootstrap.js",
     "skipTemplateCodegen": true,

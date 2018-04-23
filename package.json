@@ -63,7 +63,7 @@
     "@progress/kendo-popup-common": "^1.5.1",
     "@progress/kendo-theme-default": "^2.50.0",
     "@telerik/kendo-intl": "^1.4.0",
-    "angular2-text-mask": "^8.0.4",
+    "angular2-text-mask": "^8.0.5",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.5",
     "foundation-sites": "^6.4.3",
