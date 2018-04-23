@@ -22,7 +22,7 @@
     "url": "https://github.com/udos86/ng-dynamic-forms"
   },
   "main": "./bundles/ui-basic.umd.js",
-  "module": "./fes5/ui-basic.js",
+  "module": "./fesm5/ui-basic.js",
   "typings": "./ui-basic.d.ts",
   "repository": {
     "type": "git",

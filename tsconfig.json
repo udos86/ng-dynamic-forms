@@ -15,6 +15,7 @@
     ],
     "module": "es2015",
     "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noUnusedParameters": true,
     "removeComments": false,

@@ -6,7 +6,6 @@ const TASK_BUNDLE              = require("./build/gulp/bundle"),
       TASK_CLEAN               = require("./build/gulp/clean"),
       TASK_COPY                = require("./build/gulp/copy"),
       TASK_NGC                 = require("./build/gulp/ngc"),
-      TASK_INLINE_NG_TEMPLATES = require("./build/gulp/inline-ng-templates"),
       TASK_PREPROCESS          = require("./build/gulp/preprocess"),
       TASK_TRANSPILE           = require("./build/gulp/transpile"),
       TASK_TSLINT              = require("./build/gulp/tslint"),
@@ -47,7 +46,6 @@ PACKAGES_NAMES.forEach(packageName => {
               TASK_NAME_CLEAN               = `clean:${packageName}`,
               TASK_NAME_STAGE_ES5           = `stage-es5:${packageName}`,
               TASK_NAME_STAGE_ES2015        = `stage-es2015:${packageName}`,
-              TASK_NAME_INLINE_NG_TEMPLATES = `inline-ng-templates:${packageName}`,
               TASK_NAME_COMPILE_ES5         = `compile-es5:${packageName}`,
               TASK_NAME_COMPILE_ES2015      = `compile-es2015:${packageName}`,
               TASK_NAME_PREPROCESS          = `preprocess:${packageName}`,
@@ -69,9 +67,6 @@ PACKAGES_NAMES.forEach(packageName => {
 
         gulp.task(TASK_NAME_STAGE_ES2015,
             TASK_COPY([`${PACKAGE_SRC_PATH}/**/*`], PACKAGE_TMP_ES2015_PATH));
-
-        gulp.task(TASK_NAME_INLINE_NG_TEMPLATES,
-            TASK_INLINE_NG_TEMPLATES([`${PACKAGE_TMP_ES5_PATH}/**/*.ts`, `${PACKAGE_TMP_ES2015_PATH}/**/*.ts`]));
 
         gulp.task(TASK_NAME_COMPILE_ES5,
             TASK_NGC(`${PACKAGE_TMP_ES5_PATH}/tsconfig.fesm5.json`));
@@ -117,7 +112,6 @@ PACKAGES_NAMES.forEach(packageName => {
                 TASK_NAME_CLEAN,
                 TASK_NAME_STAGE_ES5,
                 TASK_NAME_STAGE_ES2015,
-                TASK_NAME_INLINE_NG_TEMPLATES,
                 TASK_NAME_COMPILE_ES5,
                 TASK_NAME_COMPILE_ES2015,
                 TASK_NAME_PREPROCESS,
