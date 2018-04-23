@@ -20,6 +20,6 @@ export interface DynamicFormControlCustomEvent {
     customEventType: string;
 }
 
-export function isDynamicFormControlEvent($event: any): boolean {
+export function isDynamicFormControlEvent($event: any): $event is DynamicFormControlEvent {
     return $event !== null && typeof $event === "object" && $event.hasOwnProperty("$event");
 }

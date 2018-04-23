@@ -3,9 +3,17 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-layout.model";
+import {
+    DynamicFormControlLayout,
+    DynamicFormControlLayoutContext,
+    DynamicFormControlLayoutPlace
+} from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
-import { DynamicFormLayout, DynamicFormLayoutService, DynamicFormControlTemplates } from "../service/dynamic-form-layout.service";
+import {
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormControlTemplates
+} from "../service/dynamic-form-layout.service";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
 
@@ -19,7 +27,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;
-    customEvent: EventEmitter<DynamicFormControlCustomEvent>;
+    customEvent: EventEmitter<DynamicFormControlCustomEvent> | undefined;
     focus: EventEmitter<any>;
 
     protected constructor(protected layoutService: DynamicFormLayoutService,
@@ -49,7 +57,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
-    getClass(context: string, place: string, model: DynamicFormControlModel = this.model): string {
+    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
 
         let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
 
@@ -77,13 +85,15 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {
 
+        let emitter = this.customEvent as EventEmitter<DynamicFormControlCustomEvent>;
+
         if (bypass) {
 
-            this.customEvent.emit($event);
+            emitter.emit($event);
 
         } else if (typeof type === "string") {
 
-            this.customEvent.emit({customEvent: $event, customEventType: type});
+            emitter.emit({customEvent: $event, customEventType: type});
         }
     }
 

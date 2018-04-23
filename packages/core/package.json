@@ -2,10 +2,6 @@
   "name": "@ng-dynamic-forms/core",
   "version": "6.0.0-beta",
   "description": "A rapid form development library for Angular 2.x and higher",
-  "main": "./bundles/core.umd.js",
-  "module": "./esm5/core.js",
-  "es2015": "./esm2015/core.js",
-  "typings": "./core.d.ts",
   "keywords": [
     "angular",
     "angular 2",
@@ -15,25 +11,34 @@
     "ng dynamic forms",
     "reactive forms"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
+  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
+  "bugs": {
+    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
   },
+  "license": "ISC",
   "author": {
     "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
     "url": "https://github.com/udos86/ng-dynamic-forms"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
+  "main": "./bundles/core.umd.js",
+  "module": "./fesm5/core.js",
+  "typings": "./core.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
-  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0",
-    "@angular/forms": "^5.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/forms": "^6.0.0",
     "core-js": "^2.4.1",
-    "rxjs": "^5.5.2"
-  }
+    "rxjs": "^6.0.0"
+  },
+  "es2015": "./fesm2015/core.js",
+  "esm2015": "./esm2015/core.js",
+  "esm5": "./esm5/core.js",
+  "fesm2015": "./fesm2015/core.js",
+  "fesm5": "./fesm5/core.js",
+  "sideEffects": false
 }

@@ -71,6 +71,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         } else if (options instanceof Observable) {
 
             this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
+
                 map(optionsConfig => {
 
                     let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));

@@ -2,10 +2,6 @@
   "name": "@ng-dynamic-forms/ui-foundation",
   "version": "6.0.0-beta",
   "description": "Foundation UI package for NG Dynamic Forms",
-  "main": "./bundles/ui-foundation.umd.js",
-  "module": "./esm5/ui-foundation.js",
-  "es2015": "./esm2015/ui-foundation.js",
-  "typings": "./ui-foundation.d.ts",
   "keywords": [
     "angular",
     "angular 2",
@@ -16,27 +12,36 @@
     "reactive forms",
     "ui"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
+  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
+  "bugs": {
+    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
   },
+  "license": "ISC",
   "author": {
     "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
     "url": "https://github.com/udos86/ng-dynamic-forms"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
+  "main": "./bundles/ui-foundation.umd.js",
+  "module": "./fesm5/ui-foundation.js",
+  "typings": "./ui-foundation.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
-  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0",
-    "@angular/forms": "^5.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/forms": "^6.0.0",
     "@ng-dynamic-forms/core": "^6.0.0-beta",
     "angular2-text-mask": "^8.0.1",
     "foundation-sites": "^6.3.1",
-    "rxjs": "^5.5.2"
-  }
+    "rxjs": "^6.0.0"
+  },
+  "es2015": "./fesm2015/ui-foundation.js",
+  "esm2015": "./esm2015/ui-foundation.js",
+  "esm5": "./esm5/ui-foundation.js",
+  "fesm2015": "./fesm2015/ui-foundation.js",
+  "fesm5": "./fesm5/ui-foundation.js",
+  "sideEffects": false
 }

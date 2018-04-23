@@ -57,7 +57,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    customEvent: EventEmitter<DynamicFormControlEvent>;
+    customEvent: EventEmitter<DynamicFormControlEvent> | undefined;
     focus: EventEmitter<DynamicFormControlEvent>;
 
     componentViewContainerRef: ViewContainerRef;
@@ -149,13 +149,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.inputTemplateList !== undefined ? this.inputTemplateList : this.contentTemplateList;
     }
 
-    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
-
-        let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
-
-        return this.layoutService.getClass(controlLayout, context, place);
-    }
-
     get startTemplate(): DynamicTemplateDirective | undefined {
         return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY ?
             this.layoutService.getStartTemplate(this.model, this.templates) : undefined;
@@ -164,6 +157,13 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     get endTemplate(): DynamicTemplateDirective | undefined {
         return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY ?
             this.layoutService.getEndTemplate(this.model, this.templates) : undefined;
+    }
+
+    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
+
+        let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
+
+        return this.layoutService.getClass(controlLayout, context, place);
     }
 
     protected createFormControlComponent(): void {
@@ -192,8 +192,9 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onChange($event)));
             this.componentSubscriptions.push(instance.focus.subscribe(($event: any) => this.onFocus($event)));
 
-            if (instance.customEvent instanceof EventEmitter) {
-                this.componentSubscriptions.push(instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+            if (instance.customEvent !== undefined) {
+                this.componentSubscriptions.push(
+                    instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
         }
     }
@@ -275,17 +276,17 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
 
-                    let inputElement: any = ($event as Event).target || ($event as Event).srcElement;
+                    let inputElement: any = $event.target || $event.srcElement;
 
                     model.files = inputElement.files as FileList;
                 }
             }
 
-            this.change.emit(this.createDynamicFormControlEvent($event as Event, DynamicFormControlEventType.Change));
+            this.change.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Change));
 
         } else if (isDynamicFormControlEvent($event)) { // event bypass
 
-            this.change.emit($event as DynamicFormControlEvent);
+            this.change.emit($event);
 
         } else { // custom library value change event
 
@@ -297,7 +298,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         if (isDynamicFormControlEvent($event)) { // event bypass
 
-            this.blur.emit($event as DynamicFormControlEvent);
+            this.blur.emit($event);
 
         } else { // native HTML 5 or UI library blur event
 
@@ -310,7 +311,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         if (isDynamicFormControlEvent($event)) { // event bypass
 
-            this.focus.emit($event as DynamicFormControlEvent);
+            this.focus.emit($event);
 
         } else { // native HTML 5 or UI library focus event
 
@@ -321,15 +322,15 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
 
+        let emitter = this.customEvent as EventEmitter<DynamicFormControlEvent>;
+
         if (isDynamicFormControlEvent($event)) { // child event bypass
 
-            this.customEvent.emit($event as DynamicFormControlEvent);
+            emitter.emit($event);
 
         } else { // native UI library custom event
 
-            let $customEvent = $event as DynamicFormControlCustomEvent;
-
-            this.customEvent.emit(this.createDynamicFormControlEvent($customEvent.customEvent, $customEvent.customEventType));
+            emitter.emit(this.createDynamicFormControlEvent($event.customEvent, $event.customEventType));
         }
     }
 }

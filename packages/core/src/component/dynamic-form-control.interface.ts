@@ -15,6 +15,6 @@ export interface DynamicFormControl {
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;
-    customEvent?: EventEmitter<DynamicFormControlCustomEvent>;
+    customEvent?: EventEmitter<DynamicFormControlCustomEvent> | undefined;
     focus: EventEmitter<any>;
 }
