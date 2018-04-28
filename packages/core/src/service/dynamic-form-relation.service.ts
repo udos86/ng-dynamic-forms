@@ -11,7 +11,7 @@ export const DYNAMIC_FORM_CONTROL_STATE_VISIBLE = "VISIBLE";
 @Injectable()
 export class DynamicFormRelationService {
 
-    private subscriptions: Map<string, Subscription> = new Map<>();
+    private subscriptions: Map<string, Subscription> = new Map();
 
     private findRelatedFormControl(model: DynamicFormControlModel, formGroup: FormGroup): FormControl {
 

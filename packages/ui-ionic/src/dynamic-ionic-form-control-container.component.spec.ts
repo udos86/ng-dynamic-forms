@@ -1,5 +1,11 @@
+import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { By } from "@angular/platform-browser";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { TextMaskModule } from "angular2-text-mask";
+import { IonicModule } from "ionic-angular";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -17,9 +23,10 @@ import {
     DynamicSliderModel,
     DynamicSwitchModel,
     DynamicTextAreaModel,
-    DynamicTimePickerModel
+    DynamicTimePickerModel, DynamicFormsCoreModule
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
+import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
 
 xdescribe("DynamicIonicFormControlContainerComponent test suite", () => {
 
@@ -42,28 +49,35 @@ xdescribe("DynamicIonicFormControlContainerComponent test suite", () => {
             new DynamicTimePickerModel({id: "timepicker"})
         ],
         testModel = formModel[8],
-        //formGroup: FormGroup,
-        //fixture: ComponentFixture<DynamicIonicFormControlComponent>,
+        formGroup: FormGroup,
+        fixture: ComponentFixture<DynamicIonicFormControlContainerComponent>,
         component: DynamicIonicFormControlContainerComponent,
-        //debugElement: DebugElement,
+        debugElement: DebugElement,
         testElement: DebugElement;
-    /*
+
     beforeEach(async(() => {
+
+        TestBed.overrideModule(BrowserDynamicTestingModule, {
+
+            set: {
+                entryComponents: [DynamicIonicInputComponent]
+            }
+        });
 
         TestBed.configureTestingModule({
 
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                IonicModule,
                 TextMaskModule,
+                IonicModule,
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicFormIonicComponent]
+            declarations: [DynamicIonicFormControlContainerComponent, DynamicIonicInputComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicFormIonicComponent);
+            fixture = TestBed.createComponent(DynamicIonicFormControlContainerComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -79,9 +93,9 @@ xdescribe("DynamicIonicFormControlContainerComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
+        testElement = debugElement.query(By.css(`ion-input[id='${testModel.id}']`));
     }));
-    */
+
     it("should initialize correctly", () => {
 
         expect(component.bindId).toBe(true);
@@ -93,9 +107,11 @@ xdescribe("DynamicIonicFormControlContainerComponent test suite", () => {
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
         expect(component.focus).toBeDefined();
+
+        expect(component.componentType).toBe(DynamicIonicInputComponent);
     });
 
-    it("should have an input element", () => {
+    it("should have an ion-input element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
