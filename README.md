@@ -971,7 +971,7 @@ Next **embed your custom form control** into the component template:
 </ng-container>
 ```
 
-Then add your newly implemented `DynamicFormControl` to `entryComponents` in your app module:
+Then **add your newly implemented** `DynamicFormControl` **to** `entryComponents` in your app module:
 ```typescript
 entryComponents: [MyDynamicCustomFormControlComponent]
 ```

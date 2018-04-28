@@ -6,7 +6,7 @@
 
 * **Major refactoring to discard static templates in favor of dynamically loaded form control components**
 * **Initial support for [Custom Form Controls](https://github.com/udos86/ng-dynamic-forms#custom-form-controls)**
-* update to Angular 6 & RxJS 6
+* **update to Angular 6 & RxJS 6**
 
 ### **Breaking Changes**
 
