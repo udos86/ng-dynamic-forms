@@ -649,7 +649,6 @@ With NG Dynamic Forms you can directly listen to the three most common events,
 The object passed to your handler function gives you any control and model information needed for further processing.
 
 The `$event` property even grants access to the original event:
-
 ```typescript
 interface DynamicFormControlEvent {
 
@@ -854,7 +853,7 @@ plugins: [
 ]
 ```
 
-However this is not considered to be a best practice as it prevents aggressive bundle minification!
+However this is **not** considered to be a best practice as it prevents aggressive bundle minification!
 
 Moreover when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** at all unless running `ng eject`.
 
@@ -895,7 +894,7 @@ new DynamicInputModel({
 
 Starting with version 6 NG Dynamic Forms allows you to easily plugin in your own custom form controls.
 
-Beforehand follow [**the standard procedure**](https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html) to create your custom form control component:
+Beforehand follow [**the standard procedure**](https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html) to build your custom Angular form control:
 ```typescript
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -904,7 +903,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
   selector: 'my-custom-form-control',
   templateUrl: './my-custom-form-control.component.html',
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MyCustomFormControlComponent), multi: true }
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MyCustomFormControlComponent),
+      multi: true
+    }
   ]
 })
 export class MyCustomFormControlComponent implements ControlValueAccessor {
@@ -913,7 +916,7 @@ export class MyCustomFormControlComponent implements ControlValueAccessor {
 }
 ```
 
-Now **implement a new** `DynamicFormControlComponent`:
+Now **create a new** `DynamicFormControlComponent`:
 ```typescript
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -968,30 +971,27 @@ Next **embed your custom form control** into the component template:
 </ng-container>
 ```
 
-Finally in the app module add your `DynamicFormControl` to `entryComponents` and **provide** `DYNAMIC_FORM_CONTROL_MAP_FN` **to overwrite the default mapping** of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
+Then add your newly implemented `DynamicFormControl` to `entryComponents` in your app module:
 ```typescript
-@NgModule({
+entryComponents: [MyDynamicCustomFormControlComponent]
+```
 
-    /* ... */
+Finally **provide** `DYNAMIC_FORM_CONTROL_MAP_FN` **to overwrite the default mapping** of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
+```typescript
+providers: [
+  {
+    provide: DYNAMIC_FORM_CONTROL_MAP_FN,
+    useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
 
-    entryComponents: [MyDynamicCustomFormControlComponent]
+      switch (model.type) {
 
-    providers: [
-        {
-            provide: DYNAMIC_FORM_CONTROL_MAP_FN,
-            useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
+        case /* corresponding DynamicFormControlModel */:
+          return MyDynamicCustomFormControlComponent;
 
-                switch (model.type) {
-
-                    case /* corresponding DynamicFormControlModel */:
-                        return MyDynamicCustomFormControlComponent;
-
-                }
-
-            }
         }
-    ]
-})
+     }
+  }
+]
 ```
 
 
