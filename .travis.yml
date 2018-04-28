@@ -1,7 +1,7 @@
 language: node_js
 sudo: required
 node_js:
-  - "node"
+  - "9"
 addons:
   chrome: stable
 script:
