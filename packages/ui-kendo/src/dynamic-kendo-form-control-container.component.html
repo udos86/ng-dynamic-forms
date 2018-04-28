@@ -1,0 +1,23 @@
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+
+    <label *ngIf="hasLabel" [for]="model.id" [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
+
+        <span [innerHTML]="model.label"></span>
+
+        <span *ngIf="hasHint" class="k-field-info" [innerHTML]="model.hint" [ngClass]="getClass('element', 'hint')"></span>
+
+    </label>
+
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-container #componentViewContainer></ng-container>
+
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
+        <li *ngFor="let message of errorMessages" class="k-field-info k-required">{{ message }}</li>
+    </ul>
+
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-content></ng-content>
+
+</div>

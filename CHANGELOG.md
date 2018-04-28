@@ -1,3 +1,22 @@
+# 6.0.0
+
+**Please note that there's currently no release for `ui-ionic` package due to build incompatibilities with Angular 6!**
+
+### **Features**
+
+* **Major refactoring to discard static templates in favor of dynamically loaded form control components**
+* **Initial support for [Custom Form Controls](https://github.com/udos86/ng-dynamic-forms#custom-form-controls)**
+* **update to Angular 6 & RxJS 6**
+
+### **Breaking Changes**
+
+* `hasErrorMessaging` input has been completely removed in favor of solely relying on `model.hasErrorMessages` getter
+* `df` prefix has been removed from outputs in favor of simply using `(blur)`, `(change)` and `(focus)` again
+* `DynamicFormControlValue` type has been completely removed in favor of simply using `any`
+* `DynamicFormControlComponent` has been renamed to `DynamicFormControlContainerComponent`
+
+***
+
 # 5.4.7
 
 ### **Bugfixes**

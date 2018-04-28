@@ -1,0 +1,25 @@
+<ng-container [formGroup]="group">
+
+    <div ngbRadioGroup class="btn-group btn-group-toggle" role="radiogroup"
+         [dynamicId]="bindId && model.id"
+         [formControlName]="model.id"
+         [ngClass]="getClass('element', 'control')"
+         [tabindex]="model.tabIndex"
+         (change)="onChange($event)">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <label *ngFor="let option of model.options$ | async" ngbButtonLabel
+               [ngClass]="[getClass('element', 'option'), getClass('grid', 'option')]">
+
+            <input type="radio" ngbButton
+                   [disabled]="option.disabled"
+                   [name]="model.name"
+                   [value]="option.value"
+                   (blur)="onBlur($event)"
+                   (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span>
+        </label>
+
+    </div>
+
+</ng-container>

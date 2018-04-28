@@ -1,5 +1,3 @@
-import { DynamicFormControlValue } from "../dynamic-form-value-control.model";
-
 export const DYNAMIC_FORM_CONTROL_ACTION_DISABLE = "DISABLE";
 export const DYNAMIC_FORM_CONTROL_ACTION_ENABLE = "ENABLE";
 export const DYNAMIC_FORM_CONTROL_ACTION_VISIBLE = "VISIBLE";
@@ -12,7 +10,7 @@ export interface DynamicFormControlRelation {
 
     id: string;
     status?: string;
-    value?: DynamicFormControlValue;
+    value?: any;
 }
 
 export interface DynamicFormControlRelationGroup {

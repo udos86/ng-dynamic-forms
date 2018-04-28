@@ -1,5 +1,4 @@
-import { Observable } from "rxjs/Observable";
-import { of } from "rxjs/observable/of";
+import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
@@ -48,7 +47,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     @serializable("options") _options: DynamicFormOption<T>[] = [];
     options$: Observable<DynamicFormOption<T>[]>;
 
-    constructor(config: DynamicOptionControlModelConfig<T>, layout?: DynamicFormControlLayout) {
+    protected constructor(config: DynamicOptionControlModelConfig<T>, layout?: DynamicFormControlLayout) {
 
         super(config, layout);
 
@@ -72,6 +71,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
         } else if (options instanceof Observable) {
 
             this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
+
                 map(optionsConfig => {
 
                     let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));

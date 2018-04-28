@@ -1,11 +1,7 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "5.4.7",
+  "version": "6.0.0",
   "description": "PrimeNG UI package for NG Dynamic Forms",
-  "main": "./bundles/ui-primeng.umd.js",
-  "module": "./esm5/ui-primeng.js",
-  "es2015": "./esm2015/ui-primeng.js",
-  "typings": "./ui-primeng.d.ts",
   "keywords": [
     "angular",
     "angular 2",
@@ -16,29 +12,38 @@
     "reactive forms",
     "ui"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
+  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
+  "bugs": {
+    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
   },
+  "license": "ISC",
   "author": {
     "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
     "url": "https://github.com/udos86/ng-dynamic-forms"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
+  "main": "./bundles/ui-primeng.umd.js",
+  "module": "./fesm5/ui-primeng.js",
+  "typings": "./ui-primeng.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
-  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0",
-    "@angular/forms": "^5.0.0",
-    "@ng-dynamic-forms/core": "^5.4.7",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/forms": "^6.0.0",
+    "@ng-dynamic-forms/core": "^6.0.0",
     "primeng": "^5.0.0",
-    "rxjs": "^5.5.2"
+    "rxjs": "^6.0.0"
   },
   "optionalDependencies": {
     "quill": "^1.2.3"
-  }
+  },
+  "es2015": "./fesm2015/ui-primeng.js",
+  "esm2015": "./esm2015/ui-primeng.js",
+  "esm5": "./esm5/ui-primeng.js",
+  "fesm2015": "./fesm2015/ui-primeng.js",
+  "fesm5": "./fesm5/ui-primeng.js",
+  "sideEffects": false
 }

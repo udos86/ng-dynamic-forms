@@ -9,7 +9,7 @@ import {
     DynamicFormService,
     DynamicTemplateDirective,
 } from "@ng-dynamic-forms/core";
-import { DynamicFoundationFormControlComponent } from "./dynamic-foundation-form-control.component";
+import { DynamicFoundationFormControlContainerComponent } from "./dynamic-foundation-form-control-container.component";
 
 @Component({
     selector: "dynamic-foundation-form",
@@ -21,13 +21,13 @@ export class DynamicFoundationFormComponent extends DynamicFormComponent {
     @Input("model") formModel: DynamicFormControlModel[];
     @Input("layout") formLayout: DynamicFormLayout;
 
-    @Output("dfBlur") blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfChange") change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output("dfFocus") focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicFoundationFormControlComponent) components: QueryList<DynamicFoundationFormControlComponent>;
+    @ViewChildren(DynamicFoundationFormControlContainerComponent) components: QueryList<DynamicFoundationFormControlContainerComponent>;
 
     constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
         super(formService, layoutService);

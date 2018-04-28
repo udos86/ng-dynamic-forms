@@ -1,0 +1,24 @@
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+
+    <label *ngIf="!isCheckbox && hasLabel"
+           [for]="model.id"
+           [innerHTML]="model.label"
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
+
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-container #componentViewContainer></ng-container>
+
+    <div *ngIf="hasHint" [ngClass]="[getClass('element', 'hint'), getClass('grid', 'hint')]">
+        <span [innerHTML]="model.hint"></span>
+    </div>
+
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
+        <li *ngFor="let message of errorMessages">{{ message }}</li>
+    </ul>
+
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-content></ng-content>
+
+</div>

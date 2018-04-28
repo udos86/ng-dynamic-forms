@@ -1,0 +1,17 @@
+<ion-item [formGroup]="group">
+
+    <ion-label *ngIf="model.label !== null"
+               [innerHTML]="model.label"
+               [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
+
+    <ion-textarea #ionTextArea clearInput="true"
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [ngClass]="getClass('element', 'control')"
+                  [placeholder]="model.placeholder"
+                  [readonly]="model.readOnly"
+                  (ionBlur)="onBlur($event)"
+                  (ionChange)="onChange($event)"
+                  (ionFocus)="onFocus($event)"></ion-textarea>
+
+</ion-item>

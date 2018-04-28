@@ -31,6 +31,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Form Control Events](#form-control-events)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
+- [Custom Form Controls](#custom-form-controls)
 - [Validation Messaging](#validation-messaging)
 - [JSON Export & Import](#json-export--import)
 - [JSON Form Models](#json-form-models)
@@ -625,15 +626,13 @@ new DynamicSliderModel({
 When developing forms it's often useful to keep track of certain events that occur on a specific form control. 
 
 With NG Dynamic Forms you can directly listen to the three most common events, 
-`blur`, `change` and `focus`, both on `DynamicFormControlComponent` and `DynamicFormComponent`.
-
-To avoid any interference with native events each corresponding component `@Output()` is prefixed with `df`:
+`blur`, `change` and `focus`, both on `DynamicFormControlComponent` and `DynamicFormComponent`:
 ```typescript
 <dynamic-material-form [group]="formGroup"
                        [model]="formModel"
-                       (dfBlur)="onBlur($event)"
-                       (dfChange)="onChange($event)"
-                       (dfFcus)="onFocus($event)"></dynamic-material-form>
+                       (blur)="onBlur($event)"
+                       (change)="onChange($event)"
+                       (focus)="onFocus($event)"></dynamic-material-form>
 ```
 ```typescript
 <form [formGroup]="myFormGroup">
@@ -641,16 +640,15 @@ To avoid any interference with native events each corresponding component `@Outp
     <dynamic-material-form-control *ngFor="let controlModel of myFormModel"
                                    [group]="myFormGroup"
                                    [model]="controlModel"
-                                   (dfBlur)="onBlur($event)"
-                                   (dfChange)="onChange($event)"
-                                   (dfFocus)="onFocus($event)"></dynamic-material-form-control>
+                                   (blur)="onBlur($event)"
+                                   (change)="onChange($event)"
+                                   (focus)="onFocus($event)"></dynamic-material-form-control>
 </form>
 ```
 
 The object passed to your handler function gives you any control and model information needed for further processing.
 
 The `$event` property even grants access to the original event:
-
 ```typescript
 interface DynamicFormControlEvent {
 
@@ -855,7 +853,7 @@ plugins: [
 ]
 ```
 
-However this is not considered to be a best practice as it prevents aggressive bundle minification!
+However this is **not** considered to be a best practice as it prevents aggressive bundle minification!
 
 Moreover when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** at all unless running `ng eject`.
 
@@ -892,6 +890,111 @@ new DynamicInputModel({
 ```
 
 
+## Custom Form Controls
+
+Starting with version 6 NG Dynamic Forms allows you to easily plugin in your own custom form controls.
+
+Beforehand follow [**the standard procedure**](https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html) to build your custom Angular form control:
+```typescript
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+
+@Component({
+  selector: 'my-custom-form-control',
+  templateUrl: './my-custom-form-control.component.html',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MyCustomFormControlComponent),
+      multi: true
+    }
+  ]
+})
+export class MyCustomFormControlComponent implements ControlValueAccessor {
+
+    //...
+}
+```
+
+Now **create a new** `DynamicFormControlComponent`:
+```typescript
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import {
+    DynamicFormControlComponent,
+    DynamicFormControlCustomEvent,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
+} from "@ng-dynamic-forms/core";
+import { MyCustomFormControlComponent } from "...";
+
+@Component({
+    selector: "my-dynamic-custom-form-control",
+    templateUrl: "./my-dynamic-custom-form-control.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class MyDynamicCustomFormControlComponent extends DynamicFormControlComponent {
+
+    @Input() bindId: boolean = true;
+    @Input() group: FormGroup;
+    @Input() layout: DynamicFormLayout;
+    @Input() model: /* corresponding DynamicFormControlModel */;
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChild(MyCustomFormControlComponent) myCustomFormControlComponent: MyCustomFormControlComponent;
+
+    constructor(protected layoutService: DynamicFormLayoutService,
+                protected validationService: DynamicFormValidationService) {
+
+        super(layoutService, validationService);
+    }
+}
+```
+
+Next **embed your custom form control** into the component template:
+```html
+<ng-container [formGroup]="group">
+
+    <my-custom-form-control [formControlName]="model.id"
+                            [id]="bindId ? model.id : null"
+                            [name]="model.name"
+                            [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                            (blur)="onBlur($event)"
+                            (change)="onChange($event)"
+                            (focus)="onFocus($event)"></my-custom-form-control>
+
+</ng-container>
+```
+
+Then **add your newly implemented** `DynamicFormControl` **to** `entryComponents` in your app module:
+```typescript
+entryComponents: [MyDynamicCustomFormControlComponent]
+```
+
+Finally **provide** `DYNAMIC_FORM_CONTROL_MAP_FN` **to overwrite the default mapping** of a concrete `DynamicFormControlModel` to its corresponding `DynamicFormControlComponent`;
+```typescript
+providers: [
+  {
+    provide: DYNAMIC_FORM_CONTROL_MAP_FN,
+    useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
+
+      switch (model.type) {
+
+        case /* corresponding DynamicFormControlModel */:
+          return MyDynamicCustomFormControlComponent;
+
+        }
+     }
+  }
+]
+```
+
+
 ## Validation Messaging
 
 Delivering meaningful validation information to the user is an essential part of good form design. 
@@ -924,18 +1027,6 @@ new DynamicInputModel({
 * `{{ validator.propertyName }}` where `propertyName` is a property of the object returned by validation function, for example `{{ validator.requiredPattern }}` in case of pattern validator.
 
 **Error messaging is automatically enabled whenever** `errorMessages` **are declared on a** `DynamicFormControlModel`. 
-
-It can also be **manually enabled or disabled** by binding the `hasErrorMessaging` property of any `DynamicFormControlComponent`:
-```typescript
-
-<form [formGroup]="formGroup">
-
-    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"
-                                    [group]="formGroup"
-                                    [model]="controlModel"
-                                    [hasErrorMessaging]="controlModel.hasErrorMessages"></dynamic-bootstrap-form-control>
-</form>
-```
 
 **Still you are completely free to implement your own validation messaging.** 
 
@@ -1306,11 +1397,11 @@ Whenever your Angular application has to display very simple forms only or extre
 
 > **Are there any downsides to using NG Dynamic Forms?**
 
-Certain limitations exist regarding extremely individual form layouts and form control configurations.  
+Certain limitations exist regarding extremely individual form layouts.
 
 > **Does NG Dynamic Forms support custom form controls?**
 
-No, not out of the box. You'd have to create your own UI template / package in order to achieve this.
+Yes, [it does](#custom-form-controls).
 
 > **Are there any other dynamic forms libraries for Angular?**
 

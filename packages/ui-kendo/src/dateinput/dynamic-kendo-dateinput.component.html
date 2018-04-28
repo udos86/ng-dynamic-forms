@@ -1,0 +1,18 @@
+<ng-container [formGroup]="group">
+
+    <kendo-dateinput #kendoDateInput
+                     [dynamicId]="bindId && model.id"
+                     [format]="model.getAdditional('format', 'd')"
+                     [formatPlaceholder]="model.getAdditional('formatPlaceholder', 'wide')"
+                     [formControlName]="model.id"
+                     [max]="model.max"
+                     [min]="model.min"
+                     [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                     [rangeValidation]="model.getAdditional('rangeValidation', true)"
+                     [spinners]="model.getAdditional('spinners', true)"
+                     [tabindex]="model.tabIndex"
+                     (blur)="onBlur($event)"
+                     (focus)="onFocus($event)"
+                     (valueChange)="onChange($event)"></kendo-dateinput>
+
+</ng-container>

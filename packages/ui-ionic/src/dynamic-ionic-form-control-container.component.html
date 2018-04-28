@@ -1,0 +1,11 @@
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-container #componentViewContainer></ng-container>
+
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-content></ng-content>
+
+</div>

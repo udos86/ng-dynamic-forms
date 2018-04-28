@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
 import { Component, TemplateRef } from "@angular/core";
-import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END } from "./dynamic-template.directive";
+import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT } from "./dynamic-template.directive";
 
 @Component({
     template: `
@@ -31,7 +31,7 @@ describe("DynamicTemplateDirective test suite", () => {
 
     it("should be initialized correctly", () => {
 
-        expect(directive.align).toEqual(DYNAMIC_TEMPLATE_DIRECTIVE_ALIGN_END);
+        expect(directive.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End).toBe(true);
         expect(directive.as).toBeNull();
         expect(directive.modelId).toBeUndefined();
         expect(directive.modelType).toBeUndefined();

@@ -30,7 +30,7 @@ const utils = {
     getRollupOutputPath: (packageJson, format, target, minify) => {
 
         let moduleName      = packageJson.name.split("/").pop(),
-            bundleFolder    = format === "umd" ? "bundles" : `${target.slice(0, 2)}m${target.slice(2)}`,
+            bundleFolder    = format === "umd" ? "bundles" : `f${target.slice(0, 2)}m${target.slice(2)}`,
             formatExtension = format === "umd" ? ".umd" : "",
             fileExtension   = minify ? "min." : "";
 

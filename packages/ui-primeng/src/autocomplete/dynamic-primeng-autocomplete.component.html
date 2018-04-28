@@ -1,0 +1,27 @@
+<div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
+
+    <p-autoComplete #pAutoComplete
+                    [autoHighlight]="model.getAdditional('autoHighlight', false)"
+                    [delay]="model.getAdditional('delay', 300)"
+                    [dropdown]="model.getAdditional('dropdown', false)"
+                    [dynamicId]="bindId && model.id"
+                    [emptyMessage]="model.getAdditional('emptyMessage', null)"
+                    [forceSelection]="model.getAdditional('forceSelection', false)"
+                    [formControlName]="model.id"
+                    [minLength]="model.getAdditional('minLength', 1)"
+                    [multiple]="model.multiple"
+                    [ngClass]="getClass('element', 'control')"
+                    [placeholder]="model.placeholder"
+                    [scrollHeight]="model.getAdditional('scrollHeight', '200px')"
+                    [suggestions]="suggestions"
+                    [tabindex]="model.tabIndex"
+                    (onBlur)="onBlur($event)"
+                    (change)="onChange($event)"
+                    (onClear)="onCustomEvent($event, 'onClear')"
+                    (onDropdownClick)="onCustomEvent($event, 'onDropdownClick')"
+                    (onFocus)="onFocus($event)"
+                    (onSelect)="onCustomEvent($event, 'onSelect')"
+                    (onUnselect)="onCustomEvent($event, 'onUnselect')"
+                    (completeMethod)="onAutoComplete($event)"></p-autoComplete>
+
+</div>

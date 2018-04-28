@@ -15,8 +15,19 @@ import {
 } from "@angular/material";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicMaterialFormControlComponent } from "./dynamic-material-form-control.component";
+import { DynamicMaterialFormControlContainerComponent } from "./dynamic-material-form-control-container.component";
 import { DynamicMaterialFormComponent } from "./dynamic-material-form.component";
+import { DynamicMaterialCheckboxComponent } from "./checkbox/dynamic-material-checkbox.component";
+import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
+import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
+import { DynamicMaterialFormArrayComponent } from "./form-array/dynamic-material-form-array.component";
+import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material-form-group.component";
+import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
+import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
+import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
+import { DynamicMaterialSlideToggleComponent } from "./slide-toggle/dynamic-material-slide-toggle.component";
+import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider.component";
+import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-textarea.component";
 
 @NgModule({
     imports: [
@@ -36,12 +47,36 @@ import { DynamicMaterialFormComponent } from "./dynamic-material-form.component"
         DynamicFormsCoreModule
     ],
     declarations: [
-        DynamicMaterialFormControlComponent,
+        DynamicMaterialCheckboxComponent,
+        DynamicMaterialChipsComponent,
+        DynamicMaterialDatePickerComponent,
+        DynamicMaterialFormArrayComponent,
+        DynamicMaterialFormGroupComponent,
+        DynamicMaterialInputComponent,
+        DynamicMaterialRadioGroupComponent,
+        DynamicMaterialSelectComponent,
+        DynamicMaterialSlideToggleComponent,
+        DynamicMaterialSliderComponent,
+        DynamicMaterialTextAreaComponent,
+        DynamicMaterialFormControlContainerComponent,
         DynamicMaterialFormComponent
+    ],
+    entryComponents: [
+        DynamicMaterialCheckboxComponent,
+        DynamicMaterialChipsComponent,
+        DynamicMaterialDatePickerComponent,
+        DynamicMaterialFormArrayComponent,
+        DynamicMaterialFormGroupComponent,
+        DynamicMaterialInputComponent,
+        DynamicMaterialRadioGroupComponent,
+        DynamicMaterialSelectComponent,
+        DynamicMaterialSlideToggleComponent,
+        DynamicMaterialSliderComponent,
+        DynamicMaterialTextAreaComponent
     ],
     exports: [
         DynamicFormsCoreModule,
-        DynamicMaterialFormControlComponent,
+        DynamicMaterialFormControlContainerComponent,
         DynamicMaterialFormComponent
     ]
 })

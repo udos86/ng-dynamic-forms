@@ -1,0 +1,19 @@
+<ng-container [formGroup]="group">
+
+    <kendo-autocomplete #kendoAutoComplete
+                        [data]="model.list"
+                        [dynamicId]="bindId && model.id"
+                        [formControlName]="model.id"
+                        [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                        [placeholder]="model.placeholder"
+                        [popupSettings]="model.getAdditional('popupSettings', {})"
+                        [suggest]="model.getAdditional('suggest', false)"
+                        [tabIndex]="model.tabIndex"
+                        (blur)="onBlur($event)"
+                        (close)="onCustomEvent($event, 'close')"
+                        (filterChange)="onCustomEvent($event, 'filterChange')"
+                        (focus)="onFocus($event)"
+                        (open)="onCustomEvent($event, 'open')"
+                        (valueChange)="onChange($event)"></kendo-autocomplete>
+
+</ng-container>

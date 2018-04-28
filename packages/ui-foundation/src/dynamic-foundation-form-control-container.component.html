@@ -1,0 +1,27 @@
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+
+    <div *ngIf="!isCheckbox && hasLabel" [ngClass]="getClass('grid', 'label')">
+
+        <label [class.is-invalid-label]="showErrorMessages"
+               [for]="model.id"
+               [innerHTML]="model.label"
+               [ngClass]="getClass('element', 'label')"></label>
+    </div>
+
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+
+    <div [ngClass]="getClass('grid', 'control')">
+
+        <ng-container #componentViewContainer></ng-container>
+
+    </div>
+
+    <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
+        <li *ngFor="let message of errorMessages" class="form-error is-visible">{{ message }}</li>
+    </ul>
+
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-content></ng-content>
+
+</div>

@@ -1,0 +1,13 @@
+<ng-container [formGroup]="group">
+
+    <kendo-switch #kendoSwitch
+                  [checked]="model.checked"
+                  [dynamicId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                  [offLabel]="model.offLabel"
+                  [onLabel]="model.onLabel"
+                  [tabIndex]="model.tabIndex"
+                  (valueChange)="onChange($event)"></kendo-switch>
+
+</ng-container>

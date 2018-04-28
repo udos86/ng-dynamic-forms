@@ -1,0 +1,25 @@
+<ng-container [formGroup]="group">
+
+    <kendo-datepicker #kendoDatePicker
+                      [activeView]="model.getAdditional('activeView', 'month')"
+                      [bottomView]="model.getAdditional('bottomView', 'month')"
+                      [dynamicId]="bindId && model.id"
+                      [focusedDate]="model.focusedDate"
+                      [format]="model.format || 'd'"
+                      [formControlName]="model.id"
+                      [max]="model.max"
+                      [min]="model.min"
+                      [navigation]="model.getAdditional('navigation', true)"
+                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                      [popupSettings]="model.getAdditional('popupSettings', {})"
+                      [rangeValidation]="model.getAdditional('rangeValidation', true)"
+                      [tabindex]="model.tabIndex"
+                      [topView]="model.getAdditional('topView', 'century')"
+                      [weekNumber]="model.getAdditional('weekNumber', false)"
+                      (blur)="onBlur($event)"
+                      (close)="onCustomEvent($event, 'close')"
+                      (focus)="onFocus($event)"
+                      (open)="onCustomEvent($event, 'open')"
+                      (valueChange)="onChange($event)"></kendo-datepicker>
+
+</ng-container>

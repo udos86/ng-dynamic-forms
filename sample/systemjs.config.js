@@ -24,6 +24,8 @@
         "@angular/cdk/scrolling": "npm:@angular/cdk/bundles/cdk-scrolling.umd.js",
         "@angular/cdk/stepper": "npm:@angular/cdk/bundles/cdk-stepper.umd.js",
         "@angular/cdk/table": "npm:@angular/cdk/bundles/cdk-table.umd.js",
+        "@angular/cdk/text-field": "npm:@angular/cdk/bundles/cdk-text-field.umd.js",
+        "@angular/cdk/tree": "npm:@angular/cdk/bundles/cdk-tree.umd.js",
         "@angular/common": "npm:@angular/common/bundles/common.umd.js",
         "@angular/common/http": "npm:@angular/common/bundles/common-http.umd.js",
         "@angular/common/testing": "npm:@angular/common/bundles/common-testing.umd.js",
@@ -76,6 +78,12 @@
         "ngx-bootstrap/timepicker": "npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js",
         "primeng": "npm:primeng",
         "rxjs": "npm:rxjs",
+        "rxjs/ajax": "npm:rxjs/ajax",
+        "rxjs/internal-compatibility": "npm:rxjs/internal-compatibility",
+        "rxjs/operators": "npm:rxjs/operators",
+        "rxjs/testing": "npm:rxjs/testing",
+        "rxjs/websocket": "npm:rxjs/websocket",
+        "rxjs-compat": "npm:rxjs-compat",
         "text-mask-addons": "npm:text-mask-addons",
         "text-mask-core": "npm:text-mask-core",
         "tslib": "npm:tslib/tslib.js"
@@ -96,6 +104,30 @@
             defaultExtension: "js"
         },
         "rxjs": {
+            main: "index.js",
+            defaultExtension: "js",
+        },
+        "rxjs/ajax": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "rxjs/internal-compatibility": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "rxjs/operators": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "rxjs/testing": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "rxjs/websocket": {
+            main: "index.js",
+            defaultExtension: "js"
+        },
+        "rxjs-compat": {
             main: "Rx.js",
             defaultExtension: "js"
         },

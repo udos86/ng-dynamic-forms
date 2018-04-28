@@ -1,0 +1,22 @@
+<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+
+    <label *ngIf="!hasMatFormField && !isCheckbox && hasLabel"
+           [for]="model.id"
+           [innerHTML]="model.label"
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
+
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-container #componentViewContainer></ng-container>
+
+    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
+
+        <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
+
+    </ng-container>
+
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-content></ng-content>
+
+</div>

@@ -1,0 +1,33 @@
+<div [class.form-group]="asBootstrapFormGroup || getClass('element', 'container').includes('form-group')"
+     [class.has-error]="showErrorMessages"
+     [formGroup]="group"
+     [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+
+    <label *ngIf="!isCheckbox && hasLabel"
+           [for]="model.id"
+           [innerHTML]="model.label"
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
+
+    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+
+    <div [ngClass]="getClass('grid', 'control')">
+
+        <ng-container #componentViewContainer></ng-container>
+
+        <span *ngIf="hasHint" class="help-block" [innerHTML]="model.hint"
+              [ngClass]="getClass('element', 'hint')"></span>
+
+    </div>
+
+    <ul *ngIf="showErrorMessages" class="has-error"
+        [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
+
+        <li *ngFor="let message of errorMessages" class="help-block">{{ message }}</li>
+
+    </ul>
+
+    <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
+
+    <ng-content></ng-content>
+
+</div>
