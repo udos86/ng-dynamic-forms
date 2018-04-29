@@ -1,3 +1,12 @@
+# 6.0.1
+
+### **Features**
+
+* Material UI now supports `MAT_RIPPLE_GLOBAL_OPTIONS`, `MAT_LABEL_GLOBAL_OPTIONS`, `MAT_CHIPS_DEFAULT_OPTIONS` and MAT_AUTOCOMPLETE_DEFAULT_OPTIONS`
+* NG Bootstrap UI now supports `DynamicRatingModel`
+
+***
+
 # 6.0.0
 
 **Please note that there's currently no release for `ui-ionic` package due to build incompatibilities with Angular 6!**

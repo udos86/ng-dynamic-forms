@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicDatePickerModel,
+    DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -28,6 +29,7 @@ export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormC
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("kendoCalendar") kendoCalendar: CalendarComponent;
