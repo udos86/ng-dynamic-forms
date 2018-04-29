@@ -4,17 +4,17 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { CalendarComponent, CalendarModule } from "@progress/kendo-angular-dateinputs";
-import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
-import { DynamicKendoCalendarComponent } from "./dynamic-kendo-calendar.component";
+import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
+import { DynamicNGBootstrapRatingComponent } from "./dynamic-ng-bootstrap-rating.component";
+import { NgbRating, NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
 
-describe("DynamicKendoCalendarComponent test suite", () => {
+describe("DynamicNGBootstrapRatingComponent test suite", () => {
 
-    let testModel = new DynamicDatePickerModel({id: "calendar"}),
+    let testModel = new DynamicRatingModel({id: "rating"}),
         formModel = [testModel],
         formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoCalendarComponent>,
-        component: DynamicKendoCalendarComponent,
+        fixture: ComponentFixture<DynamicNGBootstrapRatingComponent>,
+        component: DynamicNGBootstrapRatingComponent,
         debugElement: DebugElement,
         testElement: DebugElement;
 
@@ -26,14 +26,14 @@ describe("DynamicKendoCalendarComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 TextMaskModule,
-                CalendarModule,
+                NgbRatingModule.forRoot(),
                 DynamicFormsCoreModule.forRoot()
             ],
-            declarations: [DynamicKendoCalendarComponent]
+            declarations: [DynamicNGBootstrapRatingComponent]
 
         }).compileComponents().then(() => {
 
-            fixture = TestBed.createComponent(DynamicKendoCalendarComponent);
+            fixture = TestBed.createComponent(DynamicNGBootstrapRatingComponent);
 
             component = fixture.componentInstance;
             debugElement = fixture.debugElement;
@@ -49,7 +49,7 @@ describe("DynamicKendoCalendarComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`kendo-calendar[id="${testModel.id}"]`));
+        testElement = debugElement.query(By.css(`ngb-rating[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -57,13 +57,11 @@ describe("DynamicKendoCalendarComponent test suite", () => {
         expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
-        expect(component.model instanceof DynamicDatePickerModel).toBe(true);
-        expect(component.kendoCalendar instanceof CalendarComponent).toBe(true);
-        expect(component.viewChild instanceof CalendarComponent).toBe(true);
+        expect(component.model instanceof DynamicRatingModel).toBe(true);
+        expect(component.ngbRating instanceof NgbRating).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
-        expect(component.customEvent).toBeDefined();
         expect(component.focus).toBeDefined();
 
         expect(component.onBlur).toBeDefined();
@@ -76,12 +74,12 @@ describe("DynamicKendoCalendarComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an kendo-calendar element", () => {
+    it("should have an ngb-rating element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
-    it("should emit blur event", () => {
+    it("should listen to and emit blur event", () => {
 
         spyOn(component.blur, "emit");
 
@@ -99,7 +97,7 @@ describe("DynamicKendoCalendarComponent test suite", () => {
         expect(component.change.emit).toHaveBeenCalled();
     });
 
-    it("should emit focus event", () => {
+    it("should listen to and emit focus event", () => {
 
         spyOn(component.focus, "emit");
 

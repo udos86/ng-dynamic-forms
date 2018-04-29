@@ -1,6 +1,6 @@
 <mat-form-field [color]="model.getAdditional('color', 'primary')"
                 [ngClass]="getClass('grid', 'control')"
-                [floatLabel]="model.getAdditional('floatLabel', 'auto')"
+                [floatLabel]="model.getAdditional('floatLabel', LABEL_OPTIONS && LABEL_OPTIONS['float'] || 'auto')"
                 [formGroup]="group">
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">
@@ -12,7 +12,7 @@
     <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
 
     <mat-select #matSelect
-                [disableRipple]="model.getAdditional('disableRipple', false)"
+                [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                 [formControlName]="model.id"
                 [id]="bindId ? model.id : null"
                 [multiple]="model.multiple"

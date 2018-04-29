@@ -6,6 +6,7 @@ import {
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
+    DynamicRatingModel,
     DynamicSelectModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel
@@ -260,6 +261,15 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
         id: "attachments",
         inputType: "file",
         label: "Attachments"
+    }),
+
+    new DynamicRatingModel({
+
+        id: "feedback",
+        label: "How did you like this form?",
+        additional: {
+            cancel: false
+        }
     }),
 
     new DynamicCheckboxModel({

@@ -1,6 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    Optional,
+    Output,
+    ViewChild
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatSlideToggle } from "@angular/material";
+import { MAT_RIPPLE_GLOBAL_OPTIONS, MatSlideToggle, RippleGlobalOptions } from "@angular/material";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -30,7 +39,8 @@ export class DynamicMaterialSlideToggleComponent extends DynamicFormControlCompo
     @ViewChild("matSlideToggle") matSlideToggle: MatSlideToggle;
 
     constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() public RIPPLE_OPTIONS: RippleGlobalOptions) {
 
         super(layoutService, validationService);
     }

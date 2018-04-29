@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { NgbDatepicker } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDatepicker, NgbDatepickerConfig } from "@ng-bootstrap/ng-bootstrap";
 import {
     DynamicDatePickerModel,
     DynamicFormLayout,
@@ -28,7 +28,8 @@ export class DynamicNGBootstrapCalendarComponent extends DynamicFormControlCompo
     @ViewChild(NgbDatepicker) ngbCalendar: NgbDatepicker;
 
     constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                public config: NgbDatepickerConfig) {
 
         super(layoutService, validationService);
     }

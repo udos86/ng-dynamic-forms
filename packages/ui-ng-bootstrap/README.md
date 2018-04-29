@@ -51,6 +51,7 @@ with **`DynamicNGBootstrapFormControlComponent`**:
 |             **[DatePicker](https://ng-bootstrap.github.io/#/components/datepicker)**            	| `DynamicDatePickerModel`    	|         –         	|
 |         **[Input](https://v4-alpha.getbootstrap.com/components/forms/#textual-inputs)**         	| `DynamicInputModel`         	|         –         	|
 |   **[Radio Group](https://v4-alpha.getbootstrap.com/components/forms/#checkboxes-and-radios)**  	| `DynamicRadioGroupModel`    	|         –         	|
+|             **[Rating](https://ng-bootstrap.github.io/#/components/rating)**            	        | `DynamicRatingModel`    	    |         –         	|
 |         **[Select](https://v4-alpha.getbootstrap.com/components/forms/#form-controls)**         	| `DynamicSelectModel`        	|         –         	|
 |        **[TextArea](https://v4-alpha.getbootstrap.com/components/forms/#form-controls)**        	| `DynamicTextAreaModel`      	|         –         	|
 |             **[TimePicker](https://ng-bootstrap.github.io/#/components/timepicker)**            	| `DynamicTimePickerModel`    	|         –         	|

@@ -3,7 +3,7 @@
     <mat-checkbox #matCheckbox
                   [checked]="model.checked"
                   [color]="model.getAdditional('color', 'accent')"
-                  [disableRipple]="model.getAdditional('disableRipple', false)"
+                  [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                   [formControlName]="model.id"
                   [id]="bindId ? model.id : null"
                   [indeterminate]="model.indeterminate"

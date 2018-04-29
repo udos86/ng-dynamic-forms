@@ -14,6 +14,8 @@
                     [tabindex]="model.tabIndex"
                     [topView]="model.getAdditional('topView', 'century')"
                     [weekNumber]="model.getAdditional('weekNumber', false)"
+                    (activeViewChange)="onCustomEvent($event, 'activeViewChange')"
+                    (activeViewDateChange)="onCustomEvent($event, 'activeViewDateChange')"
                     (valueChange)="onChange($event)"></kendo-calendar>
 
 </ng-container>

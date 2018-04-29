@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",
@@ -68,7 +68,6 @@
     "core-js": "^2.5.5",
     "foundation-sites": "^6.4.3",
     "hammerjs": "^2.0.8",
-    "ionic-angular": "^3.9.2",
     "ngx-bootstrap": "^2.0.4",
     "primeng": "^5.2.5",
     "quill": "^1.3.6",
@@ -101,6 +100,7 @@
     "gulp-util": "^3.0.8",
     "html-minifier": "^3.5.15",
     "html-webpack-plugin": "^3.2.0",
+    "ionic-angular": "^4.0.0-alpha.0",
     "jasmine-core": "^2.99.1",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^2.0.2",
