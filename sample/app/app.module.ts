@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Http, BaseRequestOptions } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
-import { MatCardModule, MatNativeDateModule } from "@angular/material";
+import { MAT_CHIPS_DEFAULT_OPTIONS, MatCardModule, MatNativeDateModule } from "@angular/material";
 import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -111,6 +111,12 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
                 ["customForbiddenValidator", customForbiddenValidator],
                 ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
             ])
+        },
+        {
+            provide: MAT_CHIPS_DEFAULT_OPTIONS,
+            useValue: {
+                separatorKeyCodes: [13, 188]
+            }
         }
     ],
     bootstrap: [AppComponent]

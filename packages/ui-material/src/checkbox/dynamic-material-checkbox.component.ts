@@ -1,6 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    Optional,
+    Output,
+    ViewChild
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatCheckbox } from "@angular/material";
+import { MAT_RIPPLE_GLOBAL_OPTIONS, MatCheckbox, RippleGlobalOptions } from "@angular/material";
 import {
     DynamicCheckboxModel,
     DynamicFormControlComponent,
@@ -30,7 +39,8 @@ export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponen
     @ViewChild("matCheckbox") matCheckbox: MatCheckbox;
 
     constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() private RIPPLE_OPTIONS: RippleGlobalOptions) {
 
         super(layoutService, validationService);
     }

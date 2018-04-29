@@ -1,6 +1,23 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    Optional,
+    Output,
+    ViewChild
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatChipInputEvent, MatChipList, MatInput } from "@angular/material";
+import {
+    LabelOptions,
+    MAT_CHIPS_DEFAULT_OPTIONS,
+    MAT_LABEL_GLOBAL_OPTIONS,
+    MatChipInputEvent,
+    MatChipList,
+    MatChipsDefaultOptions,
+    MatInput
+} from "@angular/material";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -43,7 +60,9 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     @ViewChild(MatInput) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                @Inject(MAT_CHIPS_DEFAULT_OPTIONS) private CHIPS_OPTIONS: MatChipsDefaultOptions,
+                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() private LABEL_OPTIONS: LabelOptions) {
 
         super(layoutService, validationService);
     }

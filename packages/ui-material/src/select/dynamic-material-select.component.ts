@@ -1,6 +1,21 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    Optional,
+    Output,
+    ViewChild
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatSelect } from "@angular/material";
+import {
+    LabelOptions,
+    MAT_LABEL_GLOBAL_OPTIONS,
+    MAT_RIPPLE_GLOBAL_OPTIONS,
+    MatSelect,
+    RippleGlobalOptions
+} from "@angular/material";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -30,7 +45,9 @@ export class DynamicMaterialSelectComponent extends DynamicFormControlComponent 
     @ViewChild("matSelect") matSelect: MatSelect;
 
     constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() private LABEL_OPTIONS: LabelOptions,
+                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() private RIPPLE_OPTIONS: RippleGlobalOptions) {
 
         super(layoutService, validationService);
     }

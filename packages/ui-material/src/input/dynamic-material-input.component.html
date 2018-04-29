@@ -55,6 +55,7 @@
 </mat-form-field>
 
 <mat-autocomplete #matAutocomplete="matAutocomplete"
+                  [autoActiveFirstOption]="model.getAdditional('autoActiveFirstOption', AUTOCOMPLETE_OPTIONS['autoActiveFirstOption'])"
                   [disableRipple]="model.getAdditional('disableRipple', false)"
                   (optionSelected)="onChange($event)">
 

@@ -23,7 +23,7 @@
                [placeholder]="model.placeholder"
                [matChipInputFor]="matChipList"
                [matChipInputAddOnBlur]="model.getAdditional('matChipInputAddOnBlur', true)"
-               [matChipInputSeparatorKeyCodes]="model.getAdditional('matChipInputSeparatorKeyCodes', [13, 188])"
+               [matChipInputSeparatorKeyCodes]="model.getAdditional('matChipInputSeparatorKeyCodes', CHIPS_OPTIONS['separatorKeyCodes'])"
                (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
 
     </mat-chip-list>
