@@ -2,13 +2,13 @@
 
     <ngb-timepicker [dynamicId]="bindId && model.id"
                     [formControlName]="model.id"
-                    [hourStep]="model.getAdditional('hourStep', 1)"
+                    [hourStep]="model.getAdditional('hourStep', config['hourStep'])"
                     [meridian]="model.meridian"
-                    [minuteStep]="model.getAdditional('minuteStep', 1)"
+                    [minuteStep]="model.getAdditional('minuteStep', config['minuteStep'])"
                     [ngClass]="getClass('element', 'control')"
                     [seconds]="model.showSeconds"
-                    [secondStep]="model.getAdditional('secondStep', 1)"
-                    [size]="model.getAdditional('size', 'medium')"
-                    [spinners]="model.getAdditional('spinners', true)"></ngb-timepicker>
+                    [secondStep]="model.getAdditional('secondStep', config['secondStep'])"
+                    [size]="model.getAdditional('size', config['size'])"
+                    [spinners]="model.getAdditional('spinners', config['spinners'])"></ngb-timepicker>
 
 </ng-container>

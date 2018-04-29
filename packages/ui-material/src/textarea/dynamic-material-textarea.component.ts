@@ -40,7 +40,7 @@ export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputCo
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() private LABEL_OPTIONS: LabelOptions) {
+                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() public LABEL_OPTIONS: LabelOptions) {
 
         super(layoutService, validationService);
     }

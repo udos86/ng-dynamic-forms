@@ -3,7 +3,12 @@ import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { NgbDatepickerModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import {
+    NgbDatepickerModule,
+    NgbButtonsModule,
+    NgbTimepickerModule,
+    NgbRatingModule
+} from "@ng-bootstrap/ng-bootstrap";
 import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
@@ -37,6 +42,7 @@ import { DynamicNGBootstrapFormArrayComponent } from "./form-array/dynamic-ng-bo
 import { DynamicNGBootstrapFormGroupComponent } from "./form-group/dynamic-ng-bootstrap-form-group.component";
 import { DynamicNGBootstrapInputComponent } from "./input/dynamic-ng-bootstrap-input.component";
 import { DynamicNGBootstrapRadioGroupComponent } from "./radio-group/dynamic-ng-bootstrap-radio-group.component";
+import { DynamicNGBootstrapRatingComponent } from "./rating/dynamic-ng-bootstrap-rating.component";
 import { DynamicNGBootstrapSelectComponent } from "./select/dynamic-ng-bootstrap-select.component";
 import { DynamicNGBootstrapTextAreaComponent } from "./textarea/dynamic-ng-bootstrap-textarea.component";
 import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-bootstrap-timepicker.component";
@@ -83,6 +89,7 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
                 ReactiveFormsModule,
                 NgbButtonsModule,
                 NgbDatepickerModule.forRoot(),
+                NgbRatingModule.forRoot(),
                 NgbTimepickerModule.forRoot(),
                 TextMaskModule,
                 DynamicFormsCoreModule.forRoot()
@@ -203,7 +210,7 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
         expect(ngBootstrapUIFormControlMapFn(formModel[7])).toBe(DynamicNGBootstrapFormGroupComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[8])).toBe(DynamicNGBootstrapInputComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[9])).toBe(DynamicNGBootstrapRadioGroupComponent);
-        expect(ngBootstrapUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(ngBootstrapUIFormControlMapFn(formModel[10])).toBe(DynamicNGBootstrapRatingComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[11])).toBe(DynamicNGBootstrapSelectComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[12])).toBeNull();
         expect(ngBootstrapUIFormControlMapFn(formModel[13])).toBeNull();

@@ -40,7 +40,7 @@ export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponen
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() private RIPPLE_OPTIONS: RippleGlobalOptions) {
+                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() public RIPPLE_OPTIONS: RippleGlobalOptions) {
 
         super(layoutService, validationService);
     }

@@ -180,5 +180,11 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         element: {
             label: "col-form-label"
         }
-    }
+    },
+
+    "feedback": {
+        element: {
+            label: "col-form-label"
+        }
+    },
 };

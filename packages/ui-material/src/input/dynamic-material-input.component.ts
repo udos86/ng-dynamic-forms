@@ -46,9 +46,9 @@ export class DynamicMaterialInputComponent extends DynamicMaterialFormInputContr
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                @Inject(MAT_AUTOCOMPLETE_DEFAULT_OPTIONS) private AUTOCOMPLETE_OPTIONS: MatAutocompleteDefaultOptions,
-                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() private LABEL_OPTIONS: LabelOptions,
-                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() private RIPPLE_OPTIONS: RippleGlobalOptions) {
+                @Inject(MAT_AUTOCOMPLETE_DEFAULT_OPTIONS) public AUTOCOMPLETE_OPTIONS: MatAutocompleteDefaultOptions,
+                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() public LABEL_OPTIONS: LabelOptions,
+                @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() public RIPPLE_OPTIONS: RippleGlobalOptions) {
 
         super(layoutService, validationService);
     }

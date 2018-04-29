@@ -7,7 +7,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
-import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDatepickerModule, NgbRatingModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
 
@@ -55,6 +55,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         BsDatepickerModule.forRoot(),
         TimepickerModule.forRoot(),
         NgbDatepickerModule.forRoot(),
+        NgbRatingModule.forRoot(),
         NgbTimepickerModule.forRoot(),
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,

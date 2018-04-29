@@ -61,8 +61,8 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                @Inject(MAT_CHIPS_DEFAULT_OPTIONS) private CHIPS_OPTIONS: MatChipsDefaultOptions,
-                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() private LABEL_OPTIONS: LabelOptions) {
+                @Inject(MAT_CHIPS_DEFAULT_OPTIONS) public CHIPS_OPTIONS: MatChipsDefaultOptions,
+                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() public LABEL_OPTIONS: LabelOptions) {
 
         super(layoutService, validationService);
     }
