@@ -2,7 +2,7 @@
 
 ### **Features**
 
-* Material UI now supports `MAT_RIPPLE_GLOBAL_OPTIONS`, `MAT_LABEL_GLOBAL_OPTIONS`, `MAT_CHIPS_DEFAULT_OPTIONS` and MAT_AUTOCOMPLETE_DEFAULT_OPTIONS`
+* Material UI now supports `MAT_RIPPLE_GLOBAL_OPTIONS`, `MAT_LABEL_GLOBAL_OPTIONS`, `MAT_CHIPS_DEFAULT_OPTIONS` and `MAT_AUTOCOMPLETE_DEFAULT_OPTIONS`
 * NG Bootstrap UI now supports `DynamicRatingModel`
 * NG Bootstrap UI now supports `NgbDatepickerConfig`, `NgbRatingConfig` and `NgbTimepickerConfig`
 
