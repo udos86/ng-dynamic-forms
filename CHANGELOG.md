@@ -1,3 +1,12 @@
+# 6.0.2
+
+### **Features**
+
+* Calendar component in Prime NG UI package now supports `showTime` input (closes [#723](https://github.com/udos86/ng-dynamic-forms/issues/723))
+* Upload component in Kendo UI package now supports all outputs
+
+***
+
 # 6.0.1
 
 ### **Features**

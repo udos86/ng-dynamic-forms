@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryL
 import { FormGroup } from "@angular/forms";
 import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
-    DynamicFileUploadModel,
+    DynamicFileUploadModel, DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -28,6 +28,7 @@ export class DynamicKendoUploadComponent extends DynamicKendoTemplateableFormCon
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("kendoUpload") kendoUpload: UploadComponent;

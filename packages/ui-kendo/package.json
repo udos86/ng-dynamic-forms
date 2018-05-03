@@ -41,7 +41,7 @@
     "@progress/kendo-angular-l10n": "^1.0.5",
     "@progress/kendo-angular-popup": "^2.0.0",
     "@progress/kendo-angular-resize-sensor": "^3.0.0",
-    "@progress/kendo-angular-upload": "^3.0.0",
+    "@progress/kendo-angular-upload": "^4.0.0",
     "@progress/kendo-date-math": "^1.1.1",
     "@progress/kendo-popup-common": "^1.2.3",
     "@progress/kendo-theme-default": "^2.47.2",

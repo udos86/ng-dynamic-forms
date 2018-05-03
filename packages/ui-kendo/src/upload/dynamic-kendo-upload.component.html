@@ -17,6 +17,19 @@
                   [saveUrl]="model.url"
                   [showFileList]="model.showFileList"
                   [tabIndex]="model.tabIndex"
-                  [withCredentials]="model.getAdditional('withCredentials', true)"></kendo-upload>
+                  [withCredentials]="model.getAdditional('withCredentials', true)"
+                  (blur)="onBlur($event)"
+                  (cancel)="onCustomEvent($event, 'cancel')"
+                  (change)="onChange($event)"
+                  (clear)="onCustomEvent($event, 'clear')"
+                  (complete)="onCustomEvent($event, 'complete')"
+                  (error)="onCustomEvent($event, 'error')"
+                  (focus)="onFocus($event)"
+                  (remove)="onCustomEvent($event, 'remove')"
+                  (select)="onCustomEvent($event, 'select')"
+                  (success)="onCustomEvent($event, 'succes')"
+                  (upload)="onCustomEvent($event, 'upload')"
+                  (uploadProgress)="onCustomEvent($event, 'uploadProgress')"
+                  (valueChange)="onChange($event)"></kendo-upload>
 
 </ng-container>
