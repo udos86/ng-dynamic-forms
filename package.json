@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",
@@ -50,8 +50,8 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.1.2",
-    "@progress/kendo-angular-dateinputs": "^3.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "@progress/kendo-angular-dateinputs": "^3.1.0",
     "@progress/kendo-angular-dropdowns": "^2.1.0",
     "@progress/kendo-angular-inputs": "^3.0.0",
     "@progress/kendo-angular-intl": "^1.4.0",
@@ -124,12 +124,12 @@
     "run-sequence": "^2.2.1",
     "systemjs": "^0.21.3",
     "ts-loader": "^4.2.0",
-    "tslint": "^5.9.1",
+    "tslint": "^5.10.0",
     "typedoc": "^0.11.1",
     "typescript": "2.7.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "webpack": "^4.6.0",
+    "webpack": "^4.7.0",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
