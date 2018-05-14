@@ -3,7 +3,7 @@
                 [formGroup]="group"
                 [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
                 [ngClass]="getClass('grid','control')"
-                [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}">
+                [textMask]="typeof model.mask === 'object' && !Array.isArray(model.mask) ? model.mask : {mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}">
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">
 

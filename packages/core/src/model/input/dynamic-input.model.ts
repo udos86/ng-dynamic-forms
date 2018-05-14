@@ -27,7 +27,7 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
     accept?: string;
     inputType?: string;
     list?: string[];
-    mask?: string | RegExp | (string | RegExp)[];
+    mask?: string | Object | RegExp | (string | RegExp)[];
     max?: number | string | Date;
     min?: number | string | Date;
     multiple?: boolean;
@@ -41,7 +41,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() inputType: string;
     files: FileList | null = null;
     @serializable() list: string[] | null;
-    @serializable() mask: string | RegExp | (string | RegExp)[] | null;
+    @serializable() mask: string | Object | RegExp | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
     @serializable() multiple: boolean | null;
