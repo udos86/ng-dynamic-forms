@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DynamicFormControlLayout,
     DynamicFormControlLayoutContext,
@@ -81,6 +82,13 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         }
 
         this.change.emit($event);
+    }
+
+    onEmbeddedCheckboxChange($event: Event, model: DynamicCheckboxModel) {
+
+        this.onChange($event);
+
+        model.valueUpdates.next(($event.target as HTMLInputElement).checked);
     }
 
     onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {

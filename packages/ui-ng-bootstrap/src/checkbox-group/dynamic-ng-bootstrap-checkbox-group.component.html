@@ -18,7 +18,7 @@
                    [tabindex]="checkboxModel.tabIndex"
                    [value]="checkboxModel.value"
                    (blur)="onBlur($event)"
-                   (change)="onChange($event)"
+                   (change)="onEmbeddedCheckboxChange($event, checkboxModel)"
                    (focus)="onFocus($event)"/><span [ngClass]="getClass('element', 'label', checkboxModel)"
                                                     [innerHTML]="checkboxModel.label"></span></label>
     </div>
