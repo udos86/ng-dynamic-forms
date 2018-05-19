@@ -3,6 +3,7 @@
     <textarea class="form-control"
               [class.is-invalid]="showErrorMessages"
               [dynamicId]="bindId && model.id"
+              [autocomplete]="model.autoComplete"
               [cols]="model.cols"
               [formControlName]="model.id"
               [maxlength]="model.maxLength"
