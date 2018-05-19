@@ -1,3 +1,11 @@
+# 6.0.3
+
+### **Bugfixes**
+
+* `DynamicKendoCheckboxGroupComponent` and `DynamicNGBootstrapCheckboxGroupComponent` now correctly update values on checkbox model (closes [#744](https://github.com/udos86/ng-dynamic-forms/issues/744))
+
+***
+
 # 6.0.2
 
 ### **Features**
