@@ -253,6 +253,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
         id: "notes",
         label: "Personal Note",
         placeholder: "Personal Note",
+        autoComplete: "field_personal_note",
         rows: 5
     }),
 
