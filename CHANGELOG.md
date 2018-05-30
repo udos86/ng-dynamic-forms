@@ -1,3 +1,11 @@
+# 6.0.4
+
+### **Bugfixes**
+
+* using Observables in `DynamicOptionControlModel` works again (closes [#763](https://github.com/udos86/ng-dynamic-forms/issues/763))
+
+***
+
 # 6.0.3
 
 ### **Bugfixes**
