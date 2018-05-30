@@ -1,7 +1,8 @@
+
 const alias           = require("rollup-plugin-alias"),
       resolve         = require("rollup-plugin-node-resolve"),
       sourcemaps      = require("rollup-plugin-sourcemaps"),
-      uglify          = require("rollup-plugin-uglify"),
+      uglify          = require("rollup-plugin-uglify").uglify,
       dateFormat      = require("dateformat"),
       license         = require("fs").readFileSync("./LICENSE", "utf8"),
       rxjsPathMapping = require("rxjs/_esm5/path-mapping")();

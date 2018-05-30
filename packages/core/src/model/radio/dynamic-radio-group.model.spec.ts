@@ -1,5 +1,5 @@
 import { async } from "@angular/core/testing";
-import { Observable, of } from "rxjs";
+import { isObservable, of } from "rxjs";
 import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel } from "./dynamic-radio-group.model";
 
 describe("DynamicRadioModel test suite", () => {
@@ -30,7 +30,7 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.id).toEqual(config.id);
         expect(model.label).toBeNull();
         expect(model.legend).toBeNull();
-        expect(model.options$ instanceof Observable).toBe(true);
+        expect(isObservable(model.options$)).toBe(true);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
         expect(model.value).toBeNull();
     });
