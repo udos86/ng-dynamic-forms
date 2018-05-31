@@ -81,7 +81,7 @@ const APP_ROUTES: Route[] = [
     },
     {
         path: "async-sample-form",
-        loadChildren: "./app/async/async-sample-form.module#AsyncSampleFormModule"
+        loadChildren: "./async/async-sample-form.module#AsyncSampleFormModule"
     }
 ];
 
