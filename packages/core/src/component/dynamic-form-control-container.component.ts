@@ -94,6 +94,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 }
 
                 this.subscriptions.push(this.model.disabledUpdates.subscribe(value => this.onModelDisabledUpdates(value)));
+                this.subscriptions.push(this.model.requiredUpdates.subscribe(value => this.onModelRequiredUpdates(value)));
 
                 if (this.model instanceof DynamicFormValueControlModel) {
 
@@ -213,6 +214,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     protected setControlRelations(): void {
 
         let relActivation = RelationUtils.findActivationRelation(this.model.relation);
+        let relRequired = RelationUtils.findRequiredRelation(this.model.relation);
 
         if (relActivation !== null) {
 
@@ -226,6 +228,19 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(rel)));
             });
         }
+
+        if (relRequired !== null) {
+
+            let rel = relRequired as DynamicFormControlRelationGroup;
+
+            this.updateModelRequired(rel);
+
+            RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
+
+                this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelRequired(rel)));
+                this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelRequired(rel)));
+            });
+        }
     }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
@@ -235,6 +250,11 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
         this.model.disabledUpdates.next(RelationUtils.isFormControlToBeDisabled(relation, this.group));
+    }
+
+    updateModelRequired(relation: DynamicFormControlRelationGroup): void {
+
+        this.model.requiredUpdates.next(RelationUtils.isFormControlToBeRequired(relation, this.group));
     }
 
     unsubscribe(): void {
@@ -264,6 +284,18 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     onModelDisabledUpdates(value: boolean): void {
         value ? this.control.disable() : this.control.enable();
+    }
+
+    onModelRequiredUpdates(value: boolean): void {
+        if (value) {
+            this.model.validators = {...this.model.validators, required: null};
+            this.control.setValidators(this.validationService.getValidators(this.model.validators));
+        } else {
+            if (this.model.validators) {
+                delete this.model.validators["required"];
+                this.control.setValidators(this.validationService.getValidators(this.model.validators));
+            }
+        }
     }
 
     onChange($event: Event | DynamicFormControlEvent | any): void {

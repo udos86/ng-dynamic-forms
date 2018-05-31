@@ -28,6 +28,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.additional = typeof config.additional === "object" && config.additional !== null ? config.additional : null;
         this.hint = config.hint || null;
         this.required = typeof config.required === "boolean" ? config.required : false;
+        this.requiredUpdates.subscribe(required => this.required = required);
         this.tabIndex = config.tabIndex || null;
 
         this.value = config.value !== null && config.value !== undefined ? config.value : null;

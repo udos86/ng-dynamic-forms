@@ -237,7 +237,27 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
 
         id: "note",
         rows: 3,
-        placeholder: "Personal Note"
+        placeholder: "Personal Note",
+        relation: [
+            {
+                action: "REQUIRED",
+                when: [
+                    {
+                        id: "payment",
+                        value: "paypal"
+                    }
+                ]
+            },
+            {
+                action: "DISABLE",
+                when: [
+                    {
+                        id: "payment",
+                        value: "bitcoin"
+                    }
+                ]
+            }
+        ],
     }),
 
     new DynamicInputModel({

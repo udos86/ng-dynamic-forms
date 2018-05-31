@@ -29,6 +29,13 @@ describe("DynamicEditorModel test suite", () => {
         expect(model.disabled).toBe(true);
     });
 
+    it("should set required property correctly", () => {
+
+        model.requiredUpdates.next(true);
+
+        expect(model.required).toBe(true);
+    });
+
     it("should serialize correctly", () => {
 
         let json = JSON.parse(JSON.stringify(model));

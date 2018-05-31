@@ -79,6 +79,15 @@ describe("Relation utils test suite", () => {
                     id: "testRadioGroup",
                     value: "option-3"
                 }
+            ]            
+        },
+        rel6 = {
+            action: "REQUIRED",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-1"
+                }
             ]
         };
 
@@ -163,5 +172,24 @@ describe("Relation utils test suite", () => {
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
         expect(RelationUtils.isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+    });
+
+    it("should find a required relation correctly", () => {
+
+        model.relation = [rel6];
+        expect(RelationUtils.findRequiredRelation(model.relation)).toBe(rel6);
+
+    });
+
+    it("should check if form control is to be required correctly", () => {
+
+       model.relation = [rel1];
+        expect(RelationUtils.isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel6];
+        expect(RelationUtils.isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(true);
+
+        model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
+        expect(RelationUtils.isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
     });
 });
