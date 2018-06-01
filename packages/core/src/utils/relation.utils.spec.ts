@@ -83,12 +83,45 @@ describe("Relation utils test suite", () => {
         },
         rel6 = {
             action: "REQUIRED",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel7 = {
+            action: "REQUIRED",
+            connective: "AND",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel8 = {
+            action: "REQUIRED",
+            connective: "OR",
             when: [
                 {
                     id: "testSelect",
                     value: "option-1"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
                 }
-            ]
+            ]                 
         };
 
     beforeEach(() => {
@@ -183,10 +216,13 @@ describe("Relation utils test suite", () => {
 
     it("should check if form control is to be required correctly", () => {
 
-       model.relation = [rel1];
+        model.relation = [rel6];
         expect(RelationUtils.isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
 
-        model.relation = [rel6];
+        model.relation = [rel7];
+        expect(RelationUtils.isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel8];
         expect(RelationUtils.isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(true);
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
