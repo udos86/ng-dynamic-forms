@@ -4,6 +4,7 @@ import {
     EventEmitter,
     Inject,
     Input,
+    OnDestroy,
     Optional,
     Output,
     ViewChild
@@ -18,6 +19,7 @@ import {
     MatChipsDefaultOptions,
     MatInput
 } from "@angular/material";
+import { Subscription } from "rxjs";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -32,10 +34,11 @@ import {
     templateUrl: "./dynamic-material-chips.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
+export class DynamicMaterialChipsComponent extends DynamicFormControlComponent implements OnDestroy {
 
     private _chipList: string[];
     private _model: DynamicInputModel;
+    private _valueSubscription: Subscription;
 
     @Input() bindId: boolean = true;
     @Input() group: FormGroup;
@@ -47,8 +50,13 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     }
 
     set model(model: DynamicInputModel) {
+
+        this.unsubscribe();
+
         this._model = model;
-        this._chipList = model.value as string[] || [];
+        this._model.valueUpdates.subscribe((value: string[]) => this.chipList = value);
+
+        this.chipList = Array.isArray(model.value) ? model.value as string[] : [];
     }
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
@@ -67,8 +75,22 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
         super(layoutService, validationService);
     }
 
+    ngOnDestroy() {
+        this.unsubscribe();
+    }
+
+    unsubscribe(): void {
+        if (this._valueSubscription) {
+            this._valueSubscription.unsubscribe();
+        }
+    }
+
     get chipList(): string[] {
         return this._chipList;
+    }
+
+    set chipList(value: string[]) {
+        this._chipList = value;
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
