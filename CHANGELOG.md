@@ -1,3 +1,11 @@
+# 6.0.5
+
+### **Bugfixes**
+
+* `DynamicMaterialChipsComponent` now correctly implements model value updates (closes [#774](https://github.com/udos86/ng-dynamic-forms/issues/774))
+
+***
+
 # 6.0.4
 
 ### **Bugfixes**
