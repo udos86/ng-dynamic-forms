@@ -33,4 +33,11 @@ describe("JSON utils test suite", () => {
 
         expect(JSONUtils.maskFromString({} as string)).toBeNull();
     });
+
+    it("should recreate a date from string correctly", () => {
+
+        let testValue1 = "2011-10-05T14:48:00.000Z";
+
+        expect(JSONUtils.parseReviver("test", testValue1)).toEqual(new Date(testValue1));
+    });
 });

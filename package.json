@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",
@@ -79,7 +79,7 @@
     "@angular/compiler-cli": "^6.0.3",
     "@ngtools/webpack": "^6.0.7",
     "@types/hammerjs": "^2.0.35",
-    "@types/jasmine": "^2.8.7",
+    "@types/jasmine": "^2.8.8",
     "@types/node": "^10.1.4",
     "angular-router-loader": "^0.8.5",
     "angular2-template-loader": "^0.6.2",
@@ -101,7 +101,7 @@
     "html-minifier": "^3.5.16",
     "html-webpack-plugin": "^3.2.0",
     "ionic-angular": "^4.0.0-alpha.0",
-    "jasmine-core": "^2.99.1",
+    "jasmine-core": "^3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^2.0.2",
     "karma-chrome-launcher": "^2.2.0",
@@ -122,7 +122,7 @@
     "rollup-plugin-uglify": "^4.0.0",
     "rollup-stream": "^1.24.1",
     "run-sequence": "^2.2.1",
-    "systemjs": "^0.21.3",
+    "systemjs": "^0.21.4",
     "ts-loader": "^4.3.0",
     "tslint": "^5.10.0",
     "typedoc": "^0.11.1",
@@ -130,7 +130,7 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4",
+    "webpack-cli": "^3.0.0",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
   }
