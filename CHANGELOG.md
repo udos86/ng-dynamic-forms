@@ -1,3 +1,11 @@
+# 6.0.6
+
+### **Bugfixes**
+
+* focus events now working again (closes [#778](https://github.com/udos86/ng-dynamic-forms/issues/778))
+
+***
+
 # 6.0.5
 
 ### **Bugfixes**
