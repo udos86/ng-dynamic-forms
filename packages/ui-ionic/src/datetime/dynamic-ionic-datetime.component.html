@@ -4,7 +4,7 @@
                [innerHTML]="model.label"
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
-    <ion-datetime #ionDateTime
+    <ion-datetime #ionDatetime
                   [cancelText]="model.getAdditional('cancelText', 'Cancel')"
                   [doneText]="model.getAdditional('doneText', 'Done')"
                   [displayFormat]="model.format || 'MMM D, YYYY'"

@@ -6,7 +6,7 @@ import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./dynamic-ionic-checkbox.component";
-import { Checkbox } from "ionic-angular";
+import { Checkbox } from "@ionic/angular";
 
 xdescribe("DynamicIonicCheckboxComponent test suite", () => {
 

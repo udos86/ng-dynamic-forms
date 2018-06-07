@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Select } from "ionic-angular";
+import { Select } from "@ionic/angular";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,

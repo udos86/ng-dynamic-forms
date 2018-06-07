@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { TextInput } from "ionic-angular";
+import { Input as IonInput } from "@ionic/angular";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -25,7 +25,7 @@ export class DynamicIonicInputComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionInput") ionInput: TextInput;
+    @ViewChild("ionInput") ionInput: IonInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

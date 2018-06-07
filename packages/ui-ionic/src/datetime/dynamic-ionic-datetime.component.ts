@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DateTime } from "ionic-angular";
+import { Datetime } from "@ionic/angular";
 import {
     DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
@@ -27,7 +27,7 @@ export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionDateTime") ionDateTime: DateTime;
+    @ViewChild("ionDatetime") ionDatetime: Datetime;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
