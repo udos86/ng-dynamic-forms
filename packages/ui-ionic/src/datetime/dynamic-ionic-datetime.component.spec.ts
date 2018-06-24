@@ -58,7 +58,7 @@ xdescribe("DynamicIonicDateTimeComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
-        expect(component.ionDateTime instanceof DateTime).toBe(true);
+        expect(component.ionDatetime instanceof Datetime).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
