@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Toggle } from "ionic-angular";
+import { Toggle } from "@ionic/angular";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,

@@ -1,3 +1,11 @@
+# 6.0.7
+
+### **Features**
+
+* form field appearance for Material UI (closes [#799](https://github.com/udos86/ng-dynamic-forms/issues/799))
+
+***
+
 # 6.0.6
 
 ### **Bugfixes**
