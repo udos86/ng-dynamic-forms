@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    Optional,
-    Output,
-    ViewChild
-} from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     LabelOptions,
@@ -17,11 +8,11 @@ import {
     RippleGlobalOptions
 } from "@angular/material";
 import {
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
     DynamicSelectModel
 } from "@ng-dynamic-forms/core";
 
