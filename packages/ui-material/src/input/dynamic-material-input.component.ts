@@ -26,8 +26,7 @@ import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-fo
 
 @Component({
     selector: "dynamic-material-input",
-    templateUrl: "./dynamic-material-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-input.component.html"
 })
 export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
 

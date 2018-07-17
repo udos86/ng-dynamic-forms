@@ -1,19 +1,18 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatSlider } from "@angular/material";
 import {
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
     DynamicSliderModel
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-material-slider",
-    templateUrl: "./dynamic-material-slider.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-slider.component.html"
 })
 export class DynamicMaterialSliderComponent extends DynamicFormControlComponent {
 

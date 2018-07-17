@@ -1,14 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    OnDestroy,
-    Optional,
-    Output,
-    ViewChild
-} from "@angular/core";
+import { Component, EventEmitter, Inject, Input, OnDestroy, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     LabelOptions,
@@ -21,18 +11,17 @@ import {
 } from "@angular/material";
 import { Subscription } from "rxjs";
 import {
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-material-chips",
-    templateUrl: "./dynamic-material-chips.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-chips.component.html"
 })
 export class DynamicMaterialChipsComponent extends DynamicFormControlComponent implements OnDestroy {
 

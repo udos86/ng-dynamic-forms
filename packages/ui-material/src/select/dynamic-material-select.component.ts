@@ -27,8 +27,7 @@ import {
 
 @Component({
     selector: "dynamic-material-select",
-    templateUrl: "./dynamic-material-select.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-select.component.html"
 })
 export class DynamicMaterialSelectComponent extends DynamicFormControlComponent {
 
