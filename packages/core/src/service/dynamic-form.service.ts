@@ -51,7 +51,8 @@ export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel
 @Injectable()
 export class DynamicFormService {
 
-    constructor(private validationService: DynamicFormValidationService) {}
+    constructor(private validationService: DynamicFormValidationService) {
+    }
 
 
     private createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
@@ -304,6 +305,28 @@ export class DynamicFormService {
         return result;
     }
 
+    findByClass(name: string, formModel: DynamicFormControlModel[]): DynamicFormControlModel | null {
+
+        let result = null,
+            findByClassFn = (name: string, groupModel: DynamicFormControlModel[]): void => {
+
+                for (let controlModel of groupModel) {
+
+                    if (controlModel.class === name) {
+                        result = controlModel;
+                        break;
+                    }
+
+                    if (controlModel instanceof DynamicFormGroupModel) {
+                        findByClassFn(name, (controlModel as DynamicFormGroupModel).group);
+                    }
+                }
+            };
+
+        findByClassFn(name, formModel);
+
+        return result;
+    }
 
     fromJSON(json: string | object[]): DynamicFormControlModel[] | never {
 

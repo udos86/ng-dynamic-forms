@@ -59,6 +59,7 @@ describe("DynamicFormService test suite", () => {
             new DynamicSelectModel<string>(
                 {
                     id: "testSelect",
+                    class: "testSelect",
                     options: [
                         {
                             label: "Option 1",
@@ -76,6 +77,7 @@ describe("DynamicFormService test suite", () => {
             new DynamicInputModel(
                 {
                     id: "testInput",
+                    class: "testInput",
                     mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/],
                 }
             ),
@@ -83,6 +85,7 @@ describe("DynamicFormService test suite", () => {
             new DynamicCheckboxGroupModel(
                 {
                     id: "testCheckboxGroup",
+                    class: "testCheckboxGroup",
                     group: [
                         new DynamicCheckboxModel(
                             {
@@ -103,6 +106,7 @@ describe("DynamicFormService test suite", () => {
             new DynamicRadioGroupModel<string>(
                 {
                     id: "testRadioGroup",
+                    class: "testRadioGroup",
                     options: [
                         {
                             label: "Option 1",
@@ -117,20 +121,25 @@ describe("DynamicFormService test suite", () => {
                 }
             ),
 
-            new DynamicTextAreaModel({id: "testTextArea"}),
+            new DynamicTextAreaModel({id: "testTextArea", class: "testTextArea"}),
 
-            new DynamicCheckboxModel({id: "testCheckbox"}),
+            new DynamicCheckboxModel({id: "testCheckbox", class: "testCheckbox"}),
 
             new DynamicFormArrayModel(
                 {
                     id: "testFormArray",
+                    class: "testFormArray",
                     initialCount: 5,
                     groupFactory: () => {
                         return [
-                            new DynamicInputModel({id: "testFormArrayGroupInput"}),
+                            new DynamicInputModel({id: "testFormArrayGroupInput", class: "testFormArrayGroupInput"}),
                             new DynamicFormArrayModel({
+                                class: "testNestedFormArray",
                                 id: "testNestedFormArray", groupFactory: () => [
-                                    new DynamicInputModel({id: "testNestedFormArrayGroupInput"})
+                                    new DynamicInputModel({
+                                        id: "testNestedFormArrayGroupInput",
+                                        class: "testNestedFormArrayGroupInput"
+                                    })
                                 ]
                             })
                         ];
@@ -141,6 +150,7 @@ describe("DynamicFormService test suite", () => {
             new DynamicFormGroupModel(
                 {
                     id: "testFormGroup",
+                    class: "testFormGroup",
                     group: [
                         new DynamicInputModel({id: "nestedTestInput"}),
                         new DynamicTextAreaModel({id: "nestedTestTextArea"})
@@ -148,21 +158,21 @@ describe("DynamicFormService test suite", () => {
                 }
             ),
 
-            new DynamicSliderModel({id: "testSlider"}),
+            new DynamicSliderModel({id: "testSlider", class: "testSlider"}),
 
-            new DynamicSwitchModel({id: "testSwitch"}),
+            new DynamicSwitchModel({id: "testSwitch", class: "testSwitch"}),
 
-            new DynamicDatePickerModel({id: "testDatepicker", value: new Date()}),
+            new DynamicDatePickerModel({id: "testDatepicker", class: "testDatepicker", value: new Date()}),
 
-            new DynamicFileUploadModel({id: "testFileUpload"}),
+            new DynamicFileUploadModel({id: "testFileUpload", class: "testFileUpload"}),
 
-            new DynamicEditorModel({id: "testEditor"}),
+            new DynamicEditorModel({id: "testEditor", class: "testEditor"}),
 
-            new DynamicTimePickerModel({id: "testTimePicker"}),
+            new DynamicTimePickerModel({id: "testTimePicker", class: "testTimePicker"}),
 
-            new DynamicRatingModel({id: "testRating"}),
+            new DynamicRatingModel({id: "testRating", class: "testRating"}),
 
-            new DynamicColorPickerModel({id: "testColorPicker"}),
+            new DynamicColorPickerModel({id: "testColorPicker", class: "testColorPicker"}),
         ];
     });
 
@@ -227,7 +237,6 @@ describe("DynamicFormService test suite", () => {
 
 
     it("should find a dynamic form control model by id", () => {
-
         expect(service.findById("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testDatepicker", testModel) instanceof DynamicFormControlModel).toBe(true);
@@ -245,12 +254,34 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testColorPicker", testModel) instanceof DynamicColorPickerModel).toBe(true);
     });
 
-
     it("should find a nested dynamic form control model by id", () => {
-
         expect(service.findById("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("nestedTestInput", testModel) instanceof DynamicFormControlModel).toBe(true);
+    });
+
+    it("should find a dynamic form control model by class attribute", () => {
+        expect(service.findByClass("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testDatepicker", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testFormArray", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testInput", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testRadioGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testSelect", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testSlider", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testSwitch", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testFileUpload", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testEditor", testModel) instanceof DynamicEditorModel).toBe(true);
+        expect(service.findByClass("testTimePicker", testModel) instanceof DynamicTimePickerModel).toBe(true);
+        expect(service.findByClass("testRating", testModel) instanceof DynamicRatingModel).toBe(true);
+        expect(service.findByClass("testColorPicker", testModel) instanceof DynamicColorPickerModel).toBe(true);
+    });
+
+    it("should find a nested dynamic form control model by class", () => {
+        expect(service.findByClass("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
+        expect(service.findByClass("nestedTestInput", testModel) instanceof DynamicFormControlModel).toBe(true);
     });
 
 

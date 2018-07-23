@@ -9,6 +9,7 @@ import { serializable, serialize } from "../decorator/serializable.decorator";
 export interface DynamicFormControlModelConfig {
 
     asyncValidators?: DynamicValidatorsConfig;
+    class: string;
     disabled?: boolean;
     errorMessages?: DynamicValidatorsConfig;
     hidden?: boolean;
@@ -25,6 +26,7 @@ export interface DynamicFormControlModelConfig {
 export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() asyncValidators: DynamicValidatorsConfig | null;
+    @serializable() class: string;
     @serializable("disabled") _disabled: boolean;
     disabledUpdates: Subject<boolean>;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
@@ -45,6 +47,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     protected constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
 
         this.asyncValidators = config.asyncValidators || null;
+        this.id = config.class || "";
         this.errorMessages = config.errorMessages || null;
         this.hidden = typeof config.hidden === "boolean" ? config.hidden : false;
         this.id = config.id;
