@@ -1,6 +1,7 @@
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
+import { ɵlooseIdentical as looseIdentical } from "@angular/core";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
@@ -11,6 +12,7 @@ export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelCo
     placeholder?: string;
     prefix?: string;
     suffix?: string;
+    compareWithFn?: (o1: any, o2: any) => boolean;
 }
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
@@ -20,6 +22,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
     @serializable() placeholder: string;
     @serializable() prefix: string | null;
     @serializable() suffix: string | null;
+    compareWithFn: (o1: any, o2: any) => boolean;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
 
@@ -32,6 +35,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
         this.placeholder = config.placeholder || "";
         this.prefix = config.prefix || null;
         this.suffix = config.suffix || null;
+        this.compareWithFn = config.compareWithFn || looseIdentical;
     }
 
     select(...indices: number[]): void {

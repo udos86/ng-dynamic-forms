@@ -1,6 +1,7 @@
 <ng-container [formGroup]="group">
 
     <select class="form-control"
+            [compareWith]="model.compareWithFn"
             [dynamicId]="bindId && model.id"
             [formControlName]="model.id"
             [name]="model.name"
@@ -13,7 +14,8 @@
 
         <option *ngFor="let option of model.options$ | async"
                 [disabled]="option.disabled"
-                [ngValue]="option.value">{{ option.label }}</option>
+                [ngValue]="option.value">{{ option.label }}
+        </option>
 
     </select>
 
