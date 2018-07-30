@@ -13,4 +13,5 @@ export * from "./textarea/dynamic-material-textarea.component";
 
 export * from "./dynamic-material-form.component";
 export * from "./dynamic-material-form-control-container.component";
+export * from "./dynamic-material-form-input-control.component";
 export * from "./dynamic-material-form-ui.module";

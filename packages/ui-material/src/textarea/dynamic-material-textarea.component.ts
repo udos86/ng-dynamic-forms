@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    Optional,
-    Output,
-    ViewChild
-} from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MatInput } from "@angular/material";
 import {
@@ -21,8 +12,7 @@ import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-fo
 
 @Component({
     selector: "dynamic-material-textarea",
-    templateUrl: "./dynamic-material-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-textarea.component.html"
 })
 export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputControlComponent {
 

@@ -1,28 +1,18 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    Optional,
-    Output,
-    ViewChild
-} from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MatDatepicker, MatInput } from "@angular/material";
 import {
     DynamicDatePickerModel,
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
-    DynamicFormValidationService,
-    DynamicFormControlComponent
+    DynamicFormValidationService
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-material-datepicker",
-    templateUrl: "./dynamic-material-datepicker.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-datepicker.component.html"
 })
 export class DynamicMaterialDatePickerComponent extends DynamicFormControlComponent {
 
