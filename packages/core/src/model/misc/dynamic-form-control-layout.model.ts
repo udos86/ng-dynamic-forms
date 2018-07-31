@@ -1,6 +1,5 @@
 export interface DynamicFormControlLayoutConfig {
 
-    children?: string;
     container?: string;
     control?: string;
     errors?: string;
