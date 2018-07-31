@@ -1,3 +1,15 @@
+# 6.0.8
+
+### **Bugfixes**
+
+* `ChangeDetection.OnPush` removed from Material UI components due to issues (closes [#808](https://github.com/udos86/ng-dynamic-forms/issues/808))
+
+### **Features**
+
+* `cdkTextareaAutosize` support for Material UI textarea component (closes [#819](https://github.com/udos86/ng-dynamic-forms/issues/819))
+
+***
+
 # 6.0.7
 
 ### **Features**
