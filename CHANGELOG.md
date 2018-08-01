@@ -1,3 +1,13 @@
+# 6.0.9
+
+### **Bugfixes**
+
+* `onLabel` and `offLabel` inputs have been removed from Prime NG input switch component
+
+### **Features**
+
+* `compareWithFn` support for `DynamicSelectModel` (closes [#820](https://github.com/udos86/ng-dynamic-forms/issues/820))
+
 # 6.0.8
 
 ### **Bugfixes**

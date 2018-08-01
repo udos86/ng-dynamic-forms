@@ -1,3 +1,4 @@
+import { ɵlooseIdentical as looseIdentical } from "@angular/core";
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
@@ -6,6 +7,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
 export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelConfig<T> {
 
+    compareWithFn?: (o1: any, o2: any) => boolean;
     filterable?: boolean;
     multiple?: boolean;
     placeholder?: string;
@@ -15,6 +17,7 @@ export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelCo
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
+    compareWithFn: (o1: any, o2: any) => boolean;
     @serializable() filterable: boolean;
     @serializable() multiple: boolean;
     @serializable() placeholder: string;
@@ -27,6 +30,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
         super(config, layout);
 
+        this.compareWithFn = typeof config.compareWithFn === "function" ? config.compareWithFn : looseIdentical;
         this.filterable = typeof config.filterable === "boolean" ? config.filterable : false;
         this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
         this.placeholder = config.placeholder || "";
