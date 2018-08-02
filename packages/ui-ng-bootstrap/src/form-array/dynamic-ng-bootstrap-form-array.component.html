@@ -17,7 +17,8 @@
                                                [layout]="layout"
                                                [model]="_model"
                                                [templates]="templates"
-                                               [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model)]"
+                                               [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model),
+                                                           getClass('element','children'), getClass('grid','children')]"
                                                (blur)="onBlur($event)"
                                                (change)="onChange($event)"
                                                (focus)="onFocus($event)"
