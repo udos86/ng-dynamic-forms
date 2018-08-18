@@ -8,6 +8,8 @@
 
 * `compareWithFn` support for `DynamicSelectModel` (closes [#820](https://github.com/udos86/ng-dynamic-forms/issues/820))
 
+***
+
 # 6.0.8
 
 ### **Bugfixes**
