@@ -2,7 +2,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
 
-export enum DynamicFormControlEventType {Blur = "blur", Change = "change", Custom = "custom", Focus = " focus"}
+export enum DynamicFormControlEventType {Blur = "blur", Change = "change", Custom = "custom", Focus = "focus"}
 
 export interface DynamicFormControlEvent {
 

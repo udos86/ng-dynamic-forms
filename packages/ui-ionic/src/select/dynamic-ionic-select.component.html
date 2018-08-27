@@ -5,6 +5,7 @@
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
     <ion-select [cancelText]="model.getAdditional('cancelText', 'Cancel')"
+                [compareWith]="model.compareWithFn"
                 [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
                 [interface]="model.getAdditional('interface', 'alert')"

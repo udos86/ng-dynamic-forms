@@ -1,3 +1,59 @@
+# 6.0.9
+
+### **Bugfixes**
+
+* `onLabel` and `offLabel` inputs have been removed from Prime NG input switch component
+
+### **Features**
+
+* `compareWithFn` support for `DynamicSelectModel` (closes [#820](https://github.com/udos86/ng-dynamic-forms/issues/820))
+
+***
+
+# 6.0.8
+
+### **Bugfixes**
+
+* `ChangeDetection.OnPush` removed from Material UI components due to issues (closes [#808](https://github.com/udos86/ng-dynamic-forms/issues/808))
+
+### **Features**
+
+* `cdkTextareaAutosize` support for Material UI textarea component (closes [#819](https://github.com/udos86/ng-dynamic-forms/issues/819))
+
+***
+
+# 6.0.7
+
+### **Features**
+
+* form field appearance for Material UI (closes [#799](https://github.com/udos86/ng-dynamic-forms/issues/799))
+
+***
+
+# 6.0.6
+
+### **Bugfixes**
+
+* focus events now working again (closes [#778](https://github.com/udos86/ng-dynamic-forms/issues/778))
+
+***
+
+# 6.0.5
+
+### **Bugfixes**
+
+* `DynamicMaterialChipsComponent` now correctly implements model value updates (closes [#774](https://github.com/udos86/ng-dynamic-forms/issues/774))
+
+***
+
+# 6.0.4
+
+### **Bugfixes**
+
+* using Observables in `DynamicOptionControlModel` works again (closes [#763](https://github.com/udos86/ng-dynamic-forms/issues/763))
+
+***
+
 # 6.0.3
 
 ### **Bugfixes**

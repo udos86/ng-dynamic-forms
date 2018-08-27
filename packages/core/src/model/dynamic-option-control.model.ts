@@ -68,13 +68,14 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
             this.updateOptions$();
 
-        } else if (options instanceof Observable) {
+        } else if (!!options && typeof options.lift === "function" && typeof options.subscribe === "function") { // replace with isObservable in next major version
 
             this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
 
                 map(optionsConfig => {
 
                     let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
+
                     this._options = options;
 
                     return options;

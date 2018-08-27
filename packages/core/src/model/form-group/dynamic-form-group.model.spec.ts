@@ -20,9 +20,11 @@ describe("DynamicFormGroupModel test suite", () => {
 
     it("should initialize correctly", () => {
 
+        console.log(model.group);
+
         expect(model.id).toEqual(config.id);
-        expect(model.group.length === 1).toBe(true);
-        expect(model.size() === model.group.length).toBe(true);
+        expect(model.group.length).toBe(1);
+        expect(model.size()).toBe(model.group.length);
         expect(model.legend).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
     });
@@ -34,7 +36,7 @@ describe("DynamicFormGroupModel test suite", () => {
 
     it("should correctly set a DynamicFormControlModel", () => {
 
-        let newModel = new DynamicInputModel({id: "newInput"});
+        let newModel = new DynamicInputModel({id: "setInput"});
 
         model.set(0, newModel);
 
@@ -43,7 +45,7 @@ describe("DynamicFormGroupModel test suite", () => {
 
     it("should correctly add a DynamicFormControlModel", () => {
 
-        let newModel = new DynamicInputModel({id: "newInput"});
+        let newModel = new DynamicInputModel({id: "addInput"});
 
         model.add(newModel);
 

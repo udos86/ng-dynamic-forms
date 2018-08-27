@@ -24,7 +24,7 @@ const NPM_SCOPE      = "@ng-dynamic-forms",
           "ui-basic",
           "ui-bootstrap",
           "ui-foundation",
-          //"ui-ionic",
+          "ui-ionic",
           "ui-kendo",
           "ui-material",
           "ui-ng-bootstrap",
@@ -144,7 +144,7 @@ gulp.task("doc:packages", done => {
  */
 gulp.task("clean:tests", TASK_CLEAN([`${TEST_PATH}/**/*`]));
 
-gulp.task("copy:tests", TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`], TEST_PATH));
+gulp.task("copy:tests", TASK_COPY([`${SRC_PATH}/**/*.{html,ts}`, `!${SRC_PATH}/ui-ionic/**/*`], TEST_PATH));
 
 gulp.task("transpile:tests", TASK_TRANSPILE([`${TEST_PATH}/**/*.ts`], TEST_PATH, "./tsconfig.tests.json", "commonjs"));
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { Checkbox } from "ionic-angular";
+import { Checkbox } from "@ionic/angular";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicCheckboxModel,

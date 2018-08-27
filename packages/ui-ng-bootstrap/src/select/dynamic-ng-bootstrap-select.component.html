@@ -2,6 +2,7 @@
 
     <select class="form-control"
             [class.is-invalid]="showErrorMessages"
+            [compareWith]="model.compareWithFn"
             [dynamicId]="bindId && model.id"
             [formControlName]="model.id"
             [name]="model.name"

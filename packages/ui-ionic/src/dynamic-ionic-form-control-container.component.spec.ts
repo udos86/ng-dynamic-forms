@@ -5,7 +5,7 @@ import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { TextMaskModule } from "angular2-text-mask";
-import { IonicModule } from "ionic-angular";
+import { IonicModule } from "@ionic/angular";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,

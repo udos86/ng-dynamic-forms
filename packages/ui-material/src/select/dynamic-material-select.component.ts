@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    Optional,
-    Output,
-    ViewChild
-} from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     LabelOptions,
@@ -17,18 +8,17 @@ import {
     RippleGlobalOptions
 } from "@angular/material";
 import {
+    DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
     DynamicSelectModel
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-material-select",
-    templateUrl: "./dynamic-material-select.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-material-select.component.html"
 })
 export class DynamicMaterialSelectComponent extends DynamicFormControlComponent {
 

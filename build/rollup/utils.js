@@ -1,7 +1,8 @@
 const alias           = require("rollup-plugin-alias"),
       resolve         = require("rollup-plugin-node-resolve"),
       sourcemaps      = require("rollup-plugin-sourcemaps"),
-      uglify          = require("rollup-plugin-uglify"),
+      uglify          = require("rollup-plugin-uglify").uglify,
+      uglifyES        = require("uglify-es"),
       dateFormat      = require("dateformat"),
       license         = require("fs").readFileSync("./LICENSE", "utf8"),
       rxjsPathMapping = require("rxjs/_esm5/path-mapping")();
@@ -42,7 +43,12 @@ const utils = {
         const plugins = [alias(rxjsPathMapping), resolve(), sourcemaps()];
 
         if (minify) {
-            plugins.push(uglify({output: {comments: (node, comment) => comment.value.startsWith("!")}}));
+
+            let uglifyPlugin = uglify({
+                output: {comments: (node, comment) => comment.value.startsWith("!")}
+            }, uglifyES["minify"]);
+
+            plugins.push(uglifyPlugin);
         }
 
         return plugins;
@@ -64,6 +70,7 @@ const utils = {
             "@angular/platform-browser": "ng.platformBrowser",
             "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
             "@angular/router": "ng.router",
+            "@ionic/angular": "@ionic/angular",
             "@ng-bootstrap/ng-bootstrap": "@ng-bootstrap/ng-bootstrap",
             "@ng-bootstrap/ng-bootstrap/index": "@ng-bootstrap/ng-bootstrap",
             "@ng-dynamic-forms/core": "ngDF.core",
@@ -72,8 +79,6 @@ const utils = {
             "@progress/kendo-angular-inputs": "progress/kendo-angular-inputs",
             "@progress/kendo-angular-upload": "progress/kendo-angular-upload",
             "angular2-text-mask": "angular2-text-mask",
-            "ionic-angular": "ionic-angular",
-            "ionic-angular/index": "ionic-angular",
             "ngx-bootstrap/datepicker": "ngx-bootstrap.umd",
             "ngx-bootstrap/timepicker": "ngx-bootstrap.umd",
             "primeng/primeng": "primeng/primeng",
