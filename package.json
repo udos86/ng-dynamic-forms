@@ -60,6 +60,7 @@
     "@progress/kendo-angular-popup": "^2.4.1",
     "@progress/kendo-angular-resize-sensor": "^3.0.4",
     "@progress/kendo-angular-upload": "^4.1.4",
+    "@progress/kendo-common": "^0.1.1",
     "@progress/kendo-date-math": "^1.2.0",
     "@progress/kendo-popup-common": "^1.6.0",
     "@progress/kendo-theme-default": "^2.55.0",
