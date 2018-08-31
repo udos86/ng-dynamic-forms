@@ -1,3 +1,11 @@
+# 6.0.10
+
+### **Features**
+
+* `children` property added to `DynamicFormControlLayoutConfig` (closes [#821](https://github.com/udos86/ng-dynamic-forms/issues/821))
+
+***
+
 # 6.0.9
 
 ### **Bugfixes**
