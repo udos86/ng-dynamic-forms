@@ -2,6 +2,7 @@ import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dyn
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 import { JSONUtils } from "../../utils/json.utils";
+import { isBoolean, isNumber } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -62,9 +63,9 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.mask = config.mask || null;
         this.max = config.max !== undefined ? config.max : null;
         this.min = config.min !== undefined ? config.min : null;
-        this.multiple = typeof config.multiple === "boolean" ? config.multiple : null;
+        this.multiple = isBoolean(config.multiple) ? config.multiple : null;
         this.pattern = config.pattern || null;
-        this.step = typeof config.step === "number" ? config.step : null;
+        this.step = isNumber(config.step) ? config.step : null;
 
         if (this.list) {
             this._listId = `${this.id}List`;

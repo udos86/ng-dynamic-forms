@@ -11,6 +11,7 @@ import {
     DynamicTemplateDirective,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
 } from "../directive/dynamic-template.directive";
+import { isObject } from "../utils/core.utils";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
@@ -29,7 +30,7 @@ export class DynamicFormLayoutService {
 
     findById(id: string, formLayout: DynamicFormLayout | null): DynamicFormControlLayout | null {
 
-        if (formLayout !== null && typeof formLayout === "object") {
+        if (isObject(formLayout)) {
 
             for (let key of Object.keys(formLayout)) {
 

@@ -1,8 +1,10 @@
+import { isString } from "./core.utils";
+
 export class JSONUtils {
 
     static maskToString(mask: string | RegExp | (string | RegExp)[]): string | string[] | null {
 
-        if (typeof mask === "string") {
+        if (isString(mask)) {
 
             return mask as string;
 
@@ -20,7 +22,7 @@ export class JSONUtils {
 
     static maskFromString(mask: string | string[]): string | RegExp | (string | RegExp)[] | null {
 
-        if (typeof mask === "string") {
+        if (isString(mask)) {
 
             let isRegExp = (mask as string).startsWith("/") && (mask as string).endsWith("/");
 
@@ -38,6 +40,6 @@ export class JSONUtils {
 
         let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
-        return typeof value === "string" && regexDateISO.test(value) ? new Date(value) : value;
+        return isString(value) && regexDateISO.test(value) ? new Date(value) : value;
     }
 }

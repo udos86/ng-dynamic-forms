@@ -41,6 +41,7 @@ import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { RelationUtils } from "../utils/relation.utils";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
+import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
@@ -122,11 +123,11 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     get hasHint(): boolean {
-        return typeof (this.model as DynamicFormValueControlModel<any>).hint === "string";
+        return isString((this.model as DynamicFormValueControlModel<any>).hint);
     }
 
     get hasLabel(): boolean {
-        return typeof this.model.label === "string";
+        return isString(this.model.label);
     }
 
     get isCheckbox(): boolean {
