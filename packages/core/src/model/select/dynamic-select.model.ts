@@ -2,6 +2,7 @@ import { ɵlooseIdentical as looseIdentical } from "@angular/core";
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
+import { isBoolean } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
@@ -31,8 +32,8 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
         super(config, layout);
 
         this.compareWithFn = typeof config.compareWithFn === "function" ? config.compareWithFn : looseIdentical;
-        this.filterable = typeof config.filterable === "boolean" ? config.filterable : false;
-        this.multiple = typeof config.multiple === "boolean" ? config.multiple : false;
+        this.filterable = isBoolean(config.filterable) ? config.filterable : false;
+        this.multiple = isBoolean(config.multiple) ? config.multiple : false;
         this.placeholder = config.placeholder || "";
         this.prefix = config.prefix || null;
         this.suffix = config.suffix || null;

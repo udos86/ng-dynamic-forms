@@ -5,6 +5,7 @@ import {
 } from "../dynamic-date-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
+import { isBoolean, isString } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 
@@ -26,7 +27,7 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
     @serializable() focusedDate: DynamicDateControlValue | null;
     @serializable() inline: boolean;
     @serializable() prefix: string | null;
-    @serializable() readOnly : boolean;
+    @serializable() readOnly: boolean;
     @serializable() suffix: string | null;
     @serializable() toggleIcon: string | null;
     @serializable() toggleLabel: string | null;
@@ -37,13 +38,13 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
 
         super(config, layout);
 
-        this.autoFocus = typeof config.autoFocus === "boolean" ? config.autoFocus : false;
+        this.autoFocus = isBoolean(config.autoFocus) ? config.autoFocus : false;
         this.focusedDate = config.focusedDate || null;
-        this.inline = typeof config.inline === "boolean" ? config.inline : false;
+        this.inline = isBoolean(config.inline) ? config.inline : false;
         this.prefix = config.prefix || null;
-        this.readOnly = typeof config.readOnly === "boolean" ? config.readOnly : false;
-        this.toggleIcon = typeof config.toggleIcon === "string" ? config.toggleIcon : null;
-        this.toggleLabel = typeof config.toggleLabel === "string" ? config.toggleLabel : null;
+        this.readOnly = isBoolean(config.readOnly) ? config.readOnly : false;
+        this.toggleIcon = isString(config.toggleIcon) ? config.toggleIcon : null;
+        this.toggleLabel = isString(config.toggleLabel) ? config.toggleLabel : null;
         this.suffix = config.suffix || null;
     }
 }

@@ -2,6 +2,7 @@ import { Subject } from "rxjs";
 import { DynamicFormControlModel, DynamicFormControlModelConfig } from "./dynamic-form-control.model";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
+import { isBoolean, isObject } from "../utils/core.utils";
 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
 
@@ -25,9 +26,9 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
 
         super(config, layout);
 
-        this.additional = typeof config.additional === "object" && config.additional !== null ? config.additional : null;
+        this.additional = isObject(config.additional) ? config.additional : null;
         this.hint = config.hint || null;
-        this.required = typeof config.required === "boolean" ? config.required : false;
+        this.required = isBoolean(config.required) ? config.required : false;
         this.tabIndex = config.tabIndex || null;
 
         this.value = config.value !== null && config.value !== undefined ? config.value : null;

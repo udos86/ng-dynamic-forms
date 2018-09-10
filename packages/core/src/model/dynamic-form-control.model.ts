@@ -5,6 +5,7 @@ import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
 import { DynamicFormControlRelationGroup } from "./misc/dynamic-form-control-relation.model";
 import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
+import { isBoolean, isObject, isString } from "../utils/core.utils";
 
 export interface DynamicFormControlModelConfig {
 
@@ -46,7 +47,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
         this.asyncValidators = config.asyncValidators || null;
         this.errorMessages = config.errorMessages || null;
-        this.hidden = typeof config.hidden === "boolean" ? config.hidden : false;
+        this.hidden = isBoolean(config.hidden) ? config.hidden : false;
         this.id = config.id;
         this.label = config.label || null;
         this.labelTooltip = config.labelTooltip || null;
@@ -54,10 +55,10 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.layout = layout;
         this.name = config.name || config.id;
         this.relation = Array.isArray(config.relation) ? config.relation : [];
-        this.updateOn = typeof config.updateOn === "string" ? config.updateOn : null;
+        this.updateOn = isString(config.updateOn) ? config.updateOn : null;
         this.validators = config.validators || null;
 
-        this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
+        this.disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
         this.disabledUpdates.subscribe(disabled => this.disabled = disabled);
     }
@@ -71,7 +72,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     }
 
     get hasErrorMessages(): boolean {
-        return typeof this.errorMessages === "object" && this.errorMessages !== null;
+        return isObject(this.errorMessages);
     }
 
     toJSON() {

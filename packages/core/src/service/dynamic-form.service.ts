@@ -45,6 +45,7 @@ import { DynamicFormValidationService } from "./dynamic-form-validation.service"
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 import { JSONUtils } from "../utils/json.utils";
+import { isString } from "../utils/core.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
 
@@ -307,7 +308,7 @@ export class DynamicFormService {
 
     fromJSON(json: string | object[]): DynamicFormControlModel[] | never {
 
-        let formModelJSON = typeof json === "string" ? JSON.parse(json, JSONUtils.parseReviver) : json,
+        let formModelJSON = isString(json) ? JSON.parse(json, JSONUtils.parseReviver) : json,
             formModel: DynamicFormControlModel[] = [];
 
         formModelJSON.forEach((model: any) => {
