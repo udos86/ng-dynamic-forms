@@ -49,30 +49,12 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 
 **1. Install the core package**:
 ```
-npm install @ng-dynamic-forms/core -S
+npm i @ng-dynamic-forms/core -S
 ```
   
-**2. Choose your [UI library](#ui-modules)** and **install the appropriate package and its peer dependencies**:
+**2. Install a [UI package](#ui-modules)** and its peer dependencies**:
 ```
-npm install @ng-dynamic-forms/ui-bootstrap -S
-```
-
-**3.** When using **SystemJS**, update your configuration to **import the corresponding UMD bundles**:
-```javascript
-System.config({
-
-    paths: {
-        "npm:": "node_modules/"
-    },
-
-    map: {
-
-        // ...all the rest (Angular, RxJS, etc.)
-
-        "@ng-dynamic-forms/core": "npm:@ng-dynamic-forms/core/bundles/core.umd.js",
-        "@ng-dynamic-forms/ui-bootstrap": "npm:@ng-dynamic-forms/ui-bootstrap/bundles/ui-bootstrap.umd.js",
-    }
-});
+npm i @ng-dynamic-forms/ui-material -S
 ```
 
 
@@ -86,7 +68,7 @@ cd ng-dynamic-forms
 
 **2. Install the dependencies**:
 ```
-npm install
+npm i
 ```
 
 **3. Build the packages**:
@@ -110,7 +92,7 @@ npm start
 **1. Import** `DynamicFormsCoreModule` **via** `forRoot()` **and a UI module**:
 ```typescript
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
+import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 // ...
 
 @NgModule({
@@ -118,7 +100,7 @@ import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
     imports: [
         ReactiveFormsModule,
         DynamicFormsCoreModule.forRoot(), 
-        DynamicFormsBootstrapUIModule, 
+        DynamicFormsMaterialUIModule,
         // ...
     ]
 })
@@ -196,8 +178,7 @@ export class MyDynamicFormComponent implements OnInit {
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel"></dynamic-bootstrap-form>
+    <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
                             
 </form>
 ```
@@ -229,7 +210,7 @@ npm install @ng-dynamic-forms/ui-<library-name> -S
     imports: [
         ReactiveFormsModule,
         DynamicFormsCoreModule.forRoot(),
-        DynamicFormsBootstrapUIModule
+        DynamicFormsMaterialUIModule
         // ...
     ]
 })
@@ -242,8 +223,7 @@ your component template:
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel"></dynamic-bootstrap-form>
+    <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
                                
 </form>
 ```
@@ -252,9 +232,9 @@ Alternatively you can **directly make use of a specific** `DynamicFormControlCom
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel"
-                                    [group]="formGroup"
-                                    [model]="controlModel"></dynamic-bootstrap-form-control>
+    <dynamic-material-form-control *ngFor="let controlModel of formModel"
+                                   [group]="formGroup"
+                                   [model]="controlModel"></dynamic-material-form-control>
 </form>
 ```
 
@@ -345,8 +325,7 @@ ngOnInit() {
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel"></dynamic-bootstrap-form>
+    <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
                             
 </form>
 ```
@@ -403,8 +382,7 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel"></dynamic-bootstrap-form>
+    <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
 
     <button type="button" (click)="addItem()">Add item</button>
     <button type="button" (click)="clear()">Remove all items</button>
@@ -437,8 +415,7 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel">
+    <dynamic-material-form [group]="formGroup" [model]="formModel">
     
         <ng-template modelId="myFormArray">
 
@@ -446,7 +423,7 @@ Particularly for this case you can add a `<ng-template>` and **declare some cust
 
         </ng-template>
                                 
-    </dynamic-bootstrap-form>
+    </dynamic-material-form>
 
 </form>       
 ```
@@ -461,8 +438,7 @@ That means **you can access the group object and it's properties by either decla
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel">
+    <dynamic-material-form [group]="formGroup" [model]="formModel">
     
         <ng-template modelId="myFormArray" let-group let-index="index" let-context="context">
 
@@ -471,7 +447,7 @@ That means **you can access the group object and it's properties by either decla
 
         </ng-template>
                                 
-    </dynamic-bootstrap-form>
+    </dynamic-material-form>
 
 </form>       
 ```
@@ -506,8 +482,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 ```typescript
 <form class="form-horizontal" [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel"></dynamic-bootstrap-form>
+    <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
    
 </form>
 ```
@@ -573,9 +548,9 @@ Finally we pass the form layout to our `DynamicFormComponent` via input binding:
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [layout]="formLayout"
-                            [model]="formModel"></dynamic-bootstrap-form>
+    <dynamic-material-form [group]="formGroup"
+                           [layout]="formLayout"
+                           [model]="formModel"></dynamic-material-form>
                                
 </form>
 ```
@@ -683,8 +658,7 @@ In order to do so, just **put a** `<ng-template>` **inside your dynamic form con
 ```typescript
 <form [formGroup]="formGroup">
     
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel">
+    <dynamic-material-form [group]="formGroup" [model]="formModel">
                                     
         <ng-template modelId="myInput">
         
@@ -692,7 +666,7 @@ In order to do so, just **put a** `<ng-template>` **inside your dynamic form con
             
         </ng-template>
         
-    </dynamic-bootstrap-form>
+    </dynamic-material-form>
     
 </form>
 ```
@@ -701,8 +675,7 @@ Alternatively **you can also apply** `modelType` **instead of** `modelId` **to r
 ```typescript
 <form [formGroup]="formGroup">
     
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel">
+    <dynamic-material-form [group]="formGroup" [model]="formModel">
                                     
         <ng-template modelType="ARRAY">
         
@@ -710,7 +683,7 @@ Alternatively **you can also apply** `modelType` **instead of** `modelId` **to r
             
         </ng-template>
 
-    </dynamic-bootstrap-form>
+    </dynamic-material-form>
     
 </form>
 ```
@@ -722,8 +695,7 @@ can use local template variables to reference your models' properties**:
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel">
+    <dynamic-material-form [group]="formGroup" [model]="formModel">
                                     
         <ng-template modelId="myInput" let-id="id">
         
@@ -731,7 +703,7 @@ can use local template variables to reference your models' properties**:
             
         </ng-template>                                               
     
-    </dynamic-bootstrap-form>
+    </dynamic-material-form>
     
 </form>
 ```
@@ -749,8 +721,7 @@ All you have to do is to **add a** `as` **attribute to your template** and speci
 ```typescript
 <form [formGroup]="formGroup">
 
-    <dynamic-kendo-form [group]="formGroup"
-                        [model]="formModel">
+    <dynamic-kendo-form [group]="formGroup" [model]="formModel">
                         
         <ng-template modelId="myDropDownList" as="kendoDropDownListHeaderTemplate">
         
@@ -768,8 +739,7 @@ Finally **you can determine whether the template is rendered before or after the
 ```typescript
 <form [formGroup]="formGroup">
     
-    <dynamic-bootstrap-form [group]="formGroup"
-                            [model]="formModel">
+    <dynamic-material-form [group]="formGroup" [model]="formModel">
                             
         <ng-template modelId="myInput" align="START">
         
@@ -777,7 +747,7 @@ Finally **you can determine whether the template is rendered before or after the
             
         </ng-template>
         
-    </dynamic-bootstrap-form>
+    </dynamic-material-form>
     
 </form>
 ```
@@ -1075,12 +1045,12 @@ and **bind the** `FormControl` **reference via a local template variable**:
 
     <ng-container *ngFor="let controlModel of formModel">
     
-        <dynamic-bootstrap-form-control [group]="formGroup"
-                                        [model]="controlModel" #componentRef>
+        <dynamic-material-form-control [group]="formGroup"
+                                       [model]="controlModel" #componentRef>
         
             <validation-message [control]="componentRef.control"></validation-message>
                                     
-        </dynamic-bootstrap-form-control>
+        </dynamic-material-form-control>
         
     </ng-container>
     
