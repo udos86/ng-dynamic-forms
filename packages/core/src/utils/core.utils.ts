@@ -13,4 +13,3 @@ export function isObject(value: any): value is object {
 export function isString(value: any): value is string {
     return typeof value === "string";
 }
-
