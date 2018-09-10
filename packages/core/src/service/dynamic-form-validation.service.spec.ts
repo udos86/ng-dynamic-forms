@@ -8,6 +8,7 @@ import {
 } from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
+import { isFunction } from "../utils/core.utils";
 
 describe("DynamicFormValidationService test suite", () => {
 
@@ -125,7 +126,7 @@ describe("DynamicFormValidationService test suite", () => {
 
         service.updateValidators(config, control, model);
 
-        expect(typeof control["validator"] === "function").toBe(true);
+        expect(isFunction(control["validator"])).toBe(true);
         expect((model.validators as object).hasOwnProperty("testValidator")).toBe(true);
 
         service.updateValidators(null, control, model);
@@ -146,7 +147,7 @@ describe("DynamicFormValidationService test suite", () => {
 
         service.updateAsyncValidators(config, control, model);
 
-        expect(typeof control["asyncValidator"] === "function").toBe(true);
+        expect(isFunction(control["asyncValidator"])).toBe(true);
         expect((model.asyncValidators as object).hasOwnProperty("testAsyncValidator")).toBe(true);
 
         service.updateAsyncValidators(null, control, model);

@@ -1,9 +1,9 @@
-import { isBoolean, isNumber, isObject, isString } from "./core.utils";
+import { isBoolean, isFunction, isNumber, isObject, isString } from "./core.utils";
 
 describe("core utils test suite", () => {
 
-    let testValue1 = undefined,
-        testValue2 = null,
+    let testValue1: undefined = undefined,
+        testValue2: null = null,
         testValue3 = 42,
         testValue4 = true,
         testValue5 = false,
@@ -21,6 +21,18 @@ describe("core utils test suite", () => {
         expect(isBoolean(testValue6)).toBe(false);
         expect(isBoolean(testValue7)).toBe(false);
         expect(isBoolean(testValue8)).toBe(false);
+    });
+
+    it("should check if a given value is of type function", () => {
+
+        expect(isFunction(testValue1)).toBe(false);
+        expect(isFunction(testValue2)).toBe(false);
+        expect(isFunction(testValue3)).toBe(false);
+        expect(isFunction(testValue4)).toBe(false);
+        expect(isFunction(testValue5)).toBe(false);
+        expect(isFunction(testValue6)).toBe(false);
+        expect(isFunction(testValue7)).toBe(false);
+        expect(isFunction(testValue8)).toBe(true);
     });
 
     it("should check if a given value is of type number", () => {

@@ -3,7 +3,7 @@ import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.mo
 import { DynamicPathable } from "../misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
-import { isNumber } from "../../utils/core.utils";
+import { isFunction, isNumber } from "../../utils/core.utils";
 
 export class DynamicFormArrayGroupModel implements DynamicPathable {
 
@@ -59,7 +59,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         super(config, layout);
 
-        if (typeof config.groupFactory === "function") {
+        if (isFunction(config.groupFactory)) {
             this.groupFactory = config.groupFactory;
         } else {
             throw new Error("group factory function must be specified for DynamicFormArrayModel");
