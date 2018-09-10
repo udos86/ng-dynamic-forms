@@ -72,7 +72,7 @@ export class DynamicFormValidationService {
 
             validatorFns = Object.keys(validatorsConfig).map(validatorConfigKey => {
 
-                let validatorConfigValue = validatorsConfig[validatorConfigKey];
+                let validatorConfigValue = (validatorsConfig as DynamicValidatorsConfig)[validatorConfigKey];
 
                 if (this.isValidatorDescriptor(validatorConfigValue)) {
 
