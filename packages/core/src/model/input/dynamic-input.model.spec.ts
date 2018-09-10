@@ -4,6 +4,7 @@ import {
     DynamicInputModel
 } from "./dynamic-input.model";
 import { AUTOCOMPLETE_ON } from "../../utils/autofill.utils";
+import { isString } from "../../utils/core.utils";
 
 describe("DynamicInputModel test suite", () => {
 
@@ -50,7 +51,7 @@ describe("DynamicInputModel test suite", () => {
 
         expect(model.list).toEqual(config.list);
         expect(model.hasList).toBe(true);
-        expect(typeof model.listId === "string").toBe(true);
+        expect(isString(model.listId)).toBe(true);
     });
 
     it("tests if correct default max property is set", () => {

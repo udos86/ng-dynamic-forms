@@ -3,6 +3,7 @@ import { map } from "rxjs/operators";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
+import { isBoolean } from "../utils/core.utils";
 
 export interface DynamicFormOptionConfig<T> {
 
@@ -19,7 +20,7 @@ export class DynamicFormOption<T> {
 
     constructor(config: DynamicFormOptionConfig<T>) {
 
-        this.disabled = typeof config.disabled === "boolean" ? config.disabled : false;
+        this.disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.label = config.label || null;
         this.value = config.value;
     }

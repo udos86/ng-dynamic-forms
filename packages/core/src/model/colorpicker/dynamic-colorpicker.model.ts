@@ -1,6 +1,7 @@
 import { DynamicFormValueControlModelConfig, DynamicFormValueControlModel } from "../dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
+import { isBoolean, isString } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER = "COLORPICKER";
 
@@ -21,7 +22,7 @@ export class DynamicColorPickerModel extends DynamicFormValueControlModel<string
 
         super(config, layout);
 
-        this.format = typeof config.format === "string" ? config.format : null;
-        this.inline = typeof config.inline === "boolean" ? config.inline : false;
+        this.format = isString(config.format) ? config.format : null;
+        this.inline = isBoolean(config.inline) ? config.inline : false;
     }
 }

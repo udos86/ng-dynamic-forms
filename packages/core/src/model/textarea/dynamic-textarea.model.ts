@@ -1,6 +1,7 @@
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
+import { isNumber } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA = "TEXTAREA";
 
@@ -26,8 +27,8 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
         super(config, layout);
 
-        this.cols = typeof config.cols === "number" ? config.cols : 20;
-        this.rows = typeof config.rows === "number" ? config.rows : 2;
+        this.cols = isNumber(config.cols) ? config.cols : 20;
+        this.rows = isNumber(config.rows) ? config.rows : 2;
         this.wrap = config.wrap || DYNAMIC_FORM_TEXTAREA_WRAP_SOFT;
     }
 }

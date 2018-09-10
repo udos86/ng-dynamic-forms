@@ -58,6 +58,7 @@ import { DynamicKendoSliderComponent } from "./slider/dynamic-kendo-slider.compo
 import { DynamicKendoSwitchComponent } from "./switch/dynamic-kendo-switch.component";
 import { DynamicKendoTextAreaComponent } from "./textarea/dynamic-kendo-textarea.component";
 import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-timepicker.component";
+import { isString } from "../../core/src/utils/core.utils";
 
 @Component({
     selector: "dynamic-kendo-form-control",
@@ -93,11 +94,11 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 
     get hasHint(): boolean {
-        return this.isTextBox && typeof (this.model as DynamicFormValueControlModel<any>).hint === "string";
+        return this.isTextBox && isString((this.model as DynamicFormValueControlModel<any>).hint);
     }
 
     get hasLabel(): boolean {
-        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX && this.componentType !== DynamicKendoInputComponent && typeof this.model.label === "string";
+        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX && this.componentType !== DynamicKendoInputComponent && isString(this.model.label);
     }
 
     get isTextBox(): boolean {
