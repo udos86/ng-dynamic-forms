@@ -63,7 +63,7 @@
     "@progress/kendo-common": "^0.1.1",
     "@progress/kendo-date-math": "^1.2.0",
     "@progress/kendo-popup-common": "^1.6.0",
-    "@progress/kendo-theme-default": "^2.55.0",
+    "@progress/kendo-theme-default": "^2.56.0",
     "@telerik/kendo-intl": "^1.4.2",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^3.3.7",
@@ -80,7 +80,7 @@
   "devDependencies": {
     "@angular/compiler-cli": "^6.1.7",
     "@ngtools/webpack": "^6.2.1",
-    "@types/hammerjs": "^2.0.35",
+    "@types/hammerjs": "^2.0.36",
     "@types/jasmine": "^2.8.8",
     "@types/node": "^10.9.4",
     "angular-router-loader": "^0.8.5",

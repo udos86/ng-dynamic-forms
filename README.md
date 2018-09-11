@@ -482,7 +482,7 @@ At first we have to append the mandatory Bootstrap CSS class `form-horizontal` t
 ```html
 <form class="form-horizontal" [formGroup]="formGroup">
 
-    <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
+    <dynamic-bootstrap-form [group]="formGroup" [model]="formModel"></dynamic-bootstrap-form>
    
 </form>
 ```
@@ -548,9 +548,9 @@ Finally we pass the form layout to our `DynamicFormComponent` via input binding:
 ```html
 <form [formGroup]="formGroup">
 
-    <dynamic-material-form [group]="formGroup"
-                           [layout]="formLayout"
-                           [model]="formModel"></dynamic-material-form>
+    <dynamic-bootstrap-form [group]="formGroup"
+                            [layout]="formLayout"
+                            [model]="formModel"></dynamic-bootstrap-form>
                                
 </form>
 ```
