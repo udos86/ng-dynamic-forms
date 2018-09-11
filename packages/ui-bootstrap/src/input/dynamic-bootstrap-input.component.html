@@ -31,9 +31,9 @@
 
     <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
 
-    <datalist *ngIf="this.model.hasList" [id]="model.listId">
+    <datalist *ngIf="model.hasList" [id]="model.listId">
 
-        <option *ngFor="let option of model.list" [value]="option">
+        <option *ngFor="let option of model.listUpdates | async" [value]="option">
 
     </datalist>
 

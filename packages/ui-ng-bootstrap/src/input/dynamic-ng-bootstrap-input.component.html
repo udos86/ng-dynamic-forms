@@ -37,8 +37,10 @@
         <span class="input-group-text" [innerHTML]="model.suffix"></span>
     </div>
 
-    <datalist *ngIf="model.list" [id]="model.listId">
-        <option *ngFor="let option of model.list" [value]="option">
+    <datalist *ngIf="model.hasList" [id]="model.listId">
+
+        <option *ngFor="let option of model.listUpdates | async" [value]="option">
+
     </datalist>
 
 </div>

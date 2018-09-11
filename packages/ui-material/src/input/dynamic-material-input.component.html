@@ -55,11 +55,11 @@
 
 </mat-form-field>
 
-<mat-autocomplete #matAutocomplete="matAutocomplete"
+<mat-autocomplete *ngIf="model.hasList" #matAutocomplete="matAutocomplete"
                   [autoActiveFirstOption]="model.getAdditional('autoActiveFirstOption', AUTOCOMPLETE_OPTIONS['autoActiveFirstOption'])"
                   [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                   (optionSelected)="onChange($event)">
 
-    <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
+    <mat-option *ngFor="let option of model.listUpdates | async" [value]="option">{{ option }}</mat-option>
 
 </mat-autocomplete>

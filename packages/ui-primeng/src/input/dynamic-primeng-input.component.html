@@ -26,9 +26,9 @@
            (change)="onChange($event)"
            (focus)="onFocus($event)"/>
 
-    <datalist *ngIf="this.model.hasList" [id]="model.listId">
+    <datalist *ngIf="model.hasList" [id]="model.listId">
 
-        <option *ngFor="let option of model.list" [value]="option">
+        <option *ngFor="let option of model.listUpdates | async" [value]="option">
 
     </datalist>
 

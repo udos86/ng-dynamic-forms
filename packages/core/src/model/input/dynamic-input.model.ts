@@ -3,6 +3,7 @@ import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.mo
 import { serializable } from "../../decorator/serializable.decorator";
 import { JSONUtils } from "../../utils/json.utils";
 import { isBoolean, isNumber } from "../../utils/core.utils";
+import { BehaviorSubject } from "rxjs";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -41,7 +42,8 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() accept: string | null;
     @serializable() inputType: string;
     files: FileList | null = null;
-    @serializable() list: string[] | null;
+    @serializable() list: string[] | null = null;
+    listUpdates: BehaviorSubject<string[]>;
     @serializable() mask: string | RegExp | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
@@ -51,6 +53,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
     private _listId: string | null = null;
 
+
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, layout?: DynamicFormControlLayout) {
@@ -59,7 +62,6 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         this.accept = config.accept || null;
         this.inputType = config.inputType || DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;
-        this.list = Array.isArray(config.list) ? config.list : null;
         this.mask = config.mask || null;
         this.max = config.max !== undefined ? config.max : null;
         this.min = config.min !== undefined ? config.min : null;
@@ -67,8 +69,13 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.pattern = config.pattern || null;
         this.step = isNumber(config.step) ? config.step : null;
 
-        if (this.list) {
+        if (Array.isArray(config.list)) {
+
+            this.list = config.list;
             this._listId = `${this.id}List`;
+
+            this.listUpdates = new BehaviorSubject<string[]>(this.list);
+            this.listUpdates.subscribe();
         }
     }
 
