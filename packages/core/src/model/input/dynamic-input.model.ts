@@ -2,8 +2,9 @@ import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dyn
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 import { JSONUtils } from "../../utils/json.utils";
-import { isBoolean, isNumber } from "../../utils/core.utils";
-import { BehaviorSubject } from "rxjs";
+import { isBoolean, isNumber, isObservable } from "../../utils/core.utils";
+import { Observable, of } from "rxjs";
+import { tap } from "rxjs/operators";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -28,7 +29,7 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
 
     accept?: string;
     inputType?: string;
-    list?: string[];
+    list?: string[] | Observable<string[]>;
     mask?: string | RegExp | (string | RegExp)[];
     max?: number | string | Date;
     min?: number | string | Date;
@@ -42,8 +43,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() accept: string | null;
     @serializable() inputType: string;
     files: FileList | null = null;
-    @serializable() list: string[] | null = null;
-    listUpdates: BehaviorSubject<string[] | null>;
+    list$: Observable<string[]> | null = null;
     @serializable() mask: string | RegExp | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
@@ -51,8 +51,9 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() pattern: string | null;
     @serializable() step: number | null;
 
+    @serializable("list") private _list: string[] | null = null;
     private _listId: string | null = null;
-    
+
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, layout?: DynamicFormControlLayout) {
@@ -68,15 +69,10 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.pattern = config.pattern || null;
         this.step = isNumber(config.step) ? config.step : null;
 
-        this.listUpdates = new BehaviorSubject<string[] | null>(null);
-        this.listUpdates.subscribe();
-
-        if (Array.isArray(config.list)) {
+        if (config.list !== undefined) {
 
             this.list = config.list;
             this._listId = `${this.id}List`;
-
-            this.listUpdates.next(this.list);
         }
     }
 
@@ -85,7 +81,25 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     }
 
     get hasList(): boolean {
-        return Array.isArray(this.list);
+        return Array.isArray(this._list) || isObservable(this.list$);
+    }
+
+    set list(list: string[] | Observable<string[]> | null) {
+
+        if (Array.isArray(list)) {
+
+            this._list = list;
+            this.list$ = of(this._list);
+
+        } else if (isObservable(list)) {
+
+            this.list$ = (list as Observable<string[]>).pipe(tap(list => this._list = list));
+
+        } else {
+
+            this._list = null;
+            this.list$ = null;
+        }
     }
 
     toJSON() {
