@@ -43,7 +43,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() inputType: string;
     files: FileList | null = null;
     @serializable() list: string[] | null = null;
-    listUpdates: BehaviorSubject<string[]>;
+    listUpdates: BehaviorSubject<string[] | null>;
     @serializable() mask: string | RegExp | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
@@ -52,8 +52,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() step: number | null;
 
     private _listId: string | null = null;
-
-
+    
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, layout?: DynamicFormControlLayout) {
@@ -69,13 +68,15 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.pattern = config.pattern || null;
         this.step = isNumber(config.step) ? config.step : null;
 
+        this.listUpdates = new BehaviorSubject<string[] | null>(null);
+        this.listUpdates.subscribe();
+
         if (Array.isArray(config.list)) {
 
             this.list = config.list;
             this._listId = `${this.id}List`;
 
-            this.listUpdates = new BehaviorSubject<string[]>(this.list);
-            this.listUpdates.subscribe();
+            this.listUpdates.next(this.list);
         }
     }
 
