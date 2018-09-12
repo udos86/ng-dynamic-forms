@@ -5,7 +5,6 @@
     </div>
 
     <input [attr.accept]="model.accept"
-           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
@@ -16,6 +15,7 @@
            [class.form-control-file]="model.inputType === 'file'"
            [class.is-invalid]="showErrorMessages"
            [dynamicId]="bindId && model.id"
+           [dynamicList]="model.listId"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"

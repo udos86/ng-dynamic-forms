@@ -5,11 +5,14 @@ import { DynamicIdDirective } from "./dynamic-id.directive";
 
 @Component({
     template: `
-        <div [dynamicId]="false"></div>
-        <div [dynamicId]="'testId'"></div>
+        <div [dynamicId]="testId1"></div>
+        <div [dynamicId]="testId2"></div>
     `
 })
 class TestComponent {
+
+    testId1: boolean = false;
+    testId2: string = "testId";
 }
 
 describe("DynamicIdDirective test suite", () => {
@@ -39,6 +42,6 @@ describe("DynamicIdDirective test suite", () => {
     it("should have one set id", () => {
 
         expect(directives[0].attributes["id"]).toBeUndefined();
-        expect(directives[1].attributes["id"]).toEqual("testId");
+        expect(directives[1].attributes["id"]).toEqual(fixture.componentInstance.testId2);
     });
 });

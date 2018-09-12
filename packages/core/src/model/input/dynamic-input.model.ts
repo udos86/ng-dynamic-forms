@@ -52,7 +52,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() step: number | null;
 
     @serializable("list") private _list: string[] | null = null;
-    private _listId: string | null = null;
+    private readonly _listId: string | null = null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
@@ -81,7 +81,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     }
 
     get hasList(): boolean {
-        return Array.isArray(this._list) || isObservable(this.list$);
+        return isObservable(this.list$);
     }
 
     set list(list: string[] | Observable<string[]> | null) {
