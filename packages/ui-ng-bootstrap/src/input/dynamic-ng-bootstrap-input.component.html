@@ -5,7 +5,6 @@
     </div>
 
     <input [attr.accept]="model.accept"
-           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
@@ -16,6 +15,7 @@
            [class.form-control-file]="model.inputType === 'file'"
            [class.is-invalid]="showErrorMessages"
            [dynamicId]="bindId && model.id"
+           [dynamicList]="model.listId"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"
@@ -37,8 +37,10 @@
         <span class="input-group-text" [innerHTML]="model.suffix"></span>
     </div>
 
-    <datalist *ngIf="model.list" [id]="model.listId">
-        <option *ngFor="let option of model.list" [value]="option">
+    <datalist *ngIf="model.hasList" [id]="model.listId">
+
+        <option *ngFor="let option of model.list$ | async" [value]="option">
+
     </datalist>
 
 </div>

@@ -11,7 +11,6 @@
 
     <input class="k-textbox"
            [attr.accept]="model.accept"
-           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
@@ -19,6 +18,7 @@
            [autocomplete]="model.autoComplete"
            [autofocus]="model.autoFocus"
            [dynamicId]="bindId && model.id"
+           [dynamicList]="model.listId"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"

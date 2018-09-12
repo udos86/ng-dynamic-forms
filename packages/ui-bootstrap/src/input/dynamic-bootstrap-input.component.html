@@ -4,7 +4,6 @@
 
     <input class="form-control"
            [attr.accept]="model.accept"
-           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
@@ -12,6 +11,7 @@
            [autocomplete]="model.autoComplete"
            [autofocus]="model.autoFocus"
            [dynamicId]="bindId && model.id"
+           [dynamicList]="model.listId"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"
@@ -31,9 +31,9 @@
 
     <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
 
-    <datalist *ngIf="this.model.hasList" [id]="model.listId">
+    <datalist *ngIf="model.hasList" [id]="model.listId">
 
-        <option *ngFor="let option of model.list" [value]="option">
+        <option *ngFor="let option of model.list$ | async" [value]="option">
 
     </datalist>
 

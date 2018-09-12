@@ -49,9 +49,9 @@ describe("DynamicInputModel test suite", () => {
 
     it("tests if correct default list property is set", () => {
 
-        expect(model.list).toEqual(config.list);
         expect(model.hasList).toBe(true);
         expect(isString(model.listId)).toBe(true);
+        expect(model.list$).toBeDefined();
     });
 
     it("tests if correct default max property is set", () => {
