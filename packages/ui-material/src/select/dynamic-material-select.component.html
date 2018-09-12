@@ -15,6 +15,7 @@
     <mat-select #matSelect
                 [compareWith]="model.compareWithFn"
                 [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
+                [errorStateMatcher]="model.getAdditional('errorStateMatcher', errorStateMatcher)"
                 [formControlName]="model.id"
                 [id]="bindId ? model.id : null"
                 [multiple]="model.multiple"

@@ -1,3 +1,12 @@
+# 6.1.0
+
+### **Features**
+
+* Observable support for `list` property (closes [#829](https://github.com/udos86/ng-dynamic-forms/issues/829) & [#355](https://github.com/udos86/ng-dynamic-forms/issues/355))
+* `ErrorStateMatcher` support for Material UI
+
+***
+
 # 6.0.10
 
 ### **Features**

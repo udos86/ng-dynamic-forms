@@ -22,6 +22,7 @@
            [attr.step]="model.step"
            [autocomplete]="model.autoComplete"
            [autofocus]="model.autoFocus"
+           [errorStateMatcher]="model.getAdditional('errorStateMatcher', errorStateMatcher)"
            [formControlName]="model.id"
            [id]="bindId ? model.id : null"
            [maxlength]="model.maxLength"

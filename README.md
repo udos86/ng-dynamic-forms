@@ -200,7 +200,7 @@ NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a var
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and its peer dependencies**:
 ```
-npm install @ng-dynamic-forms/ui-<library-name> -S
+npm i @ng-dynamic-forms/ui-<library-name> -S
 ```
 
 **Now just import the UI module**:
