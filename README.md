@@ -1020,7 +1020,7 @@ export class MyValidationMessageComponent {
 ```
  
 **2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
-```typescript
+```html
 <span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
 ```
 
