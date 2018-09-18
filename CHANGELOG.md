@@ -1,3 +1,11 @@
+# 6.1.1
+
+### **Bugfixes**
+
+* PrimeNG UI package now uses prime icons instead of fontAwesome icons (closes [#845](https://github.com/udos86/ng-dynamic-forms/issues/845))
+
+***
+
 # 6.1.0
 
 ### **Features**
