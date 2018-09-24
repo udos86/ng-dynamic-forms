@@ -8,7 +8,9 @@ export const DYNAMIC_FORM_CONTROL_STATE_ENABLED = "ENABLED";
 export const DYNAMIC_FORM_CONTROL_STATE_HIDDEN = "HIDDEN";
 export const DYNAMIC_FORM_CONTROL_STATE_VISIBLE = "VISIBLE";
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormRelationService {
 
     private subscriptions: Map<string, Subscription> = new Map();
