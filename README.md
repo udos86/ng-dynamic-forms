@@ -89,7 +89,7 @@ npm start
 
 ## Basic Usage
 
-**1. Import** `DynamicFormsCoreModule` **via** `forRoot()` **and a UI module**:
+**1. Import** `DynamicFormsCoreModule` **and a UI module**:
 ```typescript
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
@@ -99,7 +99,7 @@ import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
     
     imports: [
         ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(), 
+        DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule,
         // ...
     ]
@@ -209,7 +209,7 @@ npm i @ng-dynamic-forms/ui-<library-name> -S
 
     imports: [
         ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(),
+        DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
         // ...
     ]

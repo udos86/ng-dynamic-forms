@@ -24,7 +24,9 @@ export type ValidatorsMap = Map<string, Validator | ValidatorFactory>;
 
 export const DYNAMIC_VALIDATORS = new InjectionToken<ValidatorsMap>("DYNAMIC_VALIDATORS");
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormValidationService {
 
     constructor(@Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],

@@ -49,7 +49,9 @@ import { isString } from "../utils/core.utils";
 
 export type DynamicFormModel = DynamicFormControlModel[] | DynamicFormGroupModel;
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormService {
 
     constructor(private validationService: DynamicFormValidationService) {}

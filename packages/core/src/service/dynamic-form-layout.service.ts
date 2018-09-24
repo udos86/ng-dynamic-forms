@@ -21,7 +21,9 @@ export type DynamicFormControlTemplates = QueryList<DynamicTemplateDirective> | 
 
 export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControlMapFn>("DYNAMIC_FORM_CONTROL_MAP_FN");
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormLayoutService {
 
     constructor(@Inject(DYNAMIC_FORM_CONTROL_MAP_FN) @Optional() private readonly DYNAMIC_FORM_CONTROL_MAP_FN: any) {
