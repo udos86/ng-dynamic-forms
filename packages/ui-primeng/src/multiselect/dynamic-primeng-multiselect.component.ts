@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MultiSelect } from "primeng/primeng";
+import { MultiSelect, Tooltip } from "primeng/primeng";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -26,6 +26,7 @@ export class DynamicPrimeNGMultiSelectComponent extends DynamicFormControlCompon
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pMultiSelect") pMultiSelect: MultiSelect;
+    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

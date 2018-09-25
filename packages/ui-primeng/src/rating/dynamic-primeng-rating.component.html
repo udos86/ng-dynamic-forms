@@ -10,6 +10,7 @@
               [ngClass]="getClass('element', 'control')"
               [stars]="model.max"
               (onCancel)="onCustomEvent($event, 'onCancel')"
-              (onRate)="onChange($event)"></p-rating>
+              (onRate)="onChange($event)"
+              [pTooltip]="model.hint"></p-rating>
 
 </div>

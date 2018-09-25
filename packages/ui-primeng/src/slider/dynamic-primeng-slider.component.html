@@ -11,6 +11,7 @@
               [range]="model.getAdditional('range', false)"
               [step]="model.step"
               (onChange)="onChange($event)"
-              (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"></p-slider>
+              (onSlideEnd)="onCustomEvent($event, 'onSlideEnd')"
+              [pTooltip]="model.hint"></p-slider>
 
 </div>

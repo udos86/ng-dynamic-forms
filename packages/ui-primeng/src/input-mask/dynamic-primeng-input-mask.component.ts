@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { InputMask } from "primeng/primeng";
+import { InputMask, Tooltip } from "primeng/primeng";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -28,6 +28,7 @@ export class DynamicPrimeNGInputMaskComponent extends DynamicFormControlComponen
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pInputMask") pInputMask: InputMask;
+    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

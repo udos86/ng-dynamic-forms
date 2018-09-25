@@ -22,6 +22,7 @@
                     (onFocus)="onFocus($event)"
                     (onSelect)="onCustomEvent($event, 'onSelect')"
                     (onUnselect)="onCustomEvent($event, 'onUnselect')"
-                    (completeMethod)="onAutoComplete($event)"></p-autoComplete>
+                    (completeMethod)="onAutoComplete($event)"
+                    [pTooltip]="model.hint"></p-autoComplete>
 
 </div>

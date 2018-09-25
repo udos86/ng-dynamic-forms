@@ -8,6 +8,7 @@
              [tabindex]="model.tabIndex"
              (change)="onChange($event)"
              (onAdd)="onCustomEvent($event, 'onAdd')"
-             (onRemove)="onCustomEvent($event, 'onRemove')"></p-chips>
+             (onRemove)="onCustomEvent($event, 'onRemove')"
+             [pTooltip]="model.hint"></p-chips>
 
 </div>

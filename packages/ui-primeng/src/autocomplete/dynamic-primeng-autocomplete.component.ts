@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { AutoComplete } from "primeng/primeng";
+import { AutoComplete, Tooltip } from "primeng/primeng";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -35,6 +35,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplatea
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pAutoComplete") pAutoComplete: AutoComplete;
+    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

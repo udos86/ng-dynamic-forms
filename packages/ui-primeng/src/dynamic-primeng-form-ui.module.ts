@@ -19,7 +19,8 @@ import {
     RadioButtonModule,
     RatingModule,
     SliderModule,
-    SpinnerModule
+    SpinnerModule,
+    TooltipModule
 } from "primeng/primeng";
 import { DynamicPrimeNGFormComponent } from "./dynamic-primeng-form.component";
 import { DynamicPrimeNGAutoCompleteComponent } from "./autocomplete/dynamic-primeng-autocomplete.component";
@@ -61,7 +62,8 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
         RadioButtonModule,
         RatingModule,
         SliderModule,
-        SpinnerModule
+        SpinnerModule,
+        TooltipModule
     ],
     declarations: [
         DynamicPrimeNGAutoCompleteComponent,

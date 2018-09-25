@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Chips } from "primeng/primeng";
+import { Chips, Tooltip } from "primeng/primeng";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -33,6 +33,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGTemplateableForm
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pChips") pChips: Chips;
+    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
