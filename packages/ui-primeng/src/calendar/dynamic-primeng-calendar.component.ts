@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Calendar, Tooltip } from "primeng/primeng";
+import { Calendar } from "primeng/primeng";
 import {
     DynamicDatePickerModel, 
     DynamicFormControlCustomEvent,
