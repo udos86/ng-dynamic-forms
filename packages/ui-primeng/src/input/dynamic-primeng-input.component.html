@@ -25,7 +25,8 @@
            (blur)="onBlur($event)"
            (change)="onChange($event)"
            (focus)="onFocus($event)"
-           [pTooltip]="model.hint"/>
+           [pTooltip]="model.hint"
+           tooltipPosition="bottom"/>
 
     <datalist *ngIf="model.hasList" [id]="model.listId">
 

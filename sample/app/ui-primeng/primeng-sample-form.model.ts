@@ -24,7 +24,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "arrivalDate",
                 format: "mm/dd/yy",
                 inline: false,
-                hint: "This is tooltip hint",
                 label: "Arrival",
                 placeholder: "Date of Arrival"
             }),
@@ -34,7 +33,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "departureDate",
                 format: "mm/dd/yy",
                 inline: false,
-                hint: "This is tooltip hint",
                 label: "Departure",
                 placeholder: "Date of Departure"
             })
@@ -56,7 +54,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "roomSize",
                 label: "Room Size",
                 placeholder: "Room Size",
-                hint: "This is tooltip hint",
                 options: [
                     {
                         label: "Single Room",
@@ -86,7 +83,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "roomQuantity",
                 inputType: "number",
                 label: "Quantity",
-                hint: "This is tooltip hint",
                 placeholder: "Quantity",
                 max: 5,
                 min: 0
@@ -98,16 +94,13 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
 
         id: "roomColor",
         label: "Room Color",
-        value: "#FFFFFF",
-        hint: "This is tooltip hint",
-
+        value: "#FFFFFF"
     }),
 
     new DynamicInputModel({
 
         id: "firstName",
         label: "First Name",
-        hint: "This is tooltip hint",
         placeholder: "First Name",
         validators: {
             required: null
@@ -122,8 +115,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         id: "lastName",
         label: "Last Name",
         placeholder: "Last Name",
-        hint: "This is tooltip hint",
-
         validators: {
             required: null
         },
@@ -136,7 +127,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
 
         id: "email",
         label: "E-Mail",
-        hint: "This is tooltip hint",
         placeholder: "E-Mail",
         validators: {
             email: null
@@ -151,7 +141,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
         id: "phone",
         label: "Phone Number",
         placeholder: "Phone Number",
-        hint: "This is tooltip hint",
         mask: "+(99) 999-9999",
         validators: {
             required: null
@@ -188,22 +177,19 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
 
                 id: "zipCode",
                 label: "ZIP",
-        hint: "This is tooltip hint",
-        placeholder: "ZIP"
+                placeholder: "ZIP"
             }),
             new DynamicInputModel({
 
                 id: "state",
                 label: "State",
-        hint: "This is tooltip hint",
-        placeholder: "State",
+                placeholder: "State",
                 list: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
             }),
             new DynamicInputModel({
 
                 id: "city",
-        hint: "This is tooltip hint",
-        label: "City",
+                label: "City",
                 placeholder: "City"
             })
         ]
@@ -217,25 +203,21 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             new DynamicCheckboxModel({
 
                 id: "extraBreakfast",
-                hint: "This is tooltip hint",
                 label: "Breakfast"
             }),
             new DynamicCheckboxModel({
 
                 id: "extraTV",
-                hint: "This is tooltip hint",
                 label: "TV",
             }),
             new DynamicCheckboxModel({
 
                 id: "extraWiFi",
-                hint: "This is tooltip hint",
                 label: "WiFi"
             }),
             new DynamicCheckboxModel({
 
                 id: "extraParking",
-                hint: "This is tooltip hint",
                 label: "Parking Lot"
             })
         ]
@@ -244,7 +226,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicRadioGroupModel<string>({
 
         id: "payment",
-        hint: "This is tooltip hint",
         label: "Payment Method",
         options: [
             {
@@ -270,7 +251,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicTimePickerModel({
 
         id: "arrivalTime",
-        hint: "This is tooltip hint",
         label: "Estimated Arrival Time",
         showSeconds: false
     }),
@@ -278,16 +258,16 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicTextAreaModel({
 
         id: "note",
-        hint: "This is tooltip hint",
-        label: "Personal Note",
+        label: "Personal Note (with hint)",
         rows: 5,
         placeholder: "Personal Note",
+        hint: "Floating hint's available for all input types"
+
     }),
 
     new DynamicSwitchModel({
 
         id: "reminder",
-        hint: "This is tooltip hint",
         label: "Send me a reminder",
         offLabel: "Off",
         onLabel: "On",
@@ -297,7 +277,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicSwitchModel({
 
         id: "newsletter",
-        hint: "This is tooltip hint",
         label: "Subscribe to newsletter",
         offLabel: "Off",
         onLabel: "On",
@@ -307,7 +286,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicRatingModel({
 
         id: "feedback",
-        hint: "This is tooltip hint",
         label: "How did you like this form?",
         additional: {
             cancel: false
@@ -317,7 +295,6 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
     new DynamicCheckboxModel({
 
         id: "confirm",
-        hint: "This is tooltip hint",
         label: "I confirm the information given above"
     })
 ];
