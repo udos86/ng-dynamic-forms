@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Slider, Tooltip } from "primeng/primeng";
+import { Slider } from "primeng/primeng";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -28,7 +28,6 @@ export class DynamicPrimeNGSliderComponent extends DynamicFormControlComponent {
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pSlider") pSlider: Slider;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

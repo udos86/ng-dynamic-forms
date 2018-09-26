@@ -18,6 +18,7 @@
               (blur)="onBlur($event)"
               (change)="onChange($event)"
               (focus)="onFocus($event)"
-              (onResize)="onCustomEvent($event, 'onResize')"></textarea>
+              (onResize)="onCustomEvent($event, 'onResize')"
+              [pTooltip]="model.hint"></textarea>
 
 </div>

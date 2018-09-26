@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Rating, Tooltip } from "primeng/primeng";
+import { Rating } from "primeng/primeng";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -28,7 +28,6 @@ export class DynamicPrimeNGRatingComponent extends DynamicFormControlComponent {
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pRating") pRating: Rating;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

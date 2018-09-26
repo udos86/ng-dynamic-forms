@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Spinner, Tooltip } from "primeng/primeng";
+import { Spinner } from "primeng/primeng";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -26,7 +26,6 @@ export class DynamicPrimeNGSpinnerComponent extends DynamicFormControlComponent 
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pSpinner") pSpinner: Spinner;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

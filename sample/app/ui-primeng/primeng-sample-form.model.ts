@@ -24,6 +24,7 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "arrivalDate",
                 format: "mm/dd/yy",
                 inline: false,
+                hint: "This is tooltip hint",
                 label: "Arrival",
                 placeholder: "Date of Arrival"
             }),
@@ -33,6 +34,7 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "departureDate",
                 format: "mm/dd/yy",
                 inline: false,
+                hint: "This is tooltip hint",
                 label: "Departure",
                 placeholder: "Date of Departure"
             })
@@ -84,6 +86,7 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
                 id: "roomQuantity",
                 inputType: "number",
                 label: "Quantity",
+                hint: "This is tooltip hint",
                 placeholder: "Quantity",
                 max: 5,
                 min: 0
@@ -214,21 +217,25 @@ export const PRIME_NG_SAMPLE_FORM_MODEL = [
             new DynamicCheckboxModel({
 
                 id: "extraBreakfast",
+                hint: "This is tooltip hint",
                 label: "Breakfast"
             }),
             new DynamicCheckboxModel({
 
                 id: "extraTV",
+                hint: "This is tooltip hint",
                 label: "TV",
             }),
             new DynamicCheckboxModel({
 
                 id: "extraWiFi",
+                hint: "This is tooltip hint",
                 label: "WiFi"
             }),
             new DynamicCheckboxModel({
 
                 id: "extraParking",
+                hint: "This is tooltip hint",
                 label: "Parking Lot"
             })
         ]

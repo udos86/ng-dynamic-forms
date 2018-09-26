@@ -35,7 +35,6 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplatea
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pAutoComplete") pAutoComplete: AutoComplete;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { InputText, Tooltip } from "primeng/primeng";
+import { InputText } from "primeng/primeng";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -26,7 +26,6 @@ export class DynamicPrimeNGInputComponent extends DynamicFormControlComponent {
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pInputText") pInputText: InputText;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

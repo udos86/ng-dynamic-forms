@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Checkbox, Tooltip } from "primeng/primeng";
+import { Checkbox } from "primeng/primeng";
 import {
     DynamicCheckboxModel,
     DynamicFormLayout,
@@ -26,7 +26,6 @@ export class DynamicPrimeNGCheckboxComponent extends DynamicFormControlComponent
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pCheckbox") pCheckbox: Checkbox;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

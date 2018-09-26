@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Dropdown, Tooltip } from "primeng/primeng";
+import { Dropdown } from "primeng/primeng";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -31,7 +31,6 @@ export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGTemplateableF
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("pDropdown") pDropdown: Dropdown;
-    @ViewChild("pTooltip") pTooltip: Tooltip;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
