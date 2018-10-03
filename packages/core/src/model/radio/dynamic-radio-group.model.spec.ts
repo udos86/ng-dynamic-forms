@@ -33,6 +33,8 @@ describe("DynamicRadioModel test suite", () => {
         expect(isObservable(model.options$)).toBe(true);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP);
         expect(model.value).toBeNull();
+        expect(model.requiredUpdates).toBeDefined();
+        expect(model.disabledUpdates).toBeDefined();
     });
 
     it("should select the correct option", async(() => {
