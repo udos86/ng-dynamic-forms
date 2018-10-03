@@ -1,3 +1,12 @@
+# 6.2.0
+
+### **Features**
+
+* **Library now makes use of Angular 6 tree-shakeable providers**
+* Importing `DynamicFormsCoreModule` via `forRoot` is now deprecated and will be removed in next major version
+
+***
+
 # 6.1.1
 
 ### **Bugfixes**

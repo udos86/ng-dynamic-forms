@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-bootstrap",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "description": "Bootstrap UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -34,7 +34,7 @@
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
     "@angular/forms": "^6.0.0",
-    "@ng-dynamic-forms/core": "^6.1.1",
+    "@ng-dynamic-forms/core": "^6.2.0",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^3.3.7",
     "ngx-bootstrap": "^2.0.0",
