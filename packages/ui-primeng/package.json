@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -33,7 +33,7 @@
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
     "@angular/forms": "^6.0.0",
-    "@ng-dynamic-forms/core": "^6.1.1",
+    "@ng-dynamic-forms/core": "^6.2.0",
     "primeng": "^5.0.0",
     "rxjs": "^6.0.0"
   },
