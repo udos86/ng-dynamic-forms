@@ -9,8 +9,9 @@ export * from "./component/dynamic-templateable-form-control.interface";
 
 export * from "./decorator/serializable.decorator";
 
-export * from "./directive/dynamic-template.directive";
 export * from "./directive/dynamic-id.directive";
+export * from "./directive/dynamic-list.directive";
+export * from "./directive/dynamic-template.directive";
 
 export * from "./model/dynamic-form-control.model";
 export * from "./model/dynamic-form-value-control.model";
@@ -47,6 +48,7 @@ export * from "./service/dynamic-form-layout.service";
 export * from "./service/dynamic-form-validation.service";
 
 export * from "./utils/autofill.utils";
+export * from "./utils/core.utils";
 export * from "./utils/json.utils";
 export * from "./utils/relation.utils";
 

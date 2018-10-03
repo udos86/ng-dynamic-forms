@@ -1,6 +1,7 @@
 import { DynamicFileControlModelConfig, DynamicFileControlModel } from "../dynamic-file-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
+import { isBoolean, isNumber } from "../../utils/core.utils";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD = "FILE_UPLOAD";
 
@@ -32,11 +33,11 @@ export class DynamicFileUploadModel extends DynamicFileControlModel {
         super(config, layout);
 
         this.accept = Array.isArray(config.accept) ? config.accept : null;
-        this.autoUpload = typeof config.autoUpload === "boolean" ? config.autoUpload : true;
-        this.maxSize = typeof config.maxSize === "number" ? config.maxSize : null;
-        this.minSize = typeof config.minSize === "number" ? config.minSize : null;
+        this.autoUpload = isBoolean(config.autoUpload) ? config.autoUpload : true;
+        this.maxSize = isNumber(config.maxSize) ? config.maxSize : null;
+        this.minSize = isNumber(config.minSize) ? config.minSize : null;
         this.removeUrl = config.removeUrl || null;
-        this.showFileList = typeof config.showFileList === "boolean" ? config.showFileList : true;
+        this.showFileList = isBoolean(config.showFileList) ? config.showFileList : true;
         this.url = config.url || null;
     }
 }

@@ -1,3 +1,28 @@
+# 6.1.1
+
+### **Bugfixes**
+
+* PrimeNG UI package now uses prime icons instead of fontAwesome icons (closes [#845](https://github.com/udos86/ng-dynamic-forms/issues/845))
+
+***
+
+# 6.1.0
+
+### **Features**
+
+* Observable support for `list` property (closes [#829](https://github.com/udos86/ng-dynamic-forms/issues/829) & [#355](https://github.com/udos86/ng-dynamic-forms/issues/355))
+* `ErrorStateMatcher` support for Material UI
+
+***
+
+# 6.0.10
+
+### **Features**
+
+* `children` property added to `DynamicFormControlLayoutConfig` (closes [#821](https://github.com/udos86/ng-dynamic-forms/issues/821))
+
+***
+
 # 6.0.9
 
 ### **Bugfixes**

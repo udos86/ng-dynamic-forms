@@ -16,13 +16,13 @@
 
     <input matInput
            [attr.accept]="model.accept"
-           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
            [attr.step]="model.step"
            [autocomplete]="model.autoComplete"
            [autofocus]="model.autoFocus"
+           [errorStateMatcher]="model.getAdditional('errorStateMatcher', errorStateMatcher)"
            [formControlName]="model.id"
            [id]="bindId ? model.id : null"
            [maxlength]="model.maxLength"
@@ -60,6 +60,6 @@
                   [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                   (optionSelected)="onChange($event)">
 
-    <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
+    <mat-option *ngFor="let option of model.list$ | async" [value]="option">{{ option }}</mat-option>
 
 </mat-autocomplete>

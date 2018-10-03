@@ -12,6 +12,7 @@ import {
     DynamicValidatorDescriptor,
     DynamicValidatorsConfig
 } from "../model/misc/dynamic-form-control-validation.model";
+import { isObject, isString } from "../utils/core.utils";
 
 export type Validator = ValidatorFn | AsyncValidatorFn;
 
@@ -23,7 +24,9 @@ export type ValidatorsMap = Map<string, Validator | ValidatorFactory>;
 
 export const DYNAMIC_VALIDATORS = new InjectionToken<ValidatorsMap>("DYNAMIC_VALIDATORS");
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormValidationService {
 
     constructor(@Optional() @Inject(NG_VALIDATORS) private NG_VALIDATORS: ValidatorFn[],
@@ -67,11 +70,11 @@ export class DynamicFormValidationService {
 
         let validatorFns: Validator[] = [];
 
-        if (validatorsConfig && typeof validatorsConfig === "object") {
+        if (isObject(validatorsConfig)) {
 
             validatorFns = Object.keys(validatorsConfig).map(validatorConfigKey => {
 
-                let validatorConfigValue = validatorsConfig[validatorConfigKey];
+                let validatorConfigValue = (validatorsConfig as DynamicValidatorsConfig)[validatorConfigKey];
 
                 if (this.isValidatorDescriptor(validatorConfigValue)) {
 
@@ -160,7 +163,7 @@ export class DynamicFormValidationService {
 
         let messages: string[] = [];
 
-        if (typeof model.errorMessages === "object" && model.errorMessages !== null) {
+        if (model.hasErrorMessages) {
 
             let messagesConfig = model.errorMessages as DynamicValidatorsConfig;
 
@@ -187,13 +190,13 @@ export class DynamicFormValidationService {
 
 
     isFormHook(value: any): boolean {
-        return typeof value === "string" && ["blur", "change", "submit"].indexOf(value) !== -1;
+        return isString(value) && ["blur", "change", "submit"].indexOf(value) !== -1;
     }
 
 
     isValidatorDescriptor(value: any): boolean {
 
-        if (value !== null && typeof value === "object") {
+        if (isObject(value)) {
             return value.hasOwnProperty("name") && value.hasOwnProperty("args");
         }
 

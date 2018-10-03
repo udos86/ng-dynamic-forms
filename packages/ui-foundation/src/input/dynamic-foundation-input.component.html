@@ -4,7 +4,6 @@
 
     <input class="input-group-field"
            [attr.accept]="model.accept"
-           [attr.list]="model.listId"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
@@ -13,6 +12,7 @@
            [autofocus]="model.autoFocus"
            [class.is-invalid-input]="showErrorMessages"
            [dynamicId]="bindId && model.id"
+           [dynamicList]="model.listId"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"
            [minlength]="model.minLength"
@@ -32,9 +32,9 @@
 
     <span *ngIf="model.suffix" class="input-group-label" [innerHTML]="model.suffix"></span>
 
-    <datalist *ngIf="this.model.hasList" [id]="model.listId">
+    <datalist *ngIf="model.hasList" [id]="model.listId">
 
-        <option *ngFor="let option of model.list" [value]="option">
+        <option *ngFor="let option of model.list$ | async" [value]="option">
 
     </datalist>
 

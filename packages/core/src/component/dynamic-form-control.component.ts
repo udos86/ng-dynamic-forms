@@ -15,6 +15,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormControlTemplates
 } from "../service/dynamic-form-layout.service";
+import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
 
@@ -99,7 +100,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
             emitter.emit($event);
 
-        } else if (typeof type === "string") {
+        } else if (isString(type)) {
 
             emitter.emit({customEvent: $event, customEventType: type});
         }

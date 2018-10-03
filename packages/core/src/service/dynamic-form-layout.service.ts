@@ -11,6 +11,7 @@ import {
     DynamicTemplateDirective,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
 } from "../directive/dynamic-template.directive";
+import { isObject } from "../utils/core.utils";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
@@ -20,7 +21,9 @@ export type DynamicFormControlTemplates = QueryList<DynamicTemplateDirective> | 
 
 export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControlMapFn>("DYNAMIC_FORM_CONTROL_MAP_FN");
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormLayoutService {
 
     constructor(@Inject(DYNAMIC_FORM_CONTROL_MAP_FN) @Optional() private readonly DYNAMIC_FORM_CONTROL_MAP_FN: any) {
@@ -29,7 +32,7 @@ export class DynamicFormLayoutService {
 
     findById(id: string, formLayout: DynamicFormLayout | null): DynamicFormControlLayout | null {
 
-        if (formLayout !== null && typeof formLayout === "object") {
+        if (isObject(formLayout)) {
 
             for (let key of Object.keys(formLayout)) {
 

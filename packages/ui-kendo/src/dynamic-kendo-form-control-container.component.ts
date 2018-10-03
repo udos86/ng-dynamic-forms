@@ -37,7 +37,8 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
-    DynamicFormValueControlModel
+    DynamicFormValueControlModel,
+    isString
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoAutoCompleteComponent } from "./autocomplete/dynamic-kendo-autocomplete.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
@@ -93,11 +94,11 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 
     get hasHint(): boolean {
-        return this.isTextBox && typeof (this.model as DynamicFormValueControlModel<any>).hint === "string";
+        return this.isTextBox && isString((this.model as DynamicFormValueControlModel<any>).hint);
     }
 
     get hasLabel(): boolean {
-        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX && this.componentType !== DynamicKendoInputComponent && typeof this.model.label === "string";
+        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX && this.componentType !== DynamicKendoInputComponent && isString(this.model.label);
     }
 
     get isTextBox(): boolean {

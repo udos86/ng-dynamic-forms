@@ -3,6 +3,7 @@ import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.mo
 import { DynamicPathable } from "../misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../../decorator/serializable.decorator";
+import { isFunction, isNumber } from "../../utils/core.utils";
 
 export class DynamicFormArrayGroupModel implements DynamicPathable {
 
@@ -58,7 +59,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
 
         super(config, layout);
 
-        if (typeof config.groupFactory === "function") {
+        if (isFunction(config.groupFactory)) {
             this.groupFactory = config.groupFactory;
         } else {
             throw new Error("group factory function must be specified for DynamicFormArrayModel");
@@ -67,7 +68,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         this.groupAsyncValidators = config.groupAsyncValidators || null;
         this.groupPrototype = this.groupFactory();
         this.groupValidators = config.groupValidators || null;
-        this.initialCount = typeof config.initialCount === "number" ? config.initialCount : 1;
+        this.initialCount = isNumber(config.initialCount) ? config.initialCount : 1;
 
         if (Array.isArray(config.groups)) {
 
