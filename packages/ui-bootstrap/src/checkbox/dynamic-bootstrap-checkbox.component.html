@@ -4,7 +4,7 @@
 
         <input type="checkbox"
                [checked]="model.checked"
-               [dynamicId]="bindId && model.id"
+               [dynamicId]="hasId && model.id"
                [formControlName]="model.id"
                [indeterminate]="model.indeterminate"
                [name]="model.name"

@@ -3,7 +3,7 @@
     <kendo-datepicker #kendoDatePicker
                       [activeView]="model.getAdditional('activeView', 'month')"
                       [bottomView]="model.getAdditional('bottomView', 'month')"
-                      [dynamicId]="bindId && model.id"
+                      [dynamicId]="hasId && model.id"
                       [focusedDate]="model.focusedDate"
                       [format]="model.format || 'd'"
                       [formControlName]="model.id"

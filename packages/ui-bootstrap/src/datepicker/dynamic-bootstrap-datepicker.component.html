@@ -3,7 +3,7 @@
     <input bsDatepicker class="form-control" #bsDatepicker="bsDatepicker"
            [autofocus]="model.autoFocus"
            [bsConfig]="model.getAdditional('bsConfig', {containerClass: model.getAdditional('containerClass', 'theme-green'), showWeekNumbers: model.getAdditional('showWeekNumbers', true)})"
-           [dynamicId]="bindId && model.id"
+           [dynamicId]="hasId && model.id"
            [formControlName]="model.id"
            [maxDate]="model.max"
            [minDate]="model.min"

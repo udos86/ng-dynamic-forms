@@ -1,7 +1,7 @@
 <div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-colorPicker #pColorPicker
-                   [dynamicId]="bindId && model.id"
+                   [dynamicId]="hasId && model.id"
                    [format]="model.format || 'hex'"
                    [formControlName]="model.id"
                    [inline]="model.inline"

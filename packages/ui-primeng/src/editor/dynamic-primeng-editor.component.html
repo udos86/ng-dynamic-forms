@@ -1,7 +1,7 @@
 <div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-editor #pEditor
-              [dynamicId]="bindId && model.id"
+              [dynamicId]="hasId && model.id"
               [formats]="model.getAdditional('formats', null)"
               [formControlName]="model.id"
               [ngClass]="getClass('element','control')"

@@ -1,4 +1,5 @@
 import { DynamicFormControlModel, DynamicFormControlModelConfig } from "../dynamic-form-control.model";
+import { DynamicFormModel } from "../dynamic-form.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 
@@ -6,13 +7,13 @@ export const DYNAMIC_FORM_CONTROL_TYPE_GROUP = "GROUP";
 
 export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConfig {
 
-    group?: DynamicFormControlModel[];
+    group?: DynamicFormModel;
     legend?: string;
 }
 
 export class DynamicFormGroupModel extends DynamicFormControlModel {
 
-    @serializable() group: DynamicFormControlModel[] = [];
+    @serializable() group: DynamicFormModel = [];
     @serializable() legend: string | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;

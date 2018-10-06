@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
     <ion-list #ionRadioGroup radio-group
-              [dynamicId]="bindId && model.id"
+              [dynamicId]="hasId && model.id"
               [formControlName]="model.id"
               [ngClass]="getClass('element', 'control')"
               (ionChange)="onChange($event)">

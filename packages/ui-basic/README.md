@@ -2,19 +2,14 @@
 
 ## Installation
 ```
-npm install @ng-dynamic-forms/ui-basic -S
+npm i @ng-dynamic-forms/ui-basic -S
 ```
 
 ## Import
 ```ts
 @NgModule({
 
-    imports: [
-        // ...
-        ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(),
-        DynamicFormsBasicUIModule
-    ]
+    imports: [DynamicFormsBasicUIModule]
 })
 
 export class AppModule {}

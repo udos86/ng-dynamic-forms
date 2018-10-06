@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
     <div class="btn-group btn-group-toggle" data-toggle="buttons"
-         [dynamicId]="bindId && model.id"
+         [dynamicId]="hasId && model.id"
          [formGroupName]="model.id"
          [ngClass]="getClass('element', 'control')">
 
@@ -11,7 +11,7 @@
 
             <input type="checkbox" ngbButton
                    [checked]="checkboxModel.checked"
-                   [dynamicId]="bindId && checkboxModel.id"
+                   [dynamicId]="hasId && checkboxModel.id"
                    [formControlName]="checkboxModel.id"
                    [name]="checkboxModel.name"
                    [required]="checkboxModel.required"

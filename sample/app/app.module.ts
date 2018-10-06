@@ -11,7 +11,7 @@ import { NgbDatepickerModule, NgbRatingModule, NgbTimepickerModule } from "@ng-b
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
 
-import { DynamicFormsCoreModule, DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
+import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -57,7 +57,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         NgbDatepickerModule,
         NgbRatingModule,
         NgbTimepickerModule,
-        DynamicFormsCoreModule,
         DynamicFormsBasicUIModule,
         DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,

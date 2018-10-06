@@ -5,7 +5,7 @@
                       [color]="model.getAdditional('color', 'accent')"
                       [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                       [formControlName]="model.id"
-                      [id]="bindId ? model.id : null"
+                      [id]="hasId ? model.id : null"
                       [labelPosition]="model.labelPosition || 'after'"
                       [name]="model.name"
                       [ngClass]="[getClass('element','control'), getClass('grid','control')]"

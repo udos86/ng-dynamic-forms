@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
     <div role="group"
-         [dynamicId]="bindId && model.id"
+         [dynamicId]="hasId && model.id"
          [formGroupName]="model.id"
          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 

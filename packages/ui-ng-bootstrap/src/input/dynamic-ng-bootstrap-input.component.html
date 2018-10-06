@@ -14,7 +14,7 @@
            [class.form-control]="model.inputType !== 'file'"
            [class.form-control-file]="model.inputType === 'file'"
            [class.is-invalid]="showErrorMessages"
-           [dynamicId]="bindId && model.id"
+           [dynamicId]="hasId && model.id"
            [dynamicList]="model.listId"
            [formControlName]="model.id"
            [maxlength]="model.maxLength"

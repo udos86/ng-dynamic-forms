@@ -25,7 +25,7 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicBasicCheckboxComponent]
 
@@ -52,7 +52,6 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);

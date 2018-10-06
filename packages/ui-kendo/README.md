@@ -2,19 +2,14 @@
 
 ## Installation
 ```
-npm install @ng-dynamic-forms/ui-kendo -S
+npm i @ng-dynamic-forms/ui-kendo -S
 ```
 
 ## Import
 ```ts
 @NgModule({
 
-    imports: [
-        // ...
-        ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(),
-        DynamicFormsKendoUIModule
-    ]
+    imports: [DynamicFormsKendoUIModule]
 })
 
 export class AppModule {}

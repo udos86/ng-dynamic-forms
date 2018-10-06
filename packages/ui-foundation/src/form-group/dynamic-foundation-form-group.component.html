@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <fieldset [dynamicId]="bindId && model.id"
+    <fieldset [dynamicId]="hasId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="getClass('element', 'control')">

@@ -4,7 +4,6 @@
   "description": "Foundation UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
-    "angular 2",
     "dynamic forms",
     "forms",
     "foundation",
@@ -30,13 +29,13 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@angular/forms": "^6.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
     "@ng-dynamic-forms/core": "^6.2.0",
     "angular2-text-mask": "^9.0.0",
     "foundation-sites": "^6.3.1",
-    "rxjs": "^6.0.0"
+    "rxjs": "^6.3.0"
   },
   "es2015": "./fesm2015/ui-foundation.js",
   "esm2015": "./esm2015/ui-foundation.js",

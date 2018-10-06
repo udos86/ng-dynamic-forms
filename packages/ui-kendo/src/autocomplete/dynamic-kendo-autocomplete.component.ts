@@ -21,7 +21,6 @@ export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableF
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;

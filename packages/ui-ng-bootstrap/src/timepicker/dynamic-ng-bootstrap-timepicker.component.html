@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <ngb-timepicker [dynamicId]="bindId && model.id"
+    <ngb-timepicker [dynamicId]="hasId && model.id"
                     [formControlName]="model.id"
                     [hourStep]="model.getAdditional('hourStep', config['hourStep'])"
                     [meridian]="model.meridian"

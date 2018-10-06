@@ -27,7 +27,7 @@ describe("DynamicKendoSwitchComponent test suite", () => {
                 NoopAnimationsModule,
                 SwitchModule,
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoSwitchComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicKendoSwitchComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);

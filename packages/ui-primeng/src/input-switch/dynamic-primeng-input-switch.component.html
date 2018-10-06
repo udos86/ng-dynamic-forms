@@ -1,7 +1,7 @@
 <div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-inputSwitch #pInputSwitch
-                   [dynamicId]="bindId && model.id"
+                   [dynamicId]="hasId && model.id"
                    [formControlName]="model.id"
                    [ngClass]="getClass('element', 'control')"
                    [tabindex]="model.tabIndex"

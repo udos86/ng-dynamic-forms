@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
     <kendo-maskedtextbox #kendoMaskedTextBox
-                         [dynamicId]="bindId && model.id"
+                         [dynamicId]="hasId && model.id"
                          [formControlName]="model.id"
                          [includeLiterals]="model.getAdditional('includeLiterals', false)"
                          [mask]="model.mask"

@@ -16,7 +16,7 @@
     <input matInput
            [autofocus]="model.autoFocus"
            [formControlName]="model.id"
-           [id]="bindId ? model.id : null"
+           [id]="hasId ? model.id : null"
            [max]="model.max"
            [matDatepicker]="matDatepicker"
            [min]="model.min"

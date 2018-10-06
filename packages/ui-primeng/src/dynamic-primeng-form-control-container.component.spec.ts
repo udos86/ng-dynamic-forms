@@ -102,7 +102,7 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                DynamicFormsCoreModule.forRoot(),
+                DynamicFormsCoreModule,
                 AutoCompleteModule,
                 CalendarModule,
                 CheckboxModule,
@@ -151,7 +151,6 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);

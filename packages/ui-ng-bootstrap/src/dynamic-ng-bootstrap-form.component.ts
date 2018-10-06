@@ -3,7 +3,7 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
     DynamicFormControlEvent,
-    DynamicFormControlModel,
+    DynamicFormModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormService,
@@ -18,7 +18,7 @@ import { DynamicNGBootstrapFormControlContainerComponent } from "./dynamic-ng-bo
 export class DynamicNGBootstrapFormComponent extends DynamicFormComponent {
 
     @Input("group") formGroup: FormGroup;
-    @Input("model") formModel: DynamicFormControlModel[];
+    @Input("model") formModel: DynamicFormModel;
     @Input("layout") formLayout: DynamicFormLayout;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

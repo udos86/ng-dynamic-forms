@@ -21,7 +21,6 @@ export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFo
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicSelectModel<string>;

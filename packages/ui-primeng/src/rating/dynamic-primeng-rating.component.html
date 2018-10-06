@@ -2,7 +2,7 @@
 
     <p-rating #pRating
               [cancel]="model.getAdditional('cancel', true)"
-              [dynamicId]="bindId && model.id"
+              [dynamicId]="hasId && model.id"
               [formControlName]="model.id"
               [iconCancelClass]="model.getAdditional('iconCancelClass', 'pi pi-ban')"
               [iconOffClass]="model.getAdditional('iconOffClass', 'pi pi-star-o')"

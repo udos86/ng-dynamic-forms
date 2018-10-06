@@ -29,7 +29,6 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent i
     private _model: DynamicInputModel;
     private _valueSubscription: Subscription;
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
 

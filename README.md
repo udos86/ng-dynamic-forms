@@ -93,15 +93,13 @@ npm start
 ```typescript
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
-// ...
 
 @NgModule({
     
     imports: [
         ReactiveFormsModule,
         DynamicFormsCoreModule,
-        DynamicFormsMaterialUIModule,
-        // ...
+        DynamicFormsMaterialUIModule
     ]
 })
 
@@ -117,7 +115,7 @@ import {
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
 
-export const MY_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormModel = [
 
     new DynamicInputModel({
 
@@ -163,7 +161,7 @@ import { DynamicFormControlModel, DynamicFormService } from "@ng-dynamic-forms/c
 
 export class MyDynamicFormComponent implements OnInit {
 
-    formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+    formModel: DynamicFormModel = MY_FORM_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {}
@@ -211,7 +209,6 @@ npm i @ng-dynamic-forms/ui-<library-name> -S
         ReactiveFormsModule,
         DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
-        // ...
     ]
 })
 
@@ -275,7 +272,7 @@ Thus NG Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Declare a** `DynamicFormGroupModel` within your form model and **add it's models to the** `group` **array**:
  ```typescript
-export const MY_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormModel = [
  
     new DynamicFormGroupModel({
  
@@ -348,7 +345,7 @@ Fortunately, NG Dynamic Forms is capable of managing such nested form structures
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```typescript
-export const MY_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormModel = [
 
     new DynamicFormArrayModel({
         id: "myFormArray"
@@ -532,7 +529,7 @@ import { MY_FORM_LAYOUT } from "./my-dynamic-form.layout";
 
 export class MyDynamicFormComponent implements OnInit {
 
-    formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+    formModel: DynamicFormModel = MY_FORM_MODEL;
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = MY_FORM_LAYOUT;
 
@@ -904,7 +901,6 @@ import { MyCustomFormControlComponent } from "...";
 })
 export class MyDynamicCustomFormControlComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: /* corresponding DynamicFormControlModel */;
@@ -929,7 +925,6 @@ Next **embed your custom form control** into the component template:
 <ng-container [formGroup]="group">
 
     <my-custom-form-control [formControlName]="model.id"
-                            [id]="bindId ? model.id : null"
                             [name]="model.name"
                             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                             (blur)="onBlur($event)"

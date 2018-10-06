@@ -14,7 +14,6 @@ import {
 })
 export class DynamicKendoCheckboxGroupComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicCheckboxGroupModel;

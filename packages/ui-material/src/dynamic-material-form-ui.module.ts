@@ -51,15 +51,15 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
         DynamicMaterialChipsComponent,
         DynamicMaterialDatePickerComponent,
         DynamicMaterialFormArrayComponent,
+        DynamicMaterialFormComponent,
+        DynamicMaterialFormControlContainerComponent,
         DynamicMaterialFormGroupComponent,
         DynamicMaterialInputComponent,
         DynamicMaterialRadioGroupComponent,
         DynamicMaterialSelectComponent,
         DynamicMaterialSlideToggleComponent,
         DynamicMaterialSliderComponent,
-        DynamicMaterialTextAreaComponent,
-        DynamicMaterialFormControlContainerComponent,
-        DynamicMaterialFormComponent
+        DynamicMaterialTextAreaComponent
     ],
     entryComponents: [
         DynamicMaterialCheckboxComponent,
@@ -76,8 +76,19 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
     ],
     exports: [
         DynamicFormsCoreModule,
+        DynamicMaterialCheckboxComponent,
+        DynamicMaterialChipsComponent,
+        DynamicMaterialDatePickerComponent,
+        DynamicMaterialFormArrayComponent,
+        DynamicMaterialFormComponent,
         DynamicMaterialFormControlContainerComponent,
-        DynamicMaterialFormComponent
+        DynamicMaterialFormGroupComponent,
+        DynamicMaterialInputComponent,
+        DynamicMaterialRadioGroupComponent,
+        DynamicMaterialSelectComponent,
+        DynamicMaterialSlideToggleComponent,
+        DynamicMaterialSliderComponent,
+        DynamicMaterialTextAreaComponent
     ]
 })
 export class DynamicFormsMaterialUIModule {

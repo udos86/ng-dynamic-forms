@@ -16,7 +16,6 @@ import {
 })
 export class DynamicNGBootstrapFormArrayComponent extends DynamicFormArrayComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormArrayModel;

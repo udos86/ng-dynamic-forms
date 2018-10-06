@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
     <ngb-datepicker [displayMonths]="model.getAdditional('displayMonths', config['displayMonths'])"
-                    [dynamicId]="bindId && model.id"
+                    [dynamicId]="hasId && model.id"
                     [firstDayOfWeek]="model.getAdditional('firstDayOfWeek', config['firstDayOfWeek'])"
                     [formControlName]="model.id"
                     [maxDate]="model.max"

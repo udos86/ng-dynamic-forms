@@ -4,7 +4,6 @@
   "description": "Material UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
-    "angular 2",
     "dynamic forms",
     "forms",
     "material",
@@ -30,12 +29,12 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@angular/forms": "^6.0.0",
-    "@angular/material": "^6.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "@angular/material": "^7.0.0",
     "@ng-dynamic-forms/core": "^6.2.0",
-    "rxjs": "^6.0.0"
+    "rxjs": "^6.3.0"
   },
   "es2015": "./fesm2015/ui-material.js",
   "esm2015": "./esm2015/ui-material.js",

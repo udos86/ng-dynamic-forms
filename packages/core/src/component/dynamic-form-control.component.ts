@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DynamicFormControlLayout,
@@ -21,7 +22,6 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     private _hasFocus: boolean = false;
 
-    bindId: boolean;
     group: FormGroup;
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
@@ -45,6 +45,10 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     get hasFocus(): boolean {
         return this._hasFocus;
+    }
+
+    get hasId(): boolean {
+        return this.model.parent === null || !(this.model.parent instanceof DynamicFormArrayGroupModel);
     }
 
     get isInvalid(): boolean {

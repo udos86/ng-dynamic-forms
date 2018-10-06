@@ -2,7 +2,7 @@
 
     <kendo-timepicker #kendoTimePicker
                       [cancelButton]="model.getAdditional('cancelButton', true)"
-                      [dynamicId]="bindId && model.id"
+                      [dynamicId]="hasId && model.id"
                       [format]="model.format"
                       [formControlName]="model.id"
                       [formatPlaceholder]="model.getAdditional('formatPlaceholder', 'wide')"

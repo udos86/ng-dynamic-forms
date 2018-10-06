@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
     <fieldset class="k-form-field"
-              [dynamicId]="bindId && model.id"
+              [dynamicId]="hasId && model.id"
               [formGroupName]="model.id"
               [name]="model.name"
               [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
@@ -12,7 +12,7 @@
 
             <input type="checkbox" class="k-checkbox"
                    [checked]="checkboxModel.checked"
-                   [dynamicId]="bindId && checkboxModel.id"
+                   [dynamicId]="hasId && checkboxModel.id"
                    [formControlName]="checkboxModel.id"
                    [indeterminate]="checkboxModel.indeterminate"
                    [name]="checkboxModel.name"

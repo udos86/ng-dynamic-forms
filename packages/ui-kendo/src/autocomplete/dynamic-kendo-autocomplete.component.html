@@ -2,7 +2,7 @@
 
     <kendo-autocomplete #kendoAutoComplete
                         [data]="model.list"
-                        [dynamicId]="bindId && model.id"
+                        [dynamicId]="hasId && model.id"
                         [formControlName]="model.id"
                         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                         [placeholder]="model.placeholder"

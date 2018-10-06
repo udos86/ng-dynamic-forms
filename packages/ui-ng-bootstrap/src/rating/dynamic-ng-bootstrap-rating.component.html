@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <ngb-rating [dynamicId]="bindId && model.id"
+    <ngb-rating [dynamicId]="hasId && model.id"
                 [formControlName]="model.id"
                 [max]="model.max"
                 [ngClass]="getClass('element', 'control')"

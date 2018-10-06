@@ -27,7 +27,7 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
                 NoopAnimationsModule,
                 TextMaskModule,
                 RatingModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGRatingComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRatingModel).toBe(true);

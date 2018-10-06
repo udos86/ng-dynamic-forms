@@ -5,7 +5,7 @@
                 [defaultDate]="focusedDate"
                 [disabledDates]="model.getAdditional('disabledDates')"
                 [disabledDays]="model.getAdditional('disabledDays')"
-                [dynamicId]="bindId && model.id"
+                [dynamicId]="hasId && model.id"
                 [formControlName]="model.id"
                 [hourFormat]="model.getAdditional('hourFormat', '24')"
                 [icon]="model.getAdditional('icon', 'pi pi-calendar')"

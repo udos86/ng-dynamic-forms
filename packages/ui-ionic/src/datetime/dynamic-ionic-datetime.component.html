@@ -8,7 +8,7 @@
                   [cancelText]="model.getAdditional('cancelText', 'Cancel')"
                   [doneText]="model.getAdditional('doneText', 'Done')"
                   [displayFormat]="model.format || 'MMM D, YYYY'"
-                  [dynamicId]="bindId && model.id"
+                  [dynamicId]="hasId && model.id"
                   [formControlName]="model.id"
                   [max]="model.max"
                   [min]="model.min"

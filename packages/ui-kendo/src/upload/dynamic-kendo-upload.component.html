@@ -4,7 +4,7 @@
                   [accept]="model.getAdditional('accept')"
                   [autoUpload]="model.autoUpload"
                   [batch]="model.getAdditional('batch', false)"
-                  [dynamicId]="bindId && model.id"
+                  [dynamicId]="hasId && model.id"
                   [formControlName]="model.id"
                   [multiple]="model.multiple"
                   [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"

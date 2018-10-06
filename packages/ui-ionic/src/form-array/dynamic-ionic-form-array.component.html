@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <div [dynamicId]="bindId && model.id"
+    <div [dynamicId]="hasId && model.id"
          [formArrayName]="model.id"
          [ngClass]="getClass('element', 'control')">
 
@@ -10,7 +10,6 @@
             <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: groupModel"></ng-container>
 
             <dynamic-ionic-form-control *ngFor="let _model of groupModel.group"
-                                        [bindId]="false"
                                         [context]="groupModel"
                                         [group]="control.at(idx)"
                                         [hidden]="_model.hidden"

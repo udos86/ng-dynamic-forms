@@ -52,7 +52,6 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
 
     @Input() asBootstrapFormGroup: boolean = true;
-    @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;

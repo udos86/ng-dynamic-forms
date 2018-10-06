@@ -3,7 +3,7 @@
     <p-dropdown #pDropdown
                 [autoWidth]="model.getAdditional('autoWidth', true)"
                 [dropdownIcon]="model.getAdditional('dropdownIcon', 'pi pi-caret-down')"
-                [dynamicId]="bindId && model.id"
+                [dynamicId]="hasId && model.id"
                 [editable]="model.getAdditional('editable', false)"
                 [filter]="model.filterable"
                 [filterBy]="model.getAdditional('filterBy', null)"

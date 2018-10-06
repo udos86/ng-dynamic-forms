@@ -3,7 +3,7 @@
     <kendo-dropdownlist #kendoDropDownList
                         [data]="model.options"
                         [delay]="model.getAdditional('delay', 500)"
-                        [dynamicId]="bindId && model.id"
+                        [dynamicId]="hasId && model.id"
                         [filterable]="model.filterable"
                         [formControlName]="model.id"
                         [ignoreCase]="model.getAdditional('ignoreCase', true)"

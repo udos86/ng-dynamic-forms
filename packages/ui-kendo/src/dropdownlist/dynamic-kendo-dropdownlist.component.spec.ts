@@ -27,7 +27,7 @@ describe("DynamicKendoDropdownListComponent test suite", () => {
                 NoopAnimationsModule,
                 DropDownListModule,
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoDropdownListComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicKendoDropdownListComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);

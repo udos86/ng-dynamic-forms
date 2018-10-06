@@ -2,7 +2,7 @@
 
         <textarea class="k-textarea"
                   [cols]="model.cols"
-                  [dynamicId]="bindId && model.id"
+                  [dynamicId]="hasId && model.id"
                   [formControlName]="model.id"
                   [maxlength]="model.maxLength"
                   [minlength]="model.minLength"

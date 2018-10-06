@@ -2,7 +2,7 @@
 
     <div [ngClass]="getClass('grid', 'control')">
 
-        <div [dynamicId]="bindId && model.id" [formArrayName]="model.id" [ngClass]="getClass('element', 'control')">
+        <div [dynamicId]="hasId && model.id" [formArrayName]="model.id" [ngClass]="getClass('element', 'control')">
 
             <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
                  [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
@@ -10,7 +10,6 @@
                 <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: groupModel"></ng-container>
 
                 <dynamic-primeng-form-control *ngFor="let _model of groupModel.group"
-                                              [bindId]="false"
                                               [context]="groupModel"
                                               [group]="control.at(idx)"
                                               [hidden]="_model.hidden"

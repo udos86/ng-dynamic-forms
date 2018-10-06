@@ -30,14 +30,14 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         DynamicBootstrapCheckboxComponent,
         DynamicBootstrapDatePickerComponent,
         DynamicBootstrapFormArrayComponent,
+        DynamicBootstrapFormComponent,
+        DynamicBootstrapFormControlContainerComponent,
         DynamicBootstrapFormGroupComponent,
         DynamicBootstrapInputComponent,
         DynamicBootstrapRadioGroupComponent,
         DynamicBootstrapSelectComponent,
         DynamicBootstrapTextAreaComponent,
-        DynamicBootstrapTimePickerComponent,
-        DynamicBootstrapFormControlContainerComponent,
-        DynamicBootstrapFormComponent
+        DynamicBootstrapTimePickerComponent
     ],
     entryComponents: [
         DynamicBootstrapCheckboxComponent,
@@ -52,8 +52,17 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
     ],
     exports: [
         DynamicFormsCoreModule,
+        DynamicBootstrapCheckboxComponent,
+        DynamicBootstrapDatePickerComponent,
+        DynamicBootstrapFormArrayComponent,
+        DynamicBootstrapFormComponent,
         DynamicBootstrapFormControlContainerComponent,
-        DynamicBootstrapFormComponent
+        DynamicBootstrapFormGroupComponent,
+        DynamicBootstrapInputComponent,
+        DynamicBootstrapRadioGroupComponent,
+        DynamicBootstrapSelectComponent,
+        DynamicBootstrapTextAreaComponent,
+        DynamicBootstrapTimePickerComponent
     ]
 })
 export class DynamicFormsBootstrapUIModule {

@@ -26,7 +26,6 @@ import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-fo
 })
 export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;

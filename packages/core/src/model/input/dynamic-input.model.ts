@@ -1,9 +1,9 @@
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { JSONUtils } from "../../utils/json.utils";
-import { isBoolean, isNumber, isObservable } from "../../utils/core.utils";
-import { Observable, of } from "rxjs";
+import { maskToString } from "../../utils/json.utils";
+import { isBoolean, isNumber } from "../../utils/core.utils";
+import { Observable, isObservable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
@@ -106,7 +106,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         let json: any = super.toJSON();
 
-        if (this.mask !== null) { json.mask = JSONUtils.maskToString(this.mask); }
+        if (this.mask !== null) { json.mask = maskToString(this.mask); }
 
         return json;
     }

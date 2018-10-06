@@ -31,7 +31,7 @@ describe("DynamicNGBootstrapRadioGroupComponent test suite", () => {
                 NoopAnimationsModule,
                 TextMaskModule,
                 NgbButtonsModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapRadioGroupComponent]
 
@@ -58,7 +58,6 @@ describe("DynamicNGBootstrapRadioGroupComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
