@@ -1,21 +1,19 @@
 # 7.0.0
 
-### **Features**
+### **Upgrades**
 
-* **update to Angular 7 & TypeScript 3.1**
+* Angular 7
+* TypeScript 3.1
+* Angular Material 7
+* ngx-bootstrap 3.1.1
+* ng-bootstrap 4.0.0
+* Prime NG 7.0.0 Beta.1
 
 ### **Breaking Changes**
 
 * `DynamicFormModel` is now a type alias for `DynamicFormControlModel[]`
 * Importing `DynamicFormsCoreModule` via `forRoot()` has been removed
-* `bindId` input has been completely removed in favor of internal `hasId` getter
-
-***
-
-### **Features**
-
-* **Library now makes use of Angular 6 tree-shakeable providers**
-* Importing `DynamicFormsCoreModule` via `forRoot` is now deprecated and will be removed in next major version
+* `bindId` @Input() has been completely removed in favor of internal `hasId` getter
 
 ***
 
