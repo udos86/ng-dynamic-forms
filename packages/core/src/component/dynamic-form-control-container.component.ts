@@ -1,6 +1,7 @@
 import {
     ComponentFactoryResolver,
     ComponentRef,
+    EmbeddedViewRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
@@ -63,6 +64,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     componentViewContainerRef: ViewContainerRef;
 
     protected componentRef: ComponentRef<DynamicFormControl>;
+    protected viewRefs: EmbeddedViewRef<DynamicFormControlModel>[] = [];
     protected componentSubscriptions: Subscription[] = [];
     protected subscriptions: Subscription[] = [];
 
@@ -78,7 +80,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         if (modelChange) {
 
             this.destroyFormControlComponent();
+            //this.removeTemplates();
+
             this.createFormControlComponent();
+            //this.embedTemplates();
         }
 
         if (groupChange || modelChange) {
@@ -207,6 +212,24 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             this.componentRef.destroy();
         }
+    }
+
+    protected embedTemplates(): void {
+
+        const templates = this.layoutService.getIndexedTemplates(this.model, this.templates);
+
+        if (Array.isArray(templates)) {
+
+            templates.forEach(template => {
+
+                const viewRef = this.componentViewContainerRef.createEmbeddedView(template.templateRef, this.model, template.index);
+                this.viewRefs.push(viewRef);
+            });
+        }
+    }
+
+    protected removeTemplates(): void {
+        this.viewRefs.forEach(viewRef => this.componentViewContainerRef.remove(this.componentViewContainerRef.indexOf(viewRef)));
     }
 
     protected setControlRelations(): void {
