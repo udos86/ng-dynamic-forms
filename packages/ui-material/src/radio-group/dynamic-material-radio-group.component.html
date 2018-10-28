@@ -2,7 +2,7 @@
 
     <mat-radio-group #matRadioGroup
                      [formControlName]="model.id"
-                     [id]="hasId ? model.id : null"
+                     [id]="elementId"
                      [labelPosition]="model.getAdditional('labelPosition', 'after')"
                      [name]="model.name"
                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"

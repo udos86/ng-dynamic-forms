@@ -1,6 +1,6 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
-    <label *ngIf="hasLabel" [for]="model.id" [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
+    <label *ngIf="hasLabel" [for]="elementId" [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
 
         <span [innerHTML]="model.label"></span>
 

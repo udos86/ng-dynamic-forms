@@ -3,7 +3,7 @@
     <div *ngIf="!isCheckbox && hasLabel" [ngClass]="getClass('grid', 'label')">
 
         <label [class.is-invalid-label]="showErrorMessages"
-               [for]="model.id"
+               [for]="elementId"
                [innerHTML]="model.label"
                [ngClass]="getClass('element', 'label')"></label>
     </div>

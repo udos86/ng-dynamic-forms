@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import { RatingModule } from "ngx-bootstrap/rating";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
@@ -13,6 +14,7 @@ import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstr
 import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
 import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
 import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
+import { DynamicBootstrapRatingComponent } from "./rating/dynamic-bootstrap-rating.component";
 import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
 import { DynamicBootstrapTextAreaComponent } from "./textarea/dynamic-bootstrap-textarea.component";
 import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootstrap-timepicker.component";
@@ -22,6 +24,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         CommonModule,
         ReactiveFormsModule,
         BsDatepickerModule,
+        RatingModule,
         TimepickerModule,
         TextMaskModule,
         DynamicFormsCoreModule
@@ -35,6 +38,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         DynamicBootstrapFormGroupComponent,
         DynamicBootstrapInputComponent,
         DynamicBootstrapRadioGroupComponent,
+        DynamicBootstrapRatingComponent,
         DynamicBootstrapSelectComponent,
         DynamicBootstrapTextAreaComponent,
         DynamicBootstrapTimePickerComponent
@@ -46,6 +50,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         DynamicBootstrapFormGroupComponent,
         DynamicBootstrapInputComponent,
         DynamicBootstrapRadioGroupComponent,
+        DynamicBootstrapRatingComponent,
         DynamicBootstrapSelectComponent,
         DynamicBootstrapTextAreaComponent,
         DynamicBootstrapTimePickerComponent
@@ -60,6 +65,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         DynamicBootstrapFormGroupComponent,
         DynamicBootstrapInputComponent,
         DynamicBootstrapRadioGroupComponent,
+        DynamicBootstrapRatingComponent,
         DynamicBootstrapSelectComponent,
         DynamicBootstrapTextAreaComponent,
         DynamicBootstrapTimePickerComponent

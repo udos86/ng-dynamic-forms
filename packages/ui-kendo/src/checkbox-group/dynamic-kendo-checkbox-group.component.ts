@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
+    DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -26,5 +27,9 @@ export class DynamicKendoCheckboxGroupComponent extends DynamicFormControlCompon
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
+    }
+
+    getCheckboxElementId(model: DynamicCheckboxModel) {
+        return this.layoutService.getElementId(model);
     }
 }

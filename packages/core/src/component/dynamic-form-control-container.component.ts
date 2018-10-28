@@ -138,6 +138,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
+    get elementId(): string {
+        return this.layoutService.getElementId(this.model);
+    }
+
     get isInvalid(): boolean {
         return this.control.invalid;
     }

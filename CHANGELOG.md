@@ -11,9 +11,10 @@
 
 ### **Breaking Changes**
 
+* `bindId` @Input() has been completely removed
+* `DynamicIdDirective` has been abandoned internally in favor of always setting an element id now
 * `DynamicFormModel` is now a type alias for `DynamicFormControlModel[]`
 * Importing `DynamicFormsCoreModule` via `forRoot()` has been removed
-* `bindId` @Input() has been completely removed in favor of internal `hasId` getter
 
 ***
 

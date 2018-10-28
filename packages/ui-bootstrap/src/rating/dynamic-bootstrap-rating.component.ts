@@ -1,23 +1,23 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicCheckboxModel,
-    DynamicCheckboxGroupModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent
+    DynamicFormControlComponent,
+    DynamicRatingModel
 } from "@ng-dynamic-forms/core";
 
 @Component({
-    selector: "dynamic-ng-bootstrap-checkbox-group",
-    templateUrl: "./dynamic-ng-bootstrap-checkbox-group.component.html"
+    selector: "dynamic-bootstrap-rating",
+    templateUrl: "./dynamic-bootstrap-rating.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControlComponent {
+export class DynamicBootstrapRatingComponent extends DynamicFormControlComponent {
 
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicCheckboxGroupModel;
+    @Input() model: DynamicRatingModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
@@ -27,9 +27,5 @@ export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControl
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
-    }
-
-    getCheckboxElementId(model: DynamicCheckboxModel) {
-        return this.layoutService.getElementId(model);
     }
 }

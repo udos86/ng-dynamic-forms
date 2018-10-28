@@ -28,6 +28,7 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_GROUP,
     DYNAMIC_FORM_CONTROL_TYPE_INPUT,
     DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP,
+    DYNAMIC_FORM_CONTROL_TYPE_RATING,
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
@@ -38,6 +39,7 @@ import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstr
 import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
 import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
 import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
+import { DynamicBootstrapRatingComponent } from "./rating/dynamic-bootstrap-rating.component";
 import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
 import { DynamicBootstrapTextAreaComponent } from "./textarea/dynamic-bootstrap-textarea.component";
 import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootstrap-timepicker.component";
@@ -100,6 +102,9 @@ export function bootstrapUIFormControlMapFn(model: DynamicFormControlModel): Typ
 
         case DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP:
             return DynamicBootstrapRadioGroupComponent;
+
+        case DYNAMIC_FORM_CONTROL_TYPE_RATING:
+            return DynamicBootstrapRatingComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
             return DynamicBootstrapSelectComponent;
