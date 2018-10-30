@@ -37,6 +37,7 @@ import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstr
 import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
 import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
 import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
+import { DynamicBootstrapRatingComponent } from "./rating/dynamic-bootstrap-rating.component";
 import { DynamicBootstrapSelectComponent } from "./select/dynamic-bootstrap-select.component";
 import { DynamicBootstrapTextAreaComponent } from "./textarea/dynamic-bootstrap-textarea.component";
 import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootstrap-timepicker.component";
@@ -201,7 +202,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
         expect(bootstrapUIFormControlMapFn(formModel[7])).toBe(DynamicBootstrapFormGroupComponent);
         expect(bootstrapUIFormControlMapFn(formModel[8])).toBe(DynamicBootstrapInputComponent);
         expect(bootstrapUIFormControlMapFn(formModel[9])).toBe(DynamicBootstrapRadioGroupComponent);
-        expect(bootstrapUIFormControlMapFn(formModel[10])).toBeNull();
+        expect(bootstrapUIFormControlMapFn(formModel[10])).toBe(DynamicBootstrapRatingComponent);
         expect(bootstrapUIFormControlMapFn(formModel[11])).toBe(DynamicBootstrapSelectComponent);
         expect(bootstrapUIFormControlMapFn(formModel[12])).toBeNull();
         expect(bootstrapUIFormControlMapFn(formModel[13])).toBeNull();

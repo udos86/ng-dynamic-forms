@@ -49,7 +49,7 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`ngb-rating[id="${testModel.id}"]`));
+        testElement = debugElement.query(By.css(`rating[id="${testModel.id}"]`));
     }));
 
     it("should initialize correctly", () => {
@@ -72,7 +72,7 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
         expect(component.showErrorMessages).toBe(false);
     });
 
-    it("should have an ngb-rating element", () => {
+    it("should have an rating element", () => {
 
         expect(testElement instanceof DebugElement).toBe(true);
     });
