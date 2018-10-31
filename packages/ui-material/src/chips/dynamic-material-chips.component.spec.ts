@@ -124,7 +124,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
         expect(component.customEvent.emit).toHaveBeenCalled();
     });
 
-    fit("should add a chip to chip list", () => {
+    it("should add a chip to chip list", () => {
 
         let value = "Test",
             length = component.chips.length;

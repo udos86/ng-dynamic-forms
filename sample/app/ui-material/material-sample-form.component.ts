@@ -27,6 +27,8 @@ export class MaterialSampleFormComponent implements OnInit {
 
     ngOnInit() {
         this.formGroup = this.formService.createFormGroup(this.formModel);
+        this.formGroup.controls["firstName"].patchValue("Peter");
+        this.formGroup.controls["tags"].patchValue(["Hallo", "Hello"]);
     }
 
     onBlur($event) {
@@ -46,9 +48,10 @@ export class MaterialSampleFormComponent implements OnInit {
     }
 
     updateList() {
-        let inputModel = this.formService.findById("state", this.formModel) as DynamicInputModel;
+        //let inputModel = this.formService.findById("state", this.formModel) as DynamicInputModel;
         //(inputModel.list$ as BehaviorSubject<string[]>).next(["Udo", "Matthias", "Uwe"]);
         //inputModel.list = ["Hallo", "Welt"];
-        inputModel.list = of(["Hello", "World"]);
+        //inputModel.list = of(["Hello", "World"]);
+        this.formGroup.controls["tags"].patchValue(["Hallo", "Hello"]);
     }
 }
