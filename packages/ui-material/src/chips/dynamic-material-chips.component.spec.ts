@@ -124,23 +124,23 @@ describe("DynamicMaterialChipsComponent test suite", () => {
         expect(component.customEvent.emit).toHaveBeenCalled();
     });
 
-    it("should add a chip to chip list", () => {
+    fit("should add a chip to chip list", () => {
 
         let value = "Test",
-            length = component.chipList.length;
+            length = component.chips.length;
 
         component.onChipInputTokenEnd({input: document.createElement("input"), value});
 
-        expect(component.chipList.length).toBe(length + 1);
-        expect(component.chipList[component.chipList.length - 1]).toEqual(value);
+        expect(component.control.value.length).toBe(length + 1);
+        expect(component.control.value[component.control.value.length - 1]).toEqual(value);
     });
 
     it("should remove a chip from chip list", () => {
 
-        let length = component.chipList.length;
+        let length = component.chips.length;
 
         component.onChipRemoved("One", 0);
 
-        expect(component.chipList.length).toBe(length -1);
+        expect(component.chips.length).toBe(length - 1);
     });
 });
