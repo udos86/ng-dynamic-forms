@@ -10,7 +10,7 @@
                    [id]="elementId"
                    [multiple]="true">
 
-        <mat-chip *ngFor="let chip of chipList; let index = index"
+        <mat-chip *ngFor="let chip of chips; let index = index"
                   [selectable]="false"
                   (removed)="onChipRemoved(chip, index)">
 

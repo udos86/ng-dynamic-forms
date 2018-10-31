@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, Optional, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     LabelOptions,
@@ -9,7 +9,6 @@ import {
     MatChipsDefaultOptions,
     MatInput
 } from "@angular/material";
-import { Subscription } from "rxjs";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -23,29 +22,11 @@ import {
     selector: "dynamic-material-chips",
     templateUrl: "./dynamic-material-chips.component.html"
 })
-export class DynamicMaterialChipsComponent extends DynamicFormControlComponent implements OnDestroy {
-
-    private _chipList: string[];
-    private _model: DynamicInputModel;
-    private _valueSubscription: Subscription;
+export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
 
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
-
-    @Input()
-    get model(): DynamicInputModel {
-        return this._model;
-    }
-
-    set model(model: DynamicInputModel) {
-
-        this.unsubscribe();
-
-        this._model = model;
-        this._model.valueUpdates.subscribe((value: string[]) => this.chipList = value);
-
-        this.chipList = Array.isArray(model.value) ? model.value as string[] : [];
-    }
+    @Input() model: DynamicInputModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
@@ -63,22 +44,8 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent i
         super(layoutService, validationService);
     }
 
-    ngOnDestroy() {
-        this.unsubscribe();
-    }
-
-    unsubscribe(): void {
-        if (this._valueSubscription) {
-            this._valueSubscription.unsubscribe();
-        }
-    }
-
-    get chipList(): string[] {
-        return this._chipList;
-    }
-
-    set chipList(value: string[]) {
-        this._chipList = value;
+    get chips(): string[] {
+        return Array.isArray(this.model.value) ? this.model.value as string[] : [];
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
@@ -86,10 +53,8 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent i
         let inputElement = $event.input,
             inputValue = $event.value.trim();
 
-        if (Array.isArray(this.chipList) && inputValue.length > 0) {
-
-            this.chipList.push(inputValue);
-            this.control.patchValue(this.chipList);
+        if (inputValue.length > 0) {
+            this.control.patchValue([...this.chips, inputValue]);
         }
 
         if (inputElement instanceof HTMLInputElement) {
@@ -99,10 +64,10 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent i
 
     onChipRemoved(chip: string, index: number): void {
 
-        if (Array.isArray(this.chipList) && this.chipList[index] === chip) {
+        const chips = this.chips;
 
-            this.chipList.splice(index, 1);
-            this.control.patchValue(this.chipList);
+        if (chips[index] === chip) {
+            this.control.patchValue(chips.splice(index, 1));
         }
     }
 }
