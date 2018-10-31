@@ -2,6 +2,7 @@ import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormLayout, DynamicFormLayoutService } from "./dynamic-form-layout.service";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
+import { DynamicFormArrayModel } from "../model/form-array/dynamic-form-array.model";
 
 describe("DynamicFormLayoutService test suite", () => {
 
@@ -59,6 +60,24 @@ describe("DynamicFormLayoutService test suite", () => {
         expect(service.getClass(formLayout["test1"], "element", "container")).toEqual("");
         expect(service.getClass(formLayout["test2"], "grid", "control")).toEqual("");
         expect(service.getClass(formLayout["test3"], "grid", "control")).toEqual("grid-test-class");
+    });
+
+    it("should return a unique element id", () => {
+
+        let testModel1 = new DynamicInputModel({id: "input"}),
+            testModel2 = new DynamicFormArrayModel({
+                id: "formArray",
+                groupFactory: () => {
+                    return [new DynamicInputModel({id: "formArrayInput"})];
+                }
+            }),
+            testModel3 = testModel2.get(0),
+            testModel4 = testModel3.get(0);
+
+        testModel4.parent = testModel3;
+
+        expect(service.getElementId(testModel1)).toBe(testModel1.id);
+        expect(service.getElementId(testModel4)).toBe(`${testModel2.id}-${testModel3.index}-${testModel4.id}`);
     });
 
     it("should return a custom form control component type", () => {
