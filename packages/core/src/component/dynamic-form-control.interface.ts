@@ -7,7 +7,6 @@ import { DynamicTemplateDirective } from "../directive/dynamic-template.directiv
 
 export interface DynamicFormControl {
 
-    bindId: boolean;
     group: FormGroup;
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;

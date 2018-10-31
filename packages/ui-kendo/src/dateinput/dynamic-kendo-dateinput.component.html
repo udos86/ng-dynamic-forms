@@ -1,10 +1,10 @@
 <ng-container [formGroup]="group">
 
     <kendo-dateinput #kendoDateInput
-                     [dynamicId]="bindId && model.id"
                      [format]="model.getAdditional('format', 'd')"
                      [formatPlaceholder]="model.getAdditional('formatPlaceholder', 'wide')"
                      [formControlName]="model.id"
+                     [id]="elementId"
                      [max]="model.max"
                      [min]="model.min"
                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"

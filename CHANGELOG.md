@@ -1,3 +1,23 @@
+# 7.0.0
+
+### **Upgrades**
+
+* Angular 7
+* TypeScript 3.1
+* Angular Material 7
+* ngx-bootstrap 3.1.1
+* ng-bootstrap 4.0.0
+* Prime NG 7.0.0 Beta.1
+
+### **Breaking Changes**
+
+* `bindId` @Input() has been completely removed
+* `DynamicIdDirective` has been abandoned internally in favor of always setting an element id now
+* `DynamicFormModel` is now a type alias for `DynamicFormControlModel[]`
+* Importing `DynamicFormsCoreModule` via `forRoot()` has been removed
+
+***
+
 # 6.2.0
 
 ### **Features**

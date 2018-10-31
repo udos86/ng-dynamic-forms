@@ -2,20 +2,14 @@
 
 ## Installation
 ```
-npm install @ng-dynamic-forms/ui-material -S
+npm i @ng-dynamic-forms/ui-material -S
 ```
 
 ## Import
 ```ts
 @NgModule({
 
-    imports: [
-        // ...
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        DynamicFormsCoreModule.forRoot(),
-        DynamicFormsMaterialUIModule
-    ]
+    imports: [DynamicFormsMaterialUIModule]
 })
 
 export class AppModule {}

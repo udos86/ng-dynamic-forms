@@ -3,9 +3,9 @@
     <kendo-calendar #kendoCalendar
                     [activeView]="model.getAdditional('activeView', 'month')"
                     [bottomView]="model.getAdditional('bottomView', 'month')"
-                    [dynamicId]="bindId && model.id"
                     [focusedDate]="model.focusedDate"
                     [formControlName]="model.id"
+                    [id]="elementId"
                     [max]="model.max"
                     [min]="model.min"
                     [navigation]="model.getAdditional('navigation', true)"

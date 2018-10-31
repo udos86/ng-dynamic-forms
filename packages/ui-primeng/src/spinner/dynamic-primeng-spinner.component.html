@@ -1,17 +1,14 @@
 <div [formGroup]="group" [ngClass]="getClass('grid', 'control')">
 
     <p-spinner #pSpinner
-               [decimalSeparator]="model.getAdditional('decimalSeparator', '.')"
-               [dynamicId]="bindId && model.id"
-               [formatInput]="model.getAdditional('formatInput', true)"
                [formControlName]="model.id"
+               [id]="elementId"
                [min]="model.min"
                [max]="model.max"
                [ngClass]="getClass('element', 'control')"
                [placeholder]="model.placeholder"
                [step]="model.step || 1"
                [tabindex]="model.tabIndex"
-               [thousandSeparator]="model.getAdditional('thousandSeparator', ',')"
                (onBlur)="onBlur($event)"
                (onChange)="onChange($event)"
                (onFocus)="onFocus($event)"></p-spinner>

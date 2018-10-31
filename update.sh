@@ -1,29 +1,31 @@
 #!/bin/bash
 
-npm up @angular/animations
-npm up @angular/cdk
-npm up @angular/common
-npm up @angular/compiler
-npm up @angular/compiler-cli
-npm up @angular/core
-npm up @angular/forms
-npm up @angular/http
-npm up @angular/material
-npm up @angular/platform-browser
-npm up @angular/platform-browser-dynamic
-npm up @angular/router
+npm un @angular/animations
+npm un @angular/cdk
+npm un @angular/common
+npm un @angular/compiler
+npm un @angular/compiler-cli
+npm un @angular/core
+npm un @angular/forms
+npm un @angular/http
+npm un @angular/material
+npm un @angular/platform-browser
+npm un @angular/platform-browser-dynamic
+npm un @angular/router
 
-npm up @ngtools/webpack
+npm un @ngtools/webpack -D
 
-npm up @progress/kendo-angular-dateinputs
-npm up @progress/kendo-angular-dropdowns
-npm up @progress/kendo-angular-inputs
-npm up @progress/kendo-angular-intl
-npm up @progress/kendo-angular-l10n
-npm up @progress/kendo-angular-popup
-npm up @progress/kendo-angular-resize-sensor
-npm up @progress/kendo-angular-upload
-npm up @progress/kendo-date-math
-npm up @progress/kendo-popup-common
-npm up @progress/kendo-theme-default
-npm up @telerik/kendo-intl
+npm i @angular/animations
+npm i @angular/cdk
+npm i @angular/common
+npm i @angular/compiler
+npm i @angular/compiler-cli
+npm i @angular/core
+npm i @angular/forms
+npm i @angular/http
+npm i @angular/material
+npm i @angular/platform-browser
+npm i @angular/platform-browser-dynamic
+npm i @angular/router
+
+npm i @ngtools/webpack -D

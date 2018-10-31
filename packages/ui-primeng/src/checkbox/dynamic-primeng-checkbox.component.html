@@ -2,8 +2,8 @@
 
     <p-checkbox #pCheckbox
                 binary="true"
-                [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
+                [id]="elementId"
                 [label]="model.label"
                 [name]="model.name"
                 [ngClass]="getClass('element', 'control')"

@@ -2,19 +2,14 @@
 
 ## Installation
 ```
-npm install @ng-dynamic-forms/ui-ionic -S
+npm i @ng-dynamic-forms/ui-ionic -S
 ```
 
 ## Import
 ```ts
 @NgModule({
 
-    imports: [
-        // ...
-        ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(),
-        DynamicFormsIonicUIModule
-    ]
+    imports: [DynamicFormsIonicUIModule]
 })
 
 export class AppModule {}

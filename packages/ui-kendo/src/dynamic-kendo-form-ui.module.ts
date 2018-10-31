@@ -47,6 +47,8 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoDatePickerComponent,
         DynamicKendoDropdownListComponent,
         DynamicKendoFormArrayComponent,
+        DynamicKendoFormComponent,
+        DynamicKendoFormControlContainerComponent,
         DynamicKendoFormGroupComponent,
         DynamicKendoInputComponent,
         DynamicKendoMaskedTextBoxComponent,
@@ -57,9 +59,7 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoSwitchComponent,
         DynamicKendoTextAreaComponent,
         DynamicKendoTimePickerComponent,
-        DynamicKendoUploadComponent,
-        DynamicKendoFormControlContainerComponent,
-        DynamicKendoFormComponent
+        DynamicKendoUploadComponent
     ],
     entryComponents: [
         DynamicKendoAutoCompleteComponent,
@@ -84,8 +84,27 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
     ],
     exports: [
         DynamicFormsCoreModule,
+        DynamicKendoAutoCompleteComponent,
+        DynamicKendoCalendarComponent,
+        DynamicKendoCheckboxComponent,
+        DynamicKendoCheckboxGroupComponent,
+        DynamicKendoDateInputComponent,
+        DynamicKendoDatePickerComponent,
+        DynamicKendoDropdownListComponent,
+        DynamicKendoFormArrayComponent,
+        DynamicKendoFormComponent,
         DynamicKendoFormControlContainerComponent,
-        DynamicKendoFormComponent
+        DynamicKendoFormGroupComponent,
+        DynamicKendoInputComponent,
+        DynamicKendoMaskedTextBoxComponent,
+        DynamicKendoMultiSelectComponent,
+        DynamicKendoNumericTextBoxComponent,
+        DynamicKendoRadioGroupComponent,
+        DynamicKendoSliderComponent,
+        DynamicKendoSwitchComponent,
+        DynamicKendoTextAreaComponent,
+        DynamicKendoTimePickerComponent,
+        DynamicKendoUploadComponent
     ]
 })
 export class DynamicFormsKendoUIModule {}

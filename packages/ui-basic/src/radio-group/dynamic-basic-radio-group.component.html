@@ -1,6 +1,6 @@
 <fieldset role="radiogroup"
-          [dynamicId]="bindId && model.id"
           [formGroup]="group"
+          [id]="elementId"
           [name]="model.name"
           [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
           [tabindex]="model.tabIndex"

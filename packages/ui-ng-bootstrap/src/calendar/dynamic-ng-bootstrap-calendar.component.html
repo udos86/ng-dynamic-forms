@@ -1,9 +1,9 @@
 <ng-container [formGroup]="group">
 
     <ngb-datepicker [displayMonths]="model.getAdditional('displayMonths', config['displayMonths'])"
-                    [dynamicId]="bindId && model.id"
                     [firstDayOfWeek]="model.getAdditional('firstDayOfWeek', config['firstDayOfWeek'])"
                     [formControlName]="model.id"
+                    [id]="elementId"
                     [maxDate]="model.max"
                     [minDate]="model.min"
                     [navigation]="model.getAdditional('navigation', config['navigation'])"

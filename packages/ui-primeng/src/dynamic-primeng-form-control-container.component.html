@@ -2,7 +2,7 @@
 
     <div *ngIf="!isCheckbox && hasLabel" [ngClass]="getClass('grid', 'label')">
 
-        <label [for]="model.id" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
+        <label [for]="elementId" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
 
     </div>
 

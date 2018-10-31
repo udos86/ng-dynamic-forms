@@ -16,7 +16,6 @@ import {
 })
 export class DynamicIonicRadioGroupComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicRadioGroupModel<string>;

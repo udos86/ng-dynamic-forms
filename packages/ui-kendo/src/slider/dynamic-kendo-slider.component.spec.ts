@@ -27,7 +27,7 @@ describe("DynamicKendoSliderComponent test suite", () => {
                 NoopAnimationsModule,
                 SliderModule,
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoSliderComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicKendoSliderComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSliderModel).toBe(true);

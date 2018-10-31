@@ -1,8 +1,8 @@
 <ng-container [formGroup]="group">
 
     <select [compareWith]="model.compareWithFn"
-            [dynamicId]="bindId && model.id"
             [formControlName]="model.id"
+            [id]="elementId"
             [name]="model.name"
             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
             [required]="model.required"

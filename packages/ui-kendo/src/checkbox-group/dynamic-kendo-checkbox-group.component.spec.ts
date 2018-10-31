@@ -25,7 +25,7 @@ describe("DynamicKendoCheckboxGroupComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoCheckboxGroupComponent]
 
@@ -52,7 +52,6 @@ describe("DynamicKendoCheckboxGroupComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormGroup).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxGroupModel).toBe(true);

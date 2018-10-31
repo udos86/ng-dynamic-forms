@@ -88,11 +88,11 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NgbButtonsModule,
-                NgbDatepickerModule.forRoot(),
-                NgbRatingModule.forRoot(),
-                NgbTimepickerModule.forRoot(),
+                NgbDatepickerModule,
+                NgbRatingModule,
+                NgbTimepickerModule,
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapFormControlContainerComponent, DynamicNGBootstrapInputComponent]
 
@@ -126,7 +126,6 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
     it("should initialize correctly", () => {
 
         expect(component.asBootstrapFormGroup).toBe(true);
-        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);

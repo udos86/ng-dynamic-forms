@@ -90,7 +90,7 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
                 DropDownsModule,
                 InputsModule,
                 UploadModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoFormControlContainerComponent, DynamicKendoDropdownListComponent]
 
@@ -123,7 +123,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);

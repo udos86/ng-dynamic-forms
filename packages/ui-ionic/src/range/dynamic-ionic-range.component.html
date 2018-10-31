@@ -7,8 +7,8 @@
     <ion-range #ionRange
                [debounce]="model.getAdditional('debounce', 0)"
                [dualKnobs]="model.getAdditional('dualKnobs', false)"
-               [dynamicId]="bindId && model.id"
                [formControlName]="model.id"
+               [id]="elementId"
                [max]="model.max"
                [min]="model.min"
                [ngClass]="getClass('element', 'control')"

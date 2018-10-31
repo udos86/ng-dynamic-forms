@@ -1,4 +1,5 @@
 import { DynamicFormControlModel, DynamicFormControlModelConfig } from "../dynamic-form-control.model";
+import { DynamicFormModel } from "../dynamic-form.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "../misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../misc/dynamic-form-control-validation.model";
@@ -9,10 +10,10 @@ export class DynamicFormArrayGroupModel implements DynamicPathable {
 
     $implicit: DynamicFormArrayGroupModel;
     context: DynamicFormArrayModel;
-    @serializable() group: DynamicFormControlModel[];
+    @serializable() group: DynamicFormModel;
     @serializable() index: number;
 
-    constructor(context: DynamicFormArrayModel, group: DynamicFormControlModel[] = [], index: number = -1) {
+    constructor(context: DynamicFormArrayModel, group: DynamicFormModel = [], index: number = -1) {
 
         this.$implicit = this;
         this.context = context;
@@ -38,7 +39,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
 
     groupAsyncValidators?: DynamicValidatorsConfig;
-    groupFactory?: () => DynamicFormControlModel[];
+    groupFactory?: () => DynamicFormModel;
     groupValidators?: DynamicValidatorsConfig;
     groups?: DynamicFormArrayGroupModel[] | null;
     initialCount?: number;
@@ -47,12 +48,12 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 export class DynamicFormArrayModel extends DynamicFormControlModel {
 
     @serializable() groupAsyncValidators: DynamicValidatorsConfig | null;
-    groupFactory: () => DynamicFormControlModel[];
+    groupFactory: () => DynamicFormModel;
     @serializable() groupValidators: DynamicValidatorsConfig | null;
     @serializable() groups: DynamicFormArrayGroupModel[] = [];
     @serializable() initialCount: number;
 
-    @serializable() readonly groupPrototype: DynamicFormControlModel[]; // only to recreate model from JSON
+    @serializable() readonly groupPrototype: DynamicFormModel; // only to recreate model from JSON
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
     constructor(config: DynamicFormArrayModelConfig, layout?: DynamicFormControlLayout) {

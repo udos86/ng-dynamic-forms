@@ -1,8 +1,8 @@
 <ng-container [formGroup]="group">
 
     <div ngbRadioGroup class="btn-group btn-group-toggle" role="radiogroup"
-         [dynamicId]="bindId && model.id"
          [formControlName]="model.id"
+         [id]="elementId"
          [ngClass]="getClass('element', 'control')"
          [tabindex]="model.tabIndex"
          (change)="onChange($event)">

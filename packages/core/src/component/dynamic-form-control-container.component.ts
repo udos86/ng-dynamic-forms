@@ -1,6 +1,7 @@
 import {
     ComponentFactoryResolver,
     ComponentRef,
+    EmbeddedViewRef,
     EventEmitter,
     OnChanges,
     OnDestroy,
@@ -39,13 +40,12 @@ import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-cont
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
-import { RelationUtils } from "../utils/relation.utils";
+import { findActivationRelation, getRelatedFormControls, isFormControlToBeDisabled } from "../utils/relation.utils";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
-    bindId: boolean;
     context: DynamicFormArrayGroupModel | null = null;
     control: FormControl;
     group: FormGroup;
@@ -64,6 +64,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     componentViewContainerRef: ViewContainerRef;
 
     protected componentRef: ComponentRef<DynamicFormControl>;
+    protected viewRefs: EmbeddedViewRef<DynamicFormControlModel>[] = [];
     protected componentSubscriptions: Subscription[] = [];
     protected subscriptions: Subscription[] = [];
 
@@ -79,7 +80,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         if (modelChange) {
 
             this.destroyFormControlComponent();
+            //this.removeTemplates();
+
             this.createFormControlComponent();
+            //this.embedTemplates();
         }
 
         if (groupChange || modelChange) {
@@ -134,6 +138,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
+    get elementId(): string {
+        return this.layoutService.getElementId(this.model);
+    }
+
     get isInvalid(): boolean {
         return this.control.invalid;
     }
@@ -180,7 +188,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             let instance = this.componentRef.instance;
 
-            instance.bindId = this.bindId;
             instance.group = this.group;
             instance.layout = this.layout;
             instance.model = this.model as any;
@@ -211,9 +218,27 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
+    protected embedTemplates(): void {
+
+        const templates = this.layoutService.getIndexedTemplates(this.model, this.templates);
+
+        if (Array.isArray(templates)) {
+
+            templates.forEach(template => {
+
+                const viewRef = this.componentViewContainerRef.createEmbeddedView(template.templateRef, this.model, template.index);
+                this.viewRefs.push(viewRef);
+            });
+        }
+    }
+
+    protected removeTemplates(): void {
+        this.viewRefs.forEach(viewRef => this.componentViewContainerRef.remove(this.componentViewContainerRef.indexOf(viewRef)));
+    }
+
     protected setControlRelations(): void {
 
-        let relActivation = RelationUtils.findActivationRelation(this.model.relation);
+        let relActivation = findActivationRelation(this.model.relation);
 
         if (relActivation !== null) {
 
@@ -221,7 +246,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             this.updateModelDisabled(rel);
 
-            RelationUtils.getRelatedFormControls(this.model, this.group).forEach(control => {
+            getRelatedFormControls(this.model, this.group).forEach(control => {
 
                 this.subscriptions.push(control.valueChanges.subscribe(() => this.updateModelDisabled(rel)));
                 this.subscriptions.push(control.statusChanges.subscribe(() => this.updateModelDisabled(rel)));
@@ -235,7 +260,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
 
-        this.model.disabledUpdates.next(RelationUtils.isFormControlToBeDisabled(relation, this.group));
+        this.model.disabledUpdates.next(isFormControlToBeDisabled(relation, this.group));
     }
 
     unsubscribe(): void {

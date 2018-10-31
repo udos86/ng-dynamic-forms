@@ -27,7 +27,7 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
                 NoopAnimationsModule,
                 TimepickerModule.forRoot(),
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicBootstrapTimePickerComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTimePickerModel).toBe(true);

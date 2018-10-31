@@ -105,37 +105,34 @@ export const AUTOFILL_FIELDS_CONTACT = [
     AUTOFILL_FIELD_TEL_LOCAL_EXTENSION, AUTOFILL_FIELD_EMAIL, AUTOFILL_FIELD_IMPP
 ];
 
-export class AutoFillUtils {
+export function isAddressToken(token: string): boolean {
+    return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
+}
 
-    static isAddressToken(token: string): boolean {
-        return AUTOFILL_TOKENS_ADDRESS.indexOf(token) > -1;
-    }
+export function isContactField(token: string): boolean {
+    return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
+}
 
-    static isContactField(token: string): boolean {
-        return AUTOFILL_FIELDS_CONTACT.indexOf(token) > -1;
-    }
+export function isContactToken(token: string): boolean {
+    return AUTOFILL_TOKENS_CONTACT.indexOf(token) > -1;
+}
 
-    static isContactToken(token: string): boolean {
-        return AUTOFILL_TOKENS_CONTACT.indexOf(token) > -1;
-    }
+export function isField(token: string): boolean {
+    return AUTOFILL_FIELDS.indexOf(token) > -1;
+}
 
-    static isField(token: string): boolean {
-        return AUTOFILL_FIELDS.indexOf(token) > -1;
-    }
+export function isSectionToken(token: string): boolean {
+    return token.startsWith("section-");
+}
 
-    static isSectionToken(token: string): boolean {
-        return token.startsWith("section-");
-    }
+export function validate(tokens: string): boolean {
 
-    static validate(tokens: string): boolean {
+    let toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`,
+        tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression),
+        tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression),
+        fields = AUTOFILL_FIELDS.reduce(toExpression),
+        fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression),
+        regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
 
-        let toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`,
-            tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression),
-            tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression),
-            fields = AUTOFILL_FIELDS.reduce(toExpression),
-            fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression),
-            regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
-
-        return regex.test(tokens);
-    }
+    return regex.test(tokens);
 }

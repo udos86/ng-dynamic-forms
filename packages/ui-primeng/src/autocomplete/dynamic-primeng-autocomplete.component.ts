@@ -23,7 +23,6 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplatea
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;

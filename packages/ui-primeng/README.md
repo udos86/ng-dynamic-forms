@@ -2,19 +2,14 @@
 
 ## Installation
 ```
-npm install @ng-dynamic-forms/ui-primeng -S
+npm i @ng-dynamic-forms/ui-primeng -S
 ```
 
 ## Import
 ```ts
 @NgModule({
 
-    imports: [
-        // ...
-        ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(),
-        DynamicFormsPrimeNGUIModule
-    ]
+    imports: [DynamicFormsPrimeNGUIModule]
 })
 
 export class AppModule {}
