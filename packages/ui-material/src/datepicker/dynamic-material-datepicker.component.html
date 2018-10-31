@@ -43,7 +43,9 @@
                     [startView]="model.getAdditional('startView', 'month')"
                     [touchUi]="model.getAdditional('touchUi', false)"
                     (closed)="onCustomEvent($event, 'closed')"
-                    (opened)="onCustomEvent($event, 'opened')"></mat-datepicker>
+                    (monthSelected)="onCustomEvent($event, 'monthSelected')"
+                    (opened)="onCustomEvent($event, 'opened')"
+                    (yearSelected)="onCustomEvent($event, 'yearSelected')"></mat-datepicker>
 
 
     <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">

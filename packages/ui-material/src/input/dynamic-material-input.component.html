@@ -58,6 +58,7 @@
 <mat-autocomplete #matAutocomplete="matAutocomplete"
                   [autoActiveFirstOption]="model.getAdditional('autoActiveFirstOption', AUTOCOMPLETE_OPTIONS['autoActiveFirstOption'])"
                   [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
+                  [displayWith]="model.getAdditional('displayWith', displayWith)"
                   (optionSelected)="onChange($event)">
 
     <mat-option *ngFor="let option of model.list$ | async" [value]="option">{{ option }}</mat-option>

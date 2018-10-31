@@ -11,8 +11,8 @@ export abstract class DynamicMaterialFormInputControlComponent extends DynamicFo
 
     matInput: MatInput | undefined;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+    protected constructor(protected layoutService: DynamicFormLayoutService,
+                          protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
     }
@@ -27,5 +27,9 @@ export abstract class DynamicMaterialFormInputControlComponent extends DynamicFo
 
     get showCharacterHint(): boolean {
         return !!((this.model as DynamicInputModel).maxLength && this.characterCount);
+    }
+
+    displayWith(value: string): string {
+        return value;
     }
 }
