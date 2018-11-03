@@ -16,13 +16,13 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
     new DynamicFormGroupModel({
 
-        id: "bootstrapFormGroup1",
+        id: "bsFormGroup1",
         legend: "Form Group 1",
         group: [
 
             new DynamicDatePickerModel({
 
-                id: "bootstrapDatePicker",
+                id: "bsDatePicker",
                 label: "Datepicker",
                 toggleLabel: "Open",
                 placeholder: "Pick a date",
@@ -34,7 +34,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicSelectModel<string>({
 
-                id: "bootstrapSelect",
+                id: "bsSelect",
                 label: "Select",
                 options: of([
                     {
@@ -60,10 +60,10 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
             new DynamicInputModel({
 
                 hint: "Just a sample help text",
-                id: "bootstrapInput",
+                id: "bsInput",
                 label: "Input",
                 maxLength: 51,
-                placeholder: "example input",
+                placeholder: "Just some input",
                 prefix: "Prefix",
                 suffix: "Suffix",
                 validators: {
@@ -78,7 +78,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicCheckboxGroupModel({
 
-                id: "bootstrapCheckboxGroup",
+                id: "bsCheckboxGroup",
                 label: "Checkbox Group",
                 group: [
                     new DynamicCheckboxModel({
@@ -100,12 +100,12 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
     new DynamicFormGroupModel({
 
-        id: "bootstrapFormGroup2",
+        id: "bsFormGroup2",
         legend: "Form Group 2",
         group: [
             new DynamicRadioGroupModel<string>({
 
-                id: "bootstrapRadioGroup",
+                id: "bsRadioGroup",
                 label: "Radio Group",
                 options: [
                     {
@@ -130,7 +130,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicTextAreaModel({
 
-                id: "bootstrapTextArea",
+                id: "bsTextArea",
                 label: "Textarea",
                 rows: 5,
                 placeholder: "example Textarea",
@@ -140,11 +140,11 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         connective: "OR",
                         when: [
                             {
-                                id: "bootstrapRadioGroup",
+                                id: "bsRadioGroup",
                                 value: "option-2"
                             },
                             {
-                                id: "bootstrapRadioGroup",
+                                id: "bsRadioGroup",
                                 value: "option-4",
                             }
                         ]
@@ -154,7 +154,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicTimePickerModel({
 
-                id: "bootstrapTimePicker",
+                id: "bsTimePicker",
                 label: "Timepicker",
                 meridian: true,
                 showSeconds: false,
@@ -163,21 +163,21 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicCheckboxModel({
 
-                id: "bootstrapCheckbox",
+                id: "bsCheckbox",
                 label: "I do agree"
             }),
 
             new DynamicFormArrayModel({
 
-                id: "bootstrapFormArray",
+                id: "bsFormArray",
                 initialCount: 5,
                 label: "Form Array",
                 groupFactory: () => {
                     return [
                         new DynamicInputModel({
-
-                            id: "bootstrapArrayGroupInput",
-                            placeholder: "example array group input"
+                            id: "bsArrayInput",
+                            label: "Label",
+                            placeholder: "Just some input"
                         })
                     ];
                 }

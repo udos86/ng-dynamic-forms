@@ -1,6 +1,6 @@
 export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
-    "bootstrapSelect": {
+    "bsSelect": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -12,7 +12,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapDatePicker": {
+    "bsDatePicker": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -23,7 +23,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapInput": {
+    "bsInput": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -35,7 +35,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapCheckboxGroup": {
+    "bsCheckboxGroup": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -46,7 +46,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapRadioGroup": {
+    "bsRadioGroup": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -57,7 +57,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapTextArea": {
+    "bsTextArea": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -68,7 +68,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapTimePicker": {
+    "bsTimePicker": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -79,7 +79,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapCheckbox": {
+    "bsCheckbox": {
         element: {
             container: "form-group"
         },
@@ -88,13 +88,13 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bootstrapArrayGroupInput": {
+    "bsArrayInput": {
         grid: {
             container: "col-sm-8"
         }
     },
 
-    "bootstrapFormArray": {
+    "bsFormArray": {
         element: {
             container: "form-group form-array",
             label: "control-label"

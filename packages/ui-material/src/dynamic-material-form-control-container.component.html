@@ -9,7 +9,7 @@
 
     <ng-container #componentViewContainer></ng-container>
 
-    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
+    <ng-container *ngIf="!hasMatFormField">
 
         <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
 

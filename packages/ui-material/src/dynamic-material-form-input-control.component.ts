@@ -11,8 +11,8 @@ export abstract class DynamicMaterialFormInputControlComponent extends DynamicFo
 
     matInput: MatInput | undefined;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+    protected constructor(protected layoutService: DynamicFormLayoutService,
+                          protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
     }

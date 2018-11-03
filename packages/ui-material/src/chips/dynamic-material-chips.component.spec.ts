@@ -4,6 +4,8 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import {
+    MatAutocomplete,
+    MatAutocompleteModule,
     MatChipList,
     MatChipsModule,
     MatIconModule,
@@ -16,7 +18,12 @@ import { DynamicMaterialChipsComponent } from "./dynamic-material-chips.componen
 
 describe("DynamicMaterialChipsComponent test suite", () => {
 
-    let testModel = new DynamicInputModel({id: "input", multiple: true, value: ["One", "Two", "Three"]}),
+    let testModel = new DynamicInputModel({
+            id: "input",
+            multiple: true,
+            list: ["Four", "Five", "Six"],
+            value: ["One", "Two", "Three"]
+        }),
         formModel = [testModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicMaterialChipsComponent>,
@@ -31,6 +38,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
+                MatAutocompleteModule,
                 MatChipsModule,
                 MatIconModule,
                 MatInputModule,
@@ -65,6 +73,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
+        expect(component.matAutocomplete instanceof MatAutocomplete).toBe(true);
         expect(component.matChipList instanceof MatChipList).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);
 

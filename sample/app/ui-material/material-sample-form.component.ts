@@ -1,14 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    DynamicFormService,
-    DynamicFormControlModel,
-    DynamicFormLayout,
-    DynamicInputModel
-} from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
 import { MATERIAL_SAMPLE_FORM_MODEL } from "./material-sample-form.model";
 import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
-import { of } from "rxjs";
 
 @Component({
     moduleId: module.id,
@@ -27,8 +21,6 @@ export class MaterialSampleFormComponent implements OnInit {
 
     ngOnInit() {
         this.formGroup = this.formService.createFormGroup(this.formModel);
-        this.formGroup.controls["firstName"].patchValue("Peter");
-        this.formGroup.controls["tags"].patchValue(["Hallo", "Hello"]);
     }
 
     onBlur($event) {
@@ -47,11 +39,7 @@ export class MaterialSampleFormComponent implements OnInit {
         console.log(`Material ${$event.type} event on: ${$event.model.id}: `, $event);
     }
 
-    updateList() {
-        let inputModel = this.formService.findById("state", this.formModel) as DynamicInputModel;
-        //(inputModel.list$ as BehaviorSubject<string[]>).next(["Udo", "Matthias", "Uwe"]);
-        //inputModel.list = ["Hallo", "Welt"];
-        inputModel.list = of(["Hello", "World"]);
-        //this.formGroup.controls["tags"].patchValue(["Hallo", "Hello"]);
+    test() {
+
     }
 }
