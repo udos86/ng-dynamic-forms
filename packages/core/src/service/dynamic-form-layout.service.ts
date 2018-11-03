@@ -67,12 +67,11 @@ export class DynamicFormLayoutService {
         return this.filterTemplatesByModel(model, templates)
             .find(template => template.as === null && template.align === alignment);
     }
-
+    /*
     getIndexedTemplates(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] | undefined {
-
         return this.filterTemplatesByModel(model, templates).filter(template => template.as === null);
     }
-
+    */
     getStartTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective | undefined {
         return this.getAlignedTemplate(model, templates, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.Start);
     }
