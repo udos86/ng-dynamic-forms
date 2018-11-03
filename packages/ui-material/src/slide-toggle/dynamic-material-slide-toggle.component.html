@@ -14,6 +14,7 @@
                       (toggleChange)="onCustomEvent($event, 'toggleChange')">
 
         <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>
+
         <span *ngIf="model.checked" [innerHTML]="model.onLabel"></span>
 
     </mat-slide-toggle>

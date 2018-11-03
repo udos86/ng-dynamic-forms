@@ -47,11 +47,6 @@
                     (opened)="onCustomEvent($event, 'opened')"
                     (yearSelected)="onCustomEvent($event, 'yearSelected')"></mat-datepicker>
 
-
-    <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
-
-        <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
-
-    </ng-container>
+    <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
 
 </mat-form-field>

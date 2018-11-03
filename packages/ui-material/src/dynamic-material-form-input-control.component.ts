@@ -28,8 +28,4 @@ export abstract class DynamicMaterialFormInputControlComponent extends DynamicFo
     get showCharacterHint(): boolean {
         return !!((this.model as DynamicInputModel).maxLength && this.characterCount);
     }
-
-    displayWith(value: string): string {
-        return value;
-    }
 }
