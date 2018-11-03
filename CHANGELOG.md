@@ -1,3 +1,15 @@
+# 7.0.1
+
+### **Bugfixes**
+
+* `@ng-bootstrap/ng-bootstrap` dependency version has been corrected (closes [#872](https://github.com/udos86/ng-dynamic-forms/issues/872))
+
+### **Features**
+
+* Material chips component now supports `MatAutocomplete` via `list` property
+
+***
+
 # 7.0.0
 
 ### **Upgrades**
