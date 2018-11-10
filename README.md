@@ -109,7 +109,7 @@ export class AppModule {}
 **2. Define your form model**:
 ```typescript
 import {
-    DynamicFormControlModel,
+    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicInputModel,
     DynamicRadioGroupModel
@@ -157,7 +157,7 @@ export const MY_FORM_MODEL: DynamicFormModel = [
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
 ```typescript
 import { MY_FORM_MODEL } from "./my-dynamic-form.model";
-import { DynamicFormControlModel, DynamicFormService } from "@ng-dynamic-forms/core";
+import { DynamicFormModel, DynamicFormService } from "@ng-dynamic-forms/core";
 
 export class MyDynamicFormComponent implements OnInit {
 
