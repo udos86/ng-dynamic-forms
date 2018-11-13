@@ -9,13 +9,24 @@ import { isString } from "../../utils/core.utils";
 describe("DynamicInputModel test suite", () => {
 
     let model: DynamicInputModel,
+       modelMaskFunction: DynamicInputModel,
         config = {
             id: "input",
             list: ["One", "Two", "Three"],
             mask: ["test", /[1-9]/]
+        },
+        configMaskFunction = {
+            id: "input",
+            list: ["One", "Two", "Three"],
+            mask: () => {
+                return ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]
+            }
         };
 
-    beforeEach(() => model = new DynamicInputModel(config));
+    beforeEach(() => {
+        model = new DynamicInputModel(config);
+        modelMaskFunction = new DynamicInputModel(configMaskFunction);
+    });
 
     it("tests if correct default type property is set", () => {
 
@@ -119,5 +130,10 @@ describe("DynamicInputModel test suite", () => {
         expect(json.mask).toEqual(["test", "/[1-9]/"]);
         expect(json.value).toBe(model.value);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
+    });
+
+    it("should apply function with text-mask parameters correctly", () => {
+
+        expect(modelMaskFunction.mask).toEqual(Function);
     });
 });
