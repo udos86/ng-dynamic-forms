@@ -1196,6 +1196,18 @@ new DynamicInputModel({
 }),
 ```
 
+You can also pass a function as the mask. The function will receive the user input at every change. The function is expected to return a mask array as described above.[Text Mask Addons](https://github.com/text-mask/text-mask/tree/master/addons/)
+ ```typescript
+new DynamicInputModel({
+     id: "maskedInput",
+    label: "Masked Input",
+    mask: createNumberMask({
+            prefix: "",
+            suffix: " $"
+          }),
+}),
+```
+
 Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
 
 

@@ -30,7 +30,7 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
     accept?: string;
     inputType?: string;
     list?: any[] | Observable<any[]>;
-    mask?: string | RegExp | (string | RegExp)[];
+    mask?: string | RegExp | Function | (string | RegExp)[];
     max?: number | string | Date;
     min?: number | string | Date;
     multiple?: boolean;
@@ -44,7 +44,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() inputType: string;
     files: FileList | null = null;
     list$: Observable<any[]> | null = null;
-    @serializable() mask: string | RegExp | (string | RegExp)[] | null;
+    @serializable() mask: string | RegExp | Function | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
     @serializable() multiple: boolean | null;
@@ -106,7 +106,13 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         let json: any = super.toJSON();
 
-        if (this.mask !== null) { json.mask = maskToString(this.mask); }
+        if (this.mask !== null) { 
+            if (this.mask instanceof Function) {
+                json.mask = this.mask;
+            } else {
+                json.mask = maskToString(this.mask);
+            }
+        }
 
         return json;
     }
