@@ -19,7 +19,7 @@ describe("DynamicInputModel test suite", () => {
             id: "input",
             list: ["One", "Two", "Three"],
             mask: () => {
-                return ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]
+                return ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/];
             }
         };
 
