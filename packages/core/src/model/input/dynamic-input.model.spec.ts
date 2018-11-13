@@ -9,7 +9,6 @@ import { isString } from "../../utils/core.utils";
 describe("DynamicInputModel test suite", () => {
 
     let model: DynamicInputModel,
-        modelMaskFunction: DynamicInputModel,
         config = {
             id: "input",
             list: ["One", "Two", "Three"],
