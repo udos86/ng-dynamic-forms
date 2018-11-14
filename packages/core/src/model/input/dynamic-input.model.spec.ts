@@ -15,13 +15,15 @@ describe("DynamicInputModel test suite", () => {
             mask: ["test", /[1-9]/]
         };
 
+      let fnMask = (a: any) => {
+        return [a];
+      };
+
       let modelMask: DynamicInputModel,
           configMask = {
               id: "input",
               list: ["One", "Two", "Three"],
-              mask: (a: any) => {
-                return [a];
-              }
+              mask: fnMask
           };
 
     beforeEach( () => {
@@ -134,9 +136,7 @@ describe("DynamicInputModel test suite", () => {
     });
 
     it("should mask function correctly", () => {
-      var fn = (a: any) => {
-        return [a];
-      };
-      expect(modelMask.mask).toEqual(fn);
+
+      expect(modelMask.mask).toEqual(fnMask);
     });
 });
