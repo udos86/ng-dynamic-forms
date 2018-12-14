@@ -15,20 +15,20 @@ describe("DynamicInputModel test suite", () => {
             mask: ["test", /[1-9]/]
         };
 
-      let fnMask = (a: any) => {
+    let fnMask = (a: any) => {
         return [a];
-      };
+    };
 
-      let modelMask: DynamicInputModel,
-          configMask = {
-              id: "input",
-              list: ["One", "Two", "Three"],
-              mask: fnMask
-          };
+    let modelMask: DynamicInputModel,
+        configMask = {
+            id: "input",
+            list: ["One", "Two", "Three"],
+            mask: fnMask
+        };
 
-    beforeEach( () => {
-      model = new DynamicInputModel(config);
-      modelMask = new DynamicInputModel(configMask);
+    beforeEach(() => {
+        model = new DynamicInputModel(config);
+        modelMask = new DynamicInputModel(configMask);
     });
 
     it("tests if correct default type property is set", () => {
@@ -137,6 +137,6 @@ describe("DynamicInputModel test suite", () => {
 
     it("should mask function correctly", () => {
 
-      expect(modelMask.mask).toEqual(fnMask);
+        expect(modelMask.mask).toEqual(fnMask);
     });
 });

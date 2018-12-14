@@ -1,3 +1,13 @@
+# 7.0.2
+
+### **Features**
+
+* text masks now support functions (closes [#885](https://github.com/udos86/ng-dynamic-forms/issues/885))
+* package upgrades and bad `event-stream` dependencies removed
+
+***
+
+
 # 7.0.1
 
 ### **Bugfixes**
