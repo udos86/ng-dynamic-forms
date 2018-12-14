@@ -82,6 +82,7 @@
         "ngx-bootstrap/carousel": "npm:ngx-bootstrap/carousel/bundles/ngx-bootstrap-carousel.umd.min.js",
         "ngx-bootstrap/chronos": "npm:ngx-bootstrap/chronos/bundles/ngx-bootstrap-chronos.umd.min.js",
         "ngx-bootstrap/collapse": "npm:ngx-bootstrap/collapse/bundles/ngx-bootstrap-collapse.umd.min.js",
+        "ngx-bootstrap/component-loader": "npm:ngx-bootstrap/component-loader/bundles/ngx-bootstrap-component-loader.umd.min.js",
         "ngx-bootstrap/datepicker": "npm:ngx-bootstrap/datepicker/bundles/ngx-bootstrap-datepicker.umd.min.js",
         "ngx-bootstrap/dropdown": "npm:ngx-bootstrap/dropdown/bundles/ngx-bootstrap-dropdown.umd.min.js",
         "ngx-bootstrap/loader": "npm:ngx-bootstrap/loader/bundles/ngx-bootstrap-loader.umd.min.js",
