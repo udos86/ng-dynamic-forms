@@ -2,8 +2,8 @@
 
     <p-slider #pSlider
               [animate]="model.getAdditional('animate', false)"
-              [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
+              [id]="elementId"
               [min]="model.min"
               [max]="model.max"
               [ngClass]="getClass('element', 'control')"

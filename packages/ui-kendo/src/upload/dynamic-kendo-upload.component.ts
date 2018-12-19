@@ -20,7 +20,6 @@ export class DynamicKendoUploadComponent extends DynamicKendoTemplateableFormCon
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFileUploadModel;

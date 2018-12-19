@@ -1,7 +1,7 @@
 <div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
 
     <label *ngIf="!hasMatFormField && !isCheckbox && hasLabel"
-           [for]="model.id"
+           [for]="elementId"
            [innerHTML]="model.label"
            [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
 
@@ -9,7 +9,7 @@
 
     <ng-container #componentViewContainer></ng-container>
 
-    <ng-container *ngIf="!hasMatFormField && showErrorMessages">
+    <ng-container *ngIf="!hasMatFormField">
 
         <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
 

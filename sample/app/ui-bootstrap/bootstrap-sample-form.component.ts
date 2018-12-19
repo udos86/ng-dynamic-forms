@@ -35,11 +35,11 @@ export class BootstrapSampleFormComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.exampleControl = this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput") as FormControl;
-        this.exampleModel = this.formService.findById("bootstrapInput", this.formModel) as DynamicInputModel;
+        this.exampleControl = this.formGroup.get("bsFormGroup1").get("bsInput") as FormControl;
+        this.exampleModel = this.formService.findById("bsInput", this.formModel) as DynamicInputModel;
 
-        this.arrayControl = this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray") as FormArray;
-        this.arrayModel = this.formService.findById("bootstrapFormArray", this.formModel) as DynamicFormArrayModel;
+        this.arrayControl = this.formGroup.get("bsFormGroup2").get("bsFormArray") as FormArray;
+        this.arrayModel = this.formService.findById("bsFormArray", this.formModel) as DynamicFormArrayModel;
     }
 
     add() {
@@ -74,12 +74,12 @@ export class BootstrapSampleFormComponent implements OnInit {
             this.formGroup,
             this.formModel,
             new DynamicFormGroupModel({
-                id: "bootstrapFormGroup3",
+                id: "bsFormGroup3",
                 group: [new DynamicInputModel({id: "newInput"})]
             })
         );
         this.formService.addFormGroupControl(
-            this.formGroup.get("bootstrapFormGroup3") as FormGroup,
+            this.formGroup.get("bsFormGroup3") as FormGroup,
             this.formModel[2] as DynamicFormGroupModel,
             new DynamicInputModel({id: "newInput"})
         );

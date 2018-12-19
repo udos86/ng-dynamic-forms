@@ -16,7 +16,6 @@ import {
 })
 export class DynamicPrimeNGMultiSelectComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicSelectModel<string>;

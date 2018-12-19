@@ -27,7 +27,7 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
                 NoopAnimationsModule,
                 TextMaskModule,
                 CheckboxModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGCheckboxComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);

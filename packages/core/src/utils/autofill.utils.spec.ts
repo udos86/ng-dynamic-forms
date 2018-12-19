@@ -1,4 +1,4 @@
-import { AutoFillUtils } from "./autofill.utils";
+import { isAddressToken, isContactToken, isContactField, isField, isSectionToken, validate } from "./autofill.utils";
 
 describe("Autofill utils test suite", () => {
 
@@ -19,62 +19,62 @@ describe("Autofill utils test suite", () => {
             value13 = "section-test1 blabla name",
             value14 = "section-test1 blabla mobile tel";
 
-        expect(AutoFillUtils.validate(value1)).toBe(true);
-        expect(AutoFillUtils.validate(value2)).toBe(false);
-        expect(AutoFillUtils.validate(value3)).toBe(false);
-        expect(AutoFillUtils.validate(value4)).toBe(false);
-        expect(AutoFillUtils.validate(value5)).toBe(true);
-        expect(AutoFillUtils.validate(value6)).toBe(true);
-        expect(AutoFillUtils.validate(value7)).toBe(false);
-        expect(AutoFillUtils.validate(value8)).toBe(false);
-        expect(AutoFillUtils.validate(value9)).toBe(true);
-        expect(AutoFillUtils.validate(value10)).toBe(false);
-        expect(AutoFillUtils.validate(value11)).toBe(false);
-        expect(AutoFillUtils.validate(value12)).toBe(false);
-        expect(AutoFillUtils.validate(value13)).toBe(false);
-        expect(AutoFillUtils.validate(value14)).toBe(false);
+        expect(validate(value1)).toBe(true);
+        expect(validate(value2)).toBe(false);
+        expect(validate(value3)).toBe(false);
+        expect(validate(value4)).toBe(false);
+        expect(validate(value5)).toBe(true);
+        expect(validate(value6)).toBe(true);
+        expect(validate(value7)).toBe(false);
+        expect(validate(value8)).toBe(false);
+        expect(validate(value9)).toBe(true);
+        expect(validate(value10)).toBe(false);
+        expect(validate(value11)).toBe(false);
+        expect(validate(value12)).toBe(false);
+        expect(validate(value13)).toBe(false);
+        expect(validate(value14)).toBe(false);
     });
 
     it("should validate address tokens correctly", () => {
 
-        expect(AutoFillUtils.isAddressToken("shipping")).toBe(true);
-        expect(AutoFillUtils.isAddressToken("billing")).toBe(true);
-        expect(AutoFillUtils.isAddressToken("home")).toBe(false);
+        expect(isAddressToken("shipping")).toBe(true);
+        expect(isAddressToken("billing")).toBe(true);
+        expect(isAddressToken("home")).toBe(false);
     });
 
     it("should validate contact tokens correctly", () => {
 
-        expect(AutoFillUtils.isContactToken("home")).toBe(true);
-        expect(AutoFillUtils.isContactToken("work")).toBe(true);
-        expect(AutoFillUtils.isContactToken("mobile")).toBe(true);
-        expect(AutoFillUtils.isContactToken("fax")).toBe(true);
-        expect(AutoFillUtils.isContactToken("pager")).toBe(true);
-        expect(AutoFillUtils.isContactToken("billing")).toBe(false);
+        expect(isContactToken("home")).toBe(true);
+        expect(isContactToken("work")).toBe(true);
+        expect(isContactToken("mobile")).toBe(true);
+        expect(isContactToken("fax")).toBe(true);
+        expect(isContactToken("pager")).toBe(true);
+        expect(isContactToken("billing")).toBe(false);
     });
 
     it("should validate section tokens correctly", () => {
 
-        expect(AutoFillUtils.isSectionToken("section-test")).toBe(true);
-        expect(AutoFillUtils.isSectionToken("section")).toBe(false);
+        expect(isSectionToken("section-test")).toBe(true);
+        expect(isSectionToken("section")).toBe(false);
     });
 
     it("should validate contact fields correctly", () => {
 
-        expect(AutoFillUtils.isContactField("tel")).toBe(true);
-        expect(AutoFillUtils.isContactField("email")).toBe(true);
-        expect(AutoFillUtils.isContactField("impp")).toBe(true);
-        expect(AutoFillUtils.isContactField("name")).toBe(false);
-        expect(AutoFillUtils.isContactField("country")).toBe(false);
+        expect(isContactField("tel")).toBe(true);
+        expect(isContactField("email")).toBe(true);
+        expect(isContactField("impp")).toBe(true);
+        expect(isContactField("name")).toBe(false);
+        expect(isContactField("country")).toBe(false);
     });
 
     it("should validate fields correctly", () => {
 
-        expect(AutoFillUtils.isField("street-address")).toBe(true);
-        expect(AutoFillUtils.isField("nickname")).toBe(true);
-        expect(AutoFillUtils.isField("organization")).toBe(true);
-        expect(AutoFillUtils.isField("postal-code")).toBe(true);
-        expect(AutoFillUtils.isField("country")).toBe(true);
-        expect(AutoFillUtils.isField("tel")).toBe(false);
-        expect(AutoFillUtils.isField("email")).toBe(false);
+        expect(isField("street-address")).toBe(true);
+        expect(isField("nickname")).toBe(true);
+        expect(isField("organization")).toBe(true);
+        expect(isField("postal-code")).toBe(true);
+        expect(isField("country")).toBe(true);
+        expect(isField("tel")).toBe(false);
+        expect(isField("email")).toBe(false);
     });
 });

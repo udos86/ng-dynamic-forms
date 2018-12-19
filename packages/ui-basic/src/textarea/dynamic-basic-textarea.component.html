@@ -1,8 +1,8 @@
 <ng-container [formGroup]="group">
 
     <textarea [cols]="model.cols"
-              [dynamicId]="bindId && model.id"
               [formControlName]="model.id"
+              [id]="elementId"
               [maxlength]="model.maxLength"
               [minlength]="model.minLength"
               [name]="model.name"

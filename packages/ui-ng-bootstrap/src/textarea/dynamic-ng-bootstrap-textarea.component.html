@@ -2,9 +2,9 @@
 
     <textarea class="form-control"
               [class.is-invalid]="showErrorMessages"
-              [dynamicId]="bindId && model.id"
               [cols]="model.cols"
               [formControlName]="model.id"
+              [id]="elementId"
               [maxlength]="model.maxLength"
               [minlength]="model.minLength"
               [name]="model.name"

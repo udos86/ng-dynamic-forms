@@ -27,7 +27,7 @@ describe("DynamicBootstrapDatePickerComponent test suite", () => {
                 NoopAnimationsModule,
                 BsDatepickerModule.forRoot(),
                 TextMaskModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicBootstrapDatePickerComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicBootstrapDatePickerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);

@@ -1,8 +1,8 @@
 <ng-container [formGroup]="group">
 
     <div role="group"
-         [dynamicId]="bindId && model.id"
          [formGroupName]="model.id"
+         [id]="elementId"
          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
         <dynamic-material-form-control *ngFor="let _model of model.group"

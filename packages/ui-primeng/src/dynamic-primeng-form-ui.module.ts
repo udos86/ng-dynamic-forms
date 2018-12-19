@@ -72,6 +72,8 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
         DynamicPrimeNGDropdownComponent,
         DynamicPrimeNGEditorComponent,
         DynamicPrimeNGFormArrayComponent,
+        DynamicPrimeNGFormComponent,
+        DynamicPrimeNGFormControlContainerComponent,
         DynamicPrimeNGFormGroupComponent,
         DynamicPrimeNGInputComponent,
         DynamicPrimeNGInputMaskComponent,
@@ -81,9 +83,7 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
         DynamicPrimeNGRatingComponent,
         DynamicPrimeNGSliderComponent,
         DynamicPrimeNGSpinnerComponent,
-        DynamicPrimeNGTextAreaComponent,
-        DynamicPrimeNGFormControlContainerComponent,
-        DynamicPrimeNGFormComponent
+        DynamicPrimeNGTextAreaComponent
     ],
     entryComponents: [
         DynamicPrimeNGAutoCompleteComponent,
@@ -107,8 +107,26 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
     ],
     exports: [
         DynamicFormsCoreModule,
+        DynamicPrimeNGAutoCompleteComponent,
+        DynamicPrimeNGCalendarComponent,
+        DynamicPrimeNGCheckboxComponent,
+        DynamicPrimeNGChipsComponent,
+        DynamicPrimeNGColorPickerComponent,
+        DynamicPrimeNGDropdownComponent,
+        DynamicPrimeNGEditorComponent,
+        DynamicPrimeNGFormArrayComponent,
+        DynamicPrimeNGFormComponent,
         DynamicPrimeNGFormControlContainerComponent,
-        DynamicPrimeNGFormComponent
+        DynamicPrimeNGFormGroupComponent,
+        DynamicPrimeNGInputComponent,
+        DynamicPrimeNGInputMaskComponent,
+        DynamicPrimeNGInputSwitchComponent,
+        DynamicPrimeNGMultiSelectComponent,
+        DynamicPrimeNGRadioGroupComponent,
+        DynamicPrimeNGRatingComponent,
+        DynamicPrimeNGSliderComponent,
+        DynamicPrimeNGSpinnerComponent,
+        DynamicPrimeNGTextAreaComponent
     ]
 })
 export class DynamicFormsPrimeNGUIModule {

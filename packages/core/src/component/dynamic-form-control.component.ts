@@ -21,7 +21,6 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     private _hasFocus: boolean = false;
 
-    bindId: boolean;
     group: FormGroup;
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
@@ -37,6 +36,10 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     get control(): FormControl {
         return this.group.get(this.model.id) as FormControl;
+    }
+
+    get elementId(): string {
+        return this.layoutService.getElementId(this.model);
     }
 
     get errorMessages(): string[] {

@@ -1,9 +1,9 @@
 <ng-container [formGroup]="group">
 
     <timepicker [arrowkeys]="model.getAdditional('arrowkeys', true)"
-                [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
                 [hourStep]="model.getAdditional('hourStep', 1)"
+                [id]="elementId"
                 [max]="model.max"
                 [min]="model.min"
                 [mousewheel]="model.getAdditional('mousewheel', true)"

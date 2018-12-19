@@ -1,10 +1,9 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "6.1.1",
+  "version": "7.0.2",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
-    "angular 2",
     "dynamic forms",
     "forms",
     "ng dynamic forms",
@@ -30,12 +29,12 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@angular/forms": "^6.0.0",
-    "@ng-dynamic-forms/core": "^6.1.1",
-    "primeng": "^5.0.0",
-    "rxjs": "^6.0.0"
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "@ng-dynamic-forms/core": "^7.0.2",
+    "primeng": "^7.0.0",
+    "rxjs": "^6.3.0"
   },
   "optionalDependencies": {
     "quill": "^1.2.3"

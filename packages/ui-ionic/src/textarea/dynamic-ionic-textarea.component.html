@@ -5,8 +5,8 @@
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
     <ion-textarea #ionTextArea clearInput="true"
-                  [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
+                  [id]="elementId"
                   [ngClass]="getClass('element', 'control')"
                   [placeholder]="model.placeholder"
                   [readonly]="model.readOnly"

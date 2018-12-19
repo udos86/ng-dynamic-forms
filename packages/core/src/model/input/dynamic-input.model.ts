@@ -1,9 +1,9 @@
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { JSONUtils } from "../../utils/json.utils";
-import { isBoolean, isNumber, isObservable } from "../../utils/core.utils";
-import { Observable, of } from "rxjs";
+import { maskToString } from "../../utils/json.utils";
+import { isBoolean, isNumber } from "../../utils/core.utils";
+import { Observable, isObservable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
@@ -29,8 +29,8 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
 
     accept?: string;
     inputType?: string;
-    list?: string[] | Observable<string[]>;
-    mask?: string | RegExp | (string | RegExp)[];
+    list?: any[] | Observable<any[]>;
+    mask?: string | RegExp | Function | (string | RegExp)[];
     max?: number | string | Date;
     min?: number | string | Date;
     multiple?: boolean;
@@ -43,15 +43,15 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() accept: string | null;
     @serializable() inputType: string;
     files: FileList | null = null;
-    list$: Observable<string[]> | null = null;
-    @serializable() mask: string | RegExp | (string | RegExp)[] | null;
+    list$: Observable<any[]> | null = null;
+    @serializable() mask: string | RegExp | Function | (string | RegExp)[] | null;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
     @serializable() multiple: boolean | null;
     @serializable() pattern: string | null;
     @serializable() step: number | null;
 
-    @serializable("list") private _list: string[] | null = null;
+    @serializable("list") private _list: any[] | null = null;
     private readonly _listId: string | null = null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
@@ -84,7 +84,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         return isObservable(this.list$);
     }
 
-    set list(list: string[] | Observable<string[]> | null) {
+    set list(list: any[] | Observable<any[]> | null) {
 
         if (Array.isArray(list)) {
 
@@ -93,7 +93,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         } else if (isObservable(list)) {
 
-            this.list$ = (list as Observable<string[]>).pipe(tap(list => this._list = list));
+            this.list$ = (list as Observable<any[]>).pipe(tap(list => this._list = list));
 
         } else {
 
@@ -106,7 +106,13 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         let json: any = super.toJSON();
 
-        if (this.mask !== null) { json.mask = JSONUtils.maskToString(this.mask); }
+        if (this.mask !== null) { 
+            if (this.mask instanceof Function) {
+                json.mask = this.mask;
+            } else {
+                json.mask = maskToString(this.mask);
+            }
+        }
 
         return json;
     }

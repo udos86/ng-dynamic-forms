@@ -6,6 +6,7 @@ import {
     DynamicFormControlLayoutPlace
 } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
 import { DynamicFormControl } from "../component/dynamic-form-control.interface";
 import {
     DynamicTemplateDirective,
@@ -66,7 +67,11 @@ export class DynamicFormLayoutService {
         return this.filterTemplatesByModel(model, templates)
             .find(template => template.as === null && template.align === alignment);
     }
-
+    /*
+    getIndexedTemplates(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] | undefined {
+        return this.filterTemplatesByModel(model, templates).filter(template => template.as === null);
+    }
+    */
     getStartTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective | undefined {
         return this.getAlignedTemplate(model, templates, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.Start);
     }
@@ -87,6 +92,25 @@ export class DynamicFormLayoutService {
         }
 
         return "";
+    }
+
+    getElementId(model: DynamicFormControlModel): string {
+
+        let id = model.id,
+            parent = model.parent;
+
+        while (parent !== null) {
+
+            if (parent instanceof DynamicFormArrayGroupModel) {
+
+                id = `${parent.context.id}-${parent.index}-${model.id}`;
+                break;
+            }
+
+            parent = parent.parent;
+        }
+
+        return id;
     }
 
     getCustomComponentType(model: DynamicFormControlModel): Type<DynamicFormControl> | null {

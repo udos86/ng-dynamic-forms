@@ -2,8 +2,8 @@
 
     <kendo-switch #kendoSwitch
                   [checked]="model.checked"
-                  [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
+                  [id]="elementId"
                   [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                   [offLabel]="model.offLabel"
                   [onLabel]="model.onLabel"

@@ -31,7 +31,7 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
                 NoopAnimationsModule,
                 TextMaskModule,
                 RadioButtonModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGRadioGroupComponent]
 
@@ -58,7 +58,6 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);

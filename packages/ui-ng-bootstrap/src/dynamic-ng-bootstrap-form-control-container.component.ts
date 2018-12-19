@@ -57,7 +57,6 @@ export class DynamicNGBootstrapFormControlContainerComponent extends DynamicForm
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
     @Input() asBootstrapFormGroup: boolean = true;
-    @Input() bindId: boolean = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;

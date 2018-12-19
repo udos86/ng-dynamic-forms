@@ -2,8 +2,8 @@
 
     <p-inputMask #pInputMask
                  [autoClear]="model.getAdditional('autoClear', true)"
-                 [dynamicId]="bindId && model.id"
                  [formControlName]="model.id"
+                 [id]="elementId"
                  [mask]="model.mask"
                  [ngClass]="getClass('element', 'control')"
                  [placeholder]="model.placeholder"

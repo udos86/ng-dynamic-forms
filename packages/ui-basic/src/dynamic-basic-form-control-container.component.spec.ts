@@ -75,7 +75,7 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
 
         TestBed.configureTestingModule({
 
-            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule.forRoot()],
+            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule],
             declarations: [DynamicBasicFormControlContainerComponent, DynamicBasicInputComponent]
 
         }).compileComponents().then(() => {
@@ -107,7 +107,6 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);

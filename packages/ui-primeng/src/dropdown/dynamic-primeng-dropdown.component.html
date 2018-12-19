@@ -3,12 +3,12 @@
     <p-dropdown #pDropdown
                 [autoWidth]="model.getAdditional('autoWidth', true)"
                 [dropdownIcon]="model.getAdditional('dropdownIcon', 'pi pi-caret-down')"
-                [dynamicId]="bindId && model.id"
                 [editable]="model.getAdditional('editable', false)"
                 [filter]="model.filterable"
                 [filterBy]="model.getAdditional('filterBy', null)"
                 [filterPlaceholder]="model.getAdditional('filterPlaceholder', null)"
                 [formControlName]="model.id"
+                [id]="elementId"
                 [ngClass]="getClass('element', 'control')"
                 [options]="model.options"
                 [resetFilterOnHide]="model.getAdditional('resetFilterOnHide', false)"

@@ -25,13 +25,13 @@ import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea
     declarations: [
         DynamicBasicCheckboxComponent,
         DynamicBasicFormArrayComponent,
+        DynamicBasicFormComponent,
+        DynamicBasicFormControlContainerComponent,
         DynamicBasicFormGroupComponent,
         DynamicBasicInputComponent,
         DynamicBasicRadioGroupComponent,
         DynamicBasicSelectComponent,
-        DynamicBasicTextAreaComponent,
-        DynamicBasicFormControlContainerComponent,
-        DynamicBasicFormComponent
+        DynamicBasicTextAreaComponent
     ],
     entryComponents: [
         DynamicBasicCheckboxComponent,
@@ -44,8 +44,15 @@ import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea
     ],
     exports: [
         DynamicFormsCoreModule,
+        DynamicBasicCheckboxComponent,
+        DynamicBasicFormArrayComponent,
+        DynamicBasicFormComponent,
         DynamicBasicFormControlContainerComponent,
-        DynamicBasicFormComponent
+        DynamicBasicFormGroupComponent,
+        DynamicBasicInputComponent,
+        DynamicBasicRadioGroupComponent,
+        DynamicBasicSelectComponent,
+        DynamicBasicTextAreaComponent
     ]
 })
 

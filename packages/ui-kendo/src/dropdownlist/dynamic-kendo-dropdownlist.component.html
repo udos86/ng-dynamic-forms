@@ -3,9 +3,9 @@
     <kendo-dropdownlist #kendoDropDownList
                         [data]="model.options"
                         [delay]="model.getAdditional('delay', 500)"
-                        [dynamicId]="bindId && model.id"
                         [filterable]="model.filterable"
                         [formControlName]="model.id"
+                        [id]="elementId"
                         [ignoreCase]="model.getAdditional('ignoreCase', true)"
                         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                         [popupSettings]="model.getAdditional('popupSettings', {})"

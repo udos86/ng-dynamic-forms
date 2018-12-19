@@ -1,8 +1,8 @@
 <ng-container [formGroup]="group">
 
     <kendo-slider #kendoSlider
-                  [dynamicId]="bindId && model.id"
                   [formControlName]="model.id"
+                  [id]="elementId"
                   [min]="model.min"
                   [max]="model.max"
                   [ngClass]="[getClass('element','control'), getClass('grid','control')]"

@@ -1,7 +1,7 @@
 <ng-container [formGroup]="group">
 
-    <ngb-rating [dynamicId]="bindId && model.id"
-                [formControlName]="model.id"
+    <ngb-rating [formControlName]="model.id"
+                [id]="elementId"
                 [max]="model.max"
                 [ngClass]="getClass('element', 'control')"
                 [resettable]="model.getAdditional('resettable', config['resettable'])"

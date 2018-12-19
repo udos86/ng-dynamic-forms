@@ -5,12 +5,9 @@
                 [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
                 [ngClass]="getClass('grid', 'control')">
 
-    <mat-chip-list #matChipList
-                   [formControlName]="model.id"
-                   [id]="bindId ? model.id : null"
-                   [multiple]="true">
+    <mat-chip-list #matChipList [formControlName]="model.id" [id]="elementId" [multiple]="true">
 
-        <mat-chip *ngFor="let chip of chipList; let index = index"
+        <mat-chip *ngFor="let chip of chips; let index = index"
                   [selectable]="false"
                   (removed)="onChipRemoved(chip, index)">
 
@@ -21,11 +18,22 @@
         </mat-chip>
 
         <input matInput
-               [placeholder]="model.placeholder"
-               [matChipInputFor]="matChipList"
+               [matAutocomplete]="matAutocomplete"
                [matChipInputAddOnBlur]="model.getAdditional('matChipInputAddOnBlur', true)"
+               [matChipInputFor]="matChipList"
                [matChipInputSeparatorKeyCodes]="model.getAdditional('matChipInputSeparatorKeyCodes', CHIPS_OPTIONS['separatorKeyCodes'])"
+               [placeholder]="model.placeholder"
                (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
+
+        <mat-autocomplete #matAutocomplete="matAutocomplete"
+                          [autoActiveFirstOption]="model.getAdditional('autoActiveFirstOption', AUTOCOMPLETE_OPTIONS['autoActiveFirstOption'])"
+                          [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
+                          [displayWith]="model.getAdditional('displayWith', null)"
+                          (optionSelected)="onChipSelected($event)">
+
+            <mat-option *ngFor="let option of model.list$ | async" [value]="option">{{ option }}</mat-option>
+
+        </mat-autocomplete>
 
     </mat-chip-list>
 

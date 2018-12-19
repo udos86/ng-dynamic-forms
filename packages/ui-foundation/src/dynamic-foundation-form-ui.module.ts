@@ -24,14 +24,14 @@ import { DynamicFoundationFormGroupComponent } from "./form-group/dynamic-founda
     declarations: [
         DynamicFoundationCheckboxComponent,
         DynamicFoundationFormArrayComponent,
+        DynamicFoundationFormComponent,
+        DynamicFoundationFormControlContainerComponent,
         DynamicFoundationFormGroupComponent,
         DynamicFoundationInputComponent,
         DynamicFoundationRadioGroupComponent,
         DynamicFoundationSelectComponent,
         DynamicFoundationSwitchComponent,
-        DynamicFoundationTextAreaComponent,
-        DynamicFoundationFormControlContainerComponent,
-        DynamicFoundationFormComponent
+        DynamicFoundationTextAreaComponent
     ],
     entryComponents: [
         DynamicFoundationCheckboxComponent,
@@ -45,8 +45,16 @@ import { DynamicFoundationFormGroupComponent } from "./form-group/dynamic-founda
     ],
     exports: [
         DynamicFormsCoreModule,
+        DynamicFoundationCheckboxComponent,
+        DynamicFoundationFormArrayComponent,
+        DynamicFoundationFormComponent,
         DynamicFoundationFormControlContainerComponent,
-        DynamicFoundationFormComponent
+        DynamicFoundationFormGroupComponent,
+        DynamicFoundationInputComponent,
+        DynamicFoundationRadioGroupComponent,
+        DynamicFoundationSelectComponent,
+        DynamicFoundationSwitchComponent,
+        DynamicFoundationTextAreaComponent
     ]
 })
 export class DynamicFormsFoundationUIModule {

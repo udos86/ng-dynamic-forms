@@ -93,15 +93,13 @@ npm start
 ```typescript
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
-// ...
 
 @NgModule({
     
     imports: [
         ReactiveFormsModule,
         DynamicFormsCoreModule,
-        DynamicFormsMaterialUIModule,
-        // ...
+        DynamicFormsMaterialUIModule
     ]
 })
 
@@ -111,13 +109,13 @@ export class AppModule {}
 **2. Define your form model**:
 ```typescript
 import {
-    DynamicFormControlModel,
+    DynamicFormModel,
     DynamicCheckboxModel,
     DynamicInputModel,
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
 
-export const MY_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormModel = [
 
     new DynamicInputModel({
 
@@ -159,11 +157,11 @@ export const MY_FORM_MODEL: DynamicFormControlModel[] = [
 **3. Create a** `FormGroup` **via** `DynamicFormService`:
 ```typescript
 import { MY_FORM_MODEL } from "./my-dynamic-form.model";
-import { DynamicFormControlModel, DynamicFormService } from "@ng-dynamic-forms/core";
+import { DynamicFormModel, DynamicFormService } from "@ng-dynamic-forms/core";
 
 export class MyDynamicFormComponent implements OnInit {
 
-    formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+    formModel: DynamicFormModel = MY_FORM_MODEL;
     formGroup: FormGroup;
 
     constructor(private formService: DynamicFormService) {}
@@ -211,7 +209,6 @@ npm i @ng-dynamic-forms/ui-<library-name> -S
         ReactiveFormsModule,
         DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
-        // ...
     ]
 })
 
@@ -275,7 +272,7 @@ Thus NG Dynamic Forms supports nesting of form groups out of the box!
  
 **1. Declare a** `DynamicFormGroupModel` within your form model and **add it's models to the** `group` **array**:
  ```typescript
-export const MY_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormModel = [
  
     new DynamicFormGroupModel({
  
@@ -348,7 +345,7 @@ Fortunately, NG Dynamic Forms is capable of managing such nested form structures
 
 **1. Add a** `DynamicFormArrayModel` **to your form model**: 
 ```typescript
-export const MY_FORM_MODEL: DynamicFormControlModel[] = [
+export const MY_FORM_MODEL: DynamicFormModel = [
 
     new DynamicFormArrayModel({
         id: "myFormArray"
@@ -532,7 +529,7 @@ import { MY_FORM_LAYOUT } from "./my-dynamic-form.layout";
 
 export class MyDynamicFormComponent implements OnInit {
 
-    formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+    formModel: DynamicFormModel = MY_FORM_MODEL;
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = MY_FORM_LAYOUT;
 
@@ -810,22 +807,7 @@ Internally NG Dynamic Forms resolves a provided validator by it's function name.
 
 Though **when uglifying code** for production this **information is irretrievably lost**.
 
-In order to **avoid a runtime exception** you actually would have to **exclude all custom validator function names from mangling**:
-```typescript 
-plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-        mangle: {
-            except: ['myCustomValidator']
-        }
-     })
-]
-```
-
-However this is **not** considered to be a best practice as it prevents aggressive bundle minification!
-
-Moreover when working with Angular CLI [**currently**](https://github.com/angular/angular-cli/pull/5192) **there's no access to the actual build configuration** at all unless running `ng eject`.
-
-To entirely save you from all this issues NG Dynamic Forms comes up with **a special** `InjectionToken<Map<string, Validator | ValidatorFactory>>` **named** `DYNAMIC_VALIDATORS` to which **you should additionally provide** any custom validator function:
+To save you from this issue NG Dynamic Forms comes up with **a special** `InjectionToken<Map<string, Validator | ValidatorFactory>>` **named** `DYNAMIC_VALIDATORS` to which **you should additionally provide** any custom validator function:
 ```typescript 
 providers: [
     {
@@ -904,7 +886,6 @@ import { MyCustomFormControlComponent } from "...";
 })
 export class MyDynamicCustomFormControlComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: /* corresponding DynamicFormControlModel */;
@@ -929,7 +910,6 @@ Next **embed your custom form control** into the component template:
 <ng-container [formGroup]="group">
 
     <my-custom-form-control [formControlName]="model.id"
-                            [id]="bindId ? model.id : null"
                             [name]="model.name"
                             [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                             (blur)="onBlur($event)"
@@ -1213,6 +1193,18 @@ new DynamicInputModel({
     id: "maskedInput",
     label: "Masked Input",
     mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+}),
+```
+
+You can also pass a function as the mask. The function will receive the user input at every change. The function is expected to return a mask array as described above.[Text Mask Addons](https://github.com/text-mask/text-mask/tree/master/addons/)
+ ```typescript
+new DynamicInputModel({
+     id: "maskedInput",
+    label: "Masked Input",
+    mask: createNumberMask({
+            prefix: "",
+            suffix: " $"
+          }),
 }),
 ```
 

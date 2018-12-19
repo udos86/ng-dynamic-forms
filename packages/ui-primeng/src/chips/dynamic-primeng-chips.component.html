@@ -2,8 +2,8 @@
 
     <p-chips #pChips
              [allowDuplicate]="model.getAdditional('allowDuplicate', true)"
-             [dynamicId]="bindId && model.id"
              [formControlName]="model.id"
+             [id]="elementId"
              [ngClass]="getClass('element', 'control')"
              [tabindex]="model.tabIndex"
              (change)="onChange($event)"

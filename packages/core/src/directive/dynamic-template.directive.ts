@@ -9,6 +9,7 @@ export class DynamicTemplateDirective {
 
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End;
     @Input() as: string | null = null;
+    @Input() index: number | undefined;
     @Input() modelId: string;
     @Input() modelType: string;
 

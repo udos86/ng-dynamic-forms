@@ -14,6 +14,7 @@ export * from "./directive/dynamic-list.directive";
 export * from "./directive/dynamic-template.directive";
 
 export * from "./model/dynamic-form-control.model";
+export * from "./model/dynamic-form.model";
 export * from "./model/dynamic-form-value-control.model";
 export * from "./model/dynamic-check-control.model";
 export * from "./model/dynamic-date-control.model";

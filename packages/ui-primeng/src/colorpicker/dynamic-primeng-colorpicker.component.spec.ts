@@ -27,7 +27,7 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
                 NoopAnimationsModule,
                 TextMaskModule,
                 ColorPickerModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGColorPickerComponent]
 
@@ -54,7 +54,6 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicColorPickerModel).toBe(true);

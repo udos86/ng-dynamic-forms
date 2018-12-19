@@ -27,7 +27,7 @@ xdescribe("DynamicIonicDateTimeComponent test suite", () => {
                 NoopAnimationsModule,
                 TextMaskModule,
                 IonicModule,
-                DynamicFormsCoreModule.forRoot()
+                DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicDateTimeComponent]
 
@@ -54,7 +54,6 @@ xdescribe("DynamicIonicDateTimeComponent test suite", () => {
 
     it("should initialize correctly", () => {
 
-        expect(component.bindId).toBe(true);
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);

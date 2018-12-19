@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -14,7 +15,6 @@ import {
 })
 export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicCheckboxGroupModel;
@@ -27,5 +27,9 @@ export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControl
                 protected validationService: DynamicFormValidationService) {
 
         super(layoutService, validationService);
+    }
+
+    getCheckboxElementId(model: DynamicCheckboxModel) {
+        return this.layoutService.getElementId(model);
     }
 }

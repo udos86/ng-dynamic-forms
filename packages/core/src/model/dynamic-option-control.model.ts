@@ -1,9 +1,9 @@
-import { Observable, of } from "rxjs";
+import { Observable, isObservable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
-import { isBoolean, isObservable } from "../utils/core.utils";
+import { isBoolean } from "../utils/core.utils";
 
 export interface DynamicFormOptionConfig<T> {
 
@@ -69,7 +69,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
             this.updateOptions$();
 
-        } else if (isObservable(options)) { // replace with isObservable from rxjs in next major version
+        } else if (isObservable(options)) {
 
             this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
                 map(optionsConfig => {

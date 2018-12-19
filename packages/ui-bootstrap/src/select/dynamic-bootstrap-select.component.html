@@ -2,8 +2,8 @@
 
     <select class="form-control"
             [compareWith]="model.compareWithFn"
-            [dynamicId]="bindId && model.id"
             [formControlName]="model.id"
+            [id]="elementId"
             [name]="model.name"
             [ngClass]="getClass('element', 'control')"
             [required]="model.required"

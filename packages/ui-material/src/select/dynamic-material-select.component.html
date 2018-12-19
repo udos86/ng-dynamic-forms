@@ -14,10 +14,11 @@
 
     <mat-select #matSelect
                 [compareWith]="model.compareWithFn"
+                [disableOptionCentering]="model.getAdditional('disableOptionCentering', false)"
                 [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                 [errorStateMatcher]="model.getAdditional('errorStateMatcher', errorStateMatcher)"
                 [formControlName]="model.id"
-                [id]="bindId ? model.id : null"
+                [id]="elementId"
                 [multiple]="model.multiple"
                 [ngClass]="getClass('element', 'control')"
                 [placeholder]="model.placeholder"
@@ -26,6 +27,7 @@
                 (selectionChange)="onChange($event)">
 
         <mat-option *ngFor="let option of model.options$ | async"
+                    [disabled]="option.disabled"
                     [ngClass]="getClass('element', 'option')"
                     [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
     </mat-select>
@@ -34,10 +36,6 @@
 
     <mat-hint *ngIf="model.hint !== null" align="start" [innerHTML]="model.hint"></mat-hint>
 
-    <ng-container *ngFor="let message of errorMessages" ngProjectAs="mat-error">
-
-        <mat-error *ngIf="showErrorMessages">{{ message }}</mat-error>
-
-    </ng-container>
+    <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
 
 </mat-form-field>

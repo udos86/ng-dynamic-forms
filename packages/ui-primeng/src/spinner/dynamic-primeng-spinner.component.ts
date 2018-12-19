@@ -16,7 +16,6 @@ import {
 })
 export class DynamicPrimeNGSpinnerComponent extends DynamicFormControlComponent {
 
-    @Input() bindId: boolean = true;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicInputModel;

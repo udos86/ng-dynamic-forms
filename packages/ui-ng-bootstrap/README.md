@@ -2,19 +2,14 @@
 
 ## Installation
 ```
-npm install @ng-dynamic-forms/ui-ng-bootstrap -S
+npm i @ng-dynamic-forms/ui-ng-bootstrap -S
 ```
 
 ## Import
 ```ts
 @NgModule({
 
-    imports: [
-        // ...
-        ReactiveFormsModule,
-        DynamicFormsCoreModule.forRoot(),
-        DynamicFormsNGBootstrapUIModule
-    ]
+    imports: [DynamicFormsNGBootstrapUIModule]
 })
 
 export class AppModule {}

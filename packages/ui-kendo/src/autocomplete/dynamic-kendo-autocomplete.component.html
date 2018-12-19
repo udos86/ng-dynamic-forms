@@ -2,8 +2,8 @@
 
     <kendo-autocomplete #kendoAutoComplete
                         [data]="model.list"
-                        [dynamicId]="bindId && model.id"
                         [formControlName]="model.id"
+                        [id]="elementId"
                         [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                         [placeholder]="model.placeholder"
                         [popupSettings]="model.getAdditional('popupSettings', {})"

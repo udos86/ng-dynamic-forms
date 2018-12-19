@@ -6,8 +6,8 @@
 
     <ion-select [cancelText]="model.getAdditional('cancelText', 'Cancel')"
                 [compareWith]="model.compareWithFn"
-                [dynamicId]="bindId && model.id"
                 [formControlName]="model.id"
+                [id]="elementId"
                 [interface]="model.getAdditional('interface', 'alert')"
                 [multiple]="model.multiple"
                 [ngClass]="getClass('element', 'control')"

@@ -2,10 +2,10 @@
 
     <kendo-timepicker #kendoTimePicker
                       [cancelButton]="model.getAdditional('cancelButton', true)"
-                      [dynamicId]="bindId && model.id"
                       [format]="model.format"
                       [formControlName]="model.id"
                       [formatPlaceholder]="model.getAdditional('formatPlaceholder', 'wide')"
+                      [id]="elementId"
                       [max]="model.max"
                       [min]="model.min"
                       [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"

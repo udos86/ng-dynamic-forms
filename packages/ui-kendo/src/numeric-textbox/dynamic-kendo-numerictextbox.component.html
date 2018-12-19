@@ -3,9 +3,9 @@
     <kendo-numerictextbox #kendoNumericTextBox
                           [autoCorrect]="model.getAdditional('autoCorrect', false)"
                           [decimals]="model.getAdditional('decimals')"
-                          [dynamicId]="bindId && model.id"
                           [format]="model.getAdditional('format', 'n0')"
                           [formControlName]="model.id"
+                          [id]="elementId"
                           [max]="model.max"
                           [min]="model.min"
                           [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
