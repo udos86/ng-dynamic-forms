@@ -27,7 +27,7 @@
            [required]="model.required"
            [spellcheck]="model.spellCheck"
            [tabindex]="model.tabIndex"
-           [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
+           [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder), guide: false}"
            [type]="model.inputType"
            (blur)="onBlur($event)"
            (change)="onChange($event)"
