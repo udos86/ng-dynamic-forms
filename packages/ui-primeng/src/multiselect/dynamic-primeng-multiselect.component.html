@@ -9,7 +9,7 @@
                    [id]="elementId"
                    [maxSelectedLabels]="model.getAdditional('maxSelectedLabels', 3)"
                    [ngClass]="getClass('element', 'control')"
-                   [options]="model.options"
+                   [options]="model.options$ | async"
                    [overlayVisible]="model.getAdditional('overlayVisible', false)"
                    [resetFilterOnHide]="model.getAdditional('resetFilterOnHide', false)"
                    [scrollHeight]="model.getAdditional('scrollHeight', '200px')"
