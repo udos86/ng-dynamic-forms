@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Select } from "@ionic/angular";
+import { IonSelect } from "@ionic/angular";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -24,7 +24,7 @@ export class DynamicIonicSelectComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionSelect") ionSelect: Select;
+    @ViewChild("ionSelect") ionSelect: IonSelect;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

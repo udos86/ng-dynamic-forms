@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { Checkbox } from "@ionic/angular";
+import { IonCheckbox } from "@ionic/angular";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicCheckboxModel,
@@ -24,7 +24,7 @@ export class DynamicIonicCheckboxComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionCheckbox") ionCheckbox: Checkbox;
+    @ViewChild("ionCheckbox") ionCheckbox: IonCheckbox;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

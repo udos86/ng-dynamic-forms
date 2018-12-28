@@ -4,8 +4,8 @@
                [innerHTML]="model.label"
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
-    <ion-select [cancelText]="model.getAdditional('cancelText', 'Cancel')"
-                [compareWith]="model.compareWithFn"
+    <ion-select #ionSelect
+                [cancelText]="model.getAdditional('cancelText', 'Cancel')"
                 [formControlName]="model.id"
                 [id]="elementId"
                 [interface]="model.getAdditional('interface', 'alert')"
@@ -13,11 +13,13 @@
                 [ngClass]="getClass('element', 'control')"
                 [okText]="model.getAdditional('okText', 'OK')"
                 [placeholder]="model.placeholder"
+                [selectedText]="model.getAdditional('selectedText', null)"
                 (ionBlur)="onBlur($event)"
                 (ionChange)="onChange($event)"
                 (ionFocus)="onFocus($event)">
 
-        <ion-option *ngFor="let option of model.options$ | async" [value]="option.value">{{ option.label }}</ion-option>
+        <ion-select-option *ngFor="let option of model.options$ | async"
+                           [value]="option.value">{{ option.label }}</ion-select-option>
 
     </ion-select>
 

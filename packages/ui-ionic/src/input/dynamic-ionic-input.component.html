@@ -17,7 +17,6 @@
                [placeholder]="model.placeholder"
                [readonly]="model.readOnly"
                [step]="model.step"
-               [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
                [type]="model.inputType"
                (ionBlur)="onBlur($event)"
                (ionChange)="onChange($event)"

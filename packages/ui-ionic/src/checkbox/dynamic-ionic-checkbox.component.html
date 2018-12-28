@@ -4,7 +4,8 @@
                [innerHTML]="model.label"
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
-    <ion-checkbox [checked]="model.checked"
+    <ion-checkbox #ionCheckbox
+                  [checked]="model.checked"
                   [formControlName]="model.id"
                   [id]="elementId"
                   [ngClass]="getClass('element', 'control')"

@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { Input } from "@ionic/angular";
+import { IonInput } from "@ionic/angular";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicInputComponent } from "./dynamic-ionic-input.component";
 
@@ -56,7 +56,7 @@ xdescribe("DynamicIonicInputComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
-        expect(component.ionInput instanceof Input).toBe(true);
+        expect(component.ionInput instanceof IonInput).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
