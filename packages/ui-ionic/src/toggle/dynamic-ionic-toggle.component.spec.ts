@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicToggleComponent } from "./dynamic-ionic-toggle.component";
 
-xdescribe("DynamicIonicToggleComponent test suite", () => {
+describe("DynamicIonicToggleComponent test suite", () => {
 
     let testModel = new DynamicSwitchModel({id: "toggle"}),
         formModel = [testModel],

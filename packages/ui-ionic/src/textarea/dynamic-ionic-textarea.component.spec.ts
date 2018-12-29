@@ -8,7 +8,7 @@ import { IonTextarea } from "@ionic/angular";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicTextAreaComponent } from "./dynamic-ionic-textarea.component";
 
-xdescribe("DynamicIonicTextAreaComponent test suite", () => {
+describe("DynamicIonicTextAreaComponent test suite", () => {
 
     let testModel = new DynamicTextAreaModel({id: "textarea"}),
         formModel = [testModel],

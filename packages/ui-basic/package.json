@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-basic",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Basic UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -31,7 +31,7 @@
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
     "@angular/forms": "^7.0.0",
-    "@ng-dynamic-forms/core": "^7.0.2",
+    "@ng-dynamic-forms/core": "^7.0.3",
     "angular2-text-mask": "^9.0.0",
     "rxjs": "^6.3.0"
   },

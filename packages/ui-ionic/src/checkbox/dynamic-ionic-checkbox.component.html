@@ -6,6 +6,7 @@
 
     <ion-checkbox #ionCheckbox
                   [checked]="model.checked"
+                  [color]="model.getAdditional('color', undefined)"
                   [formControlName]="model.id"
                   [id]="elementId"
                   [ngClass]="getClass('element', 'control')"

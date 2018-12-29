@@ -5,9 +5,13 @@
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
     <ion-input #ionInput
-               [autocomplete]="model.autocomplete"
+               [accept]="model.accept || undefined"
+               [autocapitalize]="model.getAdditional('autocapitalize', 'off')"
+               [autocomplete]="model.autoComplete"
                [autocorrect]="model.getAdditional('autocorrect', 'off')"
                [clearInput]="model.getAdditional('clearInput', true)"
+               [clearOnEdit]="model.getAdditional('clearOnEdit', false)"
+               [debounce]="model.getAdditional('debounce', 0)"
                [formControlName]="model.id"
                [id]="elementId"
                [max]="model.max"
@@ -16,6 +20,8 @@
                [pattern]="model.pattern"
                [placeholder]="model.placeholder"
                [readonly]="model.readOnly"
+               [size]="model.getAdditional('size', undefined)"
+               [spellcheck]="model.spellCheck"
                [step]="model.step"
                [type]="model.inputType"
                (ionBlur)="onBlur($event)"

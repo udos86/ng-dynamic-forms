@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRangeComponent } from "./dynamic-ionic-range.component";
 
-xdescribe("DynamicIonicRangeComponent test suite", () => {
+describe("DynamicIonicRangeComponent test suite", () => {
 
     let testModel = new DynamicSliderModel({id: "slider"}),
         formModel = [testModel],

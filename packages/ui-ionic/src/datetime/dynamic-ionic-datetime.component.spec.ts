@@ -8,7 +8,7 @@ import { IonDatetime, IonicModule } from "@ionic/angular";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicDateTimeComponent } from "./dynamic-ionic-datetime.component";
 
-xdescribe("DynamicIonicDateTimeComponent test suite", () => {
+describe("DynamicIonicDateTimeComponent test suite", () => {
 
     let testModel = new DynamicDatePickerModel({id: "datepicker"}),
         formModel = [testModel],

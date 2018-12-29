@@ -8,7 +8,7 @@ import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from
 import { DynamicIonicCheckboxComponent } from "./dynamic-ionic-checkbox.component";
 import { IonCheckbox } from "@ionic/angular";
 
-xdescribe("DynamicIonicCheckboxComponent test suite", () => {
+describe("DynamicIonicCheckboxComponent test suite", () => {
 
     let testModel = new DynamicCheckboxModel({id: "checkbox"}),
         formModel = [testModel],

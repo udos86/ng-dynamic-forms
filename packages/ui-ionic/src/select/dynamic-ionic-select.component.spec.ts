@@ -8,7 +8,7 @@ import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicSelectComponent } from "./dynamic-ionic-select.component";
 
-xdescribe("DynamicIonicSelectComponent test suite", () => {
+describe("DynamicIonicSelectComponent test suite", () => {
 
     let testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
         formModel = [testModel],
