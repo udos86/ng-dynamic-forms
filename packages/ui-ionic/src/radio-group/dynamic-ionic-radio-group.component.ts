@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { RadioGroup } from "@ionic/angular";
+import { IonRadioGroup } from "@ionic/angular";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -24,7 +24,7 @@ export class DynamicIonicRadioGroupComponent extends DynamicFormControlComponent
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionRadioGroup") ionRadioGroup: RadioGroup;
+    @ViewChild("ionRadioGroup") ionRadioGroup: IonRadioGroup;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

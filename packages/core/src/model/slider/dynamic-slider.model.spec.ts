@@ -32,7 +32,7 @@ describe("DynamicSliderModel test suite", () => {
 
     it("should get additional", () => {
 
-        expect(model.getAdditional("test")).toBe(true);
+        expect(model.getAdditional("test", null)).toBe(true);
     });
 
     it("should serialize correctly", () => {

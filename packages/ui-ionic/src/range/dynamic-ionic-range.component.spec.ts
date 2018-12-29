@@ -3,12 +3,12 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { Range } from "@ionic/angular";
+import { IonRange } from "@ionic/angular";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRangeComponent } from "./dynamic-ionic-range.component";
 
-xdescribe("DynamicIonicRangeComponent test suite", () => {
+describe("DynamicIonicRangeComponent test suite", () => {
 
     let testModel = new DynamicSliderModel({id: "slider"}),
         formModel = [testModel],
@@ -56,7 +56,7 @@ xdescribe("DynamicIonicRangeComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSliderModel).toBe(true);
-        expect(component.ionRange instanceof Range).toBe(true);
+        expect(component.ionRange instanceof IonRange).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

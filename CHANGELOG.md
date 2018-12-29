@@ -1,3 +1,13 @@
+# 7.0.3
+
+### **Features**
+
+* support for Ionic 4
+* Prime NG Dropdown and Multiselect now uses options Observable (closes [#895](https://github.com/udos86/ng-dynamic-forms/issues/895))
+
+***
+
+
 # 7.0.2
 
 ### **Features**

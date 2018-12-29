@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-ionic",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Ionic UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -30,12 +30,11 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@angular/forms": "^6.0.0",
-    "@ionic/angular": "^4.0.0-alpha.7",
-    "@ng-dynamic-forms/core": "^7.0.2",
-    "angular2-text-mask": "^9.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "@ionic/angular": "^7.0.0",
+    "@ng-dynamic-forms/core": "^7.0.3",
     "rxjs": "^6.0.0"
   },
   "es2015": "./fesm2015/ui-ionic.js",

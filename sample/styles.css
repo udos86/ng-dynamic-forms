@@ -239,3 +239,7 @@ dynamic-primeng-form-control div.order-1{
 .ui-rating a {
     text-decoration: none;
 }
+
+.ui-fluid .ui-button.ui-calendar-button {
+    width: 2em;
+}

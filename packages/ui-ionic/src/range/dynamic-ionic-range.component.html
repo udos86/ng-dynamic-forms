@@ -5,6 +5,7 @@
                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></ion-label>
 
     <ion-range #ionRange
+               [color]="model.getAdditional('color', undefined)"
                [debounce]="model.getAdditional('debounce', 0)"
                [dualKnobs]="model.getAdditional('dualKnobs', false)"
                [formControlName]="model.id"
