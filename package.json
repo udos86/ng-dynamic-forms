@@ -71,7 +71,7 @@
     "core-js": "^2.6.1",
     "foundation-sites": "^6.5.1",
     "hammerjs": "^2.0.8",
-    "ngx-bootstrap": "^3.1.3",
+    "ngx-bootstrap": "^3.1.4",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.3",
     "quill": "^1.3.6",
@@ -131,7 +131,7 @@
     "uglify-es": "^3.3.9",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "webpack": "^4.28.2",
+    "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.5"
