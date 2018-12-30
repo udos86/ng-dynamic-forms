@@ -1,3 +1,12 @@
+# 7.0.4
+
+### **Bugfixes**
+
+* Ionic package dependencies fixed
+
+***
+
+
 # 7.0.3
 
 ### **Features**
