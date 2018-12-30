@@ -30,7 +30,7 @@ import {
 import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
 
-xdescribe("DynamicIonicFormControlContainerComponent test suite", () => {
+describe("DynamicIonicFormControlContainerComponent test suite", () => {
 
     let formModel = [
             new DynamicCheckboxModel({id: "checkbox"}),
