@@ -368,11 +368,13 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     private registerInstance(instanceRef: ComponentRef<DynamicFormControl>): void {
         let index;
+        let model = this.model;
         if (this.context && this.context instanceof DynamicFormArrayGroupModel) {
             index = this.context.index;
+            model = this.context.context;
         }
 
-        this.dynamicFormInstanceService.setFormControlInstance(this.model, instanceRef, index);
+        this.dynamicFormInstanceService.setFormControlInstance(model, instanceRef, index);
     }
 
     private removeInstance(): void {
