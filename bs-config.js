@@ -1,4 +1,4 @@
-let indexPath = "./sample/index.systemjs.html";
+let indexPath = "./sample/index.aot.html";
 
 module.exports = {
 

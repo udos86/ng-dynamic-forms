@@ -7,6 +7,7 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
 import { DynamicFormService } from "./service/dynamic-form.service";
 import { DynamicFormLayoutService } from "./service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "./service/dynamic-form-validation.service";
+import { DynamicFormInstancesService } from "./service/dynamic-form-instances.service";
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ export class DynamicFormsCoreModule {
             providers: [
                 DynamicFormService,
                 DynamicFormLayoutService,
-                DynamicFormValidationService
+                DynamicFormValidationService,
+                DynamicFormInstancesService
             ]
         };
     }
