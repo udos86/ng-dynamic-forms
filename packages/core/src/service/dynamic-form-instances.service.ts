@@ -35,13 +35,15 @@ export class DynamicFormInstancesService {
         const instanceRef = this.formControlInstances[modelId];
         if (index !== undefined) {
 
-            if (Array.isArray(instanceRef)) {
+            if (Array.isArray(instanceRef) && instanceRef[index]) {
                 instanceRef[index] = undefined;
+            } else {
+                throw new Error(`There exists no control with id: ${modelId} and/or index ${index}`);
             }
         } else if (instanceRef) {
             delete this.formControlInstances[modelId];
         } else {
-            throw new Error(`There exists no control with id: ${modelId} and/or index: ${index}`);
+            throw new Error(`There exists no control with id: ${modelId}`);
         }
     }
 
