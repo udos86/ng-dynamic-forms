@@ -2,18 +2,20 @@ import { ComponentRef, Injectable } from "@angular/core";
 import { DynamicFormControl } from "../component/dynamic-form-control.interface";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class DynamicFormInstancesService {
 
-    protected formControlInstances: { [key: string]: ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl>> } = {};
+    protected formControlInstances: { [key: string]: ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl> | undefined> } = {};
 
     getFormControlInstance(modelId: string, index?: number): ComponentRef<DynamicFormControl> | undefined {
         const retInstance: ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl>> =
-            this.formControlInstances[modelId];
-        if (Array.isArray(retInstance) && index) {
+            this.formControlInstances[modelId] as ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl>>;
+        if (Array.isArray(retInstance) && index !== undefined) {
             return retInstance[index];
         } else {
-            return this.formControlInstances[modelId] as ComponentRef<DynamicFormControl>;
+            return index !== undefined ? undefined : this.formControlInstances[modelId] as ComponentRef<DynamicFormControl>;
         }
 
     }
@@ -29,15 +31,17 @@ export class DynamicFormInstancesService {
         }
     }
 
-    removeFormControlInstance(modelId: string, index?: number): void {
+    removeFormControlInstance(modelId: string, index?: number): void | never {
         const instanceRef = this.formControlInstances[modelId];
         if (index !== undefined) {
 
             if (Array.isArray(instanceRef)) {
-                delete instanceRef[index];
+                instanceRef[index] = undefined;
             }
-        } else {
+        } else if (instanceRef) {
             delete this.formControlInstances[modelId];
+        } else {
+            throw new Error(`There exists no control with id: ${modelId} and/or index: ${index}`);
         }
     }
 

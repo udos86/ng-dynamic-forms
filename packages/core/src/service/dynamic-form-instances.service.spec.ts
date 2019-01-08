@@ -16,7 +16,7 @@ export class TestComponentRef extends ComponentRef<any> {
     }
 
     onDestroy(callback: Function): void {
-        callback.call(() => null);
+        callback.call(async () => undefined);
     }
 
     constructor() {
