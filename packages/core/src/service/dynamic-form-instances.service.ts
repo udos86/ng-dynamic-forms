@@ -41,7 +41,7 @@ export class DynamicFormInstancesService {
         } else if (instanceRef) {
             delete this.formControlInstances[modelId];
         } else {
-            throw new Error(`There exists no control with id: ${modelId} and/or index: ${index}`);
+            throw new Error(`There exists no control with id: ${modelId} and/or index: ${index !== undefined ? index : ""}`);
         }
     }
 
