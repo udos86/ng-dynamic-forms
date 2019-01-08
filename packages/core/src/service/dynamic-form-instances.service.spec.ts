@@ -77,4 +77,15 @@ describe("DynamicFormInstanceService test suite", () => {
         service.removeFormControlInstance(model.id);
         expect(service.getFormControlInstance(model.id)).toBeUndefined();
     });
+
+    it("should throw exception when trying to delete non existent objects", () => {
+        const modelId: string = model.id;
+        const index: number = 0;
+        expect(function () {
+            service.removeFormControlInstance(modelId);
+        }).toThrowError(`There exists no control with id: ${modelId}`);
+        expect(function () {
+            service.removeFormControlInstance(modelId, 0);
+        }).toThrowError(`There exists no control with id: ${modelId} and/or index ${index}`);
+    });
 });
