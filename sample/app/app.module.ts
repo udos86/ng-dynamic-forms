@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
-import { Http, BaseRequestOptions } from "@angular/http";
+import { BaseRequestOptions, Http } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { MAT_CHIPS_DEFAULT_OPTIONS, MatCardModule, MatNativeDateModule } from "@angular/material";
 import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { LocationStrategy, HashLocationStrategy } from "@angular/common";
-import { ReactiveFormsModule, NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { NG_ASYNC_VALIDATORS, NG_VALIDATORS, ReactiveFormsModule } from "@angular/forms";
 import { NgbDatepickerModule, NgbRatingModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { BsDatepickerModule, TimepickerModule } from "ngx-bootstrap";
 
@@ -31,10 +31,10 @@ import { ValidationMessageComponent } from "./validation-message/validation-mess
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import {
-    customValidator,
+    customAsyncFormGroupValidator,
     customDateRangeValidator,
     customForbiddenValidator,
-    customAsyncFormGroupValidator
+    customValidator
 } from "./app.validators";
 
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
@@ -56,7 +56,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         NgbDatepickerModule,
         NgbRatingModule,
         NgbTimepickerModule,
-        DynamicFormsCoreModule,
+        DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,
         DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,

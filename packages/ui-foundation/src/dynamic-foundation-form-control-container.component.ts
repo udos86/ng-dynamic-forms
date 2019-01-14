@@ -5,7 +5,10 @@ import {
     EventEmitter,
     Input,
     Output,
-    QueryList, Type, ViewChild, ViewContainerRef
+    QueryList,
+    Type,
+    ViewChild,
+    ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
@@ -23,10 +26,11 @@ import {
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
+    DynamicFormInstancesService,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicTemplateDirective,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundation-textarea.component";
 import { DynamicFoundationSwitchComponent } from "./switch/dynamic-foundation-switch.component";
@@ -59,9 +63,10 @@ export class DynamicFoundationFormControlContainerComponent extends DynamicFormC
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                protected dynamicFormInstancesService: DynamicFormInstancesService) {
 
-        super(componentFactoryResolver, layoutService, validationService);
+        super(componentFactoryResolver, layoutService, validationService, dynamicFormInstancesService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {
