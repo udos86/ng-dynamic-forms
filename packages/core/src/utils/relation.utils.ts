@@ -6,7 +6,8 @@ import {
     DYNAMIC_FORM_CONTROL_ACTION_DISABLE,
     DYNAMIC_FORM_CONTROL_ACTION_ENABLE,
     DYNAMIC_FORM_CONTROL_CONNECTIVE_AND,
-    DYNAMIC_FORM_CONTROL_CONNECTIVE_OR
+    DYNAMIC_FORM_CONTROL_CONNECTIVE_OR,
+    DYNAMIC_FORM_CONTROL_ACTION_REQUIRED
 } from "../model/misc/dynamic-form-control-relation.model";
 
 export function findActivationRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup | null {
@@ -15,6 +16,15 @@ export function findActivationRelation(relGroups: DynamicFormControlRelationGrou
         return rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE;
     });
 
+    return rel !== undefined ? rel : null;
+}
+
+export function findRequiredRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup | null {
+
+    let rel = relGroups.find(rel => {
+        return rel.action === DYNAMIC_FORM_CONTROL_ACTION_REQUIRED;
+    });
+    
     return rel !== undefined ? rel : null;
 }
 
@@ -70,6 +80,32 @@ export function isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGr
             }
 
             return !(rel.value === control.value || rel.status === control.status);
+        }
+
+        return false;
+
+    }, false);
+}
+
+export function isFormControlToBeRequired(relGroup: DynamicFormControlRelationGroup, _formGroup: FormGroup): boolean {
+
+    let formGroup: FormGroup = _formGroup;
+
+    return relGroup.when.reduce((toBeRequired: boolean, rel: DynamicFormControlRelation, index: number) => {
+
+        let control = formGroup.get(rel.id);
+
+        if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_REQUIRED) {
+
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeRequired) {
+                return false;
+            }
+
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeRequired) {
+                return true;
+            }
+
+            return rel.value === control.value || rel.status === control.status;
         }
 
         return false;

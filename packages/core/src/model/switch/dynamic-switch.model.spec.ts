@@ -20,6 +20,8 @@ describe("DynamicSwitchModel test suite", () => {
         expect(model.onLabel).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SWITCH);
         expect(model.value).toBe(false);
+        expect(model.requiredUpdates).toBeDefined();
+        expect(model.disabledUpdates).toBeDefined();
     });
 
     it("should serialize correctly", () => {

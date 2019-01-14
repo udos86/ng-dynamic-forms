@@ -128,6 +128,35 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 value: "option-3"
             }),
 
+            new DynamicInputModel({
+
+                hint: "Just a sample help text",
+                id: "bootstrapInput2",
+                label: "Input",
+                maxLength: 51,
+                placeholder: "example input",
+                prefix: "Prefix",
+                suffix: "Suffix",
+                validators: {
+                    maxLength: 5
+                },
+                relation: [
+                    {
+                        action: "REQUIRED",
+                        when: [
+                            {
+                                id: "bootstrapRadioGroup",
+                                value: "option-1"
+                            }
+                        ]
+                    }
+                ],
+                errorMessages: {
+                    required: "{{ label }} is required",
+                    maxLength: "Max character count is 5"
+                }
+            }),
+
             new DynamicTextAreaModel({
 
                 id: "bsTextArea",
@@ -148,8 +177,20 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                                 value: "option-4",
                             }
                         ]
+                    },
+                    {
+                        action: "REQUIRED",
+                        when: [
+                            {
+                                id: "bootstrapRadioGroup",
+                                value: "option-1"
+                            }
+                        ]
                     }
                 ],
+                errorMessages: {
+                    required: "This field is required"
+                }
             }),
 
             new DynamicTimePickerModel({
