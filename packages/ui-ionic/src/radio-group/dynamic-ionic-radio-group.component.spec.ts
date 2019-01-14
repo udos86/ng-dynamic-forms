@@ -3,12 +3,12 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { RadioGroup } from "@ionic/angular";
+import { IonRadioGroup } from "@ionic/angular";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRadioGroupComponent } from "./dynamic-ionic-radio-group.component";
 
-xdescribe("DynamicIonicRadioGroupComponent test suite", () => {
+describe("DynamicIonicRadioGroupComponent test suite", () => {
 
     let testModel = new DynamicRadioGroupModel({id: "radioGroup", options: [{value: "One"}, {value: "Two"}], value: "One"}),
         formModel = [testModel],
@@ -56,7 +56,7 @@ xdescribe("DynamicIonicRadioGroupComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
-        expect(component.ionRadioGroup instanceof RadioGroup).toBe(true);
+        expect(component.ionRadioGroup instanceof IonRadioGroup).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

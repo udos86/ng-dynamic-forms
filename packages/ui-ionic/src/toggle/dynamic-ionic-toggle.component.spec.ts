@@ -3,12 +3,12 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { Toggle } from "@ionic/angular";
+import { IonToggle } from "@ionic/angular";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicToggleComponent } from "./dynamic-ionic-toggle.component";
 
-xdescribe("DynamicIonicToggleComponent test suite", () => {
+describe("DynamicIonicToggleComponent test suite", () => {
 
     let testModel = new DynamicSwitchModel({id: "toggle"}),
         formModel = [testModel],
@@ -56,7 +56,7 @@ xdescribe("DynamicIonicToggleComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
-        expect(component.ionToggle instanceof Toggle).toBe(true);
+        expect(component.ionToggle instanceof IonToggle).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

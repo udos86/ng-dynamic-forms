@@ -6,9 +6,9 @@ import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./dynamic-ionic-checkbox.component";
-import { Checkbox } from "@ionic/angular";
+import { IonCheckbox } from "@ionic/angular";
 
-xdescribe("DynamicIonicCheckboxComponent test suite", () => {
+describe("DynamicIonicCheckboxComponent test suite", () => {
 
     let testModel = new DynamicCheckboxModel({id: "checkbox"}),
         formModel = [testModel],
@@ -56,7 +56,7 @@ xdescribe("DynamicIonicCheckboxComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);
-        expect(component.ionCheckbox instanceof Checkbox).toBe(true);
+        expect(component.ionCheckbox instanceof IonCheckbox).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

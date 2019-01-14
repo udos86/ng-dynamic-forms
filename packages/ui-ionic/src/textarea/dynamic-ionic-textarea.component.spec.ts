@@ -4,11 +4,11 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { Textarea } from "@ionic/angular";
+import { IonTextarea } from "@ionic/angular";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicTextAreaComponent } from "./dynamic-ionic-textarea.component";
 
-xdescribe("DynamicIonicTextAreaComponent test suite", () => {
+describe("DynamicIonicTextAreaComponent test suite", () => {
 
     let testModel = new DynamicTextAreaModel({id: "textarea"}),
         formModel = [testModel],
@@ -56,7 +56,7 @@ xdescribe("DynamicIonicTextAreaComponent test suite", () => {
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
-        expect(component.ionTextArea instanceof Textarea).toBe(true);
+        expect(component.ionTextArea instanceof IonTextarea).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();

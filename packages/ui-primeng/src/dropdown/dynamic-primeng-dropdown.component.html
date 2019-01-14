@@ -10,7 +10,7 @@
                 [formControlName]="model.id"
                 [id]="elementId"
                 [ngClass]="getClass('element', 'control')"
-                [options]="model.options"
+                [options]="model.options$ | async"
                 [resetFilterOnHide]="model.getAdditional('resetFilterOnHide', false)"
                 [scrollHeight]="model.getAdditional('scrollHeight', '200px')"
                 [tabindex]="model.tabIndex"

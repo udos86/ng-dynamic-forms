@@ -370,7 +370,7 @@ export class DynamicFormService {
                     let inputModel = model as DynamicInputModel;
 
                     if (inputModel.mask !== null) {
-                        if (inputModel.mask instanceof Function === false) {
+                        if (!(inputModel.mask instanceof Function)) {
                             inputModel.mask = maskFromString(inputModel.mask as string);
                         }
                     }

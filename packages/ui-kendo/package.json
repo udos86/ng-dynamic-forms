@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-kendo",
-  "version": "7.0.2",
+  "version": "7.0.4",
   "description": "Kendo UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -32,7 +32,7 @@
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
     "@angular/forms": "^7.0.0",
-    "@ng-dynamic-forms/core": "^7.0.2",
+    "@ng-dynamic-forms/core": "^7.0.4",
     "@progress/kendo-angular-dateinputs": "^3.5.0",
     "@progress/kendo-angular-dropdowns": "^3.2.0",
     "@progress/kendo-angular-inputs": "^3.3.0",

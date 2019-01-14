@@ -62,7 +62,7 @@ System.config({
         "@angular/router/testing": "npm:@angular/router/bundles/router-testing.umd.js",
         "@angular/forms": "npm:@angular/forms/bundles/forms.umd.js",
         "@angular/forms/testing": "npm:@angular/forms/bundles/forms-testing.umd.js",
-        "@ionic/angular": "npm:@ionic/angular/dist/ionic.js",
+        "@ionic/angular": "npm:@ionic/angular/dist/ionic-module.js",
         "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.umd.js",
         "@ng-dynamic-forms/core": "lib:core/bundles/core.umd.js",
         "@ng-dynamic-forms/ui-basic": "lib:ui-basic/bundles/ui-basic.umd.js",
