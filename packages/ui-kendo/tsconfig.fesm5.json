@@ -12,6 +12,7 @@
     "enableResourceInlining": true,
     "flatModuleId": "@ng-dynamic-forms/ui-kendo",
     "flatModuleOutFile": "ui-kendo.js",
+    //"fullTemplateTypeCheck": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
   }

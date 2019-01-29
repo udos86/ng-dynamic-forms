@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, Inject, Optional } from "@angular/core";
+import { Injectable, Inject, Optional } from "@angular/core";
 import {
     AbstractControl,
     AsyncValidatorFn,
@@ -13,16 +13,7 @@ import {
     DynamicValidatorsConfig
 } from "../model/misc/dynamic-form-control-validation.model";
 import { isObject, isString } from "../utils/core.utils";
-
-export type Validator = ValidatorFn | AsyncValidatorFn;
-
-export type ValidatorFactory = (args: any) => Validator;
-
-export type ValidatorsToken = Validator[];
-
-export type ValidatorsMap = Map<string, Validator | ValidatorFactory>;
-
-export const DYNAMIC_VALIDATORS = new InjectionToken<ValidatorsMap>("DYNAMIC_VALIDATORS");
+import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory, ValidatorsToken } from "./dynamic-form.validators";
 
 @Injectable({
     providedIn: "root"

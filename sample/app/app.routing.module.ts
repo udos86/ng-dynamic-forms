@@ -79,10 +79,10 @@ const APP_ROUTES: Route[] = [
             bgColor: "#DB2226"
         }
     },
-    // {
-    //     path: "lazy-loaded-form",
-    //     loadChildren: "./app/lazy-loaded/lazy-loaded-form.module#LazyLoadedFormModule"
-    // }
+    {
+        path: "lazy-loaded-form",
+        loadChildren: "./lazy-loaded/lazy-loaded-form.module#LazyLoadedFormModule"
+    }
 ];
 
 @NgModule({

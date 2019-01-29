@@ -1,11 +1,7 @@
 import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, ValidationErrors } from "@angular/forms";
-import {
-    DynamicFormValidationService,
-    DYNAMIC_VALIDATORS,
-    Validator,
-    ValidatorFactory
-} from "./dynamic-form-validation.service";
+import { DynamicFormValidationService } from "./dynamic-form-validation.service";
+import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "./dynamic-form.validators";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 import { isFunction } from "../utils/core.utils";

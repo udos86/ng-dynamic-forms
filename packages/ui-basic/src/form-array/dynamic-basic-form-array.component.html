@@ -9,7 +9,7 @@
 
             <dynamic-basic-form-control *ngFor="let _model of groupModel.group"
                                         [context]="groupModel"
-                                        [group]="control.at(idx)"
+                                        [group]="array.at(idx)"
                                         [hidden]="_model.hidden"
                                         [layout]="layout"
                                         [model]="_model"
