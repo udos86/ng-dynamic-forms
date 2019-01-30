@@ -139,6 +139,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return isString((this.model as DynamicFormValueControlModel<any>).hint);
     }
 
+    get hint(): string | null {
+        return (this.model as DynamicFormValueControlModel<any>).hint || null;
+    }
+
     get hasLabel(): boolean {
         return isString(this.model.label);
     }

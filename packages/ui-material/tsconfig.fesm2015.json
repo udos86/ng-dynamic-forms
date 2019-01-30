@@ -12,7 +12,7 @@
     "enableResourceInlining": true,
     "flatModuleId": "@ng-dynamic-forms/ui-material",
     "flatModuleOutFile": "ui-material.js",
-    //"fullTemplateTypeCheck": true,
+    "fullTemplateTypeCheck": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
   }

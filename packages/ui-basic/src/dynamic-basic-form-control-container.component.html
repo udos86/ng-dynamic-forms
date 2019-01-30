@@ -10,7 +10,7 @@
     <ng-container #componentViewContainer></ng-container>
 
     <div *ngIf="hasHint" [ngClass]="[getClass('element', 'hint'), getClass('grid', 'hint')]">
-        <span [innerHTML]="model.hint"></span>
+        <span [innerHTML]="hint"></span>
     </div>
 
     <ul *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
