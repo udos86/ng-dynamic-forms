@@ -31,6 +31,17 @@ describe("DynamicInputModel test suite", () => {
         modelMask = new DynamicInputModel(configMask);
     });
 
+    it("should initialize correctly", () => {
+
+        expect(model.asyncValidators).toBeNull();
+        expect(model.disabled).toBe(false);
+        expect(model.hidden).toBe(false);
+        expect(model.id).toEqual(config.id);
+        expect(model.validators).toBeNull();
+        expect(model.requiredUpdates).toBeDefined();
+        expect(model.disabledUpdates).toBeDefined();
+    });
+
     it("tests if correct default type property is set", () => {
 
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);

@@ -170,4 +170,13 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
+
+    it("should update control activation when model required property changes", () => {
+
+        spyOn(component, "onModelRequiredUpdates");
+
+        testModel.requiredUpdates.next(true);
+
+        expect(component.onModelRequiredUpdates).toHaveBeenCalled();
+    });
 });

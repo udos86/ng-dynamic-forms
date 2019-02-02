@@ -21,7 +21,7 @@
                    [tabindex]="checkboxModel.tabIndex"
                    [value]="checkboxModel.value"
                    (blur)="onBlur($event)"
-                   (change)="onEmbeddedCheckboxChange($event, model)"
+                   (change)="onEmbeddedCheckboxChange($event, checkboxModel)"
                    (focus)="onFocus($event)"/>
 
             <label class="k-checkbox-label" [for]="getCheckboxElementId(checkboxModel)" [innerHTML]="checkboxModel.label"></label>

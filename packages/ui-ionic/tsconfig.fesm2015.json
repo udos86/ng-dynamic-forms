@@ -12,6 +12,7 @@
     "enableResourceInlining": true,
     "flatModuleId": "@ng-dynamic-forms/ui-ionic",
     "flatModuleOutFile": "ui-ionic.js",
+    //"fullTemplateTypeCheck": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
   }

@@ -39,6 +39,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     parent: DynamicPathable | null = null;
     @serializable() relation: DynamicFormControlRelationGroup[];
     @serializable() updateOn: FormHooks | null;
+    requiredUpdates: Subject<boolean>;
     @serializable() validators: DynamicValidatorsConfig | null;
 
     abstract readonly type: string;
@@ -61,6 +62,14 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
         this.disabledUpdates.subscribe(disabled => this.disabled = disabled);
+        this.requiredUpdates = new Subject<boolean>();
+        this.requiredUpdates.subscribe(required => {
+            if (required) {
+                this.validators ?  this.validators = { ...this.validators, required: null} : this.validators = {required: null};
+            } else {
+                this.validators ? delete this.validators["required"] : undefined;
+            }
+        });
     }
 
     get disabled(): boolean {

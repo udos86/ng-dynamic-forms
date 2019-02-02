@@ -39,6 +39,8 @@ describe("DynamicCheckboxGroupModel test suite", () => {
         expect(model.group.length).toBe(config.group.length);
         expect(model.legend).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP);
+        expect(model.requiredUpdates).toBeDefined();
+        expect(model.disabledUpdates).toBeDefined();
     });
 
     it("should check checkboxes correctly", () => {

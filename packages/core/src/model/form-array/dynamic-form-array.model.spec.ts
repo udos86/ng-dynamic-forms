@@ -39,6 +39,8 @@ describe("DynamicFormArrayModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_ARRAY);
         expect(model.groupFactory().length).toEqual(2);
         expect(model.removeGroup).toBeDefined();
+        expect(model.requiredUpdates).toBeDefined();
+        expect(model.disabledUpdates).toBeDefined();
     });
 
     it("should throw when no createGroup function is specified", () => {

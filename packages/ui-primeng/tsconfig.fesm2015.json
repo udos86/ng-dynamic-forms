@@ -12,6 +12,7 @@
     "enableResourceInlining": true,
     "flatModuleId": "@ng-dynamic-forms/ui-primeng",
     "flatModuleOutFile": "ui-primeng.js",
+    //"fullTemplateTypeCheck": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
   }

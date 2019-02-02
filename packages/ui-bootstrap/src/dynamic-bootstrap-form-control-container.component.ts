@@ -12,15 +12,6 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormArrayGroupModel,
-    DynamicFormControl,
-    DynamicFormControlContainerComponent,
-    DynamicFormControlEvent,
-    DynamicFormControlModel,
-    DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormValidationService,
-    DynamicTemplateDirective,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP,
@@ -32,6 +23,16 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SELECT,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicFormArrayGroupModel,
+    DynamicFormControl,
+    DynamicFormControlContainerComponent,
+    DynamicFormControlEvent,
+    DynamicFormControlModel,
+    DynamicFormInstancesService,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
@@ -72,9 +73,10 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
+                protected validationService: DynamicFormValidationService,
+                protected dynamicFormInstancesService: DynamicFormInstancesService) {
 
-        super(componentFactoryResolver, layoutService, validationService);
+        super(componentFactoryResolver, layoutService, validationService, dynamicFormInstancesService);
     }
 }
 

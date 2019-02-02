@@ -12,6 +12,7 @@
     "enableResourceInlining": true,
     "flatModuleId": "@ng-dynamic-forms/ui-basic",
     "flatModuleOutFile": "ui-basic.js",
+    //"fullTemplateTypeCheck": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
   }

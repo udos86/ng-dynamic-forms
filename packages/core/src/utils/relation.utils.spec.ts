@@ -5,7 +5,13 @@ import { DynamicFormValidationService } from "../service/dynamic-form-validation
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import { findActivationRelation, getRelatedFormControls, isFormControlToBeDisabled } from "./relation.utils";
+import {
+    findActivationRelation,
+    getRelatedFormControls,
+    isFormControlToBeDisabled,
+    isFormControlToBeRequired,
+    findRequiredRelation
+} from "./relation.utils";
 
 describe("Relation utils test suite", () => {
 
@@ -79,7 +85,49 @@ describe("Relation utils test suite", () => {
                     id: "testRadioGroup",
                     value: "option-3"
                 }
+            ]            
+        },
+        rel6 = {
+            action: "REQUIRED",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
             ]
+        },
+        rel7 = {
+            action: "REQUIRED",
+            connective: "AND",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-2"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]
+        },
+        rel8 = {
+            action: "REQUIRED",
+            connective: "OR",
+            when: [
+                {
+                    id: "testSelect",
+                    value: "option-1"
+                },
+                {
+                    id: "testRadioGroup",
+                    value: "option-3"
+                }
+            ]                 
         };
 
     beforeEach(() => {
@@ -163,5 +211,27 @@ describe("Relation utils test suite", () => {
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
         expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+    });
+
+    it("should find a required relation correctly", () => {
+
+        model.relation = [rel6];
+        expect(findRequiredRelation(model.relation)).toBe(rel6);
+
+    });
+
+    it("should check if form control is to be required correctly", () => {
+
+        model.relation = [rel6];
+        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel7];
+        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+
+        model.relation = [rel8];
+        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(true);
+
+        model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
+        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
     });
 });

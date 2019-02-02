@@ -1,4 +1,4 @@
-import { RouterModule, Route } from "@angular/router";
+import { Route, RouterModule } from "@angular/router";
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
@@ -81,7 +81,7 @@ const APP_ROUTES: Route[] = [
     },
     {
         path: "lazy-loaded-form",
-        loadChildren: "./app/lazy-loaded/lazy-loaded-form.module#LazyLoadedFormModule"
+        loadChildren: "./lazy-loaded/lazy-loaded-form.module#LazyLoadedFormModule"
     }
 ];
 

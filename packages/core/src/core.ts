@@ -47,6 +47,9 @@ export * from "./model/misc/dynamic-form-control-validation.model";
 export * from "./service/dynamic-form.service";
 export * from "./service/dynamic-form-layout.service";
 export * from "./service/dynamic-form-validation.service";
+export * from "./service/dynamic-form-instances.service";
+
+export * from "./service/dynamic-form.validators";
 
 export * from "./utils/autofill.utils";
 export * from "./utils/core.utils";

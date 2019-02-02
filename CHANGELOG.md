@@ -1,3 +1,17 @@
+# 7.1.0
+
+### **Features**
+
+* [`DynamicFormInstancesService`](https://github.com/udos86/ng-dynamic-forms/pull/911) added
+
+### **Bugfixes**
+
+* Templates now match `fullTemplateCheck` (closes [#884](https://github.com/udos86/ng-dynamic-forms/issues/884))
+* `DynamicPrimeNGCalendarComponent` bug fixed (closes [#921](https://github.com/udos86/ng-dynamic-forms/issues/921))
+
+***
+
+
 # 7.0.4
 
 ### **Bugfixes**
