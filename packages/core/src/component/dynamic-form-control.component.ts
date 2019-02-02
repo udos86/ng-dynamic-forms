@@ -1,5 +1,5 @@
 import { EventEmitter } from "@angular/core";
-import { AbstractControl, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
