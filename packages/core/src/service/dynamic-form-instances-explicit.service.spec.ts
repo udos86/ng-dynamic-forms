@@ -68,8 +68,17 @@ describe("DynamicFormInstanceService test suite", () => {
         expect(service.getFormControlInstance(model.id, 0)).toBe(instanceRef);
     });
 
-    it("should no more have this reference at the given index, when deleted", () => {
+    it("should still have this reference at the given index, when deleting the first one", () => {
         service.setFormControlInstance(model, instanceRef, 0);
+        service.setFormControlInstance(model, instanceRef, 1);
+        service.removeFormControlInstance(model.id, 0);
+        expect(service.getFormControlInstance(model.id, 0)).toBeDefined();
+    });
+
+    it("should no more have this reference at the given index, when deleting the first one two times", () => {
+        service.setFormControlInstance(model, instanceRef, 0);
+        service.setFormControlInstance(model, instanceRef, 1);
+        service.removeFormControlInstance(model.id, 0);
         service.removeFormControlInstance(model.id, 0);
         expect(service.getFormControlInstance(model.id, 0)).toBeUndefined();
     });
