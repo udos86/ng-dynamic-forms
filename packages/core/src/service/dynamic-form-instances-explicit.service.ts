@@ -28,9 +28,10 @@ export class DynamicFormInstancesExplicitService implements DynamicFormInstances
 
             const arrayRef: Array<ComponentRef<DynamicFormControl>> =
                 this.formControlInstances[model.id] as Array<ComponentRef<DynamicFormControl>> || [];
-
-            arrayRef[index] = instance;
-
+            /**
+             * Use splice to add element
+             */
+            arrayRef.splice(index, 0, instance);
             this.formControlInstances[model.id] = arrayRef;
 
         } else {
@@ -45,7 +46,10 @@ export class DynamicFormInstancesExplicitService implements DynamicFormInstances
         if (index !== undefined) {
 
             if (Array.isArray(instanceRef) && instanceRef[index]) {
-                instanceRef[index] = undefined;
+                /**
+                 * Use splice to remove elements
+                 */
+                instanceRef.splice(index, 1);
             } else {
                 throw new Error(`There exists no control with id: ${modelId} and/or index ${index}`);
             }
