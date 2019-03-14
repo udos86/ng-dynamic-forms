@@ -1,3 +1,13 @@
+# 7.1.1
+
+### **Bugfixes**
+
+* `DynamicFormInstancesService` now working correctly (closes [#933](https://github.com/udos86/ng-dynamic-forms/issues/933))
+* `autoWidth` removed from `DynamicPrimeNGDropdownComponent` (closes [#945](https://github.com/udos86/ng-dynamic-forms/issues/945))
+
+***
+
+
 # 7.1.0
 
 ### **Features**
