@@ -8,6 +8,8 @@ import { DynamicFormService } from "./service/dynamic-form.service";
 import { DynamicFormLayoutService } from "./service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "./service/dynamic-form-validation.service";
 import { DynamicFormInstancesService } from "./service/dynamic-form-instances.service";
+import { DynamicFormInstancesDummyService } from "./service/dynamic-form-instances-dummy.service";
+import { DynamicFormInstancesExplicitService } from "./service/dynamic-form-instances-explicit.service";
 
 @NgModule({
     imports: [
@@ -27,17 +29,22 @@ import { DynamicFormInstancesService } from "./service/dynamic-form-instances.se
 })
 export class DynamicFormsCoreModule {
 
-    static forRoot(): ModuleWithProviders {
+    static forRoot(withInstanceService = false): ModuleWithProviders {
 
         return {
-
             ngModule: DynamicFormsCoreModule,
 
             providers: [
                 DynamicFormService,
                 DynamicFormLayoutService,
                 DynamicFormValidationService,
-                DynamicFormInstancesService
+                withInstanceService ? {
+                    provide: DynamicFormInstancesService,
+                    useClass: DynamicFormInstancesExplicitService
+                } : {
+                    provide: DynamicFormInstancesService,
+                    useClass: DynamicFormInstancesDummyService
+                }
             ]
         };
     }
