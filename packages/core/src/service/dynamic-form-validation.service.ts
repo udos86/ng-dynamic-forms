@@ -95,7 +95,7 @@ export class DynamicFormValidationService {
                 propertyName = expression.replace("validator.", "");
             }
 
-            return propertySource[propertyName] ? propertySource[propertyName] : null;
+            return propertySource[propertyName] === null || propertySource[propertyName] === undefined ? propertySource[propertyName] : null;
         });
     }
 
