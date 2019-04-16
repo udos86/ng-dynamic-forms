@@ -57,6 +57,13 @@
                   [displayWith]="model.getAdditional('displayWith', null)"
                   (optionSelected)="onChange($event)">
 
-    <mat-option *ngFor="let option of model.list$ | async" [value]="option">{{ option }}</mat-option>
+    <ng-container *ngIf="model.getAdditional('matAutocomplete', null) === null; else displayWith">
+        <mat-option *ngFor="let option of model.list$ | async" [value]="option">{{ option }}</mat-option>
+    </ng-container>
+    <ng-template #displayWith>
+        <mat-option *ngFor="let option of model.list$ | async" [value]="option">
+            {{ option[model.getAdditional('optionLabel', 'label')] }}
+        </mat-option>
+    </ng-template>
 
 </mat-autocomplete>
