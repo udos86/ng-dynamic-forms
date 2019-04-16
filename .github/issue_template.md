@@ -1,9 +1,12 @@
+<!-- Please do not file questions or support requests on the GitHub issues tracker any longer.
+
+You can get your questions answered using Stack Overflow. Thank you! -->
+
 ## I'm submitting a
 <!-- Check one of the following options with "x" -->
 <pre><code>
 [ ] Bug / Regression
 [ ] Feature Request / Proposal
-[ ] Question
 </code></pre>
 
 ## I'm using
