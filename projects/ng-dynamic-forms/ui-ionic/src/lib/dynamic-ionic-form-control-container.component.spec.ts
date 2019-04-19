@@ -1,7 +1,7 @@
 import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup } from "@angular/forms";
-import { By } from "@angular/platform-browser";
+//import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { TextMaskModule } from "angular2-text-mask";
@@ -54,8 +54,8 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicIonicFormControlContainerComponent>,
         component: DynamicIonicFormControlContainerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+        debugElement: DebugElement;
+        //testElement: DebugElement;
 
     beforeEach(async(() => {
 
