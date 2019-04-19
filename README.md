@@ -71,19 +71,14 @@ cd ng-dynamic-forms
 npm i
 ```
 
-**3. Build the packages**:
+**3. Build the library**:
 ```
-npm run build:packages
-```
-
-**4. Transpile the code**:
-```
-npm run watch:sample
+npm run build:lib
 ```
 
-**5. Run the application**:
+**4. Run the application**:
 ```
-npm start
+ng serve
 ```
 
 
