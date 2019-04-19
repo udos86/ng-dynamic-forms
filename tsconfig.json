@@ -1,28 +1,78 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {
-      "@ng-dynamic-forms/*": [
-        "./dist/@ng-dynamic-forms/*"
-      ]
-    },
-    "declaration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
     "module": "es2015",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noUnusedParameters": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
     "target": "es5",
-    "typeRoots": [],
-    "types": []
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@ng-dynamic-forms/core": [
+        "dist/ng-dynamic-forms/core"
+      ],
+      "@ng-dynamic-forms/core/*": [
+        "dist/ng-dynamic-forms/core/*"
+      ],
+      "@ng-dynamic-forms/ui-basic": [
+        "dist/ng-dynamic-forms/ui-basic"
+      ],
+      "@ng-dynamic-forms/ui-basic/*": [
+        "dist/ng-dynamic-forms/ui-basic/*"
+      ],
+      "@ng-dynamic-forms/ui-bootstrap": [
+        "dist/ng-dynamic-forms/ui-bootstrap"
+      ],
+      "@ng-dynamic-forms/ui-bootstrap/*": [
+        "dist/ng-dynamic-forms/ui-bootstrap/*"
+      ],
+      "@ng-dynamic-forms/ui-foundation": [
+        "dist/ng-dynamic-forms/ui-foundation"
+      ],
+      "@ng-dynamic-forms/ui-foundation/*": [
+        "dist/ng-dynamic-forms/ui-foundation/*"
+      ],
+      "@ng-dynamic-forms/ui-ionic": [
+        "dist/ng-dynamic-forms/ui-ionic"
+      ],
+      "@ng-dynamic-forms/ui-ionic/*": [
+        "dist/ng-dynamic-forms/ui-ionic/*"
+      ],
+      "@ng-dynamic-forms/ui-kendo": [
+        "dist/ng-dynamic-forms/ui-kendo"
+      ],
+      "@ng-dynamic-forms/ui-kendo/*": [
+        "dist/ng-dynamic-forms/ui-kendo/*"
+      ],
+      "@ng-dynamic-forms/ui-material": [
+        "dist/ng-dynamic-forms/ui-material"
+      ],
+      "@ng-dynamic-forms/ui-material/*": [
+        "dist/ng-dynamic-forms/ui-material/*"
+      ],
+      "@ng-dynamic-forms/ui-ng-bootstrap": [
+        "dist/ng-dynamic-forms/ui-ng-bootstrap"
+      ],
+      "@ng-dynamic-forms/ui-ng-bootstrap/*": [
+        "dist/ng-dynamic-forms/ui-ng-bootstrap/*"
+      ],
+      "@ng-dynamic-forms/ui-primeng": [
+        "dist/ng-dynamic-forms/ui-primeng"
+      ],
+      "@ng-dynamic-forms/ui-primeng/*": [
+        "dist/ng-dynamic-forms/ui-primeng/*"
+      ]
+    }
   }
 }

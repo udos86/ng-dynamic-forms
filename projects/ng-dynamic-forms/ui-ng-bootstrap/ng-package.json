@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/ng-dynamic-forms/ui-ng-bootstrap",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "flatModuleFile": "ui-ng-bootstrap",
+    "umdId": "ngDynamicForms.ui.ngbootstrap",
+    "amdId": "@ng-dynamic-forms/ui-ng-bootstrap",
+    "umdModuleIds": {
+      "@ng-bootstrap/ng-bootstrap": "ngb",
+      "@ng-dynamic-forms/core": "ngDynamicForms.core",
+      "angular2-text-mask": "angular2-text-mask"
+    }
+  }
+}
