@@ -6,7 +6,7 @@ import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./dynamic-ionic-checkbox.component";
-import { IonCheckbox } from "@ionic/angular";
+import { IonCheckbox, IonicModule } from "@ionic/angular";
 
 describe("DynamicIonicCheckboxComponent test suite", () => {
 
@@ -25,6 +25,7 @@ describe("DynamicIonicCheckboxComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
+                IonicModule,
                 TextMaskModule,
                 DynamicFormsCoreModule
             ],
@@ -48,7 +49,7 @@ describe("DynamicIonicCheckboxComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`ion-checkbox[id="${testModel.type}"]`));
+        testElement = debugElement.query(By.css(`ion-checkbox`));
     }));
 
     it("should initialize correctly", () => {

@@ -3,7 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { IonRadioGroup } from "@ionic/angular";
+import { IonicModule, IonRadioGroup } from "@ionic/angular";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRadioGroupComponent } from "./dynamic-ionic-radio-group.component";
@@ -25,6 +25,7 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
+                IonicModule,
                 TextMaskModule,
                 DynamicFormsCoreModule
             ],
@@ -48,7 +49,7 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`ion-list[id="${testModel.id}"]`));
+        testElement = debugElement.query(By.css(`ion-list`));
     }));
 
     it("should initialize correctly", () => {
