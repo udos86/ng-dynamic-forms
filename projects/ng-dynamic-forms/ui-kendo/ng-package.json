@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/ng-dynamic-forms/ui-kendo",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "flatModuleFile": "ui-kendo",
+    "umdId": "ngDynamicForms.ui.kendo",
+    "amdId": "@ng-dynamic-forms/ui-kendo",
+    "umdModuleIds": {
+      "@ng-dynamic-forms/core": "ngDynamicForms.core",
+      "@progress/kendo-angular-dateinputs": "progress.kendo-angular-dateinputs",
+      "@progress/kendo-angular-dropdowns": "progress.kendo-angular-dropdowns",
+      "@progress/kendo-angular-inputs": "progress.kendo-angular-inputs",
+      "@progress/kendo-angular-upload": "progress.kendo-angular-upload"
+    }
+  }
+}

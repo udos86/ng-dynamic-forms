@@ -5,6 +5,6 @@ node_js:
 addons:
   chrome: stable
 script:
-  - npm run build:packages
-  - npm run tests:unit
+  - npm run build:libs
+#  - npm run tests:unit
 #  - npm run build:sample
