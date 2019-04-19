@@ -95,7 +95,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`ion-input[id='${testModel.id}']`));
+        //testElement = debugElement.query(By.css(`ion-input[id='${testModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
