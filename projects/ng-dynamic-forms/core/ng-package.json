@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/ng-dynamic-forms/core",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "flatModuleFile": "core",
+    "umdId": "ngDynamicForms.core",
+    "amdId": "@ng-dynamic-forms/core"
+  }
+}

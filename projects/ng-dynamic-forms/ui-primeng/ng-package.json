@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/ng-dynamic-forms/ui-primeng",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "flatModuleFile": "ui-primeng",
+    "umdId": "ngDynamicForms.ui.primeng",
+    "amdId": "@ng-dynamic-forms/ui-primeng",
+    "umdModuleIds": {
+      "@ng-dynamic-forms/core": "ngDynamicForms.core",
+      "primeng/primeng": "primeng"
+    }
+  }
+}

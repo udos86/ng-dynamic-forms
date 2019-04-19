@@ -1,0 +1,245 @@
+//@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../node_modules/primeicons/primeicons.css";
+
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    padding: 3rem;
+}
+
+nav a {
+    padding: 1rem;
+}
+
+pre {
+    display: block;
+    padding: 10px;
+    margin: 50px 0 0 0;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.content-padding {
+    padding: 0 8rem;
+}
+
+.content-margin {
+    margin: 4rem auto;
+}
+
+.display-inline {
+    display: inline;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.order-1 {
+    order: 1;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-clear {
+    clear: both;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.comp-h2 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 40px;
+    padding: 8px 16px;
+}
+
+.comp-h2 > span {
+
+    color: white;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.btn.rounded, button.rounded {
+    border-radius: 50% !important;
+}
+
+.form-row {
+    display: block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+[bsdatepicker] + .input-group-btn .btn {
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
+    display: inline-block !important;
+    margin: 0.8rem 0;
+}
+
+.form-array [role="group"]:not(:last-of-type) .btn-success,
+.form-array [role="group"]:not(:last-of-type) .button.success,
+.form-array [role="group"]:first-of-type .btn-default:nth-of-type(2),
+.form-array [role="group"]:last-of-type .btn-default:nth-of-type(3),
+.form-array [role="group"]:first-of-type .button.primary:nth-of-type(2),
+.form-array [role="group"]:last-of-type .button.primary:nth-of-type(3),
+.form-array [role="group"]:only-of-type .btn-danger,
+.form-array [role="group"]:only-of-type .button.alert {
+    display: none;
+}
+
+dynamic-basic-form-control {
+    margin-bottom: 1.25rem;
+}
+
+/* KENDO */
+kendo-calendar {
+    margin: 0 auto;
+}
+
+dynamic-kendo-form-control div[role="group"] {
+    display: flex;
+}
+
+dynamic-kendo-form-control kendo-switch {
+    margin-right: 0.25rem;
+}
+
+dynamic-kendo-form-control div[role="group"] > dynamic-kendo-form-control {
+    margin-right: 1rem;
+    margin-bottom: 0;
+}
+
+dynamic-kendo-form-control label:not(.k-form-field):not(.k-checkbox-label):not(.k-radio-label) {
+    padding: 4px 0;
+}
+
+dynamic-kendo-form-control .k-form-field:nth-last-child(2) {
+    margin-bottom: 0;
+}
+
+dynamic-kendo-form-control .k-field-info.k-required {
+    margin: 0;
+}
+
+dynamic-kendo-form-control {
+    display: block;
+    margin-bottom: 2rem;
+}
+
+dynamic-kendo-form-control ul {
+    list-style-type: none;
+    text-align: left;
+}
+
+
+/* MATERIAL */
+mat-input {
+    vertical-align: middle;
+}
+
+mat-input, mat-radio-button {
+    margin-right: 1rem;
+}
+
+mat-select {
+    width: 200px;
+}
+
+mat-slide-toggle {
+    display: inline-block !important;
+}
+
+mat-form-field.mat-form-field-type-mat-chip-list {
+    width: 100%;
+}
+
+dynamic-material-form-control {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+dynamic-material-form-control div[role="group"] > dynamic-material-form-control {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 1rem;
+}
+
+dynamic-material-form-control dynamic-material-form-group + mat-error {
+    font-size: 75%;
+}
+
+dynamic-material-form-control .mat-list-item {
+    justify-content: center;
+}
+
+/* NG Bootstrap */
+
+dynamic-ng-bootstrap-form-control ngb-datepicker {
+    display: inline-block !important;
+}
+
+/* PRIME NG */
+dynamic-primeng-form-control {
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+dynamic-primeng-form-control div[role="group"] > dynamic-primeng-form-control {
+    margin-bottom: 0;
+}
+
+dynamic-primeng-form-control div[role="group"] + ul li.ui-message {
+    margin: 0 0.5rem;
+}
+
+dynamic-primeng-form-control .ui-dropdown{
+    width: 100% !important;
+}
+
+dynamic-primeng-form-control div.order-1{
+    padding: 4px;
+}
+
+[src="./assets/calendar-icon.svg"] {
+    height: 1rem;
+    width: 1.2rem;
+}
+
+.ui-rating a {
+    text-decoration: none;
+}
+
+.ui-fluid .ui-button.ui-calendar-button {
+    width: 2em;
+}
