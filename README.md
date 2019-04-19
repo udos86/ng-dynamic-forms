@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/%40ng-dynamic-forms%2Fcore.svg)](https://badge.fury.io/js/%40ng-dynamic-forms%2Fcore)
 [![Build Status](https://travis-ci.org/udos86/ng-dynamic-forms.svg?branch=master)](https://travis-ci.org/udos86/ng-dynamic-forms)
-[![Coverage Status](https://coveralls.io/repos/github/udos86/ng-dynamic-forms/badge.svg)](https://coveralls.io/github/udos86/ng-dynamic-forms)
+[![codecov](https://codecov.io/gh/udos86/ng-dynamic-forms/branch/master/graph/badge.svg)](https://codecov.io/gh/udos86/ng-dynamic-forms)
 [![DeepScan Grade](https://deepscan.io/api/projects/562/branches/912/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=562&bid=912)
 [![Downloads](http://img.shields.io/npm/dm/@ng-dynamic-forms/core.svg)](https://npmjs.org/package/@ng-dynamic-forms/core)
 
