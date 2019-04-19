@@ -76,7 +76,7 @@
             "browserTarget": "ng-dynamic-forms:build"
           }
         },
-        "test-app": {
+        "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
@@ -91,14 +91,6 @@
               "src/favicon.ico",
               "src/assets"
             ]
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "./projects/test.ts",
-            "tsConfig": "./projects/tsconfig.spec.json",
-            "karmaConfig": "./projects/karma.conf.js"
           }
         },
         "lint": {

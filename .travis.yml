@@ -5,6 +5,13 @@ node_js:
 addons:
   chrome: stable
 script:
-  - npm run build:libs
-#  - npm run tests:unit
-#  - npm run build:sample
+  - npm run build:core && npm run test:core
+  - npm run build:ui-basic && npm run test:ui-basic
+  - npm run build:ui-bootstrap && npm run test:ui-bootstrap
+  - npm run build:ui-foundation && npm run test:ui-foundation
+  - npm run build:ui-ionic && npm run test:ui-ionic
+  - npm run build:ui-kendo && npm run test:ui-kendo
+  - npm run build:ui-material && npm run test:ui-material
+  - npm run build:ui-ng-bootstrap && npm run test:ui-ng-bootstrap
+  - npm run build:ui-primeng && npm run test:ui-primeng
+  - npm run build:sample
