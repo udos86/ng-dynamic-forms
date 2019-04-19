@@ -22,7 +22,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml', /*'coveralls'*/],
+    reporters: ['progress', 'coverage', 'kjhtml', 'coveralls'],
     reports: {'text-summary': null, 'html': 'coverage', 'lcovonly': 'coverage/lcov.info' },
     port: 9876,
     colors: true,

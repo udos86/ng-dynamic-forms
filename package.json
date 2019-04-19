@@ -33,6 +33,16 @@
     "build:ui-material": "ng build @ng-dynamic-forms/ui-material",
     "build:ui-ng-bootstrap": "ng build @ng-dynamic-forms/ui-ng-bootstrap",
     "build:ui-primeng": "ng build @ng-dynamic-forms/ui-primeng",
+    "test:libs": "ng test",
+    "test:core": "ng test @ng-dynamic-forms/core",
+    "test:ui-basic": "ng test @ng-dynamic-forms/ui-basic",
+    "test:ui-bootstrap": "ng test @ng-dynamic-forms/ui-bootstrap",
+    "test:ui-foundation": "ng test @ng-dynamic-forms/ui-foundation",
+    "test:ui-ionic": "ng test @ng-dynamic-forms/ui-ionic",
+    "test:ui-kendo": "ng test @ng-dynamic-forms/ui-kendo",
+    "test:ui-material": "ng test @ng-dynamic-forms/ui-material",
+    "test:ui-ng-bootstrap": "ng test @ng-dynamic-forms/ui-ng-bootstrap",
+    "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng"
   },
   "private": false,
   "dependencies": {
