@@ -17,7 +17,7 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../../../coverage/ng-dynamic-forms/ui-ng-bootstrap'),
-      reports: ['html', 'lcovonly'],
+      reports: ['html', 'json', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],

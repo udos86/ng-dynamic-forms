@@ -5,6 +5,7 @@ node_js:
 addons:
   chrome: stable
 script:
+  - npm i codecov -g
   - npm run build:core && npm run test:core
   - npm run build:ui-basic && npm run test:ui-basic
   - npm run build:ui-bootstrap && npm run test:ui-bootstrap
@@ -15,3 +16,5 @@ script:
   - npm run build:ui-ng-bootstrap && npm run test:ui-ng-bootstrap
   - npm run build:ui-primeng && npm run test:ui-primeng
   - npm run build:sample
+after_success:
+  - codecov
