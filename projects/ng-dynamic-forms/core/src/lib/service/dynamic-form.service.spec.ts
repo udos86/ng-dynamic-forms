@@ -458,7 +458,10 @@ describe("DynamicFormService test suite", () => {
 
         service.removeFormArrayGroup(0, formArray, model);
 
-        expect(formArray.length).toBe(model.initialCount - 1);
+        const newCount = model.initialCount - 1;
+
+        expect(model.size).toBe(newCount);
+        expect(formArray.length).toBe(newCount);
     });
 
 
@@ -469,6 +472,7 @@ describe("DynamicFormService test suite", () => {
 
         service.clearFormArray(formArray, model);
 
+        expect(model.size === 0).toBe(true);
         expect(formArray.length === 0).toBe(true);
     });
 });

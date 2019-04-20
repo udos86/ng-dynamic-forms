@@ -122,4 +122,9 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         this.groups.splice(index, 1);
         this.updateGroupIndex();
     }
+
+    clear(): void {
+        this.groups.splice(0);
+        this.updateGroupIndex();
+    }
 }

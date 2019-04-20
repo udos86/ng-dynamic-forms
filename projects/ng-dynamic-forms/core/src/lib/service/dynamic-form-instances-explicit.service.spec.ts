@@ -94,9 +94,9 @@ describe("DynamicFormInstanceService test suite", () => {
         const index: number = 0;
         expect(function () {
             service.removeFormControlInstance(modelId);
-        }).toThrowError(`There exists no control with id: ${modelId}`);
+        }).toThrowError(`There exists no form control with id: ${modelId}`);
         expect(function () {
             service.removeFormControlInstance(modelId, 0);
-        }).toThrowError(`There exists no control with id: ${modelId} and/or index ${index}`);
+        }).toThrowError(`There exists no form control with id: ${modelId} and/or index ${index}`);
     });
 });

@@ -280,6 +280,10 @@ export class DynamicFormService {
         while (formArray.length > 0) {
             this.removeFormArrayGroup(0, formArray, formArrayModel);
         }
+
+        /*TODO: As of Angular 8+ please use:
+           formArray.clear();
+           formArrayModel.clear();*/
     }
 
 
