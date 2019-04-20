@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "7.1.1",
+  "version": "7.2.0",
   "description": "A rapid form development library for Angular",
   "repository": {
     "type": "git",
@@ -42,7 +42,11 @@
     "test:ui-kendo": "ng test @ng-dynamic-forms/ui-kendo --code-coverage",
     "test:ui-material": "ng test @ng-dynamic-forms/ui-material --code-coverage",
     "test:ui-ng-bootstrap": "ng test @ng-dynamic-forms/ui-ng-bootstrap --code-coverage",
-    "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng --code-coverage"
+    "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng --code-coverage",
+    "version:major": "gulp version:major",
+    "version:minor": "gulp version:minor",
+    "version:patch": "gulp version:patch",
+    "publish": "./publish.sh"
   },
   "private": false,
   "dependencies": {
@@ -90,6 +94,9 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
+    "gulp": "^3.9.1",
+    "gulp-replace": "^1.0.0",
+    "gulp-util": "^3.0.8",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",

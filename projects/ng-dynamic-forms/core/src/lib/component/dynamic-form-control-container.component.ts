@@ -409,7 +409,9 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     private registerInstance(instanceRef: ComponentRef<DynamicFormControl>): void {
+
         let index;
+
         if (this.context && this.context instanceof DynamicFormArrayGroupModel) {
             index = this.context.index;
         }
@@ -418,7 +420,9 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     private removeInstance(): void {
+
         let index;
+
         if (this.context && this.context instanceof DynamicFormArrayGroupModel) {
             index = this.context.index;
         }

@@ -1,64 +1,52 @@
-import { ComponentRef, Injectable } from "@angular/core";
-import { DynamicFormControl } from "../component/dynamic-form-control.interface";
+import { Injectable } from "@angular/core";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormInstancesService } from "./dynamic-form-instances.service";
+import { DynamicFormControlInstance, DynamicFormInstancesService } from "./dynamic-form-instances.service";
+import { isNumber } from "../utils/core.utils";
 
 @Injectable()
 export class DynamicFormInstancesExplicitService implements DynamicFormInstancesService {
 
-    protected formControlInstances: { [key: string]: ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl> | undefined> } = {};
+    protected instances: { [key: string]: DynamicFormControlInstance | DynamicFormControlInstance[] } = {};
 
-    getFormControlInstance(modelId: string, index?: number): ComponentRef<DynamicFormControl> | undefined {
+    getFormControlInstance(modelId: string, index?: number): DynamicFormControlInstance | undefined {
 
-        const retInstance: ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl>> =
-            this.formControlInstances[modelId] as ComponentRef<DynamicFormControl> | Array<ComponentRef<DynamicFormControl>>;
+        const instance: DynamicFormControlInstance | DynamicFormControlInstance[] = this.instances[modelId];
 
-        if (Array.isArray(retInstance) && index !== undefined) {
+        if (isNumber(index)) {
 
-            return retInstance[index];
+            return Array.isArray(instance) ? instance[index] : undefined;
 
         } else {
-            return index !== undefined ? undefined : this.formControlInstances[modelId] as ComponentRef<DynamicFormControl>;
+            return instance as DynamicFormControlInstance;
         }
     }
 
-    setFormControlInstance(model: DynamicFormControlModel, instance: ComponentRef<DynamicFormControl>, index?: number): void {
+    setFormControlInstance(model: DynamicFormControlModel, instance: DynamicFormControlInstance, index?: number): void {
 
-        if (index !== undefined) {
+        if (isNumber(index)) {
 
-            const arrayRef: Array<ComponentRef<DynamicFormControl>> =
-                this.formControlInstances[model.id] as Array<ComponentRef<DynamicFormControl>> || [];
-            /**
-             * Use splice to add element
-             */
-            arrayRef.splice(index, 0, instance);
-            this.formControlInstances[model.id] = arrayRef;
+            const arrayInstance: DynamicFormControlInstance[] = this.instances[model.id] as DynamicFormControlInstance[] || [];
+
+            arrayInstance.splice(index, 0, instance);
+            this.instances[model.id] = arrayInstance;
 
         } else {
-            this.formControlInstances[model.id] = instance;
+            this.instances[model.id] = instance;
         }
     }
 
-    removeFormControlInstance(modelId: string, index?: number): void | never {
+    removeFormControlInstance(modelId: string, index?: number): void {
 
-        const instanceRef = this.formControlInstances[modelId];
+        const instance = this.instances[modelId];
 
-        if (index !== undefined) {
+        if (isNumber(index)) {
 
-            if (Array.isArray(instanceRef) && instanceRef[index]) {
-                /**
-                 * Use splice to remove elements
-                 */
-                instanceRef.splice(index, 1);
-            } else {
-                throw new Error(`There exists no control with id: ${modelId} and/or index ${index}`);
+            if (Array.isArray(instance) && instance[index] !== undefined) {
+                instance.splice(index, 1);
             }
 
-        } else if (instanceRef) {
-            delete this.formControlInstances[modelId];
-
-        } else {
-            throw new Error(`There exists no control with id: ${modelId}`);
+        } else if (instance !== undefined) {
+            delete this.instances[modelId];
         }
     }
 }

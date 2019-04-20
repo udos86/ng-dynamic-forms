@@ -1,12 +1,11 @@
-import { DynamicFormInstancesService } from "./dynamic-form-instances.service";
-import { ComponentRef, Injectable } from "@angular/core";
-import { DynamicFormControl } from "../component/dynamic-form-control.interface";
+import { DynamicFormControlInstance, DynamicFormInstancesService } from "./dynamic-form-instances.service";
+import { Injectable } from "@angular/core";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 
 @Injectable()
 export class DynamicFormInstancesDummyService implements DynamicFormInstancesService {
 
-    getFormControlInstance(_modelId: string, _index?: number): ComponentRef<DynamicFormControl> | undefined {
+    getFormControlInstance(_modelId: string, _index?: number): DynamicFormControlInstance | undefined {
         return undefined;
     }
 
@@ -14,7 +13,6 @@ export class DynamicFormInstancesDummyService implements DynamicFormInstancesSer
         return undefined;
     }
 
-    setFormControlInstance(_model: DynamicFormControlModel, _instance: ComponentRef<DynamicFormControl>, _index?: number): void {
+    setFormControlInstance(_model: DynamicFormControlModel, _instance: DynamicFormControlInstance, _index?: number): void {
     }
-
 }
