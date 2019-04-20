@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "7.1.1",
+  "version": "7.2.0",
   "description": "A rapid form development library for Angular",
   "repository": {
     "type": "git",
@@ -45,7 +45,8 @@
     "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng --code-coverage",
     "version:major": "gulp version:major",
     "version:minor": "gulp version:minor",
-    "version:patch": "gulp version:patch"
+    "version:patch": "gulp version:patch",
+    "publish": "./publish.sh"
   },
   "private": false,
   "dependencies": {

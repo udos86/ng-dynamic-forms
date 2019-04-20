@@ -35,25 +35,18 @@ export class DynamicFormInstancesExplicitService implements DynamicFormInstances
         }
     }
 
-    removeFormControlInstance(modelId: string, index?: number): void | never {
+    removeFormControlInstance(modelId: string, index?: number): void {
 
         const instance = this.instances[modelId];
 
         if (isNumber(index)) {
 
             if (Array.isArray(instance) && instance[index] !== undefined) {
-
                 instance.splice(index, 1);
-
-            } else {
-                throw new Error(`There exists no form control with id: ${modelId} and/or index ${index}`);
             }
 
         } else if (instance !== undefined) {
             delete this.instances[modelId];
-
-        } else {
-            throw new Error(`There exists no form control with id: ${modelId}`);
         }
     }
 }

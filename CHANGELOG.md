@@ -1,3 +1,11 @@
+# 7.2.0
+
+### **Features**
+
+* Entire project has been switched to Angular CLI
+
+***
+
 # 7.1.1
 
 ### **Bugfixes**
