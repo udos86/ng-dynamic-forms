@@ -104,4 +104,11 @@ describe("DynamicFormInstanceService test suite", () => {
         expect(() => service.removeFormControlInstance(modelId, 0)).toThrowError(`There exists no form control with id: ${modelId} and/or index ${index}`);
     });
      */
+
+    it("should return a custom form control component type", () => {
+
+        let model = new DynamicInputModel({id: "input"});
+
+        expect(service.getCustomComponentType(model)).toBe(null);
+    });
 });

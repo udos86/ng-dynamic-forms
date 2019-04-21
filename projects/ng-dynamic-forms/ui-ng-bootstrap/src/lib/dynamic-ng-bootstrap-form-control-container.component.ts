@@ -79,7 +79,7 @@ export class DynamicNGBootstrapFormControlContainerComponent extends DynamicForm
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return this.layoutService.getCustomComponentType(this.model) || ngBootstrapUIFormControlMapFn(this.model);
+        return this.componentService.getCustomComponentType(this.model) || ngBootstrapUIFormControlMapFn(this.model);
     }
 }
 

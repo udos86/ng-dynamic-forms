@@ -70,7 +70,7 @@ export class DynamicFoundationFormControlContainerComponent extends DynamicFormC
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return this.layoutService.getCustomComponentType(this.model) || foundationUIFormControlMapFn(this.model);
+        return this.componentService.getCustomComponentType(this.model) || foundationUIFormControlMapFn(this.model);
     }
 }
 

@@ -78,7 +78,7 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
     }
 
     get componentType(): Type<DynamicFormControl> | null {
-        return this.layoutService.getCustomComponentType(this.model) || materialUIFormControlMapFn(this.model);
+        return this.componentService.getCustomComponentType(this.model) || materialUIFormControlMapFn(this.model);
     }
 
     get hasMatFormField(): boolean {

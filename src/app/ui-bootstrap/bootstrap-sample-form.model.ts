@@ -179,7 +179,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         ]
                     },
                     {
-                        action: "REQUIRED",
+                        action: "HIDDEN",
                         when: [
                             {
                                 id: "bootstrapRadioGroup",

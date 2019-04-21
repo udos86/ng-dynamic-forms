@@ -1,9 +1,13 @@
-import { ComponentRef, Injectable } from "@angular/core";
+import { ComponentRef, Inject, Injectable, InjectionToken, Optional, Type } from "@angular/core";
 import { DynamicFormControl } from "../component/dynamic-form-control.interface";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { isNumber } from "../utils/core.utils";
 
-export type DynamicFormControlRef = ComponentRef<DynamicFormControl>
+export type DynamicFormControlRef = ComponentRef<DynamicFormControl>;
+
+export type DynamicFormControlMapFn = (model: DynamicFormControlModel) => Type<DynamicFormControl> | null;
+
+export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControlMapFn>("DYNAMIC_FORM_CONTROL_MAP_FN");
 
 @Injectable({
     providedIn: "root"
@@ -11,6 +15,10 @@ export type DynamicFormControlRef = ComponentRef<DynamicFormControl>
 export class DynamicFormComponentService {
 
     private componentRefs: { [key: string]: DynamicFormControlRef | DynamicFormControlRef[] } = {};
+
+    constructor(@Inject(DYNAMIC_FORM_CONTROL_MAP_FN) @Optional() private readonly DYNAMIC_FORM_CONTROL_MAP_FN: any) {
+        this.DYNAMIC_FORM_CONTROL_MAP_FN = DYNAMIC_FORM_CONTROL_MAP_FN as DynamicFormControlMapFn;
+    }
 
     getFormControlRef(modelId: string, index?: number): DynamicFormControlRef | undefined {
 
@@ -52,5 +60,14 @@ export class DynamicFormComponentService {
         } else if (ref !== undefined) {
             delete this.componentRefs[modelId];
         }
+    }
+
+    getCustomComponentType(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
+
+        if (this.DYNAMIC_FORM_CONTROL_MAP_FN) {
+            return this.DYNAMIC_FORM_CONTROL_MAP_FN(model);
+        }
+
+        return null;
     }
 }

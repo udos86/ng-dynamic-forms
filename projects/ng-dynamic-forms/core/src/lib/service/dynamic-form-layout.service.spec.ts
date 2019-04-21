@@ -79,11 +79,4 @@ describe("DynamicFormLayoutService test suite", () => {
         expect(service.getElementId(testModel1)).toBe(testModel1.id);
         expect(service.getElementId(testModel4)).toBe(`${testModel2.id}-${testModel3.index}-${testModel4.id}`);
     });
-
-    it("should return a custom form control component type", () => {
-
-        let model = new DynamicInputModel({id: "input"});
-
-        expect(service.getCustomComponentType(model)).toBe(null);
-    });
 });
