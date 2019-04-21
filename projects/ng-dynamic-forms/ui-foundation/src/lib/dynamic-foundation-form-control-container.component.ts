@@ -26,7 +26,7 @@ import {
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicFormInstancesService,
+    DynamicFormComponentService,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -64,9 +64,9 @@ export class DynamicFoundationFormControlContainerComponent extends DynamicFormC
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                protected dynamicFormInstancesService: DynamicFormInstancesService) {
+                protected componentService: DynamicFormComponentService) {
 
-        super(componentFactoryResolver, layoutService, validationService, dynamicFormInstancesService);
+        super(componentFactoryResolver, layoutService, validationService, componentService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

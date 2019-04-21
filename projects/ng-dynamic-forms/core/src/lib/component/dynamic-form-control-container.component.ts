@@ -35,10 +35,12 @@ import {
     DynamicFormControlLayoutContext,
     DynamicFormControlLayoutPlace
 } from "../model/misc/dynamic-form-control-layout.model";
+import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-control-relation.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
+import { DynamicFormComponentService } from "../service/dynamic-form-component.service";
 import {
     findActivationRelation,
     getRelatedFormControls,
@@ -46,9 +48,7 @@ import {
     findRequiredRelation,
     isFormControlToBeRequired
 } from "../utils/relation.utils";
-import { DynamicFormControl } from "./dynamic-form-control.interface";
 import { isString } from "../utils/core.utils";
-import { DynamicFormInstancesService } from "../service/dynamic-form-instances.service";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
@@ -77,7 +77,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     protected constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                           protected layoutService: DynamicFormLayoutService,
                           protected validationService: DynamicFormValidationService,
-                          protected dynamicFormInstanceService: DynamicFormInstancesService) {
+                          protected componentService: DynamicFormComponentService) {
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -218,7 +218,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                     instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
 
-            this.registerInstance(this.componentRef);
+            this.registerComponentRef(this.componentRef);
         }
     }
 
@@ -229,11 +229,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
             this.componentSubscriptions = [];
 
-            this.removeInstance();
+            this.unregisterComponentRef();
             this.componentRef.destroy();
         }
     }
-
     /*
     protected embedTemplates(): void {
 
@@ -408,7 +407,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    private registerInstance(instanceRef: ComponentRef<DynamicFormControl>): void {
+    private registerComponentRef(instanceRef: ComponentRef<DynamicFormControl>): void {
 
         let index;
 
@@ -416,10 +415,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             index = this.context.index;
         }
 
-        this.dynamicFormInstanceService.setFormControlInstance(this.model, instanceRef, index);
+        this.componentService.registerFormControlRef(this.model, instanceRef, index);
     }
 
-    private removeInstance(): void {
+    private unregisterComponentRef(): void {
 
         let index;
 
@@ -427,6 +426,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             index = this.context.index;
         }
 
-        this.dynamicFormInstanceService.removeFormControlInstance(this.model.id, index);
+        this.componentService.unregisterFormControlRef(this.model.id, index);
     }
 }
