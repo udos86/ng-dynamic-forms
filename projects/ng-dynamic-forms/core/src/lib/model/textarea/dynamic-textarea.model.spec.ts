@@ -27,7 +27,6 @@ describe("DynamicTextAreaModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA);
         expect(model.value).toBeNull();
         expect(model.wrap).toEqual(DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 
@@ -37,14 +36,6 @@ describe("DynamicTextAreaModel test suite", () => {
 
         expect(model.disabled).toBe(true);
     });
-
-    it("should set required property correctly", () => {
-
-        model.requiredUpdates.next(true);
-
-        expect(model.required).toBe(true);
-    });
-
 
     it("should serialize correctly", () => {
 

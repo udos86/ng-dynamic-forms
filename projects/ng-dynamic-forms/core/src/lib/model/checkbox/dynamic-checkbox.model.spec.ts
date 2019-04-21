@@ -22,7 +22,6 @@ describe("DynamicCheckboxModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX);
         expect(model.validators).toBeNull();
         expect(model.value).toBe(config.value);
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 

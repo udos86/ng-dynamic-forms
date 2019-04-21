@@ -28,7 +28,6 @@ describe("DynamicSliderModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_SLIDER);
         expect(model.value).toBe(config.value);
         expect(model.vertical).toBe(false);
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 

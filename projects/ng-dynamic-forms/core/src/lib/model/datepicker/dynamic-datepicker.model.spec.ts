@@ -27,7 +27,6 @@ describe("DynamicDatepickerModel test suite", () => {
         expect(model.toggleLabel).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER);
         expect(model.value).toBe(config.value);
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 

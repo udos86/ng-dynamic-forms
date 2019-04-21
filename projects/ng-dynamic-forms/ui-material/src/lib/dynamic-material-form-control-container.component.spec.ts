@@ -187,15 +187,6 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
-    it("should update control activation when model required property changes", () => {
-
-        spyOn(component, "onModelRequiredUpdates");
-
-        testModel.requiredUpdates.next(true);
-
-        expect(component.onModelRequiredUpdates).toHaveBeenCalled();
-    });
-
     it("should map a form control model to a form control component", () => {
 
         expect(materialUIFormControlMapFn(formModel[0])).toBe(DynamicMaterialCheckboxComponent);

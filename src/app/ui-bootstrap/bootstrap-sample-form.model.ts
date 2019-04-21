@@ -125,7 +125,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         value: "option-4"
                     }
                 ],
-                value: "option-3"
+                value: "option-2"
             }),
 
             new DynamicInputModel({
@@ -179,10 +179,10 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         ]
                     },
                     {
-                        action: "HIDDEN",
+                        action: "REQUIRED",
                         when: [
                             {
-                                id: "bootstrapRadioGroup",
+                                id: "bsRadioGroup",
                                 value: "option-1"
                             }
                         ]

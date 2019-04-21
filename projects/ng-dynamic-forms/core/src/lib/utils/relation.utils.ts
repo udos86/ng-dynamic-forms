@@ -24,7 +24,7 @@ export function findRequiredRelation(relGroups: DynamicFormControlRelationGroup[
     let rel = relGroups.find(rel => {
         return rel.action === DYNAMIC_FORM_CONTROL_ACTION_REQUIRED;
     });
-    
+
     return rel !== undefined ? rel : null;
 }
 
@@ -50,19 +50,20 @@ export function getRelatedFormControls(model: DynamicFormControlModel, controlGr
 
 export function isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGroup, _formGroup: FormGroup): boolean {
 
-    let formGroup: FormGroup = _formGroup;
+    const formGroup: FormGroup = _formGroup,
+        connective = relGroup.connective || DYNAMIC_FORM_CONTROL_CONNECTIVE_OR;
 
-    return relGroup.when.reduce((toBeDisabled: boolean, rel: DynamicFormControlRelation, index: number) => {
+    const isDisabled = relGroup.when.reduce((toBeDisabled: boolean, rel: DynamicFormControlRelation, index: number) => {
 
-        let control = formGroup.get(rel.id);
+        const control = formGroup.get(rel.id);
 
         if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE) {
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeDisabled) {
+            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeDisabled) {
                 return false;
             }
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeDisabled) {
+            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeDisabled) {
                 return true;
             }
 
@@ -71,11 +72,12 @@ export function isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGr
 
         if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE) {
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && toBeDisabled) {
+
+            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && toBeDisabled) {
                 return true;
             }
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeDisabled) {
+            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeDisabled) {
                 return false;
             }
 
@@ -85,23 +87,26 @@ export function isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGr
         return false;
 
     }, false);
+
+    return isDisabled;
 }
 
 export function isFormControlToBeRequired(relGroup: DynamicFormControlRelationGroup, _formGroup: FormGroup): boolean {
 
-    let formGroup: FormGroup = _formGroup;
+    const formGroup: FormGroup = _formGroup,
+        connective = relGroup.connective || DYNAMIC_FORM_CONTROL_CONNECTIVE_OR;
 
-    return relGroup.when.reduce((toBeRequired: boolean, rel: DynamicFormControlRelation, index: number) => {
+    const isRequired = relGroup.when.reduce((isRequired: boolean, rel: DynamicFormControlRelation, index: number) => {
 
-        let control = formGroup.get(rel.id);
+        const control = formGroup.get(rel.id);
 
         if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_REQUIRED) {
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeRequired) {
+            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !isRequired) {
                 return false;
             }
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeRequired) {
+            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && isRequired) {
                 return true;
             }
 
@@ -111,4 +116,6 @@ export function isFormControlToBeRequired(relGroup: DynamicFormControlRelationGr
         return false;
 
     }, false);
+
+    return isRequired;
 }
