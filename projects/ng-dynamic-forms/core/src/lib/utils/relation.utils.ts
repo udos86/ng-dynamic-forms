@@ -1,121 +1,129 @@
-import { FormGroup, FormControl } from "@angular/forms";
-import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormControlCondition,
     DynamicFormControlRelation,
-    DynamicFormControlRelationGroup,
-    DYNAMIC_FORM_CONTROL_ACTION_DISABLE,
-    DYNAMIC_FORM_CONTROL_ACTION_ENABLE,
-    DYNAMIC_FORM_CONTROL_CONNECTIVE_AND,
-    DYNAMIC_FORM_CONTROL_CONNECTIVE_OR,
-    DYNAMIC_FORM_CONTROL_ACTION_REQUIRED
+    DYNAMIC_FORM_CONTROL_STATE_DISABLED,
+    DYNAMIC_FORM_CONTROL_STATE_ENABLED,
+    DYNAMIC_FORM_CONTROL_STATE_HIDDEN,
+    DYNAMIC_FORM_CONTROL_STATE_REQUIRED,
+    DYNAMIC_FORM_CONTROL_STATE_VISIBLE,
+    DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND,
+    DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR
 } from "../model/misc/dynamic-form-control-relation.model";
 
-export function findActivationRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup | null {
+export function findDisabledRelation(relations: DynamicFormControlRelation[]): DynamicFormControlRelation | null {
 
-    let rel = relGroups.find(rel => {
-        return rel.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE || rel.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE;
+    const relation = relations.find(relation => {
+        return relation.action === DYNAMIC_FORM_CONTROL_STATE_DISABLED || relation.action === DYNAMIC_FORM_CONTROL_STATE_ENABLED;
     });
 
-    return rel !== undefined ? rel : null;
+    return relation || null;
 }
 
-export function findRequiredRelation(relGroups: DynamicFormControlRelationGroup[]): DynamicFormControlRelationGroup | null {
+export function findHiddenRelation(relations: DynamicFormControlRelation[]): DynamicFormControlRelation | null {
 
-    let rel = relGroups.find(rel => {
-        return rel.action === DYNAMIC_FORM_CONTROL_ACTION_REQUIRED;
+    const relation = relations.find(relation => {
+        return relation.action === DYNAMIC_FORM_CONTROL_STATE_HIDDEN || relation.action === DYNAMIC_FORM_CONTROL_STATE_VISIBLE;
     });
 
-    return rel !== undefined ? rel : null;
+    return relation || null;
 }
 
-export function getRelatedFormControls(model: DynamicFormControlModel, controlGroup: FormGroup): FormControl[] {
+export function findRequiredRelation(relations: DynamicFormControlRelation[]): DynamicFormControlRelation | null {
 
-    let controls: FormControl[] = [];
+    const relation = relations.find(relation => relation.action === DYNAMIC_FORM_CONTROL_STATE_REQUIRED);
 
-    model.relation.forEach(relGroup => relGroup.when.forEach(rel => {
-
-        if (model.id === rel.id) {
-            throw new Error(`FormControl ${model.id} cannot depend on itself`);
-        }
-
-        let control = controlGroup.get(rel.id) as FormControl;
-
-        if (control && !controls.some(controlElement => controlElement === control)) {
-            controls.push(control);
-        }
-    }));
-
-    return controls;
+    return relation || null;
 }
 
-export function isFormControlToBeDisabled(relGroup: DynamicFormControlRelationGroup, _formGroup: FormGroup): boolean {
+export function matchesDisabledRelation(relation: DynamicFormControlRelation, group: FormGroup): boolean {
 
-    const formGroup: FormGroup = _formGroup,
-        connective = relGroup.connective || DYNAMIC_FORM_CONTROL_CONNECTIVE_OR;
+    const operator = relation.connective || DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR;
 
-    const isDisabled = relGroup.when.reduce((toBeDisabled: boolean, rel: DynamicFormControlRelation, index: number) => {
+    return relation.when.reduce((disabled: boolean, condition: DynamicFormControlCondition, index: number) => {
 
-        const control = formGroup.get(rel.id);
+        const relatedControl = group.get(condition.id);
 
-        if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_DISABLE) {
+        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_DISABLED) {
 
-            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !toBeDisabled) {
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && !disabled) {
                 return false;
             }
 
-            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && toBeDisabled) {
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && disabled) {
                 return true;
             }
 
-            return rel.value === control.value || rel.status === control.status;
+            return condition.value === relatedControl.value || condition.status === relatedControl.status;
         }
 
-        if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_ENABLE) {
+        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_ENABLED) {
 
-
-            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && toBeDisabled) {
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && disabled) {
                 return true;
             }
 
-            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && !toBeDisabled) {
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && !disabled) {
                 return false;
             }
 
-            return !(rel.value === control.value || rel.status === control.status);
+            return !(condition.value === relatedControl.value || condition.status === relatedControl.status);
         }
 
         return false;
 
     }, false);
-
-    return isDisabled;
 }
 
-export function isFormControlToBeRequired(relGroup: DynamicFormControlRelationGroup, _formGroup: FormGroup): boolean {
+export function matchesRequiredRelation(relation: DynamicFormControlRelation, group: FormGroup): boolean {
 
-    const formGroup: FormGroup = _formGroup,
-        connective = relGroup.connective || DYNAMIC_FORM_CONTROL_CONNECTIVE_OR;
+    const operator = relation.connective || DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR;
 
-    const isRequired = relGroup.when.reduce((isRequired: boolean, rel: DynamicFormControlRelation, index: number) => {
+    return relation.when.reduce((required: boolean, condition: DynamicFormControlCondition, index: number) => {
 
-        const control = formGroup.get(rel.id);
+        const relatedControl = group.get(condition.id);
 
-        if (control && relGroup.action === DYNAMIC_FORM_CONTROL_ACTION_REQUIRED) {
+        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_REQUIRED) {
 
-            if (index > 0 && connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_AND && !isRequired) {
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && !required) {
                 return false;
             }
 
-            if (index > 0 && relGroup.connective === DYNAMIC_FORM_CONTROL_CONNECTIVE_OR && isRequired) {
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && required) {
                 return true;
             }
 
-            return rel.value === control.value || rel.status === control.status;
+            return condition.value === relatedControl.value || condition.status === relatedControl.status;
         }
 
         return false;
 
     }, false);
-
-    return isRequired;
 }
+
+export function matchesHiddenRelation(relation: DynamicFormControlRelation, group: FormGroup): boolean {
+
+    const operator = relation.connective || DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR;
+
+    return relation.when.reduce((hidden: boolean, condition: DynamicFormControlCondition, index: number) => {
+
+        const relatedControl = group.get(condition.id);
+
+        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_HIDDEN) {
+
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && !hidden) {
+                return false;
+            }
+
+            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && hidden) {
+                return true;
+            }
+
+            return condition.value === relatedControl.value || condition.status === relatedControl.status;
+        }
+
+        return false;
+
+    }, false);
+}
+

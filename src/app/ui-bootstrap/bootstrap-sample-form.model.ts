@@ -109,15 +109,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 label: "Radio Group",
                 options: [
                     {
-                        label: "Option 1",
+                        label: "Textarea is disabled",
                         value: "option-1",
                     },
                     {
-                        label: "Option 2",
+                        label: "Textarea is hidden",
                         value: "option-2"
                     },
                     {
-                        label: "Option 3",
+                        label: "Textarea is required",
                         value: "option-3"
                     },
                     {
@@ -125,7 +125,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         value: "option-4"
                     }
                 ],
-                value: "option-2"
+                value: "option-4"
             }),
 
             new DynamicInputModel({
@@ -140,19 +140,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 validators: {
                     maxLength: 5
                 },
-                relation: [
-                    {
-                        action: "REQUIRED",
-                        when: [
-                            {
-                                id: "bootstrapRadioGroup",
-                                value: "option-1"
-                            }
-                        ]
-                    }
-                ],
                 errorMessages: {
-                    required: "{{ label }} is required",
                     maxLength: "Max character count is 5"
                 }
             }),
@@ -166,26 +154,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 relation: [
                     {
                         action: "DISABLE",
-                        connective: "OR",
-                        when: [
-                            {
-                                id: "bsRadioGroup",
-                                value: "option-2"
-                            },
-                            {
-                                id: "bsRadioGroup",
-                                value: "option-4",
-                            }
-                        ]
+                        when: [{id: "bsRadioGroup", value: "option-1"}]
+                    },
+                    {
+                        action: "HIDDEN",
+                        when: [{id: "bsRadioGroup", value: "option-2"}]
                     },
                     {
                         action: "REQUIRED",
-                        when: [
-                            {
-                                id: "bsRadioGroup",
-                                value: "option-1"
-                            }
-                        ]
+                        when: [{id: "bsRadioGroup", value: "option-3"}]
                     }
                 ],
                 errorMessages: {

@@ -6,16 +6,15 @@ import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model
 import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import {
-    findActivationRelation,
-    getRelatedFormControls,
-    isFormControlToBeDisabled,
-    isFormControlToBeRequired,
+    findDisabledRelation,
+    matchesDisabledRelation,
+    matchesRequiredRelation,
     findRequiredRelation
 } from "./relation.utils";
 
 describe("Relation utils test suite", () => {
 
-    let controlGroup: FormGroup,
+    let group: FormGroup,
         model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"}),
         rel1 = {
             action: "DISABLE",
@@ -140,7 +139,7 @@ describe("Relation utils test suite", () => {
 
     beforeEach(inject([DynamicFormService], (formService: DynamicFormService) => {
 
-        controlGroup = formService.createFormGroup([
+        group = formService.createFormGroup([
 
             new DynamicSelectModel({
 
@@ -163,54 +162,31 @@ describe("Relation utils test suite", () => {
     it("should find an activation relation correctly", () => {
 
         model.relation = [rel1];
-        expect(findActivationRelation(model.relation)).toBe(rel1);
+        expect(findDisabledRelation(model.relation)).toBe(rel1);
 
         model.relation = [rel2];
-        expect(findActivationRelation(model.relation)).toBe(rel2);
-    });
-
-    it("should get all related form controls correctly", () => {
-
-        model.relation = [rel2];
-
-        expect(getRelatedFormControls(model, controlGroup).length).toBe(2);
-    });
-
-    it("should throw when model depends on itself", () => {
-
-        model.relation = [{
-            action: "DISABLE",
-            when: [
-                {
-                    id: "testTextArea",
-                    value: "test"
-                }
-            ]
-        }];
-
-        expect(() => getRelatedFormControls(model, controlGroup))
-            .toThrow(new Error(`FormControl ${model.id} cannot depend on itself`));
+        expect(findDisabledRelation(model.relation)).toBe(rel2);
     });
 
     it("should check if form control is to be disabled correctly", () => {
 
         model.relation = [rel1];
-        expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesDisabledRelation(model.relation[0], group)).toBe(false);
 
         model.relation = [rel2];
-        expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
+        expect(matchesDisabledRelation(model.relation[0], group)).toBe(true);
 
         model.relation = [rel3];
-        expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesDisabledRelation(model.relation[0], group)).toBe(false);
 
         model.relation = [rel4];
-        expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesDisabledRelation(model.relation[0], group)).toBe(false);
 
         model.relation = [rel5];
-        expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(true);
+        expect(matchesDisabledRelation(model.relation[0], group)).toBe(true);
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
-        expect(isFormControlToBeDisabled(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesDisabledRelation(model.relation[0], group)).toBe(false);
     });
 
     it("should find a required relation correctly", () => {
@@ -223,15 +199,15 @@ describe("Relation utils test suite", () => {
     it("should check if form control is to be required correctly", () => {
 
         model.relation = [rel6];
-        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesRequiredRelation(model.relation[0], group)).toBe(false);
 
         model.relation = [rel7];
-        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesRequiredRelation(model.relation[0], group)).toBe(false);
 
         model.relation = [rel8];
-        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(true);
+        expect(matchesRequiredRelation(model.relation[0], group)).toBe(true);
 
         model.relation = [{action: "TEST", when: [{id: "testTextArea", value: "test"}]}];
-        expect(isFormControlToBeRequired(model.relation[0], controlGroup)).toBe(false);
+        expect(matchesRequiredRelation(model.relation[0], group)).toBe(false);
     });
 });

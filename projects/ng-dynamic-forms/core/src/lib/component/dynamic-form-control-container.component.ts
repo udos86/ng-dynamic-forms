@@ -36,20 +36,13 @@ import {
     DynamicFormControlLayoutPlace
 } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControl } from "./dynamic-form-control.interface";
-import { DynamicFormControlRelationGroup } from "../model/misc/dynamic-form-control-relation.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormComponentService } from "../service/dynamic-form-component.service";
-import {
-    findActivationRelation,
-    getRelatedFormControls,
-    isFormControlToBeDisabled,
-    findRequiredRelation,
-    isFormControlToBeRequired
-} from "../utils/relation.utils";
-import { isObject, isString } from "../utils/core.utils";
+import { isString } from "../utils/core.utils";
 import { startWith } from "rxjs/operators";
+import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
@@ -78,7 +71,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     protected constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                           protected layoutService: DynamicFormLayoutService,
                           protected validationService: DynamicFormValidationService,
-                          protected componentService: DynamicFormComponentService) {
+                          protected componentService: DynamicFormComponentService,
+                          protected relationService: DynamicFormRelationService) {
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -255,60 +249,20 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     */
     protected setControlRelations(): void {
 
-        const relActivation = findActivationRelation(this.model.relation);
-        const relRequired = findRequiredRelation(this.model.relation);
+        this.relationService.getRelatedFormControls(this.model, this.group).forEach(relatedFormControl => {
 
-        const updateRelation = () => {
+            this.subscriptions.push(relatedFormControl.valueChanges.pipe(startWith(relatedFormControl.value)).subscribe(() => {
+                this.relationService.updateByRelation(this.model, this.control, this.group);
+            }));
 
-            if (relActivation) {
-                this.updateModelDisabled(relActivation);
-            }
-
-            if (relRequired) {
-                this.updateModelRequired(relRequired);
-            }
-        };
-
-        getRelatedFormControls(this.model, this.group).forEach(control => {
-            this.subscriptions.push(control.valueChanges.pipe(startWith(control.value)).subscribe(updateRelation));
-            this.subscriptions.push(control.statusChanges.pipe(startWith(control.status)).subscribe(updateRelation));
+            this.subscriptions.push(relatedFormControl.statusChanges.pipe(startWith(relatedFormControl.status)).subscribe(() => {
+                this.relationService.updateByRelation(this.model, this.control, this.group);
+            }));
         });
     }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
         return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
-    }
-
-    updateModelDisabled(relation: DynamicFormControlRelationGroup): void {
-
-        this.model.disabledUpdates.next(isFormControlToBeDisabled(relation, this.group));
-    }
-
-    updateModelRequired(relation: DynamicFormControlRelationGroup): void {
-
-        let validatorsConfig = null;
-
-        if (isFormControlToBeRequired(relation, this.group)) {
-
-            if (isObject(this.model.validators)) {
-
-                validatorsConfig = {...this.model.validators, required: null};
-
-            } else {
-
-                validatorsConfig = {required: null};
-            }
-
-        } else {
-
-            if (isObject(this.model.validators)) {
-
-                delete this.model.validators["required"];
-                validatorsConfig = {...this.model.validators};
-            }
-        }
-
-        this.validationService.updateValidators(validatorsConfig, this.control, this.model);
     }
 
     unsubscribe(): void {
