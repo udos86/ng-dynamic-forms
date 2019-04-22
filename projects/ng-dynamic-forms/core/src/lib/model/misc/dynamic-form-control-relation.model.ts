@@ -1,11 +1,12 @@
-export const DYNAMIC_FORM_CONTROL_STATE_DISABLED = "DISABLE";
-export const DYNAMIC_FORM_CONTROL_STATE_ENABLED = "ENABLE";
-export const DYNAMIC_FORM_CONTROL_STATE_VISIBLE = "VISIBLE";
-export const DYNAMIC_FORM_CONTROL_STATE_HIDDEN = "HIDDEN";
-export const DYNAMIC_FORM_CONTROL_STATE_REQUIRED = "REQUIRED";
+export const STATE_DISABLED = "DISABLE";
+export const STATE_ENABLED = "ENABLE";
+export const STATE_HIDDEN = "HIDDEN";
+export const STATE_VISIBLE = "VISIBLE";
+export const STATE_REQUIRED = "REQUIRED";
+export const STATE_OPTIONAL = "OPTIONAL";
 
-export const DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND = "AND";
-export const DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR = "OR";
+export const AND_OPERATOR = "AND";
+export const OR_OPERATOR = "OR";
 
 export interface DynamicFormControlCondition {
 

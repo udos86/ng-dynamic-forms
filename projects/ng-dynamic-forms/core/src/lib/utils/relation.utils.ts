@@ -2,68 +2,47 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlCondition,
     DynamicFormControlRelation,
-    DYNAMIC_FORM_CONTROL_STATE_DISABLED,
-    DYNAMIC_FORM_CONTROL_STATE_ENABLED,
-    DYNAMIC_FORM_CONTROL_STATE_HIDDEN,
-    DYNAMIC_FORM_CONTROL_STATE_REQUIRED,
-    DYNAMIC_FORM_CONTROL_STATE_VISIBLE,
-    DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND,
-    DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR
+    AND_OPERATOR,
+    OR_OPERATOR
 } from "../model/misc/dynamic-form-control-relation.model";
 
-export function findDisabledRelation(relations: DynamicFormControlRelation[]): DynamicFormControlRelation | null {
+export function findRelationByState(relations: DynamicFormControlRelation[], states: String[]): DynamicFormControlRelation | null {
 
     const relation = relations.find(relation => {
-        return relation.action === DYNAMIC_FORM_CONTROL_STATE_DISABLED || relation.action === DYNAMIC_FORM_CONTROL_STATE_ENABLED;
+        return states.some(state => state === relation.action);
     });
 
     return relation || null;
 }
 
-export function findHiddenRelation(relations: DynamicFormControlRelation[]): DynamicFormControlRelation | null {
+export function matchesRelation(relation: DynamicFormControlRelation, group: FormGroup, matchState: String, oppositeState: String): boolean {
 
-    const relation = relations.find(relation => {
-        return relation.action === DYNAMIC_FORM_CONTROL_STATE_HIDDEN || relation.action === DYNAMIC_FORM_CONTROL_STATE_VISIBLE;
-    });
+    const operator = relation.connective || OR_OPERATOR;
 
-    return relation || null;
-}
-
-export function findRequiredRelation(relations: DynamicFormControlRelation[]): DynamicFormControlRelation | null {
-
-    const relation = relations.find(relation => relation.action === DYNAMIC_FORM_CONTROL_STATE_REQUIRED);
-
-    return relation || null;
-}
-
-export function matchesDisabledRelation(relation: DynamicFormControlRelation, group: FormGroup): boolean {
-
-    const operator = relation.connective || DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR;
-
-    return relation.when.reduce((disabled: boolean, condition: DynamicFormControlCondition, index: number) => {
+    return relation.when.reduce((hasMatched: boolean, condition: DynamicFormControlCondition, index: number) => {
 
         const relatedControl = group.get(condition.id);
 
-        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_DISABLED) {
+        if (relatedControl && relation.action === matchState) {
 
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && !disabled) {
+            if (index > 0 && operator === AND_OPERATOR && !hasMatched) {
                 return false;
             }
 
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && disabled) {
+            if (index > 0 && operator === OR_OPERATOR && hasMatched) {
                 return true;
             }
 
             return condition.value === relatedControl.value || condition.status === relatedControl.status;
         }
 
-        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_ENABLED) {
+        if (relatedControl && relation.action === oppositeState) {
 
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && disabled) {
+            if (index > 0 && operator === AND_OPERATOR && hasMatched) {
                 return true;
             }
 
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && !disabled) {
+            if (index > 0 && operator === OR_OPERATOR && !hasMatched) {
                 return false;
             }
 
@@ -74,56 +53,3 @@ export function matchesDisabledRelation(relation: DynamicFormControlRelation, gr
 
     }, false);
 }
-
-export function matchesRequiredRelation(relation: DynamicFormControlRelation, group: FormGroup): boolean {
-
-    const operator = relation.connective || DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR;
-
-    return relation.when.reduce((required: boolean, condition: DynamicFormControlCondition, index: number) => {
-
-        const relatedControl = group.get(condition.id);
-
-        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_REQUIRED) {
-
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && !required) {
-                return false;
-            }
-
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && required) {
-                return true;
-            }
-
-            return condition.value === relatedControl.value || condition.status === relatedControl.status;
-        }
-
-        return false;
-
-    }, false);
-}
-
-export function matchesHiddenRelation(relation: DynamicFormControlRelation, group: FormGroup): boolean {
-
-    const operator = relation.connective || DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR;
-
-    return relation.when.reduce((hidden: boolean, condition: DynamicFormControlCondition, index: number) => {
-
-        const relatedControl = group.get(condition.id);
-
-        if (relatedControl && relation.action === DYNAMIC_FORM_CONTROL_STATE_HIDDEN) {
-
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_AND && !hidden) {
-                return false;
-            }
-
-            if (index > 0 && operator === DYNAMIC_FORM_CONTROL_RELATION_OPERATOR_OR && hidden) {
-                return true;
-            }
-
-            return condition.value === relatedControl.value || condition.status === relatedControl.status;
-        }
-
-        return false;
-
-    }, false);
-}
-

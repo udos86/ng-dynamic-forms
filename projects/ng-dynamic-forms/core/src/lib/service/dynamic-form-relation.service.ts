@@ -2,14 +2,15 @@ import { Injectable } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
 import {
-    findDisabledRelation, findHiddenRelation,
-    findRequiredRelation,
-    matchesDisabledRelation,
-    matchesHiddenRelation,
-    matchesRequiredRelation
-} from "../utils/relation.utils";
+    STATE_DISABLED,
+    STATE_ENABLED,
+    STATE_HIDDEN,
+    STATE_OPTIONAL,
+    STATE_REQUIRED,
+    STATE_VISIBLE,
+} from "../model/misc/dynamic-form-control-relation.model";
+import { findRelationByState, matchesRelation } from "../utils/relation.utils";
 import { isObject } from "../utils/core.utils";
 
 @Injectable({
@@ -19,32 +20,50 @@ export class DynamicFormRelationService {
 
     constructor(private validationService: DynamicFormValidationService) {}
 
-    private updateByDisabledRelation(model: DynamicFormControlModel, group: FormGroup, relation: DynamicFormControlRelation): void {
-        model.disabledUpdates.next(matchesDisabledRelation(relation, group));
-    }
+    private updateByDisabledRelation(model: DynamicFormControlModel, group: FormGroup): void {
 
-    private updateByHiddenRelation(model: DynamicFormControlModel, group: FormGroup, relation: DynamicFormControlRelation): void {
-        model.hidden = matchesHiddenRelation(relation, group);
-    }
+        const relation = findRelationByState(model.relation, [STATE_DISABLED, STATE_ENABLED]);
 
-    private updateByRequiredRelation(model: DynamicFormControlModel, control: FormControl, group: FormGroup, relation: DynamicFormControlRelation): void {
-
-        let validatorsConfig = null;
-
-        if (matchesRequiredRelation(relation, group)) {
-
-            validatorsConfig = isObject(model.validators) ? {...model.validators, required: null} : {required: null};
-
-        } else {
-
-            if (isObject(model.validators)) {
-
-                delete model.validators["required"];
-                validatorsConfig = {...model.validators};
-            }
+        if (relation) {
+            model.disabledUpdates.next(matchesRelation(relation, group, STATE_DISABLED, STATE_ENABLED));
         }
+    }
 
-        this.validationService.updateValidators(validatorsConfig, control, model);
+    private updateByHiddenRelation(model: DynamicFormControlModel, group: FormGroup): void {
+
+        const relation = findRelationByState(model.relation, [STATE_HIDDEN, STATE_VISIBLE]);
+
+        if (relation) {
+            model.hidden = matchesRelation(relation, group, STATE_HIDDEN, STATE_VISIBLE);
+        }
+    }
+
+    private updateByRequiredRelation(model: DynamicFormControlModel, group: FormGroup, control: FormControl): void {
+
+        const relation = findRelationByState(model.relation, [STATE_REQUIRED, STATE_OPTIONAL]);
+
+        if (relation) {
+
+            let validatorsConfig = null;
+
+            if (matchesRelation(relation, group, STATE_REQUIRED, STATE_OPTIONAL)) {
+
+                validatorsConfig = isObject(model.validators) ? {
+                    ...model.validators,
+                    required: null
+                } : {required: null};
+
+            } else {
+
+                if (isObject(model.validators)) {
+
+                    delete model.validators["required"];
+                    validatorsConfig = {...model.validators};
+                }
+            }
+
+            this.validationService.updateValidators(validatorsConfig, control, model);
+        }
     }
 
     getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): FormControl[] {
@@ -67,22 +86,10 @@ export class DynamicFormRelationService {
         return controls;
     }
 
-    updateByRelation(model: DynamicFormControlModel, control: FormControl, group: FormGroup): void {
+    updateByRelations(model: DynamicFormControlModel, control: FormControl, group: FormGroup): void {
 
-        const disabledRelation = findDisabledRelation(model.relation);
-        const hiddenRelation = findHiddenRelation(model.relation);
-        const requiredRelation = findRequiredRelation(model.relation);
-
-        if (disabledRelation) {
-            this.updateByDisabledRelation(model, group, disabledRelation);
-        }
-
-        if (hiddenRelation) {
-            this.updateByHiddenRelation(model, group, hiddenRelation);
-        }
-
-        if (requiredRelation) {
-            this.updateByRequiredRelation(model, control, group, requiredRelation);
-        }
+        this.updateByDisabledRelation(model, group);
+        this.updateByHiddenRelation(model, group);
+        this.updateByRequiredRelation(model, group, control);
     }
 }
