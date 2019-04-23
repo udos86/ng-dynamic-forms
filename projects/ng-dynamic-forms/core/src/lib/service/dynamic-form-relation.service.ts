@@ -1,70 +1,20 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, Injector, Optional } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { DYNAMIC_MATCHERS, DynamicFormControlMatcher } from "./dynamic-form-relation.matchers";
 import {
-    STATE_DISABLED,
-    STATE_ENABLED,
-    STATE_HIDDEN,
-    STATE_OPTIONAL,
-    STATE_REQUIRED,
-    STATE_VISIBLE,
+    AND_OPERATOR,
+    DynamicFormControlCondition,
+    DynamicFormControlRelation,
+    OR_OPERATOR
 } from "../model/misc/dynamic-form-control-relation.model";
-import { findRelationByState, matchesRelation } from "../utils/relation.utils";
-import { isObject } from "../utils/core.utils";
 
 @Injectable({
     providedIn: "root"
 })
 export class DynamicFormRelationService {
 
-    constructor(private validationService: DynamicFormValidationService) {}
-
-    private updateByDisabledRelation(model: DynamicFormControlModel, group: FormGroup): void {
-
-        const relation = findRelationByState(model.relation, [STATE_DISABLED, STATE_ENABLED]);
-
-        if (relation) {
-            model.disabledUpdates.next(matchesRelation(relation, group, STATE_DISABLED, STATE_ENABLED));
-        }
-    }
-
-    private updateByHiddenRelation(model: DynamicFormControlModel, group: FormGroup): void {
-
-        const relation = findRelationByState(model.relation, [STATE_HIDDEN, STATE_VISIBLE]);
-
-        if (relation) {
-            model.hidden = matchesRelation(relation, group, STATE_HIDDEN, STATE_VISIBLE);
-        }
-    }
-
-    private updateByRequiredRelation(model: DynamicFormControlModel, group: FormGroup, control: FormControl): void {
-
-        const relation = findRelationByState(model.relation, [STATE_REQUIRED, STATE_OPTIONAL]);
-
-        if (relation) {
-
-            let validatorsConfig = null;
-
-            if (matchesRelation(relation, group, STATE_REQUIRED, STATE_OPTIONAL)) {
-
-                validatorsConfig = isObject(model.validators) ? {
-                    ...model.validators,
-                    required: null
-                } : {required: null};
-
-            } else {
-
-                if (isObject(model.validators)) {
-
-                    delete model.validators["required"];
-                    validatorsConfig = {...model.validators};
-                }
-            }
-
-            this.validationService.updateValidators(validatorsConfig, control, model);
-        }
-    }
+    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private DYNAMIC_MATCHERS: DynamicFormControlMatcher[], private injector: Injector) {}
 
     getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): FormControl[] {
 
@@ -86,10 +36,68 @@ export class DynamicFormRelationService {
         return controls;
     }
 
+    findRelation(relations: DynamicFormControlRelation[], states: string[]): DynamicFormControlRelation | null {
+
+        const relation = relations.find(relation => {
+            return states.some(state => state === relation.state);
+        });
+
+        return relation || null;
+    }
+
+    matchesCondition(relation: DynamicFormControlRelation, group: FormGroup, matcher: DynamicFormControlMatcher): boolean {
+
+        const operator = relation.operator || OR_OPERATOR;
+
+        return relation.when.reduce((hasMatched: boolean, condition: DynamicFormControlCondition, index: number) => {
+
+            const relatedControl = group.get(condition.id);
+
+            if (relatedControl && relation.state === matcher.matchState) {
+
+                if (index > 0 && operator === AND_OPERATOR && !hasMatched) {
+                    return false;
+                }
+
+                if (index > 0 && operator === OR_OPERATOR && hasMatched) {
+                    return true;
+                }
+
+                return condition.value === relatedControl.value || condition.status === relatedControl.status;
+            }
+
+            if (relatedControl && relation.state === matcher.opposingState) {
+
+                if (index > 0 && operator === AND_OPERATOR && hasMatched) {
+                    return true;
+                }
+
+                if (index > 0 && operator === OR_OPERATOR && !hasMatched) {
+                    return false;
+                }
+
+                return !(condition.value === relatedControl.value || condition.status === relatedControl.status);
+            }
+
+            return false;
+
+        }, false);
+    }
+
     updateByRelations(model: DynamicFormControlModel, control: FormControl, group: FormGroup): void {
 
-        this.updateByDisabledRelation(model, group);
-        this.updateByHiddenRelation(model, group);
-        this.updateByRequiredRelation(model, group, control);
+        if (Array.isArray(this.DYNAMIC_MATCHERS)) {
+
+            this.DYNAMIC_MATCHERS.forEach(matcher => {
+
+                const relation = this.findRelation(model.relation, [matcher.matchState, matcher.opposingState]);
+
+                if (relation) {
+
+                    const hasMatch = this.matchesCondition(relation, group, matcher);
+                    matcher.onMatch(hasMatch, model, control, this.injector);
+                }
+            });
+        }
     }
 }

@@ -9,8 +9,15 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { NG_ASYNC_VALIDATORS, NG_VALIDATORS, ReactiveFormsModule } from "@angular/forms";
 import { NgbDatepickerModule, NgbRatingModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { BsDatepickerModule, TimepickerModule } from "ngx-bootstrap";
-
-import { DYNAMIC_VALIDATORS, DynamicFormsCoreModule, Validator, ValidatorFactory } from "@ng-dynamic-forms/core";
+import {
+    DYNAMIC_VALIDATORS,
+    DynamicFormsCoreModule,
+    Validator,
+    ValidatorFactory,
+    DISABLED_MATCHER,
+    HIDDEN_MATCHER,
+    REQUIRED_MATCHER
+} from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -112,6 +119,9 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
                 ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
             ])
         },
+        DISABLED_MATCHER,
+        HIDDEN_MATCHER,
+        REQUIRED_MATCHER,
         {
             provide: MAT_CHIPS_DEFAULT_OPTIONS,
             useValue: {

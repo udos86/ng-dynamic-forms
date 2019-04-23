@@ -6,7 +6,9 @@ import {
     DynamicRadioGroupModel,
     DynamicSelectModel,
     DynamicSwitchModel,
-    DynamicTextAreaModel
+    DynamicTextAreaModel,
+    STATE_DISABLED,
+    STATE_REQUIRED
 } from "@ng-dynamic-forms/core";
 import { BehaviorSubject } from "rxjs";
 
@@ -252,22 +254,12 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
         placeholder: "Personal Note",
         relation: [
             {
-                action: "REQUIRED",
-                when: [
-                    {
-                        id: "payment",
-                        value: "paypal"
-                    }
-                ]
+                state: STATE_DISABLED,
+                when: [{id: "payment", value: "bitcoin"}]
             },
             {
-                action: "DISABLE",
-                when: [
-                    {
-                        id: "payment",
-                        value: "bitcoin"
-                    }
-                ]
+                state: STATE_REQUIRED,
+                when: [{id: "payment", value: "paypal"}]
             }
         ],
     }),

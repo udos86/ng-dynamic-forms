@@ -1,5 +1,5 @@
-export const STATE_DISABLED = "DISABLE";
-export const STATE_ENABLED = "ENABLE";
+export const STATE_DISABLED = "DISABLED";
+export const STATE_ENABLED = "ENABLED";
 export const STATE_HIDDEN = "HIDDEN";
 export const STATE_VISIBLE = "VISIBLE";
 export const STATE_REQUIRED = "REQUIRED";
@@ -17,7 +17,7 @@ export interface DynamicFormControlCondition {
 
 export interface DynamicFormControlRelation {
 
-    action: string;
-    connective?: string;
+    state: string;
+    operator?: string;
     when: DynamicFormControlCondition[];
 }

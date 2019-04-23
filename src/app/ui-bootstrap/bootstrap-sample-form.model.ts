@@ -8,7 +8,10 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel,
     DynamicFormArrayModel,
-    DynamicFormGroupModel
+    DynamicFormGroupModel,
+    STATE_DISABLED,
+    STATE_HIDDEN,
+    STATE_REQUIRED
 } from "@ng-dynamic-forms/core";
 import { of } from "rxjs/observable/of";
 
@@ -153,15 +156,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 placeholder: "example Textarea",
                 relation: [
                     {
-                        action: "DISABLE",
+                        state: STATE_DISABLED,
                         when: [{id: "bsRadioGroup", value: "option-1"}]
                     },
                     {
-                        action: "HIDDEN",
+                        state: STATE_HIDDEN,
                         when: [{id: "bsRadioGroup", value: "option-2"}]
                     },
                     {
-                        action: "REQUIRED",
+                        state: STATE_REQUIRED,
                         when: [{id: "bsRadioGroup", value: "option-3"}]
                     }
                 ],
