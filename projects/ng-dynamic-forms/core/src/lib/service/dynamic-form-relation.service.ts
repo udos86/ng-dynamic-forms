@@ -14,7 +14,8 @@ import {
 })
 export class DynamicFormRelationService {
 
-    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private DYNAMIC_MATCHERS: DynamicFormControlMatcher[], private injector: Injector) {}
+    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private DYNAMIC_MATCHERS: DynamicFormControlMatcher[],
+                private injector: Injector) {}
 
     getRelatedFormControl(group: FormGroup, condition: DynamicFormControlCondition): FormControl | never {
 
@@ -48,10 +49,10 @@ export class DynamicFormRelationService {
         return controls;
     }
 
-    findRelation(relations: DynamicFormControlRelation[], states: string[]): DynamicFormControlRelation | null {
+    findRelation(relations: DynamicFormControlRelation[], matcher: DynamicFormControlMatcher): DynamicFormControlRelation | null {
 
         const relation = relations.find(relation => {
-            return states.some(state => state === relation.state);
+            return relation.state === matcher.matchState || relation.state === matcher.opposingState;
         });
 
         return relation || null;
@@ -102,7 +103,7 @@ export class DynamicFormRelationService {
 
             this.DYNAMIC_MATCHERS.forEach(matcher => {
 
-                const relation = this.findRelation(model.relation, [matcher.matchState, matcher.opposingState]);
+                const relation = this.findRelation(model.relation, matcher);
 
                 if (relation) {
 

@@ -16,7 +16,6 @@ export interface DynamicFormControlMatcher {
 
     matchState: string;
     opposingState: string | null;
-
     onMatch(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
 }
 
@@ -50,10 +49,7 @@ export const RequiredMatcher: DynamicFormControlMatcher = {
 
         if (hasMatch) {
 
-            validatorsConfig = isObject(model.validators) ? {
-                ...model.validators,
-                required: null
-            } : {required: null};
+            validatorsConfig = isObject(model.validators) ? {...model.validators, required: null} : {required: null};
 
         } else {
 
