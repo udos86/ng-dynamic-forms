@@ -69,12 +69,24 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 placeholder: "Just some input",
                 prefix: "Prefix",
                 suffix: "Suffix",
+                relation: [
+                    {
+                        state: STATE_DISABLED,
+                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-1"}]
+                    },
+                    {
+                        state: STATE_HIDDEN,
+                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-2"}]
+                    },
+                    {
+                        state: STATE_REQUIRED,
+                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-3"}]
+                    }
+                ],
                 validators: {
-                    required: null,
                     maxLength: 5
                 },
                 errorMessages: {
-                    required: "{{ label }} is required",
                     maxLength: "Max character count is 5"
                 }
             }),

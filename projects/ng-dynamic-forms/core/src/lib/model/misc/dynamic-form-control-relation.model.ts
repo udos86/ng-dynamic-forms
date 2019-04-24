@@ -10,7 +10,8 @@ export const OR_OPERATOR = "OR";
 
 export interface DynamicFormControlCondition {
 
-    id: string;
+    id?: string;
+    rootPath?: string;
     status?: string;
     value?: any;
 }

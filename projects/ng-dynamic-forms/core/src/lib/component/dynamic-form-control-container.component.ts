@@ -249,14 +249,17 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     */
     protected setControlRelations(): void {
 
+        //this.relationService.watchRelation(this.model, this.group, this.control);
+
+
         this.relationService.getRelatedFormControls(this.model, this.group).forEach(relatedFormControl => {
 
             this.subscriptions.push(relatedFormControl.valueChanges.pipe(startWith(relatedFormControl.value)).subscribe(() => {
-                this.relationService.updateByRelations(this.model, this.control, this.group);
+                this.relationService.watchRelation(this.model, this.group, this.control);
             }));
 
             this.subscriptions.push(relatedFormControl.statusChanges.pipe(startWith(relatedFormControl.status)).subscribe(() => {
-                this.relationService.updateByRelations(this.model, this.control, this.group);
+                this.relationService.watchRelation(this.model, this.group, this.control,);
             }));
         });
     }

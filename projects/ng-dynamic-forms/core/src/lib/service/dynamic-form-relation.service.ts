@@ -16,7 +16,19 @@ export class DynamicFormRelationService {
 
     constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private DYNAMIC_MATCHERS: DynamicFormControlMatcher[], private injector: Injector) {}
 
-    getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): FormControl[] {
+    getRelatedFormControl(group: FormGroup, condition: DynamicFormControlCondition): FormControl | never {
+
+        const control = condition.rootPath ?
+            group.root.get(condition.rootPath) as FormControl : group.get(condition.id) as FormControl;
+
+        if (control === null) {
+            throw new Error(`No related form control with id ${condition.id} could be found`);
+        }
+
+        return control;
+    }
+
+    getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): FormControl[] | never {
 
         const controls: FormControl[] = [];
 
@@ -26,7 +38,7 @@ export class DynamicFormRelationService {
                 throw new Error(`FormControl ${model.id} cannot depend on itself`);
             }
 
-            const control = group.get(condition.id) as FormControl;
+            const control = this.getRelatedFormControl(group, condition);
 
             if (control && !controls.some(controlElement => controlElement === control)) {
                 controls.push(control);
@@ -51,7 +63,7 @@ export class DynamicFormRelationService {
 
         return relation.when.reduce((hasMatched: boolean, condition: DynamicFormControlCondition, index: number) => {
 
-            const relatedControl = group.get(condition.id);
+            const relatedControl = this.getRelatedFormControl(group, condition);
 
             if (relatedControl && relation.state === matcher.matchState) {
 
@@ -84,7 +96,7 @@ export class DynamicFormRelationService {
         }, false);
     }
 
-    updateByRelations(model: DynamicFormControlModel, control: FormControl, group: FormGroup): void {
+    watchRelation(model: DynamicFormControlModel, group: FormGroup, control: FormControl): void {
 
         if (Array.isArray(this.DYNAMIC_MATCHERS)) {
 
