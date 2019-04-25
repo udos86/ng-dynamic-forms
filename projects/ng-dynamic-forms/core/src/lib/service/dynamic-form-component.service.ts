@@ -45,6 +45,7 @@ export class DynamicFormComponentService {
         } else {
             this.componentRefs[model.id] = instance;
         }
+
     }
 
     unregisterFormControlRef(modelId: string, index?: number): void {

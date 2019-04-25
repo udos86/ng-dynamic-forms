@@ -33,7 +33,7 @@ export class DynamicFormRelationService {
 
         const controls: FormControl[] = [];
 
-        model.relation.forEach(relation => relation.when.forEach(condition => {
+        model.relations.forEach(relation => relation.when.forEach(condition => {
 
             if (model.id === condition.id) {
                 throw new Error(`FormControl ${model.id} cannot depend on itself`);
@@ -52,7 +52,7 @@ export class DynamicFormRelationService {
     findRelation(relations: DynamicFormControlRelation[], matcher: DynamicFormControlMatcher): DynamicFormControlRelation | null {
 
         const relation = relations.find(relation => {
-            return relation.state === matcher.matchState || relation.state === matcher.opposingState;
+            return relation.match === matcher.match || relation.match === matcher.opposingMatch;
         });
 
         return relation || null;
@@ -62,30 +62,30 @@ export class DynamicFormRelationService {
 
         const operator = relation.operator || OR_OPERATOR;
 
-        return relation.when.reduce((hasMatched: boolean, condition: DynamicFormControlCondition, index: number) => {
+        return relation.when.reduce((hasAlreadyMatched: boolean, condition: DynamicFormControlCondition, index: number) => {
 
             const relatedControl = this.getRelatedFormControl(group, condition);
 
-            if (relatedControl && relation.state === matcher.matchState) {
+            if (relatedControl && relation.match === matcher.match) {
 
-                if (index > 0 && operator === AND_OPERATOR && !hasMatched) {
+                if (index > 0 && operator === AND_OPERATOR && !hasAlreadyMatched) {
                     return false;
                 }
 
-                if (index > 0 && operator === OR_OPERATOR && hasMatched) {
+                if (index > 0 && operator === OR_OPERATOR && hasAlreadyMatched) {
                     return true;
                 }
 
                 return condition.value === relatedControl.value || condition.status === relatedControl.status;
             }
 
-            if (relatedControl && relation.state === matcher.opposingState) {
+            if (relatedControl && relation.match === matcher.opposingMatch) {
 
-                if (index > 0 && operator === AND_OPERATOR && hasMatched) {
+                if (index > 0 && operator === AND_OPERATOR && hasAlreadyMatched) {
                     return true;
                 }
 
-                if (index > 0 && operator === OR_OPERATOR && !hasMatched) {
+                if (index > 0 && operator === OR_OPERATOR && !hasAlreadyMatched) {
                     return false;
                 }
 
@@ -103,12 +103,12 @@ export class DynamicFormRelationService {
 
             this.DYNAMIC_MATCHERS.forEach(matcher => {
 
-                const relation = this.findRelation(model.relation, matcher);
+                const relation = this.findRelation(model.relations, matcher);
 
                 if (relation) {
 
                     const hasMatch = this.matchesCondition(relation, group, matcher);
-                    matcher.onMatch(hasMatch, model, control, this.injector);
+                    matcher.onChange(hasMatch, model, control, this.injector);
                 }
             });
         }

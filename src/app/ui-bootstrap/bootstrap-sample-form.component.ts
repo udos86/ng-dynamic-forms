@@ -22,11 +22,11 @@ export class BootstrapSampleFormComponent implements OnInit {
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = BOOTSTRAP_SAMPLE_FORM_LAYOUT;
 
-    exampleControl: FormControl;
-    exampleModel: DynamicInputModel;
+    sampleFormControl: FormControl;
+    sampleFormControlModel: DynamicInputModel;
 
-    arrayControl: FormArray;
-    arrayModel: DynamicFormArrayModel;
+    formArray: FormArray;
+    formArrayModel: DynamicFormArrayModel;
 
     constructor(private formService: DynamicFormService) {}
 
@@ -34,32 +34,28 @@ export class BootstrapSampleFormComponent implements OnInit {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.exampleControl = this.formGroup.get("bsFormGroup1").get("bsInput") as FormControl;
-        this.exampleModel = this.formService.findById("bsInput", this.formModel) as DynamicInputModel;
-
-        this.arrayControl = this.formGroup.get("bsFormGroup2").get("bsFormArray") as FormArray;
-        this.arrayModel = this.formService.findById("bsFormArray", this.formModel) as DynamicFormArrayModel;
+        this.sampleFormControlModel = this.formService.findById("bsInput", this.formModel) as DynamicInputModel;
+        this.sampleFormControl = this.formService.findControlByModel(this.sampleFormControlModel, this.formGroup) as FormControl;
     }
 
-    add() {
-        this.formService.addFormArrayGroup(this.arrayControl, this.arrayModel);
+    getFormArray(model: DynamicFormArrayModel, group: FormGroup): FormArray {
+        return this.formService.findControlByModel(model, group) as FormArray;
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
-        this.formService.insertFormArrayGroup(index, this.arrayControl, context);
-        console.log(this.formModel);
+        this.formService.insertFormArrayGroup(index, this.getFormArray(context, this.formGroup), context);
     }
 
     remove(context: DynamicFormArrayModel, index: number) {
-        this.formService.removeFormArrayGroup(index, this.arrayControl, context);
+        this.formService.removeFormArrayGroup(index, this.getFormArray(context, this.formGroup), context);
     }
 
     move(context: DynamicFormArrayModel, index: number, step: number) {
-        this.formService.moveFormArrayGroup(index, step, this.arrayControl, context);
+        this.formService.moveFormArrayGroup(index, step, this.getFormArray(context, this.formGroup), context);
     }
 
     clear() {
-        this.formService.clearFormArray(this.arrayControl, this.arrayModel);
+        this.formService.clearFormArray(this.formArray, this.formArrayModel);
     }
 
     test() {

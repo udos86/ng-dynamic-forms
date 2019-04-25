@@ -7,8 +7,8 @@ import {
     DynamicSelectModel,
     DynamicSwitchModel,
     DynamicTextAreaModel,
-    STATE_DISABLED,
-    STATE_REQUIRED
+    MATCH_DISABLED,
+    MATCH_REQUIRED
 } from "@ng-dynamic-forms/core";
 import { BehaviorSubject } from "rxjs";
 
@@ -252,13 +252,13 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
         id: "note",
         rows: 3,
         placeholder: "Personal Note",
-        relation: [
+        relations: [
             {
-                state: STATE_DISABLED,
+                match: MATCH_DISABLED,
                 when: [{id: "payment", value: "bitcoin"}]
             },
             {
-                state: STATE_REQUIRED,
+                match: MATCH_REQUIRED,
                 when: [{id: "payment", value: "paypal"}]
             }
         ],

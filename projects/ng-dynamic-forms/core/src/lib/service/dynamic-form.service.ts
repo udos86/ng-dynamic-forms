@@ -311,6 +311,16 @@ export class DynamicFormService {
     }
 
 
+    findModelById(id: string, formModel: DynamicFormModel): DynamicFormControlModel | null {
+        return this.findById(id, formModel);
+    }
+
+
+    findControlByModel(model: DynamicFormControlModel, group: FormGroup): AbstractControl | null {
+        return group.root.get(this.getPath(model).join("."));
+    }
+
+
     fromJSON(json: string | object[]): DynamicFormModel | never {
 
         let formModelJSON = isString(json) ? JSON.parse(json, parseReviver) : json,

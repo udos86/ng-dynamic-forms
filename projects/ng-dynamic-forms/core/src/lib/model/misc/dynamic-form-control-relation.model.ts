@@ -1,9 +1,9 @@
-export const STATE_DISABLED = "DISABLED";
-export const STATE_ENABLED = "ENABLED";
-export const STATE_HIDDEN = "HIDDEN";
-export const STATE_VISIBLE = "VISIBLE";
-export const STATE_REQUIRED = "REQUIRED";
-export const STATE_OPTIONAL = "OPTIONAL";
+export const MATCH_DISABLED = "DISABLED";
+export const MATCH_ENABLED = "ENABLED";
+export const MATCH_HIDDEN = "HIDDEN";
+export const MATCH_OPTIONAL = "OPTIONAL";
+export const MATCH_REQUIRED = "REQUIRED";
+export const MATCH_VISIBLE = "VISIBLE";
 
 export const AND_OPERATOR = "AND";
 export const OR_OPERATOR = "OR";
@@ -18,7 +18,7 @@ export interface DynamicFormControlCondition {
 
 export interface DynamicFormControlRelation {
 
-    state: string;
+    match: string;
     operator?: string;
     when: DynamicFormControlCondition[];
 }

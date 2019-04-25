@@ -8,9 +8,9 @@ import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model
 import {
     AND_OPERATOR,
     OR_OPERATOR,
-    STATE_DISABLED,
-    STATE_ENABLED,
-    STATE_REQUIRED
+    MATCH_DISABLED,
+    MATCH_ENABLED,
+    MATCH_REQUIRED
 } from "../model/misc/dynamic-form-control-relation.model";
 import {
     DISABLED_MATCHER,
@@ -26,7 +26,7 @@ describe("DynamicFormRelationService test suite", () => {
         group: FormGroup,
         model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"}),
         rel1 = {
-            state: STATE_DISABLED,
+            state: MATCH_DISABLED,
             operator: OR_OPERATOR,
             when: [
                 {
@@ -40,7 +40,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel2 = {
-            state: STATE_ENABLED,
+            state: MATCH_ENABLED,
             operator: AND_OPERATOR,
             when: [
                 {
@@ -54,7 +54,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel3 = {
-            state: STATE_DISABLED,
+            state: MATCH_DISABLED,
             operator: AND_OPERATOR,
             when: [
                 {
@@ -68,7 +68,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel4 = {
-            state: STATE_ENABLED,
+            state: MATCH_ENABLED,
             operator: OR_OPERATOR,
             when: [
                 {
@@ -82,7 +82,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel5 = {
-            state: STATE_DISABLED,
+            state: MATCH_DISABLED,
             operator: OR_OPERATOR,
             when: [
                 {
@@ -96,7 +96,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel6 = {
-            state: STATE_REQUIRED,
+            state: MATCH_REQUIRED,
             operator: OR_OPERATOR,
             when: [
                 {
@@ -110,7 +110,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel7 = {
-            state: STATE_REQUIRED,
+            state: MATCH_REQUIRED,
             operator: AND_OPERATOR,
             when: [
                 {
@@ -124,7 +124,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         },
         rel8 = {
-            state: STATE_REQUIRED,
+            state: MATCH_REQUIRED,
             operator: OR_OPERATOR,
             when: [
                 {
@@ -173,51 +173,51 @@ describe("DynamicFormRelationService test suite", () => {
 
     it("should find an activation relation correctly", () => {
 
-        model.relation = [rel1];
-        expect(service.findRelation(model.relation, [rel1.state])).toBe(rel1);
+        model.relations = [rel1];
+        expect(service.findRelation(model.relations, [rel1.state])).toBe(rel1);
 
-        model.relation = [rel2];
-        expect(service.findRelation(model.relation, [rel2.state])).toBe(rel2);
+        model.relations = [rel2];
+        expect(service.findRelation(model.relations, [rel2.state])).toBe(rel2);
 
-        model.relation = [rel6];
-        expect(service.findRelation(model.relation, [rel6.state])).toBe(rel6);
+        model.relations = [rel6];
+        expect(service.findRelation(model.relations, [rel6.state])).toBe(rel6);
     });
 
     it("should check if form control is to be disabled correctly", () => {
 
-        model.relation = [rel1];
-        expect(service.matchesCondition(model.relation[0], group, DisabledMatcher)).toBe(false);
+        model.relations = [rel1];
+        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(false);
 
-        model.relation = [rel2];
-        expect(service.matchesCondition(model.relation[0], group, DisabledMatcher)).toBe(true);
+        model.relations = [rel2];
+        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(true);
 
-        model.relation = [rel3];
-        expect(service.matchesCondition(model.relation[0], group, DisabledMatcher)).toBe(false);
+        model.relations = [rel3];
+        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(false);
 
-        model.relation = [rel4];
-        expect(service.matchesCondition(model.relation[0], group, DisabledMatcher)).toBe(false);
+        model.relations = [rel4];
+        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(false);
 
-        model.relation = [rel5];
-        expect(service.matchesCondition(model.relation[0], group, DisabledMatcher)).toBe(true);
+        model.relations = [rel5];
+        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(true);
 
     });
 
     it("should check if form control is to be required correctly", () => {
 
-        model.relation = [rel6];
-        expect(service.matchesCondition(model.relation[0], group, RequiredMatcher)).toBe(false);
+        model.relations = [rel6];
+        expect(service.matchesCondition(model.relations[0], group, RequiredMatcher)).toBe(false);
 
-        model.relation = [rel7];
-        expect(service.matchesCondition(model.relation[0], group, RequiredMatcher)).toBe(false);
+        model.relations = [rel7];
+        expect(service.matchesCondition(model.relations[0], group, RequiredMatcher)).toBe(false);
 
-        model.relation = [rel8];
-        expect(service.matchesCondition(model.relation[0], group, RequiredMatcher)).toBe(true);
+        model.relations = [rel8];
+        expect(service.matchesCondition(model.relations[0], group, RequiredMatcher)).toBe(true);
     });
 
     it("should get all related form controls correctly", () => {
 
-        model.relation = [{
-            state: STATE_DISABLED,
+        model.relations = [{
+            state: MATCH_DISABLED,
             operator: OR_OPERATOR,
             when: [
                 {
@@ -236,8 +236,8 @@ describe("DynamicFormRelationService test suite", () => {
 
     it("should throw when model depends on itself", () => {
 
-        model.relation = [{
-            state: STATE_DISABLED,
+        model.relations = [{
+            state: MATCH_DISABLED,
             when: [
                 {
                     id: "testTextArea",

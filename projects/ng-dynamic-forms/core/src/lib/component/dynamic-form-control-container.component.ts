@@ -110,7 +110,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                     this.subscriptions.push(model.valueUpdates.subscribe(value => this.onModelValueUpdates(value)));
                 }
 
-                if (this.model.relation.length > 0) {
+                if (this.model.relations.length > 0) {
                     this.setControlRelations();
                 }
             }

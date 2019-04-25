@@ -9,9 +9,9 @@ import {
     DynamicTimePickerModel,
     DynamicFormArrayModel,
     DynamicFormGroupModel,
-    STATE_DISABLED,
-    STATE_HIDDEN,
-    STATE_REQUIRED
+    MATCH_DISABLED,
+    MATCH_HIDDEN,
+    MATCH_REQUIRED
 } from "@ng-dynamic-forms/core";
 import { of } from "rxjs/observable/of";
 
@@ -69,17 +69,17 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 placeholder: "Just some input",
                 prefix: "Prefix",
                 suffix: "Suffix",
-                relation: [
+                relations: [
                     {
-                        state: STATE_DISABLED,
+                        match: MATCH_DISABLED,
                         when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-1"}]
                     },
                     {
-                        state: STATE_HIDDEN,
+                        match: MATCH_HIDDEN,
                         when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-2"}]
                     },
                     {
-                        state: STATE_REQUIRED,
+                        match: MATCH_REQUIRED,
                         when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-3"}]
                     }
                 ],
@@ -166,17 +166,17 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 label: "Textarea",
                 rows: 5,
                 placeholder: "example Textarea",
-                relation: [
+                relations: [
                     {
-                        state: STATE_DISABLED,
+                        match: MATCH_DISABLED,
                         when: [{id: "bsRadioGroup", value: "option-1"}]
                     },
                     {
-                        state: STATE_HIDDEN,
+                        match: MATCH_HIDDEN,
                         when: [{id: "bsRadioGroup", value: "option-2"}]
                     },
                     {
-                        state: STATE_REQUIRED,
+                        match: MATCH_REQUIRED,
                         when: [{id: "bsRadioGroup", value: "option-3"}]
                     }
                 ],
@@ -209,8 +209,23 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     return [
                         new DynamicInputModel({
                             id: "bsArrayInput",
-                            label: "Label",
+                            //label: "Label",
                             placeholder: "Just some input"
+                        }),
+                        new DynamicFormArrayModel({
+
+                            id: "bsNestedFormArray",
+                            initialCount: 3,
+                            label: "Nested Form Array",
+                            groupFactory: () => {
+                                return [
+                                    new DynamicInputModel({
+                                        id: "bsArrayInput3",
+                                        //label: "Label",
+                                        placeholder: "Nestedinput"
+                                    })
+                                ];
+                            }
                         })
                     ];
                 }
