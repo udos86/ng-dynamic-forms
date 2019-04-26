@@ -71,7 +71,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
 
-        let controlLayout = (this.layout && this.layout[model.id]) || model.layout as DynamicFormControlLayout;
+        let controlLayout = this.layoutService.findByModel(model, this.layout) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }

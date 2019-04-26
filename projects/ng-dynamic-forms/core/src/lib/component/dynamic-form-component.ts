@@ -35,7 +35,7 @@ export abstract class DynamicFormComponent {
 
     getClass(model: DynamicFormControlModel, context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace): string {
 
-        let controlLayout = this.layoutService.findById(model.id, this.formLayout) || model.layout as DynamicFormControlLayout;
+        let controlLayout = this.layoutService.findByModel(model, this.formLayout) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }

@@ -132,12 +132,11 @@ export class DynamicFormService {
 
 
     getPathSegment(model: DynamicPathable): string {
-
         return model instanceof DynamicFormArrayGroupModel ? model.index.toString() : (model as DynamicFormControlModel).id;
     }
 
 
-    getPath(model: DynamicPathable): string[] {
+    getPath(model: DynamicPathable, join: boolean = false): string[] | string {
 
         let path = [this.getPathSegment(model)],
             parent = model.parent;
@@ -148,7 +147,7 @@ export class DynamicFormService {
             parent = parent.parent;
         }
 
-        return path;
+        return join ? path.join(".") : path;
     }
 
 
@@ -317,7 +316,7 @@ export class DynamicFormService {
 
 
     findControlByModel(model: DynamicFormControlModel, group: FormGroup): AbstractControl | null {
-        return group.root.get(this.getPath(model).join("."));
+        return group.root.get(this.getPath(model, true));
     }
 
 

@@ -37,6 +37,28 @@ export class DynamicFormLayoutService {
         return null;
     }
 
+    findByModel(model: DynamicFormControlModel, formLayout: DynamicFormLayout | null): DynamicFormControlLayout | null {
+
+        let controlLayout: DynamicFormControlLayout = null;
+
+        if (isObject(formLayout)) {
+
+            for (let key of Object.keys(formLayout)) {
+
+                key.split(",").forEach(substring => {
+
+                    const selector = substring.trim();
+                    if (key === "bsDatePicker") debugger;
+                    if (selector === model.id || selector === model.type) {
+                        controlLayout = formLayout[key];
+                    }
+                });
+            }
+        }
+
+        return controlLayout;
+    }
+
     filterTemplatesByModel(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] {
 
         const filterCallback: (template: DynamicTemplateDirective) => boolean = (template: DynamicTemplateDirective) => {

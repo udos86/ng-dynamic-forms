@@ -1,6 +1,6 @@
 export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
-    "bsSelect": {
+    "bsSelect, bsDatePicker, bsCheckboxGroup, bsRadioGroup, bsInput, bsInput2, bsTextArea, bsTimePicker": {
         element: {
             container: "form-group",
             label: "control-label"
@@ -8,85 +8,8 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
         grid: {
             control: "col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsDatePicker": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsInput": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            errors: "col-sm-offset-3 col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsCheckboxGroup": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsRadioGroup": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsInput2": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsTextArea": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            label: "col-sm-3"
-        }
-    },
-
-    "bsTimePicker": {
-        element: {
-            container: "form-group",
-            label: "control-label"
-        },
-        grid: {
-            control: "col-sm-9",
-            label: "col-sm-3"
+            label: "col-sm-3",
+            errors: "col-sm-offset-3 col-sm-9"
         }
     },
 
@@ -105,7 +28,7 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bsFormArray": {
+    "ARRAY": {
         element: {
             container: "form-group form-array",
             label: "control-label"
