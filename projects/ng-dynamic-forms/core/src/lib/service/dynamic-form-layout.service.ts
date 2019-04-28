@@ -48,7 +48,7 @@ export class DynamicFormLayoutService {
                 key.split(",").forEach(substring => {
 
                     const selector = substring.trim();
-                    if (key === "bsDatePicker") debugger;
+
                     if (selector === model.id || selector === model.type) {
                         controlLayout = formLayout[key];
                     }

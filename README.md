@@ -1208,55 +1208,46 @@ Please note that some UI libraries like Kendo UI come with their own text mask i
 
 ## Related Form Controls
 
-In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
+In many forms the state of a certain form control directly depends on the `value` or `status` of some other form control.
 
 So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
 
-Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
+Implementing such a requirement manually would be time-consuming and only lead to undesired boilerplate code.
 
-**Using NG Dynamic Forms however, you can easily define relations between form controls by declaration**: 
+**Using NG Dynamic Forms however, you can easily define relations between form controls**:
 ```typescript
 new DynamicTextAreaModel(
     {
         id: "myTextArea",
         label: "My Textarea",
-        relation: [
+        relations: [
             {
-                action: "DISABLE",
+                match: MATCH_DISABLED,
                 when: [
-                    {
-                        id: "mySelect",
-                        value: "option-3"
-                    }
+                    { id: "mySelect", value: "option-3" }
                 ]
             }
         ]
     }
 ```
 
-The `relation` property may seem a bit oversized at first sight, but that way it allows the flexible declaration of even **multi-related form controls**. 
+The `relations` property allows the flexible declaration of even **multi-related form controls**.
 
 *So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
 
-Just add a second entry to the `when` array and define how both relations should logically be connected via `connective`:
+Just add a second entry to the `when` array and define how both relations should logically be connected via `operator`:
 ```typescript
 new DynamicTextAreaModel(
     {
         id: "myTextArea",
         label: "My Textarea",
-        relation: [
+        relations: [
             {
-                action: "DISABLE",
-                connective: "AND",
+                match: MATCH_DISABLED,
+                operator: AND_OPERATOR,
                 when: [
-                    {
-                        id: "mySelect",
-                        value: "option-3"
-                    },
-                    {
-                        id: "myRadioGroup",
-                        value: "option-4"
-                    }
+                    { id: "mySelect", value: "option-3" },
+                    { id: "myRadioGroup", value: "option-4" }
                 ]
             }
         ]

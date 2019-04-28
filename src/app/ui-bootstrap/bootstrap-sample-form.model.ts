@@ -211,21 +211,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                             id: "bsArrayInput",
                             //label: "Label",
                             placeholder: "Just some input"
-                        }),
-                        new DynamicFormArrayModel({
-
-                            id: "bsNestedFormArray",
-                            initialCount: 3,
-                            label: "Nested Form Array",
-                            groupFactory: () => {
-                                return [
-                                    new DynamicInputModel({
-                                        id: "bsArrayInput3",
-                                        //label: "Label",
-                                        placeholder: "Nestedinput"
-                                    })
-                                ];
-                            }
                         })
                     ];
                 }
