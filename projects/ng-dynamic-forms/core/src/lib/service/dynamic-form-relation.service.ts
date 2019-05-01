@@ -8,6 +8,8 @@ import {
     DynamicFormControlRelation,
     OR_OPERATOR
 } from "../model/misc/dynamic-form-control-relation.model";
+import { startWith } from "rxjs/operators";
+import { merge, Subscription } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -29,9 +31,9 @@ export class DynamicFormRelationService {
         return control;
     }
 
-    getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): FormControl[] | never {
+    resolveRelations(model: DynamicFormControlModel, group: FormGroup): { [id: string]: FormControl } | never {
 
-        const controls: FormControl[] = [];
+        const controls: { [id: string]: FormControl } = {};
 
         model.relations.forEach(relation => relation.when.forEach(condition => {
 
@@ -41,8 +43,8 @@ export class DynamicFormRelationService {
 
             const control = this.getRelatedFormControl(group, condition);
 
-            if (control && !controls.some(controlElement => controlElement === control)) {
-                controls.push(control);
+            if (control && !controls.hasOwnProperty(model.id)) {
+                controls[model.id] = control
             }
         }));
 
@@ -50,12 +52,7 @@ export class DynamicFormRelationService {
     }
 
     findRelation(relations: DynamicFormControlRelation[], matcher: DynamicFormControlMatcher): DynamicFormControlRelation | null {
-
-        const relation = relations.find(relation => {
-            return relation.match === matcher.match || relation.match === matcher.opposingMatch;
-        });
-
-        return relation || null;
+        return relations.find(relation => relation.match === matcher.match || relation.match === matcher.opposingMatch) || null;
     }
 
     matchesCondition(relation: DynamicFormControlRelation, group: FormGroup, matcher: DynamicFormControlMatcher): boolean {
@@ -97,20 +94,33 @@ export class DynamicFormRelationService {
         }, false);
     }
 
-    watchRelation(model: DynamicFormControlModel, group: FormGroup, control: FormControl): void {
+    subscribeRelations(model: DynamicFormControlModel, group: FormGroup, control: FormControl): Subscription[] {
 
-        if (Array.isArray(this.DYNAMIC_MATCHERS)) {
+        const relatedFormControls = this.resolveRelations(model, group), subscriptions: Subscription[] = [];
 
-            this.DYNAMIC_MATCHERS.forEach(matcher => {
+        Object.entries(relatedFormControls).forEach(([_id, relatedControl]) => {
 
-                const relation = this.findRelation(model.relations, matcher);
+            const valueChanges = relatedControl.valueChanges.pipe(startWith(relatedControl.value));
+            const statusChanges = relatedControl.statusChanges.pipe(startWith(relatedControl.status));
 
-                if (relation) {
+            subscriptions.push(merge(valueChanges, statusChanges).subscribe(() => {
 
-                    const hasMatch = this.matchesCondition(relation, group, matcher);
-                    matcher.onChange(hasMatch, model, control, this.injector);
+                if (Array.isArray(this.DYNAMIC_MATCHERS)) {
+
+                    this.DYNAMIC_MATCHERS.forEach(matcher => {
+
+                        const relation = this.findRelation(model.relations, matcher);
+
+                        if (relation) {
+
+                            const hasMatch = this.matchesCondition(relation, group, matcher);
+                            matcher.onChange(hasMatch, model, control, this.injector);
+                        }
+                    });
                 }
-            });
-        }
+            }));
+        });
+
+        return subscriptions;
     }
 }

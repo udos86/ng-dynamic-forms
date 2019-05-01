@@ -41,7 +41,6 @@ import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 import { DynamicFormComponentService } from "../service/dynamic-form-component.service";
 import { isString } from "../utils/core.utils";
-import { startWith } from "rxjs/operators";
 import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
@@ -111,7 +110,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 }
 
                 if (this.model.relations.length > 0) {
-                    this.setControlRelations();
+
+                    this.subscriptions.push(...this.relationService.subscribeRelations(this.model, this.group, this.control));
                 }
             }
         }
@@ -247,22 +247,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         this.viewRefs.forEach(viewRef => this.componentViewContainerRef.remove(this.componentViewContainerRef.indexOf(viewRef)));
     }
     */
-    protected setControlRelations(): void {
-
-        //this.relationService.watchRelation(this.model, this.group, this.control);
-
-
-        this.relationService.getRelatedFormControls(this.model, this.group).forEach(relatedFormControl => {
-
-            this.subscriptions.push(relatedFormControl.valueChanges.pipe(startWith(relatedFormControl.value)).subscribe(() => {
-                this.relationService.watchRelation(this.model, this.group, this.control);
-            }));
-
-            this.subscriptions.push(relatedFormControl.statusChanges.pipe(startWith(relatedFormControl.status)).subscribe(() => {
-                this.relationService.watchRelation(this.model, this.group, this.control,);
-            }));
-        });
-    }
 
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
         return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};

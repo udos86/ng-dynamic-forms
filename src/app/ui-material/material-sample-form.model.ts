@@ -261,7 +261,7 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
                 match: MATCH_REQUIRED,
                 when: [{id: "payment", value: "paypal"}]
             }
-        ],
+        ]
     }),
 
     new DynamicInputModel({
