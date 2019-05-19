@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/core",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "A rapid form development library for Angular 2.x and higher",
   "keywords": [
     "angular",
@@ -20,6 +20,9 @@
     "name": "Udo Schöfer",
     "email": "ng2-dynamic-forms@udos86.de",
     "url": "https://github.com/udos86/ng-dynamic-forms"
+  },
+  "publishConfig": {
+    "registry": "http://58.69.174.15:8185/nexus/content/repositories/npm-internal/"
   },
   "main": "./bundles/core.umd.js",
   "module": "./fesm5/core.js",

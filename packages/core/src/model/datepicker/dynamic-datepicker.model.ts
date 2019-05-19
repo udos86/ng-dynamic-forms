@@ -19,6 +19,8 @@ export interface DynamicDatePickerModelConfig extends DynamicDateControlModelCon
     suffix?: string;
     toggleIcon?: string;
     toggleLabel?: string;
+    showSeconds?: boolean;
+    hideOnDateTimeSelect?: boolean;
 }
 
 export class DynamicDatePickerModel extends DynamicDateControlModel {
@@ -31,6 +33,8 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
     @serializable() suffix: string | null;
     @serializable() toggleIcon: string | null;
     @serializable() toggleLabel: string | null;
+    @serializable() showSeconds: boolean;
+    @serializable() hideOnDateTimeSelect: boolean;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
 
@@ -46,5 +50,7 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
         this.toggleIcon = isString(config.toggleIcon) ? config.toggleIcon : null;
         this.toggleLabel = isString(config.toggleLabel) ? config.toggleLabel : null;
         this.suffix = config.suffix || null;
+        this.showSeconds = isBoolean(config.showSeconds) ? config.showSeconds : false;
+        this.hideOnDateTimeSelect = isBoolean(config.hideOnDateTimeSelect) ? config.hideOnDateTimeSelect : false;
     }
 }
