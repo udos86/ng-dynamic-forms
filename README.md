@@ -8,7 +8,7 @@
 [![DeepScan Grade](https://deepscan.io/api/projects/562/branches/912/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=562&bid=912)
 [![Downloads](http://img.shields.io/npm/dm/@ng-dynamic-forms/core.svg)](https://npmjs.org/package/@ng-dynamic-forms/core)
 
-:bangbang:**05/29/2019: Angular 8 update now available **:bangbang:
+:bangbang:**05/29/2019: Angular 8 update now available**:bangbang:
 ***
 
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
