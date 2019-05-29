@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { Response, ResponseOptions } from "@angular/http";
-import { MockBackend } from "@angular/http/testing";
+//import { Response, ResponseOptions } from "@angular/http";
+//import { MockBackend } from "@angular/http/testing";
 import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
@@ -13,8 +13,9 @@ export class AppComponent {
     routeData: any = {};
     url: string;
 
-    constructor(private mockBackend: MockBackend, private router: Router) {
+    constructor(/*private mockBackend: MockBackend,*/ private router: Router) {
 
+        /*
         this.mockBackend.connections.subscribe((connection: any) => {
 
             let response = new Response({status: 200} as ResponseOptions);
@@ -29,6 +30,7 @@ export class AppComponent {
                 connection.mockRespond(response);
             }
         });
+        */
 
         this.router.events.subscribe(event => {
 

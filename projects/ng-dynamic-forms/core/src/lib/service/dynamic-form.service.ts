@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
-import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
-import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { AbstractControlOptions } from "@angular/forms";
+import { DynamicFormControlModel, FormHooks } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -132,12 +132,11 @@ export class DynamicFormService {
 
 
     getPathSegment(model: DynamicPathable): string {
-
         return model instanceof DynamicFormArrayGroupModel ? model.index.toString() : (model as DynamicFormControlModel).id;
     }
 
 
-    getPath(model: DynamicPathable): string[] {
+    getPath(model: DynamicPathable, join: boolean = false): string[] | string {
 
         let path = [this.getPathSegment(model)],
             parent = model.parent;
@@ -148,7 +147,7 @@ export class DynamicFormService {
             parent = parent.parent;
         }
 
-        return path;
+        return join ? path.join(".") : path;
     }
 
 
@@ -277,13 +276,8 @@ export class DynamicFormService {
 
     clearFormArray(formArray: FormArray, formArrayModel: DynamicFormArrayModel): void {
 
-        while (formArray.length > 0) {
-            this.removeFormArrayGroup(0, formArray, formArrayModel);
-        }
-
-        /*TODO: As of Angular 8+ please use:
-           formArray.clear();
-           formArrayModel.clear();*/
+        formArray.clear();
+        formArrayModel.clear();
     }
 
 
@@ -308,6 +302,16 @@ export class DynamicFormService {
         findByIdFn(id, formModel);
 
         return result;
+    }
+
+
+    findModelById(id: string, formModel: DynamicFormModel): DynamicFormControlModel | null {
+        return this.findById(id, formModel);
+    }
+
+
+    findControlByModel(model: DynamicFormControlModel, group: FormGroup): AbstractControl | null {
+        return group.root.get(this.getPath(model, true));
     }
 
 

@@ -1,3 +1,22 @@
+# 8.0.0
+
+### **Features**
+
+* Upgrade to Angular 8 & Angular Material 8
+* Major refactoring and enhancement of **Related Form Controls** feature (see [README](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#related-form-controls))
+* `DynamicFormLayout` now supports selecting of form control types and multiple ids
+* `DynamicFormControlContainerComponent` templates now render a css class by model type
+* `findControlByModel()`function added to `DynamicFormService`
+* `findByModel() function added to `DynamicFormLayoutService`
+
+### **Breaking Changes**
+
+* `relation` property of `DynamicFormControlModel` has been renamed to `relations`
+* `action` property on `DynamicFormControlRelation` has been renamed to `match`
+* `connective` property on `DynamicFormControlRelation` has been renamed to `operator`
+
+***
+
 # 7.2.0
 
 ### **Features**

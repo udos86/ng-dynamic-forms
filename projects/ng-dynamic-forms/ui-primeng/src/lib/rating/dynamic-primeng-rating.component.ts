@@ -26,7 +26,7 @@ export class DynamicPrimeNGRatingComponent extends DynamicFormControlComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pRating") pRating: Rating;
+    @ViewChild("pRating", { static: true }) pRating: Rating;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

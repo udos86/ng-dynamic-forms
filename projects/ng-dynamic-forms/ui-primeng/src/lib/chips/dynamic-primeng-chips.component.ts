@@ -31,7 +31,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGTemplateableForm
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pChips") pChips: Chips;
+    @ViewChild("pChips", { static: true }) pChips: Chips;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

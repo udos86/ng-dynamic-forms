@@ -28,9 +28,10 @@ import {
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicFormInstancesService,
+    DynamicFormComponentService,
     DynamicFormLayout,
     DynamicFormLayoutService,
+    DynamicFormRelationService,
     DynamicFormValidationService,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
@@ -65,18 +66,19 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("bsEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormControl> | null {
-        return this.layoutService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
+        return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
     }
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                protected dynamicFormInstancesService: DynamicFormInstancesService) {
+                protected componentService: DynamicFormComponentService,
+                protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, dynamicFormInstancesService);
+        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 }
 

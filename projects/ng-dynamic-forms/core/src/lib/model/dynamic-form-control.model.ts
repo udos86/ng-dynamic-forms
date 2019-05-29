@@ -1,11 +1,12 @@
-import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
-import { DynamicFormControlRelationGroup } from "./misc/dynamic-form-control-relation.model";
+import { DynamicFormControlRelation } from "./misc/dynamic-form-control-relation.model";
 import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean, isObject, isString } from "../utils/core.utils";
+
+export type FormHooks = 'change' | 'blur' | 'submit';
 
 export interface DynamicFormControlModelConfig {
 
@@ -18,7 +19,7 @@ export interface DynamicFormControlModelConfig {
     labelTooltip?: string;
     controlTooltip?: string;
     name?: string;
-    relation?: DynamicFormControlRelationGroup[];
+    relations?: DynamicFormControlRelation[];
     updateOn?: FormHooks;
     validators?: DynamicValidatorsConfig;
 }
@@ -37,9 +38,8 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() layout: DynamicFormControlLayout | null;
     @serializable() name: string;
     parent: DynamicPathable | null = null;
-    @serializable() relation: DynamicFormControlRelationGroup[];
+    @serializable() relations: DynamicFormControlRelation[];
     @serializable() updateOn: FormHooks | null;
-    requiredUpdates: Subject<boolean>;
     @serializable() validators: DynamicValidatorsConfig | null;
 
     abstract readonly type: string;
@@ -55,21 +55,13 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.controlTooltip = config.controlTooltip || null;
         this.layout = layout;
         this.name = config.name || config.id;
-        this.relation = Array.isArray(config.relation) ? config.relation : [];
+        this.relations = Array.isArray(config.relations) ? config.relations : [];
         this.updateOn = isString(config.updateOn) ? config.updateOn : null;
         this.validators = config.validators || null;
 
         this.disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.disabledUpdates = new Subject<boolean>();
         this.disabledUpdates.subscribe(disabled => this.disabled = disabled);
-        this.requiredUpdates = new Subject<boolean>();
-        this.requiredUpdates.subscribe(required => {
-            if (required) {
-                this.validators ?  this.validators = { ...this.validators, required: null} : this.validators = {required: null};
-            } else {
-                this.validators ? delete this.validators["required"] : undefined;
-            }
-        });
     }
 
     get disabled(): boolean {

@@ -26,7 +26,7 @@ export class DynamicPrimeNGTextAreaComponent extends DynamicFormControlComponent
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pInputTextarea") pInputTextArea: InputTextarea;
+    @ViewChild("pInputTextarea", { static: true }) pInputTextArea: InputTextarea;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

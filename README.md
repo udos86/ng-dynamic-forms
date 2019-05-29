@@ -1208,55 +1208,97 @@ Please note that some UI libraries like Kendo UI come with their own text mask i
 
 ## Related Form Controls
 
-In many complex forms the activation state of a certain form control depends directly on the `value` or `status` of some other form control.
+In many forms the state of a certain form control directly depends on the `value` or `status` of some other form control.
+
+Implementing such a connection manually would be time-consuming and only lead to undesired boilerplate code.
+
+NG Dynamic Forms enables you to declaratively add form control relations by using so called `DynamicFormControlMatcher`s. 
+
+A matcher defines the action that should take place for a predefined `match` when a `value` or `state` change has occured on the related form control.
+```typescript
+export interface DynamicFormControlMatcher {
+
+    match: string;
+    opposingMatch: string | null;
+
+    onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
+}
+```
+
+At the moment there are the following **default matchers** available:
+
+* `DisabledMatcher`
+* `HiddenMatcher`
+* `RequiredMatcher`
+
+**NOTE: Always make sure that you're providing every** `DynamicFormControlMatcher` **in your** `app.module`:
+```typescript
+providers: [
+    // ...
+    DISABLED_MATCHER,
+    REQUIRED_MATCHER
+]
+```
+
+ That way you're also totally **free to implement your own custom matcher**:
+```typescript
+ export const MyCustomMatcher: DynamicFormControlMatcher = {
+
+    match: MATCH_CUSTOM,
+    opposingMatch: MATCH_CUSTOM_OPPOSITE,
+    onChange(hasMatch: boolean, model: DynamicFormControlModel): void {
+        if (hasMatch) {
+            console.log("It's a match");
+        }
+    }
+};
+```
+```typescript
+export const MY_CUSTOM_MATCHER: StaticProvider = {
+    provide: DYNAMIC_MATCHERS,
+    useValue: MyCustomMatcher,
+    multi: true
+};
+```
 
 So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
 
-Manually implementing such a requirement would be time-consuming and only lead to undesired boilerplate code. 
+Just add a `relations` property to your `DynamicFormControlModel`, then declare a `DynamicFormControlRelation` by setting a `match` for a certain `DynamicFormControlCondition`:
 
-**Using NG Dynamic Forms however, you can easily define relations between form controls by declaration**: 
 ```typescript
 new DynamicTextAreaModel(
     {
         id: "myTextArea",
         label: "My Textarea",
-        relation: [
+        relations: [
             {
-                action: "DISABLE",
+                match: MATCH_DISABLED,
                 when: [
-                    {
-                        id: "mySelect",
-                        value: "option-3"
-                    }
+                    { id: "mySelect", value: "option-3" }
                 ]
             }
         ]
     }
 ```
+**That's it** - the library will automatically add all the pieces together under the hood.
 
-The `relation` property may seem a bit oversized at first sight, but that way it allows the flexible declaration of even **multi-related form controls**. 
+*But what if `myTextArea` should depend on another control `myRadioGroup` as well?*
 
-*So what if the activation state of `myTextArea` should actually depend on another control `myRadioGroup` as well?*
+Luckily there's support for **multi-related form controls**, too.
 
-Just add a second entry to the `when` array and define how both relations should logically be connected via `connective`:
+Just add a second `DynamicFormControlCondition` entry and (optionally) define how all conditions should logically be connected via `operator`:
 ```typescript
 new DynamicTextAreaModel(
     {
         id: "myTextArea",
         label: "My Textarea",
-        relation: [
+        relations: [
             {
-                action: "DISABLE",
-                connective: "AND",
+                match: MATCH_DISABLED,
+                operator: AND_OPERATOR,
                 when: [
-                    {
-                        id: "mySelect",
-                        value: "option-3"
-                    },
-                    {
-                        id: "myRadioGroup",
-                        value: "option-4"
-                    }
+                    { id: "mySelect", value: "option-3" },
+                    { id: "myRadioGroup", value: "option-4" }
                 ]
             }
         ]

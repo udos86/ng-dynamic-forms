@@ -24,7 +24,7 @@ export class DynamicNGBootstrapRatingComponent extends DynamicFormControlCompone
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(NgbRating) ngbRating: NgbRating;
+    @ViewChild(NgbRating, { static: true }) ngbRating: NgbRating;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

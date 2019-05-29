@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken, Optional, QueryList, Type } from "@angular/core";
+import { Injectable, QueryList } from "@angular/core";
 import {
     DynamicFormControlLayout,
     DynamicFormControlLayoutConfig,
@@ -7,7 +7,6 @@ import {
 } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
-import { DynamicFormControl } from "../component/dynamic-form-control.interface";
 import {
     DynamicTemplateDirective,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
@@ -16,20 +15,12 @@ import { isObject } from "../utils/core.utils";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
-export type DynamicFormControlMapFn = (model: DynamicFormControlModel) => Type<DynamicFormControl> | null;
-
 export type DynamicFormControlTemplates = QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
-
-export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControlMapFn>("DYNAMIC_FORM_CONTROL_MAP_FN");
 
 @Injectable({
     providedIn: "root"
 })
 export class DynamicFormLayoutService {
-
-    constructor(@Inject(DYNAMIC_FORM_CONTROL_MAP_FN) @Optional() private readonly DYNAMIC_FORM_CONTROL_MAP_FN: any) {
-        this.DYNAMIC_FORM_CONTROL_MAP_FN = DYNAMIC_FORM_CONTROL_MAP_FN as DynamicFormControlMapFn;
-    }
 
     findById(id: string, formLayout: DynamicFormLayout | null): DynamicFormControlLayout | null {
 
@@ -44,6 +35,28 @@ export class DynamicFormLayoutService {
         }
 
         return null;
+    }
+
+    findByModel(model: DynamicFormControlModel, formLayout: DynamicFormLayout | null): DynamicFormControlLayout | null {
+
+        let controlLayout: DynamicFormControlLayout = null;
+
+        if (isObject(formLayout)) {
+
+            for (let key of Object.keys(formLayout)) {
+
+                key.split(",").forEach(substring => {
+
+                    const selector = substring.trim();
+
+                    if (selector === model.id || selector === model.type) {
+                        controlLayout = formLayout[key];
+                    }
+                });
+            }
+        }
+
+        return controlLayout;
     }
 
     filterTemplatesByModel(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] {
@@ -67,6 +80,7 @@ export class DynamicFormLayoutService {
         return this.filterTemplatesByModel(model, templates)
             .find(template => template.as === null && template.align === alignment);
     }
+
     /*
     getIndexedTemplates(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] | undefined {
         return this.filterTemplatesByModel(model, templates).filter(template => template.as === null);
@@ -111,14 +125,5 @@ export class DynamicFormLayoutService {
         }
 
         return id;
-    }
-
-    getCustomComponentType(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
-
-        if (this.DYNAMIC_FORM_CONTROL_MAP_FN) {
-            return this.DYNAMIC_FORM_CONTROL_MAP_FN(model);
-        }
-
-        return null;
     }
 }

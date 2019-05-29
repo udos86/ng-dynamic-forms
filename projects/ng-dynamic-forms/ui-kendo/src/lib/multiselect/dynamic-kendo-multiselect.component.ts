@@ -31,7 +31,7 @@ export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFo
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoMultiSelect") kendoMultiSelect: MultiSelectComponent;
+    @ViewChild("kendoMultiSelect", { static: true }) kendoMultiSelect: MultiSelectComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -26,7 +26,7 @@ export class DynamicKendoDatePickerComponent extends DynamicFormControlComponent
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoDatePicker") kendoDatePicker: DatePickerComponent;
+    @ViewChild("kendoDatePicker", { static: true }) kendoDatePicker: DatePickerComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -26,7 +26,7 @@ export class DynamicPrimeNGSliderComponent extends DynamicFormControlComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pSlider") pSlider: Slider;
+    @ViewChild("pSlider", { static: true }) pSlider: Slider;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

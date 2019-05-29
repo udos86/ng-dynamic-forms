@@ -20,7 +20,6 @@ describe("DynamicEditorModel test suite", () => {
         expect(model.label).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_EDITOR);
         expect(model.value).toBeNull();
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 
@@ -29,13 +28,6 @@ describe("DynamicEditorModel test suite", () => {
         model.disabledUpdates.next(true);
 
         expect(model.disabled).toBe(true);
-    });
-
-    it("should set required property correctly", () => {
-
-        model.requiredUpdates.next(true);
-
-        expect(model.required).toBe(true);
     });
 
     it("should serialize correctly", () => {

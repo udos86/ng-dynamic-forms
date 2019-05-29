@@ -8,7 +8,10 @@ import {
     DynamicTextAreaModel,
     DynamicTimePickerModel,
     DynamicFormArrayModel,
-    DynamicFormGroupModel
+    DynamicFormGroupModel,
+    MATCH_DISABLED,
+    MATCH_HIDDEN,
+    MATCH_REQUIRED
 } from "@ng-dynamic-forms/core";
 import { of } from "rxjs/observable/of";
 
@@ -66,12 +69,24 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 placeholder: "Just some input",
                 prefix: "Prefix",
                 suffix: "Suffix",
+                relations: [
+                    {
+                        match: MATCH_DISABLED,
+                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-1"}]
+                    },
+                    {
+                        match: MATCH_HIDDEN,
+                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-2"}]
+                    },
+                    {
+                        match: MATCH_REQUIRED,
+                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-3"}]
+                    }
+                ],
                 validators: {
-                    required: null,
                     maxLength: 5
                 },
                 errorMessages: {
-                    required: "{{ label }} is required",
                     maxLength: "Max character count is 5"
                 }
             }),
@@ -109,15 +124,15 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 label: "Radio Group",
                 options: [
                     {
-                        label: "Option 1",
+                        label: "Textarea is disabled",
                         value: "option-1",
                     },
                     {
-                        label: "Option 2",
+                        label: "Textarea is hidden",
                         value: "option-2"
                     },
                     {
-                        label: "Option 3",
+                        label: "Textarea is required",
                         value: "option-3"
                     },
                     {
@@ -125,7 +140,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         value: "option-4"
                     }
                 ],
-                value: "option-3"
+                value: "option-4"
             }),
 
             new DynamicInputModel({
@@ -140,19 +155,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 validators: {
                     maxLength: 5
                 },
-                relation: [
-                    {
-                        action: "REQUIRED",
-                        when: [
-                            {
-                                id: "bootstrapRadioGroup",
-                                value: "option-1"
-                            }
-                        ]
-                    }
-                ],
                 errorMessages: {
-                    required: "{{ label }} is required",
                     maxLength: "Max character count is 5"
                 }
             }),
@@ -163,29 +166,18 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 label: "Textarea",
                 rows: 5,
                 placeholder: "example Textarea",
-                relation: [
+                relations: [
                     {
-                        action: "DISABLE",
-                        connective: "OR",
-                        when: [
-                            {
-                                id: "bsRadioGroup",
-                                value: "option-2"
-                            },
-                            {
-                                id: "bsRadioGroup",
-                                value: "option-4",
-                            }
-                        ]
+                        match: MATCH_DISABLED,
+                        when: [{id: "bsRadioGroup", value: "option-1"}]
                     },
                     {
-                        action: "REQUIRED",
-                        when: [
-                            {
-                                id: "bootstrapRadioGroup",
-                                value: "option-1"
-                            }
-                        ]
+                        match: MATCH_HIDDEN,
+                        when: [{id: "bsRadioGroup", value: "option-2"}]
+                    },
+                    {
+                        match: MATCH_REQUIRED,
+                        when: [{id: "bsRadioGroup", value: "option-3"}]
                     }
                 ],
                 errorMessages: {
@@ -217,7 +209,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     return [
                         new DynamicInputModel({
                             id: "bsArrayInput",
-                            label: "Label",
+                            //label: "Label",
                             placeholder: "Just some input"
                         })
                     ];

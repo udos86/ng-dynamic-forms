@@ -133,6 +133,8 @@ export class DynamicFormValidationService {
         } else {
             control.setValidators(this.getValidators(validatorsConfig));
         }
+
+        control.updateValueAndValidity();
     }
 
 
@@ -148,6 +150,8 @@ export class DynamicFormValidationService {
         } else {
             control.setAsyncValidators(this.getAsyncValidators(asyncValidatorsConfig));
         }
+
+        control.updateValueAndValidity();
     }
 
 

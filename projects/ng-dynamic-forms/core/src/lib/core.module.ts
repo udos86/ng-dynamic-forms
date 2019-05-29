@@ -7,9 +7,8 @@ import { DynamicTemplateDirective } from "./directive/dynamic-template.directive
 import { DynamicFormService } from "./service/dynamic-form.service";
 import { DynamicFormLayoutService } from "./service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "./service/dynamic-form-validation.service";
-import { DynamicFormInstancesService } from "./service/dynamic-form-instances.service";
-import { DynamicFormInstancesDummyService } from "./service/dynamic-form-instances-dummy.service";
-import { DynamicFormInstancesExplicitService } from "./service/dynamic-form-instances-explicit.service";
+import { DynamicFormComponentService } from "./service/dynamic-form-component.service";
+import { DynamicFormRelationService } from "./service/dynamic-form-relation.service";
 
 @NgModule({
     imports: [
@@ -29,22 +28,17 @@ import { DynamicFormInstancesExplicitService } from "./service/dynamic-form-inst
 })
 export class DynamicFormsCoreModule {
 
-    static forRoot(withInstanceService = false): ModuleWithProviders {
+    /*@deprecated*/
+    static forRoot(): ModuleWithProviders {
 
         return {
             ngModule: DynamicFormsCoreModule,
-
             providers: [
                 DynamicFormService,
                 DynamicFormLayoutService,
                 DynamicFormValidationService,
-                withInstanceService ? {
-                    provide: DynamicFormInstancesService,
-                    useClass: DynamicFormInstancesExplicitService
-                } : {
-                    provide: DynamicFormInstancesService,
-                    useClass: DynamicFormInstancesDummyService
-                }
+                DynamicFormComponentService,
+                DynamicFormRelationService
             ]
         };
     }

@@ -24,7 +24,7 @@ export class DynamicBootstrapTimePickerComponent extends DynamicFormControlCompo
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(TimepickerComponent) bsTimePicker: TimepickerComponent;
+    @ViewChild(TimepickerComponent, { static: true }) bsTimePicker: TimepickerComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

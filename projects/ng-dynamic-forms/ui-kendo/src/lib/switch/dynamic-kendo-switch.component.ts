@@ -24,7 +24,7 @@ export class DynamicKendoSwitchComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoSwitch") kendoSwitch: SwitchComponent;
+    @ViewChild("kendoSwitch", { static: true }) kendoSwitch: SwitchComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

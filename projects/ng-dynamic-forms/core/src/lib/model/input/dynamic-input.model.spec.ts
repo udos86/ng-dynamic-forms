@@ -38,7 +38,6 @@ describe("DynamicInputModel test suite", () => {
         expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.validators).toBeNull();
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 

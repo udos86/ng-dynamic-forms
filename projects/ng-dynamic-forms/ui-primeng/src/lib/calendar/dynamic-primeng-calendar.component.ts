@@ -28,7 +28,7 @@ export class DynamicPrimeNGCalendarComponent extends DynamicFormControlComponent
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pCalendar") pCalendar: Calendar;
+    @ViewChild("pCalendar", { static: true }) pCalendar: Calendar;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

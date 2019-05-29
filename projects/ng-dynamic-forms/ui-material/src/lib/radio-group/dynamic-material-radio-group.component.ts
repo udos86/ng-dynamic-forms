@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatRadioGroup } from "@angular/material";
+import { MatRadioGroup } from "@angular/material/radio";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -25,7 +25,7 @@ export class DynamicMaterialRadioGroupComponent extends DynamicFormControlCompon
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matRadioGroup") matRadioGroup: MatRadioGroup;
+    @ViewChild("matRadioGroup", { static: true }) matRadioGroup: MatRadioGroup;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

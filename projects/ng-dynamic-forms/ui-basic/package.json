@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-basic",
-  "version": "7.2.0",
+  "version": "8.0.0",
   "description": "Basic UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -28,12 +28,12 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0",
-    "@angular/forms": "^7.0.0",
-    "@ng-dynamic-forms/core": "^7.2.0",
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@ng-dynamic-forms/core": "^8.0.0",
     "angular2-text-mask": "^9.0.0",
-    "rxjs": "^6.3.0"
+    "rxjs": "^6.4.0"
   },
   "es2015": "./fesm2015/ui-basic.js",
   "esm2015": "./esm2015/ui-basic.js",

@@ -24,7 +24,7 @@ export class DynamicPrimeNGMultiSelectComponent extends DynamicFormControlCompon
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pMultiSelect") pMultiSelect: MultiSelect;
+    @ViewChild("pMultiSelect", { static: true }) pMultiSelect: MultiSelect;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

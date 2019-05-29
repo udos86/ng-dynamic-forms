@@ -24,7 +24,7 @@ export class DynamicKendoMaskedTextBoxComponent extends DynamicFormControlCompon
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoMaskedTextBox") kendoMaskedTextBox: MaskedTextBoxComponent;
+    @ViewChild("kendoMaskedTextBox", { static: true }) kendoMaskedTextBox: MaskedTextBoxComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

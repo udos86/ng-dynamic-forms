@@ -39,7 +39,7 @@ export class DynamicKendoDropdownListComponent extends DynamicKendoTemplateableF
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoDropDownList") kendoDropDownList: DropDownListComponent;
+    @ViewChild("kendoDropDownList", { static: true }) kendoDropDownList: DropDownListComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -24,7 +24,7 @@ export class DynamicIonicToggleComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionToggle") ionToggle: IonToggle;
+    @ViewChild("ionToggle", { static: true }) ionToggle: IonToggle;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -1,4 +1,4 @@
-<div [formGroup]="group" [ngClass]="[getClass('element', 'container'), getClass('grid', 'container')]">
+<div [formGroup]="group" [ngClass]="['ng-dynamic-forms'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
 
     <label *ngIf="hasLabel" [for]="elementId" [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
 

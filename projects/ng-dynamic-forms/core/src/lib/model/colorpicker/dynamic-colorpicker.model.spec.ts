@@ -20,7 +20,6 @@ describe("DynamicColorPickerModel test suite", () => {
         expect(model.label).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_COLORPICKER);
         expect(model.value).toBe(config.value);
-        expect(model.requiredUpdates).toBeDefined();
         expect(model.disabledUpdates).toBeDefined();
     });
 
