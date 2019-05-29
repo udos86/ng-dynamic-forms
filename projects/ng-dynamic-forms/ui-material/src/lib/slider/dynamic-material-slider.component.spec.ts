@@ -3,7 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatSlider, MatSliderModule } from "@angular/material";
+import { MatSlider, MatSliderModule } from "@angular/material/slider";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSliderComponent } from "./dynamic-material-slider.component";

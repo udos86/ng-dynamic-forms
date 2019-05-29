@@ -1,4 +1,4 @@
-import { MatInput } from "@angular/material";
+import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
     DynamicFormLayoutService,

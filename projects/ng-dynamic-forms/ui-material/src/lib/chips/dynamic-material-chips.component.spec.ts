@@ -3,18 +3,11 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import {
-    MatAutocomplete,
-    MatAutocompleteModule,
-    MatAutocompleteSelectedEvent,
-    MatChipInputEvent,
-    MatChipList,
-    MatChipsModule,
-    MatIconModule,
-    MatInput,
-    MatInputModule,
-    MatOption
-} from "@angular/material";
+import { MatAutocomplete, MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MatChipInputEvent, MatChipList, MatChipsModule } from "@angular/material/chips";
+import { MatOption } from "@angular/material/core";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInput, MatInputModule } from "@angular/material/input";
 import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialChipsComponent } from "./dynamic-material-chips.component";

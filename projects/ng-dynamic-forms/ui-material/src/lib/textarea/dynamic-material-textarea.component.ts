@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MatInput } from "@angular/material";
+import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from "@angular/material/core";
+import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,

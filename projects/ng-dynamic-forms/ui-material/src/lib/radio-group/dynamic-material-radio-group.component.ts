@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MatRadioGroup } from "@angular/material";
+import { MatRadioGroup } from "@angular/material/radio";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,

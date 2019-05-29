@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MatDatepicker, MatInput } from "@angular/material";
+import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from "@angular/material/core";
+import { MatDatepicker } from "@angular/material/datepicker";
+import { MatInput } from "@angular/material/input";
 import {
     DynamicDatePickerModel,
     DynamicFormControlComponent,

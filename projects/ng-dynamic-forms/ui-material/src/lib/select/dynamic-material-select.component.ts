@@ -1,13 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    ErrorStateMatcher,
-    LabelOptions,
-    MAT_LABEL_GLOBAL_OPTIONS,
-    MAT_RIPPLE_GLOBAL_OPTIONS,
-    MatSelect,
-    RippleGlobalOptions
-} from "@angular/material";
+import { ErrorStateMatcher, LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
+import { MatSelect } from "@angular/material/select";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,

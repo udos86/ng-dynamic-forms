@@ -1,7 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BaseRequestOptions, Http } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
-import { MAT_CHIPS_DEFAULT_OPTIONS, MatCardModule, MatNativeDateModule } from "@angular/material";
+import { MatCardModule } from "@angular/material/card";
+import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
+import { MatNativeDateModule } from "@angular/material/core";
 import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";

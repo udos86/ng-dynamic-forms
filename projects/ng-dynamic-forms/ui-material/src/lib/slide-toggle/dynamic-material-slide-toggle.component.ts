@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MAT_RIPPLE_GLOBAL_OPTIONS, MatSlideToggle, RippleGlobalOptions } from "@angular/material";
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,

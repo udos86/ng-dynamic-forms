@@ -1,20 +1,9 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import {
-    LabelOptions,
-    MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
-    MAT_CHIPS_DEFAULT_OPTIONS,
-    MAT_LABEL_GLOBAL_OPTIONS,
-    MAT_RIPPLE_GLOBAL_OPTIONS,
-    MatAutocomplete,
-    MatAutocompleteDefaultOptions,
-    MatAutocompleteSelectedEvent,
-    MatChipInputEvent,
-    MatChipList,
-    MatChipsDefaultOptions,
-    MatInput,
-    RippleGlobalOptions
-} from "@angular/material";
+import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS, MatAutocomplete, MatAutocompleteDefaultOptions, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MAT_CHIPS_DEFAULT_OPTIONS, MatChipInputEvent, MatChipList, MatChipsDefaultOptions } from "@angular/material/chips";
+import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
+import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
