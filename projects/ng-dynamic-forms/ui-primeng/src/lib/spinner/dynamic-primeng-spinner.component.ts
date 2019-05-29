@@ -24,7 +24,7 @@ export class DynamicPrimeNGSpinnerComponent extends DynamicFormControlComponent 
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pSpinner") pSpinner: Spinner;
+    @ViewChild("pSpinner", { static: true }) pSpinner: Spinner;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

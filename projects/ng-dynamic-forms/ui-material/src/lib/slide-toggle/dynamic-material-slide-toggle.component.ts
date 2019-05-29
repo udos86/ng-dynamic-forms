@@ -25,7 +25,7 @@ export class DynamicMaterialSlideToggleComponent extends DynamicFormControlCompo
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matSlideToggle") matSlideToggle: MatSlideToggle;
+    @ViewChild("matSlideToggle", { static: true }) matSlideToggle: MatSlideToggle;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

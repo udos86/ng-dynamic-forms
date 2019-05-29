@@ -24,7 +24,7 @@ export class DynamicKendoDateInputComponent extends DynamicFormControlComponent 
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoDateInput") kendoDateInput: DateInputComponent;
+    @ViewChild("kendoDateInput", { static: true }) kendoDateInput: DateInputComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

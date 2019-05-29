@@ -29,7 +29,7 @@ export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGTemplateableF
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pDropdown") pDropdown: Dropdown;
+    @ViewChild("pDropdown", { static: true }) pDropdown: Dropdown;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

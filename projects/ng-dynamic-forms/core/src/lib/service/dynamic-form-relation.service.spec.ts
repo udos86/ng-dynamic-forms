@@ -231,7 +231,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         }];
 
-        expect(service.resolveRelations(model, group).length).toBe(2);
+        expect(service.getRelatedFormControls(model, group).length).toBe(2);
     });
 
     it("should throw when model depends on itself", () => {
@@ -246,7 +246,7 @@ describe("DynamicFormRelationService test suite", () => {
             ]
         }];
 
-        expect(() => service.resolveRelations(model, group))
+        expect(() => service.getRelatedFormControls(model, group))
             .toThrow(new Error(`FormControl ${model.id} cannot depend on itself`));
     });
 });

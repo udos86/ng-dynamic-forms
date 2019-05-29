@@ -24,7 +24,7 @@ export class DynamicNGBootstrapDatePickerComponent extends DynamicFormControlCom
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(NgbDatepicker) ngbDatePicker: NgbDatepicker;
+    @ViewChild(NgbDatepicker, { static: false }) ngbDatePicker: NgbDatepicker;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

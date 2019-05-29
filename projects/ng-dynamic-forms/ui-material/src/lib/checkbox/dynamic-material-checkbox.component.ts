@@ -25,7 +25,7 @@ export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponen
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matCheckbox") matCheckbox: MatCheckbox;
+    @ViewChild("matCheckbox", { static: true }) matCheckbox: MatCheckbox;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

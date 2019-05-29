@@ -31,7 +31,7 @@ export class DynamicFormRelationService {
         return control;
     }
 
-    resolveRelations(model: DynamicFormControlModel, group: FormGroup): { [id: string]: FormControl } | never {
+    getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): { [id: string]: FormControl } | never {
 
         const controls: { [id: string]: FormControl } = {};
 
@@ -96,7 +96,7 @@ export class DynamicFormRelationService {
 
     subscribeRelations(model: DynamicFormControlModel, group: FormGroup, control: FormControl): Subscription[] {
 
-        const relatedFormControls = this.resolveRelations(model, group), subscriptions: Subscription[] = [];
+        const relatedFormControls = this.getRelatedFormControls(model, group), subscriptions: Subscription[] = [];
 
         Object.entries(relatedFormControls).forEach(([_id, relatedControl]) => {
 

@@ -26,7 +26,7 @@ export class DynamicBootstrapDatePickerComponent extends DynamicFormControlCompo
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(BsDatepickerDirective) bsDatePicker: BsDatepickerDirective;
+    @ViewChild(BsDatepickerDirective, { static: true }) bsDatePicker: BsDatepickerDirective;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

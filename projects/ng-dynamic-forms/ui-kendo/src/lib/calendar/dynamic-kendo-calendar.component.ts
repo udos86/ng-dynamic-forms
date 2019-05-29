@@ -31,7 +31,7 @@ export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormC
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoCalendar") kendoCalendar: CalendarComponent;
+    @ViewChild("kendoCalendar", { static: true }) kendoCalendar: CalendarComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

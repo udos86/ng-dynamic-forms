@@ -24,7 +24,7 @@ export class DynamicPrimeNGColorPickerComponent extends DynamicFormControlCompon
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pColorPicker") pColorPicker: ColorPicker;
+    @ViewChild("pColorPicker", { static: true }) pColorPicker: ColorPicker;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

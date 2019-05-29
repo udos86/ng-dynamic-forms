@@ -31,7 +31,7 @@ export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableF
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoAutoComplete") kendoAutoComplete: AutoCompleteComponent;
+    @ViewChild("kendoAutoComplete", { static: true }) kendoAutoComplete: AutoCompleteComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

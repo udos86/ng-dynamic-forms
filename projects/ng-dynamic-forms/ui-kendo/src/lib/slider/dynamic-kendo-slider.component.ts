@@ -24,7 +24,7 @@ export class DynamicKendoSliderComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoSlider") kendoSlider: SliderComponent;
+    @ViewChild("kendoSlider", { static: true }) kendoSlider: SliderComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

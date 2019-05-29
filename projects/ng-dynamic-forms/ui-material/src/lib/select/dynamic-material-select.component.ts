@@ -32,7 +32,7 @@ export class DynamicMaterialSelectComponent extends DynamicFormControlComponent 
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matSelect") matSelect: MatSelect;
+    @ViewChild("matSelect", { static: true }) matSelect: MatSelect;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

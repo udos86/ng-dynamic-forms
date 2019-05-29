@@ -26,7 +26,7 @@ export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoTimePicker") kendoTimePicker: TimePickerComponent;
+    @ViewChild("kendoTimePicker", { static: true }) kendoTimePicker: TimePickerComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

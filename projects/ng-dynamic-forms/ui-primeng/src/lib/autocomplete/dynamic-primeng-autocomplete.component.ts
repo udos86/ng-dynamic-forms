@@ -33,7 +33,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplatea
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pAutoComplete") pAutoComplete: AutoComplete;
+    @ViewChild("pAutoComplete", { static: true }) pAutoComplete: AutoComplete;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

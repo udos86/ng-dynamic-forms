@@ -25,7 +25,7 @@ export class DynamicMaterialRadioGroupComponent extends DynamicFormControlCompon
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matRadioGroup") matRadioGroup: MatRadioGroup;
+    @ViewChild("matRadioGroup", { static: true }) matRadioGroup: MatRadioGroup;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

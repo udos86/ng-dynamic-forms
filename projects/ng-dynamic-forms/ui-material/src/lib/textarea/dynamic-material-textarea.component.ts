@@ -25,7 +25,7 @@ export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputCo
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(MatInput) matInput: MatInput;
+    @ViewChild(MatInput, { static: true }) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

@@ -25,7 +25,7 @@ export class DynamicMaterialSliderComponent extends DynamicFormControlComponent 
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matSlider") matSlider: MatSlider;
+    @ViewChild("matSlider", { static: true }) matSlider: MatSlider;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

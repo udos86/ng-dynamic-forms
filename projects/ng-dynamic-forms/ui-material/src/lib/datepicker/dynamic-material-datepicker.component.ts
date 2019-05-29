@@ -25,8 +25,8 @@ export class DynamicMaterialDatePickerComponent extends DynamicFormControlCompon
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matDatepicker") matDatePicker: MatDatepicker<any>;
-    @ViewChild(MatInput) matInput: MatInput;
+    @ViewChild("matDatepicker", { static: true }) matDatePicker: MatDatepicker<any>;
+    @ViewChild(MatInput, { static: true }) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

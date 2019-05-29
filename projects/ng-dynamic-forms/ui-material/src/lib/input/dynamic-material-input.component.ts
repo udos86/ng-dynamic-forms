@@ -35,8 +35,8 @@ export class DynamicMaterialInputComponent extends DynamicMaterialFormInputContr
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matAutocomplete") matAutocomplete: MatAutocomplete;
-    @ViewChild(MatInput) matInput: MatInput;
+    @ViewChild("matAutocomplete", { static: true }) matAutocomplete: MatAutocomplete;
+    @ViewChild(MatInput, { static: true }) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

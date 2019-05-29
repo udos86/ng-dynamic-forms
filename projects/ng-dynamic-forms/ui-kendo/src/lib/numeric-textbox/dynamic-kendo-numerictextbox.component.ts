@@ -24,7 +24,7 @@ export class DynamicKendoNumericTextBoxComponent extends DynamicFormControlCompo
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoNumericTextBox") kendoNumericTextBox: NumericTextBoxComponent;
+    @ViewChild("kendoNumericTextBox", { static: true }) kendoNumericTextBox: NumericTextBoxComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

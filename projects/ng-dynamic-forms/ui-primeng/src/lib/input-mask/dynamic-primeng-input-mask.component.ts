@@ -26,7 +26,7 @@ export class DynamicPrimeNGInputMaskComponent extends DynamicFormControlComponen
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pInputMask") pInputMask: InputMask;
+    @ViewChild("pInputMask", { static: true }) pInputMask: InputMask;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

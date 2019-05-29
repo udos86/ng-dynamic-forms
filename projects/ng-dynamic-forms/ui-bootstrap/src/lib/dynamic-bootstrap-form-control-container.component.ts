@@ -66,7 +66,7 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("bsEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {read: ViewContainerRef}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormControl> | null {
         return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);

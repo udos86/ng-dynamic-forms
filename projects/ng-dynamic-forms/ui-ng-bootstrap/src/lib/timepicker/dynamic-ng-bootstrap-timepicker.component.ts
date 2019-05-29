@@ -24,7 +24,7 @@ export class DynamicNGBootstrapTimePickerComponent extends DynamicFormControlCom
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(NgbTimepicker) ngbTimePicker: NgbTimepicker;
+    @ViewChild(NgbTimepicker, { static: true }) ngbTimePicker: NgbTimepicker;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
