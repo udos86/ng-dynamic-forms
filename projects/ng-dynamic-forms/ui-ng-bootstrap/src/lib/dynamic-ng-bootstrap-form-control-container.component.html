@@ -1,6 +1,6 @@
 <div [class.form-group]="(model.type !== 'GROUP' && asBootstrapFormGroup) || getClass('element', 'container').includes('form-group')"
      [formGroup]="group"
-     [ngClass]="['ng-dynamic-forms'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
+     [ngClass]="['ng-dynamic-forms-'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
 
     <label *ngIf="!isCheckbox && hasLabel"
            [for]="elementId"
