@@ -2,8 +2,8 @@
 
 ### **Features**
 
-* Upgrade to Angular 8
-* Major refactoring and enhancement of **Related Form Controls** feature (see README)
+* Upgrade to Angular 8 & Angular Material 8
+* Major refactoring and enhancement of **Related Form Controls** feature (see [README](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#related-form-controls))
 * `DynamicFormLayout` now supports selecting of form control types and multiple ids
 * `DynamicFormControlContainerComponent` templates now render a css class by model type
 * `findControlByModel()`function added to `DynamicFormService`

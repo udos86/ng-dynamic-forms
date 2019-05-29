@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
-import { BaseRequestOptions, Http } from "@angular/http";
+//import { BaseRequestOptions, Http } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
 import { MatNativeDateModule } from "@angular/material/core";
-import { MockBackend } from "@angular/http/testing";
+//import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
@@ -45,11 +45,11 @@ import {
     customForbiddenValidator,
     customValidator
 } from "./app.validators";
-
+/*
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
 }
-
+*/
 @NgModule({
 
     imports: [
@@ -86,6 +86,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         AppComponent
     ],
     providers: [
+        /*
         BaseRequestOptions,
         MockBackend,
         {
@@ -93,6 +94,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
             deps: [MockBackend, BaseRequestOptions],
             useFactory: mockBackendFactory
         },
+        */
         {
             provide: LocationStrategy,
             useClass: HashLocationStrategy

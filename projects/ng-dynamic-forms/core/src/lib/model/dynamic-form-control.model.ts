@@ -1,4 +1,3 @@
-import { FormHooks } from "@angular/forms/src/model";
 import { Subject } from "rxjs";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
@@ -6,6 +5,8 @@ import { DynamicFormControlRelation } from "./misc/dynamic-form-control-relation
 import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean, isObject, isString } from "../utils/core.utils";
+
+export type FormHooks = 'change' | 'blur' | 'submit';
 
 export interface DynamicFormControlModelConfig {
 

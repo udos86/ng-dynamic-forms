@@ -81,7 +81,7 @@ const APP_ROUTES: Route[] = [
     },
     {
         path: "lazy-loaded-form",
-        loadChildren: () => import('./lazy-loaded/lazy-loaded-form.module').then(m => m.LazyLoadedFormModule)
+        loadChildren: () => import('./lazy-loaded/lazy-loaded-form.module').then(module => module.LazyLoadedFormModule)
     }
 ];
 

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
-import { AbstractControlOptions, FormHooks } from "@angular/forms/src/model";
-import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import { AbstractControlOptions } from "@angular/forms";
+import { DynamicFormControlModel, FormHooks } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -276,13 +276,8 @@ export class DynamicFormService {
 
     clearFormArray(formArray: FormArray, formArrayModel: DynamicFormArrayModel): void {
 
-        while (formArray.length > 0) {
-            this.removeFormArrayGroup(0, formArray, formArrayModel);
-        }
-
-        /*TODO: As of Angular 8+ please use:
-           formArray.clear();
-           formArrayModel.clear();*/
+        formArray.clear();
+        formArrayModel.clear();
     }
 
 

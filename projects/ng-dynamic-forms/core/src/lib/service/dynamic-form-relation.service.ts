@@ -44,7 +44,7 @@ export class DynamicFormRelationService {
             const control = this.getRelatedFormControl(group, condition);
 
             if (control && !controls.hasOwnProperty(model.id)) {
-                controls[model.id] = control
+                controls[condition.id] = control;
             }
         }));
 
