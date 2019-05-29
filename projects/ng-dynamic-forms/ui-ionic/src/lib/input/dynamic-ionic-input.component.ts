@@ -24,7 +24,7 @@ export class DynamicIonicInputComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionInput") ionInput: IonInput;
+    @ViewChild("ionInput", { static: true }) ionInput: IonInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -24,7 +24,7 @@ export class DynamicIonicRadioGroupComponent extends DynamicFormControlComponent
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionRadioGroup") ionRadioGroup: IonRadioGroup;
+    @ViewChild("ionRadioGroup", { static: true }) ionRadioGroup: IonRadioGroup;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

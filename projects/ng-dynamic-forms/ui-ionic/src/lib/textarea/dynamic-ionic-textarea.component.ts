@@ -24,7 +24,7 @@ export class DynamicIonicTextAreaComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionTextArea") ionTextArea: IonTextarea;
+    @ViewChild("ionTextArea", { static: true }) ionTextArea: IonTextarea;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

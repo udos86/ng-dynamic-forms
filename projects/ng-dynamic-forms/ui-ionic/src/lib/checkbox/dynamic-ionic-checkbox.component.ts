@@ -24,7 +24,7 @@ export class DynamicIonicCheckboxComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionCheckbox") ionCheckbox: IonCheckbox;
+    @ViewChild("ionCheckbox", { static: true }) ionCheckbox: IonCheckbox;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

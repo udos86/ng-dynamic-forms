@@ -24,7 +24,7 @@ export class DynamicIonicRangeComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionRange") ionRange: IonRange;
+    @ViewChild("ionRange", { static: true }) ionRange: IonRange;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

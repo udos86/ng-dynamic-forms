@@ -24,7 +24,7 @@ export class DynamicIonicSelectComponent extends DynamicFormControlComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionSelect") ionSelect: IonSelect;
+    @ViewChild("ionSelect", { static: true }) ionSelect: IonSelect;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

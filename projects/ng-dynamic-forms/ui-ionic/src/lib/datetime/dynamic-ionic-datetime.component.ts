@@ -26,7 +26,7 @@ export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionDatetime") ionDatetime: IonDatetime;
+    @ViewChild("ionDatetime", { static: true }) ionDatetime: IonDatetime;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
