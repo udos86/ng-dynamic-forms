@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "A rapid form development library for Angular",
   "repository": {
     "type": "git",
@@ -64,11 +64,11 @@
     "@ionic/angular": "^4.4.2",
     "@ng-bootstrap/ng-bootstrap": "^4.2.0",
     "@progress/kendo-angular-dateinputs": "^3.7.4",
-    "@progress/kendo-angular-dropdowns": "^3.5.4",
+    "@progress/kendo-angular-dropdowns": "^3.5.5",
     "@progress/kendo-angular-inputs": "^5.1.0",
     "@progress/kendo-angular-intl": "^1.7.1",
     "@progress/kendo-angular-l10n": "^1.4.1",
-    "@progress/kendo-angular-upload": "^4.3.1",
+    "@progress/kendo-angular-upload": "^4.3.2",
     "@progress/kendo-drawing": "^1.5.12",
     "@progress/kendo-theme-default": "^3.6.1",
     "angular2-text-mask": "^9.0.0",

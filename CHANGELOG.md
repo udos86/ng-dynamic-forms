@@ -1,3 +1,11 @@
+# 8.0.1
+
+### **Bugfixes**
+
+* missing dash added to `DynamicFormControlContainerComponent` model type css class
+
+***
+
 # 8.0.0
 
 ### **Features**
