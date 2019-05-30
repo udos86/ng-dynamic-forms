@@ -1,4 +1,4 @@
-<div [formGroup]="group" [ngClass]="['ng-dynamic-forms'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
+<div [formGroup]="group" [ngClass]="['ng-dynamic-forms-'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
 
     <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
 
