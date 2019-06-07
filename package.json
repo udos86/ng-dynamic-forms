@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "A rapid form development library for Angular",
   "scripts": {
     "aot-compile:sample": "ngc -p sample/tsconfig.aot.ngc.json",
@@ -70,6 +70,7 @@
     "core-js": "^2.5.7",
     "foundation-sites": "^6.4.3",
     "hammerjs": "^2.0.8",
+    "natives": "^1.1.6",
     "ngx-bootstrap": "^2.0.5",
     "primeicons": "^1.0.0-beta.10",
     "primeng": "^6.1.4",

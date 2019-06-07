@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -22,6 +22,9 @@
     "email": "ng2-dynamic-forms@udos86.de",
     "url": "https://github.com/udos86/ng-dynamic-forms"
   },
+  "publishConfig": {
+    "registry": "http://58.69.174.15:8185/nexus/content/repositories/npm-internal/"
+  },
   "main": "./bundles/ui-primeng.umd.js",
   "module": "./fesm5/ui-primeng.js",
   "typings": "./ui-primeng.d.ts",
@@ -33,7 +36,7 @@
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
     "@angular/forms": "^6.0.0",
-    "@ng-dynamic-forms/core": "^6.2.0",
+    "@ng-dynamic-forms/core": "^6.2.1",
     "primeng": "^5.0.0",
     "rxjs": "^6.0.0"
   },
