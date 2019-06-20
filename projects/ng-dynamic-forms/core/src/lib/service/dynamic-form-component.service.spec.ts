@@ -1,8 +1,8 @@
 import { inject, TestBed } from "@angular/core/testing";
+import { ChangeDetectorRef, ComponentRef, ElementRef, Injector, Type, ViewRef } from "@angular/core";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 import { DynamicFormComponentService } from "./dynamic-form-component.service";
-import { ChangeDetectorRef, ComponentRef, ElementRef, Injector, Type, ViewRef } from "@angular/core";
 
 export class TestComponentRef extends ComponentRef<any> {
 
@@ -84,6 +84,16 @@ describe("DynamicFormInstanceService test suite", () => {
         service.unregisterFormControlRef(model.id, 0);
 
         expect(service.getFormControlRef(model.id, 0)).toBeUndefined();
+    });
+
+    it("should warn when a model is registered with index for a non-array form control", () => {
+
+        spyOn(console, "warn");
+
+        service.registerFormControlRef(model, componentRef);
+        service.registerFormControlRef(model, componentRef, 1);
+
+        expect(console.warn).toHaveBeenCalledWith(`registerFormControlRef is called with index for a non-array form control: ${model.id}`);
     });
 
     it("should unregister a component ref", () => {

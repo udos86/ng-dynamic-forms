@@ -1,7 +1,7 @@
 import { ComponentRef, Inject, Injectable, InjectionToken, Optional, Type } from "@angular/core";
 import { DynamicFormControl } from "../component/dynamic-form-control.interface";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { isNumber } from "../utils/core.utils";
+import { isFunction, isNumber } from "../utils/core.utils";
 
 export type DynamicFormControlRef = ComponentRef<DynamicFormControl>;
 
@@ -39,8 +39,14 @@ export class DynamicFormComponentService {
 
             const arrayRef: DynamicFormControlRef[] = this.componentRefs[model.id] as DynamicFormControlRef[] || [];
 
-            arrayRef.splice(index, 0, instance);
-            this.componentRefs[model.id] = arrayRef;
+            if (Array.isArray(arrayRef)) {
+
+                arrayRef.splice(index, 0, instance);
+                this.componentRefs[model.id] = arrayRef;
+
+            } else {
+                console.warn(`registerFormControlRef is called with index for a non-array form control: ${model.id}`);
+            }
 
         } else {
             this.componentRefs[model.id] = instance;
@@ -50,25 +56,20 @@ export class DynamicFormComponentService {
 
     unregisterFormControlRef(modelId: string, index?: number): void {
 
-        const ref = this.componentRefs[modelId];
+        const componentRef = this.componentRefs[modelId];
 
         if (isNumber(index)) {
 
-            if (Array.isArray(ref) && ref[index] !== undefined) {
-                ref.splice(index, 1);
+            if (Array.isArray(componentRef) && componentRef[index] !== undefined) {
+                componentRef.splice(index, 1);
             }
 
-        } else if (ref !== undefined) {
+        } else if (componentRef !== undefined) {
             delete this.componentRefs[modelId];
         }
     }
 
     getCustomComponentType(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
-
-        if (this.DYNAMIC_FORM_CONTROL_MAP_FN) {
-            return this.DYNAMIC_FORM_CONTROL_MAP_FN(model);
-        }
-
-        return null;
+        return isFunction(this.DYNAMIC_FORM_CONTROL_MAP_FN) ? this.DYNAMIC_FORM_CONTROL_MAP_FN(model) : null;
     }
 }

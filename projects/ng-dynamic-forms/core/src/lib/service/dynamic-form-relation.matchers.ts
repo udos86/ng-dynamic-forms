@@ -1,4 +1,4 @@
-import { InjectionToken, Injector, StaticProvider } from "@angular/core";
+import { InjectionToken, Injector, ValueProvider } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
@@ -65,19 +65,19 @@ export const RequiredMatcher: DynamicFormControlMatcher = {
     }
 };
 
-export const DISABLED_MATCHER: StaticProvider = {
+export const DISABLED_MATCHER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
     useValue: DisabledMatcher,
     multi: true
 };
 
-export const HIDDEN_MATCHER: StaticProvider = {
+export const HIDDEN_MATCHER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
     useValue: HiddenMatcher,
     multi: true
 };
 
-export const REQUIRED_MATCHER: StaticProvider = {
+export const REQUIRED_MATCHER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
     useValue: RequiredMatcher,
     multi: true
