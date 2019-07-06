@@ -1,8 +1,23 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS, MatAutocomplete, MatAutocompleteDefaultOptions, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { MAT_CHIPS_DEFAULT_OPTIONS, MatChipInputEvent, MatChipList, MatChipsDefaultOptions } from "@angular/material/chips";
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
+import {
+    MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+    MatAutocomplete,
+    MatAutocompleteDefaultOptions,
+    MatAutocompleteSelectedEvent
+} from "@angular/material/autocomplete";
+import {
+    MAT_CHIPS_DEFAULT_OPTIONS,
+    MatChipInputEvent,
+    MatChipList,
+    MatChipsDefaultOptions
+} from "@angular/material/chips";
+import {
+    LabelOptions,
+    MAT_LABEL_GLOBAL_OPTIONS,
+    MAT_RIPPLE_GLOBAL_OPTIONS,
+    RippleGlobalOptions
+} from "@angular/material/core";
 import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
@@ -28,9 +43,9 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matAutocomplete", { static: true }) matAutocomplete: MatAutocomplete;
-    @ViewChild("matChipList", { static: true }) matChipList: MatChipList;
-    @ViewChild(MatInput, { static: true }) matInput: MatInput;
+    @ViewChild("matAutocomplete", {static: true}) matAutocomplete: MatAutocomplete;
+    @ViewChild("matChipList", {static: true}) matChipList: MatChipList;
+    @ViewChild(MatInput, {static: true}) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
@@ -48,11 +63,12 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
 
-        let inputElement = $event.input,
-            inputValue = $event.value.trim();
+        const inputElement = $event.input,
+              inputValue   = $event.value.trim();
 
         if (inputValue.length > 0) {
             this.control.patchValue([...this.chips, inputValue]);
+            this.onChange($event);
         }
 
         if (inputElement instanceof HTMLInputElement) {
@@ -63,7 +79,7 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     onChipSelected($event: MatAutocompleteSelectedEvent): void {
 
         const selectedChip = $event.option.value,
-            chips = this.chips;
+              chips        = this.chips;
 
         if (!chips.includes(selectedChip)) {
             this.control.patchValue([...this.chips, selectedChip]);

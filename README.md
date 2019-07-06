@@ -1223,7 +1223,6 @@ export interface DynamicFormControlMatcher {
 
     match: string;
     opposingMatch: string | null;
-
     onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
 }
 ```
@@ -1257,7 +1256,7 @@ providers: [
 };
 ```
 ```typescript
-export const MY_CUSTOM_MATCHER: StaticProvider = {
+export const MY_CUSTOM_MATCHER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
     useValue: MyCustomMatcher,
     multi: true

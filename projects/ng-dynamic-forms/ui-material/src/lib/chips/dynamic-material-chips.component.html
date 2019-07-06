@@ -23,7 +23,9 @@
                [matChipInputFor]="matChipList"
                [matChipInputSeparatorKeyCodes]="model.getAdditional('matChipInputSeparatorKeyCodes', CHIPS_OPTIONS['separatorKeyCodes'])"
                [placeholder]="model.placeholder"
-               (matChipInputTokenEnd)="onChipInputTokenEnd($event)"/>
+               (matChipInputTokenEnd)="onChipInputTokenEnd($event)"
+               (blur)="onBlur($event)"
+               (focus)="onFocus($event)"/>
 
         <mat-autocomplete #matAutocomplete="matAutocomplete"
                           [autoActiveFirstOption]="model.getAdditional('autoActiveFirstOption', AUTOCOMPLETE_OPTIONS['autoActiveFirstOption'])"

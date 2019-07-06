@@ -110,8 +110,7 @@ export class DynamicFormLayoutService {
 
     getElementId(model: DynamicFormControlModel): string {
 
-        let id = model.id,
-            parent = model.parent;
+        let id = model.id, parent = model.parent;
 
         while (parent !== null) {
 
