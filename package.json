@@ -1,6 +1,6 @@
 {
   "name": "ng-dynamic-forms",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "description": "A rapid form development library for Angular",
   "repository": {
     "type": "git",
@@ -52,12 +52,12 @@
   "private": false,
   "dependencies": {
     "@angular/animations": "~8.1.0",
-    "@angular/cdk": "^8.0.1",
+    "@angular/cdk": "^8.0.2",
     "@angular/common": "~8.1.0",
     "@angular/compiler": "~8.1.0",
     "@angular/core": "~8.1.0",
     "@angular/forms": "~8.1.0",
-    "@angular/material": "^8.0.1",
+    "@angular/material": "^8.0.2",
     "@angular/platform-browser": "~8.1.0",
     "@angular/platform-browser-dynamic": "~8.1.0",
     "@angular/router": "~8.1.0",

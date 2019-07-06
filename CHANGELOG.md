@@ -1,3 +1,12 @@
+# 8.1.0
+
+### **Features**
+
+* update of ngx-bootstrap, Prime NG, NG Bootstrap and Kendo to new major versions
+* `DynamicFormComponentService` now gives warning instead of failing when called with index argument for non-array (closes [#974](https://github.com/udos86/ng-dynamic-forms/issues/974))
+
+***
+
 # 8.0.1
 
 ### **Bugfixes**
