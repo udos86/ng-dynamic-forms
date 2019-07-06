@@ -33,7 +33,7 @@
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^4.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.0.0-rc.1",
     "@ng-dynamic-forms/core": "^8.0.1",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^4.0.0",

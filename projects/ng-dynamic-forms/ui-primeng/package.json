@@ -33,7 +33,7 @@
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
     "@ng-dynamic-forms/core": "^8.0.1",
-    "primeng": "^7.1.3",
+    "primeng": "^8.0.0",
     "rxjs": "^6.4.0"
   },
   "optionalDependencies": {
