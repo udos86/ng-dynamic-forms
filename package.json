@@ -16,6 +16,7 @@
     "url": "https://github.com/udos86/ng-dynamic-forms/issues"
   },
   "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
+  "schematics": "./schematics/collection.json",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -34,6 +35,7 @@
     "build:ui-material": "ng build @ng-dynamic-forms/ui-material",
     "build:ui-ng-bootstrap": "ng build @ng-dynamic-forms/ui-ng-bootstrap",
     "build:ui-primeng": "ng build @ng-dynamic-forms/ui-primeng",
+    "build:schematics": "tsc -p ./schematics/tsconfig.json",
     "test:lib": "npm run test:core && npm run test:ui-basic && npm run test:ui-bootstrap && npm run test:ui-foundation && npm run test:ui-ionic && npm run test:ui-kendo && npm run test:ui-material && npm run test:ui-ng-bootstrap && npm run test:ui-primeng",
     "test:core": "ng test @ng-dynamic-forms/core --code-coverage",
     "test:ui-basic": "ng test @ng-dynamic-forms/ui-basic --code-coverage",
@@ -91,6 +93,9 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.1",
     "@angular-devkit/build-ng-packagr": "~0.801.1",
+    "@angular-devkit/core": "^8.1.1",
+    "@angular-devkit/schematics": "^8.1.1",
+    "@angular-devkit/schematics-cli": "^0.801.1",
     "@angular/cli": "~8.1.1",
     "@angular/compiler-cli": "~8.1.1",
     "@angular/language-service": "~8.1.1",

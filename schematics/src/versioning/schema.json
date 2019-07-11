@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "Versioning Schematic",
+    "title": "Versioning Schematic",
+    "type": "object",
+    "description": "Creates a new generic component definition in the given or default project.",
+    "properties": {
+        "increment": {
+            "type": "string",
+            "x-prompt": "Choose an increment:",
+            "enum": [
+                "Patch",
+                "Minor",
+                "Major"
+            ]
+        }
+    },
+    "required": ["increment"]
+}
