@@ -2,7 +2,7 @@ import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics'
 
 const PROJECTS_PATH = "./projects/ng-dynamic-forms";
 
-const PROJECT_PATHS = [
+const PACKAGE_PATHS = [
     `${PROJECTS_PATH}/core`,
     `${PROJECTS_PATH}/ui-basic`,
     `${PROJECTS_PATH}/ui-bootstrap`,
@@ -14,13 +14,20 @@ const PROJECT_PATHS = [
     `${PROJECTS_PATH}/ui-primeng`,
     `./schematics`,
     `.`
-]
+];
 
 enum Increment {
 
     Major = "Major",
     Minor = "Minor",
     Patch = "Patch"
+}
+
+enum Dependencies {
+
+    Dependency = "dependencies",
+    DevDependency = "devDependencies",
+    PeerDepdency = "peerDependencies"
 }
 
 export default function (options: any): Rule {
@@ -38,7 +45,7 @@ export default function (options: any): Rule {
                 const newVersion = getNewVersion(currentVersion, increment);
                 console.log(`New Version is ${newVersion}`);
 
-                PROJECT_PATHS.forEach(path => setVersion(tree, newVersion, path));
+                PACKAGE_PATHS.forEach(path => setVersion(tree, newVersion, path));
             }
         }
     ]);
