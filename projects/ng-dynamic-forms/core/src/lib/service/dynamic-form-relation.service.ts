@@ -43,8 +43,10 @@ export class DynamicFormRelationService {
 
             const control = this.getRelatedFormControl(group, condition);
 
-            if (control && !controls.hasOwnProperty(model.id)) {
-                controls[condition.id] = control;
+            const key = condition.rootPath || condition.id;
+
+            if (control && !controls.hasOwnProperty(key)) {
+                controls[key] = control;
             }
         }));
 
@@ -98,7 +100,7 @@ export class DynamicFormRelationService {
 
         const relatedFormControls = this.getRelatedFormControls(model, group), subscriptions: Subscription[] = [];
 
-        Object.entries(relatedFormControls).forEach(([_id, relatedControl]) => {
+        Object.entries(relatedFormControls).forEach(([_key, relatedControl]) => {
 
             const valueChanges = relatedControl.valueChanges.pipe(startWith(relatedControl.value));
             const statusChanges = relatedControl.statusChanges.pipe(startWith(relatedControl.status));
