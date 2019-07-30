@@ -72,7 +72,7 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 relations: [
                     {
                         match: MATCH_DISABLED,
-                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-1"}]
+                        when: [{rootPath: "bsFormGroup1.bsCheckboxGroup.checkboxGroup1", value: false}]
                     },
                     {
                         match: MATCH_HIDDEN,

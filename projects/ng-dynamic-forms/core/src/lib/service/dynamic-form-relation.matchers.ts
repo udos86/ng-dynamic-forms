@@ -82,3 +82,5 @@ export const REQUIRED_MATCHER: ValueProvider = {
     useValue: RequiredMatcher,
     multi: true
 };
+
+export const DYNAMIC_MATCHER_PROVIDERS = [DISABLED_MATCHER, HIDDEN_MATCHER, REQUIRED_MATCHER];

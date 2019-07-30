@@ -197,13 +197,13 @@ describe("DynamicFormRelationService test suite", () => {
     it("should find an activation relation correctly", () => {
 
         model.relations = [rel1];
-        expect(service.findRelation(model.relations, DisabledMatcher)).toBe(rel1);
+        expect(service.findRelationByMatcher(model.relations, DisabledMatcher)).toBe(rel1);
 
         model.relations = [rel2];
-        expect(service.findRelation(model.relations, DisabledMatcher)).toBe(rel2);
+        expect(service.findRelationByMatcher(model.relations, DisabledMatcher)).toBe(rel2);
 
         model.relations = [rel6];
-        expect(service.findRelation(model.relations, RequiredMatcher)).toBe(rel6);
+        expect(service.findRelationByMatcher(model.relations, RequiredMatcher)).toBe(rel6);
     });
 
     it("should check if form control is to be disabled correctly", () => {
