@@ -18,7 +18,7 @@
     "url": "https://github.com/udos86/ng-dynamic-forms"
   },
   "license": "ISC",
-  "schematics": "./src/collection.json",
+  "schematics": "./collection.json",
   "dependencies": {
     "@angular-devkit/core": "^8.1.1",
     "@angular-devkit/schematics": "^8.1.1",
