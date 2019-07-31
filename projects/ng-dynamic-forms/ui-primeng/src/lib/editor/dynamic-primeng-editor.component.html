@@ -5,6 +5,7 @@
               [formControlName]="model.id"
               [id]="elementId"
               [ngClass]="getClass('element','control')"
+              [modules]="model.getAdditional('modules', null)"
               (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"
               (onTextChange)="onChange($event)"></p-editor>
 
