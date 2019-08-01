@@ -8,7 +8,6 @@
 [![DeepScan Grade](https://deepscan.io/api/projects/562/branches/912/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=562&bid=912)
 [![Downloads](http://img.shields.io/npm/dm/@ng-dynamic-forms/core.svg)](https://npmjs.org/package/@ng-dynamic-forms/core)
 
-:bangbang:**05/29/2019: Angular 8 update now available**:bangbang:
 ***
 
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
@@ -19,7 +18,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 **Out of the box support** is provided for all popular UI libraries including **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
 **[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
-[**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html) live in action!
+[**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.html) live in action!
 
 ## Table of Contents
 
