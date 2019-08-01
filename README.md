@@ -36,14 +36,13 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Custom Validators](#custom-validators)
 - [Custom Form Controls](#custom-form-controls)
 - [Validation Messaging](#validation-messaging)
+- [Related Form Controls](#related-form-controls)
 - [JSON Export & Import](#json-export--import)
 - [JSON Form Models](#json-form-models)
 - [Updating Form Models](#updating-form-models)
 - [Disabling Form Controls](#disabling-form-controls)
 - [Text Masks](#text-masks)
-- [Related Form Controls](#related-form-controls)
 - [Autocompletion](#autocompletion)
-- [AOT Compilation](#aot-compilation)
 - [FAQ](#faq)
 - [Appendix](#appendix)
 
@@ -1032,7 +1031,108 @@ and **bind the** `FormControl` **reference via a local template variable**:
     
 </form>
 ```
-  
+
+
+## Related Form Controls
+
+In many forms the state of a certain form control directly depends on the `value` or `status` of some other form control.
+
+Implementing such a connection manually would be time-consuming and only lead to undesired boilerplate code.
+
+NG Dynamic Forms enables you to declaratively add form control relations by using so called `DynamicFormControlMatcher`s.
+
+A matcher defines the action that should take place for a predefined `match` when a `value` or `state` change has occured on the related form control.
+```typescript
+export interface DynamicFormControlMatcher {
+
+    match: string;
+    opposingMatch: string | null;
+    onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
+}
+```
+
+At the moment there are the following **default matchers** available:
+
+* `DisabledMatcher`
+* `HiddenMatcher`
+* `RequiredMatcher`
+
+**NOTE: Always make sure that you're providing every** `DynamicFormControlMatcher` **in your** `app.module`:
+```typescript
+providers: [
+    // ...
+    DISABLED_MATCHER,
+    REQUIRED_MATCHER
+]
+```
+
+ That way you're also totally **free to implement your own custom matcher**:
+```typescript
+ export const MyCustomMatcher: DynamicFormControlMatcher = {
+
+    match: MATCH_CUSTOM,
+    opposingMatch: MATCH_CUSTOM_OPPOSITE,
+    onChange(hasMatch: boolean, model: DynamicFormControlModel): void {
+        if (hasMatch) {
+            console.log("It's a match");
+        }
+    }
+};
+```
+```typescript
+export const MY_CUSTOM_MATCHER: ValueProvider = {
+    provide: DYNAMIC_MATCHERS,
+    useValue: MyCustomMatcher,
+    multi: true
+};
+```
+
+So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
+
+Just add a `relations` property to your `DynamicFormControlModel`, then declare a `DynamicFormControlRelation` by setting a `match` for a certain `DynamicFormControlCondition`:
+
+```typescript
+new DynamicTextAreaModel(
+    {
+        id: "myTextArea",
+        label: "My Textarea",
+        relations: [
+            {
+                match: MATCH_DISABLED,
+                when: [
+                    { id: "mySelect", value: "option-3" }
+                ]
+            }
+        ]
+    }
+```
+**That's it** - the library will automatically add all the pieces together under the hood.
+
+*But what if `myTextArea` should depend on another control `myRadioGroup` as well?*
+
+Luckily there's support for **multi-related form controls**, too.
+
+Just add a second `DynamicFormControlCondition` entry and (optionally) define how all conditions should logically be connected via `operator`:
+```typescript
+new DynamicTextAreaModel(
+    {
+        id: "myTextArea",
+        label: "My Textarea",
+        relations: [
+            {
+                match: MATCH_DISABLED,
+                operator: AND_OPERATOR,
+                when: [
+                    { id: "mySelect", value: "option-3" },
+                    { id: "myRadioGroup", value: "option-4" }
+                ]
+            }
+        ]
+    }
+)
+```
+
+
 ## JSON Export & Import
 
 Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
@@ -1209,106 +1309,6 @@ new DynamicInputModel({
 Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
 
 
-## Related Form Controls
-
-In many forms the state of a certain form control directly depends on the `value` or `status` of some other form control.
-
-Implementing such a connection manually would be time-consuming and only lead to undesired boilerplate code.
-
-NG Dynamic Forms enables you to declaratively add form control relations by using so called `DynamicFormControlMatcher`s. 
-
-A matcher defines the action that should take place for a predefined `match` when a `value` or `state` change has occured on the related form control.
-```typescript
-export interface DynamicFormControlMatcher {
-
-    match: string;
-    opposingMatch: string | null;
-    onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
-}
-```
-
-At the moment there are the following **default matchers** available:
-
-* `DisabledMatcher`
-* `HiddenMatcher`
-* `RequiredMatcher`
-
-**NOTE: Always make sure that you're providing every** `DynamicFormControlMatcher` **in your** `app.module`:
-```typescript
-providers: [
-    // ...
-    DISABLED_MATCHER,
-    REQUIRED_MATCHER
-]
-```
-
- That way you're also totally **free to implement your own custom matcher**:
-```typescript
- export const MyCustomMatcher: DynamicFormControlMatcher = {
-
-    match: MATCH_CUSTOM,
-    opposingMatch: MATCH_CUSTOM_OPPOSITE,
-    onChange(hasMatch: boolean, model: DynamicFormControlModel): void {
-        if (hasMatch) {
-            console.log("It's a match");
-        }
-    }
-};
-```
-```typescript
-export const MY_CUSTOM_MATCHER: ValueProvider = {
-    provide: DYNAMIC_MATCHERS,
-    useValue: MyCustomMatcher,
-    multi: true
-};
-```
-
-So let's pretend we need to have our textarea `myTextArea` disabled as soon as the third option of our select menu `mySelect` is chosen.
-
-Just add a `relations` property to your `DynamicFormControlModel`, then declare a `DynamicFormControlRelation` by setting a `match` for a certain `DynamicFormControlCondition`:
-
-```typescript
-new DynamicTextAreaModel(
-    {
-        id: "myTextArea",
-        label: "My Textarea",
-        relations: [
-            {
-                match: MATCH_DISABLED,
-                when: [
-                    { id: "mySelect", value: "option-3" }
-                ]
-            }
-        ]
-    }
-```
-**That's it** - the library will automatically add all the pieces together under the hood.
-
-*But what if `myTextArea` should depend on another control `myRadioGroup` as well?*
-
-Luckily there's support for **multi-related form controls**, too.
-
-Just add a second `DynamicFormControlCondition` entry and (optionally) define how all conditions should logically be connected via `operator`:
-```typescript
-new DynamicTextAreaModel(
-    {
-        id: "myTextArea",
-        label: "My Textarea",
-        relations: [
-            {
-                match: MATCH_DISABLED,
-                operator: AND_OPERATOR,
-                when: [
-                    { id: "mySelect", value: "option-3" },
-                    { id: "myRadioGroup", value: "option-4" }
-                ]
-            }
-        ]
-    }
-)
-```
-
-  
 ## Autocompletion
 
 Adding automatic input completion can be key factor to good user experience (especially on mobile devices) and should always 
@@ -1369,15 +1369,6 @@ new DynamicInputModel({
     list: ["Alabama", "Alaska", "Arizona", "Arkansas"]
 })
 ```
-
-
-## AOT Compilation
-
-[Ahead-of-Time (AOT) Compilation](https://angular.io/guide/aot-compiler) significantly improves the overall performance of any Angular application.
-
-Since NG Dynamic Forms bundle files **fully match** [**Angular Package Format**](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit) **all packages fit in seamlessly** with your AoT build - whether your'e using the Angular CLI `--aot` flag , `@ngtools/webpack` plugin or directly `@angular/compiler-cli`. 
-
-Yet, **no guarantee can be given for any peer dependency** to properly integrate with AOT. 
 
 
 ## FAQ

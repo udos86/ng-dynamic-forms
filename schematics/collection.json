@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "version": {
+    "versioning": {
       "description": "Versioning Schematic",
       "factory": "./src/versioning/index",
       "schema": "./src/versioning/schema.json"

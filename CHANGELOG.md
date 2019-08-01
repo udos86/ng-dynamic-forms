@@ -1,3 +1,16 @@
+# 8.1.1
+
+### **Features**
+
+* PrimeNG editor now supports `modules` closes [#996](https://github.com/udos86/ng-dynamic-forms/issues/996))
+
+### **Bugfixes**
+
+* `rootPath` is now correctly processed for multiple related form controls (closes [#990](https://github.com/udos86/ng-dynamic-forms/issues/990))
+* PrimeNG spinners now work when `min`/`max` properties are `null` (closes [#989](https://github.com/udos86/ng-dynamic-forms/issues/989))
+
+***
+
 # 8.1.0
 
 ### **Features**

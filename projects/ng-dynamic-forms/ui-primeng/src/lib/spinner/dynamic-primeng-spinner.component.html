@@ -3,8 +3,8 @@
     <p-spinner #pSpinner
                [formControlName]="model.id"
                [id]="elementId"
-               [min]="model.min"
-               [max]="model.max"
+               [min]="model.min === null ? undefined : model.min"
+               [max]="model.max === null ? undefined : model.max"
                [ngClass]="getClass('element', 'control')"
                [placeholder]="model.placeholder"
                [step]="model.step || 1"

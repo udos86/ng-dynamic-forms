@@ -25,7 +25,7 @@ describe("DynamicFormRelationService test suite", () => {
     let service: DynamicFormRelationService,
         group: FormGroup,
         model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"}),
-        rel1 = {
+        rel1                        = {
             match: MATCH_DISABLED,
             operator: OR_OPERATOR,
             when: [
@@ -39,7 +39,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel2 = {
+        rel2                        = {
             match: MATCH_ENABLED,
             operator: AND_OPERATOR,
             when: [
@@ -53,7 +53,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel3 = {
+        rel3                        = {
             match: MATCH_DISABLED,
             operator: AND_OPERATOR,
             when: [
@@ -67,7 +67,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel4 = {
+        rel4                        = {
             match: MATCH_ENABLED,
             operator: OR_OPERATOR,
             when: [
@@ -81,7 +81,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel5 = {
+        rel5                        = {
             match: MATCH_DISABLED,
             operator: OR_OPERATOR,
             when: [
@@ -95,7 +95,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel6 = {
+        rel6                        = {
             match: MATCH_REQUIRED,
             operator: OR_OPERATOR,
             when: [
@@ -109,7 +109,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel7 = {
+        rel7                        = {
             match: MATCH_REQUIRED,
             operator: AND_OPERATOR,
             when: [
@@ -123,7 +123,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel8 = {
+        rel8                        = {
             match: MATCH_REQUIRED,
             operator: OR_OPERATOR,
             when: [
@@ -137,7 +137,7 @@ describe("DynamicFormRelationService test suite", () => {
                 }
             ]
         },
-        rel9 = {
+        rel9                        = {
             match: MATCH_DISABLED,
             operator: OR_OPERATOR,
             when: [
@@ -148,15 +148,6 @@ describe("DynamicFormRelationService test suite", () => {
                 {
                     id: "testRadioGroup",
                     value: "option-2",
-                }
-            ]
-        },
-        rel10 = {
-            match: MATCH_DISABLED,
-            when: [
-                {
-                    id: "testTextArea",
-                    value: "test"
                 }
             ]
         };
@@ -197,44 +188,44 @@ describe("DynamicFormRelationService test suite", () => {
     it("should find an activation relation correctly", () => {
 
         model.relations = [rel1];
-        expect(service.findRelation(model.relations, DisabledMatcher)).toBe(rel1);
+        expect(service.findRelationByMatcher(model.relations, DisabledMatcher)).toBe(rel1);
 
         model.relations = [rel2];
-        expect(service.findRelation(model.relations, DisabledMatcher)).toBe(rel2);
+        expect(service.findRelationByMatcher(model.relations, DisabledMatcher)).toBe(rel2);
 
         model.relations = [rel6];
-        expect(service.findRelation(model.relations, RequiredMatcher)).toBe(rel6);
+        expect(service.findRelationByMatcher(model.relations, RequiredMatcher)).toBe(rel6);
     });
 
     it("should check if form control is to be disabled correctly", () => {
 
         model.relations = [rel1];
-        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(false);
 
         model.relations = [rel2];
-        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(true);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(true);
 
         model.relations = [rel3];
-        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(false);
 
         model.relations = [rel4];
-        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(false);
 
         model.relations = [rel5];
-        expect(service.matchesCondition(model.relations[0], group, DisabledMatcher)).toBe(true);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(true);
 
     });
 
     it("should check if form control is to be required correctly", () => {
 
         model.relations = [rel6];
-        expect(service.matchesCondition(model.relations[0], group, RequiredMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), RequiredMatcher)).toBe(false);
 
         model.relations = [rel7];
-        expect(service.matchesCondition(model.relations[0], group, RequiredMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), RequiredMatcher)).toBe(false);
 
         model.relations = [rel8];
-        expect(service.matchesCondition(model.relations[0], group, RequiredMatcher)).toBe(true);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), RequiredMatcher)).toBe(true);
     });
 
     it("should get all related form controls correctly", () => {
@@ -244,13 +235,5 @@ describe("DynamicFormRelationService test suite", () => {
         const relatedFormControls = service.getRelatedFormControls(model, group);
 
         expect(Object.keys(relatedFormControls).length).toBe(rel9.when.length);
-    });
-
-    it("should throw when model depends on itself", () => {
-
-        model.relations = [rel10];
-
-        expect(() => service.getRelatedFormControls(model, group))
-            .toThrow(new Error(`FormControl ${model.id} cannot depend on itself`));
     });
 });
