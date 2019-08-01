@@ -83,6 +83,7 @@
     "primeicons": "^1.0.0",
     "primeng": "^8.0.2",
     "quill": "^1.3.6",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.2",
     "rxjs-compat": "^6.5.2",
     "tslib": "~1.10.0",
