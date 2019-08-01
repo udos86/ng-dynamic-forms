@@ -46,9 +46,7 @@
     "test:ui-material": "ng test @ng-dynamic-forms/ui-material --code-coverage",
     "test:ui-ng-bootstrap": "ng test @ng-dynamic-forms/ui-ng-bootstrap --code-coverage",
     "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng --code-coverage",
-    "version:major": "",
-    "version:minor": "",
-    "version:patch": "",
+    "update:version": "schematics .:versioning --debug=false",
     "publish": "./publish.sh"
   },
   "private": false,
