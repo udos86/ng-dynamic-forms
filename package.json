@@ -24,7 +24,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:sample": "ng build ng-dynamic-forms --prod --aot --base-href http://ng2-dynamic-forms.de/sample/",
+    "build:sample": "ng build ng-dynamic-forms --prod --aot --base-href http://ng2-dynamic-forms.udos86.de/sample/",
     "build:lib": "npm run build:core && npm run build:ui-basic && npm run build:ui-bootstrap && npm run build:ui-foundation && npm run build:ui-ionic && npm run build:ui-kendo && npm run build:ui-material && npm run build:ui-ng-bootstrap && npm run build:ui-primeng",
     "build:core": "ng build @ng-dynamic-forms/core",
     "build:ui-basic": "ng build @ng-dynamic-forms/ui-basic",
