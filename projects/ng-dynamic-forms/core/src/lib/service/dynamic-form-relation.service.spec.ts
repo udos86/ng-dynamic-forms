@@ -150,15 +150,6 @@ describe("DynamicFormRelationService test suite", () => {
                     value: "option-2",
                 }
             ]
-        },
-        rel10                       = {
-            match: MATCH_DISABLED,
-            when: [
-                {
-                    id: "testTextArea",
-                    value: "test"
-                }
-            ]
         };
 
     beforeEach(() => {

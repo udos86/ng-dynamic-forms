@@ -62,7 +62,7 @@ export class DynamicFormRelationService {
                 }
             }
 
-            if (relatedFormControl && relatedFormControl && relation.match === matcher.match) {
+            if (relatedFormControl && relation.match === matcher.match) {
 
                 if (index > 0 && operator === AND_OPERATOR && !hasAlreadyMatched) {
                     return false;
