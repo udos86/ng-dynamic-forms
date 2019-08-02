@@ -6,7 +6,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent
+    DynamicFormControlComponent, DynamicFormControlCustomEvent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -22,6 +22,7 @@ export class DynamicNGBootstrapDatePickerComponent extends DynamicFormControlCom
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild(NgbDatepicker, { static: false }) ngbDatePicker: NgbDatepicker;

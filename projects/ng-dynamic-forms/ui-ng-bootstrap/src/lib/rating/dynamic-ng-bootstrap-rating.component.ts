@@ -6,7 +6,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicRatingModel
+    DynamicRatingModel, DynamicFormControlCustomEvent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -22,9 +22,10 @@ export class DynamicNGBootstrapRatingComponent extends DynamicFormControlCompone
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(NgbRating, { static: true }) ngbRating: NgbRating;
+    @ViewChild(NgbRating, {static: true}) ngbRating: NgbRating;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
