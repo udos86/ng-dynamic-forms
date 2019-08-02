@@ -2,15 +2,17 @@ import { InjectionToken, Injector, ValueProvider } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
-import {
-    MATCH_DISABLED,
-    MATCH_ENABLED,
-    MATCH_HIDDEN,
-    MATCH_OPTIONAL,
-    MATCH_REQUIRED,
-    MATCH_VISIBLE
-} from "../model/misc/dynamic-form-control-relation.model";
 import { isObject } from "../utils/core.utils";
+
+export const MATCH_DISABLED = "DISABLED";
+export const MATCH_ENABLED = "ENABLED";
+export const MATCH_HIDDEN = "HIDDEN";
+export const MATCH_OPTIONAL = "OPTIONAL";
+export const MATCH_REQUIRED = "REQUIRED";
+export const MATCH_VISIBLE = "VISIBLE";
+
+export const AND_OPERATOR = "AND";
+export const OR_OPERATOR = "OR";
 
 export interface DynamicFormControlMatcher {
 

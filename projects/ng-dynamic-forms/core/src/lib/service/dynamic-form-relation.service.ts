@@ -1,12 +1,13 @@
 import { Inject, Injectable, Injector, Optional } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DYNAMIC_MATCHERS, DynamicFormControlMatcher } from "./dynamic-form-relation.matchers";
 import {
     AND_OPERATOR,
-    DynamicFormControlRelation,
+    DYNAMIC_MATCHERS,
+    DynamicFormControlMatcher,
     OR_OPERATOR
-} from "../model/misc/dynamic-form-control-relation.model";
+} from "./dynamic-form-relation.matchers";
+import { DynamicFormControlRelation, } from "../model/misc/dynamic-form-control-relation.model";
 import { startWith } from "rxjs/operators";
 import { merge, Subscription } from "rxjs";
 
