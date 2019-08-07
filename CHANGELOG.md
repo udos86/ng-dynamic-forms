@@ -22,7 +22,12 @@ You can still track changes via newly introduced `valueChanges` and `disabledCha
 
 ### **Bugfixes**
 
+* disable / enable now should be working on all components again (closes [#993](https://github.com/udos86/ng-dynamic-forms/issues/993))
 * `closed` output now working correctly in ng-bootstrap datepicker (closes [#994](https://github.com/udos86/ng-dynamic-forms/issues/994))
+
+### **Features**
+
+* Labels in Material form fields now support HTML (closes [#966](https://github.com/udos86/ng-dynamic-forms/issues/966))
 
 ***
 
