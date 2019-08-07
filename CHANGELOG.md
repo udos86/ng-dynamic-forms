@@ -20,6 +20,10 @@ Therefore both `valueUpdates` and `disabledUpdates` `Subject`s have been removed
 
 You can still track changes via newly introduced `valueChanges` and `disabledChanges` `Observable`s.
 
+***
+
+`reflect-metadata` **is now directly imported by the library so there's no need to import it on your own in** `polyfills.ts` **any more**.
+
 ### **Bugfixes**
 
 * disable / enable now should be working on all components again (closes [#993](https://github.com/udos86/ng-dynamic-forms/issues/993))

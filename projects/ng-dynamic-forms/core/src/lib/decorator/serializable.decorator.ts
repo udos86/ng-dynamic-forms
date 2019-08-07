@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 declare let Reflect: any;
 
 export const METADATA_KEY_SERIALIZABLE = "SERIALIZABLE";
