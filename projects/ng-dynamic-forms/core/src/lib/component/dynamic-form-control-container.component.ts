@@ -63,7 +63,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     componentViewContainerRef: ViewContainerRef;
 
     protected componentRef: ComponentRef<DynamicFormControl>;
-    //protected viewRefs: EmbeddedViewRef<DynamicFormControlModel>[] = [];
     protected componentSubscriptions: Subscription[] = [];
     protected subscriptions: Subscription[] = [];
 
@@ -82,10 +81,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         if (modelChange) {
 
             this.destroyFormControlComponent();
-            //this.removeTemplates();
-
             this.createFormControlComponent();
-            //this.embedTemplates();
         }
 
         if (groupChange || modelChange) {
@@ -228,26 +224,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    /*
-    protected embedTemplates(): void {
-
-        const templates = this.layoutService.getIndexedTemplates(this.model, this.templates);
-
-        if (Array.isArray(templates)) {
-
-            templates.forEach(template => {
-
-                const viewRef = this.componentViewContainerRef.createEmbeddedView(template.templateRef, this.model, template.index);
-                this.viewRefs.push(viewRef);
-            });
-        }
-    }
-
-    protected removeTemplates(): void {
-        this.viewRefs.forEach(viewRef => this.componentViewContainerRef.remove(this.componentViewContainerRef.indexOf(viewRef)));
-    }
-    */
-
     protected createDynamicFormControlEvent($event: any, type: string): DynamicFormControlEvent {
         return {$event, context: this.context, control: this.control, group: this.group, model: this.model, type};
     }
@@ -260,13 +236,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     onControlValueChanges(value: any): void {
 
-        if (this.model instanceof DynamicFormValueControlModel) {
-
-            let model = this.model as DynamicFormValueControlModel<any>;
-
-            if (model.value !== value) {
-                model.value = value;
-            }
+        if (this.model instanceof DynamicFormValueControlModel && this.model.value !== value) {
+            this.model.value = value;
         }
     }
 
@@ -277,13 +248,13 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    onModelDisabledUpdates(value: boolean): void {
-        value ? this.control.disable() : this.control.enable();
+    onModelDisabledUpdates(disabled: boolean): void {
+        disabled ? this.control.disable() : this.control.enable();
     }
 
     onChange($event: Event | DynamicFormControlEvent | any): void {
 
-        if ($event && $event instanceof Event) { // native HTML5 change event
+        if ($event instanceof Event) { // native HTML5 change event
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
@@ -353,7 +324,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         let index;
 
-        if (this.context && this.context instanceof DynamicFormArrayGroupModel) {
+        if (this.context instanceof DynamicFormArrayGroupModel) {
             index = this.context.index;
         }
 
@@ -364,7 +335,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         let index;
 
-        if (this.context && this.context instanceof DynamicFormArrayGroupModel) {
+        if (this.context instanceof DynamicFormArrayGroupModel) {
             index = this.context.index;
         }
 
