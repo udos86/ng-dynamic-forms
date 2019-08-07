@@ -7,7 +7,7 @@
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">
 
-        <mat-label>{{ model.label }}</mat-label>
+        <mat-label [innerHTML]="model.label"></mat-label>
 
     </ng-container>
 
