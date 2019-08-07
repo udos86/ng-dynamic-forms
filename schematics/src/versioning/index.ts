@@ -83,6 +83,7 @@ function getNewVersion(currentVersion: string, increment: Increment): string {
         case Increment.Major:
             major = major + 1;
             minor = 0;
+            patch = 0;
             break;
 
         case Increment.Minor:
