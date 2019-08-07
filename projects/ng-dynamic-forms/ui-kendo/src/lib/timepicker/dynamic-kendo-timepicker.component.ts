@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-timepicker",
-    templateUrl: "./dynamic-kendo-timepicker.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-timepicker.component.html"
 })
 export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent {
 

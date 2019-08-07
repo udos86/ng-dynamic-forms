@@ -14,8 +14,7 @@ import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-prime
 
 @Component({
     selector: "dynamic-primeng-autocomplete",
-    templateUrl: "./dynamic-primeng-autocomplete.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: "./dynamic-primeng-autocomplete.component.html"
 })
 export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplateableFormControlComponent {
 

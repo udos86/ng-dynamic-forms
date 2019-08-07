@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-textarea",
-    templateUrl: "./dynamic-kendo-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-textarea.component.html"
 })
 export class DynamicKendoTextAreaComponent extends DynamicFormControlComponent {
 

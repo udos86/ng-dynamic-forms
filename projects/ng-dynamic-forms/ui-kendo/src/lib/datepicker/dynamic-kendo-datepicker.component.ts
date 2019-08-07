@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-datepicker",
-    templateUrl: "./dynamic-kendo-datepicker.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-datepicker.component.html"
 })
 export class DynamicKendoDatePickerComponent extends DynamicFormControlComponent {
 

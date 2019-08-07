@@ -14,8 +14,7 @@ import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-t
 
 @Component({
     selector: "dynamic-kendo-autocomplete",
-    templateUrl: "./dynamic-kendo-autocomplete.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-autocomplete.component.html"
 })
 export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableFormControlComponent {
 

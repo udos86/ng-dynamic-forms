@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-input",
-    templateUrl: "./dynamic-ionic-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-input.component.html"
 })
 export class DynamicIonicInputComponent extends DynamicFormControlComponent {
 

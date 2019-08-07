@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-primeng-input-mask",
-    templateUrl: "./dynamic-primeng-input-mask.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-input-mask.component.html"
 })
 export class DynamicPrimeNGInputMaskComponent extends DynamicFormControlComponent {
 

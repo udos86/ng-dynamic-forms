@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-checkbox",
-    templateUrl: "./dynamic-kendo-checkbox.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-checkbox.component.html"
 })
 export class DynamicKendoCheckboxComponent extends DynamicFormControlComponent {
 

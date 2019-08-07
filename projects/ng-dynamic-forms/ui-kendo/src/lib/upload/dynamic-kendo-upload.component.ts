@@ -13,8 +13,7 @@ import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-t
 
 @Component({
     selector: "dynamic-kendo-upload",
-    templateUrl: "./dynamic-kendo-upload.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-upload.component.html"
 })
 export class DynamicKendoUploadComponent extends DynamicKendoTemplateableFormControlComponent {
 

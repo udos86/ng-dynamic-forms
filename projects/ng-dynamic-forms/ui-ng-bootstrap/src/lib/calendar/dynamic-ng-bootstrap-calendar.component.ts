@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-calendar",
-    templateUrl: "./dynamic-ng-bootstrap-calendar.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ng-bootstrap-calendar.component.html"
 })
 export class DynamicNGBootstrapCalendarComponent extends DynamicFormControlComponent {
 

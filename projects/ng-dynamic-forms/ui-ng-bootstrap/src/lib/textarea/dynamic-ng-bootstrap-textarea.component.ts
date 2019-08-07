@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-textarea",
-    templateUrl: "./dynamic-ng-bootstrap-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ng-bootstrap-textarea.component.html"
 })
 export class DynamicNGBootstrapTextAreaComponent extends DynamicFormControlComponent {
 

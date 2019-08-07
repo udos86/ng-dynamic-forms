@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-input",
-    templateUrl: "./dynamic-kendo-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-input.component.html"
 })
 export class DynamicKendoInputComponent extends DynamicFormControlComponent {
 

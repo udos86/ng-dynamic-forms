@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-numerictextbox",
-    templateUrl: "./dynamic-kendo-numerictextbox.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-numerictextbox.component.html"
 })
 export class DynamicKendoNumericTextBoxComponent extends DynamicFormControlComponent {
 

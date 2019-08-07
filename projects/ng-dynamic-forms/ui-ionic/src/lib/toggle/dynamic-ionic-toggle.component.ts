@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-toggle",
-    templateUrl: "./dynamic-ionic-toggle.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-toggle.component.html"
 })
 export class DynamicIonicToggleComponent extends DynamicFormControlComponent {
 

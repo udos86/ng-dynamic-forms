@@ -14,8 +14,7 @@ import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-t
 
 @Component({
     selector: "dynamic-kendo-multiselect",
-    templateUrl: "./dynamic-kendo-multiselect.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-multiselect.component.html"
 })
 export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFormControlComponent {
 

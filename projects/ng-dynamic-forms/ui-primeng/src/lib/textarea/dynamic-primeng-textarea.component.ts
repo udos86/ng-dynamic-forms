@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-primeng-textarea",
-    templateUrl: "./dynamic-primeng-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-textarea.component.html"
 })
 export class DynamicPrimeNGTextAreaComponent extends DynamicFormControlComponent {
 

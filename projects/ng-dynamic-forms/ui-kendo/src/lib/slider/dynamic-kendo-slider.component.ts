@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-slider",
-    templateUrl: "./dynamic-kendo-slider.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-slider.component.html"
 })
 export class DynamicKendoSliderComponent extends DynamicFormControlComponent {
 

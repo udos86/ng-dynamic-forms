@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-radio-group",
-    templateUrl: "./dynamic-kendo-radio-group.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-radio-group.component.html"
 })
 export class DynamicKendoRadioGroupComponent extends DynamicFormControlComponent {
 

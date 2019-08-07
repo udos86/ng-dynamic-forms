@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-textarea",
-    templateUrl: "./dynamic-ionic-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-textarea.component.html"
 })
 export class DynamicIonicTextAreaComponent extends DynamicFormControlComponent {
 

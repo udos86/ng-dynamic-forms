@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-rating",
-    templateUrl: "./dynamic-ng-bootstrap-rating.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ng-bootstrap-rating.component.html"
 })
 export class DynamicNGBootstrapRatingComponent extends DynamicFormControlComponent {
 

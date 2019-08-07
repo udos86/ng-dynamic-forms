@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-radio-group",
-    templateUrl: "./dynamic-ng-bootstrap-radio-group.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ng-bootstrap-radio-group.component.html"
 })
 export class DynamicNGBootstrapRadioGroupComponent extends DynamicFormControlComponent {
 

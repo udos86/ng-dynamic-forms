@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-select",
-    templateUrl: "./dynamic-ng-bootstrap-select.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ng-bootstrap-select.component.html"
 })
 export class DynamicNGBootstrapSelectComponent extends DynamicFormControlComponent {
 

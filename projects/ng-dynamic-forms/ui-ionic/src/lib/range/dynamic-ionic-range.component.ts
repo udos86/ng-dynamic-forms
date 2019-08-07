@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-range",
-    templateUrl: "./dynamic-ionic-range.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-range.component.html"
 })
 export class DynamicIonicRangeComponent extends DynamicFormControlComponent {
 

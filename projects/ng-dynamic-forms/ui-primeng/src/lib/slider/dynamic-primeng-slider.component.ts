@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-primeng-slider",
-    templateUrl: "./dynamic-primeng-slider.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-slider.component.html"
 })
 export class DynamicPrimeNGSliderComponent extends DynamicFormControlComponent {
 

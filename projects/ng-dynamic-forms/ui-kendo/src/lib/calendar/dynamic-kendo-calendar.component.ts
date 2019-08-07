@@ -14,8 +14,7 @@ import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-t
 
 @Component({
     selector: "dynamic-kendo-calendar",
-    templateUrl: "./dynamic-kendo-calendar.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-calendar.component.html"
 })
 export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormControlComponent {
 

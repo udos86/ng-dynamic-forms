@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-dateinput",
-    templateUrl: "./dynamic-kendo-dateinput.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-dateinput.component.html"
 })
 export class DynamicKendoDateInputComponent extends DynamicFormControlComponent {
 

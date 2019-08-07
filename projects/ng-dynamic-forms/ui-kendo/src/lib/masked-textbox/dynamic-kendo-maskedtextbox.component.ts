@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-maskedtextbox",
-    templateUrl: "./dynamic-kendo-maskedtextbox.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-maskedtextbox.component.html"
 })
 export class DynamicKendoMaskedTextBoxComponent extends DynamicFormControlComponent {
 

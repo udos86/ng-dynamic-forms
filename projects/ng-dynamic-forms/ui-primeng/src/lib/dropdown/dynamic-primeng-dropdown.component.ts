@@ -13,8 +13,7 @@ import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-prime
 
 @Component({
     selector: "dynamic-primeng-dropdown",
-    templateUrl: "./dynamic-primeng-dropdown.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-dropdown.component.html"
 })
 export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGTemplateableFormControlComponent {
 

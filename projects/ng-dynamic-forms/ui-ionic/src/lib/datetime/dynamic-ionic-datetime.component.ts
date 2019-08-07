@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-datetime",
-    templateUrl: "./dynamic-ionic-datetime.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-datetime.component.html"
 })
 export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
 

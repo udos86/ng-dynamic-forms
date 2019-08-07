@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-checkbox",
-    templateUrl: "./dynamic-ionic-checkbox.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-checkbox.component.html"
 })
 export class DynamicIonicCheckboxComponent extends DynamicFormControlComponent {
 

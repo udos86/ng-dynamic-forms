@@ -14,8 +14,7 @@ import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-prime
 
 @Component({
     selector: "dynamic-primeng-chips",
-    templateUrl: "./dynamic-primeng-chips.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-chips.component.html"
 })
 export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGTemplateableFormControlComponent {
 

@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-switch",
-    templateUrl: "./dynamic-kendo-switch.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-switch.component.html"
 })
 export class DynamicKendoSwitchComponent extends DynamicFormControlComponent {
 

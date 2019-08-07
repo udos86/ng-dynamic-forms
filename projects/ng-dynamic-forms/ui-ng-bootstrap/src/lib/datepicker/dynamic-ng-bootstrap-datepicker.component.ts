@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-datepicker",
-    templateUrl: "./dynamic-ng-bootstrap-datepicker.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ng-bootstrap-datepicker.component.html"
 })
 export class DynamicNGBootstrapDatePickerComponent extends DynamicFormControlComponent {
 

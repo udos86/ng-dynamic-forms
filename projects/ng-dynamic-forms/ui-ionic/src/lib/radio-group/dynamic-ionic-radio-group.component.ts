@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-radio-group",
-    templateUrl: "./dynamic-ionic-radio-group.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-radio-group.component.html"
 })
 export class DynamicIonicRadioGroupComponent extends DynamicFormControlComponent {
 

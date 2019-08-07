@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-select",
-    templateUrl: "./dynamic-ionic-select.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-select.component.html"
 })
 export class DynamicIonicSelectComponent extends DynamicFormControlComponent {
 
