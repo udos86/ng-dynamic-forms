@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { SliderComponent } from "@progress/kendo-angular-inputs";
 import {
@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-slider",
-    templateUrl: "./dynamic-kendo-slider.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-slider.component.html"
 })
 export class DynamicKendoSliderComponent extends DynamicFormControlComponent {
 

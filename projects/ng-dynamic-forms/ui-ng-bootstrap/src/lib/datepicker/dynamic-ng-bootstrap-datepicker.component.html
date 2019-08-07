@@ -18,6 +18,7 @@
            [showWeekNumbers]="model.getAdditional('showWeekNumbers', config['showWeekNumbers'])"
            [startDate]="model.focusedDate"
            (blur)="onBlur($event)"
+           (dateSelect)="onCustomEvent($event, 'dateSelect')"
            (closed)="onCustomEvent($event, 'closed')"
            (change)="onChange($event)"
            (focus)="onFocus($event)">

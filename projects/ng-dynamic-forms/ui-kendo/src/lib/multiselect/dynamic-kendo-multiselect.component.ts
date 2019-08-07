@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
@@ -14,8 +14,7 @@ import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-t
 
 @Component({
     selector: "dynamic-kendo-multiselect",
-    templateUrl: "./dynamic-kendo-multiselect.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-multiselect.component.html"
 })
 export class DynamicKendoMultiSelectComponent extends DynamicKendoTemplateableFormControlComponent {
 

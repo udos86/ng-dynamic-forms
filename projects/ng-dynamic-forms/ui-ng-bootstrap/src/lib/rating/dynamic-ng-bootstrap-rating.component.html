@@ -5,6 +5,8 @@
                 [max]="model.max"
                 [ngClass]="getClass('element', 'control')"
                 [resettable]="model.getAdditional('resettable', config['resettable'])"
+                (hover)="onCustomEvent($event, 'hover')"
+                (leave)="onCustomEvent($event, 'leave')"
                 (rateChange)="onChange($event)"></ngb-rating>
 
 </ng-container>

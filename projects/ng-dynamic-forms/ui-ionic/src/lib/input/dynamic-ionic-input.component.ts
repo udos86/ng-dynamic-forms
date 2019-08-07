@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { IonInput } from "@ionic/angular";
 import {
@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-input",
-    templateUrl: "./dynamic-ionic-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-input.component.html"
 })
 export class DynamicIonicInputComponent extends DynamicFormControlComponent {
 

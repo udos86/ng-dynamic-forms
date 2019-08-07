@@ -195,7 +195,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should parse dynamic form JSON", () => {
 
-        let json = JSON.stringify(testModel),
+        let json      = JSON.stringify(testModel),
             formModel = service.fromJSON(json);
 
         expect(Array.isArray(formModel) as boolean).toBe(true);
@@ -259,7 +259,7 @@ describe("DynamicFormService test suite", () => {
 
         service.createFormGroup(testModel);
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model       = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             nestedModel = (model.get(0).get(1) as DynamicFormArrayModel).get(0);
 
         expect(service.getPath(model)).toEqual(["testFormArray"]);
@@ -269,11 +269,11 @@ describe("DynamicFormService test suite", () => {
 
     it("should add a form control to an existing form group", () => {
 
-        let formGroup = service.createFormGroup(testModel),
-            nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup,
+        let formGroup            = service.createFormGroup(testModel),
+            nestedFormGroup      = formGroup.controls["testFormGroup"] as FormGroup,
             nestedFormGroupModel = testModel[7] as DynamicFormGroupModel,
-            newModel1 = new DynamicInputModel({id: "newInput1"}),
-            newModel2 = new DynamicInputModel({id: "newInput2"});
+            newModel1            = new DynamicInputModel({id: "newInput1"}),
+            newModel2            = new DynamicInputModel({id: "newInput2"});
 
         service.addFormGroupControl(formGroup, testModel, newModel1);
         service.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel2);
@@ -288,11 +288,11 @@ describe("DynamicFormService test suite", () => {
 
     it("should insert a form control to an existing form group", () => {
 
-        let formGroup = service.createFormGroup(testModel),
-            nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup,
+        let formGroup            = service.createFormGroup(testModel),
+            nestedFormGroup      = formGroup.controls["testFormGroup"] as FormGroup,
             nestedFormGroupModel = testModel[7] as DynamicFormGroupModel,
-            newModel1 = new DynamicInputModel({id: "newInput1"}),
-            newModel2 = new DynamicInputModel({id: "newInput2"});
+            newModel1            = new DynamicInputModel({id: "newInput1"}),
+            newModel2            = new DynamicInputModel({id: "newInput2"});
 
         service.insertFormGroupControl(4, formGroup, testModel, newModel1);
         service.insertFormGroupControl(0, nestedFormGroup, nestedFormGroupModel, newModel2);
@@ -309,10 +309,10 @@ describe("DynamicFormService test suite", () => {
 
     it("should move an existing form control to a different group position", () => {
 
-        let formGroup = service.createFormGroup(testModel),
+        let formGroup            = service.createFormGroup(testModel),
             nestedFormGroupModel = testModel[7] as DynamicFormGroupModel,
-            model1 = testModel[0],
-            model2 = nestedFormGroupModel.get(0);
+            model1               = testModel[0],
+            model2               = nestedFormGroupModel.get(0);
 
         service.moveFormGroupControl(0, 2, testModel);
 
@@ -328,14 +328,14 @@ describe("DynamicFormService test suite", () => {
 
     it("should remove a form control from an existing form group", () => {
 
-        let formGroup = service.createFormGroup(testModel),
-            nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup,
+        let formGroup            = service.createFormGroup(testModel),
+            nestedFormGroup      = formGroup.controls["testFormGroup"] as FormGroup,
             nestedFormGroupModel = testModel[7] as DynamicFormGroupModel,
-            length = testModel.length,
-            size = nestedFormGroupModel.size(),
-            index = 1,
-            id1 = testModel[index].id,
-            id2 = nestedFormGroupModel.get(index).id;
+            length               = testModel.length,
+            size                 = nestedFormGroupModel.size(),
+            index                = 1,
+            id1                  = testModel[index].id,
+            id2                  = nestedFormGroupModel.get(index).id;
 
         service.removeFormGroupControl(index, formGroup, testModel);
 
@@ -371,7 +371,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should add a form array group", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         service.addFormArrayGroup(formArray, model);
@@ -382,7 +382,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should insert a form array group", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         service.insertFormArrayGroup(0, formArray, model);
@@ -393,16 +393,16 @@ describe("DynamicFormService test suite", () => {
 
     it("should move up a form array group", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model),
-            index = 3,
-            step = 1;
+            index     = 3,
+            step      = 1;
 
         (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
         (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
-        (model.get(index).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 1");
-        (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 2");
+        (model.get(index).get(0) as DynamicFormValueControlModel<any>).value = "next test value 1";
+        (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value = "next test value 2";
 
         service.moveFormArrayGroup(index, step, formArray, model);
 
@@ -418,16 +418,16 @@ describe("DynamicFormService test suite", () => {
 
     it("should move down a form array group", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model),
-            index = 3,
-            step = -1;
+            index     = 3,
+            step      = -1;
 
         (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
         (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
-        (model.get(index).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 1");
-        (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).valueUpdates.next("next test value 2");
+        (model.get(index).get(0) as DynamicFormValueControlModel<any>).value = "next test value 1";
+        (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value = "next test value 2";
 
         service.moveFormArrayGroup(index, step, formArray, model);
 
@@ -443,7 +443,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should throw when form array group is to be moved out of bounds", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         expect(() => service.moveFormArrayGroup(2, -5, formArray, model))
@@ -453,7 +453,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should remove a form array group", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         service.removeFormArrayGroup(0, formArray, model);
@@ -467,7 +467,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should clear a form array", () => {
 
-        let model = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
+        let model     = service.findById("testFormArray", testModel) as DynamicFormArrayModel,
             formArray = service.createFormArray(model);
 
         service.clearFormArray(formArray, model);

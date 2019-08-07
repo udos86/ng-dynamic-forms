@@ -171,7 +171,7 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        (testModel  as DynamicInputModel).valueUpdates.next("test");
+        (testModel  as DynamicInputModel).value = "test";
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -180,7 +180,7 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
         spyOn(component, "onModelDisabledUpdates");
 
-        testModel.disabledUpdates.next(true);
+        testModel.disabled = true;
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });

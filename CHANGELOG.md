@@ -1,3 +1,40 @@
+# 9.0.0
+
+### **Breaking Changes**
+
+Updating `value` and `disabled` properties of any `DynamicFormControlModel` is now possible via simple setters:
+
+**BEFORE:**
+```ts
+myModel.valueUpdates.next("New Value");
+myModel.disabledUpdates.next(true);
+```
+
+**AFTER:**
+```ts
+myModel.value = "New Value";
+myModel.disabled = true;
+```
+
+Therefore both `valueUpdates` and `disabledUpdates` `Subject`s have been removed from `DynamicFormControlModel`.
+
+You can still track changes via newly introduced `valueChanges` and `disabledChanges` `Observable`s.
+
+***
+
+`reflect-metadata` **is now directly imported by the library so there's no need to import it on your own in** `polyfills.ts` **any more**.
+
+### **Bugfixes**
+
+* disable / enable now should be working on all components again (closes [#993](https://github.com/udos86/ng-dynamic-forms/issues/993))
+* `closed` output now working correctly in ng-bootstrap datepicker (closes [#994](https://github.com/udos86/ng-dynamic-forms/issues/994))
+
+### **Features**
+
+* Labels in Material form fields now support HTML (closes [#966](https://github.com/udos86/ng-dynamic-forms/issues/966))
+
+***
+
 # 8.1.1
 
 ### **Features**

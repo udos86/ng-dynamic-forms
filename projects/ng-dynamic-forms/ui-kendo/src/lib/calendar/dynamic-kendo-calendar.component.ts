@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import {
@@ -14,8 +14,7 @@ import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-t
 
 @Component({
     selector: "dynamic-kendo-calendar",
-    templateUrl: "./dynamic-kendo-calendar.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-calendar.component.html"
 })
 export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormControlComponent {
 

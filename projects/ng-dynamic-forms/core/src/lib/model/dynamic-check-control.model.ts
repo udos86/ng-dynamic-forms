@@ -17,15 +17,15 @@ export abstract class DynamicCheckControlModel extends DynamicFormValueControlMo
         super(config, layout);
 
         this.labelPosition = config.labelPosition || null;
-        this.value = isBoolean(this.value) ? this.value : false;
+        this.checked = isBoolean(this.value) ? this.value : false;
     }
 
     get checked(): boolean {
-        return !!this.value;
+        return this.value;
     }
 
     set checked(checked: boolean) {
-        this.valueUpdates.next(checked);
+        this.value = checked;
     }
 
     toggle(): void {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { TimePickerComponent } from "@progress/kendo-angular-dateinputs";
 import {
@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-timepicker",
-    templateUrl: "./dynamic-kendo-timepicker.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-timepicker.component.html"
 })
 export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent {
 

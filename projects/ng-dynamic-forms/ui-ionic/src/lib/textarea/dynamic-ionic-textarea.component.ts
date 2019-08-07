@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { IonTextarea } from "@ionic/angular";
 import {
@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-ionic-textarea",
-    templateUrl: "./dynamic-ionic-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-textarea.component.html"
 })
 export class DynamicIonicTextAreaComponent extends DynamicFormControlComponent {
 

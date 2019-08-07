@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormLayout,
@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-kendo-input",
-    templateUrl: "./dynamic-kendo-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-kendo-input.component.html"
 })
 export class DynamicKendoInputComponent extends DynamicFormControlComponent {
 

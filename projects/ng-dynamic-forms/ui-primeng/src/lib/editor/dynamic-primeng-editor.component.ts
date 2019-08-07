@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Editor } from "primeng/primeng";
 import {
@@ -12,8 +12,7 @@ import {
 
 @Component({
     selector: "dynamic-primeng-editor",
-    templateUrl: "./dynamic-primeng-editor.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-editor.component.html"
 })
 export class DynamicPrimeNGEditorComponent extends DynamicFormControlComponent {
 

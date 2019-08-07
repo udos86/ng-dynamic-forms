@@ -38,8 +38,6 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Related Form Controls](#related-form-controls)
 - [JSON Export & Import](#json-export--import)
 - [JSON Form Models](#json-form-models)
-- [Updating Form Models](#updating-form-models)
-- [Disabling Form Controls](#disabling-form-controls)
 - [Text Masks](#text-masks)
 - [Autocompletion](#autocompletion)
 - [FAQ](#faq)
@@ -85,16 +83,14 @@ ng serve
 
 ## Basic Usage
 
-**1. Import** `DynamicFormsCoreModule` **and a UI module**:
+**1. Import the UI module**:
 ```typescript
-import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 
 @NgModule({
     
     imports: [
         ReactiveFormsModule,
-        DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
     ]
 })
@@ -1215,59 +1211,6 @@ ngOnInit() {
         this.formGroup = this.formService.createFormGroup(this.formModel);
     });
 }
-```
-
-
-## Updating Form Models
-
-One of the benefits of using NG Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
-
-Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms,
-changing one of it's properties will immediately trigger an update of the user interface.
-
-But there's one major exception!
-
-NG Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
-
-So what if we actually want to update the value of an arbitrary form control at runtime?
-
-At first we need to get a reference to it's `DynamicFormControlModel` representation. 
-
-This can easily be achieved either by
-a simple index-based array lookup or through the `findById` method of `DynamicFormService`:
-
-```typescript
-this.inputModel = this.formModel[2];
-```
-```typescript
-this.inputModel = this.formService.findById("myInput", this.formModel) as DynamicInputModel;
-```
-
-We now have access to a `Rx.Subject` named `valueUpdates` to push new values via `next()` as well as to listen to new user input via `subscribe()`:
-```typescript
-this.inputModel.valueUpdates.next("my new value");
-
-this.inputModel.valueUpdates.subscribe(value => console.log("new value: ", value);
-```
-
-At any time we can also safely read the most recent user input from the `value` property:
-```typescript
-let currentValue = this.inputModel.value;
-```
-
-
-## Disabling Form Controls
-
-Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) property bindings of the `disabled` attribute in reactive forms. 
-
-That means changing the corresponding `disabled` property of a `DynamicFormControlModel` at runtime won't have any effect.
-
-But similar to [updating values](#updating-form-models) NG Dynamic Forms helps you out here 
-by providing a `Rx.Subject` named `disabledUpdates`. 
-
-It can be used to programmatically switch the activation state of a form control through a `DynamicFormControlModel`:
-```typescript
-this.inputModel.disabledUpdates.next(true);
 ```
 
 

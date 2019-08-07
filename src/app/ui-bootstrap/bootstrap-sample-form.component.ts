@@ -59,8 +59,8 @@ export class BootstrapSampleFormComponent implements OnInit {
     }
 
     test() {
-        //this.exampleModel.disabledUpdates.next(!this.exampleModel.disabled);
-        //this.exampleModel.valueUpdates.next("Hello Hello");
+        this.sampleFormControlModel.disabled = !this.sampleFormControlModel.disabled;
+        this.sampleFormControlModel.value = "Hello Hello";
         //console.log(JSON.stringify(this.exampleModel));
         //this.arrayModel.get(1).group[0].valueUpdates.next("This is just a test");
         //this.formService.moveFormArrayGroup(2, -1, this.arrayControl, this.arrayModel);

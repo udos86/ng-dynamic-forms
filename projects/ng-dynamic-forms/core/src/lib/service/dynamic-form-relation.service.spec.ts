@@ -7,15 +7,13 @@ import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import {
     AND_OPERATOR,
-    OR_OPERATOR,
-    MATCH_DISABLED,
-    MATCH_ENABLED,
-    MATCH_REQUIRED
-} from "../model/misc/dynamic-form-control-relation.model";
-import {
     DISABLED_MATCHER,
     DisabledMatcher,
     HIDDEN_MATCHER,
+    MATCH_DISABLED,
+    MATCH_ENABLED,
+    MATCH_REQUIRED,
+    OR_OPERATOR,
     REQUIRED_MATCHER,
     RequiredMatcher
 } from "./dynamic-form-relation.matchers";

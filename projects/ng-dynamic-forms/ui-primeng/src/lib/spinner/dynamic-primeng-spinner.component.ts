@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Spinner } from "primeng/primeng";
 import {
@@ -11,8 +11,7 @@ import {
 
 @Component({
     selector: "dynamic-primeng-spinner",
-    templateUrl: "./dynamic-primeng-spinner.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-spinner.component.html"
 })
 export class DynamicPrimeNGSpinnerComponent extends DynamicFormControlComponent {
 

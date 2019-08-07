@@ -27,12 +27,13 @@ describe("DynamicTextAreaModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA);
         expect(model.value).toBeNull();
         expect(model.wrap).toEqual(DYNAMIC_FORM_TEXTAREA_WRAP_SOFT);
-        expect(model.disabledUpdates).toBeDefined();
+        expect(model.disabledChanges).toBeDefined();
+        expect(model.valueChanges).toBeDefined();
     });
 
     it("should set disabled property correctly", () => {
 
-        model.disabledUpdates.next(true);
+        model.disabled = true;
 
         expect(model.disabled).toBe(true);
     });
