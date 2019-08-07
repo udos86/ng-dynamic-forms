@@ -4,13 +4,13 @@
 
 Updating `value` and `disabled` properties of any `DynamicFormControlModel` is now possible via simple setters:
 
-**BEFORE**
+**BEFORE:**
 ```ts
 myModel.valueUpdates.next("New Value");
 myModel.disabledUpdates.next(true);
 ```
 
-**AFTER**
+**AFTER:**
 ```ts
 myModel.value = "New Value";
 myModel.disabled = true;
@@ -19,6 +19,10 @@ myModel.disabled = true;
 Therefore both `valueUpdates` and `disabledUpdates` `Subject`s have been removed from `DynamicFormControlModel`.
 
 You can still track changes via newly introduced `valueChanges` and `disabledChanges` `Observable`s.
+
+### **Bugfixes**
+
+* `closed` output now working correctly in ng-bootstrap datepicker (closes [#994](https://github.com/udos86/ng-dynamic-forms/issues/994))
 
 ***
 
