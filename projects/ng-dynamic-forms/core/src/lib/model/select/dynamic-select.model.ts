@@ -18,7 +18,7 @@ export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelCo
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
-    compareWithFn: (o1: any, o2: any) => boolean;
+    compareWithFn: (value1: any, value2: any) => boolean;
     @serializable() filterable: boolean;
     @serializable() multiple: boolean;
     @serializable() placeholder: string;
@@ -41,8 +41,8 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
     select(...indices: number[]): void {
 
-        let value = this.multiple ? indices.map(index => this.get(index).value) : this.get(indices[0]).value;
+        const value = this.multiple ? indices.map(index => this.get(index).value) : this.get(indices[0]).value;
 
-        this.valueUpdates.next(value);
+        this.value = value;
     }
 }

@@ -25,7 +25,7 @@ describe("DynamicFormGroupModel test suite", () => {
         expect(model.size()).toBe(model.group.length);
         expect(model.legend).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_GROUP);
-        expect(model.disabledUpdates).toBeDefined();
+        expect(model.disabledChanges).toBeDefined();
     });
 
     it("should get the correct DynamicFormControlModel of group", () => {

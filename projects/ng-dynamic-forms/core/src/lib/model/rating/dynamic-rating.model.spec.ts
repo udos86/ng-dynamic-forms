@@ -20,7 +20,8 @@ describe("DynamicRatingModel test suite", () => {
         expect(model.max).toBe(config.max);
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_RATING);
         expect(model.value).toBe(config.value);
-        expect(model.disabledUpdates).toBeDefined();
+        expect(model.disabledChanges).toBeDefined();
+        expect(model.valueChanges).toBeDefined();
     });
 
     it("should serialize correctly", () => {

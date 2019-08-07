@@ -38,7 +38,8 @@ describe("DynamicInputModel test suite", () => {
         expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
         expect(model.validators).toBeNull();
-        expect(model.disabledUpdates).toBeDefined();
+        expect(model.disabledChanges).toBeDefined();
+        expect(model.valueChanges).toBeDefined();
     });
 
     it("tests if correct default type property is set", () => {

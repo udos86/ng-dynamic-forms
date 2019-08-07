@@ -1,3 +1,27 @@
+# 9.0.0
+
+### **Breaking Changes**
+
+Updating `value` and `disabled` properties of any `DynamicFormControlModel` is now possible via simple setters:
+
+**BEFORE**
+```ts
+myModel.valueUpdates.next("New Value");
+myModel.disabledUpdates.next(true);
+```
+
+**AFTER**
+```ts
+myModel.value = "New Value";
+myModel.disabled = true;
+```
+
+Therefore both `valueUpdates` and `disabledUpdates` `Subject`s have been removed from `DynamicFormControlModel`.
+
+You can still track changes via newly introduced `valueChanges` and `disabledChanges` `Observable`s.
+
+***
+
 # 8.1.1
 
 ### **Features**

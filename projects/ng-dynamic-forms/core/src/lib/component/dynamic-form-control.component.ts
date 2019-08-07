@@ -99,7 +99,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
         this.onChange($event);
 
-        model.valueUpdates.next(($event.target as HTMLInputElement).checked);
+        model.value = ($event.target as HTMLInputElement).checked;
     }
 
     onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {

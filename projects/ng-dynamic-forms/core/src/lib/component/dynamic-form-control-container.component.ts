@@ -76,8 +76,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     ngOnChanges(changes: SimpleChanges) {
 
-        let groupChange = changes["group"] as SimpleChange,
-            modelChange = changes["model"] as SimpleChange;
+        const groupChange = changes["group"] as SimpleChange,
+              modelChange = changes["model"] as SimpleChange;
 
         if (modelChange) {
 
@@ -100,13 +100,13 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                     this.subscriptions.push(this.control.valueChanges.subscribe(value => this.onControlValueChanges(value)));
                 }
 
-                this.subscriptions.push(this.model.disabledUpdates.subscribe(value => this.onModelDisabledUpdates(value)));
+                this.subscriptions.push(this.model.disabledChanges.subscribe(value => this.onModelDisabledUpdates(value)));
 
                 if (this.model instanceof DynamicFormValueControlModel) {
 
-                    let model = this.model as DynamicFormValueControlModel<any>;
+                    const model = this.model as DynamicFormValueControlModel<any>;
 
-                    this.subscriptions.push(model.valueUpdates.subscribe(value => this.onModelValueUpdates(value)));
+                    this.subscriptions.push(model.valueChanges.subscribe(value => this.onModelValueUpdates(value)));
                 }
 
                 if (this.model.relations.length > 0) {
@@ -265,7 +265,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             let model = this.model as DynamicFormValueControlModel<any>;
 
             if (model.value !== value) {
-                model.valueUpdates.next(value);
+                model.value = value;
             }
         }
     }

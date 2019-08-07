@@ -28,8 +28,8 @@ export const DisabledMatcher: DynamicFormControlMatcher = {
 
     match: MATCH_DISABLED,
     opposingMatch: MATCH_ENABLED,
-    onChange(hasMatch: boolean, model: DynamicFormControlModel): void {
-        model.disabledUpdates.next(hasMatch);
+    onChange(hasMatch, model) {
+        model.disabled = hasMatch;
     }
 };
 
@@ -37,7 +37,7 @@ export const HiddenMatcher: DynamicFormControlMatcher = {
 
     match: MATCH_HIDDEN,
     opposingMatch: MATCH_VISIBLE,
-    onChange(hasMatch: boolean, model: DynamicFormControlModel): void {
+    onChange(hasMatch, model) {
         model.hidden = hasMatch;
     }
 };
@@ -46,7 +46,7 @@ export const RequiredMatcher: DynamicFormControlMatcher = {
 
     match: MATCH_REQUIRED,
     opposingMatch: MATCH_OPTIONAL,
-    onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void {
+    onChange(hasMatch, model, control, injector) {
 
         let validatorsConfig = null;
 
