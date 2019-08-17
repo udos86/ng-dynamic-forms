@@ -61,7 +61,8 @@ export const DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY = new InjectionToken<D
 export class DynamicFormService {
 
     constructor(private validationService: DynamicFormValidationService,
-                @Inject(DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY) @Optional() private readonly DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY: any) {
+                @Inject(DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY) @Optional()
+                private readonly DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY: any) {
         this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY = DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY as DynamicFormControlJSONTransformFnArray;
     }
 

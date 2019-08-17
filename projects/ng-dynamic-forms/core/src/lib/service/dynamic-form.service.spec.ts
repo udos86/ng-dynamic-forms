@@ -225,28 +225,21 @@ describe("DynamicFormService test suite", () => {
 
 
     it("should transform dynamic form control JSON", () => {
-        const addLabelSuffixIfRequired: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
-            if (jsonModel.validators && jsonModel.validators.required === null) {
-                jsonModel.label = `${jsonModel.label}${suffix}`;
-            }
+        const addLabelSuffix: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
+            jsonModel.label = `${jsonModel.label}${suffix}`;
             return jsonModel;
-        },
-          model = new DynamicInputModel({
-              id: 'name',
-              name: 'name',
-              label: 'Name',
-              validators: { required: null }
-          });
+        }
 
         TestBed.overrideProvider(DynamicFormService,
           { deps: [{
               provide: DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY,
-              useValue: [addLabelSuffixIfRequired('*')] as DynamicFormControlJSONTransformFnArray
+              useValue: [addLabelSuffix('*')] as DynamicFormControlJSONTransformFnArray
           }]});
 
         inject([DynamicFormService], (formService) => {
-            expect(formService.getCustomJSONTransform(model)).toBeDefined();
-            expect(formService.getCustomJSONTransform(model)).toEqual(jasmine.objectContaining({ labell: 'Name*' }));
+            const json = JSON.stringify([new DynamicInputModel({ id: 'name', label: 'Name' })]),
+              formModel = formService.fromJSON(json);
+            expect(formModel[0]).toEqual(jasmine.objectContaining({ labell: 'Name*' }));
         });
     });
 
