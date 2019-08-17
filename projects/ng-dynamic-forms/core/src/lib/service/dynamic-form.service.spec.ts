@@ -41,8 +41,7 @@ describe("DynamicFormService test suite", () => {
         readonly type = DYNAMIC_FORM_CONTROL_TYPE_CUSTOM;
     }
 
-    const dynamicFormControlModelConfigMapFn: DynamicFormControlModelConfigMapFn = (model, formService) => {
-        const layout = model.layout;
+    const dynamicFormControlModelConfigMapFn: DynamicFormControlModelConfigMapFn = (model, layout, formService) => {
         switch (model.type) {
             case DYNAMIC_FORM_CONTROL_TYPE_CUSTOM:
                 return new DynamicCustomModel(model, layout);
