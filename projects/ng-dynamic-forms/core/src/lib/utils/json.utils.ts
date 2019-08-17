@@ -40,3 +40,7 @@ export function parseReviver(_key: string, value: any): any {
 
     return isString(value) && regexDateISO.test(value) ? new Date(value) : value;
 }
+
+export function pipe<T = any>(...fns: ((x: T) => T)[]): (x: T) => T {
+    return x => fns.reduce((v, f) => f(v), x);
+}
