@@ -7,7 +7,7 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
-import { DynamicFormService } from "./dynamic-form.service";
+import { DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN, DynamicFormControlModelConfigMapFn, DynamicFormService } from './dynamic-form.service';
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormModel } from "../model/dynamic-form.model";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
@@ -35,6 +35,22 @@ describe("DynamicFormService test suite", () => {
     let testModel: DynamicFormModel,
         service: DynamicFormService;
 
+    const DYNAMIC_FORM_CONTROL_TYPE_CUSTOM = "CUSTOM";
+
+    class DynamicCustomModel extends DynamicInputModel {
+        readonly type = DYNAMIC_FORM_CONTROL_TYPE_CUSTOM;
+    }
+
+    const dynamicFormControlModelConfigMapFn: DynamicFormControlModelConfigMapFn = (model, formService) => {
+        const layout = model.layout;
+        switch (model.type) {
+            case DYNAMIC_FORM_CONTROL_TYPE_CUSTOM:
+                return new DynamicCustomModel(model, layout);
+            default:
+                return null;
+        }
+    }
+
     function testValidator() {
         return {testValidator: {valid: true}};
     }
@@ -50,6 +66,7 @@ describe("DynamicFormService test suite", () => {
             providers: [
                 DynamicFormService,
                 DynamicFormValidationService,
+                {provide: DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN, useValue: dynamicFormControlModelConfigMapFn},
                 {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
                 {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
             ]
@@ -219,6 +236,13 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[15] instanceof DynamicColorPickerModel).toBe(true);
     });
 
+    it("should parse dynamic custom control JSON", () => {
+        const json = JSON.stringify([new DynamicCustomModel({ id: 'custom '})]),
+        formModel = service.fromJSON(json);
+
+        expect(formModel[0] instanceof DynamicCustomModel).toBe(true);
+        expect(formModel[0].type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CUSTOM);
+    });
 
     it("should throw when unknown DynamicFormControlModel id is specified in JSON", () => {
 
