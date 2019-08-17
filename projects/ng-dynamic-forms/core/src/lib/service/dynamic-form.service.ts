@@ -60,9 +60,9 @@ export class DynamicFormService {
 
     constructor(private validationService: DynamicFormValidationService,
                 @Inject(DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN) @Optional()
-                private readonly DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN: DynamicFormControlModelConfigMapFn,
+                private readonly DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN: any,
     ) {
-        this.DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN = DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN;
+        this.DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN = DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN as DynamicFormControlModelConfigMapFn;
     }
 
 
