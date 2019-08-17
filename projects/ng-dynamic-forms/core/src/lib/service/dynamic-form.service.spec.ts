@@ -236,11 +236,11 @@ describe("DynamicFormService test suite", () => {
     });
 
     it("should parse dynamic custom control JSON", () => {
-        const json = JSON.stringify([new DynamicCustomModel({ id: 'custom '})]),
-        formModel = service.fromJSON(json);
+        const model = { id: 'custom', type: DYNAMIC_FORM_CONTROL_TYPE_CUSTOM },
+          unknownModel = { id: 'unknownType', type: 'UNKNOWN' };
 
-        expect(formModel[0] instanceof DynamicCustomModel).toBe(true);
-        expect(formModel[0].type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_CUSTOM);
+        expect(service.getCustomComponentModel(model, null)).toBeDefined();
+        expect(service.getCustomComponentModel(unknownModel, null)).toBeNull();
     });
 
     it("should throw when unknown DynamicFormControlModel id is specified in JSON", () => {
