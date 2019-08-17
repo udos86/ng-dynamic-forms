@@ -7,7 +7,12 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
-import { DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN, DynamicFormService, ModelJSONTransformFn } from './dynamic-form.service';
+import {
+    DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY,
+    DynamicFormControlJSONTransformFnArray,
+    DynamicFormService,
+    ModelJSONTransformFn
+} from './dynamic-form.service';
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormModel } from "../model/dynamic-form.model";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
@@ -220,27 +225,28 @@ describe("DynamicFormService test suite", () => {
 
 
     it("should transform dynamic form control JSON", () => {
-        const addSuffixIfRequired: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
+        const addLabelSuffixIfRequired: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
             if (jsonModel.validators && jsonModel.validators.required === null) {
-                jsonModel.name = `${jsonModel.name}${suffix}`;
+                jsonModel.label = `${jsonModel.label}${suffix}`;
             }
             return jsonModel;
         },
           model = new DynamicInputModel({
-              id: 'test',
-              name: 'test',
+              id: 'name',
+              name: 'name',
+              label: 'Name',
               validators: { required: null }
           });
 
         TestBed.overrideProvider(DynamicFormService,
           { deps: [{
-              provide: DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN,
-              useValue: [addSuffixIfRequired('*')]
+              provide: DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY,
+              useValue: [addLabelSuffixIfRequired('*')] as DynamicFormControlJSONTransformFnArray
           }]});
 
         inject([DynamicFormService], (formService) => {
-            expect(formService.getCustomJSONTransformer(model)).toBeDefined();
-            expect(formService.getCustomJSONTransformer(model)).toEqual(jasmine.objectContaining({ name: 'test*' }));
+            expect(formService.getCustomJSONTransform(model)).toBeDefined();
+            expect(formService.getCustomJSONTransform(model)).toEqual(jasmine.objectContaining({ labell: 'Name*' }));
         });
     });
 

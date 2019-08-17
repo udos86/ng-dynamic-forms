@@ -50,9 +50,9 @@ import { isFunction, isString } from '../utils/core.utils';
 
 export type ModelJSONTransformFn<T> = (modelJSON: T) => T;
 
-export type DynamicFormControlJSONTransformerMapFn<T = any> = (modelJSON: T) => ModelJSONTransformFn<T>[];
-export const DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN = new InjectionToken<DynamicFormControlJSONTransformerMapFn>(
-  'DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN'
+export type DynamicFormControlJSONTransformFnArray<T = any> = ModelJSONTransformFn<T>[];
+export const DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY = new InjectionToken<DynamicFormControlJSONTransformFnArray>(
+  'DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY'
 );
 
 @Injectable({
@@ -61,8 +61,8 @@ export const DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN = new InjectionToken<D
 export class DynamicFormService {
 
     constructor(private validationService: DynamicFormValidationService,
-                @Inject(DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN) @Optional() private readonly DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN: any) {
-        this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN = DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN as DynamicFormControlJSONTransformerMapFn;
+                @Inject(DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY) @Optional() private readonly DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY: any) {
+        this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY = DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY as DynamicFormControlJSONTransformFnArray;
     }
 
 
@@ -331,7 +331,7 @@ export class DynamicFormService {
             formModel: DynamicFormModel = [];
 
         formModelJSON.forEach((model: any) => {
-            model = this.getCustomJSONTransformer(model);
+            model = this.getCustomJSONTransform(model);
             let layout = model.layout || null;
 
             switch (model.type) {
@@ -432,9 +432,9 @@ export class DynamicFormService {
         return formModel;
     }
 
-    getCustomJSONTransformer(model: object): object {
-        return isFunction(this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN)
-          ? pipe(...this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORMER_MAP_FN)(model)
+    getCustomJSONTransform(model: object): object {
+        return isFunction(this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)
+          ? pipe(...this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)(model)
           : model;
     }
 }

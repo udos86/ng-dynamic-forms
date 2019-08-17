@@ -43,11 +43,11 @@ describe("JSON utils test suite", () => {
 
     it("should pass object in multiple functions", () => {
        const object = { id: 'test' },
-            transformer = (modifier: string) => (x: any) => {
+            modifyId = (modifier: string) => (x: any) => {
            x.id = `${x.id}${modifier}`;
            return x;
        };
 
-       expect(pipe(transformer('1'), transformer('2'))(object)).toEqual(jasmine.objectContaining({ id: 'test12' }));
+       expect(pipe(modifyId('1'), modifyId('2'))(object)).toEqual(jasmine.objectContaining({ id: 'test12' }));
     });
 });
