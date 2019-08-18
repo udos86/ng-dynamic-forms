@@ -235,10 +235,14 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[15] instanceof DynamicColorPickerModel).toBe(true);
     });
 
+
     it("should parse dynamic custom control JSON", () => {
         const model = { id: 'custom', type: DYNAMIC_FORM_CONTROL_TYPE_CUSTOM },
-          unknownModel = { id: 'unknownType', type: 'UNKNOWN' };
+          unknownModel = { id: 'unknownType', type: "UNKNOWN" },
+          json = JSON.stringify([model]),
+          formModel = service.fromJSON(json);
 
+        expect(formModel[0] instanceof DynamicCustomModel).toBe(true);
         expect(service.getCustomComponentModel(model, null)).toBeDefined();
         expect(service.getCustomComponentModel(unknownModel, null)).toBeNull();
     });
