@@ -46,7 +46,7 @@ import { DynamicFormModel, DynamicUnionFormModel } from "../model/dynamic-form.m
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 import { maskFromString, parseReviver, pipe } from '../utils/json.utils';
-import { isFunction, isString } from '../utils/core.utils';
+import { isString } from '../utils/core.utils';
 
 export type ModelJSONTransformFn<T> = (modelJSON: T) => T;
 

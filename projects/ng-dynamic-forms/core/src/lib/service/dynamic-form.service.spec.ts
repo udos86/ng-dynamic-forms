@@ -9,7 +9,6 @@ import {
 } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY,
-    DynamicFormControlJSONTransformFnArray,
     DynamicFormService,
     ModelJSONTransformFn
 } from './dynamic-form.service';
