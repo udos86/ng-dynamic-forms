@@ -434,7 +434,7 @@ export class DynamicFormService {
     }
 
     getCustomJSONTransform(model: object): object {
-        return isFunction(this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)
+        return Array.isArray(this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)
           ? pipe(...this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)(model)
           : model;
     }

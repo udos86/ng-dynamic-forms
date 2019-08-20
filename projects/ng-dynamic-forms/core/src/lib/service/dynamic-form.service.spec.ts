@@ -36,6 +36,10 @@ import { DynamicTimePickerModel } from "../model/timepicker/dynamic-timepicker.m
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 
 describe("DynamicFormService test suite", () => {
+    const labelSuffixTranformer: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
+        jsonModel.label = `${jsonModel.label}${suffix}`;
+        return jsonModel;
+    };
 
     let testModel: DynamicFormModel,
         service: DynamicFormService;
@@ -55,6 +59,7 @@ describe("DynamicFormService test suite", () => {
             providers: [
                 DynamicFormService,
                 DynamicFormValidationService,
+                {provide: DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY, useValue: [labelSuffixTranformer('*')]},
                 {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
                 {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
             ]
@@ -225,22 +230,11 @@ describe("DynamicFormService test suite", () => {
 
 
     it("should transform dynamic form control JSON", () => {
-        const addLabelSuffix: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
-            jsonModel.label = `${jsonModel.label}${suffix}`;
-            return jsonModel;
-        }
-
-        TestBed.overrideProvider(DynamicFormService,
-          { deps: [{
-              provide: DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY,
-              useValue: [addLabelSuffix('*')] as DynamicFormControlJSONTransformFnArray
-          }]});
-
-        inject([DynamicFormService], (formService) => {
-            const json = JSON.stringify([new DynamicInputModel({ id: 'name', label: 'Name' })]),
-              formModel = formService.fromJSON(json);
-            expect(formModel[0]).toEqual(jasmine.objectContaining({ labell: 'Name*' }));
-        });
+        const model = new DynamicInputModel({ id: 'name', label: 'Name' }),
+          json = JSON.stringify([model]),
+          formModel = service.fromJSON(json);
+        expect(formModel[0]).toEqual(jasmine.objectContaining({ label: 'Name*' }));
+        expect(service.getCustomJSONTransform(model)).toEqual(jasmine.objectContaining({ label: 'Name*' }));
     });
 
 
