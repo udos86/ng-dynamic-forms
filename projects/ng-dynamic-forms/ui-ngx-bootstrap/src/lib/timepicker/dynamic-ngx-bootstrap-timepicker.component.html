@@ -1,0 +1,17 @@
+<ng-container [formGroup]="group">
+
+    <timepicker [arrowkeys]="model.getAdditional('arrowkeys', true)"
+                [formControlName]="model.id"
+                [hourStep]="model.getAdditional('hourStep', 1)"
+                [id]="elementId"
+                [max]="model.max"
+                [min]="model.min"
+                [mousewheel]="model.getAdditional('mousewheel', true)"
+                [minuteStep]="model.getAdditional('minuteStep', 1)"
+                [ngClass]="getClass('element', 'control')"
+                [secondsStep]="model.getAdditional('secondsStep', 1)"
+                [showMeridian]="model.meridian"
+                [showSeconds]="model.showSeconds"
+                [showSpinners]="model.getAdditional('spinners', true)"></timepicker>
+
+</ng-container>

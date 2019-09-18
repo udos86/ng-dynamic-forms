@@ -70,18 +70,6 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 prefix: "Prefix",
                 suffix: "Suffix",
                 relations: [
-                    {
-                        match: MATCH_DISABLED,
-                        when: [{rootPath: "bsFormGroup1.bsCheckboxGroup.checkboxGroup1", value: false}]
-                    },
-                    {
-                        match: MATCH_HIDDEN,
-                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-2"}]
-                    },
-                    {
-                        match: MATCH_REQUIRED,
-                        when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-3"}]
-                    }
                 ],
                 validators: {
                     maxLength: 5
@@ -100,7 +88,14 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
                         id: "checkboxGroup1",
                         label: "Checkbox 1",
-                        value: true
+                        value: true,
+                        relations: [
+                            {
+                                match: MATCH_DISABLED,
+                                when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: 'option-4'}]
+                            },
+                        ]
+
                     }),
                     new DynamicCheckboxModel({
 
@@ -157,7 +152,8 @@ export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 },
                 errorMessages: {
                     maxLength: "Max character count is 5"
-                }
+                },
+                value: "Test"
             }),
 
             new DynamicTextAreaModel({

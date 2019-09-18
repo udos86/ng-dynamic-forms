@@ -1,0 +1,11 @@
+<ng-container [formGroup]="group">
+
+    <rating [formControlName]="model.id"
+            [id]="elementId"
+            [max]="model.max"
+            [ngClass]="getClass('element', 'control')"
+            [readonly]="model.getAdditional('readonly', false)"
+            (onHover)="onCustomEvent($event, 'onHover')"
+            (onLeave)="onCustomEvent($event, 'onLeave')"></rating>
+
+</ng-container>

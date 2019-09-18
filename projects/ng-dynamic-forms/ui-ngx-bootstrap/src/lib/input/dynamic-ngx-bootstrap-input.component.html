@@ -1,0 +1,40 @@
+<div [formGroup]="group" [class.input-group]="model.prefix || model.suffix">
+
+    <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
+
+    <input class="form-control"
+           [attr.accept]="model.accept"
+           [attr.max]="model.max"
+           [attr.min]="model.min"
+           [attr.multiple]="model.multiple"
+           [attr.step]="model.step"
+           [autocomplete]="model.autoComplete"
+           [autofocus]="model.autoFocus"
+           [dynamicList]="model.listId"
+           [formControlName]="model.id"
+           [id]="elementId"
+           [maxlength]="model.maxLength"
+           [minlength]="model.minLength"
+           [name]="model.name"
+           [ngClass]="getClass('element', 'control')"
+           [pattern]="model.pattern"
+           [placeholder]="model.placeholder"
+           [readonly]="model.readOnly"
+           [required]="model.required"
+           [spellcheck]="model.spellCheck"
+           [tabindex]="model.tabIndex"
+           [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
+           [type]="model.inputType"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)"/>
+
+    <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
+
+    <datalist *ngIf="model.hasList" [id]="model.listId">
+
+        <option *ngFor="let option of model.list$ | async" [value]="option">
+
+    </datalist>
+
+</div>

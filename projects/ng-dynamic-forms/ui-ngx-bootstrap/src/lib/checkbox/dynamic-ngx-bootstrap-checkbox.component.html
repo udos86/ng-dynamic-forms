@@ -1,0 +1,19 @@
+<div [formGroup]="group" [class.disabled]="model.disabled" [ngClass]="getClass('element', 'control') || 'checkbox'">
+
+    <label>
+
+        <input type="checkbox"
+               [checked]="model.checked"
+               [formControlName]="model.id"
+               [id]="elementId"
+               [indeterminate]="model.indeterminate"
+               [name]="model.name"
+               [ngClass]="getClass('element', 'control')"
+               [required]="model.required"
+               [tabindex]="model.tabIndex"
+               [value]="model.value"
+               (blur)="onBlur($event)"
+               (change)="onChange($event)"
+               (focus)="onFocus($event)"/><span [innerHTML]="model.label"
+                                                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></span></label>
+</div>

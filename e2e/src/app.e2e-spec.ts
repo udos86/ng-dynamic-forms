@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display value in input', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to ng-dynamic-forms!');
+    expect(page.getInputText()).toEqual('Test');
   });
 
   afterEach(async () => {

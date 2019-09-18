@@ -1,0 +1,22 @@
+<ng-container [formGroup]="group">
+
+    <select class="form-control"
+            [compareWith]="model.compareWithFn"
+            [formControlName]="model.id"
+            [id]="elementId"
+            [name]="model.name"
+            [ngClass]="getClass('element', 'control')"
+            [required]="model.required"
+            [tabindex]="model.tabIndex"
+            (blur)="onBlur($event)"
+            (change)="onChange($event)"
+            (focus)="onFocus($event)">
+
+        <option *ngFor="let option of model.options$ | async"
+                [disabled]="option.disabled"
+                [ngValue]="option.value">{{ option.label }}
+        </option>
+
+    </select>
+
+</ng-container>

@@ -1,0 +1,28 @@
+<div [formGroup]="group" class="input-group">
+
+    <input bsDatepicker class="form-control" #bsDatepicker="bsDatepicker"
+           [autofocus]="model.autoFocus"
+           [bsConfig]="model.getAdditional('bsConfig', {containerClass: model.getAdditional('containerClass', 'theme-green'), showWeekNumbers: model.getAdditional('showWeekNumbers', true)})"
+           [formControlName]="model.id"
+           [id]="elementId"
+           [maxDate]="model.max"
+           [minDate]="model.min"
+           [name]="model.name"
+           [ngClass]="getClass('element', 'control')"
+           [outsideClick]="model.getAdditional('outsideClick', true)"
+           [placeholder]="model.placeholder"
+           [placement]="model.getAdditional('placement', 'bottom')"
+           [readonly]="model.readOnly"
+           [required]="model.required"
+           (bsValueChange)="onChange($event)"
+           (onHidden)="onCustomEvent($event, 'onHidden')"
+           (onShown)="onCustomEvent($event, 'onShown')">
+
+    <div *ngIf="model.toggleLabel" class="input-group-btn">
+
+        <button *ngIf="model.toggleIcon" class="btn" (click)="bsDatepicker.toggle()"><img [src]="model.toggleIcon"/></button>
+        <button *ngIf="model.toggleLabel" class="btn" (click)="bsDatepicker.toggle()">{{ model.toggleLabel }}</button>
+
+    </div>
+
+</div>

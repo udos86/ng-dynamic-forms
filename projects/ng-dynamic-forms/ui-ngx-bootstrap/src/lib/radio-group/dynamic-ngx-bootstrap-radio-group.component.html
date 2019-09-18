@@ -1,0 +1,21 @@
+<fieldset role="radiogroup"
+          [formGroup]="group"
+          [id]="elementId"
+          [name]="model.name"
+          [ngClass]="getClass('element', 'control')"
+          [tabindex]="model.tabIndex"
+          (change)="onChange($event)">
+
+    <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+    <div *ngFor="let option of model.options$ | async" [ngClass]="getClass('element', 'option') || 'radio'">
+
+        <label><input type="radio"
+                      [formControlName]="model.id"
+                      [name]="model.name"
+                      [value]="option.value"
+                      (blur)="onBlur($event)"
+                      (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span></label>
+    </div>
+
+</fieldset>
