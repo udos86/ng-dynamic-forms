@@ -12,7 +12,7 @@ import { BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./bootstrap-sample-form.layout";
 
 @Component({
     selector: "dynamic-bootstrap-sample-form",
-    styleUrls: ["../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
+    //styleUrls: ["../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
     templateUrl: "./bootstrap-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })

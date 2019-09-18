@@ -1,8 +1,9 @@
 <ng-container [formGroup]="group">
 
     <textarea class="form-control"
+              [class.is-invalid]="showErrorMessages"
               [cols]="model.cols"
-              [formControlName]="elementId"
+              [formControlName]="model.id"
               [id]="elementId"
               [maxlength]="model.maxLength"
               [minlength]="model.minLength"

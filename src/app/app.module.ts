@@ -26,6 +26,7 @@ import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation"
 import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+import { DynamicFormsNGxBootstrapUIModule } from "@ng-dynamic-forms/ui-ngx-bootstrap";
 import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
@@ -45,6 +46,7 @@ import {
     customForbiddenValidator,
     customValidator
 } from "./app.validators";
+
 /*
 export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
     return new Http(mockBackend, baseRequestOptions);
@@ -72,6 +74,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
         DynamicFormsNGBootstrapUIModule,
+        DynamicFormsNGxBootstrapUIModule,
         DynamicFormsPrimeNGUIModule
     ],
     declarations: [

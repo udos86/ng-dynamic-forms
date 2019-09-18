@@ -36,6 +36,7 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapCheckboxComponent } from "./checkbox/dynamic-ngx-bootstrap-checkbox.component";
+import { DynamicNGxBootstrapCheckboxGroupComponent } from "./checkbox-group/dynamic-ngx-bootstrap-checkbox-group.component";
 import { DynamicNGxBootstrapDatePickerComponent } from "./datepicker/dynamic-ngx-bootstrap-datepicker.component";
 import { DynamicNGxBootstrapFormArrayComponent } from "./form-array/dynamic-ngx-bootstrap-form-array.component";
 import { DynamicNGxBootstrapFormGroupComponent } from "./form-group/dynamic-ngx-bootstrap-form-group.component";
@@ -66,7 +67,10 @@ export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFor
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("bsEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {
+        read: ViewContainerRef,
+        static: true
+    }) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormControl> | null {
         return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
@@ -93,7 +97,7 @@ export function bootstrapUIFormControlMapFn(model: DynamicFormControlModel): Typ
             return DynamicNGxBootstrapCheckboxComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP:
-            return DynamicNGxBootstrapFormGroupComponent;
+            return DynamicNGxBootstrapCheckboxGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             return DynamicNGxBootstrapDatePickerComponent;

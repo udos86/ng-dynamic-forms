@@ -1,11 +1,16 @@
-import { DYNAMIC_FORM_CONTROL_TYPE_ARRAY } from "@ng-dynamic-forms/core";
+import {
+    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
+    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
+    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP
+} from "@ng-dynamic-forms/core";
 
 export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
     "bsSelect, bsDatePicker, bsCheckboxGroup, bsRadioGroup, bsInput, bsInput2, bsTextArea, bsTimePicker": {
         element: {
             container: "form-group",
-            label: "control-label"
+            label: "control-label",
+            option: "btn-primary"
         },
 
         grid: {
@@ -28,6 +33,12 @@ export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         grid: {
             container: "col-sm-8"
         }
+    },
+
+    [DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX]: {
+        element: {
+            control: "btn-primary"
+        },
     },
 
     [DYNAMIC_FORM_CONTROL_TYPE_ARRAY]: {

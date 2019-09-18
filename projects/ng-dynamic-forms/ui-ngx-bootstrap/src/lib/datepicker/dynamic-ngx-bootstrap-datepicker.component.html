@@ -18,10 +18,14 @@
            (onHidden)="onCustomEvent($event, 'onHidden')"
            (onShown)="onCustomEvent($event, 'onShown')">
 
-    <div *ngIf="model.toggleLabel" class="input-group-btn">
+    <div *ngIf="model.toggleIcon || model.toggleLabel" class="input-group-append">
 
-        <button *ngIf="model.toggleIcon" class="btn" (click)="bsDatepicker.toggle()"><img [src]="model.toggleIcon"/></button>
-        <button *ngIf="model.toggleLabel" class="btn" (click)="bsDatepicker.toggle()">{{ model.toggleLabel }}</button>
+        <button *ngIf="model.toggleIcon"
+                class="btn input-group-text" type="button"
+                (click)="bsDatepicker.toggle()"><img [src]="model.toggleIcon"/></button>
+        <button *ngIf="model.toggleLabel"
+                class="btn input-group-text" type="button"
+                (click)="bsDatepicker.toggle()">{{ model.toggleLabel }}</button>
 
     </div>
 

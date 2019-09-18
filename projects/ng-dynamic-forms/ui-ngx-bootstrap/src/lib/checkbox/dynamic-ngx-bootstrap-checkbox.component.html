@@ -1,9 +1,10 @@
-<div [formGroup]="group" [class.disabled]="model.disabled" [ngClass]="getClass('element', 'control') || 'checkbox'">
+<div [formGroup]="group" class="form-check" [class.disabled]="model.disabled">
 
-    <label>
+    <label class="form-check-label">
 
-        <input type="checkbox"
+        <input type="checkbox" class="form-check-input"
                [checked]="model.checked"
+               [class.is-invalid]="showErrorMessages"
                [formControlName]="model.id"
                [id]="elementId"
                [indeterminate]="model.indeterminate"
@@ -15,5 +16,7 @@
                (blur)="onBlur($event)"
                (change)="onChange($event)"
                (focus)="onFocus($event)"/><span [innerHTML]="model.label"
-                                                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></span></label>
+                                                [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></span>
+    </label>
+
 </div>

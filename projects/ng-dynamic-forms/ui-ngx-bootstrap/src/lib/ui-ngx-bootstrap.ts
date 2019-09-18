@@ -1,4 +1,5 @@
 export * from "./checkbox/dynamic-ngx-bootstrap-checkbox.component";
+export * from "./checkbox-group/dynamic-ngx-bootstrap-checkbox-group.component";
 export * from "./datepicker/dynamic-ngx-bootstrap-datepicker.component";
 export * from "./form-array/dynamic-ngx-bootstrap-form-array.component";
 export * from "./form-group/dynamic-ngx-bootstrap-form-group.component";

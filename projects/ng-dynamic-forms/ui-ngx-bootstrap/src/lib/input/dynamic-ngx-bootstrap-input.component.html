@@ -1,15 +1,19 @@
 <div [formGroup]="group" [class.input-group]="model.prefix || model.suffix">
 
-    <div *ngIf="model.prefix" class="input-group-addon" [innerHTML]="model.prefix"></div>
+    <div *ngIf="model.prefix" class="input-group-prepend">
+        <span class="input-group-text" [innerHTML]="model.prefix"></span>
+    </div>
 
-    <input class="form-control"
-           [attr.accept]="model.accept"
+    <input [attr.accept]="model.accept"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
            [attr.step]="model.step"
            [autocomplete]="model.autoComplete"
            [autofocus]="model.autoFocus"
+           [class.form-control]="model.inputType !== 'file'"
+           [class.form-control-file]="model.inputType === 'file'"
+           [class.is-invalid]="showErrorMessages"
            [dynamicList]="model.listId"
            [formControlName]="model.id"
            [id]="elementId"
@@ -29,7 +33,9 @@
            (change)="onChange($event)"
            (focus)="onFocus($event)"/>
 
-    <div *ngIf="model.suffix" class="input-group-addon" [innerHTML]="model.suffix"></div>
+    <div *ngIf="model.suffix" class="input-group-append">
+        <span class="input-group-text" [innerHTML]="model.suffix"></span>
+    </div>
 
     <datalist *ngIf="model.hasList" [id]="model.listId">
 

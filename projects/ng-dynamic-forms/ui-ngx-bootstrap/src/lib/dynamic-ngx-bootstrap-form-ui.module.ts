@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ButtonsModule } from "ngx-bootstrap/buttons";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { RatingModule } from "ngx-bootstrap/rating";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
@@ -9,6 +10,7 @@ import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapFormControlContainerComponent } from "./dynamic-ngx-bootstrap-form-control-container.component";
 import { DynamicNGxBootstrapFormComponent } from "./dynamic-ngx-bootstrap-form.component";
 import { DynamicNGxBootstrapCheckboxComponent } from "./checkbox/dynamic-ngx-bootstrap-checkbox.component";
+import { DynamicNGxBootstrapCheckboxGroupComponent } from "./checkbox-group/dynamic-ngx-bootstrap-checkbox-group.component";
 import { DynamicNGxBootstrapDatePickerComponent } from "./datepicker/dynamic-ngx-bootstrap-datepicker.component";
 import { DynamicNGxBootstrapFormArrayComponent } from "./form-array/dynamic-ngx-bootstrap-form-array.component";
 import { DynamicNGxBootstrapFormGroupComponent } from "./form-group/dynamic-ngx-bootstrap-form-group.component";
@@ -24,6 +26,7 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
         CommonModule,
         ReactiveFormsModule,
         BsDatepickerModule,
+        ButtonsModule,
         RatingModule,
         TimepickerModule,
         TextMaskModule,
@@ -31,6 +34,7 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
     ],
     declarations: [
         DynamicNGxBootstrapCheckboxComponent,
+        DynamicNGxBootstrapCheckboxGroupComponent,
         DynamicNGxBootstrapDatePickerComponent,
         DynamicNGxBootstrapFormArrayComponent,
         DynamicNGxBootstrapFormComponent,
@@ -45,6 +49,7 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
     ],
     entryComponents: [
         DynamicNGxBootstrapCheckboxComponent,
+        DynamicNGxBootstrapCheckboxGroupComponent,
         DynamicNGxBootstrapDatePickerComponent,
         DynamicNGxBootstrapFormArrayComponent,
         DynamicNGxBootstrapFormGroupComponent,
@@ -58,6 +63,7 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
     exports: [
         DynamicFormsCoreModule,
         DynamicNGxBootstrapCheckboxComponent,
+        DynamicNGxBootstrapCheckboxGroupComponent,
         DynamicNGxBootstrapDatePickerComponent,
         DynamicNGxBootstrapFormArrayComponent,
         DynamicNGxBootstrapFormComponent,
@@ -71,5 +77,5 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
         DynamicNGxBootstrapTimePickerComponent
     ]
 })
-export class DynamicFormsBootstrapUIModule {
+export class DynamicFormsNGxBootstrapUIModule {
 }

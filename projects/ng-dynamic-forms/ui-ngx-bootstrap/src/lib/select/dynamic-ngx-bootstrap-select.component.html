@@ -1,6 +1,7 @@
 <ng-container [formGroup]="group">
 
     <select class="form-control"
+            [class.is-invalid]="showErrorMessages"
             [compareWith]="model.compareWithFn"
             [formControlName]="model.id"
             [id]="elementId"
@@ -14,8 +15,7 @@
 
         <option *ngFor="let option of model.options$ | async"
                 [disabled]="option.disabled"
-                [ngValue]="option.value">{{ option.label }}
-        </option>
+                [ngValue]="option.value">{{ option.label }}</option>
 
     </select>
 
