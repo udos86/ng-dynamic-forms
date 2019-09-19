@@ -25,12 +25,6 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bsArrayInput": {
-        grid: {
-            container: "col-sm-8"
-        }
-    },
-
     [DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX]: {
         element: {
             control: "btn-primary"
@@ -40,10 +34,10 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
     [DYNAMIC_FORM_CONTROL_TYPE_ARRAY]: {
         element: {
             container: "form-group form-array",
-            label: "control-label"
+            group: "d-flex"
         },
         grid: {
-            control: "col-sm-9",
+            children: "col-sm-8",
             label: "col-sm-3"
         }
     }

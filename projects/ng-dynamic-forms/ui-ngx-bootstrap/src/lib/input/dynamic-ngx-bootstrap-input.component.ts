@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
@@ -10,8 +10,7 @@ import {
 
 @Component({
     selector: "dynamic-ngx-bootstrap-input",
-    templateUrl: "./dynamic-ngx-bootstrap-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ngx-bootstrap-input.component.html"
 })
 export class DynamicNGxBootstrapInputComponent extends DynamicFormControlComponent {
 
