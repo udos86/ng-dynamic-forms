@@ -32,6 +32,7 @@ import {
     DynamicNGxBootstrapFormControlContainerComponent
 } from "./dynamic-ngx-bootstrap-form-control-container.component";
 import { DynamicNGxBootstrapCheckboxComponent } from "./checkbox/dynamic-ngx-bootstrap-checkbox.component";
+import { DynamicNGxBootstrapCheckboxGroupComponent } from "./checkbox-group/dynamic-ngx-bootstrap-checkbox-group.component";
 import { DynamicNGxBootstrapDatePickerComponent } from "./datepicker/dynamic-ngx-bootstrap-datepicker.component";
 import { DynamicNGxBootstrapFormArrayComponent } from "./form-array/dynamic-ngx-bootstrap-form-array.component";
 import { DynamicNGxBootstrapFormGroupComponent } from "./form-group/dynamic-ngx-bootstrap-form-group.component";
@@ -41,6 +42,7 @@ import { DynamicNGxBootstrapRatingComponent } from "./rating/dynamic-ngx-bootstr
 import { DynamicNGxBootstrapSelectComponent } from "./select/dynamic-ngx-bootstrap-select.component";
 import { DynamicNGxBootstrapTextAreaComponent } from "./textarea/dynamic-ngx-bootstrap-textarea.component";
 import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx-bootstrap-timepicker.component";
+import { ButtonsModule } from "ngx-bootstrap/buttons";
 
 describe("DynamicNGxFormBootstrapComponent test suite", () => {
 
@@ -84,6 +86,7 @@ describe("DynamicNGxFormBootstrapComponent test suite", () => {
                 ReactiveFormsModule,
                 DynamicFormsCoreModule,
                 TextMaskModule,
+                ButtonsModule,
                 BsDatepickerModule.forRoot(),
                 TimepickerModule.forRoot()
             ],
@@ -193,7 +196,7 @@ describe("DynamicNGxFormBootstrapComponent test suite", () => {
     it("should map a form control model to a form control component", () => {
 
         expect(bootstrapUIFormControlMapFn(formModel[0])).toBe(DynamicNGxBootstrapCheckboxComponent);
-        expect(bootstrapUIFormControlMapFn(formModel[1])).toBe(DynamicNGxBootstrapFormGroupComponent);
+        expect(bootstrapUIFormControlMapFn(formModel[1])).toBe(DynamicNGxBootstrapCheckboxGroupComponent);
         expect(bootstrapUIFormControlMapFn(formModel[2])).toBeNull();
         expect(bootstrapUIFormControlMapFn(formModel[3])).toBe(DynamicNGxBootstrapDatePickerComponent);
         expect(bootstrapUIFormControlMapFn(formModel[4])).toBeNull();
