@@ -15,7 +15,7 @@ import {
 } from "@ng-dynamic-forms/core";
 import { of } from "rxjs/observable/of";
 
-export const BOOTSTRAP_SAMPLE_FORM_MODEL = [
+export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
     new DynamicFormGroupModel({
 

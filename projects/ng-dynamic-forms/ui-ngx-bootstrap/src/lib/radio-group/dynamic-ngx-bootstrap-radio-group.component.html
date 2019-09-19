@@ -7,8 +7,8 @@
          [tabindex]="model.tabIndex"
          (change)="onChange($event)">
 
-        <label *ngFor="let option of model.options$ | async"
-               [btnRadio]="option.value" class="btn" role="button" tabindex="0"
+        <label *ngFor="let option of model.options$ | async" class="btn" role="button"
+               [btnRadio]="option.value"
                [disabled]="option.disabled"
                [innerHTML]="option.label"
                [ngClass]="[getClass('element', 'option'), getClass('grid', 'option')]"></label>

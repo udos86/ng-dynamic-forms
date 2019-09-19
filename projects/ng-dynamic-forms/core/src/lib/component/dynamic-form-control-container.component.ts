@@ -115,7 +115,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     ngOnDestroy() {
 
-        //this.destroyFormControlComponent();
+        this.destroyFormControlComponent();
         this.unsubscribe();
     }
 
@@ -230,8 +230,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     unsubscribe(): void {
 
-        this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
-        this.componentSubscriptions = [];
+        //this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
+        //this.componentSubscriptions = [];
 
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
         this.subscriptions = [];

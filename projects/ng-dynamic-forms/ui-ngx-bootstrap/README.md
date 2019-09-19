@@ -38,16 +38,17 @@ with **`DynamicNGxBootstrapFormControlComponent`**:
 
 ## Form Controls
 
-|                                  Control                                 	|            Model            	| Required Property 	|
-|:------------------------------------------------------------------------:	|:---------------------------:	|:-----------------:	|
-|    **[Checkbox](http://getbootstrap.com/css/#checkboxes-and-radios)**    	| `DynamicCheckboxModel`      	|         –         	|
-| **[Checkbox Group](http://getbootstrap.com/css/#checkboxes-and-radios)** 	| `DynamicCheckboxGroupModel` 	|         –         	|
-|  **[Datepicker](https://valor-software.com/ngx-bootstrap/#/datepicker)** 	| `DynamicDatePickerModel`    	|         –         	|
-|             **[Input](http://getbootstrap.com/css/#inputs)**             	| `DynamicInputModel`         	|         –         	|
-|   **[Radio Group](http://getbootstrap.com/css/#checkboxes-and-radios)**  	| `DynamicRadioGroupModel`    	|         –         	|
-|            **[Select](http://getbootstrap.com/css/#selects)**            	| `DynamicSelectModel`        	|         –         	|
-|           **[TextArea](http://getbootstrap.com/css/#textarea)**          	| `DynamicTextAreaModel`      	|         –         	|
-|  **[Timepicker](https://valor-software.com/ngx-bootstrap/#/timepicker)** 	| `DynamicTimePickerModel`    	|         –         	|
+|                                       Control                                      	|            Model            	| Required Property 	|
+|:----------------------------------------------------------------------------------:	|:---------------------------:	|:-----------------:	|
+|         **[Checkbox](http://getbootstrap.com/css/#checkboxes-and-radios)**         	| `DynamicCheckboxModel`      	|         –         	|
+|  **[Checkbox Group](https://valor-software.com/ngx-bootstrap/#/buttons#checkbox)** 	| `DynamicCheckboxGroupModel` 	|         –         	|
+|       **[Datepicker](https://valor-software.com/ngx-bootstrap/#/datepicker)**      	| `DynamicDatePickerModel`    	|         –         	|
+|                  **[Input](http://getbootstrap.com/css/#inputs)**                  	| `DynamicInputModel`         	|         –         	|
+| **[Radio Group](https://valor-software.com/ngx-bootstrap/#/buttons#radio-button)** 	| `DynamicRadioGroupModel`    	|         –         	|
+|           **[Rating](https://valor-software.com/ngx-bootstrap/#/rating)**          	| `DynamicRatingModel`        	|         –         	|
+|                 **[Select](http://getbootstrap.com/css/#selects)**                 	| `DynamicSelectModel`        	|         –         	|
+|                **[TextArea](http://getbootstrap.com/css/#textarea)**               	| `DynamicTextAreaModel`      	|         –         	|
+|       **[Timepicker](https://valor-software.com/ngx-bootstrap/#/timepicker)**      	| `DynamicTimePickerModel`    	|         –         	|
 
 ## Resources
 

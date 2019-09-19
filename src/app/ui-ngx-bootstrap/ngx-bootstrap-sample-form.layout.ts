@@ -1,10 +1,6 @@
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
-    DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
-    DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP
-} from "@ng-dynamic-forms/core";
+import { DYNAMIC_FORM_CONTROL_TYPE_ARRAY, DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX } from "@ng-dynamic-forms/core";
 
-export const BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
+export const NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
     "bsSelect, bsDatePicker, bsCheckboxGroup, bsRadioGroup, bsInput, bsInput2, bsTextArea, bsTimePicker": {
         element: {

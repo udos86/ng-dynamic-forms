@@ -21,7 +21,6 @@ import {
     REQUIRED_MATCHER
 } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
-import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
 import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
@@ -30,15 +29,15 @@ import { DynamicFormsNGxBootstrapUIModule } from "@ng-dynamic-forms/ui-ngx-boots
 import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
-import { BootstrapSampleFormComponent } from "./ui-bootstrap/bootstrap-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
 import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
 import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
+import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstrap-sample-form.component";
 import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
-import { AppRoutingModule } from './app.routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
     customAsyncFormGroupValidator,
@@ -69,7 +68,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         NgbTimepickerModule,
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,
-        DynamicFormsBootstrapUIModule,
         DynamicFormsFoundationUIModule,
         DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
@@ -79,7 +77,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
     ],
     declarations: [
         BasicSampleFormComponent,
-        BootstrapSampleFormComponent,
+        NgxBootstrapSampleFormComponent,
         FoundationSampleFormComponent,
         KendoSampleFormComponent,
         MaterialSampleFormComponent,
