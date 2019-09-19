@@ -140,13 +140,10 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
 
             new DynamicInputModel({
 
-                hint: "Just a sample help text",
                 id: "bsInput2",
                 label: "Input",
                 maxLength: 51,
                 placeholder: "example input",
-                prefix: "Prefix",
-                suffix: "Suffix",
                 validators: {
                     maxLength: 5
                 },
