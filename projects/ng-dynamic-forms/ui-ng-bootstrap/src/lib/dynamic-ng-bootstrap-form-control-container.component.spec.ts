@@ -44,6 +44,7 @@ import { DynamicNGBootstrapInputComponent } from "./input/dynamic-ng-bootstrap-i
 import { DynamicNGBootstrapRadioGroupComponent } from "./radio-group/dynamic-ng-bootstrap-radio-group.component";
 import { DynamicNGBootstrapRatingComponent } from "./rating/dynamic-ng-bootstrap-rating.component";
 import { DynamicNGBootstrapSelectComponent } from "./select/dynamic-ng-bootstrap-select.component";
+import { DynamicNGBootstrapSwitchComponent } from "./switch/dynamic-ng-bootstrap-switch.component";
 import { DynamicNGBootstrapTextAreaComponent } from "./textarea/dynamic-ng-bootstrap-textarea.component";
 import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-bootstrap-timepicker.component";
 
@@ -212,7 +213,7 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
         expect(ngBootstrapUIFormControlMapFn(formModel[10])).toBe(DynamicNGBootstrapRatingComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[11])).toBe(DynamicNGBootstrapSelectComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[12])).toBeNull();
-        expect(ngBootstrapUIFormControlMapFn(formModel[13])).toBeNull();
+        expect(ngBootstrapUIFormControlMapFn(formModel[13])).toBe(DynamicNGBootstrapSwitchComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[14])).toBe(DynamicNGBootstrapTextAreaComponent);
         expect(ngBootstrapUIFormControlMapFn(formModel[15])).toBe(DynamicNGBootstrapTimePickerComponent);
     });

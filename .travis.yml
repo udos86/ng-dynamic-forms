@@ -14,6 +14,7 @@ script:
   - npm run build:ui-kendo && npm run test:ui-kendo
   - npm run build:ui-material && npm run test:ui-material
   - npm run build:ui-ng-bootstrap && npm run test:ui-ng-bootstrap
+  - npm run build:ui-ngx-bootstrap && npm run test:ui-ngx-bootstrap
   - npm run build:ui-primeng && npm run test:ui-primeng
   - npm run build:sample
 after_success:
