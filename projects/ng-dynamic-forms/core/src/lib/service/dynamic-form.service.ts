@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions } from "@angular/forms";
 import { DynamicFormControlModel, FormHooks } from "../model/dynamic-form-control.model";
@@ -46,14 +46,24 @@ import { DynamicFormModel, DynamicUnionFormModel } from "../model/dynamic-form.m
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 import { maskFromString, parseReviver } from "../utils/json.utils";
-import { isString } from "../utils/core.utils";
+import { isFunction, isString } from '../utils/core.utils';
+
+export type DynamicFormControlModelConfigMapFn = (model: any, layout: any, formService: DynamicFormService) => DynamicFormControlModel | null;
+export const DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN = new InjectionToken<DynamicFormControlModelConfigMapFn>(
+  'DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN'
+);
 
 @Injectable({
     providedIn: "root"
 })
 export class DynamicFormService {
 
-    constructor(private validationService: DynamicFormValidationService) {}
+    constructor(private validationService: DynamicFormValidationService,
+                @Inject(DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN) @Optional()
+                private readonly DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN: any,
+    ) {
+        this.DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN = DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN as DynamicFormControlModelConfigMapFn;
+    }
 
 
     private createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
@@ -323,6 +333,12 @@ export class DynamicFormService {
         formModelJSON.forEach((model: any) => {
 
             let layout = model.layout || null;
+            let customModel = this.getCustomComponentModel(model, layout);
+
+            if (customModel) {
+                formModel.push(customModel);
+                return;
+            }
 
             switch (model.type) {
 
@@ -420,5 +436,11 @@ export class DynamicFormService {
         });
 
         return formModel;
+    }
+
+    getCustomComponentModel(model: object, layout: any): DynamicFormControlModel | null {
+        return isFunction(this.DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN)
+          ? this.DYNAMIC_FORM_CONTROL_MODEL_CONFIG_MAP_FN(model, layout, this)
+          : null;
     }
 }
