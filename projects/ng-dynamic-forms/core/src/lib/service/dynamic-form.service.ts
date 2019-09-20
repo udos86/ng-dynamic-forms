@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions } from "@angular/forms";
 import { DynamicFormControlModel, FormHooks } from "../model/dynamic-form-control.model";
@@ -45,15 +45,26 @@ import { DynamicFormValidationService } from "./dynamic-form-validation.service"
 import { DynamicFormModel, DynamicUnionFormModel } from "../model/dynamic-form.model";
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
-import { maskFromString, parseReviver } from "../utils/json.utils";
-import { isString } from "../utils/core.utils";
+import { maskFromString, parseReviver, pipe } from '../utils/json.utils';
+import { isString } from '../utils/core.utils';
+
+export type ModelJSONTransformFn<T> = (modelJSON: T) => T;
+
+export type DynamicFormControlJSONTransformFnArray<T = any> = ModelJSONTransformFn<T>[];
+export const DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY = new InjectionToken<DynamicFormControlJSONTransformFnArray>(
+  'DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY'
+);
 
 @Injectable({
     providedIn: "root"
 })
 export class DynamicFormService {
 
-    constructor(private validationService: DynamicFormValidationService) {}
+    constructor(private validationService: DynamicFormValidationService,
+                @Inject(DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY) @Optional()
+                private readonly DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY: any) {
+        this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY = DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY as DynamicFormControlJSONTransformFnArray;
+    }
 
 
     private createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
@@ -321,7 +332,7 @@ export class DynamicFormService {
             formModel: DynamicFormModel = [];
 
         formModelJSON.forEach((model: any) => {
-
+            model = this.getCustomJSONTransform(model);
             let layout = model.layout || null;
 
             switch (model.type) {
@@ -420,5 +431,11 @@ export class DynamicFormService {
         });
 
         return formModel;
+    }
+
+    getCustomJSONTransform(model: object): object {
+        return Array.isArray(this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)
+          ? pipe(...this.DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY)(model)
+          : model;
     }
 }

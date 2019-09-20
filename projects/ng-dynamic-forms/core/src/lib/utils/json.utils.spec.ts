@@ -1,4 +1,4 @@
-import { maskFromString, maskToString, parseReviver } from "./json.utils";
+import { maskFromString, maskToString, parseReviver, pipe } from './json.utils';
 
 describe("JSON utils test suite", () => {
 
@@ -39,5 +39,15 @@ describe("JSON utils test suite", () => {
         let testValue1 = "2011-10-05T14:48:00.000Z";
 
         expect(parseReviver("test", testValue1)).toEqual(new Date(testValue1));
+    });
+
+    it("should pass object in multiple functions", () => {
+       const object = { id: 'test' },
+            modifyId = (modifier: string) => (x: any) => {
+           x.id = `${x.id}${modifier}`;
+           return x;
+       };
+
+       expect(pipe(modifyId('1'), modifyId('2'))(object)).toEqual(jasmine.objectContaining({ id: 'test12' }));
     });
 });

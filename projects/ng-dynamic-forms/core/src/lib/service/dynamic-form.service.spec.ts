@@ -7,7 +7,11 @@ import {
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
-import { DynamicFormService } from "./dynamic-form.service";
+import {
+    DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY,
+    DynamicFormService,
+    ModelJSONTransformFn
+} from './dynamic-form.service';
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormModel } from "../model/dynamic-form.model";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
@@ -31,6 +35,10 @@ import { DynamicTimePickerModel } from "../model/timepicker/dynamic-timepicker.m
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 
 describe("DynamicFormService test suite", () => {
+    const labelSuffixTranformer: (suffix: string) => ModelJSONTransformFn<DynamicInputModel> = (suffix: string) => (jsonModel) => {
+        jsonModel.label = `${jsonModel.label}${suffix}`;
+        return jsonModel;
+    };
 
     let testModel: DynamicFormModel,
         service: DynamicFormService;
@@ -50,6 +58,7 @@ describe("DynamicFormService test suite", () => {
             providers: [
                 DynamicFormService,
                 DynamicFormValidationService,
+                {provide: DYNAMIC_FORM_CONTROL_JSON_TRANSFORM_FN_ARRAY, useValue: [labelSuffixTranformer('*')]},
                 {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
                 {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
             ]
@@ -192,7 +201,6 @@ describe("DynamicFormService test suite", () => {
         expect(formGroup.get("testColorPicker") instanceof FormControl).toBe(true);
     });
 
-
     it("should parse dynamic form JSON", () => {
 
         let json      = JSON.stringify(testModel),
@@ -217,6 +225,15 @@ describe("DynamicFormService test suite", () => {
         expect(formModel[13] instanceof DynamicTimePickerModel).toBe(true);
         expect(formModel[14] instanceof DynamicRatingModel).toBe(true);
         expect(formModel[15] instanceof DynamicColorPickerModel).toBe(true);
+    });
+
+
+    it("should transform dynamic form control JSON", () => {
+        const model = new DynamicInputModel({ id: 'name', label: 'Name' }),
+          json = JSON.stringify([model]),
+          formModel = service.fromJSON(json);
+        expect(formModel[0]).toEqual(jasmine.objectContaining({ label: 'Name*' }));
+        expect(service.getCustomJSONTransform(model)).toEqual(jasmine.objectContaining({ label: 'Name*' }));
     });
 
 
