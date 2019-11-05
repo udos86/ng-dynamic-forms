@@ -815,6 +815,28 @@ providers: [
     }
 ]
 ```
+You can also have multiple validators on the same input bu providing multiple key|value pairs in the useValue:
+```typescript 
+providers: [
+    {
+        provide: NG_VALIDATORS,
+        useValue: myCustomValidator,
+        multi: true
+    },
+     {
+        provide: NG_VALIDATORS,
+        useValue: myOtherCustomValidator,
+        multi: true
+    },
+    {
+        provide: DYNAMIC_VALIDATORS,
+        useValue: new Map<string, Validator | ValidatorFactory>([
+            ["myCustomValidator", myCustomValidator],
+            ["myOtherCustomValidator", myOtherCustomValidator]
+        ])
+    }
+]
+```
 
 Another suitable solution for most situations would be to **make use of the alternate validator notation**:
 ```typescript 
