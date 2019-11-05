@@ -5,7 +5,6 @@ import {
     OnChanges,
     OnDestroy,
     QueryList,
-    SimpleChange,
     SimpleChanges,
     Type,
     ViewContainerRef
@@ -75,8 +74,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     ngOnChanges(changes: SimpleChanges) {
 
-        const groupChange = changes["group"] as SimpleChange,
-              modelChange = changes["model"] as SimpleChange;
+        const groupChange = (changes as Pick<SimpleChanges, "group">).group;
+        const modelChange = (changes as Pick<SimpleChanges, "model">).model;
 
         if (modelChange) {
 
@@ -171,25 +170,26 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.layoutService.getEndTemplate(this.model, this.templates) : undefined;
     }
 
-    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
+    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace,
+             model: DynamicFormControlModel = this.model): string {
 
-        let controlLayout = this.layoutService.findByModel(model, this.layout) || model.layout as DynamicFormControlLayout;
+        const controlLayout = this.layoutService.findByModel(model, this.layout) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }
 
     protected createFormControlComponent(): void {
 
-        let componentType = this.componentType;
+        const componentType = this.componentType;
 
         if (componentType !== null) {
 
-            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 
             this.componentViewContainerRef.clear();
             this.componentRef = this.componentViewContainerRef.createComponent(componentFactory);
 
-            let instance = this.componentRef.instance;
+            const instance = this.componentRef.instance;
 
             instance.group = this.group;
             instance.layout = this.layout;
@@ -230,8 +230,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     unsubscribe(): void {
 
-        //this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
-        //this.componentSubscriptions = [];
+        // this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
+        // this.componentSubscriptions = [];
 
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
         this.subscriptions = [];
@@ -261,11 +261,11 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
 
-                let model = this.model as DynamicInputModel;
+                const model = this.model as DynamicInputModel;
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
 
-                    let inputElement: any = $event.target || $event.srcElement;
+                    const inputElement: any = $event.target || $event.srcElement;
 
                     model.files = inputElement.files as FileList;
                 }
@@ -311,7 +311,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
 
-        let emitter = this.customEvent as EventEmitter<DynamicFormControlEvent>;
+        const emitter = this.customEvent as EventEmitter<DynamicFormControlEvent>;
 
         if (isDynamicFormControlEvent($event)) { // child event bypass
 

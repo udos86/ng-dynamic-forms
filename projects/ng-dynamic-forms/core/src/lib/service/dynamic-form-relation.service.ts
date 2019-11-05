@@ -7,7 +7,7 @@ import {
     DynamicFormControlMatcher,
     OR_OPERATOR
 } from "./dynamic-form-relation.matchers";
-import { DynamicFormControlRelation, } from "../model/misc/dynamic-form-control-relation.model";
+import { DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
 import { startWith } from "rxjs/operators";
 import { merge, Subscription } from "rxjs";
 
@@ -18,8 +18,9 @@ export type DynamicRelatedFormControls = { [key: string]: FormControl };
 })
 export class DynamicFormRelationService {
 
-    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private DYNAMIC_MATCHERS: DynamicFormControlMatcher[],
-                private injector: Injector) {}
+    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private MATCHERS: DynamicFormControlMatcher[],
+                private injector: Injector) {
+    }
 
     getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): DynamicRelatedFormControls {
 
@@ -56,7 +57,7 @@ export class DynamicFormRelationService {
 
             let relatedFormControl;
 
-            for (let [key, control] of Object.entries(relatedFormControls)) {
+            for (const [key, control] of Object.entries(relatedFormControls)) {
                 if (key === path) {
                     relatedFormControl = control;
                     break;
@@ -96,7 +97,8 @@ export class DynamicFormRelationService {
 
     subscribeRelations(model: DynamicFormControlModel, group: FormGroup, control: FormControl): Subscription[] {
 
-        const relatedFormControls = this.getRelatedFormControls(model, group), subscriptions: Subscription[] = [];
+        const relatedFormControls = this.getRelatedFormControls(model, group);
+        const subscriptions: Subscription[] = [];
 
         Object.values(relatedFormControls).forEach(relatedControl => {
 
@@ -105,7 +107,7 @@ export class DynamicFormRelationService {
 
             subscriptions.push(merge(valueChanges, statusChanges).subscribe(() => {
 
-                this.DYNAMIC_MATCHERS.forEach(matcher => {
+                this.MATCHERS.forEach(matcher => {
 
                     const relation = this.findRelationByMatcher(model.relations, matcher);
 
