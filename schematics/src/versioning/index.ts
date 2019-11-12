@@ -22,14 +22,14 @@ enum Increment {
     Minor = "Minor",
     Patch = "Patch"
 }
-
+/*
 enum Dependencies {
 
     Dependency = "dependencies",
     DevDependency = "devDependencies",
     PeerDepdency = "peerDependencies"
 }
-
+*/
 export default function (options: any): Rule {
 
     const { increment } = options;
