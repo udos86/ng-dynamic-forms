@@ -47,7 +47,7 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.value$.next(value);
     }
 
-    getAdditional(key: string, defaultValue: any | null | undefined = undefined): any {
+    getAdditional(key: string, defaultValue?: any | null): any {
         return this.additional !== null && this.additional.hasOwnProperty(key) ? this.additional[key] : defaultValue;
     }
 }

@@ -127,12 +127,12 @@ export function isSectionToken(token: string): boolean {
 
 export function validate(tokens: string): boolean {
 
-    let toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`,
-        tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression),
-        tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression),
-        fields = AUTOFILL_FIELDS.reduce(toExpression),
-        fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression),
-        regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
+    const toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`;
+    const tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression);
+    const tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression);
+    const fields = AUTOFILL_FIELDS.reduce(toExpression);
+    const fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression);
+    const regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
 
     return regex.test(tokens);
 }
