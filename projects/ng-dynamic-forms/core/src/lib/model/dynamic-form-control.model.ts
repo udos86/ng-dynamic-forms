@@ -6,7 +6,7 @@ import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean, isObject, isString } from "../utils/core.utils";
 
-export type FormHooks = 'change' | 'blur' | 'submit';
+export type FormHooks = "change" | "blur" | "submit";
 
 export interface DynamicFormControlModelConfig {
 

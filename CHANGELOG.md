@@ -1,3 +1,15 @@
+# 9.1.0
+
+### **Features**
+
+A new UI package `@ng-dynamic-forms/ui-ngx-bootstrap` has been released. This allows using ngx-bootstrap with Bootstrap 4 now.
+Thus the package `@ng-dynamic-forms/ui-bootstrap` from now on is only recommended if still need to support Bootstrap 3.correctly
+
+* `appendTo` input now works in PrimeNG Dropdown and Multiselect
+* `decimalSeparator`, `thousandSeparator`, `formatInput` and `size` inputs now works in PrimeNG Spinner
+
+***
+
 # 9.0.0
 
 ### **Breaking Changes**

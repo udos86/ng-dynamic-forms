@@ -15,8 +15,7 @@ NG Dynamic Forms is a **rapid form development library** based on the official A
 
 It **fully automates form UI creation** by introducing a set of maintainable **form control models** and **dynamic form control components** 
 
-**Out of the box support** is provided for all popular UI libraries including **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
-**[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
+**Out of the box support** is provided for all popular UI libraries including **[Material](https://material.angular.io/)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, **[Kendo](http://www.telerik.com/kendo-angular-ui)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
 [**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.html) live in action!
 
@@ -179,12 +178,12 @@ export class MyDynamicFormComponent implements OnInit {
 NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
 * **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-basic)**
-* **[Bootstrap / ngx-bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-bootstrap)**
 * **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-foundation)**
 * **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ionic)**
 * **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-kendo)**
 * **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-material)**
 * **[NG Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ng-bootstrap)**
+* **[ngx-bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ngx-bootstrap)**
 * **[PrimeNG](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
@@ -199,7 +198,6 @@ npm i @ng-dynamic-forms/ui-<library-name> -S
 
     imports: [
         ReactiveFormsModule,
-        DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
     ]
 })
@@ -230,22 +228,22 @@ Alternatively you can **directly make use of a specific** `DynamicFormControlCom
 Due to technical restrictions or external dependencies still being in development the support of major form controls 
 varies among UI packages. **See the following compatibility table**:
 
-|                	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-ng-bootstrap 	| ui-primeng 	|
-|----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
-| Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Colorpicker    	|   ****   	|     ****     	|      ****     	|   ****   	|   ****   	|     ****    	|       ****      	|      ✓     	|
-| Datepicker     	|     *    	|       ✓      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
-| Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
-| File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
-| Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Radio Group    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Rating         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
-| Select         	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
-| Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
-| Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Timepicker     	|     *    	|       ✓      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+|                	| ui-basic 	| ui-ngx-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-ng-bootstrap 	| ui-primeng 	|
+|----------------	|:--------:	|:----------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
+| Checkbox       	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Checkbox Group 	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Colorpicker    	|   ****   	|         ✗        	|      ****     	|   ****   	|   ****   	|     ****    	|       ****      	|      ✓     	|
+| Datepicker     	|     *    	|         ✓        	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+| Editor         	|     ✗    	|         ✗        	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
+| File Upload    	|    **    	|        **        	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
+| Input          	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Radio Group    	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Rating         	|     ✗    	|         ✓        	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
+| Select         	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Slider         	|    ***   	|        ***       	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
+| Switch         	|     ✗    	|         ✗        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
+| Textarea       	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Timepicker     	|     *    	|         ✓        	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
 
 **\*)** datetime controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
@@ -811,6 +809,28 @@ providers: [
         provide: DYNAMIC_VALIDATORS,
         useValue: new Map<string, Validator | ValidatorFactory>([
             ["myCustomValidator", myCustomValidator]
+        ])
+    }
+]
+```
+You can also have multiple validators on the same input bu providing multiple key|value pairs in the useValue:
+```typescript 
+providers: [
+    {
+        provide: NG_VALIDATORS,
+        useValue: myCustomValidator,
+        multi: true
+    },
+     {
+        provide: NG_VALIDATORS,
+        useValue: myOtherCustomValidator,
+        multi: true
+    },
+    {
+        provide: DYNAMIC_VALIDATORS,
+        useValue: new Map<string, Validator | ValidatorFactory>([
+            ["myCustomValidator", myCustomValidator],
+            ["myOtherCustomValidator", myOtherCustomValidator]
         ])
     }
 ]

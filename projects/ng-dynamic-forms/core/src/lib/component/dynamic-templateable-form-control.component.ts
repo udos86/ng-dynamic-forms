@@ -4,7 +4,8 @@ import { DynamicTemplateDirective } from "../directive/dynamic-template.directiv
 import { DynamicFormControlComponent } from "./dynamic-form-control.component";
 import { isString } from "../utils/core.utils";
 
-export abstract class DynamicTemplateableFormControlComponent extends DynamicFormControlComponent implements DynamicTemplateableFormControl, AfterViewInit {
+export abstract class DynamicTemplateableFormControlComponent extends DynamicFormControlComponent
+    implements DynamicTemplateableFormControl, AfterViewInit {
 
     readonly templateDirectives: Map<string, string>;
 
@@ -25,7 +26,7 @@ export abstract class DynamicTemplateableFormControlComponent extends DynamicFor
 
         if (isString(template.as) && this.templateDirectives.has(template.as)) {
 
-            let property = this.templateDirectives.get(template.as) as string;
+            const property = this.templateDirectives.get(template.as) as string;
 
             this.viewChild[property] = this.mapTemplate(template);
         }

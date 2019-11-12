@@ -6,6 +6,7 @@
                      [labelPosition]="model.getAdditional('labelPosition', 'after')"
                      [name]="model.name"
                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+                     [required]="model.required"
                      (blur)="onBlur($event)"
                      (change)="onChange($event)"
                      (focus)="onFocus($event)">

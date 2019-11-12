@@ -26,7 +26,7 @@ export class DynamicFormLayoutService {
 
         if (isObject(formLayout)) {
 
-            for (let key of Object.keys(formLayout)) {
+            for (const key of Object.keys(formLayout)) {
 
                 if (key === id) {
                     return formLayout[key];
@@ -43,7 +43,7 @@ export class DynamicFormLayoutService {
 
         if (isObject(formLayout)) {
 
-            for (let key of Object.keys(formLayout)) {
+            for (const key of Object.keys(formLayout)) {
 
                 key.split(",").forEach(substring => {
 
@@ -98,7 +98,7 @@ export class DynamicFormLayoutService {
 
         if (layout !== null && layout.hasOwnProperty(context)) {
 
-            let config = layout[context] as DynamicFormControlLayoutConfig;
+            const config = layout[context] as DynamicFormControlLayoutConfig;
 
             if (config.hasOwnProperty(place)) {
                 return config[place] as string;
@@ -110,7 +110,8 @@ export class DynamicFormLayoutService {
 
     getElementId(model: DynamicFormControlModel): string {
 
-        let id = model.id, parent = model.parent;
+        let id = model.id;
+        let parent = model.parent;
 
         while (parent !== null) {
 

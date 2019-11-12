@@ -7,20 +7,19 @@ import {
     DynamicFormService,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
-import { BOOTSTRAP_SAMPLE_FORM_MODEL } from "./bootstrap-sample-form.model";
-import { BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./bootstrap-sample-form.layout";
+import { NGX_BOOTSTRAP_SAMPLE_FORM_MODEL } from "./ngx-bootstrap-sample-form.model";
+import { NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./ngx-bootstrap-sample-form.layout";
 
 @Component({
-    selector: "dynamic-bootstrap-sample-form",
-    styleUrls: ["../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
-    templateUrl: "./bootstrap-sample-form.component.html",
+    selector: "dynamic-ngx-bootstrap-sample-form",
+    templateUrl: "./ngx-bootstrap-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })
-export class BootstrapSampleFormComponent implements OnInit {
+export class NgxBootstrapSampleFormComponent implements OnInit {
 
-    formModel: DynamicFormControlModel[] = BOOTSTRAP_SAMPLE_FORM_MODEL;
+    formModel: DynamicFormControlModel[] = NGX_BOOTSTRAP_SAMPLE_FORM_MODEL;
     formGroup: FormGroup;
-    formLayout: DynamicFormLayout = BOOTSTRAP_SAMPLE_FORM_LAYOUT;
+    formLayout: DynamicFormLayout = NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT;
 
     sampleFormControl: FormControl;
     sampleFormControlModel: DynamicInputModel;

@@ -22,7 +22,7 @@ export function maskFromString(mask: string | string[]): string | RegExp | (stri
 
     if (isString(mask)) {
 
-        let isRegExp = (mask as string).startsWith("/") && (mask as string).endsWith("/");
+        const isRegExp = (mask as string).startsWith("/") && (mask as string).endsWith("/");
 
         return isRegExp ? new RegExp((mask as string).slice(1, mask.length - 1)) : mask;
 
@@ -36,7 +36,7 @@ export function maskFromString(mask: string | string[]): string | RegExp | (stri
 
 export function parseReviver(_key: string, value: any): any {
 
-    let regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|([+\-])([\d|:]*))?$/;
+    const regexDateISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|([+\-])([\d|:]*))?$/;
 
     return isString(value) && regexDateISO.test(value) ? new Date(value) : value;
 }

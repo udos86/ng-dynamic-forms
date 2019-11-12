@@ -58,7 +58,7 @@
     "ordered-imports": false,
     "quotemark": [
       true,
-      "single"
+      "double"
     ],
     "trailing-comma": false,
     "no-output-on-prefix": true,
@@ -70,6 +70,11 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-leading-underscore"
+    ]
   }
 }

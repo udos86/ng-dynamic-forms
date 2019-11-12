@@ -3,6 +3,7 @@ import { FormControl } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { isObject } from "../utils/core.utils";
+import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 
 export const MATCH_DISABLED = "DISABLED";
 export const MATCH_ENABLED = "ENABLED";
@@ -58,7 +59,7 @@ export const RequiredMatcher: DynamicFormControlMatcher = {
 
             if (isObject(model.validators)) {
 
-                delete model.validators["required"];
+                delete (model.validators as Pick<DynamicValidatorsConfig, "required">).required;
                 validatorsConfig = {...model.validators};
             }
         }

@@ -85,7 +85,7 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
 
     get hasMatFormField(): boolean {
 
-        let matFormFieldTypes = [DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER, DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+        const matFormFieldTypes = [DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER, DYNAMIC_FORM_CONTROL_TYPE_INPUT,
             DYNAMIC_FORM_CONTROL_TYPE_SELECT, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA];
 
         return matFormFieldTypes.some(type => this.model.type === type) || (
@@ -115,7 +115,7 @@ export function materialUIFormControlMapFn(model: DynamicFormControlModel): Type
             return DynamicMaterialFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-            let inputModel = model as DynamicInputModel;
+            const inputModel = model as DynamicInputModel;
 
             return inputModel.multiple ? DynamicMaterialChipsComponent : DynamicMaterialInputComponent;
 

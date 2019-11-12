@@ -10,7 +10,7 @@ import { DynamicKendoTimePickerComponent } from "./dynamic-kendo-timepicker.comp
 
 describe("DynamicKendoTimePickerComponent test suite", () => {
 
-    let testModel = new DynamicTimePickerModel({id: "timepicker"}),
+    let testModel = new DynamicTimePickerModel({id: "timepicker", format: "HH"}),
         formModel = [testModel],
         formGroup: FormGroup,
         fixture: ComponentFixture<DynamicKendoTimePickerComponent>,
