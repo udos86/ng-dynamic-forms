@@ -33,7 +33,7 @@ export class DynamicFormValidationService {
 
         if (Validators.hasOwnProperty(validatorName)) { // Built-in Angular Validators
 
-            validatorFn = (Validators as any).validatorName;
+            validatorFn = (Validators as any)[validatorName];
 
         } else { // Custom Validators
 
@@ -41,12 +41,13 @@ export class DynamicFormValidationService {
                 validatorFn = this.DYNAMIC_VALIDATORS_MAP.get(validatorName);
 
             } else if (validatorsToken) {
-                validatorFn = validatorsToken.find(validatorFn => validatorFn.name === validatorName);
+                validatorFn = validatorsToken.find(validator => validator.name === validatorName);
             }
         }
 
         if (validatorFn === undefined) { // throw when no validator could be resolved
-            throw new Error(`validator "${validatorName}" is not provided via NG_VALIDATORS, NG_ASYNC_VALIDATORS or DYNAMIC_FORM_VALIDATORS`);
+            throw new Error(
+                `validator "${validatorName}" is not provided via NG_VALIDATORS, NG_ASYNC_VALIDATORS or DYNAMIC_FORM_VALIDATORS`);
         }
 
         if (validatorArgs !== null) {
