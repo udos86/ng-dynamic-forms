@@ -9,7 +9,7 @@ import {
     DynamicRatingModel,
     DynamicSelectModel,
     DynamicTextAreaModel,
-    DynamicTimePickerModel
+    DynamicTimePickerModel, MATCH_REQUIRED, MATCH_DISABLED
 } from "@ng-dynamic-forms/core";
 
 export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
@@ -103,12 +103,22 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
         id: "lastName",
         label: "Last Name",
         placeholder: "Last Name",
+        /*
         validators: {
             required: null
         },
+        */
         errorMessages: {
             required: "{{ label }} is required"
-        }
+        },
+        relations: [
+            {
+                match: MATCH_REQUIRED,
+                when: [
+                    { id: "firstName", value: "Test" }
+                ]
+            }
+        ]
     }),
 
     new DynamicInputModel({

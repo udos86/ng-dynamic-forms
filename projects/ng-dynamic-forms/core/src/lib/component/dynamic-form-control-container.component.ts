@@ -51,6 +51,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
 
+    controlLayout: DynamicFormControlLayout;
     contentTemplateList: QueryList<DynamicTemplateDirective> | undefined;
     inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
 
@@ -75,7 +76,12 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     ngOnChanges(changes: SimpleChanges) {
 
         const groupChange = (changes as Pick<SimpleChanges, "group">).group;
+        const layoutChange = (changes as Pick<SimpleChanges, "layout">).layout;
         const modelChange = (changes as Pick<SimpleChanges, "model">).model;
+
+        if (layoutChange || modelChange) {
+            this.controlLayout = this.getLayout();
+        }
 
         if (modelChange) {
 
@@ -170,12 +176,12 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.layoutService.getEndTemplate(this.model, this.templates) : undefined;
     }
 
-    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace,
-             model: DynamicFormControlModel = this.model): string {
+    getLayout(): DynamicFormControlLayout {
+        return this.layoutService.findByModel(this.model, this.layout) || this.model.layout as DynamicFormControlLayout;
+    }
 
-        const controlLayout = this.layoutService.findByModel(model, this.layout) || model.layout as DynamicFormControlLayout;
-
-        return this.layoutService.getClass(controlLayout, context, place);
+    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace): string {
+        return this.layoutService.getClass(this.controlLayout, context, place);
     }
 
     protected createFormControlComponent(): void {
@@ -191,8 +197,9 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
             const instance = this.componentRef.instance;
 
+            instance.formLayout = this.layout;
             instance.group = this.group;
-            instance.layout = this.layout;
+            instance.layout = this.controlLayout;
             instance.model = this.model as any;
 
             if (this.templates) {

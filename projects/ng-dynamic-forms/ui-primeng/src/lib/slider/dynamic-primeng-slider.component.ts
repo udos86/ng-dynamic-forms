@@ -7,7 +7,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicSliderModel
+    DynamicSliderModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicPrimeNGSliderComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSliderModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

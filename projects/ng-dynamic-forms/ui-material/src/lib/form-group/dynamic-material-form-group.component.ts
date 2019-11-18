@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, QueryList } from "@angular/core
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormGroupModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicMaterialFormGroupComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicFormGroupModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

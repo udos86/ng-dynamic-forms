@@ -19,10 +19,11 @@ import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
 
-    private _hasFocus: boolean = false;
+    private _hasFocus = false;
 
+    formLayout: DynamicFormLayout;
     group: FormGroup;
-    layout: DynamicFormLayout;
+    layout: DynamicFormControlLayout;
     model: DynamicFormControlModel;
     templates: DynamicFormControlTemplates;
 
@@ -73,7 +74,8 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
     getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace,
              model: DynamicFormControlModel = this.model): string {
 
-        const controlLayout = this.layoutService.findByModel(model, this.layout) || model.layout as DynamicFormControlLayout;
+        const controlLayout = model === this.model ? this.layout :
+            this.layoutService.findByModel(model, this.formLayout) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }

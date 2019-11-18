@@ -7,7 +7,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent
+    DynamicFormControlComponent, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicDatePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

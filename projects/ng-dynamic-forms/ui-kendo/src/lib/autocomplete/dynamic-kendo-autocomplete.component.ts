@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@a
 import { FormGroup } from "@angular/forms";
 import { AutoCompleteComponent } from "@progress/kendo-angular-dropdowns";
 import {
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -20,8 +20,9 @@ export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableF
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicInputModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

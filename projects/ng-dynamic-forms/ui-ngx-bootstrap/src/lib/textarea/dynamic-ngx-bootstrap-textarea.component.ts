@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormControlComponent,
+    DynamicFormControlComponent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -14,8 +14,9 @@ import {
 })
 export class DynamicNGxBootstrapTextAreaComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicTextAreaModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormControlComponent,
+    DynamicFormControlComponent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicSelectModel,
+    DynamicSelectModel
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,8 +15,9 @@ import {
 })
 export class DynamicFoundationSelectComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSelectModel<string>;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

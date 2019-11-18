@@ -3,7 +3,7 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayComponent,
     DynamicFormArrayModel,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicNGxBootstrapFormArrayComponent extends DynamicFormArrayComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicFormArrayModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | undefined;
 

@@ -21,7 +21,7 @@ import {
 import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -34,8 +34,9 @@ import {
 })
 export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicInputModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

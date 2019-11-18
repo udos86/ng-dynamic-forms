@@ -4,7 +4,7 @@ import { ErrorStateMatcher, LabelOptions, MAT_LABEL_GLOBAL_OPTIONS, MAT_RIPPLE_G
 import { MatSelect } from "@angular/material/select";
 import {
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -17,8 +17,9 @@ import {
 })
 export class DynamicMaterialSelectComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSelectModel<string>;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

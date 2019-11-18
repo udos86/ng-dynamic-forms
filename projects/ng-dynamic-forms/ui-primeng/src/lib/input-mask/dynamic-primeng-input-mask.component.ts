@@ -7,7 +7,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicInputModel
+    DynamicInputModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicPrimeNGInputMaskComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicInputModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

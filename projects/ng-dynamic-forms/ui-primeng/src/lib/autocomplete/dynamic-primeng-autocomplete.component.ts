@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@a
 import { FormGroup } from "@angular/forms";
 import { AutoComplete } from "primeng/primeng";
 import {
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -22,8 +22,9 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGTemplatea
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicInputModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

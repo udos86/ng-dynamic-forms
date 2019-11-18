@@ -3,7 +3,7 @@ import { FormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicDatePickerModel,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -20,8 +20,9 @@ export class DynamicKendoCalendarComponent extends DynamicKendoTemplateableFormC
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicDatePickerModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { NG_BOOTSTRAP_SAMPLE_FORM_MODEL } from "./ng-bootstrap-sample-form.model";
 import { NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./ng-bootstrap-sample-form.layout";
 
@@ -16,10 +16,25 @@ export class NGBootstrapSampleFormComponent implements OnInit {
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT;
 
-    constructor(private formService: DynamicFormService) {}
+    constructor(private formService: DynamicFormService, private ref: ChangeDetectorRef) {
+    }
+
+    onClick() {
+        const model = this.formService.findModelById("firstName", this.formModel) as DynamicInputModel;
+        model.label = "Test";
+
+        const control = this.formService.findControlByModel(model, this.formGroup);
+
+        // control.setValue("Test");
+        model.label = "Test";
+        model.value = "Test Udo Bla";
+
+        control.enabled ? control.disable() : control.enable();
+    }
 
     ngOnInit() {
         this.formGroup = this.formService.createFormGroup(this.formModel);
+
     }
 
     onBlur($event) {

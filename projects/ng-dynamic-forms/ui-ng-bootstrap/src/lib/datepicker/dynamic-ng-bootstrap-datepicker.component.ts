@@ -1,22 +1,25 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { NgbDatepicker, NgbDatepickerConfig } from "@ng-bootstrap/ng-bootstrap";
 import {
     DynamicDatePickerModel,
+    DynamicFormControlComponent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
-    DynamicFormValidationService,
-    DynamicFormControlComponent, DynamicFormControlCustomEvent
+    DynamicFormValidationService
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-ng-bootstrap-datepicker",
-    templateUrl: "./dynamic-ng-bootstrap-datepicker.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-datepicker.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicNGBootstrapDatePickerComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicDatePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

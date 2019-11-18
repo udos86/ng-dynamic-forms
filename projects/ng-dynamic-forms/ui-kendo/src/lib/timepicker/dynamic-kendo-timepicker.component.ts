@@ -7,7 +7,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicTimePickerModel
+    DynamicTimePickerModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicTimePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

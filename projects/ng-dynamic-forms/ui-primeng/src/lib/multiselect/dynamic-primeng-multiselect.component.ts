@@ -6,7 +6,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicSelectModel
+    DynamicSelectModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,8 +15,9 @@ import {
 })
 export class DynamicPrimeNGMultiSelectComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSelectModel<string>;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

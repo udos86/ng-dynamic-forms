@@ -4,6 +4,7 @@ import {
     DynamicFormArrayComponent,
     DynamicFormArrayModel,
     DynamicFormControlCustomEvent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -16,8 +17,9 @@ import {
 })
 export class DynamicBasicFormArrayComponent extends DynamicFormArrayComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicFormArrayModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | undefined;
 

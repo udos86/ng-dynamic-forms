@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@a
 import { FormGroup } from "@angular/forms";
 import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
-    DynamicFileUploadModel, DynamicFormControlCustomEvent,
+    DynamicFileUploadModel, DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -19,8 +19,9 @@ export class DynamicKendoUploadComponent extends DynamicKendoTemplateableFormCon
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicFileUploadModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

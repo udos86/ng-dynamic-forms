@@ -5,10 +5,10 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/materia
 import {
     DynamicCheckboxModel,
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
-    DynamicFormValidationService,
+    DynamicFormValidationService
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -17,8 +17,9 @@ import {
 })
 export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicCheckboxModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

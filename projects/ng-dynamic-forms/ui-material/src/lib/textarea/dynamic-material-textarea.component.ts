@@ -3,7 +3,7 @@ import { FormGroup } from "@angular/forms";
 import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from "@angular/material/core";
 import { MatInput } from "@angular/material/input";
 import {
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -17,8 +17,9 @@ import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-fo
 })
 export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicTextAreaModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

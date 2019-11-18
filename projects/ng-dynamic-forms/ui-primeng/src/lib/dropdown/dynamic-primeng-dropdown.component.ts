@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@a
 import { FormGroup } from "@angular/forms";
 import { Dropdown } from "primeng/primeng";
 import {
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -19,8 +20,9 @@ export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGTemplateableF
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSelectModel<string>;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

@@ -75,7 +75,8 @@ export class DynamicFormLayoutService {
         return [];
     }
 
-    getAlignedTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates, alignment: DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT): DynamicTemplateDirective | undefined {
+    getAlignedTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates,
+                       alignment: DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT): DynamicTemplateDirective | undefined {
 
         return this.filterTemplatesByModel(model, templates)
             .find(template => template.as === null && template.align === alignment);
@@ -94,9 +95,10 @@ export class DynamicFormLayoutService {
         return this.getAlignedTemplate(model, templates, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End);
     }
 
-    getClass(layout: DynamicFormControlLayout | null, context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace): string {
+    getClass(layout: DynamicFormControlLayout | null | undefined, context: DynamicFormControlLayoutContext,
+             place: DynamicFormControlLayoutPlace): string {
 
-        if (layout !== null && layout.hasOwnProperty(context)) {
+        if (layout !== undefined && layout !== null && layout.hasOwnProperty(context)) {
 
             const config = layout[context] as DynamicFormControlLayoutConfig;
 

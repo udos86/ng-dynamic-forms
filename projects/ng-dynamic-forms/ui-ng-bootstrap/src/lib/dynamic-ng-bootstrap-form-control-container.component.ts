@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
@@ -26,11 +27,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicDatePickerModel,
     DynamicFormArrayGroupModel,
+    DynamicFormComponentService,
     DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicFormComponentService,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormRelationService,
@@ -53,14 +54,15 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
 
 @Component({
     selector: "dynamic-ng-bootstrap-form-control",
-    templateUrl: "./dynamic-ng-bootstrap-form-control-container.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicNGBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
-    @Input() asBootstrapFormGroup: boolean = true;
+    @Input() asBootstrapFormGroup = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
     @Input() layout: DynamicFormLayout;
@@ -104,7 +106,7 @@ export function ngBootstrapUIFormControlMapFn(model: DynamicFormControlModel): T
             return DynamicNGBootstrapCheckboxGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-            let datePickerModel = model as DynamicDatePickerModel;
+            const datePickerModel = model as DynamicDatePickerModel;
 
             return datePickerModel.inline ? DynamicNGBootstrapCalendarComponent : DynamicNGBootstrapDatePickerComponent;
 
