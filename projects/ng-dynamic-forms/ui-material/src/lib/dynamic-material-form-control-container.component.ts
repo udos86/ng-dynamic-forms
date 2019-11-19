@@ -3,6 +3,7 @@ import {
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
+    HostBinding,
     Input,
     Output,
     QueryList,
@@ -35,7 +36,7 @@ import {
     DynamicFormValidationService,
     DynamicInputModel,
     DynamicTemplateDirective,
-    DynamicFormValueControlModel,
+    DynamicFormValueControlModel
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
 import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
@@ -56,10 +57,13 @@ import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material
 export class DynamicMaterialFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+
+    @HostBinding("class") klass;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -68,7 +72,7 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,

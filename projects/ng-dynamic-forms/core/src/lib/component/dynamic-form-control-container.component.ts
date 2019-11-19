@@ -16,7 +16,7 @@ import {
     DynamicFormControlEvent,
     DynamicFormControlEventType,
     isDynamicFormControlEvent
-} from "./dynamic-form-control.event";
+} from "./dynamic-form-control-event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import {
@@ -34,7 +34,7 @@ import {
     DynamicFormControlLayoutContext,
     DynamicFormControlLayoutPlace
 } from "../model/misc/dynamic-form-control-layout.model";
-import { DynamicFormControl } from "./dynamic-form-control.interface";
+import { DynamicFormControl } from "./dynamic-form-control-interface";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
@@ -48,10 +48,11 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     control: FormControl;
     group: FormGroup;
     hasFocus: boolean;
+    hostClass: string[];
+    klass: string;
     layout: DynamicFormLayout;
     model: DynamicFormControlModel;
 
-    controlLayout: DynamicFormControlLayout;
     contentTemplateList: QueryList<DynamicTemplateDirective> | undefined;
     inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
 
@@ -64,6 +65,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     protected componentRef: ComponentRef<DynamicFormControl>;
     protected componentSubscriptions: Subscription[] = [];
+    protected controlLayout: DynamicFormControlLayout;
     protected subscriptions: Subscription[] = [];
 
     protected constructor(protected componentFactoryResolver: ComponentFactoryResolver,
@@ -80,41 +82,15 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         const modelChange = (changes as Pick<SimpleChanges, "model">).model;
 
         if (layoutChange || modelChange) {
-            this.controlLayout = this.getLayout();
+            this.onLayoutOrModelChange();
         }
 
         if (modelChange) {
-
-            this.destroyFormControlComponent();
-            this.createFormControlComponent();
+            this.onModelChange();
         }
 
         if (groupChange || modelChange) {
-
-            if (this.model) {
-
-                this.unsubscribe();
-
-                if (this.group) {
-
-                    this.control = this.group.get(this.model.id) as FormControl;
-                    this.subscriptions.push(this.control.valueChanges.subscribe(value => this.onControlValueChanges(value)));
-                }
-
-                this.subscriptions.push(this.model.disabledChanges.subscribe(value => this.onModelDisabledUpdates(value)));
-
-                if (this.model instanceof DynamicFormValueControlModel) {
-
-                    const model = this.model as DynamicFormValueControlModel<any>;
-
-                    this.subscriptions.push(model.valueChanges.subscribe(value => this.onModelValueUpdates(value)));
-                }
-
-                if (this.model.relations.length > 0) {
-
-                    this.subscriptions.push(...this.relationService.subscribeRelations(this.model, this.group, this.control));
-                }
-            }
+            this.onGroupOrModelChange();
         }
     }
 
@@ -128,6 +104,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     get errorMessages(): string[] {
         return this.validationService.createErrorMessages(this.control, this.model);
+    }
+
+    get showErrorMessages(): boolean {
+        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     get hasHint(): boolean {
@@ -158,10 +138,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.control.valid;
     }
 
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
-    }
-
     get templates(): QueryList<DynamicTemplateDirective> | undefined {
         return this.inputTemplateList !== undefined ? this.inputTemplateList : this.contentTemplateList;
     }
@@ -174,10 +150,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     get endTemplate(): DynamicTemplateDirective | undefined {
         return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_ARRAY ?
             this.layoutService.getEndTemplate(this.model, this.templates) : undefined;
-    }
-
-    getLayout(): DynamicFormControlLayout {
-        return this.layoutService.findByModel(this.model, this.layout) || this.model.layout as DynamicFormControlLayout;
     }
 
     getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace): string {
@@ -200,7 +172,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             instance.formLayout = this.layout;
             instance.group = this.group;
             instance.layout = this.controlLayout;
-            instance.model = this.model as any;
+            instance.model = this.model;
 
             if (this.templates) {
                 instance.templates = this.templates;
@@ -248,6 +220,44 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         if (this.model instanceof DynamicFormValueControlModel && this.model.value !== value) {
             this.model.value = value;
+        }
+    }
+
+    onLayoutOrModelChange(): void {
+        this.controlLayout = this.layoutService.findByModel(this.model, this.layout) || this.model.layout as DynamicFormControlLayout;
+        this.klass = `${Array.isArray(this.hostClass) ? this.hostClass.join(" ") : ""} ${this.layoutService.getHostClass(this.controlLayout)}`;
+    }
+
+    onModelChange(): void {
+        this.destroyFormControlComponent();
+        this.createFormControlComponent();
+    }
+
+    onGroupOrModelChange(): void {
+
+        if (this.model) {
+
+            this.unsubscribe();
+
+            if (this.group) {
+
+                this.control = this.group.get(this.model.id) as FormControl;
+                this.subscriptions.push(this.control.valueChanges.subscribe(value => this.onControlValueChanges(value)));
+            }
+
+            this.subscriptions.push(this.model.disabledChanges.subscribe(value => this.onModelDisabledUpdates(value)));
+
+            if (this.model instanceof DynamicFormValueControlModel) {
+
+                const model = this.model as DynamicFormValueControlModel<any>;
+
+                this.subscriptions.push(model.valueChanges.subscribe(value => this.onModelValueUpdates(value)));
+            }
+
+            if (this.model.relations.length > 0) {
+
+                this.subscriptions.push(...this.relationService.subscribeRelations(this.model, this.group, this.control));
+            }
         }
     }
 

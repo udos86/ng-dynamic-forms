@@ -4,6 +4,7 @@ import {
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
+    HostBinding,
     Input,
     Output,
     QueryList,
@@ -60,11 +61,14 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
 export class DynamicNGBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+
+    @HostBinding("class") klass = "";
 
     @Input() asBootstrapFormGroup = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 

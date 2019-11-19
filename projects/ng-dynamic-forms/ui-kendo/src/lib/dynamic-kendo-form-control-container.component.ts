@@ -3,12 +3,13 @@ import {
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
+    HostBinding,
     Input,
     Output,
     QueryList,
     Type,
     ViewChild,
-    ViewContainerRef,
+    ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
@@ -71,10 +72,13 @@ import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-time
 export class DynamicKendoFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+
+    @HostBinding("class") klass;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -83,7 +87,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("kendoEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
     constructor(protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
@@ -125,7 +129,7 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
             return DynamicKendoCheckboxGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-            let datepickerModel = model as DynamicDatePickerModel;
+            const datepickerModel = model as DynamicDatePickerModel;
 
             return datepickerModel.inline ? DynamicKendoCalendarComponent : DynamicKendoDatePickerComponent;
 
@@ -136,7 +140,7 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
             return DynamicKendoFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-            let inputModel = model as DynamicInputModel;
+            const inputModel = model as DynamicInputModel;
 
             if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE) {
                 return DynamicKendoDateInputComponent;
@@ -158,7 +162,7 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
             return DynamicKendoRadioGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-            let selectModel = model as DynamicSelectModel<any>;
+            const selectModel = model as DynamicSelectModel<any>;
 
             return selectModel.multiple ? DynamicKendoMultiSelectComponent : DynamicKendoDropdownListComponent;
 

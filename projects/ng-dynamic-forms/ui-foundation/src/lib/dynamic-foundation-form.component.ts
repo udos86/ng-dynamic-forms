@@ -7,7 +7,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormService,
-    DynamicTemplateDirective,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicFoundationFormControlContainerComponent } from "./dynamic-foundation-form-control-container.component";
 
@@ -17,9 +17,9 @@ import { DynamicFoundationFormControlContainerComponent } from "./dynamic-founda
 })
 export class DynamicFoundationFormComponent extends DynamicFormComponent {
 
-    @Input("group") formGroup: FormGroup;
-    @Input("model") formModel: DynamicFormModel;
-    @Input("layout") formLayout: DynamicFormLayout;
+    @Input() group: FormGroup;
+    @Input() model: DynamicFormModel;
+    @Input() layout: DynamicFormLayout;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();

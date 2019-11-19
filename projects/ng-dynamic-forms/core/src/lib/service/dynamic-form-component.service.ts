@@ -1,5 +1,5 @@
 import { ComponentRef, Inject, Injectable, InjectionToken, Optional, Type } from "@angular/core";
-import { DynamicFormControl } from "../component/dynamic-form-control.interface";
+import { DynamicFormControl } from "../component/dynamic-form-control-interface";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { isFunction, isNumber } from "../utils/core.utils";
 

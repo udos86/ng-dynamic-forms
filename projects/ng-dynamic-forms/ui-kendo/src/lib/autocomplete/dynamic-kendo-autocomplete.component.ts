@@ -10,13 +10,13 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
-import { DynamicKendoTemplateableFormControlComponent } from "../dynamic-kendo-templateable-form-control.component";
+import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-form-control-with-template.component";
 
 @Component({
     selector: "dynamic-kendo-autocomplete",
     templateUrl: "./dynamic-kendo-autocomplete.component.html"
 })
-export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableFormControlComponent {
+export class DynamicKendoAutoCompleteComponent extends DynamicKendoFormControlWithTemplateComponent {
 
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
@@ -31,7 +31,7 @@ export class DynamicKendoAutoCompleteComponent extends DynamicKendoTemplateableF
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoAutoComplete", { static: true }) kendoAutoComplete: AutoCompleteComponent;
+    @ViewChild("kendoAutoComplete", {static: true}) kendoAutoComplete: AutoCompleteComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

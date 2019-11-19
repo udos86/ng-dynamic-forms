@@ -3,7 +3,11 @@ import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
 import { isObject } from "../utils/core.utils";
 
-export enum DynamicFormControlEventType {Blur = "blur", Change = "change", Custom = "custom", Focus = "focus"}
+export enum DynamicFormControlEventType {
+    Blur = "blur",
+    Change = "change",
+    Focus = "focus"
+}
 
 export interface DynamicFormControlEvent {
 

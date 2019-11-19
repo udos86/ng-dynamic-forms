@@ -26,7 +26,7 @@ const APP_ROUTES: Route[] = [
     },
 
     {
-        path: "bootstrap-sample-form",
+        path: "ngx-bootstrap-sample-form",
         component: NgxBootstrapSampleFormComponent,
         data: {
             title: "ngx-bootstrap UI",

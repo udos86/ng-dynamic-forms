@@ -7,7 +7,7 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormService,
-    DynamicTemplateDirective,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
 
@@ -17,14 +17,15 @@ import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-f
 })
 export class DynamicPrimeNGFormComponent extends DynamicFormComponent {
 
-    @Input("group") formGroup: FormGroup;
-    @Input("model") formModel: DynamicFormModel;
-    @Input("layout") formLayout: DynamicFormLayout;
+    @Input() group: FormGroup;
+    @Input() model: DynamicFormModel;
+    @Input() layout: DynamicFormLayout;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-    @Output() customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+
+    @Output() pEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
 

@@ -2,7 +2,7 @@ import {
     Component,
     ComponentFactoryResolver,
     ContentChildren,
-    EventEmitter,
+    EventEmitter, HostBinding,
     Input,
     Output,
     QueryList,
@@ -53,11 +53,14 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
 export class DynamicBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective> | undefined;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
+
+    @HostBinding("class") klass = "";
 
     @Input() asBootstrapFormGroup = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -66,7 +69,7 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("bsEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormControl> | null {
         return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);

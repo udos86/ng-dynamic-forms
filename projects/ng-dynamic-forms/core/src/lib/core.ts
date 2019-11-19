@@ -1,11 +1,11 @@
 export * from "./component/dynamic-form-array.component";
-export * from "./component/dynamic-form-component";
+export * from "./component/dynamic-form.component";
 export * from "./component/dynamic-form-control-container.component";
-export * from "./component/dynamic-form-control.event";
+export * from "./component/dynamic-form-control-event";
 export * from "./component/dynamic-form-control.component";
-export * from "./component/dynamic-form-control.interface";
-export * from "./component/dynamic-templateable-form-control.component";
-export * from "./component/dynamic-templateable-form-control.interface";
+export * from "./component/dynamic-form-control-interface";
+export * from "./component/dynamic-form-control-with-template.component";
+export * from "./component/dynamic-form-control-with-template-interface";
 
 export * from "./decorator/serializable.decorator";
 

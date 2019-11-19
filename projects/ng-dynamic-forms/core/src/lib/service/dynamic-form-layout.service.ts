@@ -11,7 +11,7 @@ import {
     DynamicTemplateDirective,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
 } from "../directive/dynamic-template.directive";
-import { isObject } from "../utils/core.utils";
+import { isObject, isString } from "../utils/core.utils";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
@@ -98,7 +98,7 @@ export class DynamicFormLayoutService {
     getClass(layout: DynamicFormControlLayout | null | undefined, context: DynamicFormControlLayoutContext,
              place: DynamicFormControlLayoutPlace): string {
 
-        if (layout !== undefined && layout !== null && layout.hasOwnProperty(context)) {
+        if (isObject(layout) && layout.hasOwnProperty(context)) {
 
             const config = layout[context] as DynamicFormControlLayoutConfig;
 
@@ -108,6 +108,22 @@ export class DynamicFormLayoutService {
         }
 
         return "";
+    }
+
+    getHostClass(layout: DynamicFormControlLayout | null | undefined): string {
+
+        const keys: (keyof DynamicFormControlLayout)[] = ["element", "grid"];
+        let cls = "";
+
+        if (isObject(layout)) {
+            keys.forEach(key => {
+                if (isObject(layout[key]) && isString(layout[key].host)) {
+                    cls = cls + ` ${layout[key].host}`;
+                }
+            });
+        }
+
+        return cls;
     }
 
     getElementId(model: DynamicFormControlModel): string {
