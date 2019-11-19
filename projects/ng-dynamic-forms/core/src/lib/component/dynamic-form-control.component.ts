@@ -55,6 +55,10 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         return this.validationService.createErrorMessages(this.control, this.model);
     }
 
+    get showErrorMessages(): boolean {
+        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
+    }
+
     get hasFocus(): boolean {
         return this._hasFocus;
     }
@@ -65,10 +69,6 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     get isValid(): boolean {
         return this.control.valid;
-    }
-
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace,

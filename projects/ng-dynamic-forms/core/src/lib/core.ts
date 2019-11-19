@@ -9,7 +9,6 @@ export * from "./component/dynamic-form-control-with-template-interface";
 
 export * from "./decorator/serializable.decorator";
 
-export * from "./directive/dynamic-id.directive";
 export * from "./directive/dynamic-list.directive";
 export * from "./directive/dynamic-template.directive";
 
