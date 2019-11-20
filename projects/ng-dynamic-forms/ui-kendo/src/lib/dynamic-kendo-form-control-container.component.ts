@@ -1,4 +1,6 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
@@ -67,7 +69,8 @@ import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-time
 
 @Component({
     selector: "dynamic-kendo-form-control",
-    templateUrl: "./dynamic-kendo-form-control-container.component.html"
+    templateUrl: "./dynamic-kendo-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicKendoFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
@@ -89,13 +92,14 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

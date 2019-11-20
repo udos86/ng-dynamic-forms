@@ -4,6 +4,7 @@ import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { isObject } from "../utils/core.utils";
 import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
+import { DynamicFormService } from "./dynamic-form.service";
 
 export const MATCH_DISABLED = "DISABLED";
 export const MATCH_ENABLED = "ENABLED";
@@ -25,7 +26,7 @@ export interface DynamicFormControlMatcher {
 
 export const DYNAMIC_MATCHERS = new InjectionToken<DynamicFormControlMatcher>("DYNAMIC_MATCHERS");
 
-export const DisabledMatcher: DynamicFormControlMatcher = {
+export const DISABLED_MATCHER: DynamicFormControlMatcher = {
 
     match: MATCH_DISABLED,
     opposingMatch: MATCH_ENABLED,
@@ -34,7 +35,7 @@ export const DisabledMatcher: DynamicFormControlMatcher = {
     }
 };
 
-export const HiddenMatcher: DynamicFormControlMatcher = {
+export const HIDDEN_MATCHER: DynamicFormControlMatcher = {
 
     match: MATCH_HIDDEN,
     opposingMatch: MATCH_VISIBLE,
@@ -43,7 +44,7 @@ export const HiddenMatcher: DynamicFormControlMatcher = {
     }
 };
 
-export const RequiredMatcher: DynamicFormControlMatcher = {
+export const REQUIRED_MATCHER: DynamicFormControlMatcher = {
 
     match: MATCH_REQUIRED,
     opposingMatch: MATCH_OPTIONAL,
@@ -65,25 +66,26 @@ export const RequiredMatcher: DynamicFormControlMatcher = {
         }
 
         injector.get(DynamicFormValidationService).updateValidators(validatorsConfig, control, model);
+        injector.get(DynamicFormService).detectChanges();
     }
 };
 
-export const DISABLED_MATCHER: ValueProvider = {
+export const DISABLED_MATCHER_PROVIDER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
-    useValue: DisabledMatcher,
+    useValue: DISABLED_MATCHER,
     multi: true
 };
 
-export const HIDDEN_MATCHER: ValueProvider = {
+export const HIDDEN_MATCHER_PROVIDER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
-    useValue: HiddenMatcher,
+    useValue: HIDDEN_MATCHER,
     multi: true
 };
 
-export const REQUIRED_MATCHER: ValueProvider = {
+export const REQUIRED_MATCHER_PROVIDER: ValueProvider = {
     provide: DYNAMIC_MATCHERS,
-    useValue: RequiredMatcher,
+    useValue: REQUIRED_MATCHER,
     multi: true
 };
 
-export const DYNAMIC_MATCHER_PROVIDERS = [DISABLED_MATCHER, HIDDEN_MATCHER, REQUIRED_MATCHER];
+export const DYNAMIC_MATCHER_PROVIDERS = [DISABLED_MATCHER_PROVIDER, HIDDEN_MATCHER_PROVIDER, REQUIRED_MATCHER_PROVIDER];

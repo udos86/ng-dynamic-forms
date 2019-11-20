@@ -1,19 +1,28 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent,
+    DynamicFormComponent, DynamicFormComponentService,
     DynamicFormControlEvent,
-    DynamicFormModel,
     DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormService,
+    DynamicFormModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
 
 @Component({
     selector: "dynamic-primeng-form",
-    templateUrl: "./dynamic-primeng-form.component.html"
+    templateUrl: "./dynamic-primeng-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGFormComponent extends DynamicFormComponent {
 
@@ -31,7 +40,8 @@ export class DynamicPrimeNGFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicPrimeNGFormControlContainerComponent) components: QueryList<DynamicPrimeNGFormControlContainerComponent>;
 
-    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
-        super(formService, layoutService);
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentService: DynamicFormComponentService) {
+        super(changeDetectorRef, componentService);
     }
 }

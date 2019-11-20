@@ -30,6 +30,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Form Layouts](#form-layouts)
 - [Form Control Configuration](#form-control-configuration)
 - [Form Control Events](#form-control-events)
+- [Updating Form Controls](#updating-form-controls)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Custom Form Controls](#custom-form-controls)
@@ -633,6 +634,11 @@ All custom UI events are pooled by an individual `@Output()` utilizing the respe
                        [model]="formModel"
                        (matEvent)="onMatEvent($event)"></dynamic-material-form>
 ```
+
+
+## Updating Form Controls
+
+Due to performance make use `ChangeDetectionStrategy.OnPush`. There will not automa. You
 
 
 ## Custom Templates

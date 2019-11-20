@@ -1,14 +1,14 @@
-import { EventEmitter, QueryList } from "@angular/core";
+import { ChangeDetectorRef, EventEmitter, OnDestroy, OnInit, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { DynamicFormControlContainerComponent } from "./dynamic-form-control-container.component";
 import { DynamicFormControlEvent } from "./dynamic-form-control-event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormModel } from "../model/dynamic-form.model";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
-import { DynamicFormService } from "../service/dynamic-form.service";
-import { DynamicFormLayout, DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
+import { DynamicFormLayout } from "../service/dynamic-form-layout.service";
+import { DynamicFormComponentService } from "../service/dynamic-form-component.service";
 
-export abstract class DynamicFormComponent {
+export abstract class DynamicFormComponent implements OnInit, OnDestroy {
 
     group: FormGroup;
     model: DynamicFormModel;
@@ -19,13 +19,34 @@ export abstract class DynamicFormComponent {
 
     blur: EventEmitter<DynamicFormControlEvent>;
     change: EventEmitter<DynamicFormControlEvent>;
-    customEvent: EventEmitter<DynamicFormControlEvent>;
     focus: EventEmitter<DynamicFormControlEvent>;
 
-    protected constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {}
+    protected constructor(protected changeDetectorRef: ChangeDetectorRef,
+                          protected componentService: DynamicFormComponentService) {
+    }
+
+    ngOnInit(): void {
+        this.componentService.registerForm(this);
+    }
+
+    ngOnDestroy(): void {
+        this.componentService.unregisterForm(this);
+    }
 
     trackByFn(_index: number, model: DynamicFormControlModel): string {
         return model.id;
+    }
+
+    markForCheck(): void {
+        this.changeDetectorRef.markForCheck();
+
+        if (this.components instanceof QueryList) {
+            this.components.forEach(component => component.markForCheck());
+        }
+    }
+
+    detectChanges(): void {
+        this.changeDetectorRef.detectChanges();
     }
 
     onBlur($event: DynamicFormControlEvent) {

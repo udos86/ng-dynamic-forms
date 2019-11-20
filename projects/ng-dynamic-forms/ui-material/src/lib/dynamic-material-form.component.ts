@@ -1,19 +1,28 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent,
+    DynamicFormComponent, DynamicFormComponentService,
     DynamicFormControlEvent,
-    DynamicFormModel,
     DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormService,
+    DynamicFormModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormControlContainerComponent } from "./dynamic-material-form-control-container.component";
 
 @Component({
     selector: "dynamic-material-form",
-    templateUrl: "./dynamic-material-form.component.html"
+    templateUrl: "./dynamic-material-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialFormComponent extends DynamicFormComponent {
 
@@ -31,7 +40,8 @@ export class DynamicMaterialFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicMaterialFormControlContainerComponent) components: QueryList<DynamicMaterialFormControlContainerComponent>;
 
-    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
-        super(formService, layoutService);
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentService: DynamicFormComponentService) {
+        super(changeDetectorRef, componentService);
     }
 }

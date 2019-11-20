@@ -1,8 +1,11 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
-    EventEmitter, HostBinding,
+    EventEmitter,
+    HostBinding,
     Input,
     Output,
     QueryList,
@@ -24,11 +27,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicFormArrayGroupModel,
+    DynamicFormComponentService,
     DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicFormComponentService,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormRelationService,
@@ -49,7 +52,8 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
 
 @Component({
     selector: "dynamic-ngx-bootstrap-form-control",
-    templateUrl: "./dynamic-ngx-bootstrap-form-control-container.component.html"
+    templateUrl: "./dynamic-ngx-bootstrap-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
@@ -58,9 +62,9 @@ export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFor
     @HostBinding("class") klass;
 
     @Input() asBootstrapFormGroup = true;
-    @Input() hostClass: string[];
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
     @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
@@ -76,13 +80,14 @@ export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFor
         return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
     }
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 }
 

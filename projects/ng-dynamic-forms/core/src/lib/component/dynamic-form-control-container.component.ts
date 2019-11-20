@@ -1,4 +1,5 @@
 import {
+    ChangeDetectorRef,
     ComponentFactoryResolver,
     ComponentRef,
     EventEmitter,
@@ -68,7 +69,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     protected controlLayout: DynamicFormControlLayout;
     protected subscriptions: Subscription[] = [];
 
-    protected constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    protected constructor(protected changeDetectorRef: ChangeDetectorRef,
+                          protected componentFactoryResolver: ComponentFactoryResolver,
                           protected layoutService: DynamicFormLayoutService,
                           protected validationService: DynamicFormValidationService,
                           protected componentService: DynamicFormComponentService,
@@ -156,6 +158,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.layoutService.getClass(this.controlLayout, context, place);
     }
 
+    markForCheck(): void {
+        this.changeDetectorRef.markForCheck();
+    }
+
     protected createFormControlComponent(): void {
 
         const componentType = this.componentType;
@@ -187,7 +193,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                     instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
 
-            this.registerComponentRef(this.componentRef);
+            this.registerFormControlComponentRef(this.componentRef);
         }
     }
 
@@ -198,7 +204,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
             this.componentSubscriptions = [];
 
-            this.unregisterComponentRef();
+            this.unregisterFormControlComponentRef();
             this.componentRef.destroy();
         }
     }
@@ -217,10 +223,19 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     onControlValueChanges(value: any): void {
-
         if (this.model instanceof DynamicFormValueControlModel && this.model.value !== value) {
             this.model.value = value;
         }
+    }
+
+    onModelValueUpdates(value: any): void {
+        if (this.control.value !== value) {
+            this.control.setValue(value);
+        }
+    }
+
+    onModelDisabledUpdates(disabled: boolean): void {
+        disabled ? this.control.disable() : this.control.enable();
     }
 
     onLayoutOrModelChange(): void {
@@ -259,17 +274,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                 this.subscriptions.push(...this.relationService.subscribeRelations(this.model, this.group, this.control));
             }
         }
-    }
-
-    onModelValueUpdates(value: any): void {
-
-        if (this.control.value !== value) {
-            this.control.setValue(value);
-        }
-    }
-
-    onModelDisabledUpdates(disabled: boolean): void {
-        disabled ? this.control.disable() : this.control.enable();
     }
 
     onChange($event: Event | DynamicFormControlEvent | any): void {
@@ -340,25 +344,25 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    private registerComponentRef(instanceRef: ComponentRef<DynamicFormControl>): void {
-
-        let index;
+    private registerFormControlComponentRef(ref: ComponentRef<DynamicFormControl>): void {
 
         if (this.context instanceof DynamicFormArrayGroupModel) {
-            index = this.context.index;
-        }
 
-        this.componentService.registerFormControlRef(this.model, instanceRef, index);
+            this.componentService.registerFormControl(this.model, ref, this.context.index);
+
+        } else {
+            this.componentService.registerFormControl(this.model, ref);
+        }
     }
 
-    private unregisterComponentRef(): void {
-
-        let index;
+    private unregisterFormControlComponentRef(): void {
 
         if (this.context instanceof DynamicFormArrayGroupModel) {
-            index = this.context.index;
-        }
 
-        this.componentService.unregisterFormControlRef(this.model.id, index);
+            this.componentService.unregisterFormControl(this.model.id, this.context.index);
+
+        } else {
+            this.componentService.unregisterFormControl(this.model.id);
+        }
     }
 }

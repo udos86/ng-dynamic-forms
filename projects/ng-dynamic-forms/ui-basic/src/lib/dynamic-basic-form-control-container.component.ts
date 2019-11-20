@@ -1,4 +1,6 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
@@ -42,7 +44,8 @@ import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-
 
 @Component({
     selector: "dynamic-basic-form-control",
-    templateUrl: "./dynamic-basic-form-control-container.component.html"
+    templateUrl: "./dynamic-basic-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicBasicFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
@@ -63,13 +66,14 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
 
     @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

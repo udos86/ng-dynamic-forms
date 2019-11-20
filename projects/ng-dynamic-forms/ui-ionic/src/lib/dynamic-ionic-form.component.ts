@@ -1,19 +1,28 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent,
+    DynamicFormComponent, DynamicFormComponentService,
     DynamicFormControlEvent,
-    DynamicFormModel,
     DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormService,
+    DynamicFormModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 
 @Component({
     selector: "dynamic-ionic-form",
-    templateUrl: "./dynamic-ionic-form.component.html"
+    templateUrl: "./dynamic-ionic-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicIonicFormComponent extends DynamicFormComponent {
 
@@ -31,7 +40,8 @@ export class DynamicIonicFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicIonicFormControlContainerComponent) components: QueryList<DynamicIonicFormControlContainerComponent>;
 
-    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
-        super(formService, layoutService);
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentService: DynamicFormComponentService) {
+        super(changeDetectorRef, componentService);
     }
 }

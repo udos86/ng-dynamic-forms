@@ -1,19 +1,28 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent,
+    DynamicFormComponent, DynamicFormComponentService,
     DynamicFormControlEvent,
-    DynamicFormModel,
     DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormService,
+    DynamicFormModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
 
 @Component({
     selector: "dynamic-kendo-form",
-    templateUrl: "./dynamic-kendo-form.component.html"
+    templateUrl: "./dynamic-kendo-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicKendoFormComponent extends DynamicFormComponent {
 
@@ -31,7 +40,8 @@ export class DynamicKendoFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicKendoFormControlContainerComponent) components: QueryList<DynamicKendoFormControlContainerComponent>;
 
-    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
-        super(formService, layoutService);
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentService: DynamicFormComponentService) {
+        super(changeDetectorRef, componentService);
     }
 }

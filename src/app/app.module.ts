@@ -18,7 +18,7 @@ import {
     ValidatorFactory,
     DISABLED_MATCHER,
     HIDDEN_MATCHER,
-    REQUIRED_MATCHER
+    REQUIRED_MATCHER, DYNAMIC_MATCHER_PROVIDERS
 } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -124,9 +124,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
                 ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
             ])
         },
-        DISABLED_MATCHER,
-        HIDDEN_MATCHER,
-        REQUIRED_MATCHER,
+        ...DYNAMIC_MATCHER_PROVIDERS,
         {
             provide: MAT_CHIPS_DEFAULT_OPTIONS,
             useValue: {

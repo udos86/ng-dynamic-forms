@@ -1,4 +1,6 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
@@ -48,7 +50,8 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
 
 @Component({
     selector: "dynamic-bootstrap-form-control",
-    templateUrl: "./dynamic-bootstrap-form-control-container.component.html"
+    templateUrl: "./dynamic-bootstrap-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
@@ -75,13 +78,14 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
         return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
     }
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 }
 

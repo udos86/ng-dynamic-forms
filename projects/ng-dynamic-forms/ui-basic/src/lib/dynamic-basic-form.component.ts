@@ -1,19 +1,29 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    EventEmitter,
+    Input,
+    Output,
+    QueryList,
+    ViewChildren
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
+    DynamicFormComponentService,
     DynamicFormControlEvent,
-    DynamicFormModel,
     DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormService,
+    DynamicFormModel,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicBasicFormControlContainerComponent } from "./dynamic-basic-form-control-container.component";
 
 @Component({
     selector: "dynamic-basic-form",
-    templateUrl: "./dynamic-basic-form.component.html"
+    templateUrl: "./dynamic-basic-form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBasicFormComponent extends DynamicFormComponent {
 
@@ -29,7 +39,8 @@ export class DynamicBasicFormComponent extends DynamicFormComponent {
 
     @ViewChildren(DynamicBasicFormControlContainerComponent) components: QueryList<DynamicBasicFormControlContainerComponent>;
 
-    constructor(protected formService: DynamicFormService, protected layoutService: DynamicFormLayoutService) {
-        super(formService, layoutService);
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentService: DynamicFormComponentService) {
+        super(changeDetectorRef, componentService);
     }
 }
