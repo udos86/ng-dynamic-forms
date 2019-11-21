@@ -55,7 +55,7 @@ import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material
 @Component({
     selector: "dynamic-material-form-control",
     templateUrl: "./dynamic-material-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

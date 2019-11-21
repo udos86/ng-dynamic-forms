@@ -7,4 +7,10 @@ export abstract class DynamicFormGroupComponent extends DynamicFormControlCompon
 
     components: QueryList<DynamicFormControlContainerComponent>;
     model: DynamicFormGroupModel;
+
+    markForCheck() {
+        if (this.components instanceof QueryList) {
+            this.components.forEach(component => component.markForCheck());
+        }
+    }
 }

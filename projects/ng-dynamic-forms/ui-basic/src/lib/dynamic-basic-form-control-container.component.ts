@@ -45,7 +45,7 @@ import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-
 @Component({
     selector: "dynamic-basic-form-control",
     templateUrl: "./dynamic-basic-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBasicFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

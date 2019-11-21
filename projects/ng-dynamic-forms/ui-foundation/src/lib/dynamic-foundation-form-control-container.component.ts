@@ -48,7 +48,7 @@ import { DynamicFoundationFormGroupComponent } from "./form-group/dynamic-founda
 @Component({
     selector: "dynamic-foundation-form-control",
     templateUrl: "./dynamic-foundation-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFoundationFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

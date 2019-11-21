@@ -53,7 +53,7 @@ import { DynamicIonicTextAreaComponent } from "./textarea/dynamic-ionic-textarea
 @Component({
     selector: "dynamic-ionic-form-control",
     templateUrl: "./dynamic-ionic-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicIonicFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

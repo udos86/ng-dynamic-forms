@@ -51,7 +51,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
 @Component({
     selector: "dynamic-bootstrap-form-control",
     templateUrl: "./dynamic-bootstrap-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

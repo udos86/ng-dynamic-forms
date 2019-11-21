@@ -70,7 +70,7 @@ import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-time
 @Component({
     selector: "dynamic-kendo-form-control",
     templateUrl: "./dynamic-kendo-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicKendoFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

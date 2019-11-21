@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, QueryList } from "@angular/core";
+import { Component, EventEmitter, forwardRef, Input, Output, QueryList, ViewChildren } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayComponent,
@@ -9,6 +9,7 @@ import {
     DynamicFormValidationService,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
+import { DynamicIonicFormControlContainerComponent } from "../dynamic-ionic-form-control-container.component";
 
 @Component({
     selector: "dynamic-ionic-form-array",
@@ -26,6 +27,9 @@ export class DynamicIonicFormArrayComponent extends DynamicFormArrayComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(forwardRef(() => DynamicIonicFormControlContainerComponent))
+    components: QueryList<DynamicIonicFormControlContainerComponent>;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

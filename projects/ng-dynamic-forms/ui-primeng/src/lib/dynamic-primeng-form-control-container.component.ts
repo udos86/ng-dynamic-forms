@@ -67,7 +67,7 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
 @Component({
     selector: "dynamic-primeng-form-control",
     templateUrl: "./dynamic-primeng-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormControlContainerComponent {
 

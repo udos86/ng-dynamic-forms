@@ -42,6 +42,8 @@ import { DynamicFormValidationService } from "../service/dynamic-form-validation
 import { DynamicFormComponentService } from "../service/dynamic-form-component.service";
 import { isString } from "../utils/core.utils";
 import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
+import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
+import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
@@ -124,12 +126,12 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return isString(this.model.label);
     }
 
-    get isCheckbox(): boolean {
-        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
+    get id(): string {
+        return this.layoutService.getElementId(this.model);
     }
 
-    get elementId(): string {
-        return this.layoutService.getElementId(this.model);
+    get isCheckbox(): boolean {
+        return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
     }
 
     get isInvalid(): boolean {
@@ -159,7 +161,14 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     markForCheck(): void {
+
         this.changeDetectorRef.markForCheck();
+
+        const component = this.componentRef.instance;
+
+        if (component && (component instanceof DynamicFormGroupComponent || component instanceof DynamicFormArrayComponent)) {
+            component.markForCheck();
+        }
     }
 
     protected createFormControlComponent(): void {

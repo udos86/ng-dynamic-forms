@@ -53,7 +53,7 @@ import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx
 @Component({
     selector: "dynamic-ngx-bootstrap-form-control",
     templateUrl: "./dynamic-ngx-bootstrap-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
