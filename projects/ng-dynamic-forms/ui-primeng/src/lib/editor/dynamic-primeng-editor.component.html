@@ -3,7 +3,7 @@
     <p-editor #pEditor
               [formats]="model.getAdditional('formats', null)"
               [formControlName]="model.id"
-              [id]="elementId"
+              [id]="id"
               [ngClass]="getClass('element','control')"
               [modules]="model.getAdditional('modules', null)"
               (onSelectionChange)="onCustomEvent($event, 'onSelectionChange')"

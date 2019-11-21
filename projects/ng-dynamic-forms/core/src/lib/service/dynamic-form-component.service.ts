@@ -69,7 +69,6 @@ export class DynamicFormComponentService {
         } else {
             this.formControls[model.id] = ref;
         }
-
     }
 
     unregisterFormControl(modelId: string, index?: number): void {

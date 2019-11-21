@@ -106,12 +106,12 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     abstract get componentType(): Type<DynamicFormControl> | null;
 
-    get errorMessages(): string[] {
-        return this.validationService.createErrorMessages(this.control, this.model);
+    get id(): string {
+        return this.layoutService.getElementId(this.model);
     }
 
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
+    get hasLabel(): boolean {
+        return isString(this.model.label);
     }
 
     get hasHint(): boolean {
@@ -122,12 +122,12 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return (this.model as DynamicFormValueControlModel<any>).hint || null;
     }
 
-    get hasLabel(): boolean {
-        return isString(this.model.label);
+    get errorMessages(): string[] {
+        return this.validationService.createErrorMessages(this.control, this.model);
     }
 
-    get id(): string {
-        return this.layoutService.getElementId(this.model);
+    get showErrorMessages(): boolean {
+        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     get isCheckbox(): boolean {
@@ -182,24 +182,24 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.componentViewContainerRef.clear();
             this.componentRef = this.componentViewContainerRef.createComponent(componentFactory);
 
-            const instance = this.componentRef.instance;
+            const component = this.componentRef.instance;
 
-            instance.formLayout = this.layout;
-            instance.group = this.group;
-            instance.layout = this.controlLayout;
-            instance.model = this.model;
+            component.formLayout = this.layout;
+            component.group = this.group;
+            component.layout = this.controlLayout;
+            component.model = this.model;
 
             if (this.templates) {
-                instance.templates = this.templates;
+                component.templates = this.templates;
             }
 
-            this.componentSubscriptions.push(instance.blur.subscribe(($event: any) => this.onBlur($event)));
-            this.componentSubscriptions.push(instance.change.subscribe(($event: any) => this.onChange($event)));
-            this.componentSubscriptions.push(instance.focus.subscribe(($event: any) => this.onFocus($event)));
+            this.componentSubscriptions.push(component.blur.subscribe(($event: any) => this.onBlur($event)));
+            this.componentSubscriptions.push(component.change.subscribe(($event: any) => this.onChange($event)));
+            this.componentSubscriptions.push(component.focus.subscribe(($event: any) => this.onFocus($event)));
 
-            if (instance.customEvent !== undefined) {
+            if (component.customEvent !== undefined) {
                 this.componentSubscriptions.push(
-                    instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+                    component.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
             }
 
             this.registerFormControlComponentRef(this.componentRef);

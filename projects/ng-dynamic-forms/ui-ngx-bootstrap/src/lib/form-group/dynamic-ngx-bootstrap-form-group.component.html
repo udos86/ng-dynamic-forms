@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <div role="group" [formGroupName]="model.id" [id]="elementId" [ngClass]="getClass('element','control')">
+    <div role="group" [formGroupName]="model.id" [id]="id" [ngClass]="getClass('element','control')">
 
         <dynamic-ngx-bootstrap-form-control *ngFor="let _model of model.group"
                                             [asBootstrapFormGroup]="true"

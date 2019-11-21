@@ -3,7 +3,6 @@ import { AbstractControl, FormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control-interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control-event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DynamicFormControlLayout,
     DynamicFormControlLayoutContext,
@@ -29,7 +28,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;
-    customEvent: EventEmitter<DynamicFormControlCustomEvent> | undefined;
+    customEvent: EventEmitter<DynamicFormControlCustomEvent>;
     focus: EventEmitter<any>;
 
     protected constructor(protected layoutService: DynamicFormLayoutService,
@@ -47,7 +46,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         return control as AbstractControl;
     }
 
-    get elementId(): string {
+    get id(): string {
         return this.layoutService.getElementId(this.model);
     }
 
@@ -99,23 +98,15 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         this.change.emit($event);
     }
 
-    onEmbeddedCheckboxChange($event: Event, model: DynamicCheckboxModel) {
-
-        this.onChange($event);
-        model.value = ($event.target as HTMLInputElement).checked;
-    }
-
     onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {
-
-        const emitter = this.customEvent as EventEmitter<DynamicFormControlCustomEvent>;
 
         if (bypass) {
 
-            emitter.emit($event);
+            this.customEvent.emit($event);
 
         } else if (isString(type)) {
 
-            emitter.emit({customEvent: $event, customEventType: type});
+            this.customEvent.emit({customEvent: $event, customEventType: type});
         }
     }
 

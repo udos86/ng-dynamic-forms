@@ -3,7 +3,7 @@
     <input type="checkbox" class="switch-input"
            [checked]="model.checked"
            [formControlName]="model.id"
-           [id]="elementId"
+           [id]="id"
            [name]="model.name"
            [required]="model.required"
            [tabindex]="model.tabIndex"
@@ -12,7 +12,7 @@
            (change)="onChange($event)"
            (focus)="onFocus($event)"/>
 
-    <label class="switch-paddle" [for]="elementId">
+    <label class="switch-paddle" [for]="id">
 
         <span class="switch-active" aria-hidden="true">{{ model.onLabel }}</span>
         <span class="switch-inactive" aria-hidden="true">{{ model.offLabel }}</span>

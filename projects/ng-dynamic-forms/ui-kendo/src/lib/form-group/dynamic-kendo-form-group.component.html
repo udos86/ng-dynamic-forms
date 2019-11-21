@@ -2,7 +2,7 @@
 
     <div role="group"
          [formGroupName]="model.id"
-         [id]="elementId"
+         [id]="id"
          [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
         <dynamic-kendo-form-control *ngFor="let _model of model.group"

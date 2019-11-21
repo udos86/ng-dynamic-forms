@@ -30,7 +30,7 @@ export class DynamicNGxBootstrapCheckboxGroupComponent extends DynamicFormContro
         super(layoutService, validationService);
     }
 
-    getCheckboxElementId(model: DynamicCheckboxModel) {
+    getCheckboxId(model: DynamicCheckboxModel) {
         return this.layoutService.getElementId(model);
     }
 }

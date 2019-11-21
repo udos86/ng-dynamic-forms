@@ -16,7 +16,7 @@ import {
     OR_OPERATOR,
     REQUIRED_MATCHER_PROVIDER,
     REQUIRED_MATCHER
-} from "./dynamic-form-relation.matchers";
+} from "./dynamic-form-relation-matchers";
 
 describe("DynamicFormRelationService test suite", () => {
 

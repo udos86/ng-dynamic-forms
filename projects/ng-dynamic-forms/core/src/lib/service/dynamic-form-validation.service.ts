@@ -13,7 +13,7 @@ import {
     DynamicValidatorsConfig
 } from "../model/misc/dynamic-form-control-validation.model";
 import { isObject, isString } from "../utils/core.utils";
-import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory, ValidatorsToken } from "./dynamic-form.validators";
+import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory, ValidatorsToken } from "./dynamic-form-validators";
 
 @Injectable({
     providedIn: "root"

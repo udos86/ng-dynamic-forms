@@ -2,13 +2,13 @@
 
     <div class="btn-group"
          [formGroupName]="model.id"
-         [id]="elementId"
+         [id]="id"
          [ngClass]="getClass('element', 'control')">
 
         <label *ngFor="let checkboxModel of model.group" btnCheckbox class="btn" role="button"
                [class.active]="checkboxModel.value"
                [formControlName]="checkboxModel.id"
-               [id]="getCheckboxElementId(checkboxModel)"
+               [id]="getCheckboxId(checkboxModel)"
                [innerHTML]="checkboxModel.label"
                [ngClass]="[getClass('element', 'control', checkboxModel)]"></label>
     </div>
