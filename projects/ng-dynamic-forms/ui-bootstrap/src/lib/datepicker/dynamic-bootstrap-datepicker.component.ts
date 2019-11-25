@@ -4,7 +4,7 @@ import { BsDatepickerDirective } from "ngx-bootstrap/datepicker";
 import {
     DynamicDatePickerModel,
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService
@@ -17,8 +17,9 @@ import {
 })
 export class DynamicBootstrapDatePickerComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicDatePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

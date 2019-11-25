@@ -1,8 +1,10 @@
 import {
+    ChangeDetectionStrategy, ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
+    HostBinding,
     Input,
     Output,
     QueryList,
@@ -26,11 +28,11 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
     DynamicDatePickerModel,
     DynamicFormArrayGroupModel,
+    DynamicFormComponentService,
     DynamicFormControl,
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
-    DynamicFormComponentService,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormRelationService,
@@ -53,16 +55,20 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
 
 @Component({
     selector: "dynamic-ng-bootstrap-form-control",
-    templateUrl: "./dynamic-ng-bootstrap-form-control-container.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
 
-    @Input() asBootstrapFormGroup: boolean = true;
+    @HostBinding("class") klass = "";
+
+    @Input() asBootstrapFormGroup = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -71,18 +77,16 @@ export class DynamicNGBootstrapFormControlContainerComponent extends DynamicForm
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("ngbEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {
-        read: ViewContainerRef,
-        static: true
-    }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {
@@ -104,7 +108,7 @@ export function ngBootstrapUIFormControlMapFn(model: DynamicFormControlModel): T
             return DynamicNGBootstrapCheckboxGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
-            let datePickerModel = model as DynamicDatePickerModel;
+            const datePickerModel = model as DynamicDatePickerModel;
 
             return datePickerModel.inline ? DynamicNGBootstrapCalendarComponent : DynamicNGBootstrapDatePickerComponent;
 

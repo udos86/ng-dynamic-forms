@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
-//import { BaseRequestOptions, Http } from "@angular/http";
+// import { BaseRequestOptions, Http } from "@angular/http";
+// import { MockBackend } from "@angular/http/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
 import { MatNativeDateModule } from "@angular/material/core";
-//import { MockBackend } from "@angular/http/testing";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
@@ -16,9 +16,7 @@ import {
     DynamicFormsCoreModule,
     Validator,
     ValidatorFactory,
-    DISABLED_MATCHER,
-    HIDDEN_MATCHER,
-    REQUIRED_MATCHER
+    DYNAMIC_MATCHER_PROVIDERS
 } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
@@ -37,8 +35,8 @@ import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstra
 import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
 import { ValidationMessageComponent } from "./validation-message/validation-message.component";
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
 import {
     customAsyncFormGroupValidator,
     customDateRangeValidator,
@@ -124,9 +122,7 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
                 ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
             ])
         },
-        DISABLED_MATCHER,
-        HIDDEN_MATCHER,
-        REQUIRED_MATCHER,
+        ...DYNAMIC_MATCHER_PROVIDERS,
         {
             provide: MAT_CHIPS_DEFAULT_OPTIONS,
             useValue: {

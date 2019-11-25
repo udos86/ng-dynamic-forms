@@ -1,8 +1,9 @@
-<div [formGroup]="group" [ngClass]="['ng-dynamic-forms-'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
+<div [formGroup]="group"
+     [ngClass]="['ng-dynamic-forms-'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">
 
     <div *ngIf="!isCheckbox && hasLabel" [ngClass]="getClass('grid', 'label')">
 
-        <label [for]="elementId" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
+        <label [for]="id" [innerHTML]="model.label" [ngClass]="getClass('element', 'label')"></label>
 
     </div>
 

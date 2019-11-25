@@ -4,7 +4,7 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/materia
 import { MatSlideToggle } from "@angular/material/slide-toggle";
 import {
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -17,8 +17,9 @@ import {
 })
 export class DynamicMaterialSlideToggleComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSwitchModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

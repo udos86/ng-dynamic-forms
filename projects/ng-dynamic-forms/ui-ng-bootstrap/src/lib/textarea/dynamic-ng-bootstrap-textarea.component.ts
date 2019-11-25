@@ -1,21 +1,23 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
+    DynamicFormControlComponent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-ng-bootstrap-textarea",
-    templateUrl: "./dynamic-ng-bootstrap-textarea.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-textarea.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicNGBootstrapTextAreaComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicTextAreaModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

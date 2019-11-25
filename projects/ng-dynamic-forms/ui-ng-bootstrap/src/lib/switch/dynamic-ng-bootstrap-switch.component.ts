@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormControlComponent,
+    DynamicFormControlComponent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -10,12 +10,14 @@ import {
 
 @Component({
     selector: "dynamic-ng-bootstrap-switch",
-    templateUrl: "./dynamic-ng-bootstrap-switch.component.html"
+    templateUrl: "./dynamic-ng-bootstrap-switch.component.html",
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class DynamicNGBootstrapSwitchComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSwitchModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

@@ -6,7 +6,7 @@ import {
     DYNAMIC_MATCHERS,
     DynamicFormControlMatcher,
     OR_OPERATOR
-} from "./dynamic-form-relation.matchers";
+} from "./dynamic-form-relation-matchers";
 import { DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
 import { startWith } from "rxjs/operators";
 import { merge, Subscription } from "rxjs";

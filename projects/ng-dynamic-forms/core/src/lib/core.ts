@@ -1,15 +1,15 @@
 export * from "./component/dynamic-form-array.component";
-export * from "./component/dynamic-form-component";
+export * from "./component/dynamic-form-group.component";
+export * from "./component/dynamic-form.component";
 export * from "./component/dynamic-form-control-container.component";
-export * from "./component/dynamic-form-control.event";
+export * from "./component/dynamic-form-control-event";
 export * from "./component/dynamic-form-control.component";
-export * from "./component/dynamic-form-control.interface";
-export * from "./component/dynamic-templateable-form-control.component";
-export * from "./component/dynamic-templateable-form-control.interface";
+export * from "./component/dynamic-form-control-interface";
+export * from "./component/dynamic-form-control-with-template.component";
+export * from "./component/dynamic-form-control-with-template-interface";
 
 export * from "./decorator/serializable.decorator";
 
-export * from "./directive/dynamic-id.directive";
 export * from "./directive/dynamic-list.directive";
 export * from "./directive/dynamic-template.directive";
 
@@ -50,8 +50,8 @@ export * from "./service/dynamic-form-layout.service";
 export * from "./service/dynamic-form-relation.service";
 export * from "./service/dynamic-form-validation.service";
 
-export * from "./service/dynamic-form-relation.matchers";
-export * from "./service/dynamic-form.validators";
+export * from "./service/dynamic-form-relation-matchers";
+export * from "./service/dynamic-form-validators";
 
 export * from "./utils/autofill.utils";
 export * from "./utils/core.utils";

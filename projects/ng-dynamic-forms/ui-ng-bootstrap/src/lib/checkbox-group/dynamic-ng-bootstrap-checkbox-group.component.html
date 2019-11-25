@@ -2,7 +2,7 @@
 
     <div class="btn-group btn-group-toggle" data-toggle="buttons"
          [formGroupName]="model.id"
-         [id]="elementId"
+         [id]="id"
          [ngClass]="getClass('element', 'control')">
 
         <label *ngFor="let checkboxModel of model.group" ngbButtonLabel
@@ -12,13 +12,13 @@
             <input type="checkbox" ngbButton
                    [checked]="checkboxModel.checked"
                    [formControlName]="checkboxModel.id"
-                   [id]="getCheckboxElementId(checkboxModel)"
+                   [id]="getCheckboxId(checkboxModel)"
                    [name]="checkboxModel.name"
                    [required]="checkboxModel.required"
                    [tabindex]="checkboxModel.tabIndex"
                    [value]="checkboxModel.value"
                    (blur)="onBlur($event)"
-                   (change)="onEmbeddedCheckboxChange($event, checkboxModel)"
+                   (change)="onCheckboxChange($event, checkboxModel)"
                    (focus)="onFocus($event)"/><span [ngClass]="getClass('element', 'label', checkboxModel)"
                                                     [innerHTML]="checkboxModel.label"></span></label>
     </div>

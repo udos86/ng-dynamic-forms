@@ -3,7 +3,7 @@ import { FormGroup } from "@angular/forms";
 import { MatSlider } from "@angular/material/slider";
 import {
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -16,8 +16,9 @@ import {
 })
 export class DynamicMaterialSliderComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicSliderModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

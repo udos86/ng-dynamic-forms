@@ -1,3 +1,43 @@
+# 10.0.0
+
+### **Breaking Changes**
+
+* Due to performance reasons NG Dynamic Forms from now on makes use of `ChangeDetectionStrategy.OnPush` under the hood.
+Whenever modifying a `DynamicFormControlModel` (except for `value` and `disabled` setters) that means you need to manually 
+trigger change detection by simply calling `detectChanges()` on `DynamicFormService`. 
+
+Please also read the new chapter on [updating form controls](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#updating-form-controls).
+
+**BEFORE:**
+```ts
+// Immeditialy triggers UI update
+myModel.value = "New Value";
+myModel.disabled = true;
+myModel.label = "New Label";
+```
+
+**AFTER:**
+```ts
+// This still works
+myModel.value = "New Value";
+myModel.disabled = true;
+
+// This doesn't work automatically any more
+myModel.label = "New Label";
+
+// You need to manually trigger change detection
+this.formService.detectChanges();
+```
+***
+
+* `findModelById<T>` and `findControlByModel<T>` now use a type variable so you don't need to cast its return value any more.
+* `DISABLED_MATCHER` has been renamed to `DISABLED_MATCHER_PROVIDER`
+* `HIDDEN_MATCHER` has been renamed to `HIDDEN_MATCHER_PROVIDER`
+* `REQUIRED_MATCHER` has been renamed to `REQUIRED_MATCHER_PROVIDER`
+
+***
+
+
 # 9.1.0
 
 ### **Features**

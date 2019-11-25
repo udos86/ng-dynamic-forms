@@ -7,16 +7,16 @@ import { DynamicSelectModel } from "../model/select/dynamic-select.model";
 import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
 import {
     AND_OPERATOR,
+    DISABLED_MATCHER_PROVIDER,
     DISABLED_MATCHER,
-    DisabledMatcher,
-    HIDDEN_MATCHER,
+    HIDDEN_MATCHER_PROVIDER,
     MATCH_DISABLED,
     MATCH_ENABLED,
     MATCH_REQUIRED,
     OR_OPERATOR,
-    REQUIRED_MATCHER,
-    RequiredMatcher
-} from "./dynamic-form-relation.matchers";
+    REQUIRED_MATCHER_PROVIDER,
+    REQUIRED_MATCHER
+} from "./dynamic-form-relation-matchers";
 
 describe("DynamicFormRelationService test suite", () => {
 
@@ -154,7 +154,7 @@ describe("DynamicFormRelationService test suite", () => {
 
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
-            providers: [DynamicFormRelationService, DISABLED_MATCHER, HIDDEN_MATCHER, REQUIRED_MATCHER]
+            providers: [DynamicFormRelationService, DISABLED_MATCHER_PROVIDER, HIDDEN_MATCHER_PROVIDER, REQUIRED_MATCHER_PROVIDER]
         });
     });
 
@@ -186,44 +186,44 @@ describe("DynamicFormRelationService test suite", () => {
     it("should find an activation relation correctly", () => {
 
         model.relations = [rel1];
-        expect(service.findRelationByMatcher(model.relations, DisabledMatcher)).toBe(rel1);
+        expect(service.findRelationByMatcher(model.relations, DISABLED_MATCHER)).toBe(rel1);
 
         model.relations = [rel2];
-        expect(service.findRelationByMatcher(model.relations, DisabledMatcher)).toBe(rel2);
+        expect(service.findRelationByMatcher(model.relations, DISABLED_MATCHER)).toBe(rel2);
 
         model.relations = [rel6];
-        expect(service.findRelationByMatcher(model.relations, RequiredMatcher)).toBe(rel6);
+        expect(service.findRelationByMatcher(model.relations, REQUIRED_MATCHER)).toBe(rel6);
     });
 
     it("should check if form control is to be disabled correctly", () => {
 
         model.relations = [rel1];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(false);
 
         model.relations = [rel2];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(true);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(true);
 
         model.relations = [rel3];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(false);
 
         model.relations = [rel4];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(false);
 
         model.relations = [rel5];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DisabledMatcher)).toBe(true);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(true);
 
     });
 
     it("should check if form control is to be required correctly", () => {
 
         model.relations = [rel6];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), RequiredMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), REQUIRED_MATCHER)).toBe(false);
 
         model.relations = [rel7];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), RequiredMatcher)).toBe(false);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), REQUIRED_MATCHER)).toBe(false);
 
         model.relations = [rel8];
-        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), RequiredMatcher)).toBe(true);
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), REQUIRED_MATCHER)).toBe(true);
     });
 
     it("should get all related form controls correctly", () => {

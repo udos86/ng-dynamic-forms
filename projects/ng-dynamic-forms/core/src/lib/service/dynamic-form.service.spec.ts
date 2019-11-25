@@ -8,6 +8,7 @@ import {
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
 import { DynamicFormService } from "./dynamic-form.service";
+import { DynamicFormComponentService } from "./dynamic-form-component.service";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormModel } from "../model/dynamic-form.model";
 import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
@@ -49,6 +50,7 @@ describe("DynamicFormService test suite", () => {
             imports: [ReactiveFormsModule],
             providers: [
                 DynamicFormService,
+                DynamicFormComponentService,
                 DynamicFormValidationService,
                 {provide: NG_VALIDATORS, useValue: testValidator, multi: true},
                 {provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true}
