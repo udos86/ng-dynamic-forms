@@ -1,7 +1,6 @@
 import { DynamicFormValueControlModel, DynamicFormValueControlModelConfig } from "./dynamic-form-value-control.model";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { serializable } from "../decorator/serializable.decorator";
-import { AUTOCOMPLETE_ON } from "../utils/autofill.utils";
 import { isBoolean, isNumber } from "../utils/core.utils";
 
 export interface DynamicInputControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
@@ -33,7 +32,7 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
 
         super(config, layout);
 
-        this.autoComplete = config.autoComplete || AUTOCOMPLETE_ON;
+        this.autoComplete = config.autoComplete || "on";
         this.autoFocus = isBoolean(config.autoFocus) ? config.autoFocus : false;
         this.maxLength = isNumber(config.maxLength) ? config.maxLength : null;
         this.minLength = isNumber(config.minLength) ? config.minLength : null;

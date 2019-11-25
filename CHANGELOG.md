@@ -34,7 +34,6 @@ this.formService.detectChanges();
 * `DISABLED_MATCHER` has been renamed to `DISABLED_MATCHER_PROVIDER`
 * `HIDDEN_MATCHER` has been renamed to `HIDDEN_MATCHER_PROVIDER`
 * `REQUIRED_MATCHER` has been renamed to `REQUIRED_MATCHER_PROVIDER`
-* Autofill utils are no longer exported to reduce bundle size and will probably be released as stand-alone package in the future
 
 ***
 

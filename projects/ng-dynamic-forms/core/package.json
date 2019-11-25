@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/core",
-  "version": "9.1.0",
+  "version": "10.0.0",
   "description": "A rapid form development library for Angular",
   "keywords": [
     "angular",

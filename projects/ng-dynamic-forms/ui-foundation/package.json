@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-foundation",
-  "version": "9.1.0",
+  "version": "10.0.0",
   "description": "Foundation UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -32,7 +32,7 @@
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
-    "@ng-dynamic-forms/core": "^9.1.0",
+    "@ng-dynamic-forms/core": "^10.0.0",
     "angular2-text-mask": "^9.0.0",
     "foundation-sites": "^6.3.1",
     "rxjs": "^6.4.0"
