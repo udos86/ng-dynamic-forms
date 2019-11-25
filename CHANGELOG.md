@@ -6,24 +6,26 @@
 Whenever modifying a `DynamicFormControlModel` (except for `value` and `disabled` setters) that means you need to manually 
 trigger change detection by simply calling `detectChanges()` on `DynamicFormService`. 
 
-Please also read the new chapter on updating [models](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#related-form-controls).
+Please also read the new chapter on [updating form controls](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#updating-form-controls).
 
 **BEFORE:**
 ```ts
-
-// This still works
+// Immeditialy triggers UI update
 myModel.value = "New Value";
 myModel.disabled = true;
-
-// This doesn't work automatically anymore
 myModel.label = "New Label";
 ```
 
 **AFTER:**
 ```ts
+// This still works
+myModel.value = "New Value";
+myModel.disabled = true;
+
+// This doesn't work automatically any more
 myModel.label = "New Label";
 
-// Trigger change detection
+// You need to manually trigger change detection
 this.formService.detectChanges();
 ```
 ***
@@ -35,6 +37,7 @@ this.formService.detectChanges();
 * Autofill utils are no longer exported to reduce bundle size and will probably be released as stand-alone package in the future
 
 ***
+
 
 # 9.1.0
 
