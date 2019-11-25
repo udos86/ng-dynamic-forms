@@ -94,7 +94,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.19",
     "@angular-devkit/build-ng-packagr": "~0.803.19",
-    "@angular-devkit/core": "^8.3.17",
+    "@angular-devkit/core": "^8.3.19",
     "@angular-devkit/schematics": "^8.3.19",
     "@angular-devkit/schematics-cli": "^0.803.19",
     "@angular/cli": "~8.3.19",
@@ -111,7 +111,7 @@
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
-    "ng-packagr": "^5.5.1",
+    "ng-packagr": "^5.7.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": "^0.37.0",

@@ -1,4 +1,4 @@
-import { ApplicationRef, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions } from "@angular/forms";
 import { DynamicFormControlModel, FormHooks } from "../model/dynamic-form-control.model";
@@ -291,8 +291,12 @@ export class DynamicFormService {
         return result;
     }
 
-    findControlByModel(model: DynamicFormControlModel, group: FormGroup): AbstractControl | null {
-        return group.root.get(this.getPath(model, true));
+    findModelById<T extends DynamicFormControlModel>(id: string, formModel: DynamicFormModel): T | null {
+        return this.findById(id, formModel) as T;
+    }
+
+    findControlByModel<T extends AbstractControl>(model: DynamicFormControlModel, group: FormGroup): T | null {
+        return group.root.get(this.getPath(model, true)) as T;
     }
 
     detectChanges(formComponent?: DynamicFormComponent): void {

@@ -638,7 +638,48 @@ All custom UI events are pooled by an individual `@Output()` utilizing the respe
 
 ## Updating Form Controls
 
-Due to performance make use `ChangeDetectionStrategy.OnPush`. There will not automa. You
+NG Dynamic Forms entirely relies on the Angular `ReactiveFormsModule`. 
+Therefore the `value` property **cannot be two-way-bound** via `[(ngModel)]`. Also, dating back to RC.6, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) property bindings of the `disabled` attribute in reactive forms. 
+
+Yet updating either the value or status of a form control at runtime can easily be achieved.
+At first we need to get a reference to its `DynamicFormControlModel` representation:
+
+```typescript
+this.inputModel = this.formService.findModelById<DynamicInputModel>("myInput", this.formModel);
+```
+
+After that we just bring the convenient `value` and `disabled` setters of `DynamicFormValueControlModel` into play and we're fine:
+
+```typescript
+this.inputModel.value = "New Value";
+this.inputModel.disabled = true;
+```
+
+The modifications immediately are reflected in the user interface. So far so good.
+
+But what about other data? Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms, 
+changing one of it's properties should automatically trigger an update of the user interface as well, right?
+
+Now **BEWARE**!
+
+Due to performance reasons NG Dynamic Forms makes use of `ChangeDetectionStrategy.OnPush` under the hood. 
+Therefore changing any property on a `DynamicFormControl` besides `value` and `disabled` will not cause an automatic DOM update to occur.
+
+Instead you always have to call `detectChanges()` on `DynamicFormService` after updating the model to signal that the library manually should trigger a change detection.
+```typescript
+this.inputModel.label = "New Label";
+
+this.formService.detectChanges();
+```
+
+To optimize this you can optionally pass a `DynamicFormComponent` to `detectChanges()` to narrow the elements that are affected by Angular's change detection:
+```typescript
+@ViewChild(DynamicMaterialFormComponent, {static: false}) formComponent: DynamicMaterialFormComponent;
+
+//...
+
+this.formService.detectChanges(this.formComponent);
+```
 
 
 ## Custom Templates
