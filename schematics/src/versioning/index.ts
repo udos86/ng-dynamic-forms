@@ -1,4 +1,4 @@
-import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext, Tree } from "@angular-devkit/schematics";
 
 const PROJECTS_PATH = "./projects/ng-dynamic-forms";
 
@@ -11,6 +11,7 @@ const PACKAGE_PATHS = [
     `${PROJECTS_PATH}/ui-kendo`,
     `${PROJECTS_PATH}/ui-material`,
     `${PROJECTS_PATH}/ui-ng-bootstrap`,
+    `${PROJECTS_PATH}/ui-ngx-bootstrap`,
     `${PROJECTS_PATH}/ui-primeng`,
     `./schematics`,
     `.`
