@@ -382,8 +382,8 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 ```typescript
 ngOnInit() {
 
-    this.formArrayControl = this.formGroup.get("myFormArray") as FormArray; 
-    this.formArrayModel = this.formService.findById("myFormArray", this.formModel) as DynamicFormArrayModel;
+    this.formArrayModel = this.formService.findModelById<DynamicFormArrayModel>("myFormArray", this.formModel);
+    this.formArrayControl = this.formService.findControlByModel<FormArray>(this.formArrayModel, this.formGroup); 
 }
 
 addItem() {
