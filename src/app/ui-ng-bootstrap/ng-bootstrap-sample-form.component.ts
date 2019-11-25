@@ -23,7 +23,7 @@ export class NGBootstrapSampleFormComponent implements OnInit {
     }
 
     onClick() {
-        const model = this.formService.findById("firstName", this.formModel) as DynamicInputModel;
+        const model = this.formService.findModelById<DynamicInputModel>("firstName", this.formModel);
 
         model.label = "Updated Label";
         this.formService.detectChanges();
