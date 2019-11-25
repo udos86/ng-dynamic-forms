@@ -388,12 +388,16 @@ ngOnInit() {
 
 addItem() {
     this.formService.addFormArrayGroup(this.formArrayControl, this.formArrayModel);
+    this.formService.detectChanges();
 }
 
 clear() {
     this.formService.clearFormArray(this.formArrayControl, this.formArrayModel);
+    this.formService.detectChanges();
 }
 ```
+
+Never forget to trigger change detection via `detectChanges` when updating a form at runtime!
 
 Alright, works like a charm! 
 
@@ -444,16 +448,19 @@ This is extremely useful when you'd like to implement a remove or insert functio
 ```typescript
 removeItem(context: DynamicFormArrayModel, index: number) {
     this.formService.removeFormArrayGroup(index, this.formArrayControl, context);
+    this.formService.detectChanges();
 }
 
 insertItem(context: DynamicFormArrayModel, index: number) {
     this.formService.insertFormArrayGroup(index, this.formArrayControl, context);
+    this.formService.detectChanges();
 }
 ```
 
 Using `DynamicFormService` again, **you can even change the order of the groups** in a form array dynamically:
 ```typescript
 this.formService.moveFormArrayGroup(index, -1, this.formArrayControl, context);
+this.formService.detectChanges();
 ```
 
 
