@@ -1043,10 +1043,10 @@ new DynamicInputModel({
 
 **Error messaging is automatically enabled whenever** `errorMessages` **are declared on a** `DynamicFormControlModel`. 
 
-By default error messages are show whenever the corresponding form control is invalid, blurred and has already been touched at the same time.
+By default error messages are shown whenever the corresponding form control is invalid, blurred and has already been touched at the same time.
 
 Since the condition for displaying error messages often is a subject to individual user experience preferences you can customize this by
-providing a so called `DynamicErrorMessagesMatcher`:
+providing a so called `DynamicErrorMessagesMatcher` via the `DYNAMIC_ERROR_MESSAGES_MATCHER` injection token:
 ```ts
 function myCustomErrorMessagesMatcher (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) {
     return //...
@@ -1054,7 +1054,7 @@ function myCustomErrorMessagesMatcher (control: AbstractControl, model: DynamicF
 
 providers: [
     {
-        provide: DYNAMIC_ERROR_MESSAGES_MATCHER,
+        provide: `DYNAMIC_ERROR_MESSAGES_MATCHER`,
         useValue: myCustomErrorMessagesMatcher
     },
 ```

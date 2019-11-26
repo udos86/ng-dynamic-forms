@@ -25,7 +25,7 @@ export const DEFAULT_ERROR_STATE_MATCHER: DynamicErrorMessagesMatcher =
     };
 ```
 
-Please read the update chapter on [*validation messaging*]()
+Please read the updated chapter on [*validation messaging*](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#validation-messaging)
 
 ***
 
