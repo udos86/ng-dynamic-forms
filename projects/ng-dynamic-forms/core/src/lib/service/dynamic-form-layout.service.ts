@@ -11,7 +11,7 @@ import {
     DynamicTemplateDirective,
     DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
 } from "../directive/dynamic-template.directive";
-import { isObject } from "../utils/core.utils";
+import { isObject, isString } from "../utils/core.utils";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
 
@@ -26,7 +26,7 @@ export class DynamicFormLayoutService {
 
         if (isObject(formLayout)) {
 
-            for (let key of Object.keys(formLayout)) {
+            for (const key of Object.keys(formLayout)) {
 
                 if (key === id) {
                     return formLayout[key];
@@ -43,7 +43,7 @@ export class DynamicFormLayoutService {
 
         if (isObject(formLayout)) {
 
-            for (let key of Object.keys(formLayout)) {
+            for (const key of Object.keys(formLayout)) {
 
                 key.split(",").forEach(substring => {
 
@@ -75,7 +75,8 @@ export class DynamicFormLayoutService {
         return [];
     }
 
-    getAlignedTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates, alignment: DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT): DynamicTemplateDirective | undefined {
+    getAlignedTemplate(model: DynamicFormControlModel, templates: DynamicFormControlTemplates,
+                       alignment: DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT): DynamicTemplateDirective | undefined {
 
         return this.filterTemplatesByModel(model, templates)
             .find(template => template.as === null && template.align === alignment);
@@ -94,11 +95,12 @@ export class DynamicFormLayoutService {
         return this.getAlignedTemplate(model, templates, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End);
     }
 
-    getClass(layout: DynamicFormControlLayout | null, context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace): string {
+    getClass(layout: DynamicFormControlLayout | null | undefined, context: DynamicFormControlLayoutContext,
+             place: DynamicFormControlLayoutPlace): string {
 
-        if (layout !== null && layout.hasOwnProperty(context)) {
+        if (isObject(layout) && layout.hasOwnProperty(context)) {
 
-            let config = layout[context] as DynamicFormControlLayoutConfig;
+            const config = layout[context] as DynamicFormControlLayoutConfig;
 
             if (config.hasOwnProperty(place)) {
                 return config[place] as string;
@@ -108,9 +110,26 @@ export class DynamicFormLayoutService {
         return "";
     }
 
+    getHostClass(layout: DynamicFormControlLayout | null | undefined): string {
+
+        const keys: (keyof DynamicFormControlLayout)[] = ["element", "grid"];
+        let cls = "";
+
+        if (isObject(layout)) {
+            keys.forEach(key => {
+                if (isObject(layout[key]) && isString(layout[key].host)) {
+                    cls = cls + ` ${layout[key].host}`;
+                }
+            });
+        }
+
+        return cls;
+    }
+
     getElementId(model: DynamicFormControlModel): string {
 
-        let id = model.id, parent = model.parent;
+        let id = model.id;
+        let parent = model.parent;
 
         while (parent !== null) {
 

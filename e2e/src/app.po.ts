@@ -2,10 +2,12 @@ import { browser, by, element } from 'protractor';
 
 export class AppPage {
   navigateTo() {
-    return browser.get(browser.baseUrl) as Promise<any>;
+    return browser.get(browser.baseUrl + '#/bootstrap-sample-form/') as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('app-root h1')).getText() as Promise<string>;
+  getInputText() {
+    const elm =  element(by.css('#bsInput2'));
+
+    return elm.getAttribute('value') as Promise<string>;
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Checkbox } from "primeng/primeng";
 import {
@@ -6,18 +6,18 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
+    DynamicFormControlComponent, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-primeng-checkbox",
-    templateUrl: "./dynamic-primeng-checkbox.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-checkbox.component.html"
 })
 export class DynamicPrimeNGCheckboxComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicCheckboxModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

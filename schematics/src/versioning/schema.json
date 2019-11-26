@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "Versioning Schematic",
+  "title": "Versioning Schematic",
+  "type": "object",
+  "description": "Updates version number based on a given increment",
+  "properties": {
+    "increment": {
+      "type": "string",
+      "x-prompt": "Which version update would you like to run",
+      "enum": [
+        "Patch",
+        "Minor",
+        "Major"
+      ]
+    }
+  },
+  "required": [
+    "increment"
+  ]
+}

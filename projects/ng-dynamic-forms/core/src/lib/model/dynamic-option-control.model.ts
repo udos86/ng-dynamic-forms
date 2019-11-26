@@ -63,9 +63,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
         if (Array.isArray(options)) {
 
-            this._options = (options as DynamicFormOptionConfig<T>[]).map(optionConfig => {
-                return new DynamicFormOption<T>(optionConfig);
-            });
+            this._options = (options as DynamicFormOptionConfig<T>[]).map(optionConfig => new DynamicFormOption<T>(optionConfig));
 
             this.updateOptions$();
 
@@ -74,11 +72,9 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
             this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
                 map(optionsConfig => {
 
-                    let options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
+                    this._options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
 
-                    this._options = options;
-
-                    return options;
+                    return this._options;
                 }));
 
         } else {
@@ -101,7 +97,7 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
 
     insert(index: number, optionConfig: DynamicFormOptionConfig<T>): DynamicFormOption<T> {
 
-        let option = new DynamicFormOption(optionConfig);
+        const option = new DynamicFormOption(optionConfig);
 
         this.options.splice(index, 0, option);
         this.updateOptions$();

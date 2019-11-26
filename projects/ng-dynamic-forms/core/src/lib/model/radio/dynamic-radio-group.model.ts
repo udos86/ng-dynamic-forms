@@ -23,6 +23,6 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> {
     }
 
     select(index: number): void {
-        this.valueUpdates.next(this.get(index).value);
+        this.value = this.get(index).value;
     }
 }

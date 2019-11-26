@@ -8,6 +8,7 @@ export * from "./input/dynamic-ng-bootstrap-input.component";
 export * from "./radio-group/dynamic-ng-bootstrap-radio-group.component";
 export * from "./rating/dynamic-ng-bootstrap-rating.component";
 export * from "./select/dynamic-ng-bootstrap-select.component";
+export * from "./switch/dynamic-ng-bootstrap-switch.component";
 export * from "./textarea/dynamic-ng-bootstrap-textarea.component";
 export * from "./timepicker/dynamic-ng-bootstrap-timepicker.component";
 

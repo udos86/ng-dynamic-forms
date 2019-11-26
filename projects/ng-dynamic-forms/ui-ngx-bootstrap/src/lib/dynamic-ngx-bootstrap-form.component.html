@@ -1,0 +1,10 @@
+<dynamic-ngx-bootstrap-form-control *ngFor="let controlModel of model; trackBy: trackByFn"
+                                    [group]="group"
+                                    [hidden]="controlModel.hidden"
+                                    [layout]="layout"
+                                    [model]="controlModel"
+                                    [templates]="templates"
+                                    (blur)="onBlur($event)"
+                                    (change)="onChange($event)"
+                                    (focus)="onFocus($event)"
+                                    (bsEvent)="onCustomEvent($event, bsEvent)"></dynamic-ngx-bootstrap-form-control>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { InputText } from "primeng/primeng";
 import {
@@ -6,18 +6,18 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicInputModel
+    DynamicInputModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-primeng-input",
-    templateUrl: "./dynamic-primeng-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-input.component.html"
 })
 export class DynamicPrimeNGInputComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicInputModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

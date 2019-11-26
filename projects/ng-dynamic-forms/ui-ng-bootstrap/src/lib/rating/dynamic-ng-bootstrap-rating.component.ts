@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewCh
 import { FormGroup } from "@angular/forms";
 import { NgbRating, NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
 import {
+    DynamicFormControlComponent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
     DynamicRatingModel
 } from "@ng-dynamic-forms/core";
 
@@ -16,15 +17,17 @@ import {
 })
 export class DynamicNGBootstrapRatingComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicRatingModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(NgbRating, { static: true }) ngbRating: NgbRating;
+    @ViewChild(NgbRating, {static: true}) ngbRating: NgbRating;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,

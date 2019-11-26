@@ -175,7 +175,7 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
 
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicSelectModel<string>).valueUpdates.next("Two");
+        (testModel as DynamicSelectModel<string>).value = "Two";
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
@@ -184,7 +184,7 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
 
         spyOn(component, "onModelDisabledUpdates");
 
-        testModel.disabledUpdates.next(true);
+        testModel.disabled = true;
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });

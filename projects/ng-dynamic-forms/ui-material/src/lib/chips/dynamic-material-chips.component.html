@@ -5,7 +5,7 @@
                 [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
                 [ngClass]="getClass('grid', 'control')">
 
-    <mat-chip-list #matChipList [formControlName]="model.id" [id]="elementId" [multiple]="true">
+    <mat-chip-list #matChipList [formControlName]="model.id" [id]="id" [multiple]="true">
 
         <mat-chip *ngFor="let chip of chips; let index = index"
                   [selectable]="false"

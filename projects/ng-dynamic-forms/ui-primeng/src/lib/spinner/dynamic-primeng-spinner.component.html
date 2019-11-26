@@ -2,9 +2,13 @@
 
     <p-spinner #pSpinner
                [formControlName]="model.id"
-               [id]="elementId"
-               [min]="model.min"
-               [max]="model.max"
+               [id]="id"
+               [min]="model.min === null ? undefined : model.min"
+               [max]="model.max === null ? undefined : model.max"
+               [decimalSeparator]="model.getAdditional('decimalSeparator', null)"
+               [thousandSeparator]="model.getAdditional('thousandSeparator', null)"
+               [formatInput]="model.getAdditional('formatInput', false)"
+               [size]="model.getAdditional('size', false)"
                [ngClass]="getClass('element', 'control')"
                [placeholder]="model.placeholder"
                [step]="model.step || 1"

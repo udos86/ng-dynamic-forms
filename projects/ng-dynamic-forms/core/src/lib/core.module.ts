@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { DynamicIdDirective } from "./directive/dynamic-id.directive";
 import { DynamicListDirective } from "./directive/dynamic-list.directive";
 import { DynamicTemplateDirective } from "./directive/dynamic-template.directive";
 import { DynamicFormService } from "./service/dynamic-form.service";
@@ -16,12 +15,10 @@ import { DynamicFormRelationService } from "./service/dynamic-form-relation.serv
         ReactiveFormsModule
     ],
     declarations: [
-        DynamicIdDirective,
         DynamicListDirective,
         DynamicTemplateDirective
     ],
     exports: [
-        DynamicIdDirective,
         DynamicListDirective,
         DynamicTemplateDirective
     ]

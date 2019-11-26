@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { NG_BOOTSTRAP_SAMPLE_FORM_MODEL } from "./ng-bootstrap-sample-form.model";
 import { NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./ng-bootstrap-sample-form.layout";
+import { DynamicNGBootstrapFormComponent } from "@ng-dynamic-forms/ui-ng-bootstrap";
 
 @Component({
     selector: "dynamic-ng-bootstrap-sample-form",
@@ -16,7 +17,20 @@ export class NGBootstrapSampleFormComponent implements OnInit {
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT;
 
-    constructor(private formService: DynamicFormService) {}
+    @ViewChild(DynamicNGBootstrapFormComponent, {static: false}) formComponent: DynamicNGBootstrapFormComponent;
+
+    constructor(private formService: DynamicFormService) {
+    }
+
+    onClick() {
+        const model = this.formService.findModelById<DynamicInputModel>("firstName", this.formModel);
+
+        model.label = "Updated Label";
+        this.formService.detectChanges();
+
+        model.value = "Test Value";
+        model.disabled = true;
+    }
 
     ngOnInit() {
         this.formGroup = this.formService.createFormGroup(this.formModel);

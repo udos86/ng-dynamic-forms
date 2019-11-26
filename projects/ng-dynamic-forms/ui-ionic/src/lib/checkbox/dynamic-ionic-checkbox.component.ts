@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { IonCheckbox } from "@ionic/angular";
 import { FormGroup } from "@angular/forms";
 import {
@@ -6,18 +6,18 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent,
+    DynamicFormControlComponent, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-ionic-checkbox",
-    templateUrl: "./dynamic-ionic-checkbox.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-checkbox.component.html"
 })
 export class DynamicIonicCheckboxComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicCheckboxModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

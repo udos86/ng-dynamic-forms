@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { IonDatetime } from "@ionic/angular";
 import {
@@ -7,18 +7,18 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent
+    DynamicFormControlComponent, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-ionic-datetime",
-    templateUrl: "./dynamic-ionic-datetime.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-datetime.component.html"
 })
 export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicDatePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

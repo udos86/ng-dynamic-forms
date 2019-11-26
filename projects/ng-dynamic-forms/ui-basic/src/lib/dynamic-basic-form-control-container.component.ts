@@ -1,8 +1,10 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
-    EventEmitter,
+    EventEmitter, HostBinding,
     Input,
     Output,
     QueryList,
@@ -42,15 +44,19 @@ import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-
 
 @Component({
     selector: "dynamic-basic-form-control",
-    templateUrl: "./dynamic-basic-form-control-container.component.html"
+    templateUrl: "./dynamic-basic-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBasicFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+
+    @HostBinding("class") klass;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -58,15 +64,16 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

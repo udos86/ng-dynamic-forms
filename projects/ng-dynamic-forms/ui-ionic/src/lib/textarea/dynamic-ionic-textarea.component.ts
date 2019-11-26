@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { IonTextarea } from "@ionic/angular";
 import {
@@ -6,18 +6,18 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicTextAreaModel
+    DynamicTextAreaModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-ionic-textarea",
-    templateUrl: "./dynamic-ionic-textarea.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-ionic-textarea.component.html"
 })
 export class DynamicIonicTextAreaComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicTextAreaModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

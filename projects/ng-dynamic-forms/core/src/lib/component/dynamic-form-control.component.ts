@@ -1,9 +1,8 @@
 import { EventEmitter } from "@angular/core";
 import { AbstractControl, FormGroup } from "@angular/forms";
-import { DynamicFormControl } from "./dynamic-form-control.interface";
-import { DynamicFormControlCustomEvent } from "./dynamic-form-control.event";
+import { DynamicFormControl } from "./dynamic-form-control-interface";
+import { DynamicFormControlCustomEvent } from "./dynamic-form-control-event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
-import { DynamicCheckboxModel } from "../model/checkbox/dynamic-checkbox.model";
 import {
     DynamicFormControlLayout,
     DynamicFormControlLayoutContext,
@@ -19,20 +18,22 @@ import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
 
-    private _hasFocus: boolean = false;
+    private _hasFocus = false;
 
+    formLayout: DynamicFormLayout;
     group: FormGroup;
-    layout: DynamicFormLayout;
+    layout: DynamicFormControlLayout;
     model: DynamicFormControlModel;
     templates: DynamicFormControlTemplates;
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;
-    customEvent: EventEmitter<DynamicFormControlCustomEvent> | undefined;
+    customEvent: EventEmitter<DynamicFormControlCustomEvent>;
     focus: EventEmitter<any>;
 
     protected constructor(protected layoutService: DynamicFormLayoutService,
-                          protected validationService: DynamicFormValidationService) {}
+                          protected validationService: DynamicFormValidationService) {
+    }
 
     get control(): AbstractControl | never {
 
@@ -45,12 +46,16 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         return control as AbstractControl;
     }
 
-    get elementId(): string {
+    get id(): string {
         return this.layoutService.getElementId(this.model);
     }
 
     get errorMessages(): string[] {
         return this.validationService.createErrorMessages(this.control, this.model);
+    }
+
+    get showErrorMessages(): boolean {
+        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
     }
 
     get hasFocus(): boolean {
@@ -65,13 +70,11 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         return this.control.valid;
     }
 
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
-    }
+    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace,
+             model: DynamicFormControlModel = this.model): string {
 
-    getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace, model: DynamicFormControlModel = this.model): string {
-
-        let controlLayout = this.layoutService.findByModel(model, this.layout) || model.layout as DynamicFormControlLayout;
+        const controlLayout = model === this.model ? this.layout :
+            this.layoutService.findByModel(model, this.formLayout) || model.layout as DynamicFormControlLayout;
 
         return this.layoutService.getClass(controlLayout, context, place);
     }
@@ -95,24 +98,15 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
         this.change.emit($event);
     }
 
-    onEmbeddedCheckboxChange($event: Event, model: DynamicCheckboxModel) {
-
-        this.onChange($event);
-
-        model.valueUpdates.next(($event.target as HTMLInputElement).checked);
-    }
-
     onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {
-
-        let emitter = this.customEvent as EventEmitter<DynamicFormControlCustomEvent>;
 
         if (bypass) {
 
-            emitter.emit($event);
+            this.customEvent.emit($event);
 
         } else if (isString(type)) {
 
-            emitter.emit({customEvent: $event, customEventType: type});
+            this.customEvent.emit({customEvent: $event, customEventType: type});
         }
     }
 

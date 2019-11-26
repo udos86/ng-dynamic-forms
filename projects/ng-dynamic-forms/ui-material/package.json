@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-material",
-  "version": "8.0.1",
+  "version": "10.0.0",
   "description": "Material UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -33,7 +33,7 @@
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
     "@angular/material": "^8.0.0",
-    "@ng-dynamic-forms/core": "^8.0.1",
+    "@ng-dynamic-forms/core": "^10.0.0",
     "angular2-text-mask": "^9.0.0",
     "rxjs": "^6.4.0"
   },

@@ -1,3 +1,114 @@
+# 10.0.0
+
+### **Breaking Changes**
+
+* Due to performance reasons NG Dynamic Forms from now on makes use of `ChangeDetectionStrategy.OnPush` under the hood.
+Whenever modifying a `DynamicFormControlModel` (except for `value` and `disabled` setters) that means you need to manually 
+trigger change detection by simply calling `detectChanges()` on `DynamicFormService`. 
+
+Please also read the new chapter on [updating form controls](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#updating-form-controls).
+
+**BEFORE:**
+```ts
+// Immeditialy triggers UI update
+myModel.value = "New Value";
+myModel.disabled = true;
+myModel.label = "New Label";
+```
+
+**AFTER:**
+```ts
+// This still works
+myModel.value = "New Value";
+myModel.disabled = true;
+
+// This doesn't work automatically any more
+myModel.label = "New Label";
+
+// You need to manually trigger change detection
+this.formService.detectChanges();
+```
+***
+
+* `findModelById<T>` and `findControlByModel<T>` now use a type variable so you don't need to cast its return value any more.
+* `DISABLED_MATCHER` has been renamed to `DISABLED_MATCHER_PROVIDER`
+* `HIDDEN_MATCHER` has been renamed to `HIDDEN_MATCHER_PROVIDER`
+* `REQUIRED_MATCHER` has been renamed to `REQUIRED_MATCHER_PROVIDER`
+
+***
+
+
+# 9.1.0
+
+### **Features**
+
+A new UI package `@ng-dynamic-forms/ui-ngx-bootstrap` has been released. This allows using ngx-bootstrap with Bootstrap 4 now.
+Thus the package `@ng-dynamic-forms/ui-bootstrap` from now on is only recommended if still need to support Bootstrap 3.correctly
+
+* `appendTo` input now works in PrimeNG Dropdown and Multiselect
+* `decimalSeparator`, `thousandSeparator`, `formatInput` and `size` inputs now works in PrimeNG Spinner
+
+***
+
+# 9.0.0
+
+### **Breaking Changes**
+
+Updating `value` and `disabled` properties of any `DynamicFormControlModel` is now possible via simple setters:
+
+**BEFORE:**
+```ts
+myModel.valueUpdates.next("New Value");
+myModel.disabledUpdates.next(true);
+```
+
+**AFTER:**
+```ts
+myModel.value = "New Value";
+myModel.disabled = true;
+```
+
+Therefore both `valueUpdates` and `disabledUpdates` `Subject`s have been removed from `DynamicFormControlModel`.
+
+You can still track changes via newly introduced `valueChanges` and `disabledChanges` `Observable`s.
+
+***
+
+`reflect-metadata` **is now directly imported by the library so there's no need to import it on your own in** `polyfills.ts` **any more**.
+
+### **Bugfixes**
+
+* disable / enable now should be working on all components again (closes [#993](https://github.com/udos86/ng-dynamic-forms/issues/993))
+* `closed` output now working correctly in ng-bootstrap datepicker (closes [#994](https://github.com/udos86/ng-dynamic-forms/issues/994))
+
+### **Features**
+
+* Labels in Material form fields now support HTML (closes [#966](https://github.com/udos86/ng-dynamic-forms/issues/966))
+
+***
+
+# 8.1.1
+
+### **Features**
+
+* PrimeNG editor now supports `modules` closes [#996](https://github.com/udos86/ng-dynamic-forms/issues/996))
+
+### **Bugfixes**
+
+* `rootPath` is now correctly processed for multiple related form controls (closes [#990](https://github.com/udos86/ng-dynamic-forms/issues/990))
+* PrimeNG spinners now work when `min`/`max` properties are `null` (closes [#989](https://github.com/udos86/ng-dynamic-forms/issues/989))
+
+***
+
+# 8.1.0
+
+### **Features**
+
+* update of ngx-bootstrap, Prime NG, NG Bootstrap and Kendo to new major versions
+* `DynamicFormComponentService` now gives warning instead of failing when called with index argument for non-array (closes [#974](https://github.com/udos86/ng-dynamic-forms/issues/974))
+
+***
+
 # 8.0.1
 
 ### **Bugfixes**

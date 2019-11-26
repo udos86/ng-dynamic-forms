@@ -1,0 +1,19 @@
+<ng-container [formGroup]="group">
+
+    <div role="group" [formGroupName]="model.id" [id]="id" [ngClass]="getClass('element','control')">
+
+        <dynamic-ngx-bootstrap-form-control *ngFor="let _model of model.group"
+                                            [asBootstrapFormGroup]="true"
+                                            [group]="control"
+                                            [hidden]="_model.hidden"
+                                            [layout]="formLayout"
+                                            [model]="_model"
+                                            [templates]="templates"
+                                            [hostClass]="[getClass('element','children'), getClass('grid','children')]"
+                                            (blur)="onBlur($event)"
+                                            (change)="onChange($event)"
+                                            (focus)="onFocus($event)"
+                                            (bsEvent)="onCustomEvent($event, null, true)"></dynamic-ngx-bootstrap-form-control>
+    </div>
+
+</ng-container>

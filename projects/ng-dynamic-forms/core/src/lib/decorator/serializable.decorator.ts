@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 declare let Reflect: any;
 
 export const METADATA_KEY_SERIALIZABLE = "SERIALIZABLE";
@@ -10,18 +12,18 @@ export interface SerializableProperty {
 
 export function serializable(name?: string): (target: any, key: string) => void {
 
-    return function (target, key) {
-        Reflect.defineMetadata(METADATA_KEY_SERIALIZABLE, {key: key, name: name || key}, target, key);
+    return (target, key) => {
+        Reflect.defineMetadata(METADATA_KEY_SERIALIZABLE, {key, name: name || key}, target, key);
     };
 }
 
 export function getSerializables(target: any): SerializableProperty[] {
 
-    let serializables = [];
+    const serializables = [];
 
-    for (let key in target) {
+    for (const key in target) {
 
-        let metadata = Reflect.getMetadata(METADATA_KEY_SERIALIZABLE, target, key);
+        const metadata = Reflect.getMetadata(METADATA_KEY_SERIALIZABLE, target, key);
 
         if (metadata) {
             serializables.push(metadata);
@@ -31,7 +33,7 @@ export function getSerializables(target: any): SerializableProperty[] {
     return serializables;
 }
 
-export function serialize(target: any, prototype?: any): Object {
+export function serialize(target: any, prototype?: any): object {
 
     return getSerializables(prototype || target).reduce((prev: any, prop: SerializableProperty) => {
 

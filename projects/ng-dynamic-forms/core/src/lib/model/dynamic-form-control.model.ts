@@ -1,4 +1,4 @@
-import { Subject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
 import { DynamicFormControlRelation } from "./misc/dynamic-form-control-relation.model";
@@ -6,7 +6,7 @@ import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean, isObject, isString } from "../utils/core.utils";
 
-export type FormHooks = 'change' | 'blur' | 'submit';
+export type FormHooks = "change" | "blur" | "submit";
 
 export interface DynamicFormControlModelConfig {
 
@@ -28,7 +28,6 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     @serializable() asyncValidators: DynamicValidatorsConfig | null;
     @serializable("disabled") _disabled: boolean;
-    disabledUpdates: Subject<boolean>;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
     @serializable() hidden: boolean;
     @serializable() id: string;
@@ -41,6 +40,10 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() relations: DynamicFormControlRelation[];
     @serializable() updateOn: FormHooks | null;
     @serializable() validators: DynamicValidatorsConfig | null;
+
+    private readonly disabled$: BehaviorSubject<boolean>;
+
+    readonly disabledChanges: Observable<boolean>;
 
     abstract readonly type: string;
 
@@ -59,17 +62,17 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.updateOn = isString(config.updateOn) ? config.updateOn : null;
         this.validators = config.validators || null;
 
-        this.disabled = isBoolean(config.disabled) ? config.disabled : false;
-        this.disabledUpdates = new Subject<boolean>();
-        this.disabledUpdates.subscribe(disabled => this.disabled = disabled);
+        this.disabled$ = new BehaviorSubject(isBoolean(config.disabled) ? config.disabled : false);
+        this.disabled$.subscribe(disabled => this._disabled = disabled);
+        this.disabledChanges = this.disabled$.asObservable();
     }
 
     get disabled(): boolean {
-        return this._disabled;
+        return this.disabled$.getValue();
     }
 
-    set disabled(value: boolean) {
-        this._disabled = value;
+    set disabled(disabled: boolean) {
+        this.disabled$.next(disabled);
     }
 
     get hasErrorMessages(): boolean {

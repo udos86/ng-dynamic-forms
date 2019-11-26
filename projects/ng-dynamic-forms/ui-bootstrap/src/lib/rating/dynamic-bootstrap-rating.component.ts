@@ -5,7 +5,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicRatingModel
+    DynamicRatingModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,8 +15,9 @@ import {
 })
 export class DynamicBootstrapRatingComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicRatingModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-kendo",
-  "version": "8.0.1",
+  "version": "10.0.0",
   "description": "Kendo UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -32,12 +32,11 @@
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
     "@angular/forms": "^8.0.0",
-    "@ng-dynamic-forms/core": "^8.0.1",
-    "@progress/kendo-angular-dateinputs": "^3.7.4",
-    "@progress/kendo-angular-dropdowns": "^3.5.4",
-    "@progress/kendo-angular-inputs": "^5.1.0",
-    "@progress/kendo-angular-resize-sensor": "^3.0.3",
-    "@progress/kendo-angular-upload": "^4.3.1",
+    "@ng-dynamic-forms/core": "^10.0.0",
+    "@progress/kendo-angular-dateinputs": "^4.0.0",
+    "@progress/kendo-angular-dropdowns": "^4.0.0",
+    "@progress/kendo-angular-inputs": "^6.0.0",
+    "@progress/kendo-angular-upload": "^5.0.0",
     "rxjs": "^6.4.0"
   },
   "es2015": "./fesm2015/ui-kendo.js",

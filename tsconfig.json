@@ -72,6 +72,12 @@
       ],
       "@ng-dynamic-forms/ui-primeng/*": [
         "dist/ng-dynamic-forms/ui-primeng/*"
+      ],
+      "@ng-dynamic-forms/ui-ngx-bootstrap": [
+        "dist/ng-dynamic-forms/ui-ngx-bootstrap"
+      ],
+      "@ng-dynamic-forms/ui-ngx-bootstrap/*": [
+        "dist/ng-dynamic-forms/ui-ngx-bootstrap/*"
       ]
     }
   }

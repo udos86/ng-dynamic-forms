@@ -25,7 +25,8 @@ describe("DynamicFileUploadModel test suite", () => {
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD);
         expect(model.url).toBeNull();
         expect(model.value).toBeNull();
-        expect(model.disabledUpdates).toBeDefined();
+        expect(model.disabledChanges).toBeDefined();
+        expect(model.valueChanges).toBeDefined();
     });
 
     it("should serialize correctly", () => {

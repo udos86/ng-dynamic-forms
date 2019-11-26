@@ -1,6 +1,6 @@
 <ng-container [formGroup]="group">
 
-    <div [formArrayName]="model.id" [id]="elementId" [ngClass]="getClass('element', 'control')">
+    <div [formArrayName]="model.id" [id]="id" [ngClass]="getClass('element', 'control')">
 
         <div *ngFor="let groupModel of model.groups; let idx = index" role="group"
              [formGroupName]="idx" [ngClass]="[getClass('element', 'group'), getClass('grid', 'group')]">
@@ -11,11 +11,10 @@
                                                [context]="groupModel"
                                                [group]="array.at(idx)"
                                                [hidden]="_model.hidden"
-                                               [layout]="layout"
+                                               [layout]="formLayout"
                                                [model]="_model"
                                                [templates]="templates"
-                                               [ngClass]="[getClass('element', 'host', _model), getClass('grid', 'host', _model),
-                                                           getClass('element','children'), getClass('grid','children')]"
+                                               [hostClass]="[getClass('element','children'), getClass('grid','children')]"
                                                (blur)="onBlur($event)"
                                                (change)="onChange($event)"
                                                (focus)="onFocus($event)"

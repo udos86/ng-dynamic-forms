@@ -7,7 +7,7 @@
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">
 
-        <mat-label>{{ model.label }}</mat-label>
+        <mat-label [innerHTML]="model.label"></mat-label>
 
     </ng-container>
 
@@ -15,7 +15,7 @@
               [cdkTextareaAutosize]="model.getAdditional('cdkTextareaAutosize', true)"
               [cols]="model.cols"
               [formControlName]="model.id"
-              [id]="elementId"
+              [id]="id"
               [maxlength]="model.maxLength"
               [minlength]="model.minLength"
               [name]="model.name"

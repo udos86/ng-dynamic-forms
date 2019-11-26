@@ -1,8 +1,11 @@
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
+    HostBinding,
     Input,
     Output,
     QueryList,
@@ -35,7 +38,7 @@ import {
     DynamicFormValidationService,
     DynamicInputModel,
     DynamicTemplateDirective,
-    DynamicFormValueControlModel,
+    DynamicFormValueControlModel
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
 import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
@@ -51,15 +54,19 @@ import { DynamicMaterialFormGroupComponent } from "./form-group/dynamic-material
 
 @Component({
     selector: "dynamic-material-form-control",
-    templateUrl: "./dynamic-material-form-control-container.component.html"
+    templateUrl: "./dynamic-material-form-control-container.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicMaterialFormControlContainerComponent extends DynamicFormControlContainerComponent {
 
     @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+
+    @HostBinding("class") klass;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
     @Input() group: FormGroup;
+    @Input() hostClass: string[];
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
     @Input() layout: DynamicFormLayout;
     @Input() model: DynamicFormControlModel;
 
@@ -68,15 +75,16 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output("matEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", { read: ViewContainerRef, static: true }) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
-    constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+                protected componentFactoryResolver: ComponentFactoryResolver,
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
 
-        super(componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {
@@ -85,7 +93,7 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
 
     get hasMatFormField(): boolean {
 
-        let matFormFieldTypes = [DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER, DYNAMIC_FORM_CONTROL_TYPE_INPUT,
+        const matFormFieldTypes = [DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER, DYNAMIC_FORM_CONTROL_TYPE_INPUT,
             DYNAMIC_FORM_CONTROL_TYPE_SELECT, DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA];
 
         return matFormFieldTypes.some(type => this.model.type === type) || (
@@ -115,7 +123,7 @@ export function materialUIFormControlMapFn(model: DynamicFormControlModel): Type
             return DynamicMaterialFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-            let inputModel = model as DynamicInputModel;
+            const inputModel = model as DynamicInputModel;
 
             return inputModel.multiple ? DynamicMaterialChipsComponent : DynamicMaterialInputComponent;
 

@@ -7,7 +7,7 @@ import { PRIME_NG_SAMPLE_FORM_LAYOUT } from "./primeng-sample-form.layout";
 @Component({
     selector: "dynamic-primeng-sample-form",
     styleUrls: [
-      "../../../node_modules/primeng/resources/themes/omega/theme.css",
+      "../../../node_modules/primeng/resources/themes/nova-light/theme.css",
       "../../../node_modules/primeng/resources/primeng.min.css",
       "../../../node_modules/quill/dist/quill.core.css",
       "../../../node_modules/quill/dist/quill.snow.css"

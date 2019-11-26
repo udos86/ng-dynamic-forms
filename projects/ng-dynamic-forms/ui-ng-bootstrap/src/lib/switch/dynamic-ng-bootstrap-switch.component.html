@@ -1,0 +1,19 @@
+<div [formGroup]="group" class="custom-control custom-switch">
+
+    <input type="checkbox" class="custom-control-input"
+           [class.is-invalid]="showErrorMessages"
+           [formControlName]="model.id"
+           [id]="id"
+           [name]="model.name"
+           [ngClass]="getClass('element', 'control')"
+           [required]="model.required"
+           [tabindex]="model.tabIndex"
+           [value]="model.value"
+           (blur)="onBlur($event)"
+           (change)="onChange($event)"
+           (focus)="onFocus($event)">
+
+    <label class="custom-control-label" [for]="id" [innerHTML]="model.label"></label>
+
+</div>
+

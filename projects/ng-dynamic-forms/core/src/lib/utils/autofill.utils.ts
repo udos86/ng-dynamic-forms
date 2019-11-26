@@ -72,7 +72,6 @@ export const AUTOFILL_FIELD_URL = "url";
 export const AUTOFILL_FIELD_PHOTO = "photo";
 
 export const AUTOFILL_FIELDS = [
-
     AUTOFILL_FIELD_STREET_ADDRESS, AUTOFILL_FIELD_ADDRESS_LINE_1, AUTOFILL_FIELD_ADDRESS_LINE_2,
     AUTOFILL_FIELD_ADDRESS_LINE_3, AUTOFILL_FIELD_ADDRESS_LEVEL_4, AUTOFILL_FIELD_ADDRESS_LEVEL_3,
     AUTOFILL_FIELD_ADDRESS_LEVEL_2, AUTOFILL_FIELD_ADDRESS_LEVEL_1, AUTOFILL_FIELD_NAME,
@@ -99,7 +98,6 @@ export const AUTOFILL_FIELD_EMAIL = "email";
 export const AUTOFILL_FIELD_IMPP = "impp";
 
 export const AUTOFILL_FIELDS_CONTACT = [
-
     AUTOFILL_FIELD_TEL, AUTOFILL_FIELD_TEL_COUNTRY_CODE, AUTOFILL_FIELD_TEL_NATIONAL, AUTOFILL_FIELD_TEL_AREA_CODE,
     AUTOFILL_FIELD_TEL_LOCAL, AUTOFILL_FIELD_TEL_LOCAL_PREFIX, AUTOFILL_FIELD_TEL_LOCAL_SUFFIX,
     AUTOFILL_FIELD_TEL_LOCAL_EXTENSION, AUTOFILL_FIELD_EMAIL, AUTOFILL_FIELD_IMPP
@@ -127,12 +125,12 @@ export function isSectionToken(token: string): boolean {
 
 export function validate(tokens: string): boolean {
 
-    let toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`,
-        tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression),
-        tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression),
-        fields = AUTOFILL_FIELDS.reduce(toExpression),
-        fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression),
-        regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
+    const toExpression = (total: string, currentValue: string) => `${total}|${currentValue}`;
+    const tokensAddress = AUTOFILL_TOKENS_ADDRESS.reduce(toExpression);
+    const tokensContact = AUTOFILL_TOKENS_CONTACT.reduce(toExpression);
+    const fields = AUTOFILL_FIELDS.reduce(toExpression);
+    const fieldsContact = AUTOFILL_FIELDS_CONTACT.reduce(toExpression);
+    const regex = new RegExp(`^(section-\\w+\\s{1})?((${tokensAddress}){1}\\s)?((${fields}){1}|((${tokensContact}){1}\\s{1}(${fieldsContact})))$`);
 
     return regex.test(tokens);
 }

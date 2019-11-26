@@ -8,7 +8,6 @@
 [![DeepScan Grade](https://deepscan.io/api/projects/562/branches/912/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=562&bid=912)
 [![Downloads](http://img.shields.io/npm/dm/@ng-dynamic-forms/core.svg)](https://npmjs.org/package/@ng-dynamic-forms/core)
 
-:bangbang:**05/29/2019: Angular 8 update now available**:bangbang:
 ***
 
 NG Dynamic Forms is a **rapid form development library** based on the official Angular
@@ -16,10 +15,9 @@ NG Dynamic Forms is a **rapid form development library** based on the official A
 
 It **fully automates form UI creation** by introducing a set of maintainable **form control models** and **dynamic form control components** 
 
-**Out of the box support** is provided for all popular UI libraries including **[Bootstrap](http://getbootstrap.com)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, 
-**[Kendo](http://www.telerik.com/kendo-angular-ui)**, **[Material](https://material.angular.io/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
+**Out of the box support** is provided for all popular UI libraries including **[Material](https://material.angular.io/)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, **[Kendo](http://www.telerik.com/kendo-angular-ui)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
-[**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html) live in action!
+[**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.html) live in action!
 
 ## Table of Contents
 
@@ -32,18 +30,16 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 - [Form Layouts](#form-layouts)
 - [Form Control Configuration](#form-control-configuration)
 - [Form Control Events](#form-control-events)
+- [Updating Form Controls](#updating-form-controls)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Custom Form Controls](#custom-form-controls)
 - [Validation Messaging](#validation-messaging)
+- [Related Form Controls](#related-form-controls)
 - [JSON Export & Import](#json-export--import)
 - [JSON Form Models](#json-form-models)
-- [Updating Form Models](#updating-form-models)
-- [Disabling Form Controls](#disabling-form-controls)
 - [Text Masks](#text-masks)
-- [Related Form Controls](#related-form-controls)
 - [Autocompletion](#autocompletion)
-- [AOT Compilation](#aot-compilation)
 - [FAQ](#faq)
 - [Appendix](#appendix)
 
@@ -87,16 +83,14 @@ ng serve
 
 ## Basic Usage
 
-**1. Import** `DynamicFormsCoreModule` **and a UI module**:
+**1. Import the UI module**:
 ```typescript
-import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 
 @NgModule({
     
     imports: [
         ReactiveFormsModule,
-        DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
     ]
 })
@@ -184,14 +178,14 @@ export class MyDynamicFormComponent implements OnInit {
 
 NG Dynamic Forms is built to provide **solid yet unobtrusive** support for a variety of common UI libraries:
 
-* **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-basic)**
-* **[Bootstrap / ngx-bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-bootstrap)**
-* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-foundation)**
-* **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ionic)**
-* **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-kendo)**
-* **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-material)**
-* **[NG Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-ng-bootstrap)**
-* **[PrimeNG](https://github.com/udos86/ng-dynamic-forms/tree/master/packages/ui-primeng)**
+* **[Basic](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-basic)**
+* **[Foundation](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-foundation)**
+* **[Ionic](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-ionic)**
+* **[Kendo UI](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-kendo)**
+* **[Material](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-material)**
+* **[NG Bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-ng-bootstrap)**
+* **[ngx-bootstrap](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-ngx-bootstrap)**
+* **[PrimeNG](https://github.com/udos86/ng-dynamic-forms/tree/master/projects/ng-dynamic-forms/ui-primeng)**
 
 You can instantly plug in your favorite form controls by **installing the appropriate
 package and its peer dependencies**:
@@ -205,7 +199,6 @@ npm i @ng-dynamic-forms/ui-<library-name> -S
 
     imports: [
         ReactiveFormsModule,
-        DynamicFormsCoreModule,
         DynamicFormsMaterialUIModule
     ]
 })
@@ -236,22 +229,22 @@ Alternatively you can **directly make use of a specific** `DynamicFormControlCom
 Due to technical restrictions or external dependencies still being in development the support of major form controls 
 varies among UI packages. **See the following compatibility table**:
 
-|                	| ui-basic 	| ui-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-ng-bootstrap 	| ui-primeng 	|
-|----------------	|:--------:	|:------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
-| Checkbox       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Checkbox Group 	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Colorpicker    	|   ****   	|     ****     	|      ****     	|   ****   	|   ****   	|     ****    	|       ****      	|      ✓     	|
-| Datepicker     	|     *    	|       ✓      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
-| Editor         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
-| File Upload    	|    **    	|      **      	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
-| Input          	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Radio Group    	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Rating         	|     ✗    	|       ✗      	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
-| Select         	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Slider         	|    ***   	|      ***     	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
-| Switch         	|     ✗    	|       ✗      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
-| Textarea       	|     ✓    	|       ✓      	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
-| Timepicker     	|     *    	|       ✓      	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+|                	| ui-basic 	| ui-ngx-bootstrap 	| ui-foundation 	| ui-ionic 	| ui-kendo 	| ui-material 	| ui-ng-bootstrap 	| ui-primeng 	|
+|----------------	|:--------:	|:----------------:	|:-------------:	|:--------:	|:--------:	|:-----------:	|:---------------:	|:----------:	|
+| Checkbox       	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Checkbox Group 	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Colorpicker    	|   ****   	|         ✗        	|      ****     	|   ****   	|   ****   	|     ****    	|       ****      	|      ✓     	|
+| Datepicker     	|     *    	|         ✓        	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
+| Editor         	|     ✗    	|         ✗        	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
+| File Upload    	|    **    	|        **        	|       **      	|     ✗    	|     ✓    	|      **     	|        **       	|     **     	|
+| Input          	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Radio Group    	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Rating         	|     ✗    	|         ✓        	|       ✗       	|     ✗    	|     ✗    	|      ✗      	|        ✗        	|      ✓     	|
+| Select         	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Slider         	|    ***   	|        ***       	|      ***      	|     ✓    	|     ✓    	|      ✓      	|       ***       	|      ✓     	|
+| Switch         	|     ✗    	|         ✗        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✗        	|      ✓     	|
+| Textarea       	|     ✓    	|         ✓        	|       ✓       	|     ✓    	|     ✓    	|      ✓      	|        ✓        	|      ✓     	|
+| Timepicker     	|     *    	|         ✓        	|       *       	|     ✓    	|     ✓    	|      *      	|        ✓        	|      ✓     	|
 
 **\*)** datetime controls can be achieved using a `DynamicInputModel` with `inputType: "date"` or `inputType: "time"`
 
@@ -389,18 +382,22 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 ```typescript
 ngOnInit() {
 
-    this.formArrayControl = this.formGroup.get("myFormArray") as FormArray; 
-    this.formArrayModel = this.formService.findById("myFormArray", this.formModel) as DynamicFormArrayModel;
+    this.formArrayModel = this.formService.findModelById<DynamicFormArrayModel>("myFormArray", this.formModel);
+    this.formArrayControl = this.formService.findControlByModel<FormArray>(this.formArrayModel, this.formGroup); 
 }
 
 addItem() {
     this.formService.addFormArrayGroup(this.formArrayControl, this.formArrayModel);
+    this.formService.detectChanges();
 }
 
 clear() {
     this.formService.clearFormArray(this.formArrayControl, this.formArrayModel);
+    this.formService.detectChanges();
 }
 ```
+
+Never forget to trigger change detection via `detectChanges` when updating a form at runtime!
 
 Alright, works like a charm! 
 
@@ -451,16 +448,19 @@ This is extremely useful when you'd like to implement a remove or insert functio
 ```typescript
 removeItem(context: DynamicFormArrayModel, index: number) {
     this.formService.removeFormArrayGroup(index, this.formArrayControl, context);
+    this.formService.detectChanges();
 }
 
 insertItem(context: DynamicFormArrayModel, index: number) {
     this.formService.insertFormArrayGroup(index, this.formArrayControl, context);
+    this.formService.detectChanges();
 }
 ```
 
 Using `DynamicFormService` again, **you can even change the order of the groups** in a form array dynamically:
 ```typescript
 this.formService.moveFormArrayGroup(index, -1, this.formArrayControl, context);
+this.formService.detectChanges();
 ```
 
 
@@ -643,6 +643,53 @@ All custom UI events are pooled by an individual `@Output()` utilizing the respe
 ```
 
 
+## Updating Form Controls
+
+NG Dynamic Forms entirely relies on the Angular `ReactiveFormsModule`. 
+Therefore the `value` property of a `DynamicFormValueControlModel` **cannot be two-way-bound** via `[(ngModel)]`. 
+Also, dating back to RC.6, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) property bindings of the `disabled` attribute in reactive forms. 
+
+Yet updating either the value or status of a form control at runtime can easily be achieved.
+At first we need to get a reference to its `DynamicFormControlModel` representation:
+
+```typescript
+const inputModel = this.formService.findModelById<DynamicInputModel>("myInput", this.formModel);
+```
+
+After that we just bring the convenient `value` and `disabled` setters of `DynamicFormValueControlModel` into play and we're fine:
+
+```typescript
+inputModel.value = "New Value";
+inputModel.disabled = true;
+```
+
+The modifications immediately are reflected in the user interface. So far so good.
+
+But what about other data? Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms, 
+changing one of its properties should automatically trigger an update of the user interface as well, right?
+
+Now **BEWARE**!
+
+Due to performance reasons NG Dynamic Forms makes use of `ChangeDetectionStrategy.OnPush` under the hood. 
+Therefore changing any property on a `DynamicFormControl` except for `value` and `disabled` will not cause an automatic DOM update to occur.
+
+Instead you always have to call `detectChanges()` on `DynamicFormService` after updating the model to signal that the library should manually trigger a change detection.
+```typescript
+inputModel.label = "New Label";
+
+this.formService.detectChanges();
+```
+
+To optimize this you can optionally pass a `DynamicFormComponent` to `detectChanges()` to narrow the number of elements that are affected by the forthcoming change detection:
+```typescript
+@ViewChild(DynamicMaterialFormComponent, {static: false}) formComponent: DynamicMaterialFormComponent;
+
+//...
+
+this.formService.detectChanges(this.formComponent);
+```
+
+
 ## Custom Templates
 
 As already mentioned, NG Dynamic Forms gives you a lot of freedom in adjusting your form layout via CSS classes. 
@@ -817,6 +864,28 @@ providers: [
         provide: DYNAMIC_VALIDATORS,
         useValue: new Map<string, Validator | ValidatorFactory>([
             ["myCustomValidator", myCustomValidator]
+        ])
+    }
+]
+```
+You can also have multiple validators on the same input bu providing multiple key|value pairs in the useValue:
+```typescript 
+providers: [
+    {
+        provide: NG_VALIDATORS,
+        useValue: myCustomValidator,
+        multi: true
+    },
+     {
+        provide: NG_VALIDATORS,
+        useValue: myOtherCustomValidator,
+        multi: true
+    },
+    {
+        provide: DYNAMIC_VALIDATORS,
+        useValue: new Map<string, Validator | ValidatorFactory>([
+            ["myCustomValidator", myCustomValidator],
+            ["myOtherCustomValidator", myOtherCustomValidator]
         ])
     }
 ]
@@ -1032,181 +1101,6 @@ and **bind the** `FormControl` **reference via a local template variable**:
     
 </form>
 ```
-  
-## JSON Export & Import
-
-Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
-
-That's why all `DynamicFormControlModel`s have been prepared to **properly export to JSON**: 
-```typescript
-storeForm() {
-    
-    let json: string = JSON.stringify(this.formModel);
-    
-    // ...store JSON in localStorage or transfer to server
-}
-```
-
-In order to recreate a form from JSON just make use of the corresponding function provided by `DynamicFormService`:
-```typescript
-restoreForm() {
-
-    let json: string;
-    
-    // ...load JSON from localStorage or server
-    
-    this.formModel = this.formService.fromJSON(json);
-}
-```
-
-
-## JSON Form Models
-
-By default NG Dynamic Forms **embraces prototypical inheritance** and forces you to use constructor functions when modelling a form.
-
-Depending on your general set-up or individual preferences sometimes it's more suitable to provide a form model in plain JSON, though. 
-
-Fortunately, **this is perfectly fine and supported**, as well. 
-
-To specify a single JSON form control model just **assign the mandatory** `type` **property**: 
-```typescript
-[
-    {
-        "type": "INPUT",
-        "id": "sampleInput",
-        "label": "Sample Input",
-        "maxLength": 42,
-        "placeholder": "Sample input"
-    },
-    {
-        "type": "RADIO_GROUP",
-        "id": "sampleRadioGroup",
-        "label": "Sample Radio Group",
-        "options": [
-            {
-                "label": "Option 1",
-                "value": "option-1",
-            },
-            {
-                "label": "Option 2",
-                "value": "option-2"
-            },
-            {
-                "label": "Option 3",
-                "value": "option-3"
-            }
-        ],
-        "value": "option-3"    
-    },
-    {
-        "type": "CHECKBOX",
-        "id": "sampleCheckbox",
-        "label": "I do agree"
-    }
-]
-```
-
-After having asynchronously loaded the JSON form model into your application **don't forget to transform it** via `fromJSON()` **before creating** a `FormGroup`. 
-```typescript
-ngOnInit() {
-
-    this.http.get<object[]>('./app/my-dynamic-form.model.json').subscribe(formModelJson => {
-
-        this.formModel = this.formService.fromJSON(formModelJson);
-        this.formGroup = this.formService.createFormGroup(this.formModel);
-    });
-}
-```
-
-
-## Updating Form Models
-
-One of the benefits of using NG Dynamic Forms is that programmatically interacting with your form becomes pretty easy.
-
-Since a `DynamicFormControlModel` is bound directly to a `DOM` element via Angular core mechanisms,
-changing one of it's properties will immediately trigger an update of the user interface.
-
-But there's one major exception!
-
-NG Dynamic Forms relies on the Angular `ReactiveFormsModule`. Therefore the `value` property **is not two-way-bound** via `[(ngModel)]` under the hood.
-
-So what if we actually want to update the value of an arbitrary form control at runtime?
-
-At first we need to get a reference to it's `DynamicFormControlModel` representation. 
-
-This can easily be achieved either by
-a simple index-based array lookup or through the `findById` method of `DynamicFormService`:
-
-```typescript
-this.inputModel = this.formModel[2];
-```
-```typescript
-this.inputModel = this.formService.findById("myInput", this.formModel) as DynamicInputModel;
-```
-
-We now have access to a `Rx.Subject` named `valueUpdates` to push new values via `next()` as well as to listen to new user input via `subscribe()`:
-```typescript
-this.inputModel.valueUpdates.next("my new value");
-
-this.inputModel.valueUpdates.subscribe(value => console.log("new value: ", value);
-```
-
-At any time we can also safely read the most recent user input from the `value` property:
-```typescript
-let currentValue = this.inputModel.value;
-```
-
-
-## Disabling Form Controls
-
-Dating back to RC.6, Angular [**does not allow**](https://github.com/angular/angular/issues/11271) property bindings of the `disabled` attribute in reactive forms. 
-
-That means changing the corresponding `disabled` property of a `DynamicFormControlModel` at runtime won't have any effect.
-
-But similar to [updating values](#updating-form-models) NG Dynamic Forms helps you out here 
-by providing a `Rx.Subject` named `disabledUpdates`. 
-
-It can be used to programmatically switch the activation state of a form control through a `DynamicFormControlModel`:
-```typescript
-this.inputModel.disabledUpdates.next(true);
-```
-
-
-## Text Masks
-
-Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
-
-Since Angular does not deliver an appropriate feature by default, NG Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
-
-That's why most UI packages demand one additional peer dependency to be installed:
-```
-npm install angular2-text-mask --save
-```
-
-You're now capable of adding a `mask` property to any `DynamicInputModel` according to [Text Mask docs](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask):
-
-```typescript
-new DynamicInputModel({
-
-    id: "maskedInput",
-    label: "Masked Input",
-    mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-}),
-```
-
-You can also pass a function as the mask. The function will receive the user input at every change. The function is expected to return a mask array as described above.[Text Mask Addons](https://github.com/text-mask/text-mask/tree/master/addons/)
- ```typescript
-new DynamicInputModel({
-     id: "maskedInput",
-    label: "Masked Input",
-    mask: createNumberMask({
-            prefix: "",
-            suffix: " $"
-          }),
-}),
-```
-
-Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
 
 
 ## Related Form Controls
@@ -1215,7 +1109,7 @@ In many forms the state of a certain form control directly depends on the `value
 
 Implementing such a connection manually would be time-consuming and only lead to undesired boilerplate code.
 
-NG Dynamic Forms enables you to declaratively add form control relations by using so called `DynamicFormControlMatcher`s. 
+NG Dynamic Forms enables you to declaratively add form control relations by using so called `DynamicFormControlMatcher`s.
 
 A matcher defines the action that should take place for a predefined `match` when a `value` or `state` change has occured on the related form control.
 ```typescript
@@ -1308,7 +1202,130 @@ new DynamicTextAreaModel(
 )
 ```
 
-  
+
+## JSON Export & Import
+
+Sooner or later you likely want to persist your dynamic form model in order to restore it at some point in the future.
+
+That's why all `DynamicFormControlModel`s have been prepared to **properly export to JSON**: 
+```typescript
+storeForm() {
+    
+    let json: string = JSON.stringify(this.formModel);
+    
+    // ...store JSON in localStorage or transfer to server
+}
+```
+
+In order to recreate a form from JSON just make use of the corresponding function provided by `DynamicFormService`:
+```typescript
+restoreForm() {
+
+    let json: string;
+    
+    // ...load JSON from localStorage or server
+    
+    this.formModel = this.formService.fromJSON(json);
+}
+```
+
+
+## JSON Form Models
+
+By default NG Dynamic Forms **embraces prototypical inheritance** and forces you to use constructor functions when modelling a form.
+
+Depending on your general set-up or individual preferences sometimes it's more suitable to provide a form model in plain JSON, though. 
+
+Fortunately, **this is perfectly fine and supported**, as well. 
+
+To specify a single JSON form control model just **assign the mandatory** `type` **property**: 
+```typescript
+[
+    {
+        "type": "INPUT",
+        "id": "sampleInput",
+        "label": "Sample Input",
+        "maxLength": 42,
+        "placeholder": "Sample input"
+    },
+    {
+        "type": "RADIO_GROUP",
+        "id": "sampleRadioGroup",
+        "label": "Sample Radio Group",
+        "options": [
+            {
+                "label": "Option 1",
+                "value": "option-1",
+            },
+            {
+                "label": "Option 2",
+                "value": "option-2"
+            },
+            {
+                "label": "Option 3",
+                "value": "option-3"
+            }
+        ],
+        "value": "option-3"    
+    },
+    {
+        "type": "CHECKBOX",
+        "id": "sampleCheckbox",
+        "label": "I do agree"
+    }
+]
+```
+
+After having asynchronously loaded the JSON form model into your application **don't forget to transform it** via `fromJSON()` **before creating** a `FormGroup`. 
+```typescript
+ngOnInit() {
+
+    this.http.get<object[]>('./app/my-dynamic-form.model.json').subscribe(formModelJson => {
+
+        this.formModel = this.formService.fromJSON(formModelJson);
+        this.formGroup = this.formService.createFormGroup(this.formModel);
+    });
+}
+```
+
+
+## Text Masks
+
+Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
+
+Since Angular does not deliver an appropriate feature by default, NG Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
+
+That's why most UI packages demand one additional peer dependency to be installed:
+```
+npm install angular2-text-mask --save
+```
+
+You're now capable of adding a `mask` property to any `DynamicInputModel` according to [Text Mask docs](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask):
+
+```typescript
+new DynamicInputModel({
+
+    id: "maskedInput",
+    label: "Masked Input",
+    mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+}),
+```
+
+You can also pass a function as the mask. The function will receive the user input at every change. The function is expected to return a mask array as described above.[Text Mask Addons](https://github.com/text-mask/text-mask/tree/master/addons/)
+ ```typescript
+new DynamicInputModel({
+     id: "maskedInput",
+    label: "Masked Input",
+    mask: createNumberMask({
+            prefix: "",
+            suffix: " $"
+          }),
+}),
+```
+
+Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
+
+
 ## Autocompletion
 
 Adding automatic input completion can be key factor to good user experience (especially on mobile devices) and should always 
@@ -1369,15 +1386,6 @@ new DynamicInputModel({
     list: ["Alabama", "Alaska", "Arizona", "Arkansas"]
 })
 ```
-
-
-## AOT Compilation
-
-[Ahead-of-Time (AOT) Compilation](https://angular.io/guide/aot-compiler) significantly improves the overall performance of any Angular application.
-
-Since NG Dynamic Forms bundle files **fully match** [**Angular Package Format**](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit) **all packages fit in seamlessly** with your AoT build - whether your'e using the Angular CLI `--aot` flag , `@ngtools/webpack` plugin or directly `@angular/compiler-cli`. 
-
-Yet, **no guarantee can be given for any peer dependency** to properly integrate with AOT. 
 
 
 ## FAQ

@@ -2,7 +2,7 @@
 
     <fieldset class="k-form-field"
               [formGroupName]="model.id"
-              [id]="elementId"
+              [id]="id"
               [name]="model.name"
               [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]">
 
@@ -13,7 +13,7 @@
             <input type="checkbox" class="k-checkbox"
                    [checked]="checkboxModel.checked"
                    [formControlName]="checkboxModel.id"
-                   [id]="getCheckboxElementId(checkboxModel)"
+                   [id]="getCheckboxId(checkboxModel)"
                    [indeterminate]="checkboxModel.indeterminate"
                    [name]="checkboxModel.name"
                    [ngClass]="getClass('element', 'control', checkboxModel)"
@@ -21,10 +21,10 @@
                    [tabindex]="checkboxModel.tabIndex"
                    [value]="checkboxModel.value"
                    (blur)="onBlur($event)"
-                   (change)="onEmbeddedCheckboxChange($event, checkboxModel)"
+                   (change)="onCheckboxChange($event, checkboxModel)"
                    (focus)="onFocus($event)"/>
 
-            <label class="k-checkbox-label" [for]="getCheckboxElementId(checkboxModel)" [innerHTML]="checkboxModel.label"></label>
+            <label class="k-checkbox-label" [for]="getCheckboxId(checkboxModel)" [innerHTML]="checkboxModel.label"></label>
 
         </ng-container>
 

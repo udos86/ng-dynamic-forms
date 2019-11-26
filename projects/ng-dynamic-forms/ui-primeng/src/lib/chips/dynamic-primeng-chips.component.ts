@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Chips } from "primeng/primeng";
 import {
-    DynamicFormControlCustomEvent,
+    DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -10,19 +10,19 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
-import { DynamicPrimeNGTemplateableFormControlComponent } from "../dynamic-primeng-templateable-form-control.component";
+import { DynamicPrimeNGFormControlWithTemplateComponent } from "../dynamic-primeng-form-control-with-template.component";
 
 @Component({
     selector: "dynamic-primeng-chips",
-    templateUrl: "./dynamic-primeng-chips.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-chips.component.html"
 })
-export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGTemplateableFormControlComponent {
+export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGFormControlWithTemplateComponent {
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicInputModel;
     @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
 

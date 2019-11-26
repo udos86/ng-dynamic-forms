@@ -2,7 +2,7 @@ import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dyn
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
 import { maskToString } from "../../utils/json.utils";
-import { isBoolean, isNumber } from "../../utils/core.utils";
+import { isBoolean, isFunction, isNumber } from "../../utils/core.utils";
 import { Observable, isObservable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 
@@ -93,7 +93,7 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         } else if (isObservable(list)) {
 
-            this.list$ = (list as Observable<any[]>).pipe(tap(list => this._list = list));
+            this.list$ = list.pipe(tap(list => this._list = list));
 
         } else {
 
@@ -104,14 +104,10 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
     toJSON() {
 
-        let json: any = super.toJSON();
+        const json: any = super.toJSON();
 
-        if (this.mask !== null) { 
-            if (this.mask instanceof Function) {
-                json.mask = this.mask;
-            } else {
-                json.mask = maskToString(this.mask);
-            }
+        if (this.mask !== null) {
+            json.mask = isFunction(this.mask) ? this.mask : maskToString(this.mask);
         }
 
         return json;

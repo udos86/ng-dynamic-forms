@@ -20,12 +20,13 @@ describe("DynamicEditorModel test suite", () => {
         expect(model.label).toBeNull();
         expect(model.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_EDITOR);
         expect(model.value).toBeNull();
-        expect(model.disabledUpdates).toBeDefined();
+        expect(model.disabledChanges).toBeDefined();
+        expect(model.valueChanges).toBeDefined();
     });
 
     it("should set disabled property correctly", () => {
 
-        model.disabledUpdates.next(true);
+        model.disabled = true;
 
         expect(model.disabled).toBe(true);
     });

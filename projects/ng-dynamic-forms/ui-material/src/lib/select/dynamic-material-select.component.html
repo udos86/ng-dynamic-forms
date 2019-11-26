@@ -6,7 +6,7 @@
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">
 
-        <mat-label>{{ model.label }}</mat-label>
+        <mat-label [innerHTML]="model.label"></mat-label>
 
     </ng-container>
 
@@ -18,7 +18,7 @@
                 [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                 [errorStateMatcher]="model.getAdditional('errorStateMatcher', errorStateMatcher)"
                 [formControlName]="model.id"
-                [id]="elementId"
+                [id]="id"
                 [multiple]="model.multiple"
                 [ngClass]="getClass('element', 'control')"
                 [placeholder]="model.placeholder"

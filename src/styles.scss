@@ -87,10 +87,16 @@ pre {
     border-radius: 50% !important;
 }
 
+.btn-form-array {
+    width: 38px;
+    height: 38px;
+    margin: 0 2px;
+}
+/*
 .form-row {
     display: block;
 }
-
+*/
 .text-center {
     text-align: center;
 }
@@ -116,6 +122,10 @@ form:nth-of-type(2) dynamic-form-basic-control dynamic-form-basic-control {
 .form-array [role="group"]:only-of-type .btn-danger,
 .form-array [role="group"]:only-of-type .button.alert {
     display: none;
+}
+
+.form-check {
+    margin-left: 15px;
 }
 
 dynamic-basic-form-control {
@@ -210,6 +220,7 @@ dynamic-ng-bootstrap-form-control ngb-datepicker {
 }
 
 /* PRIME NG */
+
 dynamic-primeng-form-control {
     display: block;
     margin-bottom: 1.25rem;

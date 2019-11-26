@@ -1,26 +1,26 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Calendar } from "primeng/primeng";
 import {
-    DynamicDatePickerModel, 
+    DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
     DynamicDateControlValue,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicTimePickerModel
+    DynamicTimePickerModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
     selector: "dynamic-primeng-calendar",
-    templateUrl: "./dynamic-primeng-calendar.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: "./dynamic-primeng-calendar.component.html"
 })
 export class DynamicPrimeNGCalendarComponent extends DynamicFormControlComponent {
 
+    @Input() formLayout: DynamicFormLayout;
     @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
+    @Input() layout: DynamicFormControlLayout;
     @Input() model: DynamicDatePickerModel | DynamicTimePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();

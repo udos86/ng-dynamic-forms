@@ -1,0 +1,17 @@
+<ng-container [formGroup]="group">
+
+    <div btnRadioGroup class="btn-group" role="radiogroup"
+         [formControlName]="model.id"
+         [id]="id"
+         [ngClass]="getClass('element', 'control')"
+         [tabindex]="model.tabIndex"
+         (change)="onChange($event)">
+
+        <label *ngFor="let option of model.options$ | async" class="btn" role="button"
+               [btnRadio]="option.value"
+               [disabled]="option.disabled"
+               [innerHTML]="option.label"
+               [ngClass]="[getClass('element', 'option'), getClass('grid', 'option')]"></label>
+    </div>
+
+</ng-container>
