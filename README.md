@@ -1048,13 +1048,16 @@ By default error messages are shown whenever the corresponding form control is i
 Since the condition for displaying error messages often is a subject to individual user experience preferences you can customize this by
 providing a so called `DynamicErrorMessagesMatcher` via the `DYNAMIC_ERROR_MESSAGES_MATCHER` injection token:
 ```ts
-function myCustomErrorMessagesMatcher (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) {
-    return //...
-};
+export const MY_CUSTOM_ERROR_MESSAGES_MATCHER =
+    (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) => {
+        return //...
+    };
+
+// ...
 
 providers: [
     {
-        provide: `DYNAMIC_ERROR_MESSAGES_MATCHER`,
+        provide: DYNAMIC_ERROR_MESSAGES_MATCHER,
         useValue: myCustomErrorMessagesMatcher
     },
 ```
