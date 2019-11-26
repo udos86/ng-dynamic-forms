@@ -47,10 +47,11 @@ import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
+    private _hasFocus: boolean = false;
+
     context: DynamicFormArrayGroupModel | null = null;
     control: FormControl;
     group: FormGroup;
-    hasFocus: boolean;
     hostClass: string[];
     klass: string;
     layout: DynamicFormLayout;
@@ -140,6 +141,18 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
     get isValid(): boolean {
         return this.control.valid;
+    }
+
+    get hasFocus(): boolean {
+        return this._hasFocus;
+    }
+
+    get showErrorMessages(): boolean {
+        return this.model.hasErrorMessages && this.inputChangeMethod && this.isInvalid;
+    }
+
+    get inputChangeMethod() {
+        return (this.model.updateOn === 'change' || this.model.updateOn === null) ? this.control.dirty : this.control.touched && !this.hasFocus;
     }
 
     get templates(): QueryList<DynamicTemplateDirective> | undefined {
@@ -321,7 +334,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // native HTML 5 or UI library blur event
 
-            this.hasFocus = false;
+            this._hasFocus = false;
             this.blur.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Blur));
         }
     }
@@ -334,7 +347,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // native HTML 5 or UI library focus event
 
-            this.hasFocus = true;
+            this._hasFocus = true;
             this.focus.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Focus));
         }
     }
