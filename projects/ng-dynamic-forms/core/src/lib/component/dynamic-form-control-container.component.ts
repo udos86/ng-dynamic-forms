@@ -47,7 +47,7 @@ import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
-    private _hasFocus: boolean = false;
+    private _hasFocus = false;
 
     context: DynamicFormArrayGroupModel | null = null;
     control: FormControl;
@@ -111,6 +111,26 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.layoutService.getElementId(this.model);
     }
 
+    get hasFocus(): boolean {
+        return this._hasFocus;
+    }
+
+    get isInvalid(): boolean {
+        return this.control.invalid;
+    }
+
+    get isValid(): boolean {
+        return this.control.valid;
+    }
+
+    get errorMessages(): string[] {
+        return this.validationService.createErrorMessages(this.control, this.model);
+    }
+
+    get showErrorMessages(): boolean {
+        return this.validationService.showErrorMessages(this.control, this.model, this.hasFocus);
+    }
+
     get hasLabel(): boolean {
         return isString(this.model.label);
     }
@@ -123,36 +143,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return (this.model as DynamicFormValueControlModel<any>).hint || null;
     }
 
-    get errorMessages(): string[] {
-        return this.validationService.createErrorMessages(this.control, this.model);
-    }
-
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
-    }
-
     get isCheckbox(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
-    }
-
-    get isInvalid(): boolean {
-        return this.control.invalid;
-    }
-
-    get isValid(): boolean {
-        return this.control.valid;
-    }
-
-    get hasFocus(): boolean {
-        return this._hasFocus;
-    }
-
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.inputChangeMethod && this.isInvalid;
-    }
-
-    get inputChangeMethod() {
-        return (this.model.updateOn === 'change' || this.model.updateOn === null) ? this.control.dirty : this.control.touched && !this.hasFocus;
     }
 
     get templates(): QueryList<DynamicTemplateDirective> | undefined {

@@ -2,11 +2,9 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { DynamicFormControlLayout } from "./misc/dynamic-form-control-layout.model";
 import { DynamicPathable } from "./misc/dynamic-form-control-path.model";
 import { DynamicFormControlRelation } from "./misc/dynamic-form-control-relation.model";
-import { DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
+import { DynamicFormHook, DynamicValidatorsConfig } from "./misc/dynamic-form-control-validation.model";
 import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean, isObject, isString } from "../utils/core.utils";
-
-export type FormHooks = "change" | "blur" | "submit";
 
 export interface DynamicFormControlModelConfig {
 
@@ -20,7 +18,7 @@ export interface DynamicFormControlModelConfig {
     controlTooltip?: string;
     name?: string;
     relations?: DynamicFormControlRelation[];
-    updateOn?: FormHooks;
+    updateOn?: DynamicFormHook;
     validators?: DynamicValidatorsConfig;
 }
 
@@ -38,7 +36,7 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     @serializable() name: string;
     parent: DynamicPathable | null = null;
     @serializable() relations: DynamicFormControlRelation[];
-    @serializable() updateOn: FormHooks | null;
+    @serializable() updateOn: DynamicFormHook | null;
     @serializable() validators: DynamicValidatorsConfig | null;
 
     private readonly disabled$: BehaviorSubject<boolean>;

@@ -84,7 +84,7 @@ export class NgxBootstrapSampleFormComponent implements OnInit {
             new DynamicInputModel({id: "newInput"})
         );
 
-        this.formService.detectChanges();
+        //this.formService.detectChanges();
     }
 
     onBlur($event) {
