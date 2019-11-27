@@ -17,7 +17,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 
 **Out of the box support** is provided for all popular UI libraries including **[Material](https://material.angular.io/)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, **[Kendo](http://www.telerik.com/kendo-angular-ui)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
-Explore the [**live sample**]([**Explore the docs**](http://ng2-dynamic-forms.udos86.de/sample/index.html)) and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/index.html)!
+Explore the [**live sample**](http://ng2-dynamic-forms.udos86.de/sample/index.html) and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/index.html)!
 
 ## Table of Contents
 
