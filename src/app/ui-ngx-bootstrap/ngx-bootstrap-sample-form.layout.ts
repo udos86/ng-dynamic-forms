@@ -16,7 +16,7 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "bsCheckbox": {
+    bsCheckbox: {
         element: {
             container: "form-group"
         },
@@ -28,7 +28,7 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
     [DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX]: {
         element: {
             control: "btn-primary"
-        },
+        }
     },
 
     [DYNAMIC_FORM_CONTROL_TYPE_ARRAY]: {

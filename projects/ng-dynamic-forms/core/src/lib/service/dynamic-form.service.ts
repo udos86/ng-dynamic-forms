@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { AbstractControlOptions } from "@angular/forms";
-import { DynamicFormControlModel, FormHooks } from "../model/dynamic-form-control.model";
+import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValueControlModel } from "../model/dynamic-form-value-control.model";
 import {
     DynamicFormArrayModel,
@@ -44,7 +44,7 @@ import {
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DynamicFormModel, DynamicUnionFormModel } from "../model/dynamic-form.model";
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
-import { DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
+import { DynamicFormHook, DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
 import { maskFromString, parseReviver } from "../utils/json.utils";
 import { isString } from "../utils/core.utils";
 import { DynamicFormComponent } from "../component/dynamic-form.component";
@@ -61,12 +61,12 @@ export class DynamicFormService {
 
     private createAbstractControlOptions(validatorsConfig: DynamicValidatorsConfig | null = null,
                                          asyncValidatorsConfig: DynamicValidatorsConfig | null = null,
-                                         updateOn: FormHooks | null = null): AbstractControlOptions {
+                                         updateOn: DynamicFormHook | null = null): AbstractControlOptions {
 
         return {
             asyncValidators: asyncValidatorsConfig !== null ? this.validationService.getAsyncValidators(asyncValidatorsConfig) : null,
             validators: validatorsConfig !== null ? this.validationService.getValidators(validatorsConfig) : null,
-            updateOn: updateOn !== null && this.validationService.isFormHook(updateOn) ? updateOn : "change"
+            updateOn: updateOn !== null && this.validationService.isFormHook(updateOn) ? updateOn : DynamicFormHook.Change
         };
     }
 

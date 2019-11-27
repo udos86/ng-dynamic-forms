@@ -34,7 +34,6 @@ import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-s
 import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstrap-sample-form.component";
 import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
-import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import {
@@ -81,7 +80,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         MaterialSampleFormComponent,
         NGBootstrapSampleFormComponent,
         PrimeNGSampleFormComponent,
-        ValidationMessageComponent,
         AppComponent
     ],
     providers: [

@@ -16,7 +16,8 @@ export class MaterialSampleFormComponent implements OnInit {
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = MATERIAL_SAMPLE_FORM_LAYOUT;
 
-    constructor(private formService: DynamicFormService) {}
+    constructor(private formService: DynamicFormService) {
+    }
 
     ngOnInit() {
         this.formGroup = this.formService.createFormGroup(this.formModel);
@@ -36,9 +37,5 @@ export class MaterialSampleFormComponent implements OnInit {
 
     onMatEvent($event) {
         console.log(`Material ${$event.type} event on: ${$event.model.id}: `, $event);
-    }
-
-    test() {
-
     }
 }

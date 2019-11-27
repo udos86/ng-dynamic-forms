@@ -28,8 +28,8 @@ export class BasicSampleFormComponent implements OnInit {
 
     constructor(private formService: DynamicFormService) {
 
-        //this.formModel1 = BASIC_SAMPLE_FORM_MODEL;
-        //this.formModel2 = BASIC_SAMPLE_FORM_ARRAY_MODEL;
+        // this.formModel1 = BASIC_SAMPLE_FORM_MODEL;
+        // this.formModel2 = BASIC_SAMPLE_FORM_ARRAY_MODEL;
 
         this.formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_MODEL));
         this.formModel2 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_ARRAY_MODEL));
@@ -40,11 +40,11 @@ export class BasicSampleFormComponent implements OnInit {
 
     ngOnInit() {
 
-        this.checkboxControl = this.formGroup1.controls["basicCheckbox"] as FormControl;
-        this.checkboxModel = this.formService.findById("basicCheckbox", this.formModel1) as DynamicCheckboxModel;
+        this.checkboxModel = this.formService.findModelById<DynamicCheckboxModel>("basicCheckbox", this.formModel1);
+        this.checkboxControl = this.formService.findControlByModel<FormControl>(this.checkboxModel, this.formGroup1);
 
-        this.arrayControl = this.formGroup2.controls["basicFormArray"] as FormArray;
-        this.arrayModel = this.formService.findById("basicFormArray", this.formModel2) as DynamicFormArrayModel;
+        this.arrayModel = this.formService.findModelById<DynamicFormArrayModel>("basicFormArray", this.formModel2);
+        this.arrayControl = this.formService.findControlByModel <FormArray>(this.arrayModel, this.formGroup2);
     }
 
     add() {

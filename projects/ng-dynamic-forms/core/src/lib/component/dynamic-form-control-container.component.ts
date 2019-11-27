@@ -47,10 +47,11 @@ import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
+    private _hasFocus = false;
+
     context: DynamicFormArrayGroupModel | null = null;
     control: FormControl;
     group: FormGroup;
-    hasFocus: boolean;
     hostClass: string[];
     klass: string;
     layout: DynamicFormLayout;
@@ -110,6 +111,26 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return this.layoutService.getElementId(this.model);
     }
 
+    get hasFocus(): boolean {
+        return this._hasFocus;
+    }
+
+    get isInvalid(): boolean {
+        return this.control.invalid;
+    }
+
+    get isValid(): boolean {
+        return this.control.valid;
+    }
+
+    get errorMessages(): string[] {
+        return this.validationService.createErrorMessages(this.control, this.model);
+    }
+
+    get showErrorMessages(): boolean {
+        return this.validationService.showErrorMessages(this.control, this.model, this.hasFocus);
+    }
+
     get hasLabel(): boolean {
         return isString(this.model.label);
     }
@@ -122,24 +143,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         return (this.model as DynamicFormValueControlModel<any>).hint || null;
     }
 
-    get errorMessages(): string[] {
-        return this.validationService.createErrorMessages(this.control, this.model);
-    }
-
-    get showErrorMessages(): boolean {
-        return this.model.hasErrorMessages && this.control.touched && !this.hasFocus && this.isInvalid;
-    }
-
     get isCheckbox(): boolean {
         return this.model.type === DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX;
-    }
-
-    get isInvalid(): boolean {
-        return this.control.invalid;
-    }
-
-    get isValid(): boolean {
-        return this.control.valid;
     }
 
     get templates(): QueryList<DynamicTemplateDirective> | undefined {
@@ -321,7 +326,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // native HTML 5 or UI library blur event
 
-            this.hasFocus = false;
+            this._hasFocus = false;
             this.blur.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Blur));
         }
     }
@@ -334,7 +339,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         } else { // native HTML 5 or UI library focus event
 
-            this.hasFocus = true;
+            this._hasFocus = true;
             this.focus.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Focus));
         }
     }

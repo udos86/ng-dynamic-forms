@@ -1,3 +1,35 @@
+# 10.1.0
+
+### **Features**
+
+Customizing the condition for displaying validation error messages can now be achieved by providing a
+`DynamicErrorMessagesMatcher` via newly introduced injection token `DYNAMIC_ERROR_MESSAGES_MATCHER`:
+
+```ts
+function myCustomErrorMessagesMatcher (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) {
+    return //...
+};
+
+providers: [
+    {
+        provide: DYNAMIC_ERROR_MESSAGES_MATCHER,
+        useValue: myCustomErrorMessagesMatcher
+    },
+```
+ 
+By default the `DEFAULT_ERROR_STATE_MATCHER` is active:
+```ts
+export const DEFAULT_ERROR_STATE_MATCHER: DynamicErrorMessagesMatcher =
+    (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) => {
+        return control.touched && !hasFocus;
+    };
+```
+
+Please read the updated chapter on [*validation messaging*](https://github.com/udos86/ng-dynamic-forms/blob/master/README.md#validation-messaging)
+
+***
+
+
 # 10.0.0
 
 ### **Breaking Changes**

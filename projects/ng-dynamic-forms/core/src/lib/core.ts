@@ -44,14 +44,15 @@ export * from "./model/misc/dynamic-form-control-path.model";
 export * from "./model/misc/dynamic-form-control-relation.model";
 export * from "./model/misc/dynamic-form-control-validation.model";
 
+export * from "./service/dynamic-form-relation-matchers";
+export * from "./service/dynamic-form-validation-matchers";
+export * from "./service/dynamic-form-validators";
+
 export * from "./service/dynamic-form.service";
 export * from "./service/dynamic-form-component.service";
 export * from "./service/dynamic-form-layout.service";
 export * from "./service/dynamic-form-relation.service";
 export * from "./service/dynamic-form-validation.service";
-
-export * from "./service/dynamic-form-relation-matchers";
-export * from "./service/dynamic-form-validators";
 
 export * from "./utils/autofill.utils";
 export * from "./utils/core.utils";

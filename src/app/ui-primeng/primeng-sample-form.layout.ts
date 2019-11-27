@@ -1,12 +1,12 @@
 export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
 
-    "stay": {
+    stay: {
         grid: {
             control: "ui-g"
         }
     },
 
-    "arrivalDate": {
+    arrivalDate: {
         element: {
             label: "ui-widget"
         },
@@ -15,7 +15,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "departureDate": {
+    departureDate: {
         element: {
             label: "ui-widget"
         },
@@ -24,111 +24,22 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "room": {
+    room: {
         grid: {
             control: "ui-g"
         }
     },
 
-    "roomSize": {
+    roomSize: {
         element: {
             label: "ui-widget"
         },
         grid: {
-            host: "ui-g-4",
+            host: "ui-g-4"
         }
     },
 
-    "roomQuantity": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g-2",
-        }
-    },
-
-    "roomColor": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g",
-            container: "ui-g-7"
-        }
-    },
-
-    "firstName": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g",
-            container: "ui-g-7"
-        }
-    },
-
-    "lastName": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g",
-            container: "ui-g-7"
-        }
-    },
-
-    "email": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g",
-            container: "ui-g-7"
-        }
-    },
-
-    "phone": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g",
-            container: "ui-g-7"
-        }
-    },
-
-    "addressStreet": {
-        grid: {
-            control: "ui-g"
-        }
-    },
-
-    "streetName": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g-7"
-        }
-    },
-
-    "streetNumber": {
-        element: {
-            label: "ui-widget"
-        },
-        grid: {
-            host: "ui-g-2",
-        }
-    },
-
-    "addressLocation": {
-        grid: {
-            control: "ui-g"
-        }
-    },
-
-    "zipCode": {
+    roomQuantity: {
         element: {
             label: "ui-widget"
         },
@@ -137,25 +48,114 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "state": {
+    roomColor: {
         element: {
             label: "ui-widget"
         },
         grid: {
-            host: "ui-g-4",
+            host: "ui-g",
+            container: "ui-g-7"
         }
     },
 
-    "city": {
+    firstName: {
         element: {
             label: "ui-widget"
         },
         grid: {
-            host: "ui-g-5",
+            host: "ui-g",
+            container: "ui-g-7"
         }
     },
 
-    "extras": {
+    lastName: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g",
+            container: "ui-g-7"
+        }
+    },
+
+    email: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g",
+            container: "ui-g-7"
+        }
+    },
+
+    phone: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g",
+            container: "ui-g-7"
+        }
+    },
+
+    addressStreet: {
+        grid: {
+            control: "ui-g"
+        }
+    },
+
+    streetName: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g-7"
+        }
+    },
+
+    streetNumber: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g-2"
+        }
+    },
+
+    addressLocation: {
+        grid: {
+            control: "ui-g"
+        }
+    },
+
+    zipCode: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g-2"
+        }
+    },
+
+    state: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g-4"
+        }
+    },
+
+    city: {
+        element: {
+            label: "ui-widget"
+        },
+        grid: {
+            host: "ui-g-5"
+        }
+    },
+
+    extras: {
         element: {
             label: "ui-widget"
         },
@@ -165,43 +165,43 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "extraBreakfast": {
+    extraBreakfast: {
         element: {
-            label: "ui-widget",
+            label: "ui-widget"
         },
         grid: {
             host: "ui-g-3"
         }
     },
 
-    "extraTV": {
+    extraTV: {
         element: {
-            label: "ui-widget",
+            label: "ui-widget"
         },
         grid: {
             host: "ui-g-3"
         }
     },
 
-    "extraWiFi": {
+    extraWiFi: {
         element: {
-            label: "ui-widget",
+            label: "ui-widget"
         },
         grid: {
             host: "ui-g-3"
         }
     },
 
-    "extraParking": {
+    extraParking: {
         element: {
-            label: "ui-widget",
+            label: "ui-widget"
         },
         grid: {
             host: "ui-g-3"
         }
     },
 
-    "payment": {
+    payment: {
         element: {
             label: "ui-widget"
         },
@@ -212,7 +212,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "arrivalTime": {
+    arrivalTime: {
         element: {
             label: "ui-widget"
         },
@@ -222,7 +222,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "note": {
+    note: {
         element: {
             label: "ui-widget"
         },
@@ -232,7 +232,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "reminder": {
+    reminder: {
         element: {
             label: "ui-widget"
         },
@@ -242,7 +242,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "newsletter": {
+    newsletter: {
         element: {
             label: "ui-widget"
         },
@@ -252,7 +252,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "feedback": {
+    feedback: {
         element: {
             label: "ui-widget"
         },
@@ -261,7 +261,7 @@ export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "confirm": {
+    confirm: {
         element: {
             label: "ui-widget"
         }

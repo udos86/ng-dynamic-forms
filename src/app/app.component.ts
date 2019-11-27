@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-//import { Response, ResponseOptions } from "@angular/http";
-//import { MockBackend } from "@angular/http/testing";
+// import { Response, ResponseOptions } from "@angular/http";
+// import { MockBackend } from "@angular/http/testing";
 import { Router, NavigationEnd } from "@angular/router";
 
 @Component({

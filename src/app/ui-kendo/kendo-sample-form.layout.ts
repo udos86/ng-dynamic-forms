@@ -1,13 +1,13 @@
 export const KENDO_SAMPLE_FORM_LAYOUT = {
 
-    "reminder": {
+    reminder: {
         element: {
             container: "display-flex",
             label: "order-1"
         }
     },
 
-    "newsletter": {
+    newsletter: {
         element: {
             container: "display-flex",
             label: "order-1"

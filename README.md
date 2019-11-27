@@ -17,7 +17,7 @@ It **fully automates form UI creation** by introducing a set of maintainable **f
 
 **Out of the box support** is provided for all popular UI libraries including **[Material](https://material.angular.io/)**, **[ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)**, **[NG Bootstrap](https://ng-bootstrap.github.io/#/home)**, **[Foundation](http://foundation.zurb.com/)**, **[Ionic](http://ionicframework.com/)**, **[Kendo](http://www.telerik.com/kendo-angular-ui)** and **[PrimeNG](http://www.primefaces.org/primeng/#/)**.
                                                                                           
-[**Explore it**](http://ng2-dynamic-forms.udos86.de/sample/index.html) live in action!
+Explore the [**live sample**]([**Explore the docs**](http://ng2-dynamic-forms.udos86.de/sample/index.html)) and the [**API documentation**](http://ng2-dynamic-forms.udos86.de/docs/index.html)!
 
 ## Table of Contents
 
@@ -1020,9 +1020,9 @@ to gain much more control over validation logic and it's corresponding message o
 
 Avoiding a library too opinionated in the beginning, NG Dynamic Forms has originally been developed without any kind of obtrusive validation message system in mind.
 
-However, due to its very common use case and several developer requests, model-based error messaging has eventually become an optional **built-in feature**: 
+However, due to its very common use case, model-based error messaging has eventually become an optional **built-in feature**. 
 
-**Just add an** `errorMessages` **object to any** `DynamicFormValueControlModel` and **assign error message templates based on** `Validators` **names**:
+**Just add an** `errorMessages` **object to any** `DynamicFormControlModel` and **assign error message templates based on** `Validators` **names**:
 ```typescript 
 new DynamicInputModel({
 
@@ -1043,65 +1043,36 @@ new DynamicInputModel({
 
 **Error messaging is automatically enabled whenever** `errorMessages` **are declared on a** `DynamicFormControlModel`. 
 
-**Still you are completely free to implement your own validation messaging.** 
+By default error messages are shown whenever the corresponding form control is invalid and blurred at the same time and has already been touched.
 
-Follow the recommended approach below:
+Since the condition for displaying error messages often is a subject to individual user experience preferences you can customize this by
+providing a so called `DynamicErrorMessagesMatcher` via the `DYNAMIC_ERROR_MESSAGES_MATCHER` injection token:
+```ts
+export const MY_CUSTOM_ERROR_MESSAGES_MATCHER =
+    (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) => {
+        return //...
+    };
 
-**1. Create your own custom validation message component and make it accept a** `FormControl` **input**:
-```typescript 
-import { Component, Input } from "@angular/core";
-import { FormControl } from "@angular/forms";
- 
-@Component({
+// ...
 
-    selector: "validation-message",
-    templateUrl: "./my-validation-message.component.html"
-})
- 
-export class MyValidationMessageComponent {
-
-    @Input() control: FormControl;
-
-    constructor () {}
-}
-```
- 
-**2. Create a template file** for your custom validation component and **implement it's logic** based on the `control` property:
-```html
-<span *ngIf="control && control.hasError('required') && control.touched">Field is required</span>
+providers: [
+    {
+        provide: DYNAMIC_ERROR_MESSAGES_MATCHER,
+        useValue: myCustomErrorMessagesMatcher
+    },
+]
 ```
 
-**3. Define some validators** for your `DynamicFormControlModel`:
-```typescript
-new DynamicInputModel({
-    
-    id: "myInput",
-    label: "My Input",
-    validators: {
-        required: null
-    }
-})
+By default the `DEFAULT_ERROR_STATE_MATCHER` is active:
+```ts
+export const DEFAULT_ERROR_STATE_MATCHER: DynamicErrorMessagesMatcher =
+    (control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean) => {
+        return control.touched && !hasFocus;
+    };
 ```
 
-**4. Add your validation component aside from the** `DynamicFormControlComponent` in your form component template 
-and **bind the** `FormControl` **reference via a local template variable**:
-```html
-<form [formGroup]="formGroup">
-
-    <ng-container *ngFor="let controlModel of formModel">
-    
-        <dynamic-material-form-control [group]="formGroup"
-                                       [model]="controlModel" #componentRef>
-        
-            <validation-message [control]="componentRef.control"></validation-message>
-                                    
-        </dynamic-material-form-control>
-        
-    </ng-container>
-    
-</form>
-```
-
+Please note here that NG Dynamic Forms always assumes both the control being invalid and error messages being defined on the model 
+as a fixed precondition.
 
 ## Related Form Controls
 

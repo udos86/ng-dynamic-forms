@@ -1,3 +1,4 @@
+import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
@@ -6,7 +7,6 @@ import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.
 import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
 import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstrap-sample-form.component";
 import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
-import { NgModule } from "@angular/core";
 
 const APP_ROUTES: Route[] = [
     {
@@ -14,7 +14,6 @@ const APP_ROUTES: Route[] = [
         redirectTo: "/material-sample-form",
         pathMatch: "full"
     },
-
     {
         path: "basic-sample-form",
         component: BasicSampleFormComponent,
@@ -24,7 +23,6 @@ const APP_ROUTES: Route[] = [
             bgColor: "gray"
         }
     },
-
     {
         path: "ngx-bootstrap-sample-form",
         component: NgxBootstrapSampleFormComponent,
@@ -81,7 +79,7 @@ const APP_ROUTES: Route[] = [
     },
     {
         path: "lazy-loaded-form",
-        loadChildren: () => import('./lazy-loaded/lazy-loaded-form.module').then(module => module.LazyLoadedFormModule)
+        loadChildren: () => import("./lazy-loaded/lazy-loaded-form.module").then(module => module.LazyLoadedFormModule)
     }
 ];
 

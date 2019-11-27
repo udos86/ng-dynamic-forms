@@ -23,6 +23,7 @@ enum Increment {
     Minor = "Minor",
     Patch = "Patch"
 }
+
 /*
 enum Dependencies {
 
@@ -31,9 +32,9 @@ enum Dependencies {
     PeerDepdency = "peerDependencies"
 }
 */
-export default function (options: any): Rule {
+export default function(options: any): Rule {
 
-    const { increment } = options;
+    const {increment} = options;
 
     return chain([
 
@@ -54,25 +55,28 @@ export default function (options: any): Rule {
 
 function setVersion(tree: Tree, version: string, projectPath: string) {
 
-    const path = `${projectPath}/package.json`;
+    const paths = [`${projectPath}/package.json`, `${projectPath}/package-lock.json`];
 
-    if (tree.exists(path)) {
+    paths.forEach(path => {
 
-        const file = tree.read(path);
+        if (tree.exists(path)) {
 
-        if (file !== null) {
+            const file = tree.read(path);
 
-            const json = JSON.parse(file.toString("utf-8"));
+            if (file !== null) {
 
-            json["version"] = version;
+                const json = JSON.parse(file.toString("utf-8"));
 
-            if (json["peerDependencies"] && json["peerDependencies"]["@ng-dynamic-forms/core"] !== undefined) {
-                json["peerDependencies"]["@ng-dynamic-forms/core"] = `^${version}`;
+                json["version"] = version;
+
+                if (json["peerDependencies"] && json["peerDependencies"]["@ng-dynamic-forms/core"] !== undefined) {
+                    json["peerDependencies"]["@ng-dynamic-forms/core"] = `^${version}`;
+                }
+
+                tree.overwrite(path, JSON.stringify(json, null, 2));
             }
-
-            tree.overwrite(path, JSON.stringify(json, null, 2));
         }
-    }
+    });
 }
 
 function getNewVersion(currentVersion: string, increment: Increment): string {

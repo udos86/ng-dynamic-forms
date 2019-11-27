@@ -11,7 +11,8 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent, DynamicFormComponentService,
+    DynamicFormComponent,
+    DynamicFormComponentService,
     DynamicFormControlEvent,
     DynamicFormLayout,
     DynamicFormModel,

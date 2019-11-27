@@ -19,7 +19,7 @@ export const BASIC_SAMPLE_FORM_MODEL = [
         options: [
             {
                 label: "Option 1",
-                value: "option-1",
+                value: "option-1"
             },
             {
                 disabled: true,
@@ -40,7 +40,7 @@ export const BASIC_SAMPLE_FORM_MODEL = [
         hint: "Just a hint",
         label: "Input",
         list: ["One", "Two", "Three", "Four", "Five"],
-        //mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+        // mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
         maxLength: 51,
         placeholder: "example input",
         spellCheck: false,
@@ -85,7 +85,7 @@ export const BASIC_SAMPLE_FORM_MODEL = [
         options: [
             {
                 label: "Option 1",
-                value: "option-1",
+                value: "option-1"
             },
             {
                 disabled: true,
