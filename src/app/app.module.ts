@@ -4,7 +4,7 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
-import { ErrorStateMatcher, MatNativeDateModule } from "@angular/material/core";
+import { MatNativeDateModule } from "@angular/material/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
@@ -34,7 +34,6 @@ import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-s
 import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstrap-sample-form.component";
 import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
-import { ValidationMessageComponent } from "./validation-message/validation-message.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import {
@@ -81,7 +80,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         MaterialSampleFormComponent,
         NGBootstrapSampleFormComponent,
         PrimeNGSampleFormComponent,
-        ValidationMessageComponent,
         AppComponent
     ],
     providers: [

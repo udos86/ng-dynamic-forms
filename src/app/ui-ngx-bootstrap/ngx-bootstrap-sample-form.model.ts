@@ -42,7 +42,7 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 options: of([
                     {
                         label: "Option 1",
-                        value: "option-1",
+                        value: "option-1"
                     },
                     {
                         label: "Option 2",
@@ -69,8 +69,7 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 placeholder: "Just some input",
                 prefix: "Prefix",
                 suffix: "Suffix",
-                relations: [
-                ],
+                relations: [],
                 validators: {
                     maxLength: 5
                 },
@@ -92,8 +91,8 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                         relations: [
                             {
                                 match: MATCH_DISABLED,
-                                when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: 'option-4'}]
-                            },
+                                when: [{rootPath: "bsFormGroup2.bsRadioGroup", value: "option-4"}]
+                            }
                         ]
 
                     }),
@@ -120,7 +119,7 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 options: [
                     {
                         label: "Textarea is disabled",
-                        value: "option-1",
+                        value: "option-1"
                     },
                     {
                         label: "Textarea is hidden",
@@ -202,7 +201,7 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                     return [
                         new DynamicInputModel({
                             id: "bsArrayInput",
-                            //label: "Label",
+                            // label: "Label",
                             placeholder: "Just some input"
                         })
                     ];

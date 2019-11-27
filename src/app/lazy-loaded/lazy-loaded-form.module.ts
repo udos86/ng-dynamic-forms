@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import { DynamicFormsBootstrapUIModule } from "@ng-dynamic-forms/ui-bootstrap";
 import { LazyLoadedFormRoutingModule } from "./lazy-loaded-form.routing.module";
 import { NG_VALIDATORS, ReactiveFormsModule } from "@angular/forms";
@@ -28,7 +28,7 @@ import { customLazyLoadedValidator } from "./lazy-loaded-form.validators";
             useValue: new Map<string, Validator | ValidatorFactory>([
                 ["customLazyLoadedValidator", customLazyLoadedValidator]
             ])
-        },
+        }
 
     ]
 })

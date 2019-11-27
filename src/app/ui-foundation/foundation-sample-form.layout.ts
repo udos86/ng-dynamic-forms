@@ -1,8 +1,8 @@
 export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
 
-    "foundationSelect": {
+    foundationSelect: {
         element: {
-            label: "text-right middle font-bold",
+            label: "text-right middle font-bold"
         },
         grid: {
             container: "grid-x grid-padding-x",
@@ -11,7 +11,7 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationRadioGroup": {
+    foundationRadioGroup: {
         element: {
             label: "text-right font-bold"
         },
@@ -22,7 +22,7 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationInput": {
+    foundationInput: {
         element: {
             label: "text-right middle font-bold"
         },
@@ -34,7 +34,7 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationCheckboxGroup": {
+    foundationCheckboxGroup: {
         element: {
             label: "text-right font-bold"
         },
@@ -45,7 +45,7 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationSwitch": {
+    foundationSwitch: {
         element: {
             control: "small",
             label: "text-right font-bold"
@@ -57,7 +57,7 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationTextArea": {
+    foundationTextArea: {
         element: {
             label: "text-right font-bold"
         },
@@ -69,14 +69,14 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationCheckbox": {
+    foundationCheckbox: {
         grid: {
             container: "grid-x grid-padding-x",
             control: "small-offset-3 small-9 cell"
         }
     },
 
-    "foundationFormArray": {
+    foundationFormArray: {
         element: {
             container: "form-array",
             label: "text-right font-bold"
@@ -89,9 +89,9 @@ export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "foundationFormArrayGroupInput": {
+    foundationFormArrayGroupInput: {
         grid: {
-            host: "small-7 cell",
+            host: "small-7 cell"
         }
     }
 };

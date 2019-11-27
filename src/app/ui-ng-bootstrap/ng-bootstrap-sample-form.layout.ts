@@ -1,12 +1,12 @@
 export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
-    "stay": {
+    stay: {
         element: {
             control: "form-row"
         }
     },
 
-    "arrivalDate": {
+    arrivalDate: {
         element: {
             container: "p-0",
             label: "col-form-label"
@@ -16,7 +16,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "departureDate": {
+    departureDate: {
         element: {
             container: "p-0",
             label: "col-form-label"
@@ -26,13 +26,13 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "room": {
+    room: {
         element: {
             control: "form-row"
         }
     },
 
-    "roomSize": {
+    roomSize: {
         element: {
             label: "col-form-label"
         },
@@ -41,7 +41,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "roomQuantity": {
+    roomQuantity: {
         element: {
             container: "text-center",
             label: "col-form-label"
@@ -51,31 +51,31 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "firstName": {
+    firstName: {
         element: {
             label: "col-form-label"
         }
     },
 
-    "lastName": {
+    lastName: {
         element: {
             label: "col-form-label"
         }
     },
 
-    "email": {
+    email: {
         element: {
             label: "col-form-label"
         }
     },
 
-    "addressStreet": {
+    addressStreet: {
         element: {
             control: "form-row"
         }
     },
 
-    "streetName": {
+    streetName: {
         element: {
             label: "col-form-label"
         },
@@ -84,7 +84,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "streetNumber": {
+    streetNumber: {
         element: {
             label: "col-form-label"
         },
@@ -93,13 +93,13 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "addressLocation": {
+    addressLocation: {
         element: {
             control: "form-row"
         }
     },
 
-    "zipCode": {
+    zipCode: {
         element: {
             label: "col-form-label"
         },
@@ -108,7 +108,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "state": {
+    state: {
         element: {
             label: "col-form-label"
         },
@@ -117,7 +117,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "city": {
+    city: {
         element: {
             label: "col-form-label"
         },
@@ -126,65 +126,65 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
         }
     },
 
-    "extraBreakfast": {
+    extraBreakfast: {
         element: {
             control: "btn-primary"
         }
     },
 
-    "extraTV": {
+    extraTV: {
         element: {
             control: "btn-primary"
         }
     },
 
-    "extraWiFi": {
+    extraWiFi: {
         element: {
             control: "btn-primary"
         }
     },
 
-    "extraParking": {
+    extraParking: {
         element: {
             control: "btn-primary"
         }
     },
 
-    "extraBalcony": {
+    extraBalcony: {
         element: {
             control: "btn-primary"
         }
     },
 
-    "payment": {
+    payment: {
         element: {
             label: "col-form-label",
             option: "btn-primary"
         }
     },
 
-    "arrivalTime": {
+    arrivalTime: {
         element: {
             container: "pt-2 mb-0",
             label: "col-form-label"
         }
     },
 
-    "notes": {
+    notes: {
         element: {
             label: "col-form-label"
         }
     },
 
-    "attachments": {
+    attachments: {
         element: {
             label: "col-form-label"
         }
     },
 
-    "feedback": {
+    feedback: {
         element: {
             label: "col-form-label"
         }
-    },
+    }
 };

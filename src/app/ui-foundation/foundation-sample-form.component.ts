@@ -5,7 +5,7 @@ import {
     DynamicFormArrayModel,
     DynamicFormControlModel,
     DynamicFormLayout,
-    DynamicFormService,
+    DynamicFormService
 } from "@ng-dynamic-forms/core";
 import { FOUNDATION_SAMPLE_FORM_MODEL } from "./foundation-sample-form.model";
 import { FOUNDATION_SAMPLE_FORM_LAYOUT } from "./foundation-sample-form.layout";
@@ -28,17 +28,18 @@ export class FoundationSampleFormComponent implements OnInit {
     arrayControl: FormArray;
     arrayModel: DynamicFormArrayModel;
 
-    constructor(private formService: DynamicFormService) {}
+    constructor(private formService: DynamicFormService) {
+    }
 
     ngOnInit() {
 
         this.formGroup = this.formService.createFormGroup(this.formModel);
 
-        this.checkboxControl = this.formGroup.controls["foundationCheckbox"] as FormControl;
-        this.checkboxModel = this.formService.findById("foundationCheckbox", this.formModel) as DynamicCheckboxModel;
+        this.checkboxModel = this.formService.findModelById<DynamicCheckboxModel>("foundationCheckbox", this.formModel);
+        this.checkboxControl = this.formService.findControlByModel<FormControl>(this.checkboxModel, this.formGroup);
 
-        this.arrayControl = this.formGroup.controls["foundationFormArray"] as FormArray;
-        this.arrayModel = this.formService.findById("foundationFormArray", this.formModel) as DynamicFormArrayModel;
+        this.arrayModel = this.formService.findModelById<DynamicFormArrayModel>("foundationFormArray", this.formModel);
+        this.arrayControl = this.formService.findControlByModel <FormArray>(this.arrayModel, this.formGroup);
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
