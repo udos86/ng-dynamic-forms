@@ -8,6 +8,7 @@
                       [id]="id"
                       [labelPosition]="model.labelPosition || 'after'"
                       [name]="model.name"
+                      [tabIndex]="model.tabIndex"
                       [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                       (change)="onChange($event)"
                       (dragChange)="onCustomEvent($event, 'dragChange')"
