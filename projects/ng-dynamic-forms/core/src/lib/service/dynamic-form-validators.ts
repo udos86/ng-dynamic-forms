@@ -1,5 +1,5 @@
-import {InjectionToken, ValueProvider} from "@angular/core";
-import {AbstractControl, AsyncValidatorFn, ValidatorFn} from "@angular/forms";
+import {InjectionToken} from "@angular/core";
+import {AsyncValidatorFn, ValidatorFn} from "@angular/forms";
 import {DynamicFormControlModel} from '../model/dynamic-form-control.model';
 
 export type Validator = ValidatorFn | AsyncValidatorFn;
