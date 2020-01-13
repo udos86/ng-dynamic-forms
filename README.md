@@ -31,6 +31,7 @@ Explore the [**live sample**](http://ng2-dynamic-forms.udos86.de/sample/index.ht
 - [Form Control Configuration](#form-control-configuration)
 - [Form Control Events](#form-control-events)
 - [Updating Form Controls](#updating-form-controls)
+- [Dynamic Option and List Population](#dynamic-form-control-option-and-list-population)
 - [Custom Templates](#custom-templates)
 - [Custom Validators](#custom-validators)
 - [Custom Form Controls](#custom-form-controls)
@@ -689,6 +690,123 @@ To optimize this you can optionally pass a `DynamicFormComponent` to `detectChan
 this.formService.detectChanges(this.formComponent);
 ```
 
+## Dynamic Option And List Population
+A common use case of more complex forms is having select, datalist, checkboxes and radio buttons automatically populate based on another form controls value. NG Dynamic Forms accomplishes this by allowing you to provide a `service`, per form control, which will get invoked when the related form controls value changes.
+
+### Configuration
+To connect a form control one will need to include the `dataProvider` attribute along with a `relation` and `service`. See the definitions below.
+
+| Name | Description |
+| :--- | :--- |
+| relation | Similar to how relations work, you provide a rootPath or id to the related control |
+| *relation*.id | ID of the input control |
+| *relation*.rootPath | The path to the input control from the form group. |
+| service | A token representing the service in the DI. |
+ 
+```typescript
+export function WikiPageForm(): DynamicFormControlModel[] {
+  return [
+    new DynamicInputModel({
+      id: 'wiki-title',
+      label: 'Search Title',
+      value: '',
+      validators: {
+        required: null,
+      },
+      errorMessages: {
+        required: '{{ label }} is required',
+      },
+    }),
+    new DynamicSelectModel({
+      id: 'wiki-page',
+      label: 'Wiki Page',
+      value: '-1',
+      options: [{value: '-1', label: '-- select a wikipedia page'}],
+      dataProvider: {
+        relation: {id: 'wiki-title'},
+        service: WikipediaService,
+      },
+      relations: [
+        {
+          match: MATCH_DISABLED,
+          when: [
+            {
+              rootPath: 'wiki-title', value: '',
+            },
+          ],
+        },
+      ],
+      validators: {
+        required: null,
+      },
+      errorMessages: {
+        required: '{{ label }} is required',
+      },
+    })
+  ];
+}
+``` 
+### Data Provider
+NG Dynamic forms will look attempt to inject a given service via the token provided by the `dataProvider.service` definition. Your service must implement one of two methods depending on your form control.
+
+| Control Name | Interface |
+| :--- | :--- |
+| DynamicInputModel | DynamicFormControlListDataProvider\<T> |
+| DynamicSelectModel | DynamicFormControlOptionDataProvider\<T> |
+| DynamicSelectModel | DynamicFormControlOptionDataProvider\<T> |
+| DynamicRadioModel | DynamicFormControlOptionDataProvider\<T> |
+| DynamicCheckboxModel | DynamicFormControlOptionDataProvider\<T> |
+
+```typescript
+const WIKI_URL = 'https://en.wikipedia.org/w/api.php';
+const PARAMS = new HttpParams({
+  fromObject: {
+    action: 'opensearch',
+    format: 'json',
+    origin: '*',
+  },
+});
+
+@Injectable({
+  providedIn: 'root',
+})
+export class WikipediaService
+  implements DynamicFormControlListDataProvider<string>, DynamicFormControlOptionDataProvider<string> {
+  constructor(private http: HttpClient) {}
+
+  fetchList(value: string): Observable<string> {
+    return this.fetch(value);
+  }
+
+  fetchOptions(value: string): Observable<DynamicFormOptionConfig<string>[]> {
+    return this.fetch(value).pipe(map(
+      response => {
+        if (!Array.isArray(response)) {
+          return [];
+        }
+
+        return response.map((val) => {
+          return {
+            label: val,
+            value: val as string,
+          } as DynamicFormOptionConfig<string>;
+        });
+      }),
+    );
+  }
+
+  fetch(term: string): Observable<any> {
+    if (typeof(term) !== 'string' || term === '') {
+      return of([]);
+    }
+
+    return this.http
+      .get<any>(WIKI_URL, {params: PARAMS.set('search', term)}).pipe(
+        map(response => response[1]),
+      );
+  }
+}
+```
 
 ## Custom Templates
 

@@ -38,7 +38,8 @@ import {
     DynamicFormValidationService,
     DynamicInputModel,
     DynamicTemplateDirective,
-    DynamicFormValueControlModel
+    DynamicFormValueControlModel,
+    DynamicFormDataService,
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialDatePickerComponent } from "./datepicker/dynamic-material-datepicker.component";
 import { DynamicMaterialInputComponent } from "./input/dynamic-material-input.component";
@@ -82,9 +83,10 @@ export class DynamicMaterialFormControlContainerComponent extends DynamicFormCon
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
-                protected relationService: DynamicFormRelationService) {
+                protected relationService: DynamicFormRelationService,
+                protected dataService: DynamicFormDataService) {
 
-        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService, dataService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

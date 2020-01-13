@@ -44,6 +44,7 @@ import { isString } from "../utils/core.utils";
 import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
 import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
 import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
+import { DynamicFormDataService } from '../service/dynamic-form-data.service';
 
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
@@ -77,7 +78,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                           protected layoutService: DynamicFormLayoutService,
                           protected validationService: DynamicFormValidationService,
                           protected componentService: DynamicFormComponentService,
-                          protected relationService: DynamicFormRelationService) {
+                          protected relationService: DynamicFormRelationService,
+                          protected dataService: DynamicFormDataService) {
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -286,6 +288,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             if (this.model.relations.length > 0) {
 
                 this.subscriptions.push(...this.relationService.subscribeRelations(this.model, this.group, this.control));
+            }
+
+            if (this.model.dataProvider) {
+              this.subscriptions.push(this.dataService.connectDynamicFormControls(this.model, this.group));
             }
         }
     }
