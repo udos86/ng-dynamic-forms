@@ -193,7 +193,7 @@ export class DynamicFormValidationService {
     }
 
     isFormHook(value: any): boolean {
-        return isString(value) && Object.values(DynamicFormHook).indexOf(value) !== -1;
+        return isString(value) && (Object.values(DynamicFormHook) as string[]).includes(value);
     }
 
     isValidatorDescriptor(value: any): boolean {

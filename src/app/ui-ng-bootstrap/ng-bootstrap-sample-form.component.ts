@@ -17,7 +17,7 @@ export class NGBootstrapSampleFormComponent implements OnInit {
     formGroup: FormGroup;
     formLayout: DynamicFormLayout = NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT;
 
-    @ViewChild(DynamicNGBootstrapFormComponent, {static: false}) formComponent: DynamicNGBootstrapFormComponent;
+    @ViewChild(DynamicNGBootstrapFormComponent) formComponent: DynamicNGBootstrapFormComponent;
 
     constructor(private formService: DynamicFormService) {
     }
