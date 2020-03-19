@@ -1102,8 +1102,9 @@ At the moment there are the following **default matchers** available:
 ```typescript
 providers: [
     // ...
-    DISABLED_MATCHER,
-    REQUIRED_MATCHER
+    DISABLED_MATCHER_PROVIDER,
+    REQUIRED_MATCHER_PROVIDER,
+    HIDDEN_MATCHER_PROVIDER
 ]
 ```
 
