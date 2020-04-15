@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { MultiSelect, MultiSelectModule } from "primeng/primeng";
+import { MultiSelect, MultiSelectModule } from "primeng/multiselect";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGMultiSelectComponent } from "./dynamic-primeng-multiselect.component";
 

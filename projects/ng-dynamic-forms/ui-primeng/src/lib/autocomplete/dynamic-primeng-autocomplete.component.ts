@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { AutoComplete } from "primeng/primeng";
+import { AutoComplete } from "primeng/autocomplete";
 import {
-    DynamicFormControlCustomEvent, DynamicFormControlLayout,
+    DynamicFormControlCustomEvent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -33,7 +34,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGFormContr
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pAutoComplete", { static: true }) pAutoComplete: AutoComplete;
+    @ViewChild("pAutoComplete", {static: true}) pAutoComplete: AutoComplete;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

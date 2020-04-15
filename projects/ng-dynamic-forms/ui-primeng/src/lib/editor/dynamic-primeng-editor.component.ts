@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Editor } from "primeng/primeng";
+import { Editor } from "primeng/editor";
 import {
     DynamicEditorModel,
     DynamicFormControlCustomEvent,

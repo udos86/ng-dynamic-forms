@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { InputSwitch, InputSwitchModule } from "primeng/primeng";
+import { InputSwitch, InputSwitchModule } from "primeng/inputswitch";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGInputSwitchComponent } from "./dynamic-primeng-input-switch.component";
 

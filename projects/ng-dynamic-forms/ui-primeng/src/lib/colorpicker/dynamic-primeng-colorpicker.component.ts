@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { ColorPicker } from "primeng/primeng";
+import { ColorPicker } from "primeng/colorpicker";
 import {
     DynamicColorPickerModel,
     DynamicFormLayout,

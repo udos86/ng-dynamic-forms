@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { InputMask } from "primeng/primeng";
+import { InputMask } from "primeng/inputmask";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,

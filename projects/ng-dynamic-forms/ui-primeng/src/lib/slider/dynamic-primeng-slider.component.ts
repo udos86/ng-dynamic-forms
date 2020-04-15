@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Slider } from "primeng/primeng";
+import { Slider } from "primeng/slider";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,

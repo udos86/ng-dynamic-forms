@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { InputTextarea } from "primeng/primeng";
+import { InputTextarea } from "primeng/inputtextarea";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,

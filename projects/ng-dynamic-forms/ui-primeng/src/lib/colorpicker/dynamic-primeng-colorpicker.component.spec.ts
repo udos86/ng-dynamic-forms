@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { ColorPicker, ColorPickerModule } from "primeng/primeng";
+import { ColorPicker, ColorPickerModule } from "primeng/colorpicker";
 import { DynamicColorPickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGColorPickerComponent } from "./dynamic-primeng-colorpicker.component";
 
