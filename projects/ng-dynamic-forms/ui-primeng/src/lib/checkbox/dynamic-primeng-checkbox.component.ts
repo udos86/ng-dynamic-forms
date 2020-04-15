@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Checkbox } from "primeng/primeng";
+import { Checkbox } from "primeng/checkbox";
 import {
     DynamicCheckboxModel,
     DynamicFormLayout,

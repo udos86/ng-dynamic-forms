@@ -5,24 +5,6 @@ import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import {
-    AutoCompleteModule,
-    CalendarModule,
-    CheckboxModule,
-    ChipsModule,
-    ColorPickerModule,
-    DropdownModule,
-    EditorModule,
-    InputMaskModule,
-    InputSwitchModule,
-    InputTextModule,
-    InputTextareaModule,
-    MultiSelectModule,
-    RadioButtonModule,
-    RatingModule,
-    SliderModule,
-    SpinnerModule
-} from "primeng/primeng";
-import {
     DynamicFormsCoreModule,
     DynamicFormService,
     DynamicCheckboxModel,
@@ -60,6 +42,22 @@ import { DynamicPrimeNGRadioGroupComponent } from "./radio-group/dynamic-primeng
 import { DynamicPrimeNGRatingComponent } from "./rating/dynamic-primeng-rating.component";
 import { DynamicPrimeNGSliderComponent } from "./slider/dynamic-primeng-slider.component";
 import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-textarea.component";
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { CalendarModule } from "primeng/calendar";
+import { CheckboxModule } from "primeng/checkbox";
+import { ChipsModule } from "primeng/chips";
+import { ColorPickerModule } from "primeng/colorpicker";
+import { DropdownModule } from "primeng/dropdown";
+import { EditorModule } from "primeng/editor";
+import { InputMaskModule } from "primeng/inputmask";
+import { InputSwitchModule } from "primeng/inputswitch";
+import { InputTextModule } from "primeng/inputtext";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { MultiSelectModule } from "primeng/multiselect";
+import { RadioButtonModule } from "primeng/radiobutton";
+import { RatingModule } from "primeng/rating";
+import { SliderModule } from "primeng/slider";
+import { SpinnerModule } from "primeng/spinner";
 
 describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 

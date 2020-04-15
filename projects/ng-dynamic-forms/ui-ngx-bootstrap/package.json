@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-ngx-bootstrap",
-  "version": "10.0.0",
+  "version": "11.0.1",
   "description": "ngx-bootstrap UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -30,14 +30,10 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0",
-    "@ng-dynamic-forms/core": "^9.0.1",
+    "@ng-dynamic-forms/core": "^11.0.1",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^4.0.0",
-    "ngx-bootstrap": "^5.0.0",
-    "rxjs": "^6.4.0"
+    "ngx-bootstrap": "^5.6.0"
   },
   "es2015": "./fesm2015/ui-ngx-bootstrap.js",
   "esm2015": "./esm2015/ui-ngx-bootstrap.js",

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { MultiSelect } from "primeng/primeng";
+import { MultiSelect } from "primeng/multiselect";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,

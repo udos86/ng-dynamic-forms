@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Rating } from "primeng/primeng";
+import { Rating } from "primeng/rating";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,

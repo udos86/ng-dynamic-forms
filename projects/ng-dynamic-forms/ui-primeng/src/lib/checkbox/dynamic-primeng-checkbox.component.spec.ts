@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { Checkbox, CheckboxModule } from "primeng/primeng";
+import { Checkbox, CheckboxModule } from "primeng/checkbox";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGCheckboxComponent } from "./dynamic-primeng-checkbox.component";
 

@@ -8,7 +8,24 @@
     "amdId": "@ng-dynamic-forms/ui-primeng",
     "umdModuleIds": {
       "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "primeng/primeng": "primeng"
+      "primeng/api": "primeng.api",
+      "primeng/autocomplete": "primeng.autocomplete",
+      "primeng/button": "primeng.button",
+      "primeng/calendar": "primeng.calendar",
+      "primeng/checkbox": "primeng.checkbox",
+      "primeng/chips": "primeng.chips",
+      "primeng/colorpicker": "primeng.colorpicker",
+      "primeng/dropdown": "primeng.dropdown",
+      "primeng/editor": "primeng.editor",
+      "primeng/inputmask": "primeng.inputmask",
+      "primeng/inputswitch": "primeng.inputswitch",
+      "primeng/inputtext": "primeng.inputtext",
+      "primeng/inputtextarea": "primeng.inputtextarea",
+      "primeng/multiselect": "primeng.multiselect",
+      "primeng/radiobutton": "primeng.radiobutton",
+      "primeng/rating": "primeng.rating",
+      "primeng/slider": "primeng.slider",
+      "primeng/spinner": "primeng.spinner"
     }
   }
 }

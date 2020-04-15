@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Chips } from "primeng/primeng";
+import { Chips } from "primeng/chips";
 import {
     DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,

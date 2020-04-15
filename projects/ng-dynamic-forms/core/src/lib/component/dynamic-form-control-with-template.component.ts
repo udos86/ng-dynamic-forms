@@ -3,6 +3,8 @@ import { DynamicFormControlWithTemplate } from "./dynamic-form-control-with-temp
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormControlComponent } from "./dynamic-form-control.component";
 import { isString } from "../utils/core.utils";
+import { DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
+import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 
 export abstract class DynamicFormControlWithTemplateComponent extends DynamicFormControlComponent
     implements DynamicFormControlWithTemplate, AfterViewInit {
@@ -10,6 +12,11 @@ export abstract class DynamicFormControlWithTemplateComponent extends DynamicFor
     readonly templateDirectives: Map<string, string>;
 
     templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+
+    protected constructor(protected layoutService: DynamicFormLayoutService,
+                          protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
+    }
 
     ngAfterViewInit() {
 

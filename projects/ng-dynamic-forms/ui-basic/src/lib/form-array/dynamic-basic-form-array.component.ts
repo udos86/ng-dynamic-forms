@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicFormArrayComponent,
     DynamicFormArrayModel,
+    DynamicFormControlContainerComponent,
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
     DynamicFormLayout,
@@ -10,7 +11,6 @@ import {
     DynamicFormValidationService,
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
-import { DynamicBasicFormControlContainerComponent } from "../dynamic-basic-form-control-container.component";
 
 @Component({
     selector: "dynamic-basic-form-array",
@@ -29,8 +29,8 @@ export class DynamicBasicFormArrayComponent extends DynamicFormArrayComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChildren(forwardRef(() => DynamicBasicFormControlContainerComponent))
-    components: QueryList<DynamicBasicFormControlContainerComponent>;
+    @ViewChildren(forwardRef(() => DynamicFormControlContainerComponent))
+    components: QueryList<DynamicFormControlContainerComponent>;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

@@ -8,9 +8,9 @@ import {
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DynamicFormControlContainerComponent
 } from "@ng-dynamic-forms/core";
-import { DynamicBasicFormControlContainerComponent } from "../dynamic-basic-form-control-container.component";
 
 @Component({
     selector: "dynamic-basic-form-group",
@@ -29,8 +29,8 @@ export class DynamicBasicFormGroupComponent extends DynamicFormGroupComponent {
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChildren(forwardRef(() => DynamicBasicFormControlContainerComponent))
-    components: QueryList<DynamicBasicFormControlContainerComponent>;
+    @ViewChildren(forwardRef(() => DynamicFormControlContainerComponent))
+    components: QueryList<DynamicFormControlContainerComponent>;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {

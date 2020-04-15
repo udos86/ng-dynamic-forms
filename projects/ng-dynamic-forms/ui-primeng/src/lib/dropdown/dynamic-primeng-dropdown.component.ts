@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Dropdown } from "primeng/primeng";
+import { Dropdown } from "primeng/dropdown";
 import {
     DynamicFormControlLayout,
     DynamicFormLayout,

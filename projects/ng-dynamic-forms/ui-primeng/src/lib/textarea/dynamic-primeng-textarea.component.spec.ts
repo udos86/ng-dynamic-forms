@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TextMaskModule } from "angular2-text-mask";
-import { InputTextareaModule } from "primeng/primeng";
+import { InputTextareaModule } from "primeng/inputtextarea";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGTextAreaComponent } from "./dynamic-primeng-textarea.component";
 

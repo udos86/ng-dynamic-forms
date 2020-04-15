@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { InputText } from "primeng/primeng";
+import { InputText } from "primeng/inputtext";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
