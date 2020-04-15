@@ -1,3 +1,9 @@
+# 11.0.0 / 11.0.1
+
+### **Features**
+
+* Support for Angular 9
+
 # 10.1.0
 
 ### **Features**
