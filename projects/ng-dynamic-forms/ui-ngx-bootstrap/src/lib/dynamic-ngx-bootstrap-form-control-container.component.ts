@@ -77,7 +77,7 @@ export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFor
     @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
 
     get componentType(): Type<DynamicFormControl> | null {
-        return this.componentService.getCustomComponentType(this.model) || bootstrapUIFormControlMapFn(this.model);
+        return this.componentService.getCustomComponentType(this.model) ?? bootstrapUIFormControlMapFn(this.model);
     }
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,

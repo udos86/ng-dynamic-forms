@@ -26,7 +26,7 @@ export class DynamicFormRelationService {
 
         const conditionReducer = (controls, condition) => {
 
-            const path = condition.rootPath || condition.id;
+            const path = condition.rootPath ?? condition.id;
 
             if (!controls.hasOwnProperty(path)) {
 
@@ -49,11 +49,11 @@ export class DynamicFormRelationService {
 
     matchesCondition(relation: DynamicFormControlRelation, relatedFormControls: DynamicRelatedFormControls, matcher: DynamicFormControlMatcher): boolean {
 
-        const operator = relation.operator || OR_OPERATOR;
+        const operator = relation.operator ?? OR_OPERATOR;
 
         return relation.when.reduce((hasAlreadyMatched, condition, index) => {
 
-            const path = condition.rootPath || condition.id;
+            const path = condition.rootPath ?? condition.id;
 
             let relatedFormControl;
 

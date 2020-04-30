@@ -32,14 +32,14 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
 
         super(config, layout);
 
-        this.autoComplete = config.autoComplete || "on";
+        this.autoComplete = config.autoComplete ?? "on";
         this.autoFocus = isBoolean(config.autoFocus) ? config.autoFocus : false;
         this.maxLength = isNumber(config.maxLength) ? config.maxLength : null;
         this.minLength = isNumber(config.minLength) ? config.minLength : null;
-        this.placeholder = config.placeholder || "";
-        this.prefix = config.prefix || null;
+        this.placeholder = config.placeholder ?? "";
+        this.prefix = config.prefix ?? null;
         this.readOnly = isBoolean(config.readOnly) ? config.readOnly : false;
         this.spellCheck = isBoolean(config.spellCheck) ? config.spellCheck : false;
-        this.suffix = config.suffix || null;
+        this.suffix = config.suffix ?? null;
     }
 }

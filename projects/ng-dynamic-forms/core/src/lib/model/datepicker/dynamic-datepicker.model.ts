@@ -39,12 +39,12 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
         super(config, layout);
 
         this.autoFocus = isBoolean(config.autoFocus) ? config.autoFocus : false;
-        this.focusedDate = config.focusedDate || null;
+        this.focusedDate = config.focusedDate ?? null;
         this.inline = isBoolean(config.inline) ? config.inline : false;
-        this.prefix = config.prefix || null;
+        this.prefix = config.prefix ?? null;
         this.readOnly = isBoolean(config.readOnly) ? config.readOnly : false;
         this.toggleIcon = isString(config.toggleIcon) ? config.toggleIcon : null;
         this.toggleLabel = isString(config.toggleLabel) ? config.toggleLabel : null;
-        this.suffix = config.suffix || null;
+        this.suffix = config.suffix ?? null;
     }
 }

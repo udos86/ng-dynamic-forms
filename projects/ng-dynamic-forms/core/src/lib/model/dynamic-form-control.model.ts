@@ -47,18 +47,18 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
 
     protected constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
 
-        this.asyncValidators = config.asyncValidators || null;
-        this.errorMessages = config.errorMessages || null;
+        this.asyncValidators = config.asyncValidators ?? null;
+        this.errorMessages = config.errorMessages ?? null;
         this.hidden = isBoolean(config.hidden) ? config.hidden : false;
         this.id = config.id;
-        this.label = config.label || null;
-        this.labelTooltip = config.labelTooltip || null;
-        this.controlTooltip = config.controlTooltip || null;
+        this.label = config.label ?? null;
+        this.labelTooltip = config.labelTooltip ?? null;
+        this.controlTooltip = config.controlTooltip ?? null;
         this.layout = layout;
-        this.name = config.name || config.id;
+        this.name = config.name ?? config.id;
         this.relations = Array.isArray(config.relations) ? config.relations : [];
         this.updateOn = isString(config.updateOn) ? config.updateOn : null;
-        this.validators = config.validators || null;
+        this.validators = config.validators ?? null;
 
         this.disabled$ = new BehaviorSubject(isBoolean(config.disabled) ? config.disabled : false);
         this.disabled$.subscribe(disabled => this._disabled = disabled);

@@ -1,3 +1,9 @@
+# 11.0.2 / 11.0.3
+
+### **Bugfixes**
+
+* fixes error on `DynamicFormService.detectChanges()` (closes [#1060](https://github.com/udos86/ng-dynamic-forms/issues/1060))
+
 # 11.0.0 / 11.0.1
 
 ### **Features**

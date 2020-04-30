@@ -66,15 +66,15 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
             throw new Error("group factory function must be specified for DynamicFormArrayModel");
         }
 
-        this.groupAsyncValidators = config.groupAsyncValidators || null;
+        this.groupAsyncValidators = config.groupAsyncValidators ?? null;
         this.groupPrototype = this.groupFactory();
-        this.groupValidators = config.groupValidators || null;
+        this.groupValidators = config.groupValidators ?? null;
         this.initialCount = isNumber(config.initialCount) ? config.initialCount : 1;
 
         if (Array.isArray(config.groups)) {
 
             config.groups.forEach((arrayGroup, index) => {
-                this.groups.push(new DynamicFormArrayGroupModel(this, arrayGroup.group, arrayGroup.index || index));
+                this.groups.push(new DynamicFormArrayGroupModel(this, arrayGroup.group, arrayGroup.index ?? index));
             });
 
         } else {

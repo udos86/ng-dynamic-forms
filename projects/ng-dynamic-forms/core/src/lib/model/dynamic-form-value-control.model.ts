@@ -30,11 +30,11 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         super(config, layout);
 
         this.additional = isObject(config.additional) ? config.additional : null;
-        this.hint = config.hint || null;
+        this.hint = config.hint ?? null;
         this.required = isBoolean(config.required) ? config.required : false;
-        this.tabIndex = config.tabIndex || null;
+        this.tabIndex = config.tabIndex ?? null;
 
-        this.value$ = new BehaviorSubject(config.value !== null && config.value !== undefined ? config.value : null);
+        this.value$ = new BehaviorSubject(config.value ?? null);
         this.value$.subscribe(value => this._value = value);
         this.valueChanges = this.value$.asObservable();
     }

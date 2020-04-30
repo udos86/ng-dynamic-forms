@@ -29,6 +29,6 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
 
         this.cols = isNumber(config.cols) ? config.cols : 20;
         this.rows = isNumber(config.rows) ? config.rows : 2;
-        this.wrap = config.wrap || DYNAMIC_FORM_TEXTAREA_WRAP_SOFT;
+        this.wrap = config.wrap ?? DYNAMIC_FORM_TEXTAREA_WRAP_SOFT;
     }
 }
