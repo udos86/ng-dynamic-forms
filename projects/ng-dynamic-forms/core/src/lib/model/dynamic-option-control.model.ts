@@ -21,7 +21,7 @@ export class DynamicFormOption<T> {
     constructor(config: DynamicFormOptionConfig<T>) {
 
         this.disabled = isBoolean(config.disabled) ? config.disabled : false;
-        this.label = config.label || null;
+        this.label = config.label ?? null;
         this.value = config.value;
     }
 

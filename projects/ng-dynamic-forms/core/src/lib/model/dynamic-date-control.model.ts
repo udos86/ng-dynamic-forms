@@ -23,9 +23,9 @@ export abstract class DynamicDateControlModel extends DynamicFormValueControlMod
 
         super(config, layout);
 
-        this.format = config.format || null;
-        this.max = config.max || null;
-        this.min = config.min || null;
-        this.placeholder = config.placeholder || null;
+        this.format = config.format ?? null;
+        this.max = config.max ?? null;
+        this.min = config.min ?? null;
+        this.placeholder = config.placeholder ?? null;
     }
 }

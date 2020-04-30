@@ -34,9 +34,9 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
         this.compareWithFn = isFunction(config.compareWithFn) ? config.compareWithFn : looseIdentical;
         this.filterable = isBoolean(config.filterable) ? config.filterable : false;
         this.multiple = isBoolean(config.multiple) ? config.multiple : false;
-        this.placeholder = config.placeholder || "";
-        this.prefix = config.prefix || null;
-        this.suffix = config.suffix || null;
+        this.placeholder = config.placeholder ?? "";
+        this.prefix = config.prefix ?? null;
+        this.suffix = config.suffix ?? null;
     }
 
     select(...indices: number[]): void {

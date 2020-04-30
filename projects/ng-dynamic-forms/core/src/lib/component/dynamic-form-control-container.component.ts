@@ -140,7 +140,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     get hint(): string | null {
-        return (this.model as DynamicFormValueControlModel<any>).hint || null;
+        return (this.model as DynamicFormValueControlModel<any>).hint ?? null;
     }
 
     get isCheckbox(): boolean {
@@ -253,7 +253,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     onLayoutOrModelChange(): void {
-        this.controlLayout = this.layoutService.findByModel(this.model, this.layout) || this.model.layout as DynamicFormControlLayout;
+        this.controlLayout = this.layoutService.findByModel(this.model, this.layout) ?? this.model.layout as DynamicFormControlLayout;
         this.klass = `${Array.isArray(this.hostClass) ? this.hostClass.join(" ") : ""} ${this.layoutService.getHostClass(this.controlLayout)}`;
     }
 
@@ -300,7 +300,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
 
-                    const inputElement: any = $event.target || $event.srcElement;
+                    const inputElement: any = $event.target ?? $event.srcElement;
 
                     model.files = inputElement.files as FileList;
                 }

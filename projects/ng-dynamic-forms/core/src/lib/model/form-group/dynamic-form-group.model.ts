@@ -23,7 +23,7 @@ export class DynamicFormGroupModel extends DynamicFormControlModel {
         super(config, layout);
 
         this.group = Array.isArray(config.group) ? config.group : [];
-        this.legend = config.legend || null;
+        this.legend = config.legend ?? null;
     }
 
     get(index: number): DynamicFormControlModel {

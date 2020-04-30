@@ -36,8 +36,8 @@ export class DynamicFileUploadModel extends DynamicFileControlModel {
         this.autoUpload = isBoolean(config.autoUpload) ? config.autoUpload : true;
         this.maxSize = isNumber(config.maxSize) ? config.maxSize : null;
         this.minSize = isNumber(config.minSize) ? config.minSize : null;
-        this.removeUrl = config.removeUrl || null;
+        this.removeUrl = config.removeUrl ?? null;
         this.showFileList = isBoolean(config.showFileList) ? config.showFileList : true;
-        this.url = config.url || null;
+        this.url = config.url ?? null;
     }
 }

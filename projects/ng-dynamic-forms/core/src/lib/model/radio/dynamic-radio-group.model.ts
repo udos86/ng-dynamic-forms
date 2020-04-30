@@ -19,7 +19,7 @@ export class DynamicRadioGroupModel<T> extends DynamicOptionControlModel<T> {
 
         super(config, layout);
 
-        this.legend = config.legend || null;
+        this.legend = config.legend ?? null;
     }
 
     select(index: number): void {

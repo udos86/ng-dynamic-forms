@@ -11,7 +11,7 @@
                [size]="model.getAdditional('size', false)"
                [ngClass]="getClass('element', 'control')"
                [placeholder]="model.placeholder"
-               [step]="model.step || 1"
+               [step]="model.step ?? 1"
                [tabindex]="model.tabIndex"
                (onBlur)="onBlur($event)"
                (onChange)="onChange($event)"

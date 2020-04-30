@@ -21,7 +21,7 @@ export class DynamicSwitchModel extends DynamicCheckControlModel {
 
         super(config, layout);
 
-        this.offLabel = config.offLabel || null;
-        this.onLabel = config.onLabel || null;
+        this.offLabel = config.offLabel ?? null;
+        this.onLabel = config.onLabel ?? null;
     }
 }

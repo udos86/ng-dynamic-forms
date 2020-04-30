@@ -37,14 +37,14 @@ export class DynamicPrimeNGCalendarComponent extends DynamicFormControlComponent
     }
 
     get focusedDate(): DynamicDateControlValue | null {
-        return (this.model as DynamicDatePickerModel).focusedDate || null;
+        return (this.model as DynamicDatePickerModel).focusedDate ?? null;
     }
 
     get inline(): boolean {
-        return (this.model as DynamicDatePickerModel).inline || false;
+        return (this.model as DynamicDatePickerModel).inline ?? false;
     }
 
     get showSeconds(): boolean {
-        return (this.model as DynamicTimePickerModel).showSeconds || false;
+        return (this.model as DynamicTimePickerModel).showSeconds ?? false;
     }
 }
