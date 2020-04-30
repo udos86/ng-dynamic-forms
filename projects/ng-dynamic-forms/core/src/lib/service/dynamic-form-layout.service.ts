@@ -62,7 +62,7 @@ export class DynamicFormLayoutService {
     filterTemplatesByModel(model: DynamicFormControlModel, templates: DynamicFormControlTemplates): DynamicTemplateDirective[] {
 
         const filterCallback: (template: DynamicTemplateDirective) => boolean = (template: DynamicTemplateDirective) => {
-            return template.modelId === model.id ?? template.modelType === model.type;
+            return template.modelId === model.id || template.modelType === model.type;
         };
 
         if (templates instanceof QueryList) {

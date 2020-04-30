@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-basic",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "description": "Basic UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -28,7 +28,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-dynamic-forms/core": "^11.0.2",
+    "@ng-dynamic-forms/core": "^11.0.3",
     "angular2-text-mask": "^9.0.0"
   },
   "es2015": "./fesm2015/ui-basic.js",

@@ -74,7 +74,7 @@ export class DynamicFormRelationService {
                     return true;
                 }
 
-                return condition.value === relatedFormControl.value ?? condition.status === relatedFormControl.status;
+                return condition.value === relatedFormControl.value || condition.status === relatedFormControl.status;
             }
 
             if (relatedFormControl && relation.match === matcher.opposingMatch) {
@@ -87,7 +87,7 @@ export class DynamicFormRelationService {
                     return false;
                 }
 
-                return !(condition.value === relatedFormControl.value ?? condition.status === relatedFormControl.status);
+                return !(condition.value === relatedFormControl.value || condition.status === relatedFormControl.status);
             }
 
             return false;

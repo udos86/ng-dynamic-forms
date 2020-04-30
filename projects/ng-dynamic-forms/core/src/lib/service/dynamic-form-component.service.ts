@@ -55,7 +55,7 @@ export class DynamicFormComponentService {
 
         if (isNumber(index)) { // threat model as array child
 
-            const arrayRef: DynamicFormControlRef[] = this.formControls[model.id] as DynamicFormControlRef[] ?? [];
+            const arrayRef: DynamicFormControlRef[] = this.formControls[model.id] as DynamicFormControlRef[] || [];
 
             if (Array.isArray(arrayRef)) {
 
