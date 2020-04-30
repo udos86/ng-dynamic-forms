@@ -169,7 +169,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
 
         this.changeDetectorRef.markForCheck();
 
-        const component = this.componentRef.instance;
+        const component = this.componentRef && this.componentRef.instance;
 
         if (component && (component instanceof DynamicFormGroupComponent || component instanceof DynamicFormArrayComponent)) {
             component.markForCheck();
