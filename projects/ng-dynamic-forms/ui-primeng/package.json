@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "11.0.3",
+  "version": "12.0.0",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -29,7 +29,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-dynamic-forms/core": "^11.0.3",
+    "@ng-dynamic-forms/core": "^12.0.0",
     "primeng": "^9.0.0"
   },
   "optionalDependencies": {
@@ -40,5 +40,8 @@
   "esm5": "./esm5/ui-primeng.js",
   "fesm2015": "./fesm2015/ui-primeng.js",
   "fesm5": "./fesm5/ui-primeng.js",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

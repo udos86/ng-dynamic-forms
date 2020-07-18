@@ -1,6 +1,4 @@
 import { NgModule } from "@angular/core";
-// import { BaseRequestOptions, Http } from "@angular/http";
-// import { MockBackend } from "@angular/http/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
@@ -44,13 +42,7 @@ import {
     customValidator
 } from "./app.validators";
 
-/*
-export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions: BaseRequestOptions) {
-    return new Http(mockBackend, baseRequestOptions);
-}
-*/
 @NgModule({
-
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -84,15 +76,6 @@ export function mockBackendFactory(mockBackend: MockBackend, baseRequestOptions:
         AppComponent
     ],
     providers: [
-        /*
-        BaseRequestOptions,
-        MockBackend,
-        {
-            provide: Http,
-            deps: [MockBackend, BaseRequestOptions],
-            useFactory: mockBackendFactory
-        },
-        */
         {
             provide: LocationStrategy,
             useClass: HashLocationStrategy

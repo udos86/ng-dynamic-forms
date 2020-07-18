@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from "@angular/material/core";
 import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlCustomEvent, DynamicFormControlLayout,
@@ -10,6 +9,7 @@ import {
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-form-input-control.component";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from "@angular/material/form-field";
 
 @Component({
     selector: "dynamic-material-textarea",
@@ -27,11 +27,11 @@ export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputCo
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(MatInput, { static: true }) matInput: MatInput;
+    @ViewChild(MatInput, {static: true}) matInput: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() public LABEL_OPTIONS: LabelOptions) {
+                @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) @Optional() public FORM_FIELD_OPTIONS: MatFormFieldDefaultOptions) {
 
         super(layoutService, validationService);
     }

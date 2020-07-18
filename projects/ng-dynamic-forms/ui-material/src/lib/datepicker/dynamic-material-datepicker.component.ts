@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from "@angular/material/core";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { MatInput } from "@angular/material/input";
 import {
@@ -11,6 +11,7 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService
 } from "@ng-dynamic-forms/core";
+import { MatFormFieldDefaultOptions } from "@angular/material/form-field/form-field";
 
 @Component({
     selector: "dynamic-material-datepicker",
@@ -33,7 +34,7 @@ export class DynamicMaterialDatePickerComponent extends DynamicFormControlCompon
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
-                @Inject(MAT_LABEL_GLOBAL_OPTIONS) @Optional() public LABEL_OPTIONS: LabelOptions) {
+                @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) @Optional() public FORM_FIELD_OPTIONS: MatFormFieldDefaultOptions) {
 
         super(layoutService, validationService);
     }

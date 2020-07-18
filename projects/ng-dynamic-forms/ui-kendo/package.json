@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-kendo",
-  "version": "11.0.3",
+  "version": "12.0.0",
   "description": "Kendo UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -29,7 +29,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-dynamic-forms/core": "^11.0.3",
+    "@ng-dynamic-forms/core": "^12.0.0",
     "@progress/kendo-angular-dateinputs": "^4.2.2",
     "@progress/kendo-angular-dropdowns": "^4.2.6",
     "@progress/kendo-angular-inputs": "^6.5.0",
@@ -40,5 +40,8 @@
   "esm5": "./esm5/ui-kendo.js",
   "fesm2015": "./fesm2015/ui-kendo.js",
   "fesm5": "./fesm5/ui-kendo.js",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

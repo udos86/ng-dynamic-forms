@@ -1,7 +1,7 @@
 <mat-form-field [appearance]="model.getAdditional('appearance', 'legacy')"
                 [color]="model.getAdditional('color', 'primary')"
                 [ngClass]="getClass('grid', 'control')"
-                [floatLabel]="model.getAdditional('floatLabel', LABEL_OPTIONS && LABEL_OPTIONS['float'] || 'auto')"
+                [floatLabel]="model.getAdditional('floatLabel', FORM_FIELD_OPTIONS && FORM_FIELD_OPTIONS['float'] || 'auto')"
                 [formGroup]="group">
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">

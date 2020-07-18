@@ -1,15 +1,4 @@
-import {
-    ChangeDetectorRef,
-    ComponentFactoryResolver,
-    ComponentRef,
-    EventEmitter,
-    OnChanges,
-    OnDestroy,
-    QueryList,
-    SimpleChanges,
-    Type,
-    ViewContainerRef
-} from "@angular/core";
+import { ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, EventEmitter, OnChanges, OnDestroy, QueryList, SimpleChanges, Type, ViewContainerRef, Directive } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
 import {
@@ -45,6 +34,7 @@ import { DynamicFormRelationService } from "../service/dynamic-form-relation.ser
 import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
 import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
+@Directive()
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
 
     private _hasFocus = false;

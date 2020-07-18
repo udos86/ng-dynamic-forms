@@ -1,4 +1,3 @@
-import { ɵlooseIdentical as looseIdentical } from "@angular/core";
 import { DynamicOptionControlModel, DynamicOptionControlModelConfig } from "../dynamic-option-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
@@ -31,7 +30,7 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
 
         super(config, layout);
 
-        this.compareWithFn = isFunction(config.compareWithFn) ? config.compareWithFn : looseIdentical;
+        this.compareWithFn = isFunction(config.compareWithFn) ? config.compareWithFn : Object.is;
         this.filterable = isBoolean(config.filterable) ? config.filterable : false;
         this.multiple = isBoolean(config.multiple) ? config.multiple : false;
         this.placeholder = config.placeholder ?? "";
