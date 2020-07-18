@@ -37,5 +37,8 @@
   "esm5": "./esm5/ui-foundation.js",
   "fesm2015": "./fesm2015/ui-foundation.js",
   "fesm5": "./fesm5/ui-foundation.js",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

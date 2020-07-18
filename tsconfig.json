@@ -1,84 +1,80 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "@ng-dynamic-forms/core": [
-        "dist/ng-dynamic-forms/core"
-      ],
-      "@ng-dynamic-forms/core/*": [
-        "dist/ng-dynamic-forms/core/*"
-      ],
-      "@ng-dynamic-forms/ui-basic": [
-        "dist/ng-dynamic-forms/ui-basic"
-      ],
-      "@ng-dynamic-forms/ui-basic/*": [
-        "dist/ng-dynamic-forms/ui-basic/*"
-      ],
-      "@ng-dynamic-forms/ui-bootstrap": [
-        "dist/ng-dynamic-forms/ui-bootstrap"
-      ],
-      "@ng-dynamic-forms/ui-bootstrap/*": [
-        "dist/ng-dynamic-forms/ui-bootstrap/*"
-      ],
-      "@ng-dynamic-forms/ui-foundation": [
-        "dist/ng-dynamic-forms/ui-foundation"
-      ],
-      "@ng-dynamic-forms/ui-foundation/*": [
-        "dist/ng-dynamic-forms/ui-foundation/*"
-      ],
-      "@ng-dynamic-forms/ui-ionic": [
-        "dist/ng-dynamic-forms/ui-ionic"
-      ],
-      "@ng-dynamic-forms/ui-ionic/*": [
-        "dist/ng-dynamic-forms/ui-ionic/*"
-      ],
-      "@ng-dynamic-forms/ui-kendo": [
-        "dist/ng-dynamic-forms/ui-kendo"
-      ],
-      "@ng-dynamic-forms/ui-kendo/*": [
-        "dist/ng-dynamic-forms/ui-kendo/*"
-      ],
-      "@ng-dynamic-forms/ui-material": [
-        "dist/ng-dynamic-forms/ui-material"
-      ],
-      "@ng-dynamic-forms/ui-material/*": [
-        "dist/ng-dynamic-forms/ui-material/*"
-      ],
-      "@ng-dynamic-forms/ui-ng-bootstrap": [
-        "dist/ng-dynamic-forms/ui-ng-bootstrap"
-      ],
-      "@ng-dynamic-forms/ui-ng-bootstrap/*": [
-        "dist/ng-dynamic-forms/ui-ng-bootstrap/*"
-      ],
-      "@ng-dynamic-forms/ui-primeng": [
-        "dist/ng-dynamic-forms/ui-primeng"
-      ],
-      "@ng-dynamic-forms/ui-primeng/*": [
-        "dist/ng-dynamic-forms/ui-primeng/*"
-      ],
-      "@ng-dynamic-forms/ui-ngx-bootstrap": [
-        "dist/ng-dynamic-forms/ui-ngx-bootstrap"
-      ],
-      "@ng-dynamic-forms/ui-ngx-bootstrap/*": [
-        "dist/ng-dynamic-forms/ui-ngx-bootstrap/*"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    },
+    {
+      "path": "./e2e/tsconfig.e2e.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/core/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/core/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-basic/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-basic/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-bootstrap/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-bootstrap/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-foundation/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-foundation/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-ionic/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-ionic/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-kendo/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-kendo/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-material/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-material/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-ng-bootstrap/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-ng-bootstrap/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-primeng/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-primeng/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-ngx-bootstrap/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-dynamic-forms/ui-ngx-bootstrap/tsconfig.spec.json"
     }
-  }
+  ]
 }

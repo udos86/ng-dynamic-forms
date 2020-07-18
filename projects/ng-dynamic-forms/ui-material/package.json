@@ -38,5 +38,8 @@
   "esm5": "./esm5/ui-material.js",
   "fesm2015": "./fesm2015/ui-material.js",
   "fesm5": "./fesm5/ui-material.js",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

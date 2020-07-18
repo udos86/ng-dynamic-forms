@@ -40,5 +40,8 @@
   "esm5": "./esm5/ui-ngx-bootstrap.js",
   "fesm2015": "./fesm2015/ui-ngx-bootstrap.js",
   "fesm5": "./fesm5/ui-ngx-bootstrap.js",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

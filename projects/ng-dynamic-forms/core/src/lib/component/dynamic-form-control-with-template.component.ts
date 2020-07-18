@@ -1,4 +1,4 @@
-import { AfterViewInit, QueryList, TemplateRef } from "@angular/core";
+import { AfterViewInit, QueryList, TemplateRef, Directive } from "@angular/core";
 import { DynamicFormControlWithTemplate } from "./dynamic-form-control-with-template-interface";
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 import { DynamicFormControlComponent } from "./dynamic-form-control.component";
@@ -6,6 +6,7 @@ import { isString } from "../utils/core.utils";
 import { DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 
+@Directive()
 export abstract class DynamicFormControlWithTemplateComponent extends DynamicFormControlComponent
     implements DynamicFormControlWithTemplate, AfterViewInit {
 
