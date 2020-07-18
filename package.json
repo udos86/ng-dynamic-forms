@@ -50,6 +50,7 @@
     "test:ui-ngx-bootstrap": "ng test @ng-dynamic-forms/ui-ngx-bootstrap --code-coverage",
     "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng --code-coverage",
     "update:ng": "ng update @angular/cli @angular/core @angular/cdk @angular/material @angular-devkit/schematics @angular-devkit/schematics-cli",
+    "update:kendo": "ng update @progress/kendo-angular-common @progress/kendo-angular-dateinputs @progress/kendo-angular-dropdowns @progress/kendo-angular-inputs @progress/kendo-angular-intl @progress/kendo-angular-l10n @progress/kendo-angular-popup @progress/kendo-angular-upload @progress/kendo-drawing @progress/kendo-theme-default",
     "update:version": "schematics .:versioning --debug=false",
     "publish": "./publish.sh"
   },
