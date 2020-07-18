@@ -49,6 +49,7 @@
     "test:ui-ng-bootstrap": "ng test @ng-dynamic-forms/ui-ng-bootstrap --code-coverage",
     "test:ui-ngx-bootstrap": "ng test @ng-dynamic-forms/ui-ngx-bootstrap --code-coverage",
     "test:ui-primeng": "ng test @ng-dynamic-forms/ui-primeng --code-coverage",
+    "update:ng": "ng update @angular/cli @angular/core @angular/cdk @angular/material @angular-devkit/schematics @angular-devkit/schematics-cli",
     "update:version": "schematics .:versioning --debug=false",
     "publish": "./publish.sh"
   },
@@ -67,7 +68,6 @@
     "@angular/router": "~9.1.1",
     "@fullcalendar/core": "^4.4.0",
     "@ionic/angular": "^5.0.7",
-    "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@progress/kendo-angular-common": "^1.2.2",
     "@progress/kendo-angular-dateinputs": "^4.2.2",
     "@progress/kendo-angular-dropdowns": "^4.2.6",
