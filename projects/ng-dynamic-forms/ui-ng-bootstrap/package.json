@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-ng-bootstrap",
-  "version": "11.0.3",
+  "version": "12.0.0",
   "description": "NG Bootstrap UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
-    "@ng-dynamic-forms/core": "^11.0.3",
+    "@ng-dynamic-forms/core": "^12.0.0",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^4.0.0"
   },
