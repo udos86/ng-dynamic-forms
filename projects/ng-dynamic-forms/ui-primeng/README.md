@@ -69,5 +69,5 @@ with **`DynamicPrimeNGFormControlComponent`**:
 
 ## Resources
 
-* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/ui-primeng/)
-* [**Live Sample**](http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#primeng-sample-form) 
+* [**API Documentation**](http://ng2-dynamic-forms.udos86.de/docs/index.html#ui-modules)
+* [**Live Sample**](http://ng2-dynamic-forms.udos86.de/sample/#/primeng-sample-form) 
