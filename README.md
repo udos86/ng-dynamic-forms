@@ -1226,7 +1226,7 @@ To specify a single JSON form control model just **assign the mandatory** `type`
         "options": [
             {
                 "label": "Option 1",
-                "value": "option-1",
+                "value": "option-1"
             },
             {
                 "label": "Option 2",
