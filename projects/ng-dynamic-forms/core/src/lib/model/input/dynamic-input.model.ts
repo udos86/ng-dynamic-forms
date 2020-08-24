@@ -84,6 +84,10 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         return isObservable(this.list$);
     }
 
+    get list(): any[] | Observable<any[]> | null {
+        return this._list
+    }
+
     set list(list: any[] | Observable<any[]> | null) {
 
         if (Array.isArray(list)) {
