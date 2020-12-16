@@ -68,7 +68,7 @@
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
     "@fullcalendar/core": "^4.4.2",
-    "@ionic/angular": "^5.2.3",
+    "@ionic/angular": "^5.5.2",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@progress/kendo-angular-common": "^1.2.4",
     "@progress/kendo-angular-dateinputs": "^4.4.1",
