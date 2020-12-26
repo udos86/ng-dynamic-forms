@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-material",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "description": "Material UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -29,8 +29,8 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/material": "^10.0.0",
-    "@ng-dynamic-forms/core": "^12.0.0",
+    "@angular/material": "^11.0.0",
+    "@ng-dynamic-forms/core": "^13.0.0",
     "angular2-text-mask": "^9.0.0"
   },
   "es2015": "./fesm2015/ui-material.js",
