@@ -1,4 +1,4 @@
-import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -17,7 +17,7 @@ describe("DynamicFoundationInputComponent test suite", () => {
         debugElement: DebugElement,
         testElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
 

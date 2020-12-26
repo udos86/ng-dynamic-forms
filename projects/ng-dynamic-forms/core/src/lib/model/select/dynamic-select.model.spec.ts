@@ -1,4 +1,4 @@
-import { async } from "@angular/core/testing";
+import { waitForAsync } from "@angular/core/testing";
 import { Observable } from "rxjs";
 import { DYNAMIC_FORM_CONTROL_TYPE_SELECT, DynamicSelectModel } from "./dynamic-select.model";
 
@@ -49,7 +49,7 @@ describe("DynamicSelectModel test suite", () => {
         expect(model.get(0).text).toEqual("Eins");
     });
 
-    it("should correctly create options Observable", async(() => {
+    it("should correctly create options Observable", waitForAsync(() => {
 
         model.options$.subscribe(options => {
             expect(options.length).toBe(config.options.length);

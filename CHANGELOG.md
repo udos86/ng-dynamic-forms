@@ -1,3 +1,11 @@
+# 13.0.0
+
+### **Features**
+
+* Support for Angular 11
+
+***
+
 # 12.0.0
 
 ### **Features**

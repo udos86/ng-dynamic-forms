@@ -1,5 +1,5 @@
 import { DebugElement, SimpleChange } from "@angular/core";
-import { TestBed, async, inject, ComponentFixture } from "@angular/core/testing";
+import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -86,7 +86,7 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
         debugElement: DebugElement,
         testElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
 
         TestBed.overrideModule(BrowserDynamicTestingModule, {
 
