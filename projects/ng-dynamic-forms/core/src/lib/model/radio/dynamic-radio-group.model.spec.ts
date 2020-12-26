@@ -1,4 +1,4 @@
-import { async } from "@angular/core/testing";
+import { waitForAsync } from "@angular/core/testing";
 import { isObservable, of } from "rxjs";
 import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel } from "./dynamic-radio-group.model";
 
@@ -37,7 +37,7 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.valueChanges).toBeDefined();
     });
 
-    it("should select the correct option", async(() => {
+    it("should select the correct option", waitForAsync(() => {
 
         model.options$.subscribe(() => {
 
@@ -47,14 +47,14 @@ describe("DynamicRadioModel test suite", () => {
         });
     }));
 
-    it("should correctly create options Observable", async(() => {
+    it("should correctly create options Observable", waitForAsync(() => {
 
         model.options$.subscribe(options => {
             expect(options.length).toBe(2);
         });
     }));
 
-    it("should insert another option", async(() => {
+    it("should insert another option", waitForAsync(() => {
 
         let option = {label: "test option", value: "test-option"},
             index = 1;
@@ -68,7 +68,7 @@ describe("DynamicRadioModel test suite", () => {
         });
     }));
 
-    it("should remove a given option correctly", async(() => {
+    it("should remove a given option correctly", waitForAsync(() => {
 
         model.options$.subscribe(() => {
 
@@ -84,7 +84,7 @@ describe("DynamicRadioModel test suite", () => {
         expect(model.get(1)).toEqual(model.options[1]);
     });
 
-    it("should make options Observable deliver an empty array when options are set to non-expected value", async(() => {
+    it("should make options Observable deliver an empty array when options are set to non-expected value", waitForAsync(() => {
 
         model.options = null;
 
