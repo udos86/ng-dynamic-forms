@@ -35,7 +35,8 @@ import {
     DynamicFormLayoutService,
     DynamicFormRelationService,
     DynamicFormValidationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DynamicFormDataService,
 } from "@ng-dynamic-forms/core";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
@@ -83,9 +84,10 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
-                protected relationService: DynamicFormRelationService) {
+                protected relationService: DynamicFormRelationService,
+                protected dataService: DynamicFormDataService) {
 
-        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService, dataService);
     }
 }
 

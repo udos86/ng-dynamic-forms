@@ -35,10 +35,14 @@ export class DynamicNGBootstrapFormComponent extends DynamicFormComponent {
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
     @Output() ngbEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
-
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
 
     @ViewChildren(DynamicNGBootstrapFormControlContainerComponent) components: QueryList<DynamicNGBootstrapFormControlContainerComponent>;
+
+    get templates(): QueryList<DynamicTemplateDirective> | undefined {
+      return this.inputTemplateList !== undefined ? this.inputTemplateList : this.contentTemplateList;
+    }
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentService: DynamicFormComponentService) {

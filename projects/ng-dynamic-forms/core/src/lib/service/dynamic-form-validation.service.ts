@@ -5,20 +5,27 @@ import {
     ValidatorFn,
     Validators,
     NG_VALIDATORS,
-    NG_ASYNC_VALIDATORS
+    NG_ASYNC_VALIDATORS,
 } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import {
     DynamicFormHook,
     DynamicValidatorDescriptor,
-    DynamicValidatorsConfig
+    DynamicValidatorsConfig,
 } from "../model/misc/dynamic-form-control-validation.model";
 import { isObject, isString } from "../utils/core.utils";
-import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory, ValidatorsToken } from "./dynamic-form-validators";
+import {
+  DYNAMIC_VALIDATORS,
+  DYNAMIC_GLOBAL_ERROR_MESSAGES,
+  Validator,
+  ValidatorFactory,
+  ValidatorsToken,
+  ValidatorErrorMessagesMap,
+} from "./dynamic-form-validators";
 import {
     DEFAULT_ERROR_STATE_MATCHER,
     DYNAMIC_ERROR_MESSAGES_MATCHER,
-    DynamicErrorMessagesMatcher
+    DynamicErrorMessagesMatcher,
 } from "./dynamic-form-validation-matchers";
 
 @Injectable({
@@ -29,7 +36,8 @@ export class DynamicFormValidationService {
     constructor(@Optional() @Inject(NG_VALIDATORS) private _NG_VALIDATORS: ValidatorFn[],
                 @Optional() @Inject(NG_ASYNC_VALIDATORS) private _NG_ASYNC_VALIDATORS: AsyncValidatorFn[],
                 @Optional() @Inject(DYNAMIC_VALIDATORS) private _DYNAMIC_VALIDATORS: Map<string, Validator | ValidatorFactory>,
-                @Optional() @Inject(DYNAMIC_ERROR_MESSAGES_MATCHER) private _DYNAMIC_ERROR_MESSAGES_MATCHER: DynamicErrorMessagesMatcher) {
+                @Optional() @Inject(DYNAMIC_ERROR_MESSAGES_MATCHER) private _DYNAMIC_ERROR_MESSAGES_MATCHER: DynamicErrorMessagesMatcher,
+                @Optional() @Inject(DYNAMIC_GLOBAL_ERROR_MESSAGES) private _DYNAMIC_GLOBAL_ERROR_MESSAGES: ValidatorErrorMessagesMap) {
     }
 
     private getValidatorFn(validatorName: string, validatorArgs: any = null,
@@ -169,7 +177,11 @@ export class DynamicFormValidationService {
 
         if (model.hasErrorMessages) {
 
-            const messagesConfig = model.errorMessages as DynamicValidatorsConfig;
+            const messagesConfig = <DynamicValidatorsConfig> Object.assign(
+              {},
+              this._DYNAMIC_GLOBAL_ERROR_MESSAGES || {},
+              model.errorMessages
+            );
 
             Object.keys(control.errors || {}).forEach(validationErrorKey => {
 
@@ -179,12 +191,15 @@ export class DynamicFormValidationService {
                     messageKey = messageKey.replace("length", "Length");
                 }
 
-                if (messagesConfig.hasOwnProperty(messageKey)) {
+                if (messagesConfig.hasOwnProperty(messageKey) || messagesConfig.hasOwnProperty('*')) {
+                  const messageTemplate = messagesConfig[messageKey] || messagesConfig['*'];
+                  const validationError = control.getError(validationErrorKey);
 
-                    const validationError = control.getError(validationErrorKey);
-                    const messageTemplate = messagesConfig[messageKey] as string;
-
+                  if (typeof (messageTemplate) === 'function') {
+                    messages.push(messageTemplate(model, validationError));
+                  } else {
                     messages.push(this.parseErrorMessageConfig(messageTemplate, model, validationError));
+                  }
                 }
             });
         }

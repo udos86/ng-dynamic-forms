@@ -33,7 +33,8 @@ import {
     DynamicFormLayoutService,
     DynamicFormRelationService,
     DynamicFormValidationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DynamicFormDataService,
 } from "@ng-dynamic-forms/core";
 import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
 import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
@@ -72,9 +73,10 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
-                protected relationService: DynamicFormRelationService) {
+                protected relationService: DynamicFormRelationService,
+                protected dataService: DynamicFormDataService) {
 
-        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService, dataService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

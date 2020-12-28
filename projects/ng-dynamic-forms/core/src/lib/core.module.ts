@@ -8,6 +8,7 @@ import { DynamicFormLayoutService } from "./service/dynamic-form-layout.service"
 import { DynamicFormValidationService } from "./service/dynamic-form-validation.service";
 import { DynamicFormComponentService } from "./service/dynamic-form-component.service";
 import { DynamicFormRelationService } from "./service/dynamic-form-relation.service";
+import { DynamicFormDataService } from './service/dynamic-form-data.service';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ export class DynamicFormsCoreModule {
                 DynamicFormLayoutService,
                 DynamicFormValidationService,
                 DynamicFormComponentService,
-                DynamicFormRelationService
+                DynamicFormRelationService,
+                DynamicFormDataService,
             ]
         };
     }

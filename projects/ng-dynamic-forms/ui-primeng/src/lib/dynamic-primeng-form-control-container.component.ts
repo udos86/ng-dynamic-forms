@@ -37,6 +37,7 @@ import {
     DynamicFormControlContainerComponent,
     DynamicFormControlEvent,
     DynamicFormControlModel,
+    DynamicFormDataService,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormRelationService,
@@ -94,9 +95,10 @@ export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormCont
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
-                protected relationService: DynamicFormRelationService) {
+                protected relationService: DynamicFormRelationService,
+                protected dataService: DynamicFormDataService) {
 
-        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService, dataService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

@@ -45,7 +45,8 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicTemplateDirective,
-    isString
+    isString,
+    DynamicFormDataService,
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoAutoCompleteComponent } from "./autocomplete/dynamic-kendo-autocomplete.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
@@ -97,9 +98,10 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
                 protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
-                protected relationService: DynamicFormRelationService) {
+                protected relationService: DynamicFormRelationService,
+                protected dataService: DynamicFormDataService) {
 
-        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
+        super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService, dataService);
     }
 
     get componentType(): Type<DynamicFormControl> | null {

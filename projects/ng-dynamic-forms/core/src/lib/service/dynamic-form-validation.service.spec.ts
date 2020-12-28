@@ -1,7 +1,11 @@
 import { TestBed, inject } from "@angular/core/testing";
 import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, ValidationErrors, Validators } from "@angular/forms";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
-import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "./dynamic-form-validators";
+import {
+  DYNAMIC_GLOBAL_ERROR_MESSAGES, DYNAMIC_VALIDATORS,
+  Validator, ValidatorErrorMessageFn,
+  ValidatorFactory,
+} from "./dynamic-form-validators";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicInputModel } from "../model/input/dynamic-input.model";
 import { isFunction } from "../utils/core.utils";
@@ -45,6 +49,14 @@ describe("DynamicFormValidationService test suite", () => {
                     useValue: new Map<string, Validator | ValidatorFactory>([
                         ["testValidatorFactory", testValidatorFactory]
                     ])
+                },
+                {
+                    provide: DYNAMIC_GLOBAL_ERROR_MESSAGES,
+                    useValue:  new Map<string, string | ValidatorErrorMessageFn>([
+                      ['testDynamicError', 'this is a test'],
+                      ['testFunc', (model: DynamicFormControlModel, error: string) => error],
+                      ['*', 'this is a catch-all'],
+                    ]),
                 }
             ]
         });
@@ -163,7 +175,9 @@ describe("DynamicFormValidationService test suite", () => {
                 required: "Field is required",
                 minLength: "Field must contain at least {{ minLength }} characters",
                 custom1: "Field {{ id }} has a custom error",
-                custom2: "Field has a custom error: {{ validator.param }}"
+                custom2: "Field has a custom error: {{ validator.param }}",
+                customFunc: (model: DynamicFormControlModel, error: string) => error,
+                '*': 'catch-all',
             }
         });
 
@@ -190,6 +204,18 @@ describe("DynamicFormValidationService test suite", () => {
         errorMessages = service.createErrorMessages(testControl, testModel);
         expect(errorMessages.length).toBe(1);
         expect(errorMessages[0]).toEqual("Field has a custom error: 42");
+
+        testControl.setErrors({customFunc: 'error message'});
+
+        errorMessages = service.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(1);
+        expect(errorMessages[0]).toEqual("error message");
+
+        testControl.setErrors({unknownToken: true});
+
+        errorMessages = service.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(1);
+        expect(errorMessages[0]).toEqual("catch-all");
     });
 
 
@@ -223,4 +249,70 @@ describe("DynamicFormValidationService test suite", () => {
         expect(service.isFormHook("change")).toBe(true);
         expect(service.isFormHook("submit")).toBe(true);
     });
+
+  it("can create global error messages", () => {
+    inject([DynamicFormValidationService],
+      (validationService: DynamicFormValidationService) => {
+        const testControl: FormControl = new FormControl();
+        const testModel: DynamicFormControlModel = new DynamicInputModel({
+          id: "testModel",
+          minLength: 5,
+        });
+
+        let errorMessages;
+
+        errorMessages = validationService.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(0);
+
+        testControl.setErrors({testDynamicError: true});
+
+        errorMessages = validationService.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(1);
+        expect(errorMessages[0]).toEqual("this is a test");
+      });
+  });
+
+  it("error messages can be functions", () => {
+    inject([DynamicFormValidationService],
+      (validationService: DynamicFormValidationService) => {
+        const testControl: FormControl = new FormControl();
+        const testModel: DynamicFormControlModel = new DynamicInputModel({
+          id: "testModel",
+          minLength: 5,
+        });
+
+        let errorMessages;
+
+        errorMessages = validationService.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(0);
+
+        testControl.setErrors({testFunc: 'this should echo'});
+
+        errorMessages = validationService.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(1);
+        expect(errorMessages[0]).toEqual("this should echo");
+      });
+  });
+
+  it("error messages can be catch-alls", () => {
+    inject([DynamicFormValidationService],
+      (validationService: DynamicFormValidationService) => {
+        const testControl: FormControl = new FormControl();
+        const testModel: DynamicFormControlModel = new DynamicInputModel({
+          id: "testModel",
+          minLength: 5,
+        });
+
+        let errorMessages;
+
+        errorMessages = service.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(0);
+
+        testControl.setErrors({unknown: 'this should not echo'});
+
+        errorMessages = service.createErrorMessages(testControl, testModel);
+        expect(errorMessages.length).toBe(1);
+        expect(errorMessages[0]).toEqual("this is a catch-all");
+      });
+  });
 });
