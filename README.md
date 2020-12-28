@@ -1071,6 +1071,17 @@ export const DEFAULT_ERROR_STATE_MATCHER: DynamicErrorMessagesMatcher =
     };
 ```
 
+You can also set an error matcher on a per control basis by assigning it under the `additional` field:
+```ts
+new DynamicInputModel({
+    id: "sampleInput",
+    label: "Sample Input",
+    additional: {
+        errorStateMatcher: myCustomErrorMessagesMatcher
+    }
+})
+```
+
 Please note here that NG Dynamic Forms always assumes both the control being invalid and error messages being defined on the model 
 as a fixed precondition.
 

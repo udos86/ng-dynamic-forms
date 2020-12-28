@@ -136,14 +136,18 @@ export class DynamicFormValidationService {
         control.updateValueAndValidity();
     }
 
-    showErrorMessages(control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean): boolean {
+  showErrorMessages(control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean): boolean {
+    const precondition = control.invalid && model.hasErrorMessages;
 
-        const precondition = control.invalid && model.hasErrorMessages;
-        const matcher = this._DYNAMIC_ERROR_MESSAGES_MATCHER ? this._DYNAMIC_ERROR_MESSAGES_MATCHER(control, model, hasFocus) :
-            DEFAULT_ERROR_STATE_MATCHER(control, model, hasFocus);
+    const matcher =
+      model["getAdditional"] !== undefined && model["getAdditional"]("errorStateMatcher")
+        ? model["getAdditional"]("errorStateMatcher")
+        : this._DYNAMIC_ERROR_MESSAGES_MATCHER
+        ? this._DYNAMIC_ERROR_MESSAGES_MATCHER
+        : DEFAULT_ERROR_STATE_MATCHER;
 
-        return precondition && matcher;
-    }
+    return precondition && matcher(control, model, hasFocus);
+  }
 
     parseErrorMessageConfig(template: string, model: DynamicFormControlModel, error: any = null): string {
 
