@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@
 import { DynamicPrimeNGInputMaskComponent } from "./dynamic-primeng-input-mask.component";
 
 describe("DynamicPrimeNGInputMaskComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", mask: "+(99) 999-9999"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", mask: "+(99) 999-9999",}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGInputMaskComponent>,
-        component: DynamicPrimeNGInputMaskComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGInputMaskComponent>;
+    let component: DynamicPrimeNGInputMaskComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -32,7 +30,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
             declarations: [DynamicPrimeNGInputMaskComponent]
 
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGInputMaskComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +38,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +49,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -75,12 +70,10 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
     });
 
     it("should have an p-inputMask element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +82,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +90,6 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

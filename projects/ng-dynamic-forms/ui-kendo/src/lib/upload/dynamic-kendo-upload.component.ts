@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@a
 import { FormGroup } from "@angular/forms";
 import { UploadComponent } from "@progress/kendo-angular-upload";
 import {
-    DynamicFileUploadModel, DynamicFormControlCustomEvent, DynamicFormControlLayout,
+    DynamicFileUploadModel,
+    DynamicFormControlCustomEvent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -16,25 +18,22 @@ import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-f
     templateUrl: "./dynamic-kendo-upload.component.html"
 })
 export class DynamicKendoUploadComponent extends DynamicKendoFormControlWithTemplateComponent {
-
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicFileUploadModel;
-    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFileUploadModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoUpload", { static: true }) kendoUpload: UploadComponent;
+    @ViewChild("kendoUpload", {static: true}) kendoUpload!: UploadComponent;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 

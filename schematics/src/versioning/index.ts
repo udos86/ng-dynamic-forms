@@ -18,7 +18,6 @@ const PACKAGE_PATHS = [
 ];
 
 enum Increment {
-
     Major = "Major",
     Minor = "Minor",
     Patch = "Patch"
@@ -26,24 +25,26 @@ enum Increment {
 
 /*
 enum Dependencies {
-
     Dependency = "dependencies",
     DevDependency = "devDependencies",
     PeerDepdency = "peerDependencies"
 }
 */
-export default function(options: any): Rule {
 
+interface PackageJson {
+    version: string;
+    dependencies: { [packageName: string]: string };
+    peerDependencies: { [packageName: string]: string };
+}
+
+export default function(options: any): Rule {
     const {increment} = options;
 
     return chain([
-
         (tree: Tree, _context: SchematicContext) => {
-
             const currentVersion = getCurrentVersion(tree);
 
             if (currentVersion !== null) {
-
                 const newVersion = getNewVersion(currentVersion, increment);
                 console.log(`New Version is ${newVersion}`);
 
@@ -54,23 +55,20 @@ export default function(options: any): Rule {
 }
 
 function setVersion(tree: Tree, version: string, projectPath: string) {
-
     const paths = [`${projectPath}/package.json`, `${projectPath}/package-lock.json`];
 
     paths.forEach(path => {
 
         if (tree.exists(path)) {
-
             const file = tree.read(path);
 
             if (file !== null) {
+                const json: PackageJson = JSON.parse(file.toString("utf-8"));
 
-                const json = JSON.parse(file.toString("utf-8"));
+                json.version = version;
 
-                json["version"] = version;
-
-                if (json["peerDependencies"] && json["peerDependencies"]["@ng-dynamic-forms/core"] !== undefined) {
-                    json["peerDependencies"]["@ng-dynamic-forms/core"] = `^${version}`;
+                if (json.peerDependencies && json.peerDependencies["@ng-dynamic-forms/core"] !== undefined) {
+                    json.peerDependencies["@ng-dynamic-forms/core"] = `^${version}`;
                 }
 
                 tree.overwrite(path, JSON.stringify(json, null, 2));
@@ -80,8 +78,7 @@ function setVersion(tree: Tree, version: string, projectPath: string) {
 }
 
 function getNewVersion(currentVersion: string, increment: Increment): string {
-
-    let [major, minor, patch] = currentVersion.split(".").map(increment => parseInt(increment));
+    let [major, minor, patch] = currentVersion.split(".").map(currentIncrement => parseInt(currentIncrement, 10));
 
     switch (increment) {
 
@@ -105,18 +102,14 @@ function getNewVersion(currentVersion: string, increment: Increment): string {
 }
 
 function getCurrentVersion(tree: Tree): string | null {
-
     const path = "./package.json";
 
     if (tree.exists(path)) {
-
         const file = tree.read(path);
 
         if (file !== null) {
-
-            const json = JSON.parse(file.toString("utf-8"));
-
-            return json["version"];
+            const json: PackageJson = JSON.parse(file.toString("utf-8"));
+            return json.version;
         }
     }
 

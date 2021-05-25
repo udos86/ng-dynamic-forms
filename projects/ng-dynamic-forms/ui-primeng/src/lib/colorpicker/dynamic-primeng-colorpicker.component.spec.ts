@@ -9,19 +9,17 @@ import { DynamicColorPickerModel, DynamicFormsCoreModule, DynamicFormService } f
 import { DynamicPrimeNGColorPickerComponent } from "./dynamic-primeng-colorpicker.component";
 
 describe("DynamicPrimeNGColorPickerComponent test suite", () => {
+    const testModel = new DynamicColorPickerModel({id: "colorpicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicColorPickerModel({id: "colorpicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGColorPickerComponent>,
-        component: DynamicPrimeNGColorPickerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGColorPickerComponent>;
+    let component: DynamicPrimeNGColorPickerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGColorPickerComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGColorPickerComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicColorPickerModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
     });
 
     it("should have an p-colorPicker element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

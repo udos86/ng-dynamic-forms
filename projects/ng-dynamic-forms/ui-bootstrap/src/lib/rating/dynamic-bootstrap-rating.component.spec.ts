@@ -9,19 +9,17 @@ import { RatingModule } from "ngx-bootstrap/rating";
 import { DynamicBootstrapRatingComponent } from "./dynamic-bootstrap-rating.component";
 
 describe("DynamicBootstrapRatingComponent test suite", () => {
+    const testModel = new DynamicRatingModel({id: "rating"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicRatingModel({id: "rating"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBootstrapRatingComponent>,
-        component: DynamicBootstrapRatingComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicBootstrapRatingComponent>;
+    let component: DynamicBootstrapRatingComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicBootstrapRatingComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicBootstrapRatingComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRatingModel).toBe(true);
@@ -73,12 +67,10 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
     });
 
     it("should have an rating element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -87,7 +79,6 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -96,7 +87,6 @@ describe("DynamicBootstrapRatingComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

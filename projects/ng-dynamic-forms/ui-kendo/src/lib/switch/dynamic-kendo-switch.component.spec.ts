@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "
 import { DynamicKendoSwitchComponent } from "./dynamic-kendo-switch.component";
 
 describe("DynamicKendoSwitchComponent test suite", () => {
+    const testModel = new DynamicSwitchModel({id: "switch"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSwitchModel({id: "switch"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoSwitchComponent>,
-        component: DynamicKendoSwitchComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoSwitchComponent>;
+    let component: DynamicKendoSwitchComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicKendoSwitchComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoSwitchComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoSwitchComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicKendoSwitchComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicKendoSwitchComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicKendoSwitchComponent test suite", () => {
     });
 
     it("should have an kendo-switch element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicKendoSwitchComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicKendoSwitchComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

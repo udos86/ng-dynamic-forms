@@ -1,5 +1,4 @@
 export interface DynamicFormControlCondition {
-
     id?: string;
     rootPath?: string;
     status?: string;
@@ -7,7 +6,6 @@ export interface DynamicFormControlCondition {
 }
 
 export interface DynamicFormControlRelation {
-
     match: string;
     operator?: string;
     when: DynamicFormControlCondition[];

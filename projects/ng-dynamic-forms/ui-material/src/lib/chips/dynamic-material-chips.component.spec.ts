@@ -13,24 +13,22 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@
 import { DynamicMaterialChipsComponent } from "./dynamic-material-chips.component";
 
 describe("DynamicMaterialChipsComponent test suite", () => {
+    const testModel = new DynamicInputModel({
+        id: "input",
+        multiple: true,
+        list: ["Four", "Five", "Six"],
+        value: ["One", "Two", "Three"]
+    });
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({
-            id: "input",
-            multiple: true,
-            list: ["Four", "Five", "Six"],
-            value: ["One", "Two", "Three"]
-        }),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialChipsComponent>,
-        component: DynamicMaterialChipsComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialChipsComponent>;
+    let component: DynamicMaterialChipsComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -42,9 +40,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialChipsComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialChipsComponent);
 
             component = fixture.componentInstance;
@@ -53,7 +49,6 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -65,7 +60,6 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -89,12 +83,10 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     });
 
     it("should have an mat-chip-list element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -103,7 +95,6 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -112,7 +103,6 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -121,7 +111,6 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");
@@ -130,10 +119,9 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     });
 
     it("should add a chip to chip list on input token end", () => {
-
-        let value = "Test",
-            length = component.chips.length,
-            $event = {input: document.createElement("input"), value};
+        const value = "Test";
+        const length = component.chips.length;
+        const $event = {input: document.createElement("input"), value};
 
         component.onChipInputTokenEnd($event as MatChipInputEvent);
 
@@ -142,10 +130,9 @@ describe("DynamicMaterialChipsComponent test suite", () => {
     });
 
     it("should add a chip to chip list on chip selected from autocomplete panel", () => {
-
-        let value = "Test",
-            length = component.chips.length,
-            $event = new MatAutocompleteSelectedEvent(component.matAutocomplete, {value} as MatOption);
+        const value = "Test";
+        const length = component.chips.length;
+        const $event = new MatAutocompleteSelectedEvent(component.matAutocomplete, {value} as MatOption);
 
         component.onChipSelected($event);
 
@@ -155,8 +142,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
 
 
     it("should remove a chip from chip list", () => {
-
-        let length = component.chips.length;
+        const length = component.chips.length;
 
         component.onChipRemoved("One", 0);
 

@@ -1,16 +1,14 @@
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function customValidator(control: AbstractControl): ValidationErrors | null {
-
     const hasError = control.value ? (control.value as string).startsWith("abc") : false;
 
     return hasError ? {customValidator: true} : null;
 }
 
-export function customDateRangeValidator(group: FormGroup): ValidationErrors | null {
-
-    const dateArrival = group.get("arrivalDate").value as Date;
-    const dateDeparture = group.get("departureDate").value as Date;
+export function customDateRangeValidator(control: AbstractControl): ValidationErrors | null {
+    const dateArrival = control.get("arrivalDate")?.value as Date;
+    const dateDeparture = control.get("departureDate")?.value as Date;
 
     let hasError = false;
 
@@ -22,7 +20,6 @@ export function customDateRangeValidator(group: FormGroup): ValidationErrors | n
 }
 
 export function customForbiddenValidator(forbiddenValue: string): ValidatorFn {
-
     return (control: AbstractControl): ValidationErrors | null => {
 
         if (control && control.value === forbiddenValue) {
@@ -33,10 +30,8 @@ export function customForbiddenValidator(forbiddenValue: string): ValidatorFn {
     };
 }
 
-export function customAsyncFormGroupValidator(_formGroup: FormGroup): Promise<ValidationErrors | null> {
-
+export function customAsyncFormGroupValidator(_control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise((resolve, _reject) => {
-        console.log("async validation");
         resolve(null);
     });
 }

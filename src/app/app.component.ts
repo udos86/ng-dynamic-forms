@@ -7,14 +7,11 @@ import { Router, NavigationEnd } from "@angular/router";
     selector: "app-root",
     templateUrl: "./app.component.html"
 })
-
 export class AppComponent {
-
     routeData: any = {};
     url: string;
 
     constructor(/*private mockBackend: MockBackend,*/ private router: Router) {
-
         /*
         this.mockBackend.connections.subscribe((connection: any) => {
 
@@ -33,14 +30,12 @@ export class AppComponent {
         */
 
         this.router.events.subscribe(event => {
-
             if (event instanceof NavigationEnd) {
-
                 if (this.url !== "/" && this.url !== event.url) {
                     location.reload(true); // reload to avoid CSS side effects // DON'T DO this in production !!!
 
                 } else {
-                    this.routeData = this.router.routerState.snapshot.root.firstChild.data;
+                    this.routeData = this.router.routerState.snapshot.root.firstChild?.data;
                     this.url = event.urlAfterRedirects;
                 }
             }

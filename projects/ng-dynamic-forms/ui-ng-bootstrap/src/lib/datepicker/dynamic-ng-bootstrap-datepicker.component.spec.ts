@@ -9,19 +9,17 @@ import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } fr
 import { DynamicNGBootstrapDatePickerComponent } from "./dynamic-ng-bootstrap-datepicker.component";
 
 describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
+    const testModel = new DynamicDatePickerModel({id: "datepicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicDatePickerModel({id: "datepicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapDatePickerComponent>,
-        component: DynamicNGBootstrapDatePickerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapDatePickerComponent>;
+    let component: DynamicNGBootstrapDatePickerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapDatePickerComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapDatePickerComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,11 +48,10 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
-        //expect(component.ngbDatePicker instanceof NgbDatepicker).toBe(true);
+        // expect(component.ngbDatePicker instanceof NgbDatepicker).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
@@ -74,12 +68,10 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
     });
 
     it("should have an input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

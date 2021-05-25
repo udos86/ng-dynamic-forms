@@ -8,12 +8,9 @@ import {
 } from "@ng-dynamic-forms/core";
 
 export abstract class DynamicMaterialFormInputControlComponent extends DynamicFormControlComponent {
+    matInput!: MatInput;
 
-    matInput: MatInput | undefined;
-
-    protected constructor(protected layoutService: DynamicFormLayoutService,
-                          protected validationService: DynamicFormValidationService) {
-
+    protected constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 

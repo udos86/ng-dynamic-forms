@@ -5,7 +5,6 @@ import { serializable } from "../decorator/serializable.decorator";
 export type DynamicDateControlValue = string | object | Date;
 
 export interface DynamicDateControlModelConfig extends DynamicFormValueControlModelConfig<DynamicDateControlValue> {
-
     format?: string;
     max?: DynamicDateControlValue;
     min?: DynamicDateControlValue;
@@ -13,14 +12,12 @@ export interface DynamicDateControlModelConfig extends DynamicFormValueControlMo
 }
 
 export abstract class DynamicDateControlModel extends DynamicFormValueControlModel<DynamicDateControlValue> {
-
     @serializable() format: string | null;
     @serializable() max: DynamicDateControlValue | null;
     @serializable() min: DynamicDateControlValue | null;
     @serializable() placeholder: string | null;
 
     protected constructor(config: DynamicDateControlModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.format = config.format ?? null;

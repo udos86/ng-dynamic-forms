@@ -10,17 +10,16 @@ import { DynamicFormComponentService } from "../service/dynamic-form-component.s
 
 @Directive()
 export abstract class DynamicFormComponent implements OnInit, OnDestroy {
+    group!: FormGroup;
+    model!: DynamicFormModel;
+    layout?: DynamicFormLayout;
 
-    group: FormGroup;
-    model: DynamicFormModel;
-    layout: DynamicFormLayout;
+    components!: QueryList<DynamicFormControlContainerComponent>;
+    templates!: QueryList<DynamicTemplateDirective>;
 
-    components: QueryList<DynamicFormControlContainerComponent>;
-    templates: QueryList<DynamicTemplateDirective>;
-
-    blur: EventEmitter<DynamicFormControlEvent>;
-    change: EventEmitter<DynamicFormControlEvent>;
-    focus: EventEmitter<DynamicFormControlEvent>;
+    blur?: EventEmitter<DynamicFormControlEvent>;
+    change?: EventEmitter<DynamicFormControlEvent>;
+    focus?: EventEmitter<DynamicFormControlEvent>;
 
     protected constructor(protected changeDetectorRef: ChangeDetectorRef,
                           protected componentService: DynamicFormComponentService) {
@@ -51,15 +50,15 @@ export abstract class DynamicFormComponent implements OnInit, OnDestroy {
     }
 
     onBlur($event: DynamicFormControlEvent) {
-        this.blur.emit($event);
+        this.blur?.emit($event);
     }
 
     onChange($event: DynamicFormControlEvent) {
-        this.change.emit($event);
+        this.change?.emit($event);
     }
 
     onFocus($event: DynamicFormControlEvent) {
-        this.focus.emit($event);
+        this.focus?.emit($event);
     }
 
     onCustomEvent($event: DynamicFormControlEvent, customEventEmitter: EventEmitter<DynamicFormControlEvent>) {

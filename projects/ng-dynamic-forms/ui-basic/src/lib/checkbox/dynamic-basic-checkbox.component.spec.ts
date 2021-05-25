@@ -8,19 +8,17 @@ import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from
 import { DynamicBasicCheckboxComponent } from "./dynamic-basic-checkbox.component";
 
 describe("DynamicBasicCheckboxComponent test suite", () => {
+    const testModel = new DynamicCheckboxModel({id: "checkbox"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicCheckboxModel({id: "checkbox"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicCheckboxComponent>,
-        component: DynamicBasicCheckboxComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicBasicCheckboxComponent>;
+    let component: DynamicBasicCheckboxComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,7 +28,6 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
             declarations: [DynamicBasicCheckboxComponent]
 
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicBasicCheckboxComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +36,6 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +47,6 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);
@@ -71,12 +66,10 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
     });
 
     it("should have an checkbox element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -86,7 +79,6 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -95,7 +87,6 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

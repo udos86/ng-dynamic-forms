@@ -18,19 +18,18 @@ import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-fo
     templateUrl: "./dynamic-material-input.component.html"
 })
 export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicInputModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicInputModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matAutocomplete", {static: true}) matAutocomplete: MatAutocomplete;
-    @ViewChild(MatInput, {static: true}) matInput: MatInput;
+    @ViewChild("matAutocomplete", {static: true}) matAutocomplete!: MatAutocomplete;
+    @ViewChild(MatInput, {static: true}) matInput!: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
@@ -38,7 +37,6 @@ export class DynamicMaterialInputComponent extends DynamicMaterialFormInputContr
                 @Inject(MAT_AUTOCOMPLETE_DEFAULT_OPTIONS) public AUTOCOMPLETE_OPTIONS: MatAutocompleteDefaultOptions,
                 @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) @Optional() public FORM_FIELD_OPTIONS: MatFormFieldDefaultOptions,
                 @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() public RIPPLE_OPTIONS: RippleGlobalOptions) {
-
         super(layoutService, validationService);
     }
 }

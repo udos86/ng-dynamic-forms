@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from
 import { DynamicIonicTextAreaComponent } from "./dynamic-ionic-textarea.component";
 
 describe("DynamicIonicTextAreaComponent test suite", () => {
+    const testModel = new DynamicTextAreaModel({id: "textarea"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTextAreaModel({id: "textarea"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicTextAreaComponent>,
-        component: DynamicIonicTextAreaComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicIonicTextAreaComponent>;
+    let component: DynamicIonicTextAreaComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicTextAreaComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicIonicTextAreaComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     });
 
     it("should have an ion-textarea element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

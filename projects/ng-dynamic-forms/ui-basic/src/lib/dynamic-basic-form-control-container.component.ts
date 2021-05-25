@@ -5,12 +5,14 @@ import {
     ComponentFactoryResolver,
     ContentChildren,
     EventEmitter,
+    forwardRef,
     HostBinding,
     Input,
     Output,
     QueryList,
     Type,
     ViewChild,
+    ViewChildren,
     ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -33,15 +35,19 @@ import {
     DynamicFormLayoutService,
     DynamicFormRelationService,
     DynamicFormValidationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DynamicFormArrayComponent,
+    DynamicFormControlLayout,
+    DynamicFormArrayModel,
+    DynamicFormControlCustomEvent,
+    DynamicFormGroupComponent,
+    DynamicFormGroupModel
 } from "@ng-dynamic-forms/core";
 import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
 import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
 import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
 import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
 import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
-import { DynamicBasicFormArrayComponent } from "./form-array/dynamic-basic-form-array.component";
-import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-group.component";
 
 @Component({
     selector: "dynamic-basic-form-control",
@@ -49,23 +55,23 @@ import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBasicFormControlContainerComponent extends DynamicFormControlContainerComponent {
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-
-    @HostBinding("class") klass;
+    @HostBinding("class") klass?: string;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group: FormGroup;
-    @Input() hostClass: string[];
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicFormControlModel;
+    @Input() group!: FormGroup;
+    @Input() hostClass?: string[];
+    // tslint:disable-next-line:no-input-rename
+    @Input("templates") inputTemplateList!: QueryList<DynamicTemplateDirective>;
+    @Input() layout?: DynamicFormLayout;
+    @Input() model!: DynamicFormControlModel;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef!: ViewContainerRef;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
@@ -73,7 +79,6 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
-
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
@@ -83,7 +88,6 @@ export class DynamicBasicFormControlContainerComponent extends DynamicFormContro
 }
 
 export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
-
     switch (model.type) {
 
         case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
@@ -112,5 +116,52 @@ export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         default:
             return null;
+    }
+}
+
+@Component({
+    selector: "dynamic-basic-form-array",
+    templateUrl: "./dynamic-basic-form-array.component.html"
+})
+export class DynamicBasicFormArrayComponent extends DynamicFormArrayComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormArrayModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective>;
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(forwardRef(() => DynamicBasicFormControlContainerComponent))
+    components!: QueryList<DynamicBasicFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
+    }
+}
+
+@Component({
+    selector: "dynamic-basic-form-group",
+    templateUrl: "./dynamic-basic-form-group.component.html"
+})
+export class DynamicBasicFormGroupComponent extends DynamicFormGroupComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormGroupModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicFormControlContainerComponent) components!: QueryList<DynamicFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
     }
 }

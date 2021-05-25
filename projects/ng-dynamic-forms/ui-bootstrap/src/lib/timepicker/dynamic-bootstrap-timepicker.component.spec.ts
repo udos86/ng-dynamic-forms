@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicTimePickerModel } fr
 import { DynamicBootstrapTimePickerComponent } from "./dynamic-bootstrap-timepicker.component";
 
 describe("DynamicBootstrapTimePickerComponent test suite", () => {
+    const testModel = new DynamicTimePickerModel({id: "timepicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTimePickerModel({id: "timepicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBootstrapTimePickerComponent>,
-        component: DynamicBootstrapTimePickerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicBootstrapTimePickerComponent>;
+    let component: DynamicBootstrapTimePickerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicBootstrapTimePickerComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicBootstrapTimePickerComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTimePickerModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
     });
 
     it("should have an timepicker element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicBootstrapTimePickerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

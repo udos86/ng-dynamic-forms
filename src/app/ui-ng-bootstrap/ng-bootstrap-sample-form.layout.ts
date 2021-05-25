@@ -1,5 +1,4 @@
 export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
-
     stay: {
         element: {
             control: "form-row"

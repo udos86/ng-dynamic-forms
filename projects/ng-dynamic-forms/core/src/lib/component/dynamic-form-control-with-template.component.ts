@@ -10,9 +10,9 @@ import { DynamicFormValidationService } from "../service/dynamic-form-validation
 export abstract class DynamicFormControlWithTemplateComponent extends DynamicFormControlComponent
     implements DynamicFormControlWithTemplate, AfterViewInit {
 
-    readonly templateDirectives: Map<string, string>;
+    readonly templateDirectives!: Map<string, string>;
 
-    templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+    templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     protected constructor(protected layoutService: DynamicFormLayoutService,
                           protected validationService: DynamicFormValidationService) {
@@ -20,7 +20,6 @@ export abstract class DynamicFormControlWithTemplateComponent extends DynamicFor
     }
 
     ngAfterViewInit() {
-
         this.layoutService
             .filterTemplatesByModel(this.model, this.templates)
             .forEach(template => this.bindTemplate(template));
@@ -31,9 +30,7 @@ export abstract class DynamicFormControlWithTemplateComponent extends DynamicFor
     abstract mapTemplate(template: DynamicTemplateDirective): DynamicTemplateDirective | TemplateRef<any>;
 
     bindTemplate(template: DynamicTemplateDirective) {
-
         if (isString(template.as) && this.templateDirectives.has(template.as)) {
-
             const property = this.templateDirectives.get(template.as) as string;
 
             this.viewChild[property] = this.mapTemplate(template);

@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "
 import { DynamicIonicToggleComponent } from "./dynamic-ionic-toggle.component";
 
 describe("DynamicIonicToggleComponent test suite", () => {
+    const testModel = new DynamicSwitchModel({id: "toggle"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSwitchModel({id: "toggle"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicToggleComponent>,
-        component: DynamicIonicToggleComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicIonicToggleComponent>;
+    let component: DynamicIonicToggleComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicIonicToggleComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicToggleComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicIonicToggleComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicIonicToggleComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicIonicToggleComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicIonicToggleComponent test suite", () => {
     });
 
     it("should have an ion-toggle element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicIonicToggleComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicIonicToggleComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

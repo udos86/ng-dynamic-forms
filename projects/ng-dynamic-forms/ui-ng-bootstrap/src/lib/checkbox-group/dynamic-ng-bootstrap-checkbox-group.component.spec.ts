@@ -9,19 +9,17 @@ import { DynamicCheckboxGroupModel, DynamicFormsCoreModule, DynamicFormService }
 import { DynamicNGBootstrapCheckboxGroupComponent } from "./dynamic-ng-bootstrap-checkbox-group.component";
 
 describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
+    const testModel = new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []});
+    const formModel = [testModel];
 
-    let testModel = new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapCheckboxGroupComponent>,
-        component: DynamicNGBootstrapCheckboxGroupComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapCheckboxGroupComponent>;
+    let component: DynamicNGBootstrapCheckboxGroupComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -32,7 +30,6 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
             declarations: [DynamicNGBootstrapCheckboxGroupComponent]
 
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapCheckboxGroupComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +38,6 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +49,6 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormGroup).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxGroupModel).toBe(true);
@@ -73,12 +68,10 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
     });
 
     it("should have an div.btn-group element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -87,7 +80,6 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -96,7 +88,6 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

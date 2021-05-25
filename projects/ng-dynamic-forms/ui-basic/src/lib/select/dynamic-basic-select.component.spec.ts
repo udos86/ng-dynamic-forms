@@ -8,19 +8,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "
 import { DynamicBasicSelectComponent } from "./dynamic-basic-select.component";
 
 describe("DynamicBasicSelectComponent test suite", () => {
+    const testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicSelectComponent>,
-        component: DynamicBasicSelectComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicBasicSelectComponent>;
+    let component: DynamicBasicSelectComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -28,9 +26,7 @@ describe("DynamicBasicSelectComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicBasicSelectComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicBasicSelectComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +35,6 @@ describe("DynamicBasicSelectComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +46,6 @@ describe("DynamicBasicSelectComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
@@ -71,12 +65,10 @@ describe("DynamicBasicSelectComponent test suite", () => {
     });
 
     it("should have an select element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -86,7 +78,6 @@ describe("DynamicBasicSelectComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -95,7 +86,6 @@ describe("DynamicBasicSelectComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

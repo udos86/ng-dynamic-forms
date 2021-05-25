@@ -17,24 +17,21 @@ import { DynamicPrimeNGFormControlWithTemplateComponent } from "../dynamic-prime
     templateUrl: "./dynamic-primeng-dropdown.component.html"
 })
 export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGFormControlWithTemplateComponent {
-
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicSelectModel<string>;
-    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicSelectModel<string>;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("pDropdown", { static: true }) pDropdown: Dropdown;
+    @ViewChild("pDropdown", {static: true}) pDropdown!: Dropdown;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 

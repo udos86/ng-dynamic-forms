@@ -11,7 +11,8 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent, DynamicFormComponentService,
+    DynamicFormComponent,
+    DynamicFormComponentService,
     DynamicFormControlEvent,
     DynamicFormLayout,
     DynamicFormModel,
@@ -25,10 +26,9 @@ import { DynamicNGxBootstrapFormControlContainerComponent } from "./dynamic-ngx-
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGxBootstrapFormComponent extends DynamicFormComponent {
-
-    @Input() group: FormGroup;
-    @Input() model: DynamicFormModel;
-    @Input() layout: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() model!: DynamicFormModel;
+    @Input() layout?: DynamicFormLayout;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
@@ -36,9 +36,10 @@ export class DynamicNGxBootstrapFormComponent extends DynamicFormComponent {
 
     @Output() bsEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) templates!: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicNGxBootstrapFormControlContainerComponent) components: QueryList<DynamicNGxBootstrapFormControlContainerComponent>;
+    @ViewChildren(DynamicNGxBootstrapFormControlContainerComponent)
+    components!: QueryList<DynamicNGxBootstrapFormControlContainerComponent>;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentService: DynamicFormComponentService) {

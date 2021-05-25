@@ -11,19 +11,17 @@ import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } fr
 import { DynamicMaterialDatePickerComponent } from "./dynamic-material-datepicker.component";
 
 describe("DynamicMaterialDatePickerComponent test suite", () => {
+    const testModel = new DynamicDatePickerModel({id: "datepicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicDatePickerModel({id: "datepicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialDatePickerComponent>,
-        component: DynamicMaterialDatePickerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialDatePickerComponent>;
+    let component: DynamicMaterialDatePickerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -34,9 +32,7 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialDatePickerComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialDatePickerComponent);
 
             component = fixture.componentInstance;
@@ -45,7 +41,6 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -57,7 +52,6 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
@@ -80,12 +74,10 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
     });
 
     it("should have an mat-datepicker element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -94,7 +86,6 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -103,7 +94,6 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -112,7 +102,6 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

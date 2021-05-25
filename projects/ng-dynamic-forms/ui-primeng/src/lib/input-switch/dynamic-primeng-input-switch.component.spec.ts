@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "
 import { DynamicPrimeNGInputSwitchComponent } from "./dynamic-primeng-input-switch.component";
 
 describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
+    const testModel = new DynamicSwitchModel({id: "switch"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSwitchModel({id: "switch"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGInputSwitchComponent>,
-        component: DynamicPrimeNGInputSwitchComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGInputSwitchComponent>;
+    let component: DynamicPrimeNGInputSwitchComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGInputSwitchComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGInputSwitchComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
     });
 
     it("should have an p-inputSwitch element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

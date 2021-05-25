@@ -17,26 +17,24 @@ import {
 import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
+    formLayout?: DynamicFormLayout;
+    group!: FormGroup;
+    layout?: DynamicFormControlLayout;
+    model!: DynamicFormControlModel;
+    templates?: DynamicFormControlTemplates;
+
+    blur!: EventEmitter<any>;
+    change!: EventEmitter<any>;
+    customEvent?: EventEmitter<DynamicFormControlCustomEvent>;
+    focus!: EventEmitter<any>;
 
     private _hasFocus = false;
-
-    formLayout: DynamicFormLayout;
-    group: FormGroup;
-    layout: DynamicFormControlLayout;
-    model: DynamicFormControlModel;
-    templates: DynamicFormControlTemplates;
-
-    blur: EventEmitter<any>;
-    change: EventEmitter<any>;
-    customEvent: EventEmitter<DynamicFormControlCustomEvent>;
-    focus: EventEmitter<any>;
 
     protected constructor(protected layoutService: DynamicFormLayoutService,
                           protected validationService: DynamicFormValidationService) {
     }
 
     get control(): AbstractControl | never {
-
         const control = this.group.get(this.model.id);
 
         if (control === null) {
@@ -80,7 +78,6 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
     }
 
     onBlur($event: any) {
-
         if ($event instanceof Event) {
             $event.stopPropagation();
         }
@@ -90,7 +87,6 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
     }
 
     onChange($event: any) {
-
         if ($event instanceof Event) {
             $event.stopPropagation();
         }
@@ -99,19 +95,15 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
     }
 
     onCustomEvent($event: any, type: string | null = null, bypass: boolean = false) {
-
         if (bypass) {
-
-            this.customEvent.emit($event);
+            this.customEvent?.emit($event);
 
         } else if (isString(type)) {
-
-            this.customEvent.emit({customEvent: $event, customEventType: type});
+            this.customEvent?.emit({customEvent: $event, customEventType: type});
         }
     }
 
     onFocus($event: any) {
-
         if ($event instanceof Event) {
             $event.stopPropagation();
         }

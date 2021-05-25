@@ -8,11 +8,9 @@ export interface DynamicEditorModelConfig extends DynamicInputControlModelConfig
 }
 
 export class DynamicEditorModel extends DynamicInputControlModel<string> {
-
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_EDITOR;
 
     constructor(config: DynamicEditorModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
     }
 }

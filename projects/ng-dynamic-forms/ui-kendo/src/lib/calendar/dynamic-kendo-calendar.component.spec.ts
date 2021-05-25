@@ -9,19 +9,17 @@ import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } fr
 import { DynamicKendoCalendarComponent } from "./dynamic-kendo-calendar.component";
 
 describe("DynamicKendoCalendarComponent test suite", () => {
+    const testModel = new DynamicDatePickerModel({id: "calendar"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicDatePickerModel({id: "calendar"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoCalendarComponent>,
-        component: DynamicKendoCalendarComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoCalendarComponent>;
+    let component: DynamicKendoCalendarComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicKendoCalendarComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoCalendarComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoCalendarComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicKendoCalendarComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicKendoCalendarComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
@@ -76,12 +70,10 @@ describe("DynamicKendoCalendarComponent test suite", () => {
     });
 
     it("should have an kendo-calendar element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -90,7 +82,6 @@ describe("DynamicKendoCalendarComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -99,7 +90,6 @@ describe("DynamicKendoCalendarComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

@@ -8,19 +8,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "
 import { DynamicNGBootstrapSwitchComponent } from "./dynamic-ng-bootstrap-switch.component";
 
 describe("DynamicNGBootstrapSwitchComponent test suite", () => {
+    const testModel = new DynamicSwitchModel({id: "switch"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSwitchModel({id: "switch"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapSwitchComponent>,
-        component: DynamicNGBootstrapSwitchComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapSwitchComponent>;
+    let component: DynamicNGBootstrapSwitchComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -28,9 +26,7 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapSwitchComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapSwitchComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +35,6 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +46,6 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
@@ -71,12 +65,10 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     });
 
     it("should have an switch element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -86,7 +78,6 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -95,7 +86,6 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

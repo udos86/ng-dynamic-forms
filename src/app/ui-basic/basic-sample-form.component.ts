@@ -1,10 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, FormArray } from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormArray } from "@angular/forms";
 import {
     DynamicFormService,
-    DynamicCheckboxModel,
-    DynamicFormControlModel,
-    DynamicFormArrayModel
+    DynamicFormArrayModel,
+    DynamicFormControlEvent
 } from "@ng-dynamic-forms/core";
 import { BASIC_SAMPLE_FORM_MODEL, BASIC_SAMPLE_FORM_ARRAY_MODEL } from "./basic-sample-form.model";
 
@@ -12,39 +11,17 @@ import { BASIC_SAMPLE_FORM_MODEL, BASIC_SAMPLE_FORM_ARRAY_MODEL } from "./basic-
     selector: "dynamic-basic-sample-form",
     templateUrl: "./basic-sample-form.component.html"
 })
-export class BasicSampleFormComponent implements OnInit {
+export class BasicSampleFormComponent {
+    formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_MODEL));
+    formModel2 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_ARRAY_MODEL));
 
-    formModel1: DynamicFormControlModel[];
-    formModel2: DynamicFormControlModel[];
+    formGroup1 = this.formService.createFormGroup(this.formModel1);
+    formGroup2 = this.formService.createFormGroup(this.formModel2);
 
-    formGroup1: FormGroup;
-    formGroup2: FormGroup;
-
-    checkboxControl: FormControl;
-    checkboxModel: DynamicCheckboxModel;
-
-    arrayControl: FormArray;
-    arrayModel: DynamicFormArrayModel;
+    arrayModel = this.formService.findModelById<DynamicFormArrayModel>("basicFormArray", this.formModel2) as DynamicFormArrayModel;
+    arrayControl = this.formService.findControlByModel<FormArray>(this.arrayModel as DynamicFormArrayModel, this.formGroup2) as FormArray;
 
     constructor(private formService: DynamicFormService) {
-
-        // this.formModel1 = BASIC_SAMPLE_FORM_MODEL;
-        // this.formModel2 = BASIC_SAMPLE_FORM_ARRAY_MODEL;
-
-        this.formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_MODEL));
-        this.formModel2 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_ARRAY_MODEL));
-
-        this.formGroup1 = this.formService.createFormGroup(this.formModel1);
-        this.formGroup2 = this.formService.createFormGroup(this.formModel2);
-    }
-
-    ngOnInit() {
-
-        this.checkboxModel = this.formService.findModelById<DynamicCheckboxModel>("basicCheckbox", this.formModel1);
-        this.checkboxControl = this.formService.findControlByModel<FormControl>(this.checkboxModel, this.formGroup1);
-
-        this.arrayModel = this.formService.findModelById<DynamicFormArrayModel>("basicFormArray", this.formModel2);
-        this.arrayControl = this.formService.findControlByModel <FormArray>(this.arrayModel, this.formGroup2);
     }
 
     add() {
@@ -59,15 +36,15 @@ export class BasicSampleFormComponent implements OnInit {
         this.formService.clearFormArray(this.arrayControl, this.arrayModel);
     }
 
-    onBlur($event) {
+    onBlur($event: DynamicFormControlEvent) {
         console.log(`BLUR event on ${$event.model.id}: `, $event);
     }
 
-    onChange($event) {
+    onChange($event: DynamicFormControlEvent) {
         console.log(`CHANGE event on ${$event.model.id}: `, $event);
     }
 
-    onFocus($event) {
+    onFocus($event: DynamicFormControlEvent) {
         console.log(`FOCUS event on ${$event.model.id}: `, $event);
     }
 }

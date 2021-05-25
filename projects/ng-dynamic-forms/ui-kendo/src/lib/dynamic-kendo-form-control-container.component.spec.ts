@@ -29,15 +29,15 @@ import {
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 import {
+    DynamicKendoFormArrayComponent,
     DynamicKendoFormControlContainerComponent,
+    DynamicKendoFormGroupComponent,
     kendoUIFormControlMapFn
 } from "./dynamic-kendo-form-control-container.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
 import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
 import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
 import { DynamicKendoDropdownListComponent } from "./dropdownlist/dynamic-kendo-dropdownlist.component";
-import { DynamicKendoFormArrayComponent } from "./form-array/dynamic-kendo-form-array.component";
-import { DynamicKendoFormGroupComponent } from "./form-group/dynamic-kendo-form-group.component";
 import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
 import { DynamicKendoRadioGroupComponent } from "./radio-group/dynamic-kendo-radio-group.component";
 import { DynamicKendoSliderComponent } from "./slider/dynamic-kendo-slider.component";
@@ -47,43 +47,40 @@ import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-time
 import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.component";
 
 describe("DynamicKendoFormControlContainerComponent test suite", () => {
+    const selectModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"});
+    const formModel = [
+        new DynamicCheckboxModel({id: "checkbox"}),
+        new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+        new DynamicColorPickerModel({id: "colorpicker"}),
+        new DynamicDatePickerModel({id: "datepicker"}),
+        new DynamicEditorModel({id: "editor"}),
+        new DynamicFileUploadModel({id: "upload", url: ""}),
+        new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
+        new DynamicFormGroupModel({id: "formGroup", group: []}),
+        new DynamicInputModel({id: "input", maxLength: 51}),
+        new DynamicRadioGroupModel({id: "radioGroup"}),
+        new DynamicRatingModel({id: "rating"}),
+        selectModel,
+        new DynamicSliderModel({id: "slider"}),
+        new DynamicSwitchModel({id: "switch"}),
+        new DynamicTextAreaModel({id: "textarea"}),
+        new DynamicTimePickerModel({id: "timepicker"})
+    ];
 
-    let formModel = [
-            new DynamicCheckboxModel({id: "checkbox"}),
-            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
-            new DynamicColorPickerModel({id: "colorpicker"}),
-            new DynamicDatePickerModel({id: "datepicker"}),
-            new DynamicEditorModel({id: "editor"}),
-            new DynamicFileUploadModel({id: "upload", url: ""}),
-            new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
-            new DynamicFormGroupModel({id: "formGroup", group: []}),
-            new DynamicInputModel({id: "input", maxLength: 51}),
-            new DynamicRadioGroupModel({id: "radioGroup"}),
-            new DynamicRatingModel({id: "rating"}),
-            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
-            new DynamicSliderModel({id: "slider"}),
-            new DynamicSwitchModel({id: "switch"}),
-            new DynamicTextAreaModel({id: "textarea"}),
-            new DynamicTimePickerModel({id: "timepicker"})
-        ],
-        testModel = formModel[11],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoFormControlContainerComponent>,
-        component: DynamicKendoFormControlContainerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoFormControlContainerComponent>;
+    let component: DynamicKendoFormControlContainerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.overrideModule(BrowserDynamicTestingModule, {
-
             set: {
                 entryComponents: [DynamicKendoDropdownListComponent]
             }
         });
 
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 DateInputsModule,
@@ -93,9 +90,7 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoFormControlContainerComponent, DynamicKendoDropdownListComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoFormControlContainerComponent);
 
             component = fixture.componentInstance;
@@ -104,14 +99,12 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = testModel;
+        component.model = selectModel;
 
         component.ngOnChanges({
-
             group: new SimpleChange(null, component.group, true),
             model: new SimpleChange(null, component.model, true)
         });
@@ -122,7 +115,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
@@ -136,7 +128,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -145,7 +136,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
@@ -154,7 +144,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("valueChange", null);
@@ -163,7 +152,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     });
 
     it("should update model value when control value changes", () => {
-
         spyOn(component, "onControlValueChanges");
 
         component.control.setValue("test");
@@ -172,25 +160,22 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     });
 
     it("should update control value when model value changes", () => {
-
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicSelectModel<string>).value = "Two";
+        selectModel.value = "Two";
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
 
     it("should update control activation when model disabled property changes", () => {
-
         spyOn(component, "onModelDisabledUpdates");
 
-        testModel.disabled = true;
+        selectModel.disabled = true;
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
     it("should map a form control model to a form control component", () => {
-
         expect(kendoUIFormControlMapFn(formModel[0])).toBe(DynamicKendoCheckboxComponent);
         expect(kendoUIFormControlMapFn(formModel[1])).toBe(DynamicKendoCheckboxGroupComponent);
         expect(kendoUIFormControlMapFn(formModel[2])).toBeNull();

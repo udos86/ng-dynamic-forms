@@ -9,23 +9,21 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } fr
 import { DynamicPrimeNGRadioGroupComponent } from "./dynamic-primeng-radio-group.component";
 
 describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
+    const testModel = new DynamicRadioGroupModel({
+        id: "radioGroup",
+        options: [{value: "One"}, {value: "Two"}],
+        value: "One"
+    });
+    const formModel = [testModel];
 
-    let testModel = new DynamicRadioGroupModel({
-            id: "radioGroup",
-            options: [{value: "One"}, {value: "Two"}],
-            value: "One"
-        }),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGRadioGroupComponent>,
-        component: DynamicPrimeNGRadioGroupComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGRadioGroupComponent>;
+    let component: DynamicPrimeNGRadioGroupComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -34,9 +32,7 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGRadioGroupComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGRadioGroupComponent);
 
             component = fixture.componentInstance;
@@ -45,7 +41,6 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -57,7 +52,6 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
@@ -77,12 +71,10 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
     });
 
     it("should have an radio group element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -91,7 +83,6 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -100,7 +91,6 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

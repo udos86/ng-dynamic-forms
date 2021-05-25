@@ -10,19 +10,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@
 import { DynamicMaterialInputComponent } from "./dynamic-material-input.component";
 
 describe("DynamicMaterialInputComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", maxLength: 51});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", maxLength: 51}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialInputComponent>,
-        component: DynamicMaterialInputComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialInputComponent>;
+    let component: DynamicMaterialInputComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -32,9 +30,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialInputComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialInputComponent);
 
             component = fixture.componentInstance;
@@ -43,7 +39,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -55,7 +50,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -82,12 +76,10 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should have an input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -96,7 +88,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -105,7 +96,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -114,7 +104,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -123,7 +112,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -132,7 +120,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
@@ -141,7 +128,6 @@ describe("DynamicMaterialInputComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

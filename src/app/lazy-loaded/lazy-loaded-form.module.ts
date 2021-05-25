@@ -8,7 +8,6 @@ import { DYNAMIC_VALIDATORS, DynamicFormsCoreModule, Validator, ValidatorFactory
 import { customLazyLoadedValidator } from "./lazy-loaded-form.validators";
 
 @NgModule({
-
     imports: [
         LazyLoadedFormRoutingModule,
         CommonModule,

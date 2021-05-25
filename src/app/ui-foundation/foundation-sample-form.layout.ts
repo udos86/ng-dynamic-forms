@@ -1,5 +1,4 @@
 export const FOUNDATION_SAMPLE_FORM_LAYOUT = {
-
     foundationSelect: {
         element: {
             label: "text-right middle font-bold"

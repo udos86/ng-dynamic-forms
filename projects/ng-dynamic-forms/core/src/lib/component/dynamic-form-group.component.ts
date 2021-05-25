@@ -4,9 +4,8 @@ import { QueryList } from "@angular/core";
 import { DynamicFormControlContainerComponent } from "./dynamic-form-control-container.component";
 
 export abstract class DynamicFormGroupComponent extends DynamicFormControlComponent {
-
-    components: QueryList<DynamicFormControlContainerComponent>;
-    model: DynamicFormGroupModel;
+    components!: QueryList<DynamicFormControlContainerComponent>;
+    model!: DynamicFormGroupModel;
 
     markForCheck() {
         if (this.components instanceof QueryList) {

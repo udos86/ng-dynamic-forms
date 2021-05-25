@@ -8,23 +8,21 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } fr
 import { DynamicKendoRadioGroupComponent } from "./dynamic-kendo-radio-group.component";
 
 describe("DynamicKendoRadioGroupComponent test suite", () => {
+    const testModel = new DynamicRadioGroupModel({
+        id: "radioGroup",
+        options: [{value: "One"}, {value: "Two"}, {value: "Three"}],
+        value: "One"
+    });
+    const formModel = [testModel];
 
-    let testModel = new DynamicRadioGroupModel({
-            id: "radioGroup",
-            options: [{value: "One"}, {value: "Two"}, {value: "Three"}],
-            value: "One"
-        }),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoRadioGroupComponent>,
-        component: DynamicKendoRadioGroupComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoRadioGroupComponent>;
+    let component: DynamicKendoRadioGroupComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -32,9 +30,7 @@ describe("DynamicKendoRadioGroupComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoRadioGroupComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoRadioGroupComponent);
 
             component = fixture.componentInstance;
@@ -43,7 +39,6 @@ describe("DynamicKendoRadioGroupComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -55,7 +50,6 @@ describe("DynamicKendoRadioGroupComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
@@ -75,12 +69,10 @@ describe("DynamicKendoRadioGroupComponent test suite", () => {
     });
 
     it("should have an fieldset element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +81,6 @@ describe("DynamicKendoRadioGroupComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +89,6 @@ describe("DynamicKendoRadioGroupComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

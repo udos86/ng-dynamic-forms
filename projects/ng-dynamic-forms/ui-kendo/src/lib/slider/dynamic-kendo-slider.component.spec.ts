@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "
 import { DynamicKendoSliderComponent } from "./dynamic-kendo-slider.component";
 
 describe("DynamicKendoSliderComponent test suite", () => {
+    const testModel = new DynamicSliderModel({id: "slider"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSliderModel({id: "slider"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoSliderComponent>,
-        component: DynamicKendoSliderComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoSliderComponent>;
+    let component: DynamicKendoSliderComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicKendoSliderComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoSliderComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoSliderComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicKendoSliderComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicKendoSliderComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSliderModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicKendoSliderComponent test suite", () => {
     });
 
     it("should have an kendo-slider element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicKendoSliderComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicKendoSliderComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

@@ -7,7 +7,6 @@ import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean, isObject, isString } from "../utils/core.utils";
 
 export interface DynamicFormControlModelConfig {
-
     asyncValidators?: DynamicValidatorsConfig;
     disabled?: boolean;
     errorMessages?: DynamicValidatorsConfig;
@@ -23,7 +22,6 @@ export interface DynamicFormControlModelConfig {
 }
 
 export abstract class DynamicFormControlModel implements DynamicPathable {
-
     @serializable() asyncValidators: DynamicValidatorsConfig | null;
     @serializable("disabled") _disabled: boolean;
     @serializable() errorMessages: DynamicValidatorsConfig | null;
@@ -46,7 +44,6 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
     abstract readonly type: string;
 
     protected constructor(config: DynamicFormControlModelConfig, layout: DynamicFormControlLayout | null = null) {
-
         this.asyncValidators = config.asyncValidators ?? null;
         this.errorMessages = config.errorMessages ?? null;
         this.hidden = isBoolean(config.hidden) ? config.hidden : false;
@@ -60,7 +57,8 @@ export abstract class DynamicFormControlModel implements DynamicPathable {
         this.updateOn = isString(config.updateOn) ? config.updateOn : null;
         this.validators = config.validators ?? null;
 
-        this.disabled$ = new BehaviorSubject(isBoolean(config.disabled) ? config.disabled : false);
+        this._disabled = isBoolean(config.disabled) ? config.disabled : false;
+        this.disabled$ = new BehaviorSubject(this._disabled);
         this.disabled$.subscribe(disabled => this._disabled = disabled);
         this.disabledChanges = this.disabled$.asObservable();
     }

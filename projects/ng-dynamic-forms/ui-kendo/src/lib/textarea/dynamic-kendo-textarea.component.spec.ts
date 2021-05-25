@@ -8,19 +8,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from
 import { DynamicKendoTextAreaComponent } from "./dynamic-kendo-textarea.component";
 
 describe("DynamicKendoTextAreaComponent test suite", () => {
+    const testModel = new DynamicTextAreaModel({id: "textarea"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTextAreaModel({id: "textarea"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoTextAreaComponent>,
-        component: DynamicKendoTextAreaComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoTextAreaComponent>;
+    let component: DynamicKendoTextAreaComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,7 +28,6 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
             declarations: [DynamicKendoTextAreaComponent]
 
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoTextAreaComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +36,6 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +47,6 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
@@ -71,12 +66,10 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
     });
 
     it("should have an textarea element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -86,7 +79,6 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -96,7 +88,6 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

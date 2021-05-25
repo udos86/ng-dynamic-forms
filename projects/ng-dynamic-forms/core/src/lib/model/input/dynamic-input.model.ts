@@ -10,7 +10,7 @@ export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_COLOR = "color";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE = "date";
-//export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATETIME = "datetime";
+// export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATETIME = "datetime";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATETIME_LOCAL = "datetime-local";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_EMAIL = "email";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE = "file";
@@ -39,7 +39,6 @@ export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<
 }
 
 export class DynamicInputModel extends DynamicInputControlModel<string | number | Date | string[]> {
-
     @serializable() accept: string | null;
     @serializable() inputType: string;
     files: FileList | null = null;
@@ -57,7 +56,6 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_INPUT;
 
     constructor(config: DynamicInputModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.accept = config.accept ?? null;
@@ -85,25 +83,22 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     }
 
     set list(list: any[] | Observable<any[]> | null) {
-
         if (Array.isArray(list)) {
-
             this._list = list;
             this.list$ = of(this._list);
 
         } else if (isObservable(list)) {
-
-            this.list$ = list.pipe(tap(list => this._list = list));
+            this.list$ = list.pipe(
+                tap(_list => this._list = _list)
+            );
 
         } else {
-
             this._list = null;
             this.list$ = null;
         }
     }
 
     toJSON() {
-
         const json: any = super.toJSON();
 
         if (this.mask !== null) {

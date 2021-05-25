@@ -6,7 +6,6 @@ import { isBoolean, isNumber } from "../../utils/core.utils";
 export const DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD = "FILE_UPLOAD";
 
 export interface DynamicFileUploadModelConfig extends DynamicFileControlModelConfig {
-
     accept?: string[];
     autoUpload?: boolean;
     maxSize?: number;
@@ -17,7 +16,6 @@ export interface DynamicFileUploadModelConfig extends DynamicFileControlModelCon
 }
 
 export class DynamicFileUploadModel extends DynamicFileControlModel {
-
     @serializable() accept: string[] | null;
     @serializable() autoUpload: boolean;
     @serializable() maxSize: number | null;
@@ -29,7 +27,6 @@ export class DynamicFileUploadModel extends DynamicFileControlModel {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD;
 
     constructor(config: DynamicFileUploadModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.accept = Array.isArray(config.accept) ? config.accept : null;

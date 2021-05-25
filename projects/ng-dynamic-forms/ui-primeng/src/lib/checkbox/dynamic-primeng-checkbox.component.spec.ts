@@ -9,19 +9,17 @@ import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from
 import { DynamicPrimeNGCheckboxComponent } from "./dynamic-primeng-checkbox.component";
 
 describe("DynamicPrimeNGCheckboxComponent test suite", () => {
+    const testModel = new DynamicCheckboxModel({id: "checkbox"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicCheckboxModel({id: "checkbox"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGCheckboxComponent>,
-        component: DynamicPrimeNGCheckboxComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGCheckboxComponent>;
+    let component: DynamicPrimeNGCheckboxComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGCheckboxComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGCheckboxComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
     });
 
     it("should have an p-checkbox element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

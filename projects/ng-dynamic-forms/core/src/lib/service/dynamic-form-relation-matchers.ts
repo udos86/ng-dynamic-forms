@@ -17,7 +17,6 @@ export const AND_OPERATOR = "AND";
 export const OR_OPERATOR = "OR";
 
 export interface DynamicFormControlMatcher {
-
     match: string;
     opposingMatch: string | null;
 
@@ -27,7 +26,6 @@ export interface DynamicFormControlMatcher {
 export const DYNAMIC_MATCHERS = new InjectionToken<DynamicFormControlMatcher>("DYNAMIC_MATCHERS");
 
 export const DISABLED_MATCHER: DynamicFormControlMatcher = {
-
     match: MATCH_DISABLED,
     opposingMatch: MATCH_ENABLED,
     onChange(hasMatch, model) {
@@ -36,7 +34,6 @@ export const DISABLED_MATCHER: DynamicFormControlMatcher = {
 };
 
 export const HIDDEN_MATCHER: DynamicFormControlMatcher = {
-
     match: MATCH_HIDDEN,
     opposingMatch: MATCH_VISIBLE,
     onChange(hasMatch, model) {
@@ -45,21 +42,16 @@ export const HIDDEN_MATCHER: DynamicFormControlMatcher = {
 };
 
 export const REQUIRED_MATCHER: DynamicFormControlMatcher = {
-
     match: MATCH_REQUIRED,
     opposingMatch: MATCH_OPTIONAL,
     onChange(hasMatch, model, control, injector) {
-
         let validatorsConfig = null;
 
         if (hasMatch) {
-
             validatorsConfig = isObject(model.validators) ? {...model.validators, required: null} : {required: null};
 
         } else {
-
             if (isObject(model.validators)) {
-
                 delete (model.validators as Pick<DynamicValidatorsConfig, "required">).required;
                 validatorsConfig = {...model.validators};
             }

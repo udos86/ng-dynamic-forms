@@ -8,19 +8,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from
 import { DynamicNGBootstrapTextAreaComponent } from "./dynamic-ng-bootstrap-textarea.component";
 
 describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
+    const testModel = new DynamicTextAreaModel({id: "textarea"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTextAreaModel({id: "textarea"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapTextAreaComponent>,
-        component: DynamicNGBootstrapTextAreaComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapTextAreaComponent>;
+    let component: DynamicNGBootstrapTextAreaComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -28,9 +26,7 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapTextAreaComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapTextAreaComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +35,6 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +46,6 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
@@ -71,12 +65,10 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
     });
 
     it("should have an textarea element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -86,7 +78,6 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -96,7 +87,6 @@ describe("DynamicNGBootstrapTextAreaComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

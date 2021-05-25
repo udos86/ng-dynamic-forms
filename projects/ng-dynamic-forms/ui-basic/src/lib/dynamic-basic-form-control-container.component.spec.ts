@@ -26,60 +26,55 @@ import {
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 import {
+    DynamicBasicFormArrayComponent,
     DynamicBasicFormControlContainerComponent,
+    DynamicBasicFormGroupComponent,
     basicUIFormControlMapFn
 } from "./dynamic-basic-form-control-container.component";
 import { DynamicBasicCheckboxComponent } from "./checkbox/dynamic-basic-checkbox.component";
-import { DynamicBasicFormArrayComponent } from "./form-array/dynamic-basic-form-array.component";
-import { DynamicBasicFormGroupComponent } from "./form-group/dynamic-basic-form-group.component";
 import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.component";
 import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
 import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
 import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
 
 describe("DynamicBasicFormControlContainerComponent test suite", () => {
+    const inputModel = new DynamicInputModel({id: "input", maxLength: 51});
+    const formModel = [
+        new DynamicCheckboxModel({id: "checkbox"}),
+        new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+        new DynamicColorPickerModel({id: "colorpicker"}),
+        new DynamicDatePickerModel({id: "datepicker"}),
+        new DynamicEditorModel({id: "editor"}),
+        new DynamicFileUploadModel({id: "upload", url: ""}),
+        new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
+        new DynamicFormGroupModel({id: "formGroup", group: []}),
+        inputModel,
+        new DynamicRadioGroupModel({id: "radioGroup"}),
+        new DynamicRatingModel({id: "rating"}),
+        new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+        new DynamicSliderModel({id: "slider"}),
+        new DynamicSwitchModel({id: "switch"}),
+        new DynamicTextAreaModel({id: "textarea"}),
+        new DynamicTimePickerModel({id: "timepicker"})
+    ];
 
-    let formModel = [
-            new DynamicCheckboxModel({id: "checkbox"}),
-            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
-            new DynamicColorPickerModel({id: "colorpicker"}),
-            new DynamicDatePickerModel({id: "datepicker"}),
-            new DynamicEditorModel({id: "editor"}),
-            new DynamicFileUploadModel({id: "upload", url: ""}),
-            new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
-            new DynamicFormGroupModel({id: "formGroup", group: []}),
-            new DynamicInputModel({id: "input", maxLength: 51}),
-            new DynamicRadioGroupModel({id: "radioGroup"}),
-            new DynamicRatingModel({id: "rating"}),
-            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
-            new DynamicSliderModel({id: "slider"}),
-            new DynamicSwitchModel({id: "switch"}),
-            new DynamicTextAreaModel({id: "textarea"}),
-            new DynamicTimePickerModel({id: "timepicker"})
-        ],
-        testModel = formModel[8],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicBasicFormControlContainerComponent>,
-        component: DynamicBasicFormControlContainerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicBasicFormControlContainerComponent>;
+    let component: DynamicBasicFormControlContainerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.overrideModule(BrowserDynamicTestingModule, {
-
             set: {
                 entryComponents: [DynamicBasicInputComponent]
             }
         });
 
         TestBed.configureTestingModule({
-
             imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule],
             declarations: [DynamicBasicFormControlContainerComponent, DynamicBasicInputComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicBasicFormControlContainerComponent);
 
             component = fixture.componentInstance;
@@ -88,25 +83,22 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = testModel;
+        component.model = inputModel;
 
         component.ngOnChanges({
-
             group: new SimpleChange(null, component.group, true),
             model: new SimpleChange(null, component.model, true)
         });
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
+        testElement = debugElement.query(By.css(`input[id='${inputModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
@@ -120,12 +112,10 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     });
 
     it("should have an input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -134,7 +124,6 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native focus and blur events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
@@ -143,7 +132,6 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -152,7 +140,6 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     });
 
     it("should update model value when control value changes", () => {
-
         spyOn(component, "onControlValueChanges");
 
         component.control.setValue("test");
@@ -161,25 +148,22 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     });
 
     it("should update control value when model value changes", () => {
-
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicInputModel).value = "test";
+        inputModel.value = "test";
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
 
     it("should update control activation when model disabled property changes", () => {
-
         spyOn(component, "onModelDisabledUpdates");
 
-        testModel.disabled = true;
+        inputModel.disabled = true;
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
     it("should map a form control model to a form control component", () => {
-
         expect(basicUIFormControlMapFn(formModel[0])).toBe(DynamicBasicCheckboxComponent);
         expect(basicUIFormControlMapFn(formModel[1])).toBe(DynamicBasicFormGroupComponent);
         expect(basicUIFormControlMapFn(formModel[2])).toBeNull();

@@ -5,17 +5,15 @@ import {
 } from "./dynamic-textarea.model";
 
 describe("DynamicTextAreaModel test suite", () => {
-
-    let model: DynamicTextAreaModel,
-        config: any = {
-            id: "textarea",
-            validators: {required: null, minLength: 5}
-        };
+    let model: DynamicTextAreaModel;
+    const config: any = {
+        id: "textarea",
+        validators: {required: null, minLength: 5}
+    };
 
     beforeEach(() => model = new DynamicTextAreaModel(config));
 
     it("should initialize correctly", () => {
-
         expect(model.cols).toBe(20);
         expect(model.disabled).toBe(false);
         expect(model.errorMessages).toBeNull();
@@ -32,15 +30,13 @@ describe("DynamicTextAreaModel test suite", () => {
     });
 
     it("should set disabled property correctly", () => {
-
         model.disabled = true;
 
         expect(model.disabled).toBe(true);
     });
 
     it("should serialize correctly", () => {
-
-        let json = JSON.parse(JSON.stringify(model));
+        const json = JSON.parse(JSON.stringify(model));
 
         expect(json.id).toEqual(model.id);
         expect(json.cols).toBe(model.cols);

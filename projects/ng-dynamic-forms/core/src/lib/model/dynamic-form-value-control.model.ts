@@ -5,7 +5,6 @@ import { serializable } from "../decorator/serializable.decorator";
 import { isBoolean, isObject } from "../utils/core.utils";
 
 export interface DynamicFormValueControlModelConfig<T> extends DynamicFormControlModelConfig {
-
     additional?: { [key: string]: any };
     hint?: string;
     required?: boolean;
@@ -14,19 +13,17 @@ export interface DynamicFormValueControlModelConfig<T> extends DynamicFormContro
 }
 
 export abstract class DynamicFormValueControlModel<T> extends DynamicFormControlModel {
-
     @serializable() additional: { [key: string]: any } | null;
     @serializable() hint: string | null;
     @serializable() required: boolean;
     @serializable() tabIndex: number | null;
     @serializable("value") private _value: T | null;
 
-    private readonly value$: BehaviorSubject<T>;
+    private readonly value$: BehaviorSubject<T | null>;
 
-    readonly valueChanges: Observable<T>;
+    readonly valueChanges: Observable<T | null>;
 
     protected constructor(config: DynamicFormValueControlModelConfig<T>, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.additional = isObject(config.additional) ? config.additional : null;
@@ -34,7 +31,8 @@ export abstract class DynamicFormValueControlModel<T> extends DynamicFormControl
         this.required = isBoolean(config.required) ? config.required : false;
         this.tabIndex = config.tabIndex ?? null;
 
-        this.value$ = new BehaviorSubject(config.value ?? null);
+        this._value = config.value ?? null;
+        this.value$ = new BehaviorSubject(this._value);
         this.value$.subscribe(value => this._value = value);
         this.valueChanges = this.value$.asObservable();
     }

@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "
 import { DynamicMaterialSliderComponent } from "./dynamic-material-slider.component";
 
 describe("DynamicMaterialSliderComponent test suite", () => {
+    const testModel = new DynamicSliderModel({id: "slider"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicSliderModel({id: "slider"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialSliderComponent>,
-        component: DynamicMaterialSliderComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialSliderComponent>;
+    let component: DynamicMaterialSliderComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicMaterialSliderComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialSliderComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialSliderComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicMaterialSliderComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicMaterialSliderComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSliderModel).toBe(true);
@@ -75,12 +69,10 @@ describe("DynamicMaterialSliderComponent test suite", () => {
     });
 
     it("should have an mat-slider element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +81,6 @@ describe("DynamicMaterialSliderComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +89,6 @@ describe("DynamicMaterialSliderComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +97,6 @@ describe("DynamicMaterialSliderComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

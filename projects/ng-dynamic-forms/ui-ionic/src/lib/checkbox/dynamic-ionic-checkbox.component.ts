@@ -3,10 +3,11 @@ import { IonCheckbox } from "@ionic/angular";
 import { FormGroup } from "@angular/forms";
 import {
     DynamicCheckboxModel,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicFormControlComponent, DynamicFormControlLayout
+    DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -14,21 +15,18 @@ import {
     templateUrl: "./dynamic-ionic-checkbox.component.html"
 })
 export class DynamicIonicCheckboxComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicCheckboxModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicCheckboxModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("ionCheckbox", { static: true }) ionCheckbox: IonCheckbox;
+    @ViewChild("ionCheckbox", {static: true}) ionCheckbox!: IonCheckbox;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 }

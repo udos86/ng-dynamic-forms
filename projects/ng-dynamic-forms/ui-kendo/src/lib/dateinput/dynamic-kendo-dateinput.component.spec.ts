@@ -9,19 +9,17 @@ import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@
 import { DynamicKendoDateInputComponent } from "./dynamic-kendo-dateinput.component";
 
 describe("DynamicKendoDateInputComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", inputType: "date"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", inputType: "date"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoDateInputComponent>,
-        component: DynamicKendoDateInputComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoDateInputComponent>;
+    let component: DynamicKendoDateInputComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -30,9 +28,7 @@ describe("DynamicKendoDateInputComponent test suite", () => {
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoDateInputComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoDateInputComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +37,6 @@ describe("DynamicKendoDateInputComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +48,6 @@ describe("DynamicKendoDateInputComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -74,12 +68,10 @@ describe("DynamicKendoDateInputComponent test suite", () => {
     });
 
     it("should have an kendo-dateinput element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +80,6 @@ describe("DynamicKendoDateInputComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +88,6 @@ describe("DynamicKendoDateInputComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
