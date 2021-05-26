@@ -18,6 +18,7 @@ export function serializable(name?: string): (target: any, key: string) => void 
 export function getSerializables(target: any): SerializableProperty[] {
     const serializables = [];
 
+    // tslint:disable-next-line:forin
     for (const key in target) {
         const metadata = Reflect.getMetadata(METADATA_KEY_SERIALIZABLE, target, key);
 

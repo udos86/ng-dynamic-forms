@@ -1,8 +1,10 @@
 import {
     ChangeDetectorRef,
     ComponentFactoryResolver,
-    ComponentRef, EventEmitter,
-    OnChanges, OnDestroy,
+    ComponentRef,
+    EventEmitter,
+    OnChanges,
+    OnDestroy,
     QueryList,
     SimpleChanges,
     Type,
@@ -44,9 +46,7 @@ import { DynamicFormRelationService } from "../service/dynamic-form-relation.ser
 import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
 import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
-@Directive()
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
-
     private _hasFocus = false;
 
     context: DynamicFormArrayGroupModel | null = null;

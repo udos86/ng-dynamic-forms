@@ -30,8 +30,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     private _hasFocus = false;
 
-    protected constructor(protected layoutService: DynamicFormLayoutService,
-                          protected validationService: DynamicFormValidationService) {
+    protected constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
     }
 
     get control(): AbstractControl | never {
@@ -70,7 +69,6 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
 
     getClass(context: DynamicFormControlLayoutContext, place: DynamicFormControlLayoutPlace,
              model: DynamicFormControlModel = this.model): string {
-
         const controlLayout = model === this.model ? this.layout :
             this.layoutService.findByModel(model, this.formLayout) ?? model.layout as DynamicFormControlLayout;
 

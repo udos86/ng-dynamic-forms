@@ -7,10 +7,7 @@ import {
 } from "../model/misc/dynamic-form-control-layout.model";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormArrayGroupModel } from "../model/form-array/dynamic-form-array.model";
-import {
-    DynamicTemplateDirective,
-    DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT
-} from "../directive/dynamic-template.directive";
+import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT } from "../directive/dynamic-template.directive";
 import { isObject, isString } from "../utils/core.utils";
 
 export type DynamicFormLayout = { [id: string]: DynamicFormControlLayout };
@@ -92,7 +89,6 @@ export class DynamicFormLayoutService {
 
         if (isObject(layout) && layout.hasOwnProperty(context)) {
             const config = layout[context] as DynamicFormControlLayoutConfig;
-
             if (config.hasOwnProperty(place)) {
                 return config[place] as string;
             }

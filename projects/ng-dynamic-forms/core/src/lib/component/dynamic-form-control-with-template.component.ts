@@ -6,7 +6,6 @@ import { isString } from "../utils/core.utils";
 import { DynamicFormLayoutService } from "../service/dynamic-form-layout.service";
 import { DynamicFormValidationService } from "../service/dynamic-form-validation.service";
 
-@Directive()
 export abstract class DynamicFormControlWithTemplateComponent extends DynamicFormControlComponent
     implements DynamicFormControlWithTemplate, AfterViewInit {
 
