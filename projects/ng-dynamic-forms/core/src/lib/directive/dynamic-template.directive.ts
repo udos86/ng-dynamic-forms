@@ -10,7 +10,7 @@ export enum DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT {
 })
 export class DynamicTemplateDirective {
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End;
-    @Input() as?: string;
+    @Input() as: string | null = null;
     @Input() index?: number;
     @Input() modelId?: string;
     @Input() modelType?: string;

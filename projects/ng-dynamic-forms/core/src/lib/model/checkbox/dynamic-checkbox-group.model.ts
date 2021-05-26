@@ -6,7 +6,7 @@ import { serializable } from "../../decorator/serializable.decorator";
 export const DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP = "CHECKBOX_GROUP";
 
 export class DynamicCheckboxGroupModel extends DynamicFormGroupModel {
-    @serializable() group: DynamicCheckboxModel[] = [];
+    @serializable() group!: DynamicCheckboxModel[];
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX_GROUP;
 

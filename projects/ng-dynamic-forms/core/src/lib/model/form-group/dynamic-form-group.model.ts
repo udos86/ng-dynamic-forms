@@ -11,7 +11,7 @@ export interface DynamicFormGroupModelConfig extends DynamicFormControlModelConf
 }
 
 export class DynamicFormGroupModel extends DynamicFormControlModel {
-    @serializable() group: DynamicFormModel = [];
+    @serializable() group: DynamicFormModel;
     @serializable() legend: string | null;
 
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_GROUP;
