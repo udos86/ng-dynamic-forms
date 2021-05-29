@@ -1,3 +1,14 @@
+# 14.0.0
+
+### **Features**
+
+* Migration to Angular 12
+* Migration to TypeScript strict mode
+* Removes non-critical circular dependency 
+* Migration to `karma-coverage` from `karma-coverage-instanbul-reporter` 
+
+***
+
 # 13.0.0
 
 ### **Features**
