@@ -14,7 +14,6 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSliderModule } from "@angular/material/slider";
-import { TextMaskModule } from "angular2-text-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -99,7 +98,6 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
                 MatSelectModule,
                 MatSliderModule,
                 MatSlideToggleModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialFormControlContainerComponent, DynamicMaterialInputComponent]

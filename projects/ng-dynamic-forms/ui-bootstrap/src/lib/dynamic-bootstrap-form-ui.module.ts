@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { RatingModule } from "ngx-bootstrap/rating";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import {
     DynamicBootstrapFormArrayComponent,
@@ -28,7 +28,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         BsDatepickerModule,
         RatingModule,
         TimepickerModule,
-        TextMaskModule,
+        NgxMaskModule,
         DynamicFormsCoreModule
     ],
     declarations: [

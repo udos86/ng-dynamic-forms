@@ -8,7 +8,7 @@ import {
     NgbTimepickerModule,
     NgbRatingModule
 } from "@ng-bootstrap/ng-bootstrap";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import {
     DynamicNGBootstrapFormArrayComponent,
     DynamicNGBootstrapFormControlContainerComponent,
@@ -35,7 +35,7 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
         NgbDatepickerModule,
         NgbRatingModule,
         NgbTimepickerModule,
-        TextMaskModule,
+        NgxMaskModule,
         DynamicFormsCoreModule
     ],
     declarations: [

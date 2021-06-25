@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Calendar, CalendarModule } from "primeng/calendar";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGCalendarComponent } from "./dynamic-primeng-calendar.component";
@@ -23,7 +22,6 @@ describe("DynamicPrimeNGCalendarComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 CalendarModule,
                 DynamicFormsCoreModule
             ],

@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { SliderComponent, SliderModule } from "@progress/kendo-angular-inputs";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoSliderComponent } from "./dynamic-kendo-slider.component";
 
@@ -24,7 +23,6 @@ describe("DynamicKendoSliderComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 SliderModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoSliderComponent]

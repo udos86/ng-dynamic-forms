@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapSelectComponent } from "./dynamic-ng-bootstrap-select.component";
 
@@ -22,7 +21,6 @@ describe("DynamicNGBootstrapSelectComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapSelectComponent]

@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxGroupModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicKendoCheckboxGroupComponent } from "./dynamic-kendo-checkbox-group.component";
 
@@ -22,7 +21,6 @@ describe("DynamicKendoCheckboxGroupComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoCheckboxGroupComponent]

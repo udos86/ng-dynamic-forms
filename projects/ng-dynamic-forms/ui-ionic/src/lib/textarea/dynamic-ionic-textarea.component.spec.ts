@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { IonicModule, IonTextarea } from "@ionic/angular";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicTextAreaComponent } from "./dynamic-ionic-textarea.component";
@@ -24,7 +23,6 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 IonicModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicTextAreaComponent]

@@ -1201,7 +1201,7 @@ Since Angular does not deliver an appropriate feature by default, NG Dynamic For
 
 That's why most UI packages demand one additional peer dependency to be installed:
 ```
-npm install angular2-text-mask --save
+npm install ngx-mask --save
 ```
 
 You're now capable of adding a `mask` property to any `DynamicInputModel` according to [Text Mask docs](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask):
@@ -1210,7 +1210,7 @@ You're now capable of adding a `mask` property to any `DynamicInputModel` accord
 new DynamicInputModel({
     id: "maskedInput",
     label: "Masked Input",
-    mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+    mask: "00/00/0000",
 })
 ```
 
@@ -1219,10 +1219,10 @@ You can also pass a function as the mask. The function will receive the user inp
 new DynamicInputModel({
     id: "maskedInput",
     label: "Masked Input",
-    mask: createNumberMask({
-            prefix: "",
-            suffix: " $"
-          })
+    mask: "00/00/0000",
+    maskConfig: {
+        showMaskTyped: true
+    },
 })
 ```
 

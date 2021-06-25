@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { TextMaskModule } from "angular2-text-mask";
 import { IonicModule } from "@ionic/angular";
 import {
     DynamicCheckboxModel,
@@ -67,7 +66,6 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 IonicModule,
                 DynamicFormsCoreModule
             ],

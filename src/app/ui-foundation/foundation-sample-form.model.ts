@@ -37,7 +37,7 @@ export const FOUNDATION_SAMPLE_FORM_MODEL = [
         hint: "Just a sample help text",
         id: "foundationInput",
         label: "Input",
-        mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/],
+        // mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/],
         maxLength: 51,
         // placeholder: "example input",
         prefix: "Prefix",

@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { AutoComplete, AutoCompleteModule } from "primeng/autocomplete";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGAutoCompleteComponent } from "./dynamic-primeng-autocomplete.component";
@@ -23,7 +22,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 AutoCompleteModule,
                 DynamicFormsCoreModule
             ],

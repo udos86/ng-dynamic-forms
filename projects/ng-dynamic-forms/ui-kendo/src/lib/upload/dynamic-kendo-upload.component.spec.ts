@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { UploadComponent, UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFileUploadModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicKendoUploadComponent } from "./dynamic-kendo-upload.component";
@@ -23,7 +22,6 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 UploadModule,
                 DynamicFormsCoreModule
             ],

@@ -44,7 +44,6 @@ describe("DynamicFormService test suite", () => {
     }
 
     beforeEach(() => {
-
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
             providers: [
@@ -57,31 +56,22 @@ describe("DynamicFormService test suite", () => {
         });
 
         testModel = [
-
             new DynamicSelectModel<string>(
                 {
                     id: "testSelect",
                     options: [
-                        {
-                            label: "Option 1",
-                            value: "option-1"
-                        },
-                        {
-                            label: "Option 2",
-                            value: "option-2"
-                        }
+                        {label: "Option 1", value: "option-1"},
+                        {label: "Option 2", value: "option-2"}
                     ],
                     value: "option-3"
                 }
             ),
-
             new DynamicInputModel(
                 {
                     id: "testInput",
-                    mask: ["(", /[1-9]/, /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]
+                    mask: "00/00/00"
                 }
             ),
-
             new DynamicCheckboxGroupModel(
                 {
                     id: "testCheckboxGroup",
@@ -101,28 +91,18 @@ describe("DynamicFormService test suite", () => {
                     ]
                 }
             ),
-
             new DynamicRadioGroupModel<string>(
                 {
                     id: "testRadioGroup",
                     options: [
-                        {
-                            label: "Option 1",
-                            value: "option-1"
-                        },
-                        {
-                            label: "Option 2",
-                            value: "option-2"
-                        }
+                        {label: "Option 1", value: "option-1"},
+                        {label: "Option 2", value: "option-2"}
                     ],
                     value: "option-3"
                 }
             ),
-
             new DynamicTextAreaModel({id: "testTextArea"}),
-
             new DynamicCheckboxModel({id: "testCheckbox"}),
-
             new DynamicFormArrayModel(
                 {
                     id: "testFormArray",
@@ -139,7 +119,6 @@ describe("DynamicFormService test suite", () => {
                     }
                 }
             ),
-
             new DynamicFormGroupModel(
                 {
                     id: "testFormGroup",
@@ -149,21 +128,13 @@ describe("DynamicFormService test suite", () => {
                     ]
                 }
             ),
-
             new DynamicSliderModel({id: "testSlider"}),
-
             new DynamicSwitchModel({id: "testSwitch"}),
-
             new DynamicDatePickerModel({id: "testDatepicker", value: new Date()}),
-
             new DynamicFileUploadModel({id: "testFileUpload"}),
-
             new DynamicEditorModel({id: "testEditor"}),
-
             new DynamicTimePickerModel({id: "testTimePicker"}),
-
             new DynamicRatingModel({id: "testRating"}),
-
             new DynamicColorPickerModel({id: "testColorPicker"})
         ];
     });

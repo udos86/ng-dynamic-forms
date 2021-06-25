@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapRatingComponent } from "./dynamic-ng-bootstrap-rating.component";
 import { NgbRating, NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
@@ -23,7 +22,6 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 NgbRatingModule,
                 DynamicFormsCoreModule
             ],

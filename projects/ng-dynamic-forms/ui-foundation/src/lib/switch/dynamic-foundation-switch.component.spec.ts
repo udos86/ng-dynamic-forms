@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicFoundationSwitchComponent } from "./dynamic-foundation-switch.component";
 
@@ -22,7 +21,6 @@ describe("DynamicFoundationSwitchComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicFoundationSwitchComponent]

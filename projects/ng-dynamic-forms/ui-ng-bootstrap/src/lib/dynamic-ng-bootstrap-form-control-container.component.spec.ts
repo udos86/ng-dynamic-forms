@@ -9,7 +9,7 @@ import {
     NgbTimepickerModule,
     NgbRatingModule
 } from "@ng-bootstrap/ng-bootstrap";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -89,7 +89,7 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
                 NgbDatepickerModule,
                 NgbRatingModule,
                 NgbTimepickerModule,
-                TextMaskModule,
+                NgxMaskModule.forRoot(),
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapFormControlContainerComponent, DynamicNGBootstrapInputComponent]

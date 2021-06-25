@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import {
     DynamicBasicFormArrayComponent,
@@ -20,7 +20,7 @@ import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
-        TextMaskModule,
+        NgxMaskModule,
         DynamicFormsCoreModule
     ],
     declarations: [

@@ -3,7 +3,7 @@ import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -73,7 +73,10 @@ describe("DynamicFoundationFormControlContainerComponent test suite", () => {
         });
 
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, TextMaskModule, DynamicFormsCoreModule],
+            imports: [
+                ReactiveFormsModule,
+                NgxMaskModule.forRoot(),
+                DynamicFormsCoreModule],
             declarations: [DynamicFoundationFormControlContainerComponent, DynamicFoundationInputComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicFoundationFormControlContainerComponent);

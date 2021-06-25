@@ -11,21 +11,11 @@ describe("DynamicInputModel test suite", () => {
     const config = {
         id: "input",
         list: ["One", "Two", "Three"],
-        mask: ["test", /[1-9]/]
-    };
-
-    const fnMask = (a: any) => [a];
-
-    let modelMask: DynamicInputModel;
-    const configMask = {
-        id: "input",
-        list: ["One", "Two", "Three"],
-        mask: fnMask
+        mask: "00/00"
     };
 
     beforeEach(() => {
         model = new DynamicInputModel(config);
-        modelMask = new DynamicInputModel(configMask);
     });
 
     it("should initialize correctly", () => {
@@ -118,12 +108,8 @@ describe("DynamicInputModel test suite", () => {
         expect(json.id).toEqual(model.id);
         expect(json.disabled).toEqual(model.disabled);
         expect(json.hidden).toEqual(model.hidden);
-        expect(json.mask).toEqual(["test", "/[1-9]/"]);
+        expect(json.mask).toEqual(config.mask);
         expect(json.value).toBe(model.value);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_INPUT);
-    });
-
-    it("should mask function correctly", () => {
-        expect(modelMask.mask).toEqual(fnMask);
     });
 });

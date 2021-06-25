@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { NgbTimepicker, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTimePickerModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapTimePickerComponent } from "./dynamic-ng-bootstrap-timepicker.component";
@@ -23,7 +22,6 @@ describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 NgbTimepickerModule,
                 DynamicFormsCoreModule
             ],

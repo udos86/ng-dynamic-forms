@@ -1,10 +1,10 @@
 import { DynamicInputControlModel, DynamicInputControlModelConfig } from "../dynamic-input-control.model";
 import { DynamicFormControlLayout } from "../misc/dynamic-form-control-layout.model";
 import { serializable } from "../../decorator/serializable.decorator";
-import { maskToString } from "../../utils/json.utils";
-import { isBoolean, isFunction, isNumber } from "../../utils/core.utils";
+import { isBoolean, isNumber } from "../../utils/core.utils";
 import { Observable, isObservable, of } from "rxjs";
 import { tap } from "rxjs/operators";
+import { IConfig, initialConfig } from "ngx-mask";
 
 export const DYNAMIC_FORM_CONTROL_TYPE_INPUT = "INPUT";
 
@@ -26,11 +26,11 @@ export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_URL = "url";
 export const DYNAMIC_FORM_CONTROL_INPUT_TYPE_WEEK = "week";
 
 export interface DynamicInputModelConfig extends DynamicInputControlModelConfig<string | number | Date | string[]> {
-
     accept?: string;
     inputType?: string;
     list?: any[] | Observable<any[]>;
-    mask?: string | RegExp | Function | (string | RegExp)[];
+    mask?: string;
+    maskConfig?: Partial<IConfig>;
     max?: number | string | Date;
     min?: number | string | Date;
     multiple?: boolean;
@@ -43,7 +43,8 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
     @serializable() inputType: string;
     files: FileList | null = null;
     list$: Observable<any[]> | null = null;
-    @serializable() mask: string | RegExp | Function | (string | RegExp)[] | null;
+    @serializable() mask: string;
+    @serializable() maskConfig: IConfig;
     @serializable() max: number | string | Date | null;
     @serializable() min: number | string | Date | null;
     @serializable() multiple: boolean | null;
@@ -60,7 +61,8 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
 
         this.accept = config.accept ?? null;
         this.inputType = config.inputType ?? DYNAMIC_FORM_CONTROL_INPUT_TYPE_TEXT;
-        this.mask = config.mask ?? null;
+        this.mask = config.mask ?? "";
+        this.maskConfig = config.maskConfig ? {...initialConfig, ...config.maskConfig} : initialConfig;
         this.max = config.max !== undefined ? config.max : null;
         this.min = config.min !== undefined ? config.min : null;
         this.multiple = isBoolean(config.multiple) ? config.multiple : null;
@@ -68,7 +70,6 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
         this.step = isNumber(config.step) ? config.step : null;
 
         if (config.list !== undefined) {
-
             this.list = config.list;
             this._listId = `${this.id}List`;
         }
@@ -96,15 +97,5 @@ export class DynamicInputModel extends DynamicInputControlModel<string | number 
             this._list = null;
             this.list$ = null;
         }
-    }
-
-    toJSON() {
-        const json: any = super.toJSON();
-
-        if (this.mask !== null) {
-            json.mask = isFunction(this.mask) ? this.mask : maskToString(this.mask);
-        }
-
-        return json;
     }
 }

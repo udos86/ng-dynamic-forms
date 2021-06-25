@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import {
     DynamicIonicFormArrayComponent,
@@ -24,7 +23,6 @@ import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.compo
         CommonModule,
         ReactiveFormsModule,
         IonicModule,
-        TextMaskModule,
         DynamicFormsCoreModule
     ],
     declarations: [

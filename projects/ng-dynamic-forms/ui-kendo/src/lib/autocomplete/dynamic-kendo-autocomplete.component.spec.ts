@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { AutoCompleteModule, AutoCompleteComponent } from "@progress/kendo-angular-dropdowns";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoAutoCompleteComponent } from "./dynamic-kendo-autocomplete.component";
@@ -23,7 +22,6 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 AutoCompleteModule,
                 DynamicFormsCoreModule
             ],

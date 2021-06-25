@@ -8,7 +8,6 @@ import { MatChipInputEvent, MatChipList, MatChipsModule } from "@angular/materia
 import { MatOption } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInput, MatInputModule } from "@angular/material/input";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialChipsComponent } from "./dynamic-material-chips.component";
 
@@ -36,7 +35,6 @@ describe("DynamicMaterialChipsComponent test suite", () => {
                 MatChipsModule,
                 MatIconModule,
                 MatInputModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialChipsComponent]

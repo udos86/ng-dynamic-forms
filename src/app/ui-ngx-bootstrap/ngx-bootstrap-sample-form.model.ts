@@ -34,22 +34,10 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 id: "bsSelect",
                 label: "Select",
                 options: of([
-                    {
-                        label: "Option 1",
-                        value: "option-1"
-                    },
-                    {
-                        label: "Option 2",
-                        value: "option-2"
-                    },
-                    {
-                        label: "Option 3",
-                        value: "option-3"
-                    },
-                    {
-                        label: "Option 4",
-                        value: "option-4"
-                    }
+                    {label: "Option 1", value: "option-1"},
+                    {label: "Option 2", value: "option-2"},
+                    {label: "Option 3", value: "option-3"},
+                    {label: "Option 4", value: "option-4"}
                 ]),
                 value: "option-3"
             }),

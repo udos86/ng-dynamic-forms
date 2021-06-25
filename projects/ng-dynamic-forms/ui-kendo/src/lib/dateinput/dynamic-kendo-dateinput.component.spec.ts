@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DateInputComponent, DateInputModule } from "@progress/kendo-angular-dateinputs";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoDateInputComponent } from "./dynamic-kendo-dateinput.component";
@@ -23,7 +22,6 @@ describe("DynamicKendoDateInputComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DateInputModule,
                 DynamicFormsCoreModule
             ],

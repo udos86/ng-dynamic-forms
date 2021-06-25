@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DropDownListComponent, DropDownListModule } from "@progress/kendo-angular-dropdowns";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoDropdownListComponent } from "./dynamic-kendo-dropdownlist.component";
@@ -24,7 +23,6 @@ describe("DynamicKendoDropdownListComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 DropDownListModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoDropdownListComponent]

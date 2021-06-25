@@ -63,7 +63,10 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
     new DynamicInputModel({
         id: "firstName",
         label: "First Name",
-        placeholder: "First Name",
+        mask: "00/00/0000",
+        maskConfig: {
+            showMaskTyped: true
+        },
         validators: {
             required: null
         },
@@ -75,21 +78,14 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
         id: "lastName",
         label: "Last Name",
         placeholder: "Last Name",
-        /*
         validators: {
             required: null
         },
-        */
         errorMessages: {
             required: "{{ label }} is required"
         },
         relations: [
-            {
-                match: MATCH_REQUIRED,
-                when: [
-                    {id: "firstName", value: "Test"}
-                ]
-            }
+            {match: MATCH_REQUIRED, when: [{id: "firstName", value: "Test"}]}
         ]
     }),
     new DynamicInputModel({
@@ -179,7 +175,6 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_MODEL: DynamicFormControlModel[] = [
         ]
     }),
     new DynamicRadioGroupModel({
-
         id: "payment",
         label: "Payment Method",
         options: [

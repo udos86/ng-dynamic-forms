@@ -5,7 +5,7 @@ import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -80,7 +80,7 @@ describe("DynamicFormBootstrapComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 DynamicFormsCoreModule,
-                TextMaskModule,
+                NgxMaskModule.forRoot(),
                 BsDatepickerModule.forRoot(),
                 TimepickerModule.forRoot()
             ],

@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Dropdown, DropdownModule } from "primeng/dropdown";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGDropdownComponent } from "./dynamic-primeng-dropdown.component";
@@ -23,7 +22,6 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DropdownModule,
                 DynamicFormsCoreModule
             ],

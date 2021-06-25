@@ -32,7 +32,6 @@ export const MATERIAL_SAMPLE_FORM_MODEL = [
                 inline: false,
                 placeholder: "Date of Arrival"
             }),
-
             new DynamicDatePickerModel({
                 id: "departureDate",
                 inline: false,

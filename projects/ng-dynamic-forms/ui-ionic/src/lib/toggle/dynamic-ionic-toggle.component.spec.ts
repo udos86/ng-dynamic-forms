@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { IonicModule, IonToggle } from "@ionic/angular";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicToggleComponent } from "./dynamic-ionic-toggle.component";
 
@@ -24,7 +23,6 @@ describe("DynamicIonicToggleComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 IonicModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicToggleComponent]

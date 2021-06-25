@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { BsDatepickerDirective, BsDatepickerModule } from "ngx-bootstrap/datepicker";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapDatePickerComponent } from "./dynamic-ngx-bootstrap-datepicker.component";
 
@@ -24,7 +23,6 @@ describe("DynamicNGxBootstrapDatePickerComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 BsDatepickerModule.forRoot(),
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGxBootstrapDatePickerComponent]

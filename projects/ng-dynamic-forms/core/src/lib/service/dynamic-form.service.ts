@@ -45,7 +45,7 @@ import { DynamicFormValidationService } from "./dynamic-form-validation.service"
 import { DynamicFormModel, DynamicUnionFormModel } from "../model/dynamic-form.model";
 import { DynamicPathable } from "../model/misc/dynamic-form-control-path.model";
 import { DynamicFormHook, DynamicValidatorsConfig } from "../model/misc/dynamic-form-control-validation.model";
-import { maskFromString, parseReviver } from "../utils/json.utils";
+import { parseReviver } from "../utils/json.utils";
 import { isString } from "../utils/core.utils";
 import { DynamicFormComponent } from "../component/dynamic-form.component";
 import { DynamicFormComponentService } from "./dynamic-form-component.service";
@@ -332,14 +332,6 @@ export class DynamicFormService {
                     break;
 
                 case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-                    const inputModel = model as DynamicInputModel;
-
-                    if (inputModel.mask !== null) {
-                        if (!(inputModel.mask instanceof Function)) {
-                            inputModel.mask = maskFromString(inputModel.mask as string);
-                        }
-                    }
-
                     formModel.push(new DynamicInputModel(model, layout));
                     break;
 

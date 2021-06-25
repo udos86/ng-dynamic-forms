@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { MaskedTextBoxComponent, MaskedTextBoxModule } from "@progress/kendo-angular-inputs";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoMaskedTextBoxComponent } from "./dynamic-kendo-maskedtextbox.component";
@@ -23,7 +22,6 @@ describe("DynamicKendoMaskedTextBoxComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 MaskedTextBoxModule,
                 DynamicFormsCoreModule
             ],

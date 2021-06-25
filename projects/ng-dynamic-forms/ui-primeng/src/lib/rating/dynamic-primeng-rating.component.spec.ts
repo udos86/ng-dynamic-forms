@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Rating, RatingModule } from "primeng/rating";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGRatingComponent } from "./dynamic-primeng-rating.component";
@@ -23,7 +22,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 RatingModule,
                 DynamicFormsCoreModule
             ],

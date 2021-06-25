@@ -41,6 +41,7 @@ import {
     customForbiddenValidator,
     customValidator
 } from "./app.validators";
+import { NgxMaskModule } from "ngx-mask";
 
 @NgModule({
     imports: [
@@ -56,6 +57,7 @@ import {
         NgbDatepickerModule,
         NgbRatingModule,
         NgbTimepickerModule,
+        NgxMaskModule.forRoot(),
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,
         DynamicFormsFoundationUIModule,

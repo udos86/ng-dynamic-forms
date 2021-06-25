@@ -3,8 +3,7 @@
                 [floatLabel]="model.getAdditional('floatLabel', FORM_FIELD_OPTIONS && FORM_FIELD_OPTIONS['floatLabel'] || 'auto')"
                 [formGroup]="group"
                 [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
-                [ngClass]="getClass('grid','control')"
-                [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}">
+                [ngClass]="getClass('grid','control')">
 
     <ng-container *ngIf="model.label" ngProjectAs="mat-label">
 

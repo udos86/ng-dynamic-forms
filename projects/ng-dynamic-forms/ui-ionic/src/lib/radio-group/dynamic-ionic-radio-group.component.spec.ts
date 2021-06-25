@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { IonicModule, IonRadioGroup } from "@ionic/angular";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRadioGroupComponent } from "./dynamic-ionic-radio-group.component";
 
@@ -24,7 +23,6 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 IonicModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicRadioGroupComponent]
