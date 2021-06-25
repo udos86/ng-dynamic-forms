@@ -2,9 +2,9 @@ name: NG Dynamic Forms CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, development ]
   pull_request:
-    branches: [ main ]
+    branches: [ master, development ]
 
 jobs:
   build:
