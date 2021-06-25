@@ -1,3 +1,28 @@
+# 14.0.0
+
+### **Features**
+
+* Migration to Angular 12
+* Migration to TypeScript strict mode
+* Removes non-critical circular dependency 
+* Migration to `karma-coverage` from `karma-coverage-instanbul-reporter` 
+
+### **Breaking Changes**
+
+`angular2-text-mask` has finally been replaced with `ngx-mask`
+
+This means from now text masking is only available to UI components that use a built-in 
+mask feature or *do not* already apply a custom `ControlValueAccessor` (Material)
+
+In order to integrate `ngx-mask` properly, a `maskConfig` property has been added to `DynamicInputModel` while the type of `mask` has been 
+narrowed to `string`.
+```ts
+mask?: string;
+maskConfig?: Partial<IConfig>;
+```
+
+***
+
 # 13.0.0
 
 ### **Features**

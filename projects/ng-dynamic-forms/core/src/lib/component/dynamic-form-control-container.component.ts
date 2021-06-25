@@ -1,4 +1,15 @@
-import { ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, EventEmitter, OnChanges, OnDestroy, QueryList, SimpleChanges, Type, ViewContainerRef, Directive } from "@angular/core";
+import {
+    ChangeDetectorRef,
+    ComponentFactoryResolver,
+    ComponentRef,
+    EventEmitter,
+    OnChanges,
+    OnDestroy,
+    QueryList,
+    SimpleChanges,
+    Type,
+    ViewContainerRef
+} from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
 import {
@@ -34,32 +45,30 @@ import { DynamicFormRelationService } from "../service/dynamic-form-relation.ser
 import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
 import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 
-@Directive()
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
-
     private _hasFocus = false;
 
     context: DynamicFormArrayGroupModel | null = null;
-    control: FormControl;
-    group: FormGroup;
-    hostClass: string[];
-    klass: string;
-    layout: DynamicFormLayout;
-    model: DynamicFormControlModel;
+    control!: FormControl;
+    group!: FormGroup;
+    hostClass?: string[];
+    klass?: string;
+    layout?: DynamicFormLayout;
+    model!: DynamicFormControlModel;
 
-    contentTemplateList: QueryList<DynamicTemplateDirective> | undefined;
-    inputTemplateList: QueryList<DynamicTemplateDirective> | undefined;
+    contentTemplateList?: QueryList<DynamicTemplateDirective>;
+    inputTemplateList?: QueryList<DynamicTemplateDirective>;
 
-    blur: EventEmitter<DynamicFormControlEvent>;
-    change: EventEmitter<DynamicFormControlEvent>;
-    customEvent: EventEmitter<DynamicFormControlEvent> | undefined;
-    focus: EventEmitter<DynamicFormControlEvent>;
+    blur!: EventEmitter<DynamicFormControlEvent>;
+    change!: EventEmitter<DynamicFormControlEvent>;
+    customEvent?: EventEmitter<DynamicFormControlEvent>;
+    focus!: EventEmitter<DynamicFormControlEvent>;
 
-    componentViewContainerRef: ViewContainerRef;
+    componentViewContainerRef!: ViewContainerRef;
 
-    protected componentRef: ComponentRef<DynamicFormControl>;
+    protected componentRef!: ComponentRef<DynamicFormControl>;
     protected componentSubscriptions: Subscription[] = [];
-    protected controlLayout: DynamicFormControlLayout;
+    protected controlLayout?: DynamicFormControlLayout;
     protected subscriptions: Subscription[] = [];
 
     protected constructor(protected changeDetectorRef: ChangeDetectorRef,
@@ -71,7 +80,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     ngOnChanges(changes: SimpleChanges) {
-
         const groupChange = (changes as Pick<SimpleChanges, "group">).group;
         const layoutChange = (changes as Pick<SimpleChanges, "layout">).layout;
         const modelChange = (changes as Pick<SimpleChanges, "model">).model;
@@ -90,7 +98,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     ngOnDestroy() {
-
         this.destroyFormControlComponent();
         this.unsubscribe();
     }
@@ -156,7 +163,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     markForCheck(): void {
-
         this.changeDetectorRef.markForCheck();
 
         const component = this.componentRef && this.componentRef.instance;
@@ -167,7 +173,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     protected createFormControlComponent(): void {
-
         const componentType = this.componentType;
 
         if (componentType !== null) {
@@ -218,7 +223,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     unsubscribe(): void {
-
         // this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
         // this.componentSubscriptions = [];
 
@@ -253,13 +257,10 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     onGroupOrModelChange(): void {
-
         if (this.model) {
-
             this.unsubscribe();
 
             if (this.group) {
-
                 this.control = this.group.get(this.model.id) as FormControl;
                 this.subscriptions.push(this.control.valueChanges.subscribe(value => this.onControlValueChanges(value)));
             }
@@ -267,30 +268,24 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.subscriptions.push(this.model.disabledChanges.subscribe(value => this.onModelDisabledUpdates(value)));
 
             if (this.model instanceof DynamicFormValueControlModel) {
-
                 const model = this.model as DynamicFormValueControlModel<any>;
 
                 this.subscriptions.push(model.valueChanges.subscribe(value => this.onModelValueUpdates(value)));
             }
 
             if (this.model.relations.length > 0) {
-
                 this.subscriptions.push(...this.relationService.subscribeRelations(this.model, this.group, this.control));
             }
         }
     }
 
     onChange($event: Event | DynamicFormControlEvent | any): void {
-
         if ($event instanceof Event) { // native HTML5 change event
-
             if (this.model.type === DYNAMIC_FORM_CONTROL_TYPE_INPUT) {
-
                 const model = this.model as DynamicInputModel;
 
                 if (model.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_FILE) {
-
-                    const inputElement: any = $event.target ?? $event.srcElement;
+                    const inputElement: any = $event.target;
 
                     model.files = inputElement.files as FileList;
                 }
@@ -299,59 +294,46 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.change.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Change));
 
         } else if (isDynamicFormControlEvent($event)) { // event bypass
-
             this.change.emit($event);
 
         } else { // custom library value change event
-
             this.change.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Change));
         }
     }
 
     onBlur($event: FocusEvent | DynamicFormControlEvent | any): void {
-
         if (isDynamicFormControlEvent($event)) { // event bypass
-
             this.blur.emit($event);
 
         } else { // native HTML 5 or UI library blur event
-
             this._hasFocus = false;
             this.blur.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Blur));
         }
     }
 
     onFocus($event: FocusEvent | DynamicFormControlEvent | any): void {
-
         if (isDynamicFormControlEvent($event)) { // event bypass
-
             this.focus.emit($event);
 
         } else { // native HTML 5 or UI library focus event
-
             this._hasFocus = true;
             this.focus.emit(this.createDynamicFormControlEvent($event, DynamicFormControlEventType.Focus));
         }
     }
 
     onCustomEvent($event: DynamicFormControlEvent | DynamicFormControlCustomEvent): void {
-
         const emitter = this.customEvent as EventEmitter<DynamicFormControlEvent>;
 
         if (isDynamicFormControlEvent($event)) { // child event bypass
-
             emitter.emit($event);
 
         } else { // native UI library custom event
-
             emitter.emit(this.createDynamicFormControlEvent($event.customEvent, $event.customEventType));
         }
     }
 
     private registerFormControlComponentRef(ref: ComponentRef<DynamicFormControl>): void {
-
         if (this.context instanceof DynamicFormArrayGroupModel) {
-
             this.componentService.registerFormControl(this.model, ref, this.context.index);
 
         } else {
@@ -360,9 +342,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     private unregisterFormControlComponentRef(): void {
-
         if (this.context instanceof DynamicFormArrayGroupModel) {
-
             this.componentService.unregisterFormControl(this.model.id, this.context.index);
 
         } else {

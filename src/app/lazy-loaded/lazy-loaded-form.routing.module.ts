@@ -10,7 +10,6 @@ const ROUTES: Route[] = [
 ];
 
 @NgModule({
-
     imports: [RouterModule.forChild(ROUTES)],
     exports: [RouterModule]
 })

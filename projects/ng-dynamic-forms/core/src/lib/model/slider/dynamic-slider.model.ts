@@ -6,7 +6,6 @@ import { isBoolean, isNumber } from "../../utils/core.utils";
 export const DYNAMIC_FORM_CONTROL_TYPE_SLIDER = "SLIDER";
 
 export interface DynamicSliderModelConfig extends DynamicFormValueControlModelConfig<number> {
-
     max?: number;
     min?: number;
     step?: number;
@@ -14,7 +13,6 @@ export interface DynamicSliderModelConfig extends DynamicFormValueControlModelCo
 }
 
 export class DynamicSliderModel extends DynamicFormValueControlModel<number> {
-
     @serializable() max: number | null;
     @serializable() min: number | null;
     @serializable() step: number | null;
@@ -23,7 +21,6 @@ export class DynamicSliderModel extends DynamicFormValueControlModel<number> {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SLIDER;
 
     constructor(config: DynamicSliderModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.max = isNumber(config.max) ? config.max : 10;

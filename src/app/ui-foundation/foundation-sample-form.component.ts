@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormGroup, FormControl, FormArray } from "@angular/forms";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { FormArray } from "@angular/forms";
 import {
-    DynamicCheckboxModel,
     DynamicFormArrayModel,
+    DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
     DynamicFormService
@@ -16,30 +16,15 @@ import { FOUNDATION_SAMPLE_FORM_LAYOUT } from "./foundation-sample-form.layout";
     templateUrl: "./foundation-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })
-export class FoundationSampleFormComponent implements OnInit {
-
+export class FoundationSampleFormComponent {
     formModel: DynamicFormControlModel[] = FOUNDATION_SAMPLE_FORM_MODEL;
-    formGroup: FormGroup;
     formLayout: DynamicFormLayout = FOUNDATION_SAMPLE_FORM_LAYOUT;
+    formGroup = this.formService.createFormGroup(this.formModel);
 
-    checkboxControl: FormControl;
-    checkboxModel: DynamicCheckboxModel;
-
-    arrayControl: FormArray;
-    arrayModel: DynamicFormArrayModel;
+    arrayModel = this.formService.findModelById<DynamicFormArrayModel>("foundationFormArray", this.formModel) as DynamicFormArrayModel;
+    arrayControl = this.formService.findControlByModel <FormArray>(this.arrayModel, this.formGroup) as FormArray;
 
     constructor(private formService: DynamicFormService) {
-    }
-
-    ngOnInit() {
-
-        this.formGroup = this.formService.createFormGroup(this.formModel);
-
-        this.checkboxModel = this.formService.findModelById<DynamicCheckboxModel>("foundationCheckbox", this.formModel);
-        this.checkboxControl = this.formService.findControlByModel<FormControl>(this.checkboxModel, this.formGroup);
-
-        this.arrayModel = this.formService.findModelById<DynamicFormArrayModel>("foundationFormArray", this.formModel);
-        this.arrayControl = this.formService.findControlByModel <FormArray>(this.arrayModel, this.formGroup);
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
@@ -54,15 +39,15 @@ export class FoundationSampleFormComponent implements OnInit {
         this.formService.moveFormArrayGroup(index, step, this.arrayControl, context);
     }
 
-    onBlur($event) {
+    onBlur($event: DynamicFormControlEvent) {
         console.log(`BLUR event on ${$event.model.id}: `, $event);
     }
 
-    onChange($event) {
+    onChange($event: DynamicFormControlEvent) {
         console.log(`CHANGE event on ${$event.model.id}: `, $event);
     }
 
-    onFocus($event) {
+    onFocus($event: DynamicFormControlEvent) {
         console.log(`FOCUS event on ${$event.model.id}: `, $event);
     }
 }

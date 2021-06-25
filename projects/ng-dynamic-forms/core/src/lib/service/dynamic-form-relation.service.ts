@@ -7,54 +7,53 @@ import {
     DynamicFormControlMatcher,
     OR_OPERATOR
 } from "./dynamic-form-relation-matchers";
-import { DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
+import { DynamicFormControlCondition, DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
 import { startWith } from "rxjs/operators";
 import { merge, Subscription } from "rxjs";
+import { isString } from "../utils/core.utils";
 
-export type DynamicRelatedFormControls = { [key: string]: FormControl };
+export type DynamicRelatedFormControls = { [path: string]: FormControl };
 
 @Injectable({
     providedIn: "root"
 })
 export class DynamicFormRelationService {
 
-    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private MATCHERS: DynamicFormControlMatcher[],
-                private injector: Injector) {
+    constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private MATCHERS: DynamicFormControlMatcher[], private injector: Injector) {
     }
 
     getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): DynamicRelatedFormControls {
-
-        const conditionReducer = (controls, condition) => {
-
+        const conditionReducer = (controls: DynamicRelatedFormControls, condition: DynamicFormControlCondition) => {
             const path = condition.rootPath ?? condition.id;
 
-            if (!controls.hasOwnProperty(path)) {
+            if (isString(path) && !controls.hasOwnProperty(path)) {
+                const control = condition.rootPath ? group.root.get(condition.rootPath) : group.get(condition.id!);
 
-                const control = condition.rootPath ? group.root.get(condition.rootPath) : group.get(condition.id);
-
-                control instanceof FormControl ? controls[path] = control : console.warn(`No related form control with id ${condition.id} could be found`);
+                control instanceof FormControl ?
+                    controls[path] = control : console.warn(`No related form control with id ${condition.id} could be found`);
             }
 
             return controls;
         };
 
-        const relationReducer = (controls, relation) => relation.when.reduce(conditionReducer, controls);
+        const relationReducer = (controls: DynamicRelatedFormControls, relation: DynamicFormControlRelation) =>
+            relation.when.reduce(conditionReducer, controls);
 
         return model.relations.reduce(relationReducer, {});
     }
 
-    findRelationByMatcher(relations: DynamicFormControlRelation[], matcher: DynamicFormControlMatcher): DynamicFormControlRelation | undefined {
+    findRelationByMatcher(relations: DynamicFormControlRelation[],
+                          matcher: DynamicFormControlMatcher): DynamicFormControlRelation | undefined {
         return relations.find(relation => [matcher.match, matcher.opposingMatch].includes(relation.match));
     }
 
-    matchesCondition(relation: DynamicFormControlRelation, relatedFormControls: DynamicRelatedFormControls, matcher: DynamicFormControlMatcher): boolean {
-
+    matchesCondition(relation: DynamicFormControlRelation,
+                     relatedFormControls: DynamicRelatedFormControls,
+                     matcher: DynamicFormControlMatcher): boolean {
         const operator = relation.operator ?? OR_OPERATOR;
 
-        return relation.when.reduce((hasAlreadyMatched, condition, index) => {
-
+        return relation.when.reduce<boolean>((hasMatched, condition, index) => {
             const path = condition.rootPath ?? condition.id;
-
             let relatedFormControl;
 
             for (const [key, control] of Object.entries(relatedFormControls)) {
@@ -65,12 +64,11 @@ export class DynamicFormRelationService {
             }
 
             if (relatedFormControl && relation.match === matcher.match) {
-
-                if (index > 0 && operator === AND_OPERATOR && !hasAlreadyMatched) {
+                if (index > 0 && operator === AND_OPERATOR && !hasMatched) {
                     return false;
                 }
 
-                if (index > 0 && operator === OR_OPERATOR && hasAlreadyMatched) {
+                if (index > 0 && operator === OR_OPERATOR && hasMatched) {
                     return true;
                 }
 
@@ -78,12 +76,11 @@ export class DynamicFormRelationService {
             }
 
             if (relatedFormControl && relation.match === matcher.opposingMatch) {
-
-                if (index > 0 && operator === AND_OPERATOR && hasAlreadyMatched) {
+                if (index > 0 && operator === AND_OPERATOR && hasMatched) {
                     return true;
                 }
 
-                if (index > 0 && operator === OR_OPERATOR && !hasAlreadyMatched) {
+                if (index > 0 && operator === OR_OPERATOR && !hasMatched) {
                     return false;
                 }
 
@@ -96,7 +93,6 @@ export class DynamicFormRelationService {
     }
 
     subscribeRelations(model: DynamicFormControlModel, group: FormGroup, control: FormControl): Subscription[] {
-
         const relatedFormControls = this.getRelatedFormControls(model, group);
         const subscriptions: Subscription[] = [];
 
@@ -106,13 +102,10 @@ export class DynamicFormRelationService {
             const statusChanges = relatedControl.statusChanges.pipe(startWith(relatedControl.status));
 
             subscriptions.push(merge(valueChanges, statusChanges).subscribe(() => {
-
                 this.MATCHERS.forEach(matcher => {
-
                     const relation = this.findRelationByMatcher(model.relations, matcher);
 
                     if (relation !== undefined) {
-
                         const hasMatch = this.matchesCondition(relation, relatedFormControls, matcher);
                         matcher.onChange(hasMatch, model, control, this.injector);
                     }

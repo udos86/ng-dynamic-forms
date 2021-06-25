@@ -1,17 +1,15 @@
 import { DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX, DynamicCheckboxModel } from "./dynamic-checkbox.model";
 
 describe("DynamicCheckboxModel test suite", () => {
-
-    let model: DynamicCheckboxModel,
-        config = {
-            id: "checkbox",
-            value: true
-        };
+    let model: DynamicCheckboxModel;
+    const config = {
+        id: "checkbox",
+        value: true
+    };
 
     beforeEach(() => model = new DynamicCheckboxModel(config));
 
     it("should initialize correctly", () => {
-
         expect(model.asyncValidators).toBeNull();
         expect(model.disabled).toBe(false);
         expect(model.hidden).toBe(false);
@@ -27,7 +25,6 @@ describe("DynamicCheckboxModel test suite", () => {
     });
 
     it("should get and set checked property correctly", () => {
-
         expect(model.checked).toBe(config.value);
 
         model.checked = false;
@@ -37,7 +34,6 @@ describe("DynamicCheckboxModel test suite", () => {
     });
 
     it("should toggle correctly", () => {
-
         model.toggle();
 
         expect(model.checked).toBe(!config.value);
@@ -45,8 +41,7 @@ describe("DynamicCheckboxModel test suite", () => {
     });
 
     it("should serialize correctly", () => {
-
-        let json = JSON.parse(JSON.stringify(model));
+        const json = JSON.parse(JSON.stringify(model));
 
         expect(json.id).toEqual(model.id);
         expect(json.value).toBe(model.value);

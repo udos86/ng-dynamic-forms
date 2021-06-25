@@ -11,7 +11,8 @@ import {
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import {
-    DynamicFormComponent, DynamicFormComponentService,
+    DynamicFormComponent,
+    DynamicFormComponentService,
     DynamicFormControlEvent,
     DynamicFormLayout,
     DynamicFormModel,
@@ -25,18 +26,17 @@ import { DynamicFoundationFormControlContainerComponent } from "./dynamic-founda
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFoundationFormComponent extends DynamicFormComponent {
-
-    @Input() group: FormGroup;
-    @Input() model: DynamicFormModel;
-    @Input() layout: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() model!: DynamicFormModel;
+    @Input() layout?: DynamicFormLayout;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) templates!: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicFoundationFormControlContainerComponent) components: QueryList<DynamicFoundationFormControlContainerComponent>;
+    @ViewChildren(DynamicFoundationFormControlContainerComponent) components!: QueryList<DynamicFoundationFormControlContainerComponent>;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentService: DynamicFormComponentService) {

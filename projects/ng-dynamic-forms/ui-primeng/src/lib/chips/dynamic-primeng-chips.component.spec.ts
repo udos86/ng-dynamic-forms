@@ -3,36 +3,31 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Chips, ChipsModule } from "primeng/chips";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGChipsComponent } from "./dynamic-primeng-chips.component";
 
 describe("DynamicPrimeNGChipsComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", multiple: true});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", multiple: true}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGChipsComponent>,
-        component: DynamicPrimeNGChipsComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGChipsComponent>;
+    let component: DynamicPrimeNGChipsComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 ChipsModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGChipsComponent]
 
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGChipsComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +36,6 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +47,6 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -76,12 +69,10 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
     });
 
     it("should have an p-chips element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -90,7 +81,6 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -99,7 +89,6 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -108,7 +97,6 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

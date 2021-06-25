@@ -1,18 +1,16 @@
 import { DYNAMIC_FORM_CONTROL_TYPE_RATING, DynamicRatingModel } from "./dynamic-rating.model";
 
 describe("DynamicRatingModel test suite", () => {
-
-    let model: DynamicRatingModel,
-        config = {
-            id: "rating",
-            max: 5,
-            value: 2
-        };
+    let model: DynamicRatingModel;
+    const config = {
+        id: "rating",
+        max: 5,
+        value: 2
+    };
 
     beforeEach(() => model = new DynamicRatingModel(config));
 
     it("should initialize correctly", () => {
-
         expect(model.disabled).toBe(false);
         expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
@@ -25,8 +23,7 @@ describe("DynamicRatingModel test suite", () => {
     });
 
     it("should serialize correctly", () => {
-
-        let json = JSON.parse(JSON.stringify(model));
+        const json = JSON.parse(JSON.stringify(model));
 
         expect(json.id).toEqual(model.id);
         expect(json.value).toBe(model.value);

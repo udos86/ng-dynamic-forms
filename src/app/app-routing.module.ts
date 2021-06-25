@@ -37,6 +37,7 @@ const APP_ROUTES: Route[] = [
         component: FoundationSampleFormComponent,
         data: {
             title: "Foundation UI",
+            // tslint:disable-next-line:max-line-length
             href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/foundation-sample-form/foundation-sample-form.model.ts",
             bgColor: "#2199e8"
         }
@@ -84,7 +85,7 @@ const APP_ROUTES: Route[] = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(APP_ROUTES, { relativeLinkResolution: 'legacy' })],
+    imports: [RouterModule.forRoot(APP_ROUTES, {relativeLinkResolution: "legacy"})],
     exports: [RouterModule]
 })
 export class AppRoutingModule {

@@ -3,36 +3,31 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Spinner, SpinnerModule } from "primeng/spinner";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGSpinnerComponent } from "./dynamic-primeng-spinner.component";
 
 describe("DynamicPrimeNGSpinnerComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", inputType: "number"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", inputType: "number"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGSpinnerComponent>,
-        component: DynamicPrimeNGSpinnerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGSpinnerComponent>;
+    let component: DynamicPrimeNGSpinnerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 SpinnerModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGSpinnerComponent]
 
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGSpinnerComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +36,6 @@ describe("DynamicPrimeNGSpinnerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +47,6 @@ describe("DynamicPrimeNGSpinnerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -74,12 +67,10 @@ describe("DynamicPrimeNGSpinnerComponent test suite", () => {
     });
 
     it("should have an p-spinner element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +79,6 @@ describe("DynamicPrimeNGSpinnerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +87,6 @@ describe("DynamicPrimeNGSpinnerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

@@ -4,16 +4,13 @@ import { serializable } from "../decorator/serializable.decorator";
 import { isBoolean } from "../utils/core.utils";
 
 export interface DynamicCheckControlModelConfig extends DynamicFormValueControlModelConfig<boolean> {
-
     labelPosition?: string;
 }
 
 export abstract class DynamicCheckControlModel extends DynamicFormValueControlModel<boolean> {
-
     @serializable() labelPosition: string | null;
 
     protected constructor(config: DynamicCheckControlModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.labelPosition = config.labelPosition ?? null;
@@ -21,7 +18,7 @@ export abstract class DynamicCheckControlModel extends DynamicFormValueControlMo
     }
 
     get checked(): boolean {
-        return this.value;
+        return this.value ?? false;
     }
 
     set checked(checked: boolean) {

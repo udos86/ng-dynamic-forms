@@ -1,5 +1,4 @@
 export interface DynamicFormControlLayoutConfig {
-
     children?: string;
     container?: string;
     control?: string;
@@ -14,7 +13,6 @@ export interface DynamicFormControlLayoutConfig {
 }
 
 export interface DynamicFormControlLayout {
-
     element?: DynamicFormControlLayoutConfig;
     grid?: DynamicFormControlLayoutConfig;
 
@@ -24,4 +22,3 @@ export interface DynamicFormControlLayout {
 export type DynamicFormControlLayoutPlace = keyof DynamicFormControlLayoutConfig;
 
 export type DynamicFormControlLayoutContext = keyof DynamicFormControlLayout;
-

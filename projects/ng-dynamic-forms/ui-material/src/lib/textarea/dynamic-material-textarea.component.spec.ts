@@ -4,35 +4,29 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { MatInput, MatInputModule } from "@angular/material/input";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialTextAreaComponent } from "./dynamic-material-textarea.component";
 
 describe("DynamicMaterialTextAreaComponent test suite", () => {
+    const testModel = new DynamicTextAreaModel({id: "textarea"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTextAreaModel({id: "textarea"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialTextAreaComponent>,
-        component: DynamicMaterialTextAreaComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialTextAreaComponent>;
+    let component: DynamicMaterialTextAreaComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 MatInputModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialTextAreaComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialTextAreaComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
@@ -79,12 +71,10 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should have an input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -93,7 +83,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -102,7 +91,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -111,7 +99,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -120,7 +107,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -129,7 +115,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
@@ -138,7 +123,6 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

@@ -7,8 +7,7 @@
     "umdId": "ngDynamicForms.ui.material",
     "amdId": "@ng-dynamic-forms/ui-material",
     "umdModuleIds": {
-      "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "angular2-text-mask": "angular2-text-mask"
+      "@ng-dynamic-forms/core": "ngDynamicForms.core"
     }
   }
 }

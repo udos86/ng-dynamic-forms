@@ -7,14 +7,12 @@ import { serializable, serialize } from "../../decorator/serializable.decorator"
 import { isFunction, isNumber } from "../../utils/core.utils";
 
 export class DynamicFormArrayGroupModel implements DynamicPathable {
-
     $implicit: DynamicFormArrayGroupModel;
     context: DynamicFormArrayModel;
     @serializable() group: DynamicFormModel;
     @serializable() index: number;
 
     constructor(context: DynamicFormArrayModel, group: DynamicFormModel = [], index: number = -1) {
-
         this.$implicit = this;
         this.context = context;
         this.group = group;
@@ -37,7 +35,6 @@ export class DynamicFormArrayGroupModel implements DynamicPathable {
 export const DYNAMIC_FORM_CONTROL_TYPE_ARRAY = "ARRAY";
 
 export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConfig {
-
     groupAsyncValidators?: DynamicValidatorsConfig;
     groupFactory?: () => DynamicFormModel;
     groupValidators?: DynamicValidatorsConfig;
@@ -46,7 +43,6 @@ export interface DynamicFormArrayModelConfig extends DynamicFormControlModelConf
 }
 
 export class DynamicFormArrayModel extends DynamicFormControlModel {
-
     @serializable() groupAsyncValidators: DynamicValidatorsConfig | null;
     groupFactory: () => DynamicFormModel;
     @serializable() groupValidators: DynamicValidatorsConfig | null;
@@ -57,7 +53,6 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_ARRAY;
 
     constructor(config: DynamicFormArrayModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         if (isFunction(config.groupFactory)) {
@@ -72,13 +67,11 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
         this.initialCount = isNumber(config.initialCount) ? config.initialCount : 1;
 
         if (Array.isArray(config.groups)) {
-
             config.groups.forEach((arrayGroup, index) => {
                 this.groups.push(new DynamicFormArrayGroupModel(this, arrayGroup.group, arrayGroup.index ?? index));
             });
 
         } else {
-
             for (let index = 0; index < this.initialCount; index++) {
                 this.addGroup();
             }
@@ -102,8 +95,7 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     }
 
     insertGroup(index: number): DynamicFormArrayGroupModel {
-
-        let group = new DynamicFormArrayGroupModel(this, this.groupFactory());
+        const group = new DynamicFormArrayGroupModel(this, this.groupFactory());
 
         this.groups.splice(index, 0, group);
         this.updateGroupIndex();
@@ -112,13 +104,11 @@ export class DynamicFormArrayModel extends DynamicFormControlModel {
     }
 
     moveGroup(index: number, step: number): void {
-
         this.groups.splice(index + step, 0, ...this.groups.splice(index, 1));
         this.updateGroupIndex();
     }
 
     removeGroup(index: number): void {
-
         this.groups.splice(index, 1);
         this.updateGroupIndex();
     }

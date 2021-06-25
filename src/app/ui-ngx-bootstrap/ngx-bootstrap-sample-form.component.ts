@@ -1,44 +1,34 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormGroup, FormControl, FormArray } from "@angular/forms";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { FormGroup, FormArray } from "@angular/forms";
 import {
     DynamicFormArrayModel,
-    DynamicFormControlModel, DynamicFormGroupModel,
+    DynamicFormControlModel,
+    DynamicFormGroupModel,
     DynamicFormLayout,
-    DynamicFormService, DynamicFormValueControlModel,
+    DynamicFormService,
+    DynamicFormValueControlModel,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
 import { NGX_BOOTSTRAP_SAMPLE_FORM_MODEL } from "./ngx-bootstrap-sample-form.model";
 import { NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./ngx-bootstrap-sample-form.layout";
+import { DynamicFormControlEvent } from "../../../projects/ng-dynamic-forms/core/src/lib/component/dynamic-form-control-event";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-sample-form",
     templateUrl: "./ngx-bootstrap-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })
-export class NgxBootstrapSampleFormComponent implements OnInit {
-
+export class NgxBootstrapSampleFormComponent {
     formModel: DynamicFormControlModel[] = NGX_BOOTSTRAP_SAMPLE_FORM_MODEL;
-    formGroup: FormGroup;
     formLayout: DynamicFormLayout = NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT;
+    formGroup = this.formService.createFormGroup(this.formModel);
 
-    sampleFormControl: FormControl;
-    sampleFormControlModel: DynamicInputModel;
+    sampleFormControlModel = this.formService.findModelById<DynamicInputModel>("bsInput", this.formModel) as DynamicInputModel;
 
-    formArray: FormArray;
-    formArrayModel: DynamicFormArrayModel;
+    formArrayModel = this.formService.findModelById<DynamicFormArrayModel>("bsFormArray", this.formModel) as DynamicFormArrayModel;
+    formArray = this.formService.findControlByModel<FormArray>(this.formArrayModel, this.formGroup) as FormArray;
 
     constructor(private formService: DynamicFormService) {
-    }
-
-    ngOnInit() {
-
-        this.formGroup = this.formService.createFormGroup(this.formModel);
-
-        this.sampleFormControlModel = this.formService.findModelById<DynamicInputModel>("bsInput", this.formModel);
-        this.formArrayModel = this.formService.findModelById<DynamicFormArrayModel>("bsFormArray", this.formModel);
-
-        this.sampleFormControl = this.formService.findControlByModel<FormControl>(this.sampleFormControlModel, this.formGroup);
-        this.formArray = this.formService.findControlByModel<FormArray>(this.formArrayModel, this.formGroup);
     }
 
     getFormArray(model: DynamicFormArrayModel, group: FormGroup): FormArray {
@@ -59,6 +49,18 @@ export class NgxBootstrapSampleFormComponent implements OnInit {
 
     clear() {
         this.formService.clearFormArray(this.formArray, this.formArrayModel);
+    }
+
+    onBlur($event: DynamicFormControlEvent) {
+        console.log(`BLUR event on ${$event.model.id}: `, $event);
+    }
+
+    onChange($event: DynamicFormControlEvent) {
+        console.log(`CHANGE event on ${$event.model.id}: `, $event);
+    }
+
+    onFocus($event: DynamicFormControlEvent) {
+        console.log(`FOCUS event on ${$event.model.id}: `, $event);
     }
 
     test() {
@@ -85,17 +87,5 @@ export class NgxBootstrapSampleFormComponent implements OnInit {
         );
 
         this.formService.detectChanges();
-    }
-
-    onBlur($event) {
-        console.log(`BLUR event on ${$event.model.id}: `, $event);
-    }
-
-    onChange($event) {
-        console.log(`CHANGE event on ${$event.model.id}: `, $event);
-    }
-
-    onFocus($event) {
-        console.log(`FOCUS event on ${$event.model.id}: `, $event);
     }
 }

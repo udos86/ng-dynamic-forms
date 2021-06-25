@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { AutoCompleteModule, AutoCompleteComponent } from "@progress/kendo-angular-dropdowns";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoAutoCompleteComponent } from "./dynamic-kendo-autocomplete.component";
 
 describe("DynamicKendoAutoCompleteComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", list: ["One", "Two", "Three"]});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", list: ["One", "Two", "Three"]}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoAutoCompleteComponent>,
-        component: DynamicKendoAutoCompleteComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoAutoCompleteComponent>;
+    let component: DynamicKendoAutoCompleteComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 AutoCompleteModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoAutoCompleteComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoAutoCompleteComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -76,12 +68,10 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
     });
 
     it("should have an kendo-autocomplete element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -90,7 +80,6 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -99,7 +88,6 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -108,7 +96,6 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

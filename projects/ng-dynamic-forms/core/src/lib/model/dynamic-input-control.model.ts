@@ -4,7 +4,6 @@ import { serializable } from "../decorator/serializable.decorator";
 import { isBoolean, isNumber } from "../utils/core.utils";
 
 export interface DynamicInputControlModelConfig<T> extends DynamicFormValueControlModelConfig<T> {
-
     autoComplete?: string;
     autoFocus?: boolean;
     maxLength?: number;
@@ -17,7 +16,6 @@ export interface DynamicInputControlModelConfig<T> extends DynamicFormValueContr
 }
 
 export abstract class DynamicInputControlModel<T> extends DynamicFormValueControlModel<T> {
-
     @serializable() autoComplete: string;
     @serializable() autoFocus: boolean;
     @serializable() maxLength: number | null;
@@ -29,7 +27,6 @@ export abstract class DynamicInputControlModel<T> extends DynamicFormValueContro
     @serializable() suffix: string | null;
 
     protected constructor(config: DynamicInputControlModelConfig<T>, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.autoComplete = config.autoComplete ?? "on";

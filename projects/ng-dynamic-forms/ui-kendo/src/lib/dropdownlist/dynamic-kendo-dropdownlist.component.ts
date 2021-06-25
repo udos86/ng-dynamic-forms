@@ -9,7 +9,8 @@ import {
 import { FormGroup } from "@angular/forms";
 import { DropDownListComponent } from "@progress/kendo-angular-dropdowns";
 import {
-    DynamicFormControlCustomEvent, DynamicFormControlLayout,
+    DynamicFormControlCustomEvent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -24,25 +25,22 @@ import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-f
     templateUrl: "./dynamic-kendo-dropdownlist.component.html"
 })
 export class DynamicKendoDropdownListComponent extends DynamicKendoFormControlWithTemplateComponent {
-
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicSelectModel<string>;
-    @Input() templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicSelectModel<string>;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoDropDownList", {static: true}) kendoDropDownList: DropDownListComponent;
+    @ViewChild("kendoDropDownList", {static: true}) kendoDropDownList!: DropDownListComponent;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 

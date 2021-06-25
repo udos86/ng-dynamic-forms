@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
+import { Component, ViewEncapsulation } from "@angular/core";
+import {
+    DynamicFormService,
+    DynamicFormControlModel,
+    DynamicFormLayout,
+    DynamicFormControlEvent
+} from "@ng-dynamic-forms/core";
 import { MATERIAL_SAMPLE_FORM_MODEL } from "./material-sample-form.model";
 import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
 
@@ -10,32 +14,27 @@ import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
     templateUrl: "./material-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })
-export class MaterialSampleFormComponent implements OnInit {
-
+export class MaterialSampleFormComponent {
     formModel: DynamicFormControlModel[] = MATERIAL_SAMPLE_FORM_MODEL;
-    formGroup: FormGroup;
+    formGroup = this.formService.createFormGroup(this.formModel);
     formLayout: DynamicFormLayout = MATERIAL_SAMPLE_FORM_LAYOUT;
 
     constructor(private formService: DynamicFormService) {
     }
 
-    ngOnInit() {
-        this.formGroup = this.formService.createFormGroup(this.formModel);
-    }
-
-    onBlur($event) {
+    onBlur($event: DynamicFormControlEvent) {
         console.log(`Material blur event on: ${$event.model.id}: `, $event);
     }
 
-    onChange($event) {
+    onChange($event: DynamicFormControlEvent) {
         console.log(`Material change event on: ${$event.model.id}: `, $event);
     }
 
-    onFocus($event) {
+    onFocus($event: DynamicFormControlEvent) {
         console.log(`Material focus event on: ${$event.model.id}: `, $event);
     }
 
-    onMatEvent($event) {
+    onMatEvent($event: DynamicFormControlEvent) {
         console.log(`Material ${$event.type} event on: ${$event.model.id}: `, $event);
     }
 }

@@ -10,7 +10,6 @@
                       [name]="model.name"
                       [ngClass]="[getClass('element','control'), getClass('grid','control')]"
                       (change)="onChange($event)"
-                      (dragChange)="onCustomEvent($event, 'dragChange')"
                       (toggleChange)="onCustomEvent($event, 'toggleChange')">
 
         <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>

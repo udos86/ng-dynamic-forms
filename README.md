@@ -88,7 +88,6 @@ ng serve
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 
 @NgModule({
-    
     imports: [
         ReactiveFormsModule,
         DynamicFormsMaterialUIModule
@@ -110,7 +109,6 @@ import {
 export const MY_FORM_MODEL: DynamicFormModel = [
 
     new DynamicInputModel({
-
         id: "sampleInput",
         label: "Sample Input",
         maxLength: 42,
@@ -118,28 +116,17 @@ export const MY_FORM_MODEL: DynamicFormModel = [
     }),
 
     new DynamicRadioGroupModel<string>({
-
         id: "sampleRadioGroup",
         label: "Sample Radio Group",
         options: [
-            {
-                label: "Option 1",
-                value: "option-1",
-            },
-            {
-                label: "Option 2",
-                value: "option-2"
-            },
-            {
-                label: "Option 3",
-                value: "option-3"
-            }
+            {label: "Option 1", value: "option-1"},
+            {label: "Option 2", value: "option-2"},
+            {label: "Option 3", value: "option-3"}
         ],
         value: "option-3"
     }),
 
     new DynamicCheckboxModel({
-
         id: "sampleCheckbox",
         label: "I do agree"
     })
@@ -151,16 +138,11 @@ export const MY_FORM_MODEL: DynamicFormModel = [
 import { MY_FORM_MODEL } from "./my-dynamic-form.model";
 import { DynamicFormModel, DynamicFormService } from "@ng-dynamic-forms/core";
 
-export class MyDynamicFormComponent implements OnInit {
-
+export class MyDynamicFormComponent {
     formModel: DynamicFormModel = MY_FORM_MODEL;
-    formGroup: FormGroup;
+    formGroup = this.formService.createFormGroup(this.formModel);
 
     constructor(private formService: DynamicFormService) {}
-
-    ngOnInit() {
-        this.formGroup = this.formService.createFormGroup(this.formModel);
-    }
 }
 ```
 
@@ -196,7 +178,6 @@ npm i @ng-dynamic-forms/ui-<library-name> -S
 **Now just import the UI module**:
 ```typescript
 @NgModule({
-
     imports: [
         ReactiveFormsModule,
         DynamicFormsMaterialUIModule
@@ -266,17 +247,14 @@ Thus NG Dynamic Forms supports nesting of form groups out of the box!
 export const MY_FORM_MODEL: DynamicFormModel = [
  
     new DynamicFormGroupModel({
- 
         id: "fullName",
         legend: "Name",
         group: [
             new DynamicInputModel({
-                
                 id: "firstName",
                 label: "First Name"
             }),
             new DynamicInputModel({
-                
                 id: "lastName",
                 label: "Last Name"
             })
@@ -284,17 +262,14 @@ export const MY_FORM_MODEL: DynamicFormModel = [
     }),
     
     new DynamicFormGroupModel({
- 
         id: "address",
         legend: "Address",
         group: [
             new DynamicInputModel({
-                    
                 id: "street",
                 label: "street"
             }),
             new DynamicInputModel({
-                
                 id: "zipCode",
                 label: "Zip Code"
             })
@@ -305,9 +280,7 @@ export const MY_FORM_MODEL: DynamicFormModel = [
  
 **2. Create a** `FormGroup` **and add a** `DynamicFormComponent`:
 ```typescript
-ngOnInit() {
-    this.formGroup = this.formService.createFormGroup(this.formModel);
-}
+formGroup = this.formService.createFormGroup(this.formModel);
 ```
 
 ```html
@@ -348,7 +321,6 @@ export const MY_FORM_MODEL: DynamicFormModel = [
 the structure** of a single form array item:
 ```typescript
 new DynamicFormArrayModel({
-
     id: "myFormArray",
     initialCount: 5,
     groupFactory: () => {
@@ -381,7 +353,6 @@ this.formGroup = this.formService.createFormGroup(this.formModel);
 **4. You can now easily modify your form array with** `DynamicFormService`:
 ```typescript
 ngOnInit() {
-
     this.formArrayModel = this.formService.findModelById<DynamicFormArrayModel>("myFormArray", this.formModel);
     this.formArrayControl = this.formService.findControlByModel<FormArray>(this.formArrayModel, this.formGroup); 
 }
@@ -498,7 +469,6 @@ CSS class strings in the component template based on [position identifiers](http
 export const MY_FORM_LAYOUT = {
     
     "myFormControlModelId": {
-    
         element: {
             label: "control-label"
         },
@@ -509,7 +479,6 @@ export const MY_FORM_LAYOUT = {
     },
     
     "myOtherFormControlModelId": {
-        
         element: {
             label: "control-label"
         },
@@ -526,16 +495,11 @@ To reference this `DynamicFormLayout` we now just create another component class
 import { MY_FORM_LAYOUT } from "./my-dynamic-form.layout";
 
 export class MyDynamicFormComponent implements OnInit {
-
     formModel: DynamicFormModel = MY_FORM_MODEL;
-    formGroup: FormGroup;
     formLayout: DynamicFormLayout = MY_FORM_LAYOUT;
+    formGroup = this.formService.createFormGroup(this.formModel);
 
     constructor(private formService: DynamicFormService) {}
-
-    ngOnInit() {
-        this.formGroup = this.formService.createFormGroup(this.formModel);
-    }
 }
 ```
 
@@ -562,7 +526,6 @@ So, when picking e.g. a slider component, you'll always find an `@Input()` to co
 Whenever that's the case NG Dynamic Forms directly provides an abstract configuration property on the corresponding `DynamicFormControlModel`:
 ```typescript
 new DynamicSliderModel({
-
     id: "mySlider",
     min: 0,
     max: 10,
@@ -579,7 +542,6 @@ NG Dynamic Forms gives you the freedom to utilize such an individual parameter, 
 All you need to do is to put it in the `additional` configuration object of your `DynamicFormValueControlModel`: 
 ```typescript
 new DynamicSliderModel({
-
     id: "mySlider",
     min: 0,
     max: 10,
@@ -621,7 +583,6 @@ The object passed to your handler function gives you any control and model infor
 The `$event` property even grants access to the original event:
 ```typescript
 interface DynamicFormControlEvent {
-
     $event: Event | FocusEvent | DynamicFormControlEvent | any;
     context: DynamicFormArrayGroupModel | null;
     control: FormControl;
@@ -682,10 +643,9 @@ this.formService.detectChanges();
 
 To optimize this you can optionally pass a `DynamicFormComponent` to `detectChanges()` to narrow the number of elements that are affected by the forthcoming change detection:
 ```typescript
-@ViewChild(DynamicMaterialFormComponent, {static: false}) formComponent: DynamicMaterialFormComponent;
+@ViewChild(DynamicMaterialFormComponent, {static: true}) formComponent°!: DynamicMaterialFormComponent;
 
 //...
-
 this.formService.detectChanges(this.formComponent);
 ```
 
@@ -800,7 +760,6 @@ Adding built-in Angular validators to any `DynamicFormControlModel` is plain and
 Just reference a function from `Validators` class by it's name in the `validators` or `asyncValidators` configuration object:
 ```typescript 
 new DynamicInputModel({
-
     id: "myInput",
     label: "My Input",
     validators: {
@@ -815,9 +774,7 @@ So far so good!
 But what if you'd like to introduce some custom validator as well?
 ```typescript
 export function myCustomValidator(control: AbstractControl): ValidationErrors | null {
-
-    let hasError = control.value ? (control.value as string).startsWith("abc") : false;
-
+    const hasError = control.value ? (control.value as string).startsWith("abc") : false;
     return hasError ? {myCustomValidator: true} : null;
 }
 ```
@@ -837,7 +794,6 @@ Just **provide your validator functions via default** `NG_VALIDATORS` **or** `NG
 **You're now ready to apply your custom validator to your model**:
 ```typescript 
 new DynamicInputModel({
-
     id: "myInput",
     label: "My Input",
     validators: {
@@ -894,7 +850,6 @@ providers: [
 Another suitable solution for most situations would be to **make use of the alternate validator notation**:
 ```typescript 
 new DynamicInputModel({
-
     id: "myInput",
     label: "My Input",
     validators: {
@@ -952,21 +907,19 @@ import { MyCustomFormControlComponent } from "...";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyDynamicCustomFormControlComponent extends DynamicFormControlComponent {
-
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormLayout;
-    @Input() model: /* corresponding DynamicFormControlModel */;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormLayout;
+    @Input() model!: /* corresponding DynamicFormControlModel */;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(MyCustomFormControlComponent) myCustomFormControlComponent: MyCustomFormControlComponent;
+    @ViewChild(MyCustomFormControlComponent) myCustomFormControlComponent!: MyCustomFormControlComponent;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService) {
-
         super(layoutService, validationService);
     }
 }
@@ -997,9 +950,7 @@ providers: [
   {
     provide: DYNAMIC_FORM_CONTROL_MAP_FN,
     useValue: (model: DynamicFormControlModel): Type<DynamicFormControl> | null  => {
-
       switch (model.type) {
-
         case /* corresponding DynamicFormControlModel */:
           return MyDynamicCustomFormControlComponent;
 
@@ -1025,7 +976,6 @@ However, due to its very common use case, model-based error messaging has eventu
 **Just add an** `errorMessages` **object to any** `DynamicFormControlModel` and **assign error message templates based on** `Validators` **names**:
 ```typescript 
 new DynamicInputModel({
-
         id: "myInput",
         label: "My Input",
         validators: {
@@ -1085,7 +1035,6 @@ NG Dynamic Forms enables you to declaratively add form control relations by usin
 A matcher defines the action that should take place for a predefined `match` when a `value` or `state` change has occured on the related form control.
 ```typescript
 export interface DynamicFormControlMatcher {
-
     match: string;
     opposingMatch: string | null;
     onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
@@ -1110,7 +1059,6 @@ providers: [
  That way you're also totally **free to implement your own custom matcher**:
 ```typescript
  export const MyCustomMatcher: DynamicFormControlMatcher = {
-
     match: MATCH_CUSTOM,
     opposingMatch: MATCH_CUSTOM_OPPOSITE,
     onChange(hasMatch: boolean, model: DynamicFormControlModel): void {
@@ -1140,9 +1088,7 @@ new DynamicTextAreaModel(
         relations: [
             {
                 match: MATCH_DISABLED,
-                when: [
-                    { id: "mySelect", value: "option-3" }
-                ]
+                when: [{ id: "mySelect", value: "option-3" }]
             }
         ]
     }
@@ -1181,8 +1127,7 @@ Sooner or later you likely want to persist your dynamic form model in order to r
 That's why all `DynamicFormControlModel`s have been prepared to **properly export to JSON**: 
 ```typescript
 storeForm() {
-    
-    let json: string = JSON.stringify(this.formModel);
+    const json = JSON.stringify(this.formModel);
     
     // ...store JSON in localStorage or transfer to server
 }
@@ -1191,7 +1136,6 @@ storeForm() {
 In order to recreate a form from JSON just make use of the corresponding function provided by `DynamicFormService`:
 ```typescript
 restoreForm() {
-
     let json: string;
     
     // ...load JSON from localStorage or server
@@ -1224,18 +1168,9 @@ To specify a single JSON form control model just **assign the mandatory** `type`
         "id": "sampleRadioGroup",
         "label": "Sample Radio Group",
         "options": [
-            {
-                "label": "Option 1",
-                "value": "option-1",
-            },
-            {
-                "label": "Option 2",
-                "value": "option-2"
-            },
-            {
-                "label": "Option 3",
-                "value": "option-3"
-            }
+            {"label": "Option 1", "value": "option-1"},
+            {"label": "Option 2", "value": "option-2"},
+            {"label": "Option 3", "value": "option-3"}
         ],
         "value": "option-3"    
     },
@@ -1250,9 +1185,7 @@ To specify a single JSON form control model just **assign the mandatory** `type`
 After having asynchronously loaded the JSON form model into your application **don't forget to transform it** via `fromJSON()` **before creating** a `FormGroup`. 
 ```typescript
 ngOnInit() {
-
     this.http.get<object[]>('./app/my-dynamic-form.model.json').subscribe(formModelJson => {
-
         this.formModel = this.formService.fromJSON(formModelJson);
         this.formGroup = this.formService.createFormGroup(this.formModel);
     });
@@ -1268,30 +1201,29 @@ Since Angular does not deliver an appropriate feature by default, NG Dynamic For
 
 That's why most UI packages demand one additional peer dependency to be installed:
 ```
-npm install angular2-text-mask --save
+npm install ngx-mask --save
 ```
 
 You're now capable of adding a `mask` property to any `DynamicInputModel` according to [Text Mask docs](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask):
 
 ```typescript
 new DynamicInputModel({
-
     id: "maskedInput",
     label: "Masked Input",
-    mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-}),
+    mask: "00/00/0000",
+})
 ```
 
 You can also pass a function as the mask. The function will receive the user input at every change. The function is expected to return a mask array as described above.[Text Mask Addons](https://github.com/text-mask/text-mask/tree/master/addons/)
  ```typescript
 new DynamicInputModel({
-     id: "maskedInput",
+    id: "maskedInput",
     label: "Masked Input",
-    mask: createNumberMask({
-            prefix: "",
-            suffix: " $"
-          }),
-}),
+    mask: "00/00/0000",
+    maskConfig: {
+        showMaskTyped: true
+    },
+})
 ```
 
 Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
@@ -1309,8 +1241,7 @@ Nevertheless you can completely disable this feature by explicitly setting the c
 ```typescript
 import { AUTOCOMPLETE_OFF } from "@ng-dynamic-forms/core";
 
-let model = new DynamicInputModel({
-    
+const model = new DynamicInputModel({
     id: "myInput",
     label: "My Input",
     autoComplete: AUTOCOMPLETE_OFF
@@ -1334,11 +1265,8 @@ import {
 export class MySample {
 
     constructor() {
-    
-        let expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
-
-        let model = new DynamicInputModel({
-        
+        const expression = `${AUTOFILL_TOKEN_BILLING} ${AUTOFILL_FIELD_NAME}`;
+        const model = new DynamicInputModel({
             id: "myInput",
             label: "My Input",
             autoComplete: AutoFillUtils.validate(expression) ? expression : AUTOCOMPLETE_ON
@@ -1351,7 +1279,6 @@ Besides you can make user input more comfortable, providing HTML5 [**datalists**
 by setting the `list` property of `DynamicInputControlModel`: 
 ```typescript
 new DynamicInputModel({
-    
     id: "myInput",
     label: "My Input",
     list: ["Alabama", "Alaska", "Arizona", "Arkansas"]

@@ -16,22 +16,20 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGBootstrapCalendarComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicDatePickerModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicDatePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(NgbDatepicker, {static: true}) ngbCalendar: NgbDatepicker;
+    @ViewChild(NgbDatepicker, {static: true}) ngbCalendar!: NgbDatepicker;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
                 public config: NgbDatepickerConfig) {
-
         super(layoutService, validationService);
     }
 }

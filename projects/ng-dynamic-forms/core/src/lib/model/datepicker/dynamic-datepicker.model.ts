@@ -10,7 +10,6 @@ import { isBoolean, isString } from "../../utils/core.utils";
 export const DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER = "DATEPICKER";
 
 export interface DynamicDatePickerModelConfig extends DynamicDateControlModelConfig {
-
     autoFocus?: boolean;
     focusedDate?: DynamicDateControlValue;
     inline?: boolean;
@@ -22,7 +21,6 @@ export interface DynamicDatePickerModelConfig extends DynamicDateControlModelCon
 }
 
 export class DynamicDatePickerModel extends DynamicDateControlModel {
-
     @serializable() autoFocus: boolean;
     @serializable() focusedDate: DynamicDateControlValue | null;
     @serializable() inline: boolean;
@@ -35,7 +33,6 @@ export class DynamicDatePickerModel extends DynamicDateControlModel {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER;
 
     constructor(config: DynamicDatePickerModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.autoFocus = isBoolean(config.autoFocus) ? config.autoFocus : false;

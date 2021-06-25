@@ -3,34 +3,28 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxGroupModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicKendoCheckboxGroupComponent } from "./dynamic-kendo-checkbox-group.component";
 
 describe("DynamicKendoCheckboxGroupComponent test suite", () => {
+    const testModel = new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []});
+    const formModel = [testModel];
 
-    let testModel = new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoCheckboxGroupComponent>,
-        component: DynamicKendoCheckboxGroupComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoCheckboxGroupComponent>;
+    let component: DynamicKendoCheckboxGroupComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoCheckboxGroupComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoCheckboxGroupComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +33,6 @@ describe("DynamicKendoCheckboxGroupComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +44,6 @@ describe("DynamicKendoCheckboxGroupComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormGroup).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxGroupModel).toBe(true);
@@ -71,7 +63,6 @@ describe("DynamicKendoCheckboxGroupComponent test suite", () => {
     });
 
     it("should have an fieldset element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 });

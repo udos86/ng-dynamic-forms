@@ -9,7 +9,7 @@
     "umdModuleIds": {
       "@ng-bootstrap/ng-bootstrap": "ngb",
       "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "angular2-text-mask": "angular2-text-mask"
+      "ngx-mask": "ngx-mask"
     }
   }
 }

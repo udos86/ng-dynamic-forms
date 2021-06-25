@@ -7,7 +7,6 @@ import { DynamicInputModel } from "../model/input/dynamic-input.model";
 import { isFunction } from "../utils/core.utils";
 
 describe("DynamicFormValidationService test suite", () => {
-
     let service: DynamicFormValidationService;
 
     function testValidator(): ValidationErrors | null {
@@ -25,7 +24,6 @@ describe("DynamicFormValidationService test suite", () => {
     }
 
     beforeEach(() => {
-
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
             providers: [
@@ -55,7 +53,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should resolve a validator by name", () => {
-
         expect(service.getValidator("required")).toBeTruthy();
         expect(service.getValidator("testValidator")).toBeTruthy();
         expect(service.getValidator("testValidatorFactory")).toBeTruthy();
@@ -63,13 +60,11 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should resolve a async validator by name correctly", () => {
-
         expect(service.getAsyncValidator("testAsyncValidator")).toBeTruthy();
     });
 
 
     it("should resolve validators from config", () => {
-
         const config: any = {required: null, maxLength: 7, minLength: 3};
         const validators = service.getValidators(config);
 
@@ -78,7 +73,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should resolve custom validators from config", () => {
-
         const config: any = {required: null, maxLength: 7, testValidator: null, testValidatorFactory: "test"};
         const validators = service.getValidators(config);
 
@@ -87,7 +81,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should resolve custom validators from detailed config", () => {
-
         const config: any = {testValidator: {name: testValidator.name, args: null}};
         const validators = service.getValidators(config);
 
@@ -96,7 +89,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should resolve custom async validators from config", () => {
-
         const config: any = {testAsyncValidator: null};
         const validators = service.getAsyncValidators(config);
 
@@ -105,14 +97,12 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should throw when validator is not provided via NG_VALIDATORS", () => {
-
         expect(() => service.getValidator("test", null))
             .toThrow(new Error(`validator "test" is not provided via NG_VALIDATORS, NG_ASYNC_VALIDATORS or DYNAMIC_FORM_VALIDATORS`));
     });
 
 
     it("should update validators on control and model", () => {
-
         const config: any = {testValidator: null};
         const control: FormControl = new FormControl();
         const model: DynamicFormControlModel = new DynamicInputModel({id: "input"});
@@ -133,7 +123,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should update async validators on control and model", () => {
-
         const config: any = {testAsyncValidator: null};
         const control: FormControl = new FormControl();
         const model: DynamicFormControlModel = new DynamicInputModel({id: "input"});
@@ -154,7 +143,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should create error messages", () => {
-
         const testControl: FormControl = new FormControl();
         const testModel: DynamicFormControlModel = new DynamicInputModel({
             id: "testModel",
@@ -194,7 +182,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should check if error messages should be shown", () => {
-
         const control: FormControl = new FormControl();
         const model: DynamicFormControlModel = new DynamicInputModel({
             id: "testModel",
@@ -216,7 +203,6 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should check form hooks", () => {
-
         expect(service.isFormHook(null)).toBe(false);
         expect(service.isFormHook("blur")).toBe(true);
         expect(service.isFormHook("focus")).toBe(false);

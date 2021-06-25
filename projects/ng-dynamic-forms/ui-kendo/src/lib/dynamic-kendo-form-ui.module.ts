@@ -6,7 +6,11 @@ import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
 import { UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
+import {
+    DynamicKendoFormArrayComponent,
+    DynamicKendoFormControlContainerComponent,
+    DynamicKendoFormGroupComponent
+} from "./dynamic-kendo-form-control-container.component";
 import { DynamicKendoFormComponent } from "./dynamic-kendo-form.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
 import { DynamicKendoCheckboxGroupComponent } from "./checkbox-group/dynamic-kendo-checkbox-group.component";
@@ -15,8 +19,6 @@ import { DynamicKendoCalendarComponent } from "./calendar/dynamic-kendo-calendar
 import { DynamicKendoDateInputComponent } from "./dateinput/dynamic-kendo-dateinput.component";
 import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
 import { DynamicKendoDropdownListComponent } from "./dropdownlist/dynamic-kendo-dropdownlist.component";
-import { DynamicKendoFormArrayComponent } from "./form-array/dynamic-kendo-form-array.component";
-import { DynamicKendoFormGroupComponent } from "./form-group/dynamic-kendo-form-group.component";
 import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
 import { DynamicKendoMaskedTextBoxComponent } from "./masked-textbox/dynamic-kendo-maskedtextbox.component";
 import { DynamicKendoMultiSelectComponent } from "./multiselect/dynamic-kendo-multiselect.component";
@@ -107,4 +109,5 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoUploadComponent
     ]
 })
-export class DynamicFormsKendoUIModule {}
+export class DynamicFormsKendoUIModule {
+}

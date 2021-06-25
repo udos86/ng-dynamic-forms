@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DatePickerModule, DatePickerComponent } from "@progress/kendo-angular-dateinputs";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicKendoDatePickerComponent } from "./dynamic-kendo-datepicker.component";
 
 describe("DynamicKendoDatePickerComponent test suite", () => {
+    const testModel = new DynamicDatePickerModel({id: "datepicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicDatePickerModel({id: "datepicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoDatePickerComponent>,
-        component: DynamicKendoDatePickerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoDatePickerComponent>;
+    let component: DynamicKendoDatePickerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DatePickerModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoDatePickerComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoDatePickerComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
@@ -75,12 +67,10 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
     });
 
     it("should have an kendo-datepicker element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +79,6 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +87,6 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +95,6 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

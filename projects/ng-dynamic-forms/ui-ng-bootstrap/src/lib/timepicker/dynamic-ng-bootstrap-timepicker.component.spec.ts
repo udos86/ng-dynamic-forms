@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { NgbTimepicker, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTimePickerModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapTimePickerComponent } from "./dynamic-ng-bootstrap-timepicker.component";
 
 describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
+    const testModel = new DynamicTimePickerModel({id: "timepicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTimePickerModel({id: "timepicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapTimePickerComponent>,
-        component: DynamicNGBootstrapTimePickerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapTimePickerComponent>;
+    let component: DynamicNGBootstrapTimePickerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 NgbTimepickerModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapTimePickerComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapTimePickerComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTimePickerModel).toBe(true);
@@ -74,12 +66,10 @@ describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
     });
 
     it("should have an ngb-timepicker element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +78,6 @@ describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +86,6 @@ describe("DynamicNGBootstrapTimePickerComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

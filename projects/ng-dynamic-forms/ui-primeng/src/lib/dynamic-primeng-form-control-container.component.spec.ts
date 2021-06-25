@@ -26,7 +26,9 @@ import {
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
 import {
+    DynamicPrimeNGFormArrayComponent,
     DynamicPrimeNGFormControlContainerComponent,
+    DynamicPrimeNGFormGroupComponent,
     primeNGUIFormControlMapFn
 } from "./dynamic-primeng-form-control-container.component";
 import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
@@ -34,8 +36,6 @@ import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-chec
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
 import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-dropdown.component";
 import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
-import { DynamicPrimeNGFormArrayComponent } from "./form-array/dynamic-primeng-form-array.component";
-import { DynamicPrimeNGFormGroupComponent } from "./form-group/dynamic-primeng-form-group.component";
 import { DynamicPrimeNGInputComponent } from "./input/dynamic-primeng-input.component";
 import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
 import { DynamicPrimeNGRadioGroupComponent } from "./radio-group/dynamic-primeng-radio-group.component";
@@ -60,43 +60,40 @@ import { SliderModule } from "primeng/slider";
 import { SpinnerModule } from "primeng/spinner";
 
 describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
+    const inputModel = new DynamicInputModel({id: "input", maxLength: 51});
+    const formModel = [
+        new DynamicCheckboxModel({id: "checkbox"}),
+        new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+        new DynamicColorPickerModel({id: "colorpicker"}),
+        new DynamicDatePickerModel({id: "datepicker"}),
+        new DynamicEditorModel({id: "editor"}),
+        new DynamicFileUploadModel({id: "upload", url: ""}),
+        new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
+        new DynamicFormGroupModel({id: "formGroup", group: []}),
+        inputModel,
+        new DynamicRadioGroupModel({id: "radioGroup"}),
+        new DynamicRatingModel({id: "rating"}),
+        new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+        new DynamicSliderModel({id: "slider"}),
+        new DynamicSwitchModel({id: "switch"}),
+        new DynamicTextAreaModel({id: "textarea"}),
+        new DynamicTimePickerModel({id: "timepicker"})
+    ];
 
-    let formModel = [
-            new DynamicCheckboxModel({id: "checkbox"}),
-            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
-            new DynamicColorPickerModel({id: "colorpicker"}),
-            new DynamicDatePickerModel({id: "datepicker"}),
-            new DynamicEditorModel({id: "editor"}),
-            new DynamicFileUploadModel({id: "upload", url: ""}),
-            new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
-            new DynamicFormGroupModel({id: "formGroup", group: []}),
-            new DynamicInputModel({id: "input", maxLength: 51}),
-            new DynamicRadioGroupModel({id: "radioGroup"}),
-            new DynamicRatingModel({id: "rating"}),
-            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
-            new DynamicSliderModel({id: "slider"}),
-            new DynamicSwitchModel({id: "switch"}),
-            new DynamicTextAreaModel({id: "textarea"}),
-            new DynamicTimePickerModel({id: "timepicker"})
-        ],
-        testModel = formModel[8],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGFormControlContainerComponent>,
-        component: DynamicPrimeNGFormControlContainerComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGFormControlContainerComponent>;
+    let component: DynamicPrimeNGFormControlContainerComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.overrideModule(BrowserDynamicTestingModule, {
-
             set: {
                 entryComponents: [DynamicPrimeNGInputComponent]
             }
         });
 
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
@@ -119,9 +116,7 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
                 SpinnerModule
             ],
             declarations: [DynamicPrimeNGFormControlContainerComponent, DynamicPrimeNGInputComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGFormControlContainerComponent);
 
             component = fixture.componentInstance;
@@ -130,25 +125,22 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = testModel;
+        component.model = inputModel;
 
         component.ngOnChanges({
-
             group: new SimpleChange(null, component.group, true),
             model: new SimpleChange(null, component.model, true)
         });
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`input[id='${testModel.id}']`));
+        testElement = debugElement.query(By.css(`input[id='${inputModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.context).toBeNull();
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
@@ -162,12 +154,10 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     });
 
     it("should have an input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -176,7 +166,6 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
@@ -185,7 +174,6 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -194,7 +182,6 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     });
 
     it("should update model value when control value changes", () => {
-
         spyOn(component, "onControlValueChanges");
 
         component.control.setValue("test");
@@ -203,25 +190,22 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     });
 
     it("should update control value when model value changes", () => {
-
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicInputModel).value = "test";
+        inputModel.value = "test";
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
 
     it("should update control activation when model disabled property changes", () => {
-
         spyOn(component, "onModelDisabledUpdates");
 
-        testModel.disabled = true;
+        inputModel.disabled = true;
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
     it("should map a form control model to a form control component", () => {
-
         expect(primeNGUIFormControlMapFn(formModel[0])).toBe(DynamicPrimeNGCheckboxComponent);
         expect(primeNGUIFormControlMapFn(formModel[1])).toBe(DynamicPrimeNGFormGroupComponent);
         expect(primeNGUIFormControlMapFn(formModel[2])).toBe(DynamicPrimeNGColorPickerComponent);

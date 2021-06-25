@@ -7,12 +7,11 @@ import { DynamicFormControlLayout } from "../model/misc/dynamic-form-control-lay
 import { DynamicTemplateDirective } from "../directive/dynamic-template.directive";
 
 export interface DynamicFormControl {
-
-    formLayout: DynamicFormLayout;
+    formLayout?: DynamicFormLayout;
     group: FormGroup;
-    layout: DynamicFormControlLayout;
+    layout?: DynamicFormControlLayout;
     model: DynamicFormControlModel;
-    templates: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[] | undefined;
+    templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
 
     blur: EventEmitter<any>;
     change: EventEmitter<any>;
