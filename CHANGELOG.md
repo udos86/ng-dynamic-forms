@@ -9,7 +9,7 @@
 
 ### **Breaking Changes**
 
-`angular2-text-mask` has finally been replaced by `ngx-mask`
+`angular2-text-mask` has finally been replaced with `ngx-mask`
 
 This means from now text masking is only available to UI components that use a built-in 
 mask feature or *do not* already apply a custom `ControlValueAccessor` (Material)

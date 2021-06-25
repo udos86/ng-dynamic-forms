@@ -30,7 +30,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^9.0.0",
     "@ng-dynamic-forms/core": "^13.0.0",
     "ngx-mask": "^12.0.0",
     "bootstrap": "^4.0.0"
