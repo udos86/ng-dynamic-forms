@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-foundation",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Foundation UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -29,7 +29,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-dynamic-forms/core": "^13.0.0",
+    "@ng-dynamic-forms/core": "^14.0.0",
     "foundation-sites": "^6.3.1",
     "ngx-mask": "^12.0.0"
   },
