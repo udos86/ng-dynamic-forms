@@ -2,9 +2,9 @@ name: NG Dynamic Forms CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, development ]
   pull_request:
-    branches: [ main ]
+    branches: [ master, development ]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm i codecov -g
+      - run: npm i
       - run: npm run build:core && npm run test:core
       - run: npm run build:ui-basic && npm run test:ui-basic
       - run: npm run build:ui-bootstrap && npm run test:ui-bootstrap
