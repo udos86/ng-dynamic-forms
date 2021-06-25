@@ -1,0 +1,30 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: npm i codecov -g
+      - run: npm run build:core && npm run test:core
+      - run: npm run build:ui-basic && npm run test:ui-basic
+      - run: npm run build:ui-bootstrap && npm run test:ui-bootstrap
+      - run: npm run build:ui-foundation && npm run test:ui-foundation
+      - run: npm run build:ui-ionic && npm run test:ui-ionic
+      - run: npm run build:ui-kendo && npm run test:ui-kendo
+      - run: npm run build:ui-material && npm run test:ui-material
+      - run: npm run build:ui-ng-bootstrap && npm run test:ui-ng-bootstrap
+      - run: npm run build:ui-ngx-bootstrap && npm run test:ui-ngx-bootstrap
+      - run: npm run build:ui-primeng && npm run test:ui-primeng
+      - run: npm run build:sample
