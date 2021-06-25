@@ -1,4 +1,4 @@
-name: Node.js CI
+name: NG Dynamic Forms CI
 
 on:
   push:
