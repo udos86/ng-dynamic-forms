@@ -8,8 +8,7 @@ import {
     QueryList,
     SimpleChanges,
     Type,
-    ViewContainerRef,
-    Directive
+    ViewContainerRef
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
