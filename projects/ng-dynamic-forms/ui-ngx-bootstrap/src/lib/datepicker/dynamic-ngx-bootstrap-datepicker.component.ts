@@ -4,7 +4,8 @@ import { BsDatepickerDirective } from "ngx-bootstrap/datepicker";
 import {
     DynamicDatePickerModel,
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent, DynamicFormControlLayout,
+    DynamicFormControlCustomEvent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService
@@ -15,22 +16,19 @@ import {
     templateUrl: "./dynamic-ngx-bootstrap-datepicker.component.html"
 })
 export class DynamicNGxBootstrapDatePickerComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicDatePickerModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicDatePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild(BsDatepickerDirective, {static: true}) bsDatePicker: BsDatepickerDirective;
+    @ViewChild(BsDatepickerDirective, {static: true}) bsDatePicker!: BsDatepickerDirective;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 }

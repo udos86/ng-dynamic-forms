@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { UploadComponent, UploadModule } from "@progress/kendo-angular-upload";
 import { DynamicFileUploadModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicKendoUploadComponent } from "./dynamic-kendo-upload.component";
 
 xdescribe("DynamicKendoUploadComponent test suite", () => {
+    const testModel = new DynamicFileUploadModel({id: "upload", url: ""});
+    const formModel = [testModel];
 
-    let testModel = new DynamicFileUploadModel({id: "upload", url: ""}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoUploadComponent>,
-        component: DynamicKendoUploadComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoUploadComponent>;
+    let component: DynamicKendoUploadComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 UploadModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoUploadComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoUploadComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFileUploadModel).toBe(true);
@@ -76,12 +68,10 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
     });
 
     it("should have an kendo-upload element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -90,7 +80,6 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -99,7 +88,6 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

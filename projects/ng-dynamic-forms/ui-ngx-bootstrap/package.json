@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@ng-dynamic-forms/core": "^13.0.0",
-    "angular2-text-mask": "^9.0.0",
+    "ngx-mask": "^12.0.0",
     "bootstrap": "^4.0.0",
     "ngx-bootstrap": "^6.0.0"
   },

@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { InputTextModule } from "primeng/inputtext";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGInputComponent } from "./dynamic-primeng-input.component";
 
 describe("DynamicPrimeNGInputComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", maxLength: 51});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", maxLength: 51}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGInputComponent>,
-        component: DynamicPrimeNGInputComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGInputComponent>;
+    let component: DynamicPrimeNGInputComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 InputTextModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGInputComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGInputComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,11 +46,10 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
-        //expect(component.pInputText instanceof InputText).toBe(true);
+        // expect(component.pInputText instanceof InputText).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
@@ -74,12 +66,10 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     });
 
     it("should have an input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +78,6 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -97,7 +86,6 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -106,7 +94,6 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -115,7 +102,6 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -124,7 +110,6 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);

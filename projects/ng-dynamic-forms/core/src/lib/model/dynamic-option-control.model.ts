@@ -6,20 +6,17 @@ import { serializable, serialize } from "../decorator/serializable.decorator";
 import { isBoolean } from "../utils/core.utils";
 
 export interface DynamicFormOptionConfig<T> {
-
     disabled?: boolean;
     label?: string;
     value: T;
 }
 
 export class DynamicFormOption<T> {
-
     @serializable() disabled: boolean;
     @serializable() label: string | null;
     @serializable() value: T;
 
     constructor(config: DynamicFormOptionConfig<T>) {
-
         this.disabled = isBoolean(config.disabled) ? config.disabled : false;
         this.label = config.label ?? null;
         this.value = config.value;
@@ -39,17 +36,14 @@ export class DynamicFormOption<T> {
 }
 
 export interface DynamicOptionControlModelConfig<T> extends DynamicFormValueControlModelConfig<T | T[]> {
-
     options?: DynamicFormOptionConfig<T>[] | Observable<DynamicFormOptionConfig<T>[]>;
 }
 
 export abstract class DynamicOptionControlModel<T> extends DynamicFormValueControlModel<T | T[]> {
-
     @serializable("options") private _options: DynamicFormOption<T>[] = [];
-    options$: Observable<DynamicFormOption<T>[]>;
+    options$!: Observable<DynamicFormOption<T>[]>;
 
     protected constructor(config: DynamicOptionControlModelConfig<T>, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.options = config.options;
@@ -60,25 +54,18 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     }
 
     set options(options: any) {
-
         if (Array.isArray(options)) {
-
             this._options = (options as DynamicFormOptionConfig<T>[]).map(optionConfig => new DynamicFormOption<T>(optionConfig));
-
             this.updateOptions$();
 
         } else if (isObservable(options)) {
-
             this.options$ = (options as Observable<DynamicFormOptionConfig<T>[]>).pipe(
                 map(optionsConfig => {
-
                     this._options = optionsConfig.map(optionConfig => new DynamicFormOption<T>(optionConfig));
-
                     return this._options;
                 }));
 
         } else {
-
             this.updateOptions$();
         }
     }
@@ -96,7 +83,6 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     }
 
     insert(index: number, optionConfig: DynamicFormOptionConfig<T>): DynamicFormOption<T> {
-
         const option = new DynamicFormOption(optionConfig);
 
         this.options.splice(index, 0, option);
@@ -106,7 +92,6 @@ export abstract class DynamicOptionControlModel<T> extends DynamicFormValueContr
     }
 
     remove(...indices: number[]): void {
-
         indices.forEach(index => this.options.splice(index, 1));
         this.updateOptions$();
     }

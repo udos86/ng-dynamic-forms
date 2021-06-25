@@ -8,7 +8,7 @@
     "amdId": "@ng-dynamic-forms/ui-ngx-bootstrap",
     "umdModuleIds": {
       "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "angular2-text-mask": "angular2-text-mask",
+      "ngx-mask": "ngx-mask",
       "ngx-bootstrap/buttons": "ngx-bootstrap.buttons",
       "ngx-bootstrap/datepicker": "ngx-bootstrap.datepicker",
       "ngx-bootstrap/rating": "ngx-bootstrap.rating",

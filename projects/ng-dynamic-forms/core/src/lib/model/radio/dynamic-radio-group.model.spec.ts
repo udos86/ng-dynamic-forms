@@ -3,26 +3,24 @@ import { isObservable, of } from "rxjs";
 import { DYNAMIC_FORM_CONTROL_TYPE_RADIO_GROUP, DynamicRadioGroupModel } from "./dynamic-radio-group.model";
 
 describe("DynamicRadioModel test suite", () => {
-
-    let model: DynamicRadioGroupModel<string>,
-        config = {
-            id: "radio",
-            options: of([
-                {
-                    value: "1",
-                    label: "One"
-                },
-                {
-                    value: "2",
-                    label: "Two"
-                }
-            ])
-        };
+    let model: DynamicRadioGroupModel<string>;
+    const config = {
+        id: "radio",
+        options: of([
+            {
+                value: "1",
+                label: "One"
+            },
+            {
+                value: "2",
+                label: "Two"
+            }
+        ])
+    };
 
     beforeEach(() => model = new DynamicRadioGroupModel(config));
 
     it("should initialize correctly", () => {
-
         expect(model.disabled).toBe(false);
         expect(model.errorMessages).toBeNull();
         expect(model.hasErrorMessages).toBe(false);
@@ -38,9 +36,7 @@ describe("DynamicRadioModel test suite", () => {
     });
 
     it("should select the correct option", waitForAsync(() => {
-
         model.options$.subscribe(() => {
-
             model.select(1);
 
             expect(model.value).toEqual(model.get(1).value);
@@ -48,19 +44,16 @@ describe("DynamicRadioModel test suite", () => {
     }));
 
     it("should correctly create options Observable", waitForAsync(() => {
-
         model.options$.subscribe(options => {
             expect(options.length).toBe(2);
         });
     }));
 
     it("should insert another option", waitForAsync(() => {
-
-        let option = {label: "test option", value: "test-option"},
-            index = 1;
+        const option = {label: "test option", value: "test-option"};
+        const index = 1;
 
         model.options$.subscribe(() => {
-
             model.insert(index, option);
 
             expect(model.options.length).toBe(3);
@@ -69,9 +62,7 @@ describe("DynamicRadioModel test suite", () => {
     }));
 
     it("should remove a given option correctly", waitForAsync(() => {
-
         model.options$.subscribe(() => {
-
             model.remove(1);
 
             expect(model.options.length).toBe(1);
@@ -79,15 +70,12 @@ describe("DynamicRadioModel test suite", () => {
     }));
 
     it("should get the correct option", () => {
-
         expect(model.get(0)).toEqual(model.options[0]);
         expect(model.get(1)).toEqual(model.options[1]);
     });
 
     it("should make options Observable deliver an empty array when options are set to non-expected value", waitForAsync(() => {
-
         model.options = null;
-
         model.options$.subscribe(options => {
 
             expect(options.length).toBe(0);
@@ -95,8 +83,7 @@ describe("DynamicRadioModel test suite", () => {
     }));
 
     it("should serialize correctly", () => {
-
-        let json = JSON.parse(JSON.stringify(model));
+        const json = JSON.parse(JSON.stringify(model));
 
         expect(json.id).toEqual(model.id);
         expect(json.options.length).toBe(model.options.length);

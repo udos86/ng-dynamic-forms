@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGTextAreaComponent } from "./dynamic-primeng-textarea.component";
 
 describe("DynamicPrimeNGTextAreaComponent test suite", () => {
+    const testModel = new DynamicTextAreaModel({id: "textarea"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTextAreaModel({id: "textarea"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGTextAreaComponent>,
-        component: DynamicPrimeNGTextAreaComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGTextAreaComponent>;
+    let component: DynamicPrimeNGTextAreaComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 InputTextareaModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGTextAreaComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGTextAreaComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,11 +46,10 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
-        //expect(component.pInputTextArea instanceof InputTextarea).toBe(true);
+        // expect(component.pInputTextArea instanceof InputTextarea).toBe(true);
 
         expect(component.blur).toBeDefined();
         expect(component.change).toBeDefined();
@@ -74,12 +66,10 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     });
 
     it("should have an textarea element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +78,6 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     });
 
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -97,7 +86,6 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -106,7 +94,6 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -115,7 +102,6 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -124,7 +110,6 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);

@@ -3,40 +3,34 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { MultiSelectComponent, MultiSelectModule } from "@progress/kendo-angular-dropdowns";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicKendoMultiSelectComponent } from "./dynamic-kendo-multiselect.component";
 
 describe("DynamicKendoMultiSelectComponent test suite", () => {
+    const testModel = new DynamicSelectModel({
+        id: "select",
+        options: [{value: "One", label: "One"}, {value: "Two", label: "Two"}],
+        multiple: true
+    });
+    const formModel = [testModel];
 
-    let testModel = new DynamicSelectModel({
-            id: "select",
-            options: [{value: "One", label: "One"}, {value: "Two", label: "Two"}],
-            multiple: true
-        }),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicKendoMultiSelectComponent>,
-        component: DynamicKendoMultiSelectComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicKendoMultiSelectComponent>;
+    let component: DynamicKendoMultiSelectComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 MultiSelectModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicKendoMultiSelectComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicKendoMultiSelectComponent);
 
             component = fixture.componentInstance;
@@ -45,7 +39,6 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -57,7 +50,6 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
@@ -80,12 +72,10 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
     });
 
     it("should have an kendo-multiselect element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -94,7 +84,6 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -103,7 +92,6 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -112,7 +100,6 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

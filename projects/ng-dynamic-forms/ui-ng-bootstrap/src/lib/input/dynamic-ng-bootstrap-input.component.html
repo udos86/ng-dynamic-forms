@@ -4,15 +4,14 @@
         <span class="input-group-text" [innerHTML]="model.prefix"></span>
     </div>
 
-    <input [attr.accept]="model.accept"
+    <input *ngIf="model.inputType === 'file'; else maskedInput" class="form-control-file"
+           [attr.accept]="model.accept"
            [attr.max]="model.max"
            [attr.min]="model.min"
            [attr.multiple]="model.multiple"
            [attr.step]="model.step"
            [autocomplete]="model.autoComplete"
            [autofocus]="model.autoFocus"
-           [class.form-control]="model.inputType !== 'file'"
-           [class.form-control-file]="model.inputType === 'file'"
            [class.is-invalid]="showErrorMessages"
            [dynamicList]="model.listId"
            [formControlName]="model.id"
@@ -27,20 +26,64 @@
            [required]="model.required"
            [spellcheck]="model.spellCheck"
            [tabindex]="model.tabIndex"
-           [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}"
            [type]="model.inputType"
            (blur)="onBlur($event)"
            (change)="onChange($event)"
            (focus)="onFocus($event)"/>
+
+    <ng-template #maskedInput>
+        <input class="form-control"
+               [attr.accept]="model.accept"
+               [attr.max]="model.max"
+               [attr.min]="model.min"
+               [attr.multiple]="model.multiple"
+               [attr.step]="model.step"
+               [autocomplete]="model.autoComplete"
+               [autofocus]="model.autoFocus"
+               [class.is-invalid]="showErrorMessages"
+               [dynamicList]="model.listId"
+               [formControlName]="model.id"
+               [id]="id"
+               [maxlength]="model.maxLength"
+               [minlength]="model.minLength"
+               [name]="model.name"
+               [ngClass]="getClass('element', 'control')"
+               [pattern]="model.pattern"
+               [placeholder]="model.placeholder"
+               [readonly]="model.readOnly"
+               [required]="model.required"
+               [spellcheck]="model.spellCheck"
+               [tabindex]="model.tabIndex"
+               [mask]="model.mask"
+               [specialCharacters]="model.maskConfig?.specialCharacters"
+               [patterns]="model.maskConfig?.patterns"
+               [prefix]="model.maskConfig?.prefix"
+               [suffix]="model.maskConfig?.suffix"
+               [thousandSeparator]="model.maskConfig?.thousandSeparator"
+               [decimalMarker]="model.maskConfig?.decimalMarker"
+               [dropSpecialCharacters]="model.maskConfig?.dropSpecialCharacters"
+               [hiddenInput]="model.maskConfig?.hiddenInput"
+               [showMaskTyped]="model.maskConfig?.showMaskTyped"
+               [placeHolderCharacter]="model.maskConfig?.placeHolderCharacter"
+               [shownMaskExpression]="model.maskConfig?.shownMaskExpression"
+               [showTemplate]="model.maskConfig?.showTemplate"
+               [clearIfNotMatch]="model.maskConfig.clearIfNotMatch"
+               [validation]="model.maskConfig.validation"
+               [separatorLimit]="model.maskConfig.separatorLimit"
+               [allowNegativeNumbers]="model.maskConfig.allowNegativeNumbers"
+               [leadZeroDateTime]="model.maskConfig.leadZeroDateTime"
+               [type]="model.inputType"
+               (blur)="onBlur($event)"
+               (change)="onChange($event)"
+               (focus)="onFocus($event)"/>
+    </ng-template>
 
     <div *ngIf="model.suffix" class="input-group-append">
         <span class="input-group-text" [innerHTML]="model.suffix"></span>
     </div>
 
     <datalist *ngIf="model.hasList" [id]="model.listId">
-
         <option *ngFor="let option of model.list$ | async" [value]="option">
-
     </datalist>
 
 </div>

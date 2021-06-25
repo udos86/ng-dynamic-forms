@@ -3,40 +3,34 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { MultiSelect, MultiSelectModule } from "primeng/multiselect";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGMultiSelectComponent } from "./dynamic-primeng-multiselect.component";
 
 describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
+    const testModel = new DynamicSelectModel({
+        id: "select",
+        options: [{value: "One"}, {value: "Two"}],
+        multiple: true
+    });
+    const formModel = [testModel];
 
-    let testModel = new DynamicSelectModel({
-            id: "select",
-            options: [{value: "One"}, {value: "Two"}],
-            multiple: true
-        }),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGMultiSelectComponent>,
-        component: DynamicPrimeNGMultiSelectComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGMultiSelectComponent>;
+    let component: DynamicPrimeNGMultiSelectComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 MultiSelectModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGMultiSelectComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGMultiSelectComponent);
 
             component = fixture.componentInstance;
@@ -45,7 +39,6 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -57,7 +50,6 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
@@ -78,12 +70,10 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
     });
 
     it("should have an p-multiSelect element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -92,7 +82,6 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -101,7 +90,6 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

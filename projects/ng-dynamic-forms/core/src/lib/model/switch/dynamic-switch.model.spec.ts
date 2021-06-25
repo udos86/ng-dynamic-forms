@@ -1,16 +1,14 @@
 import { DYNAMIC_FORM_CONTROL_TYPE_SWITCH, DynamicSwitchModel } from "./dynamic-switch.model";
 
 describe("DynamicSwitchModel test suite", () => {
-
-    let model: DynamicSwitchModel,
-        config = {
-            id: "switch"
-        };
+    let model: DynamicSwitchModel;
+    const config = {
+        id: "switch"
+    };
 
     beforeEach(() => model = new DynamicSwitchModel(config));
 
     it("should initialize correctly", () => {
-
         expect(model.disabled).toBe(false);
         expect(model.hidden).toBe(false);
         expect(model.id).toEqual(config.id);
@@ -25,8 +23,7 @@ describe("DynamicSwitchModel test suite", () => {
     });
 
     it("should serialize correctly", () => {
-
-        let json = JSON.parse(JSON.stringify(model));
+        const json = JSON.parse(JSON.stringify(model));
 
         expect(json.id).toEqual(model.id);
         expect(json.value).toBe(model.value);

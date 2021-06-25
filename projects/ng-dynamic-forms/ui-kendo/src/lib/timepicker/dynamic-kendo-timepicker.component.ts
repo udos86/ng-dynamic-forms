@@ -7,7 +7,8 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicTimePickerModel, DynamicFormControlLayout
+    DynamicTimePickerModel,
+    DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -15,22 +16,19 @@ import {
     templateUrl: "./dynamic-kendo-timepicker.component.html"
 })
 export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicTimePickerModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicTimePickerModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoTimePicker", { static: true }) kendoTimePicker: TimePickerComponent;
+    @ViewChild("kendoTimePicker", {static: true}) kendoTimePicker!: TimePickerComponent;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 }

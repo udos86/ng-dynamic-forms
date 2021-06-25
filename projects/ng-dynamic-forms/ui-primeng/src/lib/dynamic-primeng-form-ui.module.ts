@@ -2,7 +2,11 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
+import {
+    DynamicPrimeNGFormArrayComponent,
+    DynamicPrimeNGFormControlContainerComponent,
+    DynamicPrimeNGFormGroupComponent
+} from "./dynamic-primeng-form-control-container.component";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
 import { CheckboxModule } from "primeng/checkbox";
@@ -27,8 +31,6 @@ import { DynamicPrimeNGChipsComponent } from "./chips/dynamic-primeng-chips.comp
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
 import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-dropdown.component";
 import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
-import { DynamicPrimeNGFormArrayComponent } from "./form-array/dynamic-primeng-form-array.component";
-import { DynamicPrimeNGFormGroupComponent } from "./form-group/dynamic-primeng-form-group.component";
 import { DynamicPrimeNGInputComponent } from "./input/dynamic-primeng-input.component";
 import { DynamicPrimeNGInputMaskComponent } from "./input-mask/dynamic-primeng-input-mask.component";
 import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";

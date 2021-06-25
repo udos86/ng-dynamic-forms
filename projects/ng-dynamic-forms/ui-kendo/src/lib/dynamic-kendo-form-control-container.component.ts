@@ -11,6 +11,7 @@ import {
     QueryList,
     Type,
     ViewChild,
+    ViewChildren,
     ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -45,7 +46,13 @@ import {
     DynamicInputModel,
     DynamicSelectModel,
     DynamicTemplateDirective,
-    isString
+    isString,
+    DynamicFormArrayComponent,
+    DynamicFormControlLayout,
+    DynamicFormArrayModel,
+    DynamicFormControlCustomEvent,
+    DynamicFormGroupComponent,
+    DynamicFormGroupModel
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoAutoCompleteComponent } from "./autocomplete/dynamic-kendo-autocomplete.component";
 import { DynamicKendoCheckboxComponent } from "./checkbox/dynamic-kendo-checkbox.component";
@@ -54,8 +61,6 @@ import { DynamicKendoCalendarComponent } from "./calendar/dynamic-kendo-calendar
 import { DynamicKendoDatePickerComponent } from "./datepicker/dynamic-kendo-datepicker.component";
 import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.component";
 import { DynamicKendoDateInputComponent } from "./dateinput/dynamic-kendo-dateinput.component";
-import { DynamicKendoFormArrayComponent } from "./form-array/dynamic-kendo-form-array.component";
-import { DynamicKendoFormGroupComponent } from "./form-group/dynamic-kendo-form-group.component";
 import { DynamicKendoMaskedTextBoxComponent } from "./masked-textbox/dynamic-kendo-maskedtextbox.component";
 import { DynamicKendoNumericTextBoxComponent } from "./numeric-textbox/dynamic-kendo-numerictextbox.component";
 import { DynamicKendoInputComponent } from "./input/dynamic-kendo-input.component";
@@ -73,24 +78,25 @@ import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-time
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicKendoFormControlContainerComponent extends DynamicFormControlContainerComponent {
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-
-    @HostBinding("class") klass;
+    @HostBinding("class") klass?: string;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group: FormGroup;
-    @Input() hostClass: string[];
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicFormControlModel;
+    @Input() group!: FormGroup;
+    @Input() hostClass?: string[];
+    // tslint:disable-next-line:no-input-rename
+    @Input("templates") inputTemplateList!: QueryList<DynamicTemplateDirective>;
+    @Input() layout?: DynamicFormLayout;
+    @Input() model!: DynamicFormControlModel;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    // tslint:disable-next-line:no-output-rename
     @Output("kendoEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef!: ViewContainerRef;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
@@ -98,7 +104,6 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
-
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
@@ -111,7 +116,8 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     }
 
     get hasLabel(): boolean {
-        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX && this.componentType !== DynamicKendoInputComponent && isString(this.model.label);
+        return this.model.type !== DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX &&
+            this.componentType !== DynamicKendoInputComponent && isString(this.model.label);
     }
 
     get isTextBox(): boolean {
@@ -120,9 +126,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
 }
 
 export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
-
     switch (model.type) {
-
         case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
             return DynamicKendoFormArrayComponent;
 
@@ -134,7 +138,6 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         case DYNAMIC_FORM_CONTROL_TYPE_DATEPICKER:
             const datepickerModel = model as DynamicDatePickerModel;
-
             return datepickerModel.inline ? DynamicKendoCalendarComponent : DynamicKendoDatePickerComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD:
@@ -167,7 +170,6 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
             const selectModel = model as DynamicSelectModel<any>;
-
             return selectModel.multiple ? DynamicKendoMultiSelectComponent : DynamicKendoDropdownListComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
@@ -184,5 +186,51 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         default:
             return null;
+    }
+}
+
+@Component({
+    selector: "dynamic-kendo-form-array",
+    templateUrl: "./dynamic-kendo-form-array.component.html"
+})
+export class DynamicKendoFormArrayComponent extends DynamicFormArrayComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormArrayModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective>;
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicKendoFormControlContainerComponent) components!: QueryList<DynamicKendoFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
+    }
+}
+
+@Component({
+    selector: "dynamic-kendo-form-group",
+    templateUrl: "./dynamic-kendo-form-group.component.html"
+})
+export class DynamicKendoFormGroupComponent extends DynamicFormGroupComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormGroupModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicKendoFormControlContainerComponent) components!: QueryList<DynamicKendoFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
     }
 }

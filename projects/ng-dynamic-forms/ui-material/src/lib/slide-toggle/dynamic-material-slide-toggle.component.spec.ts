@@ -4,35 +4,28 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { MatSlideToggle, MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSlideToggleComponent } from "./dynamic-material-slide-toggle.component";
 
 describe("DynamicMaterialSlideToggleComponent test suite", () => {
-
-    let testModel = new DynamicSwitchModel({id: "slideToggle"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialSlideToggleComponent>,
-        component: DynamicMaterialSlideToggleComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    const testModel = new DynamicSwitchModel({id: "slideToggle"});
+    const formModel = [testModel];
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialSlideToggleComponent>;
+    let component: DynamicMaterialSlideToggleComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 MatSlideToggleModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialSlideToggleComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialSlideToggleComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +34,6 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +45,6 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
@@ -75,12 +66,10 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     });
 
     it("should have an mat-slide-toggle element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +78,6 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +86,6 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +94,6 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

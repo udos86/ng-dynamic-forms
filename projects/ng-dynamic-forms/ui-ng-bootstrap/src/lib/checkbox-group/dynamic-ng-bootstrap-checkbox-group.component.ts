@@ -3,7 +3,8 @@ import { FormGroup } from "@angular/forms";
 import {
     DynamicCheckboxGroupModel,
     DynamicCheckboxModel,
-    DynamicFormControlComponent, DynamicFormControlLayout,
+    DynamicFormControlComponent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService
@@ -15,19 +16,16 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicCheckboxGroupModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicCheckboxGroupModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 
@@ -36,7 +34,6 @@ export class DynamicNGBootstrapCheckboxGroupComponent extends DynamicFormControl
     }
 
     onCheckboxChange($event: Event, model: DynamicCheckboxModel) {
-
         this.onChange($event);
         model.value = ($event.target as HTMLInputElement).checked;
     }

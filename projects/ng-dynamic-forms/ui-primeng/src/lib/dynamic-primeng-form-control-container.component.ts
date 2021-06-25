@@ -11,6 +11,7 @@ import {
     QueryList,
     Type,
     ViewChild,
+    ViewChildren,
     ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -31,12 +32,18 @@ import {
     DYNAMIC_FORM_CONTROL_TYPE_SWITCH,
     DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA,
     DYNAMIC_FORM_CONTROL_TYPE_TIMEPICKER,
+    DynamicFormArrayComponent,
     DynamicFormArrayGroupModel,
+    DynamicFormArrayModel,
     DynamicFormComponentService,
     DynamicFormControl,
     DynamicFormControlContainerComponent,
+    DynamicFormControlCustomEvent,
     DynamicFormControlEvent,
+    DynamicFormControlLayout,
     DynamicFormControlModel,
+    DynamicFormGroupComponent,
+    DynamicFormGroupModel,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormRelationService,
@@ -49,8 +56,6 @@ import { DynamicPrimeNGCheckboxComponent } from "./checkbox/dynamic-primeng-chec
 import { DynamicPrimeNGColorPickerComponent } from "./colorpicker/dynamic-primeng-colorpicker.component";
 import { DynamicPrimeNGCalendarComponent } from "./calendar/dynamic-primeng-calendar.component";
 import { DynamicPrimeNGEditorComponent } from "./editor/dynamic-primeng-editor.component";
-import { DynamicPrimeNGFormArrayComponent } from "./form-array/dynamic-primeng-form-array.component";
-import { DynamicPrimeNGFormGroupComponent } from "./form-group/dynamic-primeng-form-group.component";
 import { DynamicPrimeNGSpinnerComponent } from "./spinner/dynamic-primeng-spinner.component";
 import { DynamicPrimeNGInputMaskComponent } from "./input-mask/dynamic-primeng-input-mask.component";
 import { DynamicPrimeNGAutoCompleteComponent } from "./autocomplete/dynamic-primeng-autocomplete.component";
@@ -70,24 +75,25 @@ import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-text
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormControlContainerComponent {
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-
-    @HostBinding("class") klass;
+    @HostBinding("class") klass?: string;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group: FormGroup;
-    @Input() hostClass: string[];
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicFormControlModel;
+    @Input() group!: FormGroup;
+    @Input() hostClass!: string[];
+    // tslint:disable-next-line:no-input-rename
+    @Input("templates") inputTemplateList?: QueryList<DynamicTemplateDirective>;
+    @Input() layout?: DynamicFormLayout;
+    @Input() model!: DynamicFormControlModel;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    // tslint:disable-next-line:no-output-rename
     @Output("pEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef!: ViewContainerRef;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
@@ -95,7 +101,6 @@ export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormCont
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
-
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
@@ -105,9 +110,7 @@ export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormCont
 }
 
 export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
-
     switch (model.type) {
-
         case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
             return DynamicPrimeNGFormArrayComponent;
 
@@ -130,7 +133,7 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
             return DynamicPrimeNGFormGroupComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_INPUT:
-            let inputModel = model as DynamicInputModel;
+            const inputModel = model as DynamicInputModel;
 
             if (inputModel.inputType === DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER) {
                 return DynamicPrimeNGSpinnerComponent;
@@ -155,8 +158,7 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
             return DynamicPrimeNGRatingComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SELECT:
-            let selectModel = model as DynamicSelectModel<string>;
-
+            const selectModel = model as DynamicSelectModel<string>;
             return selectModel.multiple ? DynamicPrimeNGMultiSelectComponent : DynamicPrimeNGDropdownComponent;
 
         case DYNAMIC_FORM_CONTROL_TYPE_SLIDER:
@@ -173,5 +175,51 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
 
         default:
             return null;
+    }
+}
+
+@Component({
+    selector: "dynamic-primeng-form-array",
+    templateUrl: "./dynamic-primeng-form-array.component.html"
+})
+export class DynamicPrimeNGFormArrayComponent extends DynamicFormArrayComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormArrayModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective>;
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicPrimeNGFormControlContainerComponent) components!: QueryList<DynamicPrimeNGFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
+    }
+}
+
+@Component({
+    selector: "dynamic-primeng-form-group",
+    templateUrl: "./dynamic-primeng-form-group.component.html"
+})
+export class DynamicPrimeNGFormGroupComponent extends DynamicFormGroupComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormGroupModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicPrimeNGFormControlContainerComponent) components!: QueryList<DynamicPrimeNGFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
     }
 }

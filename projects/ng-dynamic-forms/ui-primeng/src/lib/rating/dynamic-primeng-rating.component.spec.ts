@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Rating, RatingModule } from "primeng/rating";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGRatingComponent } from "./dynamic-primeng-rating.component";
 
 describe("DynamicPrimeNGRatingComponent test suite", () => {
+    const testModel = new DynamicRatingModel({id: "rating"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicRatingModel({id: "rating"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGRatingComponent>,
-        component: DynamicPrimeNGRatingComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGRatingComponent>;
+    let component: DynamicPrimeNGRatingComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 RatingModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGRatingComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGRatingComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRatingModel).toBe(true);
@@ -75,12 +67,10 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
     });
 
     it("should have an p-rating element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +79,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +87,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +95,6 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

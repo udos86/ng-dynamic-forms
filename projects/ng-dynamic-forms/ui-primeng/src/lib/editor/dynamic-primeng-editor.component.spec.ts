@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { Editor, EditorModule } from "primeng/editor";
 import { DynamicEditorModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGEditorComponent } from "./dynamic-primeng-editor.component";
 
 xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
+    const testModel = new DynamicEditorModel({id: "editor"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicEditorModel({id: "editor"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGEditorComponent>,
-        component: DynamicPrimeNGEditorComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGEditorComponent>;
+    let component: DynamicPrimeNGEditorComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 EditorModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGEditorComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGEditorComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicEditorModel).toBe(true);
@@ -75,12 +67,10 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
     });
 
     it("should have an p-editor element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +79,6 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +87,6 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +95,6 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

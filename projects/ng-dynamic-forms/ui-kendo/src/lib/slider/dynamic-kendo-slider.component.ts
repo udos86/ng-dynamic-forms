@@ -6,7 +6,8 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService,
     DynamicFormControlComponent,
-    DynamicSliderModel, DynamicFormControlLayout
+    DynamicSliderModel,
+    DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
 
 @Component({
@@ -14,21 +15,18 @@ import {
     templateUrl: "./dynamic-kendo-slider.component.html"
 })
 export class DynamicKendoSliderComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicSliderModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicSliderModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("kendoSlider", { static: true }) kendoSlider: SliderComponent;
+    @ViewChild("kendoSlider", {static: true}) kendoSlider!: SliderComponent;
 
-    constructor(protected layoutService: DynamicFormLayoutService,
-                protected validationService: DynamicFormValidationService) {
-
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
         super(layoutService, validationService);
     }
 }

@@ -10,22 +10,17 @@ import { DynamicListDirective } from "./dynamic-list.directive";
     `
 })
 class TestComponent {
-
-    testList1: null = null;
-    testList2: string = "list";
+    testList1 = null;
+    testList2 = "list";
 }
 
 describe("DynamicListDirective test suite", () => {
-
-    let fixture: ComponentFixture<TestComponent>,
-        directives: DebugElement[];
+    let fixture: ComponentFixture<TestComponent>;
+    let directives: DebugElement[];
 
     beforeEach(() => {
-
         fixture = TestBed.configureTestingModule({
-
             declarations: [DynamicListDirective, TestComponent]
-
         }).createComponent(TestComponent);
 
         fixture.detectChanges();
@@ -35,12 +30,10 @@ describe("DynamicListDirective test suite", () => {
 
 
     it("should have two directives", () => {
-
         expect(directives.length).toBe(2);
     });
 
     it("should have one set list", () => {
-
         expect(directives[0].attributes["list"]).toBeUndefined();
         expect(directives[1].attributes["list"]).toEqual(fixture.componentInstance.testList2);
     });

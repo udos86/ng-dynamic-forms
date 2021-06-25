@@ -11,6 +11,7 @@ import {
     QueryList,
     Type,
     ViewChild,
+    ViewChildren,
     ViewContainerRef
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -37,12 +38,16 @@ import {
     DynamicFormLayoutService,
     DynamicFormRelationService,
     DynamicFormValidationService,
-    DynamicTemplateDirective
+    DynamicTemplateDirective,
+    DynamicFormArrayComponent,
+    DynamicFormControlLayout,
+    DynamicFormArrayModel,
+    DynamicFormControlCustomEvent,
+    DynamicFormGroupComponent,
+    DynamicFormGroupModel
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./checkbox/dynamic-ionic-checkbox.component";
 import { DynamicIonicDateTimeComponent } from "./datetime/dynamic-ionic-datetime.component";
-import { DynamicIonicFormArrayComponent } from "./form-array/dynamic-ionic-form-array.component";
-import { DynamicIonicFormGroupComponent } from "./form-group/dynamic-ionic-form-group.component";
 import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
 import { DynamicIonicRadioGroupComponent } from "./radio-group/dynamic-ionic-radio-group.component";
 import { DynamicIonicRangeComponent } from "./range/dynamic-ionic-range.component";
@@ -56,24 +61,25 @@ import { DynamicIonicTextAreaComponent } from "./textarea/dynamic-ionic-textarea
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicIonicFormControlContainerComponent extends DynamicFormControlContainerComponent {
+    @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
 
-    @ContentChildren(DynamicTemplateDirective) contentTemplateList: QueryList<DynamicTemplateDirective>;
-
-    @HostBinding("class") klass;
+    @HostBinding("class") klass?: string;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group: FormGroup;
-    @Input() hostClass: string[];
-    @Input("templates") inputTemplateList: QueryList<DynamicTemplateDirective>;
-    @Input() layout: DynamicFormLayout;
-    @Input() model: DynamicFormControlModel;
+    @Input() group!: FormGroup;
+    @Input() hostClass?: string[];
+    // tslint:disable-next-line:no-input-rename
+    @Input("templates") inputTemplateList!: QueryList<DynamicTemplateDirective>;
+    @Input() layout?: DynamicFormLayout;
+    @Input() model!: DynamicFormControlModel;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
+    // tslint:disable-next-line:no-output-rename
     @Output("ionEvent") customEvent: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef: ViewContainerRef;
+    @ViewChild("componentViewContainer", {read: ViewContainerRef, static: true}) componentViewContainerRef!: ViewContainerRef;
 
     constructor(protected changeDetectorRef: ChangeDetectorRef,
                 protected componentFactoryResolver: ComponentFactoryResolver,
@@ -81,7 +87,6 @@ export class DynamicIonicFormControlContainerComponent extends DynamicFormContro
                 protected validationService: DynamicFormValidationService,
                 protected componentService: DynamicFormComponentService,
                 protected relationService: DynamicFormRelationService) {
-
         super(changeDetectorRef, componentFactoryResolver, layoutService, validationService, componentService, relationService);
     }
 
@@ -91,9 +96,7 @@ export class DynamicIonicFormControlContainerComponent extends DynamicFormContro
 }
 
 export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<DynamicFormControl> | null {
-
     switch (model.type) {
-
         case DYNAMIC_FORM_CONTROL_TYPE_ARRAY:
             return DynamicIonicFormArrayComponent;
 
@@ -132,5 +135,51 @@ export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
         default:
             return null;
+    }
+}
+
+@Component({
+    selector: "dynamic-ionic-form-array",
+    templateUrl: "./dynamic-ionic-form-array.component.html"
+})
+export class DynamicIonicFormArrayComponent extends DynamicFormArrayComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormArrayModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective>;
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicIonicFormControlContainerComponent) components!: QueryList<DynamicIonicFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
+    }
+}
+
+@Component({
+    selector: "dynamic-ionic-form-group",
+    templateUrl: "./dynamic-ionic-form-group.component.html"
+})
+export class DynamicIonicFormGroupComponent extends DynamicFormGroupComponent {
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicFormGroupModel;
+    @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];
+
+    @Output() blur: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
+    @Output() focus: EventEmitter<any> = new EventEmitter();
+
+    @ViewChildren(DynamicIonicFormControlContainerComponent) components!: QueryList<DynamicIonicFormControlContainerComponent>;
+
+    constructor(protected layoutService: DynamicFormLayoutService, protected validationService: DynamicFormValidationService) {
+        super(layoutService, validationService);
     }
 }

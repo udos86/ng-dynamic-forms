@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { IonDatetime, IonicModule } from "@ionic/angular";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicDateTimeComponent } from "./dynamic-ionic-datetime.component";
 
 describe("DynamicIonicDateTimeComponent test suite", () => {
+    const testModel = new DynamicDatePickerModel({id: "datepicker"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicDatePickerModel({id: "datepicker"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicDateTimeComponent>,
-        component: DynamicIonicDateTimeComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicIonicDateTimeComponent>;
+    let component: DynamicIonicDateTimeComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 IonicModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicDateTimeComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicIonicDateTimeComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
@@ -75,12 +67,10 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
     });
 
     it("should have an ion-datetime element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +79,6 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +87,6 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +95,6 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

@@ -13,7 +13,6 @@ export const DYNAMIC_FORM_CONTROL_MAP_FN = new InjectionToken<DynamicFormControl
     providedIn: "root"
 })
 export class DynamicFormComponentService {
-
     private forms: DynamicFormComponent[] = [];
     private formControls: { [key: string]: DynamicFormControlRef | DynamicFormControlRef[] } = {};
 
@@ -30,7 +29,6 @@ export class DynamicFormComponentService {
     }
 
     unregisterForm(component: DynamicFormComponent): void {
-
         const indexOf = this.forms.indexOf(component);
 
         if (indexOf !== -1) {
@@ -39,11 +37,9 @@ export class DynamicFormComponentService {
     }
 
     getFormControlRef(modelId: string, index?: number): DynamicFormControlRef | undefined {
-
         const ref: DynamicFormControlRef | DynamicFormControlRef[] = this.formControls[modelId];
 
         if (isNumber(index)) {
-
             return Array.isArray(ref) ? ref[index] : undefined;
 
         } else {
@@ -52,13 +48,10 @@ export class DynamicFormComponentService {
     }
 
     registerFormControl(model: DynamicFormControlModel, ref: DynamicFormControlRef, index?: number): void {
-
         if (isNumber(index)) { // threat model as array child
-
             const arrayRef: DynamicFormControlRef[] = this.formControls[model.id] as DynamicFormControlRef[] || [];
 
             if (Array.isArray(arrayRef)) {
-
                 arrayRef.splice(index, 0, ref);
                 this.formControls[model.id] = arrayRef;
 
@@ -72,11 +65,9 @@ export class DynamicFormComponentService {
     }
 
     unregisterFormControl(modelId: string, index?: number): void {
-
         const componentRef = this.formControls[modelId];
 
         if (isNumber(index)) {
-
             if (Array.isArray(componentRef) && componentRef[index] !== undefined) {
                 componentRef.splice(index, 1);
             }

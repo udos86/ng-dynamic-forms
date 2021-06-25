@@ -9,14 +9,12 @@ export const DYNAMIC_FORM_TEXTAREA_WRAP_HARD = "hard";
 export const DYNAMIC_FORM_TEXTAREA_WRAP_SOFT = "soft";
 
 export interface DynamicTextAreaModelConfig extends DynamicInputControlModelConfig<string> {
-
     cols?: number;
     rows?: number;
     wrap?: string;
 }
 
 export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
-
     @serializable() cols: number;
     @serializable() rows: number;
     @serializable() wrap: string;
@@ -24,7 +22,6 @@ export class DynamicTextAreaModel extends DynamicInputControlModel<string> {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_TEXTAREA;
 
     constructor(config: DynamicTextAreaModelConfig, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.cols = isNumber(config.cols) ? config.cols : 20;

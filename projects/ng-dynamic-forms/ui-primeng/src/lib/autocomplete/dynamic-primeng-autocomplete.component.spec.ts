@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { AutoComplete, AutoCompleteModule } from "primeng/autocomplete";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGAutoCompleteComponent } from "./dynamic-primeng-autocomplete.component";
 
 describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
+    const testModel = new DynamicInputModel({id: "input", list: ["One", "Two", "Three"]});
+    const formModel = [testModel];
 
-    let testModel = new DynamicInputModel({id: "input", list: ["One", "Two", "Three"]}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicPrimeNGAutoCompleteComponent>,
-        component: DynamicPrimeNGAutoCompleteComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicPrimeNGAutoCompleteComponent>;
+    let component: DynamicPrimeNGAutoCompleteComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 AutoCompleteModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicPrimeNGAutoCompleteComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicPrimeNGAutoCompleteComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
@@ -76,12 +68,10 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
     });
 
     it("should have an p-autoComplete element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -90,7 +80,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -99,7 +88,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -108,7 +96,6 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

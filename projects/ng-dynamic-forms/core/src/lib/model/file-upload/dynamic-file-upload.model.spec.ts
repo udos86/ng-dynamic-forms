@@ -1,19 +1,14 @@
-import {
-    DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD,
-    DynamicFileUploadModel
-} from "./dynamic-file-upload.model";
+import { DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD, DynamicFileUploadModel } from "./dynamic-file-upload.model";
 
 describe("DynamicFileUploadModel test suite", () => {
-
-    let model: DynamicFileUploadModel,
-        config: any = {
-            id: "upload"
-        };
+    let model: DynamicFileUploadModel;
+    const config: any = {
+        id: "upload"
+    };
 
     beforeEach(() => model = new DynamicFileUploadModel(config));
 
     it("should initialize correctly", () => {
-
         expect(model.autoUpload).toBe(true);
         expect(model.disabled).toBe(false);
         expect(model.hidden).toBe(false);
@@ -30,8 +25,7 @@ describe("DynamicFileUploadModel test suite", () => {
     });
 
     it("should serialize correctly", () => {
-
-        let json = JSON.parse(JSON.stringify(model));
+        const json = JSON.parse(JSON.stringify(model));
 
         expect(json.id).toEqual(model.id);
         expect(json.type).toEqual(DYNAMIC_FORM_CONTROL_TYPE_FILE_UPLOAD);

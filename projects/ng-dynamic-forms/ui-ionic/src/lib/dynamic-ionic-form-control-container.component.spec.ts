@@ -1,10 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup } from "@angular/forms";
-//import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { TextMaskModule } from "angular2-text-mask";
 import { IonicModule } from "@ionic/angular";
 import {
     DynamicCheckboxModel,
@@ -31,54 +29,48 @@ import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-
 import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
 
 describe("DynamicIonicFormControlContainerComponent test suite", () => {
+    const inputModel = new DynamicInputModel({id: "input", maxLength: 51});
+    const formModel = [
+        new DynamicCheckboxModel({id: "checkbox"}),
+        new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
+        new DynamicColorPickerModel({id: "colorpicker"}),
+        new DynamicDatePickerModel({id: "datepicker"}),
+        new DynamicEditorModel({id: "editor"}),
+        new DynamicFileUploadModel({id: "upload", url: ""}),
+        new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
+        new DynamicFormGroupModel({id: "formGroup", group: []}),
+        inputModel,
+        new DynamicRadioGroupModel({id: "radioGroup"}),
+        new DynamicRatingModel({id: "rating"}),
+        new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
+        new DynamicSliderModel({id: "slider"}),
+        new DynamicSwitchModel({id: "switch"}),
+        new DynamicTextAreaModel({id: "textarea"}),
+        new DynamicTimePickerModel({id: "timepicker"})
+    ];
 
-    let formModel = [
-            new DynamicCheckboxModel({id: "checkbox"}),
-            new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []}),
-            new DynamicColorPickerModel({id: "colorpicker"}),
-            new DynamicDatePickerModel({id: "datepicker"}),
-            new DynamicEditorModel({id: "editor"}),
-            new DynamicFileUploadModel({id: "upload", url: ""}),
-            new DynamicFormArrayModel({id: "formArray", groupFactory: () => []}),
-            new DynamicFormGroupModel({id: "formGroup", group: []}),
-            new DynamicInputModel({id: "input", maxLength: 51}),
-            new DynamicRadioGroupModel({id: "radioGroup"}),
-            new DynamicRatingModel({id: "rating"}),
-            new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"}),
-            new DynamicSliderModel({id: "slider"}),
-            new DynamicSwitchModel({id: "switch"}),
-            new DynamicTextAreaModel({id: "textarea"}),
-            new DynamicTimePickerModel({id: "timepicker"})
-        ],
-        testModel = formModel[8],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicFormControlContainerComponent>,
-        component: DynamicIonicFormControlContainerComponent,
-        debugElement: DebugElement;
-        //testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicIonicFormControlContainerComponent>;
+    let component: DynamicIonicFormControlContainerComponent;
+    let debugElement: DebugElement;
+    // let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.overrideModule(BrowserDynamicTestingModule, {
-
             set: {
                 entryComponents: [DynamicIonicInputComponent]
             }
         });
 
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 IonicModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicFormControlContainerComponent, DynamicIonicInputComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicIonicFormControlContainerComponent);
 
             component = fixture.componentInstance;
@@ -87,19 +79,17 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
-        component.model = testModel;
+        component.model = inputModel;
 
         fixture.detectChanges();
 
-        //testElement = debugElement.query(By.css(`ion-input[id='${testModel.id}']`));
+        // testElement = debugElement.query(By.css(`ion-input[id='${inputModel.id}']`));
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.context).toBeNull();
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
@@ -112,12 +102,10 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     });
     /*
     it("should have an ion-input element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 *
     it("should listen to native blur events", () => {
-
         spyOn(component, "onBlur");
 
         testElement.triggerEventHandler("blur", null);
@@ -126,7 +114,6 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native focus events", () => {
-
         spyOn(component, "onFocus");
 
         testElement.triggerEventHandler("focus", null);
@@ -135,7 +122,6 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     });
 
     it("should listen to native change event", () => {
-
         spyOn(component, "onChange");
 
         testElement.triggerEventHandler("change", null);
@@ -144,7 +130,6 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     });
 
     it("should update model value when control value changes", () => {
-
         spyOn(component, "onControlValueChanges");
 
         component.control.setValue("test");
@@ -153,28 +138,25 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     });
 
     it("should update control value when model value changes", () => {
-
         spyOn(component, "onModelValueUpdates");
 
-        (testModel as DynamicInputModel).valueUpdates.next("test");
+        inputModel.valueUpdates.next("test");
 
         expect(component.onModelValueUpdates).toHaveBeenCalled();
     });
 
     it("should update control activation when model disabled property changes", () => {
-
         spyOn(component, "onModelDisabledUpdates");
 
-        testModel.disabledUpdates.next(true);
+        inputModel.disabledUpdates.next(true);
 
         expect(component.onModelDisabledUpdates).toHaveBeenCalled();
     });
 
     it("should update control activation when model required property changes", () => {
-
         spyOn(component, "onModelRequiredUpdates");
 
-        testModel.requiredUpdates.next(true);
+        inputModel.requiredUpdates.next(true);
 
         expect(component.onModelRequiredUpdates).toHaveBeenCalled();
     });

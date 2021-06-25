@@ -5,17 +5,18 @@ import { DynamicInputModel } from "../model/input/dynamic-input.model";
 import { DynamicFormComponentService } from "./dynamic-form-component.service";
 
 export class TestComponentRef extends ComponentRef<any> {
+    readonly changeDetectorRef!: ChangeDetectorRef;
+    readonly componentType!: Type<any>;
+    readonly hostView!: ViewRef;
+    readonly injector!: Injector;
+    readonly instance!: any;
+    readonly location!: ElementRef;
 
-    readonly changeDetectorRef: ChangeDetectorRef;
-    readonly componentType: Type<any>;
-    readonly hostView: ViewRef;
-    readonly injector: Injector;
-    readonly instance: any;
-    readonly location: ElementRef;
+    destroy(): void {
+    }
 
-    destroy(): void {}
-
-    onDestroy(): void {}
+    onDestroy(): void {
+    }
 
     constructor() {
         super();
@@ -23,13 +24,11 @@ export class TestComponentRef extends ComponentRef<any> {
 }
 
 describe("DynamicFormInstanceService test suite", () => {
-
     let service: DynamicFormComponentService;
     let model: DynamicFormControlModel;
     let componentRef: TestComponentRef;
 
     beforeEach(() => {
-
         TestBed.configureTestingModule({
             providers: [DynamicFormComponentService]
         });
@@ -41,34 +40,29 @@ describe("DynamicFormInstanceService test suite", () => {
     beforeEach(inject([DynamicFormComponentService],
         (componentService: DynamicFormComponentService) => service = componentService));
 
-
     it("should return undefined when nothing is registered", () => {
         expect(service.getFormControlRef(model.id)).toBeUndefined();
     });
 
     it("should return a component reference when registered", () => {
-
         service.registerFormControl(model, componentRef);
 
         expect(service.getFormControlRef(model.id)).toBe(componentRef);
     });
 
     it("should return undefined when index is invalid", () => {
-
         service.registerFormControl(model, componentRef);
 
         expect(service.getFormControlRef(model.id, 0)).toBeUndefined();
     });
 
     it("should return a component reference when index is valid", () => {
-
         service.registerFormControl(model, componentRef, 0);
 
         expect(service.getFormControlRef(model.id, 0)).toBe(componentRef);
     });
 
     it("should still have this reference at the given index, when deleting the first one", () => {
-
         service.registerFormControl(model, componentRef, 0);
         service.registerFormControl(model, componentRef, 1);
         service.unregisterFormControl(model.id, 0);
@@ -77,7 +71,6 @@ describe("DynamicFormInstanceService test suite", () => {
     });
 
     it("should no more have this reference at the given index, when deleting the first one two times", () => {
-
         service.registerFormControl(model, componentRef, 0);
         service.registerFormControl(model, componentRef, 1);
         service.unregisterFormControl(model.id, 0);
@@ -87,7 +80,6 @@ describe("DynamicFormInstanceService test suite", () => {
     });
 
     it("should warn when a model is registered with index for a non-array form control", () => {
-
         spyOn(console, "warn");
 
         service.registerFormControl(model, componentRef);
@@ -97,27 +89,13 @@ describe("DynamicFormInstanceService test suite", () => {
     });
 
     it("should unregister a component ref", () => {
-
         service.registerFormControl(model, componentRef);
         service.unregisterFormControl(model.id);
 
         expect(service.getFormControlRef(model.id)).toBeUndefined();
     });
 
-    /*
-    it("should throw exception when trying to delete non existent objects", () => {
-
-        const modelId: string = model.id;
-        const index: number = 0;
-
-        expect(() => service.removeFormControlInstance(modelId)).toThrowError(`There exists no form control with id: ${modelId}`);
-
-        expect(() => service.removeFormControlInstance(modelId, 0)).toThrowError(`There exists no form control with id: ${modelId} and/or index ${index}`);
-    });
-     */
-
     it("should return a custom form control component type", () => {
-
         const inputModel = new DynamicInputModel({id: "input"});
 
         expect(service.getCustomComponentType(inputModel)).toBe(null);

@@ -4,35 +4,29 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { IonicModule, IonRadioGroup } from "@ionic/angular";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRadioGroupComponent } from "./dynamic-ionic-radio-group.component";
 
 describe("DynamicIonicRadioGroupComponent test suite", () => {
+    const testModel = new DynamicRadioGroupModel({id: "radioGroup", options: [{value: "One"}, {value: "Two"}], value: "One"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicRadioGroupModel({id: "radioGroup", options: [{value: "One"}, {value: "Two"}], value: "One"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicIonicRadioGroupComponent>,
-        component: DynamicIonicRadioGroupComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicIonicRadioGroupComponent>;
+    let component: DynamicIonicRadioGroupComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 IonicModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicIonicRadioGroupComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicIonicRadioGroupComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRadioGroupModel).toBe(true);
@@ -74,12 +66,10 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
     });
 
     it("should have an ion-list element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +78,6 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +86,6 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

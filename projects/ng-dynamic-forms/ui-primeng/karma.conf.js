@@ -9,16 +9,20 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
+      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    coverageReporter: {
       dir: require('path').join(__dirname, '../../../coverage/ng-dynamic-forms/ui-primeng'),
-      reports: ['html', 'json', 'lcovonly'],
-      fixWebpackSourcePaths: true
+      subdir: '.',
+      reporters: [
+        {type: 'html'},
+        {type: 'json'},
+        {type: 'lcovonly'}
+      ]
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

@@ -4,35 +4,29 @@ import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { MatCheckbox, MatCheckboxModule } from "@angular/material/checkbox";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicMaterialCheckboxComponent } from "./dynamic-material-checkbox.component";
 
 describe("DynamicMaterialCheckboxComponent test suite", () => {
+    const testModel = new DynamicCheckboxModel({id: "checkbox"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicCheckboxModel({id: "checkbox"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicMaterialCheckboxComponent>,
-        component: DynamicMaterialCheckboxComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicMaterialCheckboxComponent>;
+    let component: DynamicMaterialCheckboxComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 MatCheckboxModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicMaterialCheckboxComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicMaterialCheckboxComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxModel).toBe(true);
@@ -75,12 +67,10 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
     });
 
     it("should have an mat-checkbox element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -89,7 +79,6 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -98,7 +87,6 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);
@@ -107,7 +95,6 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
     });
 
     it("should emit custom event", () => {
-
         spyOn(component.customEvent, "emit");
 
         component.onCustomEvent(null, "eventType");

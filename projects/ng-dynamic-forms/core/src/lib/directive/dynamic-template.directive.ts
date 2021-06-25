@@ -9,12 +9,11 @@ export enum DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT {
     selector: "ng-template[modelId],ng-template[modelType]"
 })
 export class DynamicTemplateDirective {
-
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End;
     @Input() as: string | null = null;
-    @Input() index: number | undefined;
-    @Input() modelId: string;
-    @Input() modelType: string;
+    @Input() index?: number;
+    @Input() modelId?: string;
+    @Input() modelType?: string;
 
     constructor(public templateRef: TemplateRef<any>) {
     }

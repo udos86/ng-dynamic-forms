@@ -26,21 +26,19 @@ import { DynamicBasicFormControlContainerComponent } from "./dynamic-basic-form-
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBasicFormComponent extends DynamicFormComponent {
-
-    @Input() group: FormGroup;
-    @Input() model: DynamicFormModel;
-    @Input() layout: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() model!: DynamicFormModel;
+    @Input() layout?: DynamicFormLayout;
 
     @Output() blur: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() change: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
     @Output() focus: EventEmitter<DynamicFormControlEvent> = new EventEmitter<DynamicFormControlEvent>();
 
-    @ContentChildren(DynamicTemplateDirective) templates: QueryList<DynamicTemplateDirective>;
+    @ContentChildren(DynamicTemplateDirective) templates!: QueryList<DynamicTemplateDirective>;
 
-    @ViewChildren(DynamicBasicFormControlContainerComponent) components: QueryList<DynamicBasicFormControlContainerComponent>;
+    @ViewChildren(DynamicBasicFormControlContainerComponent) components!: QueryList<DynamicBasicFormControlContainerComponent>;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef,
-                protected componentService: DynamicFormComponentService) {
+    constructor(protected changeDetectorRef: ChangeDetectorRef, protected componentService: DynamicFormComponentService) {
         super(changeDetectorRef, componentService);
     }
 }

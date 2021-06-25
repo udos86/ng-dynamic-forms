@@ -38,11 +38,9 @@ export class DynamicFormValidationService {
         let validatorFn: ValidatorFactory | Validator | undefined;
 
         if (Validators.hasOwnProperty(validatorName)) { // Built-in Angular Validators
-
             validatorFn = (Validators as any)[validatorName];
 
         } else { // Custom Validators
-
             if (this._DYNAMIC_VALIDATORS && this._DYNAMIC_VALIDATORS.has(validatorName)) {
                 validatorFn = this._DYNAMIC_VALIDATORS.get(validatorName);
 
@@ -71,11 +69,9 @@ export class DynamicFormValidationService {
         if (isObject(validatorsConfig)) {
 
             validatorFns = Object.keys(validatorsConfig).map(validatorConfigKey => {
-
                 const validatorConfigValue = (validatorsConfig as DynamicValidatorsConfig)[validatorConfigKey];
 
                 if (this.isValidatorDescriptor(validatorConfigValue)) {
-
                     const descriptor = validatorConfigValue as DynamicValidatorDescriptor;
 
                     return this.getValidatorFn(descriptor.name, descriptor.args, validatorsToken);
@@ -110,7 +106,6 @@ export class DynamicFormValidationService {
         model.validators = validatorsConfig;
 
         if (validatorsConfig === null) {
-
             control.clearValidators();
 
         } else {
@@ -126,7 +121,6 @@ export class DynamicFormValidationService {
         model.asyncValidators = asyncValidatorsConfig;
 
         if (asyncValidatorsConfig === null) {
-
             control.clearAsyncValidators();
 
         } else {
@@ -137,7 +131,6 @@ export class DynamicFormValidationService {
     }
 
     showErrorMessages(control: AbstractControl, model: DynamicFormControlModel, hasFocus: boolean): boolean {
-
         const precondition = control.invalid && model.hasErrorMessages;
         const matcher = this._DYNAMIC_ERROR_MESSAGES_MATCHER ? this._DYNAMIC_ERROR_MESSAGES_MATCHER(control, model, hasFocus) :
             DEFAULT_ERROR_STATE_MATCHER(control, model, hasFocus);
@@ -146,14 +139,11 @@ export class DynamicFormValidationService {
     }
 
     parseErrorMessageConfig(template: string, model: DynamicFormControlModel, error: any = null): string {
-
         return template.replace(/{{\s*(.+?)\s*}}/mg, (_match: string, expression: string) => {
-
             let propertySource: any = model;
             let propertyName: string = expression;
 
             if (expression.indexOf("validator.") >= 0 && error) {
-
                 propertySource = error;
                 propertyName = expression.replace("validator.", "");
             }
@@ -164,15 +154,12 @@ export class DynamicFormValidationService {
     }
 
     createErrorMessages(control: AbstractControl, model: DynamicFormControlModel): string[] {
-
         const messages: string[] = [];
 
         if (model.hasErrorMessages) {
-
             const messagesConfig = model.errorMessages as DynamicValidatorsConfig;
 
             Object.keys(control.errors || {}).forEach(validationErrorKey => {
-
                 let messageKey = validationErrorKey;
 
                 if (validationErrorKey === "minlength" || validationErrorKey === "maxlength") {
@@ -180,7 +167,6 @@ export class DynamicFormValidationService {
                 }
 
                 if (messagesConfig.hasOwnProperty(messageKey)) {
-
                     const validationError = control.getError(validationErrorKey);
                     const messageTemplate = messagesConfig[messageKey] as string;
 
@@ -197,7 +183,6 @@ export class DynamicFormValidationService {
     }
 
     isValidatorDescriptor(value: any): boolean {
-
         if (isObject(value)) {
             return value.hasOwnProperty("name") && value.hasOwnProperty("args");
         }

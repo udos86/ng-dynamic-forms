@@ -1,5 +1,4 @@
 export const PRIME_NG_SAMPLE_FORM_LAYOUT = {
-
     stay: {
         grid: {
             control: "ui-g"

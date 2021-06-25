@@ -17,7 +17,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from "@ang
 import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
-    DynamicFormControlCustomEvent, DynamicFormControlLayout,
+    DynamicFormControlCustomEvent,
+    DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
@@ -29,20 +30,19 @@ import {
     templateUrl: "./dynamic-material-chips.component.html"
 })
 export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
-
-    @Input() formLayout: DynamicFormLayout;
-    @Input() group: FormGroup;
-    @Input() layout: DynamicFormControlLayout;
-    @Input() model: DynamicInputModel;
+    @Input() formLayout?: DynamicFormLayout;
+    @Input() group!: FormGroup;
+    @Input() layout?: DynamicFormControlLayout;
+    @Input() model!: DynamicInputModel;
 
     @Output() blur: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() customEvent: EventEmitter<DynamicFormControlCustomEvent> = new EventEmitter();
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild("matAutocomplete", {static: true}) matAutocomplete: MatAutocomplete;
-    @ViewChild("matChipList", {static: true}) matChipList: MatChipList;
-    @ViewChild(MatInput, {static: true}) matInput: MatInput;
+    @ViewChild("matAutocomplete", {static: true}) matAutocomplete!: MatAutocomplete;
+    @ViewChild("matChipList", {static: true}) matChipList!: MatChipList;
+    @ViewChild(MatInput, {static: true}) matInput!: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,
                 protected validationService: DynamicFormValidationService,
@@ -50,7 +50,6 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
                 @Inject(MAT_CHIPS_DEFAULT_OPTIONS) public CHIPS_OPTIONS: MatChipsDefaultOptions,
                 @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) @Optional() public FORM_FIELD_OPTIONS: MatFormFieldDefaultOptions,
                 @Inject(MAT_RIPPLE_GLOBAL_OPTIONS) @Optional() public RIPPLE_OPTIONS: RippleGlobalOptions) {
-
         super(layoutService, validationService);
     }
 
@@ -59,8 +58,7 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     }
 
     onChipInputTokenEnd($event: MatChipInputEvent): void {
-
-        const inputElement = $event.input;
+        const inputElement = $event.chipInput?.inputElement;
         const inputValue = $event.value.trim();
 
         if (inputValue.length > 0) {
@@ -74,7 +72,6 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     }
 
     onChipSelected($event: MatAutocompleteSelectedEvent): void {
-
         const selectedChip = $event.option.value;
         const chips = this.chips;
 
@@ -84,11 +81,9 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     }
 
     onChipRemoved(chip: string, index: number): void {
-
         const chips = this.chips;
 
         if (chips[index] === chip) {
-
             chips.splice(index, 1);
             this.control.patchValue([...chips]);
         }

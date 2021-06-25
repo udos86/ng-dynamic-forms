@@ -3,34 +3,28 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapTextAreaComponent } from "./dynamic-ngx-bootstrap-textarea.component";
 
 describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
+    const testModel = new DynamicTextAreaModel({id: "textarea"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicTextAreaModel({id: "textarea"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGxBootstrapTextAreaComponent>,
-        component: DynamicNGxBootstrapTextAreaComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGxBootstrapTextAreaComponent>;
+    let component: DynamicNGxBootstrapTextAreaComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGxBootstrapTextAreaComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGxBootstrapTextAreaComponent);
 
             component = fixture.componentInstance;
@@ -39,7 +33,6 @@ describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -51,7 +44,6 @@ describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
@@ -71,12 +63,10 @@ describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
     });
 
     it("should have an textarea element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -86,7 +76,6 @@ describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -96,7 +85,6 @@ describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

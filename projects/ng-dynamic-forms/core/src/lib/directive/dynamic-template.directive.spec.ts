@@ -12,25 +12,20 @@ class TestComponent {
 }
 
 describe("DynamicTemplateDirective test suite", () => {
-
-    let directive: DynamicTemplateDirective,
-        fixture: ComponentFixture<TestComponent>;
+    let directive: DynamicTemplateDirective;
+    let fixture: ComponentFixture<TestComponent>;
 
     beforeEach(() => {
-
         directive = new DynamicTemplateDirective({} as TemplateRef<any>);
 
         fixture = TestBed.configureTestingModule({
-
             declarations: [DynamicTemplateDirective, TestComponent]
-
         }).createComponent(TestComponent);
 
         fixture.detectChanges();
     });
 
     it("should be initialized correctly", () => {
-
         expect(directive.align === DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End).toBe(true);
         expect(directive.as).toBeNull();
         expect(directive.modelId).toBeUndefined();

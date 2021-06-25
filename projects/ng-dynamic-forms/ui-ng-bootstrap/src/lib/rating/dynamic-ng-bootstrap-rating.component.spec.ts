@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapRatingComponent } from "./dynamic-ng-bootstrap-rating.component";
 import { NgbRating, NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
 
 describe("DynamicNGBootstrapRatingComponent test suite", () => {
+    const testModel = new DynamicRatingModel({id: "rating"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicRatingModel({id: "rating"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapRatingComponent>,
-        component: DynamicNGBootstrapRatingComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapRatingComponent>;
+    let component: DynamicNGBootstrapRatingComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 NgbRatingModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapRatingComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapRatingComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicRatingModel).toBe(true);
@@ -74,12 +66,10 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
     });
 
     it("should have an ngb-rating element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should listen to and emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +78,6 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +86,6 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
     });
 
     it("should listen to and emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

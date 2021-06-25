@@ -3,36 +3,30 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { TextMaskModule } from "angular2-text-mask";
 import { NgbDatepicker, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapCalendarComponent } from "./dynamic-ng-bootstrap-calendar.component";
 
 describe("DynamicNGBootstrapCalendarComponent test suite", () => {
+    const testModel = new DynamicDatePickerModel({id: "calendar"});
+    const formModel = [testModel];
 
-    let testModel = new DynamicDatePickerModel({id: "calendar"}),
-        formModel = [testModel],
-        formGroup: FormGroup,
-        fixture: ComponentFixture<DynamicNGBootstrapCalendarComponent>,
-        component: DynamicNGBootstrapCalendarComponent,
-        debugElement: DebugElement,
-        testElement: DebugElement;
+    let formGroup: FormGroup;
+    let fixture: ComponentFixture<DynamicNGBootstrapCalendarComponent>;
+    let component: DynamicNGBootstrapCalendarComponent;
+    let debugElement: DebugElement;
+    let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-
         TestBed.configureTestingModule({
-
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
-                TextMaskModule,
                 NgbDatepickerModule,
                 DynamicFormsCoreModule
             ],
             declarations: [DynamicNGBootstrapCalendarComponent]
-
         }).compileComponents().then(() => {
-
             fixture = TestBed.createComponent(DynamicNGBootstrapCalendarComponent);
 
             component = fixture.componentInstance;
@@ -41,7 +35,6 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
     }));
 
     beforeEach(inject([DynamicFormService], (service: DynamicFormService) => {
-
         formGroup = service.createFormGroup(formModel);
 
         component.group = formGroup;
@@ -53,7 +46,6 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-
         expect(component.control instanceof FormControl).toBe(true);
         expect(component.group instanceof FormGroup).toBe(true);
         expect(component.model instanceof DynamicDatePickerModel).toBe(true);
@@ -74,12 +66,10 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
     });
 
     it("should have an ngb-datepicker element", () => {
-
         expect(testElement instanceof DebugElement).toBe(true);
     });
 
     it("should emit blur event", () => {
-
         spyOn(component.blur, "emit");
 
         component.onBlur(null);
@@ -88,7 +78,6 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
     });
 
     it("should emit change event", () => {
-
         spyOn(component.change, "emit");
 
         component.onChange(null);
@@ -97,7 +86,6 @@ describe("DynamicNGBootstrapCalendarComponent test suite", () => {
     });
 
     it("should emit focus event", () => {
-
         spyOn(component.focus, "emit");
 
         component.onFocus(null);

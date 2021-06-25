@@ -6,7 +6,6 @@ import { isBoolean, isFunction } from "../../utils/core.utils";
 export const DYNAMIC_FORM_CONTROL_TYPE_SELECT = "SELECT";
 
 export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelConfig<T> {
-
     compareWithFn?: (o1: any, o2: any) => boolean;
     filterable?: boolean;
     multiple?: boolean;
@@ -16,7 +15,6 @@ export interface DynamicSelectModelConfig<T> extends DynamicOptionControlModelCo
 }
 
 export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
-
     compareWithFn: (value1: any, value2: any) => boolean;
     @serializable() filterable: boolean;
     @serializable() multiple: boolean;
@@ -27,7 +25,6 @@ export class DynamicSelectModel<T> extends DynamicOptionControlModel<T> {
     @serializable() readonly type: string = DYNAMIC_FORM_CONTROL_TYPE_SELECT;
 
     constructor(config: DynamicSelectModelConfig<T>, layout?: DynamicFormControlLayout) {
-
         super(config, layout);
 
         this.compareWithFn = isFunction(config.compareWithFn) ? config.compareWithFn : Object.is;

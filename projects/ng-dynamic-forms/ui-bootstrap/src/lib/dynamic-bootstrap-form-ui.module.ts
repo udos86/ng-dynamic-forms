@@ -4,14 +4,16 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { RatingModule } from "ngx-bootstrap/rating";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
-import { TextMaskModule } from "angular2-text-mask";
+import { NgxMaskModule } from "ngx-mask";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstrap-form-control-container.component";
+import {
+    DynamicBootstrapFormArrayComponent,
+    DynamicBootstrapFormControlContainerComponent,
+    DynamicBootstrapFormGroupComponent
+} from "./dynamic-bootstrap-form-control-container.component";
 import { DynamicBootstrapFormComponent } from "./dynamic-bootstrap-form.component";
 import { DynamicBootstrapCheckboxComponent } from "./checkbox/dynamic-bootstrap-checkbox.component";
 import { DynamicBootstrapDatePickerComponent } from "./datepicker/dynamic-bootstrap-datepicker.component";
-import { DynamicBootstrapFormArrayComponent } from "./form-array/dynamic-bootstrap-form-array.component";
-import { DynamicBootstrapFormGroupComponent } from "./form-group/dynamic-bootstrap-form-group.component";
 import { DynamicBootstrapInputComponent } from "./input/dynamic-bootstrap-input.component";
 import { DynamicBootstrapRadioGroupComponent } from "./radio-group/dynamic-bootstrap-radio-group.component";
 import { DynamicBootstrapRatingComponent } from "./rating/dynamic-bootstrap-rating.component";
@@ -26,7 +28,7 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         BsDatepickerModule,
         RatingModule,
         TimepickerModule,
-        TextMaskModule,
+        NgxMaskModule,
         DynamicFormsCoreModule
     ],
     declarations: [
