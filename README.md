@@ -1195,17 +1195,16 @@ ngOnInit() {
 
 ## Text Masks
 
-Whenever an `<input>` element needs to be filled in a predefined value format, text masks make a nice form enhancement to guide the user.
+Whenever an `<input>` element needs to be filled in a predefined format, text masks can make a nice form enhancement.
 
-Since Angular does not deliver an appropriate feature by default, NG Dynamic Forms integrates an external [**Text Mask directive**](https://github.com/text-mask/text-mask).
+Since Angular does not deliver an appropriate feature by default, NG Dynamic Forms integrates  [**ngx-mask**](https://github.com/JsDaddy/ngx-mask).
 
-That's why most UI packages demand one additional peer dependency to be installed:
+That's why some UI packages demand one additional peer dependency to be installed:
 ```
 npm install ngx-mask --save
 ```
 
 You're now capable of adding a `mask` property to any `DynamicInputModel` according to [Text Mask docs](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask):
-
 ```typescript
 new DynamicInputModel({
     id: "maskedInput",
@@ -1214,7 +1213,7 @@ new DynamicInputModel({
 })
 ```
 
-You can also pass a function as the mask. The function will receive the user input at every change. The function is expected to return a mask array as described above.[Text Mask Addons](https://github.com/text-mask/text-mask/tree/master/addons/)
+Furthermore, you can add additional configuration via `maskConfig` according to the ngx-mask 
  ```typescript
 new DynamicInputModel({
     id: "maskedInput",
@@ -1226,8 +1225,8 @@ new DynamicInputModel({
 })
 ```
 
-Please note that some UI libraries like Kendo UI come with their own text mask implementation that may rely on a different text mask string / regex representation.
-
+**Note:** Angular does not support adding multiple custom value accessors to the same input element. Thus, this feature is **not** available to libraries like Material that already do apply a custom value accessor by default.
+In cases like Prime NG where a component library natively provides some text mask mechanism, NG Dynamic Forms maps the mask configuration to the built-in api.
 
 ## Autocompletion
 
