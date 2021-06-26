@@ -12,7 +12,7 @@
 `angular2-text-mask` has finally been replaced with `ngx-mask`
 
 This means from now text masking is only available to UI components that use a built-in 
-mask feature or *do not* already apply a custom `ControlValueAccessor` (Material)
+mask feature or *do not* already apply a custom `ControlValueAccessor` like Material.
 
 In order to integrate `ngx-mask` properly, a `maskConfig` property has been added to `DynamicInputModel` while the type of `mask` has been 
 narrowed to `string`.
