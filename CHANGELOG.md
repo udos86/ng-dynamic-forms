@@ -6,8 +6,8 @@
 
 ### **Bugfixes**
 
-* adds `distinctUntilChanged()` operator in `DynamicFormsRelationService` to performance problems ()
-* adds manual change detection when async validation resolves ()
+* adds `distinctUntilChanged()` operator in `DynamicFormsRelationService` to performance problems (closes [#1060](https://github.com/udos86/ng-dynamic-forms/issues/1122))
+* adds manual change detection when async validation resolves
 
 # 14.0.0
 

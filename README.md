@@ -464,7 +464,7 @@ Arbitrary CSS classes can be provided for any form control by binding a `Dynamic
 A `DynamicFormLayout` is a simple object literal that associates a CSS class configuration object with a model id.
 
 By differentiating between `element` and `grid `context NG Dynamic Forms can automatically apply the 
-CSS class strings in the component template based on [position identifiers](http://ng2-dynamic-forms.udos86.de/docs/core/interfaces/_model_misc_dynamic_form_control_layout_model_.dynamicformcontrollayoutconfig.html):
+CSS class strings in the component template based on [position identifiers](https://github.com/udos86/ng-dynamic-forms/blob/master/projects/ng-dynamic-forms/core/src/lib/model/misc/dynamic-form-control-layout.model.ts):
 ```typescript
 export const MY_FORM_LAYOUT = {
     
