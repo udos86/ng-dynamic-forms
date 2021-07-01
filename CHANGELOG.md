@@ -1,5 +1,9 @@
 # 14.0.1
 
+### **Features**
+
+* Migration to ng-bootstrap 10
+
 ### **Bugfixes**
 
 * adds `distinctUntilChanged()` operator in `DynamicFormsRelationService` to performance problems ()
