@@ -30,8 +30,8 @@ export function customForbiddenValidator(forbiddenValue: string): ValidatorFn {
     };
 }
 
-export function customAsyncFormGroupValidator(_control: AbstractControl): Promise<ValidationErrors | null> {
+export function customAsyncValidator(_control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise((resolve, _reject) => {
-        resolve(null);
+        setTimeout(() => resolve({customAsyncValidator: true}), 2000);
     });
 }

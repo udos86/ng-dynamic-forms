@@ -1,3 +1,10 @@
+# 14.0.1
+
+### **Bugfixes**
+
+* adds `distinctUntilChanged()` operator in `DynamicFormsRelationService` to performance problems ()
+* adds manual change detection when async validation resolves ()
+
 # 14.0.0
 
 ### **Features**

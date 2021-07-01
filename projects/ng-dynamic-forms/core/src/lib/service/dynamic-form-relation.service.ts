@@ -8,7 +8,7 @@ import {
     OR_OPERATOR
 } from "./dynamic-form-relation-matchers";
 import { DynamicFormControlCondition, DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
-import { startWith } from "rxjs/operators";
+import { distinctUntilChanged, startWith } from "rxjs/operators";
 import { merge, Subscription } from "rxjs";
 import { isString } from "../utils/core.utils";
 
@@ -28,7 +28,6 @@ export class DynamicFormRelationService {
 
             if (isString(path) && !controls.hasOwnProperty(path)) {
                 const control = condition.rootPath ? group.root.get(condition.rootPath) : group.get(condition.id!);
-
                 control instanceof FormControl ?
                     controls[path] = control : console.warn(`No related form control with id ${condition.id} could be found`);
             }
@@ -97,9 +96,8 @@ export class DynamicFormRelationService {
         const subscriptions: Subscription[] = [];
 
         Object.values(relatedFormControls).forEach(relatedControl => {
-
-            const valueChanges = relatedControl.valueChanges.pipe(startWith(relatedControl.value));
-            const statusChanges = relatedControl.statusChanges.pipe(startWith(relatedControl.status));
+            const valueChanges = relatedControl.valueChanges.pipe(startWith(relatedControl.value), distinctUntilChanged());
+            const statusChanges = relatedControl.statusChanges.pipe(startWith(relatedControl.status), distinctUntilChanged());
 
             subscriptions.push(merge(valueChanges, statusChanges).subscribe(() => {
                 this.MATCHERS.forEach(matcher => {

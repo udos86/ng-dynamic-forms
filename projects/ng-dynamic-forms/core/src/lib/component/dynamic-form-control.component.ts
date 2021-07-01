@@ -40,7 +40,7 @@ export abstract class DynamicFormControlComponent implements DynamicFormControl 
             throw new Error(`form group does not contain an abstract control with id ${this.model.id}`);
         }
 
-        return control as AbstractControl;
+        return control;
     }
 
     get id(): string {
