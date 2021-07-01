@@ -19,7 +19,6 @@ import {
 } from "@ng-dynamic-forms/core";
 import { DynamicFormsBasicUIModule } from "@ng-dynamic-forms/ui-basic";
 import { DynamicFormsFoundationUIModule } from "@ng-dynamic-forms/ui-foundation";
-import { DynamicFormsKendoUIModule } from "@ng-dynamic-forms/ui-kendo";
 import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 import { DynamicFormsNGxBootstrapUIModule } from "@ng-dynamic-forms/ui-ngx-bootstrap";
@@ -27,7 +26,6 @@ import { DynamicFormsPrimeNGUIModule } from "@ng-dynamic-forms/ui-primeng";
 
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
-import { KendoSampleFormComponent } from "./ui-kendo/kendo-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
 import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-sample-form.component";
 import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstrap-sample-form.component";
@@ -36,7 +34,7 @@ import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.com
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import {
-    customAsyncFormGroupValidator,
+    customAsyncValidator,
     customDateRangeValidator,
     customForbiddenValidator,
     customValidator
@@ -61,7 +59,6 @@ import { NgxMaskModule } from "ngx-mask";
         DynamicFormsCoreModule.forRoot(),
         DynamicFormsBasicUIModule,
         DynamicFormsFoundationUIModule,
-        DynamicFormsKendoUIModule,
         DynamicFormsMaterialUIModule,
         DynamicFormsNGBootstrapUIModule,
         DynamicFormsNGxBootstrapUIModule,
@@ -71,7 +68,6 @@ import { NgxMaskModule } from "ngx-mask";
         BasicSampleFormComponent,
         NgxBootstrapSampleFormComponent,
         FoundationSampleFormComponent,
-        KendoSampleFormComponent,
         MaterialSampleFormComponent,
         NGBootstrapSampleFormComponent,
         PrimeNGSampleFormComponent,
@@ -94,7 +90,7 @@ import { NgxMaskModule } from "ngx-mask";
         },
         {
             provide: NG_ASYNC_VALIDATORS,
-            useValue: customAsyncFormGroupValidator,
+            useValue: customAsyncValidator,
             multi: true
         },
         {
@@ -103,7 +99,7 @@ import { NgxMaskModule } from "ngx-mask";
                 ["customValidator", customValidator],
                 ["customDateRangeValidator", customDateRangeValidator],
                 ["customForbiddenValidator", customForbiddenValidator],
-                ["customAsyncFormGroupValidator", customAsyncFormGroupValidator]
+                ["customAsyncValidator", customAsyncValidator]
             ])
         },
         ...DYNAMIC_MATCHER_PROVIDERS,

@@ -12,7 +12,6 @@ import {
     DynamicEditorModel,
     DynamicFileUploadModel,
     DynamicFormArrayModel,
-    DynamicFormControlModel,
     DynamicFormGroupModel,
     DynamicInputModel,
     DynamicRadioGroupModel,
@@ -88,7 +87,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
 
         // testElement = debugElement.query(By.css(`ion-input[id='${inputModel.id}']`));
     }));
-
+    /*
     it("should initialize correctly", () => {
         expect(component.context).toBeNull();
         expect(component.group instanceof FormGroup).toBe(true);
@@ -100,7 +99,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
 
         expect(component.componentType).toBe(DynamicIonicInputComponent);
     });
-    /*
+
     it("should have an ion-input element", () => {
         expect(testElement instanceof DebugElement).toBe(true);
     });

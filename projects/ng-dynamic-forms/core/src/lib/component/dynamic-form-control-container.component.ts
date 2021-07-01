@@ -5,6 +5,7 @@ import {
     EventEmitter,
     OnChanges,
     OnDestroy,
+    OnInit,
     QueryList,
     SimpleChanges,
     Type,
@@ -44,8 +45,9 @@ import { isString } from "../utils/core.utils";
 import { DynamicFormRelationService } from "../service/dynamic-form-relation.service";
 import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
 import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
+import { bufferCount, filter, map } from "rxjs/operators";
 
-export abstract class DynamicFormControlContainerComponent implements OnChanges, OnDestroy {
+export abstract class DynamicFormControlContainerComponent implements OnChanges, OnInit, OnDestroy {
     private _hasFocus = false;
 
     context: DynamicFormArrayGroupModel | null = null;
@@ -79,7 +81,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
                           protected relationService: DynamicFormRelationService) {
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges): void {
         const groupChange = (changes as Pick<SimpleChanges, "group">).group;
         const layoutChange = (changes as Pick<SimpleChanges, "layout">).layout;
         const modelChange = (changes as Pick<SimpleChanges, "model">).model;
@@ -97,7 +99,15 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         }
     }
 
-    ngOnDestroy() {
+    ngOnInit(): void {
+        this.subscriptions.push(this.control.statusChanges.pipe(
+            bufferCount(2, 1),
+            map(states => states[0]),
+            filter(previousState => previousState === "PENDING")
+        ).subscribe(_status => this.markForCheck()));
+    }
+
+    ngOnDestroy(): void {
         this.destroyFormControlComponent();
         this.unsubscribe();
     }
@@ -176,7 +186,6 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
         const componentType = this.componentType;
 
         if (componentType !== null) {
-
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 
             this.componentViewContainerRef.clear();
@@ -207,9 +216,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     }
 
     protected destroyFormControlComponent(): void {
-
         if (this.componentRef) {
-
             this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
             this.componentSubscriptions = [];
 

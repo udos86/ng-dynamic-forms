@@ -53,8 +53,12 @@ export const NGX_BOOTSTRAP_SAMPLE_FORM_MODEL = [
                 validators: {
                     maxLength: 5
                 },
+                asyncValidators: {
+                    customAsyncValidator: null
+                },
                 errorMessages: {
-                    maxLength: "Max character count is 5"
+                    maxLength: "Max character count is 5",
+                    customAsyncValidator: "Async validation error"
                 }
             }),
             new DynamicCheckboxGroupModel({

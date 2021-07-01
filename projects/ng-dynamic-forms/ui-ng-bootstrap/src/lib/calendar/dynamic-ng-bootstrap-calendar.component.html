@@ -9,8 +9,8 @@
                     [navigation]="model.getAdditional('navigation', config['navigation'])"
                     [ngClass]="getClass('element', 'control')"
                     [outsideDays]="model.getAdditional('outsideDays', config['outsideDays'])"
-                    [showWeekdays]="model.getAdditional('showWeekdays', config['showWeekdays'])"
                     [showWeekNumbers]="model.getAdditional('showWeekNumbers', config['showWeekNumbers'])"
+                    [weekdays]="model.getAdditional('showWeekdays', config['weekdays'])"
                     [startDate]="model.focusedDate"
                     (select)="onChange($event)"></ngb-datepicker>
 
