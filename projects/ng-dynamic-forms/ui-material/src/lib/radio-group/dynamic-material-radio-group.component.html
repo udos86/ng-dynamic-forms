@@ -7,6 +7,7 @@
                      [name]="model.name"
                      [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
                      [required]="model.required"
+                     [tabIndex]="model.tabIndex"
                      (blur)="onBlur($event)"
                      (change)="onChange($event)"
                      (focus)="onFocus($event)">

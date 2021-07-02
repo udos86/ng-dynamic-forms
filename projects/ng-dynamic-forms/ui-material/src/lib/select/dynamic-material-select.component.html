@@ -23,6 +23,7 @@
                 [ngClass]="getClass('element', 'control')"
                 [placeholder]="model.placeholder"
                 [required]="model.required"
+                [tabIndex]="model.tabIndex"
                 (openedChange)="onCustomEvent($event, 'openedChange')"
                 (selectionChange)="onChange($event)">
 
