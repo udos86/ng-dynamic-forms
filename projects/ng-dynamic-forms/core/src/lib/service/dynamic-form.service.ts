@@ -256,6 +256,57 @@ export class DynamicFormService {
         return result;
     }
 
+    findByPath = (
+        fullPath: string,
+        formModel: DynamicFormControlModel[]
+      ): DynamicFormControlModel | null => {
+        let result = null,
+          findByPathFn = (path: string, groupModel: any): void => {
+            let id: string = path.split(".")[0];
+            let pathArray: string[] = path.split(".");
+            pathArray.splice(0, 1);
+            path = pathArray.join(".");
+
+            for (let controlModel of groupModel) {
+              if (controlModel.id === id) {
+                if (path.length === 0) {
+                  result = controlModel;
+                  break;
+                } else if (
+                  path.split(".").length == 1 &&
+                  Number.isInteger(Number(path.split(".")[0])) &&
+                  !controlModel["multiple"]
+                ) {
+                  result = (controlModel as DynamicFormArrayModel).groups[
+                    path.split(".")[0]
+                  ];
+                  break;
+                } else {
+                  if (controlModel instanceof DynamicFormGroupModel) {
+                    findByPathFn(path, controlModel.group);
+                  } else if (controlModel instanceof DynamicFormArrayModel) {
+                    id = path.split(".")[0];
+                    pathArray = path.split(".");
+                    pathArray.splice(0, 1);
+                    path = pathArray.join(".");
+                    if (
+                      controlModel.groups &&
+                      controlModel.groups[id] &&
+                      controlModel.groups[id].group
+                    ) {
+                      findByPathFn(path, controlModel.groups[id].group);
+                    }
+                  }
+                }
+              }
+            }
+          };
+
+        findByPathFn(fullPath, formModel);
+
+        return result;
+      };
+
     findModelById<T extends DynamicFormControlModel>(id: string, formModel: DynamicFormModel): T | null {
         return this.findById(id, formModel) as T;
     }
