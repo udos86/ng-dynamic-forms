@@ -46,7 +46,7 @@ const APP_ROUTES: Route[] = [
         component: MaterialSampleFormComponent,
         data: {
             title: "Material UI",
-            href: "https://github.com/udos86/ng-dynamic-forms/blob/master/sample/app/material-sample-form/material-sample-form.model.ts",
+            href: "https://github.com/udos86/ng-dynamic-forms/tree/master/src/app/ui-material/",
             bgColor: "#009688"
         }
     },
