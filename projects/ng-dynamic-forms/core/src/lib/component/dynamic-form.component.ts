@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Directive, EventEmitter, OnDestroy, OnInit, QueryList } from "@angular/core";
+import { ChangeDetectorRef, Directive, EventEmitter, OnDestroy, OnInit, QueryList } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { DynamicFormControlContainerComponent } from "./dynamic-form-control-container.component";
 import { DynamicFormControlEvent } from "./dynamic-form-control-event";
