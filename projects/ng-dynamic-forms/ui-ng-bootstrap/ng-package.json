@@ -3,13 +3,6 @@
   "dest": "../../../dist/ng-dynamic-forms/ui-ng-bootstrap",
   "lib": {
     "entryFile": "src/public-api.ts",
-    "flatModuleFile": "ui-ng-bootstrap",
-    "umdId": "ngDynamicForms.ui.ngbootstrap",
-    "amdId": "@ng-dynamic-forms/ui-ng-bootstrap",
-    "umdModuleIds": {
-      "@ng-bootstrap/ng-bootstrap": "ngb",
-      "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "ngx-mask": "ngx-mask"
-    }
+    "flatModuleFile": "ui-ng-bootstrap"
   }
 }
