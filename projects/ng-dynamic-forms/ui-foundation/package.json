@@ -31,7 +31,7 @@
   "peerDependencies": {
     "@ng-dynamic-forms/core": "^14.0.1",
     "foundation-sites": "^6.3.1",
-    "ngx-mask": "^12.0.0"
+    "ngx-mask": "^13.0.0"
   },
   "es2015": "./fesm2015/ui-foundation.js",
   "esm2015": "./esm2015/ui-foundation.js",

@@ -30,10 +30,10 @@
   },
   "peerDependencies": {
     "@ng-dynamic-forms/core": "^14.0.1",
-    "@progress/kendo-angular-dateinputs": "^5.2.0",
-    "@progress/kendo-angular-dropdowns": "^5.3.0",
-    "@progress/kendo-angular-inputs": "^7.3.0",
-    "@progress/kendo-angular-upload": "^7.1.1"
+    "@progress/kendo-angular-dateinputs": "^6.0.3",
+    "@progress/kendo-angular-dropdowns": "^6.0.2",
+    "@progress/kendo-angular-inputs": "^8.0.9",
+    "@progress/kendo-angular-upload": "^8.0.2"
   },
   "es2015": "./fesm2015/ui-kendo.js",
   "esm2015": "./esm2015/ui-kendo.js",
