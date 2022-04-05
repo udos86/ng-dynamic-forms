@@ -63,27 +63,6 @@ import { DynamicKendoUploadComponent } from "./upload/dynamic-kendo-upload.compo
         DynamicKendoTimePickerComponent,
         DynamicKendoUploadComponent
     ],
-    entryComponents: [
-        DynamicKendoAutoCompleteComponent,
-        DynamicKendoCalendarComponent,
-        DynamicKendoCheckboxComponent,
-        DynamicKendoCheckboxGroupComponent,
-        DynamicKendoDateInputComponent,
-        DynamicKendoDatePickerComponent,
-        DynamicKendoDropdownListComponent,
-        DynamicKendoFormArrayComponent,
-        DynamicKendoFormGroupComponent,
-        DynamicKendoInputComponent,
-        DynamicKendoMaskedTextBoxComponent,
-        DynamicKendoMultiSelectComponent,
-        DynamicKendoNumericTextBoxComponent,
-        DynamicKendoRadioGroupComponent,
-        DynamicKendoSliderComponent,
-        DynamicKendoSwitchComponent,
-        DynamicKendoTextAreaComponent,
-        DynamicKendoTimePickerComponent,
-        DynamicKendoUploadComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicKendoAutoCompleteComponent,

@@ -34,15 +34,6 @@ import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea
         DynamicBasicSelectComponent,
         DynamicBasicTextAreaComponent
     ],
-    entryComponents: [
-        DynamicBasicCheckboxComponent,
-        DynamicBasicFormArrayComponent,
-        DynamicBasicFormGroupComponent,
-        DynamicBasicInputComponent,
-        DynamicBasicRadioGroupComponent,
-        DynamicBasicSelectComponent,
-        DynamicBasicTextAreaComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicBasicCheckboxComponent,

@@ -3,12 +3,6 @@
   "dest": "../../../dist/ng-dynamic-forms/ui-foundation",
   "lib": {
     "entryFile": "src/public-api.ts",
-    "flatModuleFile": "ui-foundation",
-    "umdId": "ngDynamicForms.ui.foundation",
-    "amdId": "@ng-dynamic-forms/ui-foundation",
-    "umdModuleIds": {
-      "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "ngx-mask": "ngx-mask"
-    }
+    "flatModuleFile": "ui-foundation"
   }
 }

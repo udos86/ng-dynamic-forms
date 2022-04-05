@@ -45,18 +45,6 @@ import { DynamicBootstrapTimePickerComponent } from "./timepicker/dynamic-bootst
         DynamicBootstrapTextAreaComponent,
         DynamicBootstrapTimePickerComponent
     ],
-    entryComponents: [
-        DynamicBootstrapCheckboxComponent,
-        DynamicBootstrapDatePickerComponent,
-        DynamicBootstrapFormArrayComponent,
-        DynamicBootstrapFormGroupComponent,
-        DynamicBootstrapInputComponent,
-        DynamicBootstrapRadioGroupComponent,
-        DynamicBootstrapRatingComponent,
-        DynamicBootstrapSelectComponent,
-        DynamicBootstrapTextAreaComponent,
-        DynamicBootstrapTimePickerComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicBootstrapCheckboxComponent,

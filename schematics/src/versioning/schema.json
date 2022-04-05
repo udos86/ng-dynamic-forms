@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "Versioning Schematic",
+  "$id": "Versioning Schematic",
   "title": "Versioning Schematic",
   "type": "object",
   "description": "Updates version number based on a given increment",

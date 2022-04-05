@@ -3,16 +3,6 @@
   "dest": "../../../dist/ng-dynamic-forms/ui-ngx-bootstrap",
   "lib": {
     "entryFile": "src/public-api.ts",
-    "flatModuleFile": "ui-ngx-bootstrap",
-    "umdId": "ngDynamicForms.ui.ngxBootstrap",
-    "amdId": "@ng-dynamic-forms/ui-ngx-bootstrap",
-    "umdModuleIds": {
-      "@ng-dynamic-forms/core": "ngDynamicForms.core",
-      "ngx-mask": "ngx-mask",
-      "ngx-bootstrap/buttons": "ngx-bootstrap.buttons",
-      "ngx-bootstrap/datepicker": "ngx-bootstrap.datepicker",
-      "ngx-bootstrap/rating": "ngx-bootstrap.rating",
-      "ngx-bootstrap/timepicker": "ngx-bootstrap.timepicker"
-    }
+    "flatModuleFile": "ui-ngx-bootstrap"
   }
 }
