@@ -1,7 +1,7 @@
 import {
     ChangeDetectorRef,
     ComponentFactoryResolver,
-    ComponentRef,
+    ComponentRef, Directive,
     EventEmitter,
     OnChanges,
     OnDestroy,
@@ -47,6 +47,8 @@ import { DynamicFormGroupComponent } from "./dynamic-form-group.component";
 import { DynamicFormArrayComponent } from "./dynamic-form-array.component";
 import { bufferCount, filter, map } from "rxjs/operators";
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class DynamicFormControlContainerComponent implements OnChanges, OnInit, OnDestroy {
     private _hasFocus = false;
 

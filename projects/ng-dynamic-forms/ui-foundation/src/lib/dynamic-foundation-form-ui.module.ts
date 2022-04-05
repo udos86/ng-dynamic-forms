@@ -35,16 +35,6 @@ import { DynamicFoundationTextAreaComponent } from "./textarea/dynamic-foundatio
         DynamicFoundationSwitchComponent,
         DynamicFoundationTextAreaComponent
     ],
-    entryComponents: [
-        DynamicFoundationCheckboxComponent,
-        DynamicFoundationFormArrayComponent,
-        DynamicFoundationFormGroupComponent,
-        DynamicFoundationInputComponent,
-        DynamicFoundationRadioGroupComponent,
-        DynamicFoundationSelectComponent,
-        DynamicFoundationSwitchComponent,
-        DynamicFoundationTextAreaComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicFoundationCheckboxComponent,

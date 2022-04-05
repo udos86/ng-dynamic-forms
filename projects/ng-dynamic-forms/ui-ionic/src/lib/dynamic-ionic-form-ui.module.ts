@@ -39,18 +39,6 @@ import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.compo
         DynamicIonicTextAreaComponent,
         DynamicIonicToggleComponent
     ],
-    entryComponents: [
-        DynamicIonicCheckboxComponent,
-        DynamicIonicDateTimeComponent,
-        DynamicIonicFormArrayComponent,
-        DynamicIonicFormGroupComponent,
-        DynamicIonicInputComponent,
-        DynamicIonicRadioGroupComponent,
-        DynamicIonicRangeComponent,
-        DynamicIonicSelectComponent,
-        DynamicIonicTextAreaComponent,
-        DynamicIonicToggleComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicIonicCheckboxComponent,

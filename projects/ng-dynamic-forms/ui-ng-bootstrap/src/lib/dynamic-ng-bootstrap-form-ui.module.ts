@@ -55,21 +55,6 @@ import { DynamicNGBootstrapTimePickerComponent } from "./timepicker/dynamic-ng-b
         DynamicNGBootstrapTextAreaComponent,
         DynamicNGBootstrapTimePickerComponent
     ],
-    entryComponents: [
-        DynamicNGBootstrapCalendarComponent,
-        DynamicNGBootstrapCheckboxComponent,
-        DynamicNGBootstrapCheckboxGroupComponent,
-        DynamicNGBootstrapDatePickerComponent,
-        DynamicNGBootstrapFormArrayComponent,
-        DynamicNGBootstrapFormGroupComponent,
-        DynamicNGBootstrapInputComponent,
-        DynamicNGBootstrapRadioGroupComponent,
-        DynamicNGBootstrapRatingComponent,
-        DynamicNGBootstrapSelectComponent,
-        DynamicNGBootstrapSwitchComponent,
-        DynamicNGBootstrapTextAreaComponent,
-        DynamicNGBootstrapTimePickerComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicNGBootstrapCalendarComponent,

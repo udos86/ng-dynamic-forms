@@ -59,19 +59,6 @@ import { DynamicMaterialTextAreaComponent } from "./textarea/dynamic-material-te
         DynamicMaterialSliderComponent,
         DynamicMaterialTextAreaComponent
     ],
-    entryComponents: [
-        DynamicMaterialCheckboxComponent,
-        DynamicMaterialChipsComponent,
-        DynamicMaterialDatePickerComponent,
-        DynamicMaterialFormArrayComponent,
-        DynamicMaterialFormGroupComponent,
-        DynamicMaterialInputComponent,
-        DynamicMaterialRadioGroupComponent,
-        DynamicMaterialSelectComponent,
-        DynamicMaterialSlideToggleComponent,
-        DynamicMaterialSliderComponent,
-        DynamicMaterialTextAreaComponent
-    ],
     exports: [
         DynamicFormsCoreModule,
         DynamicMaterialCheckboxComponent,

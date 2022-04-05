@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-primeng",
-  "version": "14.0.1",
+  "version": "15.0.0",
   "description": "PrimeNG UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -29,8 +29,8 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-dynamic-forms/core": "^14.0.1",
-    "primeng": "^12.0.0"
+    "@ng-dynamic-forms/core": "^15.0.0",
+    "primeng": "^13.0.0"
   },
   "optionalDependencies": {
     "quill": "^1.2.3"

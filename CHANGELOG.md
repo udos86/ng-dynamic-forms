@@ -1,3 +1,11 @@
+# 15.0.0
+
+### **Features**
+
+* Migration to Angular 13
+
+***
+
 # 14.0.1
 
 ### **Features**
@@ -8,6 +16,8 @@
 
 * adds `distinctUntilChanged()` operator in `DynamicFormsRelationService` to performance problems (closes [#1060](https://github.com/udos86/ng-dynamic-forms/issues/1122))
 * adds manual change detection when async validation resolves
+
+***
 
 # 14.0.0
 
