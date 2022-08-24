@@ -444,7 +444,7 @@ Apart from that, NG Dynamic Forms does not make any further presumptions about o
 
 So let's say we want to implement a beautifully aligned Bootstrap [horizonal form](http://getbootstrap.com/css/#forms-horizontal)...
 
-At first we have to append the mandatory Bootstrap CSS class `form-horizontal` to the `<form>` element in our template:
+At first we have to append the mandatory [Bootstrap CSS](https://www.scaler.com/topics/css/bootstrap/) class `form-horizontal` to the `<form>` element in our template:
 ```html
 <form class="form-horizontal" [formGroup]="formGroup">
 
