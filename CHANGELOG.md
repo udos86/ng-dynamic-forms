@@ -1,3 +1,11 @@
+# 16.0.0
+
+### **Features**
+
+* Migration to Angular 14 (Untyped Forms)
+
+***
+
 # 15.0.0
 
 ### **Features**

@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm i
+      - run: npm i --force
       - run: npm run build:core && npm run test:core
       - run: npm run build:ui-basic && npm run test:ui-basic
       - run: npm run build:ui-bootstrap && npm run test:ui-bootstrap
