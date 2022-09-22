@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { MaskedTextBoxComponent, MaskedTextBoxModule } from "@progress/kendo-angular-inputs";
@@ -11,7 +11,7 @@ describe("DynamicKendoMaskedTextBoxComponent test suite", () => {
     const testModel = new DynamicInputModel({id: "input", mask: ""});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicKendoMaskedTextBoxComponent>;
     let component: DynamicKendoMaskedTextBoxComponent;
     let debugElement: DebugElement;
@@ -46,8 +46,8 @@ describe("DynamicKendoMaskedTextBoxComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.kendoMaskedTextBox instanceof MaskedTextBoxComponent).toBe(true);
 

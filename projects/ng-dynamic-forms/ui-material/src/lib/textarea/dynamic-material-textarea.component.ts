@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlCustomEvent,
@@ -18,7 +18,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from "@ang
 })
 export class DynamicMaterialTextAreaComponent extends DynamicMaterialFormInputControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicTextAreaModel;
 

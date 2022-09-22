@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -66,7 +66,7 @@ export class DynamicBootstrapFormControlContainerComponent extends DynamicFormCo
 
     @Input() asBootstrapFormGroup = true;
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() hostClass?: string[];
     // tslint:disable-next-line:no-input-rename
     @Input("templates") inputTemplateList?: QueryList<DynamicTemplateDirective>;
@@ -141,7 +141,7 @@ export function bootstrapUIFormControlMapFn(model: DynamicFormControlModel): Typ
 })
 export class DynamicBootstrapFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicFormArrayModel;
     @Input() templates?: QueryList<DynamicTemplateDirective>;
@@ -164,7 +164,7 @@ export class DynamicBootstrapFormArrayComponent extends DynamicFormArrayComponen
 })
 export class DynamicBootstrapFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicFormGroupModel;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

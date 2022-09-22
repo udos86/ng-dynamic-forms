@@ -1,5 +1,5 @@
 import { EventEmitter } from "@angular/core";
-import { AbstractControl, FormGroup } from "@angular/forms";
+import { AbstractControl, UntypedFormGroup } from "@angular/forms";
 import { DynamicFormControl } from "./dynamic-form-control-interface";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control-event";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -18,7 +18,7 @@ import { isString } from "../utils/core.utils";
 
 export abstract class DynamicFormControlComponent implements DynamicFormControl {
     formLayout?: DynamicFormLayout;
-    group!: FormGroup;
+    group!: UntypedFormGroup;
     layout?: DynamicFormControlLayout;
     model!: DynamicFormControlModel;
     templates?: DynamicFormControlTemplates;

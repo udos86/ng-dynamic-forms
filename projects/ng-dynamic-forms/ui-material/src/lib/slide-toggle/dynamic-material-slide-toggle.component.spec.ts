@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { MatSlideToggle, MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -10,7 +10,7 @@ import { DynamicMaterialSlideToggleComponent } from "./dynamic-material-slide-to
 describe("DynamicMaterialSlideToggleComponent test suite", () => {
     const testModel = new DynamicSwitchModel({id: "slideToggle"});
     const formModel = [testModel];
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicMaterialSlideToggleComponent>;
     let component: DynamicMaterialSlideToggleComponent;
     let debugElement: DebugElement;
@@ -45,8 +45,8 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
         expect(component.matSlideToggle instanceof MatSlideToggle).toBe(true);
 

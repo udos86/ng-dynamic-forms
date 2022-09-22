@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -15,7 +15,7 @@ import {
 })
 export class DynamicNGxBootstrapTextAreaComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicTextAreaModel;
 

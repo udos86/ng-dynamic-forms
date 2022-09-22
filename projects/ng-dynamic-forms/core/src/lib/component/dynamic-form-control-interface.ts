@@ -1,5 +1,5 @@
 import { EventEmitter, QueryList } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { DynamicFormControlCustomEvent } from "./dynamic-form-control-event";
 import { DynamicFormLayout } from "../service/dynamic-form-layout.service";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -8,7 +8,7 @@ import { DynamicTemplateDirective } from "../directive/dynamic-template.directiv
 
 export interface DynamicFormControl {
     formLayout?: DynamicFormLayout;
-    group: FormGroup;
+    group: UntypedFormGroup;
     layout?: DynamicFormControlLayout;
     model: DynamicFormControlModel;
     templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

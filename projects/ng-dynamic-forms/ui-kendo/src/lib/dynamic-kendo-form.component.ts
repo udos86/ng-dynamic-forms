@@ -9,7 +9,7 @@ import {
     QueryList,
     ViewChildren
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
     DynamicFormComponentService,
@@ -26,7 +26,7 @@ import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicKendoFormComponent extends DynamicFormComponent {
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() model!: DynamicFormModel;
     @Input() layout?: DynamicFormLayout;
 

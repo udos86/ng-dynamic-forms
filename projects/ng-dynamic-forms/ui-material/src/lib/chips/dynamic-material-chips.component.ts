@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
     MatAutocomplete,
@@ -31,7 +31,7 @@ import {
 })
 export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicInputModel;
 

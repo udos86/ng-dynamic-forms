@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { MatInput } from "@angular/material/input";
@@ -19,7 +19,7 @@ import { MatFormFieldDefaultOptions } from "@angular/material/form-field";
 })
 export class DynamicMaterialDatePickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicDatePickerModel;
 

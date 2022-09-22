@@ -1,5 +1,5 @@
 import { TestBed, inject } from "@angular/core/testing";
-import { ReactiveFormsModule, FormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, ValidationErrors, Validators } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, ValidationErrors, Validators } from "@angular/forms";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { DYNAMIC_VALIDATORS, Validator, ValidatorFactory } from "./dynamic-form-validators";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
@@ -104,7 +104,7 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should update validators on control and model", () => {
         const config: any = {testValidator: null};
-        const control: FormControl = new FormControl();
+        const control: UntypedFormControl = new UntypedFormControl();
         const model: DynamicFormControlModel = new DynamicInputModel({id: "input"});
 
         expect(control.validator).toBeNull();
@@ -124,7 +124,7 @@ describe("DynamicFormValidationService test suite", () => {
 
     it("should update async validators on control and model", () => {
         const config: any = {testAsyncValidator: null};
-        const control: FormControl = new FormControl();
+        const control: UntypedFormControl = new UntypedFormControl();
         const model: DynamicFormControlModel = new DynamicInputModel({id: "input"});
 
         expect(control.asyncValidator).toBeNull();
@@ -143,7 +143,7 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should create error messages", () => {
-        const testControl: FormControl = new FormControl();
+        const testControl: UntypedFormControl = new UntypedFormControl();
         const testModel: DynamicFormControlModel = new DynamicInputModel({
             id: "testModel",
             minLength: 5,
@@ -182,7 +182,7 @@ describe("DynamicFormValidationService test suite", () => {
 
 
     it("should check if error messages should be shown", () => {
-        const control: FormControl = new FormControl();
+        const control: UntypedFormControl = new UntypedFormControl();
         const model: DynamicFormControlModel = new DynamicInputModel({
             id: "testModel",
             errorMessages: {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { DatePickerComponent } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicDatePickerModel,
@@ -17,7 +17,7 @@ import {
 })
 export class DynamicKendoDatePickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicDatePickerModel;
 

@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { NgxMaskModule } from "ngx-mask";
@@ -58,7 +58,7 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
         new DynamicTimePickerModel({id: "timepicker"})
     ];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicBasicFormControlContainerComponent>;
     let component: DynamicBasicFormControlContainerComponent;
     let debugElement: DebugElement;
@@ -103,8 +103,8 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
         expect(component.context).toBeNull();
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
         expect(component.blur).toBeDefined();

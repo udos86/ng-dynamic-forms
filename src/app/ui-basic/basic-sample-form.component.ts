@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormArray } from "@angular/forms";
+import { UntypedFormArray } from "@angular/forms";
 import {
     DynamicFormService,
     DynamicFormArrayModel,
@@ -19,7 +19,7 @@ export class BasicSampleFormComponent {
     formGroup2 = this.formService.createFormGroup(this.formModel2);
 
     arrayModel = this.formService.findModelById<DynamicFormArrayModel>("basicFormArray", this.formModel2) as DynamicFormArrayModel;
-    arrayControl = this.formService.findControlByModel<FormArray>(this.arrayModel as DynamicFormArrayModel, this.formGroup2) as FormArray;
+    arrayControl = this.formService.findControlByModel<UntypedFormArray>(this.arrayModel as DynamicFormArrayModel, this.formGroup2) as UntypedFormArray;
 
     constructor(private formService: DynamicFormService) {
     }

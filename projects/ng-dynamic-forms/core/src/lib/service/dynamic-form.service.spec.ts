@@ -1,9 +1,9 @@
 import { TestBed, inject } from "@angular/core/testing";
 import {
     ReactiveFormsModule,
-    FormGroup,
-    FormControl,
-    FormArray,
+    UntypedFormGroup,
+    UntypedFormControl,
+    UntypedFormArray,
     NG_VALIDATORS,
     NG_ASYNC_VALIDATORS
 } from "@angular/forms";
@@ -146,21 +146,21 @@ describe("DynamicFormService test suite", () => {
     it("should create create a form group", () => {
         const formGroup = service.createFormGroup(testModel);
 
-        expect(formGroup instanceof FormGroup).toBe(true);
+        expect(formGroup instanceof UntypedFormGroup).toBe(true);
 
-        expect(formGroup.get("testCheckbox") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testCheckboxGroup") instanceof FormGroup).toBe(true);
-        expect(formGroup.get("testDatepicker") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testFormArray") instanceof FormArray).toBe(true);
-        expect(formGroup.get("testInput") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testRadioGroup") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testSelect") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testTextArea") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testFileUpload") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testEditor") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testTimePicker") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testRating") instanceof FormControl).toBe(true);
-        expect(formGroup.get("testColorPicker") instanceof FormControl).toBe(true);
+        expect(formGroup.get("testCheckbox") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testCheckboxGroup") instanceof UntypedFormGroup).toBe(true);
+        expect(formGroup.get("testDatepicker") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testFormArray") instanceof UntypedFormArray).toBe(true);
+        expect(formGroup.get("testInput") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testRadioGroup") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testSelect") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testTextArea") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testFileUpload") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testEditor") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testTimePicker") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testRating") instanceof UntypedFormControl).toBe(true);
+        expect(formGroup.get("testColorPicker") instanceof UntypedFormControl).toBe(true);
     });
 
 
@@ -235,7 +235,7 @@ describe("DynamicFormService test suite", () => {
 
     it("should add a form control to an existing form group", () => {
         const formGroup = service.createFormGroup(testModel);
-        const nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup;
+        const nestedFormGroup = formGroup.controls["testFormGroup"] as UntypedFormGroup;
         const nestedFormGroupModel = testModel[7] as DynamicFormGroupModel;
         const newModel1 = new DynamicInputModel({id: "newInput1"});
         const newModel2 = new DynamicInputModel({id: "newInput2"});
@@ -246,14 +246,14 @@ describe("DynamicFormService test suite", () => {
         expect(formGroup.controls[newModel1.id]).toBeTruthy();
         expect(testModel[testModel.length - 1] === newModel1).toBe(true);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
+        expect((formGroup.controls["testFormGroup"] as UntypedFormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(nestedFormGroupModel.group.length - 1) === newModel2).toBe(true);
     });
 
 
     it("should insert a form control to an existing form group", () => {
         const formGroup = service.createFormGroup(testModel);
-        const nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup;
+        const nestedFormGroup = formGroup.controls["testFormGroup"] as UntypedFormGroup;
         const nestedFormGroupModel = testModel[7] as DynamicFormGroupModel;
         const newModel1 = new DynamicInputModel({id: "newInput1"});
         const newModel2 = new DynamicInputModel({id: "newInput2"});
@@ -265,7 +265,7 @@ describe("DynamicFormService test suite", () => {
         expect(testModel[4] === newModel1).toBe(true);
         expect(service.getPath(testModel[4])).toEqual(["newInput1"]);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[newModel2.id]).toBeTruthy();
+        expect((formGroup.controls["testFormGroup"] as UntypedFormGroup).controls[newModel2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(0) === newModel2).toBe(true);
         expect(service.getPath(nestedFormGroupModel.get(0))).toEqual(["testFormGroup", "newInput2"]);
     });
@@ -284,14 +284,14 @@ describe("DynamicFormService test suite", () => {
 
         service.moveFormGroupControl(0, 1, nestedFormGroupModel);
 
-        expect((formGroup.controls["testFormGroup"] as FormGroup).controls[model2.id]).toBeTruthy();
+        expect((formGroup.controls["testFormGroup"] as UntypedFormGroup).controls[model2.id]).toBeTruthy();
         expect(nestedFormGroupModel.get(1) === model2).toBe(true);
     });
 
 
     it("should remove a form control from an existing form group", () => {
         const formGroup = service.createFormGroup(testModel);
-        const nestedFormGroup = formGroup.controls["testFormGroup"] as FormGroup;
+        const nestedFormGroup = formGroup.controls["testFormGroup"] as UntypedFormGroup;
         const nestedFormGroupModel = testModel[7] as DynamicFormGroupModel;
         const length = testModel.length;
         const size = nestedFormGroupModel.size();
@@ -325,7 +325,7 @@ describe("DynamicFormService test suite", () => {
 
         formArray = service.createFormArray(model);
 
-        expect(formArray instanceof FormArray).toBe(true);
+        expect(formArray instanceof UntypedFormArray).toBe(true);
         expect(formArray.length).toBe(model.initialCount);
     });
 
@@ -356,8 +356,8 @@ describe("DynamicFormService test suite", () => {
         const index = 3;
         const step = 1;
 
-        (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
-        (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as UntypedFormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as UntypedFormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
         (model.get(index).get(0) as DynamicFormValueControlModel<any>).value = "next test value 1";
         (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value = "next test value 2";
@@ -366,8 +366,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
-        expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as UntypedFormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as UntypedFormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
         expect((model.get(index).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 2");
         expect((model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 1");
@@ -380,8 +380,8 @@ describe("DynamicFormService test suite", () => {
         const index = 3;
         const step = -1;
 
-        (formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
-        (formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
+        (formArray.at(index) as UntypedFormGroup).controls["testFormArrayGroupInput"].setValue("next test value 1");
+        (formArray.at(index + step) as UntypedFormGroup).controls["testFormArrayGroupInput"].setValue("next test value 2");
 
         (model.get(index).get(0) as DynamicFormValueControlModel<any>).value = "next test value 1";
         (model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value = "next test value 2";
@@ -390,8 +390,8 @@ describe("DynamicFormService test suite", () => {
 
         expect(formArray.length).toBe(model.initialCount);
 
-        expect((formArray.at(index) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
-        expect((formArray.at(index + step) as FormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
+        expect((formArray.at(index) as UntypedFormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 2");
+        expect((formArray.at(index + step) as UntypedFormGroup).controls["testFormArrayGroupInput"].value).toEqual("next test value 1");
 
         expect((model.get(index).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 2");
         expect((model.get(index + step).get(0) as DynamicFormValueControlModel<any>).value).toEqual("next test value 1");

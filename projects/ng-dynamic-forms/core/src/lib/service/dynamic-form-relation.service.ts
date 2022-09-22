@@ -1,5 +1,5 @@
 import { Inject, Injectable, Injector, Optional } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import {
     AND_OPERATOR,
@@ -12,7 +12,7 @@ import { distinctUntilChanged, startWith } from "rxjs/operators";
 import { merge, Subscription } from "rxjs";
 import { isString } from "../utils/core.utils";
 
-export type DynamicRelatedFormControls = { [path: string]: FormControl };
+export type DynamicRelatedFormControls = { [path: string]: UntypedFormControl };
 
 @Injectable({
     providedIn: "root"
@@ -22,13 +22,13 @@ export class DynamicFormRelationService {
     constructor(@Optional() @Inject(DYNAMIC_MATCHERS) private MATCHERS: DynamicFormControlMatcher[], private injector: Injector) {
     }
 
-    getRelatedFormControls(model: DynamicFormControlModel, group: FormGroup): DynamicRelatedFormControls {
+    getRelatedFormControls(model: DynamicFormControlModel, group: UntypedFormGroup): DynamicRelatedFormControls {
         const conditionReducer = (controls: DynamicRelatedFormControls, condition: DynamicFormControlCondition) => {
             const path = condition.rootPath ?? condition.id;
 
             if (isString(path) && !controls.hasOwnProperty(path)) {
                 const control = condition.rootPath ? group.root.get(condition.rootPath) : group.get(condition.id!);
-                control instanceof FormControl ?
+                control instanceof UntypedFormControl ?
                     controls[path] = control : console.warn(`No related form control with id ${condition.id} could be found`);
             }
 
@@ -91,7 +91,7 @@ export class DynamicFormRelationService {
         }, false);
     }
 
-    subscribeRelations(model: DynamicFormControlModel, group: FormGroup, control: FormControl): Subscription[] {
+    subscribeRelations(model: DynamicFormControlModel, group: UntypedFormGroup, control: UntypedFormControl): Subscription[] {
         const relatedFormControls = this.getRelatedFormControls(model, group);
         const subscriptions: Subscription[] = [];
 

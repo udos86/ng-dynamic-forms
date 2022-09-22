@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
@@ -10,7 +10,7 @@ describe("DynamicBasicSelectComponent test suite", () => {
     const testModel = new DynamicSelectModel({id: "select", options: [{value: "One"}, {value: "Two"}], value: "One"});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicBasicSelectComponent>;
     let component: DynamicBasicSelectComponent;
     let debugElement: DebugElement;
@@ -44,8 +44,8 @@ describe("DynamicBasicSelectComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicSelectModel).toBe(true);
 
         expect(component.blur).toBeDefined();

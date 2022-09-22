@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DynamicFormControlComponent, DynamicFormControlLayout,
     DynamicFormLayout,
@@ -14,7 +14,7 @@ import {
 })
 export class DynamicNGxBootstrapRadioGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicRadioGroupModel<string>;
 

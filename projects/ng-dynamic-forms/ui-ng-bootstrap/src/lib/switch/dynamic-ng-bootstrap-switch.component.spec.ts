@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
@@ -10,7 +10,7 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     const testModel = new DynamicSwitchModel({id: "switch"});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicNGBootstrapSwitchComponent>;
     let component: DynamicNGBootstrapSwitchComponent;
     let debugElement: DebugElement;
@@ -44,8 +44,8 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicSwitchModel).toBe(true);
 
         expect(component.blur).toBeDefined();

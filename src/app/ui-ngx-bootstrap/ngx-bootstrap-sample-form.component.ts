@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { FormGroup, FormArray } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormArray } from "@angular/forms";
 import {
     DynamicFormArrayModel,
     DynamicFormControlModel,
@@ -26,13 +26,13 @@ export class NgxBootstrapSampleFormComponent {
     sampleFormControlModel = this.formService.findModelById<DynamicInputModel>("bsInput", this.formModel) as DynamicInputModel;
 
     formArrayModel = this.formService.findModelById<DynamicFormArrayModel>("bsFormArray", this.formModel) as DynamicFormArrayModel;
-    formArray = this.formService.findControlByModel<FormArray>(this.formArrayModel, this.formGroup) as FormArray;
+    formArray = this.formService.findControlByModel<UntypedFormArray>(this.formArrayModel, this.formGroup) as UntypedFormArray;
 
     constructor(private formService: DynamicFormService) {
     }
 
-    getFormArray(model: DynamicFormArrayModel, group: FormGroup): FormArray {
-        return this.formService.findControlByModel(model, group) as FormArray;
+    getFormArray(model: DynamicFormArrayModel, group: UntypedFormGroup): UntypedFormArray {
+        return this.formService.findControlByModel(model, group) as UntypedFormArray;
     }
 
     insert(context: DynamicFormArrayModel, index: number) {
@@ -81,7 +81,7 @@ export class NgxBootstrapSampleFormComponent {
         );
 
         this.formService.addFormGroupControl(
-            this.formGroup.get("bsFormGroup3") as FormGroup,
+            this.formGroup.get("bsFormGroup3") as UntypedFormGroup,
             this.formModel[2] as DynamicFormGroupModel,
             new DynamicInputModel({id: "newInput"})
         );

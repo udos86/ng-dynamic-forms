@@ -1,6 +1,6 @@
 import { DebugElement, SimpleChange } from "@angular/core";
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
@@ -80,7 +80,7 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
         new DynamicTimePickerModel({id: "timepicker"})
     ];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicPrimeNGFormControlContainerComponent>;
     let component: DynamicPrimeNGFormControlContainerComponent;
     let debugElement: DebugElement;
@@ -142,8 +142,8 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
         expect(component.context).toBeNull();
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
         expect(component.blur).toBeDefined();

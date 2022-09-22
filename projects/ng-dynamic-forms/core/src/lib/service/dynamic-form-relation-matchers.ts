@@ -1,5 +1,5 @@
 import { InjectionToken, Injector, ValueProvider } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
 import { DynamicFormValidationService } from "./dynamic-form-validation.service";
 import { isObject } from "../utils/core.utils";
@@ -20,7 +20,7 @@ export interface DynamicFormControlMatcher {
     match: string;
     opposingMatch: string | null;
 
-    onChange(hasMatch: boolean, model: DynamicFormControlModel, control: FormControl, injector: Injector): void;
+    onChange(hasMatch: boolean, model: DynamicFormControlModel, control: UntypedFormControl, injector: Injector): void;
 }
 
 export const DYNAMIC_MATCHERS = new InjectionToken<DynamicFormControlMatcher>("DYNAMIC_MATCHERS");
