@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "strict": true,
-    "target": "es2020",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -79,6 +79,7 @@
       "@ng-dynamic-forms/ui-ngx-bootstrap/*": [
         "dist/ng-dynamic-forms/ui-ngx-bootstrap/*"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   }
 }
