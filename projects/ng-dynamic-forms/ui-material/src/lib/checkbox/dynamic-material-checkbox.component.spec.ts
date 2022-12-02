@@ -3,7 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatCheckbox, MatCheckboxModule } from "@angular/material/checkbox";
+import { MatLegacyCheckbox as MatCheckbox, MatLegacyCheckboxModule as MatCheckboxModule } from "@angular/material/legacy-checkbox";
 import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicMaterialCheckboxComponent } from "./dynamic-material-checkbox.component";
 

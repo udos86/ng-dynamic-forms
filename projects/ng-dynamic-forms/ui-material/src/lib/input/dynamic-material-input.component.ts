@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
-import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS, MatAutocomplete, MatAutocompleteDefaultOptions } from "@angular/material/autocomplete";
+import { MAT_LEGACY_AUTOCOMPLETE_DEFAULT_OPTIONS as MAT_AUTOCOMPLETE_DEFAULT_OPTIONS, MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteDefaultOptions as MatAutocompleteDefaultOptions } from "@angular/material/legacy-autocomplete";
 import { ErrorStateMatcher, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS, MatLegacyFormFieldDefaultOptions as MatFormFieldDefaultOptions } from "@angular/material/legacy-form-field";
+import { MatLegacyInput as MatInput } from "@angular/material/legacy-input";
 import {
     DynamicFormControlCustomEvent, DynamicFormControlLayout,
     DynamicFormLayout,

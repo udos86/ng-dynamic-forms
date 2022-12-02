@@ -3,8 +3,8 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatAutocomplete, MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatInput, MatInputModule } from "@angular/material/input";
+import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteModule as MatAutocompleteModule } from "@angular/material/legacy-autocomplete";
+import { MatLegacyInput as MatInput, MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialInputComponent } from "./dynamic-material-input.component";
 

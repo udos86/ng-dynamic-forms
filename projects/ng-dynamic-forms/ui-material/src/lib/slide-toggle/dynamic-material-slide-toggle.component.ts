@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { MatLegacySlideToggle as MatSlideToggle } from "@angular/material/legacy-slide-toggle";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,

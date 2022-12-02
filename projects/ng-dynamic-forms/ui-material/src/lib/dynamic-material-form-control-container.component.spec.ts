@@ -4,16 +4,16 @@ import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angu
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatChipsModule } from "@angular/material/chips";
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from "@angular/material/legacy-autocomplete";
+import { MatLegacyCheckboxModule as MatCheckboxModule } from "@angular/material/legacy-checkbox";
+import { MatLegacyChipsModule as MatChipsModule } from "@angular/material/legacy-chips";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatSelectModule } from "@angular/material/select";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { MatSliderModule } from "@angular/material/slider";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatLegacyRadioModule as MatRadioModule } from "@angular/material/legacy-radio";
+import { MatLegacySelectModule as MatSelectModule } from "@angular/material/legacy-select";
+import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
+import { MatLegacySliderModule as MatSliderModule } from "@angular/material/legacy-slider";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
-import { MatCheckbox } from "@angular/material/checkbox";
+import { MatLegacyCheckbox as MatCheckbox } from "@angular/material/legacy-checkbox";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import {
     DynamicCheckboxModel,

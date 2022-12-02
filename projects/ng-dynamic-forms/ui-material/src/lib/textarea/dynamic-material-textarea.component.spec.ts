@@ -3,7 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatInput, MatInputModule } from "@angular/material/input";
+import { MatLegacyInput as MatInput, MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialTextAreaComponent } from "./dynamic-material-textarea.component";
 
