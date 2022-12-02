@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "@ng-dynamic-forms/core": "^16.0.0",
-    "primeng": "^13.0.0"
+    "primeng": "^15.0.0-rc.1"
   },
   "optionalDependencies": {
     "quill": "^1.2.3"

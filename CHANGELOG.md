@@ -2,7 +2,8 @@
 
 ### **Features**
 
-* Migration to Angular 14 (Untyped Forms)
+* Migration to Angular 15 (Untyped Forms)
+* Migration to Material 15 (Legacy Components)
 
 ***
 
