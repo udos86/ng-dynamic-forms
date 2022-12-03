@@ -50,7 +50,7 @@
     "test:ui-ngx-bootstrap": "npx ng test @ng-dynamic-forms/ui-ngx-bootstrap --code-coverage",
     "test:ui-primeng": "npx ng test @ng-dynamic-forms/ui-primeng --code-coverage",
     "update:ng": "ng update @angular/cli @angular/core @angular/cdk @angular/material @angular-devkit/schematics @angular-devkit/schematics-cli --force",
-    "update:kendo": "ng update @progress/kendo-angular-common @progress/kendo-angular-dateinputs @progress/kendo-angular-dropdowns @progress/kendo-angular-inputs @progress/kendo-angular-intl @progress/kendo-angular-l10n @progress/kendo-angular-popup @progress/kendo-angular-treeview @progress/kendo-angular-upload @progress/kendo-drawing @progress/kendo-licensing @progress/kendo-theme-default",
+    "update:kendo": "ng update @progress/kendo-angular-common @progress/kendo-angular-dateinputs @progress/kendo-angular-dropdowns @progress/kendo-angular-inputs @progress/kendo-angular-intl @progress/kendo-angular-l10n @progress/kendo-angular-popup @progress/kendo-angular-treeview @progress/kendo-angular-upload @progress/kendo-drawing @progress/kendo-licensing @progress/kendo-theme-default --force",
     "update:version": "schematics .:versioning --debug=false",
     "publish": "./publish.sh"
   },
@@ -91,8 +91,8 @@
     "quill": "^1.3.7",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.7",
-    "tslib": "^2.3.1",
-    "zone.js": "^0.12.0"
+    "tslib": "^2.4.1",
+    "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.0.2",
@@ -118,6 +118,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.8.3"
+    "typescript": "~4.8.3"
   }
 }
