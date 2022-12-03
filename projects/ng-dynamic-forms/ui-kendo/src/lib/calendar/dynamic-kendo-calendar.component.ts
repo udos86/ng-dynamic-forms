@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicDatePickerModel,
@@ -21,7 +21,7 @@ export class DynamicKendoCalendarComponent extends DynamicKendoFormControlWithTe
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicDatePickerModel;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

@@ -543,6 +543,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ng-dynamic-forms"
+  }
 }

@@ -9,7 +9,7 @@ import {
     QueryList,
     ViewChildren
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DynamicFormComponent,
     DynamicFormComponentService,
@@ -26,7 +26,7 @@ import { DynamicBootstrapFormControlContainerComponent } from "./dynamic-bootstr
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicBootstrapFormComponent extends DynamicFormComponent {
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() model!: DynamicFormModel;
     @Input() layout?: DynamicFormLayout;
 

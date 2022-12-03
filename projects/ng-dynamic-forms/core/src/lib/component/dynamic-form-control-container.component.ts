@@ -11,7 +11,7 @@ import {
     Type,
     ViewContainerRef
 } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
 import {
     DynamicFormControlCustomEvent,
@@ -53,8 +53,8 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
     private _hasFocus = false;
 
     context: DynamicFormArrayGroupModel | null = null;
-    control!: FormControl;
-    group!: FormGroup;
+    control!: UntypedFormControl;
+    group!: UntypedFormGroup;
     hostClass?: string[];
     klass?: string;
     layout?: DynamicFormLayout;
@@ -270,7 +270,7 @@ export abstract class DynamicFormControlContainerComponent implements OnChanges,
             this.unsubscribe();
 
             if (this.group) {
-                this.control = this.group.get(this.model.id) as FormControl;
+                this.control = this.group.get(this.model.id) as UntypedFormControl;
                 this.subscriptions.push(this.control.valueChanges.subscribe(value => this.onControlValueChanges(value)));
             }
 

@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { IonicModule, IonTextarea } from "@ionic/angular";
@@ -11,7 +11,7 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     const testModel = new DynamicTextAreaModel({id: "textarea"});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicIonicTextAreaComponent>;
     let component: DynamicIonicTextAreaComponent;
     let debugElement: DebugElement;
@@ -46,8 +46,8 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicTextAreaModel).toBe(true);
         expect(component.ionTextArea instanceof IonTextarea).toBe(true);
 

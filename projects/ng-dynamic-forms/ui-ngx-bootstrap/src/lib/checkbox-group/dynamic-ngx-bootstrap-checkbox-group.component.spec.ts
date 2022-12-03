@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { ButtonsModule } from "ngx-bootstrap/buttons";
@@ -11,7 +11,7 @@ describe("DynamicNGxBootstrapCheckboxGroupComponent test suite", () => {
     const testModel = new DynamicCheckboxGroupModel({id: "checkboxGroup", group: []});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicNGxBootstrapCheckboxGroupComponent>;
     let component: DynamicNGxBootstrapCheckboxGroupComponent;
     let debugElement: DebugElement;
@@ -46,8 +46,8 @@ describe("DynamicNGxBootstrapCheckboxGroupComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormGroup).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormGroup).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicCheckboxGroupModel).toBe(true);
 
         expect(component.blur).toBeDefined();

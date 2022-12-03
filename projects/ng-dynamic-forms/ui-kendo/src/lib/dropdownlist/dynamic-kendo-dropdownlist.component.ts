@@ -6,7 +6,7 @@ import {
     QueryList,
     ViewChild
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { DropDownListComponent } from "@progress/kendo-angular-dropdowns";
 import {
     DynamicFormControlCustomEvent,
@@ -28,7 +28,7 @@ export class DynamicKendoDropdownListComponent extends DynamicKendoFormControlWi
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicSelectModel<string>;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

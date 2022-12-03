@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { MatSlider } from "@angular/material/slider";
+import { UntypedFormGroup } from "@angular/forms";
+import { MatLegacySlider as MatSlider } from "@angular/material/legacy-slider";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -17,7 +17,7 @@ import {
 })
 export class DynamicMaterialSliderComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicSliderModel;
 

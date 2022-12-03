@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
@@ -80,7 +80,7 @@ export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormCont
     @HostBinding("class") klass?: string;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() hostClass!: string[];
     // tslint:disable-next-line:no-input-rename
     @Input("templates") inputTemplateList?: QueryList<DynamicTemplateDirective>;
@@ -184,7 +184,7 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
 })
 export class DynamicPrimeNGFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicFormArrayModel;
     @Input() templates?: QueryList<DynamicTemplateDirective>;
@@ -207,7 +207,7 @@ export class DynamicPrimeNGFormArrayComponent extends DynamicFormArrayComponent 
 })
 export class DynamicPrimeNGFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicFormGroupModel;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

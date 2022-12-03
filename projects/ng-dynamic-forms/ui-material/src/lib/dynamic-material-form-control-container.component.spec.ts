@@ -1,19 +1,19 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatChipsModule } from "@angular/material/chips";
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from "@angular/material/legacy-autocomplete";
+import { MatLegacyCheckboxModule as MatCheckboxModule } from "@angular/material/legacy-checkbox";
+import { MatLegacyChipsModule as MatChipsModule } from "@angular/material/legacy-chips";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatSelectModule } from "@angular/material/select";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { MatSliderModule } from "@angular/material/slider";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatLegacyRadioModule as MatRadioModule } from "@angular/material/legacy-radio";
+import { MatLegacySelectModule as MatSelectModule } from "@angular/material/legacy-select";
+import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
+import { MatLegacySliderModule as MatSliderModule } from "@angular/material/legacy-slider";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -71,7 +71,7 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
         new DynamicTimePickerModel({id: "timepicker"})
     ];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicMaterialFormControlContainerComponent>;
     let component: DynamicMaterialFormControlContainerComponent;
     let debugElement: DebugElement;
@@ -127,8 +127,8 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
 
     it("should initialize correctly", () => {
         expect(component.context).toBeNull();
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicFormControlModel).toBe(true);
 
         expect(component.blur).toBeDefined();

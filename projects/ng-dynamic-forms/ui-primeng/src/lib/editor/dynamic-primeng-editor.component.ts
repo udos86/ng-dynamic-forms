@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { Editor } from "primeng/editor";
 import {
     DynamicEditorModel,
@@ -17,7 +17,7 @@ import {
 })
 export class DynamicPrimeNGEditorComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicEditorModel;
 

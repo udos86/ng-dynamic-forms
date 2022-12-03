@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { TimepickerComponent } from "ngx-bootstrap/timepicker";
 import {
     DynamicFormControlComponent,
@@ -16,7 +16,7 @@ import {
 })
 export class DynamicNGxBootstrapTimePickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicTimePickerModel;
 

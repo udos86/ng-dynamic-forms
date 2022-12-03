@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { MatCheckbox } from "@angular/material/checkbox";
+import { UntypedFormGroup } from "@angular/forms";
+import { MatLegacyCheckbox as MatCheckbox } from "@angular/material/legacy-checkbox";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import {
     DynamicCheckboxModel,
@@ -18,7 +18,7 @@ import {
 })
 export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicCheckboxModel;
 

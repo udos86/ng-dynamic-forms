@@ -1,5 +1,5 @@
 import { TestBed, inject } from "@angular/core/testing";
-import { FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicFormRelationService } from "./dynamic-form-relation.service";
 import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
 import { DynamicFormService } from "./dynamic-form.service";
@@ -20,7 +20,7 @@ import {
 
 describe("DynamicFormRelationService test suite", () => {
     let service: DynamicFormRelationService;
-    let group: FormGroup;
+    let group: UntypedFormGroup;
 
     const model: DynamicTextAreaModel = new DynamicTextAreaModel({id: "testTextArea"});
     const relDisabledOr23 = {

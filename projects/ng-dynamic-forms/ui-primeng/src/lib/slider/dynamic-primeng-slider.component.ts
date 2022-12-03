@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { Slider } from "primeng/slider";
 import {
     DynamicFormControlCustomEvent,
@@ -17,7 +17,7 @@ import {
 })
 export class DynamicPrimeNGSliderComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicSliderModel;
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import {
     DynamicFormControlCustomEvent,
@@ -21,7 +21,7 @@ export class DynamicKendoMultiSelectComponent extends DynamicKendoFormControlWit
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;
 
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicSelectModel<string>;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

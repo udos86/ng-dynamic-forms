@@ -1,10 +1,10 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatAutocomplete, MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatInput, MatInputModule } from "@angular/material/input";
+import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteModule as MatAutocompleteModule } from "@angular/material/legacy-autocomplete";
+import { MatLegacyInput as MatInput, MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialInputComponent } from "./dynamic-material-input.component";
 
@@ -12,7 +12,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
     const testModel = new DynamicInputModel({id: "input", maxLength: 51});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicMaterialInputComponent>;
     let component: DynamicMaterialInputComponent;
     let debugElement: DebugElement;
@@ -48,8 +48,8 @@ describe("DynamicMaterialInputComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.matAutocomplete instanceof MatAutocomplete).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);

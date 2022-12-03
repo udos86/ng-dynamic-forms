@@ -1,3 +1,12 @@
+# 16.0.0
+
+### **Features**
+
+* Migration to Angular 15 (Untyped Forms)
+* Migration to Material 15 (Legacy Components)
+
+***
+
 # 15.0.0
 
 ### **Features**

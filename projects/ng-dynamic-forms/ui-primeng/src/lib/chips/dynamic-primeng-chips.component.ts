@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { Chips } from "primeng/chips";
 import {
     DynamicFormControlCustomEvent,
@@ -21,7 +21,7 @@ export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGFormControlWithT
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicInputModel;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

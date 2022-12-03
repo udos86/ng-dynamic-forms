@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { IonicModule } from "@ionic/angular";
@@ -48,7 +48,7 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
         new DynamicTimePickerModel({id: "timepicker"})
     ];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicIonicFormControlContainerComponent>;
     let component: DynamicIonicFormControlContainerComponent;
     let debugElement: DebugElement;

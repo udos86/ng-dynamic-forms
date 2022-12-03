@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
@@ -83,7 +83,7 @@ export class DynamicKendoFormControlContainerComponent extends DynamicFormContro
     @HostBinding("class") klass?: string;
 
     @Input() context: DynamicFormArrayGroupModel | null = null;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() hostClass?: string[];
     // tslint:disable-next-line:no-input-rename
     @Input("templates") inputTemplateList!: QueryList<DynamicTemplateDirective>;
@@ -195,7 +195,7 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 })
 export class DynamicKendoFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicFormArrayModel;
     @Input() templates?: QueryList<DynamicTemplateDirective>;
@@ -218,7 +218,7 @@ export class DynamicKendoFormArrayComponent extends DynamicFormArrayComponent {
 })
 export class DynamicKendoFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicFormGroupModel;
     @Input() templates?: QueryList<DynamicTemplateDirective> | DynamicTemplateDirective[];

@@ -18,6 +18,9 @@ export class TestComponentRef extends ComponentRef<any> {
     onDestroy(): void {
     }
 
+    setInput(name: string, value: unknown) {
+    }
+
     constructor() {
         super();
     }

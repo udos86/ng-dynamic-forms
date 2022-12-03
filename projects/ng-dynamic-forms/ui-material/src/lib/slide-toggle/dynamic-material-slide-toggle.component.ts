@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { MatLegacySlideToggle as MatSlideToggle } from "@angular/material/legacy-slide-toggle";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -18,7 +18,7 @@ import {
 })
 export class DynamicMaterialSlideToggleComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicSwitchModel;
 

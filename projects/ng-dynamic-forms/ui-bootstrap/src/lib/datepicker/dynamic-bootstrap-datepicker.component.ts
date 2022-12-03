@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { BsDatepickerDirective } from "ngx-bootstrap/datepicker";
 import {
     DynamicDatePickerModel,
@@ -18,7 +18,7 @@ import {
 })
 export class DynamicBootstrapDatePickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
-    @Input() group!: FormGroup;
+    @Input() group!: UntypedFormGroup;
     @Input() layout?: DynamicFormControlLayout;
     @Input() model!: DynamicDatePickerModel;
 

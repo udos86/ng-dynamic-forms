@@ -1,6 +1,6 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { TimePickerModule, TimePickerComponent } from "@progress/kendo-angular-dateinputs";
@@ -11,7 +11,7 @@ describe("DynamicKendoTimePickerComponent test suite", () => {
     const testModel = new DynamicTimePickerModel({id: "timepicker", format: "HH"});
     const formModel = [testModel];
 
-    let formGroup: FormGroup;
+    let formGroup: UntypedFormGroup;
     let fixture: ComponentFixture<DynamicKendoTimePickerComponent>;
     let component: DynamicKendoTimePickerComponent;
     let debugElement: DebugElement;
@@ -47,8 +47,8 @@ describe("DynamicKendoTimePickerComponent test suite", () => {
     }));
 
     it("should initialize correctly", () => {
-        expect(component.control instanceof FormControl).toBe(true);
-        expect(component.group instanceof FormGroup).toBe(true);
+        expect(component.control instanceof UntypedFormControl).toBe(true);
+        expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicTimePickerModel).toBe(true);
         expect(component.kendoTimePicker instanceof TimePickerComponent).toBe(true);
 
