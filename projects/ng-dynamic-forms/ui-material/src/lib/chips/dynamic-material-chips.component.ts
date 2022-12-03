@@ -13,7 +13,10 @@ import {
     MatLegacyChipsDefaultOptions as MatChipsDefaultOptions
 } from "@angular/material/legacy-chips";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-import { MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS, MatLegacyFormFieldDefaultOptions as MatFormFieldDefaultOptions } from "@angular/material/legacy-form-field";
+import {
+    MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS,
+    MatLegacyFormFieldDefaultOptions as MatFormFieldDefaultOptions
+} from "@angular/material/legacy-form-field";
 import { MatLegacyInput as MatInput } from "@angular/material/legacy-input";
 import {
     DynamicFormControlComponent,
