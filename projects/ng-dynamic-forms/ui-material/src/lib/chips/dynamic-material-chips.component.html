@@ -38,5 +38,7 @@
         </mat-autocomplete>
 
     </mat-chip-list>
+    <mat-hint *ngIf="model.hint !== null" align="start" [innerHTML]="model.hint"></mat-hint>
 
+    <mat-error *ngFor="let message of errorMessages">{{ message }}</mat-error>
 </mat-form-field>
