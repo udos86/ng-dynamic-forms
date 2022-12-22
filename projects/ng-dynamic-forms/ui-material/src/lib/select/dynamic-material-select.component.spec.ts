@@ -3,7 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatLegacySelect as MatSelect, MatLegacySelectModule as MatSelectModule } from "@angular/material/legacy-select";
+import { MatSelect, MatSelectModule } from "@angular/material/select";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSelectComponent } from "./dynamic-material-select.component";
 

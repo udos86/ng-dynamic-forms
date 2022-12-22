@@ -1,23 +1,23 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
 import {
-    MAT_LEGACY_AUTOCOMPLETE_DEFAULT_OPTIONS as MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
-    MatLegacyAutocomplete as MatAutocomplete,
-    MatLegacyAutocompleteDefaultOptions as MatAutocompleteDefaultOptions,
-    MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent
-} from "@angular/material/legacy-autocomplete";
+    MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+    MatAutocomplete,
+    MatAutocompleteDefaultOptions,
+    MatAutocompleteSelectedEvent
+} from "@angular/material/autocomplete";
 import {
-    MAT_LEGACY_CHIPS_DEFAULT_OPTIONS as MAT_CHIPS_DEFAULT_OPTIONS,
-    MatLegacyChipInputEvent as MatChipInputEvent,
-    MatLegacyChipList as MatChipList,
-    MatLegacyChipsDefaultOptions as MatChipsDefaultOptions
-} from "@angular/material/legacy-chips";
+    MAT_CHIPS_DEFAULT_OPTIONS,
+    MatChipInputEvent,
+    MatChipListbox,
+    MatChipsDefaultOptions
+} from "@angular/material/chips";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import {
-    MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS,
-    MatLegacyFormFieldDefaultOptions as MatFormFieldDefaultOptions
-} from "@angular/material/legacy-form-field";
-import { MatLegacyInput as MatInput } from "@angular/material/legacy-input";
+    MAT_FORM_FIELD_DEFAULT_OPTIONS,
+    MatFormFieldDefaultOptions
+} from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -44,7 +44,7 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("matAutocomplete", {static: true}) matAutocomplete!: MatAutocomplete;
-    @ViewChild("matChipList", {static: true}) matChipList!: MatChipList;
+    @ViewChild("matChipList", {static: true}) matChipList!: MatChipListbox;
     @ViewChild(MatInput, {static: true}) matInput!: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
-import { MatLegacySlider as MatSlider } from "@angular/material/legacy-slider";
+import { MatSlider } from "@angular/material/slider";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,

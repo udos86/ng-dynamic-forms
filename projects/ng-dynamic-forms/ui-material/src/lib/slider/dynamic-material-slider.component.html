@@ -1,19 +1,21 @@
 <ng-container [formGroup]="group">
 
     <mat-slider #matSlider
-                [color]="model.getAdditional('color', 'accent')"
-                [formControlName]="model.id"
-                [id]="id"
-                [invert]="model.getAdditional('invert', false)"
-                [min]="model.min"
-                [max]="model.max"
-                [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
-                [step]="model.step"
-                [tabIndex]="model.tabIndex"
-                [thumbLabel]="model.getAdditional('thumbLabel', true)"
-                [tickInterval]="model.getAdditional('tickInterval', 1)"
-                [vertical]="model.vertical"
-                (change)="onChange($event)"
-                (input)="onCustomEvent($event, 'input')"></mat-slider>
+        [color]="model.getAdditional('color', 'accent')"
+        [formControlName]="model.id"
+        [id]="id"
+        [min]="model.min"
+        [max]="model.max"
+        [ngClass]="[getClass('element', 'control'), getClass('grid', 'control')]"
+        [step]="model.step"
+        [tabIndex]="model.tabIndex"
+        #ngSlider
+    >
+        <input matSliderThumb
+            (change)="onChange({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value})"
+            #ngSliderThumb="matSliderThumb"
+            (input)="onCustomEvent({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value}, 'input')"
+        />
+    </mat-slider>
 
 </ng-container>

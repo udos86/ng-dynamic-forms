@@ -189,7 +189,7 @@ mat-slide-toggle {
     display: inline-block !important;
 }
 
-mat-form-field.mat-form-field-type-mat-chip-list {
+mat-form-field.mat-mdc-form-field-type-mat-chip-list {
     width: 100%;
 }
 
@@ -208,7 +208,7 @@ dynamic-material-form-control dynamic-material-form-group + mat-error {
     font-size: 75%;
 }
 
-dynamic-material-form-control .mat-list-item {
+dynamic-material-form-control .mat-mdc-list-item {
     justify-content: center;
 }
 
