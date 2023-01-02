@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/ui-bootstrap",
-  "version": "16.0.0",
+  "version": "17.0.0",
   "description": "Bootstrap UI package for NG Dynamic Forms",
   "keywords": [
     "angular",
@@ -30,7 +30,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@ng-dynamic-forms/core": "^16.0.0",
+    "@ng-dynamic-forms/core": "^17.0.0",
     "bootstrap": "^3.3.7",
     "ngx-bootstrap": "^6.0.0",
     "ngx-mask": "^13.0.0"
