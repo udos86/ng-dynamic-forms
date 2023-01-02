@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
-import { MatLegacyInput as MatInput } from "@angular/material/legacy-input";
+import { MatInput } from "@angular/material/input";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
@@ -10,7 +10,7 @@ import {
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 import { DynamicMaterialFormInputControlComponent } from "../dynamic-material-form-input-control.component";
-import { MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS, MatLegacyFormFieldDefaultOptions as MatFormFieldDefaultOptions } from "@angular/material/legacy-form-field";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from "@angular/material/form-field";
 
 @Component({
     selector: "dynamic-material-textarea",

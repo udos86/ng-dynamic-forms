@@ -1,21 +1,20 @@
-<mat-form-field [appearance]="model.getAdditional('appearance', 'legacy')"
+<mat-form-field [appearance]="model.getAdditional('appearance', 'fill')"
                 [color]="model.getAdditional('color', 'primary')"
                 [floatLabel]="model.getAdditional('floatLabel', FORM_FIELD_OPTIONS && FORM_FIELD_OPTIONS['floatLabel'] || 'auto')"
                 [formGroup]="group"
                 [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
                 [ngClass]="getClass('grid', 'control')">
 
-    <mat-chip-list #matChipList [formControlName]="model.id" [id]="id" [multiple]="true">
+    <mat-chip-grid #matChipList [formControlName]="model.id" [id]="id">
 
-        <mat-chip *ngFor="let chip of chips; let index = index"
-                  [selectable]="false"
+        <mat-chip-row *ngFor="let chip of chips; let index = index"
                   (removed)="onChipRemoved(chip, index)">
 
             <span>{{ chip }}</span>
 
             <mat-icon matChipRemove>cancel</mat-icon>
 
-        </mat-chip>
+        </mat-chip-row>
 
         <input matInput
                [matAutocomplete]="matAutocomplete"
@@ -37,6 +36,6 @@
 
         </mat-autocomplete>
 
-    </mat-chip-list>
+    </mat-chip-grid>
 
 </mat-form-field>

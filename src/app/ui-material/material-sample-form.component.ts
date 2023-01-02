@@ -10,7 +10,7 @@ import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
 
 @Component({
     selector: "dynamic-material-sample-form",
-    styleUrls: ["./material-sample-form.component.css"],
+    styleUrls: ["../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css"],
     templateUrl: "./material-sample-form.component.html",
     encapsulation: ViewEncapsulation.None
 })

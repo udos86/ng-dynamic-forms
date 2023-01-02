@@ -3,7 +3,7 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatLegacySlider as MatSlider, MatLegacySliderModule as MatSliderModule } from "@angular/material/legacy-slider";
+import { MatSlider, MatSliderModule } from "@angular/material/slider";
 import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSliderComponent } from "./dynamic-material-slider.component";
 
