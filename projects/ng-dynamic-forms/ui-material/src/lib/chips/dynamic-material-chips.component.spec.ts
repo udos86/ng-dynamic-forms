@@ -4,7 +4,7 @@ import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angu
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { MatAutocomplete, MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { MatChipInputEvent, MatChipListbox, MatChipsModule } from "@angular/material/chips";
+import { MatChipInputEvent, MatChipGrid, MatChipsModule } from "@angular/material/chips";
 import { MatOption } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInput, MatInputModule } from "@angular/material/input";
@@ -54,7 +54,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
 
         fixture.detectChanges();
 
-        testElement = debugElement.query(By.css(`mat-chip-list`));
+        testElement = debugElement.query(By.css(`mat-chip-grid`));
     }));
 
     it("should initialize correctly", () => {
@@ -62,7 +62,7 @@ describe("DynamicMaterialChipsComponent test suite", () => {
         expect(component.group instanceof UntypedFormGroup).toBe(true);
         expect(component.model instanceof DynamicInputModel).toBe(true);
         expect(component.matAutocomplete instanceof MatAutocomplete).toBe(true);
-        expect(component.matChipList instanceof MatChipListbox).toBe(true);
+        expect(component.matChipGrid instanceof MatChipGrid).toBe(true);
         expect(component.matInput instanceof MatInput).toBe(true);
 
         expect(component.blur).toBeDefined();

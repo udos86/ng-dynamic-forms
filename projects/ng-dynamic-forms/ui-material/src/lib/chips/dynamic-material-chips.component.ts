@@ -9,7 +9,7 @@ import {
 import {
     MAT_CHIPS_DEFAULT_OPTIONS,
     MatChipInputEvent,
-    MatChipListbox,
+    MatChipGrid,
     MatChipsDefaultOptions
 } from "@angular/material/chips";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
@@ -44,7 +44,7 @@ export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     @Output() focus: EventEmitter<any> = new EventEmitter();
 
     @ViewChild("matAutocomplete", {static: true}) matAutocomplete!: MatAutocomplete;
-    @ViewChild("matChipList", {static: true}) matChipList!: MatChipListbox;
+    @ViewChild("matChipGrid", {static: true}) matChipGrid!: MatChipGrid;
     @ViewChild(MatInput, {static: true}) matInput!: MatInput;
 
     constructor(protected layoutService: DynamicFormLayoutService,

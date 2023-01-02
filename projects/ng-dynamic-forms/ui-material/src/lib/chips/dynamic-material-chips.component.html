@@ -5,10 +5,10 @@
                 [hideRequiredMarker]="model.getAdditional('hideRequiredMarker', false)"
                 [ngClass]="getClass('grid', 'control')">
 
-    <mat-chip-grid #matChipList [formControlName]="model.id" [id]="id">
+    <mat-chip-grid #matChipGrid [formControlName]="model.id" [id]="id">
 
         <mat-chip-row *ngFor="let chip of chips; let index = index"
-                  (removed)="onChipRemoved(chip, index)">
+                      (removed)="onChipRemoved(chip, index)">
 
             <span>{{ chip }}</span>
 
@@ -19,14 +19,14 @@
         <input matInput
                [matAutocomplete]="matAutocomplete"
                [matChipInputAddOnBlur]="model.getAdditional('matChipInputAddOnBlur', true)"
-               [matChipInputFor]="matChipList"
+               [matChipInputFor]="matChipGrid"
                [matChipInputSeparatorKeyCodes]="model.getAdditional('matChipInputSeparatorKeyCodes', CHIPS_OPTIONS['separatorKeyCodes'])"
                [placeholder]="model.placeholder"
                (matChipInputTokenEnd)="onChipInputTokenEnd($event)"
                (blur)="onBlur($event)"
                (focus)="onFocus($event)"/>
 
-        <mat-autocomplete #matAutocomplete="matAutocomplete"
+        <mat-autocomplete #matAutocomplete
                           [autoActiveFirstOption]="model.getAdditional('autoActiveFirstOption', AUTOCOMPLETE_OPTIONS['autoActiveFirstOption'])"
                           [disableRipple]="model.getAdditional('disableRipple', RIPPLE_OPTIONS && RIPPLE_OPTIONS['disabled'] || false)"
                           [displayWith]="model.getAdditional('displayWith', null)"
