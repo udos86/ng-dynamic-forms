@@ -10,6 +10,7 @@
                     [id]="id"
                     [minLength]="model.getAdditional('minLength', 1)"
                     [multiple]="model.multiple"
+                    [appendTo]="model.getAdditional('appendTo', null)"
                     [ngClass]="getClass('element', 'control')"
                     [placeholder]="model.placeholder"
                     [scrollHeight]="model.getAdditional('scrollHeight', '200px')"
