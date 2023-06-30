@@ -7,7 +7,7 @@
     <div *ngFor="let option of model.options$ | async" [ngClass]="getClass('grid', 'option')">
 
         <p-radioButton [formControlName]="model.id"
-                       [label]="option.label"
+                       [label]="option.label || undefined"
                        [name]="model.id"
                        [ngClass]="getClass('element', 'option')"
                        [value]="option.value"

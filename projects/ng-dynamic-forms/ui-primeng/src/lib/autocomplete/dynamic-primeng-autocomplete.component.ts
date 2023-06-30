@@ -21,7 +21,7 @@ import { NgClass } from "@angular/common";
     imports: [ReactiveFormsModule, NgClass, AutoCompleteModule]
 })
 export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGFormControlWithTemplateComponent {
-    private _suggestions?: string[];
+    private _suggestions: any[] = [];
 
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;
 
@@ -42,7 +42,7 @@ export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGFormContr
         super(layoutService, validationService);
     }
 
-    get suggestions(): string[] | undefined {
+    get suggestions(): any[] {
         return this._suggestions;
     }
 

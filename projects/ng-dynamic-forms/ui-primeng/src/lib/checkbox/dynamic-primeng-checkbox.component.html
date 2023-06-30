@@ -4,7 +4,7 @@
                 binary="true"
                 [formControlName]="model.id"
                 [id]="id"
-                [label]="model.label"
+                [label]="model.label || undefined"
                 [name]="model.name"
                 [ngClass]="getClass('element', 'control')"
                 [tabindex]="model.tabIndex"
