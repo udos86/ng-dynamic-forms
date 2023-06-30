@@ -18,7 +18,6 @@ NG Dynamic Forms Version: `X.Y.Z`
 [ ] Bootstrap UI  
 [ ] Foundation UI
 [ ] Ionic UI
-[ ] Kendo UI
 [ ] Material  
 [ ] NG Bootstrap
 [ ] Prime NG

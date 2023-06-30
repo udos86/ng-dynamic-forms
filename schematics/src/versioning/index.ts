@@ -8,7 +8,6 @@ const PACKAGE_PATHS = [
     `${PROJECTS_PATH}/ui-bootstrap`,
     `${PROJECTS_PATH}/ui-foundation`,
     `${PROJECTS_PATH}/ui-ionic`,
-    `${PROJECTS_PATH}/ui-kendo`,
     `${PROJECTS_PATH}/ui-material`,
     `${PROJECTS_PATH}/ui-ng-bootstrap`,
     `${PROJECTS_PATH}/ui-ngx-bootstrap`,

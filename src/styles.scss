@@ -131,47 +131,6 @@ dynamic-basic-form-control {
     margin-bottom: 1.25rem;
 }
 
-/* KENDO */
-kendo-calendar {
-    margin: 0 auto;
-}
-
-dynamic-kendo-form-control div[role="group"] {
-    display: flex;
-}
-
-dynamic-kendo-form-control kendo-switch {
-    margin-right: 0.25rem;
-}
-
-dynamic-kendo-form-control div[role="group"] > dynamic-kendo-form-control {
-    margin-right: 1rem;
-    margin-bottom: 0;
-}
-
-dynamic-kendo-form-control label:not(.k-form-field):not(.k-checkbox-label):not(.k-radio-label) {
-    padding: 4px 0;
-}
-
-dynamic-kendo-form-control .k-form-field:nth-last-child(2) {
-    margin-bottom: 0;
-}
-
-dynamic-kendo-form-control .k-field-info.k-required {
-    margin: 0;
-}
-
-dynamic-kendo-form-control {
-    display: block;
-    margin-bottom: 2rem;
-}
-
-dynamic-kendo-form-control ul {
-    list-style-type: none;
-    text-align: left;
-}
-
-
 /* MATERIAL */
 mat-input {
     vertical-align: middle;
