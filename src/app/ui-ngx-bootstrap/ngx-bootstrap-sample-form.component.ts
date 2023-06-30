@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { UntypedFormGroup, UntypedFormArray } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormArray, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormArrayModel,
     DynamicFormControlModel,
@@ -7,16 +7,21 @@ import {
     DynamicFormLayout,
     DynamicFormService,
     DynamicFormValueControlModel,
-    DynamicInputModel
+    DynamicInputModel,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { NGX_BOOTSTRAP_SAMPLE_FORM_MODEL } from "./ngx-bootstrap-sample-form.model";
 import { NGX_BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./ngx-bootstrap-sample-form.layout";
 import { DynamicFormControlEvent } from "../../../projects/ng-dynamic-forms/core/src/lib/component/dynamic-form-control-event";
+import { JsonPipe } from "@angular/common";
+import { DynamicNGxBootstrapFormComponent } from "@ng-dynamic-forms/ui-ngx-bootstrap";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-sample-form",
     templateUrl: "./ngx-bootstrap-sample-form.component.html",
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [JsonPipe, ReactiveFormsModule, DynamicNGxBootstrapFormComponent, DynamicTemplateDirective]
 })
 export class NgxBootstrapSampleFormComponent {
     formModel: DynamicFormControlModel[] = NGX_BOOTSTRAP_SAMPLE_FORM_MODEL;

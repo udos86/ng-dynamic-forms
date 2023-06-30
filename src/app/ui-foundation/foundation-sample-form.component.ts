@@ -1,20 +1,24 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { UntypedFormArray } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, UntypedFormArray } from "@angular/forms";
 import {
     DynamicFormArrayModel,
     DynamicFormControlEvent,
     DynamicFormControlModel,
     DynamicFormLayout,
-    DynamicFormService
+    DynamicFormService, DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { FOUNDATION_SAMPLE_FORM_MODEL } from "./foundation-sample-form.model";
 import { FOUNDATION_SAMPLE_FORM_LAYOUT } from "./foundation-sample-form.layout";
+import { DynamicFoundationFormComponent } from "@ng-dynamic-forms/ui-foundation";
+import { JsonPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-foundation-sample-form",
     styleUrls: ["../../../node_modules/foundation-sites/dist/css/foundation.css"],
     templateUrl: "./foundation-sample-form.component.html",
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [JsonPipe, ReactiveFormsModule, DynamicFoundationFormComponent, DynamicTemplateDirective]
 })
 export class FoundationSampleFormComponent {
     formModel: DynamicFormControlModel[] = FOUNDATION_SAMPLE_FORM_MODEL;

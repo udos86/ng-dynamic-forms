@@ -1,15 +1,21 @@
 import { Component } from "@angular/core";
-import { UntypedFormArray } from "@angular/forms";
+import { JsonPipe, NgFor } from "@angular/common";
+import { ReactiveFormsModule, UntypedFormArray } from "@angular/forms";
 import {
     DynamicFormService,
     DynamicFormArrayModel,
-    DynamicFormControlEvent
+    DynamicFormControlEvent,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
+import { DynamicBasicFormControlContainerComponent } from "@ng-dynamic-forms/ui-basic";
 import { BASIC_SAMPLE_FORM_MODEL, BASIC_SAMPLE_FORM_ARRAY_MODEL } from "./basic-sample-form.model";
+
 
 @Component({
     selector: "dynamic-basic-sample-form",
-    templateUrl: "./basic-sample-form.component.html"
+    templateUrl: "./basic-sample-form.component.html",
+    standalone: true,
+    imports: [NgFor, JsonPipe, ReactiveFormsModule, DynamicBasicFormControlContainerComponent, DynamicTemplateDirective]
 })
 export class BasicSampleFormComponent {
     formModel1 = this.formService.fromJSON(JSON.stringify(BASIC_SAMPLE_FORM_MODEL));

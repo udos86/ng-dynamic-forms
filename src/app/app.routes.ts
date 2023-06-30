@@ -1,5 +1,4 @@
-import { NgModule } from "@angular/core";
-import { Route, RouterModule } from "@angular/router";
+import { Route } from "@angular/router";
 import { BasicSampleFormComponent } from "./ui-basic/basic-sample-form.component";
 import { FoundationSampleFormComponent } from "./ui-foundation/foundation-sample-form.component";
 import { MaterialSampleFormComponent } from "./ui-material/material-sample-form.component";
@@ -7,7 +6,7 @@ import { NGBootstrapSampleFormComponent } from "./ui-ng-bootstrap/ng-bootstrap-s
 import { NgxBootstrapSampleFormComponent } from "./ui-ngx-bootstrap/ngx-bootstrap-sample-form.component";
 import { PrimeNGSampleFormComponent } from "./ui-primeng/primeng-sample-form.component";
 
-const APP_ROUTES: Route[] = [
+export const appRoutes: Route[] = [
     {
         path: "",
         redirectTo: "/material-sample-form",
@@ -73,10 +72,3 @@ const APP_ROUTES: Route[] = [
         loadChildren: () => import("./lazy-loaded/lazy-loaded-form.module").then(module => module.LazyLoadedFormModule)
     }
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(APP_ROUTES)],
-    exports: [RouterModule]
-})
-export class AppRoutingModule {
-}
