@@ -12,9 +12,7 @@ import { DynamicFormRelationService } from "./service/dynamic-form-relation.serv
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule
-    ],
-    declarations: [
+        ReactiveFormsModule,
         DynamicListDirective,
         DynamicTemplateDirective
     ],

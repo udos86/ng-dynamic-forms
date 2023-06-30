@@ -18,14 +18,13 @@ describe("DynamicKendoTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoTextAreaComponent]
-
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DynamicFormsCoreModule,
+        DynamicKendoTextAreaComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoTextAreaComponent);
 
             component = fixture.componentInstance;

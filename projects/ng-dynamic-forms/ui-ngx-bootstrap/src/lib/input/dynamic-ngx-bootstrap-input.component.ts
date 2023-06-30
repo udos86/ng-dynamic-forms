@@ -1,17 +1,14 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import {
-    DynamicFormControlComponent,
-    DynamicFormControlLayout,
-    DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormValidationService,
-    DynamicInputModel
-} from "@ng-dynamic-forms/core";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { DynamicFormControlComponent, DynamicFormControlLayout, DynamicFormLayout, DynamicFormLayoutService, DynamicFormValidationService, DynamicInputModel, DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { NgxMaskModule } from "ngx-mask";
+import { NgIf, NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-input",
-    templateUrl: "./dynamic-ngx-bootstrap-input.component.html"
+    templateUrl: "./dynamic-ngx-bootstrap-input.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf, DynamicFormsCoreModule, NgClass, NgxMaskModule, NgFor, AsyncPipe]
 })
 export class DynamicNGxBootstrapInputComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

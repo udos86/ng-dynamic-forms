@@ -9,4 +9,4 @@ export * from "./timepicker/dynamic-bootstrap-timepicker.component";
 
 export * from "./dynamic-bootstrap-form.component";
 export * from "./dynamic-bootstrap-form-control-container.component";
-export * from "./dynamic-bootstrap-form-ui.module";
+

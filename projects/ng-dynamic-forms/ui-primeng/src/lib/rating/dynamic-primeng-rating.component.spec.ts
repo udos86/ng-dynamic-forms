@@ -19,14 +19,14 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                RatingModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGRatingComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        RatingModule,
+        DynamicFormsCoreModule,
+        DynamicPrimeNGRatingComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGRatingComponent);
 
             component = fixture.componentInstance;

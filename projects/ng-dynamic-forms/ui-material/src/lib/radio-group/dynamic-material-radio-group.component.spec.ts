@@ -19,14 +19,14 @@ describe("DynamicMaterialRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatRadioModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialRadioGroupComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MatRadioModule,
+        DynamicFormsCoreModule,
+        DynamicMaterialRadioGroupComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialRadioGroupComponent);
 
             component = fixture.componentInstance;

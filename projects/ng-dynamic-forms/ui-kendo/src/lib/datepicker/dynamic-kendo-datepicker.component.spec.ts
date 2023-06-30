@@ -19,14 +19,14 @@ describe("DynamicKendoDatePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DatePickerModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoDatePickerComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DatePickerModule,
+        DynamicFormsCoreModule,
+        DynamicKendoDatePickerComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoDatePickerComponent);
 
             component = fixture.componentInstance;

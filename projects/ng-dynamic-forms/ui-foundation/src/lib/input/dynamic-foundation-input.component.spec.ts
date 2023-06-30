@@ -19,14 +19,14 @@ describe("DynamicFoundationInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgxMaskModule.forRoot(),
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicFoundationInputComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        NgxMaskModule.forRoot(),
+        DynamicFormsCoreModule,
+        DynamicFoundationInputComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicFoundationInputComponent);
 
             component = fixture.componentInstance;

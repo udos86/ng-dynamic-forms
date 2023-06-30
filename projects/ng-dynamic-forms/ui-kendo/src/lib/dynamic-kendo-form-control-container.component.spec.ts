@@ -2,7 +2,6 @@ import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/t
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { InputsModule } from "@progress/kendo-angular-inputs";
@@ -74,12 +73,6 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicKendoDropdownListComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
             imports: [
                 ReactiveFormsModule,
@@ -87,9 +80,9 @@ describe("DynamicKendoFormControlContainerComponent test suite", () => {
                 DropDownsModule,
                 InputsModule,
                 UploadModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoFormControlContainerComponent, DynamicKendoDropdownListComponent]
+                DynamicFormsCoreModule,
+                DynamicKendoFormControlContainerComponent, DynamicKendoDropdownListComponent
+            ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoFormControlContainerComponent);
 

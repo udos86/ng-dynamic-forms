@@ -18,13 +18,13 @@ describe("DynamicNGBootstrapSwitchComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapSwitchComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DynamicFormsCoreModule,
+        DynamicNGBootstrapSwitchComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapSwitchComponent);
 
             component = fixture.componentInstance;

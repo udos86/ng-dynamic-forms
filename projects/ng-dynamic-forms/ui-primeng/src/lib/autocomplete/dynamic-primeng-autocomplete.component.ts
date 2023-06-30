@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { AutoComplete } from "primeng/autocomplete";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { AutoComplete, AutoCompleteModule } from "primeng/autocomplete";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
@@ -12,10 +12,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
 import { DynamicPrimeNGFormControlWithTemplateComponent } from "../dynamic-primeng-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-autocomplete",
-    templateUrl: "./dynamic-primeng-autocomplete.component.html"
+    templateUrl: "./dynamic-primeng-autocomplete.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, AutoCompleteModule]
 })
 export class DynamicPrimeNGAutoCompleteComponent extends DynamicPrimeNGFormControlWithTemplateComponent {
     private _suggestions?: string[];

@@ -19,14 +19,14 @@ describe("DynamicKendoNumericTextBoxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NumericTextBoxModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoNumericTextBoxComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        NumericTextBoxModule,
+        DynamicFormsCoreModule,
+        DynamicKendoNumericTextBoxComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoNumericTextBoxComponent);
 
             component = fixture.componentInstance;

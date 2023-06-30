@@ -19,14 +19,14 @@ describe("DynamicIonicCheckboxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                IonicModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicIonicCheckboxComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        IonicModule,
+        DynamicFormsCoreModule,
+        DynamicIonicCheckboxComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicCheckboxComponent);
 
             component = fixture.componentInstance;

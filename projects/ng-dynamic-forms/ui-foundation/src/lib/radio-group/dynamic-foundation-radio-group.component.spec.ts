@@ -18,14 +18,13 @@ describe("DynamicFoundationRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicFoundationRadioGroupComponent]
-
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DynamicFormsCoreModule,
+        DynamicFoundationRadioGroupComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicFoundationRadioGroupComponent);
 
             component = fixture.componentInstance;

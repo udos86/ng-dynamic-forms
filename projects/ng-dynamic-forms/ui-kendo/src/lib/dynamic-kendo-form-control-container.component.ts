@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_DATE,
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
@@ -71,11 +71,14 @@ import { DynamicKendoSliderComponent } from "./slider/dynamic-kendo-slider.compo
 import { DynamicKendoSwitchComponent } from "./switch/dynamic-kendo-switch.component";
 import { DynamicKendoTextAreaComponent } from "./textarea/dynamic-kendo-textarea.component";
 import { DynamicKendoTimePickerComponent } from "./timepicker/dynamic-kendo-timepicker.component";
+import { NgClass, NgFor, NgTemplateOutlet, NgIf } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-form-control",
     templateUrl: "./dynamic-kendo-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgTemplateOutlet, NgFor]
 })
 export class DynamicKendoFormControlContainerComponent extends DynamicFormControlContainerComponent {
     @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
@@ -191,7 +194,9 @@ export function kendoUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
 @Component({
     selector: "dynamic-kendo-form-array",
-    templateUrl: "./dynamic-kendo-form-array.component.html"
+    templateUrl: "./dynamic-kendo-form-array.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, NgTemplateOutlet, DynamicKendoFormControlContainerComponent]
 })
 export class DynamicKendoFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
@@ -214,7 +219,9 @@ export class DynamicKendoFormArrayComponent extends DynamicFormArrayComponent {
 
 @Component({
     selector: "dynamic-kendo-form-group",
-    templateUrl: "./dynamic-kendo-form-group.component.html"
+    templateUrl: "./dynamic-kendo-form-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, DynamicKendoFormControlContainerComponent]
 })
 export class DynamicKendoFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;

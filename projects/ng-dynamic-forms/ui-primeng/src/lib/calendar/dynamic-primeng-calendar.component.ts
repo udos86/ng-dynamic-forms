@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Calendar } from "primeng/calendar";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Calendar, CalendarModule } from "primeng/calendar";
 import {
     DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
@@ -12,10 +12,13 @@ import {
     DynamicTimePickerModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-calendar",
-    templateUrl: "./dynamic-primeng-calendar.component.html"
+    templateUrl: "./dynamic-primeng-calendar.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, CalendarModule]
 })
 export class DynamicPrimeNGCalendarComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -23,14 +23,14 @@ describe("DynamicKendoMultiSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MultiSelectModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoMultiSelectComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MultiSelectModule,
+        DynamicFormsCoreModule,
+        DynamicKendoMultiSelectComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoMultiSelectComponent);
 
             component = fixture.componentInstance;

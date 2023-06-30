@@ -19,15 +19,14 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DropdownModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGDropdownComponent]
-
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DropdownModule,
+        DynamicFormsCoreModule,
+        DynamicPrimeNGDropdownComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGDropdownComponent);
 
             component = fixture.componentInstance;

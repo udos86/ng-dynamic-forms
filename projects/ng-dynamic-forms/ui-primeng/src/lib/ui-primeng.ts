@@ -19,4 +19,4 @@ export * from "./dynamic-primeng-form.component";
 export * from "./dynamic-primeng-form.const";
 export * from "./dynamic-primeng-form-control-container.component";
 export * from "./dynamic-primeng-form-control-with-template.component";
-export * from "./dynamic-primeng-form-ui.module";
+

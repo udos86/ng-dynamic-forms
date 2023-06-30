@@ -19,14 +19,14 @@ xdescribe("DynamicKendoUploadComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                UploadModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoUploadComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        UploadModule,
+        DynamicFormsCoreModule,
+        DynamicKendoUploadComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoUploadComponent);
 
             component = fixture.componentInstance;

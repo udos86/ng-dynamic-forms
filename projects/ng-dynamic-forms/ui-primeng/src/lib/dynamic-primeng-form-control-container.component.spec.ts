@@ -3,7 +3,6 @@ import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/t
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import {
     DynamicFormsCoreModule,
     DynamicFormService,
@@ -87,12 +86,6 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicPrimeNGInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
             imports: [
                 ReactiveFormsModule,
@@ -113,9 +106,9 @@ describe("DynamicPrimeNGFormControlContainerComponent test suite", () => {
                 RadioButtonModule,
                 RatingModule,
                 SliderModule,
-                SpinnerModule
-            ],
-            declarations: [DynamicPrimeNGFormControlContainerComponent, DynamicPrimeNGInputComponent]
+                SpinnerModule,
+                DynamicPrimeNGFormControlContainerComponent, DynamicPrimeNGInputComponent
+            ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGFormControlContainerComponent);
 

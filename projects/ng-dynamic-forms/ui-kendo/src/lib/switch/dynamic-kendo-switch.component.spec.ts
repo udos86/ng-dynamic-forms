@@ -19,14 +19,14 @@ describe("DynamicKendoSwitchComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                SwitchModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoSwitchComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        SwitchModule,
+        DynamicFormsCoreModule,
+        DynamicKendoSwitchComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoSwitchComponent);
 
             component = fixture.componentInstance;

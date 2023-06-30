@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { IonToggle } from "@ionic/angular";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { IonToggle, IonicModule } from "@ionic/angular";
 import {
     DynamicFormControlLayout,
     DynamicFormLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicSwitchModel
 } from "@ng-dynamic-forms/core";
+import { NgIf, NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-toggle",
-    templateUrl: "./dynamic-ionic-toggle.component.html"
+    templateUrl: "./dynamic-ionic-toggle.component.html",
+    standalone: true,
+    imports: [IonicModule, ReactiveFormsModule, NgIf, NgClass]
 })
 export class DynamicIonicToggleComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

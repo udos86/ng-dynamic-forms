@@ -19,14 +19,14 @@ describe("DynamicIonicTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                IonicModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicIonicTextAreaComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        IonicModule,
+        DynamicFormsCoreModule,
+        DynamicIonicTextAreaComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicTextAreaComponent);
 
             component = fixture.componentInstance;

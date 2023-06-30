@@ -18,13 +18,13 @@ describe("DynamicBootstrapTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicBootstrapTextAreaComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DynamicFormsCoreModule,
+        DynamicBootstrapTextAreaComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicBootstrapTextAreaComponent);
 
             component = fixture.componentInstance;

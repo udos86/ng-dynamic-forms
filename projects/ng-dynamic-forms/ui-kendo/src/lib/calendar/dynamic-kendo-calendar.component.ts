@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { CalendarComponent } from "@progress/kendo-angular-dateinputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { CalendarComponent, CalendarModule } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
@@ -12,10 +12,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-calendar",
-    templateUrl: "./dynamic-kendo-calendar.component.html"
+    templateUrl: "./dynamic-kendo-calendar.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, CalendarModule, NgClass]
 })
 export class DynamicKendoCalendarComponent extends DynamicKendoFormControlWithTemplateComponent {
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;

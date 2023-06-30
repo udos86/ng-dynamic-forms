@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Editor } from "primeng/editor";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Editor, EditorModule } from "primeng/editor";
 import {
     DynamicEditorModel,
     DynamicFormControlCustomEvent,
@@ -10,10 +10,13 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-editor",
-    templateUrl: "./dynamic-primeng-editor.component.html"
+    templateUrl: "./dynamic-primeng-editor.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, EditorModule]
 })
 export class DynamicPrimeNGEditorComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

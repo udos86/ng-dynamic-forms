@@ -21,16 +21,16 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatDatepickerModule,
-                MatInputModule,
-                MatNativeDateModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialDatePickerComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        DynamicFormsCoreModule,
+        DynamicMaterialDatePickerComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialDatePickerComponent);
 
             component = fixture.componentInstance;

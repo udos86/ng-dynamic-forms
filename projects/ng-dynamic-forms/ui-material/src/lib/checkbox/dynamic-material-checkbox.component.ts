@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { MatCheckbox } from "@angular/material/checkbox";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatCheckbox, MatCheckboxModule } from "@angular/material/checkbox";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import {
     DynamicCheckboxModel,
@@ -11,10 +11,13 @@ import {
     DynamicFormLayoutService,
     DynamicFormValidationService
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-material-checkbox",
-    templateUrl: "./dynamic-material-checkbox.component.html"
+    templateUrl: "./dynamic-material-checkbox.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, MatCheckboxModule, NgClass]
 })
 export class DynamicMaterialCheckboxComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MultiSelectComponent, MultiSelectModule } from "@progress/kendo-angular-dropdowns";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
@@ -12,10 +12,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-multiselect",
-    templateUrl: "./dynamic-kendo-multiselect.component.html"
+    templateUrl: "./dynamic-kendo-multiselect.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, MultiSelectModule, NgClass]
 })
 export class DynamicKendoMultiSelectComponent extends DynamicKendoFormControlWithTemplateComponent {
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;

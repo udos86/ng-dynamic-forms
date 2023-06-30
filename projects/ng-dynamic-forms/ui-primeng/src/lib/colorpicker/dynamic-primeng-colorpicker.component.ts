@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { ColorPicker } from "primeng/colorpicker";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { ColorPicker, ColorPickerModule } from "primeng/colorpicker";
 import {
     DynamicColorPickerModel,
     DynamicFormLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-colorpicker",
-    templateUrl: "./dynamic-primeng-colorpicker.component.html"
+    templateUrl: "./dynamic-primeng-colorpicker.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, ColorPickerModule]
 })
 export class DynamicPrimeNGColorPickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

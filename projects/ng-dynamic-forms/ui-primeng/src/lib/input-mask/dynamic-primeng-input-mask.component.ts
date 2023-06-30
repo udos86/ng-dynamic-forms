@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { InputMask } from "primeng/inputmask";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { InputMask, InputMaskModule } from "primeng/inputmask";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -10,10 +10,13 @@ import {
     DynamicInputModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-input-mask",
-    templateUrl: "./dynamic-primeng-input-mask.component.html"
+    templateUrl: "./dynamic-primeng-input-mask.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, InputMaskModule]
 })
 export class DynamicPrimeNGInputMaskComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

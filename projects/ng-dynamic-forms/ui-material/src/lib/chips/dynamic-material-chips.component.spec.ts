@@ -35,9 +35,9 @@ describe("DynamicMaterialChipsComponent test suite", () => {
                 MatChipsModule,
                 MatIconModule,
                 MatInputModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialChipsComponent]
+                DynamicFormsCoreModule,
+                DynamicMaterialChipsComponent
+            ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialChipsComponent);
 

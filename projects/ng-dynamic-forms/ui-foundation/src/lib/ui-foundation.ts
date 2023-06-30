@@ -7,4 +7,4 @@ export * from "./textarea/dynamic-foundation-textarea.component";
 
 export * from "./dynamic-foundation-form.component";
 export * from "./dynamic-foundation-form-control-container.component";
-export * from "./dynamic-foundation-form-ui.module";
+

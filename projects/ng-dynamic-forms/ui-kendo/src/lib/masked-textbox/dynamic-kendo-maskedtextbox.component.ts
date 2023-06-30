@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { MaskedTextBoxComponent } from "@progress/kendo-angular-inputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MaskedTextBoxComponent, MaskedTextBoxModule } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicInputModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-maskedtextbox",
-    templateUrl: "./dynamic-kendo-maskedtextbox.component.html"
+    templateUrl: "./dynamic-kendo-maskedtextbox.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, MaskedTextBoxModule, NgClass]
 })
 export class DynamicKendoMaskedTextBoxComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

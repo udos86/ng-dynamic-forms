@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { UploadComponent } from "@progress/kendo-angular-upload";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { UploadComponent, UploadModule } from "@progress/kendo-angular-upload";
 import {
     DynamicFileUploadModel,
     DynamicFormControlCustomEvent,
@@ -12,10 +12,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-upload",
-    templateUrl: "./dynamic-kendo-upload.component.html"
+    templateUrl: "./dynamic-kendo-upload.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, UploadModule, NgClass]
 })
 export class DynamicKendoUploadComponent extends DynamicKendoFormControlWithTemplateComponent {
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;

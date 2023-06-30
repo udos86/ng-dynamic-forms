@@ -19,14 +19,14 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgbRatingModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapRatingComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        NgbRatingModule,
+        DynamicFormsCoreModule,
+        DynamicNGBootstrapRatingComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapRatingComponent);
 
             component = fixture.componentInstance;

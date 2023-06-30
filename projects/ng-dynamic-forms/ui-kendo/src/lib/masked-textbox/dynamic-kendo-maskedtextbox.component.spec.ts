@@ -19,14 +19,14 @@ describe("DynamicKendoMaskedTextBoxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MaskedTextBoxModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoMaskedTextBoxComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MaskedTextBoxModule,
+        DynamicFormsCoreModule,
+        DynamicKendoMaskedTextBoxComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoMaskedTextBoxComponent);
 
             component = fixture.componentInstance;

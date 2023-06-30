@@ -23,14 +23,14 @@ describe("DynamicNGxBootstrapRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                ButtonsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGxBootstrapRadioGroupComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        ButtonsModule,
+        DynamicFormsCoreModule,
+        DynamicNGxBootstrapRadioGroupComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapRadioGroupComponent);
 
             component = fixture.componentInstance;

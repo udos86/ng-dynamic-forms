@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { IonDatetime } from "@ionic/angular";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { IonDatetime, IonicModule } from "@ionic/angular";
 import {
     DynamicDatePickerModel,
     DynamicFormControlCustomEvent,
@@ -10,10 +10,13 @@ import {
     DynamicFormValidationService,
     DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
+import { NgIf, NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-datetime",
-    templateUrl: "./dynamic-ionic-datetime.component.html"
+    templateUrl: "./dynamic-ionic-datetime.component.html",
+    standalone: true,
+    imports: [IonicModule, ReactiveFormsModule, NgIf, NgClass]
 })
 export class DynamicIonicDateTimeComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

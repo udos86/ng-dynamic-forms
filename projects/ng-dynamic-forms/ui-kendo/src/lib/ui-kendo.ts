@@ -20,4 +20,4 @@ export * from "./dynamic-kendo-form.component";
 export * from "./dynamic-kendo-form-control-container.component";
 export * from "./dynamic-kendo-form-control-with-template.component";
 export * from "./dynamic-kendo-form.const";
-export * from "./dynamic-kendo-form-ui.module";
+

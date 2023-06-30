@@ -19,14 +19,14 @@ describe("DynamicKendoDateInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DateInputModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoDateInputComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DateInputModule,
+        DynamicFormsCoreModule,
+        DynamicKendoDateInputComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoDateInputComponent);
 
             component = fixture.componentInstance;

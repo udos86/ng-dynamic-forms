@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { NgbTimepicker, NgbTimepickerConfig } from "@ng-bootstrap/ng-bootstrap";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { NgbTimepicker, NgbTimepickerConfig, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -9,11 +9,14 @@ import {
     DynamicFormValidationService,
     DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ng-bootstrap-timepicker",
     templateUrl: "./dynamic-ng-bootstrap-timepicker.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgbTimepickerModule, NgClass]
 })
 export class DynamicNGBootstrapTimePickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

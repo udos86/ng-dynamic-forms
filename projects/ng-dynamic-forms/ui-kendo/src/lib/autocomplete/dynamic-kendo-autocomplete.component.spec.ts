@@ -19,14 +19,14 @@ describe("DynamicKendoAutoCompleteComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                AutoCompleteModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoAutoCompleteComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        AutoCompleteModule,
+        DynamicFormsCoreModule,
+        DynamicKendoAutoCompleteComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoAutoCompleteComponent);
 
             component = fixture.componentInstance;

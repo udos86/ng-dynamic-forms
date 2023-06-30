@@ -2,7 +2,6 @@ import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/t
 import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
 import { NgxMaskModule } from "ngx-mask";
@@ -72,12 +71,6 @@ describe("DynamicNGxFormBootstrapComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicNGxBootstrapInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
             imports: [
                 ReactiveFormsModule,
@@ -85,9 +78,9 @@ describe("DynamicNGxFormBootstrapComponent test suite", () => {
                 NgxMaskModule.forRoot(),
                 ButtonsModule,
                 BsDatepickerModule.forRoot(),
-                TimepickerModule.forRoot()
-            ],
-            declarations: [DynamicNGxBootstrapFormControlContainerComponent, DynamicNGxBootstrapInputComponent]
+                TimepickerModule.forRoot(),
+                DynamicNGxBootstrapFormControlContainerComponent, DynamicNGxBootstrapInputComponent
+            ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapFormControlContainerComponent);
 

@@ -19,14 +19,14 @@ describe("DynamicIonicToggleComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                IonicModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicIonicToggleComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        IonicModule,
+        DynamicFormsCoreModule,
+        DynamicIonicToggleComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicToggleComponent);
 
             component = fixture.componentInstance;

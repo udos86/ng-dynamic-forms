@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { TimePickerComponent } from "@progress/kendo-angular-dateinputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { TimePickerComponent, TimePickerModule } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -10,10 +10,13 @@ import {
     DynamicTimePickerModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-timepicker",
-    templateUrl: "./dynamic-kendo-timepicker.component.html"
+    templateUrl: "./dynamic-kendo-timepicker.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, TimePickerModule, NgClass]
 })
 export class DynamicKendoTimePickerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

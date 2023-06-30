@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { DateInputComponent } from "@progress/kendo-angular-dateinputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { DateInputComponent, DateInputModule } from "@progress/kendo-angular-dateinputs";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -8,10 +8,13 @@ import {
     DynamicFormControlComponent,
     DynamicInputModel, DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-dateinput",
-    templateUrl: "./dynamic-kendo-dateinput.component.html"
+    templateUrl: "./dynamic-kendo-dateinput.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, DateInputModule, NgClass]
 })
 export class DynamicKendoDateInputComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

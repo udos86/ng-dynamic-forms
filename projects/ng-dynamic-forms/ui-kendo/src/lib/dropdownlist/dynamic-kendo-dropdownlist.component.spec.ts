@@ -19,14 +19,14 @@ describe("DynamicKendoDropdownListComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DropDownListModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoDropdownListComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DropDownListModule,
+        DynamicFormsCoreModule,
+        DynamicKendoDropdownListComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoDropdownListComponent);
 
             component = fixture.componentInstance;

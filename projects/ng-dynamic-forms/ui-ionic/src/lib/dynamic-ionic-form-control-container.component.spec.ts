@@ -2,7 +2,6 @@ import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/t
 import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { IonicModule } from "@ionic/angular";
 import {
     DynamicCheckboxModel,
@@ -55,20 +54,14 @@ describe("DynamicIonicFormControlContainerComponent test suite", () => {
     // let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicIonicInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
             imports: [
                 ReactiveFormsModule,
                 NoopAnimationsModule,
                 IonicModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicIonicFormControlContainerComponent, DynamicIonicInputComponent]
+                DynamicFormsCoreModule,
+                DynamicIonicFormControlContainerComponent, DynamicIonicInputComponent
+            ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicFormControlContainerComponent);
 

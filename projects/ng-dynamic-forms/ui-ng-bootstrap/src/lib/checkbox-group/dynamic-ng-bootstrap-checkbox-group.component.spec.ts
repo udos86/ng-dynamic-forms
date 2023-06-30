@@ -19,15 +19,14 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgbButtonsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapCheckboxGroupComponent]
-
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        NgbButtonsModule,
+        DynamicFormsCoreModule,
+        DynamicNGBootstrapCheckboxGroupComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapCheckboxGroupComponent);
 
             component = fixture.componentInstance;

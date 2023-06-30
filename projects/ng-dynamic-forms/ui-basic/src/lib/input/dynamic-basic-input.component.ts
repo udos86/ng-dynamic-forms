@@ -1,18 +1,15 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import {
-    DynamicFormControlComponent,
-    DynamicFormControlLayout,
-    DynamicFormLayout,
-    DynamicFormLayoutService,
-    DynamicFormValidationService,
-    DynamicInputModel
-} from "@ng-dynamic-forms/core";
+import { UntypedFormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DynamicFormControlComponent, DynamicFormControlLayout, DynamicFormLayout, DynamicFormLayoutService, DynamicFormValidationService, DynamicInputModel, DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { NgxMaskModule } from "ngx-mask";
+import { NgIf, NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-basic-input",
     templateUrl: "./dynamic-basic-input.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgIf, DynamicFormsCoreModule, NgClass, NgxMaskModule, NgFor, AsyncPipe]
 })
 export class DynamicBasicInputComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgIf, NgFor } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-checkbox-group",
-    templateUrl: "./dynamic-kendo-checkbox-group.component.html"
+    templateUrl: "./dynamic-kendo-checkbox-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgFor]
 })
 export class DynamicKendoCheckboxGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

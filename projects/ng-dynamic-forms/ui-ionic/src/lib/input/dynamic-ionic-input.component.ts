@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { IonInput } from "@ionic/angular";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { IonInput, IonicModule } from "@ionic/angular";
 import {
     DynamicFormControlLayout,
     DynamicFormLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
+import { NgIf, NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-input",
-    templateUrl: "./dynamic-ionic-input.component.html"
+    templateUrl: "./dynamic-ionic-input.component.html",
+    standalone: true,
+    imports: [IonicModule, ReactiveFormsModule, NgIf, NgClass]
 })
 export class DynamicIonicInputComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

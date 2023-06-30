@@ -18,13 +18,13 @@ describe("DynamicFoundationSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicFoundationSelectComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DynamicFormsCoreModule,
+        DynamicFoundationSelectComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicFoundationSelectComponent);
 
             component = fixture.componentInstance;

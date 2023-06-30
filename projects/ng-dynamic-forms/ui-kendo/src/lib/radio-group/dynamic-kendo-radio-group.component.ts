@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -8,10 +8,13 @@ import {
     DynamicRadioGroupModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgIf, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-radio-group",
-    templateUrl: "./dynamic-kendo-radio-group.component.html"
+    templateUrl: "./dynamic-kendo-radio-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgFor, AsyncPipe]
 })
 export class DynamicKendoRadioGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

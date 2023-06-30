@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { NumericTextBoxComponent } from "@progress/kendo-angular-inputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { NumericTextBoxComponent, NumericTextBoxModule } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicInputModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-numerictextbox",
-    templateUrl: "./dynamic-kendo-numerictextbox.component.html"
+    templateUrl: "./dynamic-kendo-numerictextbox.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NumericTextBoxModule, NgClass]
 })
 export class DynamicKendoNumericTextBoxComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

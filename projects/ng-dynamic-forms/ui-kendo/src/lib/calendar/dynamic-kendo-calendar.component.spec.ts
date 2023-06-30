@@ -19,14 +19,14 @@ describe("DynamicKendoCalendarComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                CalendarModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoCalendarComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        CalendarModule,
+        DynamicFormsCoreModule,
+        DynamicKendoCalendarComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoCalendarComponent);
 
             component = fixture.componentInstance;

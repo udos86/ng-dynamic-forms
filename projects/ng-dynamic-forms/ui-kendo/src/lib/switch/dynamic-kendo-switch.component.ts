@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { SwitchComponent } from "@progress/kendo-angular-inputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { SwitchComponent, SwitchModule } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicSwitchModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-switch",
-    templateUrl: "./dynamic-kendo-switch.component.html"
+    templateUrl: "./dynamic-kendo-switch.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, SwitchModule, NgClass]
 })
 export class DynamicKendoSwitchComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

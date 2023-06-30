@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { MatSlider } from "@angular/material/slider";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatSlider, MatSliderModule } from "@angular/material/slider";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -10,10 +10,13 @@ import {
     DynamicFormValidationService,
     DynamicSliderModel
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-material-slider",
-    templateUrl: "./dynamic-material-slider.component.html"
+    templateUrl: "./dynamic-material-slider.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, MatSliderModule, NgClass]
 })
 export class DynamicMaterialSliderComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

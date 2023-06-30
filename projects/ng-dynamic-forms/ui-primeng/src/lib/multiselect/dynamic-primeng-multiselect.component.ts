@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { MultiSelect } from "primeng/multiselect";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MultiSelect, MultiSelectModule } from "primeng/multiselect";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicSelectModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-multiselect",
-    templateUrl: "./dynamic-primeng-multiselect.component.html"
+    templateUrl: "./dynamic-primeng-multiselect.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, MultiSelectModule, AsyncPipe]
 })
 export class DynamicPrimeNGMultiSelectComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

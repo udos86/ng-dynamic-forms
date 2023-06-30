@@ -19,14 +19,14 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                InputTextareaModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGTextAreaComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        InputTextareaModule,
+        DynamicFormsCoreModule,
+        DynamicPrimeNGTextAreaComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGTextAreaComponent);
 
             component = fixture.componentInstance;

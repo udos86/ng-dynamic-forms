@@ -19,14 +19,14 @@ describe("DynamicPrimeNGCalendarComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                CalendarModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGCalendarComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        CalendarModule,
+        DynamicFormsCoreModule,
+        DynamicPrimeNGCalendarComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGCalendarComponent);
 
             component = fixture.componentInstance;

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { SliderComponent } from "@progress/kendo-angular-inputs";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { SliderComponent, SliderModule } from "@progress/kendo-angular-inputs";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicSliderModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-slider",
-    templateUrl: "./dynamic-kendo-slider.component.html"
+    templateUrl: "./dynamic-kendo-slider.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, SliderModule, NgClass]
 })
 export class DynamicKendoSliderComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

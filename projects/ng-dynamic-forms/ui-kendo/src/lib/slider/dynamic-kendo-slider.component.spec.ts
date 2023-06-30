@@ -19,14 +19,14 @@ describe("DynamicKendoSliderComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                SliderModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoSliderComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        SliderModule,
+        DynamicFormsCoreModule,
+        DynamicKendoSliderComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoSliderComponent);
 
             component = fixture.componentInstance;

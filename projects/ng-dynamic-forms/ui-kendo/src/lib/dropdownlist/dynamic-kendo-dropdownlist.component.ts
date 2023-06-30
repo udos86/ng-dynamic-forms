@@ -6,8 +6,8 @@ import {
     QueryList,
     ViewChild
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { DropDownListComponent } from "@progress/kendo-angular-dropdowns";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { DropDownListComponent, DropDownListModule } from "@progress/kendo-angular-dropdowns";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
@@ -19,10 +19,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-dropdownlist",
-    templateUrl: "./dynamic-kendo-dropdownlist.component.html"
+    templateUrl: "./dynamic-kendo-dropdownlist.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, DropDownListModule, NgClass]
 })
 export class DynamicKendoDropdownListComponent extends DynamicKendoFormControlWithTemplateComponent {
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;

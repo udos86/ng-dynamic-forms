@@ -19,14 +19,14 @@ describe("DynamicNGxBootstrapTimePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                TimepickerModule.forRoot(),
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGxBootstrapTimePickerComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        TimepickerModule.forRoot(),
+        DynamicFormsCoreModule,
+        DynamicNGxBootstrapTimePickerComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapTimePickerComponent);
 
             component = fixture.componentInstance;

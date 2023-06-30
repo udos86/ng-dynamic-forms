@@ -7,7 +7,9 @@ import { DynamicListDirective } from "./dynamic-list.directive";
     template: `
         <div [dynamicList]="testList1"></div>
         <div [dynamicList]="testList2"></div>
-    `
+    `,
+    standalone: true,
+    imports: [DynamicListDirective]
 })
 class TestComponent {
     testList1 = null;
@@ -20,7 +22,7 @@ describe("DynamicListDirective test suite", () => {
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            declarations: [DynamicListDirective, TestComponent]
+            imports: [TestComponent]
         }).createComponent(TestComponent);
 
         fixture.detectChanges();

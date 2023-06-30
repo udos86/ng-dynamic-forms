@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Slider } from "primeng/slider";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Slider, SliderModule } from "primeng/slider";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -10,10 +10,13 @@ import {
     DynamicSliderModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-slider",
-    templateUrl: "./dynamic-primeng-slider.component.html"
+    templateUrl: "./dynamic-primeng-slider.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, SliderModule]
 })
 export class DynamicPrimeNGSliderComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

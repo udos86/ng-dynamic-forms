@@ -18,14 +18,13 @@ describe("DynamicBasicCheckboxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicBasicCheckboxComponent]
-
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        DynamicFormsCoreModule,
+        DynamicBasicCheckboxComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicBasicCheckboxComponent);
 
             component = fixture.componentInstance;

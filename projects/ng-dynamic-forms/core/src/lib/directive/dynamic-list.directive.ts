@@ -2,7 +2,8 @@ import { Directive, ElementRef, Input, Renderer2, AfterViewInit } from "@angular
 import { isString } from "../utils/core.utils";
 
 @Directive({
-    selector: "[dynamicList]"
+    selector: "[dynamicList]",
+    standalone: true
 })
 export class DynamicListDirective implements AfterViewInit {
     @Input("dynamicList") listId?: string;

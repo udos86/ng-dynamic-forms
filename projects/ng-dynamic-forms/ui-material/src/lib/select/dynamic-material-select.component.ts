@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { ErrorStateMatcher, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from "@angular/material/form-field";
-import { MatSelect } from "@angular/material/select";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { ErrorStateMatcher, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions, MatOptionModule } from "@angular/material/core";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions, MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelect, MatSelectModule } from "@angular/material/select";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -12,10 +12,13 @@ import {
     DynamicFormValidationService,
     DynamicSelectModel
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgIf, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-material-select",
-    templateUrl: "./dynamic-material-select.component.html"
+    templateUrl: "./dynamic-material-select.component.html",
+    standalone: true,
+    imports: [MatFormFieldModule, NgClass, ReactiveFormsModule, NgIf, MatSelectModule, NgFor, MatOptionModule, AsyncPipe]
 })
 export class DynamicMaterialSelectComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

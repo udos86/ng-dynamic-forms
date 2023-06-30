@@ -19,14 +19,14 @@ describe("DynamicMaterialSliderComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatSliderModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialSliderComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MatSliderModule,
+        DynamicFormsCoreModule,
+        DynamicMaterialSliderComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialSliderComponent);
 
             component = fixture.componentInstance;

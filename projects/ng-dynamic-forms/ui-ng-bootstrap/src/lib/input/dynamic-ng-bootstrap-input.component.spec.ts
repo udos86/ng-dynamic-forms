@@ -19,14 +19,14 @@ describe("DynamicNGBootstrapInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgxMaskModule.forRoot(),
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapInputComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        NgxMaskModule.forRoot(),
+        DynamicFormsCoreModule,
+        DynamicNGBootstrapInputComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapInputComponent);
 
             component = fixture.componentInstance;

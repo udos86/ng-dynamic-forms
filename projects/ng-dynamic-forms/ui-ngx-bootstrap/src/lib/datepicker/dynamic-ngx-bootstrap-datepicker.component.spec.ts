@@ -19,14 +19,14 @@ describe("DynamicNGxBootstrapDatePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                BsDatepickerModule.forRoot(),
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGxBootstrapDatePickerComponent]
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        BsDatepickerModule.forRoot(),
+        DynamicFormsCoreModule,
+        DynamicNGxBootstrapDatePickerComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapDatePickerComponent);
 
             component = fixture.componentInstance;

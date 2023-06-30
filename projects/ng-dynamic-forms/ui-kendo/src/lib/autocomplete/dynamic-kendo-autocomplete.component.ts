@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { AutoCompleteComponent } from "@progress/kendo-angular-dropdowns";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { AutoCompleteComponent, AutoCompleteModule } from "@progress/kendo-angular-dropdowns";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
@@ -12,10 +12,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { KENDO_TEMPLATE_DIRECTIVES } from "../dynamic-kendo-form.const";
 import { DynamicKendoFormControlWithTemplateComponent } from "../dynamic-kendo-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-autocomplete",
-    templateUrl: "./dynamic-kendo-autocomplete.component.html"
+    templateUrl: "./dynamic-kendo-autocomplete.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, AutoCompleteModule, NgClass]
 })
 export class DynamicKendoAutoCompleteComponent extends DynamicKendoFormControlWithTemplateComponent {
     readonly templateDirectives = KENDO_TEMPLATE_DIRECTIVES;

@@ -3,7 +3,6 @@ import { DebugElement, SimpleChange } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
@@ -78,12 +77,6 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicMaterialInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
             imports: [
                 ReactiveFormsModule,
@@ -98,9 +91,9 @@ describe("DynamicMaterialFormControlContainerComponent test suite", () => {
                 MatSelectModule,
                 MatSliderModule,
                 MatSlideToggleModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialFormControlContainerComponent, DynamicMaterialInputComponent]
+                DynamicFormsCoreModule,
+                DynamicMaterialFormControlContainerComponent, DynamicMaterialInputComponent
+            ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialFormControlContainerComponent);
 

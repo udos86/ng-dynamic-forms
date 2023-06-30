@@ -19,11 +19,14 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicKendoFormControlContainerComponent } from "./dynamic-kendo-form-control-container.component";
+import { NgFor } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-form",
     templateUrl: "./dynamic-kendo-form.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, DynamicKendoFormControlContainerComponent]
 })
 export class DynamicKendoFormComponent extends DynamicFormComponent {
     @Input() group!: UntypedFormGroup;

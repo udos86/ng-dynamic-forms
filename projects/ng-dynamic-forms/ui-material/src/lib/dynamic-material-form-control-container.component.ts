@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -56,11 +56,15 @@ import { DynamicMaterialSliderComponent } from "./slider/dynamic-material-slider
 import { DynamicMaterialRadioGroupComponent } from "./radio-group/dynamic-material-radio-group.component";
 import { DynamicMaterialChipsComponent } from "./chips/dynamic-material-chips.component";
 import { DynamicMaterialSelectComponent } from "./select/dynamic-material-select.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { NgClass, NgFor, NgTemplateOutlet, NgIf } from "@angular/common";
 
 @Component({
     selector: "dynamic-material-form-control",
     templateUrl: "./dynamic-material-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgTemplateOutlet, NgFor, MatFormFieldModule]
 })
 export class DynamicMaterialFormControlContainerComponent extends DynamicFormControlContainerComponent {
     @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
@@ -150,7 +154,9 @@ export function materialUIFormControlMapFn(model: DynamicFormControlModel): Type
 
 @Component({
     selector: "dynamic-material-form-array",
-    templateUrl: "./dynamic-material-form-array.component.html"
+    templateUrl: "./dynamic-material-form-array.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, NgTemplateOutlet, DynamicMaterialFormControlContainerComponent]
 })
 export class DynamicMaterialFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
@@ -173,7 +179,9 @@ export class DynamicMaterialFormArrayComponent extends DynamicFormArrayComponent
 
 @Component({
     selector: "dynamic-material-form-group",
-    templateUrl: "./dynamic-material-form-group.component.html"
+    templateUrl: "./dynamic-material-form-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, DynamicMaterialFormControlContainerComponent]
 })
 export class DynamicMaterialFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;

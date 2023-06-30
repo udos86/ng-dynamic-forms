@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -8,10 +8,13 @@ import {
     DynamicTextAreaModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-kendo-textarea",
-    templateUrl: "./dynamic-kendo-textarea.component.html"
+    templateUrl: "./dynamic-kendo-textarea.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass]
 })
 export class DynamicKendoTextAreaComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

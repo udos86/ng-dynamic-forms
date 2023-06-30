@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_INPUT_TYPE_NUMBER,
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
@@ -68,11 +68,14 @@ import { DynamicPrimeNGDropdownComponent } from "./dropdown/dynamic-primeng-drop
 import { DynamicPrimeNGSliderComponent } from "./slider/dynamic-primeng-slider.component";
 import { DynamicPrimeNGInputSwitchComponent } from "./input-switch/dynamic-primeng-input-switch.component";
 import { DynamicPrimeNGTextAreaComponent } from "./textarea/dynamic-primeng-textarea.component";
+import { NgClass, NgFor, NgTemplateOutlet, NgIf } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-form-control",
     templateUrl: "./dynamic-primeng-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgTemplateOutlet, NgFor]
 })
 export class DynamicPrimeNGFormControlContainerComponent extends DynamicFormControlContainerComponent {
     @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
@@ -180,7 +183,9 @@ export function primeNGUIFormControlMapFn(model: DynamicFormControlModel): Type<
 
 @Component({
     selector: "dynamic-primeng-form-array",
-    templateUrl: "./dynamic-primeng-form-array.component.html"
+    templateUrl: "./dynamic-primeng-form-array.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, NgTemplateOutlet, DynamicPrimeNGFormControlContainerComponent]
 })
 export class DynamicPrimeNGFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
@@ -203,7 +208,9 @@ export class DynamicPrimeNGFormArrayComponent extends DynamicFormArrayComponent 
 
 @Component({
     selector: "dynamic-primeng-form-group",
-    templateUrl: "./dynamic-primeng-form-group.component.html"
+    templateUrl: "./dynamic-primeng-form-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, DynamicPrimeNGFormControlContainerComponent]
 })
 export class DynamicPrimeNGFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;

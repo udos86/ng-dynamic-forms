@@ -19,15 +19,14 @@ describe("DynamicKendoTimePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                TimePickerModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicKendoTimePickerComponent]
-
-        }).compileComponents().then(() => {
+    imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        TimePickerModule,
+        DynamicFormsCoreModule,
+        DynamicKendoTimePickerComponent
+    ]
+}).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicKendoTimePickerComponent);
 
             component = fixture.componentInstance;
