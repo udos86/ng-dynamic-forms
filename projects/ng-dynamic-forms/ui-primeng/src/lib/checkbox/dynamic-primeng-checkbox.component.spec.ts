@@ -19,14 +19,14 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        CheckboxModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGCheckboxComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                CheckboxModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGCheckboxComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGCheckboxComponent);
 
             component = fixture.componentInstance;

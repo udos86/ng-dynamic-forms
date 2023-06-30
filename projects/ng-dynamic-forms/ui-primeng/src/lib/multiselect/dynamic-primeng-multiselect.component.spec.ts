@@ -23,14 +23,14 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        MultiSelectModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGMultiSelectComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MultiSelectModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGMultiSelectComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGMultiSelectComponent);
 
             component = fixture.componentInstance;

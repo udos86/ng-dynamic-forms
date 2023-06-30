@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
 import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
-import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS, MatAutocomplete, MatAutocompleteDefaultOptions, MatAutocompleteModule } from "@angular/material/autocomplete";
+import {
+    MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+    MatAutocomplete,
+    MatAutocompleteDefaultOptions,
+    MatAutocompleteModule
+} from "@angular/material/autocomplete";
 import { ErrorStateMatcher, MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions, MatOptionModule } from "@angular/material/core";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput, MatInputModule } from "@angular/material/input";
@@ -18,7 +23,8 @@ import { NgClass, NgIf, NgFor, AsyncPipe } from "@angular/common";
     selector: "dynamic-material-input",
     templateUrl: "./dynamic-material-input.component.html",
     standalone: true,
-    imports: [MatFormFieldModule, ReactiveFormsModule, NgClass, NgIf, MatInputModule, MatAutocompleteModule, NgFor, MatOptionModule, AsyncPipe]
+    imports: [MatFormFieldModule, ReactiveFormsModule, NgClass, NgIf, MatInputModule, MatAutocompleteModule, NgFor, MatOptionModule,
+        AsyncPipe]
 })
 export class DynamicMaterialInputComponent extends DynamicMaterialFormInputControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -19,14 +19,14 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        ChipsModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGChipsComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                ChipsModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGChipsComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGChipsComponent);
 
             component = fixture.componentInstance;

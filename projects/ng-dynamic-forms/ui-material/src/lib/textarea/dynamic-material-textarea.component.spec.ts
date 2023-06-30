@@ -19,14 +19,14 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        MatInputModule,
-        DynamicFormsCoreModule,
-        DynamicMaterialTextAreaComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MatInputModule,
+                DynamicFormsCoreModule,
+                DynamicMaterialTextAreaComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialTextAreaComponent);
 
             component = fixture.componentInstance;

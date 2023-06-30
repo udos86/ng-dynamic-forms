@@ -19,14 +19,14 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        InputTextModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGInputComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                InputTextModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGInputComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGInputComponent);
 
             component = fixture.componentInstance;

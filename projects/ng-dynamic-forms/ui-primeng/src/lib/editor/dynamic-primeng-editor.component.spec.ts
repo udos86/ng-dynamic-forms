@@ -19,14 +19,14 @@ xdescribe("DynamicPrimeNGEditorComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        EditorModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGEditorComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                EditorModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGEditorComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGEditorComponent);
 
             component = fixture.componentInstance;

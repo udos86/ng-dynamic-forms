@@ -19,14 +19,14 @@ describe("DynamicPrimeNGAutoCompleteComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        AutoCompleteModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGAutoCompleteComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                AutoCompleteModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGAutoCompleteComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGAutoCompleteComponent);
 
             component = fixture.componentInstance;

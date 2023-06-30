@@ -20,15 +20,15 @@ describe("DynamicMaterialInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        DynamicFormsCoreModule,
-        DynamicMaterialInputComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MatAutocompleteModule,
+                MatInputModule,
+                DynamicFormsCoreModule,
+                DynamicMaterialInputComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialInputComponent);
 
             component = fixture.componentInstance;

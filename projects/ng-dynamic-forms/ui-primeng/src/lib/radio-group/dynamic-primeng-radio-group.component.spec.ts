@@ -23,14 +23,14 @@ describe("DynamicPrimeNGRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        RadioButtonModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGRadioGroupComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                RadioButtonModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGRadioGroupComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGRadioGroupComponent);
 
             component = fixture.componentInstance;

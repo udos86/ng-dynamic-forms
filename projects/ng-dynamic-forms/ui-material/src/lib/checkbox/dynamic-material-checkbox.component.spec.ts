@@ -19,14 +19,14 @@ describe("DynamicMaterialCheckboxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        MatCheckboxModule,
-        DynamicFormsCoreModule,
-        DynamicMaterialCheckboxComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MatCheckboxModule,
+                DynamicFormsCoreModule,
+                DynamicMaterialCheckboxComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialCheckboxComponent);
 
             component = fixture.componentInstance;

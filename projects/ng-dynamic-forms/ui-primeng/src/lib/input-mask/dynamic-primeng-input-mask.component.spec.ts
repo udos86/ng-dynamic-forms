@@ -19,14 +19,14 @@ describe("DynamicPrimeNGInputMaskComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        InputMaskModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGInputMaskComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                InputMaskModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGInputMaskComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGInputMaskComponent);
 
             component = fixture.componentInstance;

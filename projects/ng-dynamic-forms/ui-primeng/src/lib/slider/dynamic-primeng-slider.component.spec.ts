@@ -19,14 +19,14 @@ describe("DynamicPrimeNGSliderComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        SliderModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGSliderComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                SliderModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGSliderComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGSliderComponent);
 
             component = fixture.componentInstance;

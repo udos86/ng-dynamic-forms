@@ -19,14 +19,14 @@ describe("DynamicPrimeNGInputSwitchComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        InputSwitchModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGInputSwitchComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                InputSwitchModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGInputSwitchComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGInputSwitchComponent);
 
             component = fixture.componentInstance;

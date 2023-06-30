@@ -18,14 +18,14 @@ describe("DynamicMaterialSlideToggleComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        MatSlideToggleModule,
-        DynamicFormsCoreModule,
-        DynamicMaterialSlideToggleComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MatSlideToggleModule,
+                DynamicFormsCoreModule,
+                DynamicMaterialSlideToggleComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialSlideToggleComponent);
 
             component = fixture.componentInstance;

@@ -19,14 +19,14 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        ColorPickerModule,
-        DynamicFormsCoreModule,
-        DynamicPrimeNGColorPickerComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                ColorPickerModule,
+                DynamicFormsCoreModule,
+                DynamicPrimeNGColorPickerComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGColorPickerComponent);
 
             component = fixture.componentInstance;

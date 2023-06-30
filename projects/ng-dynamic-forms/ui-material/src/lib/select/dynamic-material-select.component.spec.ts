@@ -19,14 +19,14 @@ describe("DynamicMaterialSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        MatSelectModule,
-        DynamicFormsCoreModule,
-        DynamicMaterialSelectComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [
+                ReactiveFormsModule,
+                NoopAnimationsModule,
+                MatSelectModule,
+                DynamicFormsCoreModule,
+                DynamicMaterialSelectComponent
+            ]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialSelectComponent);
 
             component = fixture.componentInstance;
