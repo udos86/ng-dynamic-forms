@@ -69,7 +69,8 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
                 ReactiveFormsModule,
                 NgxMaskModule.forRoot(),
                 DynamicFormsCoreModule,
-                DynamicBasicFormControlContainerComponent, DynamicBasicInputComponent
+                DynamicBasicFormControlContainerComponent,
+                DynamicBasicInputComponent
             ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicBasicFormControlContainerComponent);

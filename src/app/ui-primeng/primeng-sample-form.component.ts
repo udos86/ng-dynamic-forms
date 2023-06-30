@@ -16,9 +16,7 @@ import { DynamicPrimeNGFormComponent } from "@ng-dynamic-forms/ui-primeng";
     selector: "dynamic-primeng-sample-form",
     styleUrls: [
         "../../../node_modules/primeng/resources/themes/nova/theme.css",
-        "../../../node_modules/primeng/resources/primeng.min.css",
-        "../../../node_modules/quill/dist/quill.core.css",
-        "../../../node_modules/quill/dist/quill.snow.css"
+        "../../../node_modules/primeng/resources/primeng.min.css"
     ],
     templateUrl: "./primeng-sample-form.component.html",
     encapsulation: ViewEncapsulation.None,

@@ -1,3 +1,16 @@
+# 18.0.0
+
+### **Features**
+
+* Migration to Angular 16
+
+### **Breaking Changes**
+
+* NG Dynamic Forms now exposes standalone components only 
+* Kendo UI package is no longer be supported
+
+***
+
 # 17.0.0
 
 ### **Features**
