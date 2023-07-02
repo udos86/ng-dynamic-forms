@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { FormGroup, ReactiveFormsModule, UntypedFormArray } from "@angular/forms";
+import { ReactiveFormsModule, UntypedFormArray } from "@angular/forms";
 import {
     DynamicFormArrayModel,
     DynamicFormControlEvent,

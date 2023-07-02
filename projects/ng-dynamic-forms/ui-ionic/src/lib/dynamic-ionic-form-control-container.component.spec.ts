@@ -18,8 +18,7 @@ import {
     DynamicSwitchModel,
     DynamicTextAreaModel,
     DynamicTimePickerModel,
-    DynamicFormService,
-    DynamicFormsCoreModule
+    DynamicFormService
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
 import { DynamicIonicInputComponent } from "./input/dynamic-ionic-input.component";
