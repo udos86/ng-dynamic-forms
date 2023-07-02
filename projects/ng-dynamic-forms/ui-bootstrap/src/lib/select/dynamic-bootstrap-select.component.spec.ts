@@ -1,9 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicBootstrapSelectComponent } from "./dynamic-bootstrap-select.component";
 
 describe("DynamicBootstrapSelectComponent test suite", () => {
@@ -18,13 +17,8 @@ describe("DynamicBootstrapSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        DynamicFormsCoreModule,
-        DynamicBootstrapSelectComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [DynamicBootstrapSelectComponent]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicBootstrapSelectComponent);
 
             component = fixture.componentInstance;

@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { MatSlider, MatSliderModule } from "@angular/material/slider";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
+import { MatSlider } from "@angular/material/slider";
+import { DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSliderComponent } from "./dynamic-material-slider.component";
 
 describe("DynamicMaterialSliderComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicMaterialSliderComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatSliderModule,
-                DynamicFormsCoreModule,
-                DynamicMaterialSliderComponent
-            ]
+            imports: [DynamicMaterialSliderComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialSliderComponent);
 

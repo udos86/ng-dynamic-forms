@@ -1,11 +1,10 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { DynamicCheckboxModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicCheckboxComponent } from "./dynamic-ionic-checkbox.component";
-import { IonCheckbox, IonicModule } from "@ionic/angular";
+import { IonCheckbox } from "@ionic/angular";
 
 describe("DynamicIonicCheckboxComponent test suite", () => {
     const testModel = new DynamicCheckboxModel({id: "checkbox"});
@@ -19,14 +18,8 @@ describe("DynamicIonicCheckboxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        IonicModule,
-        DynamicFormsCoreModule,
-        DynamicIonicCheckboxComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [DynamicIonicCheckboxComponent]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicCheckboxComponent);
 
             component = fixture.componentInstance;

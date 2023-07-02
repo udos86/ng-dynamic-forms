@@ -1,10 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { InputTextareaModule } from "primeng/inputtextarea";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGTextAreaComponent } from "./dynamic-primeng-textarea.component";
 
 describe("DynamicPrimeNGTextAreaComponent test suite", () => {
@@ -19,13 +17,7 @@ describe("DynamicPrimeNGTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                InputTextareaModule,
-                DynamicFormsCoreModule,
-                DynamicPrimeNGTextAreaComponent
-            ]
+            imports: [DynamicPrimeNGTextAreaComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGTextAreaComponent);
 

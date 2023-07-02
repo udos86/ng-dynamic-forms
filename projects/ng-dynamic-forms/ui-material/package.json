@@ -29,7 +29,7 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/material": "^15.0.0",
+    "@angular/material": "^16.0.0",
     "@ng-dynamic-forms/core": "^17.0.0"
   },
   "es2015": "./fesm2015/ui-material.js",

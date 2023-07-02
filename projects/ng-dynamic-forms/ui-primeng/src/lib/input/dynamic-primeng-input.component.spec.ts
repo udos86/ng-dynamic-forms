@@ -1,10 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { InputTextModule } from "primeng/inputtext";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGInputComponent } from "./dynamic-primeng-input.component";
 
 describe("DynamicPrimeNGInputComponent test suite", () => {
@@ -19,13 +17,7 @@ describe("DynamicPrimeNGInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                InputTextModule,
-                DynamicFormsCoreModule,
-                DynamicPrimeNGInputComponent
-            ]
+            imports: [DynamicPrimeNGInputComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGInputComponent);
 

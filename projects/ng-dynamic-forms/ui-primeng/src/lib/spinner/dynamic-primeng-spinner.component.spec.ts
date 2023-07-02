@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { Spinner, SpinnerModule } from "primeng/spinner";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
+import { Spinner } from "primeng/spinner";
+import { DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGSpinnerComponent } from "./dynamic-primeng-spinner.component";
 
 describe("DynamicPrimeNGSpinnerComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicPrimeNGSpinnerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                SpinnerModule,
-                DynamicFormsCoreModule,
-                DynamicPrimeNGSpinnerComponent
-            ]
+            imports: [DynamicPrimeNGSpinnerComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGSpinnerComponent);
 

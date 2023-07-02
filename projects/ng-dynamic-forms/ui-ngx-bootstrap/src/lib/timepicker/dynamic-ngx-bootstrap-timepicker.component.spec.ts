@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { TimepickerComponent, TimepickerModule } from "ngx-bootstrap/timepicker";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicTimePickerModel } from "@ng-dynamic-forms/core";
+import { TimepickerComponent } from "ngx-bootstrap/timepicker";
+import { DynamicFormService, DynamicTimePickerModel } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapTimePickerComponent } from "./dynamic-ngx-bootstrap-timepicker.component";
 
 describe("DynamicNGxBootstrapTimePickerComponent test suite", () => {
@@ -19,14 +18,8 @@ describe("DynamicNGxBootstrapTimePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        TimepickerModule.forRoot(),
-        DynamicFormsCoreModule,
-        DynamicNGxBootstrapTimePickerComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [DynamicNGxBootstrapTimePickerComponent]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapTimePickerComponent);
 
             component = fixture.componentInstance;

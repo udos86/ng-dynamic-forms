@@ -33,7 +33,7 @@
     "@ng-dynamic-forms/core": "^17.0.0",
     "bootstrap": "^3.3.7",
     "ngx-bootstrap": "^6.0.0",
-    "ngx-mask": "^13.0.0"
+    "ngx-mask": "^16.0.0"
   },
   "es2015": "./fesm2015/ui-bootstrap.js",
   "esm2015": "./esm2015/ui-bootstrap.js",

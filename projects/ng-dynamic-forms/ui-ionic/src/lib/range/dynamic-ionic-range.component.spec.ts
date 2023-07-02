@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { IonicModule, IonRange } from "@ionic/angular";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
+import { IonRange } from "@ionic/angular";
+import { DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRangeComponent } from "./dynamic-ionic-range.component";
 
 describe("DynamicIonicRangeComponent test suite", () => {
@@ -19,14 +18,8 @@ describe("DynamicIonicRangeComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        IonicModule,
-        DynamicFormsCoreModule,
-        DynamicIonicRangeComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [DynamicIonicRangeComponent]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicRangeComponent);
 
             component = fixture.componentInstance;

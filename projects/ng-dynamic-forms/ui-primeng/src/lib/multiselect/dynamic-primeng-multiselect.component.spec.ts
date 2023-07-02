@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { MultiSelect, MultiSelectModule } from "primeng/multiselect";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
+import { MultiSelect } from "primeng/multiselect";
+import { DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGMultiSelectComponent } from "./dynamic-primeng-multiselect.component";
 
 describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
@@ -23,13 +22,7 @@ describe("DynamicPrimeNGMultiSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MultiSelectModule,
-                DynamicFormsCoreModule,
-                DynamicPrimeNGMultiSelectComponent
-            ]
+            imports: [DynamicPrimeNGMultiSelectComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGMultiSelectComponent);
 

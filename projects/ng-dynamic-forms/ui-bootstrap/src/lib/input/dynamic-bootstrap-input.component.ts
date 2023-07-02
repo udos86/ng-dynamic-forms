@@ -1,6 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
-import { DynamicFormControlComponent, DynamicFormControlLayout, DynamicFormLayout, DynamicFormLayoutService, DynamicFormValidationService, DynamicInputModel, DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import {
+    DynamicFormControlComponent,
+    DynamicFormControlLayout,
+    DynamicFormLayout,
+    DynamicFormLayoutService,
+    DynamicFormValidationService,
+    DynamicInputModel,
+    DynamicFormsCoreModule
+} from "@ng-dynamic-forms/core";
 import { NgxMaskDirective } from "ngx-mask";
 import { NgIf, NgClass, NgFor, AsyncPipe } from "@angular/common";
 

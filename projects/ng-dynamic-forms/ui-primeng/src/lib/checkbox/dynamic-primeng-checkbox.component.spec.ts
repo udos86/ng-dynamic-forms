@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { Checkbox, CheckboxModule } from "primeng/checkbox";
-import { DynamicCheckboxModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { Checkbox } from "primeng/checkbox";
+import { DynamicCheckboxModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGCheckboxComponent } from "./dynamic-primeng-checkbox.component";
 
 describe("DynamicPrimeNGCheckboxComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicPrimeNGCheckboxComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                CheckboxModule,
-                DynamicFormsCoreModule,
-                DynamicPrimeNGCheckboxComponent
-            ]
+            imports: [DynamicPrimeNGCheckboxComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGCheckboxComponent);
 

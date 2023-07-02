@@ -1,16 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { provideNgxMask } from "ngx-mask";
 import {
-    NgbDatepickerModule,
-    NgbButtonsModule,
-    NgbTimepickerModule,
-    NgbRatingModule
-} from "@ng-bootstrap/ng-bootstrap";
-import { NgxMaskModule } from "ngx-mask";
-import {
-    DynamicFormsCoreModule,
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -76,16 +69,8 @@ describe("DynamicNGBootstrapFormControlContainerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NgbButtonsModule,
-                NgbDatepickerModule,
-                NgbRatingModule,
-                NgbTimepickerModule,
-                NgxMaskModule.forRoot(),
-                DynamicFormsCoreModule,
-                DynamicNGBootstrapFormControlContainerComponent, DynamicNGBootstrapInputComponent
-            ]
+            imports: [DynamicNGBootstrapFormControlContainerComponent, DynamicNGBootstrapInputComponent],
+            providers: [provideNgxMask()]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapFormControlContainerComponent);
 

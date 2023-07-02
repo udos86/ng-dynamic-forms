@@ -1,10 +1,10 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatSelect, MatSelectModule } from "@angular/material/select";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
+import { MatSelect } from "@angular/material/select";
+import { DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialSelectComponent } from "./dynamic-material-select.component";
 
 describe("DynamicMaterialSelectComponent test suite", () => {
@@ -19,13 +19,7 @@ describe("DynamicMaterialSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatSelectModule,
-                DynamicFormsCoreModule,
-                DynamicMaterialSelectComponent
-            ]
+            imports: [NoopAnimationsModule, DynamicMaterialSelectComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialSelectComponent);
 

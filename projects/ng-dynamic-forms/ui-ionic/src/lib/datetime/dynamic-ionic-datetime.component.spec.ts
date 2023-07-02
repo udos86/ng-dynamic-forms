@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { IonDatetime, IonicModule } from "@ionic/angular";
-import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { IonDatetime } from "@ionic/angular";
+import { DynamicDatePickerModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicIonicDateTimeComponent } from "./dynamic-ionic-datetime.component";
 
 describe("DynamicIonicDateTimeComponent test suite", () => {
@@ -19,14 +18,8 @@ describe("DynamicIonicDateTimeComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        IonicModule,
-        DynamicFormsCoreModule,
-        DynamicIonicDateTimeComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [DynamicIonicDateTimeComponent]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicDateTimeComponent);
 
             component = fixture.componentInstance;

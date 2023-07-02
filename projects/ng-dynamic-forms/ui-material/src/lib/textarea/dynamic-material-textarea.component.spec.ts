@@ -1,10 +1,10 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatInput, MatInputModule } from "@angular/material/input";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
+import { MatInput } from "@angular/material/input";
+import { DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialTextAreaComponent } from "./dynamic-material-textarea.component";
 
 describe("DynamicMaterialTextAreaComponent test suite", () => {
@@ -19,13 +19,7 @@ describe("DynamicMaterialTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatInputModule,
-                DynamicFormsCoreModule,
-                DynamicMaterialTextAreaComponent
-            ]
+            imports: [NoopAnimationsModule, DynamicMaterialTextAreaComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialTextAreaComponent);
 

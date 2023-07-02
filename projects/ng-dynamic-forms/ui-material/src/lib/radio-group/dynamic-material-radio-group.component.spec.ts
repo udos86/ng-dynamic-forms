@@ -1,10 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { MatRadioModule } from "@angular/material/radio";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialRadioGroupComponent } from "./dynamic-material-radio-group.component";
 
 describe("DynamicMaterialRadioGroupComponent test suite", () => {
@@ -19,13 +17,7 @@ describe("DynamicMaterialRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatRadioModule,
-                DynamicFormsCoreModule,
-                DynamicMaterialRadioGroupComponent
-            ]
+            imports: [DynamicMaterialRadioGroupComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialRadioGroupComponent);
 

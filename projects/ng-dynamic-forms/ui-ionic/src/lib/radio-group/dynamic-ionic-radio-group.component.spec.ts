@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { IonicModule, IonRadioGroup } from "@ionic/angular";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
+import { IonRadioGroup } from "@ionic/angular";
+import { DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicRadioGroupComponent } from "./dynamic-ionic-radio-group.component";
 
 describe("DynamicIonicRadioGroupComponent test suite", () => {
@@ -19,14 +18,8 @@ describe("DynamicIonicRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-    imports: [
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        IonicModule,
-        DynamicFormsCoreModule,
-        DynamicIonicRadioGroupComponent
-    ]
-}).compileComponents().then(() => {
+            imports: [DynamicIonicRadioGroupComponent]
+        }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicRadioGroupComponent);
 
             component = fixture.componentInstance;
