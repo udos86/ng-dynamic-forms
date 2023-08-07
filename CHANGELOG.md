@@ -3,11 +3,11 @@
 ### **Features**
 
 * Migration to Angular 16
+* NG Dynamic Forms now exposes standalone components
 
 ### **Breaking Changes**
 
-* NG Dynamic Forms now exposes standalone components only 
-* Kendo UI package is no longer be supported
+* Kendo UI package is no longer supported
 
 ***
 
