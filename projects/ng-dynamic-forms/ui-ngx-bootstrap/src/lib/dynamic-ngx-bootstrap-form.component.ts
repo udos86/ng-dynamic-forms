@@ -19,11 +19,14 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapFormControlContainerComponent } from "./dynamic-ngx-bootstrap-form-control-container.component";
+import { NgFor } from "@angular/common";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-form",
     templateUrl: "./dynamic-ngx-bootstrap-form.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, DynamicNGxBootstrapFormControlContainerComponent]
 })
 export class DynamicNGxBootstrapFormComponent extends DynamicFormComponent {
     @Input() group!: UntypedFormGroup;

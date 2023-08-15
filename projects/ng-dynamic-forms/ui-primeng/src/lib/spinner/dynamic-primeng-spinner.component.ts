@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Spinner } from "primeng/spinner";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Spinner, SpinnerModule } from "primeng/spinner";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicInputModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-spinner",
-    templateUrl: "./dynamic-primeng-spinner.component.html"
+    templateUrl: "./dynamic-primeng-spinner.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, SpinnerModule]
 })
 export class DynamicPrimeNGSpinnerComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

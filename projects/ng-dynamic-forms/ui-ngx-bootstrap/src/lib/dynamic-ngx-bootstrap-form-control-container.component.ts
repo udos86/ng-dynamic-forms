@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -54,11 +54,14 @@ import { DynamicNGxBootstrapRatingComponent } from "./rating/dynamic-ngx-bootstr
 import { DynamicNGxBootstrapSelectComponent } from "./select/dynamic-ngx-bootstrap-select.component";
 import { DynamicNGxBootstrapTextAreaComponent } from "./textarea/dynamic-ngx-bootstrap-textarea.component";
 import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx-bootstrap-timepicker.component";
+import { NgClass, NgFor, NgTemplateOutlet, NgIf } from "@angular/common";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-form-control",
     templateUrl: "./dynamic-ngx-bootstrap-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgTemplateOutlet, NgFor]
 })
 export class DynamicNGxBootstrapFormControlContainerComponent extends DynamicFormControlContainerComponent {
     @ContentChildren(DynamicTemplateDirective) contentTemplateList?: QueryList<DynamicTemplateDirective>;
@@ -138,7 +141,9 @@ export function bootstrapUIFormControlMapFn(model: DynamicFormControlModel): Typ
 
 @Component({
     selector: "dynamic-ngx-bootstrap-form-array",
-    templateUrl: "./dynamic-ngx-bootstrap-form-array.component.html"
+    templateUrl: "./dynamic-ngx-bootstrap-form-array.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, NgTemplateOutlet, DynamicNGxBootstrapFormControlContainerComponent]
 })
 export class DynamicNGxBootstrapFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
@@ -162,7 +167,9 @@ export class DynamicNGxBootstrapFormArrayComponent extends DynamicFormArrayCompo
 
 @Component({
     selector: "dynamic-ngx-bootstrap-form-group",
-    templateUrl: "./dynamic-ngx-bootstrap-form-group.component.html"
+    templateUrl: "./dynamic-ngx-bootstrap-form-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, DynamicNGxBootstrapFormControlContainerComponent]
 })
 export class DynamicNGxBootstrapFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;

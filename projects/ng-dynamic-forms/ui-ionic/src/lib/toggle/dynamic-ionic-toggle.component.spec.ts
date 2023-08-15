@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { IonicModule, IonToggle } from "@ionic/angular";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
+import { IonToggle } from "@ionic/angular";
+import { DynamicFormService, DynamicSwitchModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicToggleComponent } from "./dynamic-ionic-toggle.component";
 
 describe("DynamicIonicToggleComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicIonicToggleComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                IonicModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicIonicToggleComponent]
+            imports: [DynamicIonicToggleComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicToggleComponent);
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Dropdown } from "primeng/dropdown";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Dropdown, DropdownModule } from "primeng/dropdown";
 import {
     DynamicFormControlLayout,
     DynamicFormLayout,
@@ -11,10 +11,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
 import { DynamicPrimeNGFormControlWithTemplateComponent } from "../dynamic-primeng-form-control-with-template.component";
+import { NgClass, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-dropdown",
-    templateUrl: "./dynamic-primeng-dropdown.component.html"
+    templateUrl: "./dynamic-primeng-dropdown.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, DropdownModule, AsyncPipe]
 })
 export class DynamicPrimeNGDropdownComponent extends DynamicPrimeNGFormControlWithTemplateComponent {
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;

@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
 // import { Response, ResponseOptions } from "@angular/http";
 // import { MockBackend } from "@angular/http/testing";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, RouterOutlet, RouterLink } from "@angular/router";
+import { NgStyle } from "@angular/common";
 
 @Component({
     selector: "app-root",
-    templateUrl: "./app.component.html"
+    templateUrl: "./app.component.html",
+    standalone: true,
+    imports: [RouterOutlet, RouterLink, NgStyle]
 })
 export class AppComponent {
     routeData: any = {};

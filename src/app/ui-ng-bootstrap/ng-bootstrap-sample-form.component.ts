@@ -9,12 +9,16 @@ import {
 import { NG_BOOTSTRAP_SAMPLE_FORM_MODEL } from "./ng-bootstrap-sample-form.model";
 import { NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT } from "./ng-bootstrap-sample-form.layout";
 import { DynamicNGBootstrapFormComponent } from "@ng-dynamic-forms/ui-ng-bootstrap";
+import { JsonPipe } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @Component({
     selector: "dynamic-ng-bootstrap-sample-form",
     styleUrls: [],
     templateUrl: "./ng-bootstrap-sample-form.component.html",
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [JsonPipe, ReactiveFormsModule, DynamicNGBootstrapFormComponent]
 })
 export class NGBootstrapSampleFormComponent {
     formModel: DynamicFormControlModel[] = NG_BOOTSTRAP_SAMPLE_FORM_MODEL;

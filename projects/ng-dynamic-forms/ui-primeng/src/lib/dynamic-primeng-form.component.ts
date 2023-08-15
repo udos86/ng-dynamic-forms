@@ -19,11 +19,14 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGFormControlContainerComponent } from "./dynamic-primeng-form-control-container.component";
+import { NgFor } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-form",
     templateUrl: "./dynamic-primeng-form.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, DynamicPrimeNGFormControlContainerComponent]
 })
 export class DynamicPrimeNGFormComponent extends DynamicFormComponent {
     @Input() group!: UntypedFormGroup;

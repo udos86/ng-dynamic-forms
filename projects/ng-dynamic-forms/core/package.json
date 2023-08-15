@@ -1,6 +1,6 @@
 {
   "name": "@ng-dynamic-forms/core",
-  "version": "17.0.0",
+  "version": "18.0.0",
   "description": "A rapid form development library for Angular",
   "keywords": [
     "angular",
@@ -28,11 +28,11 @@
     "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
   },
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0",
-    "@angular/forms": "^15.0.0",
-    "core-js": "^3.8.1",
-    "rxjs": "^7.5.5"
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@angular/forms": "^16.0.0",
+    "core-js": "^3.31.0",
+    "rxjs": "^7.5.7"
   },
   "es2015": "./fesm2015/core.js",
   "esm2015": "./esm2015/core.js",

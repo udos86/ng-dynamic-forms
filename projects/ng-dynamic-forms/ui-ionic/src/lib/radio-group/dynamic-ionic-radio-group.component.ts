@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { IonRadioGroup } from "@ionic/angular";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { IonRadioGroup, IonicModule } from "@ionic/angular";
 import {
     DynamicFormControlLayout,
     DynamicFormLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgIf, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-radio-group",
-    templateUrl: "./dynamic-ionic-radio-group.component.html"
+    templateUrl: "./dynamic-ionic-radio-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, IonicModule, NgClass, NgIf, NgFor, AsyncPipe]
 })
 export class DynamicIonicRadioGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

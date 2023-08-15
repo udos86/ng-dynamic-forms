@@ -1,13 +1,11 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
-import { NgxMaskModule } from "ngx-mask";
+import { provideNgxMask } from "ngx-mask";
 import {
-    DynamicFormsCoreModule,
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -70,21 +68,14 @@ describe("DynamicFormBootstrapComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicBootstrapInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
             imports: [
-                ReactiveFormsModule,
-                DynamicFormsCoreModule,
-                NgxMaskModule.forRoot(),
                 BsDatepickerModule.forRoot(),
-                TimepickerModule.forRoot()
+                TimepickerModule.forRoot(),
+                DynamicBootstrapFormControlContainerComponent,
+                DynamicBootstrapInputComponent
             ],
-            declarations: [DynamicBootstrapFormControlContainerComponent, DynamicBootstrapInputComponent]
+            providers: [provideNgxMask()]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicBootstrapFormControlContainerComponent);
 

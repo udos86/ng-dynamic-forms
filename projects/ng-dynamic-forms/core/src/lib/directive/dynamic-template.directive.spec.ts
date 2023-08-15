@@ -6,7 +6,8 @@ import { DynamicTemplateDirective, DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT } from "
     template: `
         <ng-template modelId="test1"></ng-template>
         <ng-template modelId="test2" as="test"></ng-template>
-    `
+    `,
+    standalone: true
 })
 class TestComponent {
 }
@@ -19,8 +20,8 @@ describe("DynamicTemplateDirective test suite", () => {
         directive = new DynamicTemplateDirective({} as TemplateRef<any>);
 
         fixture = TestBed.configureTestingModule({
-            declarations: [DynamicTemplateDirective, TestComponent]
-        }).createComponent(TestComponent);
+    imports: [DynamicTemplateDirective, TestComponent]
+}).createComponent(TestComponent);
 
         fixture.detectChanges();
     });

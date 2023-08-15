@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { Chips, ChipsModule } from "primeng/chips";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
+import { Chips } from "primeng/chips";
+import { DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGChipsComponent } from "./dynamic-primeng-chips.component";
 
 describe("DynamicPrimeNGChipsComponent test suite", () => {
@@ -19,14 +18,7 @@ describe("DynamicPrimeNGChipsComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                ChipsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGChipsComponent]
-
+            imports: [DynamicPrimeNGChipsComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGChipsComponent);
 

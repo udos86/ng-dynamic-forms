@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -8,10 +8,13 @@ import {
     DynamicFormValidationService,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-textarea",
-    templateUrl: "./dynamic-ngx-bootstrap-textarea.component.html"
+    templateUrl: "./dynamic-ngx-bootstrap-textarea.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass]
 })
 export class DynamicNGxBootstrapTextAreaComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

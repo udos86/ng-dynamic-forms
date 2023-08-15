@@ -1,18 +1,23 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
     DynamicFormLayout,
     DynamicFormLayoutService,
     DynamicFormValidationService,
-    DynamicInputModel
+    DynamicInputModel,
+    DynamicFormsCoreModule
 } from "@ng-dynamic-forms/core";
+import { NgxMaskDirective } from "ngx-mask";
+import { NgIf, NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-ng-bootstrap-input",
     templateUrl: "./dynamic-ng-bootstrap-input.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf, DynamicFormsCoreModule, NgClass, NgxMaskDirective, NgFor, AsyncPipe]
 })
 export class DynamicNGBootstrapInputComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

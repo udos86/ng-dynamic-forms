@@ -19,11 +19,14 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicBasicFormControlContainerComponent } from "./dynamic-basic-form-control-container.component";
+import { NgFor } from "@angular/common";
 
 @Component({
     selector: "dynamic-basic-form",
     templateUrl: "./dynamic-basic-form.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, DynamicBasicFormControlContainerComponent]
 })
 export class DynamicBasicFormComponent extends DynamicFormComponent {
     @Input() group!: UntypedFormGroup;

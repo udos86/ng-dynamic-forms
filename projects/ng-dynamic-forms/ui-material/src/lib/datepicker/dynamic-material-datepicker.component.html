@@ -22,7 +22,7 @@
            [min]="model.min"
            [name]="model.name"
            [ngClass]="getClass('element', 'control')"
-           [placeholder]="model.placeholder"
+           [placeholder]="model.placeholder || ''"
            [readonly]="model.readOnly"
            [required]="model.required"
            (blur)="onBlur($event)"

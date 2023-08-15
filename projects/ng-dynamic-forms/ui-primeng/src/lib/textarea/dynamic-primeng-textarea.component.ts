@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { InputTextarea } from "primeng/inputtextarea";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { InputTextarea, InputTextareaModule } from "primeng/inputtextarea";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormLayout,
@@ -10,10 +10,13 @@ import {
     DynamicTextAreaModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-textarea",
-    templateUrl: "./dynamic-primeng-textarea.component.html"
+    templateUrl: "./dynamic-primeng-textarea.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, InputTextareaModule]
 })
 export class DynamicPrimeNGTextAreaComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

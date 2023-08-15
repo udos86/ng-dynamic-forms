@@ -1,13 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
-import { TimepickerModule } from "ngx-bootstrap/timepicker";
-import { NgxMaskModule } from "ngx-mask";
+import { provideNgxMask } from "ngx-mask";
 import {
-    DynamicFormsCoreModule,
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -42,7 +38,6 @@ import { DynamicNGxBootstrapRatingComponent } from "./rating/dynamic-ngx-bootstr
 import { DynamicNGxBootstrapSelectComponent } from "./select/dynamic-ngx-bootstrap-select.component";
 import { DynamicNGxBootstrapTextAreaComponent } from "./textarea/dynamic-ngx-bootstrap-textarea.component";
 import { DynamicNGxBootstrapTimePickerComponent } from "./timepicker/dynamic-ngx-bootstrap-timepicker.component";
-import { ButtonsModule } from "ngx-bootstrap/buttons";
 
 describe("DynamicNGxFormBootstrapComponent test suite", () => {
     const inputModel = new DynamicInputModel({id: "input", maxLength: 51});
@@ -72,22 +67,9 @@ describe("DynamicNGxFormBootstrapComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicNGxBootstrapInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                DynamicFormsCoreModule,
-                NgxMaskModule.forRoot(),
-                ButtonsModule,
-                BsDatepickerModule.forRoot(),
-                TimepickerModule.forRoot()
-            ],
-            declarations: [DynamicNGxBootstrapFormControlContainerComponent, DynamicNGxBootstrapInputComponent]
+            imports: [DynamicNGxBootstrapFormControlContainerComponent, DynamicNGxBootstrapInputComponent],
+            providers: [provideNgxMask()]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapFormControlContainerComponent);
 

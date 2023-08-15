@@ -1,10 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
-import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { DynamicDatePickerModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapDatePickerComponent } from "./dynamic-ng-bootstrap-datepicker.component";
 
 describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
@@ -19,13 +17,7 @@ describe("DynamicNGBootstrapDatePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgbDatepickerModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapDatePickerComponent]
+            imports: [DynamicNGBootstrapDatePickerComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapDatePickerComponent);
 

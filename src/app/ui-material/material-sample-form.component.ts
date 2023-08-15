@@ -1,9 +1,15 @@
 import { Component, ViewEncapsulation } from "@angular/core";
+import { JsonPipe } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatCardModule } from "@angular/material/card";
+import { MatNativeDateModule } from "@angular/material/core";
+import { DynamicMaterialFormComponent } from "@ng-dynamic-forms/ui-material";
 import {
     DynamicFormService,
     DynamicFormControlModel,
     DynamicFormLayout,
-    DynamicFormControlEvent
+    DynamicFormControlEvent,
+    DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { MATERIAL_SAMPLE_FORM_MODEL } from "./material-sample-form.model";
 import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
@@ -12,7 +18,9 @@ import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";
     selector: "dynamic-material-sample-form",
     styleUrls: ["../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css"],
     templateUrl: "./material-sample-form.component.html",
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [JsonPipe, MatNativeDateModule, MatCardModule, ReactiveFormsModule, DynamicMaterialFormComponent, DynamicTemplateDirective]
 })
 export class MaterialSampleFormComponent {
     formModel: DynamicFormControlModel[] = MATERIAL_SAMPLE_FORM_MODEL;

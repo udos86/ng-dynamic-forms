@@ -6,7 +6,8 @@ export enum DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT {
 }
 
 @Directive({
-    selector: "ng-template[modelId],ng-template[modelType]"
+    selector: "ng-template[modelId],ng-template[modelType]",
+    standalone: true
 })
 export class DynamicTemplateDirective {
     @Input() align: string = DYNAMIC_TEMPLATE_DIRECTIVE_ALIGNMENT.End;

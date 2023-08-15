@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -8,11 +8,14 @@ import {
     DynamicFormValidationService,
     DynamicSelectModel
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-ng-bootstrap-select",
     templateUrl: "./dynamic-ng-bootstrap-select.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, AsyncPipe]
 })
 export class DynamicNGBootstrapSelectComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -49,12 +49,6 @@
       "@ng-dynamic-forms/ui-ionic/*": [
         "dist/ng-dynamic-forms/ui-ionic/*"
       ],
-      "@ng-dynamic-forms/ui-kendo": [
-        "dist/ng-dynamic-forms/ui-kendo"
-      ],
-      "@ng-dynamic-forms/ui-kendo/*": [
-        "dist/ng-dynamic-forms/ui-kendo/*"
-      ],
       "@ng-dynamic-forms/ui-material": [
         "dist/ng-dynamic-forms/ui-material"
       ],

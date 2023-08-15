@@ -10,4 +10,4 @@ export * from "./timepicker/dynamic-ngx-bootstrap-timepicker.component";
 
 export * from "./dynamic-ngx-bootstrap-form.component";
 export * from "./dynamic-ngx-bootstrap-form-control-container.component";
-export * from "./dynamic-ngx-bootstrap-form-ui.module";
+

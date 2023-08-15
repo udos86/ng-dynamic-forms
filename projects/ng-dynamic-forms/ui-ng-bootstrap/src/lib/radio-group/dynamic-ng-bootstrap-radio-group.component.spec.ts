@@ -1,10 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { NgbButtonsModule } from "@ng-bootstrap/ng-bootstrap";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicRadioGroupModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapRadioGroupComponent } from "./dynamic-ng-bootstrap-radio-group.component";
 
 describe("DynamicNGBootstrapRadioGroupComponent test suite", () => {
@@ -23,13 +21,7 @@ describe("DynamicNGBootstrapRadioGroupComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgbButtonsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapRadioGroupComponent]
+            imports: [DynamicNGBootstrapRadioGroupComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapRadioGroupComponent);
 

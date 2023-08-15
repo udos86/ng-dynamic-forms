@@ -1,11 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement, SimpleChange } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { NgxMaskModule } from "ngx-mask";
+import { provideNgxMask } from "ngx-mask";
 import {
-    DynamicFormsCoreModule,
     DynamicFormService,
     DynamicCheckboxModel,
     DynamicCheckboxGroupModel,
@@ -65,18 +63,9 @@ describe("DynamicBasicFormControlContainerComponent test suite", () => {
     let testElement: DebugElement;
 
     beforeEach(waitForAsync(() => {
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [DynamicBasicInputComponent]
-            }
-        });
-
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NgxMaskModule.forRoot(),
-                DynamicFormsCoreModule],
-            declarations: [DynamicBasicFormControlContainerComponent, DynamicBasicInputComponent]
+            imports: [DynamicBasicFormControlContainerComponent, DynamicBasicInputComponent],
+            providers: [provideNgxMask()]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicBasicFormControlContainerComponent);
 

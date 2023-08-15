@@ -1,23 +1,16 @@
 import { Component, EventEmitter, Inject, Input, Optional, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
     MatAutocomplete,
     MatAutocompleteDefaultOptions,
-    MatAutocompleteSelectedEvent
+    MatAutocompleteSelectedEvent,
+    MatAutocompleteModule
 } from "@angular/material/autocomplete";
-import {
-    MAT_CHIPS_DEFAULT_OPTIONS,
-    MatChipInputEvent,
-    MatChipGrid,
-    MatChipsDefaultOptions
-} from "@angular/material/chips";
-import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-import {
-    MAT_FORM_FIELD_DEFAULT_OPTIONS,
-    MatFormFieldDefaultOptions
-} from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { MAT_CHIPS_DEFAULT_OPTIONS, MatChipInputEvent, MatChipGrid, MatChipsDefaultOptions, MatChipsModule } from "@angular/material/chips";
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions, MatOptionModule } from "@angular/material/core";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions, MatFormFieldModule } from "@angular/material/form-field";
+import { MatInput, MatInputModule } from "@angular/material/input";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -27,10 +20,15 @@ import {
     DynamicFormValidationService,
     DynamicInputModel
 } from "@ng-dynamic-forms/core";
+import { MatIconModule } from "@angular/material/icon";
+import { NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-material-chips",
-    templateUrl: "./dynamic-material-chips.component.html"
+    templateUrl: "./dynamic-material-chips.component.html",
+    standalone: true,
+    imports: [MatFormFieldModule, ReactiveFormsModule, NgClass, MatChipsModule, NgFor, MatIconModule, MatInputModule, MatAutocompleteModule,
+        MatOptionModule, AsyncPipe]
 })
 export class DynamicMaterialChipsComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

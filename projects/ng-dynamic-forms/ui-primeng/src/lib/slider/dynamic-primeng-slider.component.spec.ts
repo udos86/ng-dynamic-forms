@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { Slider, SliderModule } from "primeng/slider";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
+import { Slider } from "primeng/slider";
+import { DynamicFormService, DynamicSliderModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGSliderComponent } from "./dynamic-primeng-slider.component";
 
 describe("DynamicPrimeNGSliderComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicPrimeNGSliderComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                SliderModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGSliderComponent]
+            imports: [DynamicPrimeNGSliderComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGSliderComponent);
 

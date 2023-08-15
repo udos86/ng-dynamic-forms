@@ -343,46 +343,6 @@
         }
       }
     },
-    "@ng-dynamic-forms/ui-kendo": {
-      "root": "projects/ng-dynamic-forms/ui-kendo",
-      "sourceRoot": "projects/ng-dynamic-forms/ui-kendo/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ng-dynamic-forms/ui-kendo/tsconfig.lib.json",
-            "project": "projects/ng-dynamic-forms/ui-kendo/ng-package.json"
-          }
-        ,          "configurations": {
-            "production": {
-              "tsConfig": "projects/ng-dynamic-forms/ui-kendo/tsconfig.lib.prod.json"
-            }
-          }
-},
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ng-dynamic-forms/ui-kendo/src/test.ts",
-            "tsConfig": "projects/ng-dynamic-forms/ui-kendo/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-dynamic-forms/ui-kendo/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ng-dynamic-forms/ui-kendo/tsconfig.lib.json",
-              "projects/ng-dynamic-forms/ui-kendo/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "@ng-dynamic-forms/ui-material": {
       "root": "projects/ng-dynamic-forms/ui-material",
       "sourceRoot": "projects/ng-dynamic-forms/ui-material/src",

@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { ColorPicker, ColorPickerModule } from "primeng/colorpicker";
-import { DynamicColorPickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { ColorPicker } from "primeng/colorpicker";
+import { DynamicColorPickerModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGColorPickerComponent } from "./dynamic-primeng-colorpicker.component";
 
 describe("DynamicPrimeNGColorPickerComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicPrimeNGColorPickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                ColorPickerModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGColorPickerComponent]
+            imports: [DynamicPrimeNGColorPickerComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGColorPickerComponent);
 

@@ -15,7 +15,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -48,11 +48,14 @@ import { DynamicBasicInputComponent } from "./input/dynamic-basic-input.componen
 import { DynamicBasicRadioGroupComponent } from "./radio-group/dynamic-basic-radio-group.component";
 import { DynamicBasicSelectComponent } from "./select/dynamic-basic-select.component";
 import { DynamicBasicTextAreaComponent } from "./textarea/dynamic-basic-textarea.component";
+import { NgClass, NgFor, NgTemplateOutlet, NgIf } from "@angular/common";
 
 @Component({
     selector: "dynamic-basic-form-control",
     templateUrl: "./dynamic-basic-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, NgTemplateOutlet, NgFor]
 })
 export class DynamicBasicFormControlContainerComponent extends DynamicFormControlContainerComponent {
     @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
@@ -121,7 +124,9 @@ export function basicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
 @Component({
     selector: "dynamic-basic-form-array",
-    templateUrl: "./dynamic-basic-form-array.component.html"
+    templateUrl: "./dynamic-basic-form-array.component.html",
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgClass, NgFor, NgTemplateOutlet, DynamicBasicFormControlContainerComponent]
 })
 export class DynamicBasicFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
@@ -145,7 +150,9 @@ export class DynamicBasicFormArrayComponent extends DynamicFormArrayComponent {
 
 @Component({
     selector: "dynamic-basic-form-group",
-    templateUrl: "./dynamic-basic-form-group.component.html"
+    templateUrl: "./dynamic-basic-form-group.component.html",
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, NgFor, DynamicBasicFormControlContainerComponent]
 })
 export class DynamicBasicFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;

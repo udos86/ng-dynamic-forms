@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { IonicModule, IonSelect } from "@ionic/angular";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
+import { IonSelect } from "@ionic/angular";
+import { DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicIonicSelectComponent } from "./dynamic-ionic-select.component";
 
 describe("DynamicIonicSelectComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicIonicSelectComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                IonicModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicIonicSelectComponent]
+            imports: [DynamicIonicSelectComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicIonicSelectComponent);
 

@@ -1,11 +1,10 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapRatingComponent } from "./dynamic-ng-bootstrap-rating.component";
-import { NgbRating, NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbRating } from "@ng-bootstrap/ng-bootstrap";
 
 describe("DynamicNGBootstrapRatingComponent test suite", () => {
     const testModel = new DynamicRatingModel({id: "rating"});
@@ -19,13 +18,7 @@ describe("DynamicNGBootstrapRatingComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                NgbRatingModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGBootstrapRatingComponent]
+            imports: [DynamicNGBootstrapRatingComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGBootstrapRatingComponent);
 

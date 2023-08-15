@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { Dropdown, DropdownModule } from "primeng/dropdown";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
+import { Dropdown } from "primeng/dropdown";
+import { DynamicFormService, DynamicSelectModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGDropdownComponent } from "./dynamic-primeng-dropdown.component";
 
 describe("DynamicPrimeNGDropdownComponent test suite", () => {
@@ -19,14 +18,7 @@ describe("DynamicPrimeNGDropdownComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DropdownModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGDropdownComponent]
-
+            imports: [DynamicPrimeNGDropdownComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGDropdownComponent);
 

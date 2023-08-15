@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -8,11 +8,14 @@ import {
     DynamicFormValidationService,
     DynamicSwitchModel
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ng-bootstrap-switch",
     templateUrl: "./dynamic-ng-bootstrap-switch.component.html",
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass]
 })
 export class DynamicNGBootstrapSwitchComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

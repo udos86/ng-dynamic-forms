@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { MatRadioGroup } from "@angular/material/radio";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatRadioGroup, MatRadioModule } from "@angular/material/radio";
 import {
     DynamicFormControlComponent,
     DynamicFormControlCustomEvent,
@@ -10,10 +10,13 @@ import {
     DynamicFormValidationService,
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-material-radio-group",
-    templateUrl: "./dynamic-material-radio-group.component.html"
+    templateUrl: "./dynamic-material-radio-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, MatRadioModule, NgClass, NgFor, AsyncPipe]
 })
 export class DynamicMaterialRadioGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

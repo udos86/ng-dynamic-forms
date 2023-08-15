@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Chips } from "primeng/chips";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Chips, ChipsModule } from "primeng/chips";
 import {
     DynamicFormControlCustomEvent,
     DynamicFormControlLayout,
@@ -12,10 +12,13 @@ import {
 } from "@ng-dynamic-forms/core";
 import { PRIME_NG_TEMPLATE_DIRECTIVES } from "../dynamic-primeng-form.const";
 import { DynamicPrimeNGFormControlWithTemplateComponent } from "../dynamic-primeng-form-control-with-template.component";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-chips",
-    templateUrl: "./dynamic-primeng-chips.component.html"
+    templateUrl: "./dynamic-primeng-chips.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, ChipsModule]
 })
 export class DynamicPrimeNGChipsComponent extends DynamicPrimeNGFormControlWithTemplateComponent {
     readonly templateDirectives = PRIME_NG_TEMPLATE_DIRECTIVES;

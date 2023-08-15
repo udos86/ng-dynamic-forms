@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { IonTextarea } from "@ionic/angular";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { IonTextarea, IonicModule } from "@ionic/angular";
 import {
     DynamicFormControlLayout,
     DynamicFormLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
+import { NgIf, NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-textarea",
-    templateUrl: "./dynamic-ionic-textarea.component.html"
+    templateUrl: "./dynamic-ionic-textarea.component.html",
+    standalone: true,
+    imports: [IonicModule, ReactiveFormsModule, NgIf, NgClass]
 })
 export class DynamicIonicTextAreaComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

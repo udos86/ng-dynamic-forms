@@ -1,11 +1,11 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { MatAutocomplete, MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatInput, MatInputModule } from "@angular/material/input";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
+import { MatAutocomplete } from "@angular/material/autocomplete";
+import { MatInput } from "@angular/material/input";
+import { DynamicFormService, DynamicInputModel } from "@ng-dynamic-forms/core";
 import { DynamicMaterialInputComponent } from "./dynamic-material-input.component";
 
 describe("DynamicMaterialInputComponent test suite", () => {
@@ -20,14 +20,7 @@ describe("DynamicMaterialInputComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatAutocompleteModule,
-                MatInputModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialInputComponent]
+            imports: [NoopAnimationsModule, DynamicMaterialInputComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialInputComponent);
 

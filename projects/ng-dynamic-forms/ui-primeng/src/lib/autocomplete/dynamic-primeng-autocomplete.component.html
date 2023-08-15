@@ -9,7 +9,7 @@
                     [formControlName]="model.id"
                     [id]="id"
                     [minLength]="model.getAdditional('minLength', 1)"
-                    [multiple]="model.multiple"
+                    [multiple]="!!model.multiple"
                     [ngClass]="getClass('element', 'control')"
                     [placeholder]="model.placeholder"
                     [scrollHeight]="model.getAdditional('scrollHeight', '200px')"

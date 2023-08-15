@@ -22,7 +22,6 @@ jobs:
       - run: npm run build:ui-bootstrap && npm run test:ui-bootstrap
       - run: npm run build:ui-foundation && npm run test:ui-foundation
       - run: npm run build:ui-ionic && npm run test:ui-ionic
-      - run: npm run build:ui-kendo && npm run test:ui-kendo
       - run: npm run build:ui-material && npm run test:ui-material
       - run: npm run build:ui-ng-bootstrap && npm run test:ui-ng-bootstrap
       - run: npm run build:ui-ngx-bootstrap && npm run test:ui-ngx-bootstrap

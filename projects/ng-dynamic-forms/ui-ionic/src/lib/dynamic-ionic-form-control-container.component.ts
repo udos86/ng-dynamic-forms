@@ -14,7 +14,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DYNAMIC_FORM_CONTROL_TYPE_ARRAY,
     DYNAMIC_FORM_CONTROL_TYPE_CHECKBOX,
@@ -54,11 +54,14 @@ import { DynamicIonicRangeComponent } from "./range/dynamic-ionic-range.componen
 import { DynamicIonicSelectComponent } from "./select/dynamic-ionic-select.component";
 import { DynamicIonicToggleComponent } from "./toggle/dynamic-ionic-toggle.component";
 import { DynamicIonicTextAreaComponent } from "./textarea/dynamic-ionic-textarea.component";
+import { NgClass, NgFor, NgTemplateOutlet, NgIf } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-form-control",
     templateUrl: "./dynamic-ionic-form-control-container.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgTemplateOutlet]
 })
 export class DynamicIonicFormControlContainerComponent extends DynamicFormControlContainerComponent {
     @ContentChildren(DynamicTemplateDirective) contentTemplateList!: QueryList<DynamicTemplateDirective>;
@@ -140,7 +143,9 @@ export function ionicUIFormControlMapFn(model: DynamicFormControlModel): Type<Dy
 
 @Component({
     selector: "dynamic-ionic-form-array",
-    templateUrl: "./dynamic-ionic-form-array.component.html"
+    templateUrl: "./dynamic-ionic-form-array.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgFor, NgTemplateOutlet, DynamicIonicFormControlContainerComponent]
 })
 export class DynamicIonicFormArrayComponent extends DynamicFormArrayComponent {
     @Input() formLayout?: DynamicFormLayout;
@@ -163,7 +168,9 @@ export class DynamicIonicFormArrayComponent extends DynamicFormArrayComponent {
 
 @Component({
     selector: "dynamic-ionic-form-group",
-    templateUrl: "./dynamic-ionic-form-group.component.html"
+    templateUrl: "./dynamic-ionic-form-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgFor, DynamicIonicFormControlContainerComponent]
 })
 export class DynamicIonicFormGroupComponent extends DynamicFormGroupComponent {
     @Input() formLayout?: DynamicFormLayout;

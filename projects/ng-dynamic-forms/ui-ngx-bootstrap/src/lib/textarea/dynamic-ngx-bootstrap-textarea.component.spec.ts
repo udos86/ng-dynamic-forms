@@ -1,9 +1,8 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
+import { DynamicFormService, DynamicTextAreaModel } from "@ng-dynamic-forms/core";
 import { DynamicNGxBootstrapTextAreaComponent } from "./dynamic-ngx-bootstrap-textarea.component";
 
 describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
@@ -18,12 +17,7 @@ describe("DynamicNGxBootstrapTextAreaComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicNGxBootstrapTextAreaComponent]
+            imports: [DynamicNGxBootstrapTextAreaComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicNGxBootstrapTextAreaComponent);
 

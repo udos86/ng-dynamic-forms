@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -8,11 +8,14 @@ import {
     DynamicFormValidationService,
     DynamicSwitchModel
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-foundation-switch",
     templateUrl: "./dynamic-foundation-switch.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass]
 })
 export class DynamicFoundationSwitchComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent,
     DynamicFormControlLayout,
@@ -8,11 +8,14 @@ import {
     DynamicFormValidationService,
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgIf, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-bootstrap-radio-group",
     templateUrl: "./dynamic-bootstrap-radio-group.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, NgFor, AsyncPipe]
 })
 export class DynamicBootstrapRadioGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

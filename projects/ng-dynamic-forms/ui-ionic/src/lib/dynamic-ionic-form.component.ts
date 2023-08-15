@@ -19,11 +19,14 @@ import {
     DynamicTemplateDirective
 } from "@ng-dynamic-forms/core";
 import { DynamicIonicFormControlContainerComponent } from "./dynamic-ionic-form-control-container.component";
+import { NgFor } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-form",
     templateUrl: "./dynamic-ionic-form.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, DynamicIonicFormControlContainerComponent]
 })
 export class DynamicIonicFormComponent extends DynamicFormComponent {
     @Input() group!: UntypedFormGroup;

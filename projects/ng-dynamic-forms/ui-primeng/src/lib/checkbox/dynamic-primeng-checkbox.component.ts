@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { Checkbox } from "primeng/checkbox";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Checkbox, CheckboxModule } from "primeng/checkbox";
 import {
     DynamicCheckboxModel,
     DynamicFormLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormControlComponent,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-checkbox",
-    templateUrl: "./dynamic-primeng-checkbox.component.html"
+    templateUrl: "./dynamic-primeng-checkbox.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, CheckboxModule]
 })
 export class DynamicPrimeNGCheckboxComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

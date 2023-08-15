@@ -1,10 +1,9 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { Rating, RatingModule } from "primeng/rating";
-import { DynamicFormsCoreModule, DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
+import { Rating } from "primeng/rating";
+import { DynamicFormService, DynamicRatingModel } from "@ng-dynamic-forms/core";
 import { DynamicPrimeNGRatingComponent } from "./dynamic-primeng-rating.component";
 
 describe("DynamicPrimeNGRatingComponent test suite", () => {
@@ -19,13 +18,7 @@ describe("DynamicPrimeNGRatingComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                RatingModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicPrimeNGRatingComponent]
+            imports: [DynamicPrimeNGRatingComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicPrimeNGRatingComponent);
 

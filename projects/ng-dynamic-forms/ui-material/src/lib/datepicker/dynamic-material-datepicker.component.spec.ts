@@ -1,12 +1,12 @@
 import { TestBed, inject, ComponentFixture, waitForAsync } from "@angular/core/testing";
 import { DebugElement } from "@angular/core";
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
 import { By } from "@angular/platform-browser";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { MatDatepicker } from "@angular/material/datepicker";
+import { MatInput } from "@angular/material/input";
 import { MatNativeDateModule } from "@angular/material/core";
-import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
-import { MatInput, MatInputModule } from "@angular/material/input";
-import { DynamicDatePickerModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
+import { DynamicDatePickerModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicMaterialDatePickerComponent } from "./dynamic-material-datepicker.component";
 
 describe("DynamicMaterialDatePickerComponent test suite", () => {
@@ -21,15 +21,7 @@ describe("DynamicMaterialDatePickerComponent test suite", () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                MatDatepickerModule,
-                MatInputModule,
-                MatNativeDateModule,
-                DynamicFormsCoreModule
-            ],
-            declarations: [DynamicMaterialDatePickerComponent]
+            imports: [NoopAnimationsModule, MatNativeDateModule, DynamicMaterialDatePickerComponent]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(DynamicMaterialDatePickerComponent);
 

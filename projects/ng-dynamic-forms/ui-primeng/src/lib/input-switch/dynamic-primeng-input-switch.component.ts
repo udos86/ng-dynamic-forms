@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
-import { InputSwitch } from "primeng/inputswitch";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
+import { InputSwitch, InputSwitchModule } from "primeng/inputswitch";
 import {
     DynamicFormLayout,
     DynamicFormLayoutService,
@@ -9,10 +9,13 @@ import {
     DynamicSwitchModel,
     DynamicFormControlLayout
 } from "@ng-dynamic-forms/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-primeng-input-switch",
-    templateUrl: "./dynamic-primeng-input-switch.component.html"
+    templateUrl: "./dynamic-primeng-input-switch.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, InputSwitchModule]
 })
 export class DynamicPrimeNGInputSwitchComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

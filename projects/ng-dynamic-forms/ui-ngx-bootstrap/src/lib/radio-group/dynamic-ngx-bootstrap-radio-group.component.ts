@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { UntypedFormGroup } from "@angular/forms";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicFormControlComponent, DynamicFormControlLayout,
     DynamicFormLayout,
@@ -7,10 +7,14 @@ import {
     DynamicFormValidationService,
     DynamicRadioGroupModel
 } from "@ng-dynamic-forms/core";
+import { NgClass, NgFor, AsyncPipe } from "@angular/common";
+import { ButtonsModule } from "ngx-bootstrap/buttons";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-radio-group",
-    templateUrl: "./dynamic-ngx-bootstrap-radio-group.component.html"
+    templateUrl: "./dynamic-ngx-bootstrap-radio-group.component.html",
+    standalone: true,
+    imports: [ReactiveFormsModule, ButtonsModule, NgClass, NgFor, AsyncPipe]
 })
 export class DynamicNGxBootstrapRadioGroupComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

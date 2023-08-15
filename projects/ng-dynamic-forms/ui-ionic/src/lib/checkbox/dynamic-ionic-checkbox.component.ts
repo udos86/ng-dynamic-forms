@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { IonCheckbox } from "@ionic/angular";
-import { UntypedFormGroup } from "@angular/forms";
+import { IonCheckbox, IonicModule } from "@ionic/angular";
+import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
     DynamicCheckboxModel,
     DynamicFormControlLayout,
@@ -9,10 +9,13 @@ import {
     DynamicFormValidationService,
     DynamicFormControlComponent
 } from "@ng-dynamic-forms/core";
+import { NgIf, NgClass } from "@angular/common";
 
 @Component({
     selector: "dynamic-ionic-checkbox",
-    templateUrl: "./dynamic-ionic-checkbox.component.html"
+    templateUrl: "./dynamic-ionic-checkbox.component.html",
+    standalone: true,
+    imports: [IonicModule, ReactiveFormsModule, NgIf, NgClass]
 })
 export class DynamicIonicCheckboxComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;
