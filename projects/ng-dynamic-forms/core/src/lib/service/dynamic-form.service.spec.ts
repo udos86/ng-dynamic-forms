@@ -111,7 +111,9 @@ describe("DynamicFormService test suite", () => {
                         return [
                             new DynamicInputModel({id: "testFormArrayGroupInput"}),
                             new DynamicFormArrayModel({
-                                id: "testNestedFormArray", groupFactory: () => [
+                                id: "testNestedFormArray",
+                                initialCount: 3,
+                                groupFactory: () => [
                                     new DynamicInputModel({id: "testNestedFormArrayGroupInput"})
                                 ]
                             })
@@ -219,6 +221,30 @@ describe("DynamicFormService test suite", () => {
         expect(service.findById("testCheckboxGroup1", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("testCheckboxGroup2", testModel) instanceof DynamicFormControlModel).toBe(true);
         expect(service.findById("nestedTestInput", testModel) instanceof DynamicFormControlModel).toBe(true);
+    });
+
+    it("should find a dynamic form control model by path", () => {
+      expect(service.findByPath("testCheckbox", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testCheckboxGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testDatepicker", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testFormArray", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testInput", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testRadioGroup", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testSelect", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testSlider", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testSwitch", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testTextArea", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testFileUpload", testModel) instanceof DynamicFormControlModel).toBe(true);
+      expect(service.findByPath("testEditor", testModel) instanceof DynamicEditorModel).toBe(true);
+      expect(service.findById("testTimePicker", testModel) instanceof DynamicTimePickerModel).toBe(true);
+      expect(service.findByPath("testRating", testModel) instanceof DynamicRatingModel ).toBe(true);
+      expect(service.findByPath("testColorPicker", testModel) instanceof DynamicColorPickerModel).toBe(true);
+      expect(service.findByPath("testFormGroup.nestedTestInput", testModel) instanceof DynamicInputModel).toBe(true);
+      expect(service.findByPath("testFormGroup.nestedTestTextArea",testModel) instanceof DynamicTextAreaModel).toBe(true);
+      expect(service.findByPath("testFormArray.0.testFormArrayGroupInput",testModel) instanceof DynamicInputModel).toBe(true);
+      expect(service.findByPath("testFormArray.1.testFormArrayGroupInput",testModel) instanceof DynamicInputModel).toBe(true);
+      expect(service.findByPath("testFormArray.0.testNestedFormArray.0.testNestedFormArrayGroupInput",testModel) instanceof DynamicInputModel).toBe(true);
+      expect(service.findByPath("testFormArray.1.testNestedFormArray.1.testNestedFormArrayGroupInput",testModel) instanceof DynamicInputModel).toBe(true);
     });
 
 
