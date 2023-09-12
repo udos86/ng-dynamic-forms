@@ -31,9 +31,9 @@
   },
   "peerDependencies": {
     "@ng-dynamic-forms/core": "^18.0.0",
-    "ngx-mask": "^13.0.0",
-    "bootstrap": "^4.0.0",
-    "ngx-bootstrap": "^8.0.0"
+    "ngx-bootstrap": ">= 8.0.0 < 12",
+    "ngx-mask": ">= 13.0.0 < 17",
+    "bootstrap": ">= 3 < 6"
   },
   "es2015": "./fesm2015/ui-ngx-bootstrap.js",
   "esm2015": "./esm2015/ui-ngx-bootstrap.js",
