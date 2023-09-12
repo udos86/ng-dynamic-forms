@@ -5,11 +5,11 @@
          [id]="id"
          [ngClass]="getClass('element', 'control')">
 
-        <label *ngFor="let checkboxModel of model.group" ngbButtonLabel
+        <label *ngFor="let checkboxModel of model.group"
                [hidden]="checkboxModel.hidden"
                [ngClass]="getClass('element', 'control', checkboxModel)">
 
-            <input type="checkbox" ngbButton
+            <input type="checkbox"
                    [checked]="checkboxModel.checked"
                    [formControlName]="checkboxModel.id"
                    [id]="getCheckboxId(checkboxModel)"
