@@ -1,10 +1,10 @@
-import { TestBed, inject } from "@angular/core/testing";
-import { UntypedFormGroup, ReactiveFormsModule } from "@angular/forms";
-import { DynamicFormRelationService } from "./dynamic-form-relation.service";
-import { DynamicTextAreaModel } from "../model/textarea/dynamic-textarea.model";
-import { DynamicFormService } from "./dynamic-form.service";
-import { DynamicSelectModel } from "../model/select/dynamic-select.model";
-import { DynamicRadioGroupModel } from "../model/radio/dynamic-radio-group.model";
+import {TestBed, inject} from "@angular/core/testing";
+import {UntypedFormGroup, ReactiveFormsModule} from "@angular/forms";
+import {DynamicFormRelationService} from "./dynamic-form-relation.service";
+import {DynamicTextAreaModel} from "../model/textarea/dynamic-textarea.model";
+import {DynamicFormService} from "./dynamic-form.service";
+import {DynamicSelectModel} from "../model/select/dynamic-select.model";
+import {DynamicRadioGroupModel} from "../model/radio/dynamic-radio-group.model";
 import {
     AND_OPERATOR,
     DISABLED_MATCHER_PROVIDER,
@@ -17,6 +17,12 @@ import {
     REQUIRED_MATCHER_PROVIDER,
     REQUIRED_MATCHER
 } from "./dynamic-form-relation-matchers";
+import {DynamicFormControlCondition} from "../model/misc/dynamic-form-control-relation.model";
+
+interface User {
+    uuid: string;
+    name: string;
+}
 
 describe("DynamicFormRelationService test suite", () => {
     let service: DynamicFormRelationService;
@@ -95,6 +101,21 @@ describe("DynamicFormRelationService test suite", () => {
             {id: "testRadioGroup", value: "option-2"}
         ]
     };
+    const relDisabledOr23WithMatched = {
+        match: MATCH_DISABLED,
+        operator: OR_OPERATOR,
+        when: [
+            {id: "testSelect", matched: (value) => value === "option-2"},
+            {id: "testRadioGroup", value: "option-3"}
+        ] as DynamicFormControlCondition[]
+    };
+    const relDisabledObject = {
+        match: MATCH_DISABLED,
+        operator: OR_OPERATOR,
+        when: [
+            {id: "userSelect", matched: (value) => value.uuid === "2"},
+        ] as DynamicFormControlCondition[]
+    };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -116,6 +137,15 @@ describe("DynamicFormRelationService test suite", () => {
                     id: "testRadioGroup",
                     options: [{value: "option-1"}, {value: "option-2"}, {value: "option-3"}],
                     value: "option-1"
+                }),
+                new DynamicSelectModel<User>({
+                    id: "userSelect",
+                    options: [
+                        {value: {uuid: "1", name: "User 1"}},
+                        {value: {uuid: "2", name: "User 2"}},
+                        {value: {uuid: "3", name: "User 3"}}
+                    ],
+                    value: {uuid: "1", name: "User 1"}
                 }),
                 model
             ]);
@@ -147,6 +177,13 @@ describe("DynamicFormRelationService test suite", () => {
 
         model.relations = [relDisabledOr13];
         expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(true);
+
+        model.relations = [relDisabledOr23WithMatched];
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(false);
+
+        model.relations = [relDisabledObject];
+        expect(service.matchesCondition(model.relations[0], service.getRelatedFormControls(model, group), DISABLED_MATCHER)).toBe(false);
+
     });
 
     it("should check if form control is to be required correctly", () => {
