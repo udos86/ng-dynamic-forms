@@ -1,16 +1,16 @@
-import { Inject, Injectable, Injector, Optional } from "@angular/core";
-import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
-import { DynamicFormControlModel } from "../model/dynamic-form-control.model";
+import {Inject, Injectable, Injector, Optional} from "@angular/core";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {DynamicFormControlModel} from "../model/dynamic-form-control.model";
 import {
     AND_OPERATOR,
     DYNAMIC_MATCHERS,
     DynamicFormControlMatcher,
     OR_OPERATOR
 } from "./dynamic-form-relation-matchers";
-import { DynamicFormControlCondition, DynamicFormControlRelation } from "../model/misc/dynamic-form-control-relation.model";
-import { distinctUntilChanged, startWith } from "rxjs/operators";
-import { merge, Subscription } from "rxjs";
-import { isString } from "../utils/core.utils";
+import {DynamicFormControlCondition, DynamicFormControlRelation} from "../model/misc/dynamic-form-control-relation.model";
+import {distinctUntilChanged, startWith} from "rxjs/operators";
+import {merge, Subscription} from "rxjs";
+import {isString} from "../utils/core.utils";
 
 export type DynamicRelatedFormControls = { [path: string]: UntypedFormControl };
 
@@ -62,7 +62,16 @@ export class DynamicFormRelationService {
                 }
             }
 
-            if (relatedFormControl && relation.match === matcher.match) {
+            if (!relatedFormControl) {
+                return false;
+            }
+
+            const shouldCheckMatcher = relation.match === matcher.match || relation.match === matcher.opposingMatch;
+            const matched = !shouldCheckMatcher ? false : (
+                condition.matched ? condition.matched(relatedFormControl.value) : condition.value === relatedFormControl.value
+            );
+
+            if (relation.match === matcher.match) {
                 if (index > 0 && operator === AND_OPERATOR && !hasMatched) {
                     return false;
                 }
@@ -71,10 +80,10 @@ export class DynamicFormRelationService {
                     return true;
                 }
 
-                return condition.value === relatedFormControl.value || condition.status === relatedFormControl.status;
+                return matched || condition.status === relatedFormControl.status;
             }
 
-            if (relatedFormControl && relation.match === matcher.opposingMatch) {
+            if (relation.match === matcher.opposingMatch) {
                 if (index > 0 && operator === AND_OPERATOR && hasMatched) {
                     return true;
                 }
@@ -83,7 +92,7 @@ export class DynamicFormRelationService {
                     return false;
                 }
 
-                return !(condition.value === relatedFormControl.value || condition.status === relatedFormControl.status);
+                return !(matched || condition.status === relatedFormControl.status);
             }
 
             return false;
