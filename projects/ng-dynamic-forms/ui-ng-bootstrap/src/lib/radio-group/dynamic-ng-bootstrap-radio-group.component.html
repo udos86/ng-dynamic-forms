@@ -1,6 +1,7 @@
 <ng-container [formGroup]="group">
 
-    <div ngbRadioGroup class="btn-group btn-group-toggle" role="radiogroup"
+    <div class="btn-group" role="group"
+         ngDefaultControl
          [formControlName]="model.id"
          [id]="id"
          [ngClass]="getClass('element', 'control')"
@@ -9,10 +10,10 @@
 
         <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
 
-        <label *ngFor="let option of model.options$ | async" ngbButtonLabel
+        <label *ngFor="let option of model.options$ | async"
                [ngClass]="[getClass('element', 'option'), getClass('grid', 'option')]">
 
-            <input type="radio" ngbButton
+            <input type="radio"
                    [disabled]="option.disabled"
                    [name]="model.name"
                    [value]="option.value"

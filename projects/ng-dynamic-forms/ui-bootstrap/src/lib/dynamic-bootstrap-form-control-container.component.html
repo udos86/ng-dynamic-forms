@@ -1,4 +1,4 @@
-<div [class.form-group]="asBootstrapFormGroup || getClass('element', 'container').includes('form-group')"
+<div [class.mb-3]="asBootstrapFormGroup || getClass('element', 'container').includes('form-group')"
      [class.has-error]="showErrorMessages"
      [formGroup]="group"
      [ngClass]="['ng-dynamic-forms-'+model.type.toLowerCase(), getClass('element', 'container'), getClass('grid', 'container')]">

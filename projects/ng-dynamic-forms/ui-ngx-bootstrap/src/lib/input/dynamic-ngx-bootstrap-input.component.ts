@@ -9,14 +9,15 @@ import {
     DynamicInputModel,
     DynamicFormsCoreModule
 } from "@ng-dynamic-forms/core";
-import { NgxMaskDirective } from "ngx-mask";
+import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { NgIf, NgClass, NgFor, AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "dynamic-ngx-bootstrap-input",
     templateUrl: "./dynamic-ngx-bootstrap-input.component.html",
     standalone: true,
-    imports: [ReactiveFormsModule, NgIf, DynamicFormsCoreModule, NgClass, NgxMaskDirective, NgFor, AsyncPipe]
+    imports: [ReactiveFormsModule, NgIf, DynamicFormsCoreModule, NgClass, NgxMaskDirective, NgFor, AsyncPipe],
+    providers: [provideNgxMask()]
 })
 export class DynamicNGxBootstrapInputComponent extends DynamicFormControlComponent {
     @Input() formLayout?: DynamicFormLayout;

@@ -1,10 +1,8 @@
 <div [formGroup]="group" [class.input-group]="model.prefix || model.suffix">
 
-    <div *ngIf="model.prefix" class="input-group-prepend">
-        <span class="input-group-text" [innerHTML]="model.prefix"></span>
-    </div>
+    <span *ngIf="model.prefix" class="input-group-text" [innerHTML]="model.prefix"></span>
 
-    <input *ngIf="model.inputType === 'file'; else maskedInput" class="form-control-file"
+    <input *ngIf="model.inputType === 'file'; else maskedInput" class="form-control"
            [attr.accept]="model.accept"
            [attr.max]="model.max"
            [attr.min]="model.min"
@@ -78,9 +76,7 @@
                (focus)="onFocus($event)"/>
     </ng-template>
 
-    <div *ngIf="model.suffix" class="input-group-append">
-        <span class="input-group-text" [innerHTML]="model.suffix"></span>
-    </div>
+    <span *ngIf="model.suffix" class="input-group-text" [innerHTML]="model.suffix"></span>
 
     <datalist *ngIf="model.hasList" [id]="model.listId">
         <option *ngFor="let option of model.list$ | async" [value]="option">
