@@ -2,7 +2,7 @@
 
     <form [formGroup]="formGroup">
 
-        <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel" class="form-row"
+        <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel" class="d-flex flex-wrap ml-n1 mr-n1"
                                         [group]="formGroup"
                                         [model]="controlModel"></dynamic-bootstrap-form-control>
     </form>

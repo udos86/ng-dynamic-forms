@@ -1,7 +1,7 @@
 export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
     stay: {
         element: {
-            control: "form-row"
+            control: "d-flex flex-wrap ml-n1 mr-n1"
         }
     },
 
@@ -27,7 +27,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
     room: {
         element: {
-            control: "form-row"
+            control: "d-flex flex-wrap ml-n1 mr-n1"
         }
     },
 
@@ -70,7 +70,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
     addressStreet: {
         element: {
-            control: "form-row"
+            control: "d-flex flex-wrap ml-n1 mr-n1"
         }
     },
 
@@ -94,7 +94,7 @@ export const NG_BOOTSTRAP_SAMPLE_FORM_LAYOUT = {
 
     addressLocation: {
         element: {
-            control: "form-row"
+            control: "d-flex flex-wrap ml-n1 mr-n1"
         }
     },
 

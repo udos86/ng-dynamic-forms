@@ -3,7 +3,6 @@ import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule, UntypedFormGroup } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
-import { NgbButtonsModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicCheckboxGroupModel, DynamicFormsCoreModule, DynamicFormService } from "@ng-dynamic-forms/core";
 import { DynamicNGBootstrapCheckboxGroupComponent } from "./dynamic-ng-bootstrap-checkbox-group.component";
 
@@ -22,7 +21,6 @@ describe("DynamicNGBootstrapCheckboxGroupComponent test suite", () => {
     imports: [
         ReactiveFormsModule,
         NoopAnimationsModule,
-        NgbButtonsModule,
         DynamicFormsCoreModule,
         DynamicNGBootstrapCheckboxGroupComponent
     ]

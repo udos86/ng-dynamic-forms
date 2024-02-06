@@ -2,7 +2,7 @@
 
     <form [formGroup]="formGroup1">
 
-        <dynamic-basic-form-control *ngFor="let controlModel of formModel1" class="form-row"
+        <dynamic-basic-form-control *ngFor="let controlModel of formModel1" class="d-flex flex-wrap ml-n1 mr-n1"
                                     [group]="formGroup1"
                                     [model]="controlModel"
                                     (blur)="onBlur($event)"
@@ -15,7 +15,7 @@
 
     <form [formGroup]="formGroup2">
 
-        <dynamic-basic-form-control *ngFor="let controlModel of formModel2" class="form-row"
+        <dynamic-basic-form-control *ngFor="let controlModel of formModel2" class="d-flex flex-wrap ml-n1 mr-n1"
                                     [group]="formGroup2"
                                     [model]="controlModel"
                                     (blur)="onBlur($event)"
